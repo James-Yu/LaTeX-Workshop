@@ -55,7 +55,7 @@
   },
   "envs": {},
   "options": [
-    "font=",
+    "font=${1|Helv,HelvB,HelvI,HelvBI,Times,TimesB,TimesI,TimesBI,Cour,CourB,CourI,CourBI|}",
     "timeinterval=${1:integer}",
     "timeduration=${1:minutes}",
     "timewarningfirst=${1:integer 0-100}",
@@ -65,8 +65,8 @@
     "colorwarningsecond=",
     "fillcolorwarningfirst=",
     "fillcolorwarningsecond=",
-    "resetatpages=",
-    "pageresetcontrol="
+    "resetatpages=${2|none,all,${1:integer},{${2:list of integers}}|}",
+    "pageresetcontrol=${1|pdfpagelabels,pdfpagenumbers|}"
   ],
   "keyvals": []
 }

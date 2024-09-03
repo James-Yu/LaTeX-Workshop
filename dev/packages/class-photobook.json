@@ -1019,9 +1019,9 @@
     "gutteroffset=",
     "bleed=",
     "flatfold=",
-    "pagefold=",
+    "pagefold=${1|in,out|}",
     "foldout=${1:fold-spec}",
-    "layoutmode=",
+    "layoutmode=${1|block,spread,endpaper,cover,jacket|}",
     "block",
     "endpaper",
     "cover",
@@ -1038,7 +1038,7 @@
     "imageblockwidth=",
     "imageblockheight=",
     "imageblockoffsettop=",
-    "pdfpagelayout=",
+    "pdfpagelayout=${1|SinglePage,OneColumn,TwoColumnRight,TwoColumnLeft,TwoPageRight,TwoPageLeft|}",
     "SinglePage",
     "OneColumn",
     "TwoColumnRight",
@@ -1054,8 +1054,8 @@
     [
       "left",
       "right",
-      "align=",
-      "valign=",
+      "align=${1|flushleft,center,flushright|}",
+      "valign=${1|t,c,b|}",
       "clearance=",
       "constraintoparent",
       "clearparent=",
@@ -1069,7 +1069,7 @@
       "center",
       "bottom",
       "under",
-      "align=",
+      "align=${1|flushleft,center,flushright|}",
       "margin="
     ],
     [
@@ -1086,7 +1086,7 @@
       "offsettop=",
       "offsetleft=",
       "scale=${1:factor}",
-      "captionalign=",
+      "captionalign=${1|t,c,b|}",
       "captionclearparent="
     ],
     [
@@ -1094,7 +1094,7 @@
       "style=${1:style}",
       "subject=${1:subject}",
       "author=${1:author}",
-      "icon=",
+      "icon=${1|Comment,Key,Note,Help,NewParagraph,Paragraph,Insert,Check,Circle,Cross,Star,RightArrow,RightPointer,UpArrow,UpLeftArrow,CrossHairs|}",
       "color=${1:color}",
       "opacity=",
       "open",
@@ -1115,7 +1115,7 @@
       "center",
       "right",
       "after",
-      "align=",
+      "align=${1|flushleft,center,flushright|}",
       "margin="
     ]
   ]

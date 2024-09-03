@@ -442,7 +442,7 @@
   "options": [
     "final",
     "draft",
-    "status=",
+    "status=${1|final,draft|}",
     "layout={${1:options}}",
     "morelayout={${1:options}}",
     "inline",
@@ -491,29 +491,29 @@
     "ngerman",
     "danish",
     "croatian",
-    "lang=",
+    "lang=${1|english,french,francais,spanish,italian,german,ngerman,danish,croatian|}",
     "langtrack",
-    "defaultlang=",
+    "defaultlang=${1|english,french,francais,spanish,italian,german,ngerman,danish,croatian|}",
     "author=${1:name}",
     "singleuser",
     "multiuser",
-    "mode="
+    "mode=${1|singleuser,multiuser|}"
   ],
   "keyvals": [
     [
-      "envlayout=",
-      "targetlayout=",
-      "theme="
+      "envlayout=${1|plain,signature,color,colorsig|}",
+      "targetlayout=${1|plain,changebar,color,colorcb|}",
+      "theme=${1|signature,color,colorsig|}"
     ],
     [
-      "targetlayout="
+      "targetlayout=${1|plain,changebar,color,colorcb|}"
     ],
     [
-      "envlayout="
+      "envlayout=${1|plain,signature,color,colorsig|}"
     ],
     [
-      "envlayout=",
-      "targetlayout="
+      "envlayout=${1|plain,signature,color,colorsig|}",
+      "targetlayout=${1|plain,changebar,color,colorcb|}"
     ]
   ]
 }

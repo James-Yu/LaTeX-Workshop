@@ -48,14 +48,14 @@
       "file=${1:file name}",
       "sheet=${1:sheet name}",
       "range=${1:cell1:cell2}",
-      "columns=",
+      "columns=${1|head,top,{${1:list of headings}}|}",
       "columnbreak=${1:command}",
-      "rowseparator=",
-      "template=",
+      "rowseparator=${1|tableline,hline,newline,${1:command}|}",
+      "template=${2|${1:template name},{${2:code}}|}",
       "coltypes=${1:coltypes}",
-      "rowtemplate=",
-      "celltemplate=",
-      "multicoltemplate=",
+      "rowtemplate=${2|${1:template name},{${2:code}}|}",
+      "celltemplate=${2|${1:template name},{${2:code}}|}",
+      "multicoltemplate=${2|${1:template name},{${2:code}}|}",
       "escape"
     ]
   ]

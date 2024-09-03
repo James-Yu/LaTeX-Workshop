@@ -27,9 +27,9 @@
     [
       "basechar=${1:base char}",
       "charf=${1:format macros}",
-      "boxtype=",
+      "boxtype=${1|o,o+,ox,ox+,x+,O,O+,OX,OX+,X+,oo,Oo,OO|}",
       "charshrink=${1:factor}",
-      "resize=",
+      "resize=${1|none,real,base|}",
       "xscale=${1:factor}",
       "yscale=${1:factor}",
       "width=",
@@ -40,7 +40,7 @@
       "boxcolor=",
       "charcolor=",
       "boxfill=",
-      "charstroke=",
+      "charstroke=${1|none,solid,dashed,invisible|}",
       "dashpattern={${1:len1,len2,...}}"
     ]
   ]

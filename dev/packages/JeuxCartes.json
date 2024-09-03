@@ -41,7 +41,7 @@
     },
     "MainCartesJeuAleatoire[]{}": {
       "snippet": "MainCartesJeuAleatoire[${2:options}]{${1:nombre de cartes}}",
-      "keyvalindex": 2,
+      "keyvalindex": 3,
       "keyvalpos": 0
     },
     "AffMiniCarteJeu{}": {
@@ -49,7 +49,7 @@
     },
     "AffMiniCarteJeu[]{}": {
       "snippet": "AffMiniCarteJeu[${2:options}]{${1:carte}}",
-      "keyvalindex": 3,
+      "keyvalindex": 4,
       "keyvalpos": 0
     },
     "MainMiniCartesJeu{}": {
@@ -57,7 +57,7 @@
     },
     "MainMiniCartesJeu[]{}": {
       "snippet": "MainMiniCartesJeu[${2:options}]{${1:liste de cartes}}",
-      "keyvalindex": 3,
+      "keyvalindex": 4,
       "keyvalpos": 0
     },
     "MainMiniCartesJeuAleatoire{}": {
@@ -65,7 +65,7 @@
     },
     "MainMiniCartesJeuAleatoire[]{}": {
       "snippet": "MainMiniCartesJeuAleatoire[${2:options}]{${1:nombre de cartes}}",
-      "keyvalindex": 4,
+      "keyvalindex": 5,
       "keyvalpos": 0
     },
     "AffCarteJeuAlignementV": {},
@@ -143,8 +143,8 @@
   "keyvals": [
     [
       "Hauteur=${1:nombre}",
-      "TypeJeu=",
-      "StyleJeu=",
+      "TypeJeu=${1|Poker,Pokerv2,Pokerv3,Pokerv4,Pokerv5,Tarot,Uno|}",
+      "StyleJeu=${1|v1,v2,v3,v4,v5,fr,bicycl|}",
       "Rotation=${1:degrees}",
       "AlignementV=${1:factor}",
       "Tikz",
@@ -154,13 +154,24 @@
     ],
     [
       "Hauteur=${1:nombre}",
-      "TypeJeu=",
-      "StyleJeu="
+      "TypeJeu=${1|Poker,Pokerv2,Pokerv3,Pokerv4,Pokerv5,Tarot,Uno|}",
+      "StyleJeu=${1|v1,v2,v3,v4,v5,fr,bicycl|}"
     ],
     [
       "Hauteur=${1:nombre}",
-      "TypeJeu=",
-      "StyleJeu=",
+      "TypeJeu=${1|Poker,Pokerv2,Pokerv3,Pokerv4,Pokerv5,Tarot,Uno|}",
+      "StyleJeu=${1|v1,v2,v3,v4,v5,fr,bicycl|}",
+      "EspH=${1:coefficient}",
+      "EspV=${1:coefficient}",
+      "Eventail",
+      "Rotation=${1:degrees}",
+      "AlignementV=${1:factor}",
+      "Inverse"
+    ],
+    [
+      "Hauteur=${1:nombre}",
+      "TypeJeu=${1|Poker,Pokerv2,Pokerv3,Pokerv4,Pokerv5,Tarot,Belote,Belotev2,Belotev3,Belotev4,Belotev5,Bataille,Bataillev2,Bataillev3,Bataillev4,Bataillev5,Rami,Ramiv2,Ramiv3,Ramiv4,Ramiv5,Uno|}",
+      "StyleJeu=${1|v1,v2,v3,v4,v5,fr,bicycl|}",
       "EspH=${1:coefficient}",
       "EspV=${1:coefficient}",
       "Eventail",
@@ -175,7 +186,7 @@
     [
       "Largeur=",
       "FondAtout=",
-      "TypeJeu="
+      "TypeJeu=${1|Poker,Tarot,Belote,Bataille,Rami,PokerEN,BeloteEN,BatailleEN,RamiEN|}"
     ]
   ]
 }

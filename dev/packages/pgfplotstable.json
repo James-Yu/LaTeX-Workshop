@@ -160,11 +160,11 @@
   "options": [],
   "keyvals": [
     [
-      "col sep=",
+      "col sep=${1|space,tab,comma,semicolon,colon,braces,&,ampersand|}",
       "trim cells",
-      "header=",
-      "format=",
-      "row sep=",
+      "header=${1|true,false,has colnames|}",
+      "format=${1|auto,inline,file|}",
+      "row sep=${1|newline,\\\\|}",
       "ignore chars={${1:char1,char2,...}}",
       "white space chars={${1:char1,char2,...}}",
       "text special chars={${1:char1,char2,...}}",
@@ -288,14 +288,14 @@
       "input colnames to=${1:colname}",
       "sort key=${1:column}",
       "sort key from=${1:table}",
-      "sort cmp="
+      "sort cmp=${1|fixed <,fixed >,int <,int >,float <,float >,date <,date >,string <,string >|}"
     ],
     [
-      "col sep=",
+      "col sep=${1|space,tab,comma,semicolon,colon,braces,&,ampersand|}",
       "trim cells",
-      "header=",
-      "format=",
-      "row sep=",
+      "header=${1|true,false,has colnames|}",
+      "format=${1|auto,inline,file|}",
+      "row sep=${1|newline,\\\\|}",
       "ignore chars={${1:char1,char2,...}}",
       "white space chars={${1:char1,char2,...}}",
       "text special chars={${1:char1,char2,...}}",
@@ -434,11 +434,11 @@
       "function graph cut x={${1:cut value}}{${2:common options}}{${3:one keyval set for each plot}}"
     ],
     [
-      "col sep=",
+      "col sep=${1|space,tab,comma,semicolon,colon,braces,&,ampersand|}",
       "trim cells",
-      "header=",
-      "format=",
-      "row sep=",
+      "header=${1|true,false,has colnames|}",
+      "format=${1|auto,inline,file|}",
+      "row sep=${1|newline,\\\\|}",
       "ignore chars={${1:char1,char2,...}}",
       "white space chars={${1:char1,char2,...}}",
       "text special chars={${1:char1,char2,...}}",
@@ -560,11 +560,11 @@
       "input colnames to=${1:colname}"
     ],
     [
-      "col sep=",
+      "col sep=${1|space,tab,comma,semicolon,colon,braces,&,ampersand|}",
       "trim cells",
-      "header=",
-      "format=",
-      "row sep=",
+      "header=${1|true,false,has colnames|}",
+      "format=${1|auto,inline,file|}",
+      "row sep=${1|newline,\\\\|}",
       "ignore chars={${1:char1,char2,...}}",
       "white space chars={${1:char1,char2,...}}",
       "text special chars={${1:char1,char2,...}}",
@@ -684,7 +684,7 @@
       "reset styles",
       "sort key=${1:column}",
       "sort key from=${1:table}",
-      "sort cmp="
+      "sort cmp=${1|fixed <,fixed >,int <,int >,float <,float >,date <,date >,string <,string >|}"
     ]
   ]
 }

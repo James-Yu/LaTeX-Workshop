@@ -135,6 +135,18 @@ class PlaceHolder:
 def apply_caption_tweaks(content: List[str]) -> List[str]:
     return [re.sub(r'#([0-9])', r'arg\1', line, flags=re.A) for line in content]
 
+def parse_keyvals(line: str):
+    i = 0
+    for i in range(len(re.findall(r'%<([^%]*?)%>', line))):
+        line = re.sub(r'%<([^%]*?)%>', '${' + str(i + 1) + r':\1}', line, 1)
+    match = re.match(r'^([^#\n]*)', line)
+    if match is None:
+        return None
+    snippet = match[1]
+    match = re.search(r'=#([^%#]+)$', line, re.M)
+    if match is not None:
+        snippet += '${' + str(i + 1) + '|' + match[1] + '|}'
+    return snippet
 
 class CwlIntel:
     """
@@ -308,17 +320,18 @@ class CwlIntel:
                     detail=detail,
                     documentation=documentation)
             elif cwl_keyval == 'PACKAGE_OPTIONS':
-                for i in range(len(re.findall(r'%<([^%]*?)%>', line))):
-                    line = re.sub(r'%<([^%]*?)%>', '${' + str(i + 1) + r':\1}', line, 1)
-                match = re.match(r'^([^#%\n]*)', line)
-                if match is None:
+                # for i in range(len(re.findall(r'%<([^%]*?)%>', line))):
+                #     line = re.sub(r'%<([^%]*?)%>', '${' + str(i + 1) + r':\1}', line, 1)
+                # match = re.match(r'^([^#%\n]*)', line)
+                # if match is None:
+                #     continue
+                keyval = parse_keyvals(line)
+                if keyval is None:
                     continue
-                pkg.options.append(match[1])
+                pkg.options.append(keyval)
             elif cwl_keyval is not None and file_path.stem not in PKGS_IGNORE_KEYVALS:
-                for i in range(len(re.findall(r'%<([^%]*?)%>', line))):
-                    line = re.sub(r'%<([^%]*?)%>', '${' + str(i + 1) + r':\1}', line, 1)
-                match = re.match(r'^([^#\n]*)', line)
-                if match is None:
+                keyval = parse_keyvals(line)
+                if keyval is None:
                     continue
                 for envcmd in cwl_keyval.split(','):
                     if envcmd.startswith('\\begin{'):
@@ -332,14 +345,9 @@ class CwlIntel:
                             if (pkg.envs[pkgenv].keyvalpos is None):
                                 pkg.envs[pkgenv].keyvalpos = len(re.findall(r'\[\]|\(\)|<>|{}', re.sub(r'\${.*?}', '', pkg.envs[pkgenv].snippet[:haskeyvals.start()])))
                             pkg.envs[pkgenv].keyvalindex = pkg.envs[pkgenv].keyvalindex or []
-                            pkg.envs[pkgenv].keyvalindex.append(match[1])
+                            pkg.envs[pkgenv].keyvalindex.append(keyval)
                     elif envcmd.startswith('\\usepackage/'):
-                        for i in range(len(re.findall(r'%<([^%]*?)%>', line))):
-                            line = re.sub(r'%<([^%]*?)%>', '${' + str(i + 1) + r':\1}', line, 1)
-                        match = re.match(r'^([^#%\n]*)', line)
-                        if match is None:
-                            continue
-                        pkg.options.append(match[1])
+                        pkg.options.append(keyval)
                     else:
                         cmd = re.match(r'\\?([^{\[#]*)', envcmd)[1]
                         for pkgcmd in pkg.macros:
@@ -351,7 +359,7 @@ class CwlIntel:
                             if (pkg.macros[pkgcmd].keyvalpos is None):
                                 pkg.macros[pkgcmd].keyvalpos = len(re.findall(r'\[\]|\(\)|<>|{}', re.sub(r'\${.*?}', '', pkg.macros[pkgcmd].snippet[:haskeyvals.start()])))
                             pkg.macros[pkgcmd].keyvalindex = pkg.macros[pkgcmd].keyvalindex or []
-                            pkg.macros[pkgcmd].keyvalindex.append(match[1])
+                            pkg.macros[pkgcmd].keyvalindex.append(keyval)
         
         for pkgcmd in pkg.macros:
             if pkg.macros[pkgcmd].keyvalindex is None:

@@ -58,13 +58,13 @@
       "screw radius=${1:factor}",
       "screw style={${1:options}}",
       "trace={${1:num1/numframes1/code1,...}}",
-      "type="
+      "type=${1|liftarm,line segment|}"
     ],
     [
       "label=${1:label}",
       "type=${1:file ext}",
       "poster",
-      "poster=",
+      "poster=${1|first,last,none,${1:number}|}",
       "every=${1:number}",
       "autopause",
       "autoplay",
@@ -84,7 +84,7 @@
       "hiresbb",
       "interpolate",
       "pagebox=",
-      "controls=",
+      "controls=${1|all,true,on,none,false,off|}",
       "controlsaligned=",
       "buttonsize=",
       "buttonbg=",
@@ -93,9 +93,9 @@
       "draft",
       "final",
       "nomouse",
-      "method=",
+      "method=${1|icon,widget,ocg|}",
       "measure",
-      "alttext=",
+      "alttext=${1|none,${1:alt description}|}",
       "begin={${1:begin code}}",
       "end={${1:end code}}",
       "timeline=${1:file}"
@@ -121,8 +121,8 @@
       "screw radius=${1:factor}",
       "screw style={${1:options}}",
       "trace={${1:num1/numframes1/code1,...}}",
-      "type=",
-      "connect stop="
+      "type=${1|liftarm,line segment|}",
+      "connect stop=${1|1-norm,2-norm,iterations|}"
     ]
   ]
 }

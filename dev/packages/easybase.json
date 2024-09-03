@@ -434,45 +434,45 @@
   },
   "options": [
     "draft",
-    "paper=",
+    "paper=${1|a0paper,a1paper,a2paper,a3paper,a4paper,a5paper,a6paper,b0paper,b1paper,b2paper,b3paper,b4paper,b5paper,b6paper,c0paper,c1paper,c2paper,c3paper,c4paper,c5paper,c6paper,b0j,b1j,b2j,b3j,b4j,b5j,b6j,ansiapaper,ansibpaper,ansicpaper,ansidpaper,ansiepaper,letterpaper,executivepaper,legalpaper|}",
     "floatpage",
     "theorem",
-    "class=",
+    "class=${1|book,article|}",
     "book",
     "article",
     "GBK",
     "UTF8",
-    "zhmap=",
-    "zihao=",
+    "zhmap=${1|true,false,zhmCJK|}",
+    "zihao=${1|-4,5,false|}",
     "heading",
     "sub3section",
     "sub4section",
-    "scheme=",
+    "scheme=${1|chinese,plain|}",
     "linespread=${1:number}",
-    "fontset=",
-    "punct=",
-    "space=",
+    "fontset=${1|adobe,fandol,founder,mac,macnew,macold,ubuntu,windows,none|}",
+    "punct=${1|quanjiao,banjiao,kaiming,CCT,plain|}",
+    "space=${1|true,false,auto|}",
     "autoindent="
   ],
   "keyvals": [
     [
-      "plan=",
+      "plan=${1|cn,bi,both|}",
       "bicontentsname=${1:英文目录标题}",
       "level=${1:标题命令}",
       "multoc=${1:整数}",
       "title={${1:中文目录标题,英文目录标题}}",
-      "bilist=",
+      "bilist=${1|mix,new|}",
       "format=${1:目录标题格式}",
       "aftertitle=${1:标题后代码}",
       "pagestyle=${1:页面风格}"
     ],
     [
-      "color=",
+      "color=${1|none,seaside,energy,cyberpunk|}",
       "color-every=${1:HTML 颜色代码}",
       "multoc=${1:整数}",
       "withpart",
-      "fntnumwith=",
-      "uppercase=",
+      "fntnumwith=${1|part,chapter,page|}",
+      "uppercase=${1|all,first,none,none*|}",
       "brackets={${1:左括号,右括号}}",
       "figurepath={${1:路径名 1}}{${2:路径名 2}}${3:...{路径名 n}}",
       "hyphen-figure=${1:图片连字符}",
@@ -491,13 +491,13 @@
       "spbhmove=",
       "spbcmd={${1:上标格式,下标格式}}",
       "vsep={${1:上标偏移,下标偏移}}",
-      "halign="
+      "halign=${1|l,c,r|}"
     ],
     [
-      "linktype=",
-      "linkcolor=",
+      "linktype=${1|edge,colors,none|}",
+      "linkcolor=${1|fresh,cutepink,navyblue,crimson|}",
       "linkcolor-every=${1:HTML 颜色代码}",
-      "linktoc="
+      "linktoc=${1|none,section,page,all|}"
     ],
     [
       "line=${1:数值}",
@@ -519,7 +519,7 @@
       "marginpar=${1:字体命令}"
     ],
     [
-      "backend=",
+      "backend=${1|bibtex,biblatex|}",
       "bibstyle=${1:bibstyle}",
       "citestyle=${1:标注风格}",
       "datafile=${1:数据库列表}",
@@ -548,14 +548,14 @@
       "footnoterule=${1:横线命令}",
       "headrulewd=",
       "footnoterulewd=",
-      "footnotetype=",
+      "footnotetype=${1|plain,hang,flush,bottom|}",
       "fnfirstindent=",
       "fnafterindent=",
       "fnparskip=",
-      "fntext-pos=",
-      "fnmark-num=",
-      "fntext-num=",
-      "fnmarktext-num=",
+      "fntext-pos=${1|normal,super|}",
+      "fnmark-num=${1|plain,pifont,pifont*,pisans,pisans*,short num|}",
+      "fntext-num=${1|plain,pifont,pifont*,pisans,pisans*,short num|}",
+      "fnmarktext-num=${1|plain,pifont,pifont*,pisans,pisans*,short num|}",
       "fnmark-vmove=",
       "fnmark-hmove=",
       "fntext-vmove=",
@@ -587,12 +587,12 @@
       "width=",
       "delim=${1:引导符}",
       "space=",
-      "item-align=",
-      "delim-align=",
+      "item-align=${1|l,c,r|}",
+      "delim-align=${1|l,c,r|}",
       "enumitem=${1:键值列表 2}",
       "intro=${1:首行文字}",
       "font=${1:符号字体}",
-      "mode="
+      "mode=${1|math,text|}"
     ]
   ]
 }

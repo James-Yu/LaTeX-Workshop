@@ -356,7 +356,7 @@
   "keyvals": [
     [
       "court={${1:titre court}}",
-      "auteur="
+      "auteur=${1|article,partie|}"
     ],
     [
       "affiliation={${1:Laboratoire, université, etc.}}",
@@ -364,7 +364,7 @@
       "minibio={${1:Petite biographie de l’auteur}}",
       "photo=${1:imagefile}",
       "webpage=${1:URL}",
-      "type="
+      "type=${1|unique,collectif|}"
     ],
     [
       "ShowOptions",
@@ -393,8 +393,8 @@
       "og=",
       "fg=",
       "INGuillSpace",
-      "EveryParGuill=",
-      "EveryLineGuill=",
+      "EveryParGuill=${1|open,close,none|}",
+      "EveryLineGuill=${1|open,close,none|}",
       "InnerGuillSingle",
       "ThinSpaceInFrenchNumbers",
       "SmallCapsFigTabCaptions",

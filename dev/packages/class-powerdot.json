@@ -159,13 +159,13 @@
     }
   },
   "options": [
-    "mode=",
+    "mode=${1|present,print,handout|}",
     "nohandoutpagebreaks",
     "nohandoutframes",
-    "paper=",
-    "orient=",
-    "display=",
-    "size=",
+    "paper=${1|screen,a4paper,letterpaper,smartboard,169|}",
+    "orient=${1|landscape,portrait|}",
+    "display=${1|slides,slidesnotes,notes|}",
+    "size=${1|8pt,9pt,10pt,11pt,12pt,14pt,17pt,20pt|}",
     "style=${1:style name}",
     "fleqn",
     "leqno",
@@ -190,8 +190,8 @@
       "cf=${1:text}",
       "rf=${1:text}",
       "trans=${1:transition}",
-      "method=",
-      "logohook=",
+      "method=${1|normal,direct,file|}",
+      "logohook=${1|tl,t,tr,r,Br,br,b,bl,Bl,l,B,c|}",
       "logopos={${1:width,height}}",
       "logocmd={${1:code}}",
       "randomdots",
@@ -207,8 +207,8 @@
       "dprop={${1:pstricks options}}"
     ],
     [
-      "type=",
-      "content="
+      "type=${1|0,1|}",
+      "content=${1|all,sections,currentsection,future,futuresections|}"
     ],
     [
       "lineheight=",

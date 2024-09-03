@@ -62,16 +62,16 @@
       "role/mathml-tags",
       "role/new-tag=${1:tag/role}",
       "role/new-attribute={${1:name}}{${2:content}}",
-      "role/map-tags=",
+      "role/map-tags=${1|false,pdf|}",
       "debug/show",
-      "debug/show=",
-      "debug/log=",
+      "debug/show=${1|para,paraOff,spaces,spacesOff|}",
+      "debug/log=${1|none,v,vv,vvv,all|}",
       "debug/uncompress",
       "viewer/pane/mathml",
       "viewer/pane/mathsource",
       "viewer/startstructure=${1:number}",
-      "page/tabsorder=",
-      "page/exclude-header-footer=",
+      "page/tabsorder=${1|row,column,structure,none|}",
+      "page/exclude-header-footer=${1|false,pagination|}",
       "para/tagging",
       "para/tag=${1:tag}",
       "para/maintag=${1:tag}",
@@ -93,7 +93,7 @@
     ],
     [
       "tag=${1:tag}",
-      "artifact=",
+      "artifact=${1|pagination,pagination/header,pagination/footer,layout,page,background,notype|}",
       "stash",
       "label=${1:name}",
       "alt=${1:text}",
@@ -123,7 +123,7 @@
     [
       "mc-data=${1:integer}",
       "mc-current",
-      "struct-stack=",
+      "struct-stack=${1|log,show|}",
       "debug/structures"
     ]
   ]

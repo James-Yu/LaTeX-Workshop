@@ -640,16 +640,16 @@
   "options": [
     "main=${1:tag}",
     "other={${1:tag list}}",
-    "symbols=",
-    "support=",
-    "fontenc=",
-    "inputenc=",
-    "datetime=",
+    "symbols=${1|textcomp,fontawesome,none|}",
+    "support=${1|none,auto,babel,polyglossia,cjk|}",
+    "fontenc=${1|none,auto,${1:encoding}|}",
+    "inputenc=${1|none,auto,${1:encoding}|}",
+    "datetime=${1|false,iso,text,num,locale|}",
     "iso",
-    "date=",
-    "time=",
+    "date=${1|full,long,medium,short|}",
+    "time=${1|full,long,medium,short|}",
     "timedate",
-    "currency="
+    "currency=${1|official,unofficial,sym,tex|}"
   ],
   "keyvals": []
 }

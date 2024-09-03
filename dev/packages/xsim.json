@@ -629,16 +629,16 @@
       "collect",
       "print-collection/headings",
       "print-collection/headings-template=${1:template}",
-      "print-collection/print=",
+      "print-collection/print=${1|exercises,solutions,both|}",
       "random/sort",
       "random/collection=${1:collection}",
       "random/exclude={${1:list of ids}}",
-      "random/print=",
+      "random/print=${1|exercises,solutions,both|}",
       "print-solutions/headings",
       "print-solutions/headings-template=${1:template}",
-      "print-solutions/section=",
-      "print-solutions/chapter=",
-      "print-solutions/collection=",
+      "print-solutions/section=${1|true,false,${1:integer}|}",
+      "print-solutions/chapter=${1|true,false,${1:integer}|}",
+      "print-solutions/collection=${1|false,${1:collection}|}",
       "grading-table/template=${1:template}",
       "grading-table/type=${1:type}",
       "load-style={${1:list of styles}}",
@@ -656,20 +656,20 @@
     [
       "headings",
       "headings-template=${1:template}",
-      "print="
+      "print=${1|exercises,solutions,both|}"
     ],
     [
       "sort",
       "collection=${1:collection}",
       "exclude={${1:list of ids}}",
-      "print="
+      "print=${1|exercises,solutions,both|}"
     ],
     [
       "headings",
       "headings-template=${1:template}",
-      "section=",
-      "chapter=",
-      "collection=",
+      "section=${1|true,false,${1:integer}|}",
+      "chapter=${1|true,false,${1:integer}|}",
+      "collection=${1|false,${1:collection}|}",
       "%xsimexertag"
     ],
     [

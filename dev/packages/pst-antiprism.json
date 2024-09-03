@@ -18,8 +18,8 @@
   "keyvals": [
     [
       "a=${1:radius}",
-      "action=",
-      "affinage=",
+      "action=${1|none,draw,draw*,draw**,writesolid,writeobj,writeoff|}",
+      "affinage=${1|0,1,2,3,all|}",
       "affinagecoeff=${1:factor}",
       "affinagerm",
       "colored",
@@ -35,7 +35,7 @@
       "meshbases",
       "n=${1:number of edges}",
       "name=${1:name}",
-      "numfaces=",
+      "numfaces=${1|0,1,2,3,all,${1:PS code}|}",
       "opacity=${1:factor}",
       "plansepare={[${1:a b c d}]}",
       "rm="

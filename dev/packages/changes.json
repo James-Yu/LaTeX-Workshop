@@ -148,15 +148,15 @@
   "options": [
     "draft",
     "final",
-    "commandnameprefix=",
-    "markup=",
-    "addedmarkup=",
-    "deletedmarkup=",
-    "highlightmarkup=",
-    "commentmarkup=",
-    "authormarkup=",
-    "authormarkupposition=",
-    "authormarkuptext=",
+    "commandnameprefix=${1|none,ifneeded,always|}",
+    "markup=${1|default,underlined,bfit,nocolor|}",
+    "addedmarkup=${1|colored,uline,uuline,uwave,dashuline,dotuline,bf,it,sl,em|}",
+    "deletedmarkup=${1|sout,xout,colored,uline,uuline,uwave,dashuline,dotuline,bf,it,sl,em|}",
+    "highlightmarkup=${1|background,uuline,uwave|}",
+    "commentmarkup=${1|todo,margin,footnote,uwave|}",
+    "authormarkup=${1|superscript,subscript,brackets,footnote,none|}",
+    "authormarkupposition=${1|right,left|}",
+    "authormarkuptext=${1|id,name|}",
     "defaultcolor=",
     "todonotes={${1:todonotes options}}",
     "truncate={${1:truncate options}}",
@@ -176,9 +176,9 @@
       "id="
     ],
     [
-      "style=",
+      "style=${1|list,summary,compactsummary|}",
       "title=${1:title}",
-      "show="
+      "show=${1|all,added,deleted,replaced,highlight,comment|}"
     ]
   ]
 }

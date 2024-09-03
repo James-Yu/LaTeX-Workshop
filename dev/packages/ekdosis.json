@@ -333,11 +333,11 @@
     "ekdpar": {}
   },
   "options": [
-    "layout=",
-    "divs=",
+    "layout=${1|float,footins,keyfloat,fitapp|}",
+    "divs=${1|ekdosis,latex|}",
     "poetry=verse",
-    "parnotes=",
-    "teiexport="
+    "parnotes=${1|true,false,roman|}",
+    "teiexport=${1|true,false,tidy|}"
   ],
   "keyvals": [
     [
@@ -434,12 +434,12 @@
       "texts=${1:semicolon-separated values}",
       "apparatus=${1:semicolon-separated values}",
       "paired",
-      "lineation=",
+      "lineation=${1|page,document|}",
       "flush",
-      "segmentation="
+      "segmentation=${1|auto,noauto|}"
     ],
     [
-      "direction=",
+      "direction=${1|LR,RL|}",
       "sep=${1:separator}",
       "subsep=${1:subseparator}",
       "delim=${1:delimiter}",
@@ -452,15 +452,15 @@
       "maxentries=${1:integer}"
     ],
     [
-      "lineation=",
+      "lineation=${1|page,document,none|}",
       "modulo",
       "modulonum=${1:integer}",
-      "margin=",
-      "numbers=",
-      "vlineation=",
+      "margin=${1|right,left,inner,outer|}",
+      "numbers=${1|elided,full|}",
+      "vlineation=${1|page,document|}",
       "vmodulo=${1:integer}",
       "vnumbrokenlines",
-      "vmargin=",
+      "vmargin=${1|right,left|}",
       "continuousvnum"
     ],
     [
@@ -469,7 +469,7 @@
       "head=${1:name}",
       "barehead=${1:name}",
       "depth=${1:n}",
-      "toc=",
+      "toc=${1|book,part,chapter,section,subsection,subsubsection,paragraph,subparagraph|}",
       "mark=${1:signpost}"
     ],
     [

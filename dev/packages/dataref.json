@@ -132,8 +132,8 @@
       "ignoremissing",
       "defaultvalue=${1:value}",
       "unit=${1:unit}",
-      "unit/format=",
-      "unit/format default=",
+      "unit/format=${1|false,plain,siunitx|}",
+      "unit/format default=${1|false,plain,siunitx|}",
       "unit/new scala={${1:scala}}",
       "unit/scale to=${1:unit}",
       "unit/scale to auto",
@@ -152,7 +152,7 @@
       "increase percent from=${1:key or value}",
       "decrease percent from=${1:key or value}",
       "noassert",
-      "annotate="
+      "annotate=${1|none,footnote,pdfcomment,typeout|}"
     ]
   ]
 }

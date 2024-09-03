@@ -396,7 +396,7 @@
     }
   },
   "options": [
-    "type=",
+    "type=${1|doctor,master,bachelor|}",
     "oneside",
     "twoside",
     "draft",
@@ -417,19 +417,19 @@
     "gbfieldstd",
     "gbpub",
     "gbpunctin",
-    "gblanorder=",
-    "gbcitelocal=",
-    "gbbiblocal=",
-    "gblocal=",
-    "gbbiblabel=",
-    "gbnamefmt=",
-    "gbalign=",
+    "gblanorder=${1|chineseahead,englishahead,${1:string}|}",
+    "gbcitelocal=${1|gb7714-2015,chinese,english|}",
+    "gbbiblocal=${1|gb7714-2015,chinese,english|}",
+    "gblocal=${1|gb7714-2015,chinese,english|}",
+    "gbbiblabel=${1|bracket,parens,plain,dot,box,circle|}",
+    "gbnamefmt=${1|uppercase,lowercase,givenahead,familyahead,pinyin,quanpin,reverseorder|}",
+    "gbalign=${1|right,left,center,gb7714-2015,gb7714-2015ay|}",
     "gblabelref",
-    "gbcitelabel="
+    "gbcitelabel=${1|bracket,parens,plain,dot,box,circle|}"
   ],
   "keyvals": [
     [
-      "style=",
+      "style=${1|plain,margin,change,break,marginbreak,changebreak|}",
       "header-font={${1:字体}}",
       "body-font={${1:字体}}",
       "qed={${1:符号}}",
