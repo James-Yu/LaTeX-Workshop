@@ -1,25 +1,69 @@
 {
-  "includes": {
-    "amssymb": [],
-    "sansmathaccent": []
+  "deps": [
+    {
+      "name": "amssymb"
+    },
+    {
+      "name": "sansmathaccent"
+    }
+  ],
+  "macros": [
+    {
+      "name": "setbeamerfont",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:beamer-font name}}{${2:attributes%keyvals}}",
+        "keys": [
+          "\\setbeamerfont,\\setbeamerfont*"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "setbeamerfont*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:beamer-font name}}{${2:attributes%keyvals}}",
+        "keys": [
+          "\\setbeamerfont,\\setbeamerfont*"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "usebeamerfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:beamer-font name}}"
+      }
+    },
+    {
+      "name": "usebeamerfont*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:beamer-font name}}"
+      }
+    },
+    {
+      "name": "Tiny"
+    },
+    {
+      "name": "TINY"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\setbeamerfont,\\setbeamerfont*": [
+      "size=${1:size command}\r",
+      "size*={${1:size in pt}}{${2:baselineskip}}\r",
+      "shape=${1:shape command}\r",
+      "shape*={${1:shape attribute abbreviation}}\r",
+      "series=${1:series command}\r",
+      "series*={${1:series attribute abbreviation}}\r",
+      "family=${1:family command}\r",
+      "family*={${1:family name}}\r",
+      "parent={${1:parent list}}\r"
+    ]
   },
-  "macros": {
-    "setbeamerfont{}{}": {
-      "snippet": "setbeamerfont{${1:beamer-font name}}{${2:attributes}}"
-    },
-    "setbeamerfont*{}{}": {
-      "snippet": "setbeamerfont*{${1:beamer-font name}}{${2:attributes}}"
-    },
-    "usebeamerfont{}": {
-      "snippet": "usebeamerfont{${1:beamer-font name}}"
-    },
-    "usebeamerfont*{}": {
-      "snippet": "usebeamerfont*{${1:beamer-font name}}"
-    },
-    "Tiny": {},
-    "TINY": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

@@ -1,45 +1,101 @@
 {
-  "includes": {},
-  "macros": {
-    "uline{}": {
-      "snippet": "uline{${1:text}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "uline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "uuline{}": {
-      "snippet": "uuline{${1:text}}"
+    {
+      "name": "uuline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "uwave{}": {
-      "snippet": "uwave{${1:text}}"
+    {
+      "name": "uwave",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "sout{}": {
-      "snippet": "sout{${1:text}}"
+    {
+      "name": "sout",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "xout{}": {
-      "snippet": "xout{${1:text}}"
+    {
+      "name": "xout",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "dashuline{}": {
-      "snippet": "dashuline{${1:dashing}}"
+    {
+      "name": "dashuline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:dashing}}"
+      }
     },
-    "dotuline{}": {
-      "snippet": "dotuline{${1:dotty}}"
+    {
+      "name": "dotuline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:dotty}}"
+      }
     },
-    "ULdepth": {},
-    "ULforem": {},
-    "ULon": {},
-    "ULthickness": {},
-    "markoverwith{}": {
-      "snippet": "markoverwith{${1:something}}"
+    {
+      "name": "ULdepth",
+      "unusual": true
     },
-    "normalem": {},
-    "useunder{}{}{}": {
-      "snippet": "useunder{${1:underline command}}{${2:font declaration}}{${3:font command}}"
+    {
+      "name": "ULforem",
+      "unusual": true
+    },
+    {
+      "name": "ULon",
+      "unusual": true
+    },
+    {
+      "name": "ULthickness",
+      "unusual": true
+    },
+    {
+      "name": "markoverwith",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:something}}"
+      }
+    },
+    {
+      "name": "normalem"
+    },
+    {
+      "name": "useunder",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:underline command}}{${2:font declaration}}{${3:font command}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [
-    "normalem",
-    "ULforem",
-    "normalbf",
-    "UWforbf"
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/ulem#c": [
+      "normalem",
+      "ULforem",
+      "normalbf",
+      "UWforbf"
+    ]
+  },
+  "args": [
+    "\\usepackage/ulem#c"
+  ]
 }

@@ -1,413 +1,1231 @@
 {
-  "includes": {
-    "fontspec": [],
-    "xepersian-persiancal": [],
-    "xepersian-mathdigitspec": [],
-    "bidi": [],
-    "bidi-perpage": [
-      "perpagefootnote",
-      "perpagefootnote=on"
+  "deps": [
+    {
+      "name": "fontspec"
+    },
+    {
+      "name": "xepersian-persiancal"
+    },
+    {
+      "name": "xepersian-mathdigitspec"
+    },
+    {
+      "name": "bidi"
+    },
+    {
+      "name": "bidi-perpage",
+      "if": "perpagefootnote"
+    },
+    {
+      "name": "bidi-perpage",
+      "if": "perpagefootnote=on"
+    }
+  ],
+  "macros": [
+    {
+      "name": "normalfootnotes",
+      "if": "extrafootnotefeatures"
+    },
+    {
+      "name": "twocolumnfootnotes",
+      "if": "extrafootnotefeatures"
+    },
+    {
+      "name": "threecolumnfootnotes",
+      "if": "extrafootnotefeatures"
+    },
+    {
+      "name": "fourcolumnfootnotes",
+      "if": "extrafootnotefeatures"
+    },
+    {
+      "name": "fivecolumnfootnotes",
+      "if": "extrafootnotefeatures"
+    },
+    {
+      "name": "sixcolumnfootnotes",
+      "if": "extrafootnotefeatures",
+      "unusual": true
+    },
+    {
+      "name": "sevencolumnfootnotes",
+      "if": "extrafootnotefeatures",
+      "unusual": true
+    },
+    {
+      "name": "eightcolumnfootnotes",
+      "if": "extrafootnotefeatures",
+      "unusual": true
+    },
+    {
+      "name": "ninecolumnfootnotes",
+      "if": "extrafootnotefeatures",
+      "unusual": true
+    },
+    {
+      "name": "tencolumnfootnotes",
+      "if": "extrafootnotefeatures",
+      "unusual": true
+    },
+    {
+      "name": "RTLcolumnfootnotes",
+      "if": "extrafootnotefeatures"
+    },
+    {
+      "name": "LTRcolumnfootnotes",
+      "if": "extrafootnotefeatures"
+    },
+    {
+      "name": "paragraphfootnotes",
+      "if": "extrafootnotefeatures"
+    },
+    {
+      "name": "setLTRparagraphfootnotes",
+      "if": "extrafootnotefeatures"
+    },
+    {
+      "name": "setRTLparagraphfootnotes",
+      "if": "extrafootnotefeatures"
+    },
+    {
+      "name": "AddExtraParaSkip",
+      "if": "extrafootnotefeatures",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "extrafeetendmini",
+      "if": "extrafootnotefeatures",
+      "unusual": true
+    },
+    {
+      "name": "extrafeetendminihook",
+      "if": "extrafootnotefeatures",
+      "unusual": true
+    },
+    {
+      "name": "extrafeetins",
+      "if": "extrafootnotefeatures",
+      "unusual": true
+    },
+    {
+      "name": "extrafeetinshook",
+      "if": "extrafootnotefeatures",
+      "unusual": true
+    },
+    {
+      "name": "FeetAboveFloat",
+      "if": "extrafootnotefeatures",
+      "unusual": true
+    },
+    {
+      "name": "FeetAtBottom",
+      "if": "extrafootnotefeatures",
+      "unusual": true
+    },
+    {
+      "name": "FeetBelowFloat",
+      "if": "extrafootnotefeatures",
+      "unusual": true
+    },
+    {
+      "name": "FeetBelowRagged",
+      "if": "extrafootnotefeatures",
+      "unusual": true
+    },
+    {
+      "name": "footfootmark",
+      "if": "extrafootnotefeatures",
+      "unusual": true
+    },
+    {
+      "name": "footfudgefactor",
+      "if": "extrafootnotefeatures",
+      "unusual": true
+    },
+    {
+      "name": "footinsdim",
+      "if": "extrafootnotefeatures",
+      "unusual": true
+    },
+    {
+      "name": "footmarkstyle",
+      "if": "extrafootnotefeatures",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "footmarkwidth",
+      "if": "extrafootnotefeatures",
+      "unusual": true
+    },
+    {
+      "name": "footscript",
+      "if": "extrafootnotefeatures",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "foottextfont",
+      "if": "extrafootnotefeatures",
+      "unusual": true
+    },
+    {
+      "name": "LTRfootfootmark",
+      "if": "extrafootnotefeatures",
+      "unusual": true
+    },
+    {
+      "name": "LTRfootmarkstyle",
+      "if": "extrafootnotefeatures",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "LTRfootscript",
+      "if": "extrafootnotefeatures",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "LTRfoottextfont",
+      "if": "extrafootnotefeatures",
+      "unusual": true
+    },
+    {
+      "name": "multiplefootnotemarker",
+      "if": "extrafootnotefeatures",
+      "unusual": true
+    },
+    {
+      "name": "normalRTLparaLTRfootnotes",
+      "if": "extrafootnotefeatures",
+      "unusual": true
+    },
+    {
+      "name": "RTLfootfootmark",
+      "if": "extrafootnotefeatures",
+      "unusual": true
+    },
+    {
+      "name": "RTLfootmarkstyle",
+      "if": "extrafootnotefeatures",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "RTLfootscript",
+      "if": "extrafootnotefeatures",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "RTLfoottextfont",
+      "if": "extrafootnotefeatures",
+      "unusual": true
+    },
+    {
+      "name": "setSingleSpace",
+      "if": "extrafootnotefeatures",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "normalfootnotes",
+      "if": "extrafootnotefeatures=on"
+    },
+    {
+      "name": "twocolumnfootnotes",
+      "if": "extrafootnotefeatures=on"
+    },
+    {
+      "name": "threecolumnfootnotes",
+      "if": "extrafootnotefeatures=on"
+    },
+    {
+      "name": "fourcolumnfootnotes",
+      "if": "extrafootnotefeatures=on"
+    },
+    {
+      "name": "fivecolumnfootnotes",
+      "if": "extrafootnotefeatures=on"
+    },
+    {
+      "name": "sixcolumnfootnotes",
+      "if": "extrafootnotefeatures=on",
+      "unusual": true
+    },
+    {
+      "name": "sevencolumnfootnotes",
+      "if": "extrafootnotefeatures=on",
+      "unusual": true
+    },
+    {
+      "name": "eightcolumnfootnotes",
+      "if": "extrafootnotefeatures=on",
+      "unusual": true
+    },
+    {
+      "name": "ninecolumnfootnotes",
+      "if": "extrafootnotefeatures=on",
+      "unusual": true
+    },
+    {
+      "name": "tencolumnfootnotes",
+      "if": "extrafootnotefeatures=on",
+      "unusual": true
+    },
+    {
+      "name": "RTLcolumnfootnotes",
+      "if": "extrafootnotefeatures=on"
+    },
+    {
+      "name": "LTRcolumnfootnotes",
+      "if": "extrafootnotefeatures=on"
+    },
+    {
+      "name": "paragraphfootnotes",
+      "if": "extrafootnotefeatures=on"
+    },
+    {
+      "name": "setLTRparagraphfootnotes",
+      "if": "extrafootnotefeatures=on"
+    },
+    {
+      "name": "setRTLparagraphfootnotes",
+      "if": "extrafootnotefeatures=on"
+    },
+    {
+      "name": "AddExtraParaSkip",
+      "if": "extrafootnotefeatures=on",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "extrafeetendmini",
+      "if": "extrafootnotefeatures=on",
+      "unusual": true
+    },
+    {
+      "name": "extrafeetendminihook",
+      "if": "extrafootnotefeatures=on",
+      "unusual": true
+    },
+    {
+      "name": "extrafeetins",
+      "if": "extrafootnotefeatures=on",
+      "unusual": true
+    },
+    {
+      "name": "extrafeetinshook",
+      "if": "extrafootnotefeatures=on",
+      "unusual": true
+    },
+    {
+      "name": "FeetAboveFloat",
+      "if": "extrafootnotefeatures=on",
+      "unusual": true
+    },
+    {
+      "name": "FeetAtBottom",
+      "if": "extrafootnotefeatures=on",
+      "unusual": true
+    },
+    {
+      "name": "FeetBelowFloat",
+      "if": "extrafootnotefeatures=on",
+      "unusual": true
+    },
+    {
+      "name": "FeetBelowRagged",
+      "if": "extrafootnotefeatures=on",
+      "unusual": true
+    },
+    {
+      "name": "footfootmark",
+      "if": "extrafootnotefeatures=on",
+      "unusual": true
+    },
+    {
+      "name": "footfudgefactor",
+      "if": "extrafootnotefeatures=on",
+      "unusual": true
+    },
+    {
+      "name": "footinsdim",
+      "if": "extrafootnotefeatures=on",
+      "unusual": true
+    },
+    {
+      "name": "footmarkstyle",
+      "if": "extrafootnotefeatures=on",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "footmarkwidth",
+      "if": "extrafootnotefeatures=on",
+      "unusual": true
+    },
+    {
+      "name": "footscript",
+      "if": "extrafootnotefeatures=on",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "foottextfont",
+      "if": "extrafootnotefeatures=on",
+      "unusual": true
+    },
+    {
+      "name": "LTRfootfootmark",
+      "if": "extrafootnotefeatures=on",
+      "unusual": true
+    },
+    {
+      "name": "LTRfootmarkstyle",
+      "if": "extrafootnotefeatures=on",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "LTRfootscript",
+      "if": "extrafootnotefeatures=on",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "LTRfoottextfont",
+      "if": "extrafootnotefeatures=on",
+      "unusual": true
+    },
+    {
+      "name": "multiplefootnotemarker",
+      "if": "extrafootnotefeatures=on",
+      "unusual": true
+    },
+    {
+      "name": "normalRTLparaLTRfootnotes",
+      "if": "extrafootnotefeatures=on",
+      "unusual": true
+    },
+    {
+      "name": "RTLfootfootmark",
+      "if": "extrafootnotefeatures=on",
+      "unusual": true
+    },
+    {
+      "name": "RTLfootmarkstyle",
+      "if": "extrafootnotefeatures=on",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "RTLfootscript",
+      "if": "extrafootnotefeatures=on",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "RTLfoottextfont",
+      "if": "extrafootnotefeatures=on",
+      "unusual": true
+    },
+    {
+      "name": "setSingleSpace",
+      "if": "extrafootnotefeatures=on",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "KashidaOn",
+      "if": "Kashida"
+    },
+    {
+      "name": "KashidaOff",
+      "if": "Kashida"
+    },
+    {
+      "name": "KashidaOn",
+      "if": "Kashida=on"
+    },
+    {
+      "name": "KashidaOff",
+      "if": "Kashida=on"
+    },
+    {
+      "name": "eqcommand",
+      "if": "localise",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:command-name in Persian}}{${2:original LaTeX command-name}}"
+      }
+    },
+    {
+      "name": "eqenvironment",
+      "if": "localise",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:environment-name in Persian}}{${2:original LaTeX environment-name}}"
+      }
+    },
+    {
+      "name": "makezwnjletter",
+      "if": "localise",
+      "unusual": true
+    },
+    {
+      "name": "EqEnvironment",
+      "if": "localise",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:environment-name in Persian}}{${2:original LaTeX environment-name}}"
+      }
+    },
+    {
+      "name": "eqcommand",
+      "if": "localise=on",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:command-name in Persian}}{${2:original LaTeX command-name}}"
+      }
+    },
+    {
+      "name": "eqenvironment",
+      "if": "localise=on",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:environment-name in Persian}}{${2:original LaTeX environment-name}}"
+      }
+    },
+    {
+      "name": "makezwnjletter",
+      "if": "localise=on",
+      "unusual": true
+    },
+    {
+      "name": "EqEnvironment",
+      "if": "localise=on",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:environment-name in Persian}}{${2:original LaTeX environment-name}}"
+      }
+    },
+    {
+      "name": "DetectColumn",
+      "if": "DetectColumn",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "DetectColumn",
+      "if": "DetectColumn",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:opt}]{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "DetectColumn",
+      "if": "DetectColumn=on",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "DetectColumn",
+      "if": "DetectColumn=on",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:opt}]{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "xepersianreleasename",
+      "unusual": true
+    },
+    {
+      "name": "xepersianversion",
+      "unusual": true
+    },
+    {
+      "name": "xepersiandate",
+      "unusual": true
+    },
+    {
+      "name": "settextfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font name}}"
+      }
+    },
+    {
+      "name": "settextfont",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:Options%keyvals}]{${1:font name}}"
+      }
+    },
+    {
+      "name": "settextdigitfont",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font name}}"
+      }
+    },
+    {
+      "name": "settextdigitfont",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:Options%keyvals}]{${1:font name}}"
+      }
+    },
+    {
+      "name": "setdigitfont",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font name}}"
+      }
+    },
+    {
+      "name": "setdigitfont",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:Options%keyvals}]{${1:font name}}"
+      }
+    },
+    {
+      "name": "setlatintextfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font name}}"
+      }
+    },
+    {
+      "name": "setlatintextfont",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:Options%keyvals}]{${1:font name}}"
+      }
+    },
+    {
+      "name": "setpersiansansfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font name}}"
+      }
+    },
+    {
+      "name": "setpersiansansfont",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:Options%keyvals}]{${1:font name}}"
+      }
+    },
+    {
+      "name": "persiansffamily"
+    },
+    {
+      "name": "textpersiansf",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "setpersianmonofont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font name}}"
+      }
+    },
+    {
+      "name": "setpersianmonofont",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:Options%keyvals}]{${1:font name}}"
+      }
+    },
+    {
+      "name": "persianttfamily"
+    },
+    {
+      "name": "textpersiantt",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "setiranicfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font name}}"
+      }
+    },
+    {
+      "name": "setiranicfont",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:Options%keyvals}]{${1:font name}}"
+      }
+    },
+    {
+      "name": "iranicfamily"
+    },
+    {
+      "name": "textiranic",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "setnavarfont",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font name}}"
+      }
+    },
+    {
+      "name": "setnavarfont",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:Options%keyvals}]{${1:font name}}"
+      }
+    },
+    {
+      "name": "navarfamily",
+      "unusual": true
+    },
+    {
+      "name": "textnavar",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "setpookfont",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font name}}"
+      }
+    },
+    {
+      "name": "setpookfont",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:Options%keyvals}]{${1:font name}}"
+      }
+    },
+    {
+      "name": "pookfamily",
+      "unusual": true
+    },
+    {
+      "name": "textpook",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "setsayehfont",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font name}}"
+      }
+    },
+    {
+      "name": "setsayehfont",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:Options%keyvals}]{${1:font name}}"
+      }
+    },
+    {
+      "name": "sayehfamily",
+      "unusual": true
+    },
+    {
+      "name": "textsayeh",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "setlatinsansfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font name}}"
+      }
+    },
+    {
+      "name": "setlatinsansfont",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:Options%keyvals}]{${1:font name}}"
+      }
+    },
+    {
+      "name": "setlatinmonofont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font name}}"
+      }
+    },
+    {
+      "name": "setlatinmonofont",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:Options%keyvals}]{${1:font name}}"
+      }
+    },
+    {
+      "name": "lr",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "rl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "latintoday"
+    },
+    {
+      "name": "twocolumnstableofcontents"
+    },
+    {
+      "name": "XePersian"
+    },
+    {
+      "name": "plq"
+    },
+    {
+      "name": "prq"
+    },
+    {
+      "name": "Latincite",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keylist}}"
+      }
+    },
+    {
+      "name": "Latincite",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:add. text}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "harfi",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "harfinumeral",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:integer}}"
+      }
+    },
+    {
+      "name": "adadi",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "adadinumeral",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:integer}}"
+      }
+    },
+    {
+      "name": "tartibi",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "tartibinumeral",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:integer}}"
+      }
+    },
+    {
+      "name": "Abjad",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "Abjadnumeral",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:integer}}"
+      }
+    },
+    {
+      "name": "abjad",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "abjadnumeral",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:integer}}"
+      }
+    },
+    {
+      "name": "ifwritexviii"
+    },
+    {
+      "name": "writexviiitrue",
+      "unusual": true
+    },
+    {
+      "name": "writexviiifalse",
+      "unusual": true
+    },
+    {
+      "name": "bibname",
+      "unusual": true
+    },
+    {
+      "name": "ccname",
+      "unusual": true
+    },
+    {
+      "name": "chaptername",
+      "unusual": true
+    },
+    {
+      "name": "datename",
+      "unusual": true
+    },
+    {
+      "name": "enclname",
+      "unusual": true
+    },
+    {
+      "name": "headtoname",
+      "unusual": true
+    },
+    {
+      "name": "IfxepersianPackageVersion",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:version}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "IfxepersianPackageVersionBefore",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:version}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "IfxepersianPackageVersionLater",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:version}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "iranicdefault",
+      "unusual": true
+    },
+    {
+      "name": "LatinAlphs",
+      "unusual": true
+    },
+    {
+      "name": "latinfont",
+      "unusual": true
+    },
+    {
+      "name": "navardefault",
+      "unusual": true
+    },
+    {
+      "name": "PersianAlphs",
+      "unusual": true
+    },
+    {
+      "name": "persianfont",
+      "unusual": true
+    },
+    {
+      "name": "persiansfdefault",
+      "unusual": true
+    },
+    {
+      "name": "persianttdefault",
+      "unusual": true
+    },
+    {
+      "name": "pookdefault",
+      "unusual": true
+    },
+    {
+      "name": "proofname",
+      "unusual": true
+    },
+    {
+      "name": "resetlatinfont",
+      "unusual": true
+    },
+    {
+      "name": "sayehdefault",
+      "unusual": true
+    },
+    {
+      "name": "setfontsize",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:opt}]{${1:arg}}"
+      }
+    },
+    {
+      "name": "setfontsize",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "setpersianfont",
+      "unusual": true
+    },
+    {
+      "name": "TextDigitFontOff",
+      "unusual": true
+    },
+    {
+      "name": "TextDigitFontOn",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "latin"
+    },
+    {
+      "name": "persian"
+    },
+    {
+      "name": "latinitems"
+    },
+    {
+      "name": "persianitems"
+    },
+    {
+      "name": "latin*",
+      "unusual": true
+    },
+    {
+      "name": "persian*",
+      "unusual": true
+    }
+  ],
+  "keys": {
+    "\\usepackage/xepersian#c": [
+      "defaultlatinfontfeatures={${1:font features}}",
+      "extrafootnotefeatures",
+      "Kashida",
+      "quickindex-variant1",
+      "quickindex-variant2",
+      "localise",
+      "mathdigits=${1|automatic,default,persian|}",
+      "inlinemathdigits=${1|automatic,default,persian|}",
+      "displaymathdigits=${1|automatic,default,persian|}",
+      "RTLdocument",
+      "documentdirection=${1|righttoleft,lefttoright|}",
+      "tabledirection=${1|righttoleft,lefttoright|}",
+      "script=${1|latin,nonlatin|}",
+      "rldocument",
+      "footnoterule=${1|automatic,left,right,split,textwidth|}",
+      "footnotedirection=${1|righttoleft,lefttoright|}",
+      "debugfootnotedirection",
+      "abjadvariant=${1|one,two|}",
+      "mathfontsizescale=${1:factor}",
+      "fontsizescale=${1:factor}",
+      "fontsize=",
+      "latinfontsizescale=${1:factor}",
+      "baselineskipscale=${1:factor}",
+      "latinbaselineskipscale=${1:factor}",
+      "logo",
+      "pdfinfo",
+      "computeautoilg",
+      "DetectColumn",
+      "debugtextdigitfont",
+      "perpagefootnote"
+    ],
+    "\\settextfont,\\settextdigitfont,\\setdigitfont,\\setlatintextfont,\\setpersiansansfont,\\setpersianmonofont,\\setiranicfont,\\setnavarfont,\\setpookfont,\\setsayehfont,\\setlatinsansfont,\\setlatinmonofont": [
+      "Alternate=${1:feature}",
+      "Annotation=",
+      "AutoFakeBold=${1:number}",
+      "AutoFakeSlant=${1:number}",
+      "BoldFeatures={${1:features}}",
+      "BoldFont=${1:font name}",
+      "BoldItalicFeatures={${1:features}}",
+      "BoldItalicFont=${1:font name}",
+      "BoldSlantedFeatures={${1:features}}",
+      "BoldSlantedFont=${1:font name}",
+      "BoldSwashFeatures={${1:features}}",
+      "BoldSwashFont=${1:font name}",
+      "CJKShape=${1|Traditional,Simplified,JIS1978,JIS1983,JIS1990,Expert,NLC|}",
+      "CharacterVariant={${1:glyph num list}:${2:variety num}}",
+      "CharacterWidth=${1|Proportional,Full,Half,Thurd,Quarter,AlternateProportional,AlternateHalf,ResetAll|}",
+      "Color=",
+      "Colour=",
+      "Contextuals=${1|Swash,Alternate,WordInitial,WordFinal,LineFinal,Inner,ResetAll|}",
+      "Diacritics=${1|MarkToBase,MarkToMark,AboveBase,BelowBase,ResetAll|}",
+      "Extension=${1:extension}",
+      "FakeBold=${1:number}",
+      "FakeSlant=${1:number}",
+      "FakeStretch=${1:number}",
+      "Font=${1:font name}",
+      "FontFace={${1:series}}{${2:shape}}{${3:font name}}",
+      "Fractions=${1|On,Off,Reset,Alternate,ResetAll|}",
+      "HyphenChar=${1:character}",
+      "IgnoreFontspecFile",
+      "ItalicFeatures={${1:features}}",
+      "ItalicFont=${1:font name}",
+      "Kerning=${1|On,Off,Reset,Uppercase,ResetAll|}",
+      "Language=${1:language}",
+      "LetterSpace=${1:number}",
+      "Letters=${1|SmallCaps,PetiteCaps,UppercaseSmallCaps,UppercasePetiteCaps,Unicase,ResetAll|}",
+      "Ligatures=${1|Required,Common,Contextual,Rare,Discretionary,Historic,TeX|}",
+      "LocalForms=${1|On,Off,Reset|}",
+      "NFSSFamily=${1:font family}",
+      "Numbers=${1|Uppercase,UppercaseOff,Lowercase,LowercaseOff,Lining,LiningOff,OldStyle,OldStyleOff,Proportional,ProportionalOff,Monospaced,MonospacedOff,SlashedZero,SlashedZeroOff,Arabic,ArabicOff,ResetAll|}",
+      "OpticalSize=${1:size}",
+      "Ornament=",
+      "Path=${1:file path}",
+      "PunctuationSpace=${1:number}",
+      "RawFeature=${1:feature tag}",
+      "Scale=${1:number}",
+      "ScaleAgain=${1:number}",
+      "Size=${1:number}",
+      "SizeFeatures={${1:features}}",
+      "SlantedFeatures={${1:features}}",
+      "SlantedFont=${1:font name}",
+      "SmallCapsFeatures={${1:features}}",
+      "SmallCapsFont=${1:font name}",
+      "Style=${1|Alternate,Italic,Ruby,Swash,Cursive,Historic,Titling,HorizontalKana,VerticalKana,ResetAll|}",
+      "StylisticAlternates=${1:feature}",
+      "StylisticSet=${1:set number}",
+      "SwashFeatures={${1:features}}",
+      "SwashFont=${1:font name}",
+      "UprightFeatures={${1:features}}",
+      "UprightFont=${1:font name}",
+      "Variant=${1:integer}",
+      "Vertical=${1|RotatedGlyphs,AlternatesForRotation,Alternates,KanaAlternates,Kerning,AlternateMetrics,HalfMetrics,ProportionalMetrics,ResetAll|}",
+      "VerticalPosition=${1|Superior,Inferior,Numerator,Denominator,ScientificInferior,Ordinal,ResetAll|}",
+      "WordSpace=${1:number}",
+      "Mapping=${1:xetex-only feature}",
+      "Renderer=${1:renderer}"
     ]
   },
-  "macros": {
-    "normalfootnotes": {
-      "option": "extrafootnotefeatures=on"
-    },
-    "twocolumnfootnotes": {
-      "option": "extrafootnotefeatures=on"
-    },
-    "threecolumnfootnotes": {
-      "option": "extrafootnotefeatures=on"
-    },
-    "fourcolumnfootnotes": {
-      "option": "extrafootnotefeatures=on"
-    },
-    "fivecolumnfootnotes": {
-      "option": "extrafootnotefeatures=on"
-    },
-    "sixcolumnfootnotes": {
-      "option": "extrafootnotefeatures=on"
-    },
-    "sevencolumnfootnotes": {
-      "option": "extrafootnotefeatures=on"
-    },
-    "eightcolumnfootnotes": {
-      "option": "extrafootnotefeatures=on"
-    },
-    "ninecolumnfootnotes": {
-      "option": "extrafootnotefeatures=on"
-    },
-    "tencolumnfootnotes": {
-      "option": "extrafootnotefeatures=on"
-    },
-    "RTLcolumnfootnotes": {
-      "option": "extrafootnotefeatures=on"
-    },
-    "LTRcolumnfootnotes": {
-      "option": "extrafootnotefeatures=on"
-    },
-    "paragraphfootnotes": {
-      "option": "extrafootnotefeatures=on"
-    },
-    "setLTRparagraphfootnotes": {
-      "option": "extrafootnotefeatures=on"
-    },
-    "setRTLparagraphfootnotes": {
-      "option": "extrafootnotefeatures=on"
-    },
-    "AddExtraParaSkip{}": {
-      "snippet": "AddExtraParaSkip{${1:arg}}",
-      "option": "extrafootnotefeatures=on"
-    },
-    "extrafeetendmini": {
-      "option": "extrafootnotefeatures=on"
-    },
-    "extrafeetendminihook": {
-      "option": "extrafootnotefeatures=on"
-    },
-    "extrafeetins": {
-      "option": "extrafootnotefeatures=on"
-    },
-    "extrafeetinshook": {
-      "option": "extrafootnotefeatures=on"
-    },
-    "FeetAboveFloat": {
-      "option": "extrafootnotefeatures=on"
-    },
-    "FeetAtBottom": {
-      "option": "extrafootnotefeatures=on"
-    },
-    "FeetBelowFloat": {
-      "option": "extrafootnotefeatures=on"
-    },
-    "FeetBelowRagged": {
-      "option": "extrafootnotefeatures=on"
-    },
-    "footfootmark": {
-      "option": "extrafootnotefeatures=on"
-    },
-    "footfudgefactor": {
-      "option": "extrafootnotefeatures=on"
-    },
-    "footinsdim": {
-      "option": "extrafootnotefeatures=on"
-    },
-    "footmarkstyle{}": {
-      "snippet": "footmarkstyle{${1:text}}",
-      "option": "extrafootnotefeatures=on"
-    },
-    "footmarkwidth": {
-      "option": "extrafootnotefeatures=on"
-    },
-    "footscript{}": {
-      "snippet": "footscript{${1:arg}}",
-      "option": "extrafootnotefeatures=on"
-    },
-    "foottextfont": {
-      "option": "extrafootnotefeatures=on"
-    },
-    "LTRfootfootmark": {
-      "option": "extrafootnotefeatures=on"
-    },
-    "LTRfootmarkstyle{}": {
-      "snippet": "LTRfootmarkstyle{${1:text}}",
-      "option": "extrafootnotefeatures=on"
-    },
-    "LTRfootscript{}": {
-      "snippet": "LTRfootscript{${1:arg}}",
-      "option": "extrafootnotefeatures=on"
-    },
-    "LTRfoottextfont": {
-      "option": "extrafootnotefeatures=on"
-    },
-    "multiplefootnotemarker": {
-      "option": "extrafootnotefeatures=on"
-    },
-    "normalRTLparaLTRfootnotes": {
-      "option": "extrafootnotefeatures=on"
-    },
-    "RTLfootfootmark": {
-      "option": "extrafootnotefeatures=on"
-    },
-    "RTLfootmarkstyle{}": {
-      "snippet": "RTLfootmarkstyle{${1:text}}",
-      "option": "extrafootnotefeatures=on"
-    },
-    "RTLfootscript{}": {
-      "snippet": "RTLfootscript{${1:arg}}",
-      "option": "extrafootnotefeatures=on"
-    },
-    "RTLfoottextfont": {
-      "option": "extrafootnotefeatures=on"
-    },
-    "setSingleSpace{}": {
-      "snippet": "setSingleSpace{${1:number}}",
-      "option": "extrafootnotefeatures=on"
-    },
-    "KashidaOn": {
-      "option": "Kashida=on"
-    },
-    "KashidaOff": {
-      "option": "Kashida=on"
-    },
-    "eqcommand{}{}": {
-      "snippet": "eqcommand{${1:command-name in Persian}}{${2:original LaTeX command-name}}",
-      "option": "localise=on"
-    },
-    "eqenvironment{}{}": {
-      "snippet": "eqenvironment{${1:environment-name in Persian}}{${2:original LaTeX environment-name}}",
-      "option": "localise=on"
-    },
-    "makezwnjletter": {
-      "option": "localise=on"
-    },
-    "EqEnvironment{}{}": {
-      "snippet": "EqEnvironment{${1:environment-name in Persian}}{${2:original LaTeX environment-name}}",
-      "option": "localise=on"
-    },
-    "DetectColumn{}{}": {
-      "snippet": "DetectColumn{${1:arg1}}{${2:arg2}}",
-      "option": "DetectColumn=on"
-    },
-    "DetectColumn[]{}{}": {
-      "snippet": "DetectColumn[${3:opt}]{${1:arg1}}{${2:arg2}}",
-      "option": "DetectColumn=on"
-    },
-    "xepersianreleasename": {},
-    "xepersianversion": {},
-    "xepersiandate": {},
-    "settextfont{}": {
-      "snippet": "settextfont{${1:font name}}"
-    },
-    "settextfont[]{}": {
-      "snippet": "settextfont[${2:Options}]{${1:font name}}"
-    },
-    "settextdigitfont{}": {
-      "snippet": "settextdigitfont{${1:font name}}"
-    },
-    "settextdigitfont[]{}": {
-      "snippet": "settextdigitfont[${2:Options}]{${1:font name}}"
-    },
-    "setdigitfont{}": {
-      "snippet": "setdigitfont{${1:font name}}"
-    },
-    "setdigitfont[]{}": {
-      "snippet": "setdigitfont[${2:Options}]{${1:font name}}"
-    },
-    "setlatintextfont{}": {
-      "snippet": "setlatintextfont{${1:font name}}"
-    },
-    "setlatintextfont[]{}": {
-      "snippet": "setlatintextfont[${2:Options}]{${1:font name}}"
-    },
-    "defpersianfont{}": {
-      "snippet": "defpersianfont{${1:cmd}}"
-    },
-    "deflatinfont{}": {
-      "snippet": "deflatinfont{${1:cmd}}"
-    },
-    "setpersiansansfont{}": {
-      "snippet": "setpersiansansfont{${1:font name}}"
-    },
-    "setpersiansansfont[]{}": {
-      "snippet": "setpersiansansfont[${2:Options}]{${1:font name}}"
-    },
-    "persiansffamily": {},
-    "textpersiansf{}": {
-      "snippet": "textpersiansf{${1:text}}"
-    },
-    "setpersianmonofont{}": {
-      "snippet": "setpersianmonofont{${1:font name}}"
-    },
-    "setpersianmonofont[]{}": {
-      "snippet": "setpersianmonofont[${2:Options}]{${1:font name}}"
-    },
-    "persianttfamily": {},
-    "textpersiantt{}": {
-      "snippet": "textpersiantt{${1:text}}"
-    },
-    "setiranicfont{}": {
-      "snippet": "setiranicfont{${1:font name}}"
-    },
-    "setiranicfont[]{}": {
-      "snippet": "setiranicfont[${2:Options}]{${1:font name}}"
-    },
-    "iranicfamily": {},
-    "textiranic{}": {
-      "snippet": "textiranic{${1:text}}"
-    },
-    "setnavarfont{}": {
-      "snippet": "setnavarfont{${1:font name}}"
-    },
-    "setnavarfont[]{}": {
-      "snippet": "setnavarfont[${2:Options}]{${1:font name}}"
-    },
-    "navarfamily": {},
-    "textnavar{}": {
-      "snippet": "textnavar{${1:text}}"
-    },
-    "setpookfont{}": {
-      "snippet": "setpookfont{${1:font name}}"
-    },
-    "setpookfont[]{}": {
-      "snippet": "setpookfont[${2:Options}]{${1:font name}}"
-    },
-    "pookfamily": {},
-    "textpook{}": {
-      "snippet": "textpook{${1:text}}"
-    },
-    "setsayehfont{}": {
-      "snippet": "setsayehfont{${1:font name}}"
-    },
-    "setsayehfont[]{}": {
-      "snippet": "setsayehfont[${2:Options}]{${1:font name}}"
-    },
-    "sayehfamily": {},
-    "textsayeh{}": {
-      "snippet": "textsayeh{${1:text}}"
-    },
-    "setlatinsansfont{}": {
-      "snippet": "setlatinsansfont{${1:font name}}"
-    },
-    "setlatinsansfont[]{}": {
-      "snippet": "setlatinsansfont[${2:Options}]{${1:font name}}"
-    },
-    "setlatinmonofont{}": {
-      "snippet": "setlatinmonofont{${1:font name}}"
-    },
-    "setlatinmonofont[]{}": {
-      "snippet": "setlatinmonofont[${2:Options}]{${1:font name}}"
-    },
-    "lr{}": {
-      "snippet": "lr{${1:text}}"
-    },
-    "rl{}": {
-      "snippet": "rl{${1:text}}"
-    },
-    "latintoday": {},
-    "twocolumnstableofcontents": {},
-    "XePersian": {},
-    "plq": {},
-    "prq": {},
-    "Latincite{}": {
-      "snippet": "Latincite{${1:keylist}}"
-    },
-    "Latincite[]{}": {
-      "snippet": "Latincite[${2:add. text}]{${1:keylist}}"
-    },
-    "harfi{}": {
-      "snippet": "harfi{${1:counter}}"
-    },
-    "harfinumeral{}": {
-      "snippet": "harfinumeral{${1:integer}}"
-    },
-    "adadi{}": {
-      "snippet": "adadi{${1:counter}}"
-    },
-    "adadinumeral{}": {
-      "snippet": "adadinumeral{${1:integer}}"
-    },
-    "tartibi{}": {
-      "snippet": "tartibi{${1:counter}}"
-    },
-    "tartibinumeral{}": {
-      "snippet": "tartibinumeral{${1:integer}}"
-    },
-    "Abjad{}": {
-      "snippet": "Abjad{${1:counter}}"
-    },
-    "Abjadnumeral{}": {
-      "snippet": "Abjadnumeral{${1:integer}}"
-    },
-    "abjad{}": {
-      "snippet": "abjad{${1:counter}}"
-    },
-    "abjadnumeral{}": {
-      "snippet": "abjadnumeral{${1:integer}}"
-    },
-    "ifwritexviii": {},
-    "writexviiitrue": {},
-    "writexviiifalse": {},
-    "bibname": {},
-    "ccname": {},
-    "chaptername": {},
-    "datename": {},
-    "enclname": {},
-    "headtoname": {},
-    "IfxepersianPackageVersion{}{}{}": {
-      "snippet": "IfxepersianPackageVersion{${1:version}}{${2:true}}{${3:false}}"
-    },
-    "IfxepersianPackageVersionBefore{}{}{}": {
-      "snippet": "IfxepersianPackageVersionBefore{${1:version}}{${2:true}}{${3:false}}"
-    },
-    "IfxepersianPackageVersionLater{}{}{}": {
-      "snippet": "IfxepersianPackageVersionLater{${1:version}}{${2:true}}{${3:false}}"
-    },
-    "iranicdefault": {},
-    "LatinAlphs": {},
-    "latinfont": {},
-    "navardefault": {},
-    "originaltoday": {},
-    "PersianAlphs": {},
-    "persianfont": {},
-    "persiansfdefault": {},
-    "persianttdefault": {},
-    "pookdefault": {},
-    "proofname": {},
-    "redeflatinfont{}": {
-      "snippet": "redeflatinfont{${1:cmd}}"
-    },
-    "resetlatinfont": {},
-    "sayehdefault": {},
-    "setfontsize[]{}": {
-      "snippet": "setfontsize[${2:opt}]{${1:arg}}"
-    },
-    "setfontsize{}": {
-      "snippet": "setfontsize{${1:arg}}"
-    },
-    "setpersianfont": {},
-    "TextDigitFontOff": {},
-    "TextDigitFontOn": {}
-  },
-  "envs": {
-    "latin": {},
-    "persian": {},
-    "latinitems": {},
-    "persianitems": {},
-    "latin*": {},
-    "persian*": {}
-  },
-  "options": [
-    "defaultlatinfontfeatures={${1:font features}}",
-    "extrafootnotefeatures",
-    "Kashida",
-    "quickindex-variant1",
-    "quickindex-variant2",
-    "localise",
-    "mathdigits=${1|automatic,default,persian|}",
-    "inlinemathdigits=${1|automatic,default,persian|}",
-    "displaymathdigits=${1|automatic,default,persian|}",
-    "RTLdocument",
-    "documentdirection=${1|righttoleft,lefttoright|}",
-    "tabledirection=${1|righttoleft,lefttoright|}",
-    "script=${1|latin,nonlatin|}",
-    "rldocument",
-    "footnoterule=${1|automatic,left,right,split,textwidth|}",
-    "footnotedirection=${1|righttoleft,lefttoright|}",
-    "debugfootnotedirection",
-    "abjadvariant=${1|one,two|}",
-    "mathfontsizescale=${1:factor}",
-    "fontsizescale=${1:factor}",
-    "fontsize=",
-    "latinfontsizescale=${1:factor}",
-    "baselineskipscale=${1:factor}",
-    "latinbaselineskipscale=${1:factor}",
-    "logo",
-    "pdfinfo",
-    "computeautoilg",
-    "DetectColumn",
-    "debugtextdigitfont",
-    "perpagefootnote"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/xepersian#c"
+  ]
 }

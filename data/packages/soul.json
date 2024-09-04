@@ -1,98 +1,214 @@
 {
-  "includes": {},
-  "macros": {
-    "so{}": {
-      "snippet": "so{${1:text}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "so",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "textso{}": {
-      "snippet": "textso{${1:text}}"
+    {
+      "name": "textso",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "<": {
-      "detail": "<",
-      "documentation": "LESS-THAN SIGN r:"
+    {
+      "name": "caps",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    ">": {
-      "detail": ">",
-      "documentation": "GREATER-THAN SIGN r:"
+    {
+      "name": "textcaps",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "caps{}": {
-      "snippet": "caps{${1:text}}"
+    {
+      "name": "capsfont",
+      "unusual": true
     },
-    "textcaps{}": {
-      "snippet": "textcaps{${1:text}}"
+    {
+      "name": "ul",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "capsfont": {},
-    "ul{}": {
-      "snippet": "ul{${1:text}}"
+    {
+      "name": "textul",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "textul{}": {
-      "snippet": "textul{${1:text}}"
+    {
+      "name": "st",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "st{}": {
-      "snippet": "st{${1:text}}"
+    {
+      "name": "textst",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "textst{}": {
-      "snippet": "textst{${1:text}}"
+    {
+      "name": "hl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "hl{}": {
-      "snippet": "hl{${1:text}}"
+    {
+      "name": "texthl",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "texthl{}": {
-      "snippet": "texthl{${1:text}}"
+    {
+      "name": "soulaccent",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cmd}}"
+      }
     },
-    "soulaccent{}": {
-      "snippet": "soulaccent{${1:cmd}}"
+    {
+      "name": "soulregister",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:args}}"
+      }
     },
-    "soulregister{}{}": {
-      "snippet": "soulregister{${1:cmd}}{${2:args}}"
+    {
+      "name": "soulomit",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "soulfont{}{}": {
-      "snippet": "soulfont{${1:cmd}}{${2:args}}"
+    {
+      "name": "sloppyword",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "soulomit{}": {
-      "snippet": "soulomit{${1:text}}"
+    {
+      "name": "sodef",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:cmd}}{${2:font}}{${3:innerletter%l}}{${4:inner%l}}{${5:outer%l}}"
+      }
     },
-    "sloppyword{}": {
-      "snippet": "sloppyword{${1:text}}"
+    {
+      "name": "resetso",
+      "unusual": true
     },
-    "sodef{}{}{}{}{}": {
-      "snippet": "sodef{${1:cmd}}{${2:font}}{${3:innerletter}}{${4:inner}}{${5:outer}}"
+    {
+      "name": "capsdef",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:enc/fam/series/shape/size}}{${2:optcmd}}{${3:innerletter%l}}{${4:inner%l}}{${5:outer%l}}"
+      }
     },
-    "resetso": {},
-    "capsdef{}{}{}{}{}": {
-      "snippet": "capsdef{${1:enc/fam/series/shape/size}}{${2:optcmd}}{${3:innerletter}}{${4:inner}}{${5:outer}}"
+    {
+      "name": "capssave",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
     },
-    "capssave{}": {
-      "snippet": "capssave{${1:name}}"
+    {
+      "name": "capsselect",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
     },
-    "capsselect{}": {
-      "snippet": "capsselect{${1:name}}"
+    {
+      "name": "capsreset",
+      "unusual": true
     },
-    "capsreset": {},
-    "capsdefault": {},
-    "setul{}{}": {
-      "snippet": "setul{${1:ul-depth}}{${2:ul-thickness}}"
+    {
+      "name": "capsdefault",
+      "unusual": true
     },
-    "resetul": {},
-    "setuldepth{}": {
-      "snippet": "setuldepth{${1:string}}"
+    {
+      "name": "setul",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:ul-depth%l}}{${2:ul-thickness%l}}"
+      }
     },
-    "setuloverlap{}": {
-      "snippet": "setuloverlap{${1:dimen}}"
+    {
+      "name": "resetul",
+      "unusual": true
     },
-    "setulcolor{}": {
-      "snippet": "setulcolor{${1:color}}"
+    {
+      "name": "setuldepth",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:string}}"
+      }
     },
-    "setstcolor{}": {
-      "snippet": "setstcolor{${1:color}}"
+    {
+      "name": "setuloverlap",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:dimen%l}}"
+      }
     },
-    "sethlcolor{}": {
-      "snippet": "sethlcolor{${1:color}}"
+    {
+      "name": "setulcolor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "setstcolor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "sethlcolor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [
-    "capsdefault"
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/soul#c": [
+      "capsdefault\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/soul#c"
+  ]
 }

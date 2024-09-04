@@ -1,4 +1,6 @@
 // https://texstudio-org.github.io/background.html#description-of-the-cwl-format
+import * as fs from 'fs'
+// import * as path from 'path'
 
 type PackageRaw = {
     deps: DependencyRaw[]
@@ -25,10 +27,30 @@ type MacroRaw = {
     arg?: { format: string; snippet: string; keys?: string[]; keyPos?: number }
     if?: string
     unusual?: boolean
+    detail?: string
+    doc?: string
+}
+
+let _defaultMacros: string[] = []
+function isDefaultMacro(macro: string, defaults?: string[]): boolean {
+    if (defaults === undefined && _defaultMacros.length === 0) {
+        _defaultMacros = Object.keys(JSON.parse(fs.readFileSync('../data/commands.json').toString()))
+    }
+    defaults = defaults ?? _defaultMacros
+    return defaults.includes(macro)
+}
+
+let _unimathSymbols: { [key: string]: { detail?: string; documentation?: string } } = {}
+function getUnimathSymbol(macro: string, defaults?: typeof _unimathSymbols) {
+    if (defaults === undefined && Object.keys(_unimathSymbols).length === 0) {
+        defaults = JSON.parse(fs.readFileSync('../data/unimathsymbols.json').toString())
+    }
+    defaults = defaults ?? _unimathSymbols
+    return defaults[macro]
 }
 
 function isSkipLine(line: string): boolean {
-    if (line.trim() === '') {
+    if (line === '') {
         return true
     }
     if (
@@ -45,7 +67,7 @@ function isSkipLine(line: string): boolean {
 
 function parseLines(pkg: PackageRaw, lines: string[], ifCond?: string): void {
     for (let index = 0; index < lines.length; index++) {
-        const line = lines[index]
+        const line = lines[index].trim()
         if (isSkipLine(line)) {
             continue
         }
@@ -66,7 +88,7 @@ function parseLines(pkg: PackageRaw, lines: string[], ifCond?: string): void {
         } else if (line.startsWith('\\')) {
             parseMacro(pkg, line, ifCond)
         } else {
-            throw new Error('Unknown line: ' + line)
+            console.warn('Unknown line: ' + line)
         }
     }
 }
@@ -90,7 +112,6 @@ function parseKeys(pkg: PackageRaw, lines: string[], tag: string): void {
         let index = 1
         while (true) {
             const match = /%<([^%]*?)%>/.exec(snippet)
-            console.log(snippet)
             if (match === null) {
                 break
             }
@@ -112,24 +133,26 @@ function parseKeys(pkg: PackageRaw, lines: string[], tag: string): void {
 }
 
 function assignKeys(pkg: PackageRaw, tag: string) {
-    for (const context of tag.split(',')) {
+    for (let context of tag.split(',')) {
         if (context.startsWith('\\documentclass') || context.startsWith('\\usepackage')) {
             pkg.args.push(tag)
-        } else if (context.startsWith('\\')) {
-            const isEnv = context.startsWith('\\begin')
-            let name = context.startsWith('\\begin') ? context.slice(7, -1) : context.slice(1)
-            for (const candidate of isEnv ? pkg.envs : pkg.macros) {
-                if (candidate.name === name && candidate.arg) {
-                    const keyPos = findKeyPos(candidate.arg.snippet)
-                    if (keyPos > -1) {
-                        candidate.arg.keys = candidate.arg.keys ?? []
-                        candidate.arg.keys.push(tag)
-                        candidate.arg.keyPos = keyPos
-                    }
+            continue
+        }
+        // \includepdf,includepdfmerge,\includepdfset => \includepdf,\includepdfmerge,\includepdfset
+        if (!context.startsWith('\\')) {
+            context = '\\' + context
+        }
+        const isEnv = context.startsWith('\\begin')
+        let name = context.startsWith('\\begin') ? context.slice(7, -1) : context.slice(1)
+        for (const candidate of isEnv ? pkg.envs : pkg.macros) {
+            if (candidate.name === name && candidate.arg) {
+                const keyPos = findKeyPos(candidate.arg.snippet)
+                if (keyPos > -1) {
+                    candidate.arg.keys = candidate.arg.keys ?? []
+                    candidate.arg.keys.push(tag)
+                    candidate.arg.keyPos = keyPos
                 }
             }
-        } else {
-            throw new Error('Unknown keyval context: ' + context)
         }
     }
 }
@@ -139,10 +162,12 @@ function findKeyPos(snippet: string): number {
     let index = 0
     for (const match of matches) {
         const context = match[1] ?? match[2] ?? match[3] ?? match[4]
-        if (context.startsWith('keys') ||
+        if (
+            context.startsWith('keys') ||
             context.startsWith('keyvals') ||
             context.startsWith('options') ||
-            context.endsWith('%keyvals')) {
+            context.endsWith('%keyvals')
+        ) {
             return index
         }
         index++
@@ -172,6 +197,20 @@ function parseMacro(pkg: PackageRaw, line: string, ifCond?: string): void {
     if ((/\\left[^a-zA-Z]/.test(line) && /\\right/.test(line)) || /\\right[^a-zA-Z]/.test(line)) {
         return
     }
+    // Special cases in latex-document
+    if (line.toLowerCase().startsWith('\\bigg')) {
+        const match = /^\\([Bb]igg)([([|])?.*?(?:#(.*))?$/.exec(line)
+        if (match === null) {
+            return
+        }
+        const pairs = { '(': ')', '[': ']', '|': '|' }
+        const macro: MacroRaw = { name: match[1] + (match[2] ?? '') }
+        if (match[2] === '(' || match[2] === '[' || match[2] === '|') {
+            macro.arg = { format: match[2] + pairs[match[2]], snippet: `$\{1\}${match[1]}${pairs[match[2]]}` }
+        }
+        pkg.macros.push(macro)
+        return
+    }
     // \mint[keys]{language}{verbatimSymbol}#S
     // \mint{%<language%>}|%<code%>|#M
     // \mint[%<options%>]{%<language%>}|%<code%>|#M
@@ -185,9 +224,15 @@ function parseMacro(pkg: PackageRaw, line: string, ifCond?: string): void {
         return
     }
     const macro: MacroRaw | undefined = constructMacroEnv({ name: match[1] }, match, ifCond)
-    // TODO: Check against default macros
 
-    if (macro) {
+    if (macro && !isDefaultMacro(macro.name + (macro.arg?.format ?? ''))) {
+        const unimath = getUnimathSymbol(macro.name)
+        if (unimath?.detail) {
+            macro.detail = unimath.detail
+        }
+        if (unimath?.documentation) {
+            macro.doc = unimath.documentation
+        }
         pkg.macros.push(macro)
     }
 }
@@ -221,9 +266,6 @@ function constructMacroEnv(
 }
 
 function createSnippet(arg: string): string {
-    if (arg.includes('%|') || arg.includes('..')) {
-        throw new Error('%< not handled yet: ' + arg)
-    }
     let index = 1
     // {} [] <> ||
     for (const regexp of [
@@ -231,7 +273,6 @@ function createSnippet(arg: string): string {
         /(\[)(?!\$)([^\[\]]*)(\])/,
         /(?<![\{\s:\[])(\<)(?!\$)([a-zA-Z\s]*)(\>)/,
         /(\|)(?!\$)([^|]*)(\|)/,
-        /()(?<=\(|,)(?!\$)([^,()]+)(?=,|\))()/,
     ]) {
         while (true) {
             const newArg = findArg(arg, regexp, index)
@@ -241,6 +282,30 @@ function createSnippet(arg: string): string {
             arg = newArg
             index++
         }
+    }
+    // (x1,x2,x3) => (${1:x1},${2:x2},${3:x3})
+    while (true) {
+        const match = arg.match(/\(([^()$]+)\)/)
+        if (match === null || match[1] === '') {
+            break
+        }
+        arg = arg.replace(
+            /\(([^()$]+)\)/,
+            '(' +
+                match[1]
+                    .split(',')
+                    .map((val) => `$$\{${index++}:${val}\}`)
+                    .join(',') +
+                ')'
+        )
+    }
+    // [${1:plain}]%| => [${1:plain}]${2}
+    while (true) {
+        const tabPos = arg.indexOf('%|')
+        if (tabPos === -1) {
+            break
+        }
+        arg = arg.replace('%|', `$$\{${index++}\}`)
     }
     return arg
 }
@@ -256,9 +321,16 @@ function findArg(arg: string, regexp: RegExp, index: number): string | false {
     )
 }
 
-import * as fs from 'fs'
+function parseEssential() {
+    const files = fs.readFileSync('cwl.list').toString().split('\n')
+    for (const file of files) {
+        console.log(file)
+        const pkgName = file.split('.')[0]
+        const content = fs.readFileSync(`cwl/${pkgName}.cwl`).toString()
+        const pkg: PackageRaw = { deps: [], macros: [], envs: [], keys: {}, args: [] }
+        parseLines(pkg, content.split('\n'))
+        fs.writeFileSync(`../data/packages/${pkgName}.json`, JSON.stringify(pkg, null, 2))
+    }
+}
 
-const content = fs.readFileSync('cwl/minted.cwl').toString()
-const pkg = { deps: [], macros: [], envs: [], keys: {}, args: [] }
-parseLines(pkg, content.split('\n'))
-console.log(JSON.stringify(pkg, null, 2))
+parseEssential()

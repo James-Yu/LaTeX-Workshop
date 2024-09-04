@@ -1,19 +1,33 @@
 {
-  "includes": {
-    "ifthen": []
-  },
-  "macros": {
-    "nicefrac[]{}{}": {
-      "snippet": "nicefrac[${3:fontcmd}]{${1:num}}{${2:den}}"
-    },
-    "nicefrac{}{}": {
-      "snippet": "nicefrac{${1:num}}{${2:den}}"
+  "deps": [
+    {
+      "name": "ifthen"
     }
-  },
-  "envs": {},
-  "options": [
-    "nice",
-    "ugly"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "nicefrac",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:fontcmd%:translatable}]{${1:num%:translatable}}{${2:den%:translatable}}"
+      }
+    },
+    {
+      "name": "nicefrac",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:num%:translatable}}{${2:den%:translatable}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/nicefrac#c": [
+      "nice",
+      "ugly"
+    ]
+  },
+  "args": [
+    "\\usepackage/nicefrac#c"
+  ]
 }

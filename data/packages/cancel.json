@@ -1,28 +1,51 @@
 {
-  "includes": {},
-  "macros": {
-    "cancel{}": {
-      "snippet": "cancel{${1:expression}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "cancel",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
     },
-    "bcancel{}": {
-      "snippet": "bcancel{${1:expression}}"
+    {
+      "name": "bcancel",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
     },
-    "xcancel{}": {
-      "snippet": "xcancel{${1:expression}}"
+    {
+      "name": "xcancel",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
     },
-    "cancelto{}{}": {
-      "snippet": "cancelto{${1:value}}{${2:expression}}"
+    {
+      "name": "cancelto",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:value}}{${2:expression}}"
+      }
     },
-    "CancelColor": {}
-  },
-  "envs": {},
-  "options": [
-    "samesize",
-    "smaller",
-    "Smaller",
-    "makeroom",
-    "overlap",
-    "thicklines"
+    {
+      "name": "CancelColor",
+      "unusual": true
+    }
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/cancel#c": [
+      "samesize",
+      "smaller",
+      "Smaller",
+      "makeroom",
+      "overlap",
+      "thicklines"
+    ]
+  },
+  "args": [
+    "\\usepackage/cancel#c"
+  ]
 }

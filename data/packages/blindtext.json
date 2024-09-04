@@ -1,130 +1,359 @@
 {
-  "includes": {
-    "xspace": []
-  },
-  "macros": {
-    "blinddocument": {},
-    "Blinddocument": {},
-    "blindtext": {},
-    "blindtext[]": {
-      "snippet": "blindtext[${1:repetition}]"
-    },
-    "Blindtext": {},
-    "Blindtext[]": {
-      "snippet": "Blindtext[${1:repetition}]"
-    },
-    "Blindtext[][]": {
-      "snippet": "Blindtext[${1:paragraphs}][${2:repetition}]"
-    },
-    "blindlist{}": {
-      "snippet": "blindlist{${1:list env}}"
-    },
-    "blindlist{}[]": {
-      "snippet": "blindlist{${1:list env}}[${2:repetition}]"
-    },
-    "Blindlist{}": {
-      "snippet": "Blindlist{${1:list env}}"
-    },
-    "Blindlist{}[]": {
-      "snippet": "Blindlist{${1:list env}}[${2:repetition}]"
-    },
-    "blindlistlist{}": {
-      "snippet": "blindlistlist{${1:list env}}"
-    },
-    "blindlistlist[]{}": {
-      "snippet": "blindlistlist[${2:level}]{${1:list env}}"
-    },
-    "blindlistlist{}[]": {
-      "snippet": "blindlistlist{${1:list env}}[${2:repetition}]"
-    },
-    "blindlistlist[]{}[]": {
-      "snippet": "blindlistlist[${2:level}]{${1:list env}}[${3:repetition}]"
-    },
-    "blindlistoptional{}": {
-      "snippet": "blindlistoptional{${1:list env}}"
-    },
-    "blindlistoptional{}[]": {
-      "snippet": "blindlistoptional{${1:list env}}[${2:repetition}]"
-    },
-    "Blindlistoptional{}": {
-      "snippet": "Blindlistoptional{${1:list env}}"
-    },
-    "Blindlistoptional{}[]": {
-      "snippet": "Blindlistoptional{${1:list env}}[${2:repetition}]"
-    },
-    "blindlistlistoptional{}": {
-      "snippet": "blindlistlistoptional{${1:list env}}"
-    },
-    "blindlistlistoptional[]{}": {
-      "snippet": "blindlistlistoptional[${2:level}]{${1:list env}}"
-    },
-    "blindlistlistoptional{}[]": {
-      "snippet": "blindlistlistoptional{${1:list env}}[${2:repetition}]"
-    },
-    "blindlistlistoptional[]{}[]": {
-      "snippet": "blindlistlistoptional[${2:level}]{${1:list env}}[${3:repetition}]"
-    },
-    "blinditemize": {},
-    "blinditemize[]": {
-      "snippet": "blinditemize[${1:repetition}]"
-    },
-    "blindenumerate": {},
-    "blindenumerate[]": {
-      "snippet": "blindenumerate[${1:repetition}]"
-    },
-    "blinddescription": {},
-    "blinddescription[]": {
-      "snippet": "blinddescription[${1:repetition}]"
-    },
-    "Blinditemize": {},
-    "Blinditemize[]": {
-      "snippet": "Blinditemize[${1:repetition}]"
-    },
-    "Blindenumerate": {},
-    "Blindenumerate[]": {
-      "snippet": "Blindenumerate[${1:repetition}]"
-    },
-    "Blinddescription": {},
-    "Blinddescription[]": {
-      "snippet": "Blinddescription[${1:repetition}]"
-    },
-    "blindmathpaper": {},
-    "blindmarkup{}": {
-      "snippet": "blindmarkup{${1:text}}"
-    },
-    "parstart{}": {
-      "snippet": "parstart{${1:code}}"
-    },
-    "parend{}": {
-      "snippet": "parend{${1:code}}"
-    },
-    "ifblindmath": {},
-    "blindmathtrue": {},
-    "blindmathfalse": {},
-    "ifblindtoc": {},
-    "blindtoctrue": {},
-    "blindtocfalse": {},
-    "ifblindbible": {},
-    "blindbibletrue": {},
-    "blindbiblefalse": {},
-    "ifblindrandom": {},
-    "blindrandomtrue": {},
-    "blindrandomfalse": {},
-    "ifblindpangram": {},
-    "blindpangramtrue": {},
-    "blindpangramfalse": {},
-    "theblindtext": {},
-    "theBlindtext": {},
-    "theblindlist": {},
-    "theblindlistlevel": {}
-  },
-  "envs": {},
-  "options": [
-    "bible",
-    "random",
-    "pangram",
-    "math",
-    "toc"
+  "deps": [
+    {
+      "name": "xspace"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "blinddocument"
+    },
+    {
+      "name": "Blinddocument"
+    },
+    {
+      "name": "blindtext"
+    },
+    {
+      "name": "blindtext",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:repetition}]"
+      }
+    },
+    {
+      "name": "Blindtext"
+    },
+    {
+      "name": "Blindtext",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:repetition}]"
+      }
+    },
+    {
+      "name": "Blindtext",
+      "arg": {
+        "format": "[][]",
+        "snippet": "[${1:paragraphs}][${2:repetition}]"
+      }
+    },
+    {
+      "name": "blindlist",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:list env}}"
+      }
+    },
+    {
+      "name": "blindlist",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:list env}}[${2:repetition}]"
+      }
+    },
+    {
+      "name": "Blindlist",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:list env}}"
+      }
+    },
+    {
+      "name": "Blindlist",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:list env}}[${2:repetition}]"
+      }
+    },
+    {
+      "name": "blindlistlist",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:list env}}"
+      }
+    },
+    {
+      "name": "blindlistlist",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:level}]{${1:list env}}"
+      }
+    },
+    {
+      "name": "blindlistlist",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:list env}}[${2:repetition}]"
+      }
+    },
+    {
+      "name": "blindlistlist",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:level}]{${1:list env}}[${3:repetition}]"
+      }
+    },
+    {
+      "name": "blindlistoptional",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:list env}}"
+      }
+    },
+    {
+      "name": "blindlistoptional",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:list env}}[${2:repetition}]"
+      }
+    },
+    {
+      "name": "Blindlistoptional",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:list env}}"
+      }
+    },
+    {
+      "name": "Blindlistoptional",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:list env}}[${2:repetition}]"
+      }
+    },
+    {
+      "name": "blindlistlistoptional",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:list env}}"
+      }
+    },
+    {
+      "name": "blindlistlistoptional",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:level}]{${1:list env}}"
+      }
+    },
+    {
+      "name": "blindlistlistoptional",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:list env}}[${2:repetition}]"
+      }
+    },
+    {
+      "name": "blindlistlistoptional",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:level}]{${1:list env}}[${3:repetition}]"
+      }
+    },
+    {
+      "name": "blinditemize",
+      "unusual": true
+    },
+    {
+      "name": "blinditemize",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:repetition}]"
+      }
+    },
+    {
+      "name": "blindenumerate",
+      "unusual": true
+    },
+    {
+      "name": "blindenumerate",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:repetition}]"
+      }
+    },
+    {
+      "name": "blinddescription",
+      "unusual": true
+    },
+    {
+      "name": "blinddescription",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:repetition}]"
+      }
+    },
+    {
+      "name": "Blinditemize",
+      "unusual": true
+    },
+    {
+      "name": "Blinditemize",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:repetition}]"
+      }
+    },
+    {
+      "name": "Blindenumerate",
+      "unusual": true
+    },
+    {
+      "name": "Blindenumerate",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:repetition}]"
+      }
+    },
+    {
+      "name": "Blinddescription",
+      "unusual": true
+    },
+    {
+      "name": "Blinddescription",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:repetition}]"
+      }
+    },
+    {
+      "name": "blindmathpaper",
+      "unusual": true
+    },
+    {
+      "name": "blindmarkup",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "parstart",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "parend",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "ifblindmath",
+      "unusual": true
+    },
+    {
+      "name": "blindmathtrue",
+      "unusual": true
+    },
+    {
+      "name": "blindmathfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifblindtoc",
+      "unusual": true
+    },
+    {
+      "name": "blindtoctrue",
+      "unusual": true
+    },
+    {
+      "name": "blindtocfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifblindbible",
+      "unusual": true
+    },
+    {
+      "name": "blindbibletrue",
+      "unusual": true
+    },
+    {
+      "name": "blindbiblefalse",
+      "unusual": true
+    },
+    {
+      "name": "ifblindrandom",
+      "unusual": true
+    },
+    {
+      "name": "blindrandomtrue",
+      "unusual": true
+    },
+    {
+      "name": "blindrandomfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifblindpangram",
+      "unusual": true
+    },
+    {
+      "name": "blindpangramtrue",
+      "unusual": true
+    },
+    {
+      "name": "blindpangramfalse",
+      "unusual": true
+    },
+    {
+      "name": "theblindtext",
+      "unusual": true
+    },
+    {
+      "name": "theBlindtext",
+      "unusual": true
+    },
+    {
+      "name": "theblindlist",
+      "unusual": true
+    },
+    {
+      "name": "theblindlistlevel",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/blindtext#c": [
+      "bible",
+      "random",
+      "pangram",
+      "math",
+      "toc"
+    ]
+  },
+  "args": [
+    "\\usepackage/blindtext#c"
+  ]
 }

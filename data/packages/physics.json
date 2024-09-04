@@ -1,816 +1,1925 @@
 {
-  "includes": {
-    "amsmath": []
-  },
-  "macros": {
-    "Bqty{}": {
-      "snippet": "Bqty{${1:expression}}"
-    },
-    "Im{}": {
-      "snippet": "Im{${1:expression}}"
-    },
-    "PV{}": {
-      "snippet": "PV{${1:expression}}"
-    },
-    "Pmqty{}": {
-      "snippet": "Pmqty{${1:matrix element 1 & matrix element 2  \\\\ matrix element 3 & matrix element 4}}"
-    },
-    "Pr()": {
-      "snippet": "Pr(${1:expression})"
-    },
-    "Probability": {},
-    "Res[]": {
-      "snippet": "Res[${1:expression}]"
-    },
-    "Re{}": {
-      "snippet": "Re{${1:expression}}"
-    },
-    "Residue": {},
-    "Tr": {},
-    "Trace": {},
-    "abs*{}": {
-      "snippet": "abs*{${1:expression}}"
-    },
-    "abs{}": {
-      "snippet": "abs{${1:expression}}"
-    },
-    "absolutevalue{}": {
-      "snippet": "absolutevalue{${1:expression}}"
-    },
-    "acomm*{}{}": {
-      "snippet": "acomm*{${1:expression1}}{${2:expression2}}"
-    },
-    "acomm{}{}": {
-      "snippet": "acomm{${1:expression1}}{${2:expression2}}"
-    },
-    "acommutator{}{}": {
-      "snippet": "acommutator{${1:expression1}}{${2:expression2}}"
-    },
-    "acos()": {
-      "snippet": "acos(${1:expression})"
-    },
-    "acos[]()": {
-      "snippet": "acos[${1:power}](${2:expression})"
-    },
-    "acosecant": {},
-    "acosine": {},
-    "acot()": {
-      "snippet": "acot(${1:expression})"
-    },
-    "acot[]()": {
-      "snippet": "acot[${1:power}](${2:expression})"
-    },
-    "acotangent": {},
-    "acsc()": {
-      "snippet": "acsc(${1:expression})"
-    },
-    "acsc[]()": {
-      "snippet": "acsc[${1:power}](${2:expression})"
-    },
-    "admat{}": {
-      "snippet": "admat{${1:matrix element 1,${2:matrix element 2},...}}"
-    },
-    "anticommutator{}{}": {
-      "snippet": "anticommutator{${1:expression1}}{${2:expression2}}"
-    },
-    "antidiagonalmatrix{}": {
-      "snippet": "antidiagonalmatrix{${1:matrix element 1,${2:matrix element 2},...}}"
-    },
-    "arccos()": {
-      "snippet": "arccos(${1:expression})"
-    },
-    "arccos[]()": {
-      "snippet": "arccos[${1:power}](${2:expression})"
-    },
-    "arccosecant": {},
-    "arccosine": {},
-    "arccot()": {
-      "snippet": "arccot(${1:expression})"
-    },
-    "arccot[]()": {
-      "snippet": "arccot[${1:power}](${2:expression})"
-    },
-    "arccotangent": {},
-    "arccsc()": {
-      "snippet": "arccsc(${1:expression})"
-    },
-    "arccsc[]()": {
-      "snippet": "arccsc[${1:power}](${2:expression})"
-    },
-    "arcsec()": {
-      "snippet": "arcsec(${1:expression})"
-    },
-    "arcsec[]()": {
-      "snippet": "arcsec[${1:power}](${2:expression})"
-    },
-    "arcsecant": {},
-    "arcsin()": {
-      "snippet": "arcsin(${1:expression})"
-    },
-    "arcsin[]()": {
-      "snippet": "arcsin[${1:power}](${2:expression})"
-    },
-    "arcsine": {},
-    "arctan()": {
-      "snippet": "arctan(${1:expression})"
-    },
-    "arctan[]()": {
-      "snippet": "arctan[${1:power}](${2:expression})"
-    },
-    "arctangent": {},
-    "argclose": {},
-    "argclose*": {},
-    "argopen": {},
-    "argopen*": {},
-    "asec()": {
-      "snippet": "asec(${1:expression})"
-    },
-    "asec[]()": {
-      "snippet": "asec[${1:power}](${2:expression})"
-    },
-    "asecant": {},
-    "asin()": {
-      "snippet": "asin(${1:expression})"
-    },
-    "asin[]()": {
-      "snippet": "asin[${1:power}](${2:expression})"
-    },
-    "asine": {},
-    "atan()": {
-      "snippet": "atan(${1:expression})"
-    },
-    "atan[]()": {
-      "snippet": "atan[${1:power}](${2:expression})"
-    },
-    "atangent": {},
-    "bmqty{}": {
-      "snippet": "bmqty{${1:matrix element 1 & matrix element 2  \\\\ matrix element 3 & matrix element 4}}"
-    },
-    "bqty{}": {
-      "snippet": "bqty{${1:expression}}"
-    },
-    "bra*{}": {
-      "snippet": "bra*{${1:expression}}"
-    },
-    "bra{}": {
-      "snippet": "bra{${1:expression}}"
-    },
-    "braces{}{}{}": {
-      "snippet": "braces{${1:ldelim}}{${2:rdelim}}{${3:expression}}"
-    },
-    "braket*{}{}": {
-      "snippet": "braket*{${1:expression1}}{${2:expression2}}"
-    },
-    "braket{}": {
-      "snippet": "braket{${1:expression1}}"
-    },
-    "braket{}{}": {
-      "snippet": "braket{${1:expression1}}{${2:expression2}}"
-    },
-    "colcount": {},
-    "comm*{}{}": {
-      "snippet": "comm*{${1:expression1}}{${2:expression2}}"
-    },
-    "comm{}{}": {
-      "snippet": "comm{${1:expression1}}{${2:expression2}}"
-    },
-    "commutator{}{}": {
-      "snippet": "commutator{${1:expression1}}{${2:expression2}}"
-    },
-    "cos()": {
-      "snippet": "cos(${1:expression})"
-    },
-    "cos[]()": {
-      "snippet": "cos[${1:power}](${2:expression})"
-    },
-    "cosecant": {},
-    "cosh()": {
-      "snippet": "cosh(${1:expression})"
-    },
-    "cosh[]()": {
-      "snippet": "cosh[${1:power}](${2:expression})"
-    },
-    "cosine": {},
-    "cot()": {
-      "snippet": "cot(${1:expression})"
-    },
-    "cot[]()": {
-      "snippet": "cot[${1:power}](${2:expression})"
-    },
-    "cotangent": {},
-    "coth()": {
-      "snippet": "coth(${1:expression})"
-    },
-    "coth[]()": {
-      "snippet": "coth[${1:power}](${2:expression})"
-    },
-    "cp": {},
-    "cross": {},
-    "crossproduct": {},
-    "csc()": {
-      "snippet": "csc(${1:expression})"
-    },
-    "csc[]()": {
-      "snippet": "csc[${1:power}](${2:expression})"
-    },
-    "csch()": {
-      "snippet": "csch(${1:expression})"
-    },
-    "csch[]()": {
-      "snippet": "csch[${1:power}](${2:expression})"
-    },
-    "curl": {},
-    "curl()": {
-      "snippet": "curl(${1:expression})"
-    },
-    "curl*()": {
-      "snippet": "curl*(${1:expression})"
-    },
-    "curl*[]": {
-      "snippet": "curl*[${1:expression}]"
-    },
-    "curl[]": {
-      "snippet": "curl[${1:expression}]"
-    },
-    "curl{}": {
-      "snippet": "curl{${1:expression}}"
-    },
-    "dd": {
-      "detail": "ⅆ",
-      "documentation": "DOUBLE-STRUCK ITALIC SMALL D"
-    },
-    "dd()": {
-      "snippet": "dd(${1:expression})"
-    },
-    "dd[]{}": {
-      "snippet": "dd[${2:power}]{${1:expression}}"
-    },
-    "dd{}": {
-      "snippet": "dd{${1:expression}}"
-    },
-    "derivative{}{}": {
-      "snippet": "derivative{${1:function}}{${2:expression}}"
-    },
-    "det()": {
-      "snippet": "det(${1:expression})"
-    },
-    "determinant": {},
-    "diagonalmatrix{}": {
-      "snippet": "diagonalmatrix{${1:matrix element 1,${2:matrix element 2},...}}"
-    },
-    "differential": {},
-    "div()": {
-      "snippet": "div(${1:expression})"
-    },
-    "div*()": {
-      "snippet": "div*(${1:expression})"
-    },
-    "div*[]": {
-      "snippet": "div*[${1:expression}]"
-    },
-    "div[]": {
-      "snippet": "div[${1:expression}]"
-    },
-    "div{}": {
-      "snippet": "div{${1:expression}}"
-    },
-    "divergence": {},
-    "divergence{}": {
-      "snippet": "divergence{${1:expression}}"
-    },
-    "divisionsymbol": {},
-    "dmat{}": {
-      "snippet": "dmat{${1:matrix element 1,${2:matrix element 2},...}}"
-    },
-    "dotproduct": {},
-    "dv*{}{}": {
-      "snippet": "dv*{${1:function}}{${2:expression}}"
-    },
-    "dv[]{}{}": {
-      "snippet": "dv[${3:power}]{${1:function}}{${2:expression}}"
-    },
-    "dv{}": {
-      "snippet": "dv{${1:expression}}"
-    },
-    "dv{}()": {
-      "snippet": "dv{${1:expression1}}(${2:expression2})"
-    },
-    "dv{}{}": {
-      "snippet": "dv{${1:function}}{${2:expression}}"
-    },
-    "dyad*{}{}": {
-      "snippet": "dyad*{${1:expression1}}{${2:expression2}}"
-    },
-    "dyad{}": {
-      "snippet": "dyad{${1:expression}}"
-    },
-    "dyad{}{}": {
-      "snippet": "dyad{${1:expression1}}{${2:expression2}}"
-    },
-    "erf()": {
-      "snippet": "erf(${1:expression})"
-    },
-    "ev**{}{}": {
-      "snippet": "ev**{${1:expression1}}{${2:expression2}}"
-    },
-    "ev*{}{}": {
-      "snippet": "ev*{${1:expression1}}{${2:expression2}}"
-    },
-    "ev{}": {
-      "snippet": "ev{${1:expression}}"
-    },
-    "ev{}{}": {
-      "snippet": "ev{${1:expression1}}{${2:expression2}}"
-    },
-    "eval*{}_{}^{}": {
-      "snippet": "eval*{${1:expression}}_{${2:limit1}}^{${3:limit2}}"
-    },
-    "eval{}_{}^{}": {
-      "snippet": "eval{${1:expression}}_{${2:limit1}}^{${3:limit2}}"
-    },
-    "evaluated{}_{}^{}": {
-      "snippet": "evaluated{${1:expression}}_{${2:limit1}}^{${3:limit2}}"
-    },
-    "exp()": {
-      "snippet": "exp(${1:expression})"
-    },
-    "expectationvalue{}{}": {
-      "snippet": "expectationvalue{${1:expression1}}{${2:expression2}}"
-    },
-    "exponential": {},
-    "expval*{}{}": {
-      "snippet": "expval*{${1:expression1}}{${2:expression2}}"
-    },
-    "expval{}": {
-      "snippet": "expval{${1:expression}}"
-    },
-    "expval{}{}": {
-      "snippet": "expval{${1:expression1}}{${2:expression2}}"
-    },
-    "fbraces{}{}{}{}": {
-      "snippet": "fbraces{${1:ldelim}}{${2:rdelim}}{${3:symbol}}{${4:expression}}"
-    },
-    "fderivative{}{}": {
-      "snippet": "fderivative{${1:function}}{${2:expression}}"
-    },
-    "fdv*{}{}": {
-      "snippet": "fdv*{${1:function}}{${2:expression}}"
-    },
-    "fdv{}": {
-      "snippet": "fdv{${1:expression}}"
-    },
-    "fdv{}()": {
-      "snippet": "fdv{${1:expression}}(${2:function})"
-    },
-    "fdv{}{}": {
-      "snippet": "fdv{${1:function}}{${2:expression}}"
-    },
-    "flatfrac{}()": {
-      "snippet": "flatfrac{${1:expression1}}(${2:expression2})"
-    },
-    "functionalderivative{}{}": {
-      "snippet": "functionalderivative{${1:function}}{${2:expression}}"
-    },
-    "grad": {},
-    "grad()": {
-      "snippet": "grad(${1:expression})"
-    },
-    "grad*()": {
-      "snippet": "grad*(${1:expression})"
-    },
-    "grad*[]": {
-      "snippet": "grad*[${1:expression}]"
-    },
-    "grad[]": {
-      "snippet": "grad[${1:expression}]"
-    },
-    "grad{}": {
-      "snippet": "grad{${1:expression}}"
-    },
-    "gradient": {},
-    "gradient{}": {
-      "snippet": "gradient{${1:expression}}"
-    },
-    "homework": {},
-    "hypcosecant": {},
-    "hypcosine": {},
-    "hypcotangent": {},
-    "hypsecant": {},
-    "hypsine": {},
-    "hyptangent": {},
-    "identitymatrix{}": {
-      "snippet": "identitymatrix{${1:n}}"
-    },
-    "imaginary": {},
-    "imat{}": {
-      "snippet": "imat{${1:n}}"
-    },
-    "innerproduct{}{}": {
-      "snippet": "innerproduct{${1:expression1}}{${2:expression2}}"
-    },
-    "ip*{}{}": {
-      "snippet": "ip*{${1:expression1}}{${2:expression2}}"
-    },
-    "ip{}{}": {
-      "snippet": "ip{${1:expression1}}{${2:expression2}}"
-    },
-    "ket*{}": {
-      "snippet": "ket*{${1:expression}}"
-    },
-    "ket{}": {
-      "snippet": "ket{${1:expression}}"
-    },
-    "ketbra*{}{}": {
-      "snippet": "ketbra*{${1:expression1}}{${2:expression2}}"
-    },
-    "ketbra{}{}": {
-      "snippet": "ketbra{${1:expression1}}{${2:expression2}}"
-    },
-    "laplacian": {},
-    "laplacian()": {
-      "snippet": "laplacian(${1:expression})"
-    },
-    "laplacian*()": {
-      "snippet": "laplacian*(${1:expression})"
-    },
-    "laplacian*[]": {
-      "snippet": "laplacian*[${1:expression}]"
-    },
-    "laplacian[]": {
-      "snippet": "laplacian[${1:expression}]"
-    },
-    "laplacian{}": {
-      "snippet": "laplacian{${1:expression}}"
-    },
-    "ln()": {
-      "snippet": "ln(${1:expression})"
-    },
-    "log()": {
-      "snippet": "log(${1:expression})"
-    },
-    "logarithm": {},
-    "lparen": {
-      "detail": "(",
-      "documentation": "LEFT PARENTHESIS"
-    },
-    "matrixdeterminant{}": {
-      "snippet": "matrixdeterminant{${1:matrix element 1 & matrix element 2  \\\\ matrix element 3 & matrix element}}"
-    },
-    "matrixel*{}{}{}": {
-      "snippet": "matrixel*{${1:expression1}}{${2:expression2}}{${3:expression3}}"
-    },
-    "matrixel{}{}{}": {
-      "snippet": "matrixel{${1:expression1}}{${2:expression2}}{${3:expression3}}"
-    },
-    "matrixelement*{}{}{}": {
-      "snippet": "matrixelement*{${1:expression1}}{${2:expression2}}{${3:expression3}}"
-    },
-    "matrixelement{}{}{}": {
-      "snippet": "matrixelement{${1:expression1}}{${2:expression2}}{${3:expression3}}"
-    },
-    "matrixquantity()": {
-      "snippet": "matrixquantity(${1:matrix element 1 & matrix element 2  \\\\ matrix element 3 & matrix element 4})"
-    },
-    "matrixquantity{}": {
-      "snippet": "matrixquantity{${1:matrix element 1 & matrix element 2  \\\\ matrix element 3 & matrix element 4}}"
-    },
-    "matrixtoks": {},
-    "mdet{}": {
-      "snippet": "mdet{${1:matrix element 1 & matrix element 2  \\\\ matrix element 3 & matrix element}}"
-    },
-    "mel**{}{}{}": {
-      "snippet": "mel**{${1:expression1}}{${2:expression2}}{${3:expression3}}"
-    },
-    "mel*{}{}{}": {
-      "snippet": "mel*{${1:expression1}}{${2:expression2}}{${3:expression3}}"
-    },
-    "mel{}{}{}": {
-      "snippet": "mel{${1:expression1}}{${2:expression2}}{${3:expression3}}"
-    },
-    "mqty()": {
-      "snippet": "mqty(${1:matrix element 1 & matrix element 2  \\\\ matrix element 3 & matrix element 4})"
-    },
-    "mqty*()": {
-      "snippet": "mqty*(${1:matrix element 1 & matrix element 2  \\\\ matrix element 3 & matrix element 4})"
-    },
-    "mqty[]": {
-      "snippet": "mqty[${1:matrix element 1 & matrix element 2  \\\\ matrix element 3 & matrix element 4}]"
-    },
-    "mqty{}": {
-      "snippet": "mqty{${1:matrix element 1 & matrix element 2  \\\\ matrix element 3 & matrix element 4}}"
-    },
-    "mqty": {
-      "snippet": "mqty|matrix element 1 & matrix element 2  \\\\ matrix element 3 & matrix element 4|"
-    },
-    "naturallogarithm": {},
-    "norm*{}": {
-      "snippet": "norm*{${1:expression}}"
-    },
-    "norm{}": {
-      "snippet": "norm{${1:expression}}"
-    },
-    "op*{}{}": {
-      "snippet": "op*{${1:expression1}}{${2:expression2}}"
-    },
-    "op{}{}": {
-      "snippet": "op{${1:expression1}}{${2:expression2}}"
-    },
-    "opbraces{}()": {
-      "snippet": "opbraces{${1:operator}}(${2:expression})"
-    },
-    "order*{}": {
-      "snippet": "order*{${1:expression}}"
-    },
-    "order{}": {
-      "snippet": "order{${1:expression}}"
-    },
-    "ordersymbol": {},
-    "outerproduct{}{}": {
-      "snippet": "outerproduct{${1:expression1}}{${2:expression2}}"
-    },
-    "partialderivative{}{}": {
-      "snippet": "partialderivative{${1:function}}{${2:expression}}"
-    },
-    "paulimatrix{}": {
-      "snippet": "paulimatrix{${1:n}}"
-    },
-    "paulixmatrix": {},
-    "pauliymatrix": {},
-    "paulizmatrix": {},
-    "pb*{}{}": {
-      "snippet": "pb*{${1:expression1}}{${2:expression2}}"
-    },
-    "pb{}{}": {
-      "snippet": "pb{${1:expression1}}{${2:expression2}}"
-    },
-    "pderivative{}": {
-      "snippet": "pderivative{${1:expression}}"
-    },
-    "pdv*{}{}": {
-      "snippet": "pdv*{${1:f}}{${2:x}}"
-    },
-    "pdv[]{}{}": {
-      "snippet": "pdv[${3:power}]{${1:function}}{${2:expression}}"
-    },
-    "pdv{}": {
-      "snippet": "pdv{${1:expression}}"
-    },
-    "pdv{}{}{}": {
-      "snippet": "pdv{${1:f}}{${2:x}}{${3:y}}"
-    },
-    "pdv{}{}": {
-      "snippet": "pdv{${1:function}}{${2:expression}}"
-    },
-    "pmat{}": {
-      "snippet": "pmat{${1:n}}"
-    },
-    "pmqty{}": {
-      "snippet": "pmqty{${1:matrix element 1 & matrix element 2  \\\\ matrix element 3 & matrix element 4}}"
-    },
-    "poissonbracket{}{}": {
-      "snippet": "poissonbracket{${1:expression1}}{${2:expression2}}"
-    },
-    "pqty{}": {
-      "snippet": "pqty{${1:expression}}"
-    },
-    "principalvalue": {},
-    "principalvalue{}": {
-      "snippet": "principalvalue{${1:expression}}"
-    },
-    "pv{}": {
-      "snippet": "pv{${1:expression}}"
-    },
-    "qall": {},
-    "qall*": {},
-    "qand": {},
-    "qand*": {},
-    "qas": {},
-    "qas*": {},
-    "qassume": {},
-    "qassume*": {},
-    "qc{}": {
-      "snippet": "qc{${1:word or phrase}}"
-    },
-    "qcc": {},
-    "qcc*": {},
-    "qcomma{}": {
-      "snippet": "qcomma{${1:word or phrase}}"
-    },
-    "qelse": {},
-    "qelse*": {},
-    "qeven": {},
-    "qeven*": {},
-    "qfor": {},
-    "qfor*": {},
-    "qgiven": {},
-    "qgiven*": {},
-    "qif": {},
-    "qif*": {},
-    "qin": {},
-    "qin*": {},
-    "qinteger": {},
-    "qinteger*": {},
-    "qlet": {},
-    "qlet*": {},
-    "qodd": {},
-    "qodd*": {},
-    "qor": {},
-    "qor*": {},
-    "qotherwise": {},
-    "qotherwise*": {},
-    "qq*{}": {
-      "snippet": "qq*{${1:word or phrase}}"
-    },
-    "qq{}": {
-      "snippet": "qq{${1:word or phrase}}"
-    },
-    "qqtext*{}": {
-      "snippet": "qqtext*{${1:text}}"
-    },
-    "qqtext{}": {
-      "snippet": "qqtext{${1:text}}"
-    },
-    "qsince": {},
-    "qsince*": {},
-    "qthen": {},
-    "qthen*": {},
-    "qty()": {
-      "snippet": "qty(${1:expression})"
-    },
-    "qty[]": {
-      "snippet": "qty[${1:expression}]"
-    },
-    "qty{}": {
-      "snippet": "qty{${1:expression}}"
-    },
-    "qty": {
-      "snippet": "qty|expression|"
-    },
-    "quantity": {},
-    "qunless": {},
-    "qunless*": {},
-    "qusing": {},
-    "qusing*": {},
-    "rank": {},
-    "real": {},
-    "rowcount": {},
-    "rparen": {
-      "detail": ")",
-      "documentation": "RIGHT PARENTHESIS"
-    },
-    "sbmqty{}": {
-      "snippet": "sbmqty{${1:matrix element 1 & matrix element 2  \\\\ matrix element 3 & matrix element 4}}"
-    },
-    "sec()": {
-      "snippet": "sec(${1:expression})"
-    },
-    "sec[]()": {
-      "snippet": "sec[${1:power}](${2:expression})"
-    },
-    "secant": {},
-    "sech()": {
-      "snippet": "sech(${1:expression})"
-    },
-    "sech[]()": {
-      "snippet": "sech[${1:power}](${2:expression})"
-    },
-    "sin()": {
-      "snippet": "sin(${1:expression})"
-    },
-    "sin[]()": {
-      "snippet": "sin[${1:power}](${2:expression})"
-    },
-    "sine": {},
-    "sinh()": {
-      "snippet": "sinh(${1:expression})"
-    },
-    "sinh[]()": {
-      "snippet": "sinh[${1:power}](${2:expression})"
-    },
-    "smallmatrixdeterminant{}": {
-      "snippet": "smallmatrixdeterminant{${1:matrix element 1 & matrix element 2  \\\\ matrix element 3 & matrix element 4}}"
-    },
-    "smallmatrixquantity{}": {
-      "snippet": "smallmatrixquantity{${1:matrix element 1 & matrix element 2  \\\\ matrix element 3 & matrix element 4}}"
-    },
-    "smdet{}": {
-      "snippet": "smdet{${1:matrix element 1 & matrix element 2  \\\\ matrix element 3 & matrix element}}"
-    },
-    "smqty({})": {
-      "snippet": "smqty(${2:{${1:matrix element 1 & matrix element 2  \\\\ matrix element 3 & matrix element 4}}})"
-    },
-    "smqty*({})": {
-      "snippet": "smqty*(${2:{${1:matrix element 1 & matrix element 2  \\\\ matrix element 3 & matrix element 4}}})"
-    },
-    "smqty[{]": {
-      "snippet": "smqty[{${1:matrix element 1 & matrix element 2  \\\\ matrix element 3 & matrix element 4}}]"
-    },
-    "smqty{}": {
-      "snippet": "smqty{${1:matrix element 1 & matrix element 2  \\\\ matrix element 3 & matrix element 4}}"
-    },
-    "smqty": {
-      "snippet": "smqty|{${1:matrix element 1 & matrix element 2  \\\\ matrix element 3 & matrix element 4}}|"
-    },
-    "sPmqty{}": {
-      "snippet": "sPmqty{${1:matrix element 1 & matrix element 2  \\\\ matrix element 3 & matrix element 4}}"
-    },
-    "spmqty{}": {
-      "snippet": "spmqty{${1:matrix element 1 & matrix element 2  \\\\ matrix element 3 & matrix element 4}}"
-    },
-    "svmqty{}": {
-      "snippet": "svmqty{${1:matrix element 1 & matrix element 2  \\\\ matrix element 3 & matrix element 4}}"
-    },
-    "tan()": {
-      "snippet": "tan(${1:expression})"
-    },
-    "tan[]()": {
-      "snippet": "tan[${1:power}](${2:expression})"
-    },
-    "tangent": {},
-    "tanh()": {
-      "snippet": "tanh(${1:expression})"
-    },
-    "tanh[]()": {
-      "snippet": "tanh[${1:power}](${2:expression})"
-    },
-    "tr": {},
-    "tr()": {
-      "snippet": "tr(${1:expression})"
-    },
-    "trace": {},
-    "trigbraces{}()": {
-      "snippet": "trigbraces{${1:operator}}(${2:expression})"
-    },
-    "trigopt": {},
-    "va*{}": {
-      "snippet": "va*{${1:expression}}"
-    },
-    "va{}": {
-      "snippet": "va{${1:expression}}"
-    },
-    "var()": {
-      "snippet": "var(${1:expression})"
-    },
-    "var{}": {
-      "snippet": "var{${1:expression}}"
-    },
-    "varE": {},
-    "variation{}": {
-      "snippet": "variation{${1:expression}}"
-    },
-    "vb*{}": {
-      "snippet": "vb*{${1:expression}}"
-    },
-    "vb{}": {
-      "snippet": "vb{${1:expression}}"
-    },
-    "vdot": {},
-    "vectorarrow{}": {
-      "snippet": "vectorarrow{${1:expression}}"
-    },
-    "vectorbold{}": {
-      "snippet": "vectorbold{${1:expression}}"
-    },
-    "vectorunit{}": {
-      "snippet": "vectorunit{${1:expression}}"
-    },
-    "vev{}": {
-      "snippet": "vev{${1:expression}}"
-    },
-    "vmqty{}": {
-      "snippet": "vmqty{${1:matrix element 1 & matrix element 2  \\\\ matrix element 3 & matrix element 4}}"
-    },
-    "vnabla": {},
-    "vqty{}": {
-      "snippet": "vqty{${1:expression}}"
-    },
-    "vu*{}": {
-      "snippet": "vu*{${1:expression}}"
-    },
-    "vu{}": {
-      "snippet": "vu{${1:expression}}"
-    },
-    "xmat{}{}{}": {
-      "snippet": "xmat{${1:matrix element}}{${2:n}}{${3:m}}"
-    },
-    "xmatrix{}{}{}": {
-      "snippet": "xmatrix{${1:matrix element}}{${2:n}}{${3:m}}"
-    },
-    "zeromatrix{}{}": {
-      "snippet": "zeromatrix{${1:n}}{${2:m}}"
-    },
-    "zmat{}{}": {
-      "snippet": "zmat{${1:n}}{${2:m}}"
+  "deps": [
+    {
+      "name": "amsmath"
     }
-  },
-  "envs": {},
-  "options": [
-    "trig",
-    "notrig",
-    "uprightdiff",
-    "italicdiff",
-    "bolddel",
-    "arrowdel"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "Bqty",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "Im",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      },
+      "detail": "ℑ",
+      "doc": "\\mathfrak{i} (eufrak), imaginary part"
+    },
+    {
+      "name": "PV",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "Pmqty",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:matrix element 1 & matrix element 2  \\\\ matrix element 3 & matrix element 4}}"
+      }
+    },
+    {
+      "name": "Pr(expression)"
+    },
+    {
+      "name": "Probability",
+      "unusual": true
+    },
+    {
+      "name": "Res",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:expression}]"
+      }
+    },
+    {
+      "name": "Re",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      },
+      "detail": "ℜ",
+      "doc": "\\mathfrak{r} (eufrak), real part"
+    },
+    {
+      "name": "Residue",
+      "unusual": true
+    },
+    {
+      "name": "Tr"
+    },
+    {
+      "name": "Trace",
+      "unusual": true
+    },
+    {
+      "name": "abs*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "abs",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "absolutevalue",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "acomm*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:expression1}}{${2:expression2}}"
+      }
+    },
+    {
+      "name": "acomm",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:expression1}}{${2:expression2}}"
+      }
+    },
+    {
+      "name": "acommutator",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:expression1}}{${2:expression2}}"
+      }
+    },
+    {
+      "name": "acos(expression)"
+    },
+    {
+      "name": "acos",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:power}](${2:expression})"
+      }
+    },
+    {
+      "name": "acosecant",
+      "unusual": true
+    },
+    {
+      "name": "acosine",
+      "unusual": true
+    },
+    {
+      "name": "acot(expression)"
+    },
+    {
+      "name": "acot",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:power}](${2:expression})"
+      }
+    },
+    {
+      "name": "acotangent",
+      "unusual": true
+    },
+    {
+      "name": "acsc(expression)"
+    },
+    {
+      "name": "acsc",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:power}](${2:expression})"
+      }
+    },
+    {
+      "name": "admat",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:matrix element 1,matrix element 2,...}}"
+      }
+    },
+    {
+      "name": "anticommutator",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:expression1}}{${2:expression2}}"
+      }
+    },
+    {
+      "name": "antidiagonalmatrix",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:matrix element 1,matrix element 2,...}}"
+      }
+    },
+    {
+      "name": "arccos(expression)"
+    },
+    {
+      "name": "arccos",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:power}](${2:expression})"
+      }
+    },
+    {
+      "name": "arccosecant",
+      "unusual": true
+    },
+    {
+      "name": "arccosine",
+      "unusual": true
+    },
+    {
+      "name": "arccot(expression)"
+    },
+    {
+      "name": "arccot",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:power}](${2:expression})"
+      }
+    },
+    {
+      "name": "arccotangent",
+      "unusual": true
+    },
+    {
+      "name": "arccsc(expression)"
+    },
+    {
+      "name": "arccsc",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:power}](${2:expression})"
+      }
+    },
+    {
+      "name": "arcsec(expression)"
+    },
+    {
+      "name": "arcsec",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:power}](${2:expression})"
+      }
+    },
+    {
+      "name": "arcsecant",
+      "unusual": true
+    },
+    {
+      "name": "arcsin(expression)"
+    },
+    {
+      "name": "arcsin",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:power}](${2:expression})"
+      }
+    },
+    {
+      "name": "arcsine",
+      "unusual": true
+    },
+    {
+      "name": "arctan(expression)"
+    },
+    {
+      "name": "arctan",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:power}](${2:expression})"
+      }
+    },
+    {
+      "name": "arctangent",
+      "unusual": true
+    },
+    {
+      "name": "argclose"
+    },
+    {
+      "name": "argclose*"
+    },
+    {
+      "name": "argopen"
+    },
+    {
+      "name": "argopen*"
+    },
+    {
+      "name": "asec(expression)"
+    },
+    {
+      "name": "asec",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:power}](${2:expression})"
+      }
+    },
+    {
+      "name": "asecant",
+      "unusual": true
+    },
+    {
+      "name": "asin(expression)"
+    },
+    {
+      "name": "asin",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:power}](${2:expression})"
+      }
+    },
+    {
+      "name": "asine",
+      "unusual": true
+    },
+    {
+      "name": "atan(expression)"
+    },
+    {
+      "name": "atan",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:power}](${2:expression})"
+      }
+    },
+    {
+      "name": "atangent",
+      "unusual": true
+    },
+    {
+      "name": "bmqty",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:matrix element 1 & matrix element 2  \\\\ matrix element 3 & matrix element 4}}"
+      }
+    },
+    {
+      "name": "bqty",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "bra*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "bra",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "braces",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:ldelim}}{${2:rdelim}}{${3:expression}}"
+      }
+    },
+    {
+      "name": "braket*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:expression1}}{${2:expression2}}"
+      }
+    },
+    {
+      "name": "braket",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression1}}"
+      }
+    },
+    {
+      "name": "braket",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:expression1}}{${2:expression2}}"
+      }
+    },
+    {
+      "name": "colcount",
+      "unusual": true
+    },
+    {
+      "name": "comm*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:expression1}}{${2:expression2}}"
+      }
+    },
+    {
+      "name": "comm",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:expression1}}{${2:expression2}}"
+      }
+    },
+    {
+      "name": "commutator",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:expression1}}{${2:expression2}}"
+      }
+    },
+    {
+      "name": "cos(expression)"
+    },
+    {
+      "name": "cos",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:power}](${2:expression})"
+      }
+    },
+    {
+      "name": "cosecant",
+      "unusual": true
+    },
+    {
+      "name": "cosh(expression)"
+    },
+    {
+      "name": "cosh",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:power}](${2:expression})"
+      }
+    },
+    {
+      "name": "cosine",
+      "unusual": true
+    },
+    {
+      "name": "cot(expression)"
+    },
+    {
+      "name": "cot",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:power}](${2:expression})"
+      }
+    },
+    {
+      "name": "cotangent",
+      "unusual": true
+    },
+    {
+      "name": "coth(expression)"
+    },
+    {
+      "name": "coth",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:power}](${2:expression})"
+      }
+    },
+    {
+      "name": "cp",
+      "unusual": true
+    },
+    {
+      "name": "cross"
+    },
+    {
+      "name": "crossproduct",
+      "unusual": true
+    },
+    {
+      "name": "csc(expression)"
+    },
+    {
+      "name": "csc",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:power}](${2:expression})"
+      }
+    },
+    {
+      "name": "csch(expression)"
+    },
+    {
+      "name": "csch",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:power}](${2:expression})"
+      }
+    },
+    {
+      "name": "curl",
+      "unusual": true
+    },
+    {
+      "name": "curl(expression)"
+    },
+    {
+      "name": "curl*(expression)",
+      "unusual": true
+    },
+    {
+      "name": "curl*",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:expression}]"
+      }
+    },
+    {
+      "name": "curl",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:expression}]"
+      }
+    },
+    {
+      "name": "curl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "dd",
+      "unusual": true
+    },
+    {
+      "name": "dd(expression)"
+    },
+    {
+      "name": "dd",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:power}]{${1:expression}}"
+      }
+    },
+    {
+      "name": "dd",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "derivative",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:function}}{${2:expression}}"
+      }
+    },
+    {
+      "name": "det(expression)"
+    },
+    {
+      "name": "determinant",
+      "unusual": true
+    },
+    {
+      "name": "diagonalmatrix",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:matrix element 1,matrix element 2,...}}"
+      }
+    },
+    {
+      "name": "differential",
+      "unusual": true
+    },
+    {
+      "name": "div(expression)"
+    },
+    {
+      "name": "div*(expression)",
+      "unusual": true
+    },
+    {
+      "name": "div*",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:expression}]"
+      }
+    },
+    {
+      "name": "div",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:expression}]"
+      },
+      "detail": "÷",
+      "doc": "Divide sign"
+    },
+    {
+      "name": "div",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      },
+      "detail": "÷",
+      "doc": "Divide sign"
+    },
+    {
+      "name": "divergence",
+      "unusual": true
+    },
+    {
+      "name": "divergence",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "divisionsymbol"
+    },
+    {
+      "name": "dmat",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:matrix element 1,matrix element 2,...}}"
+      }
+    },
+    {
+      "name": "dotproduct",
+      "unusual": true
+    },
+    {
+      "name": "dv*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:function}}{${2:expression}}"
+      }
+    },
+    {
+      "name": "dv",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:power}]{${1:function}}{${2:expression}}"
+      }
+    },
+    {
+      "name": "dv",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "dv",
+      "arg": {
+        "format": "{}()",
+        "snippet": "{${1:expression1}}(${2:expression2})"
+      }
+    },
+    {
+      "name": "dv",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:function}}{${2:expression}}"
+      }
+    },
+    {
+      "name": "dyad*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:expression1}}{${2:expression2}}"
+      }
+    },
+    {
+      "name": "dyad",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "dyad",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:expression1}}{${2:expression2}}"
+      }
+    },
+    {
+      "name": "erf(expression)"
+    },
+    {
+      "name": "ev**",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:expression1}}{${2:expression2}}"
+      }
+    },
+    {
+      "name": "ev*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:expression1}}{${2:expression2}}"
+      }
+    },
+    {
+      "name": "ev",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "ev",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:expression1}}{${2:expression2}}"
+      }
+    },
+    {
+      "name": "eval(expression|_",
+      "arg": {
+        "format": "{}^{}",
+        "snippet": "{${1:limit1}}^{${2:limit2}}"
+      }
+    },
+    {
+      "name": "eval*(expression|_",
+      "unusual": true,
+      "arg": {
+        "format": "{}^{}",
+        "snippet": "{${1:limit1}}^{${2:limit2}}"
+      }
+    },
+    {
+      "name": "eval*",
+      "unusual": true,
+      "arg": {
+        "format": "[expression|_{}^{}",
+        "snippet": "[expression|_{${1:limit1}}^{${2:limit2}}"
+      }
+    },
+    {
+      "name": "eval*",
+      "unusual": true,
+      "arg": {
+        "format": "{}_{}^{}",
+        "snippet": "{${1:expression}}_{${2:limit1}}^{${3:limit2}}"
+      }
+    },
+    {
+      "name": "eval",
+      "arg": {
+        "format": "[expression|_{}^{}",
+        "snippet": "[expression|_{${1:limit1}}^{${2:limit2}}"
+      }
+    },
+    {
+      "name": "eval",
+      "arg": {
+        "format": "{}_{}^{}",
+        "snippet": "{${1:expression}}_{${2:limit1}}^{${3:limit2}}"
+      }
+    },
+    {
+      "name": "evaluated",
+      "unusual": true,
+      "arg": {
+        "format": "{}_{}^{}",
+        "snippet": "{${1:expression}}_{${2:limit1}}^{${3:limit2}}"
+      }
+    },
+    {
+      "name": "exp(expression)"
+    },
+    {
+      "name": "expectationvalue",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:expression1}}{${2:expression2}}"
+      }
+    },
+    {
+      "name": "exponential",
+      "unusual": true
+    },
+    {
+      "name": "expval*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:expression1}}{${2:expression2}}"
+      }
+    },
+    {
+      "name": "expval",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "expval",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:expression1}}{${2:expression2}}"
+      }
+    },
+    {
+      "name": "fbraces",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:ldelim}}{${2:rdelim}}{${3:symbol}}{${4:expression}}"
+      }
+    },
+    {
+      "name": "fderivative",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:function}}{${2:expression}}"
+      }
+    },
+    {
+      "name": "fdv*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:function}}{${2:expression}}"
+      }
+    },
+    {
+      "name": "fdv",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "fdv",
+      "arg": {
+        "format": "{}()",
+        "snippet": "{${1:expression}}(${2:function})"
+      }
+    },
+    {
+      "name": "fdv",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:function}}{${2:expression}}"
+      }
+    },
+    {
+      "name": "flatfrac",
+      "arg": {
+        "format": "{}()",
+        "snippet": "{${1:expression1}}(${2:expression2})"
+      }
+    },
+    {
+      "name": "functionalderivative",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:function}}{${2:expression}}"
+      }
+    },
+    {
+      "name": "grad",
+      "unusual": true
+    },
+    {
+      "name": "grad(expression)"
+    },
+    {
+      "name": "grad*(expression)",
+      "unusual": true
+    },
+    {
+      "name": "grad*",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:expression}]"
+      }
+    },
+    {
+      "name": "grad",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:expression}]"
+      }
+    },
+    {
+      "name": "grad",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "gradient",
+      "unusual": true
+    },
+    {
+      "name": "gradient",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "homework",
+      "unusual": true
+    },
+    {
+      "name": "hypcosecant",
+      "unusual": true
+    },
+    {
+      "name": "hypcosine",
+      "unusual": true
+    },
+    {
+      "name": "hypcotangent",
+      "unusual": true
+    },
+    {
+      "name": "hypsecant",
+      "unusual": true
+    },
+    {
+      "name": "hypsine",
+      "unusual": true
+    },
+    {
+      "name": "hyptangent",
+      "unusual": true
+    },
+    {
+      "name": "identitymatrix",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:n}}"
+      }
+    },
+    {
+      "name": "imaginary"
+    },
+    {
+      "name": "imat",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:n}}"
+      }
+    },
+    {
+      "name": "innerproduct",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:expression1}}{${2:expression2}}"
+      }
+    },
+    {
+      "name": "ip*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:expression1}}{${2:expression2}}"
+      }
+    },
+    {
+      "name": "ip",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:expression1}}{${2:expression2}}"
+      }
+    },
+    {
+      "name": "ket*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "ket",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "ketbra*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:expression1}}{${2:expression2}}"
+      }
+    },
+    {
+      "name": "ketbra",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:expression1}}{${2:expression2}}"
+      }
+    },
+    {
+      "name": "laplacian",
+      "unusual": true
+    },
+    {
+      "name": "laplacian(expression)"
+    },
+    {
+      "name": "laplacian*(expression)",
+      "unusual": true
+    },
+    {
+      "name": "laplacian*",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:expression}]"
+      }
+    },
+    {
+      "name": "laplacian",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:expression}]"
+      }
+    },
+    {
+      "name": "laplacian",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "ln(expression)"
+    },
+    {
+      "name": "log(expression)"
+    },
+    {
+      "name": "logarithm",
+      "unusual": true
+    },
+    {
+      "name": "lparen",
+      "unusual": true,
+      "detail": "(",
+      "doc": "Left parenthesis"
+    },
+    {
+      "name": "matrixdeterminant",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:matrix element 1 & matrix element 2  \\\\ matrix element 3 & matrix element}}"
+      }
+    },
+    {
+      "name": "matrixel*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:expression1}}{${2:expression2}}{${3:expression3}}"
+      }
+    },
+    {
+      "name": "matrixel",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:expression1}}{${2:expression2}}{${3:expression3}}"
+      }
+    },
+    {
+      "name": "matrixelement*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:expression1}}{${2:expression2}}{${3:expression3}}"
+      }
+    },
+    {
+      "name": "matrixelement",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:expression1}}{${2:expression2}}{${3:expression3}}"
+      }
+    },
+    {
+      "name": "matrixquantity",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:matrix element 1 & matrix element 2  \\\\ matrix element 3 & matrix element 4}}"
+      }
+    },
+    {
+      "name": "matrixtoks",
+      "unusual": true
+    },
+    {
+      "name": "mdet",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:matrix element 1 & matrix element 2  \\\\ matrix element 3 & matrix element}}"
+      }
+    },
+    {
+      "name": "mel**",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:expression1}}{${2:expression2}}{${3:expression3}}"
+      }
+    },
+    {
+      "name": "mel*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:expression1}}{${2:expression2}}{${3:expression3}}"
+      }
+    },
+    {
+      "name": "mel",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:expression1}}{${2:expression2}}{${3:expression3}}"
+      }
+    },
+    {
+      "name": "mqty",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:matrix element 1 & matrix element 2  \\\\ matrix element 3 & matrix element 4}]"
+      }
+    },
+    {
+      "name": "mqty",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:matrix element 1 & matrix element 2  \\\\ matrix element 3 & matrix element 4}}"
+      }
+    },
+    {
+      "name": "naturallogarithm",
+      "unusual": true
+    },
+    {
+      "name": "norm*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "norm",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "op*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:expression1}}{${2:expression2}}"
+      }
+    },
+    {
+      "name": "op",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:expression1}}{${2:expression2}}"
+      }
+    },
+    {
+      "name": "opbraces",
+      "unusual": true,
+      "arg": {
+        "format": "{}()",
+        "snippet": "{${1:operator}}(${2:expression})"
+      }
+    },
+    {
+      "name": "order*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "order",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "ordersymbol",
+      "unusual": true
+    },
+    {
+      "name": "outerproduct",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:expression1}}{${2:expression2}}"
+      }
+    },
+    {
+      "name": "partialderivative",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:function}}{${2:expression}}"
+      }
+    },
+    {
+      "name": "paulimatrix",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:n}}"
+      }
+    },
+    {
+      "name": "paulixmatrix",
+      "unusual": true
+    },
+    {
+      "name": "pauliymatrix",
+      "unusual": true
+    },
+    {
+      "name": "paulizmatrix",
+      "unusual": true
+    },
+    {
+      "name": "pb*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:expression1}}{${2:expression2}}"
+      }
+    },
+    {
+      "name": "pb",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:expression1}}{${2:expression2}}"
+      }
+    },
+    {
+      "name": "pderivative",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "pdv*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:f}}{${2:x}}"
+      }
+    },
+    {
+      "name": "pdv",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:power}]{${1:function}}{${2:expression}}"
+      }
+    },
+    {
+      "name": "pdv",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "pdv",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:f}}{${2:x}}{${3:y}}"
+      }
+    },
+    {
+      "name": "pdv",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:function}}{${2:expression}}"
+      }
+    },
+    {
+      "name": "pmat",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:n}}"
+      }
+    },
+    {
+      "name": "pmqty",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:matrix element 1 & matrix element 2  \\\\ matrix element 3 & matrix element 4}}"
+      }
+    },
+    {
+      "name": "poissonbracket",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:expression1}}{${2:expression2}}"
+      }
+    },
+    {
+      "name": "pqty",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "principalvalue",
+      "unusual": true
+    },
+    {
+      "name": "principalvalue",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "pv",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "qall"
+    },
+    {
+      "name": "qall*"
+    },
+    {
+      "name": "qand"
+    },
+    {
+      "name": "qand*"
+    },
+    {
+      "name": "qas"
+    },
+    {
+      "name": "qas*"
+    },
+    {
+      "name": "qassume"
+    },
+    {
+      "name": "qassume*"
+    },
+    {
+      "name": "qc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:word or phrase}}"
+      }
+    },
+    {
+      "name": "qcc"
+    },
+    {
+      "name": "qcc*"
+    },
+    {
+      "name": "qcomma",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:word or phrase}}"
+      }
+    },
+    {
+      "name": "qelse"
+    },
+    {
+      "name": "qelse*"
+    },
+    {
+      "name": "qeven"
+    },
+    {
+      "name": "qeven*"
+    },
+    {
+      "name": "qfor"
+    },
+    {
+      "name": "qfor*"
+    },
+    {
+      "name": "qgiven"
+    },
+    {
+      "name": "qgiven*"
+    },
+    {
+      "name": "qif"
+    },
+    {
+      "name": "qif*"
+    },
+    {
+      "name": "qin"
+    },
+    {
+      "name": "qin*"
+    },
+    {
+      "name": "qinteger"
+    },
+    {
+      "name": "qinteger*"
+    },
+    {
+      "name": "qlet"
+    },
+    {
+      "name": "qlet*"
+    },
+    {
+      "name": "qodd"
+    },
+    {
+      "name": "qodd*"
+    },
+    {
+      "name": "qor"
+    },
+    {
+      "name": "qor*"
+    },
+    {
+      "name": "qotherwise"
+    },
+    {
+      "name": "qotherwise*"
+    },
+    {
+      "name": "qq*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:word or phrase}}"
+      }
+    },
+    {
+      "name": "qq",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:word or phrase}}"
+      }
+    },
+    {
+      "name": "qqtext*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "qqtext",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "qsince"
+    },
+    {
+      "name": "qsince*"
+    },
+    {
+      "name": "qthen"
+    },
+    {
+      "name": "qthen*"
+    },
+    {
+      "name": "qty(expression)",
+      "unusual": true
+    },
+    {
+      "name": "qty",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:expression}]"
+      }
+    },
+    {
+      "name": "qty",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "qty|expression|",
+      "unusual": true
+    },
+    {
+      "name": "quantity",
+      "unusual": true
+    },
+    {
+      "name": "qunless"
+    },
+    {
+      "name": "qunless*"
+    },
+    {
+      "name": "qusing"
+    },
+    {
+      "name": "qusing*"
+    },
+    {
+      "name": "rank"
+    },
+    {
+      "name": "real"
+    },
+    {
+      "name": "rowcount",
+      "unusual": true
+    },
+    {
+      "name": "rparen",
+      "unusual": true,
+      "detail": ")",
+      "doc": "Right parenthesis"
+    },
+    {
+      "name": "sbmqty",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:matrix element 1 & matrix element 2  \\\\ matrix element 3 & matrix element 4}}"
+      }
+    },
+    {
+      "name": "sec(expression)"
+    },
+    {
+      "name": "sec",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:power}](${2:expression})"
+      }
+    },
+    {
+      "name": "secant",
+      "unusual": true
+    },
+    {
+      "name": "sech(expression)"
+    },
+    {
+      "name": "sech",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:power}](${2:expression})"
+      }
+    },
+    {
+      "name": "sin(expression)"
+    },
+    {
+      "name": "sin",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:power}](${2:expression})"
+      }
+    },
+    {
+      "name": "sine",
+      "unusual": true
+    },
+    {
+      "name": "sinh(expression)"
+    },
+    {
+      "name": "sinh",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:power}](${2:expression})"
+      }
+    },
+    {
+      "name": "smallmatrixdeterminant",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:matrix element 1 & matrix element 2  \\\\ matrix element 3 & matrix element 4}}"
+      }
+    },
+    {
+      "name": "smallmatrixquantity",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:matrix element 1 & matrix element 2  \\\\ matrix element 3 & matrix element 4}}"
+      }
+    },
+    {
+      "name": "smdet",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:matrix element 1 & matrix element 2  \\\\ matrix element 3 & matrix element}}"
+      }
+    },
+    {
+      "name": "smqty(",
+      "unusual": true,
+      "arg": {
+        "format": "{})",
+        "snippet": "{${1:matrix element 1 & matrix element 2  \\\\ matrix element 3 & matrix element 4}})"
+      }
+    },
+    {
+      "name": "smqty*(",
+      "unusual": true,
+      "arg": {
+        "format": "{})",
+        "snippet": "{${1:matrix element 1 & matrix element 2  \\\\ matrix element 3 & matrix element 4}})"
+      }
+    },
+    {
+      "name": "smqty",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${2:{${1:matrix element 1 & matrix element 2  \\\\ matrix element 3 & matrix element 4}}}]"
+      }
+    },
+    {
+      "name": "smqty",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:matrix element 1 & matrix element 2  \\\\ matrix element 3 & matrix element 4}}"
+      }
+    },
+    {
+      "name": "smqty|",
+      "unusual": true,
+      "arg": {
+        "format": "{}|",
+        "snippet": "{${1:matrix element 1 & matrix element 2  \\\\ matrix element 3 & matrix element 4}}|"
+      }
+    },
+    {
+      "name": "sPmqty",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:matrix element 1 & matrix element 2  \\\\ matrix element 3 & matrix element 4}}"
+      }
+    },
+    {
+      "name": "spmqty",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:matrix element 1 & matrix element 2  \\\\ matrix element 3 & matrix element 4}}"
+      }
+    },
+    {
+      "name": "svmqty",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:matrix element 1 & matrix element 2  \\\\ matrix element 3 & matrix element 4}}"
+      }
+    },
+    {
+      "name": "tan(expression)"
+    },
+    {
+      "name": "tan",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:power}](${2:expression})"
+      }
+    },
+    {
+      "name": "tangent",
+      "unusual": true
+    },
+    {
+      "name": "tanh(expression)"
+    },
+    {
+      "name": "tanh",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:power}](${2:expression})"
+      }
+    },
+    {
+      "name": "tr"
+    },
+    {
+      "name": "tr(expression)"
+    },
+    {
+      "name": "trace",
+      "unusual": true
+    },
+    {
+      "name": "trigbraces",
+      "unusual": true,
+      "arg": {
+        "format": "{}()",
+        "snippet": "{${1:operator}}(${2:expression})"
+      }
+    },
+    {
+      "name": "trigopt",
+      "unusual": true
+    },
+    {
+      "name": "va*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "va",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "var(expression)"
+    },
+    {
+      "name": "var",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "varE",
+      "unusual": true
+    },
+    {
+      "name": "variation",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "vb*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "vb",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "vdot"
+    },
+    {
+      "name": "vectorarrow",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "vectorbold",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "vectorunit",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "vev",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "vmqty",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:matrix element 1 & matrix element 2  \\\\ matrix element 3 & matrix element 4}}"
+      }
+    },
+    {
+      "name": "vnabla",
+      "unusual": true
+    },
+    {
+      "name": "vqty",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "vu*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "vu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "xmat",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:matrix element}}{${2:n}}{${3:m}}"
+      }
+    },
+    {
+      "name": "xmatrix",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:matrix element}}{${2:n}}{${3:m}}"
+      }
+    },
+    {
+      "name": "zeromatrix",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:n}}{${2:m}}"
+      }
+    },
+    {
+      "name": "zmat",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:n}}{${2:m}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/physics#c": [
+      "trig\r",
+      "notrig\r",
+      "uprightdiff\r",
+      "italicdiff\r",
+      "bolddel\r",
+      "arrowdel\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/physics#c"
+  ]
 }

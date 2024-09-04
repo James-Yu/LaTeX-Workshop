@@ -1,39 +1,85 @@
 {
-  "includes": {},
-  "macros": {
-    "bm{}": {
-      "snippet": "bm{${1:math expression}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "bm",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:math expression}}"
+      }
     },
-    "hm{}": {
-      "snippet": "hm{${1:math expression}}"
+    {
+      "name": "hm",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:math expression}}"
+      }
     },
-    "bmdefine{}{}": {
-      "snippet": "bmdefine{${1:cmd}}{${2:def}}"
+    {
+      "name": "bmdefine",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:def}}"
+      }
     },
-    "hmdefine{}{}": {
-      "snippet": "hmdefine{${1:cmd}}{${2:def}}"
+    {
+      "name": "hmdefine",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:def}}"
+      }
     },
-    "boldsymbol{}": {
-      "snippet": "boldsymbol{${1:math expression}}"
+    {
+      "name": "boldsymbol",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:math expression}}"
+      }
     },
-    "heavysymbol{}": {
-      "snippet": "heavysymbol{${1:math expression}}"
+    {
+      "name": "heavysymbol",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:math expression}}"
+      }
     },
-    "DeclareBoldMathCommand[]{}{}": {
-      "snippet": "DeclareBoldMathCommand[${3:math version}]{${1:cmd}}{${2:def}}"
+    {
+      "name": "DeclareBoldMathCommand",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:math version%keyvals}]{${1:cmd}}{${2:def}}"
+      }
     },
-    "DeclareBoldMathCommand{}{}": {
-      "snippet": "DeclareBoldMathCommand{${1:cmd}}{${2:def}}"
+    {
+      "name": "DeclareBoldMathCommand",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:def}}"
+      }
     },
-    "bmmax": {},
-    "hmmax": {}
-  },
-  "envs": {},
-  "options": [
-    "nopmb",
-    "warn",
-    "info",
-    "silent"
+    {
+      "name": "bmmax"
+    },
+    {
+      "name": "hmmax"
+    }
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/bm#c": [
+      "nopmb",
+      "warn",
+      "info",
+      "silent"
+    ],
+    "\\DeclareBoldMathCommand#c": [
+      "bold",
+      "heavy"
+    ]
+  },
+  "args": [
+    "\\usepackage/bm#c"
+  ]
 }

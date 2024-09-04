@@ -1,29 +1,68 @@
 {
-  "includes": {},
-  "macros": {
-    "newfloat{}{}{}": {
-      "snippet": "newfloat{${1:float type}}{${2:placement}}{${3:ext}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "newfloat",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:float type%envname}}{${2:placement}}{${3:ext}}"
+      }
     },
-    "newfloat{}{}{}[]": {
-      "snippet": "newfloat{${1:float type}}{${2:placement}}{${3:ext}}[${4:within}]"
+    {
+      "name": "newfloat",
+      "arg": {
+        "format": "{}{}{}[]",
+        "snippet": "{${1:float type%envname}}{${2:placement}}{${3:ext}}[${4:within}]"
+      }
     },
-    "floatstyle{}": {
-      "snippet": "floatstyle{${1:default style}}"
+    {
+      "name": "floatstyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:default style%keyvals}}",
+        "keys": [
+          "\\floatstyle"
+        ],
+        "keyPos": 0
+      }
     },
-    "floatname{}{}": {
-      "snippet": "floatname{${1:float type}}{${2:name}}"
+    {
+      "name": "floatname",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:float type}}{${2:name}}"
+      }
     },
-    "floatplacement{}{}": {
-      "snippet": "floatplacement{${1:float type}}{${2:default placement}}"
+    {
+      "name": "floatplacement",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:float type}}{${2:default placement}}"
+      }
     },
-    "restylefloat{}": {
-      "snippet": "restylefloat{${1:float type}}"
+    {
+      "name": "restylefloat",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:float type}}"
+      }
     },
-    "listof{}{}": {
-      "snippet": "listof{${1:float type}}{${2:title}}"
+    {
+      "name": "listof",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:float type}}{${2:title}}"
+      }
     }
+  ],
+  "envs": [],
+  "keys": {
+    "\\floatstyle": [
+      "plain",
+      "plaintop",
+      "boxed",
+      "ruled"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

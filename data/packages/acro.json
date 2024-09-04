@@ -1,925 +1,1896 @@
 {
-  "includes": {
-    "l3keys2e": [],
-    "translations": [],
-    "etoolbox": []
-  },
-  "macros": {
-    "DeclareAcronym{}{}": {
-      "snippet": "DeclareAcronym{${1:id}}{${2:properties}}"
-    },
-    "NewAcroPreset{}{}": {
-      "snippet": "NewAcroPreset{${1:set name}}{${2:properties}}"
-    },
-    "RenewAcroPreset{}{}": {
-      "snippet": "RenewAcroPreset{${1:set name}}{${2:properties}}"
-    },
-    "DeclareAcroPreset{}{}": {
-      "snippet": "DeclareAcroPreset{${1:set name}}{${2:properties}}"
-    },
-    "ac{}": {
-      "snippet": "ac{${1:id}}"
-    },
-    "ac[]{}": {
-      "snippet": "ac[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "ac*{}": {
-      "snippet": "ac*{${1:id}}"
-    },
-    "ac*[]{}": {
-      "snippet": "ac*[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "Ac{}": {
-      "snippet": "Ac{${1:id}}"
-    },
-    "Ac[]{}": {
-      "snippet": "Ac[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "Ac*{}": {
-      "snippet": "Ac*{${1:id}}"
-    },
-    "Ac*[]{}": {
-      "snippet": "Ac*[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "acp{}": {
-      "snippet": "acp{${1:id}}"
-    },
-    "acp[]{}": {
-      "snippet": "acp[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "acp*{}": {
-      "snippet": "acp*{${1:id}}"
-    },
-    "acp*[]{}": {
-      "snippet": "acp*[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "Acp{}": {
-      "snippet": "Acp{${1:id}}"
-    },
-    "Acp[]{}": {
-      "snippet": "Acp[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "Acp*{}": {
-      "snippet": "Acp*{${1:id}}"
-    },
-    "Acp*[]{}": {
-      "snippet": "Acp*[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "iac{}": {
-      "snippet": "iac{${1:id}}"
-    },
-    "iac[]{}": {
-      "snippet": "iac[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "iac*{}": {
-      "snippet": "iac*{${1:id}}"
-    },
-    "iac*[]{}": {
-      "snippet": "iac*[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "Iac{}": {
-      "snippet": "Iac{${1:id}}"
-    },
-    "Iac[]{}": {
-      "snippet": "Iac[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "Iac*{}": {
-      "snippet": "Iac*{${1:id}}"
-    },
-    "Iac*[]{}": {
-      "snippet": "Iac*[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "acs{}": {
-      "snippet": "acs{${1:id}}"
-    },
-    "acs[]{}": {
-      "snippet": "acs[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "acs*{}": {
-      "snippet": "acs*{${1:id}}"
-    },
-    "acs*[]{}": {
-      "snippet": "acs*[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "Acs{}": {
-      "snippet": "Acs{${1:id}}"
-    },
-    "Acs[]{}": {
-      "snippet": "Acs[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "Acs*{}": {
-      "snippet": "Acs*{${1:id}}"
-    },
-    "Acs*[]{}": {
-      "snippet": "Acs*[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "acsp{}": {
-      "snippet": "acsp{${1:id}}"
-    },
-    "acsp[]{}": {
-      "snippet": "acsp[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "acsp*{}": {
-      "snippet": "acsp*{${1:id}}"
-    },
-    "acsp*[]{}": {
-      "snippet": "acsp*[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "Acsp{}": {
-      "snippet": "Acsp{${1:id}}"
-    },
-    "Acsp[]{}": {
-      "snippet": "Acsp[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "Acsp*{}": {
-      "snippet": "Acsp*{${1:id}}"
-    },
-    "Acsp*[]{}": {
-      "snippet": "Acsp*[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "iacs{}": {
-      "snippet": "iacs{${1:id}}"
-    },
-    "iacs[]{}": {
-      "snippet": "iacs[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "iacs*{}": {
-      "snippet": "iacs*{${1:id}}"
-    },
-    "iacs*[]{}": {
-      "snippet": "iacs*[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "Iacs{}": {
-      "snippet": "Iacs{${1:id}}"
-    },
-    "Iacs[]{}": {
-      "snippet": "Iacs[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "Iacs*{}": {
-      "snippet": "Iacs*{${1:id}}"
-    },
-    "Iacs*[]{}": {
-      "snippet": "Iacs*[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "acl{}": {
-      "snippet": "acl{${1:id}}"
-    },
-    "acl[]{}": {
-      "snippet": "acl[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "acl*{}": {
-      "snippet": "acl*{${1:id}}"
-    },
-    "acl*[]{}": {
-      "snippet": "acl*[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "Acl{}": {
-      "snippet": "Acl{${1:id}}"
-    },
-    "Acl[]{}": {
-      "snippet": "Acl[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "Acl*{}": {
-      "snippet": "Acl*{${1:id}}"
-    },
-    "Acl*[]{}": {
-      "snippet": "Acl*[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "aclp{}": {
-      "snippet": "aclp{${1:id}}"
-    },
-    "aclp[]{}": {
-      "snippet": "aclp[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "aclp*{}": {
-      "snippet": "aclp*{${1:id}}"
-    },
-    "aclp*[]{}": {
-      "snippet": "aclp*[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "Aclp{}": {
-      "snippet": "Aclp{${1:id}}"
-    },
-    "Aclp[]{}": {
-      "snippet": "Aclp[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "Aclp*{}": {
-      "snippet": "Aclp*{${1:id}}"
-    },
-    "Aclp*[]{}": {
-      "snippet": "Aclp*[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "iacl{}": {
-      "snippet": "iacl{${1:id}}"
-    },
-    "iacl[]{}": {
-      "snippet": "iacl[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "iacl*{}": {
-      "snippet": "iacl*{${1:id}}"
-    },
-    "iacl*[]{}": {
-      "snippet": "iacl*[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "Iacl{}": {
-      "snippet": "Iacl{${1:id}}"
-    },
-    "Iacl[]{}": {
-      "snippet": "Iacl[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "Iacl*{}": {
-      "snippet": "Iacl*{${1:id}}"
-    },
-    "Iacl*[]{}": {
-      "snippet": "Iacl*[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "aca{}": {
-      "snippet": "aca{${1:id}}"
-    },
-    "aca[]{}": {
-      "snippet": "aca[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "aca*{}": {
-      "snippet": "aca*{${1:id}}"
-    },
-    "aca*[]{}": {
-      "snippet": "aca*[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "Aca{}": {
-      "snippet": "Aca{${1:id}}"
-    },
-    "Aca[]{}": {
-      "snippet": "Aca[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "Aca*{}": {
-      "snippet": "Aca*{${1:id}}"
-    },
-    "Aca*[]{}": {
-      "snippet": "Aca*[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "acap{}": {
-      "snippet": "acap{${1:id}}"
-    },
-    "acap[]{}": {
-      "snippet": "acap[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "acap*{}": {
-      "snippet": "acap*{${1:id}}"
-    },
-    "acap*[]{}": {
-      "snippet": "acap*[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "Acap{}": {
-      "snippet": "Acap{${1:id}}"
-    },
-    "Acap[]{}": {
-      "snippet": "Acap[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "Acap*{}": {
-      "snippet": "Acap*{${1:id}}"
-    },
-    "Acap*[]{}": {
-      "snippet": "Acap*[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "iaca{}": {
-      "snippet": "iaca{${1:id}}"
-    },
-    "iaca[]{}": {
-      "snippet": "iaca[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "iaca*{}": {
-      "snippet": "iaca*{${1:id}}"
-    },
-    "iaca*[]{}": {
-      "snippet": "iaca*[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "Iaca{}": {
-      "snippet": "Iaca{${1:id}}"
-    },
-    "Iaca[]{}": {
-      "snippet": "Iaca[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "Iaca*{}": {
-      "snippet": "Iaca*{${1:id}}"
-    },
-    "Iaca*[]{}": {
-      "snippet": "Iaca*[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "acf{}": {
-      "snippet": "acf{${1:id}}"
-    },
-    "acf[]{}": {
-      "snippet": "acf[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "acf*{}": {
-      "snippet": "acf*{${1:id}}"
-    },
-    "acf*[]{}": {
-      "snippet": "acf*[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "Acf{}": {
-      "snippet": "Acf{${1:id}}"
-    },
-    "Acf[]{}": {
-      "snippet": "Acf[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "Acf*{}": {
-      "snippet": "Acf*{${1:id}}"
-    },
-    "Acf*[]{}": {
-      "snippet": "Acf*[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "acfp{}": {
-      "snippet": "acfp{${1:id}}"
-    },
-    "acfp[]{}": {
-      "snippet": "acfp[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "acfp*{}": {
-      "snippet": "acfp*{${1:id}}"
-    },
-    "acfp*[]{}": {
-      "snippet": "acfp*[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "Acfp{}": {
-      "snippet": "Acfp{${1:id}}"
-    },
-    "Acfp[]{}": {
-      "snippet": "Acfp[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "Acfp*{}": {
-      "snippet": "Acfp*{${1:id}}"
-    },
-    "Acfp*[]{}": {
-      "snippet": "Acfp*[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "iacf{}": {
-      "snippet": "iacf{${1:id}}"
-    },
-    "iacf[]{}": {
-      "snippet": "iacf[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "iacf*{}": {
-      "snippet": "iacf*{${1:id}}"
-    },
-    "iacf*[]{}": {
-      "snippet": "iacf*[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "Iacf{}": {
-      "snippet": "Iacf{${1:id}}"
-    },
-    "Iacf[]{}": {
-      "snippet": "Iacf[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "Iacf*{}": {
-      "snippet": "Iacf*{${1:id}}"
-    },
-    "Iacf*[]{}": {
-      "snippet": "Iacf*[${2:options}]{${1:id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "printacronyms[]": {
-      "snippet": "printacronyms[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "acsetup{}": {
-      "snippet": "acsetup{${1:options}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "acrodotfill": {},
-    "acbarrier": {},
-    "acdot": {},
-    "acspace": {},
-    "abbrdot": {},
-    "aciftrailing{}{}{}": {
-      "snippet": "aciftrailing{${1:list of token names}}{${2:true}}{${3:false}}"
-    },
-    "acuse{}": {
-      "snippet": "acuse{${1:list of ids}}"
-    },
-    "acuseall": {},
-    "acreset{}": {
-      "snippet": "acreset{${1:list of ids}}"
-    },
-    "acresetall": {},
-    "acrotranslate{}": {
-      "snippet": "acrotranslate{${1:key}}"
-    },
-    "acswitchoff": {},
-    "acswitchon": {},
-    "NewAcroTemplate{}{}": {
-      "snippet": "NewAcroTemplate{${1:name}}{${2:code}}"
-    },
-    "NewAcroTemplate[]{}{}": {
-      "snippet": "NewAcroTemplate[${3:type}]{${1:name}}{${2:code}}"
-    },
-    "RenewAcroTemplate{}{}": {
-      "snippet": "RenewAcroTemplate{${1:name}}{${2:code}}"
-    },
-    "RenewAcroTemplate[]{}{}": {
-      "snippet": "RenewAcroTemplate[${3:type}]{${1:name}}{${2:code}}"
-    },
-    "SetupAcroTemplate{}{}": {
-      "snippet": "SetupAcroTemplate{${1:name}}{${2:code}}"
-    },
-    "SetupAcroTemplate[]{}{}": {
-      "snippet": "SetupAcroTemplate[${3:type}]{${1:name}}{${2:code}}"
-    },
-    "SetupNextAcroTemplate{}{}": {
-      "snippet": "SetupNextAcroTemplate{${1:name}}{${2:code}}"
-    },
-    "SetupNextAcroTemplate[]{}{}": {
-      "snippet": "SetupNextAcroTemplate[${3:type}]{${1:name}}{${2:code}}"
-    },
-    "AcroTemplateType": {},
-    "AcroTemplateName": {},
-    "acrolistname": {},
-    "acrowrite{}": {
-      "snippet": "acrowrite{${1:property}}"
-    },
-    "acroformat{}{}": {
-      "snippet": "acroformat{${1:type}}{${2:text}}"
-    },
-    "acroshow{}": {
-      "snippet": "acroshow{${1:property}}"
-    },
-    "acroifTF{}{}{}": {
-      "snippet": "acroifTF{${1:property}}{${2:true}}{${3:false}}"
-    },
-    "acroifT{}{}{}": {
-      "snippet": "acroifT{${1:property}}{${2:true}}{${3:false}}"
-    },
-    "acroifF{}{}{}": {
-      "snippet": "acroifF{${1:property}}{${2:true}}{${3:false}}"
-    },
-    "acroifbooleanTF{}{}{}": {
-      "snippet": "acroifbooleanTF{${1:property}}{${2:true}}{${3:false}}"
-    },
-    "acroifbooleanT{}{}{}": {
-      "snippet": "acroifbooleanT{${1:property}}{${2:true}}{${3:false}}"
-    },
-    "acroifbooleanF{}{}{}": {
-      "snippet": "acroifbooleanF{${1:property}}{${2:true}}{${3:false}}"
-    },
-    "acroifallTF{}{}{}": {
-      "snippet": "acroifallTF{${1:properties}}{${2:true}}{${3:false}}"
-    },
-    "acroifallT{}{}{}": {
-      "snippet": "acroifallT{${1:properties}}{${2:true}}{${3:false}}"
-    },
-    "acroifallF{}{}{}": {
-      "snippet": "acroifallF{${1:properties}}{${2:true}}{${3:false}}"
-    },
-    "acroifanyTF{}{}{}": {
-      "snippet": "acroifanyTF{${1:properties}}{${2:true}}{${3:false}}"
-    },
-    "acroifanyT{}{}{}": {
-      "snippet": "acroifanyT{${1:properties}}{${2:true}}{${3:false}}"
-    },
-    "acroifanyF{}{}{}": {
-      "snippet": "acroifanyF{${1:properties}}{${2:true}}{${3:false}}"
-    },
-    "acroiftagTF{}{}{}": {
-      "snippet": "acroiftagTF{${1:tag}}{${2:true}}{${3:false}}"
-    },
-    "acroiftagT{}{}{}": {
-      "snippet": "acroiftagT{${1:tag}}{${2:true}}{${3:false}}"
-    },
-    "acroiftagF{}{}{}": {
-      "snippet": "acroiftagF{${1:tag}}{${2:true}}{${3:false}}"
-    },
-    "acroifstarredTF{}{}": {
-      "snippet": "acroifstarredTF{${1:true}}{${2:false}}"
-    },
-    "acroifstarredT{}{}": {
-      "snippet": "acroifstarredT{${1:true}}{${2:false}}"
-    },
-    "acroifstarredF{}{}": {
-      "snippet": "acroifstarredF{${1:true}}{${2:false}}"
-    },
-    "AcroPropertiesMap{}": {
-      "snippet": "AcroPropertiesMap{${1:code}}"
-    },
-    "AcroAcronymsMap{}": {
-      "snippet": "AcroAcronymsMap{${1:code}}"
-    },
-    "AcronymID": {},
-    "AcroMapBreak": {},
-    "AcroPropertiesSet{}{}": {
-      "snippet": "AcroPropertiesSet{${1:id}}{${2:list of properties}}"
-    },
-    "acroifusedTF{}{}": {
-      "snippet": "acroifusedTF{${1:true}}{${2:false}}"
-    },
-    "acroifusedT{}{}": {
-      "snippet": "acroifusedT{${1:true}}{${2:false}}"
-    },
-    "acroifusedF{}{}": {
-      "snippet": "acroifusedF{${1:true}}{${2:false}}"
-    },
-    "acroiffirstTF{}{}": {
-      "snippet": "acroiffirstTF{${1:true}}{${2:false}}"
-    },
-    "acroiffirstT{}{}": {
-      "snippet": "acroiffirstT{${1:true}}{${2:false}}"
-    },
-    "acroiffirstF{}{}": {
-      "snippet": "acroiffirstF{${1:true}}{${2:false}}"
-    },
-    "acroifsingleTF{}{}": {
-      "snippet": "acroifsingleTF{${1:true}}{${2:false}}"
-    },
-    "acroifsingleT{}{}": {
-      "snippet": "acroifsingleT{${1:true}}{${2:false}}"
-    },
-    "acroifsingleF{}{}": {
-      "snippet": "acroifsingleF{${1:true}}{${2:false}}"
-    },
-    "acrogroupcite": {},
-    "acroifchapterTF{}{}": {
-      "snippet": "acroifchapterTF{${1:true}}{${2:false}}"
-    },
-    "acroifchapterT{}{}": {
-      "snippet": "acroifchapterT{${1:true}}{${2:false}}"
-    },
-    "acroifchapterF{}{}": {
-      "snippet": "acroifchapterF{${1:true}}{${2:false}}"
-    },
-    "acroifpagesTF{}{}": {
-      "snippet": "acroifpagesTF{${1:true}}{${2:false}}"
-    },
-    "acroifpagesT{}{}": {
-      "snippet": "acroifpagesT{${1:true}}{${2:false}}"
-    },
-    "acroifpagesF{}{}": {
-      "snippet": "acroifpagesF{${1:true}}{${2:false}}"
-    },
-    "acropages{}{}": {
-      "snippet": "acropages{${1:first}}{${2:range}}"
-    },
-    "acronopagerange": {},
-    "acroneedpages": {},
-    "acropagefill": {},
-    "acronymsmap{}": {
-      "snippet": "acronymsmap{${1:code}}"
-    },
-    "acronymsmapTF{}{}{}": {
-      "snippet": "acronymsmapTF{${1:code}}{${2:true}}{${3:false}}"
-    },
-    "acronymsmapT{}{}{}": {
-      "snippet": "acronymsmapT{${1:code}}{${2:true}}{${3:false}}"
-    },
-    "acronymsmapF{}{}{}": {
-      "snippet": "acronymsmapF{${1:code}}{${2:true}}{${3:false}}"
-    },
-    "AcronymTable": {},
-    "AcroAddRow{}": {
-      "snippet": "AcroAddRow{${1:code}}"
-    },
-    "AcroNeedPackage{}": {
-      "snippet": "AcroNeedPackage{${1:package}}"
-    },
-    "AcroRerun": {},
-    "DeclareAcroEnding{}{}{}": {
-      "snippet": "DeclareAcroEnding{${1:name}}{${2:short default}}{${3:long default}}"
-    },
-    "DeclareAcroArticle{}{}": {
-      "snippet": "DeclareAcroArticle{${1:name}}{${2:default}}"
-    },
-    "DeclareAcroTranslation{}{}": {
-      "snippet": "DeclareAcroTranslation{${1:key}}{${2:language-translation list}}"
-    },
-    "AddAcroTranslations{}{}": {
-      "snippet": "AddAcroTranslations{${1:key}}{${2:language-translation list}}"
-    },
-    "DeclareAcroProperty{}": {
-      "snippet": "DeclareAcroProperty{${1:name}}"
-    },
-    "DeclareAcroProperty*{}": {
-      "snippet": "DeclareAcroProperty*{${1:name}}"
-    },
-    "DeclareAcroPropertyAlias{}{}": {
-      "snippet": "DeclareAcroPropertyAlias{${1:name1}}{${2:name2}}"
-    },
-    "MakeAcroPropertyAlias{}{}": {
-      "snippet": "MakeAcroPropertyAlias{${1:name1}}{${2:name2}}"
-    },
-    "NewAcroCommand{}{}{}": {
-      "snippet": "NewAcroCommand{${1:cmd}}{${2:xargs}}{${3:definition}}"
-    },
-    "RenewAcroCommand{}{}{}": {
-      "snippet": "RenewAcroCommand{${1:cmd}}{${2:xargs}}{${3:definition}}"
-    },
-    "DeclareAcroCommand{}{}{}": {
-      "snippet": "DeclareAcroCommand{${1:cmd}}{${2:xargs}}{${3:definition}}"
-    },
-    "ProvideAcroCommand{}{}{}": {
-      "snippet": "ProvideAcroCommand{${1:cmd}}{${2:xargs}}{${3:definition}}"
-    },
-    "UseAcroTemplate{}": {
-      "snippet": "UseAcroTemplate{${1:name}}"
-    },
-    "UseAcroTemplate[]{}[]": {
-      "snippet": "UseAcroTemplate[${2:type}]{${1:name}}[${3:argument number}]"
-    },
-    "acrocite": {},
-    "acrodonotuse": {},
-    "acroplural": {},
-    "acroindefinite": {},
-    "acroupper": {},
-    "acrofull": {},
-    "nospace": {},
-    "AcroModule{}{}": {
-      "snippet": "AcroModule{${1:name}}{${2:description}}"
-    },
-    "AcroModuleEnd": {},
-    "AcroStyle{}": {
-      "snippet": "AcroStyle{${1:name}}"
-    },
-    "AcroMap{}{}": {
-      "snippet": "AcroMap{${1:arg1}}{${2:arg2}}"
-    },
-    "acroloadstyle{}": {
-      "snippet": "acroloadstyle{${1:style}}"
-    },
-    "acsimple{}{}": {
-      "snippet": "acsimple{${1:arg1}}{${2:arg2}}"
-    },
-    "acfootnote{}": {
-      "snippet": "acfootnote{${1:arg}}"
-    },
-    "acgobbletrail": {},
-    "acroheading": {},
-    "acropreamble": {},
-    "acropostamble": {},
-    "acrofield{}{}": {
-      "snippet": "acrofield{${1:arg1}}{${2:arg2}}"
-    },
-    "acroprintfield{}{}": {
-      "snippet": "acroprintfield{${1:arg1}}{${2:arg2}}"
-    },
-    "acroiffieldTF{}{}{}{}": {
-      "snippet": "acroiffieldTF{${1:arg1}}{${2:arg2}}{${3:true}}{${4:false}}"
-    },
-    "acroifanyfieldTF{}{}{}{}": {
-      "snippet": "acroifanyfieldTF{${1:arg1}}{${2:arg2}}{${3:true}}{${4:false}}"
-    },
-    "acroifallfieldsTF{}{}{}{}": {
-      "snippet": "acroifallfieldsTF{${1:arg1}}{${2:arg2}}{${3:true}}{${4:false}}"
-    },
-    "acroifpagefieldTF{}": {
-      "snippet": "acroifpagefieldTF{${1:arg}}"
-    },
-    "acroifpropertyTF{}": {
-      "snippet": "acroifpropertyTF{${1:arg}}"
-    },
-    "acroifpropertyT{}": {
-      "snippet": "acroifpropertyT{${1:arg}}"
-    },
-    "acroifpropertyF{}": {
-      "snippet": "acroifpropertyF{${1:arg}}"
-    },
-    "acshow{}": {
-      "snippet": "acshow{${1:id}}"
-    },
-    "acshow[]{}": {
-      "snippet": "acshow[${2:options}]{${1:id}}"
-    },
-    "acroendfootnote": {}
-  },
-  "envs": {},
-  "options": [
-    "upgrade"
+  "deps": [
+    {
+      "name": "l3keys2e"
+    },
+    {
+      "name": "translations"
+    },
+    {
+      "name": "etoolbox"
+    }
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "DeclareAcronym",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:id}}{${2:properties%keyvals}}"
+      }
+    },
+    {
+      "name": "NewAcroPreset",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:set name}}{${2:properties%keyvals}}"
+      }
+    },
+    {
+      "name": "RenewAcroPreset",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:set name}}{${2:properties%keyvals}}"
+      }
+    },
+    {
+      "name": "DeclareAcroPreset",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:set name}}{${2:properties%keyvals}}"
+      }
+    },
+    {
+      "name": "ac",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "ac",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "ac*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "ac*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "Ac",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "Ac",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "Ac*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "Ac*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "acp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "acp",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "acp*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "acp*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "Acp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "Acp",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "Acp*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "Acp*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "iac",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "iac",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "iac*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "iac*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "Iac",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "Iac",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "Iac*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "Iac*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "acs",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "acs",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "acs*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "acs*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "Acs",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "Acs",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "Acs*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "Acs*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "acsp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "acsp",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "acsp*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "acsp*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "Acsp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "Acsp",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "Acsp*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "Acsp*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "iacs",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "iacs",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "iacs*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "iacs*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "Iacs",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "Iacs",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "Iacs*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "Iacs*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "acl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "acl",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "acl*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "acl*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "Acl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "Acl",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "Acl*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "Acl*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "aclp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "aclp",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "aclp*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "aclp*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "Aclp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "Aclp",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "Aclp*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "Aclp*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "iacl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "iacl",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "iacl*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "iacl*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "Iacl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "Iacl",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "Iacl*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "Iacl*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "aca",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "aca",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "aca*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "aca*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "Aca",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "Aca",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "Aca*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "Aca*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "acap",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "acap",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "acap*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "acap*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "Acap",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "Acap",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "Acap*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "Acap*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "iaca",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "iaca",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "iaca*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "iaca*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "Iaca",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "Iaca",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "Iaca*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "Iaca*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "acf",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "acf",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "acf*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "acf*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "Acf",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "Acf",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "Acf*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "Acf*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "acfp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "acfp",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "acfp*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "acfp*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "Acfp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "Acfp",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "Acfp*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "Acfp*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "iacf",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "iacf",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "iacf*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "iacf*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "Iacf",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "Iacf",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "Iacf*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "Iacf*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "printacronyms",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "acsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}"
+      }
+    },
+    {
+      "name": "acrodotfill",
+      "unusual": true
+    },
+    {
+      "name": "acbarrier",
+      "unusual": true
+    },
+    {
+      "name": "acdot",
+      "unusual": true
+    },
+    {
+      "name": "acspace",
+      "unusual": true
+    },
+    {
+      "name": "abbrdot",
+      "unusual": true
+    },
+    {
+      "name": "aciftrailing",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:list of token names}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "acuse",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:list of ids}}"
+      }
+    },
+    {
+      "name": "acuseall",
+      "unusual": true
+    },
+    {
+      "name": "acreset",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:list of ids}}"
+      }
+    },
+    {
+      "name": "acresetall",
+      "unusual": true
+    },
+    {
+      "name": "acrotranslate",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:key%plain}}"
+      }
+    },
+    {
+      "name": "acswitchoff",
+      "unusual": true
+    },
+    {
+      "name": "acswitchon",
+      "unusual": true
+    },
+    {
+      "name": "NewAcroTemplate",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:code}}"
+      }
+    },
+    {
+      "name": "NewAcroTemplate",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:type}]{${1:name}}{${2:code}}"
+      }
+    },
+    {
+      "name": "RenewAcroTemplate",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:code}}"
+      }
+    },
+    {
+      "name": "RenewAcroTemplate",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:type}]{${1:name}}{${2:code}}"
+      }
+    },
+    {
+      "name": "SetupAcroTemplate",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:code}}"
+      }
+    },
+    {
+      "name": "SetupAcroTemplate",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:type}]{${1:name}}{${2:code}}"
+      }
+    },
+    {
+      "name": "SetupNextAcroTemplate",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:code}}"
+      }
+    },
+    {
+      "name": "SetupNextAcroTemplate",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:type}]{${1:name}}{${2:code}}"
+      }
+    },
+    {
+      "name": "AcroTemplateType",
+      "unusual": true
+    },
+    {
+      "name": "AcroTemplateName",
+      "unusual": true
+    },
+    {
+      "name": "acrolistname",
+      "unusual": true
+    },
+    {
+      "name": "acrowrite",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:property}}"
+      }
+    },
+    {
+      "name": "acroformat",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:type}}{${2:text}}"
+      }
+    },
+    {
+      "name": "acroshow",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:property}}"
+      }
+    },
+    {
+      "name": "acroifTF",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:property}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "acroifT",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:property}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "acroifF",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:property}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "acroifbooleanTF",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:property}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "acroifbooleanT",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:property}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "acroifbooleanF",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:property}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "acroifallTF",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:properties}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "acroifallT",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:properties}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "acroifallF",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:properties}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "acroifanyTF",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:properties}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "acroifanyT",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:properties}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "acroifanyF",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:properties}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "acroiftagTF",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:tag}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "acroiftagT",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:tag}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "acroiftagF",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:tag}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "acroifstarredTF",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "acroifstarredT",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "acroifstarredF",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "AcroPropertiesMap",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "AcroAcronymsMap",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "AcronymID",
+      "unusual": true
+    },
+    {
+      "name": "AcroMapBreak",
+      "unusual": true
+    },
+    {
+      "name": "AcroPropertiesSet",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:id}}{${2:list of properties}}"
+      }
+    },
+    {
+      "name": "acroifusedTF",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "acroifusedT",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "acroifusedF",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "acroiffirstTF",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "acroiffirstT",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "acroiffirstF",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "acroifsingleTF",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "acroifsingleT",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "acroifsingleF",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "acrogroupcite",
+      "unusual": true
+    },
+    {
+      "name": "acroifchapterTF",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "acroifchapterT",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "acroifchapterF",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "acroifpagesTF",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "acroifpagesT",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "acroifpagesF",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "acropages",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:first}}{${2:range}}"
+      }
+    },
+    {
+      "name": "acronopagerange",
+      "unusual": true
+    },
+    {
+      "name": "acroneedpages",
+      "unusual": true
+    },
+    {
+      "name": "acropagefill",
+      "unusual": true
+    },
+    {
+      "name": "acronymsmap",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "acronymsmapTF",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:code}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "acronymsmapT",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:code}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "acronymsmapF",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:code}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "AcronymTable",
+      "unusual": true
+    },
+    {
+      "name": "AcroAddRow",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "AcroNeedPackage",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:package}}"
+      }
+    },
+    {
+      "name": "AcroRerun",
+      "unusual": true
+    },
+    {
+      "name": "DeclareAcroEnding",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:short default}}{${3:long default}}"
+      }
+    },
+    {
+      "name": "DeclareAcroArticle",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:default}}"
+      }
+    },
+    {
+      "name": "DeclareAcroTranslation",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:key%plain}}{${2:language-translation list}}"
+      }
+    },
+    {
+      "name": "AddAcroTranslations",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:key%plain}}{${2:language-translation list}}"
+      }
+    },
+    {
+      "name": "DeclareAcroProperty",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name%specialDef}}"
+      }
+    },
+    {
+      "name": "DeclareAcroProperty*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name%specialDef}}"
+      }
+    },
+    {
+      "name": "DeclareAcroPropertyAlias",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name1%specialDef}}{${2:name2}}"
+      }
+    },
+    {
+      "name": "MakeAcroPropertyAlias",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name1}}{${2:name2}}"
+      }
+    },
+    {
+      "name": "NewAcroCommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:xargs}}{${3:definition}}"
+      }
+    },
+    {
+      "name": "RenewAcroCommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:xargs}}{${3:definition}}"
+      }
+    },
+    {
+      "name": "DeclareAcroCommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:xargs}}{${3:definition}}"
+      }
+    },
+    {
+      "name": "ProvideAcroCommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:xargs}}{${3:definition}}"
+      }
+    },
+    {
+      "name": "UseAcroTemplate",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "UseAcroTemplate",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:type}]{${1:name}}[${3:argument number}]"
+      }
+    },
+    {
+      "name": "acrocite",
+      "unusual": true
+    },
+    {
+      "name": "acrodonotuse",
+      "unusual": true
+    },
+    {
+      "name": "acroplural",
+      "unusual": true
+    },
+    {
+      "name": "acroindefinite",
+      "unusual": true
+    },
+    {
+      "name": "acroupper",
+      "unusual": true
+    },
+    {
+      "name": "acrofull",
+      "unusual": true
+    },
+    {
+      "name": "nospace",
+      "unusual": true
+    },
+    {
+      "name": "AcroModule",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:description%text}}"
+      }
+    },
+    {
+      "name": "AcroModuleEnd",
+      "unusual": true
+    },
+    {
+      "name": "AcroStyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "AcroMap",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "acroloadstyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:style}}"
+      }
+    },
+    {
+      "name": "acsimple",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "acfootnote",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "acgobbletrail",
+      "unusual": true
+    },
+    {
+      "name": "acroheading",
+      "unusual": true
+    },
+    {
+      "name": "acropreamble",
+      "unusual": true
+    },
+    {
+      "name": "acropostamble",
+      "unusual": true
+    },
+    {
+      "name": "acrofield",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "acroprintfield",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "acroiffieldTF",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:true}}{${4:false}}"
+      }
+    },
+    {
+      "name": "acroifanyfieldTF",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:true}}{${4:false}}"
+      }
+    },
+    {
+      "name": "acroifallfieldsTF",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:true}}{${4:false}}"
+      }
+    },
+    {
+      "name": "acroifpagefieldTF",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "acroifpropertyTF",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "acroifpropertyT",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "acroifpropertyF",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "acshow",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "acshow",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options}]{${1:id}}"
+      }
+    },
+    {
+      "name": "acroendfootnote",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/acro#c": [
+      "upgrade"
+    ],
+    "\\DeclareAcronym#c,\\NewAcroPreset#c,\\RenewAcroPreset#c,\\DeclareAcroPreset#c": [
+      "short={${1:text}}\r",
+      "long={${1:text}}\r",
+      "alt={${1:text}}\r",
+      "extra={${1:text}}\r",
+      "foreign={${1:text}}\r",
+      "long-post={${1:text}}\r",
+      "post={${1:text}}\r",
+      "sort={${1:text}}\r",
+      "tag={${1:csv list}}\r",
+      "before-citation={${1:csv list}}\r",
+      "index-sort={${1:text}}\r",
+      "short-plural={${1:text}}\r",
+      "short-plural-form={${1:text}}\r",
+      "long-plural={${1:text}}\r",
+      "long-plural-form={${1:text}}\r",
+      "alt-plural={${1:text}}\r",
+      "alt-plural-form={${1:text}}\r",
+      "foreign-plural={${1:text}}\r",
+      "foreign-plural-form={${1:text}}\r",
+      "plural={${1:text}}\r",
+      "plural-form={${1:text}}\r",
+      "short-indefinite={${1:text}}\r",
+      "long-indefinite={${1:text}}\r",
+      "alt-indefinite={${1:text}}\r",
+      "pdfstring=${1:string}\r",
+      "pdfcomment={${1:text}}\r",
+      "short-acc={${1:text}}\r",
+      "long-acc={${1:text}}\r",
+      "alt-acc={${1:text}}\r",
+      "foreign-acc={${1:text}}\r",
+      "foreign-acc-plural-form={${1:text}}\r",
+      "extra-acc={${1:text}}\r",
+      "single-acc={${1:text}}\r",
+      "list-acc={${1:text}}\r",
+      "list={${1:text}}\r",
+      "foreign-babel=${1:language}\r",
+      "foreign-locale=${1:language}\r",
+      "preset=${1:set name}\r",
+      "uselist={${1:csv list of ids}}\r"
+    ],
+    "\\DeclareAcronym#c,\\NewAcroPreset#c,\\RenewAcroPreset#c,\\DeclareAcroPreset#c,\\ac#c,\\ac*#c,\\Ac#c,\\Ac*#c,\\acp#c,\\acp*#c,\\Acp#c,\\Acp*#c,\\iac#c,\\iac*#c,\\Iac#c,\\Iac*#c,\\acs#c,\\acs*#c,\\Acs#c,\\Acs*#c,\\acsp#c,\\acsp*#c,\\Acsp#c,\\Acsp*#c,\\iacs#c,\\iacs*#c,\\Iacs#c,\\Iacs*#c,\\acl#c,\\acl*#c,\\Acl#c,\\Acl*#c,\\aclp#c,\\aclp*#c,\\Aclp#c,\\Aclp*#c,\\iacl#c,\\iacl*#c,\\Iacl#c,\\Iacl*#c,\\aca#c,\\aca*#c,\\Aca#c,\\Aca*#c,\\acap#c,\\acap*#c,\\Acap#c,\\Acap*#c,\\iaca#c,\\iaca*#c,\\Iaca#c,\\Iaca*#c,\\acf#c,\\acf*#c,\\Acf#c,\\Acf*#c,\\acfp#c,\\acfp*#c,\\Acfp#c,\\Acfp*#c,\\iacf#c,\\iacf*#c,\\Iacf#c,\\Iacf*#c": [
       "case-sensitive",
       "case-insensitive",
-      "first-style=${1|long-short,short-long,short,long,footnote|}",
-      "subsequent-style=${1|long-short,short-long,short,long,footnote|}",
-      "single-style=${1|long-short,short-long,short,long,footnote|}",
-      "single={${1:text}}",
+      "first-style=${1|long-short,short-long,short,long,footnote\r|}",
+      "subsequent-style=${1|long-short,short-long,short,long,footnote\r|}",
+      "single-style=${1|long-short,short-long,short,long,footnote\r|}",
+      "single={${1:text}}\r",
       "use-id-as-short",
-      "cite=[${1:prenote}][${2:postnote}]{${3:citation keys}}",
-      "index={${1:text}}",
-      "index-sort={${1:text}}",
+      "cite=[${1:prenote}][${2:postnote}]{${3:citation keys}}\r",
+      "index={${1:text}}\r",
+      "index-sort={${1:text}}\r",
       "no-index",
-      "format={${1:code}}",
-      "short-format={${1:code}}",
-      "long-format={${1:code}}",
-      "first-long-format={${1:code}}",
-      "alt-format={${1:code}}",
-      "extra-format={${1:code}}",
-      "foreign-format={${1:code}}",
-      "single-format={${1:code}}",
-      "list-format={${1:code}}",
-      "%acroproperty"
+      "format={${1:code}}\r",
+      "short-format={${1:code}}\r",
+      "long-format={${1:code}}\r",
+      "first-long-format={${1:code}}\r",
+      "alt-format={${1:code}}\r",
+      "extra-format={${1:code}}\r",
+      "foreign-format={${1:code}}\r",
+      "single-format={${1:code}}\r",
+      "list-format={${1:code}}\r",
+      "%acroproperty\r"
     ],
-    [
-      "template=${1|description,lof,longtable,supertabular,tabularray,tabular,toc,xltabular|}",
+    "\\printacronyms#c": [
+      "template=${1|description,lof,longtable,supertabular,tabularray,tabular,toc,xltabular\r|}",
       "sort",
-      "display=${1|all,used|}",
-      "exclude={${1:csv list of tags}}",
-      "include={${1:csv list of tags}}",
+      "display=${1|all,used\r|}",
+      "exclude={${1:csv list of tags}}\r",
+      "include={${1:csv list of tags}}\r",
       "add",
-      "heading=${1|none,section,section*,chapter,chapter*|}",
-      "name={${1:text}}",
-      "preamble={${1:text}}",
+      "heading=${1|none,section,section*,chapter,chapter*\r|}",
+      "name={${1:text}}\r",
+      "preamble={${1:text}}\r",
       "locale/display",
       "local",
-      "pages={${1:keyvals}}"
+      "pages={${1:keyvals}}\r"
     ],
-    [
+    "\\acsetup#c": [
       "case-sensitive",
       "case-insensitive",
       "use-id-as-short",
-      "first-style=${1|long-short,short-long,short,long,footnote|}",
-      "subsequent-style=${1|long-short,short-long,short,long,footnote|}",
+      "first-style=${1|long-short,short-long,short,long,footnote\r|}",
+      "subsequent-style=${1|long-short,short-long,short,long,footnote\r|}",
       "single",
-      "single-style=${1|long-short,short-long,short,long,footnote|}",
-      "list/template=${1|description,tabular,longtable,supertabular,lof,toc|}",
+      "single-style=${1|long-short,short-long,short,long,footnote\r|}",
+      "list/template=${1|description,tabular,longtable,supertabular,lof,toc\r|}",
       "list/sort",
-      "list/display=${1|all,used|}",
-      "list/exclude={${1:csv list of tags}}",
-      "list/include={${1:csv list of tags}}",
+      "list/display=${1|all,used\r|}",
+      "list/exclude={${1:csv list of tags}}\r",
+      "list/include={${1:csv list of tags}}\r",
       "list/add",
-      "list/heading=${1|none,section,section*,chapter,chapter*|}",
-      "list/name={${1:text}}",
-      "list/preamble={${1:text}}",
+      "list/heading=${1|none,section,section*,chapter,chapter*\r|}",
+      "list/name={${1:text}}\r",
+      "list/preamble={${1:text}}\r",
       "list/locale/display",
       "list/local",
       "list/foreign/display",
-      "pages/display=${1|first,all,none|}",
-      "pages/seq/use=${1|true,false|}",
-      "pages/seq/pre={${1:code}}",
-      "pages/seq/threshold=${1:number}",
-      "pages/fill={${1:code}}",
+      "pages/display=${1|first,all,none\r|}",
+      "pages/seq/use=${1|true,false\r|}",
+      "pages/seq/pre={${1:code}}\r",
+      "pages/seq/threshold=${1:number}\r",
+      "pages/fill={${1:code}}\r",
       "pages/name",
-      "format={${1:code}}",
-      "format/short={${1:code}}",
-      "format/long={${1:code}}",
-      "format/first-long={${1:code}}",
-      "format/alt={${1:code}}",
-      "format/extra={${1:code}}",
-      "format/foreign={${1:code}}",
-      "format/list={${1:code}}",
+      "format={${1:code}}\r",
+      "format/short={${1:code}}\r",
+      "format/long={${1:code}}\r",
+      "format/first-long={${1:code}}\r",
+      "format/alt={${1:code}}\r",
+      "format/extra={${1:code}}\r",
+      "format/foreign={${1:code}}\r",
+      "format/list={${1:code}}\r",
       "format/replace",
-      "short-plural-ending={${1:text}}",
-      "long-plural-ending={${1:text}}",
+      "short-plural-ending={${1:text}}\r",
+      "long-plural-ending={${1:text}}\r",
       "foreign/display",
       "locale/display",
-      "locale/format={${1:code}}",
-      "uppercase/first",
-      "uppercase/title",
-      "uppercase/all",
-      "uppercase/none",
-      "uppercase/cmd={${1:commands}}",
+      "locale/format={${1:code}}\r",
+      "uppercase/first\r",
+      "uppercase/title\r",
+      "uppercase/all\r",
+      "uppercase/none\r",
+      "uppercase/cmd={${1:commands}}\r",
       "uppercase/short",
-      "cite/cmd={${1:citation command}}",
+      "cite/cmd={${1:citation command}}\r",
       "cite/group",
-      "cite/display=${1|first,all,none|}",
-      "cite/pre={${1:text}}",
-      "cite/group/cmd={${1:citation command}}",
-      "cite/group/pre={${1:text}}",
-      "index/use=${1|true,false,indexed|}",
-      "index/cmd={${1:index command}}",
-      "index/disable={${1:code}}",
-      "index/clear",
+      "cite/display=${1|first,all,none\r|}",
+      "cite/pre={${1:text}}\r",
+      "cite/group/cmd={${1:citation command}}\r",
+      "cite/group/pre={${1:text}}\r",
+      "index/use=${1|true,false,indexed\r|}",
+      "index/cmd={${1:index command}}\r",
+      "index/disable={${1:code}}\r",
+      "index/clear\r",
       "barriers/use",
       "barriers/reset",
       "barriers/single",
-      "trailing/define=${1:token}{${2:name}}",
-      "trailing/activate={${1:list of token names}}",
-      "trailing/deactivate={${1:list of token names}}",
+      "trailing/define=${1:token}{${2:name}}\r",
+      "trailing/activate={${1:list of token names}}\r",
+      "trailing/deactivate={${1:list of token names}}\r",
       "make-links",
       "link-only-first",
       "pdfcomments/use",
-      "pdfcomments/cmd={${1:code}}",
+      "pdfcomments/cmd={${1:code}}\r",
       "accsupp/use",
-      "accsupp/options={${1:accsupp options}}",
-      "accsupp/method={${1:method}}",
-      "language=",
+      "accsupp/options={${1:accsupp options}}\r",
+      "accsupp/method={${1:method}}\r",
+      "language=\r",
       "patch/floats",
       "patch/list",
       "patch/tabularx",
@@ -927,8 +1898,11 @@
       "patch/tabu",
       "patch/caption",
       "patch/maketitle",
-      "load-style=${1:name}",
-      "templates/colspec={${1:value}}"
+      "load-style=${1:name}\r",
+      "templates/colspec={${1:value}}\r"
     ]
+  },
+  "args": [
+    "\\usepackage/acro#c"
   ]
 }

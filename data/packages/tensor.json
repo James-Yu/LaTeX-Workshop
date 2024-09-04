@@ -1,45 +1,100 @@
 {
-  "includes": {},
-  "macros": {
-    "indices{}": {
-      "snippet": "indices{${1:^sup1_sub1^sup2_sub2...}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "indices",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:^sup1_sub1^sup2_sub2...}}"
+      }
     },
-    "indices*{}": {
-      "snippet": "indices*{${1:^sup1_sub1^sup2_sub2...}}"
+    {
+      "name": "indices*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:^sup1_sub1^sup2_sub2...}}"
+      }
     },
-    "tensor{}{}": {
-      "snippet": "tensor{${1:symbol}}{${2:^sup1_sub1^sup2_sub2...}}"
+    {
+      "name": "tensor",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:symbol}}{${2:^sup1_sub1^sup2_sub2...}}"
+      }
     },
-    "tensor[]{}{}": {
-      "snippet": "tensor[${3:pre-indices}]{${1:symbol}}{${2:^sup1_sub1^sup2_sub2...}}"
+    {
+      "name": "tensor",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:pre-indices}]{${1:symbol}}{${2:^sup1_sub1^sup2_sub2...}}"
+      }
     },
-    "tensor*{}{}": {
-      "snippet": "tensor*{${1:symbol}}{${2:^sup1_sub1^sup2_sub2...}}"
+    {
+      "name": "tensor*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:symbol}}{${2:^sup1_sub1^sup2_sub2...}}"
+      }
     },
-    "tensor*[]{}{}": {
-      "snippet": "tensor*[${3:pre-indices}]{${1:symbol}}{${2:^sup1_sub1^sup2_sub2...}}"
+    {
+      "name": "tensor*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:pre-indices}]{${1:symbol}}{${2:^sup1_sub1^sup2_sub2...}}"
+      }
     },
-    "indexmarker": {},
-    "nuclide{}": {
-      "snippet": "nuclide{${1:symbol}}"
+    {
+      "name": "indexmarker",
+      "unusual": true
     },
-    "nuclide[]{}": {
-      "snippet": "nuclide[${2:mass no}]{${1:symbol}}"
+    {
+      "name": "nuclide",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol%formula}}"
+      }
     },
-    "nuclide[][]{}": {
-      "snippet": "nuclide[${2:mass no}][${3:atomic no}]{${1:symbol}}"
+    {
+      "name": "nuclide",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:mass no%formula}]{${1:symbol%formula}}"
+      }
     },
-    "nuclideFont": {},
-    "massnumFont": {},
-    "tensorSmash": {},
-    "tensorStrut": {}
-  },
-  "envs": {},
-  "options": [
-    "align",
-    "text",
-    "nosmash",
-    "nostrut"
+    {
+      "name": "nuclide",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:mass no%formula}][${3:atomic no%formula}]{${1:symbol%formula}}"
+      }
+    },
+    {
+      "name": "nuclideFont",
+      "unusual": true
+    },
+    {
+      "name": "massnumFont",
+      "unusual": true
+    },
+    {
+      "name": "tensorSmash",
+      "unusual": true
+    },
+    {
+      "name": "tensorStrut",
+      "unusual": true
+    }
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/tensor#c": [
+      "align\r",
+      "text\r",
+      "nosmash\r",
+      "nostrut\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/tensor#c"
+  ]
 }

@@ -1,114 +1,206 @@
 {
-  "includes": {
-    "keyval": [],
-    "caption": [],
-    "ragged2e": [
-      "justification=Justified",
-      "justification=Centering",
-      "justification=RaggedRight",
-      "justification=RaggedLeft"
+  "deps": [
+    {
+      "name": "keyval"
+    },
+    {
+      "name": "caption"
+    },
+    {
+      "name": "ragged2e",
+      "if": "justification=Justified"
+    },
+    {
+      "name": "ragged2e",
+      "if": "justification=Centering"
+    },
+    {
+      "name": "ragged2e",
+      "if": "justification=RaggedRight"
+    },
+    {
+      "name": "ragged2e",
+      "if": "justification=RaggedLeft"
+    }
+  ],
+  "macros": [
+    {
+      "name": "subfigure",
+      "if": "config=altsf",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:body%text}}"
+      }
+    },
+    {
+      "name": "subfigure",
+      "if": "config=altsf",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:subcaption%text}]{${1:body%text}}"
+      }
+    },
+    {
+      "name": "subfigure",
+      "if": "config=altsf",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:listentry%text}][${3:subcaption%text}]{${1:body%text}}"
+      }
+    },
+    {
+      "name": "subtable",
+      "if": "config=altsf",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:body%text}}"
+      }
+    },
+    {
+      "name": "subtable",
+      "if": "config=altsf",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:subcaption%text}]{${1:body%text}}"
+      }
+    },
+    {
+      "name": "subtable",
+      "if": "config=altsf",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:listentry%text}][${3:subcaption%text}]{${1:body%text}}"
+      }
+    },
+    {
+      "name": "Subref",
+      "if": "config=altsf",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "newsubfloat",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:float name}}"
+      }
+    },
+    {
+      "name": "newsubfloat",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:kv-list}]{${1:float name}}"
+      }
+    },
+    {
+      "name": "DeclareCaptionListOfFormat",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:keyword}}{${2:code}}"
+      }
+    },
+    {
+      "name": "DeclareSubrefFormat",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:keyword}}{${2:code}}"
+      }
+    },
+    {
+      "name": "subfloat",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:body%text}}"
+      }
+    },
+    {
+      "name": "subfloat",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:subcaption%text}]{${1:body%text}}"
+      }
+    },
+    {
+      "name": "subfloat",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:listentry%text}][${3:subcaption%text}]{${1:body%text}}"
+      }
+    },
+    {
+      "name": "subref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "subref*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "listsubcaptions"
+    },
+    {
+      "name": "thesubfigure",
+      "unusual": true
+    },
+    {
+      "name": "thesubtable",
+      "unusual": true
+    },
+    {
+      "name": "subfigurename",
+      "unusual": true
+    },
+    {
+      "name": "subtablename",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/subfig#c": [
+      "caption",
+      "config=${1:file name}",
+      "font=${1|scriptsize,footnotesize,small,normalsize,large,Large,normalfont,up,it,sl,sc,md,bf,rm,sf,tt,singlespacing,onehalfspacing,doublespacing,normalcolor,normal|}",
+      "labelfont=${1|scriptsize,footnotesize,small,normalsize,large,Large,normalfont,up,it,sl,sc,md,bf,rm,sf,tt,singlespacing,onehalfspacing,doublespacing,normalcolor,normal|}",
+      "textfont=${1|scriptsize,footnotesize,small,normalsize,large,Large,normalfont,up,it,sl,sc,md,bf,rm,sf,tt,singlespacing,onehalfspacing,doublespacing,normalcolor,normal|}",
+      "style=${1|default,ruled|}",
+      "singlelinecheck",
+      "format=${1|default,hang|}",
+      "indention=",
+      "hangindent=",
+      "width=",
+      "margin=",
+      "parskip=",
+      "justification=${1|justified,centering,centerlast,centerfirst,raggedright,raggedleft,Justified,Centering,RaggedRight,RaggedLeft|}",
+      "labelformat=${1|original,empty,simple,brace,parens|}",
+      "aboveskip=",
+      "belowskip=",
+      "labelsep=${1|none,colon,period,space,quad,newline,endash|}",
+      "position=${1|top,above,bottom,below,auto|}"
+    ],
+    "\\usepackage/subfig#c,\\captionsetup#c,\\captionsetup*#c,\\DeclareCaptionStyle#c": [
+      "lofdepth=${1:integer}",
+      "lotdepth=${1:integer}",
+      "listofformat=${1|empty,simple,parens,subsimple,subparens|}",
+      "subrefformat=${1|empty,simple,parens,subsimple,subparens|}",
+      "listofindent=",
+      "listofnumwidth=",
+      "farskip=",
+      "captionskip=",
+      "topadjust=",
+      "nearskip="
     ]
   },
-  "macros": {
-    "subfigure{}": {
-      "snippet": "subfigure{${1:body}}",
-      "option": "config=altsf"
-    },
-    "subfigure[]{}": {
-      "snippet": "subfigure[${2:subcaption}]{${1:body}}",
-      "option": "config=altsf"
-    },
-    "subfigure[][]{}": {
-      "snippet": "subfigure[${2:listentry}][${3:subcaption}]{${1:body}}",
-      "option": "config=altsf"
-    },
-    "subtable{}": {
-      "snippet": "subtable{${1:body}}",
-      "option": "config=altsf"
-    },
-    "subtable[]{}": {
-      "snippet": "subtable[${2:subcaption}]{${1:body}}",
-      "option": "config=altsf"
-    },
-    "subtable[][]{}": {
-      "snippet": "subtable[${2:listentry}][${3:subcaption}]{${1:body}}",
-      "option": "config=altsf"
-    },
-    "Subref{}": {
-      "snippet": "Subref{${1:label}}",
-      "option": "config=altsf"
-    },
-    "newsubfloat{}": {
-      "snippet": "newsubfloat{${1:float name}}"
-    },
-    "newsubfloat[]{}": {
-      "snippet": "newsubfloat[${2:kv-list}]{${1:float name}}"
-    },
-    "DeclareCaptionListOfFormat{}{}": {
-      "snippet": "DeclareCaptionListOfFormat{${1:keyword}}{${2:code}}"
-    },
-    "DeclareSubrefFormat{}{}": {
-      "snippet": "DeclareSubrefFormat{${1:keyword}}{${2:code}}"
-    },
-    "subfloat{}": {
-      "snippet": "subfloat{${1:body}}"
-    },
-    "subfloat[]{}": {
-      "snippet": "subfloat[${2:subcaption}]{${1:body}}"
-    },
-    "subfloat[][]{}": {
-      "snippet": "subfloat[${2:listentry}][${3:subcaption}]{${1:body}}"
-    },
-    "subref{}": {
-      "snippet": "subref{${1:label}}"
-    },
-    "subref*{}": {
-      "snippet": "subref*{${1:label}}"
-    },
-    "listsubcaptions": {},
-    "thesubfigure": {},
-    "thesubtable": {},
-    "subfigurename": {},
-    "subtablename": {},
-    "theKVtest": {},
-    "ifhyperrefloaded": {},
-    "hyperrefloadedtrue": {},
-    "hyperrefloadedfalse": {},
-    "ifmaincaptiontop": {},
-    "maincaptiontoptrue": {},
-    "maincaptiontopfalse": {}
-  },
-  "envs": {},
-  "options": [
-    "caption",
-    "config=${1:file name}",
-    "font=${1|scriptsize,footnotesize,small,normalsize,large,Large,normalfont,up,it,sl,sc,md,bf,rm,sf,tt,singlespacing,onehalfspacing,doublespacing,normalcolor,normal|}",
-    "labelfont=${1|scriptsize,footnotesize,small,normalsize,large,Large,normalfont,up,it,sl,sc,md,bf,rm,sf,tt,singlespacing,onehalfspacing,doublespacing,normalcolor,normal|}",
-    "textfont=${1|scriptsize,footnotesize,small,normalsize,large,Large,normalfont,up,it,sl,sc,md,bf,rm,sf,tt,singlespacing,onehalfspacing,doublespacing,normalcolor,normal|}",
-    "style=${1|default,ruled|}",
-    "singlelinecheck",
-    "format=${1|default,hang|}",
-    "indention=",
-    "hangindent=",
-    "width=",
-    "margin=",
-    "parskip=",
-    "justification=${1|justified,centering,centerlast,centerfirst,raggedright,raggedleft,Justified,Centering,RaggedRight,RaggedLeft|}",
-    "labelformat=${1|original,empty,simple,brace,parens|}",
-    "aboveskip=",
-    "belowskip=",
-    "labelsep=${1|none,colon,period,space,quad,newline,endash|}",
-    "position=${1|top,above,bottom,below,auto|}",
-    "lofdepth=${1:integer}",
-    "lotdepth=${1:integer}",
-    "listofformat=${1|empty,simple,parens,subsimple,subparens|}",
-    "subrefformat=${1|empty,simple,parens,subsimple,subparens|}",
-    "listofindent=",
-    "listofnumwidth=",
-    "farskip=",
-    "captionskip=",
-    "topadjust=",
-    "nearskip="
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/subfig#c",
+    "\\usepackage/subfig#c,\\captionsetup#c,\\captionsetup*#c,\\DeclareCaptionStyle#c"
+  ]
 }

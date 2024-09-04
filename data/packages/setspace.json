@@ -1,35 +1,72 @@
 {
-  "includes": {},
-  "macros": {
-    "singlespacing": {},
-    "onehalfspacing": {},
-    "doublespacing": {},
-    "SetSinglespace{}": {
-      "snippet": "SetSinglespace{${1:factor}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "singlespacing"
     },
-    "setstretch{}": {
-      "snippet": "setstretch{${1:factor}}"
+    {
+      "name": "onehalfspacing"
     },
-    "displayskipstretch": {},
-    "setdisplayskipstretch{}": {
-      "snippet": "setdisplayskipstretch{${1:factor}}"
+    {
+      "name": "doublespacing"
+    },
+    {
+      "name": "SetSinglespace",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:factor}}"
+      }
+    },
+    {
+      "name": "setstretch",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:factor}}"
+      }
+    },
+    {
+      "name": "displayskipstretch",
+      "unusual": true
+    },
+    {
+      "name": "setdisplayskipstretch",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:factor}}"
+      }
     }
-  },
-  "envs": {
-    "singlespace": {},
-    "singlespace*": {},
-    "doublespace": {},
-    "onehalfspace": {},
-    "spacing{}": {
-      "name": "spacing",
-      "snippet": "{${1:factor}}"
-    }
-  },
-  "options": [
-    "nodisplayskipstretch",
-    "singlespacing",
-    "onehalfspacing",
-    "doublespacing"
   ],
-  "keyvals": []
+  "envs": [
+    {
+      "name": "singlespace"
+    },
+    {
+      "name": "singlespace*",
+      "unusual": true
+    },
+    {
+      "name": "doublespace"
+    },
+    {
+      "name": "onehalfspace"
+    },
+    {
+      "name": "spacing",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:factor}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/setspace#c": [
+      "nodisplayskipstretch",
+      "singlespacing",
+      "onehalfspacing",
+      "doublespacing"
+    ]
+  },
+  "args": [
+    "\\usepackage/setspace#c"
+  ]
 }

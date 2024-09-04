@@ -1,28 +1,48 @@
 {
-  "includes": {},
-  "macros": {
-    "thesubequation": {},
-    "themainequation": {}
-  },
-  "envs": {
-    "numcases{}": {
-      "name": "numcases",
-      "snippet": "{${1:left side}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "thesubequation",
+      "unusual": true
     },
-    "subnumcases{}": {
-      "name": "subnumcases",
-      "snippet": "{${1:left side}}"
-    },
-    "subequations": {},
-    "subeqnarray": {}
-  },
-  "options": [
-    "subnum",
-    "fleqn",
-    "leqno",
-    "amsstyle",
-    "casesstyle",
-    "cases"
+    {
+      "name": "themainequation",
+      "unusual": true
+    }
   ],
-  "keyvals": []
+  "envs": [
+    {
+      "name": "numcases",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:left side}}"
+      }
+    },
+    {
+      "name": "subnumcases",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:left side}}"
+      }
+    },
+    {
+      "name": "subequations"
+    },
+    {
+      "name": "subeqnarray"
+    }
+  ],
+  "keys": {
+    "\\usepackage/cases#c": [
+      "subnum\r",
+      "fleqn\r",
+      "leqno\r",
+      "amsstyle\r",
+      "casesstyle\r",
+      "cases\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/cases#c"
+  ]
 }

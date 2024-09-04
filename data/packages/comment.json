@@ -1,69 +1,82 @@
 {
-  "includes": {},
-  "macros": {
-    "includecomment{}": {
-      "snippet": "includecomment{${1:envname}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "includecomment",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:envname}}"
+      }
     },
-    "excludecomment{}": {
-      "snippet": "excludecomment{${1:envname}}"
+    {
+      "name": "excludecomment",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:envname}}"
+      }
     },
-    "CommentCutFile": {},
-    "ProcessCutFile": {},
-    "generalcomment{}{}{}": {
-      "snippet": "generalcomment{${1:envname}}{${2:begdef}}{${3:enddef}}"
+    {
+      "name": "CommentCutFile",
+      "unusual": true
     },
-    "specialcomment{}{}{}": {
-      "snippet": "specialcomment{${1:envname}}{${2:begdef}}{${3:enddef}}"
+    {
+      "name": "ProcessCutFile",
+      "unusual": true
     },
-    "Thiscomment{}": {
-      "snippet": "Thiscomment{${1:line stuff}}"
+    {
+      "name": "generalcomment",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:envname}}{${2:begdef}}{${3:enddef}}"
+      }
     },
-    "WriteCommentLine{}": {
-      "snippet": "WriteCommentLine{${1:line stuff}}"
+    {
+      "name": "specialcomment",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:envname}}{${2:begdef}}{${3:enddef}}"
+      }
     },
-    "ThisComment{}": {
-      "snippet": "ThisComment{${1:line stuff}}"
+    {
+      "name": "Thiscomment",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:line stuff}}"
+      }
     },
-    "processcomment{}{}{}{}": {
-      "snippet": "processcomment{${1:envname}}{${2:def}}{${3:begdef}}{${4:enddef}}"
+    {
+      "name": "WriteCommentLine",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:line stuff}}"
+      }
     },
-    "makeinnocent{}": {
-      "snippet": "makeinnocent{${1:arg}}"
+    {
+      "name": "ThisComment",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:line stuff}}"
+      }
     },
-    "csarg{}{}": {
-      "snippet": "csarg{${1:arg1}}{${2:arg2}}"
-    },
-    "latexname": {},
-    "latexename": {},
-    "CommentStream": {},
-    "DefaultCutFileName": {},
-    "ProcessComment{}": {
-      "snippet": "ProcessComment{${1:arg}}"
-    },
-    "CurrentComment": {},
-    "xComment{}": {
-      "snippet": "xComment{${1:arg}}"
-    },
-    "ProcessCommentLine{}": {
-      "snippet": "ProcessCommentLine{${1:arg}}"
-    },
-    "SetUpCutFile": {},
-    "PrepareCutFile": {},
-    "CloseAndInputCutFile": {},
-    "FinalizeCutFile": {},
-    "leveledcomment{}{}": {
-      "snippet": "leveledcomment{${1:arg1}}{${2:arg2}}"
-    },
-    "EndOfComment{}": {
-      "snippet": "EndOfComment{${1:arg}}"
-    },
-    "CommentEndDef{}": {
-      "snippet": "CommentEndDef{${1:arg}}"
+    {
+      "name": "processcomment",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:envname}}{${2:def}}{${3:begdef}}{${4:enddef}}"
+      }
     }
-  },
-  "envs": {
-    "comment": {}
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "envs": [
+    {
+      "name": "comment"
+    }
+  ],
+  "keys": {},
+  "args": []
 }

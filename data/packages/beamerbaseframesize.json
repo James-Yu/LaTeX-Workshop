@@ -1,24 +1,35 @@
 {
-  "includes": {},
-  "macros": {
-    "framezoom<><>()()": {
-      "snippet": "framezoom<${1:button overlay specification}><${2:zoomed overlay specification}>(${3:upper left x},${4:upper left y})(${5:zoom area width},${6:zoom area depth})"
+  "deps": [],
+  "macros": [
+    {
+      "name": "framezoom<button overlay specification><zoomed overlay specification>(upper left x,upper left y)(zoom area width,zoom area depth)"
     },
-    "framezoom<><>[]()()": {
-      "snippet": "framezoom<${2:button overlay specification}><${3:zoomed overlay specification}>[${1:options}](${4:upper left x},${5:upper left y})(${6:zoom area width},${7:zoom area depth})",
-      "keyvalindex": 0,
-      "keyvalpos": 2
+    {
+      "name": "framezoom<button overlay specification><zoomed overlay specification>",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "[${1:options%keyvals}](${2:upper left x},${3:upper left y})(${4:zoom area width},${5:zoom area depth})"
+      }
     },
-    "insertcontinuationcount": {},
-    "insertcontinuationcountroman": {},
-    "insertcontinuationtext": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "border",
-      "border=${1:width in pixels}"
+    {
+      "name": "insertcontinuationcount",
+      "unusual": true
+    },
+    {
+      "name": "insertcontinuationcountroman",
+      "unusual": true
+    },
+    {
+      "name": "insertcontinuationtext",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\framezoom": [
+      "border\r",
+      "border=${1:width in pixels}\r"
     ]
-  ]
+  },
+  "args": []
 }

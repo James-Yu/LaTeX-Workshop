@@ -1,151 +1,304 @@
 {
-  "includes": {},
-  "macros": {
-    "vref{}": {
-      "snippet": "vref{${1:label}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "vref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
     },
-    "vref*{}": {
-      "snippet": "vref*{${1:label}}"
+    {
+      "name": "vref*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
     },
-    "vpageref{}": {
-      "snippet": "vpageref{${1:label}}"
+    {
+      "name": "vpageref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
     },
-    "vpageref*{}": {
-      "snippet": "vpageref*{${1:label}}"
+    {
+      "name": "vpageref*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
     },
-    "vpageref[]{}": {
-      "snippet": "vpageref[${2:samepage}]{${1:label}}"
+    {
+      "name": "vpageref",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:samepage}]{${1:label}}"
+      }
     },
-    "vpageref*[]{}": {
-      "snippet": "vpageref*[${2:samepage}]{${1:label}}"
+    {
+      "name": "vpageref*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:samepage}]{${1:label}}"
+      }
     },
-    "vpageref[][]{}": {
-      "snippet": "vpageref[${2:samepage}][${3:otherpage}]{${1:label}}"
+    {
+      "name": "vpageref",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:samepage}][${3:otherpage}]{${1:label}}"
+      }
     },
-    "vpageref*[][]{}": {
-      "snippet": "vpageref*[${2:samepage}][${3:otherpage}]{${1:label}}"
+    {
+      "name": "vpageref*",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:samepage}][${3:otherpage}]{${1:label}}"
+      }
     },
-    "vrefrange{}{}": {
-      "snippet": "vrefrange{${1:fromlabel}}{${2:tolabel}}"
+    {
+      "name": "vrefrange",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:fromlabel%ref}}{${2:tolabel%ref}}"
+      }
     },
-    "vrefrange[]{}{}": {
-      "snippet": "vrefrange[${3:same page text}]{${1:fromlabel}}{${2:tolabel}}"
+    {
+      "name": "vrefrange",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:same page text}]{${1:fromlabel%ref}}{${2:tolabel%ref}}"
+      }
     },
-    "vpagerefrange{}{}": {
-      "snippet": "vpagerefrange{${1:fromlabel}}{${2:tolabel}}"
+    {
+      "name": "vpagerefrange",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:fromlabel%ref}}{${2:tolabel%ref}}"
+      }
     },
-    "vpagerefrange*{}{}": {
-      "snippet": "vpagerefrange*{${1:fromlabel}}{${2:tolabel}}"
+    {
+      "name": "vpagerefrange*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:fromlabel%ref}}{${2:tolabel%ref}}"
+      }
     },
-    "vpagerefrange[]{}{}": {
-      "snippet": "vpagerefrange[${3:same page text}]{${1:fromlabel}}{${2:tolabel}}"
+    {
+      "name": "vpagerefrange",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:same page text}]{${1:fromlabel%ref}}{${2:tolabel%ref}}"
+      }
     },
-    "vpagerefrange*[]{}{}": {
-      "snippet": "vpagerefrange*[${3:same page text}]{${1:fromlabel}}{${2:tolabel}}"
+    {
+      "name": "vpagerefrange*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:same page text}]{${1:fromlabel%ref}}{${2:tolabel%ref}}"
+      }
     },
-    "vrefpagenum{}{}": {
-      "snippet": "vrefpagenum{${1:cmd}}{${2:label}}"
+    {
+      "name": "vrefpagenum",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:label%ref}}"
+      }
     },
-    "vpagerefcompare{}{}{}{}": {
-      "snippet": "vpagerefcompare{${1:label1}}{${2:label2}}{${3:true}}{${4:false}}"
+    {
+      "name": "vpagerefcompare",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:label1%ref}}{${2:label2%ref}}{${3:true}}{${4:false}}"
+      }
     },
-    "vpagerefnearby{}{}{}": {
-      "snippet": "vpagerefnearby{${1:label}}{${2:true}}{${3:false}}"
+    {
+      "name": "vpagerefnearby",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:label}}{${2:true}}{${3:false}}"
+      }
     },
-    "labelformat{}{}": {
-      "snippet": "labelformat{${1:counter}}{${2:argument}}"
+    {
+      "name": "labelformat",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:counter}}{${2:argument}}"
+      }
     },
-    "Vref{}": {
-      "snippet": "Vref{${1:label}}"
+    {
+      "name": "Vref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
     },
-    "Vref*{}": {
-      "snippet": "Vref*{${1:label}}"
+    {
+      "name": "Vref*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
     },
-    "Ref{}": {
-      "snippet": "Ref{${1:label}}"
+    {
+      "name": "Ref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
     },
-    "thevpagerefnum": {},
-    "reftextbefore": {},
-    "reftextfacebefore": {},
-    "reftextafter": {},
-    "reftextfaceafter": {},
-    "reftextcurrent": {},
-    "reftextfaraway{}": {
-      "snippet": "reftextfaraway{${1:label}}"
+    {
+      "name": "thevpagerefnum"
     },
-    "reftextvario{}{}": {
-      "snippet": "reftextvario{${1:text1}}{${2:text2}}"
+    {
+      "name": "reftextbefore"
     },
-    "reftextpagerange{}{}": {
-      "snippet": "reftextpagerange{${1:label1}}{${2:label2}}"
+    {
+      "name": "reftextfacebefore"
     },
-    "reftextlabelrange{}{}": {
-      "snippet": "reftextlabelrange{${1:label1}}{${2:label2}}"
+    {
+      "name": "reftextafter"
     },
-    "vrefformat": {},
-    "Vrefformat": {},
-    "vrefrangeformat": {},
-    "fullrefformat": {},
-    "vrefdefaultformat": {},
-    "Vrefdefaultformat": {},
-    "vrefrangedefaultformat": {},
-    "fullrefdefaultformat": {},
-    "vrefwarning": {},
-    "vrefshowerrors": {},
-    "fullref{}": {
-      "snippet": "fullref{${1:label}}"
+    {
+      "name": "reftextfaceafter"
     },
-    "vpagerefcomparenearby{}{}{}{}": {
-      "snippet": "vpagerefcomparenearby{${1:label1}}{${2:label2}}{${3:true}}{${4:false}}"
+    {
+      "name": "reftextcurrent"
+    },
+    {
+      "name": "reftextfaraway",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "reftextvario",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text1}}{${2:text2}}"
+      }
+    },
+    {
+      "name": "reftextpagerange",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "reftextlabelrange",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "vrefformat",
+      "unusual": true
+    },
+    {
+      "name": "Vrefformat",
+      "unusual": true
+    },
+    {
+      "name": "vrefrangeformat",
+      "unusual": true
+    },
+    {
+      "name": "fullrefformat",
+      "unusual": true
+    },
+    {
+      "name": "vrefdefaultformat",
+      "unusual": true
+    },
+    {
+      "name": "Vrefdefaultformat",
+      "unusual": true
+    },
+    {
+      "name": "vrefrangedefaultformat",
+      "unusual": true
+    },
+    {
+      "name": "fullrefdefaultformat",
+      "unusual": true
+    },
+    {
+      "name": "vrefwarning"
+    },
+    {
+      "name": "vrefshowerrors"
+    },
+    {
+      "name": "fullref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "vpagerefcomparenearby",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:label1%ref}}{${2:label2%ref}}{${3:true}}{${4:false}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [
-    "afrikaans",
-    "american",
-    "arabic",
-    "austrian",
-    "naustrian",
-    "basque",
-    "bahasam",
-    "brazil",
-    "breton",
-    "bulgarian",
-    "catalan",
-    "croatian",
-    "czech",
-    "danish",
-    "dutch",
-    "english",
-    "esperanto",
-    "finnish",
-    "french",
-    "galician",
-    "german",
-    "ngerman",
-    "greek",
-    "icelandic",
-    "italian",
-    "japanese",
-    "magyar",
-    "norsk",
-    "nynorsk",
-    "polish",
-    "portuges",
-    "romanian",
-    "russian",
-    "slovak",
-    "slovene",
-    "spanish",
-    "swedish",
-    "turkish",
-    "ukrainian",
-    "francais",
-    "germanb",
-    "draft",
-    "final",
-    "space",
-    "nospace"
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/varioref#c": [
+      "afrikaans",
+      "american",
+      "arabic",
+      "austrian",
+      "naustrian",
+      "basque",
+      "bahasam",
+      "brazil",
+      "breton",
+      "bulgarian",
+      "catalan",
+      "croatian",
+      "czech",
+      "danish",
+      "dutch",
+      "english",
+      "esperanto",
+      "finnish",
+      "french",
+      "galician",
+      "german",
+      "ngerman",
+      "greek",
+      "icelandic",
+      "italian",
+      "japanese",
+      "magyar",
+      "norsk",
+      "nynorsk",
+      "polish",
+      "portuges",
+      "romanian",
+      "russian",
+      "slovak",
+      "slovene",
+      "spanish",
+      "swedish",
+      "turkish",
+      "ukrainian",
+      "francais",
+      "germanb",
+      "draft",
+      "final",
+      "space",
+      "nospace"
+    ]
+  },
+  "args": [
+    "\\usepackage/varioref#c"
+  ]
 }

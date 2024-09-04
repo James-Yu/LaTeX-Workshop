@@ -1,71 +1,105 @@
 {
-  "includes": {
-    "graphicx": [],
-    "ifthen": []
-  },
-  "macros": {
-    "turnbox{}{}": {
-      "snippet": "turnbox{${1:angle}}{${2:contents}}"
+  "deps": [
+    {
+      "name": "graphicx"
     },
-    "rotFPtop": {},
-    "rotFPbot": {}
-  },
-  "envs": {
-    "sidewaystable": {},
-    "sidewaystable*": {},
-    "sidewaysfigure": {},
-    "sidewaysfigure*": {},
-    "sideways": {},
-    "turn{}": {
-      "name": "turn",
-      "snippet": "{${1:angle}}"
-    },
-    "rotate{}": {
-      "name": "rotate",
-      "snippet": "{${1:angle}}"
+    {
+      "name": "ifthen"
     }
-  },
-  "options": [
-    "clockwise",
-    "counterclockwise",
-    "anticlockwise",
-    "figuresleft",
-    "figuresright",
-    "quiet",
-    "log",
-    "chatter",
-    "unknownkeysallowed",
-    "draft",
-    "final",
-    "hiresbb",
-    "demo",
-    "setpagesize",
-    "nosetpagesize",
-    "dvips",
-    "xdvi",
-    "dvipdf",
-    "dvipdfm",
-    "dvipdfmx",
-    "xetex",
-    "pdftex",
-    "luatex",
-    "dvisvgm",
-    "dvipsone",
-    "dviwindo",
-    "emtex",
-    "dviwin",
-    "oztex",
-    "textures",
-    "pctexps",
-    "pctexwin",
-    "pctexhp",
-    "pctex32",
-    "truetex",
-    "tcidvi",
-    "vtex",
-    "debugshow",
-    "hiderotate",
-    "hidescale"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "turnbox",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:angle}}{${2:contents}}"
+      }
+    },
+    {
+      "name": "rotFPtop",
+      "unusual": true
+    },
+    {
+      "name": "rotFPbot",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "sidewaystable"
+    },
+    {
+      "name": "sidewaystable*"
+    },
+    {
+      "name": "sidewaysfigure"
+    },
+    {
+      "name": "sidewaysfigure*"
+    },
+    {
+      "name": "sideways"
+    },
+    {
+      "name": "turn",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:angle}}"
+      }
+    },
+    {
+      "name": "rotate",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:angle}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/rotating#c": [
+      "clockwise",
+      "counterclockwise",
+      "anticlockwise",
+      "figuresleft",
+      "figuresright",
+      "quiet",
+      "log",
+      "chatter",
+      "unknownkeysallowed",
+      "draft",
+      "final",
+      "hiresbb",
+      "demo",
+      "setpagesize",
+      "nosetpagesize",
+      "dvips",
+      "xdvi",
+      "dvipdf",
+      "dvipdfm",
+      "dvipdfmx",
+      "xetex",
+      "pdftex",
+      "luatex",
+      "dvisvgm",
+      "dvipsone",
+      "dviwindo",
+      "emtex",
+      "dviwin",
+      "oztex",
+      "textures",
+      "pctexps",
+      "pctexwin",
+      "pctexhp",
+      "pctex32",
+      "truetex",
+      "tcidvi",
+      "vtex",
+      "debugshow",
+      "hiderotate",
+      "hidescale"
+    ]
+  },
+  "args": [
+    "\\usepackage/rotating#c"
+  ]
 }

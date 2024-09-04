@@ -1,33 +1,79 @@
 {
-  "includes": {},
-  "macros": {
-    "kant": {},
-    "kant[]": {
-      "snippet": "kant[${1:num-num}]"
+  "deps": [],
+  "macros": [
+    {
+      "name": "kant"
     },
-    "kant[][]": {
-      "snippet": "kant[${1:num}][${2:num-num}]"
+    {
+      "name": "kant",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:num}]"
+      }
     },
-    "kant*": {},
-    "kant*[]": {
-      "snippet": "kant*[${1:num-num}]"
+    {
+      "name": "kant",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:num-num}]"
+      }
     },
-    "kant*[][]": {
-      "snippet": "kant*[${1:num}][${2:num-num}]"
+    {
+      "name": "kant",
+      "arg": {
+        "format": "[][]",
+        "snippet": "[${1:num}][${2:num-num}]"
+      }
     },
-    "kantdef{}{}": {
-      "snippet": "kantdef{${1:cmd}}{${2:num}}"
+    {
+      "name": "kant*"
     },
-    "kantdef{}{}[]": {
-      "snippet": "kantdef{${1:cmd}}{${2:num}}[${3:num-num}]"
+    {
+      "name": "kant*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:num}]"
+      }
+    },
+    {
+      "name": "kant*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:num-num}]"
+      }
+    },
+    {
+      "name": "kant*",
+      "arg": {
+        "format": "[][]",
+        "snippet": "[${1:num}][${2:num-num}]"
+      }
+    },
+    {
+      "name": "kantdef",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:num}}"
+      }
+    },
+    {
+      "name": "kantdef",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:cmd}}{${2:num}}[${3:num-num}]"
+      }
     }
-  },
-  "envs": {},
-  "options": [
-    "par",
-    "nopar",
-    "numbers",
-    "index"
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/kantlipsum#c": [
+      "par",
+      "nopar",
+      "numbers",
+      "index"
+    ]
+  },
+  "args": [
+    "\\usepackage/kantlipsum#c"
+  ]
 }
