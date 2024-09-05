@@ -1,334 +1,708 @@
 {
-  "includes": {
-    "ucs": [],
-    "inputenc": [],
-    "array": [],
-    "longtable": [],
-    "fancyhdr": [],
-    "etoolbox": [],
-    "hyperref": [],
-    "totpages": [
-      "totpages"
-    ],
-    "booktabs": [
-      "booktabs"
+  "deps": [
+    {
+      "name": "ucs"
+    },
+    {
+      "name": "inputenc"
+    },
+    {
+      "name": "array"
+    },
+    {
+      "name": "longtable"
+    },
+    {
+      "name": "fancyhdr"
+    },
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "hyperref"
+    },
+    {
+      "name": "totpages",
+      "if": "totpages"
+    },
+    {
+      "name": "booktabs",
+      "if": "booktabs"
+    }
+  ],
+  "macros": [
+    {
+      "name": "ecvdate",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:date}}"
+      }
+    },
+    {
+      "name": "ecvname",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name,surname}}"
+      }
+    },
+    {
+      "name": "ecvfootername",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "ecvfirstname",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "ecvlastname",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "ecvaddress",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:address}}"
+      }
+    },
+    {
+      "name": "ecvaddress",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:mobile}]{${1:address}}"
+      }
+    },
+    {
+      "name": "ecvaddress",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:mobile}][${3:office}]{${1:address}}"
+      }
+    },
+    {
+      "name": "ecvfax",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:fax}}"
+      }
+    },
+    {
+      "name": "ecvtelephone",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tel}}"
+      }
+    },
+    {
+      "name": "ecvtelephone",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:mobile}]{${1:tel}}"
+      }
+    },
+    {
+      "name": "ecvtelephone",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:mobile}][${3:office}]{${1:tel}}"
+      }
+    },
+    {
+      "name": "ecvemail",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:email%URL}}"
+      }
+    },
+    {
+      "name": "ecvprofessional",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:professional email%URL}}"
+      }
+    },
+    {
+      "name": "ecvpec",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:PEC}}"
+      }
+    },
+    {
+      "name": "ecvskype",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:skype%URL}}"
+      }
+    },
+    {
+      "name": "ecvmatrixriot",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:matrixriot%URL}}"
+      }
+    },
+    {
+      "name": "ecvyoutube",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:youtubeChannel%URL}}"
+      }
+    },
+    {
+      "name": "ecvnationality",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:nationality}}"
+      }
+    },
+    {
+      "name": "ecvdateofbirth",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:date}}"
+      }
+    },
+    {
+      "name": "ecvgender",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:gender}}"
+      }
+    },
+    {
+      "name": "ecvpicture",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "ecvbeforepicture",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ecvafterpicture",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ecvspace",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:space}}"
+      }
+    },
+    {
+      "name": "ecvpersonalinfo"
+    },
+    {
+      "name": "ecvpersonalinfo",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:vspace%l}]"
+      }
+    },
+    {
+      "name": "ecvitem",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:left%text}}{${2:right%text}}"
+      }
+    },
+    {
+      "name": "ecvitem",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:vspace%l}]{${1:left%text}}{${2:right%text}}"
+      }
+    },
+    {
+      "name": "ecvmothertongue",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "ecvmothertongue",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:vspace%l}]{${1:language}}"
+      }
+    },
+    {
+      "name": "ecvlanguageheader",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol}}"
+      }
+    },
+    {
+      "name": "ecvlanguagefooter",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "ecvlanguagefooter",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:vspace%l}]"
+      }
+    },
+    {
+      "name": "ecvlanguage",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:l1%text}}{${2:l2%text}}{${3:l3%text}}{${4:l4%text}}{${5:l5%text}}"
+      }
+    },
+    {
+      "name": "ecvlanguage",
+      "arg": {
+        "format": "[]{}{}{}{}{}",
+        "snippet": "[${6:vspace%l}]{${1:l1%text}}{${2:l2%text}}{${3:l3%text}}{${4:l4%text}}{${5:l5%text}}"
+      }
+    },
+    {
+      "name": "ecvlastlanguage",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:l1%text}}{${2:l2%text}}{${3:l3%text}}{${4:l4%text}}{${5:l5%text}}"
+      }
+    },
+    {
+      "name": "ecvlastlanguage",
+      "arg": {
+        "format": "[]{}{}{}{}{}",
+        "snippet": "[${6:vspace%l}]{${1:l1%text}}{${2:l2%text}}{${3:l3%text}}{${4:l4%text}}{${5:l5%text}}"
+      }
+    },
+    {
+      "name": "ecvCEF"
+    },
+    {
+      "name": "ecvAOne"
+    },
+    {
+      "name": "ecvATwo"
+    },
+    {
+      "name": "ecvBOne"
+    },
+    {
+      "name": "ecvBTwo"
+    },
+    {
+      "name": "ecvCOne"
+    },
+    {
+      "name": "ecvCTwo"
+    },
+    {
+      "name": "ecvdisplayFootNoteCounter"
+    },
+    {
+      "name": "ecvdisplayFootNoteCounter",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:key%plain}]"
+      }
+    },
+    {
+      "name": "ecvdisplayConferencePublications"
+    },
+    {
+      "name": "ecvdisplayConferencePublications",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:key%plain}]"
+      }
+    },
+    {
+      "name": "ecvdisplayBookChapterPublications"
+    },
+    {
+      "name": "ecvdisplayBookChapterPublications",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:key%plain}]"
+      }
+    },
+    {
+      "name": "ecvdisplayReferredJournalsPublications"
+    },
+    {
+      "name": "ecvdisplayReferredJournalsPublications",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:key%plain}]"
+      }
+    },
+    {
+      "name": "ecvdisplayWorkshops"
+    },
+    {
+      "name": "ecvdisplayWorkshops",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:key%plain}]"
+      }
+    },
+    {
+      "name": "ecvdisplayPosters"
+    },
+    {
+      "name": "ecvdisplayPosters",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:key%plain}]"
+      }
+    },
+    {
+      "name": "ecvdisplayResearchProjects"
+    },
+    {
+      "name": "ecvdisplayResearchProjects",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:key%plain}]"
+      }
+    },
+    {
+      "name": "ecvdisplayAwards"
+    },
+    {
+      "name": "ecvdisplayAwards",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:key%plain}]"
+      }
+    },
+    {
+      "name": "ecvrefFootNoteCounter"
+    },
+    {
+      "name": "ecvrefFootNoteCounter",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:key%plain}]"
+      }
+    },
+    {
+      "name": "ecvrefConferencePublications"
+    },
+    {
+      "name": "ecvrefConferencePublications",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:key%plain}]"
+      }
+    },
+    {
+      "name": "ecvrefBookChapterPublications"
+    },
+    {
+      "name": "ecvrefBookChapterPublications",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:key%plain}]"
+      }
+    },
+    {
+      "name": "ecvrefReferredJournalsPublications"
+    },
+    {
+      "name": "ecvrefReferredJournalsPublications",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:key%plain}]"
+      }
+    },
+    {
+      "name": "ecvrefWorkshops"
+    },
+    {
+      "name": "ecvrefWorkshops",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:key%plain}]"
+      }
+    },
+    {
+      "name": "ecvrefPosters"
+    },
+    {
+      "name": "ecvrefPosters",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:key%plain}]"
+      }
+    },
+    {
+      "name": "ecvrefResearchProjects"
+    },
+    {
+      "name": "ecvrefResearchProjects",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:key%plain}]"
+      }
+    },
+    {
+      "name": "ecvrefAwards"
+    },
+    {
+      "name": "ecvrefAwards",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:key%plain}]"
+      }
+    },
+    {
+      "name": "ecvfootnote",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:note%text}}"
+      }
+    },
+    {
+      "name": "ecvpage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "ecvWithHorRule"
+    },
+    {
+      "name": "ecvNoHorRule"
+    },
+    {
+      "name": "ecvRuleWidth",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:width}}"
+      }
+    },
+    {
+      "name": "ecvExtraRowHeight",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:height}}"
+      }
+    },
+    {
+      "name": "ecvColSep",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:width}}"
+      }
+    },
+    {
+      "name": "ecvFlagWidth",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:width}}"
+      }
+    },
+    {
+      "name": "ecvLogoWidth",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:width}}"
+      }
+    },
+    {
+      "name": "ecvLogoOffset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:offset%l}}"
+      }
+    },
+    {
+      "name": "ecvLeftColumnWidth",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:width}}"
+      }
+    },
+    {
+      "name": "ecvTitleKern",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:kern%l}}"
+      }
+    },
+    {
+      "name": "draweuropasslogo",
+      "unusual": true
+    },
+    {
+      "name": "draweuropeflag",
+      "unusual": true
+    },
+    {
+      "name": "ecvbullet",
+      "unusual": true
+    },
+    {
+      "name": "ecvdrawpicture",
+      "unusual": true
+    },
+    {
+      "name": "ecvrefWorkshopsPublications",
+      "unusual": true
+    },
+    {
+      "name": "ecvrefWorkshopsPublications",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:key%plain}]"
+      }
+    },
+    {
+      "name": "myhyperlink",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:URL}}"
+      }
+    },
+    {
+      "name": "oldhypertarget",
+      "unusual": true
+    },
+    {
+      "name": "theAwards",
+      "unusual": true
+    },
+    {
+      "name": "theBookChapterPublications",
+      "unusual": true
+    },
+    {
+      "name": "theConferencePublications",
+      "unusual": true
+    },
+    {
+      "name": "theFootNoteCounter",
+      "unusual": true
+    },
+    {
+      "name": "thePosters",
+      "unusual": true
+    },
+    {
+      "name": "theReferredJournalsPublications",
+      "unusual": true
+    },
+    {
+      "name": "theResearchProjects",
+      "unusual": true
+    },
+    {
+      "name": "theWorkshops",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "europecv"
+    }
+  ],
+  "keys": {
+    "\\documentclass/europecv#c": [
+      "utf8\r",
+      "ansinew\r",
+      "applemac\r",
+      "ascii\r",
+      "cp850\r",
+      "cp852\r",
+      "cp858\r",
+      "cp437\r",
+      "cp437de\r",
+      "cp865\r",
+      "cp866\r",
+      "cp1250\r",
+      "cp1251\r",
+      "cp1252\r",
+      "cp1257\r",
+      "decmulti\r",
+      "koi8-r\r",
+      "koi8-ru\r",
+      "koi8-u\r",
+      "latin1\r",
+      "latin2\r",
+      "latin3\r",
+      "latin4\r",
+      "latin5\r",
+      "latin9\r",
+      "latin10\r",
+      "maccyr\r",
+      "macukr\r",
+      "next\r",
+      "helvetica\r",
+      "arial\r",
+      "narrow\r",
+      "bulgarian\r",
+      "catalan\r",
+      "czech\r",
+      "danish\r",
+      "dutch\r",
+      "english\r",
+      "estonian\r",
+      "french\r",
+      "finnish\r",
+      "galician\r",
+      "german\r",
+      "greek\r",
+      "hungarian\r",
+      "icelandic\r",
+      "italian\r",
+      "latvian\r",
+      "lithuanian\r",
+      "maltese\r",
+      "norwegian\r",
+      "polish\r",
+      "portuguese\r",
+      "romanian\r",
+      "serbian\r",
+      "slovak\r",
+      "slovenian\r",
+      "spanish\r",
+      "swedish\r",
+      "noflag\r",
+      "flagWB\r",
+      "flagBW\r",
+      "flagCMYK\r",
+      "flagBlueCMYK\r",
+      "logo\r",
+      "nologo\r",
+      "notitle\r",
+      "nobranding\r",
+      "totpages\r",
+      "booktabs\r"
     ]
   },
-  "macros": {
-    "ecvdate{}": {
-      "snippet": "ecvdate{${1:date}}"
-    },
-    "ecvname{}": {
-      "snippet": "ecvname{${1:name,surname}}"
-    },
-    "ecvfootername{}": {
-      "snippet": "ecvfootername{${1:name}}"
-    },
-    "ecvfirstname{}": {
-      "snippet": "ecvfirstname{${1:name}}"
-    },
-    "ecvlastname{}": {
-      "snippet": "ecvlastname{${1:name}}"
-    },
-    "ecvaddress{}": {
-      "snippet": "ecvaddress{${1:address}}"
-    },
-    "ecvaddress[]{}": {
-      "snippet": "ecvaddress[${2:mobile}]{${1:address}}"
-    },
-    "ecvaddress[][]{}": {
-      "snippet": "ecvaddress[${2:mobile}][${3:office}]{${1:address}}"
-    },
-    "ecvfax{}": {
-      "snippet": "ecvfax{${1:fax}}"
-    },
-    "ecvtelephone{}": {
-      "snippet": "ecvtelephone{${1:tel}}"
-    },
-    "ecvtelephone[]{}": {
-      "snippet": "ecvtelephone[${2:mobile}]{${1:tel}}"
-    },
-    "ecvtelephone[][]{}": {
-      "snippet": "ecvtelephone[${2:mobile}][${3:office}]{${1:tel}}"
-    },
-    "ecvemail{}": {
-      "snippet": "ecvemail{${1:email}}"
-    },
-    "ecvprofessional{}": {
-      "snippet": "ecvprofessional{${1:professional email}}"
-    },
-    "ecvpec{}": {
-      "snippet": "ecvpec{${1:PEC}}"
-    },
-    "ecvskype{}": {
-      "snippet": "ecvskype{${1:skype}}"
-    },
-    "ecvmatrixriot{}": {
-      "snippet": "ecvmatrixriot{${1:matrixriot}}"
-    },
-    "ecvyoutube{}": {
-      "snippet": "ecvyoutube{${1:youtubeChannel}}"
-    },
-    "ecvnationality{}": {
-      "snippet": "ecvnationality{${1:nationality}}"
-    },
-    "ecvdateofbirth{}": {
-      "snippet": "ecvdateofbirth{${1:date}}"
-    },
-    "ecvgender{}": {
-      "snippet": "ecvgender{${1:gender}}"
-    },
-    "ecvpicture{}": {
-      "snippet": "ecvpicture{${1:imagefile}}"
-    },
-    "ecvbeforepicture{}": {
-      "snippet": "ecvbeforepicture{${1:text}}"
-    },
-    "ecvafterpicture{}": {
-      "snippet": "ecvafterpicture{${1:text}}"
-    },
-    "ecvspace{}": {
-      "snippet": "ecvspace{${1:space}}"
-    },
-    "ecvpersonalinfo": {},
-    "ecvpersonalinfo[]": {
-      "snippet": "ecvpersonalinfo[${1:vspace}]"
-    },
-    "ecvitem{}{}": {
-      "snippet": "ecvitem{${1:left}}{${2:right}}"
-    },
-    "ecvitem[]{}{}": {
-      "snippet": "ecvitem[${3:vspace}]{${1:left}}{${2:right}}"
-    },
-    "ecvmothertongue{}": {
-      "snippet": "ecvmothertongue{${1:language}}"
-    },
-    "ecvmothertongue[]{}": {
-      "snippet": "ecvmothertongue[${2:vspace}]{${1:language}}"
-    },
-    "ecvlanguageheader{}": {
-      "snippet": "ecvlanguageheader{${1:symbol}}"
-    },
-    "ecvlanguagefooter{}": {
-      "snippet": "ecvlanguagefooter{${1:language}}"
-    },
-    "ecvlanguagefooter[]": {
-      "snippet": "ecvlanguagefooter[${1:vspace}]"
-    },
-    "ecvlanguage{}{}{}{}{}": {
-      "snippet": "ecvlanguage{${1:l1}}{${2:l2}}{${3:l3}}{${4:l4}}{${5:l5}}"
-    },
-    "ecvlanguage[]{}{}{}{}{}": {
-      "snippet": "ecvlanguage[${6:vspace}]{${1:l1}}{${2:l2}}{${3:l3}}{${4:l4}}{${5:l5}}"
-    },
-    "ecvlastlanguage{}{}{}{}{}": {
-      "snippet": "ecvlastlanguage{${1:l1}}{${2:l2}}{${3:l3}}{${4:l4}}{${5:l5}}"
-    },
-    "ecvlastlanguage[]{}{}{}{}{}": {
-      "snippet": "ecvlastlanguage[${6:vspace}]{${1:l1}}{${2:l2}}{${3:l3}}{${4:l4}}{${5:l5}}"
-    },
-    "ecvCEF": {},
-    "ecvAOne": {},
-    "ecvATwo": {},
-    "ecvBOne": {},
-    "ecvBTwo": {},
-    "ecvCOne": {},
-    "ecvCTwo": {},
-    "ecvdisplayFootNoteCounter": {},
-    "ecvdisplayFootNoteCounter[]": {
-      "snippet": "ecvdisplayFootNoteCounter[${1:key}]"
-    },
-    "ecvdisplayConferencePublications": {},
-    "ecvdisplayConferencePublications[]": {
-      "snippet": "ecvdisplayConferencePublications[${1:key}]"
-    },
-    "ecvdisplayBookChapterPublications": {},
-    "ecvdisplayBookChapterPublications[]": {
-      "snippet": "ecvdisplayBookChapterPublications[${1:key}]"
-    },
-    "ecvdisplayReferredJournalsPublications": {},
-    "ecvdisplayReferredJournalsPublications[]": {
-      "snippet": "ecvdisplayReferredJournalsPublications[${1:key}]"
-    },
-    "ecvdisplayWorkshops": {},
-    "ecvdisplayWorkshops[]": {
-      "snippet": "ecvdisplayWorkshops[${1:key}]"
-    },
-    "ecvdisplayPosters": {},
-    "ecvdisplayPosters[]": {
-      "snippet": "ecvdisplayPosters[${1:key}]"
-    },
-    "ecvdisplayResearchProjects": {},
-    "ecvdisplayResearchProjects[]": {
-      "snippet": "ecvdisplayResearchProjects[${1:key}]"
-    },
-    "ecvdisplayAwards": {},
-    "ecvdisplayAwards[]": {
-      "snippet": "ecvdisplayAwards[${1:key}]"
-    },
-    "ecvrefFootNoteCounter": {},
-    "ecvrefFootNoteCounter[]": {
-      "snippet": "ecvrefFootNoteCounter[${1:key}]"
-    },
-    "ecvrefConferencePublications": {},
-    "ecvrefConferencePublications[]": {
-      "snippet": "ecvrefConferencePublications[${1:key}]"
-    },
-    "ecvrefBookChapterPublications": {},
-    "ecvrefBookChapterPublications[]": {
-      "snippet": "ecvrefBookChapterPublications[${1:key}]"
-    },
-    "ecvrefReferredJournalsPublications": {},
-    "ecvrefReferredJournalsPublications[]": {
-      "snippet": "ecvrefReferredJournalsPublications[${1:key}]"
-    },
-    "ecvrefWorkshops": {},
-    "ecvrefWorkshops[]": {
-      "snippet": "ecvrefWorkshops[${1:key}]"
-    },
-    "ecvrefPosters": {},
-    "ecvrefPosters[]": {
-      "snippet": "ecvrefPosters[${1:key}]"
-    },
-    "ecvrefResearchProjects": {},
-    "ecvrefResearchProjects[]": {
-      "snippet": "ecvrefResearchProjects[${1:key}]"
-    },
-    "ecvrefAwards": {},
-    "ecvrefAwards[]": {
-      "snippet": "ecvrefAwards[${1:key}]"
-    },
-    "ecvfootnote{}": {
-      "snippet": "ecvfootnote{${1:note}}"
-    },
-    "ecvpage{}": {
-      "snippet": "ecvpage{${1:code}}"
-    },
-    "ecvWithHorRule": {},
-    "ecvNoHorRule": {},
-    "ecvRuleWidth{}": {
-      "snippet": "ecvRuleWidth{${1:width}}"
-    },
-    "ecvExtraRowHeight{}": {
-      "snippet": "ecvExtraRowHeight{${1:height}}"
-    },
-    "ecvColSep{}": {
-      "snippet": "ecvColSep{${1:width}}"
-    },
-    "ecvFlagWidth{}": {
-      "snippet": "ecvFlagWidth{${1:width}}"
-    },
-    "ecvLogoWidth{}": {
-      "snippet": "ecvLogoWidth{${1:width}}"
-    },
-    "ecvLogoOffset{}": {
-      "snippet": "ecvLogoOffset{${1:offset}}"
-    },
-    "ecvLeftColumnWidth{}": {
-      "snippet": "ecvLeftColumnWidth{${1:width}}"
-    },
-    "ecvTitleKern{}": {
-      "snippet": "ecvTitleKern{${1:kern}}"
-    },
-    "draweuropasslogo": {},
-    "draweuropeflag": {},
-    "ecvarg": {},
-    "ecvbullet": {},
-    "ecvdrawpicture": {},
-    "ecvrefWorkshopsPublications": {},
-    "ecvrefWorkshopsPublications[]": {
-      "snippet": "ecvrefWorkshopsPublications[${1:key}]"
-    },
-    "ecvsection{}": {
-      "snippet": "ecvsection{${1:title}}"
-    },
-    "myhyperlink{}": {
-      "snippet": "myhyperlink{${1:URL}}"
-    },
-    "oldhypertarget": {},
-    "theAwards": {},
-    "theBookChapterPublications": {},
-    "theConferencePublications": {},
-    "theFootNoteCounter": {},
-    "thePosters": {},
-    "theReferredJournalsPublications": {},
-    "theResearchProjects": {},
-    "theWorkshops": {}
-  },
-  "envs": {
-    "europecv": {}
-  },
-  "options": [
-    "utf8",
-    "ansinew",
-    "applemac",
-    "ascii",
-    "cp850",
-    "cp852",
-    "cp858",
-    "cp437",
-    "cp437de",
-    "cp865",
-    "cp866",
-    "cp1250",
-    "cp1251",
-    "cp1252",
-    "cp1257",
-    "decmulti",
-    "koi8-r",
-    "koi8-ru",
-    "koi8-u",
-    "latin1",
-    "latin2",
-    "latin3",
-    "latin4",
-    "latin5",
-    "latin9",
-    "latin10",
-    "maccyr",
-    "macukr",
-    "next",
-    "helvetica",
-    "arial",
-    "narrow",
-    "bulgarian",
-    "catalan",
-    "czech",
-    "danish",
-    "dutch",
-    "english",
-    "estonian",
-    "french",
-    "finnish",
-    "galician",
-    "german",
-    "greek",
-    "hungarian",
-    "icelandic",
-    "italian",
-    "latvian",
-    "lithuanian",
-    "maltese",
-    "norwegian",
-    "polish",
-    "portuguese",
-    "romanian",
-    "serbian",
-    "slovak",
-    "slovenian",
-    "spanish",
-    "swedish",
-    "noflag",
-    "flagWB",
-    "flagBW",
-    "flagCMYK",
-    "flagBlueCMYK",
-    "logo",
-    "nologo",
-    "notitle",
-    "nobranding",
-    "totpages",
-    "booktabs"
-  ],
-  "keyvals": []
+  "args": [
+    "\\documentclass/europecv#c"
+  ]
 }

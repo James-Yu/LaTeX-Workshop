@@ -1,41 +1,48 @@
 {
-  "includes": {
-    "pstricks": [],
-    "multido": [],
-    "pst-xkey": []
-  },
-  "macros": {
-    "psspectrum": {},
-    "psspectrum[]": {
-      "snippet": "psspectrum[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "PSTwlLoaded": {},
-    "pstwlfileversion": {},
-    "pstwlfiledate": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "begin=${1:wavelength in nm}",
-      "end=${1:wavelength in nm}",
-      "gamma=${1:factor}",
-      "brightness=${1:factor}",
-      "numlines=${1:integer}",
-      "lines=${1:wavelengths in nm}",
-      "element=${1:text}",
+    {
+      "name": "multido"
+    },
+    {
+      "name": "pst-xkey"
+    }
+  ],
+  "macros": [
+    {
+      "name": "psspectrum"
+    },
+    {
+      "name": "psspectrum",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\psspectrum": [
+      "begin=${1:wavelength in nm}\r",
+      "end=${1:wavelength in nm}\r",
+      "gamma=${1:factor}\r",
+      "brightness=${1:factor}\r",
+      "numlines=${1:integer}\r",
+      "lines=${1:wavelengths in nm}\r",
+      "element=${1:text}\r",
       "emission",
       "absorption",
-      "lwidth=${1:width}",
-      "lmin=${1:factor}",
+      "lwidth=${1:width}\r",
+      "lmin=${1:factor}\r",
       "axe",
-      "DI=${1:length in nm}",
+      "DI=${1:length in nm}\r",
       "axecolor=",
-      "axewidth=${1:width}",
-      "wlangle=${1:degrees}",
-      "wlcmd=${1:font commands}"
+      "axewidth=${1:width}\r",
+      "wlangle=${1:degrees}\r",
+      "wlcmd=${1:font commands}\r"
     ]
-  ]
+  },
+  "args": []
 }

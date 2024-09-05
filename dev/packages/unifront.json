@@ -1,19 +1,31 @@
 {
-  "includes": {
-    "xcolor": [],
-    "calc": []
-  },
-  "macros": {
-    "newsubsection{}": {
-      "snippet": "newsubsection{${1:title}}"
+  "deps": [
+    {
+      "name": "xcolor"
+    },
+    {
+      "name": "calc"
     }
-  },
-  "envs": {},
-  "options": [
-    "red",
-    "blue",
-    "yellow",
-    "help"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "newsubsection",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/unifront#c": [
+      "red\r",
+      "blue\r",
+      "yellow\r",
+      "help\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/unifront#c"
+  ]
 }

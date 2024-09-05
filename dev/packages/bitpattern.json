@@ -1,44 +1,116 @@
 {
-  "includes": {
-    "keyval": [],
-    "calc": [],
-    "multido": []
-  },
-  "macros": {
-    "bpLittleEndian": {},
-    "bpBigEndian": {},
-    "bpNumberBitsAbove": {},
-    "bpNumberBitsBelow": {},
-    "bpNoBitNumbers": {},
-    "bpNumberFieldsOnce": {},
-    "bpNumberFieldsTwice": {},
-    "bpNumberAllBits": {},
-    "bpStartAtBit{}": {
-      "snippet": "bpStartAtBit{${1:number}}"
+  "deps": [
+    {
+      "name": "keyval"
     },
-    "bpSetBitWidth{}": {
-      "snippet": "bpSetBitWidth{${1:width}}"
+    {
+      "name": "calc"
     },
-    "bpSetTickHeight{}": {
-      "snippet": "bpSetTickHeight{${1:height}}"
-    },
-    "bpFormatField{}": {
-      "snippet": "bpFormatField{${1:text}}"
-    },
-    "bpFormatBitNumber{}": {
-      "snippet": "bpFormatBitNumber{${1:number}}"
+    {
+      "name": "multido"
     }
-  },
-  "envs": {},
-  "options": [
-    "littleEndian",
-    "bigEndian",
-    "numberBitsAbove",
-    "numberBitsBelow",
-    "noBitNumbers",
-    "numberFieldsOnce",
-    "numberFieldsTwice",
-    "numberAllBits"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "bpLittleEndian",
+      "unusual": true
+    },
+    {
+      "name": "bpBigEndian",
+      "unusual": true
+    },
+    {
+      "name": "bpNumberBitsAbove",
+      "unusual": true
+    },
+    {
+      "name": "bpNumberBitsBelow",
+      "unusual": true
+    },
+    {
+      "name": "bpNoBitNumbers",
+      "unusual": true
+    },
+    {
+      "name": "bpNumberFieldsOnce",
+      "unusual": true
+    },
+    {
+      "name": "bpNumberFieldsTwice",
+      "unusual": true
+    },
+    {
+      "name": "bpNumberAllBits",
+      "unusual": true
+    },
+    {
+      "name": "bpStartAtBit",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "bpSetBitWidth",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:width}}"
+      }
+    },
+    {
+      "name": "bpSetTickHeight",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:height}}"
+      }
+    },
+    {
+      "name": "bpFormatField",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "bpFormatBitNumber",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/bitpattern#c": [
+      "littleEndian\r",
+      "bigEndian\r",
+      "numberBitsAbove\r",
+      "numberBitsBelow\r",
+      "noBitNumbers\r",
+      "numberFieldsOnce\r",
+      "numberFieldsTwice\r",
+      "numberAllBits\r"
+    ],
+    "\\bitpattern": [
+      "littleEndian\r",
+      "bigEndian\r",
+      "numberBitsAbove\r",
+      "numberBitsBelow\r",
+      "noBitNumbers\r",
+      "numberFieldsOnce\r",
+      "numberFieldsTwice\r",
+      "numberAllBits\r",
+      "startBit=${1:number}\r",
+      "bitWidth=",
+      "tickHeight="
+    ]
+  },
+  "args": [
+    "\\usepackage/bitpattern#c"
+  ]
 }

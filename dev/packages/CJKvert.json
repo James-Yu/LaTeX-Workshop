@@ -1,23 +1,43 @@
 {
-  "includes": {
-    "graphicx": []
-  },
-  "macros": {
-    "CJKvert": {},
-    "CJKhorz": {},
-    "CJKsymbol{}": {
-      "snippet": "CJKsymbol{${1:n}}"
-    },
-    "CJKsymbolsimple{}": {
-      "snippet": "CJKsymbolsimple{${1:n}}"
-    },
-    "CJKbaselinestretch": {},
-    "fileversion": {},
-    "filedate": {}
-  },
-  "envs": {},
-  "options": [
-    "usebaselinestretch"
+  "deps": [
+    {
+      "name": "graphicx"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "CJKvert"
+    },
+    {
+      "name": "CJKhorz"
+    },
+    {
+      "name": "CJKsymbol",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:n}}"
+      }
+    },
+    {
+      "name": "CJKsymbolsimple",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:n}}"
+      }
+    },
+    {
+      "name": "CJKbaselinestretch",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/CJKvert#c": [
+      "usebaselinestretch\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/CJKvert#c"
+  ]
 }

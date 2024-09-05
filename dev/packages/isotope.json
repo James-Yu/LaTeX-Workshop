@@ -1,18 +1,33 @@
 {
-  "includes": {},
-  "macros": {
-    "isotope{}": {
-      "snippet": "isotope{${1:name}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "isotope",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name%formula}}"
+      }
     },
-    "isotope[]{}": {
-      "snippet": "isotope[${2:nucleon num}]{${1:name}}"
+    {
+      "name": "isotope",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:nucleon num%formula}]{${1:name%formula}}"
+      }
     },
-    "isotope[][]{}": {
-      "snippet": "isotope[${2:nucleon num}][${3:atomic num}]{${1:name}}"
+    {
+      "name": "isotope",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:nucleon num%formula}][${3:atomic num%formula}]{${1:name%formula}}"
+      }
     },
-    "isotopestyle": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "isotopestyle",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

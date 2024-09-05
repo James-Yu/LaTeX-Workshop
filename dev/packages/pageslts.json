@@ -1,84 +1,142 @@
 {
-  "includes": {
-    "ltxcmds": [],
-    "atveryend": [],
-    "everyshi": [],
-    "letltxmacro": [],
-    "kvoptions": [],
-    "undolabl": [],
-    "rerunfilecheck": [],
-    "alphalph": []
-  },
-  "macros": {
-    "theCurrentPage": {},
-    "theCurrentPageLocal": {},
-    "lastpageref{}": {
-      "snippet": "lastpageref{${1:label}}"
+  "deps": [
+    {
+      "name": "ltxcmds"
     },
-    "lastpageref*{}": {
-      "snippet": "lastpageref*{${1:label}}"
+    {
+      "name": "atveryend"
     },
-    "lastpages{}{}": {
-      "snippet": "lastpages{${1:numstyle}}{${2:number}}"
+    {
+      "name": "everyshi"
     },
-    "AlphMult{}": {
-      "snippet": "AlphMult{${1:number}}"
+    {
+      "name": "letltxmacro"
     },
-    "alphMult{}": {
-      "snippet": "alphMult{${1:number}}"
+    {
+      "name": "kvoptions"
     },
-    "erroralphalph{}{}": {
-      "snippet": "erroralphalph{${1:cmd}}{${2:counter}}"
+    {
+      "name": "undolabl"
     },
-    "expandPagenumbering{}": {
-      "snippet": "expandPagenumbering{${1:numstyle}}"
+    {
+      "name": "rerunfilecheck"
     },
-    "extract{}": {
-      "snippet": "extract{${1:arg1}}"
-    },
-    "fnsymbolmult{}": {
-      "snippet": "fnsymbolmult{${1:number}}"
-    },
-    "lastpagerefend{}": {
-      "snippet": "lastpagerefend{${1:arg}}"
-    },
-    "lastpagereftext{}": {
-      "snippet": "lastpagereftext{${1:arg1}}"
-    },
-    "lastpagereftextstar{}": {
-      "snippet": "lastpagereftextstar{${1:arg1}}"
-    },
-    "lastpagereftxt{}": {
-      "snippet": "lastpagereftxt{${1:arg1}}"
-    },
-    "OrigPagenumbering{}": {
-      "snippet": "OrigPagenumbering{${1:arg}}"
-    },
-    "Origthepage": {},
-    "overrideLTSlabel{}{}": {
-      "snippet": "overrideLTSlabel{${1:arg1}}{${2:arg2}}"
-    },
-    "pagesLTStmpA": {},
-    "pagesLTStmpB": {},
-    "pncmissing": {},
-    "XRoman{}": {
-      "snippet": "XRoman{${1:counter}}"
-    },
-    "xroman{}": {
-      "snippet": "xroman{${1:counter}}"
-    },
-    "XXRoman{}": {
-      "snippet": "XXRoman{${1:counter}}"
+    {
+      "name": "alphalph"
     }
-  },
-  "envs": {},
-  "options": [
-    "pagecontinue",
-    "alphMult=${1|ab,bb,0|}",
-    "AlphMulti=${1|AB,BB,0|}",
-    "romanMult",
-    "RomanMulti",
-    "fnsymbolmult"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "theCurrentPage"
+    },
+    {
+      "name": "theCurrentPageLocal"
+    },
+    {
+      "name": "lastpageref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "lastpageref*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "lastpages",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:numstyle%keyvals}}{${2:number}}"
+      }
+    },
+    {
+      "name": "AlphMult",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "alphMult",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "erroralphalph",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:counter}}"
+      }
+    },
+    {
+      "name": "expandPagenumbering",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:numstyle}}"
+      }
+    },
+    {
+      "name": "fnsymbolmult",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "XRoman",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "xroman",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "XXRoman",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/pageslts#c": [
+      "pagecontinue",
+      "alphMult=${1|ab,bb,0\r|}",
+      "AlphMulti=${1|AB,BB,0\r|}",
+      "romanMult",
+      "RomanMulti",
+      "fnsymbolmult"
+    ],
+    "\\lastpages#c": [
+      "arabic\r",
+      "roman\r",
+      "Roman\r",
+      "alph\r",
+      "Alph\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/pageslts#c"
+  ]
 }

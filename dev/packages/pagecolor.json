@@ -1,27 +1,58 @@
 {
-  "includes": {
-    "kvoptions": [],
-    "xcolor": []
-  },
-  "macros": {
-    "thepagecolor": {},
-    "thepagecolornone": {},
-    "newpagecolor{}": {
-      "snippet": "newpagecolor{${1:color}}"
+  "deps": [
+    {
+      "name": "kvoptions"
     },
-    "restorepagecolor": {},
-    "backgroundpagecolor{}": {
-      "snippet": "backgroundpagecolor{${1:color}}"
-    },
-    "newbackgroundpagecolor{}": {
-      "snippet": "newbackgroundpagecolor{${1:color}}"
-    },
-    "restorebackgroundpagecolor": {}
-  },
-  "envs": {},
-  "options": [
-    "pagecolor=",
-    "nopagecolor"
+    {
+      "name": "xcolor"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "thepagecolor"
+    },
+    {
+      "name": "thepagecolornone"
+    },
+    {
+      "name": "newpagecolor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "restorepagecolor"
+    },
+    {
+      "name": "backgroundpagecolor",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "newbackgroundpagecolor",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "restorebackgroundpagecolor",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/pagecolor#c": [
+      "pagecolor=",
+      "nopagecolor\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/pagecolor#c"
+  ]
 }

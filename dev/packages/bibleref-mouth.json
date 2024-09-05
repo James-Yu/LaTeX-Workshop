@@ -1,71 +1,183 @@
 {
-  "includes": {
-    "fmtcount": [],
-    "hyperref": []
-  },
-  "macros": {
-    "bibleref{}": {
-      "snippet": "bibleref{${1:reference}}"
+  "deps": [
+    {
+      "name": "fmtcount"
     },
-    "setbiblestyle{}": {
-      "snippet": "setbiblestyle{${1:style name}}"
-    },
-    "thebook{}": {
-      "snippet": "thebook{${1:passage}}"
-    },
-    "thechapter{}": {
-      "snippet": "thechapter{${1:passage}}"
-    },
-    "theverse{}": {
-      "snippet": "theverse{${1:passage}}"
-    },
-    "bookchapterseparator{}": {
-      "snippet": "bookchapterseparator{${1:separators}}"
-    },
-    "chapterverseseparator{}": {
-      "snippet": "chapterverseseparator{${1:separators}}"
-    },
-    "ifsamebook{}{}{}{}": {
-      "snippet": "ifsamebook{${1:left}}{${2:right}}{${3:truehandler}}{${4:falsehandler}}"
-    },
-    "ifsamechapter{}{}{}{}": {
-      "snippet": "ifsamechapter{${1:left}}{${2:right}}{${3:truehandler}}{${4:falsehandler}}"
-    },
-    "ifsameverse{}{}{}{}": {
-      "snippet": "ifsameverse{${1:left}}{${2:right}}{${3:truehandler}}{${4:falsehandler}}"
-    },
-    "ifhasbook{}{}{}": {
-      "snippet": "ifhasbook{${1:passage}}{${2:truehandler}}{${3:falsehandler}}"
-    },
-    "ifhaschapter{}{}{}": {
-      "snippet": "ifhaschapter{${1:passage}}{${2:truehandler}}{${3:falsehandler}}"
-    },
-    "ifhasverse{}{}{}": {
-      "snippet": "ifhasverse{${1:passage}}{${2:truehandler}}{${3:falsehandler}}"
-    },
-    "thebookname{}{}": {
-      "snippet": "thebookname{${1:style name}}{${2:passage}}"
-    },
-    "providebiblestyle{}{}": {
-      "snippet": "providebiblestyle{${1:style name}}{${2:formatting}}"
-    },
-    "providebiblebookalias{}{}": {
-      "snippet": "providebiblebookalias{${1:book}}{${2:alias}}"
-    },
-    "providebiblebook{}{}{}": {
-      "snippet": "providebiblebook{${1:style name}}{${2:book}}{${3:bookname}}"
-    },
-    "standardbiblestyle{}{}{}{}{}{}{}{}{}{}{}{}": {
-      "snippet": "standardbiblestyle{${1:bkstyle}}{${2:bkchsep}}{${3:chvsep}}{${4:bksep}}{${5:chsep}}{${6:vsep}}{${7:rangesep}}{${8:chstyle}}{${9:vstyle}}{${10:beginpassage}}{${11:endpassage}}{${12:list}}"
-    },
-    "providebiblegatewayurl{}{}": {
-      "snippet": "providebiblegatewayurl{${1:url style name}}{${2:version}}"
-    },
-    "providebiblegatewaystyle{}{}{}": {
-      "snippet": "providebiblegatewaystyle{${1:style name}}{${2:url style name}}{${3:text style name}}"
+    {
+      "name": "hyperref"
     }
+  ],
+  "macros": [
+    {
+      "name": "bibleref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:reference}}"
+      }
+    },
+    {
+      "name": "setbiblestyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:style name%keyvals}}"
+      }
+    },
+    {
+      "name": "thebook",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:passage}}"
+      }
+    },
+    {
+      "name": "thechapter",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:passage}}"
+      }
+    },
+    {
+      "name": "theverse",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:passage}}"
+      }
+    },
+    {
+      "name": "bookchapterseparator",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:separators}}"
+      }
+    },
+    {
+      "name": "chapterverseseparator",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:separators}}"
+      }
+    },
+    {
+      "name": "ifsamebook",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:left}}{${2:right}}{${3:truehandler}}{${4:falsehandler}}"
+      }
+    },
+    {
+      "name": "ifsamechapter",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:left}}{${2:right}}{${3:truehandler}}{${4:falsehandler}}"
+      }
+    },
+    {
+      "name": "ifsameverse",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:left}}{${2:right}}{${3:truehandler}}{${4:falsehandler}}"
+      }
+    },
+    {
+      "name": "ifhasbook",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:passage}}{${2:truehandler}}{${3:falsehandler}}"
+      }
+    },
+    {
+      "name": "ifhaschapter",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:passage}}{${2:truehandler}}{${3:falsehandler}}"
+      }
+    },
+    {
+      "name": "ifhasverse",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:passage}}{${2:truehandler}}{${3:falsehandler}}"
+      }
+    },
+    {
+      "name": "thebookname",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:style name}}{${2:passage}}"
+      }
+    },
+    {
+      "name": "providebiblestyle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:style name}}{${2:formatting}}"
+      }
+    },
+    {
+      "name": "providebiblebookalias",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:book}}{${2:alias}}"
+      }
+    },
+    {
+      "name": "providebiblebook",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:style name}}{${2:book}}{${3:bookname}}"
+      }
+    },
+    {
+      "name": "standardbiblestyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}{}{}{}{}{}{}{}",
+        "snippet": "{${1:bkstyle}}{${2:bkchsep}}{${3:chvsep}}{${4:bksep}}{${5:chsep}}{${6:vsep}}{${7:rangesep}}{${8:chstyle}}{${9:vstyle}}{${10:beginpassage}}{${11:endpassage}}{${12:list}}"
+      }
+    },
+    {
+      "name": "providebiblegatewayurl",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:url style name}}{${2:version}}"
+      }
+    },
+    {
+      "name": "providebiblegatewaystyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:style name}}{${2:url style name}}{${3:text style name}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\setbiblestyle#c": [
+      "fullname\r",
+      "jerusalem\r",
+      "anglosaxon\r",
+      "JEH\r",
+      "NTG\r",
+      "MLA\r",
+      "chicago\r",
+      "text\r",
+      "verse\r",
+      "biblegateway.com\r"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

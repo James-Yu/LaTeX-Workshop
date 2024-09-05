@@ -143,10 +143,39 @@ export type TeXMathEnv = {
     envname: string
 }
 
-export type Package = {
+export type PackageRaw = {
+    deps: DependencyRaw[]
+    macros: MacroRaw[]
+    envs: EnvironmentRaw[]
+    keys: { [key: string]: string[] }
+    args: string[]
+}
+
+export type DependencyRaw = {
+    name: string
+    if?: string
+}
+
+export type EnvironmentRaw = {
+    name: string
+    arg?: { format: string; snippet: string; keys?: string[]; keyPos?: number }
+    if?: string
+    unusual?: boolean
+}
+
+export type MacroRaw = {
+    name: string
+    arg?: { format: string; snippet: string; keys?: string[]; keyPos?: number }
+    if?: string
+    unusual?: boolean
+    detail?: string
+    doc?: string
+}
+
+export type PackageObsolete = {
     includes: {[key: string]: string[]},
-    macros: {[key: string]: Macro},
-    envs: {[key: string]: Environment},
+    macros: {[key: string]: MacroObsolete},
+    envs: {[key: string]: EnvObsolete},
     options: string[],
     keyvals: string[][]
 }
@@ -184,7 +213,7 @@ export interface CitationItem extends CompletionItem {
 
 export enum EnvSnippetType { AsName, AsMacro, ForBegin }
 
-export type Environment = {
+export type EnvObsolete = {
     /** Name of the environment, what comes inside \begin{...} */
     name: string,
     /** To be inserted after \begin{..} */
@@ -202,7 +231,7 @@ export type Environment = {
     detail?: string
 }
 
-export type Macro = {
+export type MacroObsolete = {
     /** Name of the macro without the leading \ and with argument signature */
     macro?: string,
     /** Snippet to be inserted after the leading \ */

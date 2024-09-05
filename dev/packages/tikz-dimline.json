@@ -1,34 +1,46 @@
 {
-  "includes": {
-    "tikz": [],
-    "pgfplots": [],
-    "ifthen": [],
-    "tikzlibrarycalc": [],
-    "tikzlibrarydecorations.markings": []
-  },
-  "macros": {
-    "dimline[]{}{}{}": {
-      "snippet": "dimline[${4:options}]{${1:start}}{${2:end}}{${3:label}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "tikz"
+    },
+    {
+      "name": "pgfplots"
+    },
+    {
+      "name": "ifthen"
+    },
+    {
+      "name": "tikzlibrarycalc"
+    },
+    {
+      "name": "tikzlibrarydecorations.markings"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "dimline",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:options%keyvals}]{${1:start}}{${2:end}}{${3:label}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\dimline": [
       "color=",
-      "line style=",
-      "label style=",
+      "line style=\r",
+      "label style=\r",
       "extension start length=",
       "extension end length=",
-      "extension start angle=${1:degrees}",
-      "extension end angle=${1:degrees}",
-      "extension start style=",
-      "extension end style=",
-      "extension start path=",
-      "extension end path=",
-      "arrows=${1|dimline-dimline,dimline reverse-dimline reverse|}"
+      "extension start angle=${1:degrees}\r",
+      "extension end angle=${1:degrees}\r",
+      "extension start style=\r",
+      "extension end style=\r",
+      "extension start path=\r",
+      "extension end path=\r",
+      "arrows=${1|dimline-dimline,dimline reverse-dimline reverse\r|}"
     ]
-  ]
+  },
+  "args": []
 }

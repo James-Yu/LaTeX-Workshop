@@ -1,56 +1,286 @@
 {
-  "includes": {
-    "regexpatch": [],
-    "projlib-language": [
-      "amsfashion",
-      "amsfashion=true",
-      "ams-fashion",
-      "ams-fashion=true",
-      "ams fashion",
-      "ams fashion=true"
-    ],
-    "scontents": [
-      "amsfashion",
-      "amsfashion=true",
-      "ams-fashion",
-      "ams-fashion=true",
-      "ams fashion",
-      "ams fashion=true"
+  "deps": [
+    {
+      "name": "regexpatch"
+    },
+    {
+      "name": "projlib-language",
+      "if": "amsfashion"
+    },
+    {
+      "name": "scontents",
+      "if": "amsfashion"
+    },
+    {
+      "name": "projlib-language",
+      "if": "amsfashion=true"
+    },
+    {
+      "name": "scontents",
+      "if": "amsfashion=true"
+    },
+    {
+      "name": "projlib-language",
+      "if": "ams-fashion"
+    },
+    {
+      "name": "scontents",
+      "if": "ams-fashion"
+    },
+    {
+      "name": "projlib-language",
+      "if": "ams-fashion=true"
+    },
+    {
+      "name": "scontents",
+      "if": "ams-fashion=true"
+    },
+    {
+      "name": "projlib-language",
+      "if": "ams fashion"
+    },
+    {
+      "name": "scontents",
+      "if": "ams fashion"
+    },
+    {
+      "name": "projlib-language",
+      "if": "ams fashion=true"
+    },
+    {
+      "name": "scontents",
+      "if": "ams fashion=true"
+    }
+  ],
+  "macros": [
+    {
+      "name": "keywords",
+      "if": "amsfashion",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keywords%text}}"
+      }
+    },
+    {
+      "name": "dedicatory",
+      "if": "amsfashion",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "subjclass",
+      "if": "amsfashion",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:classification}}"
+      }
+    },
+    {
+      "name": "subjclass",
+      "if": "amsfashion",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:year}]{${1:classification}}"
+      }
+    },
+    {
+      "name": "keywords",
+      "if": "amsfashion=true",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keywords%text}}"
+      }
+    },
+    {
+      "name": "dedicatory",
+      "if": "amsfashion=true",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "subjclass",
+      "if": "amsfashion=true",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:classification}}"
+      }
+    },
+    {
+      "name": "subjclass",
+      "if": "amsfashion=true",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:year}]{${1:classification}}"
+      }
+    },
+    {
+      "name": "keywords",
+      "if": "ams-fashion",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keywords%text}}"
+      }
+    },
+    {
+      "name": "dedicatory",
+      "if": "ams-fashion",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "subjclass",
+      "if": "ams-fashion",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:classification}}"
+      }
+    },
+    {
+      "name": "subjclass",
+      "if": "ams-fashion",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:year}]{${1:classification}}"
+      }
+    },
+    {
+      "name": "keywords",
+      "if": "ams-fashion=true",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keywords%text}}"
+      }
+    },
+    {
+      "name": "dedicatory",
+      "if": "ams-fashion=true",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "subjclass",
+      "if": "ams-fashion=true",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:classification}}"
+      }
+    },
+    {
+      "name": "subjclass",
+      "if": "ams-fashion=true",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:year}]{${1:classification}}"
+      }
+    },
+    {
+      "name": "keywords",
+      "if": "ams fashion",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keywords%text}}"
+      }
+    },
+    {
+      "name": "dedicatory",
+      "if": "ams fashion",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "subjclass",
+      "if": "ams fashion",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:classification}}"
+      }
+    },
+    {
+      "name": "subjclass",
+      "if": "ams fashion",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:year}]{${1:classification}}"
+      }
+    },
+    {
+      "name": "keywords",
+      "if": "ams fashion=true",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keywords%text}}"
+      }
+    },
+    {
+      "name": "dedicatory",
+      "if": "ams fashion=true",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "subjclass",
+      "if": "ams fashion=true",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:classification}}"
+      }
+    },
+    {
+      "name": "subjclass",
+      "if": "ams fashion=true",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:year}]{${1:classification}}"
+      }
+    },
+    {
+      "name": "institute",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:institute}}"
+      }
+    },
+    {
+      "name": "address",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:address}}"
+      }
+    },
+    {
+      "name": "curraddr",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:address}}"
+      }
+    },
+    {
+      "name": "email",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:email%URL}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/projlib-author#c": [
+      "amsfashion\r"
     ]
   },
-  "macros": {
-    "keywords{}": {
-      "snippet": "keywords{${1:keywords}}",
-      "option": "ams fashion=true"
-    },
-    "dedicatory{}": {
-      "snippet": "dedicatory{${1:text}}",
-      "option": "ams fashion=true"
-    },
-    "subjclass{}": {
-      "snippet": "subjclass{${1:classification}}",
-      "option": "ams fashion=true"
-    },
-    "subjclass[]{}": {
-      "snippet": "subjclass[${2:year}]{${1:classification}}",
-      "option": "ams fashion=true"
-    },
-    "institute{}": {
-      "snippet": "institute{${1:institute}}"
-    },
-    "address{}": {
-      "snippet": "address{${1:address}}"
-    },
-    "curraddr{}": {
-      "snippet": "curraddr{${1:address}}"
-    },
-    "email{}": {
-      "snippet": "email{${1:email}}"
-    }
-  },
-  "envs": {},
-  "options": [
-    "amsfashion"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/projlib-author#c"
+  ]
 }

@@ -1,49 +1,65 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-plot": [],
-    "pst-node": [],
-    "pst-xkey": [],
-    "numprint": [],
-    "multido": []
-  },
-  "macros": {
-    "psAM": {},
-    "psAM[]": {
-      "snippet": "psAM[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "pstricks"
+    },
+    {
+      "name": "pst-plot"
+    },
+    {
+      "name": "pst-node"
+    },
+    {
+      "name": "pst-xkey"
+    },
+    {
+      "name": "numprint"
+    },
+    {
+      "name": "multido"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "psAM"
+    },
+    {
+      "name": "psAM",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\psAM": [
       "BW",
-      "C=${1:capacitance in F}",
+      "C=${1:capacitance in F}\r",
       "Centering",
       "enveloppe",
-      "frequenceAudio=${1:modulated signal frequency in Hz}",
-      "frequencePorteuse=${1:carrier frequency in Hz}",
+      "frequenceAudio=${1:modulated signal frequency in Hz}\r",
+      "frequencePorteuse=${1:carrier frequency in Hz}\r",
       "linewidth=",
-      "R=${1:resistance in Ω}",
+      "R=${1:resistance in Ω}\r",
       "SignalDemodule",
       "SignalFinal",
       "SignalModulant",
       "SignalModule",
       "SignalPorteuse",
       "SignalRedresse",
-      "timeDiv=${1:time base in s/div}",
-      "title=${1:text}",
+      "timeDiv=${1:time base in s/div}\r",
+      "title=${1:text}\r",
       "traceU",
-      "U0=${1:offset in V}",
-      "Um=${1:modulated signal amplitude in V}",
+      "U0=${1:offset in V}\r",
+      "Um=${1:modulated signal amplitude in V}\r",
       "UMandUm",
-      "Up=${1:carrier amplitude in V}",
+      "Up=${1:carrier amplitude in V}\r",
       "values",
-      "voltDivY1=${1:coeff in V/div}",
-      "voltDivY2=${1:coeff in V/div}",
+      "voltDivY1=${1:coeff in V/div}\r",
+      "voltDivY2=${1:coeff in V/div}\r",
       "XY"
     ]
-  ]
+  },
+  "args": []
 }

@@ -1,51 +1,80 @@
 {
-  "includes": {},
-  "macros": {
-    "thetcbrasternum": {},
-    "thetcbrastercolumn": {},
-    "thetcbrasterrow": {},
-    "tcbitem": {},
-    "tcbitem[]": {
-      "snippet": "tcbitem[${1:options}]"
+  "deps": [],
+  "macros": [
+    {
+      "name": "thetcbrasternum"
+    },
+    {
+      "name": "thetcbrastercolumn"
+    },
+    {
+      "name": "thetcbrasterrow"
+    },
+    {
+      "name": "tcbitem"
+    },
+    {
+      "name": "tcbitem",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     }
-  },
-  "envs": {
-    "tcbraster": {},
-    "tcbraster[]": {
+  ],
+  "envs": [
+    {
+      "name": "tcbraster"
+    },
+    {
       "name": "tcbraster",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     },
-    "tcbitemize": {},
-    "tcbitemize[]": {
+    {
+      "name": "tcbitemize"
+    },
+    {
       "name": "tcbitemize",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     },
-    "tcboxedraster{}": {
+    {
       "name": "tcboxedraster",
-      "snippet": "{${1:box options}}"
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:box options}}"
+      }
     },
-    "tcboxedraster[]{}": {
+    {
       "name": "tcboxedraster",
-      "snippet": "[${2:raster options}]{${1:box options}}"
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:raster options%keyvals}]{${1:box options}}"
+      }
     },
-    "tcboxeditemize{}": {
+    {
       "name": "tcboxeditemize",
-      "snippet": "{${1:box options}}"
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:box options}}"
+      }
     },
-    "tcboxeditemize[]{}": {
+    {
       "name": "tcboxeditemize",
-      "snippet": "[${2:raster options}]{${1:box options}}"
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:raster options%keyvals}]{${1:box options}}"
+      }
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
-      "raster columns=${1:number}",
-      "raster rows=${1:number}",
+  ],
+  "keys": {
+    "\\tcbset,\\begin{tcbraster},\\begin{tcbitemize},\\begin{tcboxedraster},\\begin{tcboxeditemize}": [
+      "raster columns=${1:number}\r",
+      "raster rows=${1:number}\r",
       "raster width=",
       "raster width flush left=",
       "raster width center=",
@@ -58,34 +87,35 @@
       "raster right skip=",
       "raster column skip=",
       "raster row skip=",
-      "raster halign=${1|left,center,right|}",
-      "raster valign=${1|top,center,bottom|}",
-      "raster equal height",
-      "raster equal height=${1|none,rows,all|}",
-      "raster equal height group=${1:id}",
+      "raster halign=${1|left,center,right\r|}",
+      "raster valign=${1|top,center,bottom\r|}",
+      "raster equal height\r",
+      "raster equal height=${1|none,rows,all\r|}",
+      "raster equal height group=${1:id}\r",
       "raster force size",
-      "raster reset",
-      "raster every box/.style={${1:options}}",
-      "raster odd column/.style={${1:options}}",
-      "raster even column/.style={${1:options}}",
-      "raster column 1/.style={${1:options}}",
-      "raster column 2/.style={${1:options}}",
-      "raster column 3/.style={${1:options}}",
-      "raster column 4/.style={${1:options}}",
-      "raster odd row/.style={${1:options}}",
-      "raster even row/.style={${1:options}}",
-      "raster row 1/.style={${1:options}}",
-      "raster row 2/.style={${1:options}}",
-      "raster row 3/.style={${1:options}}",
-      "raster row 4/.style={${1:options}}",
-      "raster odd number/.style={${1:options}}",
-      "raster even number/.style={${1:options}}",
-      "raster number 1/.style={${1:options}}",
-      "raster number 2/.style={${1:options}}",
-      "raster number 3/.style={${1:options}}",
-      "raster number 4/.style={${1:options}}",
-      "raster multicolumn=${1:number}",
-      "raster multirow=${1:number}"
+      "raster reset\r",
+      "raster every box/.style={${1:options}}\r",
+      "raster odd column/.style={${1:options}}\r",
+      "raster even column/.style={${1:options}}\r",
+      "raster column 1/.style={${1:options}}\r",
+      "raster column 2/.style={${1:options}}\r",
+      "raster column 3/.style={${1:options}}\r",
+      "raster column 4/.style={${1:options}}\r",
+      "raster odd row/.style={${1:options}}\r",
+      "raster even row/.style={${1:options}}\r",
+      "raster row 1/.style={${1:options}}\r",
+      "raster row 2/.style={${1:options}}\r",
+      "raster row 3/.style={${1:options}}\r",
+      "raster row 4/.style={${1:options}}\r",
+      "raster odd number/.style={${1:options}}\r",
+      "raster even number/.style={${1:options}}\r",
+      "raster number 1/.style={${1:options}}\r",
+      "raster number 2/.style={${1:options}}\r",
+      "raster number 3/.style={${1:options}}\r",
+      "raster number 4/.style={${1:options}}\r",
+      "raster multicolumn=${1:number}\r",
+      "raster multirow=${1:number}\r"
     ]
-  ]
+  },
+  "args": []
 }

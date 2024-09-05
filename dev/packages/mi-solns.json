@@ -1,85 +1,221 @@
 {
-  "includes": {
-    "shellesc": []
-  },
-  "macros": {
-    "addToMINullify": {},
-    "copyfileCmdEx": {},
-    "copyfileCmdQz": {},
-    "copySolnsOff": {},
-    "copySolnsOn": {},
-    "declQSLIn{}": {
-      "snippet": "declQSLIn{${1:arg1}}"
+  "deps": [
+    {
+      "name": "shellesc"
+    }
+  ],
+  "macros": [
+    {
+      "name": "addToMINullify",
+      "unusual": true
     },
-    "declQSLOut{}": {
-      "snippet": "declQSLOut{${1:qsl-out}}"
+    {
+      "name": "copyfileCmdEx"
     },
-    "declSOLIn{}": {
-      "snippet": "declSOLIn{${1:arg1}}"
+    {
+      "name": "copyfileCmdQz"
     },
-    "declSOLOut{}": {
-      "snippet": "declSOLOut{${1:sol-out}}"
+    {
+      "name": "copySolnsOff"
     },
-    "eqargi": {},
-    "eqMrkSolnCpyEx{}": {
-      "snippet": "eqMrkSolnCpyEx{${1:arg1}}"
+    {
+      "name": "copySolnsOn"
     },
-    "eqMrkSolnCpyQz{}": {
-      "snippet": "eqMrkSolnCpyQz{${1:arg1}}"
+    {
+      "name": "declQSLIn",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
     },
-    "eqMrkSolnCpySQ{}": {
-      "snippet": "eqMrkSolnCpySQ{${1:arg1}}"
+    {
+      "name": "declQSLOut",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:qsl-out}}"
+      }
     },
-    "examSolnHeadFmt": {},
-    "gobbleiiendgroup{}": {
-      "snippet": "gobbleiiendgroup{${1:arg1}}"
+    {
+      "name": "declSOLIn",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
     },
-    "gobbleiiendinput{}": {
-      "snippet": "gobbleiiendinput{${1:arg1}}"
+    {
+      "name": "declSOLOut",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:sol-out}}"
+      }
     },
-    "gobbleiiterminex{}": {
-      "snippet": "gobbleiiterminex{${1:arg1}}"
+    {
+      "name": "eqMrkSolnCpyEx",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
     },
-    "ifmifound": {},
-    "ifnotamiop": {},
-    "ignoreques": {},
-    "ignoreterminex": {},
-    "insExSoln[]{}": {
-      "snippet": "insExSoln[${2:inserts}]{${1:name}}"
+    {
+      "name": "eqMrkSolnCpyQz",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
     },
-    "insExSoln{}": {
-      "snippet": "insExSoln{${1:name}}"
+    {
+      "name": "eqMrkSolnCpySQ",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
     },
-    "insQzSoln[]{}": {
-      "snippet": "insQzSoln[${2:inserts}]{${1:name}}"
+    {
+      "name": "examSolnHeadFmt",
+      "unusual": true
     },
-    "insQzSoln{}": {
-      "snippet": "insQzSoln{${1:name}}"
+    {
+      "name": "gobbleiiendgroup",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
     },
-    "insSqSoln[]{}": {
-      "snippet": "insSqSoln[${2:inserts}]{${1:name}}"
+    {
+      "name": "gobbleiiendinput",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
     },
-    "insSqSoln{}": {
-      "snippet": "insSqSoln{${1:name}}"
+    {
+      "name": "gobbleiiterminex",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
     },
-    "mifoundfalse": {},
-    "mifoundtrue": {},
-    "miqslin": {},
-    "miqslout": {},
-    "miReadOffMsg": {},
-    "misolin": {},
-    "misolout": {},
-    "mrkForIns{}": {
-      "snippet": "mrkForIns{${1:name}}"
+    {
+      "name": "ifmifound",
+      "unusual": true
     },
-    "notamiopfalse": {},
-    "notamioptrue": {},
-    "readSolnsOff": {},
-    "readSolnsOn": {},
-    "reqDate": {},
-    "writeToSolnFile": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "ifnotamiop",
+      "unusual": true
+    },
+    {
+      "name": "ignoreques"
+    },
+    {
+      "name": "ignoreterminex"
+    },
+    {
+      "name": "insExSoln",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:inserts}]{${1:name}}"
+      }
+    },
+    {
+      "name": "insExSoln",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "insQzSoln",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:inserts}]{${1:name}}"
+      }
+    },
+    {
+      "name": "insQzSoln",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "insSqSoln",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:inserts}]{${1:name}}"
+      }
+    },
+    {
+      "name": "insSqSoln",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "mifoundfalse",
+      "unusual": true
+    },
+    {
+      "name": "mifoundtrue",
+      "unusual": true
+    },
+    {
+      "name": "miqslin",
+      "unusual": true
+    },
+    {
+      "name": "miqslout"
+    },
+    {
+      "name": "miReadOffMsg",
+      "unusual": true
+    },
+    {
+      "name": "misolin",
+      "unusual": true
+    },
+    {
+      "name": "misolout"
+    },
+    {
+      "name": "mrkForIns",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "notamiopfalse",
+      "unusual": true
+    },
+    {
+      "name": "notamioptrue",
+      "unusual": true
+    },
+    {
+      "name": "readSolnsOff"
+    },
+    {
+      "name": "readSolnsOn"
+    },
+    {
+      "name": "reqDate",
+      "unusual": true
+    },
+    {
+      "name": "writeToSolnFile",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

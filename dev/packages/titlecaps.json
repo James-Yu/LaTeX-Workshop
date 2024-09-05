@@ -1,34 +1,59 @@
 {
-  "includes": {
-    "ifnextok": [],
-    "ifthen": []
-  },
-  "macros": {
-    "titlecap{}": {
-      "snippet": "titlecap{${1:rich text}}"
+  "deps": [
+    {
+      "name": "ifnextok"
     },
-    "titlecap[]{}": {
-      "snippet": "titlecap[${2:option}]{${1:rich text}}"
+    {
+      "name": "ifthen"
+    }
+  ],
+  "macros": [
+    {
+      "name": "titlecap",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:rich text%text}}"
+      }
     },
-    "Addlcwords{}": {
-      "snippet": "Addlcwords{${1:space-separated word list}}"
+    {
+      "name": "titlecap",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:option}]{${1:rich text%text}}"
+      }
     },
-    "Resetlcwords": {},
-    "textnc{}": {
-      "snippet": "textnc{${1:text}}"
+    {
+      "name": "Addlcwords",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:space-separated word list}}"
+      }
     },
-    "converttilde": {},
-    "noatinsidetc": {},
-    "usestringstringsnames": {},
-    "SaveHardspace": {},
-    "SoftSpace": {},
-    "addlcwords": {},
-    "resetlcwords": {},
-    "addlcword": {},
-    "getargs": {},
-    "capitalizetitle": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "Resetlcwords"
+    },
+    {
+      "name": "textnc",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "converttilde",
+      "unusual": true
+    },
+    {
+      "name": "noatinsidetc",
+      "unusual": true
+    },
+    {
+      "name": "usestringstringsnames",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

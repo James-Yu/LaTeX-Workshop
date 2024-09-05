@@ -1,31 +1,44 @@
 {
-  "includes": {
-    "xpatch": [],
-    "pgfornament": []
-  },
-  "macros": {
-    "pgfornamenthan{}": {
-      "snippet": "pgfornamenthan{${1:ornament number}}"
+  "deps": [
+    {
+      "name": "xpatch"
     },
-    "pgfornamenthan[]{}": {
-      "snippet": "pgfornamenthan[${2:options}]{${1:ornament number}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "pgfornament"
+    }
+  ],
+  "macros": [
+    {
+      "name": "pgfornamenthan",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ornament number}}"
+      }
     },
-    "pgfOrnamentsHanObject": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "scale=${1:factor}",
+    {
+      "name": "pgfornamenthan",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:ornament number}}"
+      }
+    },
+    {
+      "name": "pgfOrnamentsHanObject",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\pgfornamenthan#c": [
+      "scale=${1:factor}\r",
       "width=",
       "height=",
       "color=",
-      "opacity=${1:factor}",
+      "opacity=${1:factor}\r",
       "ydelta=",
-      "symmetry=${1|v,h,c,none|}",
-      "anchor=${1:anchor}"
+      "symmetry=${1|v,h,c,none\r|}",
+      "anchor=${1:anchor}\r"
     ]
-  ]
+  },
+  "args": []
 }

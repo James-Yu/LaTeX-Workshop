@@ -1,63 +1,81 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-3d": [],
-    "multido": [],
-    "pst-node": [],
-    "pst-arrow": [],
-    "pst-xkey": []
-  },
-  "macros": {
-    "psmagneticfield()()": {
-      "snippet": "psmagneticfield(${1:x1},${2:y1})(${3:x2},${4:y2})"
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "psmagneticfield[]()()": {
-      "snippet": "psmagneticfield[${1:options}](${2:x1},${3:y1})(${4:x2},${5:y2})",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "pst-3d"
     },
-    "psmagneticfieldThreeD()()": {
-      "snippet": "psmagneticfieldThreeD(${1:x1},${2:y1})(${3:x2},${4:y2})"
+    {
+      "name": "multido"
     },
-    "psmagneticfieldThreeD[]()()": {
-      "snippet": "psmagneticfieldThreeD[${1:options}](${2:x1},${3:y1})(${4:x2},${5:y2})",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "pst-node"
     },
-    "psBarMagnet": {},
-    "psBarMagnet()": {
-      "snippet": "psBarMagnet(${1:x},${2:y})"
+    {
+      "name": "pst-arrow"
     },
-    "psBarMagnet[]": {
-      "snippet": "psBarMagnet[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "pst-xkey"
+    }
+  ],
+  "macros": [
+    {
+      "name": "psmagneticfield(x1,y1)(x2,y2)"
     },
-    "psBarMagnet[]()": {
-      "snippet": "psBarMagnet[${1:options}](${2:x},${3:y})",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "psmagneticfield",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "[${1:options%keyvals}](${2:x1},${3:y1})(${4:x2},${5:y2})"
+      }
     },
-    "CalcIntermediaire": {},
-    "yA": {},
-    "PSTMagneticFieldLoaded": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "R=${1:number}",
-      "N=${1:number}",
-      "L=${1:number}",
-      "nL=${1:integer}",
-      "numSpires=",
-      "pointsB=${1:integer}",
-      "pointsS=${1:integer}",
-      "PasB=${1:number}",
-      "PasS=${1:number}",
-      "nS=${1:integer}",
-      "styleSpire=${1:style}",
-      "styleCourant=${1:style}",
+    {
+      "name": "psmagneticfieldThreeD(x1,y1)(x2,y2)"
+    },
+    {
+      "name": "psmagneticfieldThreeD",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "[${1:options%keyvals}](${2:x1},${3:y1})(${4:x2},${5:y2})"
+      }
+    },
+    {
+      "name": "psBarMagnet"
+    },
+    {
+      "name": "psBarMagnet(x,y)"
+    },
+    {
+      "name": "psBarMagnet",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "psBarMagnet",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:options%keyvals}](${2:x},${3:y})"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\psmagneticfield#c,\\psmagneticfieldThreeD#c": [
+      "R=${1:number}\r",
+      "N=${1:number}\r",
+      "L=${1:number}\r",
+      "nL=${1:integer}\r",
+      "numSpires=\r",
+      "pointsB=${1:integer}\r",
+      "pointsS=${1:integer}\r",
+      "PasB=${1:number}\r",
+      "PasS=${1:number}\r",
+      "nS=${1:integer}\r",
+      "styleSpire=${1:style}\r",
+      "styleCourant=${1:style}\r",
       "drawSelf",
       "AntiHelmholtz",
       "StreamDensityPlot",
@@ -65,12 +83,13 @@
       "changeNS",
       "linecolor="
     ],
-    [
-      "rot=${1:degrees}",
+    "\\psBarMagnet#c": [
+      "rot=${1:degrees}\r",
       "showField",
       "showPoleLabels",
-      "fontstyle=${1:font commands}",
-      "magnetScale=${1:factor}"
+      "fontstyle=${1:font commands}\r",
+      "magnetScale=${1:factor}\r"
     ]
-  ]
+  },
+  "args": []
 }

@@ -1,107 +1,297 @@
 {
-  "includes": {},
-  "macros": {
-    "mitemx{}": {
-      "snippet": "mitemx{${1:text}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "mitemx",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "mitemxx{}{}": {
-      "snippet": "mitemxx{${1:text1}}{${2:text2}}"
+    {
+      "name": "mitemxx",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text1%text}}{${2:text2%text}}"
+      }
     },
-    "mitemxxx{}{}{}": {
-      "snippet": "mitemxxx{${1:text1}}{${2:text2}}{${3:text3}}"
+    {
+      "name": "mitemxxx",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:text1%text}}{${2:text2%text}}{${3:text3%text}}"
+      }
     },
-    "mitemxox{}{}": {
-      "snippet": "mitemxox{${1:left}}{${2:right}}"
+    {
+      "name": "mitemxox",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:left%text}}{${2:right%text}}"
+      }
     },
-    "mitemxxo{}{}": {
-      "snippet": "mitemxxo{${1:left}}{${2:center}}"
+    {
+      "name": "mitemxxo",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:left%text}}{${2:center%text}}"
+      }
     },
-    "mitemxxxx{}{}{}{}": {
-      "snippet": "mitemxxxx{${1:text1}}{${2:text2}}{${3:text3}}{${4:text4}}"
+    {
+      "name": "mitemxxxx",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:text1%text}}{${2:text2%text}}{${3:text3%text}}{${4:text4%text}}"
+      }
     },
-    "mitemxoxx{}{}{}": {
-      "snippet": "mitemxoxx{${1:left}}{${2:right1}}{${3:right2}}"
+    {
+      "name": "mitemxoxx",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:left%text}}{${2:right1%text}}{${3:right2%text}}"
+      }
     },
-    "mitemxxox{}{}{}": {
-      "snippet": "mitemxxox{${1:left1}}{${2:left2}}{${3:right}}"
+    {
+      "name": "mitemxxox",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:left1%text}}{${2:left2%text}}{${3:right%text}}"
+      }
     },
-    "mitemxxxo{}{}{}": {
-      "snippet": "mitemxxxo{${1:text1}}{${2:text2}}{${3:text3}}"
+    {
+      "name": "mitemxxxo",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:text1%text}}{${2:text2%text}}{${3:text3%text}}"
+      }
     },
-    "mitemxxoo{}{}": {
-      "snippet": "mitemxxoo{${1:left1}}{${2:left2}}"
+    {
+      "name": "mitemxxoo",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:left1%text}}{${2:left2%text}}"
+      }
     },
-    "mitemxxxxx{}{}{}{}{}": {
-      "snippet": "mitemxxxxx{${1:text1}}{${2:text2}}{${3:text3}}{${4:text4}}{${5:text5}}"
+    {
+      "name": "mitemxxxxx",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:text1%text}}{${2:text2%text}}{${3:text3%text}}{${4:text4%text}}{${5:text5%text}}"
+      }
     },
-    "usedx": {},
-    "remainx": {},
-    "usedxx": {},
-    "remainxx": {},
-    "usedxxx": {},
-    "remainxxx": {},
-    "usedxxxx": {},
-    "remainxxxx": {},
-    "remainxox": {},
-    "remainxoxx": {},
-    "usedxxxxx": {},
-    "remainxxxxx": {},
-    "labelname": {},
-    "itemx{}": {
-      "snippet": "itemx{${1:text}}"
+    {
+      "name": "usedx",
+      "unusual": true
     },
-    "itemxx{}{}": {
-      "snippet": "itemxx{${1:text1}}{${2:text2}}"
+    {
+      "name": "remainx",
+      "unusual": true
     },
-    "itemxxx{}{}{}": {
-      "snippet": "itemxxx{${1:text1}}{${2:text2}}{${3:text3}}"
+    {
+      "name": "usedxx",
+      "unusual": true
     },
-    "itemxox{}{}": {
-      "snippet": "itemxox{${1:left}}{${2:right}}"
+    {
+      "name": "remainxx",
+      "unusual": true
     },
-    "itemxxo{}{}": {
-      "snippet": "itemxxo{${1:left}}{${2:center}}"
+    {
+      "name": "usedxxx",
+      "unusual": true
     },
-    "itemxxxx{}{}{}{}": {
-      "snippet": "itemxxxx{${1:text1}}{${2:text2}}{${3:text3}}{${4:text4}}"
+    {
+      "name": "remainxxx",
+      "unusual": true
     },
-    "itemxoxx{}{}{}": {
-      "snippet": "itemxoxx{${1:left}}{${2:right1}}{${3:right2}}"
+    {
+      "name": "usedxxxx",
+      "unusual": true
     },
-    "itemxxox{}{}{}": {
-      "snippet": "itemxxox{${1:left1}}{${2:left2}}{${3:right}}"
+    {
+      "name": "remainxxxx",
+      "unusual": true
     },
-    "itemxxxo{}{}{}": {
-      "snippet": "itemxxxo{${1:text1}}{${2:text2}}{${3:text3}}"
+    {
+      "name": "remainxox",
+      "unusual": true
     },
-    "itemxxxxx{}{}{}{}{}": {
-      "snippet": "itemxxxxx{${1:text1}}{${2:text2}}{${3:text3}}{${4:text4}}{${5:text5}}"
+    {
+      "name": "remainxoxx",
+      "unusual": true
     },
-    "oddlist": {},
-    "evenlist": {},
-    "regularlist": {},
-    "listtype{}": {
-      "snippet": "listtype{${1:type}}"
+    {
+      "name": "usedxxxxx",
+      "unusual": true
     },
-    "regularlisti": {},
-    "regularlistii": {},
-    "regularlistiii": {},
-    "oddlisti": {},
-    "evenlisti": {},
-    "themultienum": {},
-    "themultienumdepth": {},
-    "themultienumi": {},
-    "themultienumii": {},
-    "themultienumiii": {},
-    "themultienumiv": {}
-  },
-  "envs": {
-    "multienumerate": {},
-    "multienumerate[]": {
-      "name": "multienumerate",
-      "snippet": "[${1:type}]"
+    {
+      "name": "remainxxxxx",
+      "unusual": true
+    },
+    {
+      "name": "labelname",
+      "unusual": true
+    },
+    {
+      "name": "itemx",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "itemxx",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text1%text}}{${2:text2%text}}"
+      }
+    },
+    {
+      "name": "itemxxx",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:text1%text}}{${2:text2%text}}{${3:text3%text}}"
+      }
+    },
+    {
+      "name": "itemxox",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:left%text}}{${2:right%text}}"
+      }
+    },
+    {
+      "name": "itemxxo",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:left%text}}{${2:center%text}}"
+      }
+    },
+    {
+      "name": "itemxxxx",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:text1%text}}{${2:text2%text}}{${3:text3%text}}{${4:text4%text}}"
+      }
+    },
+    {
+      "name": "itemxoxx",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:left%text}}{${2:right1%text}}{${3:right2%text}}"
+      }
+    },
+    {
+      "name": "itemxxox",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:left1%text}}{${2:left2%text}}{${3:right%text}}"
+      }
+    },
+    {
+      "name": "itemxxxo",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:text1%text}}{${2:text2%text}}{${3:text3%text}}"
+      }
+    },
+    {
+      "name": "itemxxxxx",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:text1%text}}{${2:text2%text}}{${3:text3%text}}{${4:text4%text}}{${5:text5%text}}"
+      }
+    },
+    {
+      "name": "oddlist",
+      "unusual": true
+    },
+    {
+      "name": "evenlist",
+      "unusual": true
+    },
+    {
+      "name": "regularlist",
+      "unusual": true
+    },
+    {
+      "name": "listtype",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:type}}"
+      }
+    },
+    {
+      "name": "regularlisti",
+      "unusual": true
+    },
+    {
+      "name": "regularlistii",
+      "unusual": true
+    },
+    {
+      "name": "regularlistiii",
+      "unusual": true
+    },
+    {
+      "name": "oddlisti",
+      "unusual": true
+    },
+    {
+      "name": "evenlisti",
+      "unusual": true
+    },
+    {
+      "name": "themultienum",
+      "unusual": true
+    },
+    {
+      "name": "themultienumdepth",
+      "unusual": true
+    },
+    {
+      "name": "themultienumi",
+      "unusual": true
+    },
+    {
+      "name": "themultienumii",
+      "unusual": true
+    },
+    {
+      "name": "themultienumiii",
+      "unusual": true
+    },
+    {
+      "name": "themultienumiv",
+      "unusual": true
     }
+  ],
+  "envs": [
+    {
+      "name": "multienumerate"
+    },
+    {
+      "name": "multienumerate",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:type%keyvals}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\begin{multienumerate}": [
+      "evenlist\r",
+      "oddlist\r"
+    ]
   },
-  "options": [],
-  "keyvals": []
+  "args": []
 }

@@ -1,18 +1,32 @@
 {
-  "includes": {
-    "platex": [],
-    "ifuptex": []
-  },
-  "macros": {
-    "getkcatcode{}": {
-      "snippet": "getkcatcode{${1:jachar}}"
+  "deps": [
+    {
+      "name": "platex"
     },
-    "thekcatcode": {},
-    "setkcatcode{}{}": {
-      "snippet": "setkcatcode{${1:jachar}}{${2:value}}"
+    {
+      "name": "ifuptex"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "getkcatcode",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:jachar}}"
+      }
+    },
+    {
+      "name": "thekcatcode"
+    },
+    {
+      "name": "setkcatcode",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:jachar}}{${2:value}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

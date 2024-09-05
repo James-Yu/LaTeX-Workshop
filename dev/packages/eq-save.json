@@ -1,87 +1,152 @@
 {
-  "includes": {
-    "exerquiz": [],
-    "atbegshi": []
-  },
-  "macros": {
-    "sField{}{}": {
-      "snippet": "sField{${1:width}}{${2:height}}"
+  "deps": [
+    {
+      "name": "exerquiz"
     },
-    "sField[]{}{}": {
-      "snippet": "sField[${3:eforms params}]{${1:width}}{${2:height}}"
-    },
-    "ooField{}{}": {
-      "snippet": "ooField{${1:width}}{${2:height}}"
-    },
-    "ooField[]{}{}": {
-      "snippet": "ooField[${3:eforms params}]{${1:width}}{${2:height}}"
-    },
-    "sooField{}{}": {
-      "snippet": "sooField{${1:width}}{${2:height}}"
-    },
-    "sooField[]{}{}": {
-      "snippet": "sooField[${3:eforms params}]{${1:width}}{${2:height}}"
-    },
-    "declareScorePhrase{}": {
-      "snippet": "declareScorePhrase{${1:JS string}}"
-    },
-    "psField{}{}": {
-      "snippet": "psField{${1:width}}{${2:height}}"
-    },
-    "psField[]{}{}": {
-      "snippet": "psField[${3:eforms params}]{${1:width}}{${2:height}}"
-    },
-    "pooField{}{}": {
-      "snippet": "pooField{${1:width}}{${2:height}}"
-    },
-    "pooField[]{}{}": {
-      "snippet": "pooField[${3:eforms params}]{${1:width}}{${2:height}}"
-    },
-    "psooField{}{}": {
-      "snippet": "psooField{${1:width}}{${2:height}}"
-    },
-    "psooField[]{}{}": {
-      "snippet": "psooField[${3:eforms params}]{${1:width}}{${2:height}}"
-    },
-    "clearAllField{}{}": {
-      "snippet": "clearAllField{${1:width}}{${2:height}}"
-    },
-    "clearAllField[]{}{}": {
-      "snippet": "clearAllField[${3:eforms params}]{${1:width}}{${2:height}}"
-    },
-    "nameField{}{}{}": {
-      "snippet": "nameField{${1:name}}{${2:width}}{${3:height}}"
-    },
-    "nameField[]{}{}{}": {
-      "snippet": "nameField[${4:eforms params}]{${1:name}}{${2:width}}{${3:height}}"
-    },
-    "BeginNoPeeking": {},
-    "EnterNameFirstMsg": {},
-    "eqerrUnfinishQuizAtSave": {},
-    "cListOfQuizNames": {},
-    "cListOfSQuizNames": {},
-    "devMode": {},
-    "eqsHandleOpen": {},
-    "eqsroot": {},
-    "eqsSetActionKeys": {},
-    "hiddenScoreData": {},
-    "IhrNamePO": {},
-    "itsNonEmpty": {},
-    "jsForQzs{}": {
-      "snippet": "jsForQzs{${1:arg1}}"
-    },
-    "jsForQzsHold": {},
-    "jsForQzsi{}": {
-      "snippet": "jsForQzsi{${1:arg1}}"
-    },
-    "restoreQD": {},
-    "saveListofQzs": {},
-    "semiColon": {}
-  },
-  "envs": {},
-  "options": [
-    "devmode",
-    "!devmode"
+    {
+      "name": "atbegshi"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "sField",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "sField",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:eforms params}]{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "ooField",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "ooField",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:eforms params}]{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "sooField",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "sooField",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:eforms params}]{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "declareScorePhrase",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:JS string%definition}}"
+      }
+    },
+    {
+      "name": "psField",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "psField",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:eforms params}]{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "pooField",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "pooField",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:eforms params}]{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "psooField",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "psooField",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:eforms params}]{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "clearAllField",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "clearAllField",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:eforms params}]{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "nameField",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:width}}{${3:height}}"
+      }
+    },
+    {
+      "name": "nameField",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:eforms params}]{${1:name}}{${2:width}}{${3:height}}"
+      }
+    },
+    {
+      "name": "BeginNoPeeking"
+    },
+    {
+      "name": "EnterNameFirstMsg",
+      "unusual": true
+    },
+    {
+      "name": "eqerrUnfinishQuizAtSave",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/eq-save#c": [
+      "devmode\r",
+      "!devmode\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/eq-save#c"
+  ]
 }

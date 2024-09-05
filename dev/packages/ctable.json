@@ -1,115 +1,138 @@
 {
-  "includes": {
-    "ifpdf": [],
-    "etoolbox": [],
-    "xcolor": [],
-    "array": [],
-    "tabularx": [],
-    "booktabs": [],
-    "rotating": [],
-    "transparent": []
-  },
-  "macros": {
-    "setupctable{}": {
-      "snippet": "setupctable{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "ifpdf"
     },
-    "ctable{}{}{}": {
-      "snippet": "ctable{${1:preamble}}{${2:tnote cmds}}{${3:table}}"
+    {
+      "name": "etoolbox"
     },
-    "ctable[]{}{}{}": {
-      "snippet": "ctable[${4:options}]{${1:preamble}}{${2:tnote cmds}}{${3:table}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "xcolor"
     },
-    "tnote{}": {
-      "snippet": "tnote{${1:footnote text}}"
+    {
+      "name": "array"
     },
-    "tnote[]{}": {
-      "snippet": "tnote[${2:label}]{${1:footnote text}}"
+    {
+      "name": "tabularx"
     },
-    "tmark": {},
-    "tmark[]": {
-      "snippet": "tmark[${1:label}]"
+    {
+      "name": "booktabs"
     },
-    "NN": {},
-    "FL": {},
-    "ML": {},
-    "LL": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "bgopacity=",
-      "botcap",
+    {
+      "name": "rotating"
+    },
+    {
+      "name": "transparent"
+    }
+  ],
+  "macros": [
+    {
+      "name": "setupctable",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\setupctable,\\ctable",
+          "\\setupctable"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ctable",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:preamble}}{${2:tnote cmds}}{${3:table}}"
+      }
+    },
+    {
+      "name": "ctable",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:options%keyvals}]{${1:preamble}}{${2:tnote cmds}}{${3:table}}"
+      }
+    },
+    {
+      "name": "tnote",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:footnote text}}"
+      }
+    },
+    {
+      "name": "tnote",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:label}]{${1:footnote text}}"
+      }
+    },
+    {
+      "name": "tmark"
+    },
+    {
+      "name": "tmark",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:label}]"
+      }
+    },
+    {
+      "name": "NN"
+    },
+    {
+      "name": "FL"
+    },
+    {
+      "name": "ML"
+    },
+    {
+      "name": "LL"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\setupctable,\\ctable": [
+      "bgopacity=\r",
+      "botcap\r",
       "captionskip=",
-      "center",
-      "continued",
-      "continued=",
-      "doinside=${1:code}",
-      "figure",
+      "center\r",
+      "continued\r",
+      "continued=\r",
+      "doinside=${1:code}\r",
+      "figure\r",
       "footerwidth=",
-      "framebg=${1:r g b}",
-      "framefg=${1:r g b}",
+      "framebg=${1:r g b}\r",
+      "framefg=${1:r g b}\r",
       "framerule=",
       "framesep=",
-      "left",
+      "left\r",
       "maxwidth=",
       "mincapwidth=",
-      "nonotespar",
-      "nosideways",
-      "nostar",
-      "nosuper",
-      "notespar",
-      "pos=",
-      "right",
-      "sidecap",
-      "sideways",
-      "star",
-      "super",
-      "table",
-      "topcap",
-      "width=",
-      "captionsleft",
-      "captionsright",
-      "captionsinside"
+      "nonotespar\r",
+      "nosideways\r",
+      "nostar\r",
+      "nosuper\r",
+      "notespar\r",
+      "pos=\r",
+      "right\r",
+      "sidecap\r",
+      "sideways\r",
+      "star\r",
+      "super\r",
+      "table\r",
+      "topcap\r",
+      "width="
     ],
-    [
-      "bgopacity=",
-      "botcap",
-      "captionskip=",
-      "center",
-      "continued",
-      "continued=",
-      "doinside=${1:code}",
-      "figure",
-      "footerwidth=",
-      "framebg=${1:r g b}",
-      "framefg=${1:r g b}",
-      "framerule=",
-      "framesep=",
-      "left",
-      "maxwidth=",
-      "mincapwidth=",
-      "nonotespar",
-      "nosideways",
-      "nostar",
-      "nosuper",
-      "notespar",
-      "pos=",
-      "right",
-      "sidecap",
-      "sideways",
-      "star",
-      "super",
-      "table",
-      "topcap",
-      "width=",
-      "caption=${1:text}",
-      "cap=${1:short caption text}",
+    "\\setupctable": [
+      "captionsleft\r",
+      "captionsright\r",
+      "captionsinside\r"
+    ],
+    "\\ctable": [
+      "caption=${1:text}\r",
+      "cap=${1:short caption text}\r",
       "label="
     ]
-  ]
+  },
+  "args": []
 }

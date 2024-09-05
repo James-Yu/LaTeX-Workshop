@@ -1,91 +1,116 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-xkey": [],
-    "multido": []
-  },
-  "macros": {
-    "psmoire()": {
-      "snippet": "psmoire(${1:x},${2:y})"
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "psmoire[]()": {
-      "snippet": "psmoire[${1:options}](${2:x},${3:y})",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "pst-xkey"
     },
-    "addtomoirelisttype{}": {
-      "snippet": "addtomoirelisttype{${1:name}}"
+    {
+      "name": "multido"
+    }
+  ],
+  "macros": [
+    {
+      "name": "psmoire(x,y)"
     },
-    "psRandomDotPatterns": {},
-    "psRandomDotPatterns[]": {
-      "snippet": "psRandomDotPatterns[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "psmoire",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:options%keyvals}](${2:x},${3:y})"
+      }
     },
-    "psRandomDot()": {
-      "snippet": "psRandomDot(${1:x},${2:y})"
+    {
+      "name": "addtomoirelisttype",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
     },
-    "psRandomDot[]()": {
-      "snippet": "psRandomDot[${1:options}](${2:x},${3:y})",
-      "keyvalindex": 2,
-      "keyvalpos": 0
+    {
+      "name": "psRandomDotPatterns"
     },
-    "psGlassPattern": {},
-    "psGlassPattern[]": {
-      "snippet": "psGlassPattern[${1:options}]",
-      "keyvalindex": 3,
-      "keyvalpos": 0
+    {
+      "name": "psRandomDotPatterns",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     },
-    "variablesMoirages": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "type=${1|Fresnel,linear,radial,circle,square,Newton,Bouasse,Gauss,dot,chess|}",
-      "rotate=${1:degrees}",
-      "Rmax=${1:length in cm}",
-      "scale=${1:factor}",
-      "Alpha=${1:degrees}",
-      "E=${1:distance in cm}",
-      "n=${1:number}",
-      "T=${1:distance in mm}",
+    {
+      "name": "psRandomDot(x,y)"
+    },
+    {
+      "name": "psRandomDot",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:options%keyvals}](${2:x},${3:y})"
+      }
+    },
+    {
+      "name": "psGlassPattern"
+    },
+    {
+      "name": "psGlassPattern",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "variablesMoirages",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\psmoire#c": [
+      "type=${1|Fresnel,linear,radial,circle,square,Newton,Bouasse,Gauss,dot,chess\r|}",
+      "rotate=${1:degrees}\r",
+      "Rmax=${1:length in cm}\r",
+      "scale=${1:factor}\r",
+      "Alpha=${1:degrees}\r",
+      "E=${1:distance in cm}\r",
+      "n=${1:number}\r",
+      "T=${1:distance in mm}\r",
       "linewidth=",
       "linecolor=",
-      "dotstyle=${1:style}",
+      "dotstyle=${1:style}\r",
       "dotsize="
     ],
-    [
-      "NumberDots=${1:integer}",
-      "coefficients=${1:a b θ x0 y0}",
-      "srand=${1:random seed}",
+    "\\psRandomDotPatterns#c": [
+      "NumberDots=${1:integer}\r",
+      "coefficients=${1:a b θ x0 y0}\r",
+      "srand=${1:random seed}\r",
       "layer",
       "revlayer",
       "linecolor=",
       "fillcolor=",
-      "unit=${1:number}"
+      "unit=${1:number}\r"
     ],
-    [
-      "hole=${1|round,square|}",
-      "r=${1:radius in pts}",
-      "p=${1:distance in pts}",
-      "rotate=${1:degrees}",
-      "k=${1:dispersion factor}",
-      "symbole=${1:digit or letter}",
-      "PSfont=${1:PS font name}",
-      "fontsize=${1:size in pts}",
-      "vadjust=${1:number}",
-      "hadjust=${1:number}"
+    "\\psRandomDot#c": [
+      "hole=${1|round,square\r|}",
+      "r=${1:radius in pts}\r",
+      "p=${1:distance in pts}\r",
+      "rotate=${1:degrees}\r",
+      "k=${1:dispersion factor}\r",
+      "symbole=${1:digit or letter}\r",
+      "PSfont=${1:PS font name}\r",
+      "fontsize=${1:size in pts}\r",
+      "vadjust=${1:number}\r",
+      "hadjust=${1:number}\r"
     ],
-    [
-      "function=${1:function}",
+    "\\psGlassPattern#c": [
+      "function=${1:function}\r",
       "layers",
       "linecolor=",
       "fillcolor=",
       "dotsize=",
-      "dotstyle=${1:style}",
-      "unit=${1:number}",
-      "algebraic"
+      "dotstyle=${1:style}\r",
+      "unit=${1:number}\r",
+      "algebraic\r"
     ]
-  ]
+  },
+  "args": []
 }

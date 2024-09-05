@@ -1,36 +1,61 @@
 {
-  "includes": {
-    "tikz": [],
-    "tikzlibraryshapes.misc": [],
-    "tikzlibrarybackgrounds": [],
-    "xifthen": [],
-    "xstring": []
-  },
-  "macros": {
-    "chordbox{}{}": {
-      "snippet": "chordbox{${1:chord-name}}{${2:fret-positions}}"
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "chordbox[]{}{}": {
-      "snippet": "chordbox[${3:base-fret}]{${1:chord-name}}{${2:fret-positions}}"
+    {
+      "name": "tikzlibraryshapes.misc"
     },
-    "bchordbox{}{}{}": {
-      "snippet": "bchordbox{${1:chord-name}}{${2:fret-positions}}{${3:barre-frets}}"
+    {
+      "name": "tikzlibrarybackgrounds"
     },
-    "bchordbox[]{}{}{}": {
-      "snippet": "bchordbox[${4:base-fret}]{${1:chord-name}}{${2:fret-positions}}{${3:barre-frets}}"
+    {
+      "name": "xifthen"
     },
-    "numfrets": {},
-    "pitch": {},
-    "nodetext": {},
-    "frettext": {},
-    "fretnum": {}
-  },
-  "envs": {
-    "chordboxenv{}{}{}": {
-      "name": "chordboxenv",
-      "snippet": "{${1:basefret}}{${2:chord-name}}{${3:fret-positions}}"
+    {
+      "name": "xstring"
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "chordbox",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:chord-name%formula}}{${2:fret-positions}}"
+      }
+    },
+    {
+      "name": "chordbox",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:base-fret}]{${1:chord-name%formula}}{${2:fret-positions}}"
+      }
+    },
+    {
+      "name": "bchordbox",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:chord-name%formula}}{${2:fret-positions}}{${3:barre-frets}}"
+      }
+    },
+    {
+      "name": "bchordbox",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:base-fret}]{${1:chord-name%formula}}{${2:fret-positions}}{${3:barre-frets}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "chordboxenv",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:basefret}}{${2:chord-name%formula}}{${3:fret-positions}}"
+      }
+    }
+  ],
+  "keys": {},
+  "args": []
 }

@@ -1,251 +1,497 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "tikz": [],
-    "trimspaces": [],
-    "xkeyval": [],
-    "tikzlibrarydecorations.pathreplacing": [],
-    "tikzlibrarydecorations.pathmorphing": []
-  },
-  "macros": {
-    "ifyquantdebug": {},
-    "yquantdebugtrue": {},
-    "yquantdebugfalse": {},
-    "useyquantlanguage{}": {
-      "snippet": "useyquantlanguage{${1:language}}"
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "listA": {},
-    "listB": {},
-    "ifsuccess": {},
-    "clippathhorz{}": {
-      "snippet": "clippathhorz{${1:path code}}"
+    {
+      "name": "tikz"
     },
-    "clippathvert{}": {
-      "snippet": "clippathvert{${1:path code}}"
+    {
+      "name": "trimspaces"
     },
-    "clippath{}": {
-      "snippet": "clippath{${1:path code}}"
+    {
+      "name": "xkeyval"
     },
-    "inheritclippath[]": {
-      "snippet": "inheritclippath[${1:from=shape}]"
+    {
+      "name": "tikzlibrarydecorations.pathreplacing"
     },
-    "pgfshapeclippath{}{}": {
-      "snippet": "pgfshapeclippath{${1:shape}}{${2:options}}"
-    },
-    "pgfreferencednodename": {},
-    "oldpgflinewidth": {},
-    "pgfshapeclippathresult": {},
-    "pgfshapeclippathhorzresult": {},
-    "pgfshapeclippathvertresult": {},
-    "stext": {},
-    "main": {},
-    "ifhorz{}{}": {
-      "snippet": "ifhorz{${1:true}}{${2:false}}"
-    },
-    "pgfdecorationsegmentfromto": {},
-    "ifyquanthorz{}{}": {
-      "snippet": "ifyquanthorz{${1:if horz}}{${2:if vert}}"
-    },
-    "len": {},
-    "reg": {},
-    "idx": {},
-    "regidx": {},
-    "ifinmulti": {},
-    "ifallowmain": {},
-    "registers{}": {
-      "snippet": "registers{${1:registers}}"
-    },
-    "newlist": {},
-    "ifyquantmeasuring": {},
-    "yquantmeasuringtrue": {},
-    "yquantmeasuringfalse": {},
-    "redolist": {},
-    "max": {},
-    "firstinout": {},
-    "lastinout": {},
-    "outerlevel": {},
-    "outery": {},
-    "multidata": {},
-    "missing": {},
-    "divisor": {},
-    "add": {},
-    "inc": {},
-    "yquant": {},
-    "endyquant": {},
-    "yquantset{}": {
-      "snippet": "yquantset{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "yquantsecondpass{}": {
-      "snippet": "yquantsecondpass{${1:code}}"
-    },
-    "yquantesecondpass{}": {
-      "snippet": "yquantesecondpass{${1:code}}"
-    },
-    "yquantescape{}": {
-      "snippet": "yquantescape{${1:code}}"
-    },
-    "yquanteescape{}": {
-      "snippet": "yquanteescape{${1:code}}"
-    },
-    "yquantimportcommand{}": {
-      "snippet": "yquantimportcommand{${1:file}}"
-    },
-    "yquantimportpath": {},
-    "yquantimport{}": {
-      "snippet": "yquantimport{${1:file}}"
-    },
-    "yquantimport[]{}": {
-      "snippet": "yquantimport[${2:options}]{${1:file}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "yquantimport*{}": {
-      "snippet": "yquantimport*{${1:file}}"
-    },
-    "yquantimport*[]{}": {
-      "snippet": "yquantimport*[${2:options}]{${1:file}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "cmd": {},
-    "keyscmd": {},
-    "keysset": {},
-    "keyscheck": {},
-    "params": {},
-    "ifvalid": {},
-    "wirexpos": {},
-    "wirexprevpos": {},
-    "wiretype": {},
-    "wirelast": {},
-    "Ifnum": {},
-    "Ifcase": {},
-    "Or": {},
-    "Else": {},
-    "Fi": {},
-    "Unless": {},
-    "The": {},
-    "outermap": {},
-    "nodename": {},
-    "upd": {},
-    "last": {},
-    "newx": {},
-    "process": {},
-    "nonaffectedpgfshapeclippathhorzresult": {},
-    "wirestyle": {},
-    "wireclipping": {},
-    "yquantdefinegate{}{}": {
-      "snippet": "yquantdefinegate{${1:name}}{${2:content}}"
-    },
-    "yquantdefinegate{}[]{}": {
-      "snippet": "yquantdefinegate{${1:name}}[${2:style}]{${3:content}}"
-    },
-    "yquantredefinegate{}{}": {
-      "snippet": "yquantredefinegate{${1:name}}{${2:content}}"
-    },
-    "yquantredefinegate{}[]{}": {
-      "snippet": "yquantredefinegate{${1:name}}[${2:style}]{${3:content}}"
-    },
-    "yquantdefinebox{}{}": {
-      "snippet": "yquantdefinebox{${1:name}}{${2:content}}"
-    },
-    "yquantdefinebox{}[]{}": {
-      "snippet": "yquantdefinebox{${1:name}}[${2:style}]{${3:content}}"
-    },
-    "yquantdefinemultibox{}{}": {
-      "snippet": "yquantdefinemultibox{${1:name}}{${2:content}}"
-    },
-    "yquantdefinemultibox{}[]{}": {
-      "snippet": "yquantdefinemultibox{${1:name}}[${2:style}]{${3:content}}"
-    },
-    "yquantredefinebox{}{}": {
-      "snippet": "yquantredefinebox{${1:name}}{${2:content}}"
-    },
-    "yquantredefinebox{}[]{}": {
-      "snippet": "yquantredefinebox{${1:name}}[${2:style}]{${3:content}}"
-    },
-    "yquantredefinemultibox{}{}": {
-      "snippet": "yquantredefinemultibox{${1:name}}{${2:content}}"
-    },
-    "yquantredefinemultibox{}[]{}": {
-      "snippet": "yquantredefinemultibox{${1:name}}[${2:style}]{${3:content}}"
-    },
-    "circuit{}": {
-      "snippet": "circuit{${1:content}}"
-    },
-    "circuit[]{}": {
-      "snippet": "circuit[${2:style}]{${1:content}}"
-    },
-    "equals": {},
-    "equals[]": {
-      "snippet": "equals[${1:content}]"
-    },
-    "equals*": {},
-    "equals*[]": {
-      "snippet": "equals*[${1:content}]"
-    },
-    "shiftright": {},
-    "shiftright[]": {
-      "snippet": "shiftright[${1:where}]"
-    },
-    "shiftright*": {},
-    "shiftright*[]": {
-      "snippet": "shiftright*[${1:where}]"
-    },
-    "m": {
-      "detail": "𝑚",
-      "documentation": "MATHEMATICAL ITALIC SMALL M"
-    },
-    "txt": {},
-    "meter": {},
-    "dmeter": {},
-    "dmeterwide": {},
-    "qasmimport{}": {
-      "snippet": "qasmimport{${1:file}}"
-    },
-    "targets": {},
-    "controls": {},
-    "qasmname{}": {
-      "snippet": "qasmname{${1:arg}}"
+    {
+      "name": "tikzlibrarydecorations.pathmorphing"
     }
-  },
-  "envs": {
-    "yquant": {},
-    "yquant[]": {
-      "name": "yquant",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "yquant*": {},
-    "yquant*[]": {
-      "name": "yquant*",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "yquantgroup": {},
-    "yquantgroup[]": {
-      "name": "yquantgroup",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "yquantgroup*": {},
-    "yquantgroup*[]": {
-      "name": "yquantgroup*",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "qasm": {}
-  },
-  "options": [
-    "compat=${1|newest,0.3,0.4,0.6|}"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "useyquantlanguage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language%keyvals}}"
+      }
+    },
+    {
+      "name": "clippathhorz",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:path code}}"
+      }
+    },
+    {
+      "name": "clippathvert",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:path code}}"
+      }
+    },
+    {
+      "name": "clippath",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:path code}}"
+      }
+    },
+    {
+      "name": "inheritclippath",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:from=shape}]"
+      }
+    },
+    {
+      "name": "pgfshapeclippath",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:shape}}{${2:options}}"
+      }
+    },
+    {
+      "name": "pgfreferencednodename",
+      "unusual": true
+    },
+    {
+      "name": "pgfshapeclippathresult",
+      "unusual": true
+    },
+    {
+      "name": "pgfshapeclippathhorzresult",
+      "unusual": true
+    },
+    {
+      "name": "pgfshapeclippathvertresult",
+      "unusual": true
+    },
+    {
+      "name": "ifhorz",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "pgfdecorationsegmentfromto",
+      "unusual": true
+    },
+    {
+      "name": "ifyquanthorz",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:if horz}}{${2:if vert}}"
+      }
+    },
+    {
+      "name": "len"
+    },
+    {
+      "name": "reg"
+    },
+    {
+      "name": "idx"
+    },
+    {
+      "name": "regidx"
+    },
+    {
+      "name": "ifinmulti",
+      "unusual": true
+    },
+    {
+      "name": "ifallowmain",
+      "unusual": true
+    },
+    {
+      "name": "registers",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:registers}}"
+      }
+    },
+    {
+      "name": "ifyquantmeasuring",
+      "unusual": true
+    },
+    {
+      "name": "yquantmeasuringtrue",
+      "unusual": true
+    },
+    {
+      "name": "yquantmeasuringfalse",
+      "unusual": true
+    },
+    {
+      "name": "yquantset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}"
+      }
+    },
+    {
+      "name": "yquantsecondpass",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "yquantesecondpass",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "yquantescape",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "yquanteescape",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "yquantimportcommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "yquantimportpath",
+      "unusual": true
+    },
+    {
+      "name": "yquantimport",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "yquantimport",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:file}}"
+      }
+    },
+    {
+      "name": "yquantimport*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "yquantimport*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:file}}"
+      }
+    },
+    {
+      "name": "ifvalid",
+      "unusual": true
+    },
+    {
+      "name": "wirexpos",
+      "unusual": true
+    },
+    {
+      "name": "wirexprevpos",
+      "unusual": true
+    },
+    {
+      "name": "wiretype",
+      "unusual": true
+    },
+    {
+      "name": "wirelast",
+      "unusual": true
+    },
+    {
+      "name": "Ifnum"
+    },
+    {
+      "name": "Ifcase"
+    },
+    {
+      "name": "Or"
+    },
+    {
+      "name": "Else"
+    },
+    {
+      "name": "Fi"
+    },
+    {
+      "name": "Unless"
+    },
+    {
+      "name": "The"
+    },
+    {
+      "name": "nonaffectedpgfshapeclippathhorzresult",
+      "unusual": true
+    },
+    {
+      "name": "wirestyle",
+      "unusual": true
+    },
+    {
+      "name": "wireclipping",
+      "unusual": true
+    },
+    {
+      "name": "yquantdefinegate",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:content}}"
+      }
+    },
+    {
+      "name": "yquantdefinegate",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:name}}[${3:style}]{${2:content}}"
+      }
+    },
+    {
+      "name": "yquantredefinegate",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:content}}"
+      }
+    },
+    {
+      "name": "yquantredefinegate",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:name}}[${3:style}]{${2:content}}"
+      }
+    },
+    {
+      "name": "yquantdefinebox",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:content}}"
+      }
+    },
+    {
+      "name": "yquantdefinebox",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:name}}[${3:style}]{${2:content}}"
+      }
+    },
+    {
+      "name": "yquantdefinemultibox",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:content}}"
+      }
+    },
+    {
+      "name": "yquantdefinemultibox",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:name}}[${3:style}]{${2:content}}"
+      }
+    },
+    {
+      "name": "yquantredefinebox",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:content}}"
+      }
+    },
+    {
+      "name": "yquantredefinebox",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:name}}[${3:style}]{${2:content}}"
+      }
+    },
+    {
+      "name": "yquantredefinemultibox",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:content}}"
+      }
+    },
+    {
+      "name": "yquantredefinemultibox",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:name}}[${3:style}]{${2:content}}"
+      }
+    },
+    {
+      "name": "circuit",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content}}"
+      }
+    },
+    {
+      "name": "circuit",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:style}]{${1:content}}"
+      }
+    },
+    {
+      "name": "equals"
+    },
+    {
+      "name": "equals",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:content}]"
+      }
+    },
+    {
+      "name": "equals*"
+    },
+    {
+      "name": "equals*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:content}]"
+      }
+    },
+    {
+      "name": "shiftright"
+    },
+    {
+      "name": "shiftright",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:where}]"
+      }
+    },
+    {
+      "name": "shiftright*"
+    },
+    {
+      "name": "shiftright*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:where}]"
+      }
+    },
+    {
+      "name": "m"
+    },
+    {
+      "name": "txt"
+    },
+    {
+      "name": "meter"
+    },
+    {
+      "name": "dmeter"
+    },
+    {
+      "name": "dmeterwide"
+    },
+    {
+      "name": "qasmimport",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "qasmname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "yquant"
+    },
+    {
+      "name": "yquant",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "yquant*"
+    },
+    {
+      "name": "yquant*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "yquantgroup"
+    },
+    {
+      "name": "yquantgroup",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "yquantgroup*"
+    },
+    {
+      "name": "yquantgroup*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "qasm"
+    }
+  ],
+  "keys": {
+    "\\usepackage/yquant#c": [
+      "compat=${1|newest,0.3,0.4,0.6\r|}"
+    ],
+    "\\useyquantlanguage#c": [
+      "groups\r",
+      "qasm\r"
+    ],
+    "\\begin{yquant}#c,\\begin{yquant*}#c,\\yquantset#c,\\yquantimport#c,\\yquantimport*#c,\\begin{yquantgroup}#c,\\begin{yquantgroup*}#c": [
       "register/minimum height=",
       "register/minimum depth=",
       "register/minimum left=",
@@ -257,188 +503,102 @@
       "operator/minimum extent=",
       "operator/separation=",
       "operator/multi warning",
-      "drawing mode=${1|quality,size|}",
-      "default background",
-      "default fill",
-      "register/default name=${1:name}",
-      "register/default lazy name=${1:name}",
-      "every label/.style={${1:TikZ keys}}",
-      "every label/.append style={${1:TikZ keys}}",
-      "every initial label/.style={${1:TikZ keys}}",
-      "every qubit label/.style={${1:TikZ keys}}",
-      "every cbit label/.style={${1:TikZ keys}}",
-      "every qubits label/.style={${1:TikZ keys}}",
-      "every multi label/.style={${1:TikZ keys}}",
-      "every input label/.style={${1:TikZ keys}}",
-      "every output/.append style={${1:TikZ keys}}",
-      "every qubit output/.append style={${1:TikZ keys}}",
-      "every cbit output/.append style={${1:TikZ keys}}",
-      "every qubits output/.append style={${1:TikZ keys}}",
-      "every multi output/.append style={${1:TikZ keys}}",
-      "every circuit/.style={${1:TikZ keys}}",
-      "every wire/.style={${1:TikZ keys}}",
-      "every qubit wire/.style={${1:TikZ keys}}",
-      "every cbit wire /.style={${1:TikZ keys}}",
-      "every qubits wire/.style={${1:TikZ keys}}",
-      "every control line/.style={${1:TikZ keys}}",
-      "every control/.append style={${1:TikZ keys}}",
-      "every positive control/.append style={${1:TikZ keys}}",
-      "every negative control/.append style={${1:TikZ keys}}",
-      "every operator/.prefix style={${1:TikZ keys}}",
-      "every multi line/.style={${1:TikZ keys}}",
-      "this operator/.style={${1:TikZ keys}}",
-      "this control/.style={${1:TikZ keys}}",
-      "operator style={${1:TikZ keys}}",
-      "control style={${1:TikZ keys}}",
-      "style={${1:TikZ keys}}",
-      "operator/multi as single/.style={${1:TikZ keys}}",
-      "operator/if multi={${1:TikZ keys}}",
+      "drawing mode=${1|quality,size\r|}",
+      "default background\r",
+      "default fill\r",
+      "register/default name=${1:name}\r",
+      "register/default lazy name=${1:name}\r",
+      "every label/.style={${1:TikZ keys}}\r",
+      "every label/.append style={${1:TikZ keys}}\r",
+      "every initial label/.style={${1:TikZ keys}}\r",
+      "every qubit label/.style={${1:TikZ keys}}\r",
+      "every cbit label/.style={${1:TikZ keys}}\r",
+      "every qubits label/.style={${1:TikZ keys}}\r",
+      "every multi label/.style={${1:TikZ keys}}\r",
+      "every input label/.style={${1:TikZ keys}}\r",
+      "every output/.append style={${1:TikZ keys}}\r",
+      "every qubit output/.append style={${1:TikZ keys}}\r",
+      "every cbit output/.append style={${1:TikZ keys}}\r",
+      "every qubits output/.append style={${1:TikZ keys}}\r",
+      "every multi output/.append style={${1:TikZ keys}}\r",
+      "every circuit/.style={${1:TikZ keys}}\r",
+      "every wire/.style={${1:TikZ keys}}\r",
+      "every qubit wire/.style={${1:TikZ keys}}\r",
+      "every cbit wire /.style={${1:TikZ keys}}\r",
+      "every qubits wire/.style={${1:TikZ keys}}\r",
+      "every control line/.style={${1:TikZ keys}}\r",
+      "every control/.append style={${1:TikZ keys}}\r",
+      "every positive control/.append style={${1:TikZ keys}}\r",
+      "every negative control/.append style={${1:TikZ keys}}\r",
+      "every operator/.prefix style={${1:TikZ keys}}\r",
+      "every multi line/.style={${1:TikZ keys}}\r",
+      "this operator/.style={${1:TikZ keys}}\r",
+      "this control/.style={${1:TikZ keys}}\r",
+      "operator style={${1:TikZ keys}}\r",
+      "control style={${1:TikZ keys}}\r",
+      "style={${1:TikZ keys}}\r",
+      "operator/multi as single/.style={${1:TikZ keys}}\r",
+      "operator/if multi={${1:TikZ keys}}\r",
       "circuit/seamless",
-      "circuit/orientation=${1|horizontal,vertical|}",
-      "horizontal",
-      "vertical",
-      "vertical=${1:degrees}",
-      "every post measurement control=${1|indirect,direct|}",
-      "operators/every barrier/.style={${1:TikZ keys}}",
-      "operators/every barrier/.append style={${1:TikZ keys}}",
-      "operators/every box/.append style={${1:TikZ keys}}",
-      "operators/every custom gate/.append style={${1:TikZ keys}}",
-      "operators/every dmeter/.append style={${1:TikZ keys}}",
-      "operators/every h/.append style={${1:TikZ keys}}",
-      "operators/every inspect/.append style={${1:TikZ keys}}",
-      "operators/every iswap/.style={${1:TikZ keys}}",
-      "operators/every measure/.append style={${1:TikZ keys}}",
-      "operators/every measure meter/.append style={${1:TikZ keys}}",
-      "operators/every not/.append style={${1:TikZ keys}}",
-      "operators/every pauli/.append style={${1:TikZ keys}}",
-      "operators/every phase/.append style={${1:TikZ keys}}",
-      "operators/every rectangular box/.append style={${1:TikZ keys}}",
-      "operators/every slash/.append style={${1:TikZ keys}}",
-      "operators/every subcircuit/.append style={${1:TikZ keys}}",
-      "operators/every subcircuit box/.append style={${1:TikZ keys}}",
-      "subcircuit box style={${1:TikZ keys}}",
-      "operators/this subcircuit box",
-      "this subcircuit box style={${1:TikZ keys}}",
-      "operators/subcircuit/frameless",
-      "operators/subcircuit/name mangling=${1|prefix or discard,prefix or transparent,transparent,discard|}",
+      "circuit/orientation=${1|horizontal,vertical\r|}",
+      "horizontal\r",
+      "vertical\r",
+      "vertical=${1:degrees}\r",
+      "every post measurement control=${1|indirect,direct\r|}",
+      "operators/every barrier/.style={${1:TikZ keys}}\r",
+      "operators/every barrier/.append style={${1:TikZ keys}}\r",
+      "operators/every box/.append style={${1:TikZ keys}}\r",
+      "operators/every custom gate/.append style={${1:TikZ keys}}\r",
+      "operators/every dmeter/.append style={${1:TikZ keys}}\r",
+      "operators/every h/.append style={${1:TikZ keys}}\r",
+      "operators/every inspect/.append style={${1:TikZ keys}}\r",
+      "operators/every iswap/.style={${1:TikZ keys}}\r",
+      "operators/every measure/.append style={${1:TikZ keys}}\r",
+      "operators/every measure meter/.append style={${1:TikZ keys}}\r",
+      "operators/every not/.append style={${1:TikZ keys}}\r",
+      "operators/every pauli/.append style={${1:TikZ keys}}\r",
+      "operators/every phase/.append style={${1:TikZ keys}}\r",
+      "operators/every rectangular box/.append style={${1:TikZ keys}}\r",
+      "operators/every slash/.append style={${1:TikZ keys}}\r",
+      "operators/every subcircuit/.append style={${1:TikZ keys}}\r",
+      "operators/every subcircuit box/.append style={${1:TikZ keys}}\r",
+      "subcircuit box style={${1:TikZ keys}}\r",
+      "operators/this subcircuit box\r",
+      "this subcircuit box style={${1:TikZ keys}}\r",
+      "operators/subcircuit/frameless\r",
+      "operators/subcircuit/name mangling=${1|prefix or discard,prefix or transparent,transparent,discard\r|}",
       "operators/subcircuit/name mangling reset",
-      "operators/subcircuit/seamless",
-      "operators/every swap/.style={${1:TikZ keys}}",
-      "operators/every text/.style={${1:TikZ keys}}",
-      "operators/every wave/.style={${1:TikZ keys}}",
-      "operators/every x/.style={${1:TikZ keys}}",
-      "operators/every xx/.style={${1:TikZ keys}}",
-      "operators/every y/.style={${1:TikZ keys}}",
-      "operators/every z/.style={${1:TikZ keys}}",
-      "operators/every zz/.style={${1:TikZ keys}}",
-      "every nobit output/.style={${1:TikZ keys}}",
-      "group/every group/.style={${1:TikZ keys}}",
+      "operators/subcircuit/seamless\r",
+      "operators/every swap/.style={${1:TikZ keys}}\r",
+      "operators/every text/.style={${1:TikZ keys}}\r",
+      "operators/every wave/.style={${1:TikZ keys}}\r",
+      "operators/every x/.style={${1:TikZ keys}}\r",
+      "operators/every xx/.style={${1:TikZ keys}}\r",
+      "operators/every y/.style={${1:TikZ keys}}\r",
+      "operators/every z/.style={${1:TikZ keys}}\r",
+      "operators/every zz/.style={${1:TikZ keys}}\r",
+      "every nobit output/.style={${1:TikZ keys}}\r"
+    ],
+    "\\yquantset#c,\\begin{yquantgroup}#c,\\begin{yquantgroup*}#c": [
+      "group/every group/.style={${1:TikZ keys}}\r",
       "group/line separation=",
       "group/aligned",
-      "operators/every group circuit/.style={${1:TikZ keys}}",
-      "operators/every group equals/.style={${1:TikZ keys}}",
-      "operators/every s/.style={${1:TikZ keys}}",
-      "operators/every t/.style={${1:TikZ keys}}",
-      "operators/every utwo/.style={${1:TikZ keys}}",
-      "zero=${1:code}",
-      "register/default qubit name=${1:code}",
-      "register/default qubit name value=${1:code}"
+      "operators/every group circuit/.style={${1:TikZ keys}}\r",
+      "operators/every group equals/.style={${1:TikZ keys}}\r"
     ],
-    [
-      "register/minimum height=",
-      "register/minimum depth=",
-      "register/minimum left=",
-      "register/minimum right=",
-      "register/minimum before=",
-      "register/minimum after=",
-      "register/separation=",
-      "operator/minimum width=",
-      "operator/minimum extent=",
-      "operator/separation=",
-      "operator/multi warning",
-      "drawing mode=${1|quality,size|}",
-      "default background",
-      "default fill",
-      "register/default name=${1:name}",
-      "register/default lazy name=${1:name}",
-      "every label/.style={${1:TikZ keys}}",
-      "every label/.append style={${1:TikZ keys}}",
-      "every initial label/.style={${1:TikZ keys}}",
-      "every qubit label/.style={${1:TikZ keys}}",
-      "every cbit label/.style={${1:TikZ keys}}",
-      "every qubits label/.style={${1:TikZ keys}}",
-      "every multi label/.style={${1:TikZ keys}}",
-      "every input label/.style={${1:TikZ keys}}",
-      "every output/.append style={${1:TikZ keys}}",
-      "every qubit output/.append style={${1:TikZ keys}}",
-      "every cbit output/.append style={${1:TikZ keys}}",
-      "every qubits output/.append style={${1:TikZ keys}}",
-      "every multi output/.append style={${1:TikZ keys}}",
-      "every circuit/.style={${1:TikZ keys}}",
-      "every wire/.style={${1:TikZ keys}}",
-      "every qubit wire/.style={${1:TikZ keys}}",
-      "every cbit wire /.style={${1:TikZ keys}}",
-      "every qubits wire/.style={${1:TikZ keys}}",
-      "every control line/.style={${1:TikZ keys}}",
-      "every control/.append style={${1:TikZ keys}}",
-      "every positive control/.append style={${1:TikZ keys}}",
-      "every negative control/.append style={${1:TikZ keys}}",
-      "every operator/.prefix style={${1:TikZ keys}}",
-      "every multi line/.style={${1:TikZ keys}}",
-      "this operator/.style={${1:TikZ keys}}",
-      "this control/.style={${1:TikZ keys}}",
-      "operator style={${1:TikZ keys}}",
-      "control style={${1:TikZ keys}}",
-      "style={${1:TikZ keys}}",
-      "operator/multi as single/.style={${1:TikZ keys}}",
-      "operator/if multi={${1:TikZ keys}}",
-      "circuit/seamless",
-      "circuit/orientation=${1|horizontal,vertical|}",
-      "horizontal",
-      "vertical",
-      "vertical=${1:degrees}",
-      "every post measurement control=${1|indirect,direct|}",
-      "operators/every barrier/.style={${1:TikZ keys}}",
-      "operators/every barrier/.append style={${1:TikZ keys}}",
-      "operators/every box/.append style={${1:TikZ keys}}",
-      "operators/every custom gate/.append style={${1:TikZ keys}}",
-      "operators/every dmeter/.append style={${1:TikZ keys}}",
-      "operators/every h/.append style={${1:TikZ keys}}",
-      "operators/every inspect/.append style={${1:TikZ keys}}",
-      "operators/every iswap/.style={${1:TikZ keys}}",
-      "operators/every measure/.append style={${1:TikZ keys}}",
-      "operators/every measure meter/.append style={${1:TikZ keys}}",
-      "operators/every not/.append style={${1:TikZ keys}}",
-      "operators/every pauli/.append style={${1:TikZ keys}}",
-      "operators/every phase/.append style={${1:TikZ keys}}",
-      "operators/every rectangular box/.append style={${1:TikZ keys}}",
-      "operators/every slash/.append style={${1:TikZ keys}}",
-      "operators/every subcircuit/.append style={${1:TikZ keys}}",
-      "operators/every subcircuit box/.append style={${1:TikZ keys}}",
-      "subcircuit box style={${1:TikZ keys}}",
-      "operators/this subcircuit box",
-      "this subcircuit box style={${1:TikZ keys}}",
-      "operators/subcircuit/frameless",
-      "operators/subcircuit/name mangling=${1|prefix or discard,prefix or transparent,transparent,discard|}",
-      "operators/subcircuit/name mangling reset",
-      "operators/subcircuit/seamless",
-      "operators/every swap/.style={${1:TikZ keys}}",
-      "operators/every text/.style={${1:TikZ keys}}",
-      "operators/every wave/.style={${1:TikZ keys}}",
-      "operators/every x/.style={${1:TikZ keys}}",
-      "operators/every xx/.style={${1:TikZ keys}}",
-      "operators/every y/.style={${1:TikZ keys}}",
-      "operators/every z/.style={${1:TikZ keys}}",
-      "operators/every zz/.style={${1:TikZ keys}}",
-      "every nobit output/.style={${1:TikZ keys}}"
+    "\\begin{yquantgroup}#c,\\begin{yquantgroup*}#c": [
+      "preamble={${1:TikZ keys}}\r"
     ],
-    [
-      "group/every group/.style={${1:TikZ keys}}",
-      "group/line separation=",
-      "group/aligned",
-      "operators/every group circuit/.style={${1:TikZ keys}}",
-      "operators/every group equals/.style={${1:TikZ keys}}",
-      "preamble={${1:TikZ keys}}"
+    "\\yquantset#c": [
+      "operators/every s/.style={${1:TikZ keys}}\r",
+      "operators/every t/.style={${1:TikZ keys}}\r",
+      "operators/every utwo/.style={${1:TikZ keys}}\r",
+      "zero=${1:code}\r",
+      "register/default qubit name=${1:code}\r",
+      "register/default qubit name value=${1:code}\r"
     ]
+  },
+  "args": [
+    "\\usepackage/yquant#c"
   ]
 }

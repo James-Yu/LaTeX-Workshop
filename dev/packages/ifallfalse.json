@@ -1,16 +1,23 @@
 {
-  "includes": {},
-  "macros": {
-    "orcheck{}": {
-      "snippet": "orcheck{${1:setstring}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "orcheck",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:setstring}}"
+      }
     }
-  },
-  "envs": {
-    "allfalse{}{}{}": {
+  ],
+  "envs": [
+    {
       "name": "allfalse",
-      "snippet": "{${1:string}}{${2:true}}{${3:false}}"
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:string}}{${2:true}}{${3:false}}"
+      }
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "keys": {},
+  "args": []
 }

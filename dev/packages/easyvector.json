@@ -1,706 +1,1158 @@
 {
-  "includes": {},
-  "macros": {
-    "newvector[]{}": {
-      "snippet": "newvector[${2:scalar macro,vector macro}]{${1:text}}"
-    },
-    "newvector()[]": {
-      "snippet": "newvector(${2:letter})[${1:text}]"
-    },
-    "newvectora{}{}": {
-      "snippet": "newvectora{${1:macro}}{${2:text}}"
-    },
-    "newcustomvector[]{}{}": {
-      "snippet": "newcustomvector[${3:scalar macro,vector macro}]{${1:text}}{${2:index macro}}"
-    },
-    "AA": {
-      "option": "definevectors"
-    },
-    "AA[]": {
-      "snippet": "AA[${1:indices}]",
-      "option": "definevectors"
-    },
-    "BB": {
-      "option": "definevectors"
-    },
-    "BB[]": {
-      "snippet": "BB[${1:indices}]",
-      "option": "definevectors"
-    },
-    "CC": {
-      "option": "definevectors"
-    },
-    "CC[]": {
-      "snippet": "CC[${1:indices}]",
-      "option": "definevectors"
-    },
-    "DD": {
-      "option": "definevectors",
-      "detail": "ⅅ",
-      "documentation": "DOUBLE-STRUCK ITALIC CAPITAL D"
-    },
-    "DD[]": {
-      "snippet": "DD[${1:indices}]",
-      "option": "definevectors"
-    },
-    "EE": {
-      "option": "definevectors"
-    },
-    "EE[]": {
-      "snippet": "EE[${1:indices}]",
-      "option": "definevectors"
-    },
-    "FF": {
-      "option": "definevectors"
-    },
-    "FF[]": {
-      "snippet": "FF[${1:indices}]",
-      "option": "definevectors"
-    },
-    "GG": {
-      "option": "definevectors"
-    },
-    "GG[]": {
-      "snippet": "GG[${1:indices}]",
-      "option": "definevectors"
-    },
-    "HH": {
-      "option": "definevectors"
-    },
-    "HH[]": {
-      "snippet": "HH[${1:indices}]",
-      "option": "definevectors"
-    },
-    "II": {
-      "option": "definevectors"
-    },
-    "II[]": {
-      "snippet": "II[${1:indices}]",
-      "option": "definevectors"
-    },
-    "JJ": {
-      "option": "definevectors"
-    },
-    "JJ[]": {
-      "snippet": "JJ[${1:indices}]",
-      "option": "definevectors"
-    },
-    "KK": {
-      "option": "definevectors"
-    },
-    "KK[]": {
-      "snippet": "KK[${1:indices}]",
-      "option": "definevectors"
-    },
-    "LL": {
-      "option": "definevectors"
-    },
-    "LL[]": {
-      "snippet": "LL[${1:indices}]",
-      "option": "definevectors"
-    },
-    "MM": {
-      "option": "definevectors"
-    },
-    "MM[]": {
-      "snippet": "MM[${1:indices}]",
-      "option": "definevectors"
-    },
-    "NN": {
-      "option": "definevectors"
-    },
-    "NN[]": {
-      "snippet": "NN[${1:indices}]",
-      "option": "definevectors"
-    },
-    "OO": {
-      "option": "definevectors"
-    },
-    "OO[]": {
-      "snippet": "OO[${1:indices}]",
-      "option": "definevectors"
-    },
-    "PP": {
-      "option": "definevectors"
-    },
-    "PP[]": {
-      "snippet": "PP[${1:indices}]",
-      "option": "definevectors"
-    },
-    "QQ": {
-      "option": "definevectors"
-    },
-    "QQ[]": {
-      "snippet": "QQ[${1:indices}]",
-      "option": "definevectors"
-    },
-    "RR": {
-      "option": "definevectors"
-    },
-    "RR[]": {
-      "snippet": "RR[${1:indices}]",
-      "option": "definevectors"
-    },
-    "SS": {
-      "option": "definevectors"
-    },
-    "SS[]": {
-      "snippet": "SS[${1:indices}]",
-      "option": "definevectors"
-    },
-    "TT": {
-      "option": "definevectors"
-    },
-    "TT[]": {
-      "snippet": "TT[${1:indices}]",
-      "option": "definevectors"
-    },
-    "UU": {
-      "option": "definevectors"
-    },
-    "UU[]": {
-      "snippet": "UU[${1:indices}]",
-      "option": "definevectors"
-    },
-    "VV": {
-      "option": "definevectors"
-    },
-    "VV[]": {
-      "snippet": "VV[${1:indices}]",
-      "option": "definevectors"
-    },
-    "WW": {
-      "option": "definevectors"
-    },
-    "WW[]": {
-      "snippet": "WW[${1:indices}]",
-      "option": "definevectors"
-    },
-    "XX": {
-      "option": "definevectors"
-    },
-    "XX[]": {
-      "snippet": "XX[${1:indices}]",
-      "option": "definevectors"
-    },
-    "YY": {
-      "option": "definevectors"
-    },
-    "YY[]": {
-      "snippet": "YY[${1:indices}]",
-      "option": "definevectors"
-    },
-    "ZZ": {
-      "option": "definevectors"
-    },
-    "ZZ[]": {
-      "snippet": "ZZ[${1:indices}]",
-      "option": "definevectors"
-    },
-    "aa": {
-      "option": "definevectors"
-    },
-    "aa[]": {
-      "snippet": "aa[${1:indices}]",
-      "option": "definevectors"
-    },
-    "bb": {
-      "option": "definevectors"
-    },
-    "bb[]": {
-      "snippet": "bb[${1:indices}]",
-      "option": "definevectors"
-    },
-    "cc": {
-      "option": "definevectors"
-    },
-    "cc[]": {
-      "snippet": "cc[${1:indices}]",
-      "option": "definevectors"
-    },
-    "dd": {
-      "option": "definevectors",
-      "detail": "ⅆ",
-      "documentation": "DOUBLE-STRUCK ITALIC SMALL D"
-    },
-    "dd[]": {
-      "snippet": "dd[${1:indices}]",
-      "option": "definevectors"
-    },
-    "ee": {
-      "option": "definevectors",
-      "detail": "ⅇ",
-      "documentation": "DOUBLE-STRUCK ITALIC SMALL E"
-    },
-    "ee[]": {
-      "snippet": "ee[${1:indices}]",
-      "option": "definevectors"
-    },
-    "ff": {
-      "option": "definevectors"
-    },
-    "ff[]": {
-      "snippet": "ff[${1:indices}]",
-      "option": "definevectors"
-    },
-    "gg": {
-      "option": "definevectors",
+  "deps": [],
+  "macros": [
+    {
+      "name": "newvector",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:scalar macro,vector macro%definition}]{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "newvector(letter)",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:text%plain}]"
+      }
+    },
+    {
+      "name": "newvectora",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:macro}}{${2:text%plain}}"
+      }
+    },
+    {
+      "name": "newcustomvector",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:scalar macro,vector macro%definition}]{${1:text%plain}}{${2:index macro%definition}}"
+      }
+    },
+    {
+      "name": "AA",
+      "if": "definevectors"
+    },
+    {
+      "name": "AA",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "BB",
+      "if": "definevectors"
+    },
+    {
+      "name": "BB",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "CC",
+      "if": "definevectors"
+    },
+    {
+      "name": "CC",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "DD",
+      "if": "definevectors"
+    },
+    {
+      "name": "DD",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "EE",
+      "if": "definevectors"
+    },
+    {
+      "name": "EE",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "FF",
+      "if": "definevectors"
+    },
+    {
+      "name": "FF",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "GG",
+      "if": "definevectors"
+    },
+    {
+      "name": "GG",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "HH",
+      "if": "definevectors"
+    },
+    {
+      "name": "HH",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "II",
+      "if": "definevectors"
+    },
+    {
+      "name": "II",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "JJ",
+      "if": "definevectors"
+    },
+    {
+      "name": "JJ",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "KK",
+      "if": "definevectors"
+    },
+    {
+      "name": "KK",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "LL",
+      "if": "definevectors"
+    },
+    {
+      "name": "LL",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "MM",
+      "if": "definevectors"
+    },
+    {
+      "name": "MM",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "NN",
+      "if": "definevectors"
+    },
+    {
+      "name": "NN",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "OO",
+      "if": "definevectors"
+    },
+    {
+      "name": "OO",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "PP",
+      "if": "definevectors"
+    },
+    {
+      "name": "PP",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "QQ",
+      "if": "definevectors"
+    },
+    {
+      "name": "QQ",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "RR",
+      "if": "definevectors"
+    },
+    {
+      "name": "RR",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "SS",
+      "if": "definevectors"
+    },
+    {
+      "name": "SS",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "TT",
+      "if": "definevectors"
+    },
+    {
+      "name": "TT",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "UU",
+      "if": "definevectors"
+    },
+    {
+      "name": "UU",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "VV",
+      "if": "definevectors"
+    },
+    {
+      "name": "VV",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "WW",
+      "if": "definevectors"
+    },
+    {
+      "name": "WW",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "XX",
+      "if": "definevectors"
+    },
+    {
+      "name": "XX",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "YY",
+      "if": "definevectors"
+    },
+    {
+      "name": "YY",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "ZZ",
+      "if": "definevectors"
+    },
+    {
+      "name": "ZZ",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "aa",
+      "if": "definevectors"
+    },
+    {
+      "name": "aa",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "bb",
+      "if": "definevectors"
+    },
+    {
+      "name": "bb",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "cc",
+      "if": "definevectors"
+    },
+    {
+      "name": "cc",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "dd",
+      "if": "definevectors"
+    },
+    {
+      "name": "dd",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "ee",
+      "if": "definevectors"
+    },
+    {
+      "name": "ee",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "ff",
+      "if": "definevectors"
+    },
+    {
+      "name": "ff",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "gg",
+      "if": "definevectors",
       "detail": "≫",
-      "documentation": "much greater type 2"
+      "doc": "Much greater than, type 2"
     },
-    "gg[]": {
-      "snippet": "gg[${1:indices}]",
-      "option": "definevectors"
+    {
+      "name": "gg",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      },
+      "detail": "≫",
+      "doc": "Much greater than, type 2"
     },
-    "hh": {
-      "option": "definevectors"
+    {
+      "name": "hh",
+      "if": "definevectors"
     },
-    "hh[]": {
-      "snippet": "hh[${1:indices}]",
-      "option": "definevectors"
+    {
+      "name": "hh",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
     },
-    "ii": {
-      "option": "definevectors",
-      "detail": "ⅈ",
-      "documentation": "DOUBLE-STRUCK ITALIC SMALL I"
+    {
+      "name": "ii",
+      "if": "definevectors"
     },
-    "ii[]": {
-      "snippet": "ii[${1:indices}]",
-      "option": "definevectors"
+    {
+      "name": "ii",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
     },
-    "jj": {
-      "option": "definevectors",
-      "detail": "ⅉ",
-      "documentation": "DOUBLE-STRUCK ITALIC SMALL J"
+    {
+      "name": "jj",
+      "if": "definevectors"
     },
-    "jj[]": {
-      "snippet": "jj[${1:indices}]",
-      "option": "definevectors"
+    {
+      "name": "jj",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
     },
-    "kk": {
-      "option": "definevectors"
+    {
+      "name": "kk",
+      "if": "definevectors"
     },
-    "kk[]": {
-      "snippet": "kk[${1:indices}]",
-      "option": "definevectors"
+    {
+      "name": "kk",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
     },
-    "ll": {
-      "option": "definevectors",
+    {
+      "name": "ll",
+      "if": "definevectors",
       "detail": "≪",
-      "documentation": "much less type 2"
-    },
-    "ll[]": {
-      "snippet": "ll[${1:indices}]",
-      "option": "definevectors"
-    },
-    "mm": {
-      "option": "definevectors"
-    },
-    "mm[]": {
-      "snippet": "mm[${1:indices}]",
-      "option": "definevectors"
-    },
-    "nn": {
-      "option": "definevectors"
-    },
-    "nn[]": {
-      "snippet": "nn[${1:indices}]",
-      "option": "definevectors"
-    },
-    "oo": {
-      "option": "definevectors"
-    },
-    "oo[]": {
-      "snippet": "oo[${1:indices}]",
-      "option": "definevectors"
-    },
-    "pp": {
-      "option": "definevectors"
-    },
-    "pp[]": {
-      "snippet": "pp[${1:indices}]",
-      "option": "definevectors"
-    },
-    "qq": {
-      "option": "definevectors"
-    },
-    "qq[]": {
-      "snippet": "qq[${1:indices}]",
-      "option": "definevectors"
-    },
-    "rr": {
-      "option": "definevectors"
-    },
-    "rr[]": {
-      "snippet": "rr[${1:indices}]",
-      "option": "definevectors"
-    },
-    "ss": {
-      "option": "definevectors"
-    },
-    "ss[]": {
-      "snippet": "ss[${1:indices}]",
-      "option": "definevectors"
-    },
-    "tt": {
-      "option": "definevectors"
-    },
-    "tt[]": {
-      "snippet": "tt[${1:indices}]",
-      "option": "definevectors"
-    },
-    "uu": {
-      "option": "definevectors"
-    },
-    "uu[]": {
-      "snippet": "uu[${1:indices}]",
-      "option": "definevectors"
-    },
-    "vv": {
-      "option": "definevectors"
-    },
-    "vv[]": {
-      "snippet": "vv[${1:indices}]",
-      "option": "definevectors"
-    },
-    "ww": {
-      "option": "definevectors"
-    },
-    "ww[]": {
-      "snippet": "ww[${1:indices}]",
-      "option": "definevectors"
-    },
-    "xx": {
-      "option": "definevectors"
-    },
-    "xx[]": {
-      "snippet": "xx[${1:indices}]",
-      "option": "definevectors"
-    },
-    "yy": {
-      "option": "definevectors"
-    },
-    "yy[]": {
-      "snippet": "yy[${1:indices}]",
-      "option": "definevectors"
-    },
-    "zz": {
-      "option": "definevectors"
-    },
-    "zz[]": {
-      "snippet": "zz[${1:indices}]",
-      "option": "definevectors"
-    },
-    "Balpha": {
-      "option": "definevectors"
-    },
-    "Balpha[]": {
-      "snippet": "Balpha[${1:indices}]",
-      "option": "definevectors"
-    },
-    "Bbeta": {
-      "option": "definevectors"
-    },
-    "Bbeta[]": {
-      "snippet": "Bbeta[${1:indices}]",
-      "option": "definevectors"
-    },
-    "Bgamma": {
-      "option": "definevectors"
-    },
-    "Bgamma[]": {
-      "snippet": "Bgamma[${1:indices}]",
-      "option": "definevectors"
-    },
-    "Bdelta": {
-      "option": "definevectors"
-    },
-    "Bdelta[]": {
-      "snippet": "Bdelta[${1:indices}]",
-      "option": "definevectors"
-    },
-    "Bepsilon": {
-      "option": "definevectors"
-    },
-    "Bepsilon[]": {
-      "snippet": "Bepsilon[${1:indices}]",
-      "option": "definevectors"
-    },
-    "Bzeta": {
-      "option": "definevectors"
-    },
-    "Bzeta[]": {
-      "snippet": "Bzeta[${1:indices}]",
-      "option": "definevectors"
-    },
-    "Beta": {
-      "option": "definevectors"
-    },
-    "Beta[]": {
-      "snippet": "Beta[${1:indices}]",
-      "option": "definevectors"
-    },
-    "Btheta": {
-      "option": "definevectors"
-    },
-    "Btheta[]": {
-      "snippet": "Btheta[${1:indices}]",
-      "option": "definevectors"
-    },
-    "Biota": {
-      "option": "definevectors"
-    },
-    "Biota[]": {
-      "snippet": "Biota[${1:indices}]",
-      "option": "definevectors"
-    },
-    "Bkappa": {
-      "option": "definevectors"
-    },
-    "Bkappa[]": {
-      "snippet": "Bkappa[${1:indices}]",
-      "option": "definevectors"
-    },
-    "Blambda": {
-      "option": "definevectors"
-    },
-    "Blambda[]": {
-      "snippet": "Blambda[${1:indices}]",
-      "option": "definevectors"
-    },
-    "Bmu": {
-      "option": "definevectors"
-    },
-    "Bmu[]": {
-      "snippet": "Bmu[${1:indices}]",
-      "option": "definevectors"
-    },
-    "Bnu": {
-      "option": "definevectors"
-    },
-    "Bnu[]": {
-      "snippet": "Bnu[${1:indices}]",
-      "option": "definevectors"
-    },
-    "Bxi": {
-      "option": "definevectors"
-    },
-    "Bxi[]": {
-      "snippet": "Bxi[${1:indices}]",
-      "option": "definevectors"
-    },
-    "Bpi": {
-      "option": "definevectors"
-    },
-    "Bpi[]": {
-      "snippet": "Bpi[${1:indices}]",
-      "option": "definevectors"
-    },
-    "Brho": {
-      "option": "definevectors"
-    },
-    "Brho[]": {
-      "snippet": "Brho[${1:indices}]",
-      "option": "definevectors"
-    },
-    "Bsigma": {
-      "option": "definevectors"
-    },
-    "Bsigma[]": {
-      "snippet": "Bsigma[${1:indices}]",
-      "option": "definevectors"
-    },
-    "Btau": {
-      "option": "definevectors"
-    },
-    "Btau[]": {
-      "snippet": "Btau[${1:indices}]",
-      "option": "definevectors"
-    },
-    "Bupsilon": {
-      "option": "definevectors"
-    },
-    "Bupsilon[]": {
-      "snippet": "Bupsilon[${1:indices}]",
-      "option": "definevectors"
-    },
-    "Bphi": {
-      "option": "definevectors"
-    },
-    "Bphi[]": {
-      "snippet": "Bphi[${1:indices}]",
-      "option": "definevectors"
-    },
-    "Bchi": {
-      "option": "definevectors"
-    },
-    "Bchi[]": {
-      "snippet": "Bchi[${1:indices}]",
-      "option": "definevectors"
-    },
-    "Bpsi": {
-      "option": "definevectors"
-    },
-    "Bpsi[]": {
-      "snippet": "Bpsi[${1:indices}]",
-      "option": "definevectors"
-    },
-    "Bomega": {
-      "option": "definevectors"
-    },
-    "Bomega[]": {
-      "snippet": "Bomega[${1:indices}]",
-      "option": "definevectors"
-    },
-    "Bvarepsilon": {
-      "option": "definevectors"
-    },
-    "Bvarepsilon[]": {
-      "snippet": "Bvarepsilon[${1:indices}]",
-      "option": "definevectors"
-    },
-    "Bvartheta": {
-      "option": "definevectors"
-    },
-    "Bvartheta[]": {
-      "snippet": "Bvartheta[${1:indices}]",
-      "option": "definevectors"
-    },
-    "Bvarpi": {
-      "option": "definevectors"
-    },
-    "Bvarpi[]": {
-      "snippet": "Bvarpi[${1:indices}]",
-      "option": "definevectors"
-    },
-    "Bvarrho": {
-      "option": "definevectors"
-    },
-    "Bvarrho[]": {
-      "snippet": "Bvarrho[${1:indices}]",
-      "option": "definevectors"
-    },
-    "Bvarsigma": {
-      "option": "definevectors"
-    },
-    "Bvarsigma[]": {
-      "snippet": "Bvarsigma[${1:indices}]",
-      "option": "definevectors"
-    },
-    "Bvarphi": {
-      "option": "definevectors"
-    },
-    "Bvarphi[]": {
-      "snippet": "Bvarphi[${1:indices}]",
-      "option": "definevectors"
-    },
-    "BGamma": {
-      "option": "definevectors"
-    },
-    "BGamma[]": {
-      "snippet": "BGamma[${1:indices}]",
-      "option": "definevectors"
-    },
-    "BDelta": {
-      "option": "definevectors"
-    },
-    "BDelta[]": {
-      "snippet": "BDelta[${1:indices}]",
-      "option": "definevectors"
-    },
-    "BTheta": {
-      "option": "definevectors"
-    },
-    "BTheta[]": {
-      "snippet": "BTheta[${1:indices}]",
-      "option": "definevectors"
-    },
-    "BLambda": {
-      "option": "definevectors"
-    },
-    "BLambda[]": {
-      "snippet": "BLambda[${1:indices}]",
-      "option": "definevectors"
-    },
-    "BXi": {
-      "option": "definevectors"
-    },
-    "BXi[]": {
-      "snippet": "BXi[${1:indices}]",
-      "option": "definevectors"
-    },
-    "BPi": {
-      "option": "definevectors"
-    },
-    "BPi[]": {
-      "snippet": "BPi[${1:indices}]",
-      "option": "definevectors"
-    },
-    "BSigma": {
-      "option": "definevectors"
-    },
-    "BSigma[]": {
-      "snippet": "BSigma[${1:indices}]",
-      "option": "definevectors"
-    },
-    "BUpsilon": {
-      "option": "definevectors"
-    },
-    "BUpsilon[]": {
-      "snippet": "BUpsilon[${1:indices}]",
-      "option": "definevectors"
-    },
-    "BPhi": {
-      "option": "definevectors"
-    },
-    "BPhi[]": {
-      "snippet": "BPhi[${1:indices}]",
-      "option": "definevectors"
-    },
-    "BPsi": {
-      "option": "definevectors"
-    },
-    "BPsi[]": {
-      "snippet": "BPsi[${1:indices}]",
-      "option": "definevectors"
-    },
-    "BOmega": {
-      "option": "definevectors"
-    },
-    "BOmega[]": {
-      "snippet": "BOmega[${1:indices}]",
-      "option": "definevectors"
-    },
-    "oldaa": {
-      "option": "definevectors"
-    },
-    "oldAA": {
-      "option": "definevectors"
-    },
-    "oldgg": {
-      "option": "definevectors"
-    },
-    "oldll": {
-      "option": "definevectors"
-    },
-    "oldss": {
-      "option": "definevectors"
-    },
-    "oldSS": {
-      "option": "definevectors"
-    },
-    "oldtt": {
-      "option": "definevectors"
-    },
-    "filedate": {},
-    "fileversion": {}
-  },
-  "envs": {},
-  "options": [
-    "boldcm",
-    "boldcc",
-    "definevectors",
-    "spacesep"
+      "doc": "Much less than, type 2"
+    },
+    {
+      "name": "ll",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      },
+      "detail": "≪",
+      "doc": "Much less than, type 2"
+    },
+    {
+      "name": "mm",
+      "if": "definevectors"
+    },
+    {
+      "name": "mm",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "nn",
+      "if": "definevectors"
+    },
+    {
+      "name": "nn",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "oo",
+      "if": "definevectors"
+    },
+    {
+      "name": "oo",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "pp",
+      "if": "definevectors"
+    },
+    {
+      "name": "pp",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "qq",
+      "if": "definevectors"
+    },
+    {
+      "name": "qq",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "rr",
+      "if": "definevectors"
+    },
+    {
+      "name": "rr",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "ss",
+      "if": "definevectors"
+    },
+    {
+      "name": "ss",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "tt",
+      "if": "definevectors"
+    },
+    {
+      "name": "tt",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "uu",
+      "if": "definevectors"
+    },
+    {
+      "name": "uu",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "vv",
+      "if": "definevectors"
+    },
+    {
+      "name": "vv",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "ww",
+      "if": "definevectors"
+    },
+    {
+      "name": "ww",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "xx",
+      "if": "definevectors"
+    },
+    {
+      "name": "xx",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "yy",
+      "if": "definevectors"
+    },
+    {
+      "name": "yy",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "zz",
+      "if": "definevectors"
+    },
+    {
+      "name": "zz",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "Balpha",
+      "if": "definevectors"
+    },
+    {
+      "name": "Balpha",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "Bbeta",
+      "if": "definevectors"
+    },
+    {
+      "name": "Bbeta",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "Bgamma",
+      "if": "definevectors"
+    },
+    {
+      "name": "Bgamma",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "Bdelta",
+      "if": "definevectors"
+    },
+    {
+      "name": "Bdelta",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "Bepsilon",
+      "if": "definevectors"
+    },
+    {
+      "name": "Bepsilon",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "Bzeta",
+      "if": "definevectors"
+    },
+    {
+      "name": "Bzeta",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "Beta",
+      "if": "definevectors"
+    },
+    {
+      "name": "Beta",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "Btheta",
+      "if": "definevectors"
+    },
+    {
+      "name": "Btheta",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "Biota",
+      "if": "definevectors"
+    },
+    {
+      "name": "Biota",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "Bkappa",
+      "if": "definevectors"
+    },
+    {
+      "name": "Bkappa",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "Blambda",
+      "if": "definevectors"
+    },
+    {
+      "name": "Blambda",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "Bmu",
+      "if": "definevectors"
+    },
+    {
+      "name": "Bmu",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "Bnu",
+      "if": "definevectors"
+    },
+    {
+      "name": "Bnu",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "Bxi",
+      "if": "definevectors"
+    },
+    {
+      "name": "Bxi",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "Bpi",
+      "if": "definevectors"
+    },
+    {
+      "name": "Bpi",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "Brho",
+      "if": "definevectors"
+    },
+    {
+      "name": "Brho",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "Bsigma",
+      "if": "definevectors"
+    },
+    {
+      "name": "Bsigma",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "Btau",
+      "if": "definevectors"
+    },
+    {
+      "name": "Btau",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "Bupsilon",
+      "if": "definevectors"
+    },
+    {
+      "name": "Bupsilon",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "Bphi",
+      "if": "definevectors"
+    },
+    {
+      "name": "Bphi",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "Bchi",
+      "if": "definevectors"
+    },
+    {
+      "name": "Bchi",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "Bpsi",
+      "if": "definevectors"
+    },
+    {
+      "name": "Bpsi",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "Bomega",
+      "if": "definevectors"
+    },
+    {
+      "name": "Bomega",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "Bvarepsilon",
+      "if": "definevectors"
+    },
+    {
+      "name": "Bvarepsilon",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "Bvartheta",
+      "if": "definevectors"
+    },
+    {
+      "name": "Bvartheta",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "Bvarpi",
+      "if": "definevectors"
+    },
+    {
+      "name": "Bvarpi",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "Bvarrho",
+      "if": "definevectors"
+    },
+    {
+      "name": "Bvarrho",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "Bvarsigma",
+      "if": "definevectors"
+    },
+    {
+      "name": "Bvarsigma",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "Bvarphi",
+      "if": "definevectors"
+    },
+    {
+      "name": "Bvarphi",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "BGamma",
+      "if": "definevectors"
+    },
+    {
+      "name": "BGamma",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "BDelta",
+      "if": "definevectors"
+    },
+    {
+      "name": "BDelta",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "BTheta",
+      "if": "definevectors"
+    },
+    {
+      "name": "BTheta",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "BLambda",
+      "if": "definevectors"
+    },
+    {
+      "name": "BLambda",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "BXi",
+      "if": "definevectors"
+    },
+    {
+      "name": "BXi",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "BPi",
+      "if": "definevectors"
+    },
+    {
+      "name": "BPi",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "BSigma",
+      "if": "definevectors"
+    },
+    {
+      "name": "BSigma",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "BUpsilon",
+      "if": "definevectors"
+    },
+    {
+      "name": "BUpsilon",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "BPhi",
+      "if": "definevectors"
+    },
+    {
+      "name": "BPhi",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "BPsi",
+      "if": "definevectors"
+    },
+    {
+      "name": "BPsi",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    },
+    {
+      "name": "BOmega",
+      "if": "definevectors"
+    },
+    {
+      "name": "BOmega",
+      "if": "definevectors",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indices}]"
+      }
+    }
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/easyvector#c": [
+      "boldcm\r",
+      "boldcc\r",
+      "definevectors\r",
+      "spacesep\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/easyvector#c"
+  ]
 }

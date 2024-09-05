@@ -1,65 +1,151 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "graphicx": [],
-    "aeb_pro": []
-  },
-  "macros": {
-    "mailTo{}": {
-      "snippet": "mailTo{${1:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "xkeyval"
     },
-    "assembleEnvelope": {},
-    "aebenvDimensions": {},
-    "addressEnv": {},
-    "inputEnvExecJS": {},
-    "setEnvDimensions{}{}": {
-      "snippet": "setEnvDimensions{${1:width}}{${2:height}}"
+    {
+      "name": "graphicx"
     },
-    "setAddressEnv{}": {
-      "snippet": "setAddressEnv{${1:\\put commands}}"
-    },
-    "toggleAttachmentsPanel{}{}": {
-      "snippet": "toggleAttachmentsPanel{${1:color}}{${2:text}}"
-    },
-    "mailtoName": {},
-    "mailtoFrom": {},
-    "mailtoMessageEnvelope": {},
-    "mailtoBCC": {},
-    "mailtoCC": {},
-    "mailtoEmail": {},
-    "mailtoMessageBody": {},
-    "mailtoSubject": {},
-    "mailtoUI": {},
-    "displayAddr{}": {
-      "snippet": "displayAddr{${1:text}}"
-    },
-    "addressEnvAdobei": {},
-    "addressEnvAdobeii": {},
-    "addressEnvAebi": {},
-    "addressEnvAebii": {},
-    "aebEnvPath": {},
-    "mailitNow": {},
-    "pathtoEnv": {}
-  },
-  "envs": {},
-  "options": [
-    "donotmail",
-    "path2folder=${1:file path}",
-    "envelope=${1|aeb1,aeb2,adobe1,adobe2,${1:pdf file}|}"
+    {
+      "name": "aeb_pro"
+    }
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "mailTo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "assembleEnvelope"
+    },
+    {
+      "name": "aebenvDimensions",
+      "unusual": true
+    },
+    {
+      "name": "addressEnv",
+      "unusual": true
+    },
+    {
+      "name": "inputEnvExecJS",
+      "unusual": true
+    },
+    {
+      "name": "setEnvDimensions",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "setAddressEnv",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:\\put commands}}"
+      }
+    },
+    {
+      "name": "toggleAttachmentsPanel",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:color}}{${2:text}}"
+      }
+    },
+    {
+      "name": "mailtoName",
+      "unusual": true
+    },
+    {
+      "name": "mailtoFrom",
+      "unusual": true
+    },
+    {
+      "name": "mailtoMessageEnvelope",
+      "unusual": true
+    },
+    {
+      "name": "mailtoBCC",
+      "unusual": true
+    },
+    {
+      "name": "mailtoCC",
+      "unusual": true
+    },
+    {
+      "name": "mailtoEmail",
+      "unusual": true
+    },
+    {
+      "name": "mailtoMessageBody",
+      "unusual": true
+    },
+    {
+      "name": "mailtoSubject",
+      "unusual": true
+    },
+    {
+      "name": "mailtoUI",
+      "unusual": true
+    },
+    {
+      "name": "displayAddr",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "addressEnvAdobei",
+      "unusual": true
+    },
+    {
+      "name": "addressEnvAdobeii",
+      "unusual": true
+    },
+    {
+      "name": "addressEnvAebi",
+      "unusual": true
+    },
+    {
+      "name": "addressEnvAebii",
+      "unusual": true
+    },
+    {
+      "name": "aebEnvPath",
+      "unusual": true
+    },
+    {
+      "name": "mailitNow",
+      "unusual": true
+    },
+    {
+      "name": "pathtoEnv",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/aeb_envelope#c": [
+      "donotmail\r",
+      "path2folder=${1:file path}\r",
+      "envelope=${2|aeb1,aeb2,adobe1,adobe2,${1:pdf file}\r|}"
+    ],
+    "\\mailTo": [
       "UI",
-      "ToName={${1:text}}",
-      "From={${1:text}}",
-      "To=${1:email1;email2;...}",
-      "CC=${1:email1;email2;...}",
-      "BCC=${1:email1;email2;...}",
-      "Subject={${1:text}",
-      "MessageEnvelope={${1:text}",
-      "MessageBody={${1:text}"
+      "ToName={${1:text}}\r",
+      "From={${1:text}}\r",
+      "To=${1:email1;email2;...}\r",
+      "CC=${1:email1;email2;...}\r",
+      "BCC=${1:email1;email2;...}\r",
+      "Subject={${1:text}\r",
+      "MessageEnvelope={${1:text}\r",
+      "MessageBody={${1:text}\r"
     ]
+  },
+  "args": [
+    "\\usepackage/aeb_envelope#c"
   ]
 }

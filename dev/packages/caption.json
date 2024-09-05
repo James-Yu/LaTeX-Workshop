@@ -1,160 +1,379 @@
 {
-  "includes": {
-    "caption3": [],
-    "ltcaption": [],
-    "setspace": [
-      "font=onehalfspacing",
-      "labelfont=onehalfspacing",
-      "textfont=onehalfspacing",
-      "font+=onehalfspacing",
-      "labelfont+=onehalfspacing",
-      "textfont+=onehalfspacing",
-      "font=doublespacing",
-      "labelfont=doublespacing",
-      "textfont=doublespacing",
-      "font+=doublespacing",
-      "labelfont+=doublespacing",
-      "textfont+=doublespacing"
+  "deps": [
+    {
+      "name": "caption3"
+    },
+    {
+      "name": "ltcaption"
+    },
+    {
+      "name": "setspace",
+      "if": "font=onehalfspacing"
+    },
+    {
+      "name": "setspace",
+      "if": "labelfont=onehalfspacing"
+    },
+    {
+      "name": "setspace",
+      "if": "textfont=onehalfspacing"
+    },
+    {
+      "name": "setspace",
+      "if": "font+=onehalfspacing"
+    },
+    {
+      "name": "setspace",
+      "if": "labelfont+=onehalfspacing"
+    },
+    {
+      "name": "setspace",
+      "if": "textfont+=onehalfspacing"
+    },
+    {
+      "name": "setspace",
+      "if": "font=doublespacing"
+    },
+    {
+      "name": "setspace",
+      "if": "labelfont=doublespacing"
+    },
+    {
+      "name": "setspace",
+      "if": "textfont=doublespacing"
+    },
+    {
+      "name": "setspace",
+      "if": "font+=doublespacing"
+    },
+    {
+      "name": "setspace",
+      "if": "labelfont+=doublespacing"
+    },
+    {
+      "name": "setspace",
+      "if": "textfont+=doublespacing"
+    },
+    {
+      "name": "sansmath",
+      "if": "font=sansmath"
+    },
+    {
+      "name": "sansmath",
+      "if": "labelfont=sansmath"
+    },
+    {
+      "name": "sansmath",
+      "if": "textfont=sansmath"
+    },
+    {
+      "name": "sansmath",
+      "if": "font+=sansmath"
+    },
+    {
+      "name": "sansmath",
+      "if": "labelfont+=sansmath"
+    },
+    {
+      "name": "sansmath",
+      "if": "textfont+=sansmath"
+    },
+    {
+      "name": "ragged2e",
+      "if": "justification=RaggedRight"
+    },
+    {
+      "name": "ragged2e",
+      "if": "justification=RaggedLeft"
+    },
+    {
+      "name": "ragged2e",
+      "if": "justification=Justified"
+    },
+    {
+      "name": "ragged2e",
+      "if": "justification=Centering"
+    },
+    {
+      "name": "ragged2e",
+      "if": "justification=RaggedRight"
+    },
+    {
+      "name": "ragged2e",
+      "if": "justification=RaggedLeft"
+    }
+  ],
+  "macros": [
+    {
+      "name": "caption*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:heading%text}}"
+      }
+    },
+    {
+      "name": "captionof",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:float type}}[${3:list entry%text}]{${2:heading%text}}"
+      }
+    },
+    {
+      "name": "captionof",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:float type}}{${2:heading%text}}"
+      }
+    },
+    {
+      "name": "captionof*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:float type}}{${2:heading%text}}"
+      }
+    },
+    {
+      "name": "captionlistentry",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:float type}]{${1:list entry%text}}"
+      }
+    },
+    {
+      "name": "captionlistentry",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:list entry%text}}"
+      }
+    },
+    {
+      "name": "ContinuedFloat"
+    },
+    {
+      "name": "ContinuedFloat*"
+    },
+    {
+      "name": "theContinuedFloat",
+      "unusual": true
+    },
+    {
+      "name": "piccaptiontype",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:float type}}"
+      }
+    },
+    {
+      "name": "captionbox*",
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "{${1:heading%text}}[${3:width}][${4:inner-pos}]{${2:content%text}}"
+      }
+    },
+    {
+      "name": "captionbox*",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:heading%text}}[${3:width}]{${2:content%text}}"
+      }
+    },
+    {
+      "name": "captionbox*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:heading%text}}{${2:content%text}}"
+      }
+    },
+    {
+      "name": "captionbox",
+      "arg": {
+        "format": "[]{}[][]{}",
+        "snippet": "[${3:list entry}]{${1:heading%text}}[${4:width}][${5:inner-pos}]{${2:content%text}}"
+      }
+    },
+    {
+      "name": "captionbox",
+      "arg": {
+        "format": "[]{}[]{}",
+        "snippet": "[${3:list entry}]{${1:heading%text}}[${4:width}]{${2:content%text}}"
+      }
+    },
+    {
+      "name": "captionbox",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:list entry}]{${1:heading%text}}{${2:content%text}}"
+      }
+    },
+    {
+      "name": "captionbox",
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "{${1:heading%text}}[${3:width}][${4:inner-pos}]{${2:content%text}}"
+      }
+    },
+    {
+      "name": "captionbox",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:heading%text}}[${3:width}]{${2:content%text}}"
+      }
+    },
+    {
+      "name": "captionbox",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:heading%text}}{${2:content%text}}"
+      }
+    },
+    {
+      "name": "captiontext*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:number}]{${1:text}}"
+      }
+    },
+    {
+      "name": "captiontext*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "captiontext",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:number}]{${1:text}}"
+      }
+    },
+    {
+      "name": "captiontext",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "flushsubcaptionlistentries",
+      "unusual": true
+    },
+    {
+      "name": "nextfloat"
+    },
+    {
+      "name": "nextfloat*"
+    },
+    {
+      "name": "phantomcaption"
+    },
+    {
+      "name": "setcaptionsubtype*"
+    },
+    {
+      "name": "setcaptionsubtype",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:float type}}"
+      }
+    },
+    {
+      "name": "setcaptiontype*"
+    },
+    {
+      "name": "setcaptiontype",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:float type}}"
+      }
+    },
+    {
+      "name": "subcaptionsetup",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:float type}]{${1:options%keyvals}}"
+      }
+    },
+    {
+      "name": "subcaptionsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}"
+      }
+    },
+    {
+      "name": "subcaptionsetup*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:float type}]{${1:options%keyvals}}"
+      }
+    },
+    {
+      "name": "subcaptionsetup*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "captionblock",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:width}}"
+      }
+    },
+    {
+      "name": "captionblock",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:position}]{${1:width}}"
+      }
+    },
+    {
+      "name": "captionblock",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:position}][${3:height}]{${1:width}}"
+      }
+    },
+    {
+      "name": "captionblock",
+      "arg": {
+        "format": "[][][]{}",
+        "snippet": "[${2:position}][${3:height}][${4:inner-pos}]{${1:width}}"
+      }
+    },
+    {
+      "name": "captiongroup",
+      "unusual": true
+    },
+    {
+      "name": "captiongroup*",
+      "unusual": true
+    }
+  ],
+  "keys": {
+    "\\captionsetup#c,\\captionsetup*#c,\\usepackage/caption#c,\\DeclareCaptionStyle#c,\\bicaptionsetup#c,\\bicaptionsetup*#c,\\subcaptionsetup#c,\\subcaptionsetup*#c": [
+      "list-entry=${1|default,list-entry,entry|}",
+      "hypcap",
+      "hypcapspace=",
+      "type=${1:float type}",
+      "type*=${1:float type}",
+      "subtype=${1:float type}",
+      "subtype*=${1:float type}"
     ],
-    "sansmath": [
-      "font=sansmath",
-      "labelfont=sansmath",
-      "textfont=sansmath",
-      "font+=sansmath",
-      "labelfont+=sansmath",
-      "textfont+=sansmath"
-    ],
-    "ragged2e": [
-      "justification=RaggedRight",
-      "justification=RaggedLeft",
-      "justification=Justified",
-      "justification=Centering",
-      "justification=RaggedRight",
-      "justification=RaggedLeft"
+    "\\usepackage/caption#c": [
+      "compatibility",
+      "config=${1:file name}"
     ]
   },
-  "macros": {
-    "caption*{}": {
-      "snippet": "caption*{${1:heading}}"
-    },
-    "captionof{}[]{}": {
-      "snippet": "captionof{${1:float type}}[${2:list entry}]{${3:heading}}"
-    },
-    "captionof{}{}": {
-      "snippet": "captionof{${1:float type}}{${2:heading}}"
-    },
-    "captionof*{}{}": {
-      "snippet": "captionof*{${1:float type}}{${2:heading}}"
-    },
-    "captionlistentry[]{}": {
-      "snippet": "captionlistentry[${2:float type}]{${1:list entry}}"
-    },
-    "captionlistentry{}": {
-      "snippet": "captionlistentry{${1:list entry}}"
-    },
-    "ContinuedFloat": {},
-    "ContinuedFloat*": {},
-    "theContinuedFloat": {},
-    "piccaptiontype{}": {
-      "snippet": "piccaptiontype{${1:float type}}"
-    },
-    "captionbox*{}[][]{}": {
-      "snippet": "captionbox*{${1:heading}}[${2:width}][${3:inner-pos}]{${4:content}}"
-    },
-    "captionbox*{}[]{}": {
-      "snippet": "captionbox*{${1:heading}}[${2:width}]{${3:content}}"
-    },
-    "captionbox*{}{}": {
-      "snippet": "captionbox*{${1:heading}}{${2:content}}"
-    },
-    "captionbox[]{}[][]{}": {
-      "snippet": "captionbox[${3:list entry}]{${1:heading}}[${4:width}][${5:inner-pos}]{${2:content}}"
-    },
-    "captionbox[]{}[]{}": {
-      "snippet": "captionbox[${3:list entry}]{${1:heading}}[${4:width}]{${2:content}}"
-    },
-    "captionbox[]{}{}": {
-      "snippet": "captionbox[${3:list entry}]{${1:heading}}{${2:content}}"
-    },
-    "captionbox{}[][]{}": {
-      "snippet": "captionbox{${1:heading}}[${2:width}][${3:inner-pos}]{${4:content}}"
-    },
-    "captionbox{}[]{}": {
-      "snippet": "captionbox{${1:heading}}[${2:width}]{${3:content}}"
-    },
-    "captionbox{}{}": {
-      "snippet": "captionbox{${1:heading}}{${2:content}}"
-    },
-    "captiontext*[]{}": {
-      "snippet": "captiontext*[${2:number}]{${1:text}}"
-    },
-    "captiontext*{}": {
-      "snippet": "captiontext*{${1:text}}"
-    },
-    "captiontext[]{}": {
-      "snippet": "captiontext[${2:number}]{${1:text}}"
-    },
-    "captiontext{}": {
-      "snippet": "captiontext{${1:text}}"
-    },
-    "flushsubcaptionlistentries": {},
-    "nextfloat": {},
-    "nextfloat*": {},
-    "phantomcaption": {},
-    "setcaptionsubtype*": {},
-    "setcaptionsubtype{}": {
-      "snippet": "setcaptionsubtype{${1:float type}}"
-    },
-    "setcaptiontype*": {},
-    "setcaptiontype{}": {
-      "snippet": "setcaptiontype{${1:float type}}"
-    },
-    "subcaptionsetup[]{}": {
-      "snippet": "subcaptionsetup[${2:float type}]{${1:options}}"
-    },
-    "subcaptionsetup{}": {
-      "snippet": "subcaptionsetup{${1:options}}"
-    },
-    "subcaptionsetup*[]{}": {
-      "snippet": "subcaptionsetup*[${2:float type}]{${1:options}}"
-    },
-    "subcaptionsetup*{}": {
-      "snippet": "subcaptionsetup*{${1:options}}"
-    },
-    "continuedfloat": {},
-    "thecontinuedfloat": {}
-  },
-  "envs": {
-    "captionblock{}": {
-      "name": "captionblock",
-      "snippet": "{${1:width}}"
-    },
-    "captionblock[]{}": {
-      "name": "captionblock",
-      "snippet": "[${2:position}]{${1:width}}"
-    },
-    "captionblock[][]{}": {
-      "name": "captionblock",
-      "snippet": "[${2:position}][${3:height}]{${1:width}}"
-    },
-    "captionblock[][][]{}": {
-      "name": "captionblock",
-      "snippet": "[${2:position}][${3:height}][${4:inner-pos}]{${1:width}}"
-    },
-    "captiongroup": {},
-    "captiongroup*": {},
-    "longtable*": {}
-  },
-  "options": [
-    "list-entry=${1|default,list-entry,entry|}",
-    "hypcap",
-    "hypcapspace=",
-    "type=${1:float type}",
-    "type*=${1:float type}",
-    "subtype=${1:float type}",
-    "subtype*=${1:float type}",
-    "compatibility",
-    "config=${1:file name}"
-  ],
-  "keyvals": []
+  "args": [
+    "\\captionsetup#c,\\captionsetup*#c,\\usepackage/caption#c,\\DeclareCaptionStyle#c,\\bicaptionsetup#c,\\bicaptionsetup*#c,\\subcaptionsetup#c,\\subcaptionsetup*#c",
+    "\\usepackage/caption#c"
+  ]
 }

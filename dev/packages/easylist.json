@@ -1,73 +1,130 @@
 {
-  "includes": {},
-  "macros": {
-    "ListProperties()": {
-      "snippet": "ListProperties(${1:options})",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [],
+  "macros": [
+    {
+      "name": "ifPilcrow",
+      "unusual": true
     },
-    "NewList()": {
-      "snippet": "NewList(${1:options})",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "Pilcrowtrue",
+      "unusual": true
     },
-    "ifPilcrow": {},
-    "Pilcrowtrue": {},
-    "Pilcrowfalse": {},
-    "ifAt": {},
-    "Attrue": {},
-    "Atfalse": {},
-    "ifSharp": {},
-    "Sharptrue": {},
-    "Sharpfalse": {},
-    "ifAmpersand": {},
-    "Ampersandtrue": {},
-    "Ampersandfalse": {},
-    "ifDubiousFigure": {},
-    "DubiousFiguretrue": {},
-    "DubiousFigurefalse": {}
-  },
-  "envs": {
-    "easylist": {
-      "option": "ampersand"
+    {
+      "name": "Pilcrowfalse",
+      "unusual": true
     },
-    "easylist[]": {
-      "name": "easylist",
-      "snippet": "[${1:style}]",
-      "option": "ampersand"
+    {
+      "name": "ifAt",
+      "unusual": true
+    },
+    {
+      "name": "Attrue",
+      "unusual": true
+    },
+    {
+      "name": "Atfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifSharp",
+      "unusual": true
+    },
+    {
+      "name": "Sharptrue",
+      "unusual": true
+    },
+    {
+      "name": "Sharpfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifAmpersand",
+      "unusual": true
+    },
+    {
+      "name": "Ampersandtrue",
+      "unusual": true
+    },
+    {
+      "name": "Ampersandfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifDubiousFigure",
+      "unusual": true
+    },
+    {
+      "name": "DubiousFiguretrue",
+      "unusual": true
+    },
+    {
+      "name": "DubiousFigurefalse",
+      "unusual": true
     }
-  },
-  "options": [
-    "pilcrow",
-    "at",
-    "sharp",
-    "ampersand",
-    "${1:number of counters}"
   ],
-  "keyvals": [
-    [
-      "Start${1:n}=${2:number}",
-      "Start${1:n}*=${2:counter}",
-      "Mark=${1:punctuation}",
-      "Mark${1:n}=${2:punctuation}",
-      "FinalMark=${1:punctuation}",
-      "FinalMark${1:n}=${2:punctuation}",
-      "Numbers=${1|r,R,l,L,z,a|}",
-      "Numbers${1:n}=${1|r,R,l,L,z,a|}",
-      "Hide=${1:number}",
-      "Hide${1:n}=${2:number}",
-      "Style=${1:format}",
-      "Style${1:n}=${2:format}",
-      "Style*=${1:format}",
-      "Style${1:n}*=${2:format}",
-      "Style**=${1:format}",
-      "Style${1:n}**=${2:format}",
-      "CtrCom=${1:command}",
-      "CtrCom${1:n}=${2:command}",
+  "envs": [
+    {
+      "name": "easylist"
+    },
+    {
+      "name": "easylist",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:style%keyvals}]"
+      }
+    },
+    {
+      "name": "easylist",
+      "if": "ampersand"
+    },
+    {
+      "name": "easylist",
+      "if": "ampersand",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:style%keyvals}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/easylist#c": [
+      "pilcrow\r",
+      "at\r",
+      "sharp\r",
+      "ampersand\r",
+      "${1:number of counters}\r"
+    ],
+    "\\begin{easylist}#c": [
+      "tractatus\r",
+      "checklist\r",
+      "booktoc\r",
+      "articletoc\r",
+      "enumerate\r",
+      "itemize\r"
+    ],
+    "\\ListProperties#c,\\NewList#c": [
+      "Start${1:n}=${2:number}\r",
+      "Start${1:n}*=${2:counter}\r",
+      "Mark=${1:punctuation}\r",
+      "Mark${1:n}=${2:punctuation}\r",
+      "FinalMark=${1:punctuation}\r",
+      "FinalMark${1:n}=${2:punctuation}\r",
+      "Numbers=${1|r,R,l,L,z,a\r|}",
+      "Numbers${1:n}=${2|r,R,l,L,z,a\r|}",
+      "Hide=${1:number}\r",
+      "Hide${1:n}=${2:number}\r",
+      "Style=${1:format}\r",
+      "Style${1:n}=${2:format}\r",
+      "Style*=${1:format}\r",
+      "Style${1:n}*=${2:format}\r",
+      "Style**=${1:format}\r",
+      "Style${1:n}**=${2:format}\r",
+      "CtrCom=${1:command}\r",
+      "CtrCom${1:n}=${2:command}\r",
       "Hang",
       "Hang${1:n}",
-      "Align=${1:move, fixed, or <dimen>}",
-      "Align${1:n}=${2:move, fixed, or <dimen>}",
+      "Align=${1:move, fixed, or <dimen>}\r",
+      "Align${1:n}=${2:move, fixed, or <dimen>}\r",
       "Margin=",
       "Margin${1:n}=",
       "Progressive=",
@@ -81,5 +138,8 @@
       "FinalSpace=",
       "FinalSpace${1:n}="
     ]
+  },
+  "args": [
+    "\\usepackage/easylist#c"
   ]
 }

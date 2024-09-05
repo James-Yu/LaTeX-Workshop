@@ -1,594 +1,1440 @@
 {
-  "includes": {
-    "xcolor": [],
-    "ntheorem": [],
-    "natbib": [
-      "natbib"
-    ],
-    "framed": [
-      "graybox"
+  "deps": [
+    {
+      "name": "xcolor"
+    },
+    {
+      "name": "ntheorem"
+    },
+    {
+      "name": "natbib",
+      "if": "natbib"
+    },
+    {
+      "name": "framed",
+      "if": "graybox"
+    }
+  ],
+  "macros": [
+    {
+      "name": "abstract*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "abstract",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ackname",
+      "unusual": true
+    },
+    {
+      "name": "addcontentsmark",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:file}}{${2:type}}{${3:text}}"
+      }
+    },
+    {
+      "name": "addcontentsmarkwop",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:file}}{${2:type}}{${3:text}}"
+      }
+    },
+    {
+      "name": "addnumcontentsmark",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:file}}{${2:type}}{${3:text}}"
+      }
+    },
+    {
+      "name": "addtocmark",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:file}}{${2:type}}{${3:text}}"
+      }
+    },
+    {
+      "name": "aftertext",
+      "unusual": true
+    },
+    {
+      "name": "allmodesymb",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:char}}"
+      }
+    },
+    {
+      "name": "andname",
+      "unusual": true
+    },
+    {
+      "name": "authorrunning",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:names}}"
+      }
+    },
+    {
+      "name": "authrun",
+      "unusual": true
+    },
+    {
+      "name": "backmatter"
+    },
+    {
+      "name": "bbbc"
+    },
+    {
+      "name": "bbbf"
+    },
+    {
+      "name": "bbbh"
+    },
+    {
+      "name": "bbbk"
+    },
+    {
+      "name": "bbbm"
+    },
+    {
+      "name": "bbbn"
+    },
+    {
+      "name": "bbbone"
+    },
+    {
+      "name": "bbbp"
+    },
+    {
+      "name": "bbbq"
+    },
+    {
+      "name": "bbbr"
+    },
+    {
+      "name": "bbbs"
+    },
+    {
+      "name": "bbbt"
+    },
+    {
+      "name": "bbbz"
+    },
+    {
+      "name": "betweenumberspace",
+      "unusual": true
+    },
+    {
+      "name": "biblstarthook",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "bibname",
+      "unusual": true
+    },
+    {
+      "name": "bibsection",
+      "unusual": true
+    },
+    {
+      "name": "boxtext",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "calctocindent",
+      "unusual": true
+    },
+    {
+      "name": "capstrut",
+      "unusual": true
+    },
+    {
+      "name": "captionstyle",
+      "unusual": true
+    },
+    {
+      "name": "chapauthor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "chapauthsize",
+      "unusual": true
+    },
+    {
+      "name": "chapauthstyle",
+      "unusual": true
+    },
+    {
+      "name": "chapnumsize",
+      "unusual": true
+    },
+    {
+      "name": "chapnumstyle",
+      "unusual": true
+    },
+    {
+      "name": "chapsize",
+      "unusual": true
+    },
+    {
+      "name": "chapstyle",
+      "unusual": true
+    },
+    {
+      "name": "chapsubtitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "chaptername",
+      "unusual": true
+    },
+    {
+      "name": "circledmark",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:color}]{${1:text}}"
+      }
+    },
+    {
+      "name": "circledmark",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "claimname",
+      "unusual": true
+    },
+    {
+      "name": "ClassInfoNoLine",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:class name}}{${2:info text}}"
+      }
+    },
+    {
+      "name": "clearemptydoublepage",
+      "unusual": true
+    },
+    {
+      "name": "clearheadinfo",
+      "unusual": true
+    },
+    {
+      "name": "conjecturename",
+      "unusual": true
+    },
+    {
+      "name": "contriblistname",
+      "unusual": true
+    },
+    {
+      "name": "corollaryname",
+      "unusual": true
+    },
+    {
+      "name": "customizhead",
+      "unusual": true
+    },
+    {
+      "name": "D"
+    },
+    {
+      "name": "definitionname",
+      "unusual": true
+    },
+    {
+      "name": "describelabel",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "E"
+    },
+    {
+      "name": "email",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:email%URL}}"
+      }
+    },
+    {
+      "name": "emailname",
+      "unusual": true
+    },
+    {
+      "name": "etal"
+    },
+    {
+      "name": "eul",
+      "unusual": true
+    },
+    {
+      "name": "examplename",
+      "unusual": true
+    },
+    {
+      "name": "exercisename",
+      "unusual": true
+    },
+    {
+      "name": "extrachap",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "Extrachap",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "figcapgap",
+      "unusual": true
+    },
+    {
+      "name": "figgap",
+      "unusual": true
+    },
+    {
+      "name": "floatcounterend",
+      "unusual": true
+    },
+    {
+      "name": "floatlegendstyle",
+      "unusual": true
+    },
+    {
+      "name": "fnmsep",
+      "unusual": true
+    },
+    {
+      "name": "foreword"
+    },
+    {
+      "name": "foreword",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:title}]"
+      }
+    },
+    {
+      "name": "forewordname",
+      "unusual": true
+    },
+    {
+      "name": "formtmp",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:color}}{${2:text}}"
+      }
+    },
+    {
+      "name": "frontmatter"
+    },
+    {
+      "name": "getsto"
+    },
+    {
+      "name": "gid"
+    },
+    {
+      "name": "greeksym",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "greeksymbold",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "grole"
+    },
+    {
+      "name": "guidelinedefn",
+      "unusual": true
+    },
+    {
+      "name": "guidemaketitle",
+      "unusual": true
+    },
+    {
+      "name": "guidetitle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "guidetitle*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "guisection",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "guisubsection",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "headlineindent",
+      "unusual": true
+    },
+    {
+      "name": "I"
+    },
+    {
+      "name": "iand",
+      "unusual": true
+    },
+    {
+      "name": "idxquad",
+      "unusual": true
+    },
+    {
+      "name": "imag",
+      "unusual": true
+    },
+    {
+      "name": "indexstarthook",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "inst",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "instindent",
+      "unusual": true
+    },
+    {
+      "name": "institutename",
+      "unusual": true
+    },
+    {
+      "name": "keywordname",
+      "unusual": true
+    },
+    {
+      "name": "keywords",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keywords%text}}"
+      }
+    },
+    {
+      "name": "LArge",
+      "unusual": true
+    },
+    {
+      "name": "lastand",
+      "unusual": true
+    },
+    {
+      "name": "lastandname",
+      "unusual": true
+    },
+    {
+      "name": "leftcaption",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short text%text}]{${1:text}}"
+      }
+    },
+    {
+      "name": "leftcaption",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "leftfigure"
+    },
+    {
+      "name": "leftfigure",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:pos}]"
+      }
+    },
+    {
+      "name": "leftlegendglue",
+      "unusual": true
+    },
+    {
+      "name": "lemmaname",
+      "unusual": true
+    },
+    {
+      "name": "lid"
+    },
+    {
+      "name": "mailname",
+      "unusual": true
+    },
+    {
+      "name": "mainmatter"
+    },
+    {
+      "name": "makereferee",
+      "unusual": true
+    },
+    {
+      "name": "maketimestamp",
+      "unusual": true
+    },
+    {
+      "name": "motto",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:width}]{${1:text}}"
+      }
+    },
+    {
+      "name": "motto",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "mottosize",
+      "unusual": true
+    },
+    {
+      "name": "mottostyle",
+      "unusual": true
+    },
+    {
+      "name": "mottowidth",
+      "unusual": true
+    },
+    {
+      "name": "mpicplace",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "nand",
+      "unusual": true
+    },
+    {
+      "name": "nixchapnum",
+      "unusual": true
+    },
+    {
+      "name": "nocaption"
+    },
+    {
+      "name": "normalthmheadings",
+      "unusual": true
+    },
+    {
+      "name": "noteaddname",
+      "unusual": true
+    },
+    {
+      "name": "notename",
+      "unusual": true
+    },
+    {
+      "name": "numstyle",
+      "unusual": true
+    },
+    {
+      "name": "partnumsize",
+      "unusual": true
+    },
+    {
+      "name": "partnumstyle",
+      "unusual": true
+    },
+    {
+      "name": "partsize",
+      "unusual": true
+    },
+    {
+      "name": "partstyle",
+      "unusual": true
+    },
+    {
+      "name": "preface"
+    },
+    {
+      "name": "preface",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:title}]"
+      }
+    },
+    {
+      "name": "prefacename",
+      "unusual": true
+    },
+    {
+      "name": "problemname",
+      "unusual": true
+    },
+    {
+      "name": "probref",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "processchapauthor",
+      "unusual": true
+    },
+    {
+      "name": "processchapsubtit",
+      "unusual": true
+    },
+    {
+      "name": "processmotto",
+      "unusual": true
+    },
+    {
+      "name": "proofname",
+      "unusual": true
+    },
+    {
+      "name": "propertyname",
+      "unusual": true
+    },
+    {
+      "name": "propositionname",
+      "unusual": true
+    },
+    {
+      "name": "questionname",
+      "unusual": true
+    },
+    {
+      "name": "refereebox",
+      "unusual": true
+    },
+    {
+      "name": "remarkname",
+      "unusual": true
+    },
+    {
+      "name": "resetsubfig",
+      "unusual": true
+    },
+    {
+      "name": "reversethmheadings",
+      "unusual": true
+    },
+    {
+      "name": "rightcaption",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short text%text}]{${1:text}}"
+      }
+    },
+    {
+      "name": "rightcaption",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "rightfigure"
+    },
+    {
+      "name": "rightfigure",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:pos}]"
+      }
+    },
+    {
+      "name": "runheadsize",
+      "unusual": true
+    },
+    {
+      "name": "runheadstyle",
+      "unusual": true
+    },
+    {
+      "name": "runinhead",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "runinsep",
+      "unusual": true
+    },
+    {
+      "name": "samenumber"
+    },
+    {
+      "name": "seccounterend",
+      "unusual": true
+    },
+    {
+      "name": "seccountergap",
+      "unusual": true
+    },
+    {
+      "name": "secsize",
+      "unusual": true
+    },
+    {
+      "name": "secstyle",
+      "unusual": true
+    },
+    {
+      "name": "seename",
+      "unusual": true
+    },
+    {
+      "name": "setitemindent",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:largelabel}}"
+      }
+    },
+    {
+      "name": "setitemitemindent",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:largelabel}}"
+      }
+    },
+    {
+      "name": "sidecaption"
+    },
+    {
+      "name": "sidecaption",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:pos}]"
+      }
+    },
+    {
+      "name": "smartqed",
+      "unusual": true
+    },
+    {
+      "name": "solutionname",
+      "unusual": true
+    },
+    {
+      "name": "spdefaulttheorem",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:envname}}{${2:caption}}{${3:capfont}}{${4:bodyfont}}"
+      }
+    },
+    {
+      "name": "spnewtheorem*",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:envname}}{${2:caption}}{${3:capfont}}{${4:bodyfont}}"
+      }
+    },
+    {
+      "name": "spnewtheorem",
+      "arg": {
+        "format": "{}[]{}{}{}",
+        "snippet": "{${1:envname}}[${5:numbered like}]{${2:caption}}{${3:capfont}}{${4:bodyfont}}"
+      }
+    },
+    {
+      "name": "spnewtheorem",
+      "arg": {
+        "format": "{}{}[]{}{}",
+        "snippet": "{${1:envname}}{${2:caption}}[${5:within}]{${3:capfont}}{${4:bodyfont}}"
+      }
+    },
+    {
+      "name": "SpringerMacroPackageNameA",
+      "unusual": true
+    },
+    {
+      "name": "spthmsep",
+      "unusual": true
+    },
+    {
+      "name": "startnewpage",
+      "unusual": true
+    },
+    {
+      "name": "stmtopen",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "subclassname",
+      "unusual": true
+    },
+    {
+      "name": "subfigures"
+    },
+    {
+      "name": "subruninhead",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "subsecsize",
+      "unusual": true
+    },
+    {
+      "name": "subsecstyle",
+      "unusual": true
+    },
+    {
+      "name": "subsubruninhead",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "subsubsecstyle",
+      "unusual": true
+    },
+    {
+      "name": "subtitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "svhline"
+    },
+    {
+      "name": "svitemindent",
+      "unusual": true
+    },
+    {
+      "name": "svlanginfo",
+      "unusual": true
+    },
+    {
+      "name": "svparindent",
+      "unusual": true
+    },
+    {
+      "name": "tabcapgap",
+      "unusual": true
+    },
+    {
+      "name": "tens",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "theauco",
+      "unusual": true
+    },
+    {
+      "name": "thechapter",
+      "unusual": true
+    },
+    {
+      "name": "thechapterend",
+      "unusual": true
+    },
+    {
+      "name": "thecontribution",
+      "unusual": true
+    },
+    {
+      "name": "thedate",
+      "unusual": true
+    },
+    {
+      "name": "themerk",
+      "unusual": true
+    },
+    {
+      "name": "theminitocdepth",
+      "unusual": true
+    },
+    {
+      "name": "theoremname",
+      "unusual": true
+    },
+    {
+      "name": "thesubequation",
+      "unusual": true
+    },
+    {
+      "name": "thetime",
+      "unusual": true
+    },
+    {
+      "name": "thisbottomragged",
+      "unusual": true
+    },
+    {
+      "name": "threecolindex"
+    },
+    {
+      "name": "timstamp",
+      "unusual": true
+    },
+    {
+      "name": "title*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "titlerunning",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "titrun",
+      "unusual": true
+    },
+    {
+      "name": "tocauthor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:names}}"
+      }
+    },
+    {
+      "name": "tocchpnum",
+      "unusual": true
+    },
+    {
+      "name": "tocparanum",
+      "unusual": true
+    },
+    {
+      "name": "tocparatotal",
+      "unusual": true
+    },
+    {
+      "name": "tocsecnum",
+      "unusual": true
+    },
+    {
+      "name": "tocsectotal",
+      "unusual": true
+    },
+    {
+      "name": "tocsubparanum",
+      "unusual": true
+    },
+    {
+      "name": "tocsubsecnum",
+      "unusual": true
+    },
+    {
+      "name": "tocsubsectotal",
+      "unusual": true
+    },
+    {
+      "name": "tocsubsubsecnum",
+      "unusual": true
+    },
+    {
+      "name": "tocsubsubsectotal",
+      "unusual": true
+    },
+    {
+      "name": "toctitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ts",
+      "unusual": true
+    },
+    {
+      "name": "twocaptionwidth",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:width1%l}}{${2:width2%l}}"
+      }
+    },
+    {
+      "name": "ualpha"
+    },
+    {
+      "name": "ubeta"
+    },
+    {
+      "name": "uchi"
+    },
+    {
+      "name": "udelta"
+    },
+    {
+      "name": "ugamma"
+    },
+    {
+      "name": "umu"
+    },
+    {
+      "name": "unu"
+    },
+    {
+      "name": "upi"
+    },
+    {
+      "name": "url",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:URL}}"
+      }
+    },
+    {
+      "name": "utau"
+    },
+    {
+      "name": "varDelta"
+    },
+    {
+      "name": "varGamma"
+    },
+    {
+      "name": "varLambda"
+    },
+    {
+      "name": "varOmega"
+    },
+    {
+      "name": "varPhi"
+    },
+    {
+      "name": "varPi"
+    },
+    {
+      "name": "varPsi"
+    },
+    {
+      "name": "varSigma"
+    },
+    {
+      "name": "varTheta"
+    },
+    {
+      "name": "varUpsilon"
+    },
+    {
+      "name": "varXi"
+    },
+    {
+      "name": "verbatimindent",
+      "unusual": true
+    },
+    {
+      "name": "theoremsymbol",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol}}"
+      }
+    },
+    {
+      "name": "label",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:label}}[${2:type}]"
+      }
+    },
+    {
+      "name": "thref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "tinted",
+      "if": "graybox"
+    },
+    {
+      "name": "acknowledgement"
+    },
+    {
+      "name": "backgroundinformation",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:heading%text}}"
+      }
+    },
+    {
+      "name": "case"
+    },
+    {
+      "name": "case",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "claim"
+    },
+    {
+      "name": "claim",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "conjecture"
+    },
+    {
+      "name": "conjecture",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "corollary"
+    },
+    {
+      "name": "corollary",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "dedication"
+    },
+    {
+      "name": "definition"
+    },
+    {
+      "name": "definition",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "description",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:largelabel}]"
+      }
+    },
+    {
+      "name": "exercise"
+    },
+    {
+      "name": "exercise",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "important",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:heading%text}}"
+      }
+    },
+    {
+      "name": "legaltext",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:heading%text}}"
+      }
+    },
+    {
+      "name": "lemma"
+    },
+    {
+      "name": "lemma",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "newshaded",
+      "unusual": true
+    },
+    {
+      "name": "note"
+    },
+    {
+      "name": "note",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "noteadd"
+    },
+    {
+      "name": "overview",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:heading%text}}"
+      }
+    },
+    {
+      "name": "partbacktext"
+    },
+    {
+      "name": "petit"
+    },
+    {
+      "name": "prob"
+    },
+    {
+      "name": "problem"
+    },
+    {
+      "name": "problem",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "programcode",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:heading%text}}"
+      }
+    },
+    {
+      "name": "proof"
+    },
+    {
+      "name": "property"
+    },
+    {
+      "name": "property",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "proposition"
+    },
+    {
+      "name": "proposition",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "question"
+    },
+    {
+      "name": "question",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "refguide",
+      "unusual": true
+    },
+    {
+      "name": "remark"
+    },
+    {
+      "name": "remark",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "sol",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "solution"
+    },
+    {
+      "name": "solution",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "svgraybox"
+    },
+    {
+      "name": "svtintedbox"
+    },
+    {
+      "name": "thecontriblist"
+    },
+    {
+      "name": "theopargself"
+    },
+    {
+      "name": "theopargself*"
+    },
+    {
+      "name": "theorem"
+    },
+    {
+      "name": "theorem",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "tips",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:heading%text}}"
+      }
+    },
+    {
+      "name": "trailer",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:heading%text}}"
+      }
+    },
+    {
+      "name": "warning",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:heading%text}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\documentclass/svmono#c": [
+      "natbib\r",
+      "nospthms\r",
+      "envcountresetchap\r",
+      "envcountresetsect\r",
+      "envcountsame\r",
+      "envcountchap\r",
+      "envcountsect\r",
+      "numart\r",
+      "nosecnum\r",
+      "nochapnum\r",
+      "nonum\r",
+      "vecphys\r",
+      "vecarrow\r",
+      "norunningheads\r",
+      "referee\r",
+      "openbib\r",
+      "oribibl\r",
+      "sectrefs\r",
+      "footinfo\r",
+      "openany\r",
+      "fleqn\r",
+      "nosechang\r",
+      "graybox\r",
+      "deutsch\r",
+      "francais\r"
     ]
   },
-  "macros": {
-    "abstract*{}": {
-      "snippet": "abstract*{${1:text}}"
-    },
-    "abstract{}": {
-      "snippet": "abstract{${1:text}}"
-    },
-    "ackname": {},
-    "addcontentsmark{}{}{}": {
-      "snippet": "addcontentsmark{${1:file}}{${2:type}}{${3:text}}"
-    },
-    "addcontentsmarkwop{}{}{}": {
-      "snippet": "addcontentsmarkwop{${1:file}}{${2:type}}{${3:text}}"
-    },
-    "addnumcontentsmark{}{}{}": {
-      "snippet": "addnumcontentsmark{${1:file}}{${2:type}}{${3:text}}"
-    },
-    "addtocmark{}{}{}": {
-      "snippet": "addtocmark{${1:file}}{${2:type}}{${3:text}}"
-    },
-    "aftertext": {},
-    "allmodesymb{}{}": {
-      "snippet": "allmodesymb{${1:cmd}}{${2:char}}"
-    },
-    "andname": {},
-    "at": {},
-    "authorrunning{}": {
-      "snippet": "authorrunning{${1:names}}"
-    },
-    "authrun": {},
-    "backmatter": {},
-    "bbbc": {},
-    "bbbf": {},
-    "bbbh": {},
-    "bbbk": {},
-    "bbbm": {},
-    "bbbn": {},
-    "bbbone": {},
-    "bbbp": {},
-    "bbbq": {},
-    "bbbr": {},
-    "bbbs": {},
-    "bbbt": {},
-    "bbbz": {},
-    "betweenumberspace": {},
-    "biblstarthook{}": {
-      "snippet": "biblstarthook{${1:text}}"
-    },
-    "bibname": {},
-    "bibsection": {},
-    "boxtext{}": {
-      "snippet": "boxtext{${1:text}}"
-    },
-    "calctocindent": {},
-    "capstrut": {},
-    "captionstyle": {},
-    "chapauthor{}": {
-      "snippet": "chapauthor{${1:name}}"
-    },
-    "chapauthsize": {},
-    "chapauthstyle": {},
-    "chapnumsize": {},
-    "chapnumstyle": {},
-    "chapsize": {},
-    "chapstyle": {},
-    "chapsubtitle{}": {
-      "snippet": "chapsubtitle{${1:text}}"
-    },
-    "chaptername": {},
-    "secbibl": {},
-    "circledmark[]{}": {
-      "snippet": "circledmark[${2:color}]{${1:text}}"
-    },
-    "circledmark{}": {
-      "snippet": "circledmark{${1:text}}"
-    },
-    "claimname": {},
-    "ClassInfoNoLine{}{}": {
-      "snippet": "ClassInfoNoLine{${1:class name}}{${2:info text}}"
-    },
-    "clearemptydoublepage": {},
-    "clearheadinfo": {},
-    "conjecturename": {},
-    "contriblistname": {},
-    "corollaryname": {},
-    "customizhead": {},
-    "D": {
-      "detail": "𝐷",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL D"
-    },
-    "definitionname": {},
-    "describelabel{}": {
-      "snippet": "describelabel{${1:arg}}"
-    },
-    "E": {
-      "detail": "𝐸",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL E"
-    },
-    "email{}": {
-      "snippet": "email{${1:email}}"
-    },
-    "emailname": {},
-    "envankh": {},
-    "etal": {},
-    "eul": {},
-    "examplename": {},
-    "exercisename": {},
-    "extrachap{}": {
-      "snippet": "extrachap{${1:title}}"
-    },
-    "Extrachap{}": {
-      "snippet": "Extrachap{${1:title}}"
-    },
-    "figcapgap": {},
-    "figgap": {},
-    "floatcounterend": {},
-    "floatlegendstyle": {},
-    "fnmsep": {},
-    "foreword": {},
-    "foreword[]": {
-      "snippet": "foreword[${1:title}]"
-    },
-    "forewordname": {},
-    "formtmp{}{}": {
-      "snippet": "formtmp{${1:color}}{${2:text}}"
-    },
-    "frontmatter": {},
-    "getsto": {},
-    "gid": {},
-    "greeksym{}": {
-      "snippet": "greeksym{${1:arg}}"
-    },
-    "greeksymbold{}": {
-      "snippet": "greeksymbold{${1:arg}}"
-    },
-    "grole": {},
-    "guidelinedefn": {},
-    "guidemaketitle": {},
-    "guidetitle{}": {
-      "snippet": "guidetitle{${1:text}}"
-    },
-    "guidetitle*{}": {
-      "snippet": "guidetitle*{${1:text}}"
-    },
-    "guisection{}": {
-      "snippet": "guisection{${1:title}}"
-    },
-    "guisubsection{}": {
-      "snippet": "guisubsection{${1:title}}"
-    },
-    "headlineindent": {},
-    "I": {
-      "detail": "𝐼",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL I"
-    },
-    "iand": {},
-    "idxquad": {},
-    "imag": {},
-    "indexstarthook{}": {
-      "snippet": "indexstarthook{${1:text}}"
-    },
-    "inst{}": {
-      "snippet": "inst{${1:arg}}"
-    },
-    "instindent": {},
-    "institutename": {},
-    "keywordname": {},
-    "keywords{}": {
-      "snippet": "keywords{${1:keywords}}"
-    },
-    "LArge": {},
-    "lastand": {},
-    "lastandname": {},
-    "leftcaption[]{}": {
-      "snippet": "leftcaption[${2:short text}]{${1:text}}"
-    },
-    "leftcaption{}": {
-      "snippet": "leftcaption{${1:text}}"
-    },
-    "leftfigure": {},
-    "leftfigure[]": {
-      "snippet": "leftfigure[${1:pos}]"
-    },
-    "leftlegendglue": {},
-    "lemmaname": {},
-    "lid": {},
-    "mailname": {},
-    "mainmatter": {},
-    "makereferee": {},
-    "maketimestamp": {},
-    "MiniTOC": {},
-    "minitoc": {},
-    "motto[]{}": {
-      "snippet": "motto[${2:width}]{${1:text}}"
-    },
-    "motto{}": {
-      "snippet": "motto{${1:text}}"
-    },
-    "mottosize": {},
-    "mottostyle": {},
-    "mottowidth": {},
-    "mpicplace{}{}": {
-      "snippet": "mpicplace{${1:width}}{${2:height}}"
-    },
-    "nand": {},
-    "nixchapnum": {},
-    "nocaption": {},
-    "NoneSymbol": {},
-    "normalthmheadings": {},
-    "noteaddname": {},
-    "notename": {},
-    "numstyle": {},
-    "oribibl": {},
-    "partnumsize": {},
-    "partnumstyle": {},
-    "partsize": {},
-    "partstyle": {},
-    "preface": {},
-    "preface[]": {
-      "snippet": "preface[${1:title}]"
-    },
-    "prefacename": {},
-    "problemname": {},
-    "probref{}": {
-      "snippet": "probref{${1:label}}"
-    },
-    "processchapauthor": {},
-    "processchapsubtit": {},
-    "processmotto": {},
-    "proofname": {},
-    "propertyname": {},
-    "propositionname": {},
-    "questionname": {},
-    "refereebox": {},
-    "remarkname": {},
-    "resetsubfig": {},
-    "reversethmheadings": {},
-    "rightcaption[]{}": {
-      "snippet": "rightcaption[${2:short text}]{${1:text}}"
-    },
-    "rightcaption{}": {
-      "snippet": "rightcaption{${1:text}}"
-    },
-    "rightfigure": {},
-    "rightfigure[]": {
-      "snippet": "rightfigure[${1:pos}]"
-    },
-    "runheadsize": {},
-    "runheadstyle": {},
-    "runinhead{}": {
-      "snippet": "runinhead{${1:title}}"
-    },
-    "runinsep": {},
-    "samenumber": {},
-    "scratch": {},
-    "seccounterend": {},
-    "seccountergap": {},
-    "secsize": {},
-    "secstyle": {},
-    "seename": {},
-    "setitemindent{}": {
-      "snippet": "setitemindent{${1:largelabel}}"
-    },
-    "setitemitemindent{}": {
-      "snippet": "setitemitemindent{${1:largelabel}}"
-    },
-    "sidecaption": {},
-    "sidecaption[]": {
-      "snippet": "sidecaption[${1:pos}]"
-    },
-    "smartqed": {},
-    "solutionname": {},
-    "spdefaulttheorem{}{}{}{}": {
-      "snippet": "spdefaulttheorem{${1:envname}}{${2:caption}}{${3:capfont}}{${4:bodyfont}}"
-    },
-    "spnewtheorem*{}{}{}{}": {
-      "snippet": "spnewtheorem*{${1:envname}}{${2:caption}}{${3:capfont}}{${4:bodyfont}}"
-    },
-    "spnewtheorem{}[]{}{}{}": {
-      "snippet": "spnewtheorem{${1:envname}}[${2:numbered like}]{${3:caption}}{${4:capfont}}{${5:bodyfont}}"
-    },
-    "spnewtheorem{}{}[]{}{}": {
-      "snippet": "spnewtheorem{${1:envname}}{${2:caption}}[${3:within}]{${4:capfont}}{${5:bodyfont}}"
-    },
-    "SpringerMacroPackageNameA": {},
-    "spthmsep": {},
-    "startnewpage": {},
-    "stmtopen{}": {
-      "snippet": "stmtopen{${1:arg}}"
-    },
-    "subclassname": {},
-    "subfigures": {},
-    "subruninhead{}": {
-      "snippet": "subruninhead{${1:title}}"
-    },
-    "subsecsize": {},
-    "subsecstyle": {},
-    "subsubruninhead{}": {
-      "snippet": "subsubruninhead{${1:title}}"
-    },
-    "subsubsecstyle": {},
-    "subtitle{}": {
-      "snippet": "subtitle{${1:text}}"
-    },
-    "svhline": {},
-    "svitemindent": {},
-    "svlanginfo": {},
-    "SVMonoOpt": {},
-    "svparindent": {},
-    "tabcapgap": {},
-    "tens{}": {
-      "snippet": "tens{${1:text}}"
-    },
-    "theauco": {},
-    "thechapter": {},
-    "thechapterend": {},
-    "thecontribution": {},
-    "thedate": {},
-    "themerk": {},
-    "theminitocdepth": {},
-    "theoremname": {},
-    "thesubequation": {},
-    "thetime": {},
-    "thisbottomragged": {},
-    "threecolindex": {},
-    "timstamp": {},
-    "title*{}": {
-      "snippet": "title*{${1:text}}"
-    },
-    "titlerunning{}": {
-      "snippet": "titlerunning{${1:text}}"
-    },
-    "titrun": {},
-    "tocauthor{}": {
-      "snippet": "tocauthor{${1:names}}"
-    },
-    "tocchpnum": {},
-    "tocparanum": {},
-    "tocparatotal": {},
-    "tocsecnum": {},
-    "tocsectotal": {},
-    "tocsubparanum": {},
-    "tocsubsecnum": {},
-    "tocsubsectotal": {},
-    "tocsubsubsecnum": {},
-    "tocsubsubsectotal": {},
-    "toctitle{}": {
-      "snippet": "toctitle{${1:text}}"
-    },
-    "ts": {},
-    "twocaptionwidth{}{}": {
-      "snippet": "twocaptionwidth{${1:width1}}{${2:width2}}"
-    },
-    "ualpha": {},
-    "ubeta": {},
-    "uchi": {},
-    "udelta": {},
-    "ugamma": {},
-    "umu": {},
-    "unu": {},
-    "upi": {},
-    "url{}": {
-      "snippet": "url{${1:URL}}"
-    },
-    "utau": {},
-    "varDelta": {
-      "detail": "𝛥",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL DELTA"
-    },
-    "varGamma": {
-      "detail": "𝛤",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL GAMMA"
-    },
-    "varLambda": {
-      "detail": "𝛬",
-      "documentation": "mathematical italic capital lambda"
-    },
-    "varOmega": {
-      "detail": "𝛺",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL OMEGA"
-    },
-    "varPhi": {
-      "detail": "𝛷",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL PHI"
-    },
-    "varPi": {
-      "detail": "𝛱",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL PI"
-    },
-    "varPsi": {
-      "detail": "𝛹",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL PSI"
-    },
-    "varSigma": {
-      "detail": "𝛴",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL SIGMA"
-    },
-    "varTheta": {
-      "detail": "𝛩",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL THETA"
-    },
-    "varUpsilon": {
-      "detail": "𝛶",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL UPSILON"
-    },
-    "varXi": {
-      "detail": "𝛯",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL XI"
-    },
-    "verbatimindent": {},
-    "theoremsymbol{}": {
-      "snippet": "theoremsymbol{${1:symbol}}"
-    },
-    "label{}[]": {
-      "snippet": "label{${1:label}}[${2:type}]"
-    },
-    "thref{}": {
-      "snippet": "thref{${1:label}}"
-    }
-  },
-  "envs": {
-    "tinted": {
-      "option": "graybox"
-    },
-    "acknowledgement": {},
-    "backgroundinformation{}": {
-      "name": "backgroundinformation",
-      "snippet": "{${1:heading}}"
-    },
-    "case": {},
-    "case[]": {
-      "name": "case",
-      "snippet": "[${1:heading}]"
-    },
-    "claim": {},
-    "claim[]": {
-      "name": "claim",
-      "snippet": "[${1:heading}]"
-    },
-    "conjecture": {},
-    "conjecture[]": {
-      "name": "conjecture",
-      "snippet": "[${1:heading}]"
-    },
-    "corollary": {},
-    "corollary[]": {
-      "name": "corollary",
-      "snippet": "[${1:heading}]"
-    },
-    "dedication": {},
-    "definition": {},
-    "definition[]": {
-      "name": "definition",
-      "snippet": "[${1:heading}]"
-    },
-    "description[]": {
-      "name": "description",
-      "snippet": "[${1:largelabel}]"
-    },
-    "exercise": {},
-    "exercise[]": {
-      "name": "exercise",
-      "snippet": "[${1:heading}]"
-    },
-    "important{}": {
-      "name": "important",
-      "snippet": "{${1:heading}}"
-    },
-    "legaltext{}": {
-      "name": "legaltext",
-      "snippet": "{${1:heading}}"
-    },
-    "lemma": {},
-    "lemma[]": {
-      "name": "lemma",
-      "snippet": "[${1:heading}]"
-    },
-    "newshaded": {},
-    "note": {},
-    "note[]": {
-      "name": "note",
-      "snippet": "[${1:heading}]"
-    },
-    "noteadd": {},
-    "overview{}": {
-      "name": "overview",
-      "snippet": "{${1:heading}}"
-    },
-    "partbacktext": {},
-    "petit": {},
-    "prob": {},
-    "problem": {},
-    "problem[]": {
-      "name": "problem",
-      "snippet": "[${1:heading}]"
-    },
-    "programcode{}": {
-      "name": "programcode",
-      "snippet": "{${1:heading}}"
-    },
-    "proof": {},
-    "property": {},
-    "property[]": {
-      "name": "property",
-      "snippet": "[${1:heading}]"
-    },
-    "proposition": {},
-    "proposition[]": {
-      "name": "proposition",
-      "snippet": "[${1:heading}]"
-    },
-    "question": {},
-    "question[]": {
-      "name": "question",
-      "snippet": "[${1:heading}]"
-    },
-    "refguide": {},
-    "remark": {},
-    "remark[]": {
-      "name": "remark",
-      "snippet": "[${1:heading}]"
-    },
-    "sol{}": {
-      "name": "sol",
-      "snippet": "{${1:label}}"
-    },
-    "solution": {},
-    "solution[]": {
-      "name": "solution",
-      "snippet": "[${1:heading}]"
-    },
-    "svgraybox": {},
-    "svtintedbox": {},
-    "thecontriblist": {},
-    "theopargself": {},
-    "theopargself*": {},
-    "theorem": {},
-    "theorem[]": {
-      "name": "theorem",
-      "snippet": "[${1:heading}]"
-    },
-    "tips{}": {
-      "name": "tips",
-      "snippet": "{${1:heading}}"
-    },
-    "trailer{}": {
-      "name": "trailer",
-      "snippet": "{${1:heading}}"
-    },
-    "warning{}": {
-      "name": "warning",
-      "snippet": "{${1:heading}}"
-    }
-  },
-  "options": [
-    "natbib",
-    "nospthms",
-    "envcountresetchap",
-    "envcountresetsect",
-    "envcountsame",
-    "envcountchap",
-    "envcountsect",
-    "numart",
-    "nosecnum",
-    "nochapnum",
-    "nonum",
-    "vecphys",
-    "vecarrow",
-    "norunningheads",
-    "referee",
-    "openbib",
-    "oribibl",
-    "sectrefs",
-    "footinfo",
-    "openany",
-    "fleqn",
-    "nosechang",
-    "graybox",
-    "deutsch",
-    "francais"
-  ],
-  "keyvals": []
+  "args": [
+    "\\documentclass/svmono#c"
+  ]
 }

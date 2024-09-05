@@ -1,38 +1,60 @@
 {
-  "includes": {
-    "l3keys2e": [],
-    "multirow": [],
-    "rotating": []
-  },
-  "macros": {
-    "entry{}{}": {
-      "snippet": "entry{${1:description}}{${2:points}}"
+  "deps": [
+    {
+      "name": "l3keys2e"
     },
-    "n": {
-      "detail": "𝑛",
-      "documentation": "MATHEMATICAL ITALIC SMALL N"
+    {
+      "name": "multirow"
+    },
+    {
+      "name": "rotating"
     }
-  },
-  "envs": {
-    "gradingscheme{}": {
-      "name": "gradingscheme",
-      "snippet": "{${1:operator}}"
-    },
-    "gradingscheme[]{}": {
-      "name": "gradingscheme",
-      "snippet": "[${2:description}]{${1:operator}}"
-    },
-    "block{}": {
-      "name": "block",
-      "snippet": "{${1:operator}}"
-    },
-    "block[]{}": {
-      "name": "block",
-      "snippet": "[${2:description}]{${1:operator}}"
-    }
-  },
-  "options": [
-    "pipe"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "entry",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:description%text}}{${2:points}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "gradingscheme",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:operator}}"
+      }
+    },
+    {
+      "name": "gradingscheme",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:description%text}]{${1:operator}}"
+      }
+    },
+    {
+      "name": "block",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:operator}}"
+      }
+    },
+    {
+      "name": "block",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:description%text}]{${1:operator}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/grading-scheme#c": [
+      "pipe\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/grading-scheme#c"
+  ]
 }

@@ -1,20 +1,40 @@
 {
-  "includes": {},
-  "macros": {
-    "arraybackslash": {},
-    "extrarowheight": {},
-    "extratabsurround": {},
-    "firsthline": {},
-    "lasthline": {},
-    "newcolumntype{}{}": {
-      "snippet": "newcolumntype{${1:name}}{${2:definition}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "arraybackslash"
     },
-    "newcolumntype{}[]{}": {
-      "snippet": "newcolumntype{${1:name}}[${2:args}]{${3:definition}}"
+    {
+      "name": "extrarowheight"
     },
-    "showcols": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "extratabsurround"
+    },
+    {
+      "name": "firsthline"
+    },
+    {
+      "name": "lasthline"
+    },
+    {
+      "name": "newcolumntype",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name%cmd}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "newcolumntype",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:name%cmd}}[${3:args}]{${2:definition}}"
+      }
+    },
+    {
+      "name": "showcols"
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

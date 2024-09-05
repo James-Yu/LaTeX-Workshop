@@ -1,167 +1,444 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "xcolor": [],
-    "fontenc": [],
-    "lmodern": [],
-    "charter": [],
-    "microtype": [],
-    "setspace": [],
-    "graphicx": [],
-    "tabularx": [],
-    "enumitem": [],
-    "blindtext": [],
-    "hyperref": [],
-    "scrlayer-scrpage": [],
-    "caption": [],
-    "csquotes": [],
-    "tocloft": [],
-    "tgheros": [
+  "deps": [
+    {
+      "name": "xkeyval"
+    },
+    {
+      "name": "xcolor"
+    },
+    {
+      "name": "fontenc"
+    },
+    {
+      "name": "lmodern"
+    },
+    {
+      "name": "charter"
+    },
+    {
+      "name": "microtype"
+    },
+    {
+      "name": "setspace"
+    },
+    {
+      "name": "graphicx"
+    },
+    {
+      "name": "tabularx"
+    },
+    {
+      "name": "enumitem"
+    },
+    {
+      "name": "blindtext"
+    },
+    {
+      "name": "hyperref"
+    },
+    {
+      "name": "scrlayer-scrpage"
+    },
+    {
+      "name": "caption"
+    },
+    {
+      "name": "csquotes"
+    },
+    {
+      "name": "tocloft"
+    },
+    {
+      "name": "tgheros",
+      "if": "sansserif"
+    },
+    {
+      "name": "tgheros",
+      "if": "sansserif=true"
+    },
+    {
+      "name": "biblatex",
+      "if": "configurebiblatex"
+    },
+    {
+      "name": "natbib",
+      "if": "configurebiblatex"
+    },
+    {
+      "name": "biblatex",
+      "if": "configurebiblatex=true"
+    },
+    {
+      "name": "natbib",
+      "if": "configurebiblatex=true"
+    },
+    {
+      "name": "listings",
+      "if": "configurelistings"
+    },
+    {
+      "name": "listings",
+      "if": "configurelistings=true"
+    }
+  ],
+  "macros": [
+    {
+      "name": "cthesissetcolor",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:model}}{${2:color1}}{${3:color2}}"
+      }
+    },
+    {
+      "name": "cthesissetcolorbluemagenta",
+      "unusual": true
+    },
+    {
+      "name": "cthesissetcolorbluegreen",
+      "unusual": true
+    },
+    {
+      "name": "lensectionnumber",
+      "unusual": true
+    },
+    {
+      "name": "ctfooterline",
+      "unusual": true
+    },
+    {
+      "name": "ctfooterrightpagenumber",
+      "unusual": true
+    },
+    {
+      "name": "ctfooterleftpagenumber",
+      "unusual": true
+    },
+    {
+      "name": "TODO",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%todo}}"
+      }
+    },
+    {
+      "name": "tabref",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "tableref",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "tref",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "treft",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "textref",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "textreft",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "fref",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "frefadd",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label}}{${2:text}}"
+      }
+    },
+    {
+      "name": "figref",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "figrefadd",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label}}{${2:text}}"
+      }
+    },
+    {
+      "name": "figreft",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "figrefaddt",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label}}{${2:text}}"
+      }
+    },
+    {
+      "name": "seepage",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "ctSetFont",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "helv",
+      "unusual": true
+    },
+    {
+      "name": "book",
+      "unusual": true
+    },
+    {
+      "name": "tgherosfont",
+      "unusual": true
+    },
+    {
+      "name": "thesispartlabelfont",
+      "unusual": true
+    },
+    {
+      "name": "thesispartfont",
+      "unusual": true
+    },
+    {
+      "name": "thesischapterfont",
+      "unusual": true
+    },
+    {
+      "name": "thesissectionfont",
+      "unusual": true
+    },
+    {
+      "name": "thesissubsectionfont",
+      "unusual": true
+    },
+    {
+      "name": "thesisparagraphfont",
+      "unusual": true
+    },
+    {
+      "name": "ctfontfooterpagenumber",
+      "unusual": true
+    },
+    {
+      "name": "ctfontfootertext",
+      "unusual": true
+    },
+    {
+      "name": "ctchapternumber",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "ctchaptertitle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "hugequote",
+      "unusual": true
+    },
+    {
+      "name": "cleanchapterquote",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:text1}}{${2:text2}}{${3:text3}}"
+      }
+    },
+    {
+      "name": "cthesisorigin",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "DH"
+    },
+    {
+      "name": "NG"
+    },
+    {
+      "name": "dj"
+    },
+    {
+      "name": "ng"
+    },
+    {
+      "name": "k",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "guillemotleft",
+      "unusual": true
+    },
+    {
+      "name": "guillemotright",
+      "unusual": true
+    },
+    {
+      "name": "guilsinglleft"
+    },
+    {
+      "name": "guilsinglright"
+    },
+    {
+      "name": "quotedblbase"
+    },
+    {
+      "name": "quotesinglbase"
+    },
+    {
+      "name": "textquotedbl"
+    },
+    {
+      "name": "DJ"
+    },
+    {
+      "name": "th"
+    },
+    {
+      "name": "TH"
+    },
+    {
+      "name": "dh"
+    },
+    {
+      "name": "Hwithstroke",
+      "unusual": true
+    },
+    {
+      "name": "hwithstroke",
+      "unusual": true
+    },
+    {
+      "name": "textogonekcentered",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "guillemetleft"
+    },
+    {
+      "name": "guillemetright"
+    }
+  ],
+  "envs": [
+    {
+      "name": "my_list",
+      "unusual": true
+    },
+    {
+      "name": "my_list_num",
+      "unusual": true
+    },
+    {
+      "name": "my_list_item",
+      "unusual": true
+    },
+    {
+      "name": "ct_version_list",
+      "unusual": true
+    },
+    {
+      "name": "ct_version_list_sub",
+      "unusual": true
+    },
+    {
+      "name": "my_list_desc",
+      "unusual": true
+    },
+    {
+      "name": "thesis_quotation",
+      "unusual": true
+    }
+  ],
+  "keys": {
+    "\\usepackage/cleanthesis#c": [
+      "hangfigurecaption",
+      "hangsection",
+      "hangsubsection",
       "sansserif",
-      "sansserif=true"
-    ],
-    "biblatex": [
-      "configurebiblatex",
-      "configurebiblatex=true"
-    ],
-    "natbib": [
-      "configurebiblatex",
-      "configurebiblatex=true"
-    ],
-    "listings": [
       "configurelistings",
-      "configurelistings=true"
+      "figuresep=${1|none,colon,period,space,quad,endash\r|}",
+      "colorize=${1|full,reduced,bw\r|}",
+      "colortheme=${1|bluemagenta,bluegreen\r|}",
+      "quotesstyle=${1:csquotes style options}\r",
+      "configurebiblatex",
+      "bibsys=${1|biber,bibtex\r|}",
+      "bibfile=${1:file name}\r",
+      "bibstyle=${1:biblatex style options}\r",
+      "bibsorting=${1|nty,nyt,nyvt,anyt,anyvt,ynt,ydnt,none,debug\r|}"
     ]
   },
-  "macros": {
-    "cthesissetcolor{}{}{}": {
-      "snippet": "cthesissetcolor{${1:model}}{${2:color1}}{${3:color2}}"
-    },
-    "cthesissetcolorbluemagenta": {},
-    "cthesissetcolorbluegreen": {},
-    "lensectionnumber": {},
-    "ctfooterline": {},
-    "ctfooterrightpagenumber": {},
-    "ctfooterleftpagenumber": {},
-    "TODO{}": {
-      "snippet": "TODO{${1:text}}"
-    },
-    "tabref{}": {
-      "snippet": "tabref{${1:label}}"
-    },
-    "tableref{}": {
-      "snippet": "tableref{${1:label}}"
-    },
-    "tref{}": {
-      "snippet": "tref{${1:label}}"
-    },
-    "treft{}": {
-      "snippet": "treft{${1:label}}"
-    },
-    "textref{}": {
-      "snippet": "textref{${1:label}}"
-    },
-    "textreft{}": {
-      "snippet": "textreft{${1:label}}"
-    },
-    "fref{}": {
-      "snippet": "fref{${1:label}}"
-    },
-    "frefadd{}{}": {
-      "snippet": "frefadd{${1:label}}{${2:text}}"
-    },
-    "figref{}": {
-      "snippet": "figref{${1:label}}"
-    },
-    "figrefadd{}{}": {
-      "snippet": "figrefadd{${1:label}}{${2:text}}"
-    },
-    "figreft{}": {
-      "snippet": "figreft{${1:label}}"
-    },
-    "figrefaddt{}{}": {
-      "snippet": "figrefaddt{${1:label}}{${2:text}}"
-    },
-    "seepage{}": {
-      "snippet": "seepage{${1:label}}"
-    },
-    "ctSetFont{}{}{}": {
-      "snippet": "ctSetFont{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "helv": {},
-    "book": {},
-    "tgherosfont": {},
-    "thesispartlabelfont": {},
-    "thesispartfont": {},
-    "thesischapterfont": {},
-    "thesissectionfont": {},
-    "thesissubsectionfont": {},
-    "thesisparagraphfont": {},
-    "ctfontfooterpagenumber": {},
-    "ctfontfootertext": {},
-    "ctchapternumber{}": {
-      "snippet": "ctchapternumber{${1:arg}}"
-    },
-    "ctchaptertitle{}": {
-      "snippet": "ctchaptertitle{${1:text}}"
-    },
-    "hugequote": {},
-    "cleanchapterquote{}{}{}": {
-      "snippet": "cleanchapterquote{${1:text1}}{${2:text2}}{${3:text3}}"
-    },
-    "cthesisorigin{}": {
-      "snippet": "cthesisorigin{${1:text}}"
-    },
-    "DH": {},
-    "NG": {},
-    "dj": {},
-    "ng": {},
-    "k{}": {
-      "snippet": "k{${1:arg}}"
-    },
-    "guillemotleft": {},
-    "guillemotright": {},
-    "guilsinglleft": {},
-    "guilsinglright": {},
-    "quotedblbase": {},
-    "quotesinglbase": {},
-    "textquotedbl": {},
-    "DJ": {},
-    "th": {},
-    "TH": {},
-    "dh": {},
-    "Hwithstroke": {},
-    "hwithstroke": {},
-    "textogonekcentered{}": {
-      "snippet": "textogonekcentered{${1:arg}}"
-    },
-    "guillemetleft": {},
-    "guillemetright": {}
-  },
-  "envs": {
-    "my_list": {},
-    "my_list_num": {},
-    "my_list_item": {},
-    "ct_version_list": {},
-    "ct_version_list_sub": {},
-    "my_list_desc": {},
-    "thesis_quotation": {}
-  },
-  "options": [
-    "hangfigurecaption",
-    "hangsection",
-    "hangsubsection",
-    "sansserif",
-    "configurelistings",
-    "figuresep=${1|none,colon,period,space,quad,endash|}",
-    "colorize=${1|full,reduced,bw|}",
-    "colortheme=${1|bluemagenta,bluegreen|}",
-    "quotesstyle=${1:csquotes style options}",
-    "configurebiblatex",
-    "bibsys=${1|biber,bibtex|}",
-    "bibfile=${1:file name}",
-    "bibstyle=${1:biblatex style options}",
-    "bibsorting=${1|nty,nyt,nyvt,anyt,anyvt,ynt,ydnt,none,debug|}"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/cleanthesis#c"
+  ]
 }

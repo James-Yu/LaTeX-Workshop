@@ -1,439 +1,1170 @@
 {
-  "includes": {
-    "amsmath": [],
-    "etoolbox": [],
-    "esvect": [],
-    "pgfkeys": [],
-    "old-arrows": [
-      "old-arrows"
-    ],
-    "tikz": [
-      "tikz"
-    ],
-    "pstricks-add": [
-      "pstricks"
-    ],
-    "pict2e": [
-      "pstarrows"
-    ]
-  },
-  "macros": {
-    "vardownarrow": {
-      "option": "old-arrows"
+  "deps": [
+    {
+      "name": "amsmath"
     },
-    "vargets": {
-      "option": "old-arrows"
+    {
+      "name": "etoolbox"
     },
-    "varhookleftarrow": {
-      "option": "old-arrows"
+    {
+      "name": "esvect"
     },
-    "varhookrightarrow": {
-      "option": "old-arrows"
+    {
+      "name": "pgfkeys"
     },
-    "varleftarrow": {
-      "option": "old-arrows"
+    {
+      "name": "old-arrows",
+      "if": "old-arrows"
     },
-    "varleftarrowfill": {
-      "option": "old-arrows"
+    {
+      "name": "tikz",
+      "if": "tikz"
     },
-    "varleftrightarrow": {
-      "option": "old-arrows"
+    {
+      "name": "pstricks-add",
+      "if": "pstricks"
     },
-    "varlonghookleftarrow": {
-      "option": "old-arrows"
-    },
-    "varlonghookrightarrow": {
-      "option": "old-arrows"
-    },
-    "varlongleftarrow": {
-      "option": "old-arrows"
-    },
-    "varlongleftrightarrow": {
-      "option": "old-arrows"
-    },
-    "varlongmapsfrom": {
-      "option": "old-arrows"
-    },
-    "varlongmapsto": {
-      "option": "old-arrows"
-    },
-    "varlongrightarrow": {
-      "option": "old-arrows"
-    },
-    "varmapsfrom": {
-      "option": "old-arrows"
-    },
-    "varmapsto": {
-      "option": "old-arrows"
-    },
-    "varmapstochar": {
-      "option": "old-arrows"
-    },
-    "varnearrow": {
-      "option": "old-arrows"
-    },
-    "varnwarrow": {
-      "option": "old-arrows"
-    },
-    "varoverleftarrow{}": {
-      "snippet": "varoverleftarrow{${1:arg}}",
-      "option": "old-arrows"
-    },
-    "varoverleftrightarrow{}": {
-      "snippet": "varoverleftrightarrow{${1:arg}}",
-      "option": "old-arrows"
-    },
-    "varoverrightarrow{}": {
-      "snippet": "varoverrightarrow{${1:arg}}",
-      "option": "old-arrows"
-    },
-    "varrightarrow": {
-      "option": "old-arrows"
-    },
-    "varrightarrowfill": {
-      "option": "old-arrows"
-    },
-    "varsearrow": {
-      "option": "old-arrows"
-    },
-    "varswarrow": {
-      "option": "old-arrows"
-    },
-    "varto": {
-      "option": "old-arrows"
-    },
-    "varunderleftrightarrow{}": {
-      "snippet": "varunderleftrightarrow{${1:arg}}",
-      "option": "old-arrows"
-    },
-    "varunderleftarrow{}": {
-      "snippet": "varunderleftarrow{${1:arg}}",
-      "option": "old-arrows"
-    },
-    "varunderrightarrow{}": {
-      "snippet": "varunderrightarrow{${1:arg}}",
-      "option": "old-arrows"
-    },
-    "varuparrow": {
-      "option": "old-arrows"
-    },
-    "varupdownarrow": {
-      "option": "old-arrows"
-    },
-    "varvarinjlim": {
-      "option": "old-arrows"
-    },
-    "varvarprojlim": {
-      "option": "old-arrows"
-    },
-    "varxhookleftarrow[]{}": {
-      "snippet": "varxhookleftarrow[${2:sub}]{${1:sup}}",
-      "option": "old-arrows"
-    },
-    "varxhookrightarrow[]{}": {
-      "snippet": "varxhookrightarrow[${2:sub}]{${1:sup}}",
-      "option": "old-arrows"
-    },
-    "varxleftarrow[]{}": {
-      "snippet": "varxleftarrow[${2:sub}]{${1:sup}}",
-      "option": "old-arrows"
-    },
-    "varxleftrightarrow[]{}": {
-      "snippet": "varxleftrightarrow[${2:sub}]{${1:sup}}",
-      "option": "old-arrows"
-    },
-    "varxmapsfrom[]{}": {
-      "snippet": "varxmapsfrom[${2:sub}]{${1:sup}}",
-      "option": "old-arrows"
-    },
-    "varxmapsto[]{}": {
-      "snippet": "varxmapsto[${2:sub}]{${1:sup}}",
-      "option": "old-arrows"
-    },
-    "varxrightarrow[]{}": {
-      "snippet": "varxrightarrow[${2:sub}]{${1:sup}}",
-      "option": "old-arrows"
-    },
-    "overrightarrow*{}_{}": {
-      "snippet": "overrightarrow*{${1:arg}}_{${2:sub}}",
-      "option": "allcommands"
-    },
-    "underrightarrow*{}_{}": {
-      "snippet": "underrightarrow*{${1:arg}}_{${2:sub}}",
-      "option": "allcommands"
-    },
-    "overleftarrow*{}_{}": {
-      "snippet": "overleftarrow*{${1:arg}}_{${2:sub}}",
-      "option": "allcommands"
-    },
-    "underleftarrow*{}_{}": {
-      "snippet": "underleftarrow*{${1:arg}}_{${2:sub}}",
-      "option": "allcommands"
-    },
-    "overleftrightarrow*{}_{}": {
-      "snippet": "overleftrightarrow*{${1:arg}}_{${2:sub}}",
-      "option": "allcommands"
-    },
-    "underleftrightarrow*{}_{}": {
-      "snippet": "underleftrightarrow*{${1:arg}}_{${2:sub}}",
-      "option": "allcommands"
-    },
-    "overrightharpoonup{}": {
-      "snippet": "overrightharpoonup{${1:arg}}",
-      "option": "allcommands"
-    },
-    "overrightharpoonup*{}_{}": {
-      "snippet": "overrightharpoonup*{${1:arg}}_{${2:sub}}",
-      "option": "allcommands"
-    },
-    "overrightharpoondown{}": {
-      "snippet": "overrightharpoondown{${1:arg}}",
-      "option": "allcommands"
-    },
-    "overrightharpoondown*{}_{}": {
-      "snippet": "overrightharpoondown*{${1:arg}}_{${2:sub}}",
-      "option": "allcommands"
-    },
-    "underrightharpoondown{}": {
-      "snippet": "underrightharpoondown{${1:arg}}",
-      "option": "allcommands"
-    },
-    "underrightharpoondown*{}_{}": {
-      "snippet": "underrightharpoondown*{${1:arg}}_{${2:sub}}",
-      "option": "allcommands"
-    },
-    "overleftharpoonup{}": {
-      "snippet": "overleftharpoonup{${1:arg}}",
-      "option": "allcommands"
-    },
-    "overleftharpoonup*{}_{}": {
-      "snippet": "overleftharpoonup*{${1:arg}}_{${2:sub}}",
-      "option": "allcommands"
-    },
-    "underleftharpoonup{}": {
-      "snippet": "underleftharpoonup{${1:arg}}",
-      "option": "allcommands"
-    },
-    "underleftharpoonup*{}_{}": {
-      "snippet": "underleftharpoonup*{${1:arg}}_{${2:sub}}",
-      "option": "allcommands"
-    },
-    "overleftharpoondown{}": {
-      "snippet": "overleftharpoondown{${1:arg}}",
-      "option": "allcommands"
-    },
-    "overleftharpoondown*{}_{}": {
-      "snippet": "overleftharpoondown*{${1:arg}}_{${2:sub}}",
-      "option": "allcommands"
-    },
-    "underleftharpoondown{}": {
-      "snippet": "underleftharpoondown{${1:arg}}",
-      "option": "allcommands"
-    },
-    "underleftharpoondown*{}_{}": {
-      "snippet": "underleftharpoondown*{${1:arg}}_{${2:sub}}",
-      "option": "allcommands"
-    },
-    "overbar{}": {
-      "snippet": "overbar{${1:arg}}",
-      "option": "allcommands"
-    },
-    "overbar*{}_{}": {
-      "snippet": "overbar*{${1:arg}}_{${2:sub}}",
-      "option": "allcommands"
-    },
-    "underbar{}": {
-      "snippet": "underbar{${1:arg}}",
-      "option": "allcommands"
-    },
-    "underbar*{}_{}": {
-      "snippet": "underbar*{${1:arg}}_{${2:sub}}",
-      "option": "allcommands"
-    },
-    "underrightharpoonup{}": {
-      "snippet": "underrightharpoonup{${1:arg}}",
-      "option": "allcommands"
-    },
-    "underrightharpoonup*{}_{}": {
-      "snippet": "underrightharpoonup*{${1:arg}}_{${2:sub}}",
-      "option": "allcommands"
-    },
-    "NewOverArrowCommand{}{}": {
-      "snippet": "NewOverArrowCommand{${1:command}}{${2:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "NewOverArrowCommand[]{}{}": {
-      "snippet": "NewOverArrowCommand[${3:method}]{${1:command}}{${2:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 2
-    },
-    "RenewOverArrowCommand{}{}": {
-      "snippet": "RenewOverArrowCommand{${1:command}}{${2:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "RenewOverArrowCommand[]{}{}": {
-      "snippet": "RenewOverArrowCommand[${3:method}]{${1:command}}{${2:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 2
-    },
-    "ProvideOverArrowCommand{}{}": {
-      "snippet": "ProvideOverArrowCommand{${1:command}}{${2:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "ProvideOverArrowCommand[]{}{}": {
-      "snippet": "ProvideOverArrowCommand[${3:method}]{${1:command}}{${2:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 2
-    },
-    "DeclareOverArrowCommand{}{}": {
-      "snippet": "DeclareOverArrowCommand{${1:command}}{${2:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "DeclareOverArrowCommand[]{}{}": {
-      "snippet": "DeclareOverArrowCommand[${3:method}]{${1:command}}{${2:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 2
-    },
-    "TestOverArrow{}": {
-      "snippet": "TestOverArrow{${1:arrow command}}"
-    },
-    "TestOverArrow[]{}": {
-      "snippet": "TestOverArrow[${2:pattern}]{${1:arrow command}}"
-    },
-    "TestOverArrow*{}": {
-      "snippet": "TestOverArrow*{${1:arrow command}}"
-    },
-    "TestOverArrow*[]{}": {
-      "snippet": "TestOverArrow*[${2:pattern}]{${1:arrow command}}"
-    },
-    "xjoinrel": {},
-    "xjoinrel[]": {
-      "snippet": "xjoinrel[${1:number}]"
-    },
-    "smallermathstyle": {},
-    "overarrowlength": {},
-    "overarrowthickness": {},
-    "overarrowsmallerthickness": {},
-    "esvectvv{}": {
-      "snippet": "esvectvv{${1:arg}}"
-    },
-    "esvectvv*{}{}": {
-      "snippet": "esvectvv*{${1:arg}}{${2:sub}}"
-    },
-    "SetOverArrowsSubscriptCommand{}": {
-      "snippet": "SetOverArrowsSubscriptCommand{${1:command}}"
-    },
-    "SetOverArrowsMethod{}{}": {
-      "snippet": "SetOverArrowsMethod{${1:name}}{${2:keys def}}"
-    },
-    "SetOverArrowsMethod{}[]{}": {
-      "snippet": "SetOverArrowsMethod{${1:name}}[${2:pre code}]{${3:keys def}}"
-    },
-    "SetOverArrowsMethod[]{}{}": {
-      "snippet": "SetOverArrowsMethod[${3:stack mechanism}]{${1:name}}{${2:keys def}}"
-    },
-    "SetOverArrowsMethod[]{}[]{}": {
-      "snippet": "SetOverArrowsMethod[${3:stack mechanism}]{${1:name}}[${4:pre code}]{${2:keys def}}"
-    },
-    "SetOverArrowsMethod*{}{}": {
-      "snippet": "SetOverArrowsMethod*{${1:name}}{${2:keys def}}"
-    },
-    "SetOverArrowsMethod*{}[]{}": {
-      "snippet": "SetOverArrowsMethod*{${1:name}}[${2:pre code}]{${3:keys def}}"
+    {
+      "name": "pict2e",
+      "if": "pstarrows"
     }
-  },
-  "envs": {},
-  "options": [
-    "esvect",
-    "noesvect",
-    "esvecta",
-    "esvectb",
-    "esvectc",
-    "esvectd",
-    "esvecte",
-    "esvectf",
-    "esvectg",
-    "esvecth",
-    "old-arrows",
-    "tikz",
-    "pstricks",
-    "pstarrows",
-    "subscripts",
-    "subother",
-    "subactive",
-    "debug",
-    "overrightarrow",
-    "underrightarrow",
-    "overleftarrow",
-    "underleftarrow",
-    "overleftrightarrow",
-    "underleftrightarrow",
-    "overrightharpoonup",
-    "underrightharpoonup",
-    "overrightharpoondown",
-    "underrightharpoondown",
-    "overleftharpoonup",
-    "underleftharpoonup",
-    "overleftharpoondown",
-    "underleftharpoondown",
-    "overbar",
-    "underbar",
-    "overcommands",
-    "undercommands",
-    "allcommands"
   ],
-  "keyvals": [
-    [
-      "min length=${1:number}",
-      "arrow under",
-      "arrow under=${1|autoconfig,noconfig|}",
-      "shift left=${1:number}",
-      "shift right=${1:number}",
-      "shift leftright=${1:number}",
-      "center arrow",
-      "left arrow",
-      "right arrow",
-      "before arrow=${1:vertical material}",
-      "after arrow=${1:vertical material}",
+  "macros": [
+    {
+      "name": "vardownarrow",
+      "if": "old-arrows"
+    },
+    {
+      "name": "vargets",
+      "if": "old-arrows"
+    },
+    {
+      "name": "varhookleftarrow",
+      "if": "old-arrows"
+    },
+    {
+      "name": "varhookrightarrow",
+      "if": "old-arrows"
+    },
+    {
+      "name": "varleftarrow",
+      "if": "old-arrows"
+    },
+    {
+      "name": "varleftarrowfill",
+      "if": "old-arrows"
+    },
+    {
+      "name": "varleftrightarrow",
+      "if": "old-arrows"
+    },
+    {
+      "name": "varlonghookleftarrow",
+      "if": "old-arrows"
+    },
+    {
+      "name": "varlonghookrightarrow",
+      "if": "old-arrows"
+    },
+    {
+      "name": "varlongleftarrow",
+      "if": "old-arrows"
+    },
+    {
+      "name": "varlongleftrightarrow",
+      "if": "old-arrows"
+    },
+    {
+      "name": "varlongmapsfrom",
+      "if": "old-arrows"
+    },
+    {
+      "name": "varlongmapsto",
+      "if": "old-arrows"
+    },
+    {
+      "name": "varlongrightarrow",
+      "if": "old-arrows"
+    },
+    {
+      "name": "varmapsfrom",
+      "if": "old-arrows"
+    },
+    {
+      "name": "varmapsto",
+      "if": "old-arrows"
+    },
+    {
+      "name": "varmapstochar",
+      "if": "old-arrows",
+      "unusual": true
+    },
+    {
+      "name": "varnearrow",
+      "if": "old-arrows"
+    },
+    {
+      "name": "varnwarrow",
+      "if": "old-arrows"
+    },
+    {
+      "name": "varoverleftarrow",
+      "if": "old-arrows",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "varoverleftrightarrow",
+      "if": "old-arrows",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "varoverrightarrow",
+      "if": "old-arrows",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "varrightarrow",
+      "if": "old-arrows"
+    },
+    {
+      "name": "varrightarrowfill",
+      "if": "old-arrows"
+    },
+    {
+      "name": "varsearrow",
+      "if": "old-arrows"
+    },
+    {
+      "name": "varswarrow",
+      "if": "old-arrows"
+    },
+    {
+      "name": "varto",
+      "if": "old-arrows"
+    },
+    {
+      "name": "varunderleftrightarrow",
+      "if": "old-arrows",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "varunderleftarrow",
+      "if": "old-arrows",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "varunderrightarrow",
+      "if": "old-arrows",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "varuparrow",
+      "if": "old-arrows"
+    },
+    {
+      "name": "varupdownarrow",
+      "if": "old-arrows"
+    },
+    {
+      "name": "varvarinjlim",
+      "if": "old-arrows"
+    },
+    {
+      "name": "varvarprojlim",
+      "if": "old-arrows"
+    },
+    {
+      "name": "varxhookleftarrow",
+      "if": "old-arrows",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:sub}]{${1:sup}}"
+      }
+    },
+    {
+      "name": "varxhookrightarrow",
+      "if": "old-arrows",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:sub}]{${1:sup}}"
+      }
+    },
+    {
+      "name": "varxleftarrow",
+      "if": "old-arrows",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:sub}]{${1:sup}}"
+      }
+    },
+    {
+      "name": "varxleftrightarrow",
+      "if": "old-arrows",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:sub}]{${1:sup}}"
+      }
+    },
+    {
+      "name": "varxmapsfrom",
+      "if": "old-arrows",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:sub}]{${1:sup}}"
+      }
+    },
+    {
+      "name": "varxmapsto",
+      "if": "old-arrows",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:sub}]{${1:sup}}"
+      }
+    },
+    {
+      "name": "varxrightarrow",
+      "if": "old-arrows",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:sub}]{${1:sup}}"
+      }
+    },
+    {
+      "name": "overrightarrow*",
+      "if": "overrightarrow",
+      "arg": {
+        "format": "{}_{}",
+        "snippet": "{${1:arg}}_{${2:sub}}"
+      }
+    },
+    {
+      "name": "underrightarrow*",
+      "if": "underrightarrow",
+      "arg": {
+        "format": "{}_{}",
+        "snippet": "{${1:arg}}_{${2:sub}}"
+      }
+    },
+    {
+      "name": "overleftarrow*",
+      "if": "overleftarrow",
+      "arg": {
+        "format": "{}_{}",
+        "snippet": "{${1:arg}}_{${2:sub}}"
+      }
+    },
+    {
+      "name": "underleftarrow*",
+      "if": "underleftarrow",
+      "arg": {
+        "format": "{}_{}",
+        "snippet": "{${1:arg}}_{${2:sub}}"
+      }
+    },
+    {
+      "name": "overleftrightarrow*",
+      "if": "overleftrightarrow",
+      "arg": {
+        "format": "{}_{}",
+        "snippet": "{${1:arg}}_{${2:sub}}"
+      }
+    },
+    {
+      "name": "underleftrightarrow*",
+      "if": "underleftrightarrow",
+      "arg": {
+        "format": "{}_{}",
+        "snippet": "{${1:arg}}_{${2:sub}}"
+      }
+    },
+    {
+      "name": "overrightharpoonup",
+      "if": "overrightharpoonup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "overrightharpoonup*",
+      "if": "overrightharpoonup",
+      "arg": {
+        "format": "{}_{}",
+        "snippet": "{${1:arg}}_{${2:sub}}"
+      }
+    },
+    {
+      "name": "overrightharpoonup",
+      "if": "underrightharpoonup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "overrightharpoonup*",
+      "if": "underrightharpoonup",
+      "arg": {
+        "format": "{}_{}",
+        "snippet": "{${1:arg}}_{${2:sub}}"
+      }
+    },
+    {
+      "name": "overrightharpoondown",
+      "if": "overrightharpoondown",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "overrightharpoondown*",
+      "if": "overrightharpoondown",
+      "arg": {
+        "format": "{}_{}",
+        "snippet": "{${1:arg}}_{${2:sub}}"
+      }
+    },
+    {
+      "name": "underrightharpoondown",
+      "if": "underrightharpoondown",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      },
+      "detail": "x⃬",
+      "doc": "Combining rightwards harpoon with barb downwards"
+    },
+    {
+      "name": "underrightharpoondown*",
+      "if": "underrightharpoondown",
+      "arg": {
+        "format": "{}_{}",
+        "snippet": "{${1:arg}}_{${2:sub}}"
+      }
+    },
+    {
+      "name": "overleftharpoonup",
+      "if": "overleftharpoonup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "overleftharpoonup*",
+      "if": "overleftharpoonup",
+      "arg": {
+        "format": "{}_{}",
+        "snippet": "{${1:arg}}_{${2:sub}}"
+      }
+    },
+    {
+      "name": "underleftharpoonup",
+      "if": "underleftharpoonup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "underleftharpoonup*",
+      "if": "underleftharpoonup",
+      "arg": {
+        "format": "{}_{}",
+        "snippet": "{${1:arg}}_{${2:sub}}"
+      }
+    },
+    {
+      "name": "overleftharpoondown",
+      "if": "overleftharpoondown",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "overleftharpoondown*",
+      "if": "overleftharpoondown",
+      "arg": {
+        "format": "{}_{}",
+        "snippet": "{${1:arg}}_{${2:sub}}"
+      }
+    },
+    {
+      "name": "underleftharpoondown",
+      "if": "underleftharpoondown",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      },
+      "detail": "x⃭",
+      "doc": "Combining leftwards harpoon with barb downwards"
+    },
+    {
+      "name": "underleftharpoondown*",
+      "if": "underleftharpoondown",
+      "arg": {
+        "format": "{}_{}",
+        "snippet": "{${1:arg}}_{${2:sub}}"
+      }
+    },
+    {
+      "name": "overbar",
+      "if": "overbar",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      },
+      "detail": " ̅",
+      "doc": "Overbar embellishment"
+    },
+    {
+      "name": "overbar*",
+      "if": "overbar",
+      "arg": {
+        "format": "{}_{}",
+        "snippet": "{${1:arg}}_{${2:sub}}"
+      }
+    },
+    {
+      "name": "underbar",
+      "if": "underbar",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      },
+      "detail": " ̱",
+      "doc": "Combining macron below"
+    },
+    {
+      "name": "underbar*",
+      "if": "underbar",
+      "arg": {
+        "format": "{}_{}",
+        "snippet": "{${1:arg}}_{${2:sub}}"
+      }
+    },
+    {
+      "name": "overrightarrow*",
+      "if": "overcommands",
+      "arg": {
+        "format": "{}_{}",
+        "snippet": "{${1:arg}}_{${2:sub}}"
+      }
+    },
+    {
+      "name": "overleftarrow*",
+      "if": "overcommands",
+      "arg": {
+        "format": "{}_{}",
+        "snippet": "{${1:arg}}_{${2:sub}}"
+      }
+    },
+    {
+      "name": "overleftrightarrow*",
+      "if": "overcommands",
+      "arg": {
+        "format": "{}_{}",
+        "snippet": "{${1:arg}}_{${2:sub}}"
+      }
+    },
+    {
+      "name": "overrightharpoonup",
+      "if": "overcommands",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "overrightharpoonup*",
+      "if": "overcommands",
+      "arg": {
+        "format": "{}_{}",
+        "snippet": "{${1:arg}}_{${2:sub}}"
+      }
+    },
+    {
+      "name": "overrightharpoondown",
+      "if": "overcommands",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "overrightharpoondown*",
+      "if": "overcommands",
+      "arg": {
+        "format": "{}_{}",
+        "snippet": "{${1:arg}}_{${2:sub}}"
+      }
+    },
+    {
+      "name": "overleftharpoonup",
+      "if": "overcommands",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "overleftharpoonup*",
+      "if": "overcommands",
+      "arg": {
+        "format": "{}_{}",
+        "snippet": "{${1:arg}}_{${2:sub}}"
+      }
+    },
+    {
+      "name": "overleftharpoondown",
+      "if": "overcommands",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "overleftharpoondown*",
+      "if": "overcommands",
+      "arg": {
+        "format": "{}_{}",
+        "snippet": "{${1:arg}}_{${2:sub}}"
+      }
+    },
+    {
+      "name": "overbar",
+      "if": "overcommands",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      },
+      "detail": " ̅",
+      "doc": "Overbar embellishment"
+    },
+    {
+      "name": "overbar*",
+      "if": "overcommands",
+      "arg": {
+        "format": "{}_{}",
+        "snippet": "{${1:arg}}_{${2:sub}}"
+      }
+    },
+    {
+      "name": "underrightarrow*",
+      "if": "undercommands",
+      "arg": {
+        "format": "{}_{}",
+        "snippet": "{${1:arg}}_{${2:sub}}"
+      }
+    },
+    {
+      "name": "underleftarrow*",
+      "if": "undercommands",
+      "arg": {
+        "format": "{}_{}",
+        "snippet": "{${1:arg}}_{${2:sub}}"
+      }
+    },
+    {
+      "name": "underleftrightarrow*",
+      "if": "undercommands",
+      "arg": {
+        "format": "{}_{}",
+        "snippet": "{${1:arg}}_{${2:sub}}"
+      }
+    },
+    {
+      "name": "underrightharpoonup",
+      "if": "undercommands",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "underrightharpoonup*",
+      "if": "undercommands",
+      "arg": {
+        "format": "{}_{}",
+        "snippet": "{${1:arg}}_{${2:sub}}"
+      }
+    },
+    {
+      "name": "underrightharpoondown",
+      "if": "undercommands",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      },
+      "detail": "x⃬",
+      "doc": "Combining rightwards harpoon with barb downwards"
+    },
+    {
+      "name": "underrightharpoondown*",
+      "if": "undercommands",
+      "arg": {
+        "format": "{}_{}",
+        "snippet": "{${1:arg}}_{${2:sub}}"
+      }
+    },
+    {
+      "name": "underleftharpoonup",
+      "if": "undercommands",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "underleftharpoonup*",
+      "if": "undercommands",
+      "arg": {
+        "format": "{}_{}",
+        "snippet": "{${1:arg}}_{${2:sub}}"
+      }
+    },
+    {
+      "name": "underleftharpoondown",
+      "if": "undercommands",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      },
+      "detail": "x⃭",
+      "doc": "Combining leftwards harpoon with barb downwards"
+    },
+    {
+      "name": "underleftharpoondown*",
+      "if": "undercommands",
+      "arg": {
+        "format": "{}_{}",
+        "snippet": "{${1:arg}}_{${2:sub}}"
+      }
+    },
+    {
+      "name": "underbar",
+      "if": "undercommands",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      },
+      "detail": " ̱",
+      "doc": "Combining macron below"
+    },
+    {
+      "name": "underbar*",
+      "if": "undercommands",
+      "arg": {
+        "format": "{}_{}",
+        "snippet": "{${1:arg}}_{${2:sub}}"
+      }
+    },
+    {
+      "name": "overrightarrow*",
+      "if": "allcommands",
+      "arg": {
+        "format": "{}_{}",
+        "snippet": "{${1:arg}}_{${2:sub}}"
+      }
+    },
+    {
+      "name": "overleftarrow*",
+      "if": "allcommands",
+      "arg": {
+        "format": "{}_{}",
+        "snippet": "{${1:arg}}_{${2:sub}}"
+      }
+    },
+    {
+      "name": "overleftrightarrow*",
+      "if": "allcommands",
+      "arg": {
+        "format": "{}_{}",
+        "snippet": "{${1:arg}}_{${2:sub}}"
+      }
+    },
+    {
+      "name": "overrightharpoonup",
+      "if": "allcommands",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "overrightharpoonup*",
+      "if": "allcommands",
+      "arg": {
+        "format": "{}_{}",
+        "snippet": "{${1:arg}}_{${2:sub}}"
+      }
+    },
+    {
+      "name": "overrightharpoondown",
+      "if": "allcommands",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "overrightharpoondown*",
+      "if": "allcommands",
+      "arg": {
+        "format": "{}_{}",
+        "snippet": "{${1:arg}}_{${2:sub}}"
+      }
+    },
+    {
+      "name": "overleftharpoonup",
+      "if": "allcommands",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "overleftharpoonup*",
+      "if": "allcommands",
+      "arg": {
+        "format": "{}_{}",
+        "snippet": "{${1:arg}}_{${2:sub}}"
+      }
+    },
+    {
+      "name": "overleftharpoondown",
+      "if": "allcommands",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "overleftharpoondown*",
+      "if": "allcommands",
+      "arg": {
+        "format": "{}_{}",
+        "snippet": "{${1:arg}}_{${2:sub}}"
+      }
+    },
+    {
+      "name": "overbar",
+      "if": "allcommands",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      },
+      "detail": " ̅",
+      "doc": "Overbar embellishment"
+    },
+    {
+      "name": "overbar*",
+      "if": "allcommands",
+      "arg": {
+        "format": "{}_{}",
+        "snippet": "{${1:arg}}_{${2:sub}}"
+      }
+    },
+    {
+      "name": "underrightarrow*",
+      "if": "allcommands",
+      "arg": {
+        "format": "{}_{}",
+        "snippet": "{${1:arg}}_{${2:sub}}"
+      }
+    },
+    {
+      "name": "underleftarrow*",
+      "if": "allcommands",
+      "arg": {
+        "format": "{}_{}",
+        "snippet": "{${1:arg}}_{${2:sub}}"
+      }
+    },
+    {
+      "name": "underleftrightarrow*",
+      "if": "allcommands",
+      "arg": {
+        "format": "{}_{}",
+        "snippet": "{${1:arg}}_{${2:sub}}"
+      }
+    },
+    {
+      "name": "underrightharpoonup",
+      "if": "allcommands",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "underrightharpoonup*",
+      "if": "allcommands",
+      "arg": {
+        "format": "{}_{}",
+        "snippet": "{${1:arg}}_{${2:sub}}"
+      }
+    },
+    {
+      "name": "underrightharpoondown",
+      "if": "allcommands",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      },
+      "detail": "x⃬",
+      "doc": "Combining rightwards harpoon with barb downwards"
+    },
+    {
+      "name": "underrightharpoondown*",
+      "if": "allcommands",
+      "arg": {
+        "format": "{}_{}",
+        "snippet": "{${1:arg}}_{${2:sub}}"
+      }
+    },
+    {
+      "name": "underleftharpoonup",
+      "if": "allcommands",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "underleftharpoonup*",
+      "if": "allcommands",
+      "arg": {
+        "format": "{}_{}",
+        "snippet": "{${1:arg}}_{${2:sub}}"
+      }
+    },
+    {
+      "name": "underleftharpoondown",
+      "if": "allcommands",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      },
+      "detail": "x⃭",
+      "doc": "Combining leftwards harpoon with barb downwards"
+    },
+    {
+      "name": "underleftharpoondown*",
+      "if": "allcommands",
+      "arg": {
+        "format": "{}_{}",
+        "snippet": "{${1:arg}}_{${2:sub}}"
+      }
+    },
+    {
+      "name": "underbar",
+      "if": "allcommands",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      },
+      "detail": " ̱",
+      "doc": "Combining macron below"
+    },
+    {
+      "name": "underbar*",
+      "if": "allcommands",
+      "arg": {
+        "format": "{}_{}",
+        "snippet": "{${1:arg}}_{${2:sub}}"
+      }
+    },
+    {
+      "name": "NewOverArrowCommand",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:command}}{${2:keyvals}}"
+      }
+    },
+    {
+      "name": "NewOverArrowCommand",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:method}]{${1:command}}{${2:keyvals}}"
+      }
+    },
+    {
+      "name": "RenewOverArrowCommand",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:command}}{${2:keyvals}}"
+      }
+    },
+    {
+      "name": "RenewOverArrowCommand",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:method}]{${1:command}}{${2:keyvals}}"
+      }
+    },
+    {
+      "name": "ProvideOverArrowCommand",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:command}}{${2:keyvals}}"
+      }
+    },
+    {
+      "name": "ProvideOverArrowCommand",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:method}]{${1:command}}{${2:keyvals}}"
+      }
+    },
+    {
+      "name": "DeclareOverArrowCommand",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:command}}{${2:keyvals}}"
+      }
+    },
+    {
+      "name": "DeclareOverArrowCommand",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:method}]{${1:command}}{${2:keyvals}}"
+      }
+    },
+    {
+      "name": "TestOverArrow",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arrow command%cmd}}"
+      }
+    },
+    {
+      "name": "TestOverArrow",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:pattern}]{${1:arrow command%cmd}}"
+      }
+    },
+    {
+      "name": "TestOverArrow*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arrow command%cmd}}"
+      }
+    },
+    {
+      "name": "TestOverArrow*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:pattern}]{${1:arrow command%cmd}}"
+      }
+    },
+    {
+      "name": "xjoinrel"
+    },
+    {
+      "name": "xjoinrel",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:number}]"
+      }
+    },
+    {
+      "name": "smallermathstyle"
+    },
+    {
+      "name": "overarrowlength"
+    },
+    {
+      "name": "overarrowthickness"
+    },
+    {
+      "name": "overarrowsmallerthickness"
+    },
+    {
+      "name": "esvectvv",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "esvectvv*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg}}{${2:sub}}"
+      }
+    },
+    {
+      "name": "SetOverArrowsSubscriptCommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:command}}"
+      }
+    },
+    {
+      "name": "SetOverArrowsMethod",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:keys def}}"
+      }
+    },
+    {
+      "name": "SetOverArrowsMethod",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:name}}[${3:pre code}]{${2:keys def}}"
+      }
+    },
+    {
+      "name": "SetOverArrowsMethod",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:stack mechanism}]{${1:name}}{${2:keys def}}"
+      }
+    },
+    {
+      "name": "SetOverArrowsMethod",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]{}",
+        "snippet": "[${3:stack mechanism}]{${1:name}}[${4:pre code}]{${2:keys def}}"
+      }
+    },
+    {
+      "name": "SetOverArrowsMethod*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:keys def}}"
+      }
+    },
+    {
+      "name": "SetOverArrowsMethod*",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:name}}[${3:pre code}]{${2:keys def}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/overarrows#c": [
+      "esvect\r",
+      "noesvect\r",
+      "esvecta\r",
+      "esvectb\r",
+      "esvectc\r",
+      "esvectd\r",
+      "esvecte\r",
+      "esvectf\r",
+      "esvectg\r",
+      "esvecth\r",
+      "old-arrows\r",
+      "tikz\r",
+      "pstricks\r",
+      "pstarrows\r",
+      "subscripts\r",
+      "subother\r",
+      "subactive\r",
+      "debug\r",
+      "overrightarrow\r",
+      "underrightarrow\r",
+      "overleftarrow\r",
+      "underleftarrow\r",
+      "overleftrightarrow\r",
+      "underleftrightarrow\r",
+      "overrightharpoonup\r",
+      "underrightharpoonup\r",
+      "overrightharpoondown\r",
+      "underrightharpoondown\r",
+      "overleftharpoonup\r",
+      "underleftharpoonup\r",
+      "overleftharpoondown\r",
+      "underleftharpoondown\r",
+      "overbar\r",
+      "underbar\r",
+      "overcommands\r",
+      "undercommands\r",
+      "allcommands\r"
+    ],
+    "\\NewOverArrowCommand,\\RenewOverArrowCommand,\\ProvideOverArrowCommand,\\DeclareOverArrowCommand": [
+      "min length=${1:number}\r",
+      "arrow under\r",
+      "arrow under=${1|autoconfig,noconfig\r|}",
+      "shift left=${1:number}\r",
+      "shift right=${1:number}\r",
+      "shift leftright=${1:number}\r",
+      "center arrow\r",
+      "left arrow\r",
+      "right arrow\r",
+      "before arrow=${1:vertical material}\r",
+      "after arrow=${1:vertical material}\r",
       "space before arrow=",
       "space after arrow=",
       "detect subscripts",
-      "start=${1:command}",
-      "middle=${1:command}",
-      "end=${1:command}",
-      "trim start=${1:number}",
-      "trim middle=${1:number}",
-      "trim end=${1:number}",
-      "trim=${1:number}",
-      "no trimming",
-      "middle config=${1|auto,relbar,relbareda,harrowextender|}",
-      "amsmath",
-      "amsmath=${1|mimic,strict|}",
-      "esvect",
-      "esvect=${1|mimic,strict|}",
-      "tikz options={${1:TikZ options}}",
-      "path options={${1:path options}}",
-      "path={${1:path spec}}",
-      "add tikz options={${1:TikZ options}}",
-      "add path options={${1:path options}}",
-      "arrows={${1:arrow spec}}",
+      "start=${1:command}\r",
+      "middle=${1:command}\r",
+      "end=${1:command}\r",
+      "trim start=${1:number}\r",
+      "trim middle=${1:number}\r",
+      "trim end=${1:number}\r",
+      "trim=${1:number}\r",
+      "no trimming\r",
+      "middle config=${1|auto,relbar,relbareda,harrowextender\r|}",
+      "amsmath\r",
+      "amsmath=${1|mimic,strict\r|}",
+      "esvect\r",
+      "esvect=${1|mimic,strict\r|}",
+      "tikz options={${1:TikZ options}}\r",
+      "path options={${1:path options}}\r",
+      "path={${1:path spec}}\r",
+      "add tikz options={${1:TikZ options}}\r",
+      "add path options={${1:path options}}\r",
+      "arrows={${1:arrow spec}}\r",
       "line thickness=",
-      "thinner",
-      "tikz command={${1:TikZ command}}",
-      "pstricks command={${1:pstricks command}}",
-      "arrow={${1:arrow}}",
-      "psset={${1:pstricks options}}",
-      "picture command={${1:picture command}}",
-      "geometry={${1:picture geometry spec}}",
-      "stack macro={${1:stack definition}}",
-      "arrow macro={${1:arrow definition}}",
-      "no stack macro hook={${1:code}}",
-      "no arrow macro hook={${1:code}}",
-      "fill macro={${1:definition}}"
+      "thinner\r",
+      "tikz command={${1:TikZ command}}\r",
+      "pstricks command={${1:pstricks command}}\r",
+      "arrow={${1:arrow}}\r",
+      "psset={${1:pstricks options}}\r",
+      "picture command={${1:picture command}}\r",
+      "geometry={${1:picture geometry spec}}\r",
+      "stack macro={${1:stack definition}}\r",
+      "arrow macro={${1:arrow definition}}\r",
+      "no stack macro hook={${1:code}}\r",
+      "no arrow macro hook={${1:code}}\r",
+      "fill macro={${1:definition}}\r"
     ]
+  },
+  "args": [
+    "\\usepackage/overarrows#c"
   ]
 }

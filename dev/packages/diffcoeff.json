@@ -1,287 +1,597 @@
 {
-  "includes": {
-    "xtemplate": [],
-    "mleftright": []
-  },
-  "macros": {
-    "diff{}{}": {
-      "snippet": "diff{${1:variable(${3:s})}}{${2:differentiand}}"
-    },
-    "diff{}{}[]": {
-      "snippet": "diff{${1:variable(${4:s})}}{${2:differentiand}}[${3:pt of eval}]"
-    },
-    "diff[]{}{}": {
-      "snippet": "diff[${3:order-spec}]{${1:variable(${4:s})}}{${2:differentiand}}"
-    },
-    "diff[]{}{}[]": {
-      "snippet": "diff[${3:order-spec}]{${1:variable(${5:s})}}{${2:differentiand}}[${4:pt of eval}]"
-    },
-    "diff*{}{}": {
-      "snippet": "diff*{${1:variable(${3:s})}}{${2:differentiand}}"
-    },
-    "diff*{}{}[]": {
-      "snippet": "diff*{${1:variable(${4:s})}}{${2:differentiand}}[${3:pt of eval}]"
-    },
-    "diff*[]{}{}": {
-      "snippet": "diff*[${3:order-spec}]{${1:variable(${4:s})}}{${2:differentiand}}"
-    },
-    "diff*[]{}{}[]": {
-      "snippet": "diff*[${3:order-spec}]{${1:variable(${5:s})}}{${2:differentiand}}[${4:pt of eval}]"
-    },
-    "diff**{}{}": {
-      "snippet": "diff**{${1:variable(${3:s})}}{${2:differentiand}}"
-    },
-    "diff**{}{}[]": {
-      "snippet": "diff**{${1:variable(${4:s})}}{${2:differentiand}}[${3:pt of eval}]"
-    },
-    "diff**[]{}{}": {
-      "snippet": "diff**[${3:order-spec}]{${1:variable(${4:s})}}{${2:differentiand}}"
-    },
-    "diff**[]{}{}[]": {
-      "snippet": "diff**[${3:order-spec}]{${1:variable(${5:s})}}{${2:differentiand}}[${4:pt of eval}]"
-    },
-    "difs{}{}": {
-      "snippet": "difs{${1:variable(${3:s})}}{${2:differentiand}}"
-    },
-    "difs{}{}[]": {
-      "snippet": "difs{${1:variable(${4:s})}}{${2:differentiand}}[${3:pt of eval}]"
-    },
-    "difs[]{}{}": {
-      "snippet": "difs[${3:order-spec}]{${1:variable(${4:s})}}{${2:differentiand}}"
-    },
-    "difs[]{}{}[]": {
-      "snippet": "difs[${3:order-spec}]{${1:variable(${5:s})}}{${2:differentiand}}[${4:pt of eval}]"
-    },
-    "difs*{}{}": {
-      "snippet": "difs*{${1:variable(${3:s})}}{${2:differentiand}}"
-    },
-    "difs*{}{}[]": {
-      "snippet": "difs*{${1:variable(${4:s})}}{${2:differentiand}}[${3:pt of eval}]"
-    },
-    "difs*[]{}{}": {
-      "snippet": "difs*[${3:order-spec}]{${1:variable(${4:s})}}{${2:differentiand}}"
-    },
-    "difs*[]{}{}[]": {
-      "snippet": "difs*[${3:order-spec}]{${1:variable(${5:s})}}{${2:differentiand}}[${4:pt of eval}]"
-    },
-    "difs**{}{}": {
-      "snippet": "difs**{${1:variable(${3:s})}}{${2:differentiand}}"
-    },
-    "difs**{}{}[]": {
-      "snippet": "difs**{${1:variable(${4:s})}}{${2:differentiand}}[${3:pt of eval}]"
-    },
-    "difs**[]{}{}": {
-      "snippet": "difs**[${3:order-spec}]{${1:variable(${4:s})}}{${2:differentiand}}"
-    },
-    "difs**[]{}{}[]": {
-      "snippet": "difs**[${3:order-spec}]{${1:variable(${5:s})}}{${2:differentiand}}[${4:pt of eval}]"
-    },
-    "difc{}{}": {
-      "snippet": "difc{${1:variable(${3:s})}}{${2:differentiand}}"
-    },
-    "difc{}{}[]": {
-      "snippet": "difc{${1:variable(${4:s})}}{${2:differentiand}}[${3:pt of eval}]"
-    },
-    "difc[]{}{}": {
-      "snippet": "difc[${3:order-spec}]{${1:variable(${4:s})}}{${2:differentiand}}"
-    },
-    "difc[]{}{}[]": {
-      "snippet": "difc[${3:order-spec}]{${1:variable(${5:s})}}{${2:differentiand}}[${4:pt of eval}]"
-    },
-    "difc**{}{}": {
-      "snippet": "difc**{${1:variable(${3:s})}}{${2:differentiand}}"
-    },
-    "difc**{}{}[]": {
-      "snippet": "difc**{${1:variable(${4:s})}}{${2:differentiand}}[${3:pt of eval}]"
-    },
-    "difc**[]{}{}": {
-      "snippet": "difc**[${3:order-spec}]{${1:variable(${4:s})}}{${2:differentiand}}"
-    },
-    "difc**[]{}{}[]": {
-      "snippet": "difc**[${3:order-spec}]{${1:variable(${5:s})}}{${2:differentiand}}[${4:pt of eval}]"
-    },
-    "diffp{}{}": {
-      "snippet": "diffp{${1:variable(${3:s})}}{${2:differentiand}}"
-    },
-    "diffp{}{}[]": {
-      "snippet": "diffp{${1:variable(${4:s})}}{${2:differentiand}}[${3:pt of eval}]"
-    },
-    "diffp[]{}{}": {
-      "snippet": "diffp[${3:order-spec}]{${1:variable(${4:s})}}{${2:differentiand}}"
-    },
-    "diffp[]{}{}[]": {
-      "snippet": "diffp[${3:order-spec}]{${1:variable(${5:s})}}{${2:differentiand}}[${4:pt of eval}]"
-    },
-    "diffp*{}{}": {
-      "snippet": "diffp*{${1:variable(${3:s})}}{${2:differentiand}}"
-    },
-    "diffp*{}{}[]": {
-      "snippet": "diffp*{${1:variable(${4:s})}}{${2:differentiand}}[${3:pt of eval}]"
-    },
-    "diffp*[]{}{}": {
-      "snippet": "diffp*[${3:order-spec}]{${1:variable(${4:s})}}{${2:differentiand}}"
-    },
-    "diffp*[]{}{}[]": {
-      "snippet": "diffp*[${3:order-spec}]{${1:variable(${5:s})}}{${2:differentiand}}[${4:pt of eval}]"
-    },
-    "diffp**{}{}": {
-      "snippet": "diffp**{${1:variable(${3:s})}}{${2:differentiand}}"
-    },
-    "diffp**{}{}[]": {
-      "snippet": "diffp**{${1:variable(${4:s})}}{${2:differentiand}}[${3:pt of eval}]"
-    },
-    "diffp**[]{}{}": {
-      "snippet": "diffp**[${3:order-spec}]{${1:variable(${4:s})}}{${2:differentiand}}"
-    },
-    "diffp**[]{}{}[]": {
-      "snippet": "diffp**[${3:order-spec}]{${1:variable(${5:s})}}{${2:differentiand}}[${4:pt of eval}]"
-    },
-    "difsp{}{}": {
-      "snippet": "difsp{${1:variable(${3:s})}}{${2:differentiand}}"
-    },
-    "difsp{}{}[]": {
-      "snippet": "difsp{${1:variable(${4:s})}}{${2:differentiand}}[${3:pt of eval}]"
-    },
-    "difsp[]{}{}": {
-      "snippet": "difsp[${3:order-spec}]{${1:variable(${4:s})}}{${2:differentiand}}"
-    },
-    "difsp[]{}{}[]": {
-      "snippet": "difsp[${3:order-spec}]{${1:variable(${5:s})}}{${2:differentiand}}[${4:pt of eval}]"
-    },
-    "difsp*{}{}": {
-      "snippet": "difsp*{${1:variable(${3:s})}}{${2:differentiand}}"
-    },
-    "difsp*{}{}[]": {
-      "snippet": "difsp*{${1:variable(${4:s})}}{${2:differentiand}}[${3:pt of eval}]"
-    },
-    "difsp*[]{}{}": {
-      "snippet": "difsp*[${3:order-spec}]{${1:variable(${4:s})}}{${2:differentiand}}"
-    },
-    "difsp*[]{}{}[]": {
-      "snippet": "difsp*[${3:order-spec}]{${1:variable(${5:s})}}{${2:differentiand}}[${4:pt of eval}]"
-    },
-    "difsp**{}{}": {
-      "snippet": "difsp**{${1:variable(${3:s})}}{${2:differentiand}}"
-    },
-    "difsp**{}{}[]": {
-      "snippet": "difsp**{${1:variable(${4:s})}}{${2:differentiand}}[${3:pt of eval}]"
-    },
-    "difsp**[]{}{}": {
-      "snippet": "difsp**[${3:order-spec}]{${1:variable(${4:s})}}{${2:differentiand}}"
-    },
-    "difsp**[]{}{}[]": {
-      "snippet": "difsp**[${3:order-spec}]{${1:variable(${5:s})}}{${2:differentiand}}[${4:pt of eval}]"
-    },
-    "difcp{}{}": {
-      "snippet": "difcp{${1:variable(${3:s})}}{${2:differentiand}}"
-    },
-    "difcp{}{}[]": {
-      "snippet": "difcp{${1:variable(${4:s})}}{${2:differentiand}}[${3:pt of eval}]"
-    },
-    "difcp[]{}{}": {
-      "snippet": "difcp[${3:order-spec}]{${1:variable(${4:s})}}{${2:differentiand}}"
-    },
-    "difcp[]{}{}[]": {
-      "snippet": "difcp[${3:order-spec}]{${1:variable(${5:s})}}{${2:differentiand}}[${4:pt of eval}]"
-    },
-    "difcp**{}{}": {
-      "snippet": "difcp**{${1:variable(${3:s})}}{${2:differentiand}}"
-    },
-    "difcp**{}{}[]": {
-      "snippet": "difcp**{${1:variable(${4:s})}}{${2:differentiand}}[${3:pt of eval}]"
-    },
-    "difcp**[]{}{}": {
-      "snippet": "difcp**[${3:order-spec}]{${1:variable(${4:s})}}{${2:differentiand}}"
-    },
-    "difcp**[]{}{}[]": {
-      "snippet": "difcp**[${3:order-spec}]{${1:variable(${5:s})}}{${2:differentiand}}[${4:pt of eval}]"
-    },
-    "negmu": {},
-    "nilmu": {},
-    "onemu": {},
-    "twomu": {},
-    "difoverride{}": {
-      "snippet": "difoverride{${1:order}}"
-    },
-    "difdef{}{}{}": {
-      "snippet": "difdef{${1:id-list}}{${2:variant-name}}{${3:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 2
-    },
-    "dl{}": {
-      "snippet": "dl{${1:variable(${2:s})}}"
-    },
-    "dl[]{}": {
-      "snippet": "dl[${2:order-spec}]{${1:variable(${3:s})}}"
-    },
-    "difl{}": {
-      "snippet": "difl{${1:variable(${2:s})}}"
-    },
-    "difl[]{}": {
-      "snippet": "difl[${2:order-spec}]{${1:variable(${3:s})}}"
-    },
-    "jacob{}{}": {
-      "snippet": "jacob{${1:numer}}{${2:denom}}"
-    },
-    "difj{}{}": {
-      "snippet": "difj{${1:numer}}{${2:denom}}"
-    },
-    "DeclareChildTemplate{}{}{}{}{}": {
-      "snippet": "DeclareChildTemplate{${1:object type}}{${2:parent template}}{${3:new template}}{${4:parameters}}{${5:new defaults}}"
-    },
-    "difstfrac{}{}": {
-      "snippet": "difstfrac{${1:arg1}}{${2:arg2}}"
-    },
-    "difstfrac*{}{}": {
-      "snippet": "difstfrac*{${1:arg1}}{${2:arg2}}"
-    },
-    "difsbfrac{}{}": {
-      "snippet": "difsbfrac{${1:arg1}}{${2:arg2}}"
-    },
-    "difsbfrac[]{}{}": {
-      "snippet": "difsbfrac[${3:opt}]{${1:arg1}}{${2:arg2}}"
-    },
-    "difstfrac[]*{}{}": {
-      "snippet": "difstfrac[${3:opt}]*{${1:arg1}}{${2:arg2}}"
-    },
-    "difsafrac{}{}": {
-      "snippet": "difsafrac{${1:arg1}}{${2:arg2}}"
-    },
-    "difsafrac*{}{}": {
-      "snippet": "difsafrac*{${1:arg1}}{${2:arg2}}"
-    },
-    "diffdef{}{}": {
-      "snippet": "diffdef{${1:name}}{${2:options}}"
-    },
-    "dlp{}": {
-      "snippet": "dlp{${1:arg}}"
+  "deps": [
+    {
+      "name": "xtemplate"
+    },
+    {
+      "name": "mleftright"
     }
-  },
-  "envs": {},
-  "options": [
-    "spaced=${1|1,0,-1|}",
-    "mleftright",
-    "def-file=${1:filename}",
-    "DIF={${1:keyvals}}"
   ],
-  "keyvals": [
-    [
-      "style=${1|frac,tfrac,dfrac,/,auto,big,Big,bigg,Bigg,_,dl,d^|}",
-      "slash-tok=${1:token(s)}",
+  "macros": [
+    {
+      "name": "diff",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:variable(${3:s})}}{${2:differentiand}}"
+      }
+    },
+    {
+      "name": "diff",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:variable(${4:s})}}{${2:differentiand}}[${3:pt of eval}]"
+      }
+    },
+    {
+      "name": "diff",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:order-spec}]{${1:variable(${4:s})}}{${2:differentiand}}"
+      }
+    },
+    {
+      "name": "diff",
+      "arg": {
+        "format": "[]{}{}[]",
+        "snippet": "[${3:order-spec}]{${1:variable(${5:s})}}{${2:differentiand}}[${4:pt of eval}]"
+      }
+    },
+    {
+      "name": "diff*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:variable(${3:s})}}{${2:differentiand}}"
+      }
+    },
+    {
+      "name": "diff*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:variable(${4:s})}}{${2:differentiand}}[${3:pt of eval}]"
+      }
+    },
+    {
+      "name": "diff*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:order-spec}]{${1:variable(${4:s})}}{${2:differentiand}}"
+      }
+    },
+    {
+      "name": "diff*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}[]",
+        "snippet": "[${3:order-spec}]{${1:variable(${5:s})}}{${2:differentiand}}[${4:pt of eval}]"
+      }
+    },
+    {
+      "name": "diff**",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:variable(${3:s})}}{${2:differentiand}}"
+      }
+    },
+    {
+      "name": "diff**",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:variable(${4:s})}}{${2:differentiand}}[${3:pt of eval}]"
+      }
+    },
+    {
+      "name": "diff**",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:order-spec}]{${1:variable(${4:s})}}{${2:differentiand}}"
+      }
+    },
+    {
+      "name": "diff**",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}[]",
+        "snippet": "[${3:order-spec}]{${1:variable(${5:s})}}{${2:differentiand}}[${4:pt of eval}]"
+      }
+    },
+    {
+      "name": "difs",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:variable(${3:s})}}{${2:differentiand}}"
+      }
+    },
+    {
+      "name": "difs",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:variable(${4:s})}}{${2:differentiand}}[${3:pt of eval}]"
+      }
+    },
+    {
+      "name": "difs",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:order-spec}]{${1:variable(${4:s})}}{${2:differentiand}}"
+      }
+    },
+    {
+      "name": "difs",
+      "arg": {
+        "format": "[]{}{}[]",
+        "snippet": "[${3:order-spec}]{${1:variable(${5:s})}}{${2:differentiand}}[${4:pt of eval}]"
+      }
+    },
+    {
+      "name": "difs*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:variable(${3:s})}}{${2:differentiand}}"
+      }
+    },
+    {
+      "name": "difs*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:variable(${4:s})}}{${2:differentiand}}[${3:pt of eval}]"
+      }
+    },
+    {
+      "name": "difs*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:order-spec}]{${1:variable(${4:s})}}{${2:differentiand}}"
+      }
+    },
+    {
+      "name": "difs*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}[]",
+        "snippet": "[${3:order-spec}]{${1:variable(${5:s})}}{${2:differentiand}}[${4:pt of eval}]"
+      }
+    },
+    {
+      "name": "difs**",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:variable(${3:s})}}{${2:differentiand}}"
+      }
+    },
+    {
+      "name": "difs**",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:variable(${4:s})}}{${2:differentiand}}[${3:pt of eval}]"
+      }
+    },
+    {
+      "name": "difs**",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:order-spec}]{${1:variable(${4:s})}}{${2:differentiand}}"
+      }
+    },
+    {
+      "name": "difs**",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}[]",
+        "snippet": "[${3:order-spec}]{${1:variable(${5:s})}}{${2:differentiand}}[${4:pt of eval}]"
+      }
+    },
+    {
+      "name": "difc",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:variable(${3:s})}}{${2:differentiand}}"
+      }
+    },
+    {
+      "name": "difc",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:variable(${4:s})}}{${2:differentiand}}[${3:pt of eval}]"
+      }
+    },
+    {
+      "name": "difc",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:order-spec}]{${1:variable(${4:s})}}{${2:differentiand}}"
+      }
+    },
+    {
+      "name": "difc",
+      "arg": {
+        "format": "[]{}{}[]",
+        "snippet": "[${3:order-spec}]{${1:variable(${5:s})}}{${2:differentiand}}[${4:pt of eval}]"
+      }
+    },
+    {
+      "name": "difc**",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:variable(${3:s})}}{${2:differentiand}}"
+      }
+    },
+    {
+      "name": "difc**",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:variable(${4:s})}}{${2:differentiand}}[${3:pt of eval}]"
+      }
+    },
+    {
+      "name": "difc**",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:order-spec}]{${1:variable(${4:s})}}{${2:differentiand}}"
+      }
+    },
+    {
+      "name": "difc**",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}[]",
+        "snippet": "[${3:order-spec}]{${1:variable(${5:s})}}{${2:differentiand}}[${4:pt of eval}]"
+      }
+    },
+    {
+      "name": "diffp",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:variable(${3:s})}}{${2:differentiand}}"
+      }
+    },
+    {
+      "name": "diffp",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:variable(${4:s})}}{${2:differentiand}}[${3:pt of eval}]"
+      }
+    },
+    {
+      "name": "diffp",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:order-spec}]{${1:variable(${4:s})}}{${2:differentiand}}"
+      }
+    },
+    {
+      "name": "diffp",
+      "arg": {
+        "format": "[]{}{}[]",
+        "snippet": "[${3:order-spec}]{${1:variable(${5:s})}}{${2:differentiand}}[${4:pt of eval}]"
+      }
+    },
+    {
+      "name": "diffp*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:variable(${3:s})}}{${2:differentiand}}"
+      }
+    },
+    {
+      "name": "diffp*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:variable(${4:s})}}{${2:differentiand}}[${3:pt of eval}]"
+      }
+    },
+    {
+      "name": "diffp*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:order-spec}]{${1:variable(${4:s})}}{${2:differentiand}}"
+      }
+    },
+    {
+      "name": "diffp*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}[]",
+        "snippet": "[${3:order-spec}]{${1:variable(${5:s})}}{${2:differentiand}}[${4:pt of eval}]"
+      }
+    },
+    {
+      "name": "diffp**",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:variable(${3:s})}}{${2:differentiand}}"
+      }
+    },
+    {
+      "name": "diffp**",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:variable(${4:s})}}{${2:differentiand}}[${3:pt of eval}]"
+      }
+    },
+    {
+      "name": "diffp**",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:order-spec}]{${1:variable(${4:s})}}{${2:differentiand}}"
+      }
+    },
+    {
+      "name": "diffp**",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}[]",
+        "snippet": "[${3:order-spec}]{${1:variable(${5:s})}}{${2:differentiand}}[${4:pt of eval}]"
+      }
+    },
+    {
+      "name": "difsp",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:variable(${3:s})}}{${2:differentiand}}"
+      }
+    },
+    {
+      "name": "difsp",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:variable(${4:s})}}{${2:differentiand}}[${3:pt of eval}]"
+      }
+    },
+    {
+      "name": "difsp",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:order-spec}]{${1:variable(${4:s})}}{${2:differentiand}}"
+      }
+    },
+    {
+      "name": "difsp",
+      "arg": {
+        "format": "[]{}{}[]",
+        "snippet": "[${3:order-spec}]{${1:variable(${5:s})}}{${2:differentiand}}[${4:pt of eval}]"
+      }
+    },
+    {
+      "name": "difsp*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:variable(${3:s})}}{${2:differentiand}}"
+      }
+    },
+    {
+      "name": "difsp*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:variable(${4:s})}}{${2:differentiand}}[${3:pt of eval}]"
+      }
+    },
+    {
+      "name": "difsp*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:order-spec}]{${1:variable(${4:s})}}{${2:differentiand}}"
+      }
+    },
+    {
+      "name": "difsp*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}[]",
+        "snippet": "[${3:order-spec}]{${1:variable(${5:s})}}{${2:differentiand}}[${4:pt of eval}]"
+      }
+    },
+    {
+      "name": "difsp**",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:variable(${3:s})}}{${2:differentiand}}"
+      }
+    },
+    {
+      "name": "difsp**",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:variable(${4:s})}}{${2:differentiand}}[${3:pt of eval}]"
+      }
+    },
+    {
+      "name": "difsp**",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:order-spec}]{${1:variable(${4:s})}}{${2:differentiand}}"
+      }
+    },
+    {
+      "name": "difsp**",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}[]",
+        "snippet": "[${3:order-spec}]{${1:variable(${5:s})}}{${2:differentiand}}[${4:pt of eval}]"
+      }
+    },
+    {
+      "name": "difcp",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:variable(${3:s})}}{${2:differentiand}}"
+      }
+    },
+    {
+      "name": "difcp",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:variable(${4:s})}}{${2:differentiand}}[${3:pt of eval}]"
+      }
+    },
+    {
+      "name": "difcp",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:order-spec}]{${1:variable(${4:s})}}{${2:differentiand}}"
+      }
+    },
+    {
+      "name": "difcp",
+      "arg": {
+        "format": "[]{}{}[]",
+        "snippet": "[${3:order-spec}]{${1:variable(${5:s})}}{${2:differentiand}}[${4:pt of eval}]"
+      }
+    },
+    {
+      "name": "difcp**",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:variable(${3:s})}}{${2:differentiand}}"
+      }
+    },
+    {
+      "name": "difcp**",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:variable(${4:s})}}{${2:differentiand}}[${3:pt of eval}]"
+      }
+    },
+    {
+      "name": "difcp**",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:order-spec}]{${1:variable(${4:s})}}{${2:differentiand}}"
+      }
+    },
+    {
+      "name": "difcp**",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}[]",
+        "snippet": "[${3:order-spec}]{${1:variable(${5:s})}}{${2:differentiand}}[${4:pt of eval}]"
+      }
+    },
+    {
+      "name": "negmu",
+      "unusual": true
+    },
+    {
+      "name": "nilmu",
+      "unusual": true
+    },
+    {
+      "name": "onemu",
+      "unusual": true
+    },
+    {
+      "name": "twomu",
+      "unusual": true
+    },
+    {
+      "name": "difoverride",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:order}}"
+      }
+    },
+    {
+      "name": "difdef",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:id-list}}{${2:variant-name}}{${3:keyvals}}"
+      }
+    },
+    {
+      "name": "dl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:variable(${2:s})}}"
+      }
+    },
+    {
+      "name": "dl",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:order-spec}]{${1:variable(${3:s})}}"
+      }
+    },
+    {
+      "name": "difl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:variable(${2:s})}}"
+      }
+    },
+    {
+      "name": "difl",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:order-spec}]{${1:variable(${3:s})}}"
+      }
+    },
+    {
+      "name": "jacob",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:numer}}{${2:denom}}"
+      }
+    },
+    {
+      "name": "difj",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:numer}}{${2:denom}}"
+      }
+    },
+    {
+      "name": "DeclareChildTemplate",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:object type}}{${2:parent template}}{${3:new template}}{${4:parameters}}{${5:new defaults}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/diffcoeff#c": [
+      "spaced=${1|1,0,-1\r|}",
+      "mleftright\r",
+      "def-file=${1:filename}\r",
+      "DIF={${1:keyvals}}\r"
+    ],
+    "\\difdef": [
+      "style=${1|frac,tfrac,dfrac,/,auto,big,Big,bigg,Bigg,_,dl,d^\r|}",
+      "slash-tok=${1:token(s)}\r",
       "slash-sep=",
       "derivand-sep=",
-      "op-symbol=${1:symbol}",
-      "op-symbol-alt=${1:symbol}",
+      "op-symbol=${1:symbol}\r",
+      "op-symbol-alt=${1:symbol}\r",
       "op-order-nudge=",
       "var-sup-nudge=",
       "multi-term-sep=",
       "term-sep-adjust=",
-      "long-var-wrap=${1|dv,d(v),(dv)|}",
-      "lvwrap-Ldelim=${1:delimiter}",
-      "lvwrap-Rdelim=${1:delimiter}",
+      "long-var-wrap=${1|dv,d(v),(dv)\r|}",
+      "lvwrap-Ldelim=${1:delimiter}\r",
+      "lvwrap-Rdelim=${1:delimiter}\r",
       "lvwrap-sup-nudge=",
-      "outer-Ldelim=${1:delimiter}",
-      "outer-Rdelim=${1:delimiter}",
+      "outer-Ldelim=${1:delimiter}\r",
+      "outer-Rdelim=${1:delimiter}\r",
       "elbowroom=",
       "sub-nudge=",
       "op-sub-nudge=",
@@ -289,11 +599,14 @@
       "*op-set-left",
       "*italic-nudge=",
       "*inner-wrap",
-      "*inner-Ldelim=${1:delimiter}",
-      "*inner-Rdelim=${1:delimiter}",
-      "*outer-Ldelim=${1:delimiter}",
-      "*outer-Rdelim=${1:delimiter}",
+      "*inner-Ldelim=${1:delimiter}\r",
+      "*inner-Rdelim=${1:delimiter}\r",
+      "*outer-Ldelim=${1:delimiter}\r",
+      "*outer-Rdelim=${1:delimiter}\r",
       "*sub-nudge="
     ]
+  },
+  "args": [
+    "\\usepackage/diffcoeff#c"
   ]
 }

@@ -1,27 +1,47 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-xkey": []
-  },
-  "macros": {
-    "psBall{}{}": {
-      "snippet": "psBall{${1:color}}{${2:radius}}"
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "psBall(){}{}": {
-      "snippet": "psBall(${3:x},${4:y}){${1:color}}{${2:radius}}"
+    {
+      "name": "pst-xkey"
+    }
+  ],
+  "macros": [
+    {
+      "name": "psBall",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:color}}{${2:radius%l}}"
+      }
     },
-    "psBall[]{}{}": {
-      "snippet": "psBall[${3:options}]{${1:color}}{${2:radius}}"
+    {
+      "name": "psBall(x,y)",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:color}}{${2:radius%l}}"
+      }
     },
-    "psBall[](){}{}": {
-      "snippet": "psBall[${3:options}](${4:x},${5:y}){${1:color}}{${2:radius}}"
+    {
+      "name": "psBall",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:color}}{${2:radius%l}}"
+      }
     },
-    "psslopesteps": {},
-    "pstslpefileversion": {},
-    "pstslpefiledate": {},
-    "PstSlopeLoaded": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "psBall",
+      "arg": {
+        "format": "[](){}{}",
+        "snippet": "[${3:options%keyvals}](${4:x},${5:y}){${1:color}}{${2:radius%l}}"
+      }
+    },
+    {
+      "name": "psslopesteps",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

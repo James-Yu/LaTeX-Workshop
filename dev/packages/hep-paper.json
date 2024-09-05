@@ -1,65 +1,115 @@
 {
-  "includes": {
-    "kvoptions": [],
-    "hep-font": [],
-    "hep-math-font": [],
-    "geometry": [],
-    "hep-text": [],
-    "hep-math": [],
-    "hep-float": [],
-    "hep-title": [],
-    "pdftexcmds": [],
-    "hep-bibliography": [],
-    "hep-reference": [],
-    "hep-acronym": [],
-    "parskip": [
+  "deps": [
+    {
+      "name": "kvoptions"
+    },
+    {
+      "name": "hep-font"
+    },
+    {
+      "name": "hep-math-font"
+    },
+    {
+      "name": "geometry"
+    },
+    {
+      "name": "hep-text"
+    },
+    {
+      "name": "hep-math"
+    },
+    {
+      "name": "hep-float"
+    },
+    {
+      "name": "hep-title"
+    },
+    {
+      "name": "pdftexcmds"
+    },
+    {
+      "name": "hep-bibliography"
+    },
+    {
+      "name": "hep-reference"
+    },
+    {
+      "name": "hep-acronym"
+    },
+    {
+      "name": "parskip",
+      "if": "parskip"
+    },
+    {
+      "name": "parskip",
+      "if": "parskip=true"
+    },
+    {
+      "name": "ragged2e",
+      "if": "revtex"
+    },
+    {
+      "name": "ragged2e",
+      "if": "revtex=true"
+    },
+    {
+      "name": "xpatch",
+      "if": "amsart"
+    },
+    {
+      "name": "xpatch",
+      "if": "amsart=true"
+    }
+  ],
+  "macros": [
+    {
+      "name": "useparskip",
+      "if": "parskip"
+    },
+    {
+      "name": "useparindent",
+      "if": "parskip"
+    },
+    {
+      "name": "useparskip",
+      "if": "parskip=true"
+    },
+    {
+      "name": "useparindent",
+      "if": "parskip=true"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/hep-paper#c": [
+      "paper=${1|a0,a1,a2,a3,a4,a5,a6,b0,b1,b2,b3,b4,b5,b6,c0,c1,c2,c3,c4,c5,c6,ansia,ansib,ansic,ansid,ansie,letter,executive,legal\r|}",
+      "font=${1|8pt,9pt,10pt,11pt,12pt,14pt,17pt,20pt\r|}",
+      "lang=${1:language}\r",
+      "serif",
+      "sansserif",
+      "lining",
+      "oldstyle",
+      "parindent",
       "parskip",
-      "parskip=true"
-    ],
-    "ragged2e": [
+      "symbols=${1|ams,true,minion,false\r|}",
+      "defaults",
+      "title",
+      "physics",
+      "style=${1|authoryear,authortitle,alphabetic,numeric,alphabetic-verb,authortitle-comp,authortitle-ibid,authortitle-icomp,authortitle-tcomp,authortitle-terse,authortitle-ticomp,authoryear-comp,authoryear-ibid,authoryear-icomp,debug,draft,numeric-comp,numeric-verb,reading,verbose,verbose-ibid,verbose-inote,verbose-note,verbose-trad1,verbose-trad2,verbose-trad3\r|}",
+      "glossaries",
+      "references",
+      "beamer",
       "revtex",
-      "revtex=true"
-    ],
-    "xpatch": [
+      "jhep",
+      "jcap",
+      "pos",
+      "springer",
       "amsart",
-      "amsart=true"
+      "eqnarray",
+      "manualplacement"
     ]
   },
-  "macros": {
-    "useparskip": {
-      "option": "parskip=true"
-    },
-    "useparindent": {
-      "option": "parskip=true"
-    }
-  },
-  "envs": {},
-  "options": [
-    "paper=${1|a0,a1,a2,a3,a4,a5,a6,b0,b1,b2,b3,b4,b5,b6,c0,c1,c2,c3,c4,c5,c6,ansia,ansib,ansic,ansid,ansie,letter,executive,legal|}",
-    "font=${1|8pt,9pt,10pt,11pt,12pt,14pt,17pt,20pt|}",
-    "lang=${1:language}",
-    "serif",
-    "sansserif",
-    "lining",
-    "oldstyle",
-    "parindent",
-    "parskip",
-    "symbols=${1|ams,true,minion,false|}",
-    "defaults",
-    "title",
-    "physics",
-    "style=${1|authoryear,authortitle,alphabetic,numeric,alphabetic-verb,authortitle-comp,authortitle-ibid,authortitle-icomp,authortitle-tcomp,authortitle-terse,authortitle-ticomp,authoryear-comp,authoryear-ibid,authoryear-icomp,debug,draft,numeric-comp,numeric-verb,reading,verbose,verbose-ibid,verbose-inote,verbose-note,verbose-trad1,verbose-trad2,verbose-trad3|}",
-    "glossaries",
-    "references",
-    "beamer",
-    "revtex",
-    "jhep",
-    "jcap",
-    "pos",
-    "springer",
-    "amsart",
-    "eqnarray",
-    "manualplacement"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/hep-paper#c"
+  ]
 }

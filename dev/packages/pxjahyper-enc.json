@@ -1,19 +1,33 @@
 {
-  "includes": {
-    "platex": []
-  },
-  "macros": {
-    "suppressbigcode": {},
-    "suppressdefaulttounicode": {},
-    "pxjahyperToUnicodeSpecial{}": {
-      "snippet": "pxjahyperToUnicodeSpecial{${1:name}}"
+  "deps": [
+    {
+      "name": "platex"
     }
-  },
-  "envs": {},
-  "options": [
-    "dvipdfmx",
-    "dvips",
-    "nodvidriver"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "suppressbigcode"
+    },
+    {
+      "name": "suppressdefaulttounicode"
+    },
+    {
+      "name": "pxjahyperToUnicodeSpecial",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/pxjahyper-enc#c": [
+      "dvipdfmx\r",
+      "dvips\r",
+      "nodvidriver\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/pxjahyper-enc#c"
+  ]
 }

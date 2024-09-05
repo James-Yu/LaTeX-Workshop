@@ -1,76 +1,171 @@
 {
-  "includes": {
-    "expex": [],
-    "etoolbox": [],
-    "xspace": [],
-    "l3keys2e": [],
-    "acro": [],
-    "enumitem": []
-  },
-  "macros": {
-    "exref{}": {
-      "snippet": "exref{${1:tag}}"
+  "deps": [
+    {
+      "name": "expex"
     },
-    "exref[]{}": {
-      "snippet": "exref[${2:tag1}]{${1:tag2}}"
+    {
+      "name": "etoolbox"
     },
-    "exref[][]{}": {
-      "snippet": "exref[${2:range}][${3:tag1}]{${1:tag2}}"
+    {
+      "name": "xspace"
     },
-    "exrefnil{}": {
-      "snippet": "exrefnil{${1:tag}}"
+    {
+      "name": "l3keys2e"
     },
-    "exrefnil[]{}": {
-      "snippet": "exrefnil[${2:tag1}]{${1:tag2}}"
+    {
+      "name": "acro"
     },
-    "mexref{}": {
-      "snippet": "mexref{${1:tag1,${2:tag2},...}}"
-    },
-    "mexref[]{}": {
-      "snippet": "mexref[${2:separator}]{${1:tag1,${3:tag2},...}}"
-    },
-    "gl{}": {
-      "snippet": "gl{${1:id}}"
-    },
-    "newGlossingAbbrev{}{}": {
-      "snippet": "newGlossingAbbrev{${1:id}}{${2:long form}}"
-    },
-    "glossingAbbrevsList": {},
-    "obj{}": {
-      "snippet": "obj{${1:text}}"
-    },
-    "qu{}": {
-      "snippet": "qu{${1:text}}"
-    },
-    "rc{}": {
-      "snippet": "rc{${1:text}}"
-    },
-    "ort{}": {
-      "snippet": "ort{${1:text}}"
-    },
-    "pnt{}": {
-      "snippet": "pnt{${1:text}}"
-    },
-    "pnm{}": {
-      "snippet": "pnm{${1:text}}"
-    },
-    "dbqu{}": {
-      "snippet": "dbqu{${1:text}}"
-    },
-    "ungr{}": {
-      "snippet": "ungr{${1:text}}"
-    },
-    "bad{}": {
-      "snippet": "bad{${1:text}}"
-    },
-    "lxm{}": {
-      "snippet": "lxm{${1:text}}"
+    {
+      "name": "enumitem"
     }
-  },
-  "envs": {},
-  "options": [
-    "abbrevs=${1|leipzig,all|}",
-    "refmode=${1|expex,latex|}"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "exref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tag}}"
+      }
+    },
+    {
+      "name": "exref",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:tag1}]{${1:tag2}}"
+      }
+    },
+    {
+      "name": "exref",
+      "unusual": true,
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:range}][${3:tag1}]{${1:tag2}}"
+      }
+    },
+    {
+      "name": "exrefnil",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tag}}"
+      }
+    },
+    {
+      "name": "exrefnil",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:tag1}]{${1:tag2}}"
+      }
+    },
+    {
+      "name": "mexref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tag1,tag2,...}}"
+      }
+    },
+    {
+      "name": "mexref",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:separator}]{${1:tag1,tag2,...}}"
+      }
+    },
+    {
+      "name": "gl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "newGlossingAbbrev",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:id}}{${2:long form}}"
+      }
+    },
+    {
+      "name": "glossingAbbrevsList"
+    },
+    {
+      "name": "obj",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "qu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "rc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ort",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "pnt",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "pnm",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "dbqu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ungr",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "bad",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "lxm",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/expex-acro#c": [
+      "abbrevs=${1|leipzig,all\r|}",
+      "refmode=${1|expex,latex\r|}"
+    ]
+  },
+  "args": [
+    "\\usepackage/expex-acro#c"
+  ]
 }

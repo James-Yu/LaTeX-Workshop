@@ -1,64 +1,150 @@
 {
-  "includes": {},
-  "macros": {
-    "AAAN": {},
-    "AAN": {},
-    "AN": {},
-    "Ap": {},
-    "DD{}": {
-      "snippet": "DD{${1:label}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "AAAN"
     },
-    "FK{}": {
-      "snippet": "FK{${1:comment}}"
+    {
+      "name": "AAN"
     },
-    "KOM{}": {
-      "snippet": "KOM{${1:comment}}"
+    {
+      "name": "AN"
     },
-    "OTSTUP": {},
-    "SameDecl": {},
-    "SE{}{}": {
-      "snippet": "SE{${1:label}}{${2:reflabel}}"
+    {
+      "name": "Ap"
     },
-    "SHRIFTN": {},
-    "SHRIFTZ": {},
-    "SS{}": {
-      "snippet": "SS{${1:label}}"
+    {
+      "name": "DD",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
     },
-    "SSYLKA{}": {
-      "snippet": "SSYLKA{${1:label}}"
+    {
+      "name": "FK",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:comment%text}}"
+      }
     },
-    "STEZA{}{}": {
-      "snippet": "STEZA{${1:label}}{${2:reflabel}}"
+    {
+      "name": "KOM",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:comment%text}}"
+      }
     },
-    "TE{}": {
-      "snippet": "TE{${1:label}}"
+    {
+      "name": "OTSTUP",
+      "unusual": true
     },
-    "TEZA{}": {
-      "snippet": "TEZA{${1:label}}"
+    {
+      "name": "SameDecl",
+      "unusual": true
     },
-    "VPRAVO{}": {
-      "snippet": "VPRAVO{${1:comment}}"
+    {
+      "name": "SE",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label}}{${2:reflabel%ref}}"
+      }
     },
-    "ZZZ{}": {
-      "snippet": "ZZZ{${1:symbol}}"
+    {
+      "name": "SHRIFTN",
+      "unusual": true
+    },
+    {
+      "name": "SHRIFTZ",
+      "unusual": true
+    },
+    {
+      "name": "SS",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "SSYLKA",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "STEZA",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label}}{${2:reflabel%ref}}"
+      }
+    },
+    {
+      "name": "TE",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "TEZA",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "VPRAVO",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:comment%text}}"
+      }
+    },
+    {
+      "name": "ZZZ",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol}}"
+      }
     }
-  },
-  "envs": {
-    "biokey": {},
-    "SDVIG": {},
-    "SDVIG[]": {
-      "name": "SDVIG",
-      "snippet": "[${1:indent factor}]"
-    },
-    "LE": {},
-    "LE[]": {
-      "name": "LE",
-      "snippet": "[${1:indent factor}]"
-    }
-  },
-  "options": [
-    "nomargin",
-    "margin"
   ],
-  "keyvals": []
+  "envs": [
+    {
+      "name": "biokey"
+    },
+    {
+      "name": "SDVIG",
+      "unusual": true
+    },
+    {
+      "name": "SDVIG",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indent factor}]"
+      }
+    },
+    {
+      "name": "LE"
+    },
+    {
+      "name": "LE",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:indent factor}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/biokey#c": [
+      "nomargin\r",
+      "margin\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/biokey#c"
+  ]
 }

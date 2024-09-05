@@ -1,335 +1,747 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "everyhook": [],
-    "xkeyval": []
-  },
-  "macros": {
-    "typogget{}": {
-      "snippet": "typogget{${1:key}}"
-    },
-    "typoggetnth{}{}{}": {
-      "snippet": "typoggetnth{${1:csname}}{${2:key}}{${3:index}}"
-    },
-    "fontsizeinfo{}": {
-      "snippet": "fontsizeinfo{${1:csname}}"
-    },
-    "fontsizeinfo*{}": {
-      "snippet": "fontsizeinfo*{${1:csname}}"
-    },
-    "allowhyphenation": {},
-    "breakpoint": {},
-    "breakpoint*": {},
-    "nolig": {},
-    "nolig[]": {
-      "snippet": "nolig[${1:kerning}]"
-    },
-    "nolig*": {},
-    "nolig*[]": {
-      "snippet": "nolig*[${1:kerning}]"
-    },
-    "itcorr{}": {
-      "snippet": "itcorr{${1:strength}}"
-    },
-    "itcorr*{}": {
-      "snippet": "itcorr*{${1:strength}}"
-    },
-    "kernedslash": {},
-    "kernedslash*": {},
-    "kernedhyphen{}{}": {
-      "snippet": "kernedhyphen{${1:left-kern}}{${2:right-kern}}"
-    },
-    "kernedhyphen[]{}{}": {
-      "snippet": "kernedhyphen[${3:raise}]{${1:left-kern}}{${2:right-kern}}"
-    },
-    "kernedhyphen*{}{}": {
-      "snippet": "kernedhyphen*{${1:left-kern}}{${2:right-kern}}"
-    },
-    "kernedhyphen*[]{}{}": {
-      "snippet": "kernedhyphen*[${3:raise}]{${1:left-kern}}{${2:right-kern}}"
-    },
-    "leftkernedhyphen{}": {
-      "snippet": "leftkernedhyphen{${1:left-kern}}"
-    },
-    "leftkernedhyphen[]{}": {
-      "snippet": "leftkernedhyphen[${2:raise}]{${1:left-kern}}"
-    },
-    "leftkernedhyphen*{}": {
-      "snippet": "leftkernedhyphen*{${1:left-kern}}"
-    },
-    "leftkernedhyphen*[]{}": {
-      "snippet": "leftkernedhyphen*[${2:raise}]{${1:left-kern}}"
-    },
-    "rightkernedhyphen{}": {
-      "snippet": "rightkernedhyphen{${1:right-kern}}"
-    },
-    "rightkernedhyphen[]{}": {
-      "snippet": "rightkernedhyphen[${2:raise}]{${1:right-kern}}"
-    },
-    "rightkernedhyphen*{}": {
-      "snippet": "rightkernedhyphen*{${1:right-kern}}"
-    },
-    "rightkernedhyphen*[]{}": {
-      "snippet": "rightkernedhyphen*[${2:raise}]{${1:right-kern}}"
-    },
-    "capitalhyphen": {},
-    "capitalhyphen*": {},
-    "capitalendash": {},
-    "capitalendash*": {},
-    "capitaldash": {},
-    "capitaldash*": {},
-    "capitalemdash": {},
-    "capitalemdash*": {},
-    "figuredash": {},
-    "figuredash*": {},
-    "capitaltimes": {},
-    "singleguillemetleft": {},
-    "singleguillemetright": {},
-    "doubleguillemetleft": {},
-    "doubleguillemetright": {},
-    "Singleguillemetleft": {},
-    "Singleguillemetright": {},
-    "Doubleguillemetleft": {},
-    "Doubleguillemetright": {},
-    "uppercaseadjustlabelitems{}": {
-      "snippet": "uppercaseadjustlabelitems{${1:levels-to-adjust}}"
-    },
-    "lowercaseadjustlabelitems{}": {
-      "snippet": "lowercaseadjustlabelitems{${1:levels-to-adjust}}"
-    },
-    "noadjustlabelitems{}": {
-      "snippet": "noadjustlabelitems{${1:levels-to-adjust}}"
-    },
-    "typogadjuststairs{}{}{}": {
-      "snippet": "typogadjuststairs{${1:step-size}}{${2:number-of-steps}}{${3:sample}}"
-    },
-    "typogadjuststairs[]{}{}{}": {
-      "snippet": "typogadjuststairs[${4:scale}]{${1:step-size}}{${2:number-of-steps}}{${3:sample}}"
-    },
-    "typoguppercaseadjustcheck{}": {
-      "snippet": "typoguppercaseadjustcheck{${1:sample}}"
-    },
-    "typoguppercaseadjustcheck[]{}": {
-      "snippet": "typoguppercaseadjustcheck[${2:scale}]{${1:sample}}"
-    },
-    "typoglowercaseadjustcheck{}": {
-      "snippet": "typoglowercaseadjustcheck{${1:sample}}"
-    },
-    "typoglowercaseadjustcheck[]{}": {
-      "snippet": "typoglowercaseadjustcheck[${2:scale}]{${1:sample}}"
-    },
-    "widespace": {},
-    "widespace*": {},
-    "narrowspace": {},
-    "narrowspace*": {},
-    "slightlysloppy": {},
-    "slightlysloppy[]": {
-      "snippet": "slightlysloppy[${1:sloppiness}]"
-    },
-    "vtietop": {},
-    "vtietop[]": {
-      "snippet": "vtietop[${1:number}]"
-    },
-    "splicevtietop": {},
-    "splicevtietop[]": {
-      "snippet": "splicevtietop[${1:number}]"
-    },
-    "vtiebot": {},
-    "vtiebot[]": {
-      "snippet": "vtiebot[${1:number}]"
-    },
-    "setbaselineskip{}": {
-      "snippet": "setbaselineskip{${1:skip}}"
-    },
-    "resetbaselineskip": {},
-    "setbaselineskippercentage{}": {
-      "snippet": "setbaselineskippercentage{${1:percent}}"
-    },
-    "setleading{}": {
-      "snippet": "setleading{${1:leading}}"
-    },
-    "setleadingpercentage{}": {
-      "snippet": "setleadingpercentage{${1:percent}}"
-    },
-    "smoothraggedrightfuzzfactor": {},
-    "smoothraggedrightgenerator": {},
-    "smoothraggedrightleftskip": {},
-    "smoothraggedrightparindent": {},
-    "smoothraggedrightragwidth": {},
-    "typogadjuststairsfor{}{}{}{}{}": {
-      "snippet": "typogadjuststairsfor{${1:scale-factor}}{${2:step-size}}{${3:number-of-steps}}{${4:sample}}{${5:N}}"
-    },
-    "typoglogo": {}
-  },
-  "envs": {
-    "typogsetup{}": {
-      "name": "typogsetup",
-      "snippet": "{${1:keyvals}}"
-    },
-    "typoginspect{}": {
-      "name": "typoginspect",
-      "snippet": "{${1:id}}"
-    },
-    "typoginspect[]{}": {
-      "name": "typoginspect",
-      "snippet": "[${2:option}]{${1:id}}"
-    },
-    "typoginspectpar{}": {
-      "name": "typoginspectpar",
-      "snippet": "{${1:id}}"
-    },
-    "typoginspectpar[]{}": {
-      "name": "typoginspectpar",
-      "snippet": "[${2:option}]{${1:id}}"
-    },
-    "hyphenmin{}": {
-      "name": "hyphenmin",
-      "snippet": "{${1:hyphen-min}}"
-    },
-    "hyphenmin[]{}": {
-      "name": "hyphenmin",
-      "snippet": "[${2:left-hyphen-min}]{${1:hyphen-min}}"
-    },
-    "lastlineraggedleftpar": {},
-    "lastlineflushrightpar": {},
-    "lastlinecenteredpar": {},
-    "shortenpar": {},
-    "prolongpar": {},
-    "covernextindentpar": {},
-    "covernextindentpar[]": {
-      "name": "covernextindentpar",
-      "snippet": "[${1:dim}]"
-    },
-    "openlastlinepar": {},
-    "openlastlinepar[]": {
-      "name": "openlastlinepar",
-      "snippet": "[${1:dim}]"
-    },
-    "loosespacing": {},
-    "loosespacing[]": {
-      "name": "loosespacing",
-      "snippet": "[${1:level}]"
-    },
-    "tightspacing": {},
-    "tightspacing[]": {
-      "name": "tightspacing",
-      "snippet": "[${1:level}]"
-    },
-    "setfonttracking{}": {
-      "name": "setfonttracking",
-      "snippet": "{${1:delta}}"
-    },
-    "setfontshrink{}": {
-      "name": "setfontshrink",
-      "snippet": "{${1:level}}"
-    },
-    "setfontstretch{}": {
-      "name": "setfontstretch",
-      "snippet": "{${1:level}}"
-    },
-    "setfontexpand{}": {
-      "name": "setfontexpand",
-      "snippet": "{${1:level}}"
-    },
-    "nofontexpansion": {},
-    "nofontexpand": {},
-    "nocharprotrusion": {},
-    "slightlysloppypar": {},
-    "slightlysloppypar[]": {
-      "name": "slightlysloppypar",
-      "snippet": "[${1:sloppiness}]"
-    },
-    "vtietoppar": {},
-    "vtietoppar[]": {
-      "name": "vtietoppar",
-      "snippet": "[${1:number}]"
-    },
-    "vtiebotpar": {},
-    "vtiebotdisp": {},
-    "vtiebotdisp[]": {
-      "name": "vtiebotdisp",
-      "snippet": "[${1:number}]"
-    },
-    "vtiebotdisptoppar": {},
-    "vtiebotdisptoppar[]": {
-      "name": "vtiebotdisptoppar",
-      "snippet": "[${1:before-num}]"
-    },
-    "vtiebotdisptoppar[][]": {
-      "name": "vtiebotdisptoppar",
-      "snippet": "[${1:before-num}][${2:after-num}]"
-    },
-    "breakabledisplay": {},
-    "breakabledisplay[]": {
-      "name": "breakabledisplay",
-      "snippet": "[${1:level}]"
-    },
-    "smoothraggedrightshapetriplet{}{}{}": {
-      "name": "smoothraggedrightshapetriplet",
-      "snippet": "{${1:width1}}{${2:width2}}{${3:width3}}"
-    },
-    "smoothraggedrightshapetriplet[]{}{}{}": {
-      "name": "smoothraggedrightshapetriplet",
-      "snippet": "[${4:options}]{${1:width1}}{${2:width2}}{${3:width3}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "smoothraggedrightshapequintuplet{}{}{}{}{}": {
-      "name": "smoothraggedrightshapequintuplet",
-      "snippet": "{${1:width1}}{${2:width2}}{${3:width3}}{${4:width4}}{${5:width5}}"
-    },
-    "smoothraggedrightshapequintuplet[]{}{}{}{}{}": {
-      "name": "smoothraggedrightshapequintuplet",
-      "snippet": "[${6:options}]{${1:width1}}{${2:width2}}{${3:width3}}{${4:width4}}{${5:width5}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "smoothraggedrightshapeseptuplet{}{}{}{}{}{}{}": {
-      "name": "smoothraggedrightshapeseptuplet",
-      "snippet": "{${1:width1}}{${2:width2}}{${3:width3}}{${4:width4}}{${5:width5}}{${6:width6}}{${7:width7}}"
-    },
-    "smoothraggedrightshapeseptuplet[]{}{}{}{}{}{}{}": {
-      "name": "smoothraggedrightshapeseptuplet",
-      "snippet": "[${8:options}]{${1:width1}}{${2:width2}}{${3:width3}}{${4:width4}}{${5:width5}}{${6:width6}}{${7:width7}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "smoothraggedrightpar": {},
-    "smoothraggedrightpar[]": {
-      "name": "smoothraggedrightpar",
-      "snippet": "[${1:option}]"
-    },
-    "smoothraggedright": {},
-    "smoothraggedright[]": {
-      "name": "smoothraggedright",
-      "snippet": "[${1:option}]"
+  "deps": [
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "everyhook"
+    },
+    {
+      "name": "xkeyval"
     }
-  },
-  "options": [
-    "breakpenalty=${1:penalty}",
-    "debug",
-    "nodebug",
-    "ligaturekern=",
-    "lowercaselabelitemadjustments={${1:dim1,dim2,dim3,dim4}}",
-    "mathitalicscorrection=",
-    "raise*=",
-    "raisecapitaldash=",
-    "raisecapitalhyphen=",
-    "raisecapitaltimes=",
-    "raisecapitalguillemets=",
-    "raiseguillemets=",
-    "raisefiguredash=",
-    "shrinklimits={${1:lim1,lim2,lim3}}",
-    "stretchlimits={${1:lim1,lim2,lim3}}",
-    "slashkern=",
-    "textitalicscorrection=",
-    "trackingttspacing=${1:outer-spacing}",
-    "uppercaselabelitemadjustments={${1:dim1,dim2,dim3,dim4}}"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "typogget",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:key%keyvals}}",
+        "keys": [
+          "\\typogget"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "typoggetnth",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:csname}}{${2:key%keyvals}}{${3:index}}",
+        "keys": [
+          "\\typoggetnth"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "fontsizeinfo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:csname}}"
+      }
+    },
+    {
+      "name": "fontsizeinfo*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:csname}}"
+      }
+    },
+    {
+      "name": "allowhyphenation"
+    },
+    {
+      "name": "breakpoint"
+    },
+    {
+      "name": "breakpoint*"
+    },
+    {
+      "name": "nolig"
+    },
+    {
+      "name": "nolig",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:kerning}]"
+      }
+    },
+    {
+      "name": "nolig*"
+    },
+    {
+      "name": "nolig*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:kerning}]"
+      }
+    },
+    {
+      "name": "itcorr",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:strength}}"
+      }
+    },
+    {
+      "name": "itcorr*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:strength}}"
+      }
+    },
+    {
+      "name": "kernedslash"
+    },
+    {
+      "name": "kernedslash*"
+    },
+    {
+      "name": "kernedhyphen",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:left-kern}}{${2:right-kern}}"
+      }
+    },
+    {
+      "name": "kernedhyphen",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:raise}]{${1:left-kern}}{${2:right-kern}}"
+      }
+    },
+    {
+      "name": "kernedhyphen*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:left-kern}}{${2:right-kern}}"
+      }
+    },
+    {
+      "name": "kernedhyphen*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:raise}]{${1:left-kern}}{${2:right-kern}}"
+      }
+    },
+    {
+      "name": "leftkernedhyphen",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:left-kern}}"
+      }
+    },
+    {
+      "name": "leftkernedhyphen",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:raise}]{${1:left-kern}}"
+      }
+    },
+    {
+      "name": "leftkernedhyphen*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:left-kern}}"
+      }
+    },
+    {
+      "name": "leftkernedhyphen*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:raise}]{${1:left-kern}}"
+      }
+    },
+    {
+      "name": "rightkernedhyphen",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:right-kern}}"
+      }
+    },
+    {
+      "name": "rightkernedhyphen",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:raise}]{${1:right-kern}}"
+      }
+    },
+    {
+      "name": "rightkernedhyphen*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:right-kern}}"
+      }
+    },
+    {
+      "name": "rightkernedhyphen*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:raise}]{${1:right-kern}}"
+      }
+    },
+    {
+      "name": "capitalhyphen"
+    },
+    {
+      "name": "capitalhyphen*"
+    },
+    {
+      "name": "capitalendash"
+    },
+    {
+      "name": "capitalendash*"
+    },
+    {
+      "name": "capitaldash",
+      "unusual": true
+    },
+    {
+      "name": "capitaldash*",
+      "unusual": true
+    },
+    {
+      "name": "capitalemdash"
+    },
+    {
+      "name": "capitalemdash*"
+    },
+    {
+      "name": "figuredash"
+    },
+    {
+      "name": "figuredash*"
+    },
+    {
+      "name": "capitaltimes"
+    },
+    {
+      "name": "singleguillemetleft"
+    },
+    {
+      "name": "singleguillemetright"
+    },
+    {
+      "name": "doubleguillemetleft"
+    },
+    {
+      "name": "doubleguillemetright"
+    },
+    {
+      "name": "Singleguillemetleft"
+    },
+    {
+      "name": "Singleguillemetright"
+    },
+    {
+      "name": "Doubleguillemetleft"
+    },
+    {
+      "name": "Doubleguillemetright"
+    },
+    {
+      "name": "uppercaseadjustlabelitems",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:levels-to-adjust}}"
+      }
+    },
+    {
+      "name": "lowercaseadjustlabelitems",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:levels-to-adjust}}"
+      }
+    },
+    {
+      "name": "noadjustlabelitems",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:levels-to-adjust}}"
+      }
+    },
+    {
+      "name": "typogadjuststairs",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:step-size}}{${2:number-of-steps}}{${3:sample}}"
+      }
+    },
+    {
+      "name": "typogadjuststairs",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:scale}]{${1:step-size}}{${2:number-of-steps}}{${3:sample}}"
+      }
+    },
+    {
+      "name": "typoguppercaseadjustcheck",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:sample}}"
+      }
+    },
+    {
+      "name": "typoguppercaseadjustcheck",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:scale}]{${1:sample}}"
+      }
+    },
+    {
+      "name": "typoglowercaseadjustcheck",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:sample}}"
+      }
+    },
+    {
+      "name": "typoglowercaseadjustcheck",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:scale}]{${1:sample}}"
+      }
+    },
+    {
+      "name": "widespace"
+    },
+    {
+      "name": "widespace*"
+    },
+    {
+      "name": "narrowspace"
+    },
+    {
+      "name": "narrowspace*"
+    },
+    {
+      "name": "slightlysloppy"
+    },
+    {
+      "name": "slightlysloppy",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:sloppiness}]"
+      }
+    },
+    {
+      "name": "vtietop"
+    },
+    {
+      "name": "vtietop",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:number}]"
+      }
+    },
+    {
+      "name": "splicevtietop"
+    },
+    {
+      "name": "splicevtietop",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:number}]"
+      }
+    },
+    {
+      "name": "vtiebot"
+    },
+    {
+      "name": "vtiebot",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:number}]"
+      }
+    },
+    {
+      "name": "setbaselineskip",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:skip}}"
+      }
+    },
+    {
+      "name": "resetbaselineskip"
+    },
+    {
+      "name": "setbaselineskippercentage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:percent}}"
+      }
+    },
+    {
+      "name": "setleading",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:leading}}"
+      }
+    },
+    {
+      "name": "setleadingpercentage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:percent}}"
+      }
+    },
+    {
+      "name": "smoothraggedrightfuzzfactor"
+    },
+    {
+      "name": "smoothraggedrightgenerator"
+    },
+    {
+      "name": "smoothraggedrightleftskip"
+    },
+    {
+      "name": "smoothraggedrightparindent"
+    },
+    {
+      "name": "smoothraggedrightragwidth"
+    },
+    {
+      "name": "typogadjuststairsfor",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:scale-factor}}{${2:step-size}}{${3:number-of-steps}}{${4:sample}}{${5:N}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "typogsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "typoginspect",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "typoginspect",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:option%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "typoginspectpar",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "typoginspectpar",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:option%keyvals}]{${1:id}}"
+      }
+    },
+    {
+      "name": "hyphenmin",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:hyphen-min}}"
+      }
+    },
+    {
+      "name": "hyphenmin",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:left-hyphen-min}]{${1:hyphen-min}}"
+      }
+    },
+    {
+      "name": "lastlineraggedleftpar"
+    },
+    {
+      "name": "lastlineflushrightpar",
+      "unusual": true
+    },
+    {
+      "name": "lastlinecenteredpar"
+    },
+    {
+      "name": "shortenpar"
+    },
+    {
+      "name": "prolongpar"
+    },
+    {
+      "name": "covernextindentpar"
+    },
+    {
+      "name": "covernextindentpar",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:dim}]"
+      }
+    },
+    {
+      "name": "openlastlinepar"
+    },
+    {
+      "name": "openlastlinepar",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:dim}]"
+      }
+    },
+    {
+      "name": "loosespacing"
+    },
+    {
+      "name": "loosespacing",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:level}]"
+      }
+    },
+    {
+      "name": "tightspacing"
+    },
+    {
+      "name": "tightspacing",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:level}]"
+      }
+    },
+    {
+      "name": "setfonttracking",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:delta}}"
+      }
+    },
+    {
+      "name": "setfontshrink",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:level}}"
+      }
+    },
+    {
+      "name": "setfontstretch",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:level}}"
+      }
+    },
+    {
+      "name": "setfontexpand",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:level}}"
+      }
+    },
+    {
+      "name": "nofontexpansion"
+    },
+    {
+      "name": "nofontexpand",
+      "unusual": true
+    },
+    {
+      "name": "nocharprotrusion"
+    },
+    {
+      "name": "slightlysloppypar"
+    },
+    {
+      "name": "slightlysloppypar",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:sloppiness}]"
+      }
+    },
+    {
+      "name": "vtietoppar"
+    },
+    {
+      "name": "vtietoppar",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:number}]"
+      }
+    },
+    {
+      "name": "vtiebotpar"
+    },
+    {
+      "name": "vtietoppar",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:number}]"
+      }
+    },
+    {
+      "name": "vtiebotdisp"
+    },
+    {
+      "name": "vtiebotdisp",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:number}]"
+      }
+    },
+    {
+      "name": "vtiebotdisptoppar"
+    },
+    {
+      "name": "vtiebotdisptoppar",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:before-num}]"
+      }
+    },
+    {
+      "name": "vtiebotdisptoppar",
+      "arg": {
+        "format": "[][]",
+        "snippet": "[${1:before-num}][${2:after-num}]"
+      }
+    },
+    {
+      "name": "breakabledisplay"
+    },
+    {
+      "name": "breakabledisplay",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:level}]"
+      }
+    },
+    {
+      "name": "smoothraggedrightshapetriplet",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:width1}}{${2:width2}}{${3:width3}}"
+      }
+    },
+    {
+      "name": "smoothraggedrightshapetriplet",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:options%keyvals}]{${1:width1}}{${2:width2}}{${3:width3}}"
+      }
+    },
+    {
+      "name": "smoothraggedrightshapequintuplet",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:width1}}{${2:width2}}{${3:width3}}{${4:width4}}{${5:width5}}"
+      }
+    },
+    {
+      "name": "smoothraggedrightshapequintuplet",
+      "arg": {
+        "format": "[]{}{}{}{}{}",
+        "snippet": "[${6:options%keyvals}]{${1:width1}}{${2:width2}}{${3:width3}}{${4:width4}}{${5:width5}}"
+      }
+    },
+    {
+      "name": "smoothraggedrightshapeseptuplet",
+      "arg": {
+        "format": "{}{}{}{}{}{}{}",
+        "snippet": "{${1:width1}}{${2:width2}}{${3:width3}}{${4:width4}}{${5:width5}}{${6:width6}}{${7:width7}}"
+      }
+    },
+    {
+      "name": "smoothraggedrightshapeseptuplet",
+      "arg": {
+        "format": "[]{}{}{}{}{}{}{}",
+        "snippet": "[${8:options%keyvals}]{${1:width1}}{${2:width2}}{${3:width3}}{${4:width4}}{${5:width5}}{${6:width6}}{${7:width7}}"
+      }
+    },
+    {
+      "name": "smoothraggedrightpar"
+    },
+    {
+      "name": "smoothraggedrightpar",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:option%keyvals}]"
+      }
+    },
+    {
+      "name": "smoothraggedright"
+    },
+    {
+      "name": "smoothraggedright",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:option%keyvals}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/typog#c,\\begin{typogsetup}": [
+      "breakpenalty=${1:penalty}\r",
+      "debug\r",
+      "nodebug\r",
+      "ligaturekern=",
+      "lowercaselabelitemadjustments={${1:dim1,dim2,dim3,dim4}}\r",
+      "mathitalicscorrection=",
+      "raise*=",
+      "raisecapitaldash=",
+      "raisecapitalhyphen=",
+      "raisecapitaltimes=",
+      "raisecapitalguillemets=",
+      "raiseguillemets=",
+      "raisefiguredash=",
+      "shrinklimits={${1:lim1,lim2,lim3}}\r",
+      "stretchlimits={${1:lim1,lim2,lim3}}\r",
+      "slashkern=",
+      "textitalicscorrection=",
+      "trackingttspacing=${1:outer-spacing}\r",
+      "uppercaselabelitemadjustments={${1:dim1,dim2,dim3,dim4}}\r"
+    ],
+    "\\typogget": [
+      "breakpenalty\r",
+      "ligaturekern\r",
+      "mathitalicscorrection\r",
+      "raise*\r",
+      "raisecapitaldash\r",
+      "raisecapitalhyphen\r",
+      "raisecapitaltimes\r",
+      "raisecapitalguillemets\r",
+      "raiseguillemets\r",
+      "raisefiguredash\r",
+      "shrinklimits\r",
+      "stretchlimits\r",
+      "slashkern\r",
+      "textitalicscorrection\r",
+      "trackingttspacing\r"
+    ],
+    "\\typoggetnth": [
+      "lowercaselabelitemadjustments\r",
+      "shrinklimits\r",
+      "stretchlimits\r",
+      "trackingttspacing\r",
+      "uppercaselabelitemadjustments\r"
+    ],
+    "\\begin{typoginspect},\\begin{typoginspectpar}": [
+      "tracingboxes\r",
+      "tracingboxes=${1:size}\r"
+    ],
+    "\\begin{smoothraggedrightshapetriplet},\\begin{smoothraggedrightshapequintuplet},\\begin{smoothraggedrightshapeseptuplet}": [
       "leftskip=",
       "parindent="
+    ],
+    "\\begin{smoothraggedrightpar},\\begin{smoothraggedright}": [
+      "linewidth="
     ]
+  },
+  "args": [
+    "\\usepackage/typog#c,\\begin{typogsetup}"
   ]
 }

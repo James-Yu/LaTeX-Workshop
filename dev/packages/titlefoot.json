@@ -1,28 +1,63 @@
 {
-  "includes": {},
-  "macros": {
-    "keywords{}": {
-      "snippet": "keywords{${1:word1,${2:word2},...}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "keywords",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:word1,word2,...%text}}"
+      }
     },
-    "runningtitle{}": {
-      "snippet": "runningtitle{${1:text}}"
+    {
+      "name": "runningtitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "amssubj{}": {
-      "snippet": "amssubj{${1:classifications}}"
+    {
+      "name": "amssubj",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:classifications}}"
+      }
     },
-    "authorfootnote{}": {
-      "snippet": "authorfootnote{${1:text}}"
+    {
+      "name": "authorfootnote",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "keywordsname": {},
-    "runningtitlename": {},
-    "amssubjname": {},
-    "authorfnname": {},
-    "unmarkedfntext{}": {
-      "snippet": "unmarkedfntext{${1:text}}"
+    {
+      "name": "keywordsname",
+      "unusual": true
     },
-    "footnotecomma": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "runningtitlename",
+      "unusual": true
+    },
+    {
+      "name": "amssubjname",
+      "unusual": true
+    },
+    {
+      "name": "authorfnname",
+      "unusual": true
+    },
+    {
+      "name": "unmarkedfntext",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "footnotecomma",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

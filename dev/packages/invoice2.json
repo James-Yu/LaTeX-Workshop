@@ -1,48 +1,95 @@
 {
-  "includes": {
-    "booktabs": [],
-    "l3keys2e": [],
-    "longtable": [],
-    "siunitx": [],
-    "translations": [],
-    "xcolor": [],
-    "colortbl": []
-  },
-  "macros": {
-    "invoiceoptions{}": {
-      "snippet": "invoiceoptions{${1:options}}"
+  "deps": [
+    {
+      "name": "booktabs"
     },
-    "invoiceitem{}{}{}": {
-      "snippet": "invoiceitem{${1:amount}}{${2:item name}}{${3:unit price}}"
+    {
+      "name": "l3keys2e"
     },
-    "invoiceitem[]{}{}{}": {
-      "snippet": "invoiceitem[${4:VAT}]{${1:amount}}{${2:item name}}{${3:unit price}}"
+    {
+      "name": "longtable"
     },
-    "invoicesingleitem{}{}": {
-      "snippet": "invoicesingleitem{${1:item name}}{${2:unit price}}"
+    {
+      "name": "siunitx"
     },
-    "invoicesingleitem[]{}{}": {
-      "snippet": "invoicesingleitem[${3:VAT}]{${1:item name}}{${2:unit price}}"
+    {
+      "name": "translations"
+    },
+    {
+      "name": "xcolor"
+    },
+    {
+      "name": "colortbl"
     }
-  },
-  "envs": {
-    "invoice": {},
-    "invoice[]": {
-      "name": "invoice",
-      "snippet": "[${1:options}]"
-    }
-  },
-  "options": [
-    "vat=${1:VAT}",
-    "included-vat",
-    "currency-symbol={${1:symbol}}",
-    "currency-fraction-digits=${1:digits}",
-    "currency-in-header",
-    "colorize",
-    "odd-color=",
-    "even-color=",
-    "title-color=",
-    "total-color="
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "invoiceoptions",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\usepackage/invoice2#c,\\invoiceoptions,\\begin{invoice}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "invoiceitem",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:amount}}{${2:item name%text}}{${3:unit price}}"
+      }
+    },
+    {
+      "name": "invoiceitem",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:VAT}]{${1:amount}}{${2:item name%text}}{${3:unit price}}"
+      }
+    },
+    {
+      "name": "invoicesingleitem",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:item name%text}}{${2:unit price}}"
+      }
+    },
+    {
+      "name": "invoicesingleitem",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:VAT}]{${1:item name%text}}{${2:unit price}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "invoice"
+    },
+    {
+      "name": "invoice",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/invoice2#c,\\invoiceoptions,\\begin{invoice}": [
+      "vat=${1:VAT}\r",
+      "included-vat",
+      "currency-symbol={${1:symbol}}\r",
+      "currency-fraction-digits=${1:digits}\r",
+      "currency-in-header",
+      "colorize",
+      "odd-color=",
+      "even-color=",
+      "title-color=",
+      "total-color="
+    ]
+  },
+  "args": [
+    "\\usepackage/invoice2#c,\\invoiceoptions,\\begin{invoice}"
+  ]
 }

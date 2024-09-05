@@ -1,89 +1,192 @@
 {
-  "includes": {
-    "inputenc": [],
-    "geometry": [],
-    "xifthen": [],
-    "tikz": [],
-    "musixtex": [],
-    "harmony": [],
-    "intcalc": []
-  },
-  "macros": {
-    "artistname{}": {
-      "snippet": "artistname{${1:name}}"
+  "deps": [
+    {
+      "name": "inputenc"
     },
-    "albumtitle{}": {
-      "snippet": "albumtitle{${1:title}}"
+    {
+      "name": "geometry"
     },
-    "songname{}": {
-      "snippet": "songname{${1:name}}"
+    {
+      "name": "xifthen"
     },
-    "maketabheader": {},
-    "thetabstrings": {},
-    "thetabbars": {},
-    "thetabcstring": {},
-    "thetabcbar": {},
-    "thetabcn": {},
-    "thetabcdn": {},
-    "theflag": {},
-    "gtuning": {},
-    "timesigtop": {},
-    "timesigbot": {},
-    "tabwidth": {},
-    "ypostimetop": {},
-    "ypostimebot": {},
-    "nextbar": {},
-    "note{}{}{}{}": {
-      "snippet": "note{${1:numerator}}{${2:denominator}}{${3:string}}{${4:fret}}"
+    {
+      "name": "tikz"
     },
-    "xpos": {},
-    "notel{}{}{}{}{}": {
-      "snippet": "notel{${1:numerator}}{${2:denominator}}{${3:string}}{${4:fret}}{${5:length}}"
+    {
+      "name": "musixtex"
     },
-    "restwhole{}{}": {
-      "snippet": "restwhole{${1:numerator}}{${2:denominator}}"
+    {
+      "name": "harmony"
     },
-    "resthalf{}{}": {
-      "snippet": "resthalf{${1:numerator}}{${2:denominator}}"
-    },
-    "restquarter{}{}": {
-      "snippet": "restquarter{${1:numerator}}{${2:denominator}}"
-    },
-    "resteighth{}{}": {
-      "snippet": "resteighth{${1:numerator}}{${2:denominator}}"
-    },
-    "restsixteenth{}{}": {
-      "snippet": "restsixteenth{${1:numerator}}{${2:denominator}}"
+    {
+      "name": "intcalc"
     }
-  },
-  "envs": {
-    "tabline{}{}{}{}": {
-      "name": "tabline",
-      "snippet": "{${1:bars}}{${2:ts-upper}}{${3:ts-lower}}{${4:tuning}}"
-    }
-  },
-  "options": [
-    "a4paper",
-    "a5paper",
-    "b5paper",
-    "letterpaper",
-    "legalpaper",
-    "executivepaper",
-    "landscape",
-    "10pt",
-    "11pt",
-    "12pt",
-    "oneside",
-    "twoside",
-    "draft",
-    "final",
-    "titlepage",
-    "notitlepage",
-    "onecolumn",
-    "twocolumn",
-    "leqno",
-    "fleqn",
-    "openbib"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "artistname",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "albumtitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
+    },
+    {
+      "name": "songname",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "maketabheader"
+    },
+    {
+      "name": "thetabstrings",
+      "unusual": true
+    },
+    {
+      "name": "thetabbars",
+      "unusual": true
+    },
+    {
+      "name": "thetabcstring",
+      "unusual": true
+    },
+    {
+      "name": "thetabcbar",
+      "unusual": true
+    },
+    {
+      "name": "thetabcn",
+      "unusual": true
+    },
+    {
+      "name": "thetabcdn",
+      "unusual": true
+    },
+    {
+      "name": "theflag",
+      "unusual": true
+    },
+    {
+      "name": "gtuning",
+      "unusual": true
+    },
+    {
+      "name": "timesigtop",
+      "unusual": true
+    },
+    {
+      "name": "timesigbot",
+      "unusual": true
+    },
+    {
+      "name": "tabwidth",
+      "unusual": true
+    },
+    {
+      "name": "ypostimetop",
+      "unusual": true
+    },
+    {
+      "name": "ypostimebot",
+      "unusual": true
+    },
+    {
+      "name": "nextbar"
+    },
+    {
+      "name": "note",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:numerator}}{${2:denominator}}{${3:string}}{${4:fret}}"
+      }
+    },
+    {
+      "name": "notel",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:numerator}}{${2:denominator}}{${3:string}}{${4:fret}}{${5:length}}"
+      }
+    },
+    {
+      "name": "restwhole",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:numerator}}{${2:denominator}}"
+      }
+    },
+    {
+      "name": "resthalf",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:numerator}}{${2:denominator}}"
+      }
+    },
+    {
+      "name": "restquarter",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:numerator}}{${2:denominator}}"
+      }
+    },
+    {
+      "name": "resteighth",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:numerator}}{${2:denominator}}"
+      }
+    },
+    {
+      "name": "restsixteenth",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:numerator}}{${2:denominator}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "tabline",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:bars}}{${2:ts-upper}}{${3:ts-lower}}{${4:tuning}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\documentclass/guitartabs#c": [
+      "a4paper\r",
+      "a5paper\r",
+      "b5paper\r",
+      "letterpaper\r",
+      "legalpaper\r",
+      "executivepaper\r",
+      "landscape\r",
+      "10pt\r",
+      "11pt\r",
+      "12pt\r",
+      "oneside\r",
+      "twoside\r",
+      "draft\r",
+      "final\r",
+      "titlepage\r",
+      "notitlepage\r",
+      "onecolumn\r",
+      "twocolumn\r",
+      "leqno\r",
+      "fleqn\r",
+      "openbib\r"
+    ]
+  },
+  "args": [
+    "\\documentclass/guitartabs#c"
+  ]
 }

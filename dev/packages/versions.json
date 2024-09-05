@@ -1,34 +1,67 @@
 {
-  "includes": {},
-  "macros": {
-    "markversion{}": {
-      "snippet": "markversion{${1:version}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "markversion",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:version%envname}}"
+      }
     },
-    "includeversion{}": {
-      "snippet": "includeversion{${1:version}}"
+    {
+      "name": "includeversion",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:version%envname}}"
+      }
     },
-    "excludeversion{}": {
-      "snippet": "excludeversion{${1:version}}"
+    {
+      "name": "excludeversion",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:version%envname}}"
+      }
     },
-    "processifversion{}{}": {
-      "snippet": "processifversion{${1:version}}{${2:code}}"
+    {
+      "name": "processifversion",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:version}}{${2:code}}"
+      }
     },
-    "includeversionnogroup{}": {
-      "snippet": "includeversionnogroup{${1:version}}",
-      "option": "nogroup"
+    {
+      "name": "includeversionnogroup",
+      "if": "nogroup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:version%envname}}"
+      }
     },
-    "versionmessage{}{}": {
-      "snippet": "versionmessage{${1:version}}{${2:type}}"
-    },
-    "beginmarkversion": {},
-    "endmarkversion": {}
-  },
-  "envs": {
-    "comment": {}
-  },
-  "options": [
-    "nogroup",
-    "tracing"
+    {
+      "name": "versionmessage",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:version}}{${2:type%keyvals}}"
+      }
+    }
   ],
-  "keyvals": []
+  "envs": [
+    {
+      "name": "comment"
+    }
+  ],
+  "keys": {
+    "\\usepackage/versions#c": [
+      "nogroup\r",
+      "tracing\r"
+    ],
+    "\\versionmessage#c": [
+      "excluded\r",
+      "included\r",
+      "included with marks\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/versions#c"
+  ]
 }

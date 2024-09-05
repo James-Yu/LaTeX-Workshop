@@ -1,58 +1,121 @@
 {
-  "includes": {},
-  "macros": {
-    "theminutes": {},
-    "theseconds": {},
-    "settime{}": {
-      "snippet": "settime{${1:seconds}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "theminutes",
+      "unusual": true
     },
-    "addtime{}": {
-      "snippet": "addtime{${1:seconds}}"
+    {
+      "name": "theseconds",
+      "unusual": true
     },
-    "ifourteenpt": {},
-    "iseventeenpt": {},
-    "itwentypt": {},
-    "itwentyfourpt": {},
-    "itwentyninept": {},
-    "ithirtyfourpt": {},
-    "ifortyonept": {},
-    "newifG{}": {
-      "snippet": "newifG{${1:cmd}}"
+    {
+      "name": "settime",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:seconds}}"
+      }
     },
-    "theslide": {},
-    "theoverlay": {},
-    "thenote": {},
-    "onlyslides{}": {
-      "snippet": "onlyslides{${1:list}}"
+    {
+      "name": "addtime",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:seconds}}"
+      }
     },
-    "onlynotes{}": {
-      "snippet": "onlynotes{${1:list}}"
+    {
+      "name": "ifourteenpt",
+      "unusual": true
     },
-    "invisible": {},
-    "visible": {}
-  },
-  "envs": {
-    "slide": {},
-    "overlay": {},
-    "note": {}
-  },
-  "options": [
-    "a4paper",
-    "a5paper",
-    "b5paper",
-    "letterpaper",
-    "legalpaper",
-    "executivepaper",
-    "landscape",
-    "clock",
-    "draft",
-    "final",
-    "titlepage",
-    "notitlepage",
-    "onecolumn",
-    "twocolumn",
-    "leqno",
-    "fleqn"
+    {
+      "name": "iseventeenpt",
+      "unusual": true
+    },
+    {
+      "name": "itwentypt",
+      "unusual": true
+    },
+    {
+      "name": "itwentyfourpt",
+      "unusual": true
+    },
+    {
+      "name": "itwentyninept",
+      "unusual": true
+    },
+    {
+      "name": "ithirtyfourpt",
+      "unusual": true
+    },
+    {
+      "name": "ifortyonept",
+      "unusual": true
+    },
+    {
+      "name": "theslide",
+      "unusual": true
+    },
+    {
+      "name": "theoverlay",
+      "unusual": true
+    },
+    {
+      "name": "thenote",
+      "unusual": true
+    },
+    {
+      "name": "onlyslides",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:list}}"
+      }
+    },
+    {
+      "name": "onlynotes",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:list}}"
+      }
+    },
+    {
+      "name": "invisible"
+    },
+    {
+      "name": "visible"
+    }
   ],
-  "keyvals": []
+  "envs": [
+    {
+      "name": "slide"
+    },
+    {
+      "name": "overlay"
+    },
+    {
+      "name": "note"
+    }
+  ],
+  "keys": {
+    "\\documentclass/slides#c": [
+      "a4paper\r",
+      "a5paper\r",
+      "b5paper\r",
+      "letterpaper\r",
+      "legalpaper\r",
+      "executivepaper\r",
+      "landscape\r",
+      "clock\r",
+      "draft\r",
+      "final\r",
+      "titlepage\r",
+      "notitlepage\r",
+      "onecolumn\r",
+      "twocolumn\r",
+      "leqno\r",
+      "fleqn\r"
+    ]
+  },
+  "args": [
+    "\\documentclass/slides#c"
+  ]
 }

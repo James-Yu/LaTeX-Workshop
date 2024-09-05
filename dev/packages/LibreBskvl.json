@@ -1,32 +1,65 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "fontenc": [],
-    "ifthen": [],
-    "mweights": [],
-    "fontaxes": []
-  },
-  "macros": {
-    "supfigures": {},
-    "sufigures": {},
-    "textsup{}": {
-      "snippet": "textsup{${1:text}}"
+  "deps": [
+    {
+      "name": "xkeyval"
     },
-    "textsu{}": {
-      "snippet": "textsu{${1:text}}"
+    {
+      "name": "fontenc"
     },
-    "textsuperior{}": {
-      "snippet": "textsuperior{${1:text}}"
+    {
+      "name": "ifthen"
+    },
+    {
+      "name": "mweights"
+    },
+    {
+      "name": "fontaxes"
     }
-  },
-  "envs": {},
-  "options": [
-    "scaled=${1|${1:factor},MatchLowercase|}",
-    "lining",
-    "proportional",
-    "mainfont",
-    "bold",
-    "regular"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "supfigures",
+      "unusual": true
+    },
+    {
+      "name": "sufigures"
+    },
+    {
+      "name": "textsup",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textsu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textsuperior",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/LibreBskvl#c": [
+      "scaled=${2|${1:factor},MatchLowercase\r|}",
+      "lining\r",
+      "proportional\r",
+      "mainfont\r",
+      "bold\r",
+      "regular\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/LibreBskvl#c"
+  ]
 }

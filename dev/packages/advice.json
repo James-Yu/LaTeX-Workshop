@@ -1,42 +1,71 @@
 {
-  "includes": {
-    "collargs": [],
-    "xparse": []
-  },
-  "macros": {
-    "AdviceSetup{}{}{}": {
-      "snippet": "AdviceSetup{${1:namespace}}{${2:command or env}}{${3:setup code}}"
+  "deps": [
+    {
+      "name": "collargs"
     },
-    "AdviceTracingOn": {},
-    "AdviceTracingOff": {},
-    "AdviceNamespace": {},
-    "AdviceName": {},
-    "AdviceCsname": {},
-    "AdviceReplaced": {},
-    "AdviceOriginal": {},
-    "AdviceGetOriginal{}{}": {
-      "snippet": "AdviceGetOriginal{${1:namespace}}{${2:control sequence}}"
+    {
+      "name": "xparse"
+    }
+  ],
+  "macros": [
+    {
+      "name": "AdviceSetup",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:namespace}}{${2:command or env}}{${3:setup code}}"
+      }
     },
-    "AdviceCsnameGetOriginal{}{}": {
-      "snippet": "AdviceCsnameGetOriginal{${1:namespace}}{${2:csname}}"
+    {
+      "name": "AdviceTracingOn",
+      "unusual": true
     },
-    "AdviceCollectTikZArguments": {},
-    "ifAdviceRun": {},
-    "AdviceRuntrue": {},
-    "AdviceRunfalse": {},
-    "AdviceRunConditions": {},
-    "AdviceBailoutHandler": {},
-    "AdviceOuterHandler": {},
-    "AdviceCollector": {},
-    "AdviceArgs": {},
-    "AdviceCollectorOptions": {},
-    "AdviceRawCollectorOptions": {},
-    "AdviceInnerHandler": {},
-    "AdviceOptions": {},
-    "AdviceAfterSetup": {},
-    "AdviceType": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "AdviceTracingOff",
+      "unusual": true
+    },
+    {
+      "name": "AdviceNamespace",
+      "unusual": true
+    },
+    {
+      "name": "AdviceName",
+      "unusual": true
+    },
+    {
+      "name": "AdviceCsname",
+      "unusual": true
+    },
+    {
+      "name": "AdviceReplaced",
+      "unusual": true
+    },
+    {
+      "name": "AdviceOriginal",
+      "unusual": true
+    },
+    {
+      "name": "AdviceGetOriginal",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:namespace}}{${2:control sequence}}"
+      }
+    },
+    {
+      "name": "AdviceCsnameGetOriginal",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:namespace}}{${2:csname}}"
+      }
+    },
+    {
+      "name": "AdviceCollectTikZArguments",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

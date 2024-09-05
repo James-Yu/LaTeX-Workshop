@@ -1,588 +1,1426 @@
 {
-  "includes": {
-    "tudscrbase": [],
-    "class-scrartcl": [],
-    "environ": [],
-    "graphicx": [],
-    "tudscrcolor": [],
-    "opensans": [],
-    "iwona": [],
-    "mathastext": [],
-    "newunicodechar": [],
-    "geometry": [],
-    "scrlayer-scrpage": []
-  },
-  "macros": {
-    "cdfont{}": {
-      "snippet": "cdfont{${1:Schriftart}}"
+  "deps": [
+    {
+      "name": "tudscrbase"
     },
-    "textcd{}{}": {
-      "snippet": "textcd{${1:Schriftart}}{${2:Text}}"
+    {
+      "name": "class-scrartcl"
     },
-    "cdfontln": {},
-    "textcdln{}": {
-      "snippet": "textcdln{${1:Text}}"
+    {
+      "name": "environ"
     },
-    "cdfontrn": {},
-    "textcdrn{}": {
-      "snippet": "textcdrn{${1:Text}}"
+    {
+      "name": "graphicx"
     },
-    "cdfontsn": {},
-    "textcdsn{}": {
-      "snippet": "textcdsn{${1:Text}}"
+    {
+      "name": "tudscrcolor"
     },
-    "cdfontbn": {},
-    "textcdbn{}": {
-      "snippet": "textcdbn{${1:Text}}"
+    {
+      "name": "opensans"
     },
-    "cdfontxn": {},
-    "textcdxn{}": {
-      "snippet": "textcdxn{${1:Text}}"
+    {
+      "name": "iwona"
     },
-    "cdfontli": {},
-    "textcdli{}": {
-      "snippet": "textcdli{${1:Text}}"
+    {
+      "name": "mathastext"
     },
-    "cdfontri": {},
-    "textcdri{}": {
-      "snippet": "textcdri{${1:Text}}"
+    {
+      "name": "newunicodechar"
     },
-    "cdfontsi": {},
-    "textcdsi{}": {
-      "snippet": "textcdsi{${1:Text}}"
+    {
+      "name": "geometry"
     },
-    "cdfontbi": {},
-    "textcdbi{}": {
-      "snippet": "textcdbi{${1:Text}}"
-    },
-    "cdfontxi": {},
-    "textcdxi{}": {
-      "snippet": "textcdxi{${1:Text}}"
-    },
-    "upGamma": {
-      "detail": "Γ",
-      "documentation": "capital gamma, greek"
-    },
-    "itGamma": {},
-    "upDelta": {
-      "detail": "Δ",
-      "documentation": "capital del greek"
-    },
-    "itDelta": {},
-    "upTheta": {
-      "detail": "Θ",
-      "documentation": "capital greek"
-    },
-    "itTheta": {},
-    "upLambda": {
-      "detail": "Λ",
-      "documentation": "capital lambda, greek"
-    },
-    "itLambda": {},
-    "upXi": {
-      "detail": "Ξ",
-      "documentation": "capital greek"
-    },
-    "itXi": {},
-    "upPi": {
-      "detail": "Π",
-      "documentation": "capital pi, greek"
-    },
-    "itPi": {},
-    "upSigma": {
-      "detail": "Σ",
-      "documentation": "capital sigma, greek"
-    },
-    "itSigma": {},
-    "upUpsilon": {
-      "detail": "ϒ",
-      "documentation": "GREEK UPSILON WITH HOOK SYMBOL"
-    },
-    "itUpsilon": {},
-    "upPhi": {
-      "detail": "Φ",
-      "documentation": "capital phi, greek"
-    },
-    "itPhi": {},
-    "upPsi": {
-      "detail": "Ψ",
-      "documentation": "capital psi, greek"
-    },
-    "itPsi": {},
-    "upOmega": {
-      "detail": "Ω",
-      "documentation": "capital omega, greek"
-    },
-    "itOmega": {},
-    "upalpha": {
-      "detail": "α",
-      "documentation": "alpha, greek"
-    },
-    "italpha": {},
-    "upbeta": {
-      "detail": "β",
-      "documentation": "be greek"
-    },
-    "itbeta": {},
-    "upgamma": {
-      "detail": "γ",
-      "documentation": "gamma, greek"
-    },
-    "itgamma": {},
-    "updelta": {
-      "detail": "δ",
-      "documentation": "del greek"
-    },
-    "itdelta": {},
-    "upepsilon": {
-      "detail": "ε",
-      "documentation": "rounded epsilon, greek"
-    },
-    "itepsilon": {},
-    "upvarepsilon": {
-      "detail": "ϵ",
-      "documentation": "GREEK LUNATE EPSILON SYMBOL"
-    },
-    "itvarepsilon": {},
-    "upzeta": {
-      "detail": "ζ",
-      "documentation": "ze greek"
-    },
-    "itzeta": {},
-    "upeta": {
-      "detail": "η",
-      "documentation": "e greek"
-    },
-    "iteta": {},
-    "uptheta": {
-      "detail": "θ",
-      "documentation": "straigh greek"
-    },
-    "ittheta": {},
-    "upvartheta": {
-      "detail": "ϑ",
-      "documentation": "curly or open theta"
-    },
-    "itvartheta": {},
-    "upiota": {
-      "detail": "ι",
-      "documentation": "io greek"
-    },
-    "itiota": {},
-    "upkappa": {
-      "detail": "κ",
-      "documentation": "kappa, greek"
-    },
-    "itkappa": {},
-    "uplambda": {
-      "detail": "λ",
-      "documentation": "lambda, greek"
-    },
-    "itlambda": {},
-    "upmu": {
-      "detail": "μ",
-      "documentation": "mu, greek"
-    },
-    "itmu": {},
-    "upnu": {
-      "detail": "ν",
-      "documentation": "nu, greek"
-    },
-    "itnu": {},
-    "upxi": {
-      "detail": "ξ",
-      "documentation": "greek"
-    },
-    "itxi": {},
-    "uppi": {
-      "detail": "π",
-      "documentation": "pi, greek"
-    },
-    "itpi": {},
-    "upvarpi": {
-      "detail": "ϖ",
-      "documentation": "GREEK PI SYMBOL (pomega)"
-    },
-    "itvarpi": {},
-    "uprho": {
-      "detail": "ρ",
-      "documentation": "rho, greek"
-    },
-    "itrho": {},
-    "upvarrho": {
-      "detail": "ϱ",
-      "documentation": "GREEK RHO SYMBOL (round)"
-    },
-    "itvarrho": {},
-    "upsigma": {
-      "detail": "σ",
-      "documentation": "sigma, greek"
-    },
-    "itsigma": {},
-    "upvarsigma": {
-      "detail": "ς",
-      "documentation": "terminal sigma, greek"
-    },
-    "itvarsigma": {},
-    "uptau": {
-      "detail": "τ",
-      "documentation": "greek"
-    },
-    "ittau": {},
-    "upupsilon": {
-      "detail": "υ",
-      "documentation": "upsilon, greek"
-    },
-    "itupsilon": {},
-    "upphi": {
-      "detail": "ϕ",
-      "documentation": "GREEK PHI SYMBOL (straight)"
-    },
-    "itphi": {},
-    "upvarphi": {
-      "detail": "φ",
-      "documentation": "curly or open phi, greek"
-    },
-    "itvarphi": {},
-    "upchi": {
-      "detail": "χ",
-      "documentation": "chi, greek"
-    },
-    "itchi": {},
-    "uppsi": {
-      "detail": "ψ",
-      "documentation": "psi, greek"
-    },
-    "itpsi": {},
-    "upomega": {
-      "detail": "ω",
-      "documentation": "omega, greek"
-    },
-    "itomega": {},
-    "otherGamma": {},
-    "otherDelta": {},
-    "otherTheta": {},
-    "otherLambda": {},
-    "otherXi": {},
-    "otherPi": {},
-    "otherSigma": {},
-    "otherUpsilon": {},
-    "otherPhi": {},
-    "otherPsi": {},
-    "otherOmega": {},
-    "otheralpha": {},
-    "otherbeta": {},
-    "othergamma": {},
-    "otherdelta": {},
-    "otherepsilon": {},
-    "othervarepsilon": {},
-    "otherzeta": {},
-    "othereta": {},
-    "othertheta": {},
-    "othervartheta": {},
-    "otheriota": {},
-    "otherkappa": {},
-    "otherlambda": {},
-    "othermu": {},
-    "othernu": {},
-    "otherxi": {},
-    "otherpi": {},
-    "othervarpi": {},
-    "otherrho": {},
-    "othervarrho": {},
-    "othersigma": {},
-    "othervarsigma": {},
-    "othertau": {},
-    "otherupsilon": {},
-    "otherphi": {},
-    "othervarphi": {},
-    "otherchi": {},
-    "otherpsi": {},
-    "otheromega": {},
-    "faculty{}": {
-      "snippet": "faculty{${1:Fakultät}}"
-    },
-    "department{}": {
-      "snippet": "department{${1:Einrichtung}}"
-    },
-    "institute{}": {
-      "snippet": "institute{${1:Institut}}"
-    },
-    "chair{}": {
-      "snippet": "chair{${1:Lehrstuhl}}"
-    },
-    "extraheadline{}": {
-      "snippet": "extraheadline{${1:Textzeile}}"
-    },
-    "headlogo{}": {
-      "snippet": "headlogo{${1:imagefile}}"
-    },
-    "headlogo[]{}": {
-      "snippet": "headlogo[${2:Parameterliste}]{${1:imagefile}}"
-    },
-    "footlogo{}": {
-      "snippet": "footlogo{${1:imagefile}}"
-    },
-    "footlogo[]{}": {
-      "snippet": "footlogo[${2:Parameterliste}]{${1:imagefile}}"
-    },
-    "footlogosep": {},
-    "footcontent{}": {
-      "snippet": "footcontent{${1:Inhalt}}"
-    },
-    "footcontent{}[]": {
-      "snippet": "footcontent{${1:linker Inhalt}}[${2:rechter Inhalt}]"
-    },
-    "footcontent[]{}": {
-      "snippet": "footcontent[${2:Anweisungen}]{${1:Inhalt}}"
-    },
-    "footcontent[]{}[]": {
-      "snippet": "footcontent[${2:Anweisungen}]{${1:linker Inhalt}}[${3:rechter Inhalt}]"
-    },
-    "maketitle[]": {
-      "snippet": "maketitle[${1:Parameterliste}]"
-    },
-    "maketitleonecolumn{}": {
-      "snippet": "maketitleonecolumn{${1:Einspaltentext}}"
-    },
-    "maketitleonecolumn[]{}": {
-      "snippet": "maketitleonecolumn[${2:Parameterliste}]{${1:Einspaltentext}}"
-    },
-    "makecover": {},
-    "makecover[]": {
-      "snippet": "makecover[${1:Parameterliste}]"
-    },
-    "raggedtitle": {},
-    "authormore{}": {
-      "snippet": "authormore{${1:Autorenzusatz}}"
-    },
-    "emailaddress{}": {
-      "snippet": "emailaddress{${1:E-Mail-Adresse}}"
-    },
-    "emailaddress[]{}": {
-      "snippet": "emailaddress[${2:Einstellungen}]{${1:E-Mail-Adresse}}"
-    },
-    "emailaddress*{}": {
-      "snippet": "emailaddress*{${1:E-Mail-Adresse}}"
-    },
-    "dateofbirth{}": {
-      "snippet": "dateofbirth{${1:Geburtsdatum}}"
-    },
-    "placeofbirth{}": {
-      "snippet": "placeofbirth{${1:Geburtsort}}"
-    },
-    "matriculationnumber{}": {
-      "snippet": "matriculationnumber{${1:Matrikelnummer}}"
-    },
-    "matriculationyear{}": {
-      "snippet": "matriculationyear{${1:Immatrikulationsjahr}}"
-    },
-    "course{}": {
-      "snippet": "course{${1:Studiengang}}"
-    },
-    "discipline{}": {
-      "snippet": "discipline{${1:Studienrichtung}}"
-    },
-    "date[]{}": {
-      "snippet": "date[${2:Parameterliste}]{${1:Datum}}"
-    },
-    "date*{}": {
-      "snippet": "date*{${1:Datum}}"
-    },
-    "date*[]{}": {
-      "snippet": "date*[${2:Parameterliste}]{${1:Datum}}"
-    },
-    "defensedate{}": {
-      "snippet": "defensedate{${1:Verteidigungsdatum}}"
-    },
-    "thesis{}": {
-      "snippet": "thesis{${1:Typisierung}}"
-    },
-    "subject{}": {
-      "snippet": "subject{${1:Typisierung}}"
-    },
-    "habilitationname": {},
-    "dissertationname": {},
-    "diplomathesisname": {},
-    "masterthesisname": {},
-    "bachelorthesisname": {},
-    "studentthesisname": {},
-    "studentresearchname": {},
-    "projectpapername": {},
-    "seminarpapername": {},
-    "termpapername": {},
-    "researchname": {},
-    "logname": {},
-    "reportname": {},
-    "internshipname": {},
-    "graduation{}": {
-      "snippet": "graduation{${1:Grad}}"
-    },
-    "graduation[]{}": {
-      "snippet": "graduation[${2:Kurzform}]{${1:Grad}}"
-    },
-    "supervisor{}": {
-      "snippet": "supervisor{${1:Name(${2:n})}}"
-    },
-    "referee{}": {
-      "snippet": "referee{${1:Name(${2:n})}}"
-    },
-    "advisor{}": {
-      "snippet": "advisor{${1:Name(${2:n})}}"
-    },
-    "professor{}": {
-      "snippet": "professor{${1:Name}}"
-    },
-    "titledelimiter{}": {
-      "snippet": "titledelimiter{${1:Trennzeichen}}"
-    },
-    "setpartsubtitle{}": {
-      "snippet": "setpartsubtitle{${1:Untertitel}}"
-    },
-    "getfield{}": {
-      "snippet": "getfield{${1:Feldname}}"
-    },
-    "nextabstract": {},
-    "nextabstract[]": {
-      "snippet": "nextabstract[${1:Parameterliste}]"
-    },
-    "nextdeclaration{}{}": {
-      "snippet": "nextdeclaration{${1:Überschrift}}{${2:Erklärung}}"
-    },
-    "nextdeclaration[]{}{}": {
-      "snippet": "nextdeclaration[${3:Parameterliste}]{${1:Überschrift}}{${2:Erklärung}}"
-    },
-    "declaration": {},
-    "declaration[]": {
-      "snippet": "declaration[${1:Parameterliste}]"
-    },
-    "declaration*": {},
-    "declaration*[]": {
-      "snippet": "declaration*[${1:Parameterliste}]"
-    },
-    "confirmation": {},
-    "confirmation[]": {
-      "snippet": "confirmation[${1:Parameterliste}]"
-    },
-    "confirmation*": {},
-    "confirmation*[]": {
-      "snippet": "confirmation*[${1:Parameterliste}]"
-    },
-    "blocking": {},
-    "blocking[]": {
-      "snippet": "blocking[${1:Parameterliste}]"
-    },
-    "supporter{}": {
-      "snippet": "supporter{${1:Unterstützer}}"
-    },
-    "place{}": {
-      "snippet": "place{${1:Ort}}"
-    },
-    "confirmationclosing{}": {
-      "snippet": "confirmationclosing{${1:Ende}}"
-    },
-    "company{}": {
-      "snippet": "company{${1:Firma}}"
-    },
-    "tudbookmark{}{}": {
-      "snippet": "tudbookmark{${1:Text}}{${2:Ankername}}"
-    },
-    "tudbookmark[]{}{}": {
-      "snippet": "tudbookmark[${3:Ebene}]{${1:Text}}{${2:Ankername}}"
-    },
-    "refereename": {},
-    "refereeothername": {},
-    "advisorname": {},
-    "advisorothername": {},
-    "supervisorname": {},
-    "supervisorothername": {},
-    "professorname": {},
-    "professorothername": {},
-    "graduationtext": {},
-    "datetext": {},
-    "defensedatetext": {},
-    "dateofbirthtext": {},
-    "placeofbirthtext": {},
-    "matriculationnumbername": {},
-    "matriculationyearname": {},
-    "coursename": {},
-    "disciplinename": {},
-    "coverpagename": {},
-    "titlepagename": {},
-    "confirmationname": {},
-    "blockingname": {},
-    "confirmationtext": {},
-    "blockingtext": {},
-    "listingname": {},
-    "listlistingname": {},
-    "titlename": {},
-    "TUDClassName": {},
-    "TUDScriptClassName": {},
-    "printdate{}": {
-      "snippet": "printdate{${1:date}}"
-    },
-    "dinbn": {},
-    "footlogoheight": {},
-    "headingsvskip": {},
-    "ifdin{}{}": {
-      "snippet": "ifdin{${1:arg1}}{${2:arg2}}"
-    },
-    "pageheadingsvskip": {},
-    "publisher{}": {
-      "snippet": "publisher{${1:arg}}"
-    },
-    "textdbn{}": {
-      "snippet": "textdbn{${1:text}}"
-    },
-    "textubn{}": {
-      "snippet": "textubn{${1:text}}"
-    },
-    "textubs{}": {
-      "snippet": "textubs{${1:text}}"
-    },
-    "textuln{}": {
-      "snippet": "textuln{${1:text}}"
-    },
-    "textuls{}": {
-      "snippet": "textuls{${1:text}}"
-    },
-    "texturn{}": {
-      "snippet": "texturn{${1:text}}"
-    },
-    "texturs{}": {
-      "snippet": "texturs{${1:text}}"
-    },
-    "textuxn{}": {
-      "snippet": "textuxn{${1:text}}"
-    },
-    "textuxs{}": {
-      "snippet": "textuxs{${1:text}}"
-    },
-    "univbn": {},
-    "univbs": {},
-    "univln": {},
-    "univls": {},
-    "univrn": {},
-    "univrs": {},
-    "univxn": {},
-    "univxs": {}
-  },
-  "envs": {
-    "tudpage": {},
-    "tudpage[]": {
-      "name": "tudpage",
-      "snippet": "[${1:Parameterliste}]"
-    },
-    "abstract[]": {
-      "name": "abstract",
-      "snippet": "[${1:Parameterliste}]"
-    },
-    "declarations": {},
-    "declarations[]": {
-      "name": "declarations",
-      "snippet": "[${1:Parameterliste}]"
+    {
+      "name": "scrlayer-scrpage"
     }
+  ],
+  "macros": [
+    {
+      "name": "cdfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Schriftart}}"
+      }
+    },
+    {
+      "name": "textcd",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:Schriftart}}{${2:Text%text}}"
+      }
+    },
+    {
+      "name": "cdfontln"
+    },
+    {
+      "name": "textcdln",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Text%text}}"
+      }
+    },
+    {
+      "name": "cdfontrn"
+    },
+    {
+      "name": "textcdrn",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Text%text}}"
+      }
+    },
+    {
+      "name": "cdfontsn"
+    },
+    {
+      "name": "textcdsn",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Text%text}}"
+      }
+    },
+    {
+      "name": "cdfontbn"
+    },
+    {
+      "name": "textcdbn",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Text%text}}"
+      }
+    },
+    {
+      "name": "cdfontxn"
+    },
+    {
+      "name": "textcdxn",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Text%text}}"
+      }
+    },
+    {
+      "name": "cdfontli"
+    },
+    {
+      "name": "textcdli",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Text%text}}"
+      }
+    },
+    {
+      "name": "cdfontri"
+    },
+    {
+      "name": "textcdri",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Text%text}}"
+      }
+    },
+    {
+      "name": "cdfontsi"
+    },
+    {
+      "name": "textcdsi",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Text%text}}"
+      }
+    },
+    {
+      "name": "cdfontbi"
+    },
+    {
+      "name": "textcdbi",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Text%text}}"
+      }
+    },
+    {
+      "name": "cdfontxi"
+    },
+    {
+      "name": "textcdxi",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Text%text}}"
+      }
+    },
+    {
+      "name": "upGamma",
+      "detail": "Γ",
+      "doc": "\\gamma (-slantedgreek), \\mathrm{\\gamma}, capital gamma, greek"
+    },
+    {
+      "name": "itGamma"
+    },
+    {
+      "name": "upDelta",
+      "detail": "Δ",
+      "doc": "\\delta (-slantedgreek), \\mathrm{\\delta}, capital delta, greek"
+    },
+    {
+      "name": "itDelta"
+    },
+    {
+      "name": "upTheta",
+      "detail": "Θ",
+      "doc": "\\theta (-slantedgreek), \\mathrm{\\theta}, capital theta, greek"
+    },
+    {
+      "name": "itTheta"
+    },
+    {
+      "name": "upLambda",
+      "detail": "Λ",
+      "doc": "\\lambda (-slantedgreek), \\mathrm{\\lambda}, capital lambda, greek"
+    },
+    {
+      "name": "itLambda"
+    },
+    {
+      "name": "upXi",
+      "detail": "Ξ",
+      "doc": "\\xi (-slantedgreek), \\mathrm{\\xi}, capital xi, greek"
+    },
+    {
+      "name": "itXi"
+    },
+    {
+      "name": "upPi",
+      "detail": "Π",
+      "doc": "\\pi (-slantedgreek), \\mathrm{\\pi}, capital pi, greek"
+    },
+    {
+      "name": "itPi"
+    },
+    {
+      "name": "upSigma",
+      "detail": "Σ",
+      "doc": "\\sigma (-slantedgreek), \\mathrm{\\sigma}, capital sigma, greek"
+    },
+    {
+      "name": "itSigma"
+    },
+    {
+      "name": "upUpsilon",
+      "detail": "ϒ",
+      "doc": "\\mathrm{\\upsilon}, greek upsilon with hook symbol"
+    },
+    {
+      "name": "itUpsilon"
+    },
+    {
+      "name": "upPhi",
+      "detail": "Φ",
+      "doc": "\\phi (-slantedgreek), \\mathrm{\\phi}, capital phi, greek"
+    },
+    {
+      "name": "itPhi"
+    },
+    {
+      "name": "upPsi",
+      "detail": "Ψ",
+      "doc": "\\psi (-slantedgreek), \\mathrm{\\psi}, capital psi, greek"
+    },
+    {
+      "name": "itPsi"
+    },
+    {
+      "name": "upOmega",
+      "detail": "Ω",
+      "doc": "\\omega (-slantedgreek), \\mathrm{\\omega}, capital omega, greek"
+    },
+    {
+      "name": "itOmega"
+    },
+    {
+      "name": "upalpha",
+      "detail": "α",
+      "doc": "\\mathrm{\\alpha} (omlmathrm), \\alphaup (kpfonts mathdesign), \\upalpha (upgreek), alpha, greek"
+    },
+    {
+      "name": "italpha"
+    },
+    {
+      "name": "upbeta",
+      "detail": "β",
+      "doc": "\\mathrm{\\beta} (omlmathrm), \\betaup (kpfonts mathdesign), \\upbeta (upgreek), beta, greek"
+    },
+    {
+      "name": "itbeta"
+    },
+    {
+      "name": "upgamma",
+      "detail": "γ",
+      "doc": "\\mathrm{\\gamma} (omlmathrm), \\gammaup (kpfonts mathdesign), \\upgamma (upgreek), gamma, greek"
+    },
+    {
+      "name": "itgamma"
+    },
+    {
+      "name": "updelta",
+      "detail": "δ",
+      "doc": "\\mathrm{\\delta} (omlmathrm), \\deltaup (kpfonts mathdesign), \\updelta (upgreek), delta, greek"
+    },
+    {
+      "name": "itdelta"
+    },
+    {
+      "name": "upepsilon",
+      "detail": "ε",
+      "doc": "\\mathrm{\\varepsilon} (omlmathrm), \\varepsilonup (kpfonts mathdesign), \\upepsilon (upgreek), rounded epsilon, greek"
+    },
+    {
+      "name": "itepsilon"
+    },
+    {
+      "name": "upvarepsilon",
+      "detail": "ϵ",
+      "doc": "\\mathrm{\\epsilon} (omlmathrm), \\epsilonup (kpfonts mathdesign), greek lunate epsilon symbol"
+    },
+    {
+      "name": "itvarepsilon"
+    },
+    {
+      "name": "upzeta",
+      "detail": "ζ",
+      "doc": "\\mathrm{\\zeta} (omlmathrm), \\zetaup (kpfonts mathdesign), \\upzeta (upgreek), zeta, greek"
+    },
+    {
+      "name": "itzeta"
+    },
+    {
+      "name": "upeta",
+      "detail": "η",
+      "doc": "\\mathrm{\\eta} (omlmathrm), \\etaup (kpfonts mathdesign), \\upeta (upgreek), eta, greek"
+    },
+    {
+      "name": "iteta"
+    },
+    {
+      "name": "uptheta",
+      "detail": "θ",
+      "doc": "\\mathrm{\\theta} (omlmathrm), \\thetaup (kpfonts mathdesign), straight theta, \\uptheta (upgreek), theta, greek"
+    },
+    {
+      "name": "ittheta"
+    },
+    {
+      "name": "upvartheta",
+      "detail": "ϑ",
+      "doc": "\\mathrm{\\vartheta} (omlmathrm), \\varthetaup (kpfonts mathdesign), curly or open theta"
+    },
+    {
+      "name": "itvartheta"
+    },
+    {
+      "name": "upiota",
+      "detail": "ι",
+      "doc": "\\mathrm{\\iota} (omlmathrm), \\iotaup (kpfonts mathdesign), \\upiota (upgreek), iota, greek"
+    },
+    {
+      "name": "itiota"
+    },
+    {
+      "name": "upkappa",
+      "detail": "κ",
+      "doc": "\\mathrm{\\kappa} (omlmathrm), \\kappaup (kpfonts mathdesign), \\upkappa (upgreek), kappa, greek"
+    },
+    {
+      "name": "itkappa"
+    },
+    {
+      "name": "uplambda",
+      "detail": "λ",
+      "doc": "\\mathrm{\\lambda} (omlmathrm), \\lambdaup (kpfonts mathdesign), \\uplambda (upgreek), lambda, greek"
+    },
+    {
+      "name": "itlambda"
+    },
+    {
+      "name": "upmu",
+      "detail": "μ",
+      "doc": "\\mathrm{\\mu} (omlmathrm), \\muup (kpfonts mathdesign), \\upmu (upgreek), mu, greek"
+    },
+    {
+      "name": "itmu"
+    },
+    {
+      "name": "upnu",
+      "detail": "ν",
+      "doc": "\\mathrm{\\nu} (omlmathrm), \\nuup (kpfonts mathdesign), \\upnu (upgreek), nu, greek"
+    },
+    {
+      "name": "itnu"
+    },
+    {
+      "name": "upxi",
+      "detail": "ξ",
+      "doc": "\\mathrm{\\xi} (omlmathrm), \\xiup (kpfonts mathdesign), \\upxi (upgreek), xi, greek"
+    },
+    {
+      "name": "itxi"
+    },
+    {
+      "name": "uppi",
+      "detail": "π",
+      "doc": "\\mathrm{\\pi} (omlmathrm), \\piup (kpfonts mathdesign), \\uppi (upgreek), pi, greek"
+    },
+    {
+      "name": "itpi"
+    },
+    {
+      "name": "upvarpi",
+      "detail": "ϖ",
+      "doc": "\\mathrm{\\varpi} (omlmathrm), \\varpiup (kpfonts mathdesign), greek pi symbol (pomega)"
+    },
+    {
+      "name": "itvarpi"
+    },
+    {
+      "name": "uprho",
+      "detail": "ρ",
+      "doc": "\\mathrm{\\rho} (omlmathrm), \\rhoup (kpfonts mathdesign), \\uprho (upgreek), rho, greek"
+    },
+    {
+      "name": "itrho"
+    },
+    {
+      "name": "upvarrho",
+      "detail": "ϱ",
+      "doc": "\\mathrm{\\varrho} (omlmathrm), \\varrhoup (kpfonts mathdesign), greek rho symbol (round)"
+    },
+    {
+      "name": "itvarrho"
+    },
+    {
+      "name": "upsigma",
+      "detail": "σ",
+      "doc": "\\mathrm{\\sigma} (omlmathrm), \\sigmaup (kpfonts mathdesign), \\upsigma (upgreek), sigma, greek"
+    },
+    {
+      "name": "itsigma"
+    },
+    {
+      "name": "upvarsigma",
+      "detail": "ς",
+      "doc": "\\mathrm{\\varsigma} (omlmathrm), \\varsigmaup (kpfonts mathdesign), \\upvarsigma (upgreek), terminal sigma, greek"
+    },
+    {
+      "name": "itvarsigma"
+    },
+    {
+      "name": "uptau",
+      "detail": "τ",
+      "doc": "\\mathrm{\\tau} (omlmathrm), \\tauup (kpfonts mathdesign), \\uptau (upgreek), tau, greek"
+    },
+    {
+      "name": "ittau"
+    },
+    {
+      "name": "upupsilon",
+      "detail": "υ",
+      "doc": "\\mathrm{\\upsilon} (omlmathrm), \\upsilonup (kpfonts mathdesign), \\upupsilon (upgreek), upsilon, greek"
+    },
+    {
+      "name": "itupsilon"
+    },
+    {
+      "name": "upphi",
+      "detail": "ϕ",
+      "doc": "\\mathrm{\\phi} (omlmathrm), \\phiup (kpfonts mathdesign), greek phi symbol (straight)"
+    },
+    {
+      "name": "itphi"
+    },
+    {
+      "name": "upvarphi",
+      "detail": "φ",
+      "doc": "\\mathrm{\\varphi} (omlmathrm), \\varphiup (kpfonts mathdesign), \\upvarphi (upgreek), curly or open phi, greek"
+    },
+    {
+      "name": "itvarphi"
+    },
+    {
+      "name": "upchi",
+      "detail": "χ",
+      "doc": "\\mathrm{\\chi} (omlmathrm), \\chiup (kpfonts mathdesign), \\upchi (upgreek), chi, greek"
+    },
+    {
+      "name": "itchi"
+    },
+    {
+      "name": "uppsi",
+      "detail": "ψ",
+      "doc": "\\mathrm{\\psi} (omlmathrm), \\psiup (kpfonts mathdesign), \\uppsi (upgreek), psi, greek"
+    },
+    {
+      "name": "itpsi"
+    },
+    {
+      "name": "upomega",
+      "detail": "ω",
+      "doc": "\\mathrm{\\omega} (omlmathrm), \\omegaup (kpfonts mathdesign), \\upomega (upgreek), omega, greek"
+    },
+    {
+      "name": "itomega"
+    },
+    {
+      "name": "otherGamma",
+      "unusual": true
+    },
+    {
+      "name": "otherDelta",
+      "unusual": true
+    },
+    {
+      "name": "otherTheta",
+      "unusual": true
+    },
+    {
+      "name": "otherLambda",
+      "unusual": true
+    },
+    {
+      "name": "otherXi",
+      "unusual": true
+    },
+    {
+      "name": "otherPi",
+      "unusual": true
+    },
+    {
+      "name": "otherSigma",
+      "unusual": true
+    },
+    {
+      "name": "otherUpsilon",
+      "unusual": true
+    },
+    {
+      "name": "otherPhi",
+      "unusual": true
+    },
+    {
+      "name": "otherPsi",
+      "unusual": true
+    },
+    {
+      "name": "otherOmega",
+      "unusual": true
+    },
+    {
+      "name": "otheralpha",
+      "unusual": true
+    },
+    {
+      "name": "otherbeta",
+      "unusual": true
+    },
+    {
+      "name": "othergamma",
+      "unusual": true
+    },
+    {
+      "name": "otherdelta",
+      "unusual": true
+    },
+    {
+      "name": "otherepsilon",
+      "unusual": true
+    },
+    {
+      "name": "othervarepsilon",
+      "unusual": true
+    },
+    {
+      "name": "otherzeta",
+      "unusual": true
+    },
+    {
+      "name": "othereta",
+      "unusual": true
+    },
+    {
+      "name": "othertheta",
+      "unusual": true
+    },
+    {
+      "name": "othervartheta",
+      "unusual": true
+    },
+    {
+      "name": "otheriota",
+      "unusual": true
+    },
+    {
+      "name": "otherkappa",
+      "unusual": true
+    },
+    {
+      "name": "otherlambda",
+      "unusual": true
+    },
+    {
+      "name": "othermu",
+      "unusual": true
+    },
+    {
+      "name": "othernu",
+      "unusual": true
+    },
+    {
+      "name": "otherxi",
+      "unusual": true
+    },
+    {
+      "name": "otherpi",
+      "unusual": true
+    },
+    {
+      "name": "othervarpi",
+      "unusual": true
+    },
+    {
+      "name": "otherrho",
+      "unusual": true
+    },
+    {
+      "name": "othervarrho",
+      "unusual": true
+    },
+    {
+      "name": "othersigma",
+      "unusual": true
+    },
+    {
+      "name": "othervarsigma",
+      "unusual": true
+    },
+    {
+      "name": "othertau",
+      "unusual": true
+    },
+    {
+      "name": "otherupsilon",
+      "unusual": true
+    },
+    {
+      "name": "otherphi",
+      "unusual": true
+    },
+    {
+      "name": "othervarphi",
+      "unusual": true
+    },
+    {
+      "name": "otherchi",
+      "unusual": true
+    },
+    {
+      "name": "otherpsi",
+      "unusual": true
+    },
+    {
+      "name": "otheromega",
+      "unusual": true
+    },
+    {
+      "name": "faculty",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Fakultät}}"
+      }
+    },
+    {
+      "name": "department",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Einrichtung%text}}"
+      }
+    },
+    {
+      "name": "institute",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Institut%text}}"
+      }
+    },
+    {
+      "name": "chair",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Lehrstuhl}}"
+      }
+    },
+    {
+      "name": "extraheadline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Textzeile%text}}"
+      }
+    },
+    {
+      "name": "headlogo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "headlogo",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:Parameterliste%keyvals}]{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "footlogo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "footlogo",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:Parameterliste%keyvals}]{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "footlogosep"
+    },
+    {
+      "name": "footcontent",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Inhalt%text}}"
+      }
+    },
+    {
+      "name": "footcontent",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:linker Inhalt%text}}[${2:rechter Inhalt%text}]"
+      }
+    },
+    {
+      "name": "footcontent",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:Anweisungen}]{${1:Inhalt%text}}"
+      }
+    },
+    {
+      "name": "footcontent",
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:Anweisungen}]{${1:linker Inhalt%text}}[${3:rechter Inhalt%text}]"
+      }
+    },
+    {
+      "name": "maketitle",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:Parameterliste%keyvals}]"
+      }
+    },
+    {
+      "name": "maketitleonecolumn",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Einspaltentext%text}}"
+      }
+    },
+    {
+      "name": "maketitleonecolumn",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:Parameterliste%keyvals}]{${1:Einspaltentext%text}}"
+      }
+    },
+    {
+      "name": "makecover"
+    },
+    {
+      "name": "makecover",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:Parameterliste%keyvals}]"
+      }
+    },
+    {
+      "name": "raggedtitle"
+    },
+    {
+      "name": "authormore",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Autorenzusatz}}"
+      }
+    },
+    {
+      "name": "emailaddress",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:E-Mail-Adresse%URL}}"
+      }
+    },
+    {
+      "name": "emailaddress",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:Einstellungen}]{${1:E-Mail-Adresse%URL}}"
+      }
+    },
+    {
+      "name": "emailaddress*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:E-Mail-Adresse%URL}}"
+      }
+    },
+    {
+      "name": "dateofbirth",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Geburtsdatum}}"
+      }
+    },
+    {
+      "name": "placeofbirth",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Geburtsort}}"
+      }
+    },
+    {
+      "name": "matriculationnumber",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Matrikelnummer}}"
+      }
+    },
+    {
+      "name": "matriculationyear",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Immatrikulationsjahr}}"
+      }
+    },
+    {
+      "name": "course",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Studiengang%text}}"
+      }
+    },
+    {
+      "name": "discipline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Studienrichtung%text}}"
+      }
+    },
+    {
+      "name": "date",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:Parameterliste%keyvals}]{${1:Datum}}"
+      }
+    },
+    {
+      "name": "date*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Datum}}"
+      }
+    },
+    {
+      "name": "date*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:Parameterliste%keyvals}]{${1:Datum}}"
+      }
+    },
+    {
+      "name": "defensedate",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Verteidigungsdatum}}"
+      }
+    },
+    {
+      "name": "thesis",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Typisierung%text}}"
+      }
+    },
+    {
+      "name": "subject",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Typisierung%text}}"
+      }
+    },
+    {
+      "name": "habilitationname",
+      "unusual": true
+    },
+    {
+      "name": "dissertationname",
+      "unusual": true
+    },
+    {
+      "name": "dissertationname",
+      "unusual": true
+    },
+    {
+      "name": "diplomathesisname",
+      "unusual": true
+    },
+    {
+      "name": "masterthesisname",
+      "unusual": true
+    },
+    {
+      "name": "bachelorthesisname",
+      "unusual": true
+    },
+    {
+      "name": "studentthesisname",
+      "unusual": true
+    },
+    {
+      "name": "studentresearchname",
+      "unusual": true
+    },
+    {
+      "name": "projectpapername",
+      "unusual": true
+    },
+    {
+      "name": "seminarpapername",
+      "unusual": true
+    },
+    {
+      "name": "termpapername",
+      "unusual": true
+    },
+    {
+      "name": "researchname",
+      "unusual": true
+    },
+    {
+      "name": "logname",
+      "unusual": true
+    },
+    {
+      "name": "reportname",
+      "unusual": true
+    },
+    {
+      "name": "internshipname",
+      "unusual": true
+    },
+    {
+      "name": "graduation",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Grad%text}}"
+      }
+    },
+    {
+      "name": "graduation",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:Kurzform%text}]{${1:Grad%text}}"
+      }
+    },
+    {
+      "name": "supervisor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Name(${2:n})}}"
+      }
+    },
+    {
+      "name": "referee",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Name(${2:n})}}"
+      }
+    },
+    {
+      "name": "advisor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Name(${2:n})}}"
+      }
+    },
+    {
+      "name": "professor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Name}}"
+      }
+    },
+    {
+      "name": "titledelimiter",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Trennzeichen}}"
+      }
+    },
+    {
+      "name": "setpartsubtitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Untertitel%text}}"
+      }
+    },
+    {
+      "name": "getfield",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Feldname}}"
+      }
+    },
+    {
+      "name": "nextabstract"
+    },
+    {
+      "name": "nextabstract",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:Parameterliste%keyvals}]"
+      }
+    },
+    {
+      "name": "nextdeclaration",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:Überschrift%text}}{${2:Erklärung%text}}"
+      }
+    },
+    {
+      "name": "nextdeclaration",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:Parameterliste%keyvals}]{${1:Überschrift%text}}{${2:Erklärung%text}}"
+      }
+    },
+    {
+      "name": "declaration"
+    },
+    {
+      "name": "declaration",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:Parameterliste%keyvals}]"
+      }
+    },
+    {
+      "name": "declaration*"
+    },
+    {
+      "name": "declaration*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:Parameterliste%keyvals}]"
+      }
+    },
+    {
+      "name": "confirmation"
+    },
+    {
+      "name": "confirmation",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:Parameterliste%keyvals}]"
+      }
+    },
+    {
+      "name": "confirmation*"
+    },
+    {
+      "name": "confirmation*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:Parameterliste%keyvals}]"
+      }
+    },
+    {
+      "name": "blocking"
+    },
+    {
+      "name": "blocking",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:Parameterliste%keyvals}]"
+      }
+    },
+    {
+      "name": "supporter",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Unterstützer}}"
+      }
+    },
+    {
+      "name": "place",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Ort%text}}"
+      }
+    },
+    {
+      "name": "confirmationclosing",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Ende%text}}"
+      }
+    },
+    {
+      "name": "company",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Firma%text}}"
+      }
+    },
+    {
+      "name": "tudbookmark",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:Text%text}}{${2:Ankername}}"
+      }
+    },
+    {
+      "name": "tudbookmark",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:Ebene}]{${1:Text%text}}{${2:Ankername}}"
+      }
+    },
+    {
+      "name": "refereename",
+      "unusual": true
+    },
+    {
+      "name": "refereeothername",
+      "unusual": true
+    },
+    {
+      "name": "advisorname",
+      "unusual": true
+    },
+    {
+      "name": "advisorothername",
+      "unusual": true
+    },
+    {
+      "name": "supervisorname",
+      "unusual": true
+    },
+    {
+      "name": "supervisorothername",
+      "unusual": true
+    },
+    {
+      "name": "professorname",
+      "unusual": true
+    },
+    {
+      "name": "professorothername",
+      "unusual": true
+    },
+    {
+      "name": "graduationtext",
+      "unusual": true
+    },
+    {
+      "name": "datetext",
+      "unusual": true
+    },
+    {
+      "name": "defensedatetext",
+      "unusual": true
+    },
+    {
+      "name": "dateofbirthtext",
+      "unusual": true
+    },
+    {
+      "name": "placeofbirthtext",
+      "unusual": true
+    },
+    {
+      "name": "matriculationnumbername",
+      "unusual": true
+    },
+    {
+      "name": "matriculationyearname",
+      "unusual": true
+    },
+    {
+      "name": "coursename",
+      "unusual": true
+    },
+    {
+      "name": "disciplinename",
+      "unusual": true
+    },
+    {
+      "name": "coverpagename",
+      "unusual": true
+    },
+    {
+      "name": "titlepagename",
+      "unusual": true
+    },
+    {
+      "name": "confirmationname",
+      "unusual": true
+    },
+    {
+      "name": "blockingname",
+      "unusual": true
+    },
+    {
+      "name": "confirmationtext",
+      "unusual": true
+    },
+    {
+      "name": "blockingtext",
+      "unusual": true
+    },
+    {
+      "name": "listingname",
+      "unusual": true
+    },
+    {
+      "name": "listlistingname",
+      "unusual": true
+    },
+    {
+      "name": "titlename",
+      "unusual": true
+    },
+    {
+      "name": "TUDClassName",
+      "unusual": true
+    },
+    {
+      "name": "TUDScriptClassName",
+      "unusual": true
+    },
+    {
+      "name": "printdate",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:date}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "tudpage"
+    },
+    {
+      "name": "tudpage",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:Parameterliste%keyvals}]"
+      }
+    },
+    {
+      "name": "abstract",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:Parameterliste%keyvals}]"
+      }
+    },
+    {
+      "name": "declarations"
+    },
+    {
+      "name": "declarations",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:Parameterliste%keyvals}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\TUDoptions#c": [
+      "cdfont=${1:Einstellung}\r",
+      "ttfont=${1:Einstellung}\r",
+      "cdmath=${1:Ein-Aus-Wert}\r",
+      "slantedgreek=${1:Ein-Aus-Wert}\r",
+      "relspacing=${1:Ein-Aus-Wert}\r",
+      "cdgeometry=${1:Einstellung}\r",
+      "extrabottommargin=",
+      "cd=${1:Einstellung}\r",
+      "headings=${1:Einstellung}\r",
+      "cdtitle=${1:Einstellung}\r",
+      "cdcover=${1:Einstellung}\r",
+      "cdpart=${1:Einstellung}\r",
+      "cdsection=${1:Einstellung}\r",
+      "pageheadingsvskip=",
+      "headingsvskip=",
+      "cdhead=${1:Einstellung}\r",
+      "cdfoot=${1:Einstellung}\r",
+      "footlogoheight=",
+      "ddc=${1:Einstellung}\r",
+      "ddchead=${1:Einstellung}\r",
+      "ddcfoot=${1:Einstellung}\r",
+      "subjectthesis=${1:Ein-Aus-Wert}\r",
+      "titlesignature=${1:Ein-Aus-Wert}\r",
+      "parttitle=${1:Ein-Aus-Wert}\r",
+      "abstract=${1:Einstellung}\r",
+      "declaration=${1:Einstellung}\r",
+      "tudbookmarks=${1:Ein-Aus-Wert}\r",
+      "tudscrver=${1:Version}\r"
+    ],
+    "\\TUDoption#c": [
+      "cdfont\r",
+      "ttfont\r",
+      "cdmath\r",
+      "slantedgreek\r",
+      "relspacing\r",
+      "cdgeometry\r",
+      "extrabottommargin\r",
+      "cd\r",
+      "headings\r",
+      "cdtitle\r",
+      "cdcover\r",
+      "cdpart\r",
+      "cdsection\r",
+      "pageheadingsvskip\r",
+      "headingsvskip\r",
+      "cdhead\r",
+      "cdfoot\r",
+      "footlogoheight\r",
+      "ddc\r",
+      "ddchead\r",
+      "ddcfoot\r",
+      "subjectthesis\r",
+      "titlesignature\r",
+      "parttitle\r",
+      "abstract\r",
+      "declaration\r",
+      "tudbookmarks\r",
+      "tudscrver\r"
+    ],
+    "\\pagestyle#c,\\thispagestyle#c": [
+      "tudheadings\r",
+      "plain.tudheadings\r",
+      "empty.tudheadings\r"
+    ],
+    "\\headlogo,\\footlogo": [
+      "alt={${1:alt text}}\r",
+      "bb=${1:llx lly urx ury}\r",
+      "bbllx=\r",
+      "bblly=\r",
+      "bburx=\r",
+      "bbury=\r",
+      "natwidth=\r",
+      "natheight=\r",
+      "hiresbb",
+      "pagebox=${1|mediabox,cropbox,bleedbox,trimbox,artbox\r|}",
+      "viewport=${1:llx lly urx ury}\r",
+      "trim=${1:llx lly urx ury}\r",
+      "angle=${1:degrees}\r",
+      "origin=\r",
+      "width=",
+      "height=",
+      "totalheight=",
+      "keepaspectratio",
+      "scale=${1:factor}\r",
+      "clip",
+      "draft",
+      "type=${1:file type}\r",
+      "ext=${1:file extension}\r",
+      "read=${1:read-file extension}\r",
+      "command=\r",
+      "quiet\r",
+      "page=${1:page number}\r",
+      "interpolate",
+      "decodearray={${1:color array}}\r"
+    ],
+    "\\begin{tudpage}#c": [
+      "language=${1:Sprache}\r",
+      "columns=${1:Anzahl}\r",
+      "pagestyle=${1:Einstellung}\r",
+      "cdfont=${1:Einstellung}\r",
+      "cdhead=${1:Einstellung}\r",
+      "cdfoot=${1:Einstellung}\r",
+      "headlogo=${1:Dateiname}\r",
+      "footlogo=${1:Dateinamenliste}\r",
+      "ddc=${1:Einstellung}\r",
+      "ddchead=${1:Einstellung}\r",
+      "ddcfoot=${1:Einstellung}\r"
+    ],
+    "\\maketitle#c,\\maketitleonecolumn#c,\\makecover#c": [
+      "pagenumber=${1:Seitenzahl}\r",
+      "cdgeometry=${1:Einstellung}\r",
+      "cdfont=${1:Einstellung}\r",
+      "cdhead=${1:Einstellung}\r",
+      "cdfoot=${1:Einstellung}\r",
+      "headlogo=${1:Dateiname}\r",
+      "footlogo=${1:Dateinamenliste}\r",
+      "ddc=${1:Einstellung}\r",
+      "ddchead=${1:Einstellung}\r",
+      "ddcfoot=${1:Einstellung}\r"
+    ],
+    "\\date#c,\\date*#c": [
+      "before=${1:Präfix}\r",
+      "after=${1:Suffix}\r",
+      "place=${1:Ort}\r"
+    ],
+    "\\begin{abstract}#c,\\nextabstract#c": [
+      "language=${1:Sprache}\r",
+      "markboth=${1:Einstellung}\r",
+      "pagestyle=${1:Seitenstil}\r",
+      "columns=${1:Anzahl}\r",
+      "option=${1:Einstellung}\r"
+    ],
+    "\\begin{declarations}#c,\\nextdeclaration#c,\\declaration#c,\\declaration*#c": [
+      "language=${1:Sprache}\r",
+      "markboth=${1:Einstellung}\r",
+      "pagestyle=${1:Seitenstil}\r",
+      "columns=${1:Anzahl}\r",
+      "option=${1:Einstellung}\r",
+      "supporter=${1:Unterstützer}\r",
+      "place=${1:Ort}\r",
+      "closing=${1:Ende}\r",
+      "company=${1:Firma}\r"
+    ],
+    "\\confirmation#c,\\confirmation*#c": [
+      "supporter=${1:Unterstützer}\r",
+      "place=${1:Ort}\r",
+      "closing=${1:Ende}\r",
+      "language=${1:Sprache}\r",
+      "markboth=${1:Einstellung}\r",
+      "pagestyle=${1:Seitenstil}\r",
+      "columns=${1:Anzahl}\r",
+      "option=${1:Einstellung}\r"
+    ],
+    "\\blocking#c": [
+      "company=${1:Firma}\r",
+      "language=${1:Sprache}\r",
+      "markboth=${1:Einstellung}\r",
+      "pagestyle=${1:Seitenstil}\r",
+      "columns=${1:Anzahl}\r",
+      "option=${1:Einstellung}\r"
+    ]
   },
-  "options": [],
-  "keyvals": []
+  "args": []
 }

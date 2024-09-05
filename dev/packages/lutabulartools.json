@@ -1,126 +1,241 @@
 {
-  "includes": {
-    "booktabs": [],
-    "multirow": [],
-    "longtable": [],
-    "makecell": [],
-    "array": [],
-    "xcolor": [],
-    "colortbl": [],
-    "luacode": [],
-    "penlight": []
-  },
-  "macros": {
-    "settabular{}": {
-      "snippet": "settabular{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "booktabs"
     },
-    "lttdebugON": {},
-    "lttdebugOFF": {},
-    "lttdebugprt": {},
-    "MC{}": {
-      "snippet": "MC{${1:contents}}"
+    {
+      "name": "multirow"
     },
-    "MC[]{}": {
-      "snippet": "MC[${2:cell spec}]{${1:contents}}"
+    {
+      "name": "longtable"
     },
-    "MC[][]<>{}": {
-      "snippet": "MC[${2:cell spec}][${3:override multicol}]<${4:cell format}>{${1:contents}}"
+    {
+      "name": "makecell"
     },
-    "MC*{}": {
-      "snippet": "MC*{${1:contents}}"
+    {
+      "name": "array"
     },
-    "MC*[]{}": {
-      "snippet": "MC*[${2:cell spec}]{${1:contents}}"
+    {
+      "name": "xcolor"
     },
-    "MC*[][]<>{}": {
-      "snippet": "MC*[${2:cell spec}][${3:override multicol}]<${4:cell format}>{${1:contents}}"
+    {
+      "name": "colortbl"
     },
-    "setMCrepl{}{}": {
-      "snippet": "setMCrepl{${1:column}}{${2:spec}}"
+    {
+      "name": "luacode"
     },
-    "setMChordef{}{}": {
-      "snippet": "setMChordef{${1:column}}{${2:alignments}}"
+    {
+      "name": "penlight"
+    }
+  ],
+  "macros": [
+    {
+      "name": "settabular",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\settabular"
+        ],
+        "keyPos": 0
+      }
     },
-    "setMCverdef{}{}": {
-      "snippet": "setMCverdef{${1:column}}{${2:alignments}}"
+    {
+      "name": "lttdebugON"
     },
-    "addMCsicol{}": {
-      "snippet": "addMCsicol{${1:column}}"
+    {
+      "name": "lttdebugOFF"
     },
-    "midrulesat{}": {
-      "snippet": "midrulesat{${1:row1,${2:row2},...}}"
+    {
+      "name": "lttdebugprt"
     },
-    "gmidrule{}": {
-      "snippet": "gmidrule{${1:colspecs}}"
+    {
+      "name": "MC",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:contents%text}}"
+      }
     },
-    "gmidrule(){}": {
-      "snippet": "gmidrule(${2:trim}){${1:colspecs}}"
+    {
+      "name": "MC",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:cell spec}]{${1:contents%text}}"
+      }
     },
-    "gcmidrule{}": {
-      "snippet": "gcmidrule{${1:colspecs}}"
+    {
+      "name": "MC",
+      "arg": {
+        "format": "[][]<>{}",
+        "snippet": "[${2:cell spec}][${3:override multicol}]<${4:cell format}>{${1:contents%text}}"
+      }
     },
-    "gcmidrule(){}": {
-      "snippet": "gcmidrule(${2:trim}){${1:colspecs}}"
+    {
+      "name": "MC*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:contents%text}}"
+      }
     },
-    "gcmidrules{}": {
-      "snippet": "gcmidrules{${1:colspecs}}"
+    {
+      "name": "MC*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:cell spec}]{${1:contents%text}}"
+      }
     },
-    "gcmidrules(){}": {
-      "snippet": "gcmidrules(${2:trim}){${1:colspecs}}"
+    {
+      "name": "MC*",
+      "arg": {
+        "format": "[][]<>{}",
+        "snippet": "[${2:cell spec}][${3:override multicol}]<${4:cell format}>{${1:contents%text}}"
+      }
     },
-    "cmidrules{}": {
-      "snippet": "cmidrules{${1:colspecs}}"
+    {
+      "name": "setMCrepl",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:column}}{${2:spec}}"
+      }
     },
-    "cmidrules(){}": {
-      "snippet": "cmidrules(${2:trim}){${1:colspecs}}"
+    {
+      "name": "setMChordef",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:column}}{${2:alignments}}"
+      }
     },
-    "midruleX{}": {
-      "snippet": "midruleX{${1:keyvals}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "setMCverdef",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:column}}{${2:alignments}}"
+      }
     },
-    "midruleX[]{}": {
-      "snippet": "midruleX[${2:o|n|f}]{${1:keyvals}}",
-      "keyvalindex": 1,
-      "keyvalpos": 1
+    {
+      "name": "addMCsicol",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:column}}"
+      }
     },
-    "midruleX*{}": {
-      "snippet": "midruleX*{${1:keyvals}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "midrulesat",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:row1,row2,...}}"
+      }
     },
-    "midruleX*[]{}": {
-      "snippet": "midruleX*[${2:o|n|f}]{${1:keyvals}}",
-      "keyvalindex": 1,
-      "keyvalpos": 1
+    {
+      "name": "gmidrule",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:colspecs}}"
+      }
     },
-    "resetmidruleX": {},
-    "resetmidruleX[]": {
-      "snippet": "resetmidruleX[${1:counter}]"
+    {
+      "name": "gmidrule(trim)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:colspecs}}"
+      }
     },
-    "forcecolspec{}": {
-      "snippet": "forcecolspec{${1:arg}}"
+    {
+      "name": "gcmidrule",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:colspecs}}"
+      }
     },
-    "oldgcmidrule": {},
-    "oldcmidrule": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "gcmidrule(trim)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:colspecs}}"
+      }
+    },
+    {
+      "name": "gcmidrules",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:colspecs}}"
+      }
+    },
+    {
+      "name": "gcmidrules(trim)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:colspecs}}"
+      }
+    },
+    {
+      "name": "cmidrules",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:colspecs}}"
+      }
+    },
+    {
+      "name": "cmidrules(trim)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:colspecs}}"
+      }
+    },
+    {
+      "name": "midruleX",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "midruleX",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:o|${3:n}|f}]{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "midruleX*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "midruleX*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:o|${3:n}|f}]{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "resetmidruleX"
+    },
+    {
+      "name": "resetmidruleX",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:counter}]"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\settabular": [
       "nopad",
       "tbrule",
-      "rowsep=${1:integer}",
-      "colsep=${1:integer}"
+      "rowsep=${1:integer}\r",
+      "colsep=${1:integer}\r"
     ],
-    [
-      "step=${1:integer}",
-      "rule=",
+    "\\midruleX,\\midruleX*": [
+      "step=${1:integer}\r",
+      "rule=\r",
       "reset",
-      "resetnum=${1:integer}",
-      "cntr=${1:integer}"
+      "resetnum=${1:integer}\r",
+      "cntr=${1:integer}\r"
     ]
-  ]
+  },
+  "args": []
 }

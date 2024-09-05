@@ -1,54 +1,126 @@
 {
-  "includes": {
-    "tikzlibraryshapes": [],
-    "tikzlibraryfit": [],
-    "tikzlibrarychains": []
-  },
-  "macros": {
-    "factor{}{}{}{}": {
-      "snippet": "factor{${1:name}}{${2:caption}}{${3:inputs}}{${4:outputs}}"
+  "deps": [
+    {
+      "name": "tikzlibraryshapes"
     },
-    "factor[]{}{}{}{}": {
-      "snippet": "factor[${5:TikZ keys}]{${1:name}}{${2:caption}}{${3:inputs}}{${4:outputs}}"
+    {
+      "name": "tikzlibraryfit"
     },
-    "plate{}{}{}": {
-      "snippet": "plate{${1:name}}{${2:fitlist}}{${3:caption}}"
-    },
-    "plate[]{}{}{}": {
-      "snippet": "plate[${4:TikZ keys}]{${1:name}}{${2:fitlist}}{${3:caption}}"
-    },
-    "gate{}{}{}": {
-      "snippet": "gate{${1:name}}{${2:fitlist}}{${3:inputs}}"
-    },
-    "gate[]{}{}{}": {
-      "snippet": "gate[${4:TikZ keys}]{${1:name}}{${2:fitlist}}{${3:inputs}}"
-    },
-    "vgate{}{}{}{}{}{}": {
-      "snippet": "vgate{${1:name}}{${2:fitlist-left}}{${3:caption-left}}{${4:fitlist-right}}{${5:caption-right}}{${6:inputs}}"
-    },
-    "vgate[]{}{}{}{}{}{}": {
-      "snippet": "vgate[${7:TikZ keys}]{${1:name}}{${2:fitlist-left}}{${3:caption-left}}{${4:fitlist-right}}{${5:caption-right}}{${6:inputs}}"
-    },
-    "hgate{}{}{}{}{}{}": {
-      "snippet": "hgate{${1:name}}{${2:fitlist-top}}{${3:caption-top}}{${4:fitlist-bottom}}{${5:caption-bottom}}{${6:inputs}}"
-    },
-    "hgate[]{}{}{}{}{}{}": {
-      "snippet": "hgate[${7:TikZ keys}]{${1:name}}{${2:fitlist-top}}{${3:caption-top}}{${4:fitlist-bottom}}{${5:caption-bottom}}{${6:inputs}}"
-    },
-    "edge{}{}": {
-      "snippet": "edge{${1:inputs}}{${2:outputs}}"
-    },
-    "edge[]{}{}": {
-      "snippet": "edge[${3:TikZ keys}]{${1:inputs}}{${2:outputs}}"
-    },
-    "factoredge{}{}{}": {
-      "snippet": "factoredge{${1:inputs}}{${2:factors}}{${3:outputs}}"
-    },
-    "factoredge[]{}{}{}": {
-      "snippet": "factoredge[${4:TikZ keys}]{${1:inputs}}{${2:factors}}{${3:outputs}}"
+    {
+      "name": "tikzlibrarychains"
     }
+  ],
+  "macros": [
+    {
+      "name": "factor",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:name}}{${2:caption%text}}{${3:inputs}}{${4:outputs}}"
+      }
+    },
+    {
+      "name": "factor",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "[${5:TikZ keys}]{${1:name}}{${2:caption%text}}{${3:inputs}}{${4:outputs}}"
+      }
+    },
+    {
+      "name": "plate",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:fitlist}}{${3:caption%text}}"
+      }
+    },
+    {
+      "name": "plate",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:TikZ keys}]{${1:name}}{${2:fitlist}}{${3:caption%text}}"
+      }
+    },
+    {
+      "name": "gate",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:fitlist}}{${3:inputs}}"
+      }
+    },
+    {
+      "name": "gate",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:TikZ keys}]{${1:name}}{${2:fitlist}}{${3:inputs}}"
+      }
+    },
+    {
+      "name": "vgate",
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "{${1:name}}{${2:fitlist-left}}{${3:caption-left%text}}{${4:fitlist-right}}{${5:caption-right%text}}{${6:inputs}}"
+      }
+    },
+    {
+      "name": "vgate",
+      "arg": {
+        "format": "[]{}{}{}{}{}{}",
+        "snippet": "[${7:TikZ keys}]{${1:name}}{${2:fitlist-left}}{${3:caption-left%text}}{${4:fitlist-right}}{${5:caption-right%text}}{${6:inputs}}"
+      }
+    },
+    {
+      "name": "hgate",
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "{${1:name}}{${2:fitlist-top}}{${3:caption-top%text}}{${4:fitlist-bottom}}{${5:caption-bottom%text}}{${6:inputs}}"
+      }
+    },
+    {
+      "name": "hgate",
+      "arg": {
+        "format": "[]{}{}{}{}{}{}",
+        "snippet": "[${7:TikZ keys}]{${1:name}}{${2:fitlist-top}}{${3:caption-top%text}}{${4:fitlist-bottom}}{${5:caption-bottom%text}}{${6:inputs}}"
+      }
+    },
+    {
+      "name": "edge",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:inputs}}{${2:outputs}}"
+      }
+    },
+    {
+      "name": "edge",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:TikZ keys}]{${1:inputs}}{${2:outputs}}"
+      }
+    },
+    {
+      "name": "factoredge",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:inputs}}{${2:factors}}{${3:outputs}}"
+      }
+    },
+    {
+      "name": "factoredge",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:TikZ keys}]{${1:inputs}}{${2:factors}}{${3:outputs}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\node#c": [
+      "latent\r",
+      "obs\r",
+      "det\r",
+      "const\r",
+      "factor\r",
+      "plate\r",
+      "gate\r"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

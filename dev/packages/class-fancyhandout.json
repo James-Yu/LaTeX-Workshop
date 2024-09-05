@@ -1,64 +1,155 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "geometry": [],
-    "csquotes": [],
-    "enumitem": [],
-    "fancyhdr": [],
-    "xcolor": []
-  },
-  "macros": {
-    "title[]{}": {
-      "snippet": "title[${2:short title}]{${1:title}}"
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "subtitle{}": {
-      "snippet": "subtitle{${1:subtitle}}"
+    {
+      "name": "geometry"
     },
-    "subtitle[]{}": {
-      "snippet": "subtitle[${2:short subtitle}]{${1:subtitle}}"
+    {
+      "name": "csquotes"
     },
-    "author[]{}": {
-      "snippet": "author[${2:short author}]{${1:author}}"
+    {
+      "name": "enumitem"
     },
-    "institute{}": {
-      "snippet": "institute{${1:institute}}"
+    {
+      "name": "fancyhdr"
     },
-    "institute[]{}": {
-      "snippet": "institute[${2:short institute}]{${1:institute}}"
-    },
-    "date[]{}": {
-      "snippet": "date[${2:short date}]{${1:date}}"
-    },
-    "inserttitle": {},
-    "insertshorttitle": {},
-    "insertsubtitle": {},
-    "insertshortsubtitle": {},
-    "insertauthor": {},
-    "insertshortauthor": {},
-    "insertinstitute": {},
-    "insertshortinstitute": {},
-    "insertdate": {},
-    "insertshortdate": {},
-    "fancysection{}": {
-      "snippet": "fancysection{${1:title}}"
-    },
-    "fancysubsection{}": {
-      "snippet": "fancysubsection{${1:title}}"
-    },
-    "fancysubsubsection{}": {
-      "snippet": "fancysubsubsection{${1:title}}"
-    },
-    "phantomsection": {},
-    "origtableofcontents": {}
-  },
-  "envs": {},
-  "options": [
-    "letter",
-    "oneside",
-    "10pt",
-    "11pt",
-    "12pt",
-    "rmfont"
+    {
+      "name": "xcolor"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "title",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short title%text}]{${1:title%text}}"
+      }
+    },
+    {
+      "name": "subtitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:subtitle%text}}"
+      }
+    },
+    {
+      "name": "subtitle",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short subtitle%text}]{${1:subtitle%text}}"
+      }
+    },
+    {
+      "name": "author",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short author}]{${1:author}}"
+      }
+    },
+    {
+      "name": "institute",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:institute%text}}"
+      }
+    },
+    {
+      "name": "institute",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short institute%text}]{${1:institute%text}}"
+      }
+    },
+    {
+      "name": "date",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short date}]{${1:date}}"
+      }
+    },
+    {
+      "name": "inserttitle",
+      "unusual": true
+    },
+    {
+      "name": "insertshorttitle",
+      "unusual": true
+    },
+    {
+      "name": "insertsubtitle",
+      "unusual": true
+    },
+    {
+      "name": "insertshortsubtitle",
+      "unusual": true
+    },
+    {
+      "name": "insertauthor",
+      "unusual": true
+    },
+    {
+      "name": "insertshortauthor",
+      "unusual": true
+    },
+    {
+      "name": "insertinstitute",
+      "unusual": true
+    },
+    {
+      "name": "insertshortinstitute",
+      "unusual": true
+    },
+    {
+      "name": "insertdate",
+      "unusual": true
+    },
+    {
+      "name": "insertshortdate",
+      "unusual": true
+    },
+    {
+      "name": "fancysection",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "fancysubsection",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "fancysubsubsection",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "phantomsection",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\documentclass/fancyhandout#c": [
+      "letter\r",
+      "oneside\r",
+      "10pt\r",
+      "11pt\r",
+      "12pt\r",
+      "rmfont\r"
+    ]
+  },
+  "args": [
+    "\\documentclass/fancyhandout#c"
+  ]
 }

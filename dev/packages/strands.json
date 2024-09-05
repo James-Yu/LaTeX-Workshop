@@ -1,280 +1,421 @@
 {
-  "includes": {
-    "forarray": [],
-    "ifthen": [],
-    "tikz": [],
-    "xstring": [],
-    "xkeyval": [],
-    "tikzlibraryexternal": [
-      "externalize=1"
-    ]
-  },
-  "macros": {
-    "vpartition{}": {
-      "snippet": "vpartition{${1:sorted blocks}}"
+  "deps": [
+    {
+      "name": "forarray"
     },
-    "vpartition[]{}": {
-      "snippet": "vpartition[${2:options}]{${1:sorted blocks}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "ifthen"
     },
-    "arcpartition{}": {
-      "snippet": "arcpartition{${1:sorted blocks}}"
+    {
+      "name": "tikz"
     },
-    "arcpartition[]{}": {
-      "snippet": "arcpartition[${2:options}]{${1:sorted blocks}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "xstring"
     },
-    "permutation{}": {
-      "snippet": "permutation{${1:images of 1 to n}}"
+    {
+      "name": "xkeyval"
     },
-    "permutation[]{}": {
-      "snippet": "permutation[${2:options}]{${1:images of 1 to n}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "tiedpair{}{}": {
-      "snippet": "tiedpair{${1:permutation}}{${2:set partition}}"
-    },
-    "tiedpair[]{}{}": {
-      "snippet": "tiedpair[${3:options}]{${1:permutation}}{${2:set partition}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "tie{}": {
-      "snippet": "tie{${1:dots}}"
-    },
-    "tie[]{}": {
-      "snippet": "tie[${2:options}]{${1:dots}}",
-      "keyvalindex": 4,
-      "keyvalpos": 0
-    },
-    "strands{}": {
-      "snippet": "strands{${1:generators}}"
-    },
-    "strands[]{}": {
-      "snippet": "strands[${2:options}]{${1:generators}}",
-      "keyvalindex": 5,
-      "keyvalpos": 0
-    },
-    "getelem{}{}{}": {
-      "snippet": "getelem{${1:list}}{${2:index}}{${3:name}}"
-    },
-    "decoratestrands": {},
-    "decoratestrands[]": {
-      "snippet": "decoratestrands[${1:options}]"
-    },
-    "vvpartition{}": {
-      "snippet": "vvpartition{${1:sorted blocks}}"
-    },
-    "vvpartition[]{}": {
-      "snippet": "vvpartition[${2:options}]{${1:sorted blocks}}"
-    },
-    "oldnumstrands": {},
-    "bbackstrands": {},
-    "bbackstrands[]": {
-      "snippet": "bbackstrands[${1:options}]"
-    },
-    "lleftstrand": {},
-    "lleftstrand[]": {
-      "snippet": "lleftstrand[${1:options}]"
-    },
-    "rrightstrand": {},
-    "rrightstrand[]": {
-      "snippet": "rrightstrand[${1:options}]"
-    },
-    "ccrossback": {},
-    "ccrossback[]": {
-      "snippet": "ccrossback[${1:options}]"
-    },
-    "bbraidgen": {},
-    "bbraidgen[]": {
-      "snippet": "bbraidgen[${1:options}]"
-    },
-    "ttanglegen": {},
-    "ttanglegen[]": {
-      "snippet": "ttanglegen[${1:options}]"
-    },
-    "aaddgen": {},
-    "aaddgen[]": {
-      "snippet": "aaddgen[${1:options}]"
-    },
-    "thelevelscounter": {},
-    "sstrands{}": {
-      "snippet": "sstrands{${1:generators}}"
-    },
-    "sstrands[]{}": {
-      "snippet": "sstrands[${2:options}]{${1:generators}}"
+    {
+      "name": "tikzlibraryexternal",
+      "if": "externalize=1"
     }
-  },
-  "envs": {},
-  "options": [
-    "backcolor=",
-    "bend=${1:integer}",
-    "bendbraid=${1:integer}",
-    "bendtangle=${1:integer}",
-    "braidcross=${1:number}",
-    "braidsingcross=${1:number}",
-    "braidvirtcross=${1:number}",
-    "bulletsize=${1:number}",
-    "coverunion=${1:number}",
-    "direction=${1:number}",
-    "externalize=${1|0,1|}",
-    "font=${1:number}",
-    "gencharposbraid=${1:braid generator}",
-    "gencharnegbraid=${1:braid generator}",
-    "gencharvirtual=${1:braid generator}",
-    "gencharsingular=${1:braid generator}",
-    "genchartangle=${1:braid generator}",
-    "genchartie=${1:braid generator}",
-    "genchartiedtangle=${1:braid generator}",
-    "height=${1:number}",
-    "labelver=${1:number}",
-    "labelhor=${1:number}",
-    "norma=${1:number}",
-    "normb=${1:number}",
-    "normcolor=",
-    "nstr=${1:integer}",
-    "num=${1:integer}",
-    "rotate=${1:angle}",
-    "scale=${1:factor}",
-    "strwidth=${1:number}",
-    "tiebend=${1:integer}",
-    "tiebull=${1|0,1|}",
-    "tiebullsize=${1:number}",
-    "tiecolor=",
-    "tiesnake",
-    "tiestyle=${1|solid,dashed,dotted|}",
-    "tiewidth=${1:number}",
-    "timeswidth=${1:number}",
-    "tkzpic=${1|0,1|}",
-    "width=${1:number}"
   ],
-  "keyvals": [
-    [
-      "bend=${1:integer}",
-      "bulla=${1|0,1|}",
-      "bullb=${1|0,1|}",
-      "bulletends=",
-      "floor=${1:number}",
-      "font=${1:fontsize}",
-      "height=${1:number}",
-      "labelver=${1:number}",
-      "labelhor=${1:number}",
-      "norma=${1:number}",
-      "normb=${1:number}",
-      "nstr=${1:integer}",
-      "reflect=${1:integer}",
-      "rotate=${1:integer}",
-      "scale=${1:factor}",
-      "strwidth=${1:number}",
-      "tkzpic=${1|0,1|}",
-      "type=${1|0,2,3,4,5|}",
-      "width=${1:number}"
-    ],
-    [
-      "bend=${1:integer}",
-      "bull=${1|0,1|}",
-      "bulletsize=${1:number}",
-      "floor=${1:number}",
-      "font=${1:fontsize}",
-      "labelver=${1:number}",
-      "labelhor=${1:number}",
-      "norma=${1:number}",
-      "normb=${1:number}",
-      "num=${1:integer}",
-      "rotate=${1:integer}",
-      "scale=${1:factor}",
-      "strwidth=${1:number}",
-      "tkzpic=${1|0,1|}",
-      "type=${1|0,1|}",
-      "width=${1:number}"
-    ],
-    [
-      "bulla=${1|0,1|}",
-      "bullb=${1|0,1|}",
-      "bulletends=${1:number}",
-      "floor=${1:number}",
-      "font=${1:fontsize}",
-      "height=${1:number}",
-      "labelver=${1:number}",
-      "labelhor=${1:number}",
-      "norma=${1:number}",
-      "normb=${1:number}",
-      "nstr=${1:integer}",
-      "rotate=${1:integer}",
-      "scale=${1:factor}",
-      "strwidth=${1:number}",
-      "tkzpic=${1|0,1|}",
-      "type=${1|0,2,3,4,5|}",
-      "width=${1:number}"
-    ],
-    [
-      "above=${1|0,1|}",
-      "bend=${1:integer}",
-      "bulla=${1|0,1|}",
-      "bullb=${1|0,1|}",
-      "bulletends=${1:number}",
-      "floor=${1:number}",
-      "font=${1:fontsize}",
-      "height=${1:number}",
-      "labelver=${1:number}",
-      "labelhor=${1:number}",
-      "norma=${1:number}",
-      "normb=${1:number}",
-      "nstr=${1:integer}",
-      "rotate=${1:integer}",
-      "scale=${1:factor}",
-      "strwidth=${1:number}",
-      "tkzpic=${1|0,1|}",
-      "type=${1|0,2,3,4,5|}",
-      "width=${1:number}"
-    ],
-    [
-      "bend=${1:integer}",
-      "bull=${1|0,1|}",
-      "bulletie=${1:number}",
-      "color=",
-      "floor=${1:number}",
-      "height=${1:number}",
-      "snake",
-      "snakeamp=",
-      "snakends=",
-      "snakelen=",
-      "style=${1|solid,dashed,dotted|}",
-      "tieheight=${1:number}",
-      "tiewidth=${1:number}",
-      "width=${1:number}"
-    ],
-    [
-      "bendbraid=${1:integer}",
-      "bendtangle=${1:integer}",
-      "bulla=${1|0,1|}",
-      "bullb=${1|0,1|}",
-      "bulletends=${1:number}",
-      "direction=${1:number}",
-      "floor=${1:number}",
-      "height=${1:number}",
-      "labelver=${1:number}",
-      "labelhor=${1:number}",
-      "nstr=${1:integer}",
-      "rotate=${1:integer}",
-      "scale=${1:factor}",
-      "strwidth=${1:number}",
-      "tiebull=${1|0,1|}",
-      "tiebullsize=",
+  "macros": [
+    {
+      "name": "vpartition",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:sorted blocks}}"
+      }
+    },
+    {
+      "name": "vpartition",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:sorted blocks}}"
+      }
+    },
+    {
+      "name": "arcpartition",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:sorted blocks}}"
+      }
+    },
+    {
+      "name": "arcpartition",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:sorted blocks}}"
+      }
+    },
+    {
+      "name": "permutation",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:images of 1 to n}}"
+      }
+    },
+    {
+      "name": "permutation",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:images of 1 to n}}"
+      }
+    },
+    {
+      "name": "tiedpair",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:permutation}}{${2:set partition}}"
+      }
+    },
+    {
+      "name": "tiedpair",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:permutation}}{${2:set partition}}"
+      }
+    },
+    {
+      "name": "tie",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:dots}}"
+      }
+    },
+    {
+      "name": "tie",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:dots}}"
+      }
+    },
+    {
+      "name": "strands",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:generators}}"
+      }
+    },
+    {
+      "name": "strands",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:generators}}"
+      }
+    },
+    {
+      "name": "getelem",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:list}}{${2:index}}{${3:name}}"
+      }
+    },
+    {
+      "name": "decoratestrands",
+      "unusual": true
+    },
+    {
+      "name": "decoratestrands",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options}]"
+      }
+    },
+    {
+      "name": "vvpartition",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:sorted blocks}}"
+      }
+    },
+    {
+      "name": "vvpartition",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options}]{${1:sorted blocks}}"
+      }
+    },
+    {
+      "name": "bbackstrands",
+      "unusual": true
+    },
+    {
+      "name": "bbackstrands",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options}]"
+      }
+    },
+    {
+      "name": "lleftstrand",
+      "unusual": true
+    },
+    {
+      "name": "lleftstrand",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options}]"
+      }
+    },
+    {
+      "name": "rrightstrand",
+      "unusual": true
+    },
+    {
+      "name": "rrightstrand",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options}]"
+      }
+    },
+    {
+      "name": "ccrossback",
+      "unusual": true
+    },
+    {
+      "name": "ccrossback",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options}]"
+      }
+    },
+    {
+      "name": "bbraidgen",
+      "unusual": true
+    },
+    {
+      "name": "bbraidgen",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options}]"
+      }
+    },
+    {
+      "name": "ttanglegen",
+      "unusual": true
+    },
+    {
+      "name": "ttanglegen",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options}]"
+      }
+    },
+    {
+      "name": "aaddgen",
+      "unusual": true
+    },
+    {
+      "name": "aaddgen",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options}]"
+      }
+    },
+    {
+      "name": "thelevelscounter",
+      "unusual": true
+    },
+    {
+      "name": "sstrands",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:generators}}"
+      }
+    },
+    {
+      "name": "sstrands",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options}]{${1:generators}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/strands#c": [
+      "backcolor=",
+      "bend=${1:integer}\r",
+      "bendbraid=${1:integer}\r",
+      "bendtangle=${1:integer}\r",
+      "braidcross=${1:number}\r",
+      "braidsingcross=${1:number}\r",
+      "braidvirtcross=${1:number}\r",
+      "bulletsize=${1:number}\r",
+      "coverunion=${1:number}\r",
+      "direction=${1:number}\r",
+      "externalize=${1|0,1\r|}",
+      "font=${1:number}\r",
+      "gencharposbraid=${1:braid generator}\r",
+      "gencharnegbraid=${1:braid generator}\r",
+      "gencharvirtual=${1:braid generator}\r",
+      "gencharsingular=${1:braid generator}\r",
+      "genchartangle=${1:braid generator}\r",
+      "genchartie=${1:braid generator}\r",
+      "genchartiedtangle=${1:braid generator}\r",
+      "height=${1:number}\r",
+      "labelver=${1:number}\r",
+      "labelhor=${1:number}\r",
+      "norma=${1:number}\r",
+      "normb=${1:number}\r",
+      "normcolor=\r",
+      "nstr=${1:integer}\r",
+      "num=${1:integer}\r",
+      "rotate=${1:angle}\r",
+      "scale=${1:factor}\r",
+      "strwidth=${1:number}\r",
+      "tiebend=${1:integer}\r",
+      "tiebull=${1|0,1\r|}",
+      "tiebullsize=${1:number}\r",
       "tiecolor=",
-      "tieheight=${1:number}",
       "tiesnake",
-      "tiesnakeamp=",
-      "tiesnakends=",
-      "tiesnakelen=${1:number}",
-      "tiestyle=${1|solid,dashed,dotted|}",
-      "tiewidth=${1:number}",
-      "tkzpic=${1|0,1|}",
-      "type=${1|0,2,3,4,5|}",
-      "width=${1:number}"
+      "tiestyle=${1|solid,dashed,dotted\r|}",
+      "tiewidth=${1:number}\r",
+      "timeswidth=${1:number}\r",
+      "tkzpic=${1|0,1\r|}",
+      "width=${1:number}\r"
+    ],
+    "\\vpartition": [
+      "bend=${1:integer}\r",
+      "bulla=${1|0,1\r|}",
+      "bullb=${1|0,1\r|}",
+      "bulletends=\r",
+      "floor=${1:number}\r",
+      "font=${1:fontsize}\r",
+      "height=${1:number}\r",
+      "labelver=${1:number}\r",
+      "labelhor=${1:number}\r",
+      "norma=${1:number}\r",
+      "normb=${1:number}\r",
+      "nstr=${1:integer}\r",
+      "reflect=${1:integer}\r",
+      "rotate=${1:integer}\r",
+      "scale=${1:factor}\r",
+      "strwidth=${1:number}\r",
+      "tkzpic=${1|0,1\r|}",
+      "type=${1|0,2,3,4,5\r|}",
+      "width=${1:number}\r"
+    ],
+    "\\arcpartition": [
+      "bend=${1:integer}\r",
+      "bull=${1|0,1\r|}",
+      "bulletsize=${1:number}\r",
+      "floor=${1:number}\r",
+      "font=${1:fontsize}\r",
+      "labelver=${1:number}\r",
+      "labelhor=${1:number}\r",
+      "norma=${1:number}\r",
+      "normb=${1:number}\r",
+      "num=${1:integer}\r",
+      "rotate=${1:integer}\r",
+      "scale=${1:factor}\r",
+      "strwidth=${1:number}\r",
+      "tkzpic=${1|0,1\r|}",
+      "type=${1|0,1\r|}",
+      "width=${1:number}\r"
+    ],
+    "\\permutation": [
+      "bulla=${1|0,1\r|}",
+      "bullb=${1|0,1\r|}",
+      "bulletends=${1:number}\r",
+      "floor=${1:number}\r",
+      "font=${1:fontsize}\r",
+      "height=${1:number}\r",
+      "labelver=${1:number}\r",
+      "labelhor=${1:number}\r",
+      "norma=${1:number}\r",
+      "normb=${1:number}\r",
+      "nstr=${1:integer}\r",
+      "rotate=${1:integer}\r",
+      "scale=${1:factor}\r",
+      "strwidth=${1:number}\r",
+      "tkzpic=${1|0,1\r|}",
+      "type=${1|0,2,3,4,5\r|}",
+      "width=${1:number}\r"
+    ],
+    "\\tiedpair": [
+      "above=${1|0,1\r|}",
+      "bend=${1:integer}\r",
+      "bulla=${1|0,1\r|}",
+      "bullb=${1|0,1\r|}",
+      "bulletends=${1:number}\r",
+      "floor=${1:number}\r",
+      "font=${1:fontsize}\r",
+      "height=${1:number}\r",
+      "labelver=${1:number}\r",
+      "labelhor=${1:number}\r",
+      "norma=${1:number}\r",
+      "normb=${1:number}\r",
+      "nstr=${1:integer}\r",
+      "rotate=${1:integer}\r",
+      "scale=${1:factor}\r",
+      "strwidth=${1:number}\r",
+      "tkzpic=${1|0,1\r|}",
+      "type=${1|0,2,3,4,5\r|}",
+      "width=${1:number}\r"
+    ],
+    "\\tie": [
+      "bend=${1:integer}\r",
+      "bull=${1|0,1\r|}",
+      "bulletie=${1:number}\r",
+      "color=",
+      "floor=${1:number}\r",
+      "height=${1:number}\r",
+      "snake",
+      "snakeamp=\r",
+      "snakends=\r",
+      "snakelen=\r",
+      "style=${1|solid,dashed,dotted\r|}",
+      "tieheight=${1:number}\r",
+      "tiewidth=${1:number}\r",
+      "width=${1:number}\r"
+    ],
+    "\\strands": [
+      "bendbraid=${1:integer}\r",
+      "bendtangle=${1:integer}\r",
+      "bulla=${1|0,1\r|}",
+      "bullb=${1|0,1\r|}",
+      "bulletends=${1:number}\r",
+      "direction=${1:number}\r",
+      "floor=${1:number}\r",
+      "height=${1:number}\r",
+      "labelver=${1:number}\r",
+      "labelhor=${1:number}\r",
+      "nstr=${1:integer}\r",
+      "rotate=${1:integer}\r",
+      "scale=${1:factor}\r",
+      "strwidth=${1:number}\r",
+      "tiebull=${1|0,1\r|}",
+      "tiebullsize=\r",
+      "tiecolor=",
+      "tieheight=${1:number}\r",
+      "tiesnake",
+      "tiesnakeamp=\r",
+      "tiesnakends=\r",
+      "tiesnakelen=${1:number}\r",
+      "tiestyle=${1|solid,dashed,dotted\r|}",
+      "tiewidth=${1:number}\r",
+      "tkzpic=${1|0,1\r|}",
+      "type=${1|0,2,3,4,5\r|}",
+      "width=${1:number}\r"
     ]
+  },
+  "args": [
+    "\\usepackage/strands#c"
   ]
 }

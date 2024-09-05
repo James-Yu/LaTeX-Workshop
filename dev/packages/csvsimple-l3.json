@@ -1,282 +1,505 @@
 {
-  "includes": {},
-  "macros": {
-    "csvreader{}{}{}": {
-      "snippet": "csvreader{${1:file}}{${2:assignments}}{${3:command list}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "csvreader",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:file}}{${2:assignments%definition}}{${3:command list%definition}}"
+      }
     },
-    "csvreader[]{}{}{}": {
-      "snippet": "csvreader[${4:options}]{${1:file}}{${2:assignments}}{${3:command list}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "csvreader",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:options%keyvals}]{${1:file}}{${2:assignments%definition}}{${3:command list%definition}}"
+      }
     },
-    "csvcoli": {},
-    "csvcolii": {},
-    "csvcoliii": {},
-    "csvcoliv": {},
-    "csvcolv": {},
-    "csvloop{}": {
-      "snippet": "csvloop{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "csvcoli",
+      "unusual": true
     },
-    "csvautotabular{}": {
-      "snippet": "csvautotabular{${1:file}}"
+    {
+      "name": "csvcolii",
+      "unusual": true
     },
-    "csvautotabular[]{}": {
-      "snippet": "csvautotabular[${2:options}]{${1:file}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "csvcoliii",
+      "unusual": true
     },
-    "csvautotabular*{}": {
-      "snippet": "csvautotabular*{${1:file}}"
+    {
+      "name": "csvcoliv",
+      "unusual": true
     },
-    "csvautotabular*[]{}": {
-      "snippet": "csvautotabular*[${2:options}]{${1:file}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "csvcolv",
+      "unusual": true
     },
-    "csvautolongtable{}": {
-      "snippet": "csvautolongtable{${1:file}}"
+    {
+      "name": "csvloop",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\csvreader,\\csvloop,\\csvautotabular,\\csvautotabular*,\\csvautolongtable,\\csvautolongtable*,\\csvautobooktabular,\\csvautobooktabular*,\\csvautobooklongtable,\\csvautobooklongtable*,\\csvautotabularray,\\csvautotabularray*,\\csvautolongtabularray,\\csvautolongtabularray*,\\csvset,\\csvstyle",
+          "\\csvreader,\\csvloop"
+        ],
+        "keyPos": 0
+      }
     },
-    "csvautolongtable[]{}": {
-      "snippet": "csvautolongtable[${2:options}]{${1:file}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "csvautotabular",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
     },
-    "csvautolongtable*{}": {
-      "snippet": "csvautolongtable*{${1:file}}"
+    {
+      "name": "csvautotabular",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:file}}"
+      }
     },
-    "csvautolongtable*[]{}": {
-      "snippet": "csvautolongtable*[${2:options}]{${1:file}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "csvautotabular*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
     },
-    "csvautobooktabular{}": {
-      "snippet": "csvautobooktabular{${1:file}}"
+    {
+      "name": "csvautotabular*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:file}}"
+      }
     },
-    "csvautobooktabular[]{}": {
-      "snippet": "csvautobooktabular[${2:options}]{${1:file}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "csvautolongtable",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
     },
-    "csvautobooktabular*{}": {
-      "snippet": "csvautobooktabular*{${1:file}}"
+    {
+      "name": "csvautolongtable",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:file}}"
+      }
     },
-    "csvautobooktabular*[]{}": {
-      "snippet": "csvautobooktabular*[${2:options}]{${1:file}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "csvautolongtable*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
     },
-    "csvautobooklongtable{}": {
-      "snippet": "csvautobooklongtable{${1:file}}"
+    {
+      "name": "csvautolongtable*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:file}}"
+      }
     },
-    "csvautobooklongtable[]{}": {
-      "snippet": "csvautobooklongtable[${2:options}]{${1:file}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "csvautobooktabular",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
     },
-    "csvautobooklongtable*{}": {
-      "snippet": "csvautobooklongtable*{${1:file}}"
+    {
+      "name": "csvautobooktabular",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:file}}"
+      }
     },
-    "csvautobooklongtable*[]{}": {
-      "snippet": "csvautobooklongtable*[${2:options}]{${1:file}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "csvautobooktabular*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
     },
-    "csvautotabularray{}": {
-      "snippet": "csvautotabularray{${1:file}}"
+    {
+      "name": "csvautobooktabular*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:file}}"
+      }
     },
-    "csvautotabularray{}[]": {
-      "snippet": "csvautotabularray{${1:file}}[${2:taboptions1}]"
+    {
+      "name": "csvautobooklongtable",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
     },
-    "csvautotabularray{}[][]": {
-      "snippet": "csvautotabularray{${1:file}}[${2:taboptions1}][${3:taboptions2}]"
+    {
+      "name": "csvautobooklongtable",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:file}}"
+      }
     },
-    "csvautotabularray*{}": {
-      "snippet": "csvautotabularray*{${1:file}}"
+    {
+      "name": "csvautobooklongtable*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
     },
-    "csvautotabularray*{}[]": {
-      "snippet": "csvautotabularray*{${1:file}}[${2:taboptions1}]"
+    {
+      "name": "csvautobooklongtable*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:file}}"
+      }
     },
-    "csvautotabularray*{}[][]": {
-      "snippet": "csvautotabularray*{${1:file}}[${2:taboptions1}][${3:taboptions2}]"
+    {
+      "name": "csvautotabularray",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
     },
-    "csvautolongtabularray{}": {
-      "snippet": "csvautolongtabularray{${1:file}}"
+    {
+      "name": "csvautotabularray",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:file}}[${2:taboptions1}]"
+      }
     },
-    "csvautolongtabularray{}[]": {
-      "snippet": "csvautolongtabularray{${1:file}}[${2:taboptions1}]"
+    {
+      "name": "csvautotabularray",
+      "arg": {
+        "format": "{}[][]",
+        "snippet": "{${1:file}}[${2:taboptions1}][${3:taboptions2}]"
+      }
     },
-    "csvautolongtabularray{}[][]": {
-      "snippet": "csvautolongtabularray{${1:file}}[${2:taboptions1}][${3:taboptions2}]"
+    {
+      "name": "csvautotabularray*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
     },
-    "csvautolongtabularray*{}": {
-      "snippet": "csvautolongtabularray*{${1:file}}"
+    {
+      "name": "csvautotabularray*",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:file}}[${2:taboptions1}]"
+      }
     },
-    "csvautolongtabularray*{}[]": {
-      "snippet": "csvautolongtabularray*{${1:file}}[${2:taboptions1}]"
+    {
+      "name": "csvautotabularray*",
+      "arg": {
+        "format": "{}[][]",
+        "snippet": "{${1:file}}[${2:taboptions1}][${3:taboptions2}]"
+      }
     },
-    "csvautolongtabularray*{}[][]": {
-      "snippet": "csvautolongtabularray*{${1:file}}[${2:taboptions1}][${3:taboptions2}]"
+    {
+      "name": "csvautolongtabularray",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
     },
-    "csvset{}": {
-      "snippet": "csvset{${1:options}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "csvautolongtabularray",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:file}}[${2:taboptions1}]"
+      }
     },
-    "csvstyle{}{}": {
-      "snippet": "csvstyle{${1:key name}}{${2:options}}",
-      "keyvalindex": 1,
-      "keyvalpos": 1
+    {
+      "name": "csvautolongtabularray",
+      "arg": {
+        "format": "{}[][]",
+        "snippet": "{${1:file}}[${2:taboptions1}][${3:taboptions2}]"
+      }
     },
-    "csvnames{}{}": {
-      "snippet": "csvnames{${1:key name}}{${2:assignments}}"
+    {
+      "name": "csvautolongtabularray*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
     },
-    "csvfilterbool{}{}": {
-      "snippet": "csvfilterbool{${1:key name}}{${2:boolean expr}}"
+    {
+      "name": "csvautolongtabularray*",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:file}}[${2:taboptions1}]"
+      }
     },
-    "ifcsvoddrow{}{}": {
-      "snippet": "ifcsvoddrow{${1:then}}{${2:else}}"
+    {
+      "name": "csvautolongtabularray*",
+      "arg": {
+        "format": "{}[][]",
+        "snippet": "{${1:file}}[${2:taboptions1}][${3:taboptions2}]"
+      }
     },
-    "ifcsvfirstrow{}{}": {
-      "snippet": "ifcsvfirstrow{${1:then}}{${2:else}}"
+    {
+      "name": "csvset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\csvreader,\\csvloop,\\csvautotabular,\\csvautotabular*,\\csvautolongtable,\\csvautolongtable*,\\csvautobooktabular,\\csvautobooktabular*,\\csvautobooklongtable,\\csvautobooklongtable*,\\csvautotabularray,\\csvautotabularray*,\\csvautolongtabularray,\\csvautolongtabularray*,\\csvset,\\csvstyle"
+        ],
+        "keyPos": 0
+      }
     },
-    "csvfilteraccept": {},
-    "csvfilterreject": {},
-    "csvline": {},
-    "csvlinetotablerow": {},
-    "thecsvrow": {},
-    "thecsvcolumncount": {},
-    "thecsvinputline": {},
-    "csvsortingrule{}{}": {
-      "snippet": "csvsortingrule{${1:name}}{${2:file}}"
+    {
+      "name": "csvstyle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:key name%specialDef}}{${2:options%keyvals}}",
+        "keys": [
+          "\\csvreader,\\csvloop,\\csvautotabular,\\csvautotabular*,\\csvautolongtable,\\csvautolongtable*,\\csvautobooktabular,\\csvautobooktabular*,\\csvautobooklongtable,\\csvautobooklongtable*,\\csvautotabularray,\\csvautotabularray*,\\csvautolongtabularray,\\csvautolongtabularray*,\\csvset,\\csvstyle"
+        ],
+        "keyPos": 1
+      }
     },
-    "csvdatacollection": {},
-    "csvcollectn{}": {
-      "snippet": "csvcollectn{${1:code}}"
+    {
+      "name": "csvnames",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:key name%specialDef}}{${2:assignments%definition}}"
+      }
     },
-    "csvcollecte{}": {
-      "snippet": "csvcollecte{${1:code}}"
+    {
+      "name": "csvfilterbool",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:key name%specialDef}}{${2:boolean expr}}"
+      }
     },
-    "csvcollectx{}": {
-      "snippet": "csvcollectx{${1:code}}"
+    {
+      "name": "ifcsvoddrow",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:then}}{${2:else}}"
+      }
     },
-    "IfCsvsimStrEqualTF{}{}{}{}": {
-      "snippet": "IfCsvsimStrEqualTF{${1:stringA}}{${2:stringB}}{${3:true}}{${4:false}}"
+    {
+      "name": "ifcsvfirstrow",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:then}}{${2:else}}"
+      }
     },
-    "ifcsvstrcmp{}{}{}{}": {
-      "snippet": "ifcsvstrcmp{${1:stringA}}{${2:stringB}}{${3:true}}{${4:false}}"
+    {
+      "name": "csvfilteraccept"
     },
-    "ifcsvnotstrcmp{}{}{}{}": {
-      "snippet": "ifcsvnotstrcmp{${1:stringA}}{${2:stringB}}{${3:true}}{${4:false}}"
+    {
+      "name": "csvfilterreject"
     },
-    "IfCsvsimTlEqualTF{}{}{}{}": {
-      "snippet": "IfCsvsimTlEqualTF{${1:tokenlistA}}{${2:tokenlistB}}{${3:true}}{${4:false}}"
+    {
+      "name": "csvline"
     },
-    "ifcsvstrequal{}{}{}{}": {
-      "snippet": "ifcsvstrequal{${1:tokenlistA}}{${2:tokenlistB}}{${3:true}}{${4:false}}"
+    {
+      "name": "csvlinetotablerow"
     },
-    "IfCsvsimTlProtectedEqualTF{}{}{}{}": {
-      "snippet": "IfCsvsimTlProtectedEqualTF{${1:tokenlistA}}{${2:tokenlistB}}{${3:true}}{${4:false}}"
+    {
+      "name": "thecsvrow"
     },
-    "ifcsvprostrequal{}{}{}{}": {
-      "snippet": "ifcsvprostrequal{${1:tokenlistA}}{${2:tokenlistB}}{${3:true}}{${4:false}}"
+    {
+      "name": "thecsvcolumncount"
     },
-    "IfCsvsimFpCompareTF{}{}{}": {
-      "snippet": "IfCsvsimFpCompareTF{${1:floating point expr}}{${2:true}}{${3:false}}"
+    {
+      "name": "thecsvinputline"
     },
-    "ifcsvfpcmp{}{}{}": {
-      "snippet": "ifcsvfpcmp{${1:floating point expr}}{${2:true}}{${3:false}}"
+    {
+      "name": "csvsortingrule",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:file}}"
+      }
     },
-    "IfCsvsimIntCompareTF{}{}{}": {
-      "snippet": "IfCsvsimIntCompareTF{${1:integer expr}}{${2:true}}{${3:false}}"
+    {
+      "name": "csvdatacollection"
     },
-    "ifcsvintcmp{}{}{}": {
-      "snippet": "ifcsvintcmp{${1:integer expr}}{${2:true}}{${3:false}}"
+    {
+      "name": "csvcollectn",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
     },
-    "csvifoddrow{}{}": {
-      "snippet": "csvifoddrow{${1:then}}{${2:else}}"
+    {
+      "name": "csvcollecte",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
     },
-    "csviffirstrow{}{}": {
-      "snippet": "csviffirstrow{${1:then}}{${2:else}}"
+    {
+      "name": "csvcollectx",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
     },
-    "tabularnewline": {},
-    "toprule": {},
-    "midrule": {},
-    "bottomrule": {},
-    "cmidrule": {},
-    "morecmidrules": {},
-    "specialrule": {},
-    "addlinespace": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "before reading=${1:code}",
-      "after head=${1:code}",
-      "before filter=${1:code}",
-      "after filter=${1:code}",
-      "late after head=${1:code}",
-      "late after line=${1:code}",
-      "late after first line=${1:code}",
-      "late after last line=${1:code}",
-      "before line=${1:code}",
-      "before first line=${1:code}",
-      "command=${1:code}",
-      "after line=${1:code}",
-      "after first line=${1:code}",
-      "after reading=${1:code}",
+    {
+      "name": "IfCsvsimStrEqualTF",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:stringA}}{${2:stringB}}{${3:true}}{${4:false}}"
+      }
+    },
+    {
+      "name": "ifcsvstrcmp",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:stringA}}{${2:stringB}}{${3:true}}{${4:false}}"
+      }
+    },
+    {
+      "name": "ifcsvnotstrcmp",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:stringA}}{${2:stringB}}{${3:true}}{${4:false}}"
+      }
+    },
+    {
+      "name": "IfCsvsimTlEqualTF",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:tokenlistA}}{${2:tokenlistB}}{${3:true}}{${4:false}}"
+      }
+    },
+    {
+      "name": "ifcsvstrequal",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:tokenlistA}}{${2:tokenlistB}}{${3:true}}{${4:false}}"
+      }
+    },
+    {
+      "name": "IfCsvsimTlProtectedEqualTF",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:tokenlistA}}{${2:tokenlistB}}{${3:true}}{${4:false}}"
+      }
+    },
+    {
+      "name": "ifcsvprostrequal",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:tokenlistA}}{${2:tokenlistB}}{${3:true}}{${4:false}}"
+      }
+    },
+    {
+      "name": "IfCsvsimFpCompareTF",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:floating point expr}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "ifcsvfpcmp",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:floating point expr}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "IfCsvsimIntCompareTF",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:integer expr}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "ifcsvintcmp",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:integer expr}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "tabularnewline"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\csvreader,\\csvloop,\\csvautotabular,\\csvautotabular*,\\csvautolongtable,\\csvautolongtable*,\\csvautobooktabular,\\csvautobooktabular*,\\csvautobooklongtable,\\csvautobooklongtable*,\\csvautotabularray,\\csvautotabularray*,\\csvautolongtabularray,\\csvautolongtabularray*,\\csvset,\\csvstyle": [
+      "before reading=${1:code}\r",
+      "after head=${1:code}\r",
+      "before filter=${1:code}\r",
+      "after filter=${1:code}\r",
+      "late after head=${1:code}\r",
+      "late after line=${1:code}\r",
+      "late after first line=${1:code}\r",
+      "late after last line=${1:code}\r",
+      "before line=${1:code}\r",
+      "before first line=${1:code}\r",
+      "command=${1:code}\r",
+      "after line=${1:code}\r",
+      "after first line=${1:code}\r",
+      "after reading=${1:code}\r",
       "head",
-      "no head",
-      "column names={${1:assignments}}",
-      "column names reset",
+      "no head\r",
+      "column names={${1:assignments}}\r",
+      "column names reset\r",
       "head to column names",
-      "head to column names prefix=${1:text}",
+      "head to column names prefix=${1:text}\r",
       "column names detection",
       "check column count",
-      "no check column count",
-      "column count=${1:number}",
-      "on column count error=${1:code}",
-      "warn on column count error",
-      "filter strcmp={${1:stringA}}{${2:stringB}}",
-      "filter not strcmp={${1:stringA}}{${2:stringB}}",
-      "filter equal={${1:stringA}}{${2:stringB}}",
-      "filter not equal={${1:stringA}}{${2:stringB}}",
-      "filter fp=${1:floating point expr}",
-      "filter bool=${1:boolean expr}",
-      "and filter strcmp={${1:stringA}}{${2:stringB}}",
-      "or filter strcmp={${1:stringA}}{${2:stringB}}",
-      "and filter not strcmp={${1:stringA}}{${2:stringB}}",
-      "or filter not strcmp={${1:stringA}}{${2:stringB}}",
-      "and filter fp=${1:floating point expr}",
-      "or filter fp=${1:floating point expr}",
-      "and filter bool=${1:boolean expr}",
-      "or filter bool=${1:boolean expr}",
-      "filter test=${1:condition}",
-      "filter ifthen=${1:boolean expr}",
-      "no filter",
-      "filter accept all",
-      "filter reject all",
-      "full filter=${1:code}",
-      "range={${1:range1,range2,...}}",
-      "tabular=${1:preamble}",
-      "centered tabular=${1:preamble}",
-      "longtable=${1:preamble}",
-      "tabbing",
-      "centered tabbing",
-      "tabularray=${1:preamble}",
-      "long tabularray=${1:preamble}",
-      "centered tabularray=${1:preamble}",
-      "no table",
-      "before table=${1:code}",
-      "table head=${1:code}",
-      "table foot=${1:code}",
-      "after table=${1:code}",
+      "no check column count \r",
+      "column count=${1:number}\r",
+      "on column count error=${1:code}\r",
+      "warn on column count error\r",
+      "filter strcmp={${1:stringA}}{${2:stringB}}\r",
+      "filter not strcmp={${1:stringA}}{${2:stringB}}\r",
+      "filter equal={${1:stringA}}{${2:stringB}}\r",
+      "filter not equal={${1:stringA}}{${2:stringB}}\r",
+      "filter fp=${1:floating point expr}\r",
+      "filter bool=${1:boolean expr}\r",
+      "and filter strcmp={${1:stringA}}{${2:stringB}}\r",
+      "or filter strcmp={${1:stringA}}{${2:stringB}}\r",
+      "and filter not strcmp={${1:stringA}}{${2:stringB}}\r",
+      "or filter not strcmp={${1:stringA}}{${2:stringB}}\r",
+      "and filter fp=${1:floating point expr}\r",
+      "or filter fp=${1:floating point expr}\r",
+      "and filter bool=${1:boolean expr}\r",
+      "or filter bool=${1:boolean expr}\r",
+      "filter test=${1:condition}\r",
+      "filter ifthen=${1:boolean expr}\r",
+      "no filter\r",
+      "filter accept all \r",
+      "filter reject all\r",
+      "full filter=${1:code}\r",
+      "range={${1:range1,range2,...}}\r",
+      "tabular=${1:preamble}\r",
+      "centered tabular=${1:preamble}\r",
+      "longtable=${1:preamble}\r",
+      "tabbing\r",
+      "centered tabbing\r",
+      "tabularray=${1:preamble}\r",
+      "long tabularray=${1:preamble}\r",
+      "centered tabularray=${1:preamble}\r",
+      "no table\r",
+      "before table=${1:code}\r",
+      "table head=${1:code}\r",
+      "table foot=${1:code}\r",
+      "after table=${1:code}\r",
       "table centered",
-      "generic table=${1:name}",
-      "generic collected table=${1:name}",
-      "generic table options={${1:code}}",
+      "generic table=${1:name}\r",
+      "generic collected table=${1:name}\r",
+      "generic table options={${1:code}}\r",
       "respect tab",
       "respect percent",
       "respect sharp",
@@ -288,129 +511,38 @@
       "respect circumflex",
       "respect leftbrace",
       "respect rightbrace",
-      "respect all",
-      "respect none",
-      "separator=${1|comma,semicolon,pipe,tab,space|}",
-      "file=${1:file}",
-      "preprocessed file=${1:file}",
-      "preprocessor=${1:macro}",
-      "no preprocessing",
-      "csvsorter command=${1:system command}",
-      "csvsorter configpath=${1:path}",
-      "csvsorter log=${1:file}",
-      "csvsorter token=${1:file}",
-      "sort by=${1:file}",
-      "new sorting rule={${1:name}}{${2:file}}",
+      "respect all \r",
+      "respect none\r",
+      "separator=${1|comma,semicolon,pipe,tab,space\r|}",
+      "file=${1:file}\r",
+      "preprocessed file=${1:file}\r",
+      "preprocessor=${1:macro}\r",
+      "no preprocessing\r",
+      "csvsorter command=${1:system command}\r",
+      "csvsorter configpath=${1:path}\r",
+      "csvsorter log=${1:file}\r",
+      "csvsorter token=${1:file}\r",
+      "sort by=${1:file}\r",
+      "new sorting rule={${1:name}}{${2:file}}\r",
       "collect data",
       "consume collected data",
-      "data collection=${1:macro}",
-      "%csvstyle",
-      "autotabular=${1:file}",
-      "autotabular*=${1:file}",
-      "autolongtable=${1:file}",
-      "autolongtable*=${1:file}",
-      "autobooktabular=${1:file}",
-      "autobooktabular*=${1:file}",
-      "autobooklongtable=${1:file}",
-      "autobooklongtable*=${1:file}",
-      "autotabularray=${1:file}",
-      "autotabularray*=${1:file}",
-      "autolongtabularray=${1:file}",
-      "autolongtabularray*=${1:file}"
+      "data collection=${1:macro}\r",
+      "%csvstyle\r"
     ],
-    [
-      "before reading=${1:code}",
-      "after head=${1:code}",
-      "before filter=${1:code}",
-      "after filter=${1:code}",
-      "late after head=${1:code}",
-      "late after line=${1:code}",
-      "late after first line=${1:code}",
-      "late after last line=${1:code}",
-      "before line=${1:code}",
-      "before first line=${1:code}",
-      "command=${1:code}",
-      "after line=${1:code}",
-      "after first line=${1:code}",
-      "after reading=${1:code}",
-      "head",
-      "no head",
-      "column names={${1:assignments}}",
-      "column names reset",
-      "head to column names",
-      "head to column names prefix=${1:text}",
-      "column names detection",
-      "check column count",
-      "no check column count",
-      "column count=${1:number}",
-      "on column count error=${1:code}",
-      "warn on column count error",
-      "filter strcmp={${1:stringA}}{${2:stringB}}",
-      "filter not strcmp={${1:stringA}}{${2:stringB}}",
-      "filter equal={${1:stringA}}{${2:stringB}}",
-      "filter not equal={${1:stringA}}{${2:stringB}}",
-      "filter fp=${1:floating point expr}",
-      "filter bool=${1:boolean expr}",
-      "and filter strcmp={${1:stringA}}{${2:stringB}}",
-      "or filter strcmp={${1:stringA}}{${2:stringB}}",
-      "and filter not strcmp={${1:stringA}}{${2:stringB}}",
-      "or filter not strcmp={${1:stringA}}{${2:stringB}}",
-      "and filter fp=${1:floating point expr}",
-      "or filter fp=${1:floating point expr}",
-      "and filter bool=${1:boolean expr}",
-      "or filter bool=${1:boolean expr}",
-      "filter test=${1:condition}",
-      "filter ifthen=${1:boolean expr}",
-      "no filter",
-      "filter accept all",
-      "filter reject all",
-      "full filter=${1:code}",
-      "range={${1:range1,range2,...}}",
-      "tabular=${1:preamble}",
-      "centered tabular=${1:preamble}",
-      "longtable=${1:preamble}",
-      "tabbing",
-      "centered tabbing",
-      "tabularray=${1:preamble}",
-      "long tabularray=${1:preamble}",
-      "centered tabularray=${1:preamble}",
-      "no table",
-      "before table=${1:code}",
-      "table head=${1:code}",
-      "table foot=${1:code}",
-      "after table=${1:code}",
-      "table centered",
-      "generic table=${1:name}",
-      "generic collected table=${1:name}",
-      "generic table options={${1:code}}",
-      "respect tab",
-      "respect percent",
-      "respect sharp",
-      "respect dollar",
-      "respect and",
-      "respect backslash",
-      "respect underscore",
-      "respect tilde",
-      "respect circumflex",
-      "respect leftbrace",
-      "respect rightbrace",
-      "respect all",
-      "respect none",
-      "separator=${1|comma,semicolon,pipe,tab,space|}",
-      "file=${1:file}",
-      "preprocessed file=${1:file}",
-      "preprocessor=${1:macro}",
-      "no preprocessing",
-      "csvsorter command=${1:system command}",
-      "csvsorter configpath=${1:path}",
-      "csvsorter log=${1:file}",
-      "csvsorter token=${1:file}",
-      "sort by=${1:file}",
-      "new sorting rule={${1:name}}{${2:file}}",
-      "collect data",
-      "consume collected data",
-      "data collection=${1:macro}",
-      "%csvstyle"
+    "\\csvreader,\\csvloop": [
+      "autotabular=${1:file}\r",
+      "autotabular*=${1:file}\r",
+      "autolongtable=${1:file}\r",
+      "autolongtable*=${1:file}\r",
+      "autobooktabular=${1:file}\r",
+      "autobooktabular*=${1:file}\r",
+      "autobooklongtable=${1:file}\r",
+      "autobooklongtable*=${1:file}\r",
+      "autotabularray=${1:file}\r",
+      "autotabularray*=${1:file}\r",
+      "autolongtabularray=${1:file}\r",
+      "autolongtabularray*=${1:file}\r"
     ]
-  ]
+  },
+  "args": []
 }

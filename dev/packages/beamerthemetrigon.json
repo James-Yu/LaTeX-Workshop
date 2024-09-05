@@ -1,111 +1,188 @@
 {
-  "includes": {
-    "pgfopts": [],
-    "tikz": [],
-    "tikzlibrarycalc": [],
-    "tikzlibrary3d": [],
-    "sourcesanspro": []
-  },
-  "macros": {
-    "trigonset{}": {
-      "snippet": "trigonset{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "pgfopts"
     },
-    "headcol": {},
-    "txtcol": {},
-    "logbig": {},
-    "biglogo{}": {
-      "snippet": "biglogo{${1:imagefile}}"
+    {
+      "name": "tikz"
     },
-    "biglogo[]{}": {
-      "snippet": "biglogo[${2:options}]{${1:imagefile}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "tikzlibrarycalc"
     },
-    "slidestyle": {},
-    "titlestyle": {},
-    "sectionstyle": {},
-    "leftTriangle{}{}": {
-      "snippet": "leftTriangle{${1:x}}{${2:y}}"
+    {
+      "name": "tikzlibrary3d"
     },
-    "rightTriangle{}{}": {
-      "snippet": "rightTriangle{${1:x}}{${2:y}}"
-    },
-    "topTriangle{}{}": {
-      "snippet": "topTriangle{${1:x}}{${2:y}}"
-    },
-    "leftColorTriangle{}{}{}": {
-      "snippet": "leftColorTriangle{${1:color}}{${2:x}}{${3:y}}"
-    },
-    "rightColorTriangle{}{}{}": {
-      "snippet": "rightColorTriangle{${1:color}}{${2:x}}{${3:y}}"
-    },
-    "topColorTriangle{}{}{}": {
-      "snippet": "topColorTriangle{${1:color}}{${2:x}}{${3:y}}"
-    },
-    "titleframe": {},
-    "sectionframe": {},
-    "logsmall": {},
-    "smalllogo{}": {
-      "snippet": "smalllogo{${1:imagefile}}"
-    },
-    "smalllogo[]{}": {
-      "snippet": "smalllogo[${2:options}]{${1:imagefile}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "sourcesanspro"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "background=${1|light,dark|}",
-      "titleformat=${1|regular,smallcaps,allsmallcaps,allcaps|}",
+  ],
+  "macros": [
+    {
+      "name": "trigonset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\usetheme/trigon,\\trigonset"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "headcol",
+      "unusual": true
+    },
+    {
+      "name": "txtcol",
+      "unusual": true
+    },
+    {
+      "name": "logbig",
+      "unusual": true
+    },
+    {
+      "name": "biglogo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "biglogo",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "slidestyle",
+      "unusual": true
+    },
+    {
+      "name": "titlestyle",
+      "unusual": true
+    },
+    {
+      "name": "sectionstyle",
+      "unusual": true
+    },
+    {
+      "name": "leftTriangle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:x}}{${2:y}}"
+      }
+    },
+    {
+      "name": "rightTriangle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:x}}{${2:y}}"
+      }
+    },
+    {
+      "name": "topTriangle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:x}}{${2:y}}"
+      }
+    },
+    {
+      "name": "leftColorTriangle",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:color}}{${2:x}}{${3:y}}"
+      }
+    },
+    {
+      "name": "rightColorTriangle",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:color}}{${2:x}}{${3:y}}"
+      }
+    },
+    {
+      "name": "topColorTriangle",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:color}}{${2:x}}{${3:y}}"
+      }
+    },
+    {
+      "name": "titleframe"
+    },
+    {
+      "name": "sectionframe"
+    },
+    {
+      "name": "logsmall",
+      "unusual": true
+    },
+    {
+      "name": "smalllogo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "smalllogo",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:imagefile}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usetheme/trigon,\\trigonset": [
+      "background=${1|light,dark\r|}",
+      "titleformat=${1|regular,smallcaps,allsmallcaps,allcaps\r|}",
       "usesourcefonts",
-      "sectionpage=${1|none,simple|}",
-      "titlestyle=${1|plain,style1,style2|}",
-      "sectionstyle=${1|plain,style1,style2,style3|}",
-      "slidestyle=${1|blank,style1,cyber|}",
-      "numbering=${1|none,counter,fraction|}",
-      "block=${1|transparent,fill|}",
-      "headingcolor=${1|default,theme|}",
-      "textgcolor=${1|default,theme|}",
-      "titleformat title=${1|regular,smallcaps,allsmallcaps,allcaps|}",
-      "titleformat subtitle=${1|regular,smallcaps,allsmallcaps,allcaps|}",
-      "titleformat section=${1|regular,smallcaps,allsmallcaps,allcaps|}",
-      "titleformat frame=${1|regular,smallcaps,allsmallcaps,allcaps|}"
+      "sectionpage=${1|none,simple\r|}",
+      "titlestyle=${1|plain,style1,style2\r|}",
+      "sectionstyle=${1|plain,style1,style2,style3\r|}",
+      "slidestyle=${1|blank,style1,cyber\r|}",
+      "numbering=${1|none,counter,fraction\r|}",
+      "block=${1|transparent,fill\r|}",
+      "headingcolor=${1|default,theme\r|}",
+      "textgcolor=${1|default,theme\r|}",
+      "titleformat title=${1|regular,smallcaps,allsmallcaps,allcaps\r|}",
+      "titleformat subtitle=${1|regular,smallcaps,allsmallcaps,allcaps\r|}",
+      "titleformat section=${1|regular,smallcaps,allsmallcaps,allcaps\r|}",
+      "titleformat frame=${1|regular,smallcaps,allsmallcaps,allcaps\r|}"
     ],
-    [
-      "alt={${1:alt text}}",
-      "bb=${1:llx lly urx ury}",
-      "bbllx=",
-      "bblly=",
-      "bburx=",
-      "bbury=",
-      "natwidth=",
-      "natheight=",
+    "\\biglogo,\\smalllogo": [
+      "alt={${1:alt text}}\r",
+      "bb=${1:llx lly urx ury}\r",
+      "bbllx=\r",
+      "bblly=\r",
+      "bburx=\r",
+      "bbury=\r",
+      "natwidth=\r",
+      "natheight=\r",
       "hiresbb",
-      "pagebox=${1|mediabox,cropbox,bleedbox,trimbox,artbox|}",
-      "viewport=${1:llx lly urx ury}",
-      "trim=${1:llx lly urx ury}",
-      "angle=${1:degrees}",
-      "origin=",
+      "pagebox=${1|mediabox,cropbox,bleedbox,trimbox,artbox\r|}",
+      "viewport=${1:llx lly urx ury}\r",
+      "trim=${1:llx lly urx ury}\r",
+      "angle=${1:degrees}\r",
+      "origin=\r",
       "width=",
       "height=",
       "totalheight=",
       "keepaspectratio",
-      "scale=${1:factor}",
+      "scale=${1:factor}\r",
       "clip",
       "draft",
-      "type=${1:file type}",
-      "ext=${1:file extension}",
-      "read=${1:read-file extension}",
-      "command=",
-      "quiet",
-      "page=${1:page number}",
+      "type=${1:file type}\r",
+      "ext=${1:file extension}\r",
+      "read=${1:read-file extension}\r",
+      "command=\r",
+      "quiet\r",
+      "page=${1:page number}\r",
       "interpolate",
-      "decodearray={${1:color array}}"
+      "decodearray={${1:color array}}\r"
     ]
-  ]
+  },
+  "args": []
 }

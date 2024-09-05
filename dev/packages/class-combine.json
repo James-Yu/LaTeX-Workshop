@@ -1,110 +1,261 @@
 {
-  "includes": {
-    "keyval": [],
-    "class-memoir": [
-      "memoir"
-    ],
-    "class-book": [
-      "book"
-    ],
-    "class-letter": [
-      "letter"
-    ],
-    "class-report": [
-      "report"
+  "deps": [
+    {
+      "name": "keyval"
+    },
+    {
+      "name": "class-memoir",
+      "if": "memoir"
+    },
+    {
+      "name": "class-book",
+      "if": "book"
+    },
+    {
+      "name": "class-letter",
+      "if": "letter"
+    },
+    {
+      "name": "class-report",
+      "if": "report"
+    }
+  ],
+  "macros": [
+    {
+      "name": "import",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "maintitlefont",
+      "unusual": true
+    },
+    {
+      "name": "postmaintitle",
+      "unusual": true
+    },
+    {
+      "name": "mainauthorfont",
+      "unusual": true
+    },
+    {
+      "name": "postmainauthor",
+      "unusual": true
+    },
+    {
+      "name": "maindatefont",
+      "unusual": true
+    },
+    {
+      "name": "postmaindate",
+      "unusual": true
+    },
+    {
+      "name": "importtitlefont",
+      "unusual": true
+    },
+    {
+      "name": "postimporttitle",
+      "unusual": true
+    },
+    {
+      "name": "importauthorfont",
+      "unusual": true
+    },
+    {
+      "name": "postimportauthor",
+      "unusual": true
+    },
+    {
+      "name": "importdatefont",
+      "unusual": true
+    },
+    {
+      "name": "postimportdate",
+      "unusual": true
+    },
+    {
+      "name": "bodytitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:long title}}"
+      }
+    },
+    {
+      "name": "bodytitle",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short title}]{${1:long title}}"
+      }
+    },
+    {
+      "name": "bodytitlemark",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "coltoctitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
+    },
+    {
+      "name": "coltoctitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:author}}"
+      }
+    },
+    {
+      "name": "published",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:long%text}}"
+      }
+    },
+    {
+      "name": "published",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short}]{${1:long%text}}"
+      }
+    },
+    {
+      "name": "pubfont",
+      "unusual": true
+    },
+    {
+      "name": "toctitleindent",
+      "unusual": true
+    },
+    {
+      "name": "tocauthorindent",
+      "unusual": true
+    },
+    {
+      "name": "tocpubindent",
+      "unusual": true
+    },
+    {
+      "name": "toctocindent",
+      "unusual": true
+    },
+    {
+      "name": "toctitlefont",
+      "unusual": true
+    },
+    {
+      "name": "tocauthorfont",
+      "unusual": true
+    },
+    {
+      "name": "tocpubfont",
+      "unusual": true
+    },
+    {
+      "name": "erasetitling"
+    },
+    {
+      "name": "provideenvironment",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:envname}}{${2:begdef}}{${3:enddef}}"
+      }
+    },
+    {
+      "name": "providelength",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:newlength%cmd}}"
+      }
+    },
+    {
+      "name": "providecounter",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter name}}"
+      }
+    },
+    {
+      "name": "zeroextracounters",
+      "unusual": true
+    },
+    {
+      "name": "appendiargdef",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:macro}}{${2:stuff}}"
+      }
+    },
+    {
+      "name": "emptyAtBeginDocument",
+      "unusual": true
+    },
+    {
+      "name": "thecolpage",
+      "unusual": true
+    },
+    {
+      "name": "setuppapers",
+      "unusual": true
+    },
+    {
+      "name": "takedownpapers",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "papers"
+    },
+    {
+      "name": "papers",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:text/code}]"
+      }
+    },
+    {
+      "name": "tocindent",
+      "unusual": true
+    }
+  ],
+  "keys": {
+    "\\documentclass/combine#c": [
+      "book\r",
+      "report\r",
+      "letter\r",
+      "memoir\r",
+      "classes\r",
+      "packages\r",
+      "layouts\r",
+      "folios\r",
+      "notoc\r",
+      "nolof\r",
+      "nolot\r",
+      "maintoc\r",
+      "date\r",
+      "noauthor\r",
+      "notitle\r",
+      "nomaketitle\r",
+      "nopubindoc\r",
+      "nopubintoc\r",
+      "onebib\r",
+      "combinedbib\r",
+      "colclass=${1:class name}\r"
     ]
   },
-  "macros": {
-    "import{}": {
-      "snippet": "import{${1:file}}"
-    },
-    "maintitlefont": {},
-    "postmaintitle": {},
-    "mainauthorfont": {},
-    "postmainauthor": {},
-    "maindatefont": {},
-    "postmaindate": {},
-    "importtitlefont": {},
-    "postimporttitle": {},
-    "importauthorfont": {},
-    "postimportauthor": {},
-    "importdatefont": {},
-    "postimportdate": {},
-    "bodytitle{}": {
-      "snippet": "bodytitle{${1:long title}}"
-    },
-    "bodytitle[]{}": {
-      "snippet": "bodytitle[${2:short title}]{${1:long title}}"
-    },
-    "bodytitlemark{}": {
-      "snippet": "bodytitlemark{${1:text}}"
-    },
-    "coltoctitle{}": {
-      "snippet": "coltoctitle{${1:author}}"
-    },
-    "published{}": {
-      "snippet": "published{${1:long}}"
-    },
-    "published[]{}": {
-      "snippet": "published[${2:short}]{${1:long}}"
-    },
-    "pubfont": {},
-    "toctitleindent": {},
-    "tocauthorindent": {},
-    "tocpubindent": {},
-    "toctocindent": {},
-    "toctitlefont": {},
-    "tocauthorfont": {},
-    "tocpubfont": {},
-    "erasetitling": {},
-    "provideenvironment{}{}{}": {
-      "snippet": "provideenvironment{${1:envname}}{${2:begdef}}{${3:enddef}}"
-    },
-    "providelength{}": {
-      "snippet": "providelength{${1:newlength}}"
-    },
-    "providecounter{}": {
-      "snippet": "providecounter{${1:counter name}}"
-    },
-    "zeroextracounters": {},
-    "appendiargdef{}{}": {
-      "snippet": "appendiargdef{${1:macro}}{${2:stuff}}"
-    },
-    "emptyAtBeginDocument": {},
-    "thecolpage": {},
-    "setuppapers": {},
-    "takedownpapers": {}
-  },
-  "envs": {
-    "papers": {},
-    "papers[]": {
-      "name": "papers",
-      "snippet": "[${1:text/code}]"
-    },
-    "tocindent": {}
-  },
-  "options": [
-    "book",
-    "report",
-    "letter",
-    "memoir",
-    "classes",
-    "packages",
-    "layouts",
-    "folios",
-    "notoc",
-    "nolof",
-    "nolot",
-    "maintoc",
-    "date",
-    "noauthor",
-    "notitle",
-    "nomaketitle",
-    "nopubindoc",
-    "nopubintoc",
-    "onebib",
-    "combinedbib",
-    "colclass=${1:class name}"
-  ],
-  "keyvals": []
+  "args": [
+    "\\documentclass/combine#c"
+  ]
 }

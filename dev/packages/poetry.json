@@ -1,130 +1,338 @@
 {
-  "includes": {
-    "modulus": [],
-    "imakeidx": []
-  },
-  "macros": {
-    "*": {
-      "detail": "*",
-      "documentation": "(high) ASTERISK, star"
+  "deps": [
+    {
+      "name": "modulus"
     },
-    "addgrouptolop{}": {
-      "snippet": "addgrouptolop{${1:contents line}}"
+    {
+      "name": "imakeidx"
+    }
+  ],
+  "macros": [
+    {
+      "name": "addgrouptolop",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:contents line%text}}"
+      }
     },
-    "addtolop{}": {
-      "snippet": "addtolop{${1:contents line}}"
+    {
+      "name": "addtolop",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:contents line%text}}"
+      }
     },
-    "blap{}": {
-      "snippet": "blap{${1:arg}}"
+    {
+      "name": "centerpoemoff"
     },
-    "centerpoemoff": {},
-    "centerpoemon{}": {
-      "snippet": "centerpoemon{${1:text}}"
+    {
+      "name": "centerpoemon",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "endpoem": {},
-    "endpoemgroup": {},
-    "hin": {},
-    "ifpoemlinenums": {},
-    "ifpoemrtlinenums": {},
-    "iofl{}": {
-      "snippet": "iofl{${1:entry}}"
+    {
+      "name": "endpoemgroup",
+      "unusual": true
     },
-    "listofpoems": {},
-    "loopcommand": {},
-    "lopname": {},
-    "placelineno": {},
-    "poem": {},
-    "poem*": {},
-    "poemauthorposthook": {},
-    "poemauthorprehook": {},
-    "poemauthorstyle": {},
-    "poemblankauthor": {},
-    "poemblanktitle": {},
-    "poembotskip": {},
-    "poemdefaultlicense": {},
-    "poemfirstline{}": {
-      "snippet": "poemfirstline{${1:entry}}"
+    {
+      "name": "hin"
     },
-    "poemgroup": {},
-    "poemgroupblankname": {},
-    "poemgroupheading{}{}": {
-      "snippet": "poemgroupheading{${1:title}}{${2:other}}"
+    {
+      "name": "iofl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:entry}}"
+      }
     },
-    "poemgrouplopformat": {},
-    "poemgroupname": {},
-    "poemgroupotherposthook": {},
-    "poemgroupotherprehook": {},
-    "poemgroupotherstyle": {},
-    "poemgrouptitleposthook": {},
-    "poemgrouptitleprehook": {},
-    "poemgrouptitlestyle": {},
-    "poemhangindent": {},
-    "poemhinwd": {},
-    "poemindent": {},
-    "poemioflname": {},
-    "poemlineno": {},
-    "poemlinenumboxgap": {},
-    "poemlinenumboxwd": {},
-    "poemlinenumright": {},
-    "poemlinenumrightfalse": {},
-    "poemlinenumrighttrue": {},
-    "poemlinenumsfalse": {},
-    "poemlinenumstrue": {},
-    "poemlinenumstyle": {},
-    "poemlopformat": {},
-    "poemmaxlinewd": {},
-    "poemnew": {},
-    "poemnumlines": {},
-    "poemrtlineno": {},
-    "poemrtlinenumboxgap": {},
-    "poemrtlinenumboxwd": {},
-    "poemrtlinenumsfalse": {},
-    "poemrtlinenumstrue": {},
-    "poemrtlinenumstyle": {},
-    "poemrtmaxlinewd": {},
-    "poemrtnumlines": {},
-    "poemtitleposthook": {},
-    "poemtitleprehook": {},
-    "poemtitlestyle": {},
-    "poemtopskip": {},
-    "poemverseskip": {},
-    "poemvsindentlines": {},
-    "printiofl": {},
-    "stanzano": {},
-    "theabspoemno": {},
-    "thepoemauthor": {},
-    "thepoemgroupname": {},
-    "thepoemgroupno": {},
-    "thepoemindentevery": {},
-    "thepoemlicense": {},
-    "thepoemline": {},
-    "thepoemlinenumsevery": {},
-    "thepoemno": {},
-    "thepoempubdate": {},
-    "thepoemrtline": {},
-    "thepoemrtlinenumsevery": {},
-    "thepoemtitle": {},
-    "thestanzacount": {},
-    "theverseline": {},
-    "titleauthorpoem{}{}": {
-      "snippet": "titleauthorpoem{${1:title}}{${2:author}}"
+    {
+      "name": "listofpoems"
     },
-    "titlepoem{}": {
-      "snippet": "titlepoem{${1:title}}"
+    {
+      "name": "lopname",
+      "unusual": true
     },
-    "tlap{}": {
-      "snippet": "tlap{${1:arg}}"
+    {
+      "name": "poem"
     },
-    "vslineno": {}
-  },
-  "envs": {
-    "poem": {},
-    "poem*": {
+    {
+      "name": "poem*"
+    },
+    {
+      "name": "poemauthorposthook",
+      "unusual": true
+    },
+    {
+      "name": "poemauthorprehook",
+      "unusual": true
+    },
+    {
+      "name": "poemauthorstyle"
+    },
+    {
+      "name": "poemblankauthor",
+      "unusual": true
+    },
+    {
+      "name": "poemblanktitle",
+      "unusual": true
+    },
+    {
+      "name": "poembotskip",
+      "unusual": true
+    },
+    {
+      "name": "poemdefaultlicense",
+      "unusual": true
+    },
+    {
+      "name": "poemfirstline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:entry}}"
+      }
+    },
+    {
+      "name": "poemgroup",
+      "unusual": true
+    },
+    {
+      "name": "poemgroupblankname",
+      "unusual": true
+    },
+    {
+      "name": "poemgroupheading",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:title%text}}{${2:other%text}}"
+      }
+    },
+    {
+      "name": "poemgrouplopformat",
+      "unusual": true
+    },
+    {
+      "name": "poemgroupotherposthook",
+      "unusual": true
+    },
+    {
+      "name": "poemgroupotherprehook",
+      "unusual": true
+    },
+    {
+      "name": "poemgroupotherstyle",
+      "unusual": true
+    },
+    {
+      "name": "poemgrouptitleposthook",
+      "unusual": true
+    },
+    {
+      "name": "poemgrouptitleprehook",
+      "unusual": true
+    },
+    {
+      "name": "poemgrouptitlestyle",
+      "unusual": true
+    },
+    {
+      "name": "poemhangindent",
+      "unusual": true
+    },
+    {
+      "name": "poemhinwd",
+      "unusual": true
+    },
+    {
+      "name": "poemindent",
+      "unusual": true
+    },
+    {
+      "name": "poemioflname",
+      "unusual": true
+    },
+    {
+      "name": "poemlinenumboxgap",
+      "unusual": true
+    },
+    {
+      "name": "poemlinenumboxwd",
+      "unusual": true
+    },
+    {
+      "name": "poemlinenumrightfalse"
+    },
+    {
+      "name": "poemlinenumrighttrue"
+    },
+    {
+      "name": "poemlinenumsfalse"
+    },
+    {
+      "name": "poemlinenumstrue"
+    },
+    {
+      "name": "poemlinenumstyle",
+      "unusual": true
+    },
+    {
+      "name": "poemlopformat",
+      "unusual": true
+    },
+    {
+      "name": "poemmaxlinewd",
+      "unusual": true
+    },
+    {
+      "name": "poemnew"
+    },
+    {
+      "name": "poemnumlines",
+      "unusual": true
+    },
+    {
+      "name": "poemrtlinenumboxgap",
+      "unusual": true
+    },
+    {
+      "name": "poemrtlinenumboxwd",
+      "unusual": true
+    },
+    {
+      "name": "poemrtlinenumsfalse"
+    },
+    {
+      "name": "poemrtlinenumstrue"
+    },
+    {
+      "name": "poemrtlinenumstyle",
+      "unusual": true
+    },
+    {
+      "name": "poemrtmaxlinewd",
+      "unusual": true
+    },
+    {
+      "name": "poemrtnumlines",
+      "unusual": true
+    },
+    {
+      "name": "poemtitleposthook",
+      "unusual": true
+    },
+    {
+      "name": "poemtitleprehook",
+      "unusual": true
+    },
+    {
+      "name": "poemtitlestyle"
+    },
+    {
+      "name": "poemtopskip",
+      "unusual": true
+    },
+    {
+      "name": "poemverseskip",
+      "unusual": true
+    },
+    {
+      "name": "poemvsindentlines",
+      "unusual": true
+    },
+    {
+      "name": "printiofl"
+    },
+    {
+      "name": "theabspoemno",
+      "unusual": true
+    },
+    {
+      "name": "thepoemauthor",
+      "unusual": true
+    },
+    {
+      "name": "thepoemgroupname",
+      "unusual": true
+    },
+    {
+      "name": "thepoemgroupno",
+      "unusual": true
+    },
+    {
+      "name": "thepoemindentevery",
+      "unusual": true
+    },
+    {
+      "name": "thepoemlicense",
+      "unusual": true
+    },
+    {
+      "name": "thepoemline",
+      "unusual": true
+    },
+    {
+      "name": "thepoemlinenumsevery",
+      "unusual": true
+    },
+    {
+      "name": "thepoemno",
+      "unusual": true
+    },
+    {
+      "name": "thepoempubdate",
+      "unusual": true
+    },
+    {
+      "name": "thepoemrtline",
+      "unusual": true
+    },
+    {
+      "name": "thepoemrtlinenumsevery",
+      "unusual": true
+    },
+    {
+      "name": "thepoemtitle",
+      "unusual": true
+    },
+    {
+      "name": "thestanzacount",
+      "unusual": true
+    },
+    {
+      "name": "theverseline",
+      "unusual": true
+    },
+    {
+      "name": "titleauthorpoem",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:title%text}}{${2:author}}"
+      }
+    },
+    {
+      "name": "titlepoem",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "poem"
+    },
+    {
       "name": "poem",
-      "snippet": "*"
+      "arg": {
+        "format": "*",
+        "snippet": "*"
+      }
     },
-    "poemgroup": {}
-  },
-  "options": [],
-  "keyvals": []
+    {
+      "name": "poemgroup"
+    }
+  ],
+  "keys": {},
+  "args": []
 }

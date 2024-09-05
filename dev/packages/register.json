@@ -1,135 +1,358 @@
 {
-  "includes": {
-    "calc": [],
-    "float": [],
-    "graphicx": [],
-    "ifthen": [],
-    "xcolor": []
-  },
-  "macros": {
-    "listofregisters": {},
-    "regfield{}{}{}{}": {
-      "snippet": "regfield{${1:name}}{${2:length}}{${3:start bit}}{${4:reset value}}"
+  "deps": [
+    {
+      "name": "calc"
     },
-    "regfieldb{}{}{}": {
-      "snippet": "regfieldb{${1:name}}{${2:length}}{${3:start bit}}"
+    {
+      "name": "float"
     },
-    "regbits{}{}{}": {
-      "snippet": "regbits{${1:name}}{${2:length}}{${3:reset value}}"
+    {
+      "name": "graphicx"
     },
-    "regnewline": {},
-    "reglabel{}": {
-      "snippet": "reglabel{${1:reset label}}"
+    {
+      "name": "ifthen"
     },
-    "reglabelb{}": {
-      "snippet": "reglabelb{${1:reset label}}"
-    },
-    "TR{}": {
-      "snippet": "TR{${1:flag}}"
-    },
-    "GetTRPageRef{}": {
-      "snippet": "GetTRPageRef{${1:key}}"
-    },
-    "TRfamily": {},
-    "TRleftlabel{}": {
-      "snippet": "TRleftlabel{${1:label}}"
-    },
-    "TRrightlabel{}": {
-      "snippet": "TRrightlabel{${1:label}}"
-    },
-    "TRwidth": {},
-    "TRwriteout{}": {
-      "snippet": "TRwriteout{${1:text}}"
-    },
-    "aux": {},
-    "oldregdescsep": {},
-    "regBitFamily": {},
-    "regBitSize": {},
-    "regBitWidth": {},
-    "regDescFamily": {},
-    "regDescSkip": {},
-    "regFboxSep": {},
-    "regFieldLen": {},
-    "regFiller{}": {
-      "snippet": "regFiller{${1:arg}}"
-    },
-    "regFloatName": {},
-    "regLabelAdjust": {},
-    "regLabelFamily": {},
-    "regLabelSize": {},
-    "regListName": {},
-    "regMakeFieldName{}": {
-      "snippet": "regMakeFieldName{${1:name}}"
-    },
-    "regResetDepth": {},
-    "regResetDrop": {},
-    "regResetHeight": {},
-    "regResetName": {},
-    "regResetSize": {},
-    "regRotateFieldName": {},
-    "regRsvdDrop": {},
-    "regRsvdHeight": {},
-    "regSpreadaux{}{}": {
-      "snippet": "regSpreadaux{${1:arg1}}{${2:arg2}}"
-    },
-    "regSpread{}": {
-      "snippet": "regSpread{${1:arg}}"
-    },
-    "regUnderScore": {},
-    "regWidth": {},
-    "regdescsep": {},
-    "regfieldColor": {},
-    "regfieldColor{}{}{}{}{}": {
-      "snippet": "regfieldColor{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
-    },
-    "regfieldNoColor{}{}{}{}": {
-      "snippet": "regfieldNoColor{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "regfieldbColor{}{}{}{}": {
-      "snippet": "regfieldbColor{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "regfieldbNoColor{}{}{}": {
-      "snippet": "regfieldbNoColor{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "regspace{}": {
-      "snippet": "regspace{${1:bit width}}"
-    },
-    "setRegLengths": {},
-    "thelowerbit": {},
-    "theupperbit": {},
-    "typesetRegBits{}": {
-      "snippet": "typesetRegBits{${1:arg1}}"
-    },
-    "typesetRegColorBits{}{}": {
-      "snippet": "typesetRegColorBits{${1:arg1}}{${2:arg2}}"
-    },
-    "typesetRegColorReset{}{}": {
-      "snippet": "typesetRegColorReset{${1:arg1}}{${2:arg2}}"
-    },
-    "typesetRegReset{}": {
-      "snippet": "typesetRegReset{${1:arg1}}"
+    {
+      "name": "xcolor"
     }
-  },
-  "envs": {
-    "register{}{}{}": {
-      "name": "register",
-      "snippet": "{${1:placement}}{${2:name}}{${3:register offset}}"
-    },
-    "register*{}{}{}": {
-      "name": "register*",
-      "snippet": "{${1:placement}}{${2:name}}{${3:register offset}}"
-    },
-    "regdesc": {},
-    "reglist": {}
-  },
-  "options": [
-    "LyX",
-    "hyperref",
-    "TRflags",
-    "TRboxed",
-    "color",
-    "botcaption",
-    "nocaption"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "listofregisters"
+    },
+    {
+      "name": "regfield",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:name}}{${2:length%plain}}{${3:start bit}}{${4:reset value}}"
+      }
+    },
+    {
+      "name": "regfieldb",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:length%plain}}{${3:start bit}}"
+      }
+    },
+    {
+      "name": "regbits",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:length%plain}}{${3:reset value}}"
+      }
+    },
+    {
+      "name": "regnewline"
+    },
+    {
+      "name": "reglabel",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:reset label}}"
+      }
+    },
+    {
+      "name": "reglabelb",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:reset label}}"
+      }
+    },
+    {
+      "name": "TR",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:flag}}"
+      }
+    },
+    {
+      "name": "GetTRPageRef",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:key}}"
+      }
+    },
+    {
+      "name": "TRfamily",
+      "unusual": true
+    },
+    {
+      "name": "TRleftlabel",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "TRrightlabel",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "TRwidth",
+      "unusual": true
+    },
+    {
+      "name": "TRwriteout",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "regBitFamily",
+      "unusual": true
+    },
+    {
+      "name": "regBitSize",
+      "unusual": true
+    },
+    {
+      "name": "regBitWidth",
+      "unusual": true
+    },
+    {
+      "name": "regDescFamily",
+      "unusual": true
+    },
+    {
+      "name": "regDescSkip",
+      "unusual": true
+    },
+    {
+      "name": "regFboxSep",
+      "unusual": true
+    },
+    {
+      "name": "regFieldLen",
+      "unusual": true
+    },
+    {
+      "name": "regFiller",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "regFloatName",
+      "unusual": true
+    },
+    {
+      "name": "regLabelAdjust",
+      "unusual": true
+    },
+    {
+      "name": "regLabelFamily",
+      "unusual": true
+    },
+    {
+      "name": "regLabelSize",
+      "unusual": true
+    },
+    {
+      "name": "regListName",
+      "unusual": true
+    },
+    {
+      "name": "regMakeFieldName",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "regResetDepth",
+      "unusual": true
+    },
+    {
+      "name": "regResetDrop",
+      "unusual": true
+    },
+    {
+      "name": "regResetHeight",
+      "unusual": true
+    },
+    {
+      "name": "regResetName",
+      "unusual": true
+    },
+    {
+      "name": "regResetSize",
+      "unusual": true
+    },
+    {
+      "name": "regRotateFieldName",
+      "unusual": true
+    },
+    {
+      "name": "regRsvdDrop",
+      "unusual": true
+    },
+    {
+      "name": "regRsvdHeight",
+      "unusual": true
+    },
+    {
+      "name": "regSpreadaux",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "regSpread",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "regUnderScore",
+      "unusual": true
+    },
+    {
+      "name": "regWidth",
+      "unusual": true
+    },
+    {
+      "name": "regdescsep",
+      "unusual": true
+    },
+    {
+      "name": "regfieldColor",
+      "unusual": true
+    },
+    {
+      "name": "regfieldColor",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
+      }
+    },
+    {
+      "name": "regfieldNoColor",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+      }
+    },
+    {
+      "name": "regfieldbColor",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+      }
+    },
+    {
+      "name": "regfieldbNoColor",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "regspace",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bit width}}"
+      }
+    },
+    {
+      "name": "setRegLengths",
+      "unusual": true
+    },
+    {
+      "name": "thelowerbit",
+      "unusual": true
+    },
+    {
+      "name": "theupperbit",
+      "unusual": true
+    },
+    {
+      "name": "typesetRegBits",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    },
+    {
+      "name": "typesetRegColorBits",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "typesetRegColorReset",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "typesetRegReset",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "register",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:placement}}{${2:name}}{${3:register offset}}"
+      }
+    },
+    {
+      "name": "register*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:placement}}{${2:name}}{${3:register offset}}"
+      }
+    },
+    {
+      "name": "regdesc"
+    },
+    {
+      "name": "reglist"
+    }
+  ],
+  "keys": {
+    "\\usepackage/register#c": [
+      "LyX\r",
+      "hyperref\r",
+      "TRflags\r",
+      "TRboxed\r",
+      "color\r",
+      "botcaption\r",
+      "nocaption\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/register#c"
+  ]
 }

@@ -1,48 +1,104 @@
 {
-  "includes": {
-    "l3keys2e": [],
-    "class-leaflet": [],
-    "scrextend": [],
-    "scrlayer": [],
-    "tudarules": [],
-    "tudafonts": []
-  },
-  "macros": {
-    "sectionlinesformat{}": {
-      "snippet": "sectionlinesformat{${1:text}}"
+  "deps": [
+    {
+      "name": "l3keys2e"
     },
-    "raggedtitle": {},
-    "AddSponsor{}": {
-      "snippet": "AddSponsor{${1:logo}}"
+    {
+      "name": "class-leaflet"
     },
-    "sponsors{}": {
-      "snippet": "sponsors{${1:logo code}}"
+    {
+      "name": "scrextend"
     },
-    "footergraphics{}": {
-      "snippet": "footergraphics{${1:graphics code}}"
+    {
+      "name": "scrlayer"
     },
-    "titleimage{}": {
-      "snippet": "titleimage{${1:graphics code}}"
+    {
+      "name": "tudarules"
     },
-    "addTitleBox{}": {
-      "snippet": "addTitleBox{${1:text}}"
-    },
-    "addTitleBoxLogo{}": {
-      "snippet": "addTitleBoxLogo{${1:graphics code}}"
-    },
-    "insertSponsors": {}
-  },
-  "envs": {},
-  "options": [
-    "color=",
-    "accentcolor=",
-    "textaccentcolor=",
-    "identbarcolor=",
-    "logofile=${1:Dateipfad}",
-    "colorback",
-    "colorbacktitle",
-    "colorbacksubtitle",
-    "sponsor=${1|title,lastfoot,manual|}"
+    {
+      "name": "tudafonts"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "sectionlinesformat",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "raggedtitle"
+    },
+    {
+      "name": "AddSponsor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:logo}}"
+      }
+    },
+    {
+      "name": "sponsors",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:logo code}}"
+      }
+    },
+    {
+      "name": "footergraphics",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:graphics code}}"
+      }
+    },
+    {
+      "name": "titleimage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:graphics code}}"
+      }
+    },
+    {
+      "name": "addTitleBox",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "addTitleBoxLogo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "addTitleBoxLogo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:graphics code}}"
+      }
+    },
+    {
+      "name": "insertSponsors"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\documentclass/tudaleaflet#c": [
+      "color=",
+      "accentcolor=",
+      "textaccentcolor=",
+      "identbarcolor=",
+      "logofile=${1:Dateipfad}\r",
+      "colorback",
+      "colorbacktitle",
+      "colorbacksubtitle",
+      "sponsor=${1|title,lastfoot,manual\r|}"
+    ]
+  },
+  "args": [
+    "\\documentclass/tudaleaflet#c"
+  ]
 }

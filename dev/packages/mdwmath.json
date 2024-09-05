@@ -1,25 +1,58 @@
 {
-  "includes": {},
-  "macros": {
-    "sqrt*{}": {
-      "snippet": "sqrt*{${1:arg}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "sqrt*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
     },
-    "sqrt*[]{}": {
-      "snippet": "sqrt*[${2:root}]{${1:arg}}"
+    {
+      "name": "sqrt*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:root}]{${1:arg}}"
+      }
     },
-    "sqrtdel{}": {
-      "snippet": "sqrtdel{${1:arg}}"
+    {
+      "name": "sqrtdel",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
     },
-    "bitand": {},
-    "bitor": {},
-    "dblor": {},
-    "dbland": {},
-    "bbigg": {},
-    "bbiggl": {},
-    "bbiggr": {},
-    "bbiggm": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "bitand"
+    },
+    {
+      "name": "bitor"
+    },
+    {
+      "name": "dblor"
+    },
+    {
+      "name": "dbland"
+    },
+    {
+      "name": "bbigg",
+      "unusual": true
+    },
+    {
+      "name": "bbiggl",
+      "unusual": true
+    },
+    {
+      "name": "bbiggr",
+      "unusual": true
+    },
+    {
+      "name": "bbiggm",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

@@ -1,142 +1,364 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "xpatch": []
-  },
-  "macros": {
-    "tocdataformat{}": {
-      "snippet": "tocdataformat{${1:text}}"
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "tocdata{}{}": {
-      "snippet": "tocdata{${1:list extension}}{${2:text}}"
+    {
+      "name": "xpatch"
+    }
+  ],
+  "macros": [
+    {
+      "name": "tocdataformat",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "partauthor{}{}{}": {
-      "snippet": "partauthor{${1:title}}{${2:first}}{${3:last}}"
+    {
+      "name": "tocdata",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:list extension}}{${2:text}}"
+      }
     },
-    "partauthor[]{}{}{}": {
-      "snippet": "partauthor[${4:list entry}]{${1:title}}{${2:first}}{${3:last}}"
+    {
+      "name": "partauthor",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:title}}{${2:first}}{${3:last}}"
+      }
     },
-    "partauthor[]{}[]{}{}[]": {
-      "snippet": "partauthor[${4:list entry}]{${1:title}}[${5:prefix}]{${2:first}}{${3:last}}[${6:suffix}]"
+    {
+      "name": "partauthor",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:list entry}]{${1:title}}{${2:first}}{${3:last}}"
+      }
     },
-    "chapterauthor{}{}{}": {
-      "snippet": "chapterauthor{${1:title}}{${2:first}}{${3:last}}"
+    {
+      "name": "partauthor",
+      "arg": {
+        "format": "[]{}[]{}{}[]",
+        "snippet": "[${4:list entry}]{${1:title}}[${5:prefix}]{${2:first}}{${3:last}}[${6:suffix}]"
+      }
     },
-    "chapterauthor[]{}{}{}": {
-      "snippet": "chapterauthor[${4:list entry}]{${1:title}}{${2:first}}{${3:last}}"
+    {
+      "name": "chapterauthor",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:title}}{${2:first}}{${3:last}}"
+      }
     },
-    "chapterauthor[]{}[]{}{}[]": {
-      "snippet": "chapterauthor[${4:list entry}]{${1:title}}[${5:prefix}]{${2:first}}{${3:last}}[${6:suffix}]"
+    {
+      "name": "chapterauthor",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:list entry}]{${1:title}}{${2:first}}{${3:last}}"
+      }
     },
-    "sectionauthor{}{}{}": {
-      "snippet": "sectionauthor{${1:title}}{${2:first}}{${3:last}}"
+    {
+      "name": "chapterauthor",
+      "arg": {
+        "format": "[]{}[]{}{}[]",
+        "snippet": "[${4:list entry}]{${1:title}}[${5:prefix}]{${2:first}}{${3:last}}[${6:suffix}]"
+      }
     },
-    "sectionauthor[]{}{}{}": {
-      "snippet": "sectionauthor[${4:list entry}]{${1:title}}{${2:first}}{${3:last}}"
+    {
+      "name": "sectionauthor",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:title}}{${2:first}}{${3:last}}"
+      }
     },
-    "sectionauthor[]{}[]{}{}[]": {
-      "snippet": "sectionauthor[${4:list entry}]{${1:title}}[${5:prefix}]{${2:first}}{${3:last}}[${6:suffix}]"
+    {
+      "name": "sectionauthor",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:list entry}]{${1:title}}{${2:first}}{${3:last}}"
+      }
     },
-    "subsectionauthor{}{}{}": {
-      "snippet": "subsectionauthor{${1:title}}{${2:first}}{${3:last}}"
+    {
+      "name": "sectionauthor",
+      "arg": {
+        "format": "[]{}[]{}{}[]",
+        "snippet": "[${4:list entry}]{${1:title}}[${5:prefix}]{${2:first}}{${3:last}}[${6:suffix}]"
+      }
     },
-    "subsectionauthor[]{}{}{}": {
-      "snippet": "subsectionauthor[${4:list entry}]{${1:title}}{${2:first}}{${3:last}}"
+    {
+      "name": "subsectionauthor",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:title}}{${2:first}}{${3:last}}"
+      }
     },
-    "subsectionauthor[]{}[]{}{}[]": {
-      "snippet": "subsectionauthor[${4:list entry}]{${1:title}}[${5:prefix}]{${2:first}}{${3:last}}[${6:suffix}]"
+    {
+      "name": "subsectionauthor",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:list entry}]{${1:title}}{${2:first}}{${3:last}}"
+      }
     },
-    "captionartist{}{}{}": {
-      "snippet": "captionartist{${1:title}}{${2:first}}{${3:last}}"
+    {
+      "name": "subsectionauthor",
+      "arg": {
+        "format": "[]{}[]{}{}[]",
+        "snippet": "[${4:list entry}]{${1:title}}[${5:prefix}]{${2:first}}{${3:last}}[${6:suffix}]"
+      }
     },
-    "captionartist[]{}{}{}": {
-      "snippet": "captionartist[${4:list entry}]{${1:title}}{${2:first}}{${3:last}}"
+    {
+      "name": "captionartist",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:title%text}}{${2:first}}{${3:last}}"
+      }
     },
-    "captionartist[]{}[]{}{}[]": {
-      "snippet": "captionartist[${4:list entry}]{${1:title}}[${5:prefix}]{${2:first}}{${3:last}}[${6:suffix}]"
+    {
+      "name": "captionartist",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:list entry}]{${1:title%text}}{${2:first}}{${3:last}}"
+      }
     },
-    "captionauthor{}{}{}": {
-      "snippet": "captionauthor{${1:title}}{${2:first}}{${3:last}}"
+    {
+      "name": "captionartist",
+      "arg": {
+        "format": "[]{}[]{}{}[]",
+        "snippet": "[${4:list entry}]{${1:title%text}}[${5:prefix}]{${2:first}}{${3:last}}[${6:suffix}]"
+      }
     },
-    "captionauthor[]{}{}{}": {
-      "snippet": "captionauthor[${4:list entry}]{${1:title}}{${2:first}}{${3:last}}"
+    {
+      "name": "captionauthor",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:title%text}}{${2:first}}{${3:last}}"
+      }
     },
-    "captionauthor[]{}[]{}{}[]": {
-      "snippet": "captionauthor[${4:list entry}]{${1:title}}[${5:prefix}]{${2:first}}{${3:last}}[${6:suffix}]"
+    {
+      "name": "captionauthor",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:list entry}]{${1:title%text}}{${2:first}}{${3:last}}"
+      }
     },
-    "captionartist*{}{}{}": {
-      "snippet": "captionartist*{${1:title}}{${2:first}}{${3:last}}"
+    {
+      "name": "captionauthor",
+      "arg": {
+        "format": "[]{}[]{}{}[]",
+        "snippet": "[${4:list entry}]{${1:title%text}}[${5:prefix}]{${2:first}}{${3:last}}[${6:suffix}]"
+      }
     },
-    "captionartist*[]{}{}{}": {
-      "snippet": "captionartist*[${4:list entry}]{${1:title}}{${2:first}}{${3:last}}"
+    {
+      "name": "captionartist*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:title%text}}{${2:first}}{${3:last}}"
+      }
     },
-    "captionartist*[]{}[]{}{}[]": {
-      "snippet": "captionartist*[${4:list entry}]{${1:title}}[${5:prefix}]{${2:first}}{${3:last}}[${6:suffix}]"
+    {
+      "name": "captionartist*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:list entry}]{${1:title%text}}{${2:first}}{${3:last}}"
+      }
     },
-    "captionauthor*{}{}{}": {
-      "snippet": "captionauthor*{${1:title}}{${2:first}}{${3:last}}"
+    {
+      "name": "captionartist*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]{}{}[]",
+        "snippet": "[${4:list entry}]{${1:title%text}}[${5:prefix}]{${2:first}}{${3:last}}[${6:suffix}]"
+      }
     },
-    "captionauthor*[]{}{}{}": {
-      "snippet": "captionauthor*[${4:list entry}]{${1:title}}{${2:first}}{${3:last}}"
+    {
+      "name": "captionauthor*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:title%text}}{${2:first}}{${3:last}}"
+      }
     },
-    "captionauthor*[]{}[]{}{}[]": {
-      "snippet": "captionauthor*[${4:list entry}]{${1:title}}[${5:prefix}]{${2:first}}{${3:last}}[${6:suffix}]"
+    {
+      "name": "captionauthor*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:list entry}]{${1:title%text}}{${2:first}}{${3:last}}"
+      }
     },
-    "tocdatapartprint{}{}{}{}": {
-      "snippet": "tocdatapartprint{${1:prefix}}{${2:first}}{${3:last}}{${4:suffix}}"
+    {
+      "name": "captionauthor*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]{}{}[]",
+        "snippet": "[${4:list entry}]{${1:title%text}}[${5:prefix}]{${2:first}}{${3:last}}[${6:suffix}]"
+      }
     },
-    "tocdatachapterprint{}{}{}{}": {
-      "snippet": "tocdatachapterprint{${1:prefix}}{${2:first}}{${3:last}}{${4:suffix}}"
+    {
+      "name": "tocdatapartprint",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:prefix}}{${2:first}}{${3:last}}{${4:suffix}}"
+      }
     },
-    "tocdatasectionprint{}{}{}{}": {
-      "snippet": "tocdatasectionprint{${1:prefix}}{${2:first}}{${3:last}}{${4:suffix}}"
+    {
+      "name": "tocdatachapterprint",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:prefix}}{${2:first}}{${3:last}}{${4:suffix}}"
+      }
     },
-    "tocdatasubsectionprint{}{}{}{}": {
-      "snippet": "tocdatasubsectionprint{${1:prefix}}{${2:first}}{${3:last}}{${4:suffix}}"
+    {
+      "name": "tocdatasectionprint",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:prefix}}{${2:first}}{${3:last}}{${4:suffix}}"
+      }
     },
-    "tocdataartistprint{}{}{}{}": {
-      "snippet": "tocdataartistprint{${1:prefix}}{${2:first}}{${3:last}}{${4:suffix}}"
+    {
+      "name": "tocdatasubsectionprint",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:prefix}}{${2:first}}{${3:last}}{${4:suffix}}"
+      }
     },
-    "tocdataartisttextprint{}": {
-      "snippet": "tocdataartisttextprint{${1:text}}"
+    {
+      "name": "tocdataartistprint",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:prefix}}{${2:first}}{${3:last}}{${4:suffix}}"
+      }
     },
-    "tocdataauthorprint{}{}{}{}": {
-      "snippet": "tocdataauthorprint{${1:prefix}}{${2:first}}{${3:last}}{${4:suffix}}"
+    {
+      "name": "tocdataartisttextprint",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "tocdataauthortextprint{}": {
-      "snippet": "tocdataauthortextprint{${1:text}}"
+    {
+      "name": "tocdataauthorprint",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:prefix}}{${2:first}}{${3:last}}{${4:suffix}}"
+      }
     },
-    "tdartistjustify": {},
-    "tdartistcenter": {},
-    "tdartistleft": {},
-    "tdartistright": {},
-    "tdartisttextjustify": {},
-    "tdartisttextcenter": {},
-    "tdartisttextleft": {},
-    "tdartisttextright": {},
-    "tdauthorjustify": {},
-    "tdauthorcenter": {},
-    "tdauthorleft": {},
-    "tdauthorright": {},
-    "tdauthortextjustify": {},
-    "tdauthortextcenter": {},
-    "tdauthortextleft": {},
-    "tdauthortextright": {},
-    "settocdata{}": {
-      "snippet": "settocdata{${1:text}}"
+    {
+      "name": "tocdataauthortextprint",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "TDoptionalnameprint{}": {
-      "snippet": "TDoptionalnameprint{${1:name}}"
+    {
+      "name": "tdartistjustify",
+      "unusual": true
     },
-    "TDartistauthorprint{}{}{}{}{}": {
-      "snippet": "TDartistauthorprint{${1:author}}{${2:prefix}}{${3:first}}{${4:last}}{${5:suffix}}"
+    {
+      "name": "tdartistcenter",
+      "unusual": true
     },
-    "TDartistauthortextprint{}{}": {
-      "snippet": "TDartistauthortextprint{${1:author}}{${2:text}}"
+    {
+      "name": "tdartistleft",
+      "unusual": true
     },
-    "tocdatafont": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "tdartistright",
+      "unusual": true
+    },
+    {
+      "name": "tdartisttextjustify",
+      "unusual": true
+    },
+    {
+      "name": "tdartisttextcenter",
+      "unusual": true
+    },
+    {
+      "name": "tdartisttextleft",
+      "unusual": true
+    },
+    {
+      "name": "tdartisttextright",
+      "unusual": true
+    },
+    {
+      "name": "tdauthorjustify",
+      "unusual": true
+    },
+    {
+      "name": "tdauthorcenter",
+      "unusual": true
+    },
+    {
+      "name": "tdauthorleft",
+      "unusual": true
+    },
+    {
+      "name": "tdauthorright",
+      "unusual": true
+    },
+    {
+      "name": "tdauthortextjustify",
+      "unusual": true
+    },
+    {
+      "name": "tdauthortextcenter",
+      "unusual": true
+    },
+    {
+      "name": "tdauthortextleft",
+      "unusual": true
+    },
+    {
+      "name": "tdauthortextright",
+      "unusual": true
+    },
+    {
+      "name": "settocdata",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "TDoptionalnameprint",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "TDartistauthorprint",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:author}}{${2:prefix}}{${3:first}}{${4:last}}{${5:suffix}}"
+      }
+    },
+    {
+      "name": "TDartistauthortextprint",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:author}}{${2:text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

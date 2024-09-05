@@ -1,89 +1,140 @@
 {
-  "includes": {
-    "class-mwbk": [],
-    "titletoc": [],
-    "ifxetex": [],
-    "inputenc": [],
-    "hyperref": [],
-    "graphicx": [],
-    "booktabs": [],
-    "adjustbox": [],
-    "afterpage": [],
-    "placeins": [],
-    "changepage": []
-  },
-  "macros": {
-    "fancytoc": {},
-    "traditionaltoc": {},
-    "coloredheadline{}": {
-      "snippet": "coloredheadline{${1:color}}"
+  "deps": [
+    {
+      "name": "class-mwbk"
     },
-    "coloredfootline{}": {
-      "snippet": "coloredfootline{${1:color}}"
+    {
+      "name": "titletoc"
     },
-    "twopagepicture{}{}{}{}": {
-      "snippet": "twopagepicture{${1:placement}}{${2:l or p}}{${3:imagefile}}{${4:caption}}"
+    {
+      "name": "ifxetex"
     },
-    "twopagepicturen{}{}{}{}": {
-      "snippet": "twopagepicturen{${1:placement}}{${2:l or p}}{${3:imagefile}}{${4:caption}}"
+    {
+      "name": "inputenc"
     },
-    "mywidth": {},
-    "oldfootnote{}": {
-      "snippet": "oldfootnote{${1:text}}"
+    {
+      "name": "hyperref"
+    },
+    {
+      "name": "graphicx"
+    },
+    {
+      "name": "booktabs"
+    },
+    {
+      "name": "adjustbox"
+    },
+    {
+      "name": "afterpage"
+    },
+    {
+      "name": "placeins"
+    },
+    {
+      "name": "changepage"
     }
-  },
-  "envs": {},
-  "options": [
-    "chapterrule",
-    "sectionrule",
-    "chaptercentered",
-    "chapterleft",
-    "chapterright",
-    "nochaptercentered",
-    "nochapterleft",
-    "nochapterright",
-    "sansserifnotes",
-    "nodots",
-    "nofootnoterule",
-    "traditionalfootnote",
-    "a4paper",
-    "a5paper",
-    "a6paper",
-    "b4paper",
-    "b5paper",
-    "b6paper",
-    "letterpaper",
-    "legalpaper",
-    "executivepaper",
-    "landscape",
-    "wide",
-    "withmarginpar",
-    "withoutmarginpar",
-    "10pt",
-    "10dd",
-    "11pt",
-    "12pt",
-    "oneside",
-    "twoside",
-    "draft",
-    "final",
-    "titlepage",
-    "notitlepage",
-    "openright",
-    "openany",
-    "onecolumn",
-    "twocolumn",
-    "leqno",
-    "fleqn",
-    "openbib",
-    "rmheadings",
-    "sfheadings",
-    "floatssmall",
-    "floatsnormalsize",
-    "authortitle",
-    "titleauthor",
-    "indentfirst",
-    "noindentfirst"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "fancytoc"
+    },
+    {
+      "name": "traditionaltoc"
+    },
+    {
+      "name": "coloredheadline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "coloredfootline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "twopagepicture",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:placement}}{${2:l or p}}{${3:imagefile}}{${4:caption%text}}"
+      }
+    },
+    {
+      "name": "twopagepicturen",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:placement}}{${2:l or p}}{${3:imagefile}}{${4:caption%text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\documentclass/ycbook#c": [
+      "chapterrule\r",
+      "sectionrule\r",
+      "chaptercentered\r",
+      "chapterleft\r",
+      "chapterright\r",
+      "nochaptercentered\r",
+      "nochapterleft\r",
+      "nochapterright\r",
+      "sansserifnotes\r",
+      "nodots\r",
+      "nofootnoterule\r",
+      "traditionalfootnote\r",
+      "a4paper\r",
+      "a5paper\r",
+      "a6paper\r",
+      "b4paper\r",
+      "b5paper\r",
+      "b6paper\r",
+      "letterpaper\r",
+      "legalpaper\r",
+      "executivepaper\r",
+      "landscape\r",
+      "wide\r",
+      "withmarginpar\r",
+      "withoutmarginpar\r",
+      "10pt\r",
+      "10dd\r",
+      "11pt\r",
+      "12pt\r",
+      "oneside\r",
+      "twoside\r",
+      "draft\r",
+      "final\r",
+      "titlepage\r",
+      "notitlepage\r",
+      "openright\r",
+      "openany\r",
+      "onecolumn\r",
+      "twocolumn\r",
+      "leqno\r",
+      "fleqn\r",
+      "openbib\r",
+      "rmheadings\r",
+      "sfheadings\r",
+      "floatssmall\r",
+      "floatsnormalsize\r",
+      "authortitle\r",
+      "titleauthor\r",
+      "indentfirst\r",
+      "noindentfirst\r"
+    ],
+    "\\pagestyle#c,\\thispagestyle#c": [
+      "headingsbeforeplain\r",
+      "myheadingsbeforeplain\r",
+      "uheadings\r",
+      "myuheadings\r",
+      "headingsnodot\r",
+      "uheadingsnodot\r",
+      "headingsbeforeplainnodot\r"
+    ]
+  },
+  "args": [
+    "\\documentclass/ycbook#c"
+  ]
 }

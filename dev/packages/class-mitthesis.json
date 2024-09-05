@@ -1,151 +1,313 @@
 {
-  "includes": {
-    "class-report": [],
-    "etoolbox": [],
-    "iftex": [],
-    "geometry": [],
-    "mathtools": [],
-    "graphicx": [],
-    "hyperref": [],
-    "doi": [],
-    "bm": [],
-    "unicode-math": [],
-    "pdfmanagement-testphase": [],
-    "FiraSans": [
-      "fontset=fira-newtxsf"
-    ],
-    "zi4": [
-      "fontset=fira-newtxsf"
-    ],
-    "newtxsf": [
-      "fontset=fira-newtxsf"
-    ],
-    "newtx": [
-      "fontset=newtx",
-      "fontset=newtx-sans-text"
-    ],
-    "inconsolata": [
-      "fontset=newtx",
-      "fontset=libertine"
-    ],
-    "libertine": [
-      "fontset=libertine"
-    ],
-    "newtxmath": [
-      "fontset=libertine"
-    ],
-    "lineno": [
-      "lineno"
-    ],
-    "xcolor": [
-      "mydesign"
-    ],
-    "caption": [
-      "mydesign"
-    ],
-    "subcaption": [
-      "mydesign"
-    ],
-    "titlesec": [
-      "mydesign"
+  "deps": [
+    {
+      "name": "class-report"
+    },
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "iftex"
+    },
+    {
+      "name": "geometry"
+    },
+    {
+      "name": "mathtools"
+    },
+    {
+      "name": "graphicx"
+    },
+    {
+      "name": "hyperref"
+    },
+    {
+      "name": "doi"
+    },
+    {
+      "name": "bm"
+    },
+    {
+      "name": "unicode-math"
+    },
+    {
+      "name": "pdfmanagement-testphase"
+    },
+    {
+      "name": "FiraSans",
+      "if": "fontset=fira-newtxsf"
+    },
+    {
+      "name": "zi4",
+      "if": "fontset=fira-newtxsf"
+    },
+    {
+      "name": "newtxsf",
+      "if": "fontset=fira-newtxsf"
+    },
+    {
+      "name": "newtx",
+      "if": "fontset=newtx"
+    },
+    {
+      "name": "inconsolata",
+      "if": "fontset=newtx"
+    },
+    {
+      "name": "newtx",
+      "if": "fontset=newtx-sans-text"
+    },
+    {
+      "name": "libertine",
+      "if": "fontset=libertine"
+    },
+    {
+      "name": "inconsolata",
+      "if": "fontset=libertine"
+    },
+    {
+      "name": "newtxmath",
+      "if": "fontset=libertine"
+    },
+    {
+      "name": "lineno",
+      "if": "lineno"
+    },
+    {
+      "name": "xcolor",
+      "if": "mydesign"
+    },
+    {
+      "name": "caption",
+      "if": "mydesign"
+    },
+    {
+      "name": "subcaption",
+      "if": "mydesign"
+    },
+    {
+      "name": "titlesec",
+      "if": "mydesign"
+    }
+  ],
+  "macros": [
+    {
+      "name": "Author",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:full name}}{${2:department}}"
+      }
+    },
+    {
+      "name": "Degree",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:degree name}}{${2:department}}"
+      }
+    },
+    {
+      "name": "DegreeYear"
+    },
+    {
+      "name": "DegreeMonth"
+    },
+    {
+      "name": "CopyrightAuthor"
+    },
+    {
+      "name": "Supervisor",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:department}}"
+      }
+    },
+    {
+      "name": "Acceptor",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:title%text}}{${3:thesis-related position}}"
+      }
+    },
+    {
+      "name": "DegreeDate",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:month}}{${2:year}}"
+      }
+    },
+    {
+      "name": "ThesisDate",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:date}}"
+      }
+    },
+    {
+      "name": "Tighten"
+    },
+    {
+      "name": "SignatureBlockSize",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:fontsize cmd}}"
+      }
+    },
+    {
+      "name": "AuthorNameSize",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:fontsize cmd}}"
+      }
+    },
+    {
+      "name": "Squash"
+    },
+    {
+      "name": "CClicense",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:license type}}{${2:URL}}"
+      }
+    },
+    {
+      "name": "Institution",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:institution}}"
+      }
+    },
+    {
+      "name": "SupervisorDesignation",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
+    },
+    {
+      "name": "PDFRightsText",
+      "unusual": true
+    },
+    {
+      "name": "SuppressMonthError",
+      "unusual": true
+    },
+    {
+      "name": "SuppressAcceptorError",
+      "unusual": true
+    },
+    {
+      "name": "EntryHeading",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "entry",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:symbol}}{${2:description%text}}"
+      }
+    },
+    {
+      "name": "maketitle*"
+    },
+    {
+      "name": "FRAC",
+      "if": "fontset=libertine",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:a/b}}"
+      }
+    },
+    {
+      "name": "LucidaBlackletter",
+      "if": "fontset=lucida"
+    },
+    {
+      "name": "LucidaCalligraphy",
+      "if": "fontset=lucida"
+    },
+    {
+      "name": "LucidaHandwriting",
+      "if": "fontset=lucida"
+    },
+    {
+      "name": "LucidaGrandeMonoDK",
+      "if": "fontset=lucida"
+    },
+    {
+      "name": "LucidaConsole",
+      "if": "fontset=lucida"
+    },
+    {
+      "name": "FRAC",
+      "if": "fontset=heros-stix2",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:a/b}}"
+      }
+    },
+    {
+      "name": "FRAC",
+      "if": "fontset=stix2",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:a/b}}"
+      }
+    },
+    {
+      "name": "FRAC",
+      "if": "fontset=termes",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:a/b}}"
+      }
+    },
+    {
+      "name": "FRAC",
+      "if": "fontset=termes-stix2",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:a/b}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "nomenclature"
+    },
+    {
+      "name": "nomenclature",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:space}]"
+      }
+    },
+    {
+      "name": "nomenclature",
+      "arg": {
+        "format": "[][]",
+        "snippet": "[${1:space}][${2:heading%text}]"
+      }
+    },
+    {
+      "name": "nomenclature",
+      "arg": {
+        "format": "[][][]",
+        "snippet": "[${1:space}][${2:heading%text}][${3:level}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\documentclass/mitthesis#c": [
+      "fontset=${1|fira-newtxsf,newtx,newtx-sans-text,defaultfonts,libertine,lucida,heros-stix2,stix2,termes,termes-stix2\r|}",
+      "lineno\r",
+      "mydesign\r",
+      "twoside\r"
     ]
   },
-  "macros": {
-    "Author{}{}": {
-      "snippet": "Author{${1:full name}}{${2:department}}"
-    },
-    "Degree{}{}": {
-      "snippet": "Degree{${1:degree name}}{${2:department}}"
-    },
-    "DegreeYear": {},
-    "DegreeMonth": {},
-    "CopyrightAuthor": {},
-    "Supervisor{}{}": {
-      "snippet": "Supervisor{${1:name}}{${2:department}}"
-    },
-    "Acceptor{}{}{}": {
-      "snippet": "Acceptor{${1:name}}{${2:title}}{${3:thesis-related position}}"
-    },
-    "DegreeDate{}{}": {
-      "snippet": "DegreeDate{${1:month}}{${2:year}}"
-    },
-    "ThesisDate{}": {
-      "snippet": "ThesisDate{${1:date}}"
-    },
-    "Tighten": {},
-    "SignatureBlockSize{}": {
-      "snippet": "SignatureBlockSize{${1:fontsize cmd}}"
-    },
-    "AuthorNameSize{}": {
-      "snippet": "AuthorNameSize{${1:fontsize cmd}}"
-    },
-    "Squash": {},
-    "CClicense{}{}": {
-      "snippet": "CClicense{${1:license type}}{${2:URL}}"
-    },
-    "Institution{}": {
-      "snippet": "Institution{${1:institution}}"
-    },
-    "SupervisorDesignation{}": {
-      "snippet": "SupervisorDesignation{${1:title}}"
-    },
-    "PDFRightsText": {},
-    "SuppressMonthError": {},
-    "SuppressAcceptorError": {},
-    "EntryHeading{}": {
-      "snippet": "EntryHeading{${1:text}}"
-    },
-    "entry{}{}": {
-      "snippet": "entry{${1:symbol}}{${2:description}}"
-    },
-    "maketitle*": {},
-    "ClassName": {},
-    "MIT": {},
-    "nomenwidth": {},
-    "nomname": {},
-    "savitemsep": {},
-    "versiondate": {},
-    "versionno": {},
-    "FRAC{}": {
-      "snippet": "FRAC{${1:a/b}}",
-      "option": "fontset=termes-stix2"
-    },
-    "LucidaBlackletter": {
-      "option": "fontset=lucida"
-    },
-    "LucidaCalligraphy": {
-      "option": "fontset=lucida"
-    },
-    "LucidaHandwriting": {
-      "option": "fontset=lucida"
-    },
-    "LucidaGrandeMonoDK": {
-      "option": "fontset=lucida"
-    },
-    "LucidaConsole": {
-      "option": "fontset=lucida"
-    }
-  },
-  "envs": {
-    "nomenclature": {},
-    "nomenclature[]": {
-      "name": "nomenclature",
-      "snippet": "[${1:space}]"
-    },
-    "nomenclature[][]": {
-      "name": "nomenclature",
-      "snippet": "[${1:space}][${2:heading}]"
-    },
-    "nomenclature[][][]": {
-      "name": "nomenclature",
-      "snippet": "[${1:space}][${2:heading}][${3:level}]"
-    }
-  },
-  "options": [
-    "fontset=${1|fira-newtxsf,newtx,newtx-sans-text,defaultfonts,libertine,lucida,heros-stix2,stix2,termes,termes-stix2|}",
-    "lineno",
-    "mydesign",
-    "twoside"
-  ],
-  "keyvals": []
+  "args": [
+    "\\documentclass/mitthesis#c"
+  ]
 }

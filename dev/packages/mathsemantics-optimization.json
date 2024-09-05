@@ -1,41 +1,100 @@
 {
-  "includes": {
-    "mathsemantics-semantic": []
-  },
-  "macros": {
-    "normalCone": {},
-    "radialCone": {},
-    "tangentCone": {},
-    "linearizingCone": {},
-    "radialcone{}{}": {
-      "snippet": "radialcone{${1:sub}}{${2:arg}}"
-    },
-    "radialcone[]{}{}": {
-      "snippet": "radialcone[${3:scale}]{${1:sub}}{${2:arg}}"
-    },
-    "tangentcone{}{}": {
-      "snippet": "tangentcone{${1:sub}}{${2:arg}}"
-    },
-    "tangentcone[]{}{}": {
-      "snippet": "tangentcone[${3:scale}]{${1:sub}}{${2:arg}}"
-    },
-    "linearizingcone{}{}": {
-      "snippet": "linearizingcone{${1:sub}}{${2:arg}}"
-    },
-    "linearizingcone[]{}{}": {
-      "snippet": "linearizingcone[${3:scale}]{${1:sub}}{${2:arg}}"
-    },
-    "normalcone{}{}": {
-      "snippet": "normalcone{${1:sub}}{${2:arg}}"
-    },
-    "normalcone[]{}{}": {
-      "snippet": "normalcone[${3:scale}]{${1:sub}}{${2:arg}}"
-    },
-    "polarcone{}": {
-      "snippet": "polarcone{${1:arg}}"
+  "deps": [
+    {
+      "name": "mathsemantics-semantic"
     }
+  ],
+  "macros": [
+    {
+      "name": "normalCone",
+      "unusual": true
+    },
+    {
+      "name": "radialCone",
+      "unusual": true
+    },
+    {
+      "name": "tangentCone",
+      "unusual": true
+    },
+    {
+      "name": "linearizingCone",
+      "unusual": true
+    },
+    {
+      "name": "radialcone",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:sub}}{${2:arg}}"
+      }
+    },
+    {
+      "name": "radialcone",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:scale%keyvals}]{${1:sub}}{${2:arg}}"
+      }
+    },
+    {
+      "name": "tangentcone",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:sub}}{${2:arg}}"
+      }
+    },
+    {
+      "name": "tangentcone",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:scale%keyvals}]{${1:sub}}{${2:arg}}"
+      }
+    },
+    {
+      "name": "linearizingcone",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:sub}}{${2:arg}}"
+      }
+    },
+    {
+      "name": "linearizingcone",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:scale%keyvals}]{${1:sub}}{${2:arg}}"
+      }
+    },
+    {
+      "name": "normalcone",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:sub}}{${2:arg}}"
+      }
+    },
+    {
+      "name": "normalcone",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:scale%keyvals}]{${1:sub}}{${2:arg}}"
+      }
+    },
+    {
+      "name": "polarcone",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\radialcone#c,\\tangentcone#c,\\linearizingcone#c,\\normalcone#c": [
+      "big\r",
+      "Big\r",
+      "bigg\r",
+      "Bigg\r",
+      "auto\r",
+      "none\r"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

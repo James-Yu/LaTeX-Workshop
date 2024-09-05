@@ -1,14 +1,41 @@
 {
-  "includes": {},
-  "macros": {
-    "tikzdeclarepattern{}": {
-      "snippet": "tikzdeclarepattern{${1:config}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "tikzdeclarepattern",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:config%keyvals}}"
+      }
     },
-    "pgfdeclarepattern{}": {
-      "snippet": "pgfdeclarepattern{${1:config}}"
+    {
+      "name": "pgfdeclarepattern",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:config%keyvals}}"
+      }
     }
+  ],
+  "envs": [],
+  "keys": {
+    "\\tikzdeclarepattern#c": [
+      "name=${1:name}\r",
+      "type=${1|uncolored,colored,form only,inherently colored\r|}",
+      "x=",
+      "y=",
+      "parameters=\r",
+      "defaults=\r",
+      "bottom left=${1:point}\r",
+      "top right=${1:point}\r",
+      "tile size=${1:point}\r",
+      "tile transformation=${1:transformation}\r",
+      "code=${1:code}\r",
+      "set up code=${1:code}\r",
+      "bounding box=${1:point1} and ${2:point2}\r",
+      "infer tile bounding box\r",
+      "infer tile bounding box="
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

@@ -1,27 +1,51 @@
 {
-  "includes": {},
-  "macros": {
-    "hangingindent": {},
-    "hangingleftmargin": {},
-    "labeledleftmargin": {}
-  },
-  "envs": {
-    "hangingpar": {},
-    "hanginglist": {},
-    "compacthang": {},
-    "labeledpar{}{}": {
-      "name": "labeledpar",
-      "snippet": "{${1:widest-label}}{${2:label}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "hangingindent",
+      "unusual": true
     },
-    "labeledlist{}": {
-      "name": "labeledlist",
-      "snippet": "{${1:widest-label}}"
+    {
+      "name": "hangingleftmargin",
+      "unusual": true
     },
-    "compactlabel{}": {
-      "name": "compactlabel",
-      "snippet": "{${1:widest-label}}"
+    {
+      "name": "labeledleftmargin",
+      "unusual": true
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "envs": [
+    {
+      "name": "hangingpar"
+    },
+    {
+      "name": "hanginglist"
+    },
+    {
+      "name": "compacthang"
+    },
+    {
+      "name": "labeledpar",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:widest-label}}{${2:label}}"
+      }
+    },
+    {
+      "name": "labeledlist",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:widest-label}}"
+      }
+    },
+    {
+      "name": "compactlabel",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:widest-label}}"
+      }
+    }
+  ],
+  "keys": {},
+  "args": []
 }

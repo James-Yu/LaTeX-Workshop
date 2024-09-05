@@ -1,272 +1,328 @@
 {
-  "includes": {
-    "longtable": [],
-    "array": [],
-    "booktabs": []
-  },
-  "macros": {
-    "printunsrttable": {},
-    "printunsrttable[]": {
-      "snippet": "printunsrttable[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "longtable"
     },
-    "glstableiffilter{}{}{}": {
-      "snippet": "glstableiffilter{${1:label}}{${2:true}}{${3:false}}"
+    {
+      "name": "array"
     },
-    "glstableChildEntries{}": {
-      "snippet": "glstableChildEntries{${1:label}}"
+    {
+      "name": "booktabs"
+    }
+  ],
+  "macros": [
+    {
+      "name": "printunsrttable"
     },
-    "glstableiffilterchild{}{}{}": {
-      "snippet": "glstableiffilterchild{${1:label}}{${2:true}}{${3:false}}"
+    {
+      "name": "printunsrttable",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     },
-    "glstablePreChildren": {},
-    "glstablesubentryalign": {},
-    "glstableblocksubentrysep": {},
-    "glstablecaption{}{}{}": {
-      "snippet": "glstablecaption{${1:lot title}}{${2:title}}{${3:label code}}"
+    {
+      "name": "glstableiffilter",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:label}}{${2:true}}{${3:false}}"
+      }
     },
-    "glstablenextcaption{}{}": {
-      "snippet": "glstablenextcaption{${1:lot title}}{${2:title}}"
+    {
+      "name": "glstableChildEntries",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
     },
-    "glstablepostnextcaption": {},
-    "glstablenameheader": {},
-    "glstabledescheader": {},
-    "glstablesymbolheader": {},
-    "glstableotherheader": {},
-    "glstablesetstyle{}": {
-      "snippet": "glstablesetstyle{${1:arg1}}"
+    {
+      "name": "glstableiffilterchild",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:label}}{${2:true}}{${3:false}}"
+      }
     },
-    "glstablenewline": {},
-    "glstableleftalign{}": {
-      "snippet": "glstableleftalign{${1:width}}"
+    {
+      "name": "glstablePreChildren",
+      "unusual": true
     },
-    "glstablerightalign{}": {
-      "snippet": "glstablerightalign{${1:width}}"
+    {
+      "name": "glstablesubentryalign",
+      "unusual": true
     },
-    "glstablecenteralign{}": {
-      "snippet": "glstablecenteralign{${1:width}}"
+    {
+      "name": "glstableblocksubentrysep",
+      "unusual": true
     },
-    "glstablenamecolalign": {},
-    "glstabledesccolalign": {},
-    "glstablesymbolcolalign": {},
-    "glstableothercolalign": {},
-    "glstablenamewidth": {},
-    "glstabledescwidth": {},
-    "glstablesymbolwidth": {},
-    "glstableotherwidth": {},
-    "glstableblockwidth": {},
-    "glstablepostpreambleskip": {},
-    "glstableprepostambleskip": {},
-    "glstableNameFmt{}": {
-      "snippet": "glstableNameFmt{${1:text}}"
+    {
+      "name": "glstablecaption",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:lot title%text}}{${2:title%text}}{${3:label code}}"
+      }
     },
-    "glstableSubNameFmt{}": {
-      "snippet": "glstableSubNameFmt{${1:text}}"
+    {
+      "name": "glstablenextcaption",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:lot title%text}}{${2:title%text}}"
+      }
     },
-    "glstableSymbolFmt{}": {
-      "snippet": "glstableSymbolFmt{${1:text}}"
+    {
+      "name": "glstablepostnextcaption",
+      "unusual": true
     },
-    "glstableSubSymbolFmt{}": {
-      "snippet": "glstableSubSymbolFmt{${1:text}}"
+    {
+      "name": "glstablenameheader",
+      "unusual": true
     },
-    "glstableDescFmt{}": {
-      "snippet": "glstableDescFmt{${1:text}}"
+    {
+      "name": "glstabledescheader",
+      "unusual": true
     },
-    "glstableSubDescFmt{}": {
-      "snippet": "glstableSubDescFmt{${1:text}}"
+    {
+      "name": "glstablesymbolheader",
+      "unusual": true
     },
-    "glstableotherfield": {},
-    "glstableOtherFmt{}": {
-      "snippet": "glstableOtherFmt{${1:text}}"
+    {
+      "name": "glstableotherheader",
+      "unusual": true
     },
-    "glstableOther{}": {
-      "snippet": "glstableOther{${1:label}}"
+    {
+      "name": "glstablesetstyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:style%keyvals}}",
+        "keys": [
+          "\\glstablesetstyle"
+        ],
+        "keyPos": 0
+      }
     },
-    "glstableSubOtherNoDesc{}": {
-      "snippet": "glstableSubOtherNoDesc{${1:label}}"
+    {
+      "name": "glstablenewline",
+      "unusual": true
     },
-    "glstableifhasotherfield{}{}{}": {
-      "snippet": "glstableifhasotherfield{${1:label}}{${2:true}}{${3:false}}"
+    {
+      "name": "glstableleftalign",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:width}}"
+      }
     },
-    "glstableHeaderFmt{}": {
-      "snippet": "glstableHeaderFmt{${1:text}}"
+    {
+      "name": "glstablerightalign",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:width}}"
+      }
     },
-    "glstableblockalign": {},
-    "glstableblockentry{}": {
-      "snippet": "glstableblockentry{${1:arg1}}"
+    {
+      "name": "glstablecenteralign",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:width}}"
+      }
     },
-    "glstableblockheader": {},
-    "glstableblockperrowcount": {},
-    "glstableblocksubentry{}": {
-      "snippet": "glstableblocksubentry{${1:arg1}}"
+    {
+      "name": "glstablenamecolalign",
+      "unusual": true
     },
-    "glstablecolsperblock": {},
-    "glstablecurrentblockindex": {},
-    "glstableDesc{}": {
-      "snippet": "glstableDesc{${1:arg1}}"
+    {
+      "name": "glstabledesccolalign",
+      "unusual": true
     },
-    "glstableDescWithOther{}": {
-      "snippet": "glstableDescWithOther{${1:arg}}"
+    {
+      "name": "glstablesymbolcolalign",
+      "unusual": true
     },
-    "glstablefinishlengthupdates": {},
-    "glstablefinishrow": {},
-    "glstablefirsthead{}": {
-      "snippet": "glstablefirsthead{${1:arg1}}"
+    {
+      "name": "glstableothercolalign",
+      "unusual": true
     },
-    "glstablefoot{}": {
-      "snippet": "glstablefoot{${1:arg1}}"
+    {
+      "name": "glstablenamewidth",
+      "unusual": true
     },
-    "glstablefootstrut": {},
-    "glstableGroupHeaderFmt": {},
-    "glstablegroupheading{}": {
-      "snippet": "glstablegroupheading{${1:arg1}}"
+    {
+      "name": "glstabledescwidth",
+      "unusual": true
     },
-    "glstablehead{}": {
-      "snippet": "glstablehead{${1:arg1}}"
+    {
+      "name": "glstablesymbolwidth",
+      "unusual": true
     },
-    "glstableifmeasuring": {},
-    "glstableifmeasuring{}{}": {
-      "snippet": "glstableifmeasuring{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "glstableotherwidth",
+      "unusual": true
     },
-    "glstableifpar{}": {
-      "snippet": "glstableifpar{${1:arg1}}"
+    {
+      "name": "glstableblockwidth",
+      "unusual": true
     },
-    "glstableinitlengthupdates": {},
-    "glstablelastfoot{}": {
-      "snippet": "glstablelastfoot{${1:arg1}}"
+    {
+      "name": "glstablepostpreambleskip",
+      "unusual": true
     },
-    "glstablelengthupdate{}": {
-      "snippet": "glstablelengthupdate{${1:arg1}}"
+    {
+      "name": "glstableprepostambleskip",
+      "unusual": true
     },
-    "glstablemeasureandupdate{}{}": {
-      "snippet": "glstablemeasureandupdate{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "glstableNameFmt",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "glstableName{}": {
-      "snippet": "glstableName{${1:arg}}"
+    {
+      "name": "glstableSubNameFmt",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "glstableNameNoDesc{}": {
-      "snippet": "glstableNameNoDesc{${1:arg1}}"
+    {
+      "name": "glstableSymbolFmt",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "glstableNameSingleFmt{}": {
-      "snippet": "glstableNameSingleFmt{${1:text}}"
+    {
+      "name": "glstableSubSymbolFmt",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "glstableNameSinglePostName": {},
-    "glstableNameSinglePostSubName": {},
-    "glstableNameSingleSubSuppl{}": {
-      "snippet": "glstableNameSingleSubSuppl{${1:arg1}}"
+    {
+      "name": "glstableDescFmt",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "glstableNameSingleSuppl{}": {
-      "snippet": "glstableNameSingleSuppl{${1:arg1}}"
+    {
+      "name": "glstableSubDescFmt",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "glstableNameSingleSymSep": {},
-    "glstableNameTarget{}": {
-      "snippet": "glstableNameTarget{${1:arg1}}"
+    {
+      "name": "glstableotherfield",
+      "unusual": true
     },
-    "glstablenewstyle{}{}": {
-      "snippet": "glstablenewstyle{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "glstableOtherFmt",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "glstableOtherNoDesc{}": {
-      "snippet": "glstableOtherNoDesc{${1:arg1}}"
+    {
+      "name": "glstableOther",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
     },
-    "glstableOtherSep": {},
-    "glstableOtherWithSep{}{}{}": {
-      "snippet": "glstableOtherWithSep{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    {
+      "name": "glstableSubOtherNoDesc",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
     },
-    "glstablePostGroupNewLine": {},
-    "glstablerowspan{}": {
-      "snippet": "glstablerowspan{${1:arg1}}"
+    {
+      "name": "glstableifhasotherfield",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:label}}{${2:true}}{${3:false}}"
+      }
     },
-    "glstablespanwidth": {},
-    "glstableSubDesc{}": {
-      "snippet": "glstableSubDesc{${1:arg1}}"
-    },
-    "glstableSubDescSymbolOther{}": {
-      "snippet": "glstableSubDescSymbolOther{${1:arg}}"
-    },
-    "glstablesubentrywidth": {},
-    "glstableSubName{}": {
-      "snippet": "glstableSubName{${1:arg}}"
-    },
-    "glstableSubNameNoDesc{}": {
-      "snippet": "glstableSubNameNoDesc{${1:arg1}}"
-    },
-    "glstableSubNameSep": {},
-    "glstableSubNameSingleFmt{}": {
-      "snippet": "glstableSubNameSingleFmt{${1:text}}"
-    },
-    "glstableSubNameSymbolNoDesc{}": {
-      "snippet": "glstableSubNameSymbolNoDesc{${1:arg}}"
-    },
-    "glstableSubNameTarget{}": {
-      "snippet": "glstableSubNameTarget{${1:arg1}}"
-    },
-    "glstableSubOtherSep": {},
-    "glstableSubOtherWithSep{}{}{}": {
-      "snippet": "glstableSubOtherWithSep{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "glstableSubSep": {},
-    "glstableSubSymbol{}": {
-      "snippet": "glstableSubSymbol{${1:arg}}"
-    },
-    "glstableSubSymbolName{}": {
-      "snippet": "glstableSubSymbolName{${1:arg}}"
-    },
-    "glstableSubSymbolNameFmt{}": {
-      "snippet": "glstableSubSymbolNameFmt{${1:text}}"
-    },
-    "glstableSubSymbolNameTarget{}": {
-      "snippet": "glstableSubSymbolNameTarget{${1:arg1}}"
-    },
-    "glstableSubSymbolWithSep{}{}{}": {
-      "snippet": "glstableSubSymbolWithSep{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "glstableSymbol{}": {
-      "snippet": "glstableSymbol{${1:arg}}"
-    },
-    "glstableSymbolName{}": {
-      "snippet": "glstableSymbolName{${1:arg}}"
-    },
-    "glstableSymbolNameFmt{}": {
-      "snippet": "glstableSymbolNameFmt{${1:text}}"
-    },
-    "glstableSymbolNameTarget{}": {
-      "snippet": "glstableSymbolNameTarget{${1:arg1}}"
-    },
-    "glstabletotalcols": {}
-  },
-  "envs": {
-    "glstablesubentries": {}
-  },
-  "options": [],
-  "keyvals": [
-    [
-      "type=${1:glossary-label}",
-      "title=${1:text}",
-      "toctitle=${1:text}",
-      "numberedsection=${1|false,nolabel,autolabel|}",
+    {
+      "name": "glstableHeaderFmt",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "glstablesubentries",
+      "unusual": true
+    }
+  ],
+  "keys": {
+    "\\printunsrttable": [
+      "type=${1:glossary-label}\r",
+      "title=${1:text}\r",
+      "toctitle=${1:text}\r",
+      "numberedsection=${1|false,nolabel,autolabel\r|}",
       "nopostdot",
       "entrycounter",
       "subentrycounter",
-      "sort=${1|word,letter,standard,use,def,nocase,case|}",
+      "sort=${1|word,letter,standard,use,def,nocase,case\r|}",
       "target",
-      "targetnameprefix=${1:prefix}",
-      "prefix=${1:prefix}",
+      "targetnameprefix=${1:prefix}\r",
+      "prefix=${1:prefix}\r",
       "label=",
       "groups",
-      "leveloffset=${1:<n> or ++<n>}",
-      "preamble=${1:text}",
-      "postamble=${1:text}",
+      "leveloffset=${1:<n> or ++<n>}\r",
+      "preamble=${1:text}\r",
+      "postamble=${1:text}\r",
       "flatten",
-      "blocks=${1:n}",
+      "blocks=${1:n}\r",
       "header",
       "rules",
-      "blocksep=${1:alignment spec}",
-      "par=${1|false,justified,ragged|}",
-      "other=${1:field-label}",
-      "init={${1:code}}",
-      "block-style=${1|name,name-desc,desc-name,name-symbol,symbol-name,name-other,other-name,symbol-other,other-symbol,name-symbol-desc,name-desc-symbol,name-other-desc,desc-other-name,name-symbol-other-desc,name-other-symbol-desc,desc-symbol-other-name,desc-other-symbol-name|}",
-      "clearpage"
+      "blocksep=${1:alignment spec}\r",
+      "par=${1|false,justified,ragged\r|}",
+      "other=${1:field-label}\r",
+      "init={${1:code}}\r",
+      "block-style=${1|name,name-desc,desc-name,name-symbol,symbol-name,name-other,other-name,symbol-other,other-symbol,name-symbol-desc,name-desc-symbol,name-other-desc,desc-other-name,name-symbol-other-desc,name-other-symbol-desc,desc-symbol-other-name,desc-other-symbol-name\r|}",
+      "clearpage\r"
+    ],
+    "\\glstablesetstyle": [
+      "name\r",
+      "name-desc\r",
+      "desc-name\r",
+      "name-symbol\r",
+      "symbol-name\r",
+      "name-other\r",
+      "other-name\r",
+      "symbol-other\r",
+      "other-symbol\r",
+      "name-symbol-desc\r",
+      "name-desc-symbol\r",
+      "name-other-desc\r",
+      "desc-other-name\r",
+      "name-symbol-other-desc\r",
+      "name-other-symbol-desc\r",
+      "desc-symbol-other-name\r",
+      "desc-other-symbol-name\r"
     ]
-  ]
+  },
+  "args": []
 }

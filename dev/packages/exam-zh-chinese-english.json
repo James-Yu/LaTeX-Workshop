@@ -1,56 +1,194 @@
 {
-  "includes": {
-    "tcolorbox": [],
-    "tcolorboxlibrarymost": [],
-    "varwidth": []
-  },
-  "macros": {
-    "linelistset{}": {
-      "snippet": "linelistset{${1:list}}"
+  "deps": [
+    {
+      "name": "tcolorbox"
     },
-    "linelistset[]{}": {
-      "snippet": "linelistset[${2:键值列表}]{${1:list}}"
+    {
+      "name": "tcolorboxlibrarymost"
     },
-    "lineconnect{}": {
-      "snippet": "lineconnect{${1:list}}"
-    },
-    "lineconnect[]{}": {
-      "snippet": "lineconnect[${2:TikZ keys}]{${1:list}}"
-    },
-    "zhu{}": {
-      "snippet": "zhu{${1:注释}}"
-    },
-    "zhu[]{}": {
-      "snippet": "zhu[${2:数}]{${1:注释}}"
+    {
+      "name": "varwidth"
     }
-  },
-  "envs": {
-    "select": {},
-    "select[]": {
+  ],
+  "macros": [
+    {
+      "name": "linelistset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:list}}"
+      }
+    },
+    {
+      "name": "linelistset",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:键值列表%keyvals}]{${1:list}}"
+      }
+    },
+    {
+      "name": "lineconnect",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:list}}"
+      }
+    },
+    {
+      "name": "lineconnect",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:TikZ keys}]{${1:list}}"
+      }
+    },
+    {
+      "name": "zhu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:注释%text}}"
+      }
+    },
+    {
+      "name": "zhu",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:数}]{${1:注释%text}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "select"
+    },
+    {
       "name": "select",
-      "snippet": "[${1:键值列表}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:键值列表%keyvals}]"
+      }
     },
-    "lineto": {},
-    "lineto[]": {
+    {
+      "name": "lineto"
+    },
+    {
       "name": "lineto",
-      "snippet": "[${1:键值列表}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:键值列表%keyvals}]"
+      }
     },
-    "material": {},
-    "material[]": {
+    {
+      "name": "material"
+    },
+    {
       "name": "material",
-      "snippet": "[${1:键值列表}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:键值列表%keyvals}]"
+      }
     },
-    "poem": {},
-    "poem[]": {
+    {
+      "name": "poem"
+    },
+    {
       "name": "poem",
-      "snippet": "[${1:键值列表}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:键值列表%keyvals}]"
+      }
     },
-    "writingbox": {},
-    "writingbox[]": {
+    {
+      "name": "writingbox"
+    },
+    {
       "name": "writingbox",
-      "snippet": "[${1:tcolorbox keys}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:tcolorbox keys}]"
+      }
     }
+  ],
+  "keys": {
+    "\\examsetup,\\ExamPrintAnswerSet": [
+      "select={${1:键值列表}}\r",
+      "select/mark-symbol=${1:symbol}\r",
+      "select/show-mark",
+      "select/mark-position=${1|top,above,below,bottom,left,right\r|}",
+      "select/mark-xshift=",
+      "select/mark-yshift=",
+      "select/separator=${1:symbol}\r",
+      "select/pre-content=${1:content}\r",
+      "select/post-content=${1:content}\r",
+      "lineto={${1:键值列表}}\r",
+      "lineto/xsep=",
+      "lineto/ysep=",
+      "lineto/name=${1:name}\r",
+      "material={${1:键值列表}}\r",
+      "material/title=${1:标题}\r",
+      "material/title-format=${1:格式}\r",
+      "material/author=${1:作者}\r",
+      "material/author-format=${1:格式}\r",
+      "material/title-author-sep=",
+      "material/format=${1:格式}\r",
+      "material/source=${1:来源出处}\r",
+      "material/source-format=${1:格式}\r",
+      "material/top-sep=",
+      "material/bottom-sep=",
+      "material/title-material-sep=",
+      "poem={${1:键值列表}}\r",
+      "poem/title=${1:标题}\r",
+      "poem/title-format=${1:格式}\r",
+      "poem/author=${1:作者}\r",
+      "poem/author-format=${1:格式}\r",
+      "poem/title-author-sep=",
+      "poem/format=${1:格式}\r",
+      "poem/align=${1|l,c,r\r|}",
+      "poem/top-sep=",
+      "poem/bottom-sep=",
+      "poem/title-poem-sep=",
+      "poem/type=${1|minipage,chinese\r|}",
+      "poem/zhu-circlednumber-base=${1|tikz,font\r|}"
+    ],
+    "\\begin{select}": [
+      "mark-symbol=${1:symbol}\r",
+      "show-mark",
+      "mark-position=${1|top,above,below,bottom,left,right\r|}",
+      "mark-xshift=",
+      "mark-yshift=",
+      "separator=${1:symbol}\r",
+      "pre-content=${1:content}\r",
+      "post-content=${1:content}\r"
+    ],
+    "\\begin{lineto},\\linelistset": [
+      "xsep=",
+      "ysep=",
+      "name=${1:name}\r"
+    ],
+    "\\begin{material}": [
+      "title=${1:标题}\r",
+      "title-format=${1:格式}\r",
+      "author=${1:作者}\r",
+      "author-format=${1:格式}\r",
+      "title-author-sep=",
+      "format=${1:格式}\r",
+      "source=${1:来源出处}\r",
+      "source-format=${1:格式}\r",
+      "top-sep=",
+      "bottom-sep=",
+      "title-material-sep="
+    ],
+    "\\begin{poem}": [
+      "title=${1:标题}\r",
+      "title-format=${1:格式}\r",
+      "author=${1:作者}\r",
+      "author-format=${1:格式}\r",
+      "title-author-sep=",
+      "format=${1:格式}\r",
+      "align=${1|l,c,r\r|}",
+      "top-sep=",
+      "bottom-sep=",
+      "title-poem-sep=",
+      "type=${1|minipage,chinese\r|}",
+      "zhu-circlednumber-base=${1|tikz,font\r|}"
+    ]
   },
-  "options": [],
-  "keyvals": []
+  "args": []
 }

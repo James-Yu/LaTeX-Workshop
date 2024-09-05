@@ -1,31 +1,69 @@
 {
-  "includes": {},
-  "macros": {
-    "wikimarkup": {},
-    "nowikimarkup": {},
-    "wikiEnvironments": {},
-    "nowikiEnvironments": {},
-    "wikiFonts": {},
-    "nowikiFonts": {},
-    "wikiHeadings": {},
-    "nowikiHeadings": {},
-    "AssignCatCode{}{}": {
-      "snippet": "AssignCatCode{${1:cmd}}{${2:catcode}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "wikimarkup"
     },
-    "MakeActive{}": {
-      "snippet": "MakeActive{${1:cmd}}"
+    {
+      "name": "nowikimarkup"
     },
-    "MakeOther{}": {
-      "snippet": "MakeOther{${1:cmd}}"
+    {
+      "name": "wikiEnvironments"
     },
-    "normalequals": {}
-  },
-  "envs": {},
-  "options": [
-    "noFonts",
-    "noHeadings",
-    "noEnvironments",
-    "noVerbatim"
+    {
+      "name": "nowikiEnvironments"
+    },
+    {
+      "name": "wikiFonts"
+    },
+    {
+      "name": "nowikiFonts"
+    },
+    {
+      "name": "wikiHeadings"
+    },
+    {
+      "name": "nowikiHeadings"
+    },
+    {
+      "name": "AssignCatCode",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:catcode}}"
+      }
+    },
+    {
+      "name": "MakeActive",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cmd}}"
+      }
+    },
+    {
+      "name": "MakeOther",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cmd}}"
+      }
+    },
+    {
+      "name": "normalequals",
+      "unusual": true
+    }
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/wiki#c": [
+      "noFonts\r",
+      "noHeadings\r",
+      "noEnvironments\r",
+      "noVerbatim\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/wiki#c"
+  ]
 }

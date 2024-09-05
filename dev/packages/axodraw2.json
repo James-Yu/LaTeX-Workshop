@@ -1,1515 +1,2427 @@
 {
-  "includes": {
-    "color": [],
-    "graphicx": [],
-    "ifthen": [],
-    "ifxetex": [],
-    "keyval": []
-  },
-  "macros": {
-    "B": {
-      "option": "v1compatible",
-      "detail": "𝐵",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL B"
+  "deps": [
+    {
+      "name": "color"
     },
-    "G": {
-      "option": "v1compatible",
-      "detail": "𝐺",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL G"
+    {
+      "name": "graphicx"
     },
-    "C": {
-      "option": "v1compatible",
-      "detail": "𝐶",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL C"
+    {
+      "name": "ifthen"
     },
-    "AxoGrid()()(){}{}": {
-      "snippet": "AxoGrid(${3:x},${4:y})(${5:xsize},${6:ysize})(${7:xdivs},${8:ydivs}){${1:color}}{${2:linewidth}}"
+    {
+      "name": "ifxetex"
     },
-    "Line()()": {
-      "snippet": "Line(${1:x1},${2:y1})(${3:x2},${4:y2})"
-    },
-    "Line[]()()": {
-      "snippet": "Line[${1:options}](${2:x1},${3:y1})(${4:x2},${5:y2})",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "DoubleLine()(){}": {
-      "snippet": "DoubleLine(${2:x1},${3:y1})(${4:x2},${5:y2}){${1:linesep}}"
-    },
-    "DoubleLine[]()(){}": {
-      "snippet": "DoubleLine[${2:options}](${3:x1},${4:y1})(${5:x2},${6:y2}){${1:linesep}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "DashLine()(){}": {
-      "snippet": "DashLine(${2:x1},${3:y1})(${4:x2},${5:y2}){${1:dashsize}}"
-    },
-    "DashLine[]()(){}": {
-      "snippet": "DashLine[${2:options}](${3:x1},${4:y1})(${5:x2},${6:y2}){${1:dashsize}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "DashDoubleLine()(){}{}": {
-      "snippet": "DashDoubleLine(${3:x1},${4:y1})(${5:x2},${6:y2}){${1:linesep}}{${2:dashsize}}"
-    },
-    "DashDoubleLine[]()(){}{}": {
-      "snippet": "DashDoubleLine[${3:options}](${4:x1},${5:y1})(${6:x2},${7:y2}){${1:linesep}}{${2:dashsize}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "Arc()()": {
-      "snippet": "Arc(${1:x},${2:y})(${3:radius},${4:start-angle},${5:end-angle})"
-    },
-    "Arc[]()()": {
-      "snippet": "Arc[${1:options}](${2:x},${3:y})(${4:radius},${5:start-angle},${6:end-angle})",
-      "keyvalindex": 4,
-      "keyvalpos": 0
-    },
-    "CArc()()": {
-      "snippet": "CArc(${1:x},${2:y})(${3:radius},${4:start-angle},${5:end-angle})"
-    },
-    "CArc[]()()": {
-      "snippet": "CArc[${1:options}](${2:x},${3:y})(${4:radius},${5:start-angle},${6:end-angle})"
-    },
-    "DoubleArc()(){}": {
-      "snippet": "DoubleArc(${2:x},${3:y})(${4:radius},${5:start-angle},${6:end-angle}){${1:linesep}}"
-    },
-    "DoubleArc[]()(){}": {
-      "snippet": "DoubleArc[${2:options}](${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:linesep}}",
-      "keyvalindex": 5,
-      "keyvalpos": 0
-    },
-    "DoubleCArc()(){}": {
-      "snippet": "DoubleCArc(${2:x},${3:y})(${4:radius},${5:start-angle},${6:end-angle}){${1:linesep}}"
-    },
-    "DoubleCArc[]()(){}": {
-      "snippet": "DoubleCArc[${2:options}](${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:linesep}}"
-    },
-    "DashArc()(){}": {
-      "snippet": "DashArc(${2:x},${3:y})(${4:radius},${5:start-angle},${6:end-angle}){${1:dashsize}}"
-    },
-    "DashArc[]()(){}": {
-      "snippet": "DashArc[${2:options}](${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:dashsize}}",
-      "keyvalindex": 6,
-      "keyvalpos": 0
-    },
-    "DashCArc()(){}": {
-      "snippet": "DashCArc(${2:x},${3:y})(${4:radius},${5:start-angle},${6:end-angle}){${1:dashsize}}"
-    },
-    "DashCArc[]()(){}": {
-      "snippet": "DashCArc[${2:options}](${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:dashsize}}"
-    },
-    "DashDoubleArc()(){}{}": {
-      "snippet": "DashDoubleArc(${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:linesep}}{${2:dashsize}}"
-    },
-    "DashDoubleArc[]()(){}{}": {
-      "snippet": "DashDoubleArc[${3:options}](${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:linesep}}{${2:dashsize}}",
-      "keyvalindex": 7,
-      "keyvalpos": 0
-    },
-    "DashDoubleCArc()(){}{}": {
-      "snippet": "DashDoubleCArc(${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:linesep}}{${2:dashsize}}"
-    },
-    "DashDoubleCArc[]()(){}{}": {
-      "snippet": "DashDoubleCArc[${3:options}](${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:linesep}}{${2:dashsize}}"
-    },
-    "Bezier()()()()": {
-      "snippet": "Bezier(${1:x1},${2:y1})(${3:x2},${4:y2})(${5:x3},${6:y3})(${7:x4},${8:y4})"
-    },
-    "Bezier[]()()()()": {
-      "snippet": "Bezier[${1:options}](${2:x1},${3:y1})(${4:x2},${5:y2})(${6:x3},${7:y3})(${8:x4},${9:y4})",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "DoubleBezier()()()(){}": {
-      "snippet": "DoubleBezier(${2:x1},${3:y1})(${4:x2},${5:y2})(${6:x3},${7:y3})(${8:x4},${9:y4}){${1:linesep}}"
-    },
-    "DoubleBezier[]()()()(){}": {
-      "snippet": "DoubleBezier[${2:options}](${3:x1},${4:y1})(${5:x2},${6:y2})(${7:x3},${8:y3})(${9:x4},${10:y4}){${1:linesep}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "DashBezier()()()(){}": {
-      "snippet": "DashBezier(${2:x1},${3:y1})(${4:x2},${5:y2})(${6:x3},${7:y3})(${8:x4},${9:y4}){${1:dashsize}}"
-    },
-    "DashBezier[]()()()(){}": {
-      "snippet": "DashBezier[${2:options}](${3:x1},${4:y1})(${5:x2},${6:y2})(${7:x3},${8:y3})(${9:x4},${10:y4}){${1:dashsize}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "DashDoubleBezier()()()(){}{}": {
-      "snippet": "DashDoubleBezier(${3:x1},${4:y1})(${5:x2},${6:y2})(${7:x3},${8:y3})(${9:x4},${10:y4}){${1:linesep}}{${2:dashsize}}"
-    },
-    "DashDoubleBezier[]()()()(){}{}": {
-      "snippet": "DashDoubleBezier[${3:options}](${4:x1},${5:y1})(${6:x2},${7:y2})(${8:x3},${9:y3})(${10:x4},${11:y4}){${1:linesep}}{${2:dashsize}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "Curve{}": {
-      "snippet": "Curve{${1:(${2:x1},${3:y1})(${4:x2},${5:y2})...}}"
-    },
-    "DashCurve{}{}": {
-      "snippet": "DashCurve{${1:(${3:x1},${4:y1})(${5:x2},${6:y2})...}}{${2:dashsize}}"
-    },
-    "Gluon()(){}{}": {
-      "snippet": "Gluon(${3:x1},${4:y1})(${5:x2},${6:y2}){${1:amplitude}}{${2:number}}"
-    },
-    "Gluon[]()(){}{}": {
-      "snippet": "Gluon[${3:options}](${4:x1},${5:y1})(${6:x2},${7:y2}){${1:amplitude}}{${2:number}}",
-      "keyvalindex": 8,
-      "keyvalpos": 0
-    },
-    "DoubleGluon()(){}{}{}": {
-      "snippet": "DoubleGluon(${4:x1},${5:y1})(${6:x2},${7:y2}){${1:amplitude}}{${2:number}}{${3:linesep}}"
-    },
-    "DoubleGluon[]()(){}{}{}": {
-      "snippet": "DoubleGluon[${4:options}](${5:x1},${6:y1})(${7:x2},${8:y2}){${1:amplitude}}{${2:number}}{${3:linesep}}",
-      "keyvalindex": 9,
-      "keyvalpos": 0
-    },
-    "DashGluon()(){}{}{}": {
-      "snippet": "DashGluon(${4:x1},${5:y1})(${6:x2},${7:y2}){${1:amplitude}}{${2:number}}{${3:dashsize}}"
-    },
-    "DashGluon[]()(){}{}{}": {
-      "snippet": "DashGluon[${4:options}](${5:x1},${6:y1})(${7:x2},${8:y2}){${1:amplitude}}{${2:number}}{${3:dashsize}}",
-      "keyvalindex": 10,
-      "keyvalpos": 0
-    },
-    "DashDoubleGluon()(){}{}{}{}": {
-      "snippet": "DashDoubleGluon(${5:x1},${6:y1})(${7:x2},${8:y2}){${1:amplitude}}{${2:number}}{${3:linesep}}{${4:dashsize}}"
-    },
-    "DashDoubleGluon[]()(){}{}{}{}": {
-      "snippet": "DashDoubleGluon[${5:options}](${6:x1},${7:y1})(${8:x2},${9:y2}){${1:amplitude}}{${2:number}}{${3:linesep}}{${4:dashsize}}",
-      "keyvalindex": 11,
-      "keyvalpos": 0
-    },
-    "GluonArc()(){}{}": {
-      "snippet": "GluonArc(${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:amplitude}}{${2:number}}"
-    },
-    "GluonArc[]()(){}{}": {
-      "snippet": "GluonArc[${3:options}](${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:amplitude}}{${2:number}}",
-      "keyvalindex": 12,
-      "keyvalpos": 0
-    },
-    "GlueArc()(){}{}": {
-      "snippet": "GlueArc(${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:amplitude}}{${2:number}}"
-    },
-    "GlueArc[]()(){}{}": {
-      "snippet": "GlueArc[${3:options}](${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:amplitude}}{${2:number}}"
-    },
-    "GluonArcn()(){}{}": {
-      "snippet": "GluonArcn(${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:amplitude}}{${2:number}}"
-    },
-    "GluonArcn[]()(){}{}": {
-      "snippet": "GluonArcn[${3:options}](${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:amplitude}}{${2:number}}"
-    },
-    "GlueArcn()(){}{}": {
-      "snippet": "GlueArcn(${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:amplitude}}{${2:number}}"
-    },
-    "GlueArcn[]()(){}{}": {
-      "snippet": "GlueArcn[${3:options}](${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:amplitude}}{${2:number}}"
-    },
-    "DoubleGluonArc()(){}{}{}": {
-      "snippet": "DoubleGluonArc(${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}"
-    },
-    "DoubleGluonArc[]()(){}{}{}": {
-      "snippet": "DoubleGluonArc[${4:options}](${5:x},${6:y})(${7:radius},${8:start-angle},${9:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}",
-      "keyvalindex": 13,
-      "keyvalpos": 0
-    },
-    "DoubleGlueArc()(){}{}{}": {
-      "snippet": "DoubleGlueArc(${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}"
-    },
-    "DoubleGlueArc[]()(){}{}{}": {
-      "snippet": "DoubleGlueArc[${4:options}](${5:x},${6:y})(${7:radius},${8:start-angle},${9:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}"
-    },
-    "DoubleGluonArcn()(){}{}{}": {
-      "snippet": "DoubleGluonArcn(${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}"
-    },
-    "DoubleGluonArcn[]()(){}{}{}": {
-      "snippet": "DoubleGluonArcn[${4:options}](${5:x},${6:y})(${7:radius},${8:start-angle},${9:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}"
-    },
-    "DoubleGlueArcn()(){}{}{}": {
-      "snippet": "DoubleGlueArcn(${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}"
-    },
-    "DoubleGlueArcn[]()(){}{}{}": {
-      "snippet": "DoubleGlueArcn[${4:options}](${5:x},${6:y})(${7:radius},${8:start-angle},${9:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}"
-    },
-    "DashGluonArc()(){}{}{}": {
-      "snippet": "DashGluonArc(${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:amplitude}}{${2:number}}{${3:dashsize}}"
-    },
-    "DashGluonArc[]()(){}{}{}": {
-      "snippet": "DashGluonArc[${4:options}](${5:x},${6:y})(${7:radius},${8:start-angle},${9:end-angle}){${1:amplitude}}{${2:number}}{${3:dashsize}}",
-      "keyvalindex": 14,
-      "keyvalpos": 0
-    },
-    "DashGlueArc()(){}{}{}": {
-      "snippet": "DashGlueArc(${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:amplitude}}{${2:number}}{${3:dashsize}}"
-    },
-    "DashGlueArc[]()(){}{}{}": {
-      "snippet": "DashGlueArc[${4:options}](${5:x},${6:y})(${7:radius},${8:start-angle},${9:end-angle}){${1:amplitude}}{${2:number}}{${3:dashsize}}"
-    },
-    "DashGluonArcn()(){}{}{}": {
-      "snippet": "DashGluonArcn(${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:amplitude}}{${2:number}}{${3:dashsize}}"
-    },
-    "DashGluonArcn[]()(){}{}{}": {
-      "snippet": "DashGluonArcn[${4:options}](${5:x},${6:y})(${7:radius},${8:start-angle},${9:end-angle}){${1:amplitude}}{${2:number}}{${3:dashsize}}"
-    },
-    "DashGlueArcn()(){}{}{}": {
-      "snippet": "DashGlueArcn(${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:amplitude}}{${2:number}}{${3:dashsize}}"
-    },
-    "DashGlueArcn[]()(){}{}{}": {
-      "snippet": "DashGlueArcn[${4:options}](${5:x},${6:y})(${7:radius},${8:start-angle},${9:end-angle}){${1:amplitude}}{${2:number}}{${3:dashsize}}"
-    },
-    "DashDoubleGluonArc()(){}{}{}{}": {
-      "snippet": "DashDoubleGluonArc(${5:x},${6:y})(${7:radius},${8:start-angle},${9:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}{${4:dashsize}}"
-    },
-    "DashDoubleGluonArc[]()(){}{}{}{}": {
-      "snippet": "DashDoubleGluonArc[${5:options}](${6:x},${7:y})(${8:radius},${9:start-angle},${10:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}{${4:dashsize}}",
-      "keyvalindex": 15,
-      "keyvalpos": 0
-    },
-    "DashDoubleGlueArc()(){}{}{}{}": {
-      "snippet": "DashDoubleGlueArc(${5:x},${6:y})(${7:radius},${8:start-angle},${9:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}{${4:dashsize}}"
-    },
-    "DashDoubleGlueArc[]()(){}{}{}{}": {
-      "snippet": "DashDoubleGlueArc[${5:options}](${6:x},${7:y})(${8:radius},${9:start-angle},${10:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}{${4:dashsize}}"
-    },
-    "DashDoubleGluonArcn()(){}{}{}{}": {
-      "snippet": "DashDoubleGluonArcn(${5:x},${6:y})(${7:radius},${8:start-angle},${9:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}{${4:dashsize}}"
-    },
-    "DashDoubleGluonArcn[]()(){}{}{}{}": {
-      "snippet": "DashDoubleGluonArcn[${5:options}](${6:x},${7:y})(${8:radius},${9:start-angle},${10:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}{${4:dashsize}}"
-    },
-    "DashDoubleGlueArcn()(){}{}{}{}": {
-      "snippet": "DashDoubleGlueArcn(${5:x},${6:y})(${7:radius},${8:start-angle},${9:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}{${4:dashsize}}"
-    },
-    "DashDoubleGlueArcn[]()(){}{}{}{}": {
-      "snippet": "DashDoubleGlueArcn[${5:options}](${6:x},${7:y})(${8:radius},${9:start-angle},${10:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}{${4:dashsize}}"
-    },
-    "GluonCirc()(){}{}": {
-      "snippet": "GluonCirc(${3:x},${4:y})(${5:radius},${6:phase}){${1:amplitude}}{${2:number}}"
-    },
-    "GluonCirc[]()(){}{}": {
-      "snippet": "GluonCirc[${3:options}](${4:x},${5:y})(${6:radius},${7:phase}){${1:amplitude}}{${2:number}}",
-      "keyvalindex": 8,
-      "keyvalpos": 0
-    },
-    "DoubleGluonCirc()(){}{}{}": {
-      "snippet": "DoubleGluonCirc(${4:x},${5:y})(${6:radius},${7:phase}){${1:amplitude}}{${2:number}}{${3:linesep}}"
-    },
-    "DoubleGluonCirc[]()(){}{}{}": {
-      "snippet": "DoubleGluonCirc[${4:options}](${5:x},${6:y})(${7:radius},${8:phase}){${1:amplitude}}{${2:number}}{${3:linesep}}",
-      "keyvalindex": 9,
-      "keyvalpos": 0
-    },
-    "DashGluonCirc()(){}{}{}": {
-      "snippet": "DashGluonCirc(${4:x},${5:y})(${6:radius},${7:phase}){${1:amplitude}}{${2:number}}{${3:dashsize}}"
-    },
-    "DashGluonCirc[]()(){}{}{}": {
-      "snippet": "DashGluonCirc[${4:options}](${5:x},${6:y})(${7:radius},${8:phase}){${1:amplitude}}{${2:number}}{${3:dashsize}}",
-      "keyvalindex": 10,
-      "keyvalpos": 0
-    },
-    "DashDoubleGluonCirc()(){}{}{}{}": {
-      "snippet": "DashDoubleGluonCirc(${5:x},${6:y})(${7:radius},${8:phase}){${1:amplitude}}{${2:number}}{${3:linesep}}{${4:dashsize}}"
-    },
-    "DashDoubleGluonCirc[]()(){}{}{}{}": {
-      "snippet": "DashDoubleGluonCirc[${5:options}](${6:x},${7:y})(${8:radius},${9:phase}){${1:amplitude}}{${2:number}}{${3:linesep}}{${4:dashsize}}",
-      "keyvalindex": 11,
-      "keyvalpos": 0
-    },
-    "Photon()(){}{}": {
-      "snippet": "Photon(${3:x1},${4:y1})(${5:x2},${6:y2}){${1:amplitude}}{${2:number}}"
-    },
-    "Photon[]()(){}{}": {
-      "snippet": "Photon[${3:options}](${4:x1},${5:y1})(${6:x2},${7:y2}){${1:amplitude}}{${2:number}}",
-      "keyvalindex": 8,
-      "keyvalpos": 0
-    },
-    "DoublePhoton()(){}{}{}": {
-      "snippet": "DoublePhoton(${4:x1},${5:y1})(${6:x2},${7:y2}){${1:amplitude}}{${2:number}}{${3:linesep}}"
-    },
-    "DoublePhoton[]()(){}{}{}": {
-      "snippet": "DoublePhoton[${4:options}](${5:x1},${6:y1})(${7:x2},${8:y2}){${1:amplitude}}{${2:number}}{${3:linesep}}",
-      "keyvalindex": 9,
-      "keyvalpos": 0
-    },
-    "DashPhoton()(){}{}{}": {
-      "snippet": "DashPhoton(${4:x1},${5:y1})(${6:x2},${7:y2}){${1:amplitude}}{${2:number}}{${3:dashsize}}"
-    },
-    "DashPhoton[]()(){}{}{}": {
-      "snippet": "DashPhoton[${4:options}](${5:x1},${6:y1})(${7:x2},${8:y2}){${1:amplitude}}{${2:number}}{${3:dashsize}}",
-      "keyvalindex": 10,
-      "keyvalpos": 0
-    },
-    "DashDoublePhoton()(){}{}{}{}": {
-      "snippet": "DashDoublePhoton(${5:x1},${6:y1})(${7:x2},${8:y2}){${1:amplitude}}{${2:number}}{${3:linesep}}{${4:dashsize}}"
-    },
-    "DashDoublePhoton[]()(){}{}{}{}": {
-      "snippet": "DashDoublePhoton[${5:options}](${6:x1},${7:y1})(${8:x2},${9:y2}){${1:amplitude}}{${2:number}}{${3:linesep}}{${4:dashsize}}",
-      "keyvalindex": 11,
-      "keyvalpos": 0
-    },
-    "PhotonArc()(){}{}": {
-      "snippet": "PhotonArc(${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:amplitude}}{${2:number}}"
-    },
-    "PhotonArc[]()(){}{}": {
-      "snippet": "PhotonArc[${3:options}](${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:amplitude}}{${2:number}}",
-      "keyvalindex": 12,
-      "keyvalpos": 0
-    },
-    "DoublePhotonArc()(){}{}{}": {
-      "snippet": "DoublePhotonArc(${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}"
-    },
-    "DoublePhotonArc[]()(){}{}{}": {
-      "snippet": "DoublePhotonArc[${4:options}](${5:x},${6:y})(${7:radius},${8:start-angle},${9:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}",
-      "keyvalindex": 13,
-      "keyvalpos": 0
-    },
-    "DashPhotonArc()(){}{}{}": {
-      "snippet": "DashPhotonArc(${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:amplitude}}{${2:number}}{${3:dashsize}}"
-    },
-    "DashPhotonArc[]()(){}{}{}": {
-      "snippet": "DashPhotonArc[${4:options}](${5:x},${6:y})(${7:radius},${8:start-angle},${9:end-angle}){${1:amplitude}}{${2:number}}{${3:dashsize}}",
-      "keyvalindex": 14,
-      "keyvalpos": 0
-    },
-    "DashDoublePhotonArc()(){}{}{}{}": {
-      "snippet": "DashDoublePhotonArc(${5:x},${6:y})(${7:radius},${8:start-angle},${9:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}{${4:dashsize}}"
-    },
-    "DashDoublePhotonArc[]()(){}{}{}{}": {
-      "snippet": "DashDoublePhotonArc[${5:options}](${6:x},${7:y})(${8:radius},${9:start-angle},${10:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}{${4:dashsize}}",
-      "keyvalindex": 15,
-      "keyvalpos": 0
-    },
-    "ZigZag()(){}{}": {
-      "snippet": "ZigZag(${3:x1},${4:y1})(${5:x2},${6:y2}){${1:amplitude}}{${2:number}}"
-    },
-    "ZigZag[]()(){}{}": {
-      "snippet": "ZigZag[${3:options}](${4:x1},${5:y1})(${6:x2},${7:y2}){${1:amplitude}}{${2:number}}",
-      "keyvalindex": 8,
-      "keyvalpos": 0
-    },
-    "DoubleZigZag()(){}{}{}": {
-      "snippet": "DoubleZigZag(${4:x1},${5:y1})(${6:x2},${7:y2}){${1:amplitude}}{${2:number}}{${3:linesep}}"
-    },
-    "DoubleZigZag[]()(){}{}{}": {
-      "snippet": "DoubleZigZag[${4:options}](${5:x1},${6:y1})(${7:x2},${8:y2}){${1:amplitude}}{${2:number}}{${3:linesep}}",
-      "keyvalindex": 9,
-      "keyvalpos": 0
-    },
-    "DashZigZag()(){}{}{}": {
-      "snippet": "DashZigZag(${4:x1},${5:y1})(${6:x2},${7:y2}){${1:amplitude}}{${2:number}}{${3:dashsize}}"
-    },
-    "DashZigZag[]()(){}{}{}": {
-      "snippet": "DashZigZag[${4:options}](${5:x1},${6:y1})(${7:x2},${8:y2}){${1:amplitude}}{${2:number}}{${3:dashsize}}",
-      "keyvalindex": 10,
-      "keyvalpos": 0
-    },
-    "DashDoubleZigZag()(){}{}{}{}": {
-      "snippet": "DashDoubleZigZag(${5:x1},${6:y1})(${7:x2},${8:y2}){${1:amplitude}}{${2:number}}{${3:linesep}}{${4:dashsize}}"
-    },
-    "DashDoubleZigZag[]()(){}{}{}{}": {
-      "snippet": "DashDoubleZigZag[${5:options}](${6:x1},${7:y1})(${8:x2},${9:y2}){${1:amplitude}}{${2:number}}{${3:linesep}}{${4:dashsize}}",
-      "keyvalindex": 11,
-      "keyvalpos": 0
-    },
-    "ZigZagArc()(){}{}": {
-      "snippet": "ZigZagArc(${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:amplitude}}{${2:number}}"
-    },
-    "ZigZagArc[]()(){}{}": {
-      "snippet": "ZigZagArc[${3:options}](${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:amplitude}}{${2:number}}",
-      "keyvalindex": 12,
-      "keyvalpos": 0
-    },
-    "DoubleZigZagArc()(){}{}{}": {
-      "snippet": "DoubleZigZagArc(${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}"
-    },
-    "DoubleZigZagArc[]()(){}{}{}": {
-      "snippet": "DoubleZigZagArc[${4:options}](${5:x},${6:y})(${7:radius},${8:start-angle},${9:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}",
-      "keyvalindex": 13,
-      "keyvalpos": 0
-    },
-    "DashZigZagArc()(){}{}{}": {
-      "snippet": "DashZigZagArc(${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:amplitude}}{${2:number}}{${3:dashsize}}"
-    },
-    "DashZigZagArc[]()(){}{}{}": {
-      "snippet": "DashZigZagArc[${4:options}](${5:x},${6:y})(${7:radius},${8:start-angle},${9:end-angle}){${1:amplitude}}{${2:number}}{${3:dashsize}}",
-      "keyvalindex": 14,
-      "keyvalpos": 0
-    },
-    "DashDoubleZigZagArc()(){}{}{}{}": {
-      "snippet": "DashDoubleZigZagArc(${5:x},${6:y})(${7:radius},${8:start-angle},${9:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}{${4:dashsize}}"
-    },
-    "DashDoubleZigZagArc[]()(){}{}{}{}": {
-      "snippet": "DashDoubleZigZagArc[${5:options}](${6:x},${7:y})(${8:radius},${9:start-angle},${10:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}{${4:dashsize}}",
-      "keyvalindex": 15,
-      "keyvalpos": 0
-    },
-    "Vertex(){}": {
-      "snippet": "Vertex(${2:x},${3:y}){${1:radius}}"
-    },
-    "FCirc(){}": {
-      "snippet": "FCirc(${2:x},${3:y}){${1:radius}}"
-    },
-    "ECirc(){}": {
-      "snippet": "ECirc(${2:x},${3:y}){${1:radius}}"
-    },
-    "BCirc(){}": {
-      "snippet": "BCirc(${2:x},${3:y}){${1:radius}}"
-    },
-    "GCirc(){}{}": {
-      "snippet": "GCirc(${3:x},${4:y}){${1:radius}}{${2:grayscale}}"
-    },
-    "CCirc(){}{}{}": {
-      "snippet": "CCirc(${4:x},${5:y}){${1:radius}}{${2:bound color}}{${3:fill color}}"
-    },
-    "Oval()()()": {
-      "snippet": "Oval(${1:x},${2:y})(${3:half-height},${4:half-width})(${5:angle})"
-    },
-    "FOval()()()": {
-      "snippet": "FOval(${1:x},${2:y})(${3:half-height},${4:half-width})(${5:angle})"
-    },
-    "GOval()()(){}": {
-      "snippet": "GOval(${2:x},${3:y})(${4:half-height},${5:half-width})(${6:angle}){${1:grayscale}}"
-    },
-    "COval()()(){}{}": {
-      "snippet": "COval(${3:x},${4:y})(${5:half-height},${6:half-width})(${7:angle}){${1:bound color}}{${2:fill color}}"
-    },
-    "EBox()()": {
-      "snippet": "EBox(${1:x1},${2:y1})(${3:x2},${4:y2})"
-    },
-    "FBox()()": {
-      "snippet": "FBox(${1:x1},${2:y1})(${3:x2},${4:y2})"
-    },
-    "BBox()()": {
-      "snippet": "BBox(${1:x1},${2:y1})(${3:x2},${4:y2})"
-    },
-    "GBox()(){}": {
-      "snippet": "GBox(${2:x1},${3:y1})(${4:x2},${5:y2}){${1:grayscale}}"
-    },
-    "CBox()(){}{}": {
-      "snippet": "CBox(${3:x1},${4:y1})(${5:x2},${6:y2}){${1:bound color}}{${2:fill color}}"
-    },
-    "EBoxc()()": {
-      "snippet": "EBoxc(${1:x},${2:y})(${3:width},${4:height})"
-    },
-    "Boxc()()": {
-      "snippet": "Boxc(${1:x},${2:y})(${3:width},${4:height})"
-    },
-    "FBoxc()()": {
-      "snippet": "FBoxc(${1:x},${2:y})(${3:width},${4:height})"
-    },
-    "BBoxc()()": {
-      "snippet": "BBoxc(${1:x},${2:y})(${3:width},${4:height})"
-    },
-    "GBoxc()(){}": {
-      "snippet": "GBoxc(${2:x},${3:y})(${4:width},${5:height}){${1:grayscale}}"
-    },
-    "CBoxc()(){}{}": {
-      "snippet": "CBoxc(${3:x},${4:y})(${5:width},${6:height}){${1:bound color}}{${2:fill color}}"
-    },
-    "RotatedBox()(){}{}": {
-      "snippet": "RotatedBox(${3:x},${4:y})(${5:width},${6:height}){${1:angle}}{${2:color}}"
-    },
-    "FilledRotatedBox()(){}{}": {
-      "snippet": "FilledRotatedBox(${3:x},${4:y})(${5:width},${6:height}){${1:angle}}{${2:color}}"
-    },
-    "ETri()()()": {
-      "snippet": "ETri(${1:x1},${2:y1})(${3:x2},${4:y2})(${5:x3},${6:y3})"
-    },
-    "FTri()()()": {
-      "snippet": "FTri(${1:x1},${2:y1})(${3:x2},${4:y2})(${5:x3},${6:y3})"
-    },
-    "BTri()()()": {
-      "snippet": "BTri(${1:x1},${2:y1})(${3:x2},${4:y2})(${5:x3},${6:y3})"
-    },
-    "GTri()()(){}": {
-      "snippet": "GTri(${2:x1},${3:y1})(${4:x2},${5:y2})(${6:x3},${7:y3}){${1:grayscale}}"
-    },
-    "CTri()()(){}{}": {
-      "snippet": "CTri(${3:x1},${4:y1})(${5:x2},${6:y2})(${7:x3},${8:y3}){${1:bound color}}{${2:fill color}}"
-    },
-    "Polygon{}{}": {
-      "snippet": "Polygon{${1:(${3:x1},${4:y1}),(${5:x2},${6:y2}),...}}{${2:color}}"
-    },
-    "FilledPolygon{}{}": {
-      "snippet": "FilledPolygon{${1:(${3:x1},${4:y1}),(${5:x2},${6:y2}),...}}{${2:color}}"
-    },
-    "LinAxis()()()": {
-      "snippet": "LinAxis(${1:x1},${2:y1})(${3:x2},${4:y2})(${5:divs},${6:subdivs},${7:hashsize},${8:offset},${9:width})"
-    },
-    "LogAxis()()()": {
-      "snippet": "LogAxis(${1:x1},${2:y1})(${3:x2},${4:y2})(${5:divs},${6:hashsize},${7:offset},${8:width})"
-    },
-    "Text(){}": {
-      "snippet": "Text(${2:x},${3:y}){${1:text}}"
-    },
-    "Text()[]{}": {
-      "snippet": "Text(${3:x},${4:y})[${2:pos}]{${1:text}}"
-    },
-    "Text()(){}": {
-      "snippet": "Text(${2:x},${3:y})(${4:angle}){${1:text}}"
-    },
-    "Text()()[]{}": {
-      "snippet": "Text(${3:x},${4:y})(${5:angle})[${2:pos}]{${1:text}}"
-    },
-    "rText(){}": {
-      "snippet": "rText(${2:x},${3:y}){${1:text}}"
-    },
-    "rText()[]{}": {
-      "snippet": "rText(${3:x},${4:y})[${2:mode}]{${1:text}}"
-    },
-    "rText()[][]{}": {
-      "snippet": "rText(${4:x},${5:y})[${2:mode}][${3:rotation}]{${1:text}}"
-    },
-    "RText()(){}": {
-      "snippet": "RText(${2:x},${3:y})(${4:angle}){${1:text}}"
-    },
-    "RText()[](){}": {
-      "snippet": "RText(${3:x},${4:y})[${2:pos}](${5:angle}){${1:text}}"
-    },
-    "SetPFont{}{}": {
-      "snippet": "SetPFont{${1:postscript font}}{${2:size}}"
-    },
-    "PText()(){}": {
-      "snippet": "PText(${2:x},${3:y})(${4:angle}){${1:text}}"
-    },
-    "PText()()[]{}": {
-      "snippet": "PText(${3:x},${4:y})(${5:angle})[${2:pos}]{${1:text}}"
-    },
-    "BText(){}": {
-      "snippet": "BText(${2:x},${3:y}){${1:text}}"
-    },
-    "GText(){}{}": {
-      "snippet": "GText(${3:x},${4:y}){${1:grayscale}}{${2:text}}"
-    },
-    "CText(){}{}{}": {
-      "snippet": "CText(${4:x},${5:y}){${1:bound color}}{${2:fill color}}{${3:text}}"
-    },
-    "BTwoText(){}{}": {
-      "snippet": "BTwoText(${3:x},${4:y}){${1:text1}}{${2:text2}}"
-    },
-    "GTwoText(){}{}{}": {
-      "snippet": "GTwoText(${4:x},${5:y}){${1:grayscale}}{${2:text1}}{${3:text2}}"
-    },
-    "CTwoText(){}{}{}{}": {
-      "snippet": "CTwoText(${5:x},${6:y}){${1:bound color}}{${2:fill color}}{${3:text1}}{${4:text2}}"
-    },
-    "ArrowLine()()": {
-      "snippet": "ArrowLine(${1:x1},${2:y1})(${3:x2},${4:y2})"
-    },
-    "ArrowLine[]()()": {
-      "snippet": "ArrowLine[${1:options}](${2:x1},${3:y1})(${4:x2},${5:y2})"
-    },
-    "LongArrow()()": {
-      "snippet": "LongArrow(${1:x1},${2:y1})(${3:x2},${4:y2})"
-    },
-    "LongArrow[]()()": {
-      "snippet": "LongArrow[${1:options}](${2:x1},${3:y1})(${4:x2},${5:y2})"
-    },
-    "ArrowDoubleLine()(){}": {
-      "snippet": "ArrowDoubleLine(${2:x1},${3:y1})(${4:x2},${5:y2}){${1:linesep}}"
-    },
-    "ArrowDoubleLine[]()(){}": {
-      "snippet": "ArrowDoubleLine[${2:options}](${3:x1},${4:y1})(${5:x2},${6:y2}){${1:linesep}}"
-    },
-    "DashArrowLine()(){}": {
-      "snippet": "DashArrowLine(${2:x1},${3:y1})(${4:x2},${5:y2}){${1:dashsize}}"
-    },
-    "DashArrowLine[]()(){}": {
-      "snippet": "DashArrowLine[${2:options}](${3:x1},${4:y1})(${5:x2},${6:y2}){${1:dashsize}}"
-    },
-    "ArrowDashLine()(){}": {
-      "snippet": "ArrowDashLine(${2:x1},${3:y1})(${4:x2},${5:y2}){${1:dashsize}}"
-    },
-    "ArrowDashLine[]()(){}": {
-      "snippet": "ArrowDashLine[${2:options}](${3:x1},${4:y1})(${5:x2},${6:y2}){${1:dashsize}}"
-    },
-    "DashArrowDoubleLine()(){}{}": {
-      "snippet": "DashArrowDoubleLine(${3:x1},${4:y1})(${5:x2},${6:y2}){${1:linesep}}{${2:dashsize}}"
-    },
-    "DashArrowDoubleLine[]()(){}{}": {
-      "snippet": "DashArrowDoubleLine[${3:options}](${4:x1},${5:y1})(${6:x2},${7:y2}){${1:linesep}}{${2:dashsize}}"
-    },
-    "ArrowDashDoubleLine()(){}{}": {
-      "snippet": "ArrowDashDoubleLine(${3:x1},${4:y1})(${5:x2},${6:y2}){${1:linesep}}{${2:dashsize}}"
-    },
-    "ArrowDashDoubleLine[]()(){}{}": {
-      "snippet": "ArrowDashDoubleLine[${3:options}](${4:x1},${5:y1})(${6:x2},${7:y2}){${1:linesep}}{${2:dashsize}}"
-    },
-    "DashLongArrowLine()(){}": {
-      "snippet": "DashLongArrowLine(${2:x1},${3:y1})(${4:x2},${5:y2}){${1:dashsize}}"
-    },
-    "DashLongArrowLine[]()(){}": {
-      "snippet": "DashLongArrowLine[${2:options}](${3:x1},${4:y1})(${5:x2},${6:y2}){${1:dashsize}}"
-    },
-    "LongArrowDashLine()(){}": {
-      "snippet": "LongArrowDashLine(${2:x1},${3:y1})(${4:x2},${5:y2}){${1:dashsize}}"
-    },
-    "LongArrowDashLine[]()(){}": {
-      "snippet": "LongArrowDashLine[${2:options}](${3:x1},${4:y1})(${5:x2},${6:y2}){${1:dashsize}}"
-    },
-    "LongArrowDash()(){}": {
-      "snippet": "LongArrowDash(${2:x1},${3:y1})(${4:x2},${5:y2}){${1:dashsize}}"
-    },
-    "LongArrowDash[]()(){}": {
-      "snippet": "LongArrowDash[${2:options}](${3:x1},${4:y1})(${5:x2},${6:y2}){${1:dashsize}}"
-    },
-    "DashLongArrow()(){}": {
-      "snippet": "DashLongArrow(${2:x1},${3:y1})(${4:x2},${5:y2}){${1:dashsize}}"
-    },
-    "DashLongArrow[]()(){}": {
-      "snippet": "DashLongArrow[${2:options}](${3:x1},${4:y1})(${5:x2},${6:y2}){${1:dashsize}}"
-    },
-    "LongArrowArcn()()": {
-      "snippet": "LongArrowArcn(${1:x},${2:y})(${3:radius},${4:start-angle},${5:end-angle})"
-    },
-    "LongArrowArcn[]()()": {
-      "snippet": "LongArrowArcn[${1:options}](${2:x},${3:y})(${4:radius},${5:start-angle},${6:end-angle})"
-    },
-    "ArrowArcn()()": {
-      "snippet": "ArrowArcn(${1:x},${2:y})(${3:radius},${4:start-angle},${5:end-angle})"
-    },
-    "ArrowArcn[]()()": {
-      "snippet": "ArrowArcn[${1:options}](${2:x},${3:y})(${4:radius},${5:start-angle},${6:end-angle})"
-    },
-    "LongArrowArc()()": {
-      "snippet": "LongArrowArc(${1:x},${2:y})(${3:radius},${4:start-angle},${5:end-angle})"
-    },
-    "LongArrowArc[]()()": {
-      "snippet": "LongArrowArc[${1:options}](${2:x},${3:y})(${4:radius},${5:start-angle},${6:end-angle})"
-    },
-    "ArrowArc()()": {
-      "snippet": "ArrowArc(${1:x},${2:y})(${3:radius},${4:start-angle},${5:end-angle})"
-    },
-    "ArrowArc[]()()": {
-      "snippet": "ArrowArc[${1:options}](${2:x},${3:y})(${4:radius},${5:start-angle},${6:end-angle})"
-    },
-    "ArrowCArc()()": {
-      "snippet": "ArrowCArc(${1:x},${2:y})(${3:radius},${4:start-angle},${5:end-angle})"
-    },
-    "ArrowCArc[]()()": {
-      "snippet": "ArrowCArc[${1:options}](${2:x},${3:y})(${4:radius},${5:start-angle},${6:end-angle})"
-    },
-    "DashArrowArcn()(){}": {
-      "snippet": "DashArrowArcn(${2:x},${3:y})(${4:radius},${5:start-angle},${6:end-angle}){${1:dashsize}}"
-    },
-    "DashArrowArcn[]()(){}": {
-      "snippet": "DashArrowArcn[${2:options}](${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:dashsize}}"
-    },
-    "ArrowDashArcn()(){}": {
-      "snippet": "ArrowDashArcn(${2:x},${3:y})(${4:radius},${5:start-angle},${6:end-angle}){${1:dashsize}}"
-    },
-    "ArrowDashArcn[]()(){}": {
-      "snippet": "ArrowDashArcn[${2:options}](${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:dashsize}}"
-    },
-    "DashArrowArc()(){}": {
-      "snippet": "DashArrowArc(${2:x},${3:y})(${4:radius},${5:start-angle},${6:end-angle}){${1:dashsize}}"
-    },
-    "DashArrowArc[]()(){}": {
-      "snippet": "DashArrowArc[${2:options}](${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:dashsize}}"
-    },
-    "DashArrowCArc()(){}": {
-      "snippet": "DashArrowCArc(${2:x},${3:y})(${4:radius},${5:start-angle},${6:end-angle}){${1:dashsize}}"
-    },
-    "DashArrowCArc[]()(){}": {
-      "snippet": "DashArrowCArc[${2:options}](${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:dashsize}}"
-    },
-    "ArrowDashArc()(){}": {
-      "snippet": "ArrowDashArc(${2:x},${3:y})(${4:radius},${5:start-angle},${6:end-angle}){${1:dashsize}}"
-    },
-    "ArrowDashArc[]()(){}": {
-      "snippet": "ArrowDashArc[${2:options}](${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:dashsize}}"
-    },
-    "ArrowDashCArc()(){}": {
-      "snippet": "ArrowDashCArc(${2:x},${3:y})(${4:radius},${5:start-angle},${6:end-angle}){${1:dashsize}}"
-    },
-    "ArrowDashCArc[]()(){}": {
-      "snippet": "ArrowDashCArc[${2:options}](${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:dashsize}}"
-    },
-    "LongDashArrowArc()(){}": {
-      "snippet": "LongDashArrowArc(${2:x},${3:y})(${4:radius},${5:start-angle},${6:end-angle}){${1:dashsize}}"
-    },
-    "LongDashArrowArc[]()(){}": {
-      "snippet": "LongDashArrowArc[${2:options}](${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:dashsize}}"
-    },
-    "LongDashArrowCArc()(){}": {
-      "snippet": "LongDashArrowCArc(${2:x},${3:y})(${4:radius},${5:start-angle},${6:end-angle}){${1:dashsize}}"
-    },
-    "LongDashArrowCArc[]()(){}": {
-      "snippet": "LongDashArrowCArc[${2:options}](${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:dashsize}}"
-    },
-    "LongArrowDashArc()(){}": {
-      "snippet": "LongArrowDashArc(${2:x},${3:y})(${4:radius},${5:start-angle},${6:end-angle}){${1:dashsize}}"
-    },
-    "LongArrowDashArc[]()(){}": {
-      "snippet": "LongArrowDashArc[${2:options}](${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:dashsize}}"
-    },
-    "LongArrowDashCArc()(){}": {
-      "snippet": "LongArrowDashCArc(${2:x},${3:y})(${4:radius},${5:start-angle},${6:end-angle}){${1:dashsize}}"
-    },
-    "LongArrowDashCArc[]()(){}": {
-      "snippet": "LongArrowDashCArc[${2:options}](${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:dashsize}}"
-    },
-    "ArrowDoubleArc()(){}": {
-      "snippet": "ArrowDoubleArc(${2:x},${3:y})(${4:radius},${5:start-angle},${6:end-angle}){${1:linesep}}"
-    },
-    "ArrowDoubleArc[]()(){}": {
-      "snippet": "ArrowDoubleArc[${2:options}](${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:linesep}}"
-    },
-    "ArrowDoubleCArc()(){}": {
-      "snippet": "ArrowDoubleCArc(${2:x},${3:y})(${4:radius},${5:start-angle},${6:end-angle}){${1:linesep}}"
-    },
-    "ArrowDoubleCArc[]()(){}": {
-      "snippet": "ArrowDoubleCArc[${2:options}](${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:linesep}}"
-    },
-    "ArrowDashDoubleArc()(){}{}": {
-      "snippet": "ArrowDashDoubleArc(${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:linesep}}{${2:dashsize}}"
-    },
-    "ArrowDashDoubleArc[]()(){}{}": {
-      "snippet": "ArrowDashDoubleArc[${3:options}](${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:linesep}}{${2:dashsize}}"
-    },
-    "ArrowDashDoubleCArc()(){}{}": {
-      "snippet": "ArrowDashDoubleCArc(${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:linesep}}{${2:dashsize}}"
-    },
-    "ArrowDashDoubleCArc[]()(){}{}": {
-      "snippet": "ArrowDashDoubleCArc[${3:options}](${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:linesep}}{${2:dashsize}}"
-    },
-    "DashArrowDoubleArc()(){}{}": {
-      "snippet": "DashArrowDoubleArc(${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:linesep}}{${2:dashsize}}"
-    },
-    "DashArrowDoubleArc[]()(){}{}": {
-      "snippet": "DashArrowDoubleArc[${3:options}](${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:linesep}}{${2:dashsize}}"
-    },
-    "DashArrowDoubleCArc()(){}{}": {
-      "snippet": "DashArrowDoubleCArc(${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:linesep}}{${2:dashsize}}"
-    },
-    "DashArrowDoubleCArc[]()(){}{}": {
-      "snippet": "DashArrowDoubleCArc[${3:options}](${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:linesep}}{${2:dashsize}}"
-    },
-    "SetDashSize{}": {
-      "snippet": "SetDashSize{${1:number}}"
-    },
-    "SetLineSep{}": {
-      "snippet": "SetLineSep{${1:number}}"
-    },
-    "SetSep{}": {
-      "snippet": "SetSep{${1:number}}"
-    },
-    "SetWidth{}": {
-      "snippet": "SetWidth{${1:number}}"
-    },
-    "SetArrowAspect{}": {
-      "snippet": "SetArrowAspect{${1:number}}"
-    },
-    "SetArrowInset{}": {
-      "snippet": "SetArrowInset{${1:number}}"
-    },
-    "SetArrowPosition{}": {
-      "snippet": "SetArrowPosition{${1:number}}"
-    },
-    "SetArrowScale{}": {
-      "snippet": "SetArrowScale{${1:number}}"
-    },
-    "DefaultArrowScale{}": {
-      "snippet": "DefaultArrowScale{${1:number}}"
-    },
-    "SetArrowStroke{}": {
-      "snippet": "SetArrowStroke{${1:number}}"
-    },
-    "SetArrowSize{}": {
-      "snippet": "SetArrowSize{${1:number}}"
-    },
-    "canvasScaleOnept": {},
-    "canvasScaleObjectScale": {},
-    "canvasScaleUnitLength": {},
-    "SetScale{}": {
-      "snippet": "SetScale{${1:number}}"
-    },
-    "SetTextScale{}": {
-      "snippet": "SetTextScale{${1:number}}"
-    },
-    "SetCanvasScale{}": {
-      "snippet": "SetCanvasScale{${1:number}}"
-    },
-    "ifPSTextScalesLikeGraphics": {},
-    "PSTextScalesLikeGraphicsfalse": {},
-    "PSTextScalesLikeGraphicstrue": {},
-    "SetOffset()": {
-      "snippet": "SetOffset(${1:x},${2:y})"
-    },
-    "SetScaledOffset()": {
-      "snippet": "SetScaledOffset(${1:x},${2:y})"
-    },
-    "SetColor{}": {
-      "snippet": "SetColor{${1:color}}"
-    },
-    "SetObjectScale{}": {
-      "snippet": "SetObjectScale{${1:number}}"
-    },
-    "textGreenYellow": {},
-    "textYellow": {},
-    "textGoldenrod": {},
-    "textDandelion": {},
-    "textApricot": {},
-    "textPeach": {},
-    "textMelon": {},
-    "textYellowOrange": {},
-    "textOrange": {},
-    "textBurntOrange": {},
-    "textBittersweet": {},
-    "textRedOrange": {},
-    "textMahogany": {},
-    "textMaroon": {},
-    "textBrickRed": {},
-    "textRed": {},
-    "textOrangeRed": {},
-    "textRubineRed": {},
-    "textWildStrawberry": {},
-    "textSalmon": {},
-    "textCarnationPink": {},
-    "textMagenta": {},
-    "textVioletRed": {},
-    "textRhodamine": {},
-    "textMulberry": {},
-    "textRedViolet": {},
-    "textFuchsia": {},
-    "textLavender": {},
-    "textThistle": {},
-    "textOrchid": {},
-    "textDarkOrchid": {},
-    "textPurple": {},
-    "textPlum": {},
-    "textViolet": {},
-    "textRoyalPurple": {},
-    "textBlueViolet": {},
-    "textPeriwinkle": {},
-    "textCadetBlue": {},
-    "textCornflowerBlue": {},
-    "textMidnightBlue": {},
-    "textNavyBlue": {},
-    "textRoyalBlue": {},
-    "textBlue": {},
-    "textCerulean": {},
-    "textCyan": {},
-    "textProcessBlue": {},
-    "textSkyBlue": {},
-    "textTurquoise": {},
-    "textTealBlue": {},
-    "textAquamarine": {},
-    "textBlueGreen": {},
-    "textEmerald": {},
-    "textJungleGreen": {},
-    "textSeaGreen": {},
-    "textGreen": {},
-    "textForestGreen": {},
-    "textPineGreen": {},
-    "textLimeGreen": {},
-    "textYellowGreen": {},
-    "textSpringGreen": {},
-    "textOliveGreen": {},
-    "textRawSienna": {},
-    "textSepia": {},
-    "textBrown": {},
-    "textTan": {},
-    "textGray": {},
-    "textBlack": {},
-    "textWhite": {},
-    "textLightYellow": {},
-    "textLightRed": {},
-    "textLightBlue": {},
-    "textLightGray": {},
-    "textVeryLightBlue": {},
-    "GreenYellow{}": {
-      "snippet": "GreenYellow{${1:text}}"
-    },
-    "Yellow{}": {
-      "snippet": "Yellow{${1:text}}"
-    },
-    "Goldenrod{}": {
-      "snippet": "Goldenrod{${1:text}}"
-    },
-    "Dandelion{}": {
-      "snippet": "Dandelion{${1:text}}"
-    },
-    "Apricot{}": {
-      "snippet": "Apricot{${1:text}}"
-    },
-    "Peach{}": {
-      "snippet": "Peach{${1:text}}"
-    },
-    "Melon{}": {
-      "snippet": "Melon{${1:text}}"
-    },
-    "YellowOrange{}": {
-      "snippet": "YellowOrange{${1:text}}"
-    },
-    "Orange{}": {
-      "snippet": "Orange{${1:text}}"
-    },
-    "BurntOrange{}": {
-      "snippet": "BurntOrange{${1:text}}"
-    },
-    "Bittersweet{}": {
-      "snippet": "Bittersweet{${1:text}}"
-    },
-    "RedOrange{}": {
-      "snippet": "RedOrange{${1:text}}"
-    },
-    "Mahogany{}": {
-      "snippet": "Mahogany{${1:text}}"
-    },
-    "Maroon{}": {
-      "snippet": "Maroon{${1:text}}"
-    },
-    "BrickRed{}": {
-      "snippet": "BrickRed{${1:text}}"
-    },
-    "Red{}": {
-      "snippet": "Red{${1:text}}"
-    },
-    "OrangeRed{}": {
-      "snippet": "OrangeRed{${1:text}}"
-    },
-    "RubineRed{}": {
-      "snippet": "RubineRed{${1:text}}"
-    },
-    "WildStrawberry{}": {
-      "snippet": "WildStrawberry{${1:text}}"
-    },
-    "Salmon{}": {
-      "snippet": "Salmon{${1:text}}"
-    },
-    "CarnationPink{}": {
-      "snippet": "CarnationPink{${1:text}}"
-    },
-    "Magenta{}": {
-      "snippet": "Magenta{${1:text}}"
-    },
-    "VioletRed{}": {
-      "snippet": "VioletRed{${1:text}}"
-    },
-    "Rhodamine{}": {
-      "snippet": "Rhodamine{${1:text}}"
-    },
-    "Mulberry{}": {
-      "snippet": "Mulberry{${1:text}}"
-    },
-    "RedViolet{}": {
-      "snippet": "RedViolet{${1:text}}"
-    },
-    "Fuchsia{}": {
-      "snippet": "Fuchsia{${1:text}}"
-    },
-    "Lavender{}": {
-      "snippet": "Lavender{${1:text}}"
-    },
-    "Thistle{}": {
-      "snippet": "Thistle{${1:text}}"
-    },
-    "Orchid{}": {
-      "snippet": "Orchid{${1:text}}"
-    },
-    "DarkOrchid{}": {
-      "snippet": "DarkOrchid{${1:text}}"
-    },
-    "Purple{}": {
-      "snippet": "Purple{${1:text}}"
-    },
-    "Plum{}": {
-      "snippet": "Plum{${1:text}}"
-    },
-    "Violet{}": {
-      "snippet": "Violet{${1:text}}"
-    },
-    "RoyalPurple{}": {
-      "snippet": "RoyalPurple{${1:text}}"
-    },
-    "BlueViolet{}": {
-      "snippet": "BlueViolet{${1:text}}"
-    },
-    "Periwinkle{}": {
-      "snippet": "Periwinkle{${1:text}}"
-    },
-    "CadetBlue{}": {
-      "snippet": "CadetBlue{${1:text}}"
-    },
-    "CornflowerBlue{}": {
-      "snippet": "CornflowerBlue{${1:text}}"
-    },
-    "MidnightBlue{}": {
-      "snippet": "MidnightBlue{${1:text}}"
-    },
-    "NavyBlue{}": {
-      "snippet": "NavyBlue{${1:text}}"
-    },
-    "RoyalBlue{}": {
-      "snippet": "RoyalBlue{${1:text}}"
-    },
-    "Blue{}": {
-      "snippet": "Blue{${1:text}}"
-    },
-    "Cerulean{}": {
-      "snippet": "Cerulean{${1:text}}"
-    },
-    "Cyan{}": {
-      "snippet": "Cyan{${1:text}}"
-    },
-    "ProcessBlue{}": {
-      "snippet": "ProcessBlue{${1:text}}"
-    },
-    "SkyBlue{}": {
-      "snippet": "SkyBlue{${1:text}}"
-    },
-    "Turquoise{}": {
-      "snippet": "Turquoise{${1:text}}"
-    },
-    "TealBlue{}": {
-      "snippet": "TealBlue{${1:text}}"
-    },
-    "Aquamarine{}": {
-      "snippet": "Aquamarine{${1:text}}"
-    },
-    "BlueGreen{}": {
-      "snippet": "BlueGreen{${1:text}}"
-    },
-    "Emerald{}": {
-      "snippet": "Emerald{${1:text}}"
-    },
-    "JungleGreen{}": {
-      "snippet": "JungleGreen{${1:text}}"
-    },
-    "SeaGreen{}": {
-      "snippet": "SeaGreen{${1:text}}"
-    },
-    "Green{}": {
-      "snippet": "Green{${1:text}}"
-    },
-    "ForestGreen{}": {
-      "snippet": "ForestGreen{${1:text}}"
-    },
-    "PineGreen{}": {
-      "snippet": "PineGreen{${1:text}}"
-    },
-    "LimeGreen{}": {
-      "snippet": "LimeGreen{${1:text}}"
-    },
-    "YellowGreen{}": {
-      "snippet": "YellowGreen{${1:text}}"
-    },
-    "SpringGreen{}": {
-      "snippet": "SpringGreen{${1:text}}"
-    },
-    "OliveGreen{}": {
-      "snippet": "OliveGreen{${1:text}}"
-    },
-    "RawSienna{}": {
-      "snippet": "RawSienna{${1:text}}"
-    },
-    "Sepia{}": {
-      "snippet": "Sepia{${1:text}}"
-    },
-    "Brown{}": {
-      "snippet": "Brown{${1:text}}"
-    },
-    "Tan{}": {
-      "snippet": "Tan{${1:text}}"
-    },
-    "Gray{}": {
-      "snippet": "Gray{${1:text}}"
-    },
-    "Black{}": {
-      "snippet": "Black{${1:text}}"
-    },
-    "White{}": {
-      "snippet": "White{${1:text}}"
-    },
-    "LightYellow{}": {
-      "snippet": "LightYellow{${1:text}}"
-    },
-    "LightRed{}": {
-      "snippet": "LightRed{${1:text}}"
-    },
-    "LightBlue{}": {
-      "snippet": "LightBlue{${1:text}}"
-    },
-    "LightGray{}": {
-      "snippet": "LightGray{${1:text}}"
-    },
-    "VeryLightBlue{}": {
-      "snippet": "VeryLightBlue{${1:text}}"
-    },
-    "AXOputPDF{}": {
-      "snippet": "AXOputPDF{${1:pdf code}}"
-    },
-    "AXOputPS{}": {
-      "snippet": "AXOputPS{${1:ps code}}"
-    },
-    "AXOspecial{}": {
-      "snippet": "AXOspecial{${1:ps code}}"
-    },
-    "AssignDecDiv{}{}{}": {
-      "snippet": "AssignDecDiv{${1:variable}}{${2:integer1}}{${3:integer2}}"
-    },
-    "AxoPut(){}": {
-      "snippet": "AxoPut(${2:x},${3:y}){${1:text}}"
-    },
-    "IfColor{}{}": {
-      "snippet": "IfColor{${1:arg1}}{${2:arg2}}"
-    },
-    "SetPoint{}()": {
-      "snippet": "SetPoint{${1:name}}(${2:x},${3:y})"
-    },
-    "SetTmpBoxTwo{}{}": {
-      "snippet": "SetTmpBoxTwo{${1:contents1}}{${2:contents2}}"
-    },
-    "SetTmpBox{}": {
-      "snippet": "SetTmpBox{${1:contents}}"
-    },
-    "UseCurrentPSFont": {},
-    "axoarrowsize": {},
-    "axocanvas": {},
-    "axofontsize": {},
-    "axohelp": {},
-    "axominusone": {},
-    "axoone": {},
-    "axoparray(){}": {
-      "snippet": "axoparray(${2:x},${3:y}){${1:arg}}"
-    },
-    "axoscale": {},
-    "axoscalePT": {},
-    "axoscaleTT": {},
-    "axotextscale": {},
-    "axounitlength": {},
-    "axowidth": {},
-    "axoxo": {},
-    "axoxoff": {},
-    "axoyo": {},
-    "axoyoff": {},
-    "axozero": {},
-    "contentspdf": {},
-    "contentspdfNoOffset": {},
-    "defWithOption{}{}{}": {
-      "snippet": "defWithOption{${1:csname}}{${2:args}}{${3:definition}}"
-    },
-    "defineaxofont{}{}": {
-      "snippet": "defineaxofont{${1:user-visible font name}}{${2:LaTeX font name}}"
-    },
-    "eind": {},
-    "getaxohelp{}{}": {
-      "snippet": "getaxohelp{${1:csname}}{${2:spec}}"
-    },
-    "getoneline{}{}": {
-      "snippet": "getoneline{${1:csname}}{${2:input stream num}}"
-    },
-    "newcolor{}{}": {
-      "snippet": "newcolor{${1:color}}{${2:CMYK}}"
-    },
-    "pfontC": {},
-    "pfontN": {},
-    "putLen(){}": {
-      "snippet": "putLen(${2:x},${3:y}){${1:text}}"
-    },
-    "tmpfh": {},
-    "useX{}": {
-      "snippet": "useX{${1:point name}}"
-    },
-    "useY{}": {
-      "snippet": "useY{${1:point name}}"
-    },
-    "ifAXONotImplemented": {},
-    "AXONotImplementedtrue": {},
-    "AXONotImplementedfalse": {},
-    "tmpX": {},
-    "tmpY": {},
-    "bpinsp": {},
-    "ptinsp": {}
-  },
-  "envs": {
-    "axopicture(x,y)": {
-      "name": "axopicture",
-      "snippet": "(${1:x},${2:y})"
-    },
-    "axopicture(x,y)(xoffset,yoffset)": {
-      "name": "axopicture",
-      "snippet": "(${1:x},${2:y})(${3:xoffset},${4:yoffset})"
-    },
-    "OLDpicture": {}
-  },
-  "options": [
-    "v1compatible",
-    "canvasScaleIs1pt",
-    "canvasScaleIsObjectScale",
-    "canvasScaleIsUnitLength",
-    "PSTextScalesIndependently",
-    "PSTextScalesLikeGraphics"
+    {
+      "name": "keyval"
+    }
   ],
-  "keyvals": [
-    [
-      "color=",
-      "colour=",
-      "dsize=${1:number}",
-      "dashsize=${1:number}",
-      "sep=${1:number}",
-      "linesep=${1:number}",
-      "width=${1:number}",
-      "dash",
-      "double",
-      "arrow",
-      "flip",
-      "arrowpos=${1:number}",
-      "arrowaspect=${1:number}",
-      "arrowlength=${1:number}",
-      "arrowheight=${1:number}",
-      "arrowinset=${1:number}",
-      "arrowscale=${1:number}",
-      "arrowstroke=${1:number}",
-      "arrowwidth=${1:number}",
-      "inset=${1:number}"
+  "macros": [
+    {
+      "name": "B2Text",
+      "if": "v1compatible"
+    },
+    {
+      "name": "G2Text",
+      "if": "v1compatible"
+    },
+    {
+      "name": "C2Text",
+      "if": "v1compatible"
+    },
+    {
+      "name": "AxoGrid(x,y)(xsize,ysize)(xdivs,ydivs)",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:color}}{${2:linewidth}}"
+      }
+    },
+    {
+      "name": "Line(x1,y1)(x2,y2)"
+    },
+    {
+      "name": "Line",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "[${1:options%keyvals}](${2:x1},${3:y1})(${4:x2},${5:y2})"
+      }
+    },
+    {
+      "name": "DoubleLine(x1,y1)(x2,y2)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:linesep}}"
+      }
+    },
+    {
+      "name": "DoubleLine",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:x1},${4:y1})(${5:x2},${6:y2}){${1:linesep}}"
+      }
+    },
+    {
+      "name": "DashLine(x1,y1)(x2,y2)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:dashsize}}"
+      }
+    },
+    {
+      "name": "DashLine",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:x1},${4:y1})(${5:x2},${6:y2}){${1:dashsize}}"
+      }
+    },
+    {
+      "name": "DashDoubleLine(x1,y1)(x2,y2)",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:linesep}}{${2:dashsize}}"
+      }
+    },
+    {
+      "name": "DashDoubleLine",
+      "arg": {
+        "format": "[]()(){}{}",
+        "snippet": "[${3:options%keyvals}](${4:x1},${5:y1})(${6:x2},${7:y2}){${1:linesep}}{${2:dashsize}}"
+      }
+    },
+    {
+      "name": "Arc",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "[${1:options%keyvals}](${2:x},${3:y})(${4:radius},${5:start-angle},${6:end-angle})"
+      }
+    },
+    {
+      "name": "CArc",
+      "unusual": true,
+      "arg": {
+        "format": "[]()()",
+        "snippet": "[${1:options%keyvals}](${2:x},${3:y})(${4:radius},${5:start-angle},${6:end-angle})"
+      }
+    },
+    {
+      "name": "DoubleArc",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:linesep}}"
+      }
+    },
+    {
+      "name": "DoubleCArc",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:linesep}}"
+      }
+    },
+    {
+      "name": "DashArc",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:dashsize}}"
+      }
+    },
+    {
+      "name": "DashCArc",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:dashsize}}"
+      }
+    },
+    {
+      "name": "DashDoubleArc",
+      "arg": {
+        "format": "[]()(){}{}",
+        "snippet": "[${3:options%keyvals}](${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:linesep}}{${2:dashsize}}"
+      }
+    },
+    {
+      "name": "DashDoubleCArc",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}{}",
+        "snippet": "[${3:options%keyvals}](${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:linesep}}{${2:dashsize}}"
+      }
+    },
+    {
+      "name": "Bezier(x1,y1)(x2,y2)(x3,y3)(x4,y4)"
+    },
+    {
+      "name": "Bezier",
+      "arg": {
+        "format": "[]()()()()",
+        "snippet": "[${1:options%keyvals}](${2:x1},${3:y1})(${4:x2},${5:y2})(${6:x3},${7:y3})(${8:x4},${9:y4})"
+      }
+    },
+    {
+      "name": "DoubleBezier(x1,y1)(x2,y2)(x3,y3)(x4,y4)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:linesep}}"
+      }
+    },
+    {
+      "name": "DoubleBezier",
+      "arg": {
+        "format": "[]()()()(){}",
+        "snippet": "[${2:options%keyvals}](${3:x1},${4:y1})(${5:x2},${6:y2})(${7:x3},${8:y3})(${9:x4},${10:y4}){${1:linesep}}"
+      }
+    },
+    {
+      "name": "DashBezier(x1,y1)(x2,y2)(x3,y3)(x4,y4)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:dashsize}}"
+      }
+    },
+    {
+      "name": "DashBezier",
+      "arg": {
+        "format": "[]()()()(){}",
+        "snippet": "[${2:options%keyvals}](${3:x1},${4:y1})(${5:x2},${6:y2})(${7:x3},${8:y3})(${9:x4},${10:y4}){${1:dashsize}}"
+      }
+    },
+    {
+      "name": "DashDoubleBezier(x1,y1)(x2,y2)(x3,y3)(x4,y4)",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:linesep}}{${2:dashsize}}"
+      }
+    },
+    {
+      "name": "DashDoubleBezier",
+      "arg": {
+        "format": "[]()()()(){}{}",
+        "snippet": "[${3:options%keyvals}](${4:x1},${5:y1})(${6:x2},${7:y2})(${8:x3},${9:y3})(${10:x4},${11:y4}){${1:linesep}}{${2:dashsize}}"
+      }
+    },
+    {
+      "name": "Curve",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:(${2:x1},${3:y1})(${4:x2},${5:y2})...}}"
+      }
+    },
+    {
+      "name": "DashCurve",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:(${3:x1},${4:y1})(${5:x2},${6:y2})...}}{${2:dashsize}}"
+      }
+    },
+    {
+      "name": "Gluon(x1,y1)(x2,y2)",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:amplitude}}{${2:number}}"
+      }
+    },
+    {
+      "name": "Gluon",
+      "arg": {
+        "format": "[]()(){}{}",
+        "snippet": "[${3:options%keyvals}](${4:x1},${5:y1})(${6:x2},${7:y2}){${1:amplitude}}{${2:number}}"
+      }
+    },
+    {
+      "name": "DoubleGluon(x1,y1)(x2,y2)",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:amplitude}}{${2:number}}{${3:linesep}}"
+      }
+    },
+    {
+      "name": "DoubleGluon",
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "[${4:options%keyvals}](${5:x1},${6:y1})(${7:x2},${8:y2}){${1:amplitude}}{${2:number}}{${3:linesep}}"
+      }
+    },
+    {
+      "name": "DashGluon(x1,y1)(x2,y2)",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:amplitude}}{${2:number}}{${3:dashsize}}"
+      }
+    },
+    {
+      "name": "DashGluon",
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "[${4:options%keyvals}](${5:x1},${6:y1})(${7:x2},${8:y2}){${1:amplitude}}{${2:number}}{${3:dashsize}}"
+      }
+    },
+    {
+      "name": "DashDoubleGluon(x1,y1)(x2,y2)",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:amplitude}}{${2:number}}{${3:linesep}}{${4:dashsize}}"
+      }
+    },
+    {
+      "name": "DashDoubleGluon",
+      "arg": {
+        "format": "[]()(){}{}{}{}",
+        "snippet": "[${5:options%keyvals}](${6:x1},${7:y1})(${8:x2},${9:y2}){${1:amplitude}}{${2:number}}{${3:linesep}}{${4:dashsize}}"
+      }
+    },
+    {
+      "name": "GluonArc",
+      "arg": {
+        "format": "[]()(){}{}",
+        "snippet": "[${3:options%keyvals}](${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:amplitude}}{${2:number}}"
+      }
+    },
+    {
+      "name": "GlueArc",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}{}",
+        "snippet": "[${3:options%keyvals}](${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:amplitude}}{${2:number}}"
+      }
+    },
+    {
+      "name": "GluonArcn",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}{}",
+        "snippet": "[${3:options%keyvals}](${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:amplitude}}{${2:number}}"
+      }
+    },
+    {
+      "name": "GlueArcn",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}{}",
+        "snippet": "[${3:options%keyvals}](${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:amplitude}}{${2:number}}"
+      }
+    },
+    {
+      "name": "DoubleGluonArc",
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "[${4:options%keyvals}](${5:x},${6:y})(${7:radius},${8:start-angle},${9:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}"
+      }
+    },
+    {
+      "name": "DoubleGlueArc",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "[${4:options%keyvals}](${5:x},${6:y})(${7:radius},${8:start-angle},${9:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}"
+      }
+    },
+    {
+      "name": "DoubleGluonArcn",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "[${4:options%keyvals}](${5:x},${6:y})(${7:radius},${8:start-angle},${9:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}"
+      }
+    },
+    {
+      "name": "DoubleGlueArcn",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "[${4:options%keyvals}](${5:x},${6:y})(${7:radius},${8:start-angle},${9:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}"
+      }
+    },
+    {
+      "name": "DashGluonArc",
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "[${4:options%keyvals}](${5:x},${6:y})(${7:radius},${8:start-angle},${9:end-angle}){${1:amplitude}}{${2:number}}{${3:dashsize}}"
+      }
+    },
+    {
+      "name": "DashGlueArc",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "[${4:options%keyvals}](${5:x},${6:y})(${7:radius},${8:start-angle},${9:end-angle}){${1:amplitude}}{${2:number}}{${3:dashsize}}"
+      }
+    },
+    {
+      "name": "DashGluonArcn",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "[${4:options%keyvals}](${5:x},${6:y})(${7:radius},${8:start-angle},${9:end-angle}){${1:amplitude}}{${2:number}}{${3:dashsize}}"
+      }
+    },
+    {
+      "name": "DashGlueArcn",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "[${4:options%keyvals}](${5:x},${6:y})(${7:radius},${8:start-angle},${9:end-angle}){${1:amplitude}}{${2:number}}{${3:dashsize}}"
+      }
+    },
+    {
+      "name": "DashDoubleGluonArc",
+      "arg": {
+        "format": "[]()(){}{}{}{}",
+        "snippet": "[${5:options%keyvals}](${6:x},${7:y})(${8:radius},${9:start-angle},${10:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}{${4:dashsize}}"
+      }
+    },
+    {
+      "name": "DashDoubleGlueArc",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}{}{}{}",
+        "snippet": "[${5:options%keyvals}](${6:x},${7:y})(${8:radius},${9:start-angle},${10:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}{${4:dashsize}}"
+      }
+    },
+    {
+      "name": "DashDoubleGluonArcn",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}{}{}{}",
+        "snippet": "[${5:options%keyvals}](${6:x},${7:y})(${8:radius},${9:start-angle},${10:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}{${4:dashsize}}"
+      }
+    },
+    {
+      "name": "DashDoubleGlueArcn",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}{}{}{}",
+        "snippet": "[${5:options%keyvals}](${6:x},${7:y})(${8:radius},${9:start-angle},${10:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}{${4:dashsize}}"
+      }
+    },
+    {
+      "name": "GluonCirc(x,y)(radius,phase)",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:amplitude}}{${2:number}}"
+      }
+    },
+    {
+      "name": "GluonCirc",
+      "arg": {
+        "format": "[]()(){}{}",
+        "snippet": "[${3:options%keyvals}](${4:x},${5:y})(${6:radius},${7:phase}){${1:amplitude}}{${2:number}}"
+      }
+    },
+    {
+      "name": "DoubleGluonCirc(x,y)(radius,phase)",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:amplitude}}{${2:number}}{${3:linesep}}"
+      }
+    },
+    {
+      "name": "DoubleGluonCirc",
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "[${4:options%keyvals}](${5:x},${6:y})(${7:radius},${8:phase}){${1:amplitude}}{${2:number}}{${3:linesep}}"
+      }
+    },
+    {
+      "name": "DashGluonCirc(x,y)(radius,phase)",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:amplitude}}{${2:number}}{${3:dashsize}}"
+      }
+    },
+    {
+      "name": "DashGluonCirc",
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "[${4:options%keyvals}](${5:x},${6:y})(${7:radius},${8:phase}){${1:amplitude}}{${2:number}}{${3:dashsize}}"
+      }
+    },
+    {
+      "name": "DashDoubleGluonCirc(x,y)(radius,phase)",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:amplitude}}{${2:number}}{${3:linesep}}{${4:dashsize}}"
+      }
+    },
+    {
+      "name": "DashDoubleGluonCirc",
+      "arg": {
+        "format": "[]()(){}{}{}{}",
+        "snippet": "[${5:options%keyvals}](${6:x},${7:y})(${8:radius},${9:phase}){${1:amplitude}}{${2:number}}{${3:linesep}}{${4:dashsize}}"
+      }
+    },
+    {
+      "name": "Photon(x1,y1)(x2,y2)",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:amplitude}}{${2:number}}"
+      }
+    },
+    {
+      "name": "Photon",
+      "arg": {
+        "format": "[]()(){}{}",
+        "snippet": "[${3:options%keyvals}](${4:x1},${5:y1})(${6:x2},${7:y2}){${1:amplitude}}{${2:number}}"
+      }
+    },
+    {
+      "name": "DoublePhoton(x1,y1)(x2,y2)",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:amplitude}}{${2:number}}{${3:linesep}}"
+      }
+    },
+    {
+      "name": "DoublePhoton",
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "[${4:options%keyvals}](${5:x1},${6:y1})(${7:x2},${8:y2}){${1:amplitude}}{${2:number}}{${3:linesep}}"
+      }
+    },
+    {
+      "name": "DashPhoton(x1,y1)(x2,y2)",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:amplitude}}{${2:number}}{${3:dashsize}}"
+      }
+    },
+    {
+      "name": "DashPhoton",
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "[${4:options%keyvals}](${5:x1},${6:y1})(${7:x2},${8:y2}){${1:amplitude}}{${2:number}}{${3:dashsize}}"
+      }
+    },
+    {
+      "name": "DashDoublePhoton(x1,y1)(x2,y2)",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:amplitude}}{${2:number}}{${3:linesep}}{${4:dashsize}}"
+      }
+    },
+    {
+      "name": "DashDoublePhoton",
+      "arg": {
+        "format": "[]()(){}{}{}{}",
+        "snippet": "[${5:options%keyvals}](${6:x1},${7:y1})(${8:x2},${9:y2}){${1:amplitude}}{${2:number}}{${3:linesep}}{${4:dashsize}}"
+      }
+    },
+    {
+      "name": "PhotonArc",
+      "arg": {
+        "format": "[]()(){}{}",
+        "snippet": "[${3:options%keyvals}](${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:amplitude}}{${2:number}}"
+      }
+    },
+    {
+      "name": "DoublePhotonArc",
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "[${4:options%keyvals}](${5:x},${6:y})(${7:radius},${8:start-angle},${9:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}"
+      }
+    },
+    {
+      "name": "DashPhotonArc",
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "[${4:options%keyvals}](${5:x},${6:y})(${7:radius},${8:start-angle},${9:end-angle}){${1:amplitude}}{${2:number}}{${3:dashsize}}"
+      }
+    },
+    {
+      "name": "DashDoublePhotonArc",
+      "arg": {
+        "format": "[]()(){}{}{}{}",
+        "snippet": "[${5:options%keyvals}](${6:x},${7:y})(${8:radius},${9:start-angle},${10:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}{${4:dashsize}}"
+      }
+    },
+    {
+      "name": "ZigZag(x1,y1)(x2,y2)",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:amplitude}}{${2:number}}"
+      }
+    },
+    {
+      "name": "ZigZag",
+      "arg": {
+        "format": "[]()(){}{}",
+        "snippet": "[${3:options%keyvals}](${4:x1},${5:y1})(${6:x2},${7:y2}){${1:amplitude}}{${2:number}}"
+      }
+    },
+    {
+      "name": "DoubleZigZag(x1,y1)(x2,y2)",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:amplitude}}{${2:number}}{${3:linesep}}"
+      }
+    },
+    {
+      "name": "DoubleZigZag",
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "[${4:options%keyvals}](${5:x1},${6:y1})(${7:x2},${8:y2}){${1:amplitude}}{${2:number}}{${3:linesep}}"
+      }
+    },
+    {
+      "name": "DashZigZag(x1,y1)(x2,y2)",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:amplitude}}{${2:number}}{${3:dashsize}}"
+      }
+    },
+    {
+      "name": "DashZigZag",
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "[${4:options%keyvals}](${5:x1},${6:y1})(${7:x2},${8:y2}){${1:amplitude}}{${2:number}}{${3:dashsize}}"
+      }
+    },
+    {
+      "name": "DashDoubleZigZag(x1,y1)(x2,y2)",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:amplitude}}{${2:number}}{${3:linesep}}{${4:dashsize}}"
+      }
+    },
+    {
+      "name": "DashDoubleZigZag",
+      "arg": {
+        "format": "[]()(){}{}{}{}",
+        "snippet": "[${5:options%keyvals}](${6:x1},${7:y1})(${8:x2},${9:y2}){${1:amplitude}}{${2:number}}{${3:linesep}}{${4:dashsize}}"
+      }
+    },
+    {
+      "name": "ZigZagArc",
+      "arg": {
+        "format": "[]()(){}{}",
+        "snippet": "[${3:options%keyvals}](${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:amplitude}}{${2:number}}"
+      }
+    },
+    {
+      "name": "DoubleZigZagArc",
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "[${4:options%keyvals}](${5:x},${6:y})(${7:radius},${8:start-angle},${9:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}"
+      }
+    },
+    {
+      "name": "DashZigZagArc",
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "[${4:options%keyvals}](${5:x},${6:y})(${7:radius},${8:start-angle},${9:end-angle}){${1:amplitude}}{${2:number}}{${3:dashsize}}"
+      }
+    },
+    {
+      "name": "DashDoubleZigZagArc",
+      "arg": {
+        "format": "[]()(){}{}{}{}",
+        "snippet": "[${5:options%keyvals}](${6:x},${7:y})(${8:radius},${9:start-angle},${10:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}{${4:dashsize}}"
+      }
+    },
+    {
+      "name": "Vertex(x,y)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:radius}}"
+      }
+    },
+    {
+      "name": "FCirc(x,y)",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:radius}}"
+      }
+    },
+    {
+      "name": "ECirc(x,y)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:radius}}"
+      }
+    },
+    {
+      "name": "BCirc(x,y)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:radius}}"
+      }
+    },
+    {
+      "name": "GCirc(x,y)",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:radius}}{${2:grayscale}}"
+      }
+    },
+    {
+      "name": "CCirc(x,y)",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:radius}}{${2:bound color}}{${3:fill color}}"
+      }
+    },
+    {
+      "name": "EBox(x1,y1)(x2,y2)"
+    },
+    {
+      "name": "FBox(x1,y1)(x2,y2)"
+    },
+    {
+      "name": "BBox(x1,y1)(x2,y2)"
+    },
+    {
+      "name": "GBox(x1,y1)(x2,y2)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:grayscale}}"
+      }
+    },
+    {
+      "name": "CBox(x1,y1)(x2,y2)",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:bound color}}{${2:fill color}}"
+      }
+    },
+    {
+      "name": "EBoxc(x,y)(width,height)"
+    },
+    {
+      "name": "Boxc(x,y)(width,height)",
+      "unusual": true
+    },
+    {
+      "name": "FBoxc(x,y)(width,height)"
+    },
+    {
+      "name": "BBoxc(x,y)(width,height)"
+    },
+    {
+      "name": "GBoxc(x,y)(width,height)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:grayscale}}"
+      }
+    },
+    {
+      "name": "CBoxc(x,y)(width,height)",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:bound color}}{${2:fill color}}"
+      }
+    },
+    {
+      "name": "RotatedBox(x,y)(width,height)",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:angle}}{${2:color}}"
+      }
+    },
+    {
+      "name": "FilledRotatedBox(x,y)(width,height)",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:angle}}{${2:color}}"
+      }
+    },
+    {
+      "name": "ETri(x1,y1)(x2,y2)(x3,y3)"
+    },
+    {
+      "name": "FTri(x1,y1)(x2,y2)(x3,y3)"
+    },
+    {
+      "name": "BTri(x1,y1)(x2,y2)(x3,y3)"
+    },
+    {
+      "name": "GTri(x1,y1)(x2,y2)(x3,y3)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:grayscale}}"
+      }
+    },
+    {
+      "name": "CTri(x1,y1)(x2,y2)(x3,y3)",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:bound color}}{${2:fill color}}"
+      }
+    },
+    {
+      "name": "Polygon",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:(${3:x1},${4:y1}),(${5:x2},${6:y2}),...}}{${2:color}}"
+      }
+    },
+    {
+      "name": "FilledPolygon",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:(${3:x1},${4:y1}),(${5:x2},${6:y2}),...}}{${2:color}}"
+      }
+    },
+    {
+      "name": "LinAxis(x1,y1)(x2,y2)(divs,subdivs,hashsize,offset,width)"
+    },
+    {
+      "name": "LogAxis(x1,y1)(x2,y2)(divs,hashsize,offset,width)"
+    },
+    {
+      "name": "Text(x,y)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "Text(x,y)",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:pos}]{${1:text}}"
+      }
+    },
+    {
+      "name": "Text(x,y)(angle)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "Text(x,y)(angle)",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:pos}]{${1:text}}"
+      }
+    },
+    {
+      "name": "rText(x,y)",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "rText(x,y)",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:mode}]{${1:text}}"
+      }
+    },
+    {
+      "name": "rText(x,y)",
+      "unusual": true,
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:mode}][${3:rotation}]{${1:text}}"
+      }
+    },
+    {
+      "name": "RText(x,y)(angle)",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "RText(x,y)",
+      "unusual": true,
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:pos}](${3:angle}){${1:text}}"
+      }
+    },
+    {
+      "name": "SetPFont",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:postscript font%keyvals}}{${2:size}}"
+      }
+    },
+    {
+      "name": "PText(x,y)(angle)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "PText(x,y)(angle)",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:pos}]{${1:text}}"
+      }
+    },
+    {
+      "name": "BText(x,y)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "GText(x,y)",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:grayscale}}{${2:text}}"
+      }
+    },
+    {
+      "name": "CText(x,y)",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:bound color}}{${2:fill color}}{${3:text}}"
+      }
+    },
+    {
+      "name": "BTwoText(x,y)",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text1%text}}{${2:text2%text}}"
+      }
+    },
+    {
+      "name": "GTwoText(x,y)",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:grayscale}}{${2:text1%text}}{${3:text2%text}}"
+      }
+    },
+    {
+      "name": "CTwoText(x,y)",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:bound color}}{${2:fill color}}{${3:text1%text}}{${4:text2%text}}"
+      }
+    },
+    {
+      "name": "ArrowLine(x1,y1)(x2,y2)"
+    },
+    {
+      "name": "ArrowLine",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "[${1:options%keyvals}](${2:x1},${3:y1})(${4:x2},${5:y2})"
+      }
+    },
+    {
+      "name": "LongArrow(x1,y1)(x2,y2)"
+    },
+    {
+      "name": "LongArrow",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "[${1:options%keyvals}](${2:x1},${3:y1})(${4:x2},${5:y2})"
+      }
+    },
+    {
+      "name": "ArrowDoubleLine(x1,y1)(x2,y2)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:linesep}}"
+      }
+    },
+    {
+      "name": "ArrowDoubleLine",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:x1},${4:y1})(${5:x2},${6:y2}){${1:linesep}}"
+      }
+    },
+    {
+      "name": "DashArrowLine(x1,y1)(x2,y2)",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:dashsize}}"
+      }
+    },
+    {
+      "name": "DashArrowLine",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:x1},${4:y1})(${5:x2},${6:y2}){${1:dashsize}}"
+      }
+    },
+    {
+      "name": "ArrowDashLine(x1,y1)(x2,y2)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:dashsize}}"
+      }
+    },
+    {
+      "name": "ArrowDashLine",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:x1},${4:y1})(${5:x2},${6:y2}){${1:dashsize}}"
+      }
+    },
+    {
+      "name": "DashArrowDoubleLine(x1,y1)(x2,y2)",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:linesep}}{${2:dashsize}}"
+      }
+    },
+    {
+      "name": "DashArrowDoubleLine",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}{}",
+        "snippet": "[${3:options%keyvals}](${4:x1},${5:y1})(${6:x2},${7:y2}){${1:linesep}}{${2:dashsize}}"
+      }
+    },
+    {
+      "name": "ArrowDashDoubleLine(x1,y1)(x2,y2)",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:linesep}}{${2:dashsize}}"
+      }
+    },
+    {
+      "name": "ArrowDashDoubleLine",
+      "arg": {
+        "format": "[]()(){}{}",
+        "snippet": "[${3:options%keyvals}](${4:x1},${5:y1})(${6:x2},${7:y2}){${1:linesep}}{${2:dashsize}}"
+      }
+    },
+    {
+      "name": "DashLongArrowLine(x1,y1)(x2,y2)",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:dashsize}}"
+      }
+    },
+    {
+      "name": "DashLongArrowLine",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:x1},${4:y1})(${5:x2},${6:y2}){${1:dashsize}}"
+      }
+    },
+    {
+      "name": "LongArrowDashLine(x1,y1)(x2,y2)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:dashsize}}"
+      }
+    },
+    {
+      "name": "LongArrowDashLine",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:x1},${4:y1})(${5:x2},${6:y2}){${1:dashsize}}"
+      }
+    },
+    {
+      "name": "LongArrowDash(x1,y1)(x2,y2)",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:dashsize}}"
+      }
+    },
+    {
+      "name": "LongArrowDash",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:x1},${4:y1})(${5:x2},${6:y2}){${1:dashsize}}"
+      }
+    },
+    {
+      "name": "DashLongArrow(x1,y1)(x2,y2)",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:dashsize}}"
+      }
+    },
+    {
+      "name": "DashLongArrow",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:x1},${4:y1})(${5:x2},${6:y2}){${1:dashsize}}"
+      }
+    },
+    {
+      "name": "LongArrowArcn",
+      "unusual": true,
+      "arg": {
+        "format": "[]()()",
+        "snippet": "[${1:options%keyvals}](${2:x},${3:y})(${4:radius},${5:start-angle},${6:end-angle})"
+      }
+    },
+    {
+      "name": "ArrowArcn",
+      "unusual": true,
+      "arg": {
+        "format": "[]()()",
+        "snippet": "[${1:options%keyvals}](${2:x},${3:y})(${4:radius},${5:start-angle},${6:end-angle})"
+      }
+    },
+    {
+      "name": "LongArrowArc",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "[${1:options%keyvals}](${2:x},${3:y})(${4:radius},${5:start-angle},${6:end-angle})"
+      }
+    },
+    {
+      "name": "ArrowArc",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "[${1:options%keyvals}](${2:x},${3:y})(${4:radius},${5:start-angle},${6:end-angle})"
+      }
+    },
+    {
+      "name": "ArrowCArc",
+      "unusual": true,
+      "arg": {
+        "format": "[]()()",
+        "snippet": "[${1:options%keyvals}](${2:x},${3:y})(${4:radius},${5:start-angle},${6:end-angle})"
+      }
+    },
+    {
+      "name": "DashArrowArcn",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:dashsize}}"
+      }
+    },
+    {
+      "name": "ArrowDashArcn",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:dashsize}}"
+      }
+    },
+    {
+      "name": "DashArrowArc",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:dashsize}}"
+      }
+    },
+    {
+      "name": "DashArrowCArc",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:dashsize}}"
+      }
+    },
+    {
+      "name": "ArrowDashArc",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:dashsize}}"
+      }
+    },
+    {
+      "name": "ArrowDashCArc",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:dashsize}}"
+      }
+    },
+    {
+      "name": "LongDashArrowArc",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:dashsize}}"
+      }
+    },
+    {
+      "name": "LongDashArrowCArc",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:dashsize}}"
+      }
+    },
+    {
+      "name": "LongArrowDashArc",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:dashsize}}"
+      }
+    },
+    {
+      "name": "LongArrowDashCArc",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:dashsize}}"
+      }
+    },
+    {
+      "name": "ArrowDoubleArc",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:linesep}}"
+      }
+    },
+    {
+      "name": "ArrowDoubleCArc",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:linesep}}"
+      }
+    },
+    {
+      "name": "ArrowDashDoubleArc",
+      "arg": {
+        "format": "[]()(){}{}",
+        "snippet": "[${3:options%keyvals}](${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:linesep}}{${2:dashsize}}"
+      }
+    },
+    {
+      "name": "ArrowDashDoubleCArc",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}{}",
+        "snippet": "[${3:options%keyvals}](${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:linesep}}{${2:dashsize}}"
+      }
+    },
+    {
+      "name": "DashArrowDoubleArc",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}{}",
+        "snippet": "[${3:options%keyvals}](${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:linesep}}{${2:dashsize}}"
+      }
+    },
+    {
+      "name": "DashArrowDoubleCArc",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}{}",
+        "snippet": "[${3:options%keyvals}](${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:linesep}}{${2:dashsize}}"
+      }
+    },
+    {
+      "name": "SetDashSize",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "SetLineSep",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "SetSep",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "SetWidth",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "SetArrowAspect",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "SetArrowInset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "SetArrowPosition",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "SetArrowScale",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "DefaultArrowScale",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "SetArrowStroke",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "SetArrowSize",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "canvasScaleOnept"
+    },
+    {
+      "name": "canvasScaleObjectScale"
+    },
+    {
+      "name": "canvasScaleUnitLength"
+    },
+    {
+      "name": "SetScale",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "SetTextScale",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "SetCanvasScale",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "ifPSTextScalesLikeGraphics",
+      "unusual": true
+    },
+    {
+      "name": "PSTextScalesLikeGraphicsfalse"
+    },
+    {
+      "name": "PSTextScalesLikeGraphicstrue"
+    },
+    {
+      "name": "SetOffset(x,y)"
+    },
+    {
+      "name": "SetScaledOffset(x,y)"
+    },
+    {
+      "name": "SetColor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "SetObjectScale",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "textGreenYellow"
+    },
+    {
+      "name": "textYellow"
+    },
+    {
+      "name": "textGoldenrod"
+    },
+    {
+      "name": "textDandelion"
+    },
+    {
+      "name": "textApricot"
+    },
+    {
+      "name": "textPeach"
+    },
+    {
+      "name": "textMelon"
+    },
+    {
+      "name": "textYellowOrange"
+    },
+    {
+      "name": "textOrange"
+    },
+    {
+      "name": "textBurntOrange"
+    },
+    {
+      "name": "textBittersweet"
+    },
+    {
+      "name": "textRedOrange"
+    },
+    {
+      "name": "textMahogany"
+    },
+    {
+      "name": "textMaroon"
+    },
+    {
+      "name": "textBrickRed"
+    },
+    {
+      "name": "textRed"
+    },
+    {
+      "name": "textOrangeRed"
+    },
+    {
+      "name": "textRubineRed"
+    },
+    {
+      "name": "textWildStrawberry"
+    },
+    {
+      "name": "textSalmon"
+    },
+    {
+      "name": "textCarnationPink"
+    },
+    {
+      "name": "textMagenta"
+    },
+    {
+      "name": "textVioletRed"
+    },
+    {
+      "name": "textRhodamine"
+    },
+    {
+      "name": "textMulberry"
+    },
+    {
+      "name": "textRedViolet"
+    },
+    {
+      "name": "textFuchsia"
+    },
+    {
+      "name": "textLavender"
+    },
+    {
+      "name": "textThistle"
+    },
+    {
+      "name": "textOrchid"
+    },
+    {
+      "name": "textDarkOrchid"
+    },
+    {
+      "name": "textPurple"
+    },
+    {
+      "name": "textPlum"
+    },
+    {
+      "name": "textViolet"
+    },
+    {
+      "name": "textRoyalPurple"
+    },
+    {
+      "name": "textBlueViolet"
+    },
+    {
+      "name": "textPeriwinkle"
+    },
+    {
+      "name": "textCadetBlue"
+    },
+    {
+      "name": "textCornflowerBlue"
+    },
+    {
+      "name": "textMidnightBlue"
+    },
+    {
+      "name": "textNavyBlue"
+    },
+    {
+      "name": "textRoyalBlue"
+    },
+    {
+      "name": "textBlue"
+    },
+    {
+      "name": "textCerulean"
+    },
+    {
+      "name": "textCyan"
+    },
+    {
+      "name": "textProcessBlue"
+    },
+    {
+      "name": "textSkyBlue"
+    },
+    {
+      "name": "textTurquoise"
+    },
+    {
+      "name": "textTealBlue"
+    },
+    {
+      "name": "textAquamarine"
+    },
+    {
+      "name": "textBlueGreen"
+    },
+    {
+      "name": "textEmerald"
+    },
+    {
+      "name": "textJungleGreen"
+    },
+    {
+      "name": "textSeaGreen"
+    },
+    {
+      "name": "textGreen"
+    },
+    {
+      "name": "textForestGreen"
+    },
+    {
+      "name": "textPineGreen"
+    },
+    {
+      "name": "textLimeGreen"
+    },
+    {
+      "name": "textYellowGreen"
+    },
+    {
+      "name": "textSpringGreen"
+    },
+    {
+      "name": "textOliveGreen"
+    },
+    {
+      "name": "textRawSienna"
+    },
+    {
+      "name": "textSepia"
+    },
+    {
+      "name": "textBrown"
+    },
+    {
+      "name": "textTan"
+    },
+    {
+      "name": "textGray"
+    },
+    {
+      "name": "textBlack"
+    },
+    {
+      "name": "textWhite"
+    },
+    {
+      "name": "textLightYellow"
+    },
+    {
+      "name": "textLightRed"
+    },
+    {
+      "name": "textLightBlue"
+    },
+    {
+      "name": "textLightGray"
+    },
+    {
+      "name": "textVeryLightBlue"
+    },
+    {
+      "name": "GreenYellow",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "Yellow",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "Goldenrod",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "Dandelion",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "Apricot",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "Peach",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "Melon",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "YellowOrange",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "Orange",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "BurntOrange",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "Bittersweet",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "RedOrange",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "Mahogany",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "Maroon",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "BrickRed",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "Red",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "OrangeRed",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "RubineRed",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "WildStrawberry",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "Salmon",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "CarnationPink",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "Magenta",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "VioletRed",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "Rhodamine",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "Mulberry",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "RedViolet",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "Fuchsia",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "Lavender",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "Thistle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "Orchid",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "DarkOrchid",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "Purple",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "Plum",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "Violet",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "RoyalPurple",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "BlueViolet",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "Periwinkle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "CadetBlue",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "CornflowerBlue",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "MidnightBlue",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "NavyBlue",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "RoyalBlue",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "Blue",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "Cerulean",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "Cyan",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ProcessBlue",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "SkyBlue",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "Turquoise",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "TealBlue",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "Aquamarine",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "BlueGreen",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "Emerald",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "JungleGreen",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "SeaGreen",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "Green",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ForestGreen",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "PineGreen",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "LimeGreen",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "YellowGreen",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "SpringGreen",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "OliveGreen",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "RawSienna",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "Sepia",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "Brown",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "Tan",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "Gray",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "Black",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "White",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "LightYellow",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "LightRed",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "LightBlue",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "LightGray",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "VeryLightBlue",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "AXOputPDF",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pdf code}}"
+      }
+    },
+    {
+      "name": "AXOputPS",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ps code}}"
+      }
+    },
+    {
+      "name": "AXOspecial",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ps code}}"
+      }
+    },
+    {
+      "name": "AssignDecDiv",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:variable}}{${2:integer1}}{${3:integer2}}"
+      }
+    },
+    {
+      "name": "AxoPut(x,y)",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "SetPoint",
+      "unusual": true,
+      "arg": {
+        "format": "{}()",
+        "snippet": "{${1:name}}(${2:x},${3:y})"
+      }
+    },
+    {
+      "name": "SetTmpBoxTwo",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:contents1}}{${2:contents2}}"
+      }
+    },
+    {
+      "name": "SetTmpBox",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:contents}}"
+      }
+    },
+    {
+      "name": "UseCurrentPSFont",
+      "unusual": true
+    },
+    {
+      "name": "axoarrowsize",
+      "unusual": true
+    },
+    {
+      "name": "axocanvas",
+      "unusual": true
+    },
+    {
+      "name": "axofontsize",
+      "unusual": true
+    },
+    {
+      "name": "axohelp",
+      "unusual": true
+    },
+    {
+      "name": "axominusone",
+      "unusual": true
+    },
+    {
+      "name": "axoone",
+      "unusual": true
+    },
+    {
+      "name": "axoparray(x,y)",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "axoscale",
+      "unusual": true
+    },
+    {
+      "name": "axoscalePT",
+      "unusual": true
+    },
+    {
+      "name": "axoscaleTT",
+      "unusual": true
+    },
+    {
+      "name": "axotextscale",
+      "unusual": true
+    },
+    {
+      "name": "axounitlength",
+      "unusual": true
+    },
+    {
+      "name": "axowidth",
+      "unusual": true
+    },
+    {
+      "name": "axoxo",
+      "unusual": true
+    },
+    {
+      "name": "axoxoff",
+      "unusual": true
+    },
+    {
+      "name": "axoyo",
+      "unusual": true
+    },
+    {
+      "name": "axoyoff",
+      "unusual": true
+    },
+    {
+      "name": "axozero",
+      "unusual": true
+    },
+    {
+      "name": "contentspdf",
+      "unusual": true
+    },
+    {
+      "name": "contentspdfNoOffset",
+      "unusual": true
+    },
+    {
+      "name": "defWithOption",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:csname}}{${2:args}}{${3:definition}}"
+      }
+    },
+    {
+      "name": "defineaxofont",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:user-visible font name}}{${2:LaTeX font name}}"
+      }
+    },
+    {
+      "name": "getaxohelp",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:csname}}{${2:spec}}"
+      }
+    },
+    {
+      "name": "getoneline",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:csname}}{${2:input stream num}}"
+      }
+    },
+    {
+      "name": "newcolor",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:color%specialDef}}{${2:CMYK}}"
+      }
+    },
+    {
+      "name": "putLen(x,y)",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "useX",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:point name}}"
+      }
+    },
+    {
+      "name": "useY",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:point name}}"
+      }
+    },
+    {
+      "name": "ifAXONotImplemented",
+      "unusual": true
+    },
+    {
+      "name": "AXONotImplementedtrue",
+      "unusual": true
+    },
+    {
+      "name": "AXONotImplementedfalse",
+      "unusual": true
+    },
+    {
+      "name": "bpinsp",
+      "unusual": true
+    },
+    {
+      "name": "ptinsp",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "axopicture",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:x},${2:y})"
+      }
+    },
+    {
+      "name": "axopicture",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x},${2:y})(${3:xoffset},${4:yoffset})"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/axodraw2#c": [
+      "v1compatible\r",
+      "canvasScaleIs1pt\r",
+      "canvasScaleIsObjectScale\r",
+      "canvasScaleIsUnitLength\r",
+      "PSTextScalesIndependently\r",
+      "PSTextScalesLikeGraphics\r"
     ],
-    [
-      "color=",
-      "colour=",
-      "dsize=${1:number}",
-      "dashsize=${1:number}",
-      "sep=${1:number}",
-      "linesep=${1:number}",
-      "width=${1:number}",
-      "dash",
-      "arrow",
-      "flip",
-      "arrowpos=${1:number}",
-      "arrowaspect=${1:number}",
-      "arrowlength=${1:number}",
-      "arrowheight=${1:number}",
-      "arrowinset=${1:number}",
-      "arrowscale=${1:number}",
-      "arrowstroke=${1:number}",
-      "arrowwidth=${1:number}",
-      "inset=${1:number}"
+    "\\SetPFont#c": [
+      "AvantGarde-Book\r",
+      "AvantGarde-BookOblique\r",
+      "AvantGarde-Demi\r",
+      "AvantGarde-DemiOblique\r",
+      "Bookman-Demi\r",
+      "Bookman-DemiItalic\r",
+      "Bookman-Light\r",
+      "Bookman-LightItalic\r",
+      "Courier\r",
+      "Courier-Bold\r",
+      "Courier-BoldOblique\r",
+      "Courier-Oblique\r",
+      "Helvetica\r",
+      "Helvetica-Bold\r",
+      "Helvetica-BoldOblique\r",
+      "Helvetica-Narrow\r",
+      "Helvetica-NarrowBold\r",
+      "Helvetica-NarrowBoldOblique\r",
+      "Helvetica-NarrowOblique\r",
+      "Helvetica-Oblique\r",
+      "NewCenturySchlbk-Bold\r",
+      "NewCenturySchlbk-BoldItalic\r",
+      "NewCenturySchlbk-Italic\r",
+      "NewCenturySchlbk-Roman\r",
+      "Palatino-Bold\r",
+      "Palatino-BoldItalic\r",
+      "Palatino-Italic\r",
+      "Palatino-Roman\r",
+      "Symbol\r",
+      "Times-Bold\r",
+      "Times-BoldItalic\r",
+      "Times-Italic\r",
+      "Times-Roman\r",
+      "ZapfChancery-MediumItalic\r",
+      "ZapfDingbats\r"
     ],
-    [
+    "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier,\\Gluon,\\DoubleGluon,\\DashGluon,\\DashDoubleGluon,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\DashGluonCirc,\\DashDoubleGluonCirc,\\Photon,\\DoublePhoton,\\DashPhoton,\\DashDoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\DashZigZag,\\DashDoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\ArrowDashLine,\\ArrowDashDoubleLine,\\LongArrowDashLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDashArcn,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc": [
       "color=",
       "colour=",
-      "dsize=${1:number}",
-      "dashsize=${1:number}",
-      "sep=${1:number}",
-      "linesep=${1:number}",
-      "width=${1:number}",
-      "double",
-      "arrow",
-      "flip",
-      "arrowpos=${1:number}",
-      "arrowaspect=${1:number}",
-      "arrowlength=${1:number}",
-      "arrowheight=${1:number}",
-      "arrowinset=${1:number}",
-      "arrowscale=${1:number}",
-      "arrowstroke=${1:number}",
-      "arrowwidth=${1:number}",
-      "inset=${1:number}"
+      "dsize=${1:number}\r",
+      "dashsize=${1:number}\r",
+      "sep=${1:number}\r",
+      "linesep=${1:number}\r",
+      "width=${1:number}\r"
     ],
-    [
-      "color=",
-      "colour=",
-      "dsize=${1:number}",
-      "dashsize=${1:number}",
-      "sep=${1:number}",
-      "linesep=${1:number}",
-      "width=${1:number}",
-      "arrow",
-      "flip",
-      "arrowpos=${1:number}",
-      "arrowaspect=${1:number}",
-      "arrowlength=${1:number}",
-      "arrowheight=${1:number}",
-      "arrowinset=${1:number}",
-      "arrowscale=${1:number}",
-      "arrowstroke=${1:number}",
-      "arrowwidth=${1:number}",
-      "inset=${1:number}"
-    ],
-    [
-      "color=",
-      "colour=",
-      "dsize=${1:number}",
-      "dashsize=${1:number}",
-      "sep=${1:number}",
-      "linesep=${1:number}",
-      "width=${1:number}",
-      "dash",
-      "double",
-      "clock",
-      "clockwise",
-      "arrow",
-      "flip",
-      "arrowpos=${1:number}",
-      "arrowaspect=${1:number}",
-      "arrowlength=${1:number}",
-      "arrowheight=${1:number}",
-      "arrowinset=${1:number}",
-      "arrowscale=${1:number}",
-      "arrowstroke=${1:number}",
-      "arrowwidth=${1:number}",
-      "inset=${1:number}"
-    ],
-    [
-      "color=",
-      "colour=",
-      "dsize=${1:number}",
-      "dashsize=${1:number}",
-      "sep=${1:number}",
-      "linesep=${1:number}",
-      "width=${1:number}",
-      "dash",
-      "clock",
-      "clockwise",
-      "arrow",
-      "flip",
-      "arrowpos=${1:number}",
-      "arrowaspect=${1:number}",
-      "arrowlength=${1:number}",
-      "arrowheight=${1:number}",
-      "arrowinset=${1:number}",
-      "arrowscale=${1:number}",
-      "arrowstroke=${1:number}",
-      "arrowwidth=${1:number}",
-      "inset=${1:number}"
-    ],
-    [
-      "color=",
-      "colour=",
-      "dsize=${1:number}",
-      "dashsize=${1:number}",
-      "sep=${1:number}",
-      "linesep=${1:number}",
-      "width=${1:number}",
-      "double",
-      "clock",
-      "clockwise",
-      "arrow",
-      "flip",
-      "arrowpos=${1:number}",
-      "arrowaspect=${1:number}",
-      "arrowlength=${1:number}",
-      "arrowheight=${1:number}",
-      "arrowinset=${1:number}",
-      "arrowscale=${1:number}",
-      "arrowstroke=${1:number}",
-      "arrowwidth=${1:number}",
-      "inset=${1:number}"
-    ],
-    [
-      "color=",
-      "colour=",
-      "dsize=${1:number}",
-      "dashsize=${1:number}",
-      "sep=${1:number}",
-      "linesep=${1:number}",
-      "width=${1:number}",
-      "clock",
-      "clockwise",
-      "arrow",
-      "flip",
-      "arrowpos=${1:number}",
-      "arrowaspect=${1:number}",
-      "arrowlength=${1:number}",
-      "arrowheight=${1:number}",
-      "arrowinset=${1:number}",
-      "arrowscale=${1:number}",
-      "arrowstroke=${1:number}",
-      "arrowwidth=${1:number}",
-      "inset=${1:number}"
-    ],
-    [
-      "color=",
-      "colour=",
-      "dsize=${1:number}",
-      "dashsize=${1:number}",
-      "sep=${1:number}",
-      "linesep=${1:number}",
-      "width=${1:number}",
-      "dash",
-      "double"
-    ],
-    [
-      "color=",
-      "colour=",
-      "dsize=${1:number}",
-      "dashsize=${1:number}",
-      "sep=${1:number}",
-      "linesep=${1:number}",
-      "width=${1:number}",
+    "\\Line,\\DoubleLine,\\Arc,\\DoubleArc,\\Bezier,\\DoubleBezier,\\Gluon,\\DoubleGluon,\\GluonArc,\\DoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\Photon,\\DoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDoubleArc": [
       "dash"
     ],
-    [
-      "color=",
-      "colour=",
-      "dsize=${1:number}",
-      "dashsize=${1:number}",
-      "sep=${1:number}",
-      "linesep=${1:number}",
-      "width=${1:number}",
+    "\\Line,\\DashLine,\\Arc,\\DashArc,\\Bezier,\\DashBezier,\\Gluon,\\DashGluon,\\GluonArc,\\DashGluonArc,\\GluonCirc,\\DashGluonCirc,\\Photon,\\DashPhoton,\\PhotonArc,\\DashPhotonArc,\\ZigZag,\\DashZigZag,\\ZigZagArc,\\DashZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDashLine,\\LongArrowDashLine,\\LongArrowArc,\\ArrowArc,\\ArrowDashArc,\\LongArrowDashArc": [
       "double"
     ],
-    [
-      "color=",
-      "colour=",
-      "dsize=${1:number}",
-      "dashsize=${1:number}",
-      "sep=${1:number}",
-      "linesep=${1:number}",
-      "width=${1:number}"
-    ],
-    [
-      "color=",
-      "colour=",
-      "dsize=${1:number}",
-      "dashsize=${1:number}",
-      "sep=${1:number}",
-      "linesep=${1:number}",
-      "width=${1:number}",
-      "dash",
-      "double",
+    "\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\LongArrowArc,\\ArrowArc,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc": [
       "clock",
       "clockwise"
     ],
-    [
-      "color=",
-      "colour=",
-      "dsize=${1:number}",
-      "dashsize=${1:number}",
-      "sep=${1:number}",
-      "linesep=${1:number}",
-      "width=${1:number}",
-      "dash",
-      "clock",
-      "clockwise"
+    "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier": [
+      "arrow"
     ],
-    [
-      "color=",
-      "colour=",
-      "dsize=${1:number}",
-      "dashsize=${1:number}",
-      "sep=${1:number}",
-      "linesep=${1:number}",
-      "width=${1:number}",
-      "double",
-      "clock",
-      "clockwise"
-    ],
-    [
-      "color=",
-      "colour=",
-      "dsize=${1:number}",
-      "dashsize=${1:number}",
-      "sep=${1:number}",
-      "linesep=${1:number}",
-      "width=${1:number}",
-      "clock",
-      "clockwise"
+    "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\ArrowDashLine,\\ArrowDashDoubleLine,\\LongArrowDashLine,\\LongArrowArc,\\ArrowArc,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc": [
+      "flip",
+      "arrowpos=${1:number}\r",
+      "arrowaspect=${1:number}\r",
+      "arrowlength=${1:number}\r",
+      "arrowheight=${1:number}\r",
+      "arrowinset=${1:number}\r",
+      "arrowscale=${1:number}\r",
+      "arrowstroke=${1:number}\r",
+      "arrowwidth=${1:number}\r",
+      "inset=${1:number}\r"
     ]
+  },
+  "args": [
+    "\\usepackage/axodraw2#c"
   ]
 }

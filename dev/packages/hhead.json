@@ -1,37 +1,41 @@
 {
-  "includes": {
-    "hsetup": []
-  },
-  "macros": {
-    "barlength{}": {
-      "snippet": "barlength{${1:length}}"
-    },
-    "heading": {},
-    "heading[]": {
-      "snippet": "heading[${1:text}]"
-    },
-    "address{}": {
-      "snippet": "address{${1:arg}}"
-    },
-    "hletfalse": {},
-    "hlettrue": {},
-    "ifhlet": {},
-    "sign[]{}": {
-      "snippet": "sign[${2:opt}]{${1:arg}}"
-    },
-    "sign{}": {
-      "snippet": "sign{${1:arg}}"
+  "deps": [
+    {
+      "name": "hsetup"
     }
-  },
-  "envs": {},
-  "options": [
-    "private",
-    "signit",
-    "bruni",
-    "test",
-    "english",
-    "german",
-    "french"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "barlength",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
+    },
+    {
+      "name": "heading"
+    },
+    {
+      "name": "heading",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:text}]"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/hhead#c": [
+      "private\r",
+      "signit\r",
+      "bruni\r",
+      "test\r",
+      "english\r",
+      "german\r",
+      "french\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/hhead#c"
+  ]
 }

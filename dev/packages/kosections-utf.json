@@ -1,30 +1,68 @@
 {
-  "includes": {
-    "konames-utf": []
-  },
-  "macros": {
-    "circemph{}": {
-      "snippet": "circemph{${1:text}}"
+  "deps": [
+    {
+      "name": "konames-utf"
+    }
+  ],
+  "macros": [
+    {
+      "name": "circemph",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "circemphchar": {},
-    "dotemph{}": {
-      "snippet": "dotemph{${1:text}}"
+    {
+      "name": "circemphchar",
+      "unusual": true
     },
-    "dotemphchar": {},
-    "kscntformat{}{}{}": {
-      "snippet": "kscntformat{${1:level}}{${2:before}}{${3:after}}"
+    {
+      "name": "dotemph",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "raisedotdim": {},
-    "TEXTsubscript{}": {
-      "snippet": "TEXTsubscript{${1:text}}"
+    {
+      "name": "dotemphchar",
+      "unusual": true
     },
-    "useremph{}": {
-      "snippet": "useremph{${1:text}}"
+    {
+      "name": "kscntformat",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:level}}{${2:before}}{${3:after}}"
+      }
     },
-    "useremphchar": {},
-    "useremphraisedim": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "raisedotdim",
+      "unusual": true
+    },
+    {
+      "name": "TEXTsubscript",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "useremph",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "useremphchar",
+      "unusual": true
+    },
+    {
+      "name": "useremphraisedim",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

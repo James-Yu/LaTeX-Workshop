@@ -1,69 +1,110 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "ifxetex": [],
-    "ifluatex": [],
-    "multicol": []
-  },
-  "macros": {
-    "makeindex[]": {
-      "snippet": "makeindex[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "xkeyval"
     },
-    "indexsetup{}": {
-      "snippet": "indexsetup{${1:options}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "ifxetex"
     },
-    "splitindexoptions{}": {
-      "snippet": "splitindexoptions{${1:splitindex options}}"
+    {
+      "name": "ifluatex"
     },
-    "index[]{}": {
-      "snippet": "index[${2:name}]{${1:entry}}"
-    },
-    "indexprologue{}": {
-      "snippet": "indexprologue{${1:text}}"
-    },
-    "indexprologue[]{}": {
-      "snippet": "indexprologue[${2:spacing}]{${1:text}}"
-    },
-    "printindex": {},
-    "printindex[]": {
-      "snippet": "printindex[${1:name}]"
+    {
+      "name": "multicol"
     }
-  },
-  "envs": {},
-  "options": [
-    "xindy",
-    "texindy",
-    "truexindy",
-    "makeindex",
-    "noautomatic",
-    "nonewpage",
-    "splitindex",
-    "original",
-    "quiet"
   ],
-  "keyvals": [
-    [
-      "name=${1:name}",
-      "title=${1:text}",
-      "program=${1|makeindex,xindy,texindy,truexindy|}",
-      "options=${1:program options}",
+  "macros": [
+    {
+      "name": "makeindex",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "indexsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\indexsetup"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "splitindexoptions",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:splitindex options}}"
+      }
+    },
+    {
+      "name": "index",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:name}]{${1:entry}}"
+      }
+    },
+    {
+      "name": "indexprologue",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "indexprologue",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:spacing}]{${1:text}}"
+      }
+    },
+    {
+      "name": "printindex"
+    },
+    {
+      "name": "printindex",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:name}]"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/imakeidx#c": [
+      "xindy\r",
+      "texindy\r",
+      "truexindy\r",
+      "makeindex\r",
+      "noautomatic\r",
+      "nonewpage\r",
+      "splitindex\r",
+      "original\r",
+      "quiet\r"
+    ],
+    "\\makeindex": [
+      "name=${1:name}\r",
+      "title=${1:text}\r",
+      "program=${1|makeindex,xindy,texindy,truexindy\r|}",
+      "options=${1:program options}\r",
       "noautomatic",
       "intoc",
-      "columns=${1:number}",
+      "columns=${1:number}\r",
       "columnsep=",
       "columnseprule"
     ],
-    [
-      "level=${1:section cmd}",
-      "toclevel=${1:section csname}",
+    "\\indexsetup": [
+      "level=${1:section cmd}\r",
+      "toclevel=${1:section csname}\r",
       "noclearpage",
-      "firstpagestyle=",
-      "headers={${1:left marks}}{${2:right marks}}",
-      "othercode=${1:code}"
+      "firstpagestyle=\r",
+      "headers={${1:left marks}}{${2:right marks}}\r",
+      "othercode=${1:code}\r"
     ]
+  },
+  "args": [
+    "\\usepackage/imakeidx#c"
   ]
 }

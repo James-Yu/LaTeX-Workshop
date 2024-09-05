@@ -1,77 +1,74 @@
 {
-  "includes": {
-    "tikz": [],
-    "atbegshi": [],
-    "kvoptions": []
-  },
-  "macros": {
-    "bidipagegridsetup{}": {
-      "snippet": "bidipagegridsetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "setLTRpagegrid": {},
-    "setRTLpagegrid": {},
-    "bidipagegridShipoutDoubleBegin": {},
-    "bidipagegridShipoutDoubleEnd": {}
-  },
-  "envs": {},
-  "options": [
-    "enable",
-    "disable",
-    "left-top",
-    "lt",
-    "top-left",
-    "tl",
-    "tr",
-    "top-right",
-    "rt",
-    "right-top",
-    "left-bottom",
-    "lb",
-    "bottom-left",
-    "bl",
-    "br",
-    "bottom-right",
-    "rb",
-    "right-bottom",
-    "step=",
-    "firstcolor=",
-    "secondcolor=",
-    "arrows",
-    "arrowlength=",
-    "double=${1|false,first,last,true|}",
-    "foreground",
-    "direction=${1|LTR,RTL|}"
+    {
+      "name": "atbegshi"
+    },
+    {
+      "name": "kvoptions"
+    }
   ],
-  "keyvals": [
-    [
-      "enable",
-      "disable",
-      "left-top",
-      "lt",
-      "top-left",
-      "tl",
-      "tr",
-      "top-right",
-      "rt",
-      "right-top",
-      "left-bottom",
-      "lb",
-      "bottom-left",
-      "bl",
-      "br",
-      "bottom-right",
-      "rb",
-      "right-bottom",
+  "macros": [
+    {
+      "name": "bidipagegridsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\bidipagegridsetup,\\usepackage/bidipagegrid#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setLTRpagegrid"
+    },
+    {
+      "name": "setRTLpagegrid"
+    },
+    {
+      "name": "bidipagegridShipoutDoubleBegin",
+      "unusual": true
+    },
+    {
+      "name": "bidipagegridShipoutDoubleEnd",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\bidipagegridsetup,\\usepackage/bidipagegrid#c": [
+      "enable\r",
+      "disable\r",
+      "left-top\r",
+      "lt\r",
+      "top-left\r",
+      "tl\r",
+      "tr\r",
+      "top-right\r",
+      "rt\r",
+      "right-top\r",
+      "left-bottom\r",
+      "lb\r",
+      "bottom-left\r",
+      "bl\r",
+      "br\r",
+      "bottom-right\r",
+      "rb\r",
+      "right-bottom\r",
       "step=",
       "firstcolor=",
       "secondcolor=",
       "arrows",
       "arrowlength=",
-      "double=${1|false,first,last,true|}",
+      "double=${1|false,first,last,true\r|}",
       "foreground",
-      "direction=${1|LTR,RTL|}"
+      "direction=${1|LTR,RTL\r|}"
     ]
+  },
+  "args": [
+    "\\bidipagegridsetup,\\usepackage/bidipagegrid#c"
   ]
 }

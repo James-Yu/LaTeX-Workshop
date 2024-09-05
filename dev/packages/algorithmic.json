@@ -1,116 +1,325 @@
 {
-  "includes": {
-    "ifthen": [],
-    "keyval": []
-  },
-  "macros": {
-    "STATE": {},
-    "IF{}": {
-      "snippet": "IF{${1:condition}}"
+  "deps": [
+    {
+      "name": "ifthen"
     },
-    "ENDIF": {},
-    "ELSE": {},
-    "ELSIF{}": {
-      "snippet": "ELSIF{${1:condition}}"
-    },
-    "FOR{}": {
-      "snippet": "FOR{${1:condition}}"
-    },
-    "ENDFOR": {},
-    "FORALL{}": {
-      "snippet": "FORALL{${1:condition}}"
-    },
-    "TO": {},
-    "WHILE{}": {
-      "snippet": "WHILE{${1:condition}}"
-    },
-    "ENDWHILE": {},
-    "REPEAT": {},
-    "UNTIL{}": {
-      "snippet": "UNTIL{${1:condition}}"
-    },
-    "LOOP": {},
-    "ENDLOOP": {},
-    "AND": {},
-    "OR": {},
-    "XOR": {},
-    "NOT": {},
-    "REQUIRE": {},
-    "ENSURE": {},
-    "RETURN": {},
-    "TRUE": {},
-    "FALSE": {},
-    "PRINT": {},
-    "COMMENT{}": {
-      "snippet": "COMMENT{${1:text}}"
-    },
-    "algsetup{}": {
-      "snippet": "algsetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "STMT": {},
-    "INPUTS{}": {
-      "snippet": "INPUTS{${1:arg}}"
-    },
-    "ENDINPUTS": {},
-    "OUTPUTS{}": {
-      "snippet": "OUTPUTS{${1:arg}}"
-    },
-    "ENDOUTPUTS": {},
-    "GLOBALS": {},
-    "BODY{}": {
-      "snippet": "BODY{${1:arg}}"
-    },
-    "ENDBODY": {},
-    "algorithmicrequire": {},
-    "algorithmicensure": {},
-    "algorithmiccomment{}": {
-      "snippet": "algorithmiccomment{${1:text}}"
-    },
-    "algorithmicend": {},
-    "algorithmicif": {},
-    "algorithmicthen": {},
-    "algorithmicelse": {},
-    "algorithmicelsif": {},
-    "algorithmicendif": {},
-    "algorithmicfor": {},
-    "algorithmicforall": {},
-    "algorithmicdo": {},
-    "algorithmicendfor": {},
-    "algorithmicwhile": {},
-    "algorithmicendwhile": {},
-    "algorithmicloop": {},
-    "algorithmicendloop": {},
-    "algorithmicrepeat": {},
-    "algorithmicuntil": {},
-    "algorithmicprint": {},
-    "algorithmicreturn": {},
-    "algorithmicand": {},
-    "algorithmicor": {},
-    "algorithmicxor": {},
-    "algorithmicnot": {},
-    "algorithmicto": {},
-    "algorithmicinputs": {},
-    "algorithmicoutputs": {},
-    "algorithmicglobals": {},
-    "algorithmicbody": {},
-    "algorithmictrue": {},
-    "algorithmicfalse": {}
-  },
-  "envs": {
-    "algorithmic": {},
-    "algorithmic[]": {
-      "name": "algorithmic",
-      "snippet": "[${1:lines}]"
+    {
+      "name": "keyval"
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "STATE"
+    },
+    {
+      "name": "IF",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:condition}}"
+      }
+    },
+    {
+      "name": "ENDIF"
+    },
+    {
+      "name": "ELSE"
+    },
+    {
+      "name": "ELSIF",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:condition}}"
+      }
+    },
+    {
+      "name": "FOR",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:condition}}"
+      }
+    },
+    {
+      "name": "ENDFOR"
+    },
+    {
+      "name": "FORALL",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:condition}}"
+      }
+    },
+    {
+      "name": "TO"
+    },
+    {
+      "name": "WHILE",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:condition}}"
+      }
+    },
+    {
+      "name": "ENDWHILE"
+    },
+    {
+      "name": "REPEAT"
+    },
+    {
+      "name": "UNTIL",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:condition}}"
+      }
+    },
+    {
+      "name": "LOOP"
+    },
+    {
+      "name": "ENDLOOP"
+    },
+    {
+      "name": "AND"
+    },
+    {
+      "name": "OR"
+    },
+    {
+      "name": "XOR"
+    },
+    {
+      "name": "NOT"
+    },
+    {
+      "name": "REQUIRE"
+    },
+    {
+      "name": "ENSURE"
+    },
+    {
+      "name": "RETURN"
+    },
+    {
+      "name": "TRUE"
+    },
+    {
+      "name": "FALSE"
+    },
+    {
+      "name": "PRINT"
+    },
+    {
+      "name": "COMMENT",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "algsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\algsetup"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "STMT",
+      "unusual": true
+    },
+    {
+      "name": "INPUTS",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "ENDINPUTS",
+      "unusual": true
+    },
+    {
+      "name": "OUTPUTS",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "ENDOUTPUTS",
+      "unusual": true
+    },
+    {
+      "name": "GLOBALS",
+      "unusual": true
+    },
+    {
+      "name": "BODY",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "ENDBODY",
+      "unusual": true
+    },
+    {
+      "name": "algorithmicrequire",
+      "unusual": true
+    },
+    {
+      "name": "algorithmicensure",
+      "unusual": true
+    },
+    {
+      "name": "algorithmiccomment",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "algorithmicend",
+      "unusual": true
+    },
+    {
+      "name": "algorithmicif",
+      "unusual": true
+    },
+    {
+      "name": "algorithmicthen",
+      "unusual": true
+    },
+    {
+      "name": "algorithmicelse",
+      "unusual": true
+    },
+    {
+      "name": "algorithmicelsif",
+      "unusual": true
+    },
+    {
+      "name": "algorithmicendif",
+      "unusual": true
+    },
+    {
+      "name": "algorithmicfor",
+      "unusual": true
+    },
+    {
+      "name": "algorithmicforall",
+      "unusual": true
+    },
+    {
+      "name": "algorithmicdo",
+      "unusual": true
+    },
+    {
+      "name": "algorithmicendfor",
+      "unusual": true
+    },
+    {
+      "name": "algorithmicwhile",
+      "unusual": true
+    },
+    {
+      "name": "algorithmicendwhile",
+      "unusual": true
+    },
+    {
+      "name": "algorithmicloop",
+      "unusual": true
+    },
+    {
+      "name": "algorithmicendloop",
+      "unusual": true
+    },
+    {
+      "name": "algorithmicrepeat",
+      "unusual": true
+    },
+    {
+      "name": "algorithmicuntil",
+      "unusual": true
+    },
+    {
+      "name": "algorithmicprint",
+      "unusual": true
+    },
+    {
+      "name": "algorithmicreturn",
+      "unusual": true
+    },
+    {
+      "name": "algorithmicand",
+      "unusual": true
+    },
+    {
+      "name": "algorithmicor",
+      "unusual": true
+    },
+    {
+      "name": "algorithmicxor",
+      "unusual": true
+    },
+    {
+      "name": "algorithmicnot",
+      "unusual": true
+    },
+    {
+      "name": "algorithmicto",
+      "unusual": true
+    },
+    {
+      "name": "algorithmicinputs",
+      "unusual": true
+    },
+    {
+      "name": "algorithmicoutputs",
+      "unusual": true
+    },
+    {
+      "name": "algorithmicglobals",
+      "unusual": true
+    },
+    {
+      "name": "algorithmicbody",
+      "unusual": true
+    },
+    {
+      "name": "algorithmictrue",
+      "unusual": true
+    },
+    {
+      "name": "algorithmicfalse",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "algorithmic"
+    },
+    {
+      "name": "algorithmic",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:lines}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\algsetup": [
       "indent=",
       "linenosize=",
-      "linenodelimiter="
+      "linenodelimiter=\r"
     ]
-  ]
+  },
+  "args": []
 }

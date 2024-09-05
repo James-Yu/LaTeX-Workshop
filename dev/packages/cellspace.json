@@ -1,29 +1,58 @@
 {
-  "includes": {
-    "ifthen": [],
-    "array": [],
-    "calc": [],
-    "xkeyval": [],
-    "amsmath": [
-      "math"
+  "deps": [
+    {
+      "name": "ifthen"
+    },
+    {
+      "name": "array"
+    },
+    {
+      "name": "calc"
+    },
+    {
+      "name": "xkeyval"
+    },
+    {
+      "name": "amsmath",
+      "if": "math"
+    }
+  ],
+  "macros": [
+    {
+      "name": "cellspacetoplimit"
+    },
+    {
+      "name": "cellspacebottomlimit"
+    },
+    {
+      "name": "bcolumn",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "ecolumn",
+      "unusual": true
+    },
+    {
+      "name": "addparagraphcolumntypes",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:col type}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/cellspace#c": [
+      "math\r",
+      "nomath\r",
+      "column=${1:column type}\r"
     ]
   },
-  "macros": {
-    "cellspacetoplimit": {},
-    "cellspacebottomlimit": {},
-    "bcolumn{}": {
-      "snippet": "bcolumn{${1:arg}}"
-    },
-    "ecolumn": {},
-    "addparagraphcolumntypes{}": {
-      "snippet": "addparagraphcolumntypes{${1:col type}}"
-    }
-  },
-  "envs": {},
-  "options": [
-    "math",
-    "nomath",
-    "column=${1:column type}"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/cellspace#c"
+  ]
 }

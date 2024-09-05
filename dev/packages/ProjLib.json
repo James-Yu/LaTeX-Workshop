@@ -1,512 +1,1086 @@
 {
-  "includes": {
-    "projlib-language": [
-      "amsfashion",
-      "amsfashion=true",
-      "ams-fashion",
-      "ams-fashion=true",
-      "ams fashion",
-      "ams fashion=true"
-    ],
-    "projlib-datetime": [],
-    "projlib-draft": [],
-    "projlib-font": [],
-    "projlib-logo": [],
-    "projlib-math": [],
-    "projlib-paper": [],
-    "projlib-text": [],
-    "projlib-theorem": [],
-    "projlib-author": [
+  "deps": [
+    {
+      "name": "projlib-language"
+    },
+    {
+      "name": "projlib-datetime"
+    },
+    {
+      "name": "projlib-draft"
+    },
+    {
+      "name": "projlib-font"
+    },
+    {
+      "name": "projlib-logo"
+    },
+    {
+      "name": "projlib-math"
+    },
+    {
+      "name": "projlib-paper"
+    },
+    {
+      "name": "projlib-text"
+    },
+    {
+      "name": "projlib-theorem"
+    },
+    {
+      "name": "projlib-author",
+      "if": "author"
+    },
+    {
+      "name": "projlib-author",
+      "if": "author=true"
+    },
+    {
+      "name": "projlib-author",
+      "if": "authorblock"
+    },
+    {
+      "name": "projlib-author",
+      "if": "authorblock=true"
+    },
+    {
+      "name": "projlib-author",
+      "if": "author-block"
+    },
+    {
+      "name": "projlib-author",
+      "if": "author-block=true"
+    },
+    {
+      "name": "projlib-author",
+      "if": "author block"
+    },
+    {
+      "name": "projlib-author",
+      "if": "author block=true"
+    },
+    {
+      "name": "projlib-author",
+      "if": "amsfashion"
+    },
+    {
+      "name": "projlib-language",
+      "if": "amsfashion"
+    },
+    {
+      "name": "scontents",
+      "if": "amsfashion"
+    },
+    {
+      "name": "projlib-author",
+      "if": "amsfashion=true"
+    },
+    {
+      "name": "projlib-language",
+      "if": "amsfashion=true"
+    },
+    {
+      "name": "scontents",
+      "if": "amsfashion=true"
+    },
+    {
+      "name": "projlib-author",
+      "if": "ams-fashion"
+    },
+    {
+      "name": "projlib-language",
+      "if": "ams-fashion"
+    },
+    {
+      "name": "scontents",
+      "if": "ams-fashion"
+    },
+    {
+      "name": "projlib-author",
+      "if": "ams-fashion=true"
+    },
+    {
+      "name": "projlib-language",
+      "if": "ams-fashion=true"
+    },
+    {
+      "name": "scontents",
+      "if": "ams-fashion=true"
+    },
+    {
+      "name": "projlib-author",
+      "if": "ams fashion"
+    },
+    {
+      "name": "projlib-language",
+      "if": "ams fashion"
+    },
+    {
+      "name": "scontents",
+      "if": "ams fashion"
+    },
+    {
+      "name": "projlib-author",
+      "if": "ams fashion=true"
+    },
+    {
+      "name": "projlib-language",
+      "if": "ams fashion=true"
+    },
+    {
+      "name": "scontents",
+      "if": "ams fashion=true"
+    },
+    {
+      "name": "projlib-titlepage",
+      "if": "titlepage"
+    },
+    {
+      "name": "projlib-titlepage",
+      "if": "titlepage=true"
+    },
+    {
+      "name": "projlib-titlepage",
+      "if": "title-page"
+    },
+    {
+      "name": "projlib-titlepage",
+      "if": "title-page=true"
+    },
+    {
+      "name": "projlib-titlepage",
+      "if": "title page"
+    },
+    {
+      "name": "projlib-titlepage",
+      "if": "title page=true"
+    },
+    {
+      "name": "amssymb",
+      "if": "lmodern"
+    },
+    {
+      "name": "lmodern",
+      "if": "lmodern"
+    },
+    {
+      "name": "amssymb",
+      "if": "lmodern=true"
+    },
+    {
+      "name": "lmodern",
+      "if": "lmodern=true"
+    },
+    {
+      "name": "amssymb",
+      "if": "latin-modern"
+    },
+    {
+      "name": "lmodern",
+      "if": "latin-modern"
+    },
+    {
+      "name": "amssymb",
+      "if": "latin-modern=true"
+    },
+    {
+      "name": "lmodern",
+      "if": "latin-modern=true"
+    },
+    {
+      "name": "amssymb",
+      "if": "latin modern"
+    },
+    {
+      "name": "lmodern",
+      "if": "latin modern"
+    },
+    {
+      "name": "amssymb",
+      "if": "latin modern=true"
+    },
+    {
+      "name": "lmodern",
+      "if": "latin modern=true"
+    },
+    {
+      "name": "mathpazo",
+      "if": "palatino"
+    },
+    {
+      "name": "newpxtext",
+      "if": "palatino"
+    },
+    {
+      "name": "mathpazo",
+      "if": "palatino=true"
+    },
+    {
+      "name": "newpxtext",
+      "if": "palatino=true"
+    },
+    {
+      "name": "newtxtext",
+      "if": "times"
+    },
+    {
+      "name": "newtxmath",
+      "if": "times"
+    },
+    {
+      "name": "newtxtext",
+      "if": "times=true"
+    },
+    {
+      "name": "newtxmath",
+      "if": "times=true"
+    },
+    {
+      "name": "newtxmath",
+      "if": "garamond"
+    },
+    {
+      "name": "ebgaramond-maths",
+      "if": "garamond"
+    },
+    {
+      "name": "ebgaramond",
+      "if": "garamond"
+    },
+    {
+      "name": "newtxmath",
+      "if": "garamond=true"
+    },
+    {
+      "name": "ebgaramond-maths",
+      "if": "garamond=true"
+    },
+    {
+      "name": "ebgaramond",
+      "if": "garamond=true"
+    },
+    {
+      "name": "anyfontsize",
+      "if": "noto"
+    },
+    {
+      "name": "notomath",
+      "if": "noto"
+    },
+    {
+      "name": "anyfontsize",
+      "if": "noto=true"
+    },
+    {
+      "name": "notomath",
+      "if": "noto=true"
+    },
+    {
+      "name": "eulervm",
+      "if": "biolinum"
+    },
+    {
+      "name": "biolinum",
+      "if": "biolinum"
+    },
+    {
+      "name": "mathastext",
+      "if": "biolinum"
+    },
+    {
+      "name": "eulervm",
+      "if": "biolinum=true"
+    },
+    {
+      "name": "biolinum",
+      "if": "biolinum=true"
+    },
+    {
+      "name": "mathastext",
+      "if": "biolinum=true"
+    }
+  ],
+  "macros": [
+    {
+      "name": "keywords",
+      "if": "amsfashion",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keywords%text}}"
+      }
+    },
+    {
+      "name": "dedicatory",
+      "if": "amsfashion",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "subjclass",
+      "if": "amsfashion",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:classification}}"
+      }
+    },
+    {
+      "name": "subjclass",
+      "if": "amsfashion",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:year}]{${1:classification}}"
+      }
+    },
+    {
+      "name": "keywords",
+      "if": "amsfashion=true",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keywords%text}}"
+      }
+    },
+    {
+      "name": "dedicatory",
+      "if": "amsfashion=true",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "subjclass",
+      "if": "amsfashion=true",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:classification}}"
+      }
+    },
+    {
+      "name": "subjclass",
+      "if": "amsfashion=true",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:year}]{${1:classification}}"
+      }
+    },
+    {
+      "name": "keywords",
+      "if": "ams-fashion",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keywords%text}}"
+      }
+    },
+    {
+      "name": "dedicatory",
+      "if": "ams-fashion",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "subjclass",
+      "if": "ams-fashion",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:classification}}"
+      }
+    },
+    {
+      "name": "subjclass",
+      "if": "ams-fashion",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:year}]{${1:classification}}"
+      }
+    },
+    {
+      "name": "keywords",
+      "if": "ams-fashion=true",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keywords%text}}"
+      }
+    },
+    {
+      "name": "dedicatory",
+      "if": "ams-fashion=true",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "subjclass",
+      "if": "ams-fashion=true",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:classification}}"
+      }
+    },
+    {
+      "name": "subjclass",
+      "if": "ams-fashion=true",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:year}]{${1:classification}}"
+      }
+    },
+    {
+      "name": "keywords",
+      "if": "ams fashion",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keywords%text}}"
+      }
+    },
+    {
+      "name": "dedicatory",
+      "if": "ams fashion",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "subjclass",
+      "if": "ams fashion",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:classification}}"
+      }
+    },
+    {
+      "name": "subjclass",
+      "if": "ams fashion",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:year}]{${1:classification}}"
+      }
+    },
+    {
+      "name": "keywords",
+      "if": "ams fashion=true",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keywords%text}}"
+      }
+    },
+    {
+      "name": "dedicatory",
+      "if": "ams fashion=true",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "subjclass",
+      "if": "ams fashion=true",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:classification}}"
+      }
+    },
+    {
+      "name": "subjclass",
+      "if": "ams fashion=true",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:year}]{${1:classification}}"
+      }
+    },
+    {
+      "name": "captionsjapanese",
+      "if": "Japanese",
+      "unusual": true
+    },
+    {
+      "name": "datejapanese",
+      "if": "Japanese",
+      "unusual": true
+    },
+    {
+      "name": "extrasjapanese",
+      "if": "Japanese",
+      "unusual": true
+    },
+    {
+      "name": "noextrasjapanese",
+      "if": "Japanese",
+      "unusual": true
+    },
+    {
+      "name": "cyrdash",
+      "if": "Russian"
+    },
+    {
+      "name": "asbuk",
+      "if": "Russian",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "Asbuk",
+      "if": "Russian",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "Russian",
+      "if": "Russian"
+    },
+    {
+      "name": "sh",
+      "if": "Russian"
+    },
+    {
+      "name": "ch",
+      "if": "Russian"
+    },
+    {
+      "name": "tg",
+      "if": "Russian"
+    },
+    {
+      "name": "ctg",
+      "if": "Russian"
+    },
+    {
+      "name": "arctg",
+      "if": "Russian"
+    },
+    {
+      "name": "arcctg",
+      "if": "Russian"
+    },
+    {
+      "name": "th",
+      "if": "Russian"
+    },
+    {
+      "name": "cth",
+      "if": "Russian"
+    },
+    {
+      "name": "cosec",
+      "if": "Russian"
+    },
+    {
+      "name": "Prob",
+      "if": "Russian"
+    },
+    {
+      "name": "Variance",
+      "if": "Russian"
+    },
+    {
+      "name": "NOD",
+      "if": "Russian"
+    },
+    {
+      "name": "nod",
+      "if": "Russian"
+    },
+    {
+      "name": "NOK",
+      "if": "Russian"
+    },
+    {
+      "name": "nok",
+      "if": "Russian"
+    },
+    {
+      "name": "Proj",
+      "if": "Russian"
+    },
+    {
+      "name": "cyrillicencoding",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyrillictext",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyr",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "textcyrillic",
+      "if": "Russian",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "dq",
+      "if": "Russian"
+    },
+    {
+      "name": "captionsrussian",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "daterussian",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "extrasrussian",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "noextrasrussian",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRA",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRB",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRV",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRG",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRGUP",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRD",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRE",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRIE",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRZH",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRZ",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRI",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRII",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRYI",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRISHRT",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRK",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRL",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRM",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRN",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRO",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRP",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRR",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRS",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRT",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRU",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRF",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRH",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRC",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRCH",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRSH",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRSHCH",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRYU",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRYA",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRSFTSN",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRERY",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyra",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyrb",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyrv",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyrg",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyrgup",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyrd",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyre",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyrie",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyrzh",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyrz",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyri",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyrii",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyryi",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyrishrt",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyrk",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyrl",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyrm",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyrn",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyro",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyrp",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyrr",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyrs",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyrt",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyru",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyrf",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyrh",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyrc",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyrch",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyrsh",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyrshch",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyryu",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyrya",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyrsftsn",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyrery",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cdash",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "tocname",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "authorname",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "acronymname",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "lstlistingname",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "lstlistlistingname",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "notesname",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "nomname",
+      "if": "Russian",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/ProjLib#c": [
       "author",
-      "author=true",
-      "authorblock",
-      "authorblock=true",
-      "author-block",
-      "author-block=true",
-      "author block",
-      "author block=true",
       "amsfashion",
-      "amsfashion=true",
-      "ams-fashion",
-      "ams-fashion=true",
-      "ams fashion",
-      "ams fashion=true"
-    ],
-    "scontents": [
-      "amsfashion",
-      "amsfashion=true",
-      "ams-fashion",
-      "ams-fashion=true",
-      "ams fashion",
-      "ams fashion=true"
-    ],
-    "projlib-titlepage": [
       "titlepage",
-      "titlepage=true",
-      "title-page",
-      "title-page=true",
-      "title page",
-      "title page=true"
-    ],
-    "amssymb": [
-      "lmodern",
-      "lmodern=true",
-      "latin-modern",
-      "latin-modern=true",
-      "latin modern",
-      "latin modern=true"
-    ],
-    "lmodern": [
-      "lmodern",
-      "lmodern=true",
-      "latin-modern",
-      "latin-modern=true",
-      "latin modern",
-      "latin modern=true"
-    ],
-    "mathpazo": [
-      "palatino",
-      "palatino=true"
-    ],
-    "newpxtext": [
-      "palatino",
-      "palatino=true"
-    ],
-    "newtxtext": [
-      "times",
-      "times=true"
-    ],
-    "newtxmath": [
-      "times",
-      "times=true",
-      "garamond",
-      "garamond=true"
-    ],
-    "ebgaramond-maths": [
-      "garamond",
-      "garamond=true"
-    ],
-    "ebgaramond": [
-      "garamond",
-      "garamond=true"
-    ],
-    "anyfontsize": [
-      "noto",
-      "noto=true"
-    ],
-    "notomath": [
-      "noto",
-      "noto=true"
-    ],
-    "eulervm": [
-      "biolinum",
-      "biolinum=true"
-    ],
-    "biolinum": [
-      "biolinum",
-      "biolinum=true"
-    ],
-    "mathastext": [
-      "biolinum",
-      "biolinum=true"
+      "English\r",
+      "French\r",
+      "German\r",
+      "Italian\r",
+      "Portuguese\r",
+      "Brazilian\r",
+      "Spanish\r",
+      "Chinese\r",
+      "TChinese\r",
+      "Japanese\r",
+      "Russian\r",
+      "useosf\r",
+      "lmodern\r",
+      "palatino\r",
+      "times\r",
+      "garamond\r",
+      "noto\r",
+      "biolinum\r",
+      "plain\r",
+      "year-month-day\r",
+      "month-day-year\r",
+      "day-month-year\r",
+      "year-month\r",
+      "month-day\r",
+      "month-year\r",
+      "day-month\r",
+      "preview mode",
+      "paper style=${1|yellow,parchment,green,light-gray,gray,nord,dark\r|}",
+      "yellow paper",
+      "parchment paper",
+      "green paper",
+      "light gray paper",
+      "gray paper",
+      "nord paper",
+      "dark paper",
+      "nothms",
+      "nothmnum",
+      "thmnum\r",
+      "thmnum=${1:counter}\r",
+      "theorem style=${1:style}\r",
+      "complex name",
+      "simple name",
+      "no preset names"
     ]
   },
-  "macros": {
-    "keywords{}": {
-      "snippet": "keywords{${1:keywords}}",
-      "option": "ams fashion=true"
-    },
-    "dedicatory{}": {
-      "snippet": "dedicatory{${1:text}}",
-      "option": "ams fashion=true"
-    },
-    "subjclass{}": {
-      "snippet": "subjclass{${1:classification}}",
-      "option": "ams fashion=true"
-    },
-    "subjclass[]{}": {
-      "snippet": "subjclass[${2:year}]{${1:classification}}",
-      "option": "ams fashion=true"
-    },
-    "captionsjapanese": {
-      "option": "Japanese"
-    },
-    "datejapanese": {
-      "option": "Japanese"
-    },
-    "extrasjapanese": {
-      "option": "Japanese"
-    },
-    "noextrasjapanese": {
-      "option": "Japanese"
-    },
-    "cyrdash": {
-      "option": "Russian"
-    },
-    "asbuk{}": {
-      "snippet": "asbuk{${1:counter}}",
-      "option": "Russian"
-    },
-    "Asbuk{}": {
-      "snippet": "Asbuk{${1:counter}}",
-      "option": "Russian"
-    },
-    "Russian": {
-      "option": "Russian"
-    },
-    "sh": {
-      "option": "Russian"
-    },
-    "ch": {
-      "option": "Russian"
-    },
-    "tg": {
-      "option": "Russian"
-    },
-    "ctg": {
-      "option": "Russian"
-    },
-    "arctg": {
-      "option": "Russian"
-    },
-    "arcctg": {
-      "option": "Russian"
-    },
-    "th": {
-      "option": "Russian"
-    },
-    "cth": {
-      "option": "Russian"
-    },
-    "cosec": {
-      "option": "Russian"
-    },
-    "Prob": {
-      "option": "Russian"
-    },
-    "Variance": {
-      "option": "Russian"
-    },
-    "NOD": {
-      "option": "Russian"
-    },
-    "nod": {
-      "option": "Russian"
-    },
-    "NOK": {
-      "option": "Russian"
-    },
-    "nok": {
-      "option": "Russian"
-    },
-    "Proj": {
-      "option": "Russian"
-    },
-    "cyrillicencoding": {
-      "option": "Russian"
-    },
-    "cyrillictext": {
-      "option": "Russian"
-    },
-    "cyr": {
-      "option": "Russian"
-    },
-    "textcyrillic{}": {
-      "snippet": "textcyrillic{${1:text}}",
-      "option": "Russian"
-    },
-    "dq": {
-      "option": "Russian"
-    },
-    "captionsrussian": {
-      "option": "Russian"
-    },
-    "daterussian": {
-      "option": "Russian"
-    },
-    "extrasrussian": {
-      "option": "Russian"
-    },
-    "noextrasrussian": {
-      "option": "Russian"
-    },
-    "CYRA": {
-      "option": "Russian"
-    },
-    "CYRB": {
-      "option": "Russian"
-    },
-    "CYRV": {
-      "option": "Russian"
-    },
-    "CYRG": {
-      "option": "Russian"
-    },
-    "CYRGUP": {
-      "option": "Russian"
-    },
-    "CYRD": {
-      "option": "Russian"
-    },
-    "CYRE": {
-      "option": "Russian"
-    },
-    "CYRIE": {
-      "option": "Russian"
-    },
-    "CYRZH": {
-      "option": "Russian"
-    },
-    "CYRZ": {
-      "option": "Russian"
-    },
-    "CYRI": {
-      "option": "Russian"
-    },
-    "CYRII": {
-      "option": "Russian"
-    },
-    "CYRYI": {
-      "option": "Russian"
-    },
-    "CYRISHRT": {
-      "option": "Russian"
-    },
-    "CYRK": {
-      "option": "Russian"
-    },
-    "CYRL": {
-      "option": "Russian"
-    },
-    "CYRM": {
-      "option": "Russian"
-    },
-    "CYRN": {
-      "option": "Russian"
-    },
-    "CYRO": {
-      "option": "Russian"
-    },
-    "CYRP": {
-      "option": "Russian"
-    },
-    "CYRR": {
-      "option": "Russian"
-    },
-    "CYRS": {
-      "option": "Russian"
-    },
-    "CYRT": {
-      "option": "Russian"
-    },
-    "CYRU": {
-      "option": "Russian"
-    },
-    "CYRF": {
-      "option": "Russian"
-    },
-    "CYRH": {
-      "option": "Russian"
-    },
-    "CYRC": {
-      "option": "Russian"
-    },
-    "CYRCH": {
-      "option": "Russian"
-    },
-    "CYRSH": {
-      "option": "Russian"
-    },
-    "CYRSHCH": {
-      "option": "Russian"
-    },
-    "CYRYU": {
-      "option": "Russian"
-    },
-    "CYRYA": {
-      "option": "Russian"
-    },
-    "CYRSFTSN": {
-      "option": "Russian"
-    },
-    "CYRERY": {
-      "option": "Russian"
-    },
-    "cyra": {
-      "option": "Russian"
-    },
-    "cyrb": {
-      "option": "Russian"
-    },
-    "cyrv": {
-      "option": "Russian"
-    },
-    "cyrg": {
-      "option": "Russian"
-    },
-    "cyrgup": {
-      "option": "Russian"
-    },
-    "cyrd": {
-      "option": "Russian"
-    },
-    "cyre": {
-      "option": "Russian"
-    },
-    "cyrie": {
-      "option": "Russian"
-    },
-    "cyrzh": {
-      "option": "Russian"
-    },
-    "cyrz": {
-      "option": "Russian"
-    },
-    "cyri": {
-      "option": "Russian"
-    },
-    "cyrii": {
-      "option": "Russian"
-    },
-    "cyryi": {
-      "option": "Russian"
-    },
-    "cyrishrt": {
-      "option": "Russian"
-    },
-    "cyrk": {
-      "option": "Russian"
-    },
-    "cyrl": {
-      "option": "Russian"
-    },
-    "cyrm": {
-      "option": "Russian"
-    },
-    "cyrn": {
-      "option": "Russian"
-    },
-    "cyro": {
-      "option": "Russian"
-    },
-    "cyrp": {
-      "option": "Russian"
-    },
-    "cyrr": {
-      "option": "Russian"
-    },
-    "cyrs": {
-      "option": "Russian"
-    },
-    "cyrt": {
-      "option": "Russian"
-    },
-    "cyru": {
-      "option": "Russian"
-    },
-    "cyrf": {
-      "option": "Russian"
-    },
-    "cyrh": {
-      "option": "Russian"
-    },
-    "cyrc": {
-      "option": "Russian"
-    },
-    "cyrch": {
-      "option": "Russian"
-    },
-    "cyrsh": {
-      "option": "Russian"
-    },
-    "cyrshch": {
-      "option": "Russian"
-    },
-    "cyryu": {
-      "option": "Russian"
-    },
-    "cyrya": {
-      "option": "Russian"
-    },
-    "cyrsftsn": {
-      "option": "Russian"
-    },
-    "cyrery": {
-      "option": "Russian"
-    },
-    "cdash": {
-      "option": "Russian"
-    },
-    "tocname": {
-      "option": "Russian"
-    },
-    "authorname": {
-      "option": "Russian"
-    },
-    "acronymname": {
-      "option": "Russian"
-    },
-    "lstlistingname": {
-      "option": "Russian"
-    },
-    "lstlistlistingname": {
-      "option": "Russian"
-    },
-    "notesname": {
-      "option": "Russian"
-    },
-    "nomname": {
-      "option": "Russian"
-    }
-  },
-  "envs": {},
-  "options": [
-    "author",
-    "amsfashion",
-    "titlepage",
-    "English",
-    "French",
-    "German",
-    "Italian",
-    "Portuguese",
-    "Brazilian",
-    "Spanish",
-    "Chinese",
-    "TChinese",
-    "Japanese",
-    "Russian",
-    "useosf",
-    "lmodern",
-    "palatino",
-    "times",
-    "garamond",
-    "noto",
-    "biolinum",
-    "plain",
-    "year-month-day",
-    "month-day-year",
-    "day-month-year",
-    "year-month",
-    "month-day",
-    "month-year",
-    "day-month",
-    "preview mode",
-    "paper style=${1|yellow,parchment,green,light-gray,gray,nord,dark|}",
-    "yellow paper",
-    "parchment paper",
-    "green paper",
-    "light gray paper",
-    "gray paper",
-    "nord paper",
-    "dark paper",
-    "nothms",
-    "nothmnum",
-    "thmnum",
-    "thmnum=${1:counter}",
-    "theorem style=${1:style}",
-    "complex name",
-    "simple name",
-    "no preset names"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/ProjLib#c"
+  ]
 }

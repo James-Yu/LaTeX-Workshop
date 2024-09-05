@@ -1,55 +1,104 @@
 {
-  "includes": {
-    "color": [
-      "color"
-    ],
-    "xcolor": [
-      "xcolor"
+  "deps": [
+    {
+      "name": "color",
+      "if": "color"
+    },
+    {
+      "name": "xcolor",
+      "if": "xcolor"
+    }
+  ],
+  "macros": [
+    {
+      "name": "cbcolor",
+      "if": "color",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "cbcolor",
+      "if": "xcolor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "cbstart"
+    },
+    {
+      "name": "cbend"
+    },
+    {
+      "name": "cbdelete"
+    },
+    {
+      "name": "cbdelete",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:width}]"
+      }
+    },
+    {
+      "name": "nochangebars"
+    },
+    {
+      "name": "changebarwidth",
+      "unusual": true
+    },
+    {
+      "name": "deletebarwidth",
+      "unusual": true
+    },
+    {
+      "name": "changebarsep",
+      "unusual": true
+    },
+    {
+      "name": "thechangebargrey",
+      "unusual": true
+    },
+    {
+      "name": "driver",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:driver name}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "changebar"
+    }
+  ],
+  "keys": {
+    "\\usepackage/changebar#c": [
+      "dvitoln03\r",
+      "dvitops\r",
+      "dvips\r",
+      "emtex\r",
+      "textures\r",
+      "vtex\r",
+      "pdftex\r",
+      "xetex\r",
+      "luatex\r",
+      "outerbars\r",
+      "innerbars\r",
+      "leftbars\r",
+      "rightbars\r",
+      "traceon\r",
+      "traceoff\r",
+      "tracestacks\r",
+      "grey\r",
+      "color\r",
+      "xcolor\r"
     ]
   },
-  "macros": {
-    "cbcolor{}": {
-      "snippet": "cbcolor{${1:color}}",
-      "option": "xcolor"
-    },
-    "cbstart": {},
-    "cbend": {},
-    "cbdelete": {},
-    "cbdelete[]": {
-      "snippet": "cbdelete[${1:width}]"
-    },
-    "nochangebars": {},
-    "changebarwidth": {},
-    "deletebarwidth": {},
-    "changebarsep": {},
-    "thechangebargrey": {},
-    "driver{}": {
-      "snippet": "driver{${1:driver name}}"
-    }
-  },
-  "envs": {
-    "changebar": {}
-  },
-  "options": [
-    "dvitoln03",
-    "dvitops",
-    "dvips",
-    "emtex",
-    "textures",
-    "vtex",
-    "pdftex",
-    "xetex",
-    "luatex",
-    "outerbars",
-    "innerbars",
-    "leftbars",
-    "rightbars",
-    "traceon",
-    "traceoff",
-    "tracestacks",
-    "grey",
-    "color",
-    "xcolor"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/changebar#c"
+  ]
 }

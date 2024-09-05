@@ -1,51 +1,62 @@
 {
-  "includes": {
-    "luatex": []
-  },
-  "macros": {
-    "barracuda{}{}": {
-      "snippet": "barracuda{${1:encoder}}{${2:data}}"
+  "deps": [
+    {
+      "name": "luatex"
+    }
+  ],
+  "macros": [
+    {
+      "name": "barracuda",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:encoder}}{${2:data}}"
+      }
     },
-    "barracuda[]{}{}": {
-      "snippet": "barracuda[${3:options}]{${1:encoder}}{${2:data}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "barracuda",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:encoder}}{${2:data}}"
+      }
     },
-    "barracudabox": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "ax=${1:number}",
-      "ay=${1:number}",
-      "debug_bbox=${1|\"none\",\"enum\",\"symb\",\"qz\",\"qzsymb\"|}",
-      "module=${1:number}",
-      "ratio=${1:number}",
-      "quietzone=${1:number}",
-      "interspace=${1:number}",
-      "height=${1:number}",
+    {
+      "name": "barracudabox",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\barracuda#c": [
+      "ax=${1:number}\r",
+      "ay=${1:number}\r",
+      "debug_bbox=${1|\"none\",\"enum\",\"symb\",\"qz\",\"qzsymb\"\r|}",
+      "module=${1:number}\r",
+      "ratio=${1:number}\r",
+      "quietzone=${1:number}\r",
+      "interspace=${1:number}\r",
+      "height=${1:number}\r",
       "text_enabled",
-      "text_vpos=${1|'top','bottom'|}",
-      "text_hpos=${1|'left','center','right','spaced'|}",
-      "text_gap=${1:number}",
+      "text_vpos=${1|'top','bottom'\r|}",
+      "text_hpos=${1|'left','center','right','spaced'\r|}",
+      "text_gap=${1:number}\r",
       "text_star",
-      "xdim=${1:number}",
-      "ydim=${1:number}",
-      "quietzone_factor=${1:number}",
-      "mod=${1:number}",
-      "quietzone_left_factor=${1:number}",
-      "quietzone_right_factor=${1:number}",
-      "bars_depth_factor=${1:number}",
+      "xdim=${1:number}\r",
+      "ydim=${1:number}\r",
+      "quietzone_factor=${1:number}\r",
+      "mod=${1:number}\r",
+      "quietzone_left_factor=${1:number}\r",
+      "quietzone_right_factor=${1:number}\r",
+      "bars_depth_factor=${1:number}\r",
       "text_enabled",
-      "text_ygap_factor=${1:number}",
-      "text_xgap_factor=${1:number}",
+      "text_ygap_factor=${1:number}\r",
+      "text_xgap_factor=${1:number}\r",
       "text_guard_enabled",
-      "check_digit_policy=${1|'add','verify','none'|}",
-      "check_digit_method=",
+      "check_digit_policy=${1|'add','verify','none'\r|}",
+      "check_digit_method=\r",
       "bearer_bars_enabled",
-      "bearer_bars_thickness=${1:number}",
-      "bearer_bars_layout=${1|'frame','hbar'|}"
+      "bearer_bars_thickness=${1:number}\r",
+      "bearer_bars_layout=${1|'frame','hbar'\r|}"
     ]
-  ]
+  },
+  "args": []
 }

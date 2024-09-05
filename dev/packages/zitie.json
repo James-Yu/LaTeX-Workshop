@@ -1,243 +1,404 @@
 {
-  "includes": {
-    "l3draw": [],
-    "l3keys2e": [],
-    "zhlipsum": [
-      "enable-zhlipsum",
-      "enable-zhlipsum=true"
-    ]
-  },
-  "macros": {
-    "zitienewfont{{}{}": {
-      "snippet": "zitienewfont{{${1:font family}}{${2:font name},...}}"
+  "deps": [
+    {
+      "name": "l3draw"
     },
-    "zitienewfont{{}{}{}": {
-      "snippet": "zitienewfont{{${1:font family}}{${2:font name}}{${3:font features},...}}"
+    {
+      "name": "l3keys2e"
     },
-    "zitienewfont*{}{}{}": {
-      "snippet": "zitienewfont*{${1:font family}}{${2:font name}}{${3:font features}}"
+    {
+      "name": "zhlipsum",
+      "if": "enable-zhlipsum"
     },
-    "zitieCJKfamily{}": {
-      "snippet": "zitieCJKfamily{${1:font family}}"
-    },
-    "framesingle{}": {
-      "snippet": "framesingle{${1:character}}"
-    },
-    "framesingle[]{}": {
-      "snippet": "framesingle[${2:options}]{${1:character}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "framezi{}": {
-      "snippet": "framezi{${1:characters}}"
-    },
-    "framezi[]{}": {
-      "snippet": "framezi[${2:options}]{${1:characters}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "framezi*{}": {
-      "snippet": "framezi*{${1:characters}}"
-    },
-    "framezi*[]{}": {
-      "snippet": "framezi*[${2:options}]{${1:characters}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "framerange{}": {
-      "snippet": "framerange{${1:hex range}}"
-    },
-    "framerange[]{}": {
-      "snippet": "framerange[${2:options}]{${1:hex range}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "framezifile{}": {
-      "snippet": "framezifile{${1:file}}"
-    },
-    "framezifile[]{}": {
-      "snippet": "framezifile[${2:options}]{${1:file}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "framezifile*{}": {
-      "snippet": "framezifile*{${1:file}}"
-    },
-    "framezifile*[]{}": {
-      "snippet": "framezifile*[${2:options}]{${1:file}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "frametallrange{}": {
-      "snippet": "frametallrange{${1:hex range}}"
-    },
-    "frametallrange[]{}": {
-      "snippet": "frametallrange[${2:options}]{${1:hex range}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "framezitallfile{}": {
-      "snippet": "framezitallfile{${1:file}}"
-    },
-    "framezitallfile[]{}": {
-      "snippet": "framezitallfile[${2:options}]{${1:file}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "framezitallfile*{}": {
-      "snippet": "framezitallfile*{${1:file}}"
-    },
-    "framezitallfile*[]{}": {
-      "snippet": "framezitallfile*[${2:options}]{${1:file}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "zitiesetup{}": {
-      "snippet": "zitiesetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "zitiestrokechars{}{}": {
-      "snippet": "zitiestrokechars{${1:pdf literal}}{${2:typeset material}}"
-    },
-    "zitiecolorlet{}{}": {
-      "snippet": "zitiecolorlet{${1:name}}{${2:value}}"
-    },
-    "zitiecolorlet{}[]{}": {
-      "snippet": "zitiecolorlet{${1:name}}[${2:model}]{${3:value}}"
-    },
-    "zitienewprocessorrule{}{}{}": {
-      "snippet": "zitienewprocessorrule{${1:processor}}{${2:rule}}{${3:replace}}"
-    },
-    "zitienewprocessorrule[]{}{}{}": {
-      "snippet": "zitienewprocessorrule[${4:arg nums}]{${1:processor}}{${2:rule}}{${3:replace}}"
-    },
-    "zitienewrule{}{}{}": {
-      "snippet": "zitienewrule{${1:processor}}{${2:rule}}{${3:replace}}"
-    },
-    "zitienewrule[]{}{}{}": {
-      "snippet": "zitienewrule[${4:arg nums}]{${1:processor}}{${2:rule}}{${3:replace}}"
-    },
-    "zitieuseprocessorrule{}{}": {
-      "snippet": "zitieuseprocessorrule{${1:processor}}{${2:rule}}"
-    },
-    "zitieuseprocessorrule[]{}{}": {
-      "snippet": "zitieuseprocessorrule[${3:arg nums}]{${1:processor}}{${2:rule}}"
-    },
-    "zitiebasechar": {},
-    "zitiebasecharwidth": {},
-    "zitiebasecharheight": {},
-    "zitiewidth": {},
-    "zitieheight": {},
-    "zitieboxwd": {},
-    "zitieboxht": {},
-    "zitieboxdp": {},
-    "zitiefontname": {},
-    "zitiexscaleratio": {},
-    "zitieyscaleratio": {},
-    "zitiebackground": {},
-    "zitiebackground[]": {
-      "snippet": "zitiebackground[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "framezhlipsum{}": {
-      "snippet": "framezhlipsum{${1:paragraph list}}"
-    },
-    "framezhlipsum{}[]": {
-      "snippet": "framezhlipsum{${1:paragraph list}}[${2:name}]"
-    },
-    "framezhlipsum[]{}": {
-      "snippet": "framezhlipsum[${2:options}]{${1:paragraph list}}"
-    },
-    "framezhlipsum[]{}[]": {
-      "snippet": "framezhlipsum[${2:options}]{${1:paragraph list}}[${3:name}]"
-    },
-    "zitierawCJKfamily{}": {
-      "snippet": "zitierawCJKfamily{${1:font family}}"
+    {
+      "name": "zhlipsum",
+      "if": "enable-zhlipsum=true"
     }
-  },
-  "envs": {
-    "zitieframe": {},
-    "zitieframe[]": {
-      "name": "zitieframe",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    }
-  },
-  "options": [
-    "enable-zhlipsum",
-    "enable-background"
   ],
-  "keyvals": [
-    [
-      "basechar=${1:character}",
-      "fontsize=${1:fontsize command}",
-      "zihao=${1:字号}",
-      "position=",
-      "position*={${1:replace}}",
-      "anchor=${1|east,southeast,south,southwest,west,northwest,north,northeast,center|}",
-      "punctuation=${1|ignore,leave,onlast,scale|}",
-      "punctuation*={${1:replace}}",
-      "frametype=${1|none,口,十,田,×,米,咪|}",
-      "resize=${1|none,real,base,square|}",
-      "xscale=${1:scale ratio}",
-      "yscale=${1:scale ratio}",
-      "scale=${1:scale ratio}",
+  "macros": [
+    {
+      "name": "zitienewfont*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:font family}}{${2:font name}}{${3:font features}}"
+      }
+    },
+    {
+      "name": "zitieCJKfamily",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font family}}"
+      }
+    },
+    {
+      "name": "framesingle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:character}}"
+      }
+    },
+    {
+      "name": "framesingle",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:character}}"
+      }
+    },
+    {
+      "name": "framezi",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:characters}}"
+      }
+    },
+    {
+      "name": "framezi",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:characters}}"
+      }
+    },
+    {
+      "name": "framezi*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:characters}}"
+      }
+    },
+    {
+      "name": "framezi*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:characters}}"
+      }
+    },
+    {
+      "name": "framerange",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:hex range}}"
+      }
+    },
+    {
+      "name": "framerange",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:hex range}}"
+      }
+    },
+    {
+      "name": "framezifile",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "framezifile",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:file}}"
+      }
+    },
+    {
+      "name": "framezifile*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "framezifile*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:file}}"
+      }
+    },
+    {
+      "name": "frametallrange",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:hex range}}"
+      }
+    },
+    {
+      "name": "frametallrange",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:hex range}}"
+      }
+    },
+    {
+      "name": "framezitallfile",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "framezitallfile",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:file}}"
+      }
+    },
+    {
+      "name": "framezitallfile*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "framezitallfile*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:file}}"
+      }
+    },
+    {
+      "name": "zitiesetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\framesingle,\\framezi,\\framezi*,\\framerange,\\framezifile,\\framezifile*,\\begin{zitieframe},\\frametallrange,\\framezitallfile,\\framezitallfile*,\\zitiesetup,\\framezhlipsum"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "zitiestrokechars",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:pdf literal}}{${2:typeset material}}"
+      }
+    },
+    {
+      "name": "zitiecolorlet",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name%specialDef}}{${2:value}}"
+      }
+    },
+    {
+      "name": "zitiecolorlet",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:name%specialDef}}[${3:model}]{${2:value}}"
+      }
+    },
+    {
+      "name": "zitienewprocessorrule",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:processor}}{${2:rule}}{${3:replace}}"
+      }
+    },
+    {
+      "name": "zitienewprocessorrule",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:arg nums}]{${1:processor}}{${2:rule}}{${3:replace}}"
+      }
+    },
+    {
+      "name": "zitienewrule",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:processor}}{${2:rule}}{${3:replace}}"
+      }
+    },
+    {
+      "name": "zitienewrule",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:arg nums}]{${1:processor}}{${2:rule}}{${3:replace}}"
+      }
+    },
+    {
+      "name": "zitieuseprocessorrule",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:processor}}{${2:rule}}"
+      }
+    },
+    {
+      "name": "zitieuseprocessorrule",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:arg nums}]{${1:processor}}{${2:rule}}"
+      }
+    },
+    {
+      "name": "zitiebasechar"
+    },
+    {
+      "name": "zitiebasecharwidth"
+    },
+    {
+      "name": "zitiebasecharheight"
+    },
+    {
+      "name": "zitiewidth"
+    },
+    {
+      "name": "zitieheight"
+    },
+    {
+      "name": "zitieboxwd"
+    },
+    {
+      "name": "zitieboxht"
+    },
+    {
+      "name": "zitieboxdp"
+    },
+    {
+      "name": "zitiefontname"
+    },
+    {
+      "name": "zitiexscaleratio"
+    },
+    {
+      "name": "zitieyscaleratio"
+    },
+    {
+      "name": "zitiebackground"
+    },
+    {
+      "name": "zitiebackground",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "framezhlipsum",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:paragraph list}}"
+      }
+    },
+    {
+      "name": "framezhlipsum",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:paragraph list}}[${2:name}]"
+      }
+    },
+    {
+      "name": "framezhlipsum",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:paragraph list}}"
+      }
+    },
+    {
+      "name": "framezhlipsum",
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:options%keyvals}]{${1:paragraph list}}[${3:name}]"
+      }
+    },
+    {
+      "name": "zitierawCJKfamily",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font family}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "zitieframe"
+    },
+    {
+      "name": "zitieframe",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/zitie#c": [
+      "enable-zhlipsum",
+      "enable-background"
+    ],
+    "\\framesingle,\\framezi,\\framezi*,\\framerange,\\framezifile,\\framezifile*,\\begin{zitieframe},\\frametallrange,\\framezitallfile,\\framezitallfile*,\\zitiesetup,\\framezhlipsum": [
+      "basechar=${1:character}\r",
+      "fontsize=${1:fontsize command}\r",
+      "zihao=${1:字号}\r",
+      "position=\r",
+      "position*={${1:replace}}\r",
+      "anchor=${1|east,southeast,south,southwest,west,northwest,north,northeast,center\r|}",
+      "punctuation=${1|ignore,leave,onlast,scale\r|}",
+      "punctuation*={${1:replace}}\r",
+      "frametype=${1|none,口,十,田,×,米,咪\r|}",
+      "resize=${1|none,real,base,square\r|}",
+      "xscale=${1:scale ratio}\r",
+      "yscale=${1:scale ratio}\r",
+      "scale=${1:scale ratio}\r",
       "width=",
       "height=",
       "holdbasecharheight",
       "holdbasecharwidth",
       "holdbasechar",
       "linewidth=",
-      "dashpattern={${1:dim1,dim2,...}}",
+      "dashpattern={${1:dim1,dim2,...}}\r",
       "framearc=",
-      "framearc*={${1:dim1}}{${2:dim2}}",
+      "framearc*={${1:dim1}}{${2:dim2}}\r",
       "framecolor=",
-      "framecolor*={${1:models}}{${2:values}}",
+      "framecolor*={${1:models}}{${2:values}}\r",
       "charcolor=",
-      "charcolor*={${1:models}}{${2:values}}",
+      "charcolor*={${1:models}}{${2:values}}\r",
       "fillcolor=",
-      "fillcolor*={${1:models}}{${2:values}}",
-      "charstroke=${1|none,solid,dashed,whitesolid,whitedashed,thicksolid,thickdashed,thickwhitesolid,thickwhitedashed,invisible|}",
-      "charstrokespecial=${1:pdf literal}",
-      "font=${1:font family}",
+      "fillcolor*={${1:models}}{${2:values}}\r",
+      "charstroke=${1|none,solid,dashed,whitesolid,whitedashed,thicksolid,thickdashed,thickwhitesolid,thickwhitedashed,invisible\r|}",
+      "charstrokespecial=${1:pdf literal}\r",
+      "font=${1:font family}\r",
       "savefontname",
       "fallback",
-      "fallbackfont={${1:fallback font list}}",
-      "fallbackfont+={${1:fallback font list}}",
-      "filepath={${1:filepath1,filepath2,...}}",
-      "filepath+={${1:filepath1,filepath2,...}}",
-      "repeat=${1:integer}",
-      "break=${1|default,allowbreak|}",
+      "fallbackfont={${1:fallback font list}}\r",
+      "fallbackfont+={${1:fallback font list}}\r",
+      "filepath={${1:filepath1,filepath2,...}}\r",
+      "filepath+={${1:filepath1,filepath2,...}}\r",
+      "repeat=${1:integer}\r",
+      "break=${1|default,allowbreak\r|}",
       "tolerance=",
-      "tallheight=${1:integer}",
+      "tallheight=${1:integer}\r",
       "validateglyph"
     ],
-    [
-      "true",
-      "on",
-      "false",
-      "off",
-      "next",
-      "colboxes=${1:integer}",
-      "rowboxes=${1:integer}",
+    "\\zitiebackground": [
+      "true\r",
+      "on\r",
+      "false\r",
+      "off\r",
+      "next\r",
+      "colboxes=${1:integer}\r",
+      "rowboxes=${1:integer}\r",
       "framewidth=",
       "frameheight=",
       "boxwidth=",
       "boxheight=",
-      "onpaper",
-      "ontext",
-      "frametype=${1|none,口,十,田,×,米,咪,二|}",
+      "onpaper\r",
+      "ontext\r",
+      "frametype=${1|none,口,十,田,×,米,咪,二\r|}",
       "linewidth=",
       "framecolor=",
-      "framecolor*={${1:models}}{${2:values}}",
+      "framecolor*={${1:models}}{${2:values}}\r",
       "fillcolor=",
-      "fillcolor*={${1:models}}{${2:values}}",
-      "dashpattern={${1:dim1,dim2,...}}",
-      "xrange={${1:left,right}}",
-      "yrange={${1:top,bottom}}"
+      "fillcolor*={${1:models}}{${2:values}}\r",
+      "dashpattern={${1:dim1,dim2,...}}\r",
+      "xrange={${1:left,right}}\r",
+      "yrange={${1:top,bottom}}\r"
     ]
+  },
+  "args": [
+    "\\usepackage/zitie#c"
   ]
 }

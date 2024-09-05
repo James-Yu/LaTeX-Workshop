@@ -1,77 +1,103 @@
 {
-  "includes": {
-    "moreverb": [],
-    "xkeyval": []
-  },
-  "macros": {
-    "setoutputdir{}": {
-      "snippet": "setoutputdir{${1:directory}}"
+  "deps": [
+    {
+      "name": "moreverb"
     },
-    "BeforeStream": {},
-    "dottotexCutFile": {},
-    "dottotexgraphicsinclude": {},
-    "dottotexgraphicsprocess": {},
-    "dottotexverbatimwrite{}": {
-      "snippet": "dottotexverbatimwrite{${1:file}}"
-    },
-    "enddottotexverbatimwrite": {}
-  },
-  "envs": {
-    "dot2tex": {},
-    "dot2tex[]": {
-      "name": "dot2tex",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "dottotexverbatimwrite{}": {
-      "name": "dottotexverbatimwrite",
-      "snippet": "{${1:file}}"
+    {
+      "name": "xkeyval"
     }
-  },
-  "options": [
-    "shell",
-    "noshell",
-    "forceshell",
-    "miktex",
-    "pgf",
-    "tikz",
-    "pstricks",
-    "autosize",
-    "dot",
-    "neato",
-    "circo",
-    "fdp",
-    "twopi",
-    "outputdir=${1:directory}",
-    "debug"
   ],
-  "keyvals": [
-    [
-      "shell",
-      "noshell",
-      "dot",
-      "neato",
-      "circo",
-      "fdp",
-      "twopi",
-      "prog=${1|dot,neato,circo,fdp,twopi|}",
-      "pgf",
-      "tikz",
-      "pstricks",
-      "format=${1|tikz,pgf,pstricks|}",
-      "styleonly",
-      "codeonly",
-      "autosize",
-      "noautosize",
-      "straightedges",
-      "tikzedgelabels",
-      "mathmode",
-      "graphstyle={${1:TikZ options}}",
-      "scale=${1:factor}",
-      "outputdir=${1:directory}",
-      "file=${1:file name}",
-      "options={${1:dot2tex options}}"
+  "macros": [
+    {
+      "name": "setoutputdir",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:directory%definition}}"
+      }
+    },
+    {
+      "name": "BeforeStream",
+      "unusual": true
+    },
+    {
+      "name": "dottotexCutFile",
+      "unusual": true
+    },
+    {
+      "name": "dottotexgraphicsinclude",
+      "unusual": true
+    },
+    {
+      "name": "dottotexgraphicsprocess",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "dot2tex"
+    },
+    {
+      "name": "dot2tex",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "dottotexverbatimwrite",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/dot2texi": [
+      "shell\r",
+      "noshell\r",
+      "forceshell\r",
+      "miktex\r",
+      "pgf\r",
+      "tikz\r",
+      "pstricks\r",
+      "autosize\r",
+      "dot\r",
+      "neato\r",
+      "circo\r",
+      "fdp\r",
+      "twopi\r",
+      "outputdir=${1:directory}\r",
+      "debug\r"
+    ],
+    "\\begin{dot2tex}": [
+      "shell\r",
+      "noshell\r",
+      "dot\r",
+      "neato\r",
+      "circo\r",
+      "fdp\r",
+      "twopi\r",
+      "prog=${1|dot,neato,circo,fdp,twopi\r|}",
+      "pgf\r",
+      "tikz\r",
+      "pstricks\r",
+      "format=${1|tikz,pgf,pstricks\r|}",
+      "styleonly\r",
+      "codeonly\r",
+      "autosize\r",
+      "noautosize\r",
+      "straightedges\r",
+      "tikzedgelabels\r",
+      "mathmode\r",
+      "graphstyle={${1:TikZ options}}\r",
+      "scale=${1:factor}\r",
+      "outputdir=${1:directory}\r",
+      "file=${1:file name}\r",
+      "options={${1:dot2tex options}}\r"
     ]
+  },
+  "args": [
+    "\\usepackage/dot2texi"
   ]
 }

@@ -1,25 +1,56 @@
 {
-  "includes": {
-    "etoolbox": []
-  },
-  "macros": {
-    "DefineCodeSection{}": {
-      "snippet": "DefineCodeSection{${1:name}}"
-    },
-    "DefineCodeSection[]{}": {
-      "snippet": "DefineCodeSection[${2:true|false}]{${1:name}}"
-    },
-    "SetCodeSection{}{}": {
-      "snippet": "SetCodeSection{${1:name}}{${2:true|false}}"
-    },
-    "BeginCodeSection{}": {
-      "snippet": "BeginCodeSection{${1:name}}"
-    },
-    "EndCodeSection{}": {
-      "snippet": "EndCodeSection{${1:name}}"
+  "deps": [
+    {
+      "name": "etoolbox"
     }
+  ],
+  "macros": [
+    {
+      "name": "DefineCodeSection",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "DefineCodeSection",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:true|false%keyvals}]{${1:name}}"
+      }
+    },
+    {
+      "name": "SetCodeSection",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:true|false%keyvals}}",
+        "keys": [
+          "\\DefineCodeSection,\\SetCodeSection"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "BeginCodeSection",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "EndCodeSection",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\DefineCodeSection,\\SetCodeSection": [
+      "true\r",
+      "false\r"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

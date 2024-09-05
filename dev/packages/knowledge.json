@@ -1,685 +1,1530 @@
 {
-  "includes": {
-    "l3keys2e": [],
-    "etoolbox": [],
-    "currfile": [],
-    "hyperref": [
-      "hyperref",
-      "hyperref=active"
-    ],
-    "xcolor": [
-      "xcolor",
-      "xcolor=active"
-    ],
-    "makeidx": [
-      "makeidx",
-      "makeidx=active"
-    ],
-    "imakeidx": [
-      "imakeidx",
-      "imakeidx=active"
-    ],
-    "cleveref": [
-      "cleveref",
-      "cleveref=active"
-    ]
-  },
-  "macros": {
-    "knowledgeconfigure{}": {
-      "snippet": "knowledgeconfigure{${1:directives}}"
-    },
-    "knowledge{}{}": {
-      "snippet": "knowledge{${1:knowledge name}}{${2:directives}}"
-    },
-    "knowledge{}[]{}": {
-      "snippet": "knowledge{${1:knowledge name}}[${2:synonym1|synonym2|...}]{${3:directives}}"
-    },
-    "knowledgestyle{}{}": {
-      "snippet": "knowledgestyle{${1:style name}}{${2:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "knowledgestyle*{}{}": {
-      "snippet": "knowledgestyle*{${1:style name}}{${2:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "knowledgedirective{}[]{}": {
-      "snippet": "knowledgedirective{${1:name}}[${2:optional parameter}]{${3:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 2
-    },
-    "knowledgedirective*{}[]{}": {
-      "snippet": "knowledgedirective*{${1:name}}[${2:optional parameter}]{${3:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 2
-    },
-    "knowledgedefault{}": {
-      "snippet": "knowledgedefault{${1:keyvals}}"
-    },
-    "knowledgedefault*{}": {
-      "snippet": "knowledgedefault*{${1:keyvals}}"
-    },
-    "kl{}": {
-      "snippet": "kl{${1:text}}"
-    },
-    "kl(){}": {
-      "snippet": "kl(${2:scope}){${1:text}}"
-    },
-    "kl[]{}": {
-      "snippet": "kl[${2:knowledge name}]{${1:text}}"
-    },
-    "kl()[]{}": {
-      "snippet": "kl(${3:scope})[${2:knowledge name}]{${1:text}}"
-    },
-    "knowledgenewvariant{}{}": {
-      "snippet": "knowledgenewvariant{${1:command}}{${2:directives}}"
-    },
-    "knowledgesetvariant{}{}": {
-      "snippet": "knowledgesetvariant{${1:command}}{${2:directives}}"
-    },
-    "knowledgevariantmodifier{}{}": {
-      "snippet": "knowledgevariantmodifier{${1:variant1*variant2*...}}{${2:command}}"
-    },
-    "knowledgescope{}": {
-      "snippet": "knowledgescope{${1:scope name}}"
-    },
-    "knowledgeimport{}": {
-      "snippet": "knowledgeimport{${1:scope1,${2:scope2},...}}"
-    },
-    "knowledgeconfigureenvironment{}{}": {
-      "snippet": "knowledgeconfigureenvironment{${1:env1,${3:env2},...}}{${2:keyvals}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "intro{}": {
-      "snippet": "intro{${1:knowledge}}"
-    },
-    "intro[]{}": {
-      "snippet": "intro[${2:knowledge name}]{${1:knowledge}}"
-    },
-    "intro*{}": {
-      "snippet": "intro*{${1:knowledge}}"
-    },
-    "intro*[]{}": {
-      "snippet": "intro*[${2:knowledge name}]{${1:knowledge}}"
-    },
-    "phantomintro{}": {
-      "snippet": "phantomintro{${1:knowledge}}"
-    },
-    "phantomintro(){}": {
-      "snippet": "phantomintro(${2:label}){${1:knowledge}}"
-    },
-    "nointro{}": {
-      "snippet": "nointro{${1:knowledge}}"
-    },
-    "reintro{}": {
-      "snippet": "reintro{${1:knowledge}}"
-    },
-    "reintro[]{}": {
-      "snippet": "reintro[${2:knowledge name}]{${1:knowledge}}"
-    },
-    "reintro*{}": {
-      "snippet": "reintro*{${1:knowledge}}"
-    },
-    "reintro*[]{}": {
-      "snippet": "reintro*[${2:knowledge name}]{${1:knowledge}}"
-    },
-    "rekl{}": {
-      "snippet": "rekl{${1:text}}"
-    },
-    "rekl(){}": {
-      "snippet": "rekl(${2:scope}){${1:text}}"
-    },
-    "rekl[]{}": {
-      "snippet": "rekl[${2:knowledge name}]{${1:text}}"
-    },
-    "rekl()[]{}": {
-      "snippet": "rekl(${3:scope})[${2:knowledge name}]{${1:text}}"
-    },
-    "AP": {},
-    "itemAP": {},
-    "knowledgeIntroIndexStyle": {
-      "option": "imakeidx=active"
-    },
-    "kref{}": {
-      "snippet": "kref{${1:key}}"
-    },
-    "kpageref{}": {
-      "snippet": "kpageref{${1:key}}"
-    },
-    "kcref{}": {
-      "snippet": "kcref{${1:labellist}}",
-      "option": "cleveref=active"
-    },
-    "kCref{}": {
-      "snippet": "kCref{${1:labellist}}",
-      "option": "cleveref=active"
-    },
-    "kcpageref{}": {
-      "snippet": "kcpageref{${1:labellist}}",
-      "option": "cleveref=active"
-    },
-    "kCpageref{}": {
-      "snippet": "kCpageref{${1:labellist}}",
-      "option": "cleveref=active"
-    },
-    "knamecref{}": {
-      "snippet": "knamecref{${1:key}}",
-      "option": "cleveref=active"
-    },
-    "knameCref{}": {
-      "snippet": "knameCref{${1:key}}",
-      "option": "cleveref=active"
-    },
-    "knamerefs{}": {
-      "snippet": "knamerefs{${1:key}}",
-      "option": "cleveref=active"
-    },
-    "knamecrefs{}": {
-      "snippet": "knamecrefs{${1:key}}",
-      "option": "cleveref=active"
-    },
-    "knameCrefs{}": {
-      "snippet": "knameCrefs{${1:key}}",
-      "option": "cleveref=active"
-    },
-    "knowledgenewrobustcmd{}[]{}": {
-      "snippet": "knowledgenewrobustcmd{${1:cmd}}[${2:args}]{${3:def}}"
-    },
-    "knowledgenewcommand{}[]{}": {
-      "snippet": "knowledgenewcommand{${1:cmd}}[${2:args}]{${3:def}}"
-    },
-    "knowledgerenewcommand{}[]{}": {
-      "snippet": "knowledgerenewcommand{${1:cmd}}[${2:args}]{${3:def}}"
-    },
-    "KnowledgeNewDocumentCommand{}{}{}": {
-      "snippet": "KnowledgeNewDocumentCommand{${1:cmd}}{${2:xargs}}{${3:def}}"
-    },
-    "KnowledgeRenewDocumentCommand{}{}{}": {
-      "snippet": "KnowledgeRenewDocumentCommand{${1:cmd}}{${2:xargs}}{${3:def}}"
-    },
-    "KnowledgeProvideDocumentCommand{}{}{}": {
-      "snippet": "KnowledgeProvideDocumentCommand{${1:cmd}}{${2:xargs}}{${3:def}}"
-    },
-    "KnowledgeDeclareDocumentCommand{}{}{}": {
-      "snippet": "KnowledgeDeclareDocumentCommand{${1:cmd}}{${2:xargs}}{${3:def}}"
-    },
-    "knowledgedeclarecommand{}[]{}": {
-      "snippet": "knowledgedeclarecommand{${1:cmd}}[${2:args}]{${3:def}}"
-    },
-    "knowledgenewmathcommand{}[]{}": {
-      "snippet": "knowledgenewmathcommand{${1:cmd}}[${2:args}]{${3:def}}"
-    },
-    "knowledgenewtextcommand{}[]{}": {
-      "snippet": "knowledgenewtextcommand{${1:cmd}}[${2:args}]{${3:def}}"
-    },
-    "knowledgerenewmathcommand{}[]{}": {
-      "snippet": "knowledgerenewmathcommand{${1:cmd}}[${2:args}]{${3:def}}"
-    },
-    "knowledgerenewtextcommand{}[]{}": {
-      "snippet": "knowledgerenewtextcommand{${1:cmd}}[${2:args}]{${3:def}}"
-    },
-    "knowledgedeclaremathcommand{}[]{}": {
-      "snippet": "knowledgedeclaremathcommand{${1:cmd}}[${2:args}]{${3:def}}"
-    },
-    "knowledgedeclaretextcommand{}[]{}": {
-      "snippet": "knowledgedeclaretextcommand{${1:cmd}}[${2:args}]{${3:def}}"
-    },
-    "KnowledgeNewDocumentMathCommand{}{}{}": {
-      "snippet": "KnowledgeNewDocumentMathCommand{${1:cmd}}{${2:xargs}}{${3:def}}"
-    },
-    "KnowledgeNewDocumentTextCommand{}{}{}": {
-      "snippet": "KnowledgeNewDocumentTextCommand{${1:cmd}}{${2:xargs}}{${3:def}}"
-    },
-    "KnowledgeRenewDocumentMathCommand{}{}{}": {
-      "snippet": "KnowledgeRenewDocumentMathCommand{${1:cmd}}{${2:xargs}}{${3:def}}"
-    },
-    "KnowledgeRenewDocumentTextCommand{}{}{}": {
-      "snippet": "KnowledgeRenewDocumentTextCommand{${1:cmd}}{${2:xargs}}{${3:def}}"
-    },
-    "KnowledgeProvideDocumentMathCommand{}{}{}": {
-      "snippet": "KnowledgeProvideDocumentMathCommand{${1:cmd}}{${2:xargs}}{${3:def}}"
-    },
-    "KnowledgeProvideDocumentTextCommand{}{}{}": {
-      "snippet": "KnowledgeProvideDocumentTextCommand{${1:cmd}}{${2:xargs}}{${3:def}}"
-    },
-    "KnowledgeDeclareDocumentMathCommand{}{}{}": {
-      "snippet": "KnowledgeDeclareDocumentMathCommand{${1:cmd}}{${2:xargs}}{${3:def}}"
-    },
-    "KnowledgeDeclareDocumentTextCommand{}{}{}": {
-      "snippet": "KnowledgeDeclareDocumentTextCommand{${1:cmd}}{${2:xargs}}{${3:def}}"
-    },
-    "knowledgenewcommandPIE{}[]{}": {
-      "snippet": "knowledgenewcommandPIE{${1:cmd}}[${2:args}]{${3:def}}"
-    },
-    "knowledgerenewcommandPIE{}[]{}": {
-      "snippet": "knowledgerenewcommandPIE{${1:cmd}}[${2:args}]{${3:def}}"
-    },
-    "knowledgedeclarecommandPIE{}[]{}": {
-      "snippet": "knowledgedeclarecommandPIE{${1:cmd}}[${2:args}]{${3:def}}"
-    },
-    "knowledgenewmathcommandPIE{}[]{}": {
-      "snippet": "knowledgenewmathcommandPIE{${1:cmd}}[${2:args}]{${3:def}}"
-    },
-    "knowledgerenewmathcommandPIE{}[]{}": {
-      "snippet": "knowledgerenewmathcommandPIE{${1:cmd}}[${2:args}]{${3:def}}"
-    },
-    "knowledgedeclaremathcommandPIE{}[]{}": {
-      "snippet": "knowledgedeclaremathcommandPIE{${1:cmd}}[${2:args}]{${3:def}}"
-    },
-    "KnowledgeNewDocumentCommandPIE{}{}{}": {
-      "snippet": "KnowledgeNewDocumentCommandPIE{${1:cmd}}{${2:xargs}}{${3:def}}"
-    },
-    "KnowledgeRenewDocumentCommandPIE{}{}{}": {
-      "snippet": "KnowledgeRenewDocumentCommandPIE{${1:cmd}}{${2:xargs}}{${3:def}}"
-    },
-    "KnowledgeDeclareDocumentCommandPIE{}{}{}": {
-      "snippet": "KnowledgeDeclareDocumentCommandPIE{${1:cmd}}{${2:xargs}}{${3:def}}"
-    },
-    "KnowledgeProvideDocumentCommandPIE{}{}{}": {
-      "snippet": "KnowledgeProvideDocumentCommandPIE{${1:cmd}}{${2:xargs}}{${3:def}}"
-    },
-    "KnowledgeNewDocumentMathCommandPIE{}{}{}": {
-      "snippet": "KnowledgeNewDocumentMathCommandPIE{${1:cmd}}{${2:xargs}}{${3:def}}"
-    },
-    "KnowledgeRenewDocumentMathCommandPIE{}{}{}": {
-      "snippet": "KnowledgeRenewDocumentMathCommandPIE{${1:cmd}}{${2:xargs}}{${3:def}}"
-    },
-    "KnowledgeDeclareDocumentMathCommandPIE{}{}{}": {
-      "snippet": "KnowledgeDeclareDocumentMathCommandPIE{${1:cmd}}{${2:xargs}}{${3:def}}"
-    },
-    "KnowledgeProvideDocumentMathCommandPIE{}{}{}": {
-      "snippet": "KnowledgeProvideDocumentMathCommandPIE{${1:cmd}}{${2:xargs}}{${3:def}}"
-    },
-    "withkl{}{}": {
-      "snippet": "withkl{${1:cmd}}{${2:code}}"
-    },
-    "cmdkl{}": {
-      "snippet": "cmdkl{${1:arg}}"
-    },
-    "knowledgepackagemode": {},
-    "IfKnowledgePaperModeTF{}{}": {
-      "snippet": "IfKnowledgePaperModeTF{${1:true}}{${2:false}}"
-    },
-    "ifKnowledgePaperMode": {},
-    "KnowledgePaperModetrue": {},
-    "KnowledgePaperModefalse": {},
-    "IfKnowledgeElectronicModeTF{}{}": {
-      "snippet": "IfKnowledgeElectronicModeTF{${1:true}}{${2:false}}"
-    },
-    "ifKnowledgeElectronicMode": {},
-    "KnowledgeElectronicModetrue": {},
-    "KnowledgeElectronicModefalse": {},
-    "IfKnowledgeCompositionModeTF{}{}": {
-      "snippet": "IfKnowledgeCompositionModeTF{${1:true}}{${2:false}}"
-    },
-    "ifKnowledgeCompositionMode": {},
-    "KnowledgeCompositionModetrue": {},
-    "KnowledgeCompositionModefalse": {},
-    "robustdisplay{}": {
-      "snippet": "robustdisplay{${1:arg}}"
-    },
-    "robustdisplaybracket{}": {
-      "snippet": "robustdisplaybracket{${1:arg}}"
-    },
-    "knowledgeFixHyperrefTwocolumn": {},
-    "KAuxActivate": {},
-    "KAuxOpen": {},
-    "KAuxClose": {},
-    "IfKAuxReadyTF{}{}": {
-      "snippet": "IfKAuxReadyTF{${1:true}}{${2:false}}"
-    },
-    "KAuxBefore{}": {
-      "snippet": "KAuxBefore{${1:code}}"
-    },
-    "KAuxAfter{}": {
-      "snippet": "KAuxAfter{${1:code}}"
-    },
-    "KAuxInit{}": {
-      "snippet": "KAuxInit{${1:code}}"
-    },
-    "NewKAuxCommand{}{}{}": {
-      "snippet": "NewKAuxCommand{${1:cmd}}{${2:xargs}}{${3:def}}"
-    },
-    "KAuxEOF{}": {
-      "snippet": "KAuxEOF{${1:arg}}"
-    },
-    "KAuxCommand{}{}{}": {
-      "snippet": "KAuxCommand{${1:cmd}}{${2:xargs}}{${3:def}}"
-    },
-    "ActivateKAuxPhase{}": {
-      "snippet": "ActivateKAuxPhase{${1:arg}}"
-    },
-    "DeclareKAuxPhaseCommand{}{}{}": {
-      "snippet": "DeclareKAuxPhaseCommand{${1:cmd}}{${2:xargs}}{${3:def}}"
-    },
-    "KAuxWriteLocation*": {},
-    "KAuxWriteX{}*": {
-      "snippet": "KAuxWriteX{${1:arg}}*"
-    },
-    "KAuxWriteX*{}*": {
-      "snippet": "KAuxWriteX*{${1:arg}}*"
-    },
-    "KAuxWrite{}*": {
-      "snippet": "KAuxWrite{${1:arg}}*"
-    },
-    "KAuxWrite*{}*": {
-      "snippet": "KAuxWrite*{${1:arg}}*"
-    },
-    "KAuxFileAt{}{}*": {
-      "snippet": "KAuxFileAt{${1:file}}{${2:line}}*"
-    },
-    "kauxCurrentFile*": {},
-    "kauxCurrentLine*": {},
-    "KAuxProcess{}*": {
-      "snippet": "KAuxProcess{${1:phase}}*"
-    },
-    "NewGBool{}{}*": {
-      "snippet": "NewGBool{${1:arg1}}{${2:arg2}}*"
-    },
-    "NewGBool{}{}[]*": {
-      "snippet": "NewGBool{${1:arg1}}{${2:arg2}}[${3:opt}]*"
-    },
-    "NewGBoolComplete{}{}{}*": {
-      "snippet": "NewGBoolComplete{${1:arg1}}{${2:arg2}}{${3:arg3}}*"
-    },
-    "NewGCs{}{}*": {
-      "snippet": "NewGCs{${1:arg1}}{${2:arg2}}*"
-    },
-    "NewGCs{}{}[]*": {
-      "snippet": "NewGCs{${1:arg1}}{${2:arg2}}[${3:opt}]*"
-    },
-    "NewGCsComplete{}{}{}*": {
-      "snippet": "NewGCsComplete{${1:arg1}}{${2:arg2}}{${3:arg3}}*"
-    },
-    "OverloadCommand{}{}{}": {
-      "snippet": "OverloadCommand{${1:cmd}}{${2:xargs}}{${3:def}}"
-    },
-    "OverloadCommand{}{}[]{}": {
-      "snippet": "OverloadCommand{${1:cmd}}{${2:xargs}}[${3:opt}]{${4:def}}"
-    },
-    "ChooseCommand{}{}": {
-      "snippet": "ChooseCommand{${1:arg1}}{${2:arg2}}"
-    },
-    "XparseArgs{}{}": {
-      "snippet": "XparseArgs{${1:arg1}}{${2:arg2}}"
-    },
-    "ExpXparseArgs{}{}": {
-      "snippet": "ExpXparseArgs{${1:arg1}}{${2:arg2}}"
-    },
-    "KnowledgeConfigureBooleanOption{}": {
-      "snippet": "KnowledgeConfigureBooleanOption{${1:option}}"
-    },
-    "KnowledgeConfigureBooleanOption[]{}": {
-      "snippet": "KnowledgeConfigureBooleanOption[${2:default}]{${1:option}}"
-    },
-    "KnowledgeConfigureBooleanOptionTF{}{}{}": {
-      "snippet": "KnowledgeConfigureBooleanOptionTF{${1:option}}{${2:true}}{${3:false}}"
-    },
-    "KnowledgeConfigureBooleanOptionTF[]{}{}{}": {
-      "snippet": "KnowledgeConfigureBooleanOptionTF[${4:default}]{${1:option}}{${2:true}}{${3:false}}"
-    },
-    "KnowledgeConfigureTrigger{}{}": {
-      "snippet": "KnowledgeConfigureTrigger{${1:trigger}}{${2:def}}"
-    },
-    "KnowledgeConfigureTrigger[]{}{}": {
-      "snippet": "KnowledgeConfigureTrigger[${3:opt}]{${1:trigger}}{${2:def}}"
-    },
-    "KnowledgePackageTrigger{}{}": {
-      "snippet": "KnowledgePackageTrigger{${1:trigger}}{${2:def}}"
-    },
-    "KnowledgePackageBooleanOption{}": {
-      "snippet": "KnowledgePackageBooleanOption{${1:arg}}"
-    },
-    "KnowledgePackageBooleanOption[]{}": {
-      "snippet": "KnowledgePackageBooleanOption[${2:opt}]{${1:arg}}"
-    },
-    "ScopeConfigure{}{}": {
-      "snippet": "ScopeConfigure{${1:envname}}{${2:options}}"
-    },
-    "KAuxUndeclaredScopeTag{}": {
-      "snippet": "KAuxUndeclaredScopeTag{${1:arg}}"
-    },
-    "KAuxDeclaredScopeTag{}": {
-      "snippet": "KAuxDeclaredScopeTag{${1:arg}}"
-    },
-    "KAuxNewLinkScopetagInstance{}{}": {
-      "snippet": "KAuxNewLinkScopetagInstance{${1:arg1}}{${2:arg2}}"
-    },
-    "KAuxScopeNewInstance{}{}{}": {
-      "snippet": "KAuxScopeNewInstance{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "KAuxScopeTag{}{}": {
-      "snippet": "KAuxScopeTag{${1:arg1}}{${2:arg2}}"
-    },
-    "KnowledgeConfigureEnvironment{}{}": {
-      "snippet": "KnowledgeConfigureEnvironment{${1:env1,${3:env2},...}}{${2:keyvals}}"
-    },
-    "ScopeHackEnvironments": {},
-    "ScopeActivate": {},
-    "KnowledgeDiagnoseOutput": {},
-    "NewKnowledgeParamBool{}{}": {
-      "snippet": "NewKnowledgeParamBool{${1:param}}{${2:bool}}"
-    },
-    "NewKnowledgeParamBool*{}{}": {
-      "snippet": "NewKnowledgeParamBool*{${1:param}}{${2:bool}}"
-    },
-    "KnowledgeTransferBool{}": {
-      "snippet": "KnowledgeTransferBool{${1:arg}}"
-    },
-    "NewKnowledgeParamTl{}": {
-      "snippet": "NewKnowledgeParamTl{${1:param}}"
-    },
-    "NewKnowledgeParamTl[]{}": {
-      "snippet": "NewKnowledgeParamTl[${2:opt}]{${1:param}}"
-    },
-    "NewKnowledgeParamTl*{}": {
-      "snippet": "NewKnowledgeParamTl*{${1:param}}"
-    },
-    "NewKnowledgeParamTl*[]{}": {
-      "snippet": "NewKnowledgeParamTl*[${2:opt}]{${1:param}}"
-    },
-    "KnowledgeTransferTl{}": {
-      "snippet": "KnowledgeTransferTl{${1:arg}}"
-    },
-    "NewKnowledgeParamCode{}{}": {
-      "snippet": "NewKnowledgeParamCode{${1:arg1}}{${2:arg2}}"
-    },
-    "NewKnowledgeParamPackageError{}{}": {
-      "snippet": "NewKnowledgeParamPackageError{${1:arg1}}{${2:arg2}}"
-    },
-    "KAuxKnowledge{}{}{}{}": {
-      "snippet": "KAuxKnowledge{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "knowledgeusestyle{}{}": {
-      "snippet": "knowledgeusestyle{${1:arg1}}{${2:arg2}}"
-    },
-    "KAuxErrorKnowledgeRecursive{}{}{}{}": {
-      "snippet": "KAuxErrorKnowledgeRecursive{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "KAuxErrorKnowledgeUnknown{}{}{}{}": {
-      "snippet": "KAuxErrorKnowledgeUnknown{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "KAuxErrorLabelUnknown{}": {
-      "snippet": "KAuxErrorLabelUnknown{${1:arg}}"
-    },
-    "KAuxAutoref{}{}{}": {
-      "snippet": "KAuxAutoref{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "KAuxAutorefTarget{}{}{}": {
-      "snippet": "KAuxAutorefTarget{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "KAuxUseKnowledge{}{}{}": {
-      "snippet": "KAuxUseKnowledge{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "ensuretext{}": {
-      "snippet": "ensuretext{${1:arg}}"
-    },
-    "knowledgedisplayref{}": {
-      "snippet": "knowledgedisplayref{${1:arg}}"
-    },
-    "makequotationactive": {},
-    "makequotationletter": {},
-    "quotesymbol": {},
-    "klactivequotationmark": {},
-    "klactivedoublequotationmark": {},
-    "klactivatequotation": {},
-    "kldeactivatequotation": {},
-    "KnowledgifyNewcommand{}": {
-      "snippet": "KnowledgifyNewcommand{${1:command}}"
-    },
-    "KnowledgifyNewDocumentCommand{}": {
-      "snippet": "KnowledgifyNewDocumentCommand{${1:command}}"
-    },
-    "IfXcolorTF{}{}": {
-      "snippet": "IfXcolorTF{${1:true}}{${2:false}}"
-    },
-    "ifXcolor": {},
-    "Xcolortrue": {},
-    "Xcolorfalse": {},
-    "KnowledgeConfigureNotion{}": {
-      "snippet": "KnowledgeConfigureNotion{${1:arg}}"
-    },
-    "KnowledgeConfigureNotion[]{}": {
-      "snippet": "KnowledgeConfigureNotion[${2:opt}]{${1:arg}}"
+  "deps": [
+    {
+      "name": "l3keys2e"
+    },
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "currfile"
+    },
+    {
+      "name": "hyperref",
+      "if": "hyperref"
+    },
+    {
+      "name": "hyperref",
+      "if": "hyperref=active"
+    },
+    {
+      "name": "xcolor",
+      "if": "xcolor"
+    },
+    {
+      "name": "xcolor",
+      "if": "xcolor=active"
+    },
+    {
+      "name": "makeidx",
+      "if": "makeidx"
+    },
+    {
+      "name": "makeidx",
+      "if": "makeidx=active"
+    },
+    {
+      "name": "imakeidx",
+      "if": "imakeidx"
+    },
+    {
+      "name": "imakeidx",
+      "if": "imakeidx=active"
+    },
+    {
+      "name": "cleveref",
+      "if": "cleveref"
+    },
+    {
+      "name": "cleveref",
+      "if": "cleveref=active"
     }
-  },
-  "envs": {
-    "scope": {}
-  },
-  "options": [
-    "paper",
-    "electronic",
-    "composition",
-    "hyperref",
-    "hyperref=${1|active,inactive,compatibility,auto|}",
-    "xcolor",
-    "xcolor=${1|active,inactive,compatibility,auto|}",
-    "makeidx",
-    "makeidx=${1|active,inactive,compatibility,auto|}",
-    "cleveref",
-    "cleveref=${1|active,inactive,compatibility,auto|}",
-    "imakeidx",
-    "imakeidx=${1|active,inactive,compatibility,auto|}",
-    "diagnose bar",
-    "diagnose help",
-    "diagnose line",
-    "fix hyperref twocolumn",
-    "label scope",
-    "notion",
-    "protect quotation={${1:env1,env2,...}}",
-    "protect link",
-    "unprotect link",
-    "quotation",
-    "silent",
-    "strict",
-    "visible anchor points",
-    "no patch",
-    "ref=${1:label}",
-    "protect link",
-    "url=${1:URL}",
-    "anchor point color=",
-    "AP color=",
-    "anchor point shape=${1:shape}",
-    "AP shape=${1:shape}",
-    "anchor point shift={${1:x,y}}",
-    "AP shift={${1:x,y}}",
-    "ref=${1:label}",
-    "protect link",
-    "url=${1:URL}",
-    "anchor point color=",
-    "AP color=",
-    "anchor point shape=${1:shape}",
-    "AP shape=${1:shape}",
-    "anchor point shift={${1:x,y}}",
-    "AP shift={${1:x,y}}",
-    "color=",
-    "cyclic color={${1:color1,color2,...}}",
-    "colorbox=",
-    "color=",
-    "cyclic color={${1:color1,color2,...}}",
-    "colorbox="
   ],
-  "keyvals": [
-    [
-      "also now",
-      "autoref",
-      "autoref link",
-      "autoref target",
-      "autorefhere",
-      "boldface",
-      "detokenize",
-      "emphasize",
-      "ensuretext",
-      "ensuremath",
-      "export=${1:file}",
-      "invisible",
-      "italic",
-      "fbox",
-      "md",
-      "notion",
-      "intro style=${1:knowledge style}",
-      "invisible",
-      "italic",
-      "link=${1:knowledge}",
-      "link scope=${1:label}",
-      "lowercase",
-      "mathord",
-      "mathop",
-      "mathbin",
-      "mathrel",
-      "mathopen",
-      "mathclose",
-      "mathpunct",
-      "namespace=",
-      "now",
-      "remove space",
-      "scope=${1:name}",
-      "smallcaps",
-      "style=${1:knowledge style}",
-      "synonym",
-      "text=${1:text}",
-      "remove space",
-      "typewriter",
-      "underline",
-      "up",
-      "uppercase",
-      "wrap=${1:macro}",
-      "index=${1:text}",
-      "index key=${1:index key text}",
-      "index parent key=${1:index key}",
-      "index style=${1:csname}",
-      "no index",
-      "index=${1:text}",
-      "index key=${1:index key text}",
-      "index parent key=${1:index key}",
-      "index style=${1:csname}",
-      "no index",
-      "index=${1:text}",
-      "index key=${1:index key text}",
-      "index parent key=${1:index key}",
-      "index style=${1:csname}",
-      "index name=${1:name}",
-      "no index",
-      "index=${1:text}",
-      "index key=${1:index key text}",
-      "index parent key=${1:index key}",
-      "index style=${1:csname}",
-      "index name=${1:name}",
-      "no index"
+  "macros": [
+    {
+      "name": "knowledgeconfigure",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:directives%keyvals}}"
+      }
+    },
+    {
+      "name": "knowledge",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:knowledge name}}{${2:directives%keyvals}}"
+      }
+    },
+    {
+      "name": "knowledge",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:knowledge name}}[${3:synonym1|${4:synonym2}|...}]{${2:directives%keyvals}}"
+      }
+    },
+    {
+      "name": "knowledgestyle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:style name}}{${2:keyvals}}"
+      }
+    },
+    {
+      "name": "knowledgestyle*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:style name}}{${2:keyvals}}"
+      }
+    },
+    {
+      "name": "knowledgedirective",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:name}}[${3:optional parameter}]{${2:keyvals}}"
+      }
+    },
+    {
+      "name": "knowledgedirective*",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:name}}[${3:optional parameter}]{${2:keyvals}}"
+      }
+    },
+    {
+      "name": "knowledgedefault",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "knowledgedefault*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "kl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "kl(scope)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "kl",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:knowledge name}]{${1:text}}"
+      }
+    },
+    {
+      "name": "kl(scope)",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:knowledge name}]{${1:text}}"
+      }
+    },
+    {
+      "name": "knowledgenewvariant",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:command}}{${2:directives%keyvals}}"
+      }
+    },
+    {
+      "name": "knowledgesetvariant",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:command}}{${2:directives%keyvals}}"
+      }
+    },
+    {
+      "name": "knowledgevariantmodifier",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:variant1*variant2*...}}{${2:command}}"
+      }
+    },
+    {
+      "name": "knowledgescope",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:scope name}}"
+      }
+    },
+    {
+      "name": "knowledgeimport",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:scope1,scope2,...}}"
+      }
+    },
+    {
+      "name": "knowledgeconfigureenvironment",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:env1,env2,...}}{${2:keyvals}}"
+      }
+    },
+    {
+      "name": "intro",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:knowledge}}"
+      }
+    },
+    {
+      "name": "intro",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:knowledge name}]{${1:knowledge}}"
+      }
+    },
+    {
+      "name": "intro*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:knowledge}}"
+      }
+    },
+    {
+      "name": "intro*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:knowledge name}]{${1:knowledge}}"
+      }
+    },
+    {
+      "name": "phantomintro",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:knowledge}}"
+      }
+    },
+    {
+      "name": "phantomintro(label)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:knowledge}}"
+      }
+    },
+    {
+      "name": "nointro",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:knowledge}}"
+      }
+    },
+    {
+      "name": "reintro",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:knowledge}}"
+      }
+    },
+    {
+      "name": "reintro",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:knowledge name}]{${1:knowledge}}"
+      }
+    },
+    {
+      "name": "reintro*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:knowledge}}"
+      }
+    },
+    {
+      "name": "reintro*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:knowledge name}]{${1:knowledge}}"
+      }
+    },
+    {
+      "name": "rekl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "rekl(scope)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "rekl",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:knowledge name}]{${1:text}}"
+      }
+    },
+    {
+      "name": "rekl(scope)",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:knowledge name}]{${1:text}}"
+      }
+    },
+    {
+      "name": "AP"
+    },
+    {
+      "name": "itemAP"
+    },
+    {
+      "name": "knowledgeIntroIndexStyle",
+      "if": "makeidx",
+      "unusual": true
+    },
+    {
+      "name": "knowledgeIntroIndexStyle",
+      "if": "makeidx=active",
+      "unusual": true
+    },
+    {
+      "name": "knowledgeIntroIndexStyle",
+      "if": "imakeidx",
+      "unusual": true
+    },
+    {
+      "name": "knowledgeIntroIndexStyle",
+      "if": "imakeidx=active",
+      "unusual": true
+    },
+    {
+      "name": "kref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:key}}"
+      }
+    },
+    {
+      "name": "kpageref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:key}}"
+      }
+    },
+    {
+      "name": "kcref",
+      "if": "cleveref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:labellist}}"
+      }
+    },
+    {
+      "name": "kCref",
+      "if": "cleveref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:labellist}}"
+      }
+    },
+    {
+      "name": "kcpageref",
+      "if": "cleveref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:labellist}}"
+      }
+    },
+    {
+      "name": "kCpageref",
+      "if": "cleveref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:labellist}}"
+      }
+    },
+    {
+      "name": "knamecref",
+      "if": "cleveref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:key}}"
+      }
+    },
+    {
+      "name": "knameCref",
+      "if": "cleveref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:key}}"
+      }
+    },
+    {
+      "name": "knamerefs",
+      "if": "cleveref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:key}}"
+      }
+    },
+    {
+      "name": "knamecrefs",
+      "if": "cleveref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:key}}"
+      }
+    },
+    {
+      "name": "knameCrefs",
+      "if": "cleveref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:key}}"
+      }
+    },
+    {
+      "name": "kcref",
+      "if": "cleveref=active",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:labellist}}"
+      }
+    },
+    {
+      "name": "kCref",
+      "if": "cleveref=active",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:labellist}}"
+      }
+    },
+    {
+      "name": "kcpageref",
+      "if": "cleveref=active",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:labellist}}"
+      }
+    },
+    {
+      "name": "kCpageref",
+      "if": "cleveref=active",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:labellist}}"
+      }
+    },
+    {
+      "name": "knamecref",
+      "if": "cleveref=active",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:key}}"
+      }
+    },
+    {
+      "name": "knameCref",
+      "if": "cleveref=active",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:key}}"
+      }
+    },
+    {
+      "name": "knamerefs",
+      "if": "cleveref=active",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:key}}"
+      }
+    },
+    {
+      "name": "knamecrefs",
+      "if": "cleveref=active",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:key}}"
+      }
+    },
+    {
+      "name": "knameCrefs",
+      "if": "cleveref=active",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:key}}"
+      }
+    },
+    {
+      "name": "knowledgenewrobustcmd",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:args}]{${2:def}}"
+      }
+    },
+    {
+      "name": "knowledgenewcommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:args}]{${2:def}}"
+      }
+    },
+    {
+      "name": "knowledgerenewcommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:args}]{${2:def}}"
+      }
+    },
+    {
+      "name": "KnowledgeNewDocumentCommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:xargs}}{${3:def}}"
+      }
+    },
+    {
+      "name": "KnowledgeRenewDocumentCommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:xargs}}{${3:def}}"
+      }
+    },
+    {
+      "name": "KnowledgeProvideDocumentCommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:xargs}}{${3:def}}"
+      }
+    },
+    {
+      "name": "KnowledgeDeclareDocumentCommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:xargs}}{${3:def}}"
+      }
+    },
+    {
+      "name": "knowledgedeclarecommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:args}]{${2:def}}"
+      }
+    },
+    {
+      "name": "knowledgenewmathcommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:args}]{${2:def}}"
+      }
+    },
+    {
+      "name": "knowledgenewtextcommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:args}]{${2:def}}"
+      }
+    },
+    {
+      "name": "knowledgerenewmathcommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:args}]{${2:def}}"
+      }
+    },
+    {
+      "name": "knowledgerenewtextcommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:args}]{${2:def}}"
+      }
+    },
+    {
+      "name": "knowledgedeclaremathcommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:args}]{${2:def}}"
+      }
+    },
+    {
+      "name": "knowledgedeclaretextcommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:args}]{${2:def}}"
+      }
+    },
+    {
+      "name": "KnowledgeNewDocumentMathCommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:xargs}}{${3:def}}"
+      }
+    },
+    {
+      "name": "KnowledgeNewDocumentTextCommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:xargs}}{${3:def}}"
+      }
+    },
+    {
+      "name": "KnowledgeRenewDocumentMathCommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:xargs}}{${3:def}}"
+      }
+    },
+    {
+      "name": "KnowledgeRenewDocumentTextCommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:xargs}}{${3:def}}"
+      }
+    },
+    {
+      "name": "KnowledgeProvideDocumentMathCommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:xargs}}{${3:def}}"
+      }
+    },
+    {
+      "name": "KnowledgeProvideDocumentTextCommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:xargs}}{${3:def}}"
+      }
+    },
+    {
+      "name": "KnowledgeDeclareDocumentMathCommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:xargs}}{${3:def}}"
+      }
+    },
+    {
+      "name": "KnowledgeDeclareDocumentTextCommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:xargs}}{${3:def}}"
+      }
+    },
+    {
+      "name": "knowledgenewcommandPIE",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:args}]{${2:def}}"
+      }
+    },
+    {
+      "name": "knowledgerenewcommandPIE",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:args}]{${2:def}}"
+      }
+    },
+    {
+      "name": "knowledgedeclarecommandPIE",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:args}]{${2:def}}"
+      }
+    },
+    {
+      "name": "knowledgenewmathcommandPIE",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:args}]{${2:def}}"
+      }
+    },
+    {
+      "name": "knowledgerenewmathcommandPIE",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:args}]{${2:def}}"
+      }
+    },
+    {
+      "name": "knowledgedeclaremathcommandPIE",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:args}]{${2:def}}"
+      }
+    },
+    {
+      "name": "KnowledgeNewDocumentCommandPIE",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:xargs}}{${3:def}}"
+      }
+    },
+    {
+      "name": "KnowledgeRenewDocumentCommandPIE",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:xargs}}{${3:def}}"
+      }
+    },
+    {
+      "name": "KnowledgeDeclareDocumentCommandPIE",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:xargs}}{${3:def}}"
+      }
+    },
+    {
+      "name": "KnowledgeProvideDocumentCommandPIE",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:xargs}}{${3:def}}"
+      }
+    },
+    {
+      "name": "KnowledgeNewDocumentMathCommandPIE",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:xargs}}{${3:def}}"
+      }
+    },
+    {
+      "name": "KnowledgeRenewDocumentMathCommandPIE",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:xargs}}{${3:def}}"
+      }
+    },
+    {
+      "name": "KnowledgeDeclareDocumentMathCommandPIE",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:xargs}}{${3:def}}"
+      }
+    },
+    {
+      "name": "KnowledgeProvideDocumentMathCommandPIE",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:xargs}}{${3:def}}"
+      }
+    },
+    {
+      "name": "withkl",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:code}}"
+      }
+    },
+    {
+      "name": "cmdkl",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "knowledgepackagemode",
+      "unusual": true
+    },
+    {
+      "name": "IfKnowledgePaperModeTF",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "ifKnowledgePaperMode",
+      "unusual": true
+    },
+    {
+      "name": "KnowledgePaperModetrue",
+      "unusual": true
+    },
+    {
+      "name": "KnowledgePaperModefalse",
+      "unusual": true
+    },
+    {
+      "name": "IfKnowledgeElectronicModeTF",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "ifKnowledgeElectronicMode",
+      "unusual": true
+    },
+    {
+      "name": "KnowledgeElectronicModetrue",
+      "unusual": true
+    },
+    {
+      "name": "KnowledgeElectronicModefalse",
+      "unusual": true
+    },
+    {
+      "name": "IfKnowledgeCompositionModeTF",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "ifKnowledgeCompositionMode",
+      "unusual": true
+    },
+    {
+      "name": "KnowledgeCompositionModetrue",
+      "unusual": true
+    },
+    {
+      "name": "KnowledgeCompositionModefalse",
+      "unusual": true
+    },
+    {
+      "name": "robustdisplay",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "robustdisplaybracket",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "knowledgeFixHyperrefTwocolumn",
+      "unusual": true
+    },
+    {
+      "name": "KAuxActivate",
+      "unusual": true
+    },
+    {
+      "name": "KAuxOpen",
+      "unusual": true
+    },
+    {
+      "name": "KAuxClose",
+      "unusual": true
+    },
+    {
+      "name": "IfKAuxReadyTF",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "KAuxBefore",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "KAuxAfter",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "KAuxInit",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "NewKAuxCommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:xargs}}{${3:def}}"
+      }
+    },
+    {
+      "name": "KAuxEOF",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "KAuxCommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:xargs}}{${3:def}}"
+      }
+    },
+    {
+      "name": "ActivateKAuxPhase",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "DeclareKAuxPhaseCommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:xargs}}{${3:def}}"
+      }
+    },
+    {
+      "name": "KAuxWriteLocation*"
+    },
+    {
+      "name": "KAuxWriteX",
+      "arg": {
+        "format": "{}*",
+        "snippet": "{${1:arg}}*"
+      }
+    },
+    {
+      "name": "KAuxWriteX*",
+      "arg": {
+        "format": "{}*",
+        "snippet": "{${1:arg}}*"
+      }
+    },
+    {
+      "name": "KAuxWrite",
+      "arg": {
+        "format": "{}*",
+        "snippet": "{${1:arg}}*"
+      }
+    },
+    {
+      "name": "KAuxWrite*",
+      "arg": {
+        "format": "{}*",
+        "snippet": "{${1:arg}}*"
+      }
+    },
+    {
+      "name": "KAuxFileAt",
+      "arg": {
+        "format": "{}{}*",
+        "snippet": "{${1:file}}{${2:line}}*"
+      }
+    },
+    {
+      "name": "kauxCurrentFile*"
+    },
+    {
+      "name": "kauxCurrentLine*"
+    },
+    {
+      "name": "KAuxProcess",
+      "arg": {
+        "format": "{}*",
+        "snippet": "{${1:phase}}*"
+      }
+    },
+    {
+      "name": "NewGBool",
+      "arg": {
+        "format": "{}{}*",
+        "snippet": "{${1:arg1}}{${2:arg2}}*"
+      }
+    },
+    {
+      "name": "NewGBool",
+      "arg": {
+        "format": "{}{}[]*",
+        "snippet": "{${1:arg1}}{${2:arg2}}[${3:opt}]*"
+      }
+    },
+    {
+      "name": "NewGBoolComplete",
+      "arg": {
+        "format": "{}{}{}*",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}*"
+      }
+    },
+    {
+      "name": "NewGCs",
+      "arg": {
+        "format": "{}{}*",
+        "snippet": "{${1:arg1}}{${2:arg2}}*"
+      }
+    },
+    {
+      "name": "NewGCs",
+      "arg": {
+        "format": "{}{}[]*",
+        "snippet": "{${1:arg1}}{${2:arg2}}[${3:opt}]*"
+      }
+    },
+    {
+      "name": "NewGCsComplete",
+      "arg": {
+        "format": "{}{}{}*",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}*"
+      }
+    },
+    {
+      "name": "OverloadCommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:xargs}}{${3:def}}"
+      }
+    },
+    {
+      "name": "OverloadCommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]{}",
+        "snippet": "{${1:cmd}}{${2:xargs}}[${4:opt}]{${3:def}}"
+      }
+    },
+    {
+      "name": "ChooseCommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "XparseArgs",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "ExpXparseArgs",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "KnowledgeConfigureBooleanOption",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:option}}"
+      }
+    },
+    {
+      "name": "KnowledgeConfigureBooleanOption",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:default}]{${1:option}}"
+      }
+    },
+    {
+      "name": "KnowledgeConfigureBooleanOptionTF",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:option}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "KnowledgeConfigureBooleanOptionTF",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:default}]{${1:option}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "KnowledgeConfigureTrigger",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:trigger}}{${2:def}}"
+      }
+    },
+    {
+      "name": "KnowledgeConfigureTrigger",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:opt}]{${1:trigger}}{${2:def}}"
+      }
+    },
+    {
+      "name": "KnowledgePackageTrigger",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:trigger}}{${2:def}}"
+      }
+    },
+    {
+      "name": "KnowledgePackageBooleanOption",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "KnowledgePackageBooleanOption",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:opt}]{${1:arg}}"
+      }
+    },
+    {
+      "name": "ScopeConfigure",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:envname}}{${2:options}}"
+      }
+    },
+    {
+      "name": "KAuxUndeclaredScopeTag",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "KAuxDeclaredScopeTag",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "KAuxNewLinkScopetagInstance",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "KAuxScopeNewInstance",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "KAuxScopeTag",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "KnowledgeConfigureEnvironment",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:env1,env2,...}}{${2:keyvals}}"
+      }
+    },
+    {
+      "name": "ScopeHackEnvironments",
+      "unusual": true
+    },
+    {
+      "name": "ScopeActivate",
+      "unusual": true
+    },
+    {
+      "name": "KnowledgeDiagnoseOutput",
+      "unusual": true
+    },
+    {
+      "name": "NewKnowledgeParamBool",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:param}}{${2:bool}}"
+      }
+    },
+    {
+      "name": "NewKnowledgeParamBool*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:param}}{${2:bool}}"
+      }
+    },
+    {
+      "name": "KnowledgeTransferBool",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "NewKnowledgeParamTl",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:param}}"
+      }
+    },
+    {
+      "name": "NewKnowledgeParamTl",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:opt}]{${1:param}}"
+      }
+    },
+    {
+      "name": "NewKnowledgeParamTl*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:param}}"
+      }
+    },
+    {
+      "name": "NewKnowledgeParamTl*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:opt}]{${1:param}}"
+      }
+    },
+    {
+      "name": "KnowledgeTransferTl",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "NewKnowledgeParamCode",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "NewKnowledgeParamPackageError",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "KAuxKnowledge",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+      }
+    },
+    {
+      "name": "knowledgeusestyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "KAuxErrorKnowledgeRecursive",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+      }
+    },
+    {
+      "name": "KAuxErrorKnowledgeUnknown",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+      }
+    },
+    {
+      "name": "KAuxErrorLabelUnknown",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "KAuxAutoref",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "KAuxAutorefTarget",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "KAuxUseKnowledge",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "ensuretext",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "knowledgedisplayref",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "makequotationactive",
+      "unusual": true
+    },
+    {
+      "name": "makequotationletter",
+      "unusual": true
+    },
+    {
+      "name": "quotesymbol",
+      "unusual": true
+    },
+    {
+      "name": "klactivequotationmark",
+      "unusual": true
+    },
+    {
+      "name": "klactivedoublequotationmark",
+      "unusual": true
+    },
+    {
+      "name": "klactivatequotation",
+      "unusual": true
+    },
+    {
+      "name": "kldeactivatequotation",
+      "unusual": true
+    },
+    {
+      "name": "KnowledgifyNewcommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:command}}"
+      }
+    },
+    {
+      "name": "KnowledgifyNewDocumentCommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:command}}"
+      }
+    },
+    {
+      "name": "IfXcolorTF",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "ifXcolor",
+      "unusual": true
+    },
+    {
+      "name": "Xcolortrue",
+      "unusual": true
+    },
+    {
+      "name": "Xcolorfalse",
+      "unusual": true
+    },
+    {
+      "name": "KnowledgeConfigureNotion",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "KnowledgeConfigureNotion",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:opt}]{${1:arg}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "scope"
+    }
+  ],
+  "keys": {
+    "\\usepackage/knowledge#c": [
+      "paper\r",
+      "electronic\r",
+      "composition\r",
+      "hyperref\r",
+      "hyperref=${1|active,inactive,compatibility,auto\r|}",
+      "xcolor\r",
+      "xcolor=${1|active,inactive,compatibility,auto\r|}",
+      "makeidx\r",
+      "makeidx=${1|active,inactive,compatibility,auto\r|}",
+      "cleveref\r",
+      "cleveref=${1|active,inactive,compatibility,auto\r|}",
+      "imakeidx\r",
+      "imakeidx=${1|active,inactive,compatibility,auto\r|}"
     ],
-    [
+    "\\knowledgeconfigure#c,\\usepackage/knowledge#c": [
+      "color=",
+      "cyclic color={${1:color1,color2,...}}\r",
+      "colorbox="
+    ],
+    "\\knowledge#c,\\knowledgestyle#c,\\knowledgestyle*#c,\\knowledgedirective#c,\\knowledgedirective*#c": [
+      "index=${1:text}\r",
+      "index key=${1:index key text}\r",
+      "index parent key=${1:index key}\r",
+      "index style=${1:csname}\r",
+      "index name=${1:name}\r",
+      "no index\r"
+    ],
+    "\\knowledgenewvariant#c,\\knowledgesetvariant#c": [
+      "namespace=${1:string}\r",
+      "default style={${1:style list}}\r",
+      "unknown style={${1:style list}}\r",
+      "unknown style cont={${1:style list}}\r",
+      "style directive={${1:directive list}}\r",
+      "auto knowledge={${1:directives}}\r",
+      "unknown warning",
+      "unknown diagnose",
+      "suggestion={${1:directives}}\r",
+      "PDF string={${1:code}}\r",
+      "display code={${1:code}}\r"
+    ],
+    "\\knowledgeconfigureenvironment#c": [
       "scope",
-      "label=${1|none,accepts|}",
+      "label=${1|none,accepts\r|}",
       "environment",
       "autoclose",
-      "parents={${1:area1,area2,...}}",
-      "push code={${1:code}}",
-      "pop code={${1:code}}",
-      "occurrences=${1|once,multiple,recursive|}",
-      "forces=${1:area}",
-      "knowledge=${1:knowledge}"
+      "parents={${1:area1,area2,...}}\r",
+      "push code={${1:code}}\r",
+      "pop code={${1:code}}\r",
+      "occurrences=${1|once,multiple,recursive\r|}",
+      "forces=${1:area}\r",
+      "knowledge=${1:knowledge}\r"
     ]
+  },
+  "args": [
+    "\\usepackage/knowledge#c",
+    "\\knowledgeconfigure#c,\\usepackage/knowledge#c",
+    "\\knowledgeconfigure#c,\\usepackage/knowledge#c",
+    "\\knowledgeconfigure#c,\\usepackage/knowledge#c",
+    "\\knowledgeconfigure#c,\\usepackage/knowledge#c",
+    "\\knowledgeconfigure#c,\\usepackage/knowledge#c"
   ]
 }

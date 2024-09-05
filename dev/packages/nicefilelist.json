@@ -1,49 +1,73 @@
 {
-  "includes": {
-    "monofill": [],
-    "myfilist": [],
-    "hardwrap": [
-      "wrap"
-    ],
-    "xstring": [
-      "autolength"
+  "deps": [
+    {
+      "name": "monofill"
+    },
+    {
+      "name": "myfilist"
+    },
+    {
+      "name": "hardwrap",
+      "if": "wrap"
+    },
+    {
+      "name": "xstring",
+      "if": "autolength"
+    }
+  ],
+  "macros": [
+    {
+      "name": "NFLspaceI"
+    },
+    {
+      "name": "NFLspaceII"
+    },
+    {
+      "name": "NFLspaceIII"
+    },
+    {
+      "name": "NFLnodate"
+    },
+    {
+      "name": "NFLnoversion"
+    },
+    {
+      "name": "NFLnotfound"
+    },
+    {
+      "name": "MaxBaseEmptyList",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:longest-name}}"
+      }
+    },
+    {
+      "name": "MaxBaseEmptyList",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:longest-name}}[${2:read-again-files}]"
+      }
+    },
+    {
+      "name": "MaxBaseEmptyList*"
+    },
+    {
+      "name": "MaxBaseEmptyList*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:read-again-files}]"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/nicefilelist#c": [
+      "r\r",
+      "wrap\r",
+      "autolength\r"
     ]
   },
-  "macros": {
-    "NFLspaceI": {},
-    "NFLspaceII": {},
-    "NFLspaceIII": {},
-    "NFLnodate": {},
-    "NFLnoversion": {},
-    "NFLnotfound": {},
-    "MaxBaseEmptyList{}": {
-      "snippet": "MaxBaseEmptyList{${1:longest-name}}"
-    },
-    "MaxBaseEmptyList{}[]": {
-      "snippet": "MaxBaseEmptyList{${1:longest-name}}[${2:read-again-files}]"
-    },
-    "MaxBaseEmptyList*": {},
-    "MaxBaseEmptyList*[]": {
-      "snippet": "MaxBaseEmptyList*[${1:read-again-files}]"
-    },
-    "maxBaseEmptyList{}": {
-      "snippet": "maxBaseEmptyList{${1:longest-name}}"
-    },
-    "maxBaseEmptyList{}[]": {
-      "snippet": "maxBaseEmptyList{${1:longest-name}}[${2:read-again-files}]"
-    },
-    "ifNFLwrap": {},
-    "NFLwraptrue": {},
-    "NFLwrapfalse": {},
-    "ifNFLautolength": {},
-    "NFLautolengthtrue": {},
-    "NFLautolengthfalse": {}
-  },
-  "envs": {},
-  "options": [
-    "r",
-    "wrap",
-    "autolength"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/nicefilelist#c"
+  ]
 }

@@ -1,35 +1,146 @@
 {
-  "includes": {
-    "numerica": [],
-    "booktabs": []
-  },
-  "macros": {
-    "tabulate[]{}[]": {
-      "snippet": "tabulate[${2:settings}]{${1:expression}}[${3:vv-list}]"
+  "deps": [
+    {
+      "name": "numerica"
     },
-    "tabulate[]{}[][]": {
-      "snippet": "tabulate[${2:settings}]{${1:expression}}[${3:vv-list}][${4:num format}]"
-    },
-    "tabulate*[]{}[]": {
-      "snippet": "tabulate*[${2:settings}]{${1:expression}}[${3:vv-list}]"
-    },
-    "tabulate*[]{}[][]": {
-      "snippet": "tabulate*[${2:settings}]{${1:expression}}[${3:vv-list}][${4:num format}]"
-    },
-    "nmcTabulate[]{}[]": {
-      "snippet": "nmcTabulate[${2:settings}]{${1:expression}}[${3:vv-list}]"
-    },
-    "nmcTabulate[]{}[][]": {
-      "snippet": "nmcTabulate[${2:settings}]{${1:expression}}[${3:vv-list}][${4:num format}]"
-    },
-    "nmcTabulate*[]{}[]": {
-      "snippet": "nmcTabulate*[${2:settings}]{${1:expression}}[${3:vv-list}]"
-    },
-    "nmcTabulate*[]{}[][]": {
-      "snippet": "nmcTabulate*[${2:settings}]{${1:expression}}[${3:vv-list}][${4:num format}]"
+    {
+      "name": "booktabs"
     }
+  ],
+  "macros": [
+    {
+      "name": "tabulate",
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:settings%keyvals}]{${1:expression}}[${3:vv-list%formula}]"
+      }
+    },
+    {
+      "name": "tabulate",
+      "arg": {
+        "format": "[]{}[][]",
+        "snippet": "[${2:settings%keyvals}]{${1:expression}}[${3:vv-list%formula}][${4:num format}]"
+      }
+    },
+    {
+      "name": "tabulate*",
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:settings%keyvals}]{${1:expression}}[${3:vv-list%formula}]"
+      }
+    },
+    {
+      "name": "tabulate*",
+      "arg": {
+        "format": "[]{}[][]",
+        "snippet": "[${2:settings%keyvals}]{${1:expression}}[${3:vv-list%formula}][${4:num format}]"
+      }
+    },
+    {
+      "name": "nmcTabulate",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:settings%keyvals}]{${1:expression}}[${3:vv-list%formula}]"
+      }
+    },
+    {
+      "name": "nmcTabulate",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[][]",
+        "snippet": "[${2:settings%keyvals}]{${1:expression}}[${3:vv-list%formula}][${4:num format}]"
+      }
+    },
+    {
+      "name": "nmcTabulate*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:settings%keyvals}]{${1:expression}}[${3:vv-list%formula}]"
+      }
+    },
+    {
+      "name": "nmcTabulate*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[][]",
+        "snippet": "[${2:settings%keyvals}]{${1:expression}}[${3:vv-list%formula}][${4:num format}]"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\tabulate,\\tabulate*,\\nmcTabulate,\\nmcTabulate*": [
+      "dbg=${1|0,1,2,3,5,7,11\r|}",
+      "view\r",
+      "^=${1:char}\r",
+      "xx=${1|0,1\r|}",
+      "ff=${1:char}\r",
+      "1s2=${1|0,1\r|}",
+      "/min=${1:integer}\r",
+      "/max=${1:integer}\r",
+      "vv@=${1|0,1\r|}",
+      "vvmode=${1|0,1\r|}",
+      "o=${1|0,1\r|}",
+      "log=${1:number}\r",
+      "S+=${1:integer}\r",
+      "S?=${1:integer}\r",
+      "P+=${1:integer}\r",
+      "P?=${1:integer}\r",
+      "f=${1|0,1\r|}",
+      "p=${1:punctuation}\r",
+      "pp=${1:punctuation}\r",
+      "env=${1:envname}\r",
+      "arg=${1:arg}\r",
+      "eq=${1:symbol}\r",
+      "vv=${1:spec}\r",
+      "sep=${1:separator}\r",
+      "\\}=${1:<space><r-delim>}\r",
+      "rvar=${1:tokens}\r",
+      "rstep=${1:real number}\r",
+      "rstop=${1:real number}\r",
+      "rows=${1:integer}\r",
+      "rspec={${1:csv list}}\r",
+      "rdata={${1:csv list}}\r",
+      "rfile=${1:file}\r",
+      "rverb=${1|0,1\r|}",
+      "rfunc=${1:function}\r",
+      "rround=${1:integer}\r",
+      "ralign=${1|r,c,l\r|}",
+      "rfont=${1|bf,it,sf,tt,frak,rm\r|}",
+      "rhead=${1:tokens}\r",
+      "rhnudge=${1:integer}\r",
+      "rpos=${1|0,1,2,3,4\r|}",
+      "rvar'=${1:tokens}\r",
+      "rhead'=${1:tokens}\r",
+      "rhnudge'=${1:integer}\r",
+      "rfrac=${1|0,1,2,3,4,5\r|}",
+      "cvar=${1:tokens}\r",
+      "cstep=${1:real number}\r",
+      "cstop=${1:real number}\r",
+      "cols=${1:integer}\r",
+      "cspec={${1:csv list}}\r",
+      "chstyle=${1|0,1,2,3,4\r|}",
+      "ctitle=${1:tokens}\r",
+      "csubttl=${1:tokens}\r",
+      "chead=${1:tokens}\r",
+      "calign=${1|r,c,l\r|}",
+      "chnudge=${1:integer}\r",
+      "chround=${1:integer}\r",
+      "headless=${1|0,1\r|}",
+      "rules=${1:chars}\r",
+      "foot=${1:tokens}\r",
+      "rbloc={${1:csv list}}\r",
+      "rblocsep=",
+      "(pad)=${1:integer}\r",
+      "signs=${1|-2,-1,0,1,2\r|}",
+      "diffs=${1:integer}\r",
+      "round=${1:function}\r",
+      "Q?=${1:tokens}\r",
+      "A!=${1:tokens}\r",
+      "valign=${1|t,m,b\r|}"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

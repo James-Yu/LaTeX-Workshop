@@ -1,66 +1,166 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "fp": [],
-    "datatool-base": []
-  },
-  "macros": {
-    "dtlifnumeq{}{}{}{}": {
-      "snippet": "dtlifnumeq{${1:num1}}{${2:num2}}{${3:true case}}{${4:false case}}"
+  "deps": [
+    {
+      "name": "xkeyval"
     },
-    "dtlifnumlt{}{}{}{}": {
-      "snippet": "dtlifnumlt{${1:num1}}{${2:num2}}{${3:true case}}{${4:false case}}"
+    {
+      "name": "fp"
     },
-    "dtlifnumgt{}{}{}{}": {
-      "snippet": "dtlifnumgt{${1:num1}}{${2:num2}}{${3:true case}}{${4:false case}}"
+    {
+      "name": "datatool-base"
+    }
+  ],
+  "macros": [
+    {
+      "name": "dtlifnumeq",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:num1}}{${2:num2}}{${3:true case}}{${4:false case}}"
+      }
     },
-    "dtlifnumopenbetween{}{}{}{}{}": {
-      "snippet": "dtlifnumopenbetween{${1:num}}{${2:min}}{${3:max}}{${4:true case}}{${5:false case}}"
+    {
+      "name": "dtlifnumlt",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:num1}}{${2:num2}}{${3:true case}}{${4:false case}}"
+      }
     },
-    "dtlifnumclosedbetween{}{}{}{}{}": {
-      "snippet": "dtlifnumclosedbetween{${1:num}}{${2:min}}{${3:max}}{${4:true case}}{${5:false case}}"
+    {
+      "name": "dtlifnumgt",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:num1}}{${2:num2}}{${3:true case}}{${4:false case}}"
+      }
     },
-    "dtladd{}{}{}": {
-      "snippet": "dtladd{${1:cmd}}{${2:num1}}{${3:num2}}"
+    {
+      "name": "dtlifnumopenbetween",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:num}}{${2:min}}{${3:max}}{${4:true case}}{${5:false case}}"
+      }
     },
-    "dtlsub{}{}{}": {
-      "snippet": "dtlsub{${1:cmd}}{${2:num1}}{${3:num2}}"
+    {
+      "name": "dtlifnumclosedbetween",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:num}}{${2:min}}{${3:max}}{${4:true case}}{${5:false case}}"
+      }
     },
-    "dtlmul{}{}{}": {
-      "snippet": "dtlmul{${1:cmd}}{${2:num1}}{${3:num2}}"
+    {
+      "name": "dtladd",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:num1}}{${3:num2}}"
+      }
     },
-    "dtldiv{}{}{}": {
-      "snippet": "dtldiv{${1:cmd}}{${2:num1}}{${3:num2}}"
+    {
+      "name": "dtlsub",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:num1}}{${3:num2}}"
+      }
     },
-    "dtlroot{}{}": {
-      "snippet": "dtlroot{${1:cmd}}{${2:num}}"
+    {
+      "name": "dtlmul",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:num1}}{${3:num2}}"
+      }
     },
-    "dtlround{}{}{}": {
-      "snippet": "dtlround{${1:cmd}}{${2:num}}{${3:digits}}"
+    {
+      "name": "dtldiv",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:num1}}{${3:num2}}"
+      }
     },
-    "dtltrunc{}{}{}": {
-      "snippet": "dtltrunc{${1:cmd}}{${2:num}}{${3:digits}}"
+    {
+      "name": "dtlroot",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:num}}"
+      }
     },
-    "dtlclip{}{}": {
-      "snippet": "dtlclip{${1:cmd}}{${2:num}}"
+    {
+      "name": "dtlround",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:num}}{${3:digits}}"
+      }
     },
-    "dtlmin{}{}{}": {
-      "snippet": "dtlmin{${1:cmd}}{${2:num1}}{${3:num2}}"
+    {
+      "name": "dtltrunc",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:num}}{${3:digits}}"
+      }
     },
-    "dtlmax{}{}{}": {
-      "snippet": "dtlmax{${1:cmd}}{${2:num1}}{${3:num2}}"
+    {
+      "name": "dtlclip",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:num}}"
+      }
     },
-    "dtlabs{}{}": {
-      "snippet": "dtlabs{${1:cmd}}{${2:num}}"
+    {
+      "name": "dtlmin",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:num1}}{${3:num2}}"
+      }
     },
-    "dtlneg{}{}": {
-      "snippet": "dtlneg{${1:cmd}}{${2:num}}"
+    {
+      "name": "dtlmax",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:num1}}{${3:num2}}"
+      }
     },
-    "ifFPmessages": {},
-    "FPmessagestrue": {},
-    "FPmessagesfalse": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "dtlabs",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:num}}"
+      }
+    },
+    {
+      "name": "dtlneg",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:num}}"
+      }
+    },
+    {
+      "name": "ifFPmessages",
+      "unusual": true
+    },
+    {
+      "name": "FPmessagestrue",
+      "unusual": true
+    },
+    {
+      "name": "FPmessagesfalse",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

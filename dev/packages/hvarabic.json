@@ -1,32 +1,71 @@
 {
-  "includes": {
-    "iftex": [],
-    "xkeyval": [],
-    "fontspec": []
-  },
-  "macros": {
-    "RTLfootnote{}": {
-      "snippet": "RTLfootnote{${1:text}}"
+  "deps": [
+    {
+      "name": "iftex"
     },
-    "textRTL{}": {
-      "snippet": "textRTL{${1:text}}"
+    {
+      "name": "xkeyval"
     },
-    "nLTR{}": {
-      "snippet": "nLTR{${1:digits}}"
-    },
-    "setLTRfootnoterule": {},
-    "setRTLfootnoterule": {},
-    "RTLfont": {},
-    "hvALM": {},
-    "setRTL": {},
-    "setLTR": {},
-    "LTRfootnoterule": {}
-  },
-  "envs": {
-    "RTL": {}
-  },
-  "options": [
-    "RTLfootnoterule"
+    {
+      "name": "fontspec"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "RTLfootnote",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textRTL",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "nLTR",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:digits}}"
+      }
+    },
+    {
+      "name": "setLTRfootnoterule"
+    },
+    {
+      "name": "setRTLfootnoterule"
+    },
+    {
+      "name": "RTLfont"
+    },
+    {
+      "name": "hvALM"
+    },
+    {
+      "name": "setRTL"
+    },
+    {
+      "name": "setLTR"
+    },
+    {
+      "name": "LTRfootnoterule",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "RTL"
+    }
+  ],
+  "keys": {
+    "\\usepackage/hvarabic#c": [
+      "RTLfootnoterule"
+    ]
+  },
+  "args": [
+    "\\usepackage/hvarabic#c"
+  ]
 }

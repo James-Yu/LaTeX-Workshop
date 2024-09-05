@@ -1,19 +1,38 @@
 {
-  "includes": {
-    "ifmtarg": []
-  },
-  "macros": {
-    "hdashrule{}{}{}": {
-      "snippet": "hdashrule{${1:width}}{${2:height}}{${3:dash}}"
-    },
-    "hdashrule[]{}{}{}": {
-      "snippet": "hdashrule[${4:raise}]{${1:width}}{${2:height}}{${3:dash}}"
-    },
-    "hdashrule[][]{}{}{}": {
-      "snippet": "hdashrule[${4:raise}][${5:leaders}]{${1:width}}{${2:height}}{${3:dash}}"
+  "deps": [
+    {
+      "name": "ifmtarg"
     }
+  ],
+  "macros": [
+    {
+      "name": "hdashrule",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:width}}{${2:height}}{${3:dash}}"
+      }
+    },
+    {
+      "name": "hdashrule",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:raise%l}]{${1:width}}{${2:height}}{${3:dash}}"
+      }
+    },
+    {
+      "name": "hdashrule",
+      "arg": {
+        "format": "[][]{}{}{}",
+        "snippet": "[${4:raise%l}][${5:leaders%keyvals}]{${1:width}}{${2:height}}{${3:dash}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\hdashrule": [
+      "c\r",
+      "x\r"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

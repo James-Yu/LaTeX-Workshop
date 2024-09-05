@@ -1,44 +1,91 @@
 {
-  "includes": {},
-  "macros": {
-    "source{}{}{}": {
-      "snippet": "source{${1:mag}}{${2:width}}{${3:height}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "source",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:mag}}{${2:width}}{${3:height}}"
+      }
     },
-    "target{}{}{}": {
-      "snippet": "target{${1:mag}}{${2:width}}{${3:height}}"
+    {
+      "name": "target",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:mag}}{${2:width}}{${3:height}}"
+      }
     },
-    "targetlayout{}": {
-      "snippet": "targetlayout{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "targetlayout",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\targetlayout"
+        ],
+        "keyPos": 0
+      }
     },
-    "pagesepwidth": {},
-    "pageseplength": {},
-    "pagesepoffset": {},
-    "twoupemptypage": {},
-    "twoupclearpage": {},
-    "twoupeject": {},
-    "twouparticle": {},
-    "twoupplain": {},
-    "twouplegaltarget": {},
-    "twouplandscape": {},
-    "bookletpage": {},
-    "leftpagenumber": {},
-    "rightpagenumber": {},
-    "TheAtCode": {},
-    "TwoUpLoaded": {},
-    "filedate": {},
-    "fileversion": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "topbottom",
-      "twosided",
-      "booklet",
-      "Booklet",
-      "dvidvi"
+    {
+      "name": "pagesepwidth",
+      "unusual": true
+    },
+    {
+      "name": "pageseplength",
+      "unusual": true
+    },
+    {
+      "name": "pagesepoffset",
+      "unusual": true
+    },
+    {
+      "name": "twoupemptypage"
+    },
+    {
+      "name": "twoupclearpage"
+    },
+    {
+      "name": "twoupeject",
+      "unusual": true
+    },
+    {
+      "name": "twouparticle",
+      "unusual": true
+    },
+    {
+      "name": "twoupplain",
+      "unusual": true
+    },
+    {
+      "name": "twouplegaltarget",
+      "unusual": true
+    },
+    {
+      "name": "twouplandscape",
+      "unusual": true
+    },
+    {
+      "name": "bookletpage",
+      "unusual": true
+    },
+    {
+      "name": "leftpagenumber",
+      "unusual": true
+    },
+    {
+      "name": "rightpagenumber",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\targetlayout": [
+      "topbottom\r",
+      "twosided\r",
+      "booklet\r",
+      "Booklet\r",
+      "dvidvi\r"
     ]
-  ]
+  },
+  "args": []
 }

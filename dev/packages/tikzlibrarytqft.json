@@ -1,9 +1,71 @@
 {
-  "includes": {
-    "tikzlibraryshapes.geometric": []
+  "deps": [
+    {
+      "name": "tikzlibraryshapes.geometric"
+    }
+  ],
+  "macros": [],
+  "envs": [],
+  "keys": {
+    "\\begin{tikzpicture}#c,\\tikz#c,\\begin{scope}#c,\\tikzset#c,\\scoped#c": [
+      "every tqft/.style={${1:TikZ keys}}\r",
+      "tqft/every boundary component/.style={${1:TikZ keys}}\r",
+      "tqft/every incoming boundary component/.style={${1:TikZ keys}}\r",
+      "tqft/every outgoing boundary component/.style={${1:TikZ keys}}\r",
+      "tqft/every lower boundary component/.style={${1:TikZ keys}}\r",
+      "tqft/every incoming lower boundary component/.style={${1:TikZ keys}}\r",
+      "tqft/every outgoing lower boundary component/.style={${1:TikZ keys}}\r",
+      "tqft/every upper boundary component/.style={${1:TikZ keys}}\r",
+      "tqft/every incoming upper boundary component/.style={${1:TikZ keys}}\r",
+      "tqft/every outgoing upper boundary component/.style={${1:TikZ keys}}\r"
+    ],
+    "\\node#c,\\coordinate#c,\\pic#c": [
+      "tqft/pair of pants\r",
+      "tqft/reverse pair of pants\r",
+      "tqft/cylinder to prior\r",
+      "tqft/cylinder to next\r",
+      "tqft/cylinder\r",
+      "tqft/cap\r",
+      "tqft/cup\r"
+    ],
+    "\\begin{tikzpicture}#c,\\tikz#c,\\begin{scope}#c,\\tikzset#c,\\scoped#c,\\node#c,\\coordinate#c,\\pic#c": [
+      "tqft/view from=${1|incoming,outgoing\r|}",
+      "tqft/cobordism height=",
+      "tqft/boundary separation=",
+      "tqft/circle x radius=",
+      "tqft/circle y radius=",
+      "tqft/incoming boundary components=${1:integer}\r",
+      "tqft/skip incoming boundary components=${1:integer}\r",
+      "tqft/outgoing boundary components=${1:integer}\r",
+      "tqft/skip outgoing boundary components=${1:integer}\r",
+      "tqft/offset=${1:number}\r",
+      "tqft/genus=${1:integer}\r",
+      "tqft/twisted",
+      "tqft/incoming boundary component ${1:<n>}/.style={${2:TikZ keys}}\r",
+      "tqft/outgoing boundary component ${1:<n>}/.style={${2:TikZ keys}}\r",
+      "tqft/incoming lower boundary component ${1:<n>}/.style={${2:TikZ keys}}\r",
+      "tqft/outgoing lower boundary component ${1:<n>}/.style={${2:TikZ keys}}\r",
+      "tqft/cobordism/.style={${1:TikZ keys}}\r",
+      "tqft/genus upper/.style={${1:TikZ keys}}\r",
+      "tqft/genus lower/.style={${1:TikZ keys}}\r",
+      "tqft/hole ${1:<n>}/.style={${2:TikZ keys}}\r",
+      "tqft/hole ${1:<n>} upper/.style={${2:TikZ keys}}\r",
+      "tqft/hole ${1:<n>} lower/.style={${2:TikZ keys}}\r",
+      "tqft/cobordism edge/.style={${1:TikZ keys}}\r",
+      "tqft/cobordism outer edge/.style={${1:TikZ keys}}\r",
+      "tqft/between incoming/.style={${1:TikZ keys}}\r",
+      "tqft/between outgoing/.style={${1:TikZ keys}}\r",
+      "tqft/between incoming and outgoing/.style={${1:TikZ keys}}\r",
+      "tqft/between incoming ${1:<n>} and ${2:<n+1>}/.style={${3:TikZ keys}}\r",
+      "tqft/between outgoing ${1:<n>} and ${2:<n+1>}/.style={${3:TikZ keys}}\r",
+      "tqft/between first incoming and first outgoing/.style={${1:TikZ keys}}\r",
+      "tqft/between first incoming and first outgoing/.style={${1:TikZ keys}}\r",
+      "tqft/between last incoming and last outgoing/.style={${1:TikZ keys}}\r",
+      "tqft/between first and last incoming/.style={${1:TikZ keys}}\r",
+      "tqft/between first and last outgoing/.style={${1:TikZ keys}}\r",
+      "tqft/incoming upper boundary component ${1:<n>}/.style={${2:TikZ keys}}\r",
+      "tqft/outgoing upper boundary component ${1:<n>}/.style={${2:TikZ keys}}\r"
+    ]
   },
-  "macros": {},
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

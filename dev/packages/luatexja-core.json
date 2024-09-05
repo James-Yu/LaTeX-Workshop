@@ -1,75 +1,208 @@
 {
-  "includes": {
-    "luatexbase": [],
-    "luaotfload": [],
-    "ltxcmds": [],
-    "pdftexcmds": [],
-    "xkeyval": [],
-    "etoolbox": [],
-    "everyhook": [],
-    "ltj-base": [],
-    "ltj-latex": []
+  "deps": [
+    {
+      "name": "luatexbase"
+    },
+    {
+      "name": "luaotfload"
+    },
+    {
+      "name": "ltxcmds"
+    },
+    {
+      "name": "pdftexcmds"
+    },
+    {
+      "name": "xkeyval"
+    },
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "everyhook"
+    },
+    {
+      "name": "ltj-base"
+    },
+    {
+      "name": "ltj-latex"
+    }
+  ],
+  "macros": [
+    {
+      "name": "ltjlineendcomment",
+      "unusual": true
+    },
+    {
+      "name": "jfam",
+      "unusual": true
+    },
+    {
+      "name": "RequireLuaTeXjaSubmodule",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "RequireLuaTeXjaSubmodule",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:name}}[${2:date}]"
+      }
+    },
+    {
+      "name": "asluastring",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:string}}"
+      }
+    },
+    {
+      "name": "zw"
+    },
+    {
+      "name": "zh"
+    },
+    {
+      "name": "disinhibitglue"
+    },
+    {
+      "name": "inhibitglue"
+    },
+    {
+      "name": "<",
+      "unusual": true
+    },
+    {
+      "name": "ltjfakeparbegin"
+    },
+    {
+      "name": "ltjfakeboxbdd"
+    },
+    {
+      "name": "insertxkanjiskip"
+    },
+    {
+      "name": "insertkanjiskip"
+    },
+    {
+      "name": "ltjdefcharrange",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:ranges}}"
+      }
+    },
+    {
+      "name": "ltjsetkanjiskip"
+    },
+    {
+      "name": "ltjsetxkanjiskip"
+    },
+    {
+      "name": "ltjsetparameter",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:parameters%keyvals}}",
+        "keys": [
+          "\\ltjsetparameter,\\ltjglobalsetparameter"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ltjglobalsetparameter",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:parameters%keyvals}}",
+        "keys": [
+          "\\ltjsetparameter,\\ltjglobalsetparameter"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ltjgetparameter",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:parameter%keyvals}}",
+        "keys": [
+          "\\ltjgetparameter"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ltjjachar",
+      "unusual": true
+    },
+    {
+      "name": "ltjalchar",
+      "unusual": true
+    },
+    {
+      "name": "tate"
+    },
+    {
+      "name": "yoko"
+    },
+    {
+      "name": "dtou"
+    },
+    {
+      "name": "utod"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\ltjsetparameter,\\ltjglobalsetparameter": [
+      "kcatcode={${1:charcode,natural number}}\r",
+      "prebreakpenalty={${1:charcode,penalty}}\r",
+      "postbreakpenalty={${1:charcode,penalty}}\r",
+      "jatextfont={${1:jfam,jfont cs}}\r",
+      "jascriptfont={${1:jfam,jfont cs}}\r",
+      "jascriptscriptfont={${1:jfam,jfont cs}}\r",
+      "yalbaselineshift=",
+      "yjabaselineshift=",
+      "talbaselineshift=",
+      "tjabaselineshift=",
+      "jaxspmode={${1:charcode,mode}}\r",
+      "alxspmode={${1:charcode,penalty}}\r",
+      "autospacing",
+      "autoxspacing",
+      "kanjiskip=",
+      "xkanjiskip=",
+      "jcharwidowpenalty=${1:penalty}\r",
+      "differentjfm=${1|average,both,large,small,pleft,pright,paverage\r|}",
+      "jacharrange=${1:ranges}\r",
+      "kansujichar={${1:digit,charcode}}\r",
+      "direction=${1:dir}\r"
+    ],
+    "\\ltjgetparameter": [
+      "differentjfm\r",
+      "autospacing\r",
+      "autoxspacing\r",
+      "kanjiskip\r",
+      "xkanjiskip\r",
+      "prebreakpenalty\r",
+      "postbreakpenalty\r",
+      "jaxspmode\r",
+      "alxspmode\r",
+      "jacharrange\r",
+      "kansujichar\r",
+      "adjustdir\r",
+      "boxdir\r",
+      "chartorange\r",
+      "yalbaselineshift\r",
+      "yjabaselineshift\r",
+      "talbaselineshift\r",
+      "tjabaselineshift\r",
+      "direction\r",
+      "kcatcode\r"
+    ]
   },
-  "macros": {
-    "luatexjacoreLoaded": {},
-    "LuaTeXjaAvailable": {},
-    "ltjlineendcomment": {},
-    "jfam": {},
-    "RequireLuaTeXjaSubmodule{}": {
-      "snippet": "RequireLuaTeXjaSubmodule{${1:name}}"
-    },
-    "RequireLuaTeXjaSubmodule{}[]": {
-      "snippet": "RequireLuaTeXjaSubmodule{${1:name}}[${2:date}]"
-    },
-    "asluastring{}": {
-      "snippet": "asluastring{${1:string}}"
-    },
-    "jfont{}": {
-      "snippet": "jfont{${1:cmd}}"
-    },
-    "globaljfont{}": {
-      "snippet": "globaljfont{${1:cmd}}"
-    },
-    "tfont{}": {
-      "snippet": "tfont{${1:cmd}}"
-    },
-    "globaltfont{}": {
-      "snippet": "globaltfont{${1:cmd}}"
-    },
-    "zw": {},
-    "zh": {},
-    "disinhibitglue": {},
-    "inhibitglue": {},
-    "<": {
-      "detail": "<",
-      "documentation": "LESS-THAN SIGN r:"
-    },
-    "ltjfakeparbegin": {},
-    "ltjfakeboxbdd": {},
-    "insertxkanjiskip": {},
-    "insertkanjiskip": {},
-    "ltjdefcharrange{}{}": {
-      "snippet": "ltjdefcharrange{${1:name}}{${2:ranges}}"
-    },
-    "ltjsetkanjiskip": {},
-    "ltjsetxkanjiskip": {},
-    "ltjsetparameter{}": {
-      "snippet": "ltjsetparameter{${1:parameters}}"
-    },
-    "ltjglobalsetparameter{}": {
-      "snippet": "ltjglobalsetparameter{${1:parameters}}"
-    },
-    "ltjgetparameter{}": {
-      "snippet": "ltjgetparameter{${1:parameter}}"
-    },
-    "ltjjachar": {},
-    "ltjalchar": {},
-    "tate": {},
-    "yoko": {},
-    "dtou": {},
-    "utod": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

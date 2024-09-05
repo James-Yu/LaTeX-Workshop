@@ -1,24 +1,47 @@
 {
-  "includes": {
-    "fancyvrb": []
-  },
-  "macros": {
-    "smesetsym{}{}": {
-      "snippet": "smesetsym{${1:style csname}}{${2:symbols}}"
-    },
-    "smeclearsym": {},
-    "makeatmath": {},
-    "smenewenv{}": {
-      "snippet": "smenewenv{${1:envname}}"
-    },
-    "smeraw{}": {
-      "snippet": "smeraw{${1:contents}}"
-    },
-    "smeDefineVerbatimEnvironment{}{}{}": {
-      "snippet": "smeDefineVerbatimEnvironment{${1:envname}}{${2:env type}}{${3:options}}"
+  "deps": [
+    {
+      "name": "fancyvrb"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "smesetsym",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:style csname}}{${2:symbols}}"
+      }
+    },
+    {
+      "name": "smeclearsym"
+    },
+    {
+      "name": "makeatmath"
+    },
+    {
+      "name": "smenewenv",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:envname}}"
+      }
+    },
+    {
+      "name": "smeraw",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:contents}}"
+      }
+    },
+    {
+      "name": "smeDefineVerbatimEnvironment",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:envname}}{${2:env type}}{${3:options}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

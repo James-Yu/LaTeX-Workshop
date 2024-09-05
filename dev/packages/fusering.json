@@ -1,366 +1,814 @@
 {
-  "includes": {
-    "chemstr": [],
-    "carom": [],
-    "hetaromh": [],
-    "hetarom": []
-  },
-  "macros": {
-    "fivefuseh{}{}{}": {
-      "snippet": "fivefuseh{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
+  "deps": [
+    {
+      "name": "chemstr"
     },
-    "fivefuseh{}{}{}[]": {
-      "snippet": "fivefuseh{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${4:delbdlist}]"
+    {
+      "name": "carom"
     },
-    "fivefuseh[]{}{}{}": {
-      "snippet": "fivefuseh[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
+    {
+      "name": "hetaromh"
     },
-    "fivefuseh[]{}{}{}[]": {
-      "snippet": "fivefuseh[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${5:delbdlist}]"
-    },
-    "fivefuseh(){}{}{}": {
-      "snippet": "fivefuseh(${4:skelbdlist}){${1:atomlist}}{${2:subslist}}{${3:fuse}}"
-    },
-    "fivefuseh(){}{}{}[]": {
-      "snippet": "fivefuseh(${5:skelbdlist}){${1:atomlist}}{${2:subslist}}{${3:fuse}}[${4:delbdlist}]"
-    },
-    "fivefuseh()[]{}{}{}": {
-      "snippet": "fivefuseh(${5:skelbdlist})[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
-    },
-    "fivefuseh()[]{}{}{}[]": {
-      "snippet": "fivefuseh(${6:skelbdlist})[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${5:delbdlist}]"
-    },
-    "fivefusehi{}{}{}": {
-      "snippet": "fivefusehi{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
-    },
-    "fivefusehi{}{}{}[]": {
-      "snippet": "fivefusehi{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${4:delbdlist}]"
-    },
-    "fivefusehi[]{}{}{}": {
-      "snippet": "fivefusehi[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
-    },
-    "fivefusehi[]{}{}{}[]": {
-      "snippet": "fivefusehi[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${5:delbdlist}]"
-    },
-    "fivefusehi(){}{}{}": {
-      "snippet": "fivefusehi(${4:skelbdlist}){${1:atomlist}}{${2:subslist}}{${3:fuse}}"
-    },
-    "fivefusehi(){}{}{}[]": {
-      "snippet": "fivefusehi(${5:skelbdlist}){${1:atomlist}}{${2:subslist}}{${3:fuse}}[${4:delbdlist}]"
-    },
-    "fivefusehi()[]{}{}{}": {
-      "snippet": "fivefusehi(${5:skelbdlist})[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
-    },
-    "fivefusehi()[]{}{}{}[]": {
-      "snippet": "fivefusehi(${6:skelbdlist})[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${5:delbdlist}]"
-    },
-    "fivefusev{}{}{}": {
-      "snippet": "fivefusev{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
-    },
-    "fivefusev{}{}{}[]": {
-      "snippet": "fivefusev{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${4:delbdlist}]"
-    },
-    "fivefusev[]{}{}{}": {
-      "snippet": "fivefusev[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
-    },
-    "fivefusev[]{}{}{}[]": {
-      "snippet": "fivefusev[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${5:delbdlist}]"
-    },
-    "fivefusev(){}{}{}": {
-      "snippet": "fivefusev(${4:skelbdlist}){${1:atomlist}}{${2:subslist}}{${3:fuse}}"
-    },
-    "fivefusev(){}{}{}[]": {
-      "snippet": "fivefusev(${5:skelbdlist}){${1:atomlist}}{${2:subslist}}{${3:fuse}}[${4:delbdlist}]"
-    },
-    "fivefusev()[]{}{}{}": {
-      "snippet": "fivefusev(${5:skelbdlist})[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
-    },
-    "fivefusev()[]{}{}{}[]": {
-      "snippet": "fivefusev(${6:skelbdlist})[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${5:delbdlist}]"
-    },
-    "fivefusevi{}{}{}": {
-      "snippet": "fivefusevi{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
-    },
-    "fivefusevi{}{}{}[]": {
-      "snippet": "fivefusevi{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${4:delbdlist}]"
-    },
-    "fivefusevi[]{}{}{}": {
-      "snippet": "fivefusevi[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
-    },
-    "fivefusevi[]{}{}{}[]": {
-      "snippet": "fivefusevi[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${5:delbdlist}]"
-    },
-    "fivefusevi(){}{}{}": {
-      "snippet": "fivefusevi(${4:skelbdlist}){${1:atomlist}}{${2:subslist}}{${3:fuse}}"
-    },
-    "fivefusevi(){}{}{}[]": {
-      "snippet": "fivefusevi(${5:skelbdlist}){${1:atomlist}}{${2:subslist}}{${3:fuse}}[${4:delbdlist}]"
-    },
-    "fivefusevi()[]{}{}{}": {
-      "snippet": "fivefusevi(${5:skelbdlist})[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
-    },
-    "fivefusevi()[]{}{}{}[]": {
-      "snippet": "fivefusevi(${6:skelbdlist})[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${5:delbdlist}]"
-    },
-    "fourfuse{}{}{}": {
-      "snippet": "fourfuse{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
-    },
-    "fourfuse{}{}{}[]": {
-      "snippet": "fourfuse{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${4:delbdlist}]"
-    },
-    "fourfuse[]{}{}{}": {
-      "snippet": "fourfuse[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
-    },
-    "fourfuse[]{}{}{}[]": {
-      "snippet": "fourfuse[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${5:delbdlist}]"
-    },
-    "fourfuse(){}{}{}": {
-      "snippet": "fourfuse(${4:skelbdlist}){${1:atomlist}}{${2:subslist}}{${3:fuse}}"
-    },
-    "fourfuse(){}{}{}[]": {
-      "snippet": "fourfuse(${5:skelbdlist}){${1:atomlist}}{${2:subslist}}{${3:fuse}}[${4:delbdlist}]"
-    },
-    "fourfuse()[]{}{}{}": {
-      "snippet": "fourfuse(${5:skelbdlist})[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
-    },
-    "fourfuse()[]{}{}{}[]": {
-      "snippet": "fourfuse(${6:skelbdlist})[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${5:delbdlist}]"
-    },
-    "sixfuseh{}{}{}": {
-      "snippet": "sixfuseh{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
-    },
-    "sixfuseh{}{}{}[]": {
-      "snippet": "sixfuseh{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${4:delbdlist}]"
-    },
-    "sixfuseh[]{}{}{}": {
-      "snippet": "sixfuseh[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
-    },
-    "sixfuseh[]{}{}{}[]": {
-      "snippet": "sixfuseh[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${5:delbdlist}]"
-    },
-    "sixfuseh(){}{}{}": {
-      "snippet": "sixfuseh(${4:skelbdlist}){${1:atomlist}}{${2:subslist}}{${3:fuse}}"
-    },
-    "sixfuseh(){}{}{}[]": {
-      "snippet": "sixfuseh(${5:skelbdlist}){${1:atomlist}}{${2:subslist}}{${3:fuse}}[${4:delbdlist}]"
-    },
-    "sixfuseh()[]{}{}{}": {
-      "snippet": "sixfuseh(${5:skelbdlist})[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
-    },
-    "sixfuseh()[]{}{}{}[]": {
-      "snippet": "sixfuseh(${6:skelbdlist})[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${5:delbdlist}]"
-    },
-    "sixfusehi{}{}{}": {
-      "snippet": "sixfusehi{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
-    },
-    "sixfusehi{}{}{}[]": {
-      "snippet": "sixfusehi{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${4:delbdlist}]"
-    },
-    "sixfusehi[]{}{}{}": {
-      "snippet": "sixfusehi[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
-    },
-    "sixfusehi[]{}{}{}[]": {
-      "snippet": "sixfusehi[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${5:delbdlist}]"
-    },
-    "sixfusehi(){}{}{}": {
-      "snippet": "sixfusehi(${4:skelbdlist}){${1:atomlist}}{${2:subslist}}{${3:fuse}}"
-    },
-    "sixfusehi(){}{}{}[]": {
-      "snippet": "sixfusehi(${5:skelbdlist}){${1:atomlist}}{${2:subslist}}{${3:fuse}}[${4:delbdlist}]"
-    },
-    "sixfusehi()[]{}{}{}": {
-      "snippet": "sixfusehi(${5:skelbdlist})[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
-    },
-    "sixfusehi()[]{}{}{}[]": {
-      "snippet": "sixfusehi(${6:skelbdlist})[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${5:delbdlist}]"
-    },
-    "sixfusev{}{}{}": {
-      "snippet": "sixfusev{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
-    },
-    "sixfusev{}{}{}[]": {
-      "snippet": "sixfusev{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${4:delbdlist}]"
-    },
-    "sixfusev[]{}{}{}": {
-      "snippet": "sixfusev[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
-    },
-    "sixfusev[]{}{}{}[]": {
-      "snippet": "sixfusev[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${5:delbdlist}]"
-    },
-    "sixfusev(){}{}{}": {
-      "snippet": "sixfusev(${4:skelbdlist}){${1:atomlist}}{${2:subslist}}{${3:fuse}}"
-    },
-    "sixfusev(){}{}{}[]": {
-      "snippet": "sixfusev(${5:skelbdlist}){${1:atomlist}}{${2:subslist}}{${3:fuse}}[${4:delbdlist}]"
-    },
-    "sixfusev()[]{}{}{}": {
-      "snippet": "sixfusev(${5:skelbdlist})[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
-    },
-    "sixfusev()[]{}{}{}[]": {
-      "snippet": "sixfusev(${6:skelbdlist})[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${5:delbdlist}]"
-    },
-    "sixfusevi{}{}{}": {
-      "snippet": "sixfusevi{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
-    },
-    "sixfusevi{}{}{}[]": {
-      "snippet": "sixfusevi{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${4:delbdlist}]"
-    },
-    "sixfusevi[]{}{}{}": {
-      "snippet": "sixfusevi[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
-    },
-    "sixfusevi[]{}{}{}[]": {
-      "snippet": "sixfusevi[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${5:delbdlist}]"
-    },
-    "sixfusevi(){}{}{}": {
-      "snippet": "sixfusevi(${4:skelbdlist}){${1:atomlist}}{${2:subslist}}{${3:fuse}}"
-    },
-    "sixfusevi(){}{}{}[]": {
-      "snippet": "sixfusevi(${5:skelbdlist}){${1:atomlist}}{${2:subslist}}{${3:fuse}}[${4:delbdlist}]"
-    },
-    "sixfusevi()[]{}{}{}": {
-      "snippet": "sixfusevi(${5:skelbdlist})[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
-    },
-    "sixfusevi()[]{}{}{}[]": {
-      "snippet": "sixfusevi(${6:skelbdlist})[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${5:delbdlist}]"
-    },
-    "threefuseh{}{}{}": {
-      "snippet": "threefuseh{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
-    },
-    "threefuseh{}{}{}[]": {
-      "snippet": "threefuseh{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${4:delbdlist}]"
-    },
-    "threefuseh[]{}{}{}": {
-      "snippet": "threefuseh[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
-    },
-    "threefuseh[]{}{}{}[]": {
-      "snippet": "threefuseh[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${5:delbdlist}]"
-    },
-    "threefuseh(){}{}{}": {
-      "snippet": "threefuseh(${4:skelbdlist}){${1:atomlist}}{${2:subslist}}{${3:fuse}}"
-    },
-    "threefuseh(){}{}{}[]": {
-      "snippet": "threefuseh(${5:skelbdlist}){${1:atomlist}}{${2:subslist}}{${3:fuse}}[${4:delbdlist}]"
-    },
-    "threefuseh()[]{}{}{}": {
-      "snippet": "threefuseh(${5:skelbdlist})[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
-    },
-    "threefuseh()[]{}{}{}[]": {
-      "snippet": "threefuseh(${6:skelbdlist})[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${5:delbdlist}]"
-    },
-    "threefusehi{}{}{}": {
-      "snippet": "threefusehi{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
-    },
-    "threefusehi{}{}{}[]": {
-      "snippet": "threefusehi{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${4:delbdlist}]"
-    },
-    "threefusehi[]{}{}{}": {
-      "snippet": "threefusehi[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
-    },
-    "threefusehi[]{}{}{}[]": {
-      "snippet": "threefusehi[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${5:delbdlist}]"
-    },
-    "threefusehi(){}{}{}": {
-      "snippet": "threefusehi(${4:skelbdlist}){${1:atomlist}}{${2:subslist}}{${3:fuse}}"
-    },
-    "threefusehi(){}{}{}[]": {
-      "snippet": "threefusehi(${5:skelbdlist}){${1:atomlist}}{${2:subslist}}{${3:fuse}}[${4:delbdlist}]"
-    },
-    "threefusehi()[]{}{}{}": {
-      "snippet": "threefusehi(${5:skelbdlist})[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
-    },
-    "threefusehi()[]{}{}{}[]": {
-      "snippet": "threefusehi(${6:skelbdlist})[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${5:delbdlist}]"
-    },
-    "threefusev{}{}{}": {
-      "snippet": "threefusev{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
-    },
-    "threefusev{}{}{}[]": {
-      "snippet": "threefusev{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${4:delbdlist}]"
-    },
-    "threefusev[]{}{}{}": {
-      "snippet": "threefusev[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
-    },
-    "threefusev[]{}{}{}[]": {
-      "snippet": "threefusev[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${5:delbdlist}]"
-    },
-    "threefusev(){}{}{}": {
-      "snippet": "threefusev(${4:skelbdlist}){${1:atomlist}}{${2:subslist}}{${3:fuse}}"
-    },
-    "threefusev(){}{}{}[]": {
-      "snippet": "threefusev(${5:skelbdlist}){${1:atomlist}}{${2:subslist}}{${3:fuse}}[${4:delbdlist}]"
-    },
-    "threefusev()[]{}{}{}": {
-      "snippet": "threefusev(${5:skelbdlist})[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
-    },
-    "threefusev()[]{}{}{}[]": {
-      "snippet": "threefusev(${6:skelbdlist})[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${5:delbdlist}]"
-    },
-    "threefusevi{}{}{}": {
-      "snippet": "threefusevi{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
-    },
-    "threefusevi{}{}{}[]": {
-      "snippet": "threefusevi{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${4:delbdlist}]"
-    },
-    "threefusevi[]{}{}{}": {
-      "snippet": "threefusevi[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
-    },
-    "threefusevi[]{}{}{}[]": {
-      "snippet": "threefusevi[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${5:delbdlist}]"
-    },
-    "threefusevi(){}{}{}": {
-      "snippet": "threefusevi(${4:skelbdlist}){${1:atomlist}}{${2:subslist}}{${3:fuse}}"
-    },
-    "threefusevi(){}{}{}[]": {
-      "snippet": "threefusevi(${5:skelbdlist}){${1:atomlist}}{${2:subslist}}{${3:fuse}}[${4:delbdlist}]"
-    },
-    "threefusevi()[]{}{}{}": {
-      "snippet": "threefusevi(${5:skelbdlist})[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
-    },
-    "threefusevi()[]{}{}{}[]": {
-      "snippet": "threefusevi(${6:skelbdlist})[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${5:delbdlist}]"
-    },
-    "fivefuseposhi{}": {
-      "snippet": "fivefuseposhi{${1:arg1}}"
-    },
-    "fivefuseposh{}": {
-      "snippet": "fivefuseposh{${1:arg1}}"
-    },
-    "fivefuseposvi{}": {
-      "snippet": "fivefuseposvi{${1:arg1}}"
-    },
-    "fivefuseposv{}": {
-      "snippet": "fivefuseposv{${1:arg1}}"
-    },
-    "fourfusepos{}": {
-      "snippet": "fourfusepos{${1:arg1}}"
-    },
-    "sixfuseposhi{}": {
-      "snippet": "sixfuseposhi{${1:arg1}}"
-    },
-    "sixfuseposh{}": {
-      "snippet": "sixfuseposh{${1:arg1}}"
-    },
-    "sixfuseposvi{}": {
-      "snippet": "sixfuseposvi{${1:arg1}}"
-    },
-    "sixfuseposv{}": {
-      "snippet": "sixfuseposv{${1:arg1}}"
-    },
-    "sixunithi": {},
-    "sixunitvi": {},
-    "threefuseposhi{}": {
-      "snippet": "threefuseposhi{${1:arg1}}"
-    },
-    "threefuseposh{}": {
-      "snippet": "threefuseposh{${1:arg1}}"
-    },
-    "threefuseposvi{}": {
-      "snippet": "threefuseposvi{${1:arg1}}"
-    },
-    "threefuseposv{}": {
-      "snippet": "threefuseposv{${1:arg1}}"
+    {
+      "name": "hetarom"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "fivefuseh",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
+      }
+    },
+    {
+      "name": "fivefuseh",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}[]",
+        "snippet": "{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${4:delbdlist}]"
+      }
+    },
+    {
+      "name": "fivefuseh",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
+      }
+    },
+    {
+      "name": "fivefuseh",
+      "arg": {
+        "format": "[]{}{}{}[]",
+        "snippet": "[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${5:delbdlist}]"
+      }
+    },
+    {
+      "name": "fivefuseh(skelbdlist)",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
+      }
+    },
+    {
+      "name": "fivefuseh(skelbdlist)",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}[]",
+        "snippet": "{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${4:delbdlist}]"
+      }
+    },
+    {
+      "name": "fivefuseh(skelbdlist)",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
+      }
+    },
+    {
+      "name": "fivefuseh(skelbdlist)",
+      "arg": {
+        "format": "[]{}{}{}[]",
+        "snippet": "[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${5:delbdlist}]"
+      }
+    },
+    {
+      "name": "fivefusehi",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
+      }
+    },
+    {
+      "name": "fivefusehi",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}[]",
+        "snippet": "{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${4:delbdlist}]"
+      }
+    },
+    {
+      "name": "fivefusehi",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
+      }
+    },
+    {
+      "name": "fivefusehi",
+      "arg": {
+        "format": "[]{}{}{}[]",
+        "snippet": "[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${5:delbdlist}]"
+      }
+    },
+    {
+      "name": "fivefusehi(skelbdlist)",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
+      }
+    },
+    {
+      "name": "fivefusehi(skelbdlist)",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}[]",
+        "snippet": "{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${4:delbdlist}]"
+      }
+    },
+    {
+      "name": "fivefusehi(skelbdlist)",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
+      }
+    },
+    {
+      "name": "fivefusehi(skelbdlist)",
+      "arg": {
+        "format": "[]{}{}{}[]",
+        "snippet": "[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${5:delbdlist}]"
+      }
+    },
+    {
+      "name": "fivefusev",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
+      }
+    },
+    {
+      "name": "fivefusev",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}[]",
+        "snippet": "{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${4:delbdlist}]"
+      }
+    },
+    {
+      "name": "fivefusev",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
+      }
+    },
+    {
+      "name": "fivefusev",
+      "arg": {
+        "format": "[]{}{}{}[]",
+        "snippet": "[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${5:delbdlist}]"
+      }
+    },
+    {
+      "name": "fivefusev(skelbdlist)",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
+      }
+    },
+    {
+      "name": "fivefusev(skelbdlist)",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}[]",
+        "snippet": "{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${4:delbdlist}]"
+      }
+    },
+    {
+      "name": "fivefusev(skelbdlist)",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
+      }
+    },
+    {
+      "name": "fivefusev(skelbdlist)",
+      "arg": {
+        "format": "[]{}{}{}[]",
+        "snippet": "[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${5:delbdlist}]"
+      }
+    },
+    {
+      "name": "fivefusevi",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
+      }
+    },
+    {
+      "name": "fivefusevi",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}[]",
+        "snippet": "{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${4:delbdlist}]"
+      }
+    },
+    {
+      "name": "fivefusevi",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
+      }
+    },
+    {
+      "name": "fivefusevi",
+      "arg": {
+        "format": "[]{}{}{}[]",
+        "snippet": "[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${5:delbdlist}]"
+      }
+    },
+    {
+      "name": "fivefusevi(skelbdlist)",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
+      }
+    },
+    {
+      "name": "fivefusevi(skelbdlist)",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}[]",
+        "snippet": "{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${4:delbdlist}]"
+      }
+    },
+    {
+      "name": "fivefusevi(skelbdlist)",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
+      }
+    },
+    {
+      "name": "fivefusevi(skelbdlist)",
+      "arg": {
+        "format": "[]{}{}{}[]",
+        "snippet": "[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${5:delbdlist}]"
+      }
+    },
+    {
+      "name": "fourfuse",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
+      }
+    },
+    {
+      "name": "fourfuse",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}[]",
+        "snippet": "{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${4:delbdlist}]"
+      }
+    },
+    {
+      "name": "fourfuse",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
+      }
+    },
+    {
+      "name": "fourfuse",
+      "arg": {
+        "format": "[]{}{}{}[]",
+        "snippet": "[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${5:delbdlist}]"
+      }
+    },
+    {
+      "name": "fourfuse(skelbdlist)",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
+      }
+    },
+    {
+      "name": "fourfuse(skelbdlist)",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}[]",
+        "snippet": "{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${4:delbdlist}]"
+      }
+    },
+    {
+      "name": "fourfuse(skelbdlist)",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
+      }
+    },
+    {
+      "name": "fourfuse(skelbdlist)",
+      "arg": {
+        "format": "[]{}{}{}[]",
+        "snippet": "[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${5:delbdlist}]"
+      }
+    },
+    {
+      "name": "sixfuseh",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
+      }
+    },
+    {
+      "name": "sixfuseh",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}[]",
+        "snippet": "{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${4:delbdlist}]"
+      }
+    },
+    {
+      "name": "sixfuseh",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
+      }
+    },
+    {
+      "name": "sixfuseh",
+      "arg": {
+        "format": "[]{}{}{}[]",
+        "snippet": "[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${5:delbdlist}]"
+      }
+    },
+    {
+      "name": "sixfuseh(skelbdlist)",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
+      }
+    },
+    {
+      "name": "sixfuseh(skelbdlist)",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}[]",
+        "snippet": "{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${4:delbdlist}]"
+      }
+    },
+    {
+      "name": "sixfuseh(skelbdlist)",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
+      }
+    },
+    {
+      "name": "sixfuseh(skelbdlist)",
+      "arg": {
+        "format": "[]{}{}{}[]",
+        "snippet": "[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${5:delbdlist}]"
+      }
+    },
+    {
+      "name": "sixfusehi",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
+      }
+    },
+    {
+      "name": "sixfusehi",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}[]",
+        "snippet": "{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${4:delbdlist}]"
+      }
+    },
+    {
+      "name": "sixfusehi",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
+      }
+    },
+    {
+      "name": "sixfusehi",
+      "arg": {
+        "format": "[]{}{}{}[]",
+        "snippet": "[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${5:delbdlist}]"
+      }
+    },
+    {
+      "name": "sixfusehi(skelbdlist)",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
+      }
+    },
+    {
+      "name": "sixfusehi(skelbdlist)",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}[]",
+        "snippet": "{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${4:delbdlist}]"
+      }
+    },
+    {
+      "name": "sixfusehi(skelbdlist)",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
+      }
+    },
+    {
+      "name": "sixfusehi(skelbdlist)",
+      "arg": {
+        "format": "[]{}{}{}[]",
+        "snippet": "[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${5:delbdlist}]"
+      }
+    },
+    {
+      "name": "sixfusev",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
+      }
+    },
+    {
+      "name": "sixfusev",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}[]",
+        "snippet": "{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${4:delbdlist}]"
+      }
+    },
+    {
+      "name": "sixfusev",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
+      }
+    },
+    {
+      "name": "sixfusev",
+      "arg": {
+        "format": "[]{}{}{}[]",
+        "snippet": "[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${5:delbdlist}]"
+      }
+    },
+    {
+      "name": "sixfusev(skelbdlist)",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
+      }
+    },
+    {
+      "name": "sixfusev(skelbdlist)",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}[]",
+        "snippet": "{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${4:delbdlist}]"
+      }
+    },
+    {
+      "name": "sixfusev(skelbdlist)",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
+      }
+    },
+    {
+      "name": "sixfusev(skelbdlist)",
+      "arg": {
+        "format": "[]{}{}{}[]",
+        "snippet": "[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${5:delbdlist}]"
+      }
+    },
+    {
+      "name": "sixfusevi",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
+      }
+    },
+    {
+      "name": "sixfusevi",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}[]",
+        "snippet": "{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${4:delbdlist}]"
+      }
+    },
+    {
+      "name": "sixfusevi",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
+      }
+    },
+    {
+      "name": "sixfusevi",
+      "arg": {
+        "format": "[]{}{}{}[]",
+        "snippet": "[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${5:delbdlist}]"
+      }
+    },
+    {
+      "name": "sixfusevi(skelbdlist)",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
+      }
+    },
+    {
+      "name": "sixfusevi(skelbdlist)",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}[]",
+        "snippet": "{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${4:delbdlist}]"
+      }
+    },
+    {
+      "name": "sixfusevi(skelbdlist)",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
+      }
+    },
+    {
+      "name": "sixfusevi(skelbdlist)",
+      "arg": {
+        "format": "[]{}{}{}[]",
+        "snippet": "[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${5:delbdlist}]"
+      }
+    },
+    {
+      "name": "threefuseh",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
+      }
+    },
+    {
+      "name": "threefuseh",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}[]",
+        "snippet": "{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${4:delbdlist}]"
+      }
+    },
+    {
+      "name": "threefuseh",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
+      }
+    },
+    {
+      "name": "threefuseh",
+      "arg": {
+        "format": "[]{}{}{}[]",
+        "snippet": "[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${5:delbdlist}]"
+      }
+    },
+    {
+      "name": "threefuseh(skelbdlist)",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
+      }
+    },
+    {
+      "name": "threefuseh(skelbdlist)",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}[]",
+        "snippet": "{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${4:delbdlist}]"
+      }
+    },
+    {
+      "name": "threefuseh(skelbdlist)",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
+      }
+    },
+    {
+      "name": "threefuseh(skelbdlist)",
+      "arg": {
+        "format": "[]{}{}{}[]",
+        "snippet": "[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${5:delbdlist}]"
+      }
+    },
+    {
+      "name": "threefusehi",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
+      }
+    },
+    {
+      "name": "threefusehi",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}[]",
+        "snippet": "{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${4:delbdlist}]"
+      }
+    },
+    {
+      "name": "threefusehi",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
+      }
+    },
+    {
+      "name": "threefusehi",
+      "arg": {
+        "format": "[]{}{}{}[]",
+        "snippet": "[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${5:delbdlist}]"
+      }
+    },
+    {
+      "name": "threefusehi(skelbdlist)",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
+      }
+    },
+    {
+      "name": "threefusehi(skelbdlist)",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}[]",
+        "snippet": "{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${4:delbdlist}]"
+      }
+    },
+    {
+      "name": "threefusehi(skelbdlist)",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
+      }
+    },
+    {
+      "name": "threefusehi(skelbdlist)",
+      "arg": {
+        "format": "[]{}{}{}[]",
+        "snippet": "[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${5:delbdlist}]"
+      }
+    },
+    {
+      "name": "threefusev",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
+      }
+    },
+    {
+      "name": "threefusev",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}[]",
+        "snippet": "{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${4:delbdlist}]"
+      }
+    },
+    {
+      "name": "threefusev",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
+      }
+    },
+    {
+      "name": "threefusev",
+      "arg": {
+        "format": "[]{}{}{}[]",
+        "snippet": "[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${5:delbdlist}]"
+      }
+    },
+    {
+      "name": "threefusev(skelbdlist)",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
+      }
+    },
+    {
+      "name": "threefusev(skelbdlist)",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}[]",
+        "snippet": "{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${4:delbdlist}]"
+      }
+    },
+    {
+      "name": "threefusev(skelbdlist)",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
+      }
+    },
+    {
+      "name": "threefusev(skelbdlist)",
+      "arg": {
+        "format": "[]{}{}{}[]",
+        "snippet": "[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${5:delbdlist}]"
+      }
+    },
+    {
+      "name": "threefusevi",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
+      }
+    },
+    {
+      "name": "threefusevi",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}[]",
+        "snippet": "{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${4:delbdlist}]"
+      }
+    },
+    {
+      "name": "threefusevi",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
+      }
+    },
+    {
+      "name": "threefusevi",
+      "arg": {
+        "format": "[]{}{}{}[]",
+        "snippet": "[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${5:delbdlist}]"
+      }
+    },
+    {
+      "name": "threefusevi(skelbdlist)",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
+      }
+    },
+    {
+      "name": "threefusevi(skelbdlist)",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}[]",
+        "snippet": "{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${4:delbdlist}]"
+      }
+    },
+    {
+      "name": "threefusevi(skelbdlist)",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}"
+      }
+    },
+    {
+      "name": "threefusevi(skelbdlist)",
+      "arg": {
+        "format": "[]{}{}{}[]",
+        "snippet": "[${4:bondlist}]{${1:atomlist}}{${2:subslist}}{${3:fuse}}[${5:delbdlist}]"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

@@ -1,40 +1,91 @@
 {
-  "includes": {
-    "xkeyval": []
-  },
-  "macros": {
-    "endLFfirsthead": {},
-    "endLFhead": {},
-    "endLFfoot": {},
-    "endLFlastfoot": {},
-    "LFcounter": {},
-    "LFreset": {},
-    "strcfstr{}{}": {
-      "snippet": "strcfstr{${1:string1}}{${2:string2}}"
-    },
-    "LFupcase{}": {
-      "snippet": "LFupcase{${1:text}}"
-    },
-    "LFleft": {},
-    "LFright": {},
-    "LFpre": {},
-    "LFpost": {},
-    "LFchunksize": {},
-    "LFcapwidth": {}
-  },
-  "envs": {
-    "longfigure{}": {
-      "name": "longfigure",
-      "snippet": "{${1:placement}}"
+  "deps": [
+    {
+      "name": "xkeyval"
     }
-  },
-  "options": [
-    "figname=${1:name}",
-    "resetby=${1:counter}",
-    "set",
-    "final",
-    "errorshow",
-    "pausing"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "endLFfirsthead"
+    },
+    {
+      "name": "endLFhead"
+    },
+    {
+      "name": "endLFfoot"
+    },
+    {
+      "name": "endLFlastfoot"
+    },
+    {
+      "name": "LFcounter",
+      "unusual": true
+    },
+    {
+      "name": "LFreset",
+      "unusual": true
+    },
+    {
+      "name": "strcfstr",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:string1}}{${2:string2}}"
+      }
+    },
+    {
+      "name": "LFupcase",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "LFleft",
+      "unusual": true
+    },
+    {
+      "name": "LFright",
+      "unusual": true
+    },
+    {
+      "name": "LFpre",
+      "unusual": true
+    },
+    {
+      "name": "LFpost",
+      "unusual": true
+    },
+    {
+      "name": "LFchunksize",
+      "unusual": true
+    },
+    {
+      "name": "LFcapwidth",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "longfigure",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:placement}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/longfigure#c": [
+      "figname=${1:name}",
+      "resetby=${1:counter}",
+      "set",
+      "final",
+      "errorshow",
+      "pausing"
+    ]
+  },
+  "args": [
+    "\\usepackage/longfigure#c"
+  ]
 }

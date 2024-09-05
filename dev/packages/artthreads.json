@@ -1,114 +1,226 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "fitr": []
-  },
-  "macros": {
-    "setThreadInfo{}": {
-      "snippet": "setThreadInfo{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "xkeyval"
     },
-    "bArticle{}": {
-      "snippet": "bArticle{${1:options}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "cArticle{}": {
-      "snippet": "cArticle{${1:options}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "setAddToBorder{}": {
-      "snippet": "setAddToBorder{${1:options}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "shArticlesPaneActn": {},
-    "sArticlesPaneActn": {},
-    "shArticlesPaneReadActn": {},
-    "sArticlesPaneReadActn": {},
-    "Thread{}": {
-      "snippet": "Thread{${1:thread title}}"
-    },
-    "toggleArticlePane{}{}": {
-      "snippet": "toggleArticlePane{${1:width}}{${2:height}}"
-    },
-    "toggleArticlePane[]{}{}": {
-      "snippet": "toggleArticlePane[${3:modifications}]{${1:width}}{${2:height}}"
-    },
-    "toggleArticlePaneRead{}{}": {
-      "snippet": "toggleArticlePaneRead{${1:width}}{${2:height}}"
-    },
-    "toggleArticlePaneRead[]{}{}": {
-      "snippet": "toggleArticlePaneRead[${3:modifications}]{${1:width}}{${2:height}}"
-    },
-    "showArticlePane{}{}": {
-      "snippet": "showArticlePane{${1:width}}{${2:height}}"
-    },
-    "showArticlePane[]{}{}": {
-      "snippet": "showArticlePane[${3:modifications}]{${1:width}}{${2:height}}"
-    },
-    "showArticlePaneRead{}{}": {
-      "snippet": "showArticlePaneRead{${1:width}}{${2:height}}"
-    },
-    "showArticlePaneRead[]{}{}": {
-      "snippet": "showArticlePaneRead[${3:modifications}]{${1:width}}{${2:height}}"
-    },
-    "readArticle{}": {
-      "snippet": "readArticle{${1:text}}"
-    },
-    "threadTitle": {},
-    "threadAuthor": {},
-    "threadKeywords": {},
-    "threadSubject": {},
-    "tooltipTogglePaneRead{}": {
-      "snippet": "tooltipTogglePaneRead{${1:text}}"
-    },
-    "tooltipShowPaneRead{}": {
-      "snippet": "tooltipShowPaneRead{${1:text}}"
-    },
-    "bArtErrMsg": {},
-    "chkThreadName": {},
-    "CntArt": {},
-    "CntArtInfo": {},
-    "ifnewarticle": {},
-    "isThrTtl": {},
-    "newarticlefalse": {},
-    "newarticletrue": {},
-    "readArtPresets": {},
-    "readThreadMsg": {}
-  },
-  "envs": {},
-  "options": [
-    "pdftex",
-    "luatex",
-    "dvips",
-    "dvipsone",
-    "dvipdfm",
-    "dvipdfmx",
-    "xetex",
-    "preview",
-    "!preview",
-    "viewMagWin",
-    "!viewMagWin"
+    {
+      "name": "fitr"
+    }
   ],
-  "keyvals": [
-    [
-      "title=${1:text}",
-      "author=${1:text}",
-      "subject=${1:text}",
-      "keywords={${1:word1,word2,...}}"
+  "macros": [
+    {
+      "name": "setThreadInfo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\setThreadInfo"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "bArticle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\bArticle,\\cArticle"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "cArticle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\bArticle,\\cArticle"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setAddToBorder",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\setAddToBorder"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "shArticlesPaneActn"
+    },
+    {
+      "name": "sArticlesPaneActn"
+    },
+    {
+      "name": "shArticlesPaneReadActn"
+    },
+    {
+      "name": "sArticlesPaneReadActn"
+    },
+    {
+      "name": "Thread",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:thread title%text}}"
+      }
+    },
+    {
+      "name": "toggleArticlePane",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "toggleArticlePane",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:modifications}]{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "toggleArticlePaneRead",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "toggleArticlePaneRead",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:modifications}]{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "showArticlePane",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "showArticlePane",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:modifications}]{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "showArticlePaneRead",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "showArticlePaneRead",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:modifications}]{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "readArticle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "threadTitle"
+    },
+    {
+      "name": "threadAuthor"
+    },
+    {
+      "name": "threadKeywords"
+    },
+    {
+      "name": "threadSubject"
+    },
+    {
+      "name": "tooltipTogglePaneRead",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "tooltipShowPaneRead",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "chkThreadName"
+    },
+    {
+      "name": "CntArt",
+      "unusual": true
+    },
+    {
+      "name": "CntArtInfo",
+      "unusual": true
+    },
+    {
+      "name": "ifnewarticle",
+      "unusual": true
+    },
+    {
+      "name": "newarticlefalse",
+      "unusual": true
+    },
+    {
+      "name": "newarticletrue",
+      "unusual": true
+    },
+    {
+      "name": "readArtPresets",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/artthreads#c": [
+      "pdftex\r",
+      "luatex\r",
+      "dvips\r",
+      "dvipsone\r",
+      "dvipdfm\r",
+      "dvipdfmx\r",
+      "xetex\r",
+      "preview\r",
+      "!preview\r",
+      "viewMagWin\r",
+      "!viewMagWin\r"
     ],
-    [
+    "\\setThreadInfo": [
+      "title=${1:text}\r",
+      "author=${1:text}\r",
+      "subject=${1:text}\r",
+      "keywords={${1:word1,word2,...}}\r"
+    ],
+    "\\bArticle,\\cArticle": [
       "width=",
       "height=",
       "lift=",
       "shift="
     ],
-    [
+    "\\setAddToBorder": [
       "addtow=",
       "addtoh="
     ]
+  },
+  "args": [
+    "\\usepackage/artthreads#c"
   ]
 }

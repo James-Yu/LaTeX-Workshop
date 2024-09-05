@@ -1,47 +1,62 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "atbegshi": [],
-    "ifpdf": [],
-    "ifxetex": [],
-    "ifluatex": [],
-    "ifvtex": [],
-    "ifptex": []
-  },
-  "macros": {
-    "papersizesetup{}": {
-      "snippet": "papersizesetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "xkeyval"
     },
-    "bxpapersizesetup{}": {
-      "snippet": "bxpapersizesetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "atbegshi"
     },
-    "bxDebug{}": {
-      "snippet": "bxDebug{${1:text}}"
+    {
+      "name": "ifpdf"
+    },
+    {
+      "name": "ifxetex"
+    },
+    {
+      "name": "ifluatex"
+    },
+    {
+      "name": "ifvtex"
+    },
+    {
+      "name": "ifptex"
     }
-  },
-  "envs": {},
-  "options": [
-    "disabled",
-    "nodvidriver",
-    "autodvidriver",
-    "olddvips",
-    "active",
-    "priority=${1|low,middle,default,high|}",
-    "truedimen",
-    "landscape",
-    "size=${1|real,real*,box,box*,a0paper,a1paper,a2paper,a3paper,a4paper,a5paper,a6paper,b0paper,b1paper,b2paper,b3paper,b4paper,b5paper,b6paper,c0paper,c1paper,c2paper,c3paper,c4paper,c5paper,c6paper,b0j,b1j,b2j,b3j,b4j,b5j,b6j,ansiapaper,ansibpaper,ansicpaper,ansidpaper,ansiepaper,letterpaper,legalpaper,executivepaper,screen,${1:width*height}|}"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "papersizesetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}"
+      }
+    },
+    {
+      "name": "bxpapersizesetup",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/bxpapersize#c": [
+      "disabled\r",
+      "nodvidriver\r",
+      "autodvidriver\r",
+      "olddvips\r"
+    ],
+    "\\papersizesetup#c,\\bxpapersizesetup#c,\\usepackage/bxpapersize#c": [
       "active",
-      "priority=${1|low,middle,default,high|}",
-      "truedimen",
-      "landscape",
-      "size=${1|real,real*,box,box*,a0paper,a1paper,a2paper,a3paper,a4paper,a5paper,a6paper,b0paper,b1paper,b2paper,b3paper,b4paper,b5paper,b6paper,c0paper,c1paper,c2paper,c3paper,c4paper,c5paper,c6paper,b0j,b1j,b2j,b3j,b4j,b5j,b6j,ansiapaper,ansibpaper,ansicpaper,ansidpaper,ansiepaper,letterpaper,legalpaper,executivepaper,screen,${1:width*height}|}"
+      "priority=${1|low,middle,default,high\r|}",
+      "truedimen\r",
+      "landscape\r",
+      "size=${2|real,real*,box,box*,a0paper,a1paper,a2paper,a3paper,a4paper,a5paper,a6paper,b0paper,b1paper,b2paper,b3paper,b4paper,b5paper,b6paper,c0paper,c1paper,c2paper,c3paper,c4paper,c5paper,c6paper,b0j,b1j,b2j,b3j,b4j,b5j,b6j,ansiapaper,ansibpaper,ansicpaper,ansidpaper,ansiepaper,letterpaper,legalpaper,executivepaper,screen,${1:width*height}\r|}"
     ]
+  },
+  "args": [
+    "\\usepackage/bxpapersize#c",
+    "\\papersizesetup#c,\\bxpapersizesetup#c,\\usepackage/bxpapersize#c"
   ]
 }

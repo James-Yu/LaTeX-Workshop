@@ -1,35 +1,6 @@
 // https://texstudio-org.github.io/background.html#description-of-the-cwl-format
 import * as fs from 'fs'
-// import * as path from 'path'
-
-type PackageRaw = {
-    deps: DependencyRaw[]
-    macros: MacroRaw[]
-    envs: EnvironmentRaw[]
-    keys: { [key: string]: string[] }
-    args: string[]
-}
-
-type DependencyRaw = {
-    name: string
-    if?: string
-}
-
-type EnvironmentRaw = {
-    name: string
-    arg?: { format: string; snippet: string; keys?: string[]; keyPos?: number }
-    if?: string
-    unusual?: boolean
-}
-
-type MacroRaw = {
-    name: string
-    arg?: { format: string; snippet: string; keys?: string[]; keyPos?: number }
-    if?: string
-    unusual?: boolean
-    detail?: string
-    doc?: string
-}
+import type { DependencyRaw, EnvironmentRaw, MacroRaw, PackageRaw } from '../src/types'
 
 let _defaultMacros: string[] = []
 function isDefaultMacro(macro: string, defaults?: string[]): boolean {
@@ -74,11 +45,17 @@ function parseLines(pkg: PackageRaw, lines: string[], ifCond?: string): void {
         if (line.startsWith('#include')) {
             parseInclude(pkg, line, ifCond)
         } else if (line.startsWith('#keyvals')) {
-            const endIndex = lines.slice(index).findIndex((l) => l.startsWith('#endkeyvals')) + index
+            let endIndex = lines.slice(index).findIndex((l) => l.startsWith('#endkeyvals')) + index
+            if (endIndex < index) {
+                endIndex = Number.MAX_SAFE_INTEGER
+            } 
             parseKeys(pkg, lines.slice(index + 1, endIndex), line.slice(9).trim())
             index = endIndex
         } else if (line.startsWith('#ifOption')) {
-            const endIndex = lines.slice(index).findIndex((l) => l.startsWith('#endif')) + index
+            let endIndex = lines.slice(index).findIndex((l) => l.startsWith('#endif')) + index
+            if (endIndex < index) {
+                endIndex = Number.MAX_SAFE_INTEGER
+            }
             parseLines(pkg, lines.slice(index + 1, endIndex), line.slice(10).trim())
             index = endIndex
         } else if (line.startsWith('\\begin{')) {
@@ -181,7 +158,8 @@ function parseEnv(pkg: PackageRaw, line: string, ifCond?: string): void {
     // \begin{minted}[options%keyvals]{language}#M
     const match = /\\begin{(.*?)}([^#]*)(?:#(.*))?$/.exec(line)
     if (match === null) {
-        throw new Error('Unknown env line: ' + line)
+        console.error('Unknown env line: ' + line)
+        return
     }
     if (match.length === 4 && match[3] && match[3].includes('S')) {
         return
@@ -218,7 +196,8 @@ function parseMacro(pkg: PackageRaw, line: string, ifCond?: string): void {
     // \mintinline{%<language%>}|%<code%>|#M
     const match = /\\([^[\{\n]*?)((?:\{|\[)[^#\n]*)?(?:#(.*))?$/.exec(line)
     if (match === null) {
-        throw new Error('Unknown macro line: ' + line)
+        console.error('Unknown macro line: ' + line)
+        return
     }
     if (match.length === 4 && match[3] && match[3].includes('S')) {
         return
@@ -321,16 +300,48 @@ function findArg(arg: string, regexp: RegExp, index: number): string | false {
     )
 }
 
-function parseEssential() {
-    const files = fs.readFileSync('cwl.list').toString().split('\n')
+function parsePkg(pkgName: string): PackageRaw {
+    const content = fs.readFileSync(`cwl/${pkgName}.cwl`).toString()
+    const pkg: PackageRaw = { deps: [], macros: [], envs: [], keys: {}, args: [] }
+    parseLines(pkg, content.split('\n'))
+    return pkg
+}
+
+function parseFiles(files: string[], folder: string) {
     for (const file of files) {
         console.log(file)
-        const pkgName = file.split('.')[0]
-        const content = fs.readFileSync(`cwl/${pkgName}.cwl`).toString()
-        const pkg: PackageRaw = { deps: [], macros: [], envs: [], keys: {}, args: [] }
-        parseLines(pkg, content.split('\n'))
-        fs.writeFileSync(`../data/packages/${pkgName}.json`, JSON.stringify(pkg, null, 2))
+        if (!file.endsWith('.cwl')) {
+            continue
+        }
+        const pkgName = file.replace('.cwl', '')
+        const pkg = parsePkg(pkgName)
+        fs.writeFileSync(`${folder}/${pkgName}.json`, JSON.stringify(pkg, null, 2))
     }
 }
 
-parseEssential()
+function parseEssential() {
+    const files = fs.readFileSync('cwl.list').toString().split('\n')
+    parseFiles(files, '../data/packages')
+}
+
+function parseAll() {
+    const files = fs.readdirSync('cwl')
+    parseFiles(files, 'packages')
+}
+
+switch (process.argv[2]) {
+    case 'both':
+        parseEssential()
+        parseAll()
+        break
+    case 'all':
+        parseAll()
+        break
+    case 'ess':
+    case 'essential':
+        parseEssential()
+        break
+    default:
+        console.warn('ts-node parse-cwl.ts both|all|ess|essential')
+        break
+}

@@ -1,35 +1,59 @@
 {
-  "includes": {
-    "tocbasic": [],
-    "floatrow": [],
-    "xpatch": []
-  },
-  "macros": {
-    "DeclareFloatType{}{}": {
-      "snippet": "DeclareFloatType{${1:envname}}{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
+  "deps": [
+    {
+      "name": "tocbasic"
     },
-    "ProvideFloatType{}{}": {
-      "snippet": "ProvideFloatType{${1:envname}}{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
+    {
+      "name": "floatrow"
     },
-    "RedeclareFloatType{}{}": {
-      "snippet": "RedeclareFloatType{${1:envname}}{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
+    {
+      "name": "xpatch"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "placement=${1:combination of t,b,h,p}",
-      "name=${1:name}",
-      "fileext=${1:ext}",
-      "within=${1:counter}",
-      "relatedcapstyle=${1|yes,no|}"
+  ],
+  "macros": [
+    {
+      "name": "DeclareFloatType",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:envname}}{${2:options%keyvals}}",
+        "keys": [
+          "\\DeclareFloatType,\\ProvideFloatType,\\RedeclareFloatType"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "ProvideFloatType",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:envname}}{${2:options%keyvals}}",
+        "keys": [
+          "\\DeclareFloatType,\\ProvideFloatType,\\RedeclareFloatType"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "RedeclareFloatType",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:envname}}{${2:options%keyvals}}",
+        "keys": [
+          "\\DeclareFloatType,\\ProvideFloatType,\\RedeclareFloatType"
+        ],
+        "keyPos": 1
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\DeclareFloatType,\\ProvideFloatType,\\RedeclareFloatType": [
+      "placement=${1:combination of t,b,h,p}\r",
+      "name=${1:name}\r",
+      "fileext=${1:ext}\r",
+      "within=${1:counter}\r",
+      "relatedcapstyle=${1|yes,no\r|}"
     ]
-  ]
+  },
+  "args": []
 }

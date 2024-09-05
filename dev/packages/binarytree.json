@@ -1,34 +1,41 @@
 {
-  "includes": {
-    "tikz": []
-  },
-  "macros": {
-    "BinaryTree[]{}{}": {
-      "snippet": "BinaryTree[${3:options}]{${1:path spec}}{${2:depth}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "btreeset{}": {
-      "snippet": "btreeset{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "btreesetexternal{}": {
-      "snippet": "btreesetexternal{${1:options}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "tikz"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "default",
-      "grow=${1|up,down,left,right,none|}",
-      "root label anchor=",
-      "left label anchor=",
-      "right label anchor=",
-      "final label anchor=",
+  ],
+  "macros": [
+    {
+      "name": "BinaryTree",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:path spec}}{${2:depth}}"
+      }
+    },
+    {
+      "name": "btreeset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}"
+      }
+    },
+    {
+      "name": "btreesetexternal",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\BinaryTree#c,\\btreeset#c": [
+      "default\r",
+      "grow=${1|up,down,left,right,none\r|}",
+      "root label anchor=\r",
+      "left label anchor=\r",
+      "right label anchor=\r",
+      "final label anchor=\r",
       "root edge",
       "draw missing",
       "label on every edge",
@@ -37,9 +44,9 @@
       "continue after turn",
       "default color=",
       "default color after turn",
-      "xscale=",
-      "yscale=",
-      "scale=",
+      "xscale=\r",
+      "yscale=\r",
+      "scale=\r",
       "label distance=",
       "sibling distance=",
       "level distance=",
@@ -53,10 +60,11 @@
       "separate",
       "external",
       "external/use automatic file name",
-      "external/file name=${1:file}"
+      "external/file name=${1:file}\r"
     ],
-    [
+    "\\btreesetexternal#c": [
       "use automatic file name"
     ]
-  ]
+  },
+  "args": []
 }

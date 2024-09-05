@@ -1,16 +1,26 @@
 {
-  "includes": {
-    "infwarerr": []
-  },
-  "macros": {
-    "HyphSubstLet{}{}": {
-      "snippet": "HyphSubstLet{${1:nameA}}{${2:nameB}}"
-    },
-    "HyphSubstIfExists{}{}{}": {
-      "snippet": "HyphSubstIfExists{${1:name}}{${2:then}}{${3:else}}"
+  "deps": [
+    {
+      "name": "infwarerr"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "HyphSubstLet",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:nameA}}{${2:nameB}}"
+      }
+    },
+    {
+      "name": "HyphSubstIfExists",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:then}}{${3:else}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

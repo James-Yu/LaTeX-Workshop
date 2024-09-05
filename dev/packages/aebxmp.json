@@ -1,109 +1,280 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "insdljs": []
-  },
-  "macros": {
-    "Authors{{}{}": {
-      "snippet": "Authors{{${1:name1}}{${2:name2}...}}"
+  "deps": [
+    {
+      "name": "xkeyval"
     },
-    "Keywords{}": {
-      "snippet": "Keywords{${1:word1,${2:word2},...}}"
+    {
+      "name": "insdljs"
+    }
+  ],
+  "macros": [
+    {
+      "name": "Keywords",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:word1,word2,...%text}}"
+      }
     },
-    "xmpDoNotInsKWScript": {},
-    "copyrightStatus{}": {
-      "snippet": "copyrightStatus{${1:True|False}}"
+    {
+      "name": "xmpDoNotInsKWScript"
     },
-    "copyrightNotice{}": {
-      "snippet": "copyrightNotice{${1:text}}"
+    {
+      "name": "copyrightStatus",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:True|False}}"
+      }
     },
-    "copyrightNotice{{[}{[}": {
-      "snippet": "copyrightNotice{{[${1:lang1] text1}}{[${2:lang2] text2}...}}"
+    {
+      "name": "copyrightNotice",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "copyrightInfoURL{}": {
-      "snippet": "copyrightInfoURL{${1:URL}}"
+    {
+      "name": "copyrightInfoURL",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:URL}}"
+      }
     },
-    "authortitle{}": {
-      "snippet": "authortitle{${1:text}}"
+    {
+      "name": "authortitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "descriptionwriter{}": {
-      "snippet": "descriptionwriter{${1:text}}"
+    {
+      "name": "descriptionwriter",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "sourceFile{}": {
-      "snippet": "sourceFile{${1:file}}"
+    {
+      "name": "sourceFile",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
     },
-    "Title{}": {
-      "snippet": "Title{${1:text}}"
+    {
+      "name": "Title",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "Title{{[}{[}": {
-      "snippet": "Title{{[${1:lang1] text1}}{[${2:lang2] text2}...}}"
+    {
+      "name": "Subject",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "Subject{}": {
-      "snippet": "Subject{${1:text}}"
+    {
+      "name": "metaLang",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:lang1,lang2,...}}"
+      }
     },
-    "Subject{{[}{[}": {
-      "snippet": "Subject{{[${1:lang1] text1}}{[${2:lang2] text2}...}}"
+    {
+      "name": "aKeywords",
+      "unusual": true
     },
-    "metaLang{}": {
-      "snippet": "metaLang{${1:lang1,${2:lang2},...}}"
+    {
+      "name": "arrayOfAuthors",
+      "unusual": true
     },
-    "customProperties{{}{}": {
-      "snippet": "customProperties{{${1:name=name1,${3:value=value1}}{${2:name=name2},value=value2}...}}"
+    {
+      "name": "arrayOfKeywords",
+      "unusual": true
     },
-    "aKeywords": {},
-    "arrayOfAuthors": {},
-    "arrayOfKeywords": {},
-    "arrayOfLangs": {},
-    "arrayOfRights": {},
-    "arrayOfSubjects": {},
-    "arrayOfTitles": {},
-    "authorTitle{}": {
-      "snippet": "authorTitle{${1:text}}"
+    {
+      "name": "arrayOfLangs",
+      "unusual": true
     },
-    "descriptionWriter{}": {
-      "snippet": "descriptionWriter{${1:text}}"
+    {
+      "name": "arrayOfRights",
+      "unusual": true
     },
-    "insBagItem": {},
-    "insSeqItem": {},
-    "insertAuthorTitle": {},
-    "insertAuthors": {},
-    "insertCopyrightNotice": {},
-    "insertCreateDate": {},
-    "insertCusProps": {},
-    "insertDescriptionWriter": {},
-    "insertKWJS": {},
-    "insertKeywords": {},
-    "insertLangs": {},
-    "insertMarked": {},
-    "insertSource": {},
-    "insertSubjects": {},
-    "insertTitles": {},
-    "insertWebStatement": {},
-    "tabiv": {},
-    "xAdbNS": {},
-    "xNNS": {},
-    "xWiiiNS": {},
-    "xmpAuthors": {},
-    "xmpGetNextArg{}": {
-      "snippet": "xmpGetNextArg{${1:arg1}}"
+    {
+      "name": "arrayOfSubjects",
+      "unusual": true
     },
-    "xmpInsScript": {},
-    "xmpKeywords": {},
-    "xmpLang": {},
-    "xmpLangAndArg{}": {
-      "snippet": "xmpLangAndArg{${1:arg1}}"
+    {
+      "name": "arrayOfTitles",
+      "unusual": true
     },
-    "xmpSubject": {},
-    "xmpTitle": {},
-    "xmpauthortitle": {},
-    "xmpcopyrightInfoURL": {},
-    "xmpcopyrightNotice": {},
-    "xmpcopyrightStatus": {},
-    "xmpdescriptionwriter": {},
-    "xmplangOfDoc": {},
-    "xmpnEOL": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "authorTitle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "descriptionWriter",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "insBagItem",
+      "unusual": true
+    },
+    {
+      "name": "insSeqItem",
+      "unusual": true
+    },
+    {
+      "name": "insertAuthorTitle",
+      "unusual": true
+    },
+    {
+      "name": "insertAuthors",
+      "unusual": true
+    },
+    {
+      "name": "insertCopyrightNotice",
+      "unusual": true
+    },
+    {
+      "name": "insertCreateDate",
+      "unusual": true
+    },
+    {
+      "name": "insertCusProps",
+      "unusual": true
+    },
+    {
+      "name": "insertDescriptionWriter",
+      "unusual": true
+    },
+    {
+      "name": "insertKWJS",
+      "unusual": true
+    },
+    {
+      "name": "insertKeywords",
+      "unusual": true
+    },
+    {
+      "name": "insertLangs",
+      "unusual": true
+    },
+    {
+      "name": "insertMarked",
+      "unusual": true
+    },
+    {
+      "name": "insertSource",
+      "unusual": true
+    },
+    {
+      "name": "insertSubjects",
+      "unusual": true
+    },
+    {
+      "name": "insertTitles",
+      "unusual": true
+    },
+    {
+      "name": "insertWebStatement",
+      "unusual": true
+    },
+    {
+      "name": "tabiv",
+      "unusual": true
+    },
+    {
+      "name": "xAdbNS",
+      "unusual": true
+    },
+    {
+      "name": "xNNS",
+      "unusual": true
+    },
+    {
+      "name": "xWiiiNS",
+      "unusual": true
+    },
+    {
+      "name": "xmpAuthors",
+      "unusual": true
+    },
+    {
+      "name": "xmpGetNextArg",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    },
+    {
+      "name": "xmpInsScript",
+      "unusual": true
+    },
+    {
+      "name": "xmpKeywords",
+      "unusual": true
+    },
+    {
+      "name": "xmpLang",
+      "unusual": true
+    },
+    {
+      "name": "xmpLangAndArg",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    },
+    {
+      "name": "xmpSubject",
+      "unusual": true
+    },
+    {
+      "name": "xmpTitle",
+      "unusual": true
+    },
+    {
+      "name": "xmpauthortitle",
+      "unusual": true
+    },
+    {
+      "name": "xmpcopyrightInfoURL",
+      "unusual": true
+    },
+    {
+      "name": "xmpcopyrightNotice",
+      "unusual": true
+    },
+    {
+      "name": "xmpcopyrightStatus",
+      "unusual": true
+    },
+    {
+      "name": "xmpdescriptionwriter",
+      "unusual": true
+    },
+    {
+      "name": "xmplangOfDoc",
+      "unusual": true
+    },
+    {
+      "name": "xmpnEOL",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

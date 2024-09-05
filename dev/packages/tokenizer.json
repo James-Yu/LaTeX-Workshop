@@ -1,25 +1,33 @@
 {
-  "includes": {
-    "ifthen": []
-  },
-  "macros": {
-    "GetTokens{}{}{}": {
-      "snippet": "GetTokens{${1:csname1}}{${2:csname2}}{${3:source}}"
-    },
-    "TrimSpaces{}": {
-      "snippet": "TrimSpaces{${1:source}}"
-    },
-    "trimb{}": {
-      "snippet": "trimb{${1:arg}}"
-    },
-    "trimc{}": {
-      "snippet": "trimc{${1:arg}}"
+  "deps": [
+    {
+      "name": "ifthen"
     }
-  },
-  "envs": {},
-  "options": [
-    "trim",
-    "notrim"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "GetTokens",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:csname1}}{${2:csname2}}{${3:source}}"
+      }
+    },
+    {
+      "name": "TrimSpaces",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:source}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/tokenizer#c": [
+      "trim\r",
+      "notrim\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/tokenizer#c"
+  ]
 }

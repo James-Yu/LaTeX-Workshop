@@ -1,106 +1,251 @@
 {
-  "includes": {
-    "keyval": [],
-    "ifthen": [],
-    "color": [],
-    "graphicx": [],
-    "ifpdf": [],
-    "ifxetex": [],
-    "catchfile": []
-  },
-  "macros": {
-    "asyinclude{}": {
-      "snippet": "asyinclude{${1:imagefile}}"
+  "deps": [
+    {
+      "name": "keyval"
     },
-    "asyinclude[]{}": {
-      "snippet": "asyinclude[${2:options}]{${1:imagefile}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "ifthen"
     },
-    "asysetup{}": {
-      "snippet": "asysetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "color"
     },
-    "ASYanimategraphics{}{}{}{}": {
-      "snippet": "ASYanimategraphics{${1:frame rate}}{${2:file}}{${3:first}}{${4:last}}"
+    {
+      "name": "graphicx"
     },
-    "ASYanimategraphics[]{}{}{}{}": {
-      "snippet": "ASYanimategraphics[${5:options}]{${1:frame rate}}{${2:file}}{${3:first}}{${4:last}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "ifpdf"
     },
-    "Asymptote": {},
-    "ASYbox": {},
-    "ASYdimen": {},
-    "theasy": {},
-    "AsyStream": {},
-    "AsyPreStream": {},
-    "ifASYinline": {},
-    "ASYinlinetrue": {},
-    "ASYinlinefalse": {},
-    "ifASYattach": {},
-    "ASYattachtrue": {},
-    "ASYattachfalse": {},
-    "ifASYkeepAspect": {},
-    "ASYkeepAspecttrue": {},
-    "ASYkeepAspectfalse": {},
-    "asylatexdir": {},
-    "asydir": {},
-    "ASYasydir": {},
-    "ASYlatexdir": {},
-    "ASYprefix": {},
-    "ifASYPDF": {},
-    "ASYPDFtrue": {},
-    "ASYPDFfalse": {},
-    "AsyExtension": {},
-    "WriteAsyLine{}": {
-      "snippet": "WriteAsyLine{${1:arg}}"
+    {
+      "name": "ifxetex"
     },
-    "globalASYdefs": {},
-    "WriteGlobalAsyLine{}": {
-      "snippet": "WriteGlobalAsyLine{${1:arg}}"
-    },
-    "ProcessAsymptote{}": {
-      "snippet": "ProcessAsymptote{${1:arg}}"
-    },
-    "CurrentAsymptote": {},
-    "xAsymptote": {},
-    "ProcessAsymptoteLine": {},
-    "ThisAsymptote": {},
-    "AsyFile": {},
-    "ASYwidth": {},
-    "ASYheight": {},
-    "ASYviewportwidth": {},
-    "ASYviewportheight": {},
-    "csarg{}{}": {
-      "snippet": "csarg{${1:arg1}}{${2:arg2}}"
-    },
-    "unquoteJobname": {},
-    "rawJobname": {},
-    "fixstar": {},
-    "argtwo": {},
-    "asy": {},
-    "endasy": {},
-    "asydef": {},
-    "Jobname": {}
-  },
-  "envs": {
-    "asy": {},
-    "asy[]": {
-      "name": "asy",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "asydef": {}
-  },
-  "options": [
-    "inline",
-    "attach"
+    {
+      "name": "catchfile"
+    }
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "asyinclude",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "asyinclude",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "asysetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\begin{asy},\\asyinclude,\\asysetup"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ASYanimategraphics",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:frame rate}}{${2:file}}{${3:first}}{${4:last}}"
+      }
+    },
+    {
+      "name": "ASYanimategraphics",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "[${5:options%keyvals}]{${1:frame rate}}{${2:file}}{${3:first}}{${4:last}}"
+      }
+    },
+    {
+      "name": "Asymptote",
+      "unusual": true
+    },
+    {
+      "name": "ASYbox",
+      "unusual": true
+    },
+    {
+      "name": "ASYdimen",
+      "unusual": true
+    },
+    {
+      "name": "theasy",
+      "unusual": true
+    },
+    {
+      "name": "AsyStream",
+      "unusual": true
+    },
+    {
+      "name": "AsyPreStream",
+      "unusual": true
+    },
+    {
+      "name": "ifASYinline",
+      "unusual": true
+    },
+    {
+      "name": "ASYinlinetrue",
+      "unusual": true
+    },
+    {
+      "name": "ASYinlinefalse",
+      "unusual": true
+    },
+    {
+      "name": "ifASYattach",
+      "unusual": true
+    },
+    {
+      "name": "ASYattachtrue",
+      "unusual": true
+    },
+    {
+      "name": "ASYattachfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifASYkeepAspect",
+      "unusual": true
+    },
+    {
+      "name": "ASYkeepAspecttrue",
+      "unusual": true
+    },
+    {
+      "name": "ASYkeepAspectfalse",
+      "unusual": true
+    },
+    {
+      "name": "asylatexdir",
+      "unusual": true
+    },
+    {
+      "name": "asydir",
+      "unusual": true
+    },
+    {
+      "name": "ASYasydir",
+      "unusual": true
+    },
+    {
+      "name": "ASYlatexdir",
+      "unusual": true
+    },
+    {
+      "name": "ASYprefix",
+      "unusual": true
+    },
+    {
+      "name": "ifASYPDF",
+      "unusual": true
+    },
+    {
+      "name": "ASYPDFtrue",
+      "unusual": true
+    },
+    {
+      "name": "ASYPDFfalse",
+      "unusual": true
+    },
+    {
+      "name": "AsyExtension",
+      "unusual": true
+    },
+    {
+      "name": "WriteAsyLine",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "globalASYdefs",
+      "unusual": true
+    },
+    {
+      "name": "WriteGlobalAsyLine",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "ProcessAsymptote",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "CurrentAsymptote",
+      "unusual": true
+    },
+    {
+      "name": "xAsymptote",
+      "unusual": true
+    },
+    {
+      "name": "ProcessAsymptoteLine",
+      "unusual": true
+    },
+    {
+      "name": "ThisAsymptote",
+      "unusual": true
+    },
+    {
+      "name": "AsyFile",
+      "unusual": true
+    },
+    {
+      "name": "ASYwidth",
+      "unusual": true
+    },
+    {
+      "name": "ASYheight",
+      "unusual": true
+    },
+    {
+      "name": "ASYviewportwidth",
+      "unusual": true
+    },
+    {
+      "name": "ASYviewportheight",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "asy"
+    },
+    {
+      "name": "asy",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "asydef"
+    }
+  ],
+  "keys": {
+    "\\usepackage/asymptote#c": [
+      "inline\r",
+      "attach\r"
+    ],
+    "\\begin{asy},\\asyinclude,\\asysetup": [
       "width=",
       "height=",
       "keepAspect",
@@ -109,45 +254,48 @@
       "attach",
       "inline"
     ],
-    [
-      "label=${1:label}",
-      "type=${1:file ext}",
-      "poster",
-      "poster=${1|first,last,none,${1:number}|}",
-      "every=${1:number}",
-      "autopause",
-      "autoplay",
-      "autoresume",
-      "loop",
-      "palindrome",
-      "step",
+    "\\ASYanimategraphics#c": [
+      "label=${1:label}\r",
+      "type=${1:file ext}\r",
+      "poster\r",
+      "poster=${2|first,last,none,${1:number}\r|}",
+      "every=${1:number}\r",
+      "autopause\r",
+      "autoplay\r",
+      "autoresume\r",
+      "loop\r",
+      "palindrome\r",
+      "step\r",
       "width=",
       "height=",
       "totalheight=",
-      "keepaspectratio",
-      "scale=${1:factor}",
-      "bb=${1:llx lly urx ury}",
-      "viewport=${1:llx lly urx ury}",
-      "trim=${1:left bottom right top}",
-      "clip",
-      "hiresbb",
-      "interpolate",
-      "pagebox=",
-      "controls=${1|all,true,on,none,false,off|}",
-      "controlsaligned=",
+      "keepaspectratio\r",
+      "scale=${1:factor}\r",
+      "bb=${1:llx lly urx ury}\r",
+      "viewport=${1:llx lly urx ury}\r",
+      "trim=${1:left bottom right top}\r",
+      "clip\r",
+      "hiresbb\r",
+      "interpolate\r",
+      "pagebox=\r",
+      "controls=${1|all,true,on,none,false,off\r|}",
+      "controlsaligned=\r",
       "buttonsize=",
       "buttonbg=",
       "buttonfg=",
-      "buttonalpha=${1:opacity}",
-      "draft",
-      "final",
-      "nomouse",
-      "method=${1|icon,widget,ocg|}",
-      "measure",
-      "alttext=${1|none,${1:alt description}|}",
-      "begin={${1:begin code}}",
-      "end={${1:end code}}",
-      "timeline=${1:file}"
+      "buttonalpha=${1:opacity}\r",
+      "draft\r",
+      "final\r",
+      "nomouse\r",
+      "method=${1|icon,widget,ocg\r|}",
+      "measure\r",
+      "alttext=${2|none,${1:alt description}\r|}",
+      "begin={${1:begin code}}\r",
+      "end={${1:end code}}\r",
+      "timeline=${1:file}\r"
     ]
+  },
+  "args": [
+    "\\usepackage/asymptote#c"
   ]
 }

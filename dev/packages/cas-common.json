@@ -1,521 +1,1229 @@
 {
-  "includes": {
-    "moreverb": [],
-    "wrapfig": []
-  },
-  "macros": {
-    "address[]{}": {
-      "snippet": "address[${2:id}]{${1:keyvals}}"
-    },
-    "address{}": {
-      "snippet": "address{${1:keyvals}}"
-    },
-    "affiliation[]{}": {
-      "snippet": "affiliation[${2:id}]{${1:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "affiliation{}": {
-      "snippet": "affiliation{${1:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "author[]{}": {
-      "snippet": "author[${2:ids}]{${1:name}}"
-    },
-    "author[]{}[]": {
-      "snippet": "author[${2:ids}]{${1:name}}[${3:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 2
-    },
-    "author{}[]": {
-      "snippet": "author{${1:name}}[${2:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 1
-    },
-    "bio[]{}": {
-      "snippet": "bio[${2:options}]{${1:imagefile}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "bio{}": {
-      "snippet": "bio{${1:imagefile}}"
-    },
-    "cormark[]": {
-      "snippet": "cormark[${1:id}]"
-    },
-    "corref{}": {
-      "snippet": "corref{${1:ids}}"
-    },
-    "cortext[]{}": {
-      "snippet": "cortext[${2:id}]{${1:text}}"
-    },
-    "cortext{}": {
-      "snippet": "cortext{${1:text}}"
-    },
-    "credit{}": {
-      "snippet": "credit{${1:text}}"
-    },
-    "ead[]{}": {
-      "snippet": "ead[${2:url}]{${1:URL}}"
-    },
-    "ead{}": {
-      "snippet": "ead{${1:email}}"
-    },
-    "endbio": {},
-    "fnmark[]": {
-      "snippet": "fnmark[${1:id}]"
-    },
-    "fnref{}": {
-      "snippet": "fnref{${1:ids}}"
-    },
-    "fntext[]{}": {
-      "snippet": "fntext[${2:id}]{${1:text}}"
-    },
-    "fntext{}": {
-      "snippet": "fntext{${1:text}}"
-    },
-    "newdefinition{}[]{}": {
-      "snippet": "newdefinition{${1:envname}}[${2:numbered like}]{${3:caption}}"
-    },
-    "newdefinition{}{}": {
-      "snippet": "newdefinition{${1:envname}}{${2:caption}}"
-    },
-    "newdefinition{}{}[]": {
-      "snippet": "newdefinition{${1:envname}}{${2:caption}}[${3:within}]"
-    },
-    "newproof{}{}": {
-      "snippet": "newproof{${1:envname}}{${2:caption}}"
-    },
-    "nonumnote{}": {
-      "snippet": "nonumnote{${1:text}}"
-    },
-    "printcredits": {},
-    "sep": {},
-    "shortauthors{}": {
-      "snippet": "shortauthors{${1:names}}"
-    },
-    "shorttitle{}": {
-      "snippet": "shorttitle{${1:text}}"
-    },
-    "title[]{}": {
-      "snippet": "title[${2:options}]{${1:text}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "tnotemark[]": {
-      "snippet": "tnotemark[${1:id}]"
-    },
-    "tnotetext[]{}": {
-      "snippet": "tnotetext[${2:id}]{${1:text}}"
-    },
-    "tnotetext{}": {
-      "snippet": "tnotetext{${1:text}}"
-    },
-    "WrapFigure[]{}": {
-      "snippet": "WrapFigure[${2:options}]{${1:imagefile}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "WrapFigure{}": {
-      "snippet": "WrapFigure{${1:imagefile}}"
-    },
-    "MSC": {},
-    "abovebioskip{}": {
-      "snippet": "abovebioskip{${1:skip}}"
-    },
-    "abstracttitle": {},
-    "accepted{}": {
-      "snippet": "accepted{${1:date}}"
-    },
-    "addfiglines{}": {
-      "snippet": "addfiglines{${1:number}}"
-    },
-    "aline{}": {
-      "snippet": "aline{${1:address}}"
-    },
-    "aurl{}": {
-      "snippet": "aurl{${1:URL}}"
-    },
-    "bibfont": {},
-    "blstr{}": {
-      "snippet": "blstr{${1:stretch}}"
-    },
-    "casauhlbox": {},
-    "casbiographyfont": {},
-    "cascaptionbox": {},
-    "casgrabsbox": {},
-    "city{}": {
-      "snippet": "city{${1:city}}"
-    },
-    "cnty{}": {
-      "snippet": "cnty{${1:county}}"
-    },
-    "Columnwidth": {},
-    "ContribRole{}": {
-      "snippet": "ContribRole{${1:text}}"
-    },
-    "creditauthor{}{}": {
-      "snippet": "creditauthor{${1:text}}{${2:name}}"
-    },
-    "dashrule[]{}{}": {
-      "snippet": "dashrule[${3:optlength}]{${1:length1}}{${2:length1}}"
-    },
-    "dashrule{}{}": {
-      "snippet": "dashrule{${1:length1}}{${2:length1}}"
-    },
-    "dept{}": {
-      "snippet": "dept{${1:department}}"
-    },
-    "divn{}": {
-      "snippet": "divn{${1:text}}"
-    },
-    "dst[]": {
-      "snippet": "dst[${1:depth}]"
-    },
-    "dstrut{}": {
-      "snippet": "dstrut{${1:depth}}"
-    },
-    "eadauthor": {},
-    "eadsep": {},
-    "emailauthor{}{}": {
-      "snippet": "emailauthor{${1:email}}{${2:name}}"
-    },
-    "endthead": {},
-    "facebookauthor{}{}": {
-      "snippet": "facebookauthor{${1:facebook}}{${2:name}}"
-    },
-    "fax{}": {
-      "snippet": "fax{${1:fax}}"
-    },
-    "firstname": {},
-    "FullWidth": {},
-    "gplusauthor{}{}": {
-      "snippet": "gplusauthor{${1:gplus}}{${2:name}}"
-    },
-    "hidebiobox": {},
-    "hst[]": {
-      "snippet": "hst[${1:height}]"
-    },
-    "hstrut{}": {
-      "snippet": "hstrut{${1:height}}"
-    },
-    "invparsename{}": {
-      "snippet": "invparsename{${1:name}}"
-    },
-    "JEL": {},
-    "keywordtitle": {},
-    "keywordtitlesep": {},
-    "lastpage": {},
-    "leftMargin": {},
-    "linkedinauthor{}{}": {
-      "snippet": "linkedinauthor{${1:linkedin}}{${2:name}}"
-    },
-    "listAff": {},
-    "LongMaketitleBox": {},
-    "LongMaketitleBox[]": {
-      "snippet": "LongMaketitleBox[${1:options}]"
-    },
-    "MaketitleBox": {},
-    "MaketitleBox[]": {
-      "snippet": "MaketitleBox[${1:options}]"
-    },
-    "MSC[]": {
-      "snippet": "MSC[${1:year}]"
-    },
-    "NewLabel{}{}": {
-      "snippet": "NewLabel{${1:id}}{${2:arg}}"
-    },
-    "orcidauthor{}{}": {
-      "snippet": "orcidauthor{${1:ORCID}}{${2:name}}"
-    },
-    "PACS": {},
-    "paraindent": {},
-    "parsename{}": {
-      "snippet": "parsename{${1:name}}"
-    },
-    "phone{}": {
-      "snippet": "phone{${1:phone}}"
-    },
-    "pprintMaketitle": {},
-    "pprintMaketitle[]": {
-      "snippet": "pprintMaketitle[${1:options}]"
-    },
-    "printaddrinfoot": {},
-    "printcornotes": {},
-    "printemails": {},
-    "printfacebook": {},
-    "printFirstPageNotes": {},
-    "printfnotes": {},
-    "printgplus": {},
-    "printlinkedin": {},
-    "printmaltese": {},
-    "printnonumnotes": {},
-    "printorcid": {},
-    "printtnotes": {},
-    "printtwitter": {},
-    "printurls": {},
-    "processAffNum{}": {
-      "snippet": "processAffNum{${1:nums}}"
-    },
-    "processAffRef{}": {
-      "snippet": "processAffRef{${1:ids}}"
-    },
-    "processbreakafter": {},
-    "processFnRef{}": {
-      "snippet": "processFnRef{${1:id}}"
-    },
-    "ProcessLongTitleBox": {},
-    "processTmarks": {},
-    "published[]{}": {
-      "snippet": "published[${2:online}]{${1:date}}"
-    },
-    "published{}": {
-      "snippet": "published{${1:date}}"
-    },
-    "qed": {},
-    "RCSdate": {},
-    "RCSfile": {},
-    "RCSversion": {},
-    "received{}": {
-      "snippet": "received{${1:date}}"
-    },
-    "recto{}": {
-      "snippet": "recto{${1:content}}"
-    },
-    "ResetMarks": {},
-    "revised{}": {
-      "snippet": "revised{${1:date}}"
-    },
-    "sectionfont": {},
-    "sfbc": {},
-    "sfn": {},
-    "shortauthor": {},
-    "sitem": {},
-    "ssectionfont": {},
-    "sssectionfont": {},
-    "ssssectionfont": {},
-    "ssssparaindent": {},
-    "sssssectionfont": {},
-    "stmaddress": {},
-    "stmAddrSetup{}": {
-      "snippet": "stmAddrSetup{${1:options}}"
-    },
-    "stmAffSetup{}": {
-      "snippet": "stmAffSetup{${1:options}}"
-    },
-    "stmaffsetup{}": {
-      "snippet": "stmaffsetup{${1:options}}"
-    },
-    "stmausetup{}": {
-      "snippet": "stmausetup{${1:options}}"
-    },
-    "stmauthors": {},
-    "stmAuthorSetup{}": {
-      "snippet": "stmAuthorSetup{${1:options}}"
-    },
-    "stmclbsetup{}": {
-      "snippet": "stmclbsetup{${1:options}}"
-    },
-    "stmcollab": {},
-    "stmLabel{}": {
-      "snippet": "stmLabel{${1:id}}"
-    },
-    "stmRef{}": {
-      "snippet": "stmRef{${1:id}}"
-    },
-    "subparaindent": {},
-    "surname": {},
-    "tabref{}": {
-      "snippet": "tabref{${1:label}}"
-    },
-    "tblwidth": {},
-    "theaff": {},
-    "theau": {},
-    "thecnote": {},
-    "theead": {},
-    "thefnote": {},
-    "thetnote": {},
-    "twitterauthor{}{}": {
-      "snippet": "twitterauthor{${1:twitter}}{${2:name}}"
-    },
-    "urlauthor{}{}": {
-      "snippet": "urlauthor{${1:URL}}{${2:name}}"
-    },
-    "verso{}": {
-      "snippet": "verso{${1:content}}"
-    },
-    "wfighcorr{}": {
-      "snippet": "wfighcorr{${1:hcorr}}"
-    },
-    "wfighspace{}": {
-      "snippet": "wfighspace{${1:hspace}}"
-    },
-    "wfigvcorr{}": {
-      "snippet": "wfigvcorr{${1:vcorr}}"
-    },
-    "wfigvspace{}": {
-      "snippet": "wfigvspace{${1:vspace}}"
-    },
-    "wfigwidth{}": {
-      "snippet": "wfigwidth{${1:width}}"
-    },
-    "wrAun{}": {
-      "snippet": "wrAun{${1:arg}}"
-    },
-    "wrAux{}": {
-      "snippet": "wrAux{${1:arg}}"
-    },
-    "writemarks{}{}": {
-      "snippet": "writemarks{${1:arg1}}{${2:arg2}}"
-    },
-    "wrShipAun{}": {
-      "snippet": "wrShipAun{${1:arg}}"
-    },
-    "wrShipAux{}": {
-      "snippet": "wrShipAux{${1:arg}}"
-    },
-    "xst[][]": {
-      "snippet": "xst[${1:height}][${2:depth}]"
-    },
-    "xstrut{}{}": {
-      "snippet": "xstrut{${1:height}}{${2:depth}}"
+  "deps": [
+    {
+      "name": "moreverb"
+    },
+    {
+      "name": "wrapfig"
     }
-  },
-  "envs": {
-    "abstract[]": {
+  ],
+  "macros": [
+    {
+      "name": "address",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:id}]{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "address",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "affiliation",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:id}]{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "affiliation",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "author",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:ids}]{${1:name}}"
+      }
+    },
+    {
+      "name": "author",
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:ids}]{${1:name}}[${3:options%keyvals}]"
+      }
+    },
+    {
+      "name": "author",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:name}}[${2:options%keyvals}]"
+      }
+    },
+    {
+      "name": "bio",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "bio",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "cormark",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:id}]"
+      }
+    },
+    {
+      "name": "corref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ids}}"
+      }
+    },
+    {
+      "name": "cortext",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:id}]{${1:text}}"
+      }
+    },
+    {
+      "name": "cortext",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "credit",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ead",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:url}]{${1:URL}}"
+      }
+    },
+    {
+      "name": "ead",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:email%URL}}"
+      }
+    },
+    {
+      "name": "endbio"
+    },
+    {
+      "name": "fnmark",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:id}]"
+      }
+    },
+    {
+      "name": "fnref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ids}}"
+      }
+    },
+    {
+      "name": "fntext",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:id}]{${1:text}}"
+      }
+    },
+    {
+      "name": "fntext",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "newdefinition",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:envname}}[${3:numbered like}]{${2:caption}}"
+      }
+    },
+    {
+      "name": "newdefinition",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:envname}}{${2:caption}}"
+      }
+    },
+    {
+      "name": "newdefinition",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:envname}}{${2:caption}}[${3:within}]"
+      }
+    },
+    {
+      "name": "newproof",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:envname}}{${2:caption}}"
+      }
+    },
+    {
+      "name": "nonumnote",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "printcredits"
+    },
+    {
+      "name": "sep"
+    },
+    {
+      "name": "shortauthors",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:names}}"
+      }
+    },
+    {
+      "name": "shorttitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "title",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "tnotemark",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:id}]"
+      }
+    },
+    {
+      "name": "tnotetext",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:id}]{${1:text}}"
+      }
+    },
+    {
+      "name": "tnotetext",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "WrapFigure",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "WrapFigure",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "MSC",
+      "unusual": true
+    },
+    {
+      "name": "abovebioskip",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:skip}}"
+      }
+    },
+    {
+      "name": "abstracttitle",
+      "unusual": true
+    },
+    {
+      "name": "accepted",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:date}}"
+      }
+    },
+    {
+      "name": "addfiglines",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "aline",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:address}}"
+      }
+    },
+    {
+      "name": "aurl",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:URL}}"
+      }
+    },
+    {
+      "name": "bibfont",
+      "unusual": true
+    },
+    {
+      "name": "blstr",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:stretch}}"
+      }
+    },
+    {
+      "name": "casauhlbox",
+      "unusual": true
+    },
+    {
+      "name": "casbiographyfont",
+      "unusual": true
+    },
+    {
+      "name": "cascaptionbox",
+      "unusual": true
+    },
+    {
+      "name": "casgrabsbox",
+      "unusual": true
+    },
+    {
+      "name": "city",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:city}}"
+      }
+    },
+    {
+      "name": "cnty",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:county}}"
+      }
+    },
+    {
+      "name": "Columnwidth",
+      "unusual": true
+    },
+    {
+      "name": "ContribRole",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "creditauthor",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:name}}"
+      }
+    },
+    {
+      "name": "dashrule",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:optlength}]{${1:length1}}{${2:length1}}"
+      }
+    },
+    {
+      "name": "dashrule",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:length1}}{${2:length1}}"
+      }
+    },
+    {
+      "name": "dept",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:department}}"
+      }
+    },
+    {
+      "name": "divn",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "dst",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:depth}]"
+      }
+    },
+    {
+      "name": "dstrut",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:depth}}"
+      }
+    },
+    {
+      "name": "eadauthor",
+      "unusual": true
+    },
+    {
+      "name": "eadsep",
+      "unusual": true
+    },
+    {
+      "name": "emailauthor",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:email%URL}}{${2:name}}"
+      }
+    },
+    {
+      "name": "endthead",
+      "unusual": true
+    },
+    {
+      "name": "facebookauthor",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:facebook}}{${2:name}}"
+      }
+    },
+    {
+      "name": "fax",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:fax}}"
+      }
+    },
+    {
+      "name": "firstname",
+      "unusual": true
+    },
+    {
+      "name": "FullWidth",
+      "unusual": true
+    },
+    {
+      "name": "gplusauthor",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:gplus}}{${2:name}}"
+      }
+    },
+    {
+      "name": "hidebiobox",
+      "unusual": true
+    },
+    {
+      "name": "hst",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:height}]"
+      }
+    },
+    {
+      "name": "hstrut",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:height}}"
+      }
+    },
+    {
+      "name": "invparsename",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "JEL",
+      "unusual": true
+    },
+    {
+      "name": "keywordtitle",
+      "unusual": true
+    },
+    {
+      "name": "keywordtitlesep",
+      "unusual": true
+    },
+    {
+      "name": "lastpage",
+      "unusual": true
+    },
+    {
+      "name": "leftMargin",
+      "unusual": true
+    },
+    {
+      "name": "linkedinauthor",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:linkedin}}{${2:name}}"
+      }
+    },
+    {
+      "name": "listAff",
+      "unusual": true
+    },
+    {
+      "name": "LongMaketitleBox",
+      "unusual": true
+    },
+    {
+      "name": "LongMaketitleBox",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options}]"
+      }
+    },
+    {
+      "name": "MaketitleBox",
+      "unusual": true
+    },
+    {
+      "name": "MaketitleBox",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options}]"
+      }
+    },
+    {
+      "name": "MSC",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:year}]"
+      }
+    },
+    {
+      "name": "NewLabel",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:id}}{${2:arg}}"
+      }
+    },
+    {
+      "name": "orcidauthor",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:ORCID}}{${2:name}}"
+      }
+    },
+    {
+      "name": "PACS",
+      "unusual": true
+    },
+    {
+      "name": "paraindent",
+      "unusual": true
+    },
+    {
+      "name": "parsename",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "phone",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:phone}}"
+      }
+    },
+    {
+      "name": "pprintMaketitle",
+      "unusual": true
+    },
+    {
+      "name": "pprintMaketitle",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options}]"
+      }
+    },
+    {
+      "name": "printaddrinfoot",
+      "unusual": true
+    },
+    {
+      "name": "printcornotes",
+      "unusual": true
+    },
+    {
+      "name": "printemails",
+      "unusual": true
+    },
+    {
+      "name": "printfacebook",
+      "unusual": true
+    },
+    {
+      "name": "printFirstPageNotes",
+      "unusual": true
+    },
+    {
+      "name": "printfnotes",
+      "unusual": true
+    },
+    {
+      "name": "printgplus",
+      "unusual": true
+    },
+    {
+      "name": "printlinkedin",
+      "unusual": true
+    },
+    {
+      "name": "printmaltese",
+      "unusual": true
+    },
+    {
+      "name": "printnonumnotes",
+      "unusual": true
+    },
+    {
+      "name": "printorcid",
+      "unusual": true
+    },
+    {
+      "name": "printtnotes",
+      "unusual": true
+    },
+    {
+      "name": "printtwitter",
+      "unusual": true
+    },
+    {
+      "name": "printurls",
+      "unusual": true
+    },
+    {
+      "name": "processAffNum",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:nums}}"
+      }
+    },
+    {
+      "name": "processAffRef",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ids}}"
+      }
+    },
+    {
+      "name": "processbreakafter",
+      "unusual": true
+    },
+    {
+      "name": "processFnRef",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "ProcessLongTitleBox",
+      "unusual": true
+    },
+    {
+      "name": "processTmarks",
+      "unusual": true
+    },
+    {
+      "name": "published",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:online}]{${1:date}}"
+      }
+    },
+    {
+      "name": "published",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:date}}"
+      }
+    },
+    {
+      "name": "qed",
+      "unusual": true
+    },
+    {
+      "name": "received",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:date}}"
+      }
+    },
+    {
+      "name": "recto",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content%text}}"
+      }
+    },
+    {
+      "name": "ResetMarks",
+      "unusual": true
+    },
+    {
+      "name": "revised",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:date}}"
+      }
+    },
+    {
+      "name": "sectionfont",
+      "unusual": true
+    },
+    {
+      "name": "sfbc",
+      "unusual": true
+    },
+    {
+      "name": "sfn",
+      "unusual": true
+    },
+    {
+      "name": "shortauthor",
+      "unusual": true
+    },
+    {
+      "name": "sitem",
+      "unusual": true
+    },
+    {
+      "name": "ssectionfont",
+      "unusual": true
+    },
+    {
+      "name": "sssectionfont",
+      "unusual": true
+    },
+    {
+      "name": "ssssectionfont",
+      "unusual": true
+    },
+    {
+      "name": "ssssparaindent",
+      "unusual": true
+    },
+    {
+      "name": "sssssectionfont",
+      "unusual": true
+    },
+    {
+      "name": "stmaddress",
+      "unusual": true
+    },
+    {
+      "name": "stmAddrSetup",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options}}"
+      }
+    },
+    {
+      "name": "stmAffSetup",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options}}"
+      }
+    },
+    {
+      "name": "stmaffsetup",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options}}"
+      }
+    },
+    {
+      "name": "stmausetup",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options}}"
+      }
+    },
+    {
+      "name": "stmauthors",
+      "unusual": true
+    },
+    {
+      "name": "stmAuthorSetup",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options}}"
+      }
+    },
+    {
+      "name": "stmclbsetup",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options}}"
+      }
+    },
+    {
+      "name": "stmcollab",
+      "unusual": true
+    },
+    {
+      "name": "stmLabel",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "stmRef",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "subparaindent",
+      "unusual": true
+    },
+    {
+      "name": "surname",
+      "unusual": true
+    },
+    {
+      "name": "tabref",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "tblwidth",
+      "unusual": true
+    },
+    {
+      "name": "theaff",
+      "unusual": true
+    },
+    {
+      "name": "theau",
+      "unusual": true
+    },
+    {
+      "name": "thecnote",
+      "unusual": true
+    },
+    {
+      "name": "theead",
+      "unusual": true
+    },
+    {
+      "name": "thefnote",
+      "unusual": true
+    },
+    {
+      "name": "thetnote",
+      "unusual": true
+    },
+    {
+      "name": "twitterauthor",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:twitter}}{${2:name}}"
+      }
+    },
+    {
+      "name": "urlauthor",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:URL}}{${2:name}}"
+      }
+    },
+    {
+      "name": "verso",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content%text}}"
+      }
+    },
+    {
+      "name": "wfighcorr",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:hcorr}}"
+      }
+    },
+    {
+      "name": "wfighspace",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:hspace}}"
+      }
+    },
+    {
+      "name": "wfigvcorr",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:vcorr}}"
+      }
+    },
+    {
+      "name": "wfigvspace",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:vspace}}"
+      }
+    },
+    {
+      "name": "wfigwidth",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:width}}"
+      }
+    },
+    {
+      "name": "wrAun",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "wrAux",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "writemarks",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "wrShipAun",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "wrShipAux",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "xst",
+      "unusual": true,
+      "arg": {
+        "format": "[][]",
+        "snippet": "[${1:height}][${2:depth}]"
+      }
+    },
+    {
+      "name": "xstrut",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:height}}{${2:depth}}"
+      }
+    }
+  ],
+  "envs": [
+    {
       "name": "abstract",
-      "snippet": "[${1:title}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:title%text}]"
+      }
     },
-    "enumerate[]": {
+    {
       "name": "enumerate",
-      "snippet": "[${1:itemlabel}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:itemlabel}]"
+      }
     },
-    "figure*[]": {
+    {
       "name": "figure*",
-      "snippet": "[${1:options}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     },
-    "figure[]": {
+    {
       "name": "figure",
-      "snippet": "[${1:options}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     },
-    "graphicalabstract": {},
-    "graphicalabstract[]": {
+    {
+      "name": "graphicalabstract"
+    },
+    {
       "name": "graphicalabstract",
-      "snippet": "[${1:title}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:title%text}]"
+      }
     },
-    "highlights": {},
-    "highlights[]": {
+    {
+      "name": "highlights"
+    },
+    {
       "name": "highlights",
-      "snippet": "[${1:title}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:title%text}]"
+      }
     },
-    "keywords": {},
-    "keywords[]": {
+    {
+      "name": "keywords"
+    },
+    {
       "name": "keywords",
-      "snippet": "[${1:title}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:title%text}]"
+      }
     },
-    "table*[]": {
+    {
       "name": "table*",
-      "snippet": "[${1:options}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     },
-    "table[]": {
+    {
       "name": "table",
-      "snippet": "[${1:options}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     },
-    "Abstract": {},
-    "Abstract[]": {
+    {
       "name": "Abstract",
-      "snippet": "[${1:title}]"
+      "unusual": true
     },
-    "augroup": {},
-    "biography[]{}": {
+    {
+      "name": "Abstract",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:title%text}]"
+      }
+    },
+    {
+      "name": "augroup",
+      "unusual": true
+    },
+    {
       "name": "biography",
-      "snippet": "[${2:title}]{${1:imagefile}}"
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:title%text}]{${1:imagefile}}"
+      }
     },
-    "biography{}": {
+    {
       "name": "biography",
-      "snippet": "{${1:imagefile}}"
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
     },
-    "collaboration": {},
-    "collaboration[]": {
+    {
       "name": "collaboration",
-      "snippet": "[${1:title}]"
+      "unusual": true
     },
-    "PrelimsAbstract": {},
-    "PrelimsAbstract[]": {
+    {
+      "name": "collaboration",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:title%text}]"
+      }
+    },
+    {
       "name": "PrelimsAbstract",
-      "snippet": "[${1:title}]"
+      "unusual": true
+    },
+    {
+      "name": "PrelimsAbstract",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:title%text}]"
+      }
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
-      "organizationsep=${1:punctuation}",
-      "addresslinesep=${1:punctuation}",
-      "citysep=${1:punctuation}",
-      "postcodesep=${1:punctuation}",
-      "statesep=${1:punctuation}",
-      "countrysep=${1:punctuation}",
-      "organization={${1:organization}}",
-      "addressline={${1:address}}",
-      "city={${1:city}}",
-      "postcode={${1:postcode}}",
-      "state={${1:state}}",
-      "country={${1:country}}"
+  ],
+  "keys": {
+    "\\title#c": [
+      "mode=${1|title,alt,sub,trans,transsub,ascii\r|}"
     ],
-    [
-      "auid=",
-      "bioid=",
-      "alt=",
-      "style=",
-      "prefix=",
-      "suffix=",
-      "degree=",
-      "role=",
-      "orcid=",
-      "collab=",
-      "type=${1|author,editor,collab,anon|}",
+    "\\affiliation#c": [
+      "organizationsep=${1:punctuation}\r",
+      "addresslinesep=${1:punctuation}\r",
+      "citysep=${1:punctuation}\r",
+      "postcodesep=${1:punctuation}\r",
+      "statesep=${1:punctuation}\r",
+      "countrysep=${1:punctuation}\r",
+      "organization={${1:organization}}\r",
+      "addressline={${1:address}}\r",
+      "city={${1:city}}\r",
+      "postcode={${1:postcode}}\r",
+      "state={${1:state}}\r",
+      "country={${1:country}}\r"
+    ],
+    "\\author#c": [
+      "auid=\r",
+      "bioid=\r",
+      "alt=\r",
+      "style=\r",
+      "prefix=\r",
+      "suffix=\r",
+      "degree=\r",
+      "role=\r",
+      "orcid=\r",
+      "collab=\r",
+      "type=${1|author,editor,collab,anon\r|}",
       "anon",
       "deceased",
-      "twitter=",
-      "facebook=",
-      "linkedin=",
-      "plus=",
-      "gplus="
+      "twitter=\r",
+      "facebook=\r",
+      "linkedin=\r",
+      "plus=\r",
+      "gplus=\r"
     ],
-    [
-      "alt={${1:alt text}}",
-      "bb=${1:llx lly urx ury}",
-      "bbllx=",
-      "bblly=",
-      "bburx=",
-      "bbury=",
-      "natwidth=",
-      "natheight=",
+    "\\WrapFigure,\\bio": [
+      "alt={${1:alt text}}\r",
+      "bb=${1:llx lly urx ury}\r",
+      "bbllx=\r",
+      "bblly=\r",
+      "bburx=\r",
+      "bbury=\r",
+      "natwidth=\r",
+      "natheight=\r",
       "hiresbb",
-      "pagebox=${1|mediabox,cropbox,bleedbox,trimbox,artbox|}",
-      "viewport=${1:llx lly urx ury}",
-      "trim=${1:llx lly urx ury}",
-      "angle=${1:degrees}",
-      "origin=",
+      "pagebox=${1|mediabox,cropbox,bleedbox,trimbox,artbox\r|}",
+      "viewport=${1:llx lly urx ury}\r",
+      "trim=${1:llx lly urx ury}\r",
+      "angle=${1:degrees}\r",
+      "origin=\r",
       "width=",
       "height=",
       "totalheight=",
       "keepaspectratio",
-      "scale=${1:factor}",
+      "scale=${1:factor}\r",
       "clip",
       "draft",
-      "type=${1:file type}",
-      "ext=${1:file extension}",
-      "read=${1:read-file extension}",
-      "command=",
-      "quiet",
-      "page=${1:page number}",
+      "type=${1:file type}\r",
+      "ext=${1:file extension}\r",
+      "read=${1:read-file extension}\r",
+      "command=\r",
+      "quiet\r",
+      "page=${1:page number}\r",
       "interpolate",
-      "decodearray={${1:color array}}"
-    ],
-    [
-      "mode=${1|title,alt,sub,trans,transsub,ascii|}"
+      "decodearray={${1:color array}}\r"
     ]
-  ]
+  },
+  "args": []
 }

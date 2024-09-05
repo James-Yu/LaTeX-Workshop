@@ -1,20 +1,34 @@
 {
-  "includes": {
-    "ifluatex": [],
-    "ifxetex": [],
-    "xkeyval": []
-  },
-  "macros": {
-    "comfortaa": {},
-    "comfortaafamily": {},
-    "fcofamily": {}
-  },
-  "envs": {},
-  "options": [
-    "scaled=${1:factor}",
-    "default",
-    "defaultsans",
-    "type1"
+  "deps": [
+    {
+      "name": "ifluatex"
+    },
+    {
+      "name": "ifxetex"
+    },
+    {
+      "name": "xkeyval"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "comfortaa"
+    },
+    {
+      "name": "comfortaafamily",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/comfortaa#c": [
+      "scaled=${1:factor}\r",
+      "default\r",
+      "defaultsans\r",
+      "type1\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/comfortaa#c"
+  ]
 }

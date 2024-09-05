@@ -1,520 +1,810 @@
 {
-  "includes": {
-    "amssymb": [],
-    "etoolbox": [],
-    "ifthen": [],
-    "bm": [],
-    "tikzlibrarycd": [],
-    "tikzlibrarybackgrounds": [],
-    "tikzlibrarypositioning": [],
-    "tikzlibraryshapes": [],
-    "tikzlibrarycalc": [],
-    "tikzlibraryintersections": []
-  },
-  "macros": {
-    "zx{}": {
-      "snippet": "zx{${1:diagram}}"
+  "deps": [
+    {
+      "name": "amssymb"
     },
-    "zx[]{}": {
-      "snippet": "zx[${2:options}]{${1:diagram}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "etoolbox"
     },
-    "zxEmptyDiagram": {},
-    "zxNone{}": {
-      "snippet": "zxNone{${1:text}}"
+    {
+      "name": "ifthen"
     },
-    "zxN{}": {
-      "snippet": "zxN{${1:text}}"
+    {
+      "name": "bm"
     },
-    "zxNoneDouble{}": {
-      "snippet": "zxNoneDouble{${1:text}}"
+    {
+      "name": "tikzlibrarycd"
     },
-    "zxFracZ{}{}": {
-      "snippet": "zxFracZ{${1:numerator}}{${2:denominator}}"
+    {
+      "name": "tikzlibrarybackgrounds"
     },
-    "zxFracZ{}[][]{}": {
-      "snippet": "zxFracZ{${1:numerator}}[${2:num with parens}][${3:denom with parens}]{${4:denominator}}"
+    {
+      "name": "tikzlibrarypositioning"
     },
-    "zxFracX{}{}": {
-      "snippet": "zxFracX{${1:numerator}}{${2:denominator}}"
+    {
+      "name": "tikzlibraryshapes"
     },
-    "zxZ{}": {
-      "snippet": "zxZ{${1:text}}"
+    {
+      "name": "tikzlibrarycalc"
     },
-    "zxZ[]{}": {
-      "snippet": "zxZ[${2:options}]{${1:text}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "zxZ*{}": {
-      "snippet": "zxZ*{${1:text}}"
-    },
-    "zxZ[]*{}": {
-      "snippet": "zxZ[${2:options}]*{${1:text}}"
-    },
-    "zxX{}": {
-      "snippet": "zxX{${1:text}}"
-    },
-    "zxX[]{}": {
-      "snippet": "zxX[${2:options}]{${1:text}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "zxX*{}": {
-      "snippet": "zxX*{${1:text}}"
-    },
-    "zxX[]*{}": {
-      "snippet": "zxX[${2:options}]*{${1:text}}"
-    },
-    "zxH{}": {
-      "snippet": "zxH{${1:text}}"
-    },
-    "zxH[]{}": {
-      "snippet": "zxH[${2:options}]{${1:text}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "leftManyDots{}": {
-      "snippet": "leftManyDots{${1:text}}"
-    },
-    "leftManyDots[]{}": {
-      "snippet": "leftManyDots[${2:text scale}]{${1:text}}"
-    },
-    "leftManyDots[][]{}": {
-      "snippet": "leftManyDots[${2:text scale}][${3:dots scale}]{${1:text}}"
-    },
-    "rightManyDots{}": {
-      "snippet": "rightManyDots{${1:text}}"
-    },
-    "rightManyDots[]{}": {
-      "snippet": "rightManyDots[${2:text scale}]{${1:text}}"
-    },
-    "rightManyDots[][]{}": {
-      "snippet": "rightManyDots[${2:text scale}][${3:dots scale}]{${1:text}}"
-    },
-    "middleManyDots": {},
-    "zxLoop{}": {
-      "snippet": "zxLoop{${1:}}"
-    },
-    "zxLoop[]{}": {
-      "snippet": "zxLoop[${2:dir angle}]{${1:}}"
-    },
-    "zxLoop[][]{}": {
-      "snippet": "zxLoop[${2:dir angle}][${3:open angle}]{${1:}}"
-    },
-    "zxLoop[][][]{}": {
-      "snippet": "zxLoop[${2:dir angle}][${3:open angle}][${4:styles}]{${1:}}"
-    },
-    "zxLoopAboveDots{}": {
-      "snippet": "zxLoopAboveDots{${1:}}"
-    },
-    "zxLoopAboveDots[]{}": {
-      "snippet": "zxLoopAboveDots[${2:open angle}]{${1:}}"
-    },
-    "zxLoopAboveDots[][]{}": {
-      "snippet": "zxLoopAboveDots[${2:open angle}][${3:styles}]{${1:}}"
-    },
-    "zxDebugMode": {},
-    "arrow[]": {
-      "snippet": "arrow[${1:options}]",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "arrow[]{}": {
-      "snippet": "arrow[${2:options}]{${1:direction}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "ar[]": {
-      "snippet": "ar[${1:options}]",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "rar[]{}": {
-      "snippet": "rar[${2:options}]{${1:labels}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "lar[]{}": {
-      "snippet": "lar[${2:options}]{${1:labels}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "dar[]{}": {
-      "snippet": "dar[${2:options}]{${1:labels}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "uar[]{}": {
-      "snippet": "uar[${2:options}]{${1:labels}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "drar[]{}": {
-      "snippet": "drar[${2:options}]{${1:labels}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "urar[]{}": {
-      "snippet": "urar[${2:options}]{${1:labels}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "dlar[]{}": {
-      "snippet": "dlar[${2:options}]{${1:labels}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "ular[]{}": {
-      "snippet": "ular[${2:options}]{${1:labels}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "zxConvertToFracInContent": {},
-    "zxConvertToFracInLabel": {},
-    "zxMinusInShort": {},
-    "zxHCol": {},
-    "zxHRow": {},
-    "zxHColFlat": {},
-    "zxHRowFlat": {},
-    "zxSCol": {},
-    "zxSRow": {},
-    "zxSColFlat": {},
-    "zxSRowFlat": {},
-    "zxHSCol": {},
-    "zxHSRow": {},
-    "zxHSColFlat": {},
-    "zxHSRowFlat": {},
-    "zxWCol": {},
-    "zxWRow": {},
-    "zxwCol": {},
-    "zxwRow": {},
-    "zxDotsCol": {},
-    "zxDotsRow": {},
-    "zxZeroCol": {},
-    "zxZeroRow": {},
-    "zxNCol": {},
-    "zxNRow": {},
-    "zxDefaultColumnSep": {},
-    "zxDefaultRowSep": {},
-    "zxDefaultSoftAngleS": {},
-    "zxDefaultSoftAngleN": {},
-    "zxDefaultSoftAngleO": {},
-    "zxDefaultSoftAngleChevron": {},
-    "zxScaleDots": {},
-    "zxMinus": {},
-    "zxEdgesAbove": {},
-    "zxControlPointsVisible": {},
-    "zxEnableIntersections": {},
-    "zxDisableIntersections": {},
-    "zxEnableIntersectionsNodes": {},
-    "zxEnableIntersectionsWires": {},
-    "zxIntersectionLineBetweenStartEnd": {},
-    "zxDefaultLineWidth": {},
-    "zxSaveDiagram{}{}": {
-      "snippet": "zxSaveDiagram{${1:cmd}}{${2:diagram}}"
-    },
-    "zxSaveDiagram{}[]{}": {
-      "snippet": "zxSaveDiagram{${1:cmd}}[${2:options}]{${3:diagram}}"
-    },
-    "chdots": {},
-    "controlOne": {},
-    "controlTwo": {},
-    "cvdots": {},
-    "cvdotsAboveBaseline": {},
-    "cvdotsCenterBaseline": {},
-    "cvdotsCenterMathline": {},
-    "ifAnchorExists{}{}{}{}": {
-      "snippet": "ifAnchorExists{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "ifAnchorExistsFromShape{}{}{}{}": {
-      "snippet": "ifAnchorExistsFromShape{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "ifPgfpointOrNode{}{}{}": {
-      "snippet": "ifPgfpointOrNode{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "StartPoint": {},
-    "TargetPoint": {},
-    "zxChooseStyle{}{}{}{}": {
-      "snippet": "zxChooseStyle{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "zxMaxDepthPlusHeight": {},
-    "zxMaxRatio": {},
-    "zxUseDiagram{}": {
-      "snippet": "zxUseDiagram{${1:arg}}"
-    },
-    "zxWireInsideIfNoIntersectionName": {}
-  },
-  "envs": {
-    "ZX": {},
-    "ZX[]": {
-      "name": "ZX",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "tikzlibraryintersections"
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
-      "every diagram",
-      "diagrams={${1:options}}",
-      "every matrix",
-      "every cell",
-      "cells={${1:options}}",
+  ],
+  "macros": [
+    {
+      "name": "zx",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:diagram%formula}}"
+      }
+    },
+    {
+      "name": "zx",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:diagram%formula}}"
+      }
+    },
+    {
+      "name": "zxEmptyDiagram"
+    },
+    {
+      "name": "zxNone",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "zxNone|",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "zxN",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "zxN|",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "zxNoneDouble",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "zxNoneDouble|",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "zxFracZ",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:numerator}}{${2:denominator}}"
+      }
+    },
+    {
+      "name": "zxFracZ",
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "{${1:numerator}}[${3:num with parens}][${4:denom with parens}]{${2:denominator}}"
+      }
+    },
+    {
+      "name": "zxFracX",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:numerator}}{${2:denominator}}"
+      }
+    },
+    {
+      "name": "zxZ",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "zxZ",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "zxZ*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "zxZ",
+      "arg": {
+        "format": "[]*{}",
+        "snippet": "[${2:options%keyvals}]*{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "zxX",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "zxX",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "zxX*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "zxX",
+      "arg": {
+        "format": "[]*{}",
+        "snippet": "[${2:options%keyvals}]*{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "zxH",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "zxH",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "leftManyDots",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "leftManyDots",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:text scale}]{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "leftManyDots",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:text scale}][${3:dots scale}]{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "rightManyDots",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "rightManyDots",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:text scale}]{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "rightManyDots",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:text scale}][${3:dots scale}]{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "middleManyDots"
+    },
+    {
+      "name": "zxLoop",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:}}"
+      }
+    },
+    {
+      "name": "zxLoop",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:dir angle}]{${1:}}"
+      }
+    },
+    {
+      "name": "zxLoop",
+      "unusual": true,
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:dir angle}][${3:open angle}]{${1:}}"
+      }
+    },
+    {
+      "name": "zxLoop",
+      "arg": {
+        "format": "[][][]{}",
+        "snippet": "[${2:dir angle}][${3:open angle}][${4:styles}]{${1:}}"
+      }
+    },
+    {
+      "name": "zxLoopAboveDots",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:}}"
+      }
+    },
+    {
+      "name": "zxLoopAboveDots",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:open angle}]{${1:}}"
+      }
+    },
+    {
+      "name": "zxLoopAboveDots",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:open angle}][${3:styles}]{${1:}}"
+      }
+    },
+    {
+      "name": "zxDebugMode",
+      "unusual": true
+    },
+    {
+      "name": "arrow",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "arrow",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:direction}}"
+      }
+    },
+    {
+      "name": "ar",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "rar",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:labels}}"
+      }
+    },
+    {
+      "name": "lar",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:labels}}"
+      }
+    },
+    {
+      "name": "dar",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:labels}}"
+      }
+    },
+    {
+      "name": "uar",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:labels}}"
+      }
+    },
+    {
+      "name": "drar",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:labels}}"
+      }
+    },
+    {
+      "name": "urar",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:labels}}"
+      }
+    },
+    {
+      "name": "dlar",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:labels}}"
+      }
+    },
+    {
+      "name": "ular",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:labels}}"
+      }
+    },
+    {
+      "name": "zxConvertToFracInContent",
+      "unusual": true
+    },
+    {
+      "name": "zxConvertToFracInLabel",
+      "unusual": true
+    },
+    {
+      "name": "zxMinusInShort",
+      "unusual": true
+    },
+    {
+      "name": "zxHCol",
+      "unusual": true
+    },
+    {
+      "name": "zxHRow",
+      "unusual": true
+    },
+    {
+      "name": "zxHColFlat",
+      "unusual": true
+    },
+    {
+      "name": "zxHRowFlat",
+      "unusual": true
+    },
+    {
+      "name": "zxSCol",
+      "unusual": true
+    },
+    {
+      "name": "zxSRow",
+      "unusual": true
+    },
+    {
+      "name": "zxSColFlat",
+      "unusual": true
+    },
+    {
+      "name": "zxSRowFlat",
+      "unusual": true
+    },
+    {
+      "name": "zxHSCol",
+      "unusual": true
+    },
+    {
+      "name": "zxHSRow",
+      "unusual": true
+    },
+    {
+      "name": "zxHSColFlat",
+      "unusual": true
+    },
+    {
+      "name": "zxHSRowFlat",
+      "unusual": true
+    },
+    {
+      "name": "zxWCol",
+      "unusual": true
+    },
+    {
+      "name": "zxWRow",
+      "unusual": true
+    },
+    {
+      "name": "zxwCol",
+      "unusual": true
+    },
+    {
+      "name": "zxwRow",
+      "unusual": true
+    },
+    {
+      "name": "zxDotsCol",
+      "unusual": true
+    },
+    {
+      "name": "zxDotsRow",
+      "unusual": true
+    },
+    {
+      "name": "zxZeroCol",
+      "unusual": true
+    },
+    {
+      "name": "zxZeroRow",
+      "unusual": true
+    },
+    {
+      "name": "zxNCol",
+      "unusual": true
+    },
+    {
+      "name": "zxNRow",
+      "unusual": true
+    },
+    {
+      "name": "zxDefaultColumnSep",
+      "unusual": true
+    },
+    {
+      "name": "zxDefaultRowSep",
+      "unusual": true
+    },
+    {
+      "name": "zxDefaultSoftAngleS",
+      "unusual": true
+    },
+    {
+      "name": "zxDefaultSoftAngleN",
+      "unusual": true
+    },
+    {
+      "name": "zxDefaultSoftAngleO",
+      "unusual": true
+    },
+    {
+      "name": "zxDefaultSoftAngleChevron",
+      "unusual": true
+    },
+    {
+      "name": "zxScaleDots",
+      "unusual": true
+    },
+    {
+      "name": "zxMinus",
+      "unusual": true
+    },
+    {
+      "name": "zxEdgesAbove",
+      "unusual": true
+    },
+    {
+      "name": "zxControlPointsVisible",
+      "unusual": true
+    },
+    {
+      "name": "zxEnableIntersections",
+      "unusual": true
+    },
+    {
+      "name": "zxDisableIntersections",
+      "unusual": true
+    },
+    {
+      "name": "zxEnableIntersectionsNodes",
+      "unusual": true
+    },
+    {
+      "name": "zxEnableIntersectionsWires",
+      "unusual": true
+    },
+    {
+      "name": "zxIntersectionLineBetweenStartEnd",
+      "unusual": true
+    },
+    {
+      "name": "zxDefaultLineWidth",
+      "unusual": true
+    },
+    {
+      "name": "zxSaveDiagram",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:diagram%formula}}"
+      }
+    },
+    {
+      "name": "zxSaveDiagram",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:options%keyvals}]{${2:diagram%formula}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "ZX"
+    },
+    {
+      "name": "ZX",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\zx#c,\\begin{ZX}#c,\\zxSaveDiagram#c": [
+      "every diagram\r",
+      "diagrams={${1:options}}\r",
+      "every matrix\r",
+      "every cell\r",
+      "cells={${1:options}}\r",
       "row sep=",
       "column sep=",
       "sep=",
-      "cramped",
+      "cramped\r",
       "math mode",
       "background color=",
-      "every arrow",
-      "arrows={${1:options}}",
-      "arrow style=${1|Latin Modern,math font,tikz|}",
-      "every label",
-      "labels={${1:options}}",
+      "every arrow\r",
+      "arrows={${1:options}}\r",
+      "arrow style=${1|Latin Modern,math font,tikz\r|}",
+      "every label\r",
+      "labels={${1:options}}\r",
       "center yshift=",
-      "ampersand replacement=${1:macro}",
+      "ampersand replacement=${1:macro}\r",
       "shorten=",
-      "crossing over",
+      "crossing over\r",
       "crossing over clearance=",
-      "marking",
-      "description",
-      "%color",
+      "marking\r",
+      "description\r",
+      "%color\r",
       "color=",
-      "in=${1:degrees}",
-      "out=${1:degrees}",
-      "font=${1:font commands}",
+      "in=${1:degrees}\r",
+      "out=${1:degrees}\r",
+      "font=${1:font commands}\r",
       "line width=",
-      "execute at begin picture={${1:code}}",
-      "math baseline=${1:node alias}",
+      "execute at begin picture={${1:code}}\r",
+      "math baseline=${1:node alias}\r",
       "zx column sep=",
       "zx row sep=",
-      "use diagram={${1:\\name}}{${2:nodes}}",
-      "phase in content",
-      "phase in label",
-      "phase in label={${1:styles}}",
-      "pil",
-      "pil={${1:styles}}",
-      "phase in label above",
-      "phase in label above={${1:styles}}",
-      "pila",
-      "pila={${1:styles}}",
-      "phase in label below",
-      "phase in label below={${1:styles}}",
-      "pilb",
-      "pilb={${1:styles}}",
-      "phase in label right",
-      "phase in label right={${1:styles}}",
-      "pilr",
-      "pilr={${1:styles}}",
-      "phase in label left",
-      "phase in label left={${1:styles}}",
-      "pill",
-      "pill={${1:styles}}",
+      "use diagram={${1:\\name}}{${2:nodes}}\r"
+    ],
+    "\\zx#c,\\begin{ZX}#c,\\zxSaveDiagram#c,\\zxZ#c,\\zxX#c,\\zxH#c": [
+      "phase in content\r",
+      "phase in label\r",
+      "phase in label={${1:styles}}\r",
+      "pil\r",
+      "pil={${1:styles}}\r",
+      "phase in label above\r",
+      "phase in label above={${1:styles}}\r",
+      "pila\r",
+      "pila={${1:styles}}\r",
+      "phase in label below\r",
+      "phase in label below={${1:styles}}\r",
+      "pilb\r",
+      "pilb={${1:styles}}\r",
+      "phase in label right\r",
+      "phase in label right={${1:styles}}\r",
+      "pilr\r",
+      "pilr={${1:styles}}\r",
+      "phase in label left\r",
+      "phase in label left={${1:styles}}\r",
+      "pill\r",
+      "pill={${1:styles}}\r",
       "text="
     ],
-    [
-      "phase in content",
-      "phase in label",
-      "phase in label={${1:styles}}",
-      "pil",
-      "pil={${1:styles}}",
-      "phase in label above",
-      "phase in label above={${1:styles}}",
-      "pila",
-      "pila={${1:styles}}",
-      "phase in label below",
-      "phase in label below={${1:styles}}",
-      "pilb",
-      "pilb={${1:styles}}",
-      "phase in label right",
-      "phase in label right={${1:styles}}",
-      "pilr",
-      "pilr={${1:styles}}",
-      "phase in label left",
-      "phase in label left={${1:styles}}",
-      "pill",
-      "pill={${1:styles}}",
-      "text=",
-      "a=${1:alias}"
+    "\\zxZ#c,\\zxX#c,\\zxH#c": [
+      "a=${1:alias}\r"
     ],
-    [
-      "C",
-      "C=${1:radius ratio}",
-      "C.",
-      "C.=${1:radius ratio}",
-      "C'",
-      "C'=${1:radius ratio}",
-      "C-",
-      "C-=${1:radius ratio}",
-      "o'",
-      "o'=${1:angle}",
-      "o.",
-      "o.=${1:angle}",
-      "o-",
-      "o-=${1:angle}",
-      "-o",
-      "-o=${1:angle}",
-      "(",
-      "(=${1:angle}",
-      ")",
-      ")=${1:angle}",
-      "('-",
-      "('=${1:angle}",
-      "(.",
-      "(.=${1:angle}",
-      "start fake center north",
-      "start fake center south",
-      "start fake center east",
-      "start fake center west",
-      "start real center",
-      "end fake center north",
-      "end fake center south",
-      "end fake center east",
-      "end fake center west",
-      "end real center",
-      "left to right",
-      "right to left",
-      "up to down",
-      "down to up",
-      "force left to right",
-      "force right to left",
-      "force up to down",
-      "force down to up",
-      "no fake center",
-      "s",
-      "s=${1:-andL config}",
-      "s'",
-      "s'=${1:-andL config}",
-      "s.",
-      "s.=${1:-andL config}",
-      "-s",
-      "-s=${1:-andL config}",
-      "-s'",
-      "-s'=${1:-andL config}",
-      "-s.",
-      "-s.=${1:-andL config}",
-      "s'-",
-      "s'-=${1:-andL config}",
-      "s.-",
-      "s.-=${1:-andL config}",
-      "S",
-      "S=${1:-andL config}",
-      "S'",
-      "S'=${1:-andL config}",
-      "S.",
-      "S.=${1:-andL config}",
-      "-S",
-      "-S=${1:-andL config}",
-      "-S'",
-      "-S'=${1:-andL config}",
-      "-S.",
-      "-S.=${1:-andL config}",
-      "S'-",
-      "S'-=${1:-andL config}",
-      "S.-",
-      "S.-=${1:-andL config}",
-      "ss",
-      "ss=${1:-andL config}",
-      "SS",
-      "SS=${1:-andL config}",
-      "ss.",
-      "ss.=${1:-andL config}",
-      ".ss",
-      ".ss=${1:-andL config}",
-      "sIs.",
-      "sIs.=${1:-andL config}",
-      ".sIs",
-      ".sIs=${1:-andL config}",
-      "ss.I",
-      "ss.I=${1:-andL config}",
-      "I.ss",
-      "I.ss=${1:-andL config}",
-      "SIS",
-      "SIS=${1:-andL config}",
-      ".SIS",
-      ".SIS=${1:-andL config}",
-      "ISS",
-      "ISS=${1:-andL config}",
-      "SS.I",
-      "SS.I=${1:-andL config}",
-      "I.SS",
-      "I.SS=${1:-andL config}",
-      "SSI",
-      "SSI=${1:-andL config}",
-      "N",
-      "N=${1:-andL config}",
-      "N'",
-      "N'=${1:-andL config}",
-      "N.",
-      "N.=${1:-andL config}",
-      "-N",
-      "-N=${1:-andL config}",
-      "-N'",
-      "-N'=${1:-andL config}",
-      "-N.",
-      "-N.=${1:-andL config}",
-      "N-",
-      "N-=${1:-andL config}",
-      "N'",
-      "N'=${1:-andL config}",
-      "N.",
-      "N.=${1:-andL config}",
-      "Nbase",
-      "Nbase=${1:-andL config}",
-      "NN",
-      "NN=${1:-andL config}",
-      "NN.",
-      "NN.=${1:-andL config}",
-      ".NN",
-      ".NN=${1:-andL config}",
-      "NIN",
-      "NIN=${1:-andL config}",
-      "INN",
-      "INN=${1:-andL config}",
-      "NNI",
-      "NNI=${1:-andL config}",
-      "<'",
-      "<'=${1:-andL config}",
-      "<.",
-      "<.=${1:-andL config}",
-      "'>",
-      "'>=${1:-andL config}",
-      ".>",
-      ".>=${1:-andL config}",
-      "'v",
-      "'v=${1:-andL config}",
-      "v'",
-      "v'=${1:-andL config}",
-      ".^",
-      ".^=${1:-andL config}",
-      "^.",
-      "^.=${1:-andL config}",
-      "3 dots",
-      "3 dots=${1:text}",
-      "3 vdots",
-      "3 vdots=${1:text}",
-      "H",
-      "H={${1:styles}}",
-      "Z",
-      "Z={${1:styles}}",
-      "X",
-      "X={${1:styles}}",
-      "wire centered",
-      "wc",
-      "wire centered start",
-      "wcs",
-      "wire centered end",
-      "wce",
-      "edge above",
-      "edge not above",
-      "control points visible",
-      "control points not visible",
-      "use intersections",
-      "dont use intersections",
-      "ui"
+    "\\arrow#c,\\ar#c,\\rar#c,\\lar#c,\\dar#c,\\uar#c,\\drar#c,\\urar#c,\\dlar#c,\\ular#c": [
+      "C\r",
+      "C=${1:radius ratio}\r",
+      "C.\r",
+      "C.=${1:radius ratio}\r",
+      "C'\r",
+      "C'=${1:radius ratio}\r",
+      "C-\r",
+      "C-=${1:radius ratio}\r",
+      "o'\r",
+      "o'=${1:angle}\r",
+      "o.\r",
+      "o.=${1:angle}\r",
+      "o-\r",
+      "o-=${1:angle}\r",
+      "-o\r",
+      "-o=${1:angle}\r",
+      "(\r",
+      "(=${1:angle}\r",
+      ")\r",
+      ")=${1:angle}\r",
+      "('-\r",
+      "('=${1:angle}\r",
+      "(.\r",
+      "(.=${1:angle}\r",
+      "start fake center north\r",
+      "start fake center south\r",
+      "start fake center east\r",
+      "start fake center west\r",
+      "start real center\r",
+      "end fake center north\r",
+      "end fake center south\r",
+      "end fake center east\r",
+      "end fake center west\r",
+      "end real center\r",
+      "left to right\r",
+      "right to left\r",
+      "up to down\r",
+      "down to up\r",
+      "force left to right\r",
+      "force right to left\r",
+      "force up to down\r",
+      "force down to up\r",
+      "no fake center\r",
+      "s\r",
+      "s=${1:-andL config}\r",
+      "s'\r",
+      "s'=${1:-andL config}\r",
+      "s.\r",
+      "s.=${1:-andL config}\r",
+      "-s\r",
+      "-s=${1:-andL config}\r",
+      "-s'\r",
+      "-s'=${1:-andL config}\r",
+      "-s.\r",
+      "-s.=${1:-andL config}\r",
+      "s'-\r",
+      "s'-=${1:-andL config}\r",
+      "s.-\r",
+      "s.-=${1:-andL config}\r",
+      "S\r",
+      "S=${1:-andL config}\r",
+      "S'\r",
+      "S'=${1:-andL config}\r",
+      "S.\r",
+      "S.=${1:-andL config}\r",
+      "-S\r",
+      "-S=${1:-andL config}\r",
+      "-S'\r",
+      "-S'=${1:-andL config}\r",
+      "-S.\r",
+      "-S.=${1:-andL config}\r",
+      "S'-\r",
+      "S'-=${1:-andL config}\r",
+      "S.-\r",
+      "S.-=${1:-andL config}\r",
+      "ss\r",
+      "ss=${1:-andL config}\r",
+      "SS\r",
+      "SS=${1:-andL config}\r",
+      "ss.\r",
+      "ss.=${1:-andL config}\r",
+      ".ss\r",
+      ".ss=${1:-andL config}\r",
+      "sIs.\r",
+      "sIs.=${1:-andL config}\r",
+      ".sIs\r",
+      ".sIs=${1:-andL config}\r",
+      "ss.I\r",
+      "ss.I=${1:-andL config}\r",
+      "I.ss\r",
+      "I.ss=${1:-andL config}\r",
+      "SIS\r",
+      "SIS=${1:-andL config}\r",
+      ".SIS\r",
+      ".SIS=${1:-andL config}\r",
+      "ISS\r",
+      "ISS=${1:-andL config}\r",
+      "SS.I\r",
+      "SS.I=${1:-andL config}\r",
+      "I.SS\r",
+      "I.SS=${1:-andL config}\r",
+      "SSI\r",
+      "SSI=${1:-andL config}\r",
+      "N\r",
+      "N=${1:-andL config}\r",
+      "N'\r",
+      "N'=${1:-andL config}\r",
+      "N.\r",
+      "N.=${1:-andL config}\r",
+      "-N\r",
+      "-N=${1:-andL config}\r",
+      "-N'\r",
+      "-N'=${1:-andL config}\r",
+      "-N.\r",
+      "-N.=${1:-andL config}\r",
+      "N-\r",
+      "N-=${1:-andL config}\r",
+      "N'\r",
+      "N'=${1:-andL config}\r",
+      "N.\r",
+      "N.=${1:-andL config}\r",
+      "Nbase\r",
+      "Nbase=${1:-andL config}\r",
+      "NN\r",
+      "NN=${1:-andL config}\r",
+      "NN.\r",
+      "NN.=${1:-andL config}\r",
+      ".NN\r",
+      ".NN=${1:-andL config}\r",
+      "NIN\r",
+      "NIN=${1:-andL config}\r",
+      "INN\r",
+      "INN=${1:-andL config}\r",
+      "NNI\r",
+      "NNI=${1:-andL config}\r",
+      "<'\r",
+      "<'=${1:-andL config}\r",
+      "<.\r",
+      "<.=${1:-andL config}\r",
+      "'>\r",
+      "'>=${1:-andL config}\r",
+      ".>\r",
+      ".>=${1:-andL config}\r",
+      "'v\r",
+      "'v=${1:-andL config}\r",
+      "v'\r",
+      "v'=${1:-andL config}\r",
+      ".^\r",
+      ".^=${1:-andL config}\r",
+      "^.\r",
+      "^.=${1:-andL config}\r",
+      "3 dots\r",
+      "3 dots=${1:text}\r",
+      "3 vdots\r",
+      "3 vdots=${1:text}\r",
+      "H\r",
+      "H={${1:styles}}\r",
+      "Z\r",
+      "Z={${1:styles}}\r",
+      "X\r",
+      "X={${1:styles}}\r",
+      "wire centered\r",
+      "wc\r",
+      "wire centered start\r",
+      "wcs\r",
+      "wire centered end\r",
+      "wce\r",
+      "edge above\r",
+      "edge not above\r",
+      "control points visible\r",
+      "control points not visible\r",
+      "use intersections\r",
+      "dont use intersections\r",
+      "ui\r"
     ]
-  ]
+  },
+  "args": []
 }

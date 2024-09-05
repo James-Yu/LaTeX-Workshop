@@ -1,40 +1,63 @@
 {
-  "includes": {
-    "insdljs": [],
-    "eforms": []
-  },
-  "macros": {
-    "pgfplotsclickablecreate[]": {
-      "snippet": "pgfplotsclickablecreate[${1:keyvals}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "insdljs"
     },
-    "pgfplotscatcodeDQ": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "js fillColor=${1:JavaScript color}",
-      "point format={${1:sprintf-format}}",
-      "point format 3d={${1:sprintf-format}}",
-      "slope format={${1:sprintf-format}}",
+    {
+      "name": "eforms"
+    }
+  ],
+  "macros": [
+    {
+      "name": "pgfplotsclickablecreate",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:keyvals}]"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\begin{axis}#c,\\begin{loglogaxis}#c,\\begin{semilogxaxis}#c,\\begin{semilogyaxis}#c,\\addplot#c,\\addplot3#c,\\addplot+#c,\\pgfplotsset#c,\\begin{groupplot}#c,\\nextgroupplot#c,\\begin{smithchart}#c,\\begin{polaraxis}#c,\\begin{ternaryaxis}#c": [
+      "clickable coords={${1:displayed text}}\r",
+      "clickable coords code={${1:TeX code}}\r",
+      "clickable coords size=${1:max chars}\r",
+      "clickable",
+      "annot/js fillColor=${1:JavaScript color}\r",
+      "annot/point format={${1:sprintf-format}}\r",
+      "annot/point format 3d={${1:sprintf-format}}\r",
+      "annot/slope format={${1:sprintf-format}}\r",
+      "annot/printable",
+      "annot/font=${1:JavaScript font name}\r",
+      "annot/textSize=${1:size in pts}\r",
+      "annot/popup size generic=${1:number}\r",
+      "annot/popup size snap=${1:number}\r",
+      "annot/popup size=${1:number}\r",
+      "annot/snap dist=${1:size in pts}\r",
+      "annot/richtext"
+    ],
+    "\\pgfplotsclickablecreate#c": [
+      "js fillColor=${1:JavaScript color}\r",
+      "point format={${1:sprintf-format}}\r",
+      "point format 3d={${1:sprintf-format}}\r",
+      "slope format={${1:sprintf-format}}\r",
       "printable",
-      "font=${1:JavaScript font name}",
-      "textSize=${1:size in pts}",
-      "popup size generic=${1:number}",
-      "popup size snap=${1:number}",
-      "popup size=${1:number}",
-      "snap dist=${1:size in pts}",
+      "font=${1:JavaScript font name}\r",
+      "textSize=${1:size in pts}\r",
+      "popup size generic=${1:number}\r",
+      "popup size snap=${1:number}\r",
+      "popup size=${1:number}\r",
+      "snap dist=${1:size in pts}\r",
       "richtext",
       "width=",
       "height=",
-      "jsname=${1:string}",
-      "xmin=${1:number}",
-      "xmax=${1:number}",
-      "ymin=${1:number}",
-      "ymax=${1:number}",
-      "collected plots"
+      "jsname=${1:string}\r",
+      "xmin=${1:number}\r",
+      "xmax=${1:number}\r",
+      "ymin=${1:number}\r",
+      "ymax=${1:number}\r",
+      "collected plots\r"
     ]
-  ]
+  },
+  "args": []
 }

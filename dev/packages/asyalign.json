@@ -1,27 +1,60 @@
 {
-  "includes": {
-    "ifpdf": []
-  },
-  "macros": {
-    "ASYbox": {},
-    "ASYdimen": {},
-    "ASYbase{}{}": {
-      "snippet": "ASYbase{${1:arg1}}{${2:arg2}}"
-    },
-    "ASYaligned()(){}{}{}": {
-      "snippet": "ASYaligned(${4:x1},${5:y1})(${6:x2},${7:y2}){${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "ASYalignT()(){}{}": {
-      "snippet": "ASYalignT(${3:x1},${4:y1})(${5:x2},${6:y2}){${1:arg1}}{${2:arg2}}"
-    },
-    "ASYalign()(){}": {
-      "snippet": "ASYalign(${2:x1},${3:y1})(${4:x2},${5:y2}){${1:arg}}"
-    },
-    "ASYraw{}": {
-      "snippet": "ASYraw{${1:arg}}"
+  "deps": [
+    {
+      "name": "ifpdf"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "ASYbox",
+      "unusual": true
+    },
+    {
+      "name": "ASYdimen",
+      "unusual": true
+    },
+    {
+      "name": "ASYbase",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "ASYaligned(x1,y1)(x2,y2)",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "ASYalignT(x1,y1)(x2,y2)",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "ASYalign(x1,y1)(x2,y2)",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "ASYraw",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

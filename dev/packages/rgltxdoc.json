@@ -1,136 +1,356 @@
 {
-  "includes": {
-    "ifluatex": [],
-    "etoolbox": [],
-    "inputenc": [],
-    "babel": [],
-    "geometry": [],
-    "typearea": [],
-    "fontenc": [],
-    "lmodern": [],
-    "microtype": [],
-    "csquotes": [],
-    "enumitem": [],
-    "idxlayout": [],
-    "amsmath": [],
-    "varioref": [],
-    "hypdoc": [],
-    "cleveref": [],
-    "doc": [],
-    "pbox": [],
-    "keyvaltable": [],
-    "hologo": [],
-    "showexpl": []
-  },
-  "macros": {
-    "NiceDescribeMacro{}{}": {
-      "snippet": "NiceDescribeMacro{${1:macro}}{${2:parameters}}"
+  "deps": [
+    {
+      "name": "ifluatex"
     },
-    "NiceDescribeMacro[]{}{}": {
-      "snippet": "NiceDescribeMacro[${3:idx}]{${1:macro}}{${2:parameters}}"
+    {
+      "name": "etoolbox"
     },
-    "NiceDescribeEnv{}{}": {
-      "snippet": "NiceDescribeEnv{${1:envname}}{${2:parameters}}"
+    {
+      "name": "inputenc"
     },
-    "NiceDescribeEnv[]{}{}": {
-      "snippet": "NiceDescribeEnv[${3:idx}]{${1:envname}}{${2:parameters}}"
+    {
+      "name": "babel"
     },
-    "NiceDescribeCounter{}{}": {
-      "snippet": "NiceDescribeCounter{${1:counter}}{${2:qualifiers}}"
+    {
+      "name": "geometry"
     },
-    "NiceDescribeCounter[]{}{}": {
-      "snippet": "NiceDescribeCounter[${3:idx}]{${1:counter}}{${2:qualifiers}}"
+    {
+      "name": "typearea"
     },
-    "NiceDescribeKey{}{}": {
-      "snippet": "NiceDescribeKey{${1:keyname}}{${2:keyconfig}}"
+    {
+      "name": "fontenc"
     },
-    "NiceDescribeKey[]{}{}": {
-      "snippet": "NiceDescribeKey[${3:idx}]{${1:keyname}}{${2:keyconfig}}"
+    {
+      "name": "lmodern"
     },
-    "NewNiceDescription{}{}{}{}": {
-      "snippet": "NewNiceDescription{${1:type}}{${2:efmt}}{${3:afmt}}{${4:icmd}}"
+    {
+      "name": "microtype"
     },
-    "SpecialOtherIndex{}{}{}": {
-      "snippet": "SpecialOtherIndex{${1:type}}{${2:types}}{${3:name}}"
+    {
+      "name": "csquotes"
     },
-    "env{}": {
-      "snippet": "env{${1:envname}}"
+    {
+      "name": "enumitem"
     },
-    "pkgname{}": {
-      "snippet": "pkgname{${1:package}}"
+    {
+      "name": "idxlayout"
     },
-    "pkgnames{}": {
-      "snippet": "pkgnames{${1:package1,${2:package2},...}}"
+    {
+      "name": "amsmath"
     },
-    "cmarg{}": {
-      "snippet": "cmarg{${1:arg}}"
+    {
+      "name": "varioref"
     },
-    "coarg{}": {
-      "snippet": "coarg{${1:arg}}"
+    {
+      "name": "hypdoc"
     },
-    "vmeta{}": {
-      "snippet": "vmeta{${1:arg}}"
+    {
+      "name": "cleveref"
     },
-    "captionsenglish": {},
-    "dateenglish": {},
-    "extrasenglish": {},
-    "noextrasenglish": {},
-    "englishhyphenmins": {},
-    "britishhyphenmins": {},
-    "americanhyphenmins": {},
-    "prefacename": {},
-    "bibname": {},
-    "chaptername": {},
-    "enclname": {},
-    "ccname": {},
-    "headtoname": {},
-    "seename": {},
-    "alsoname": {},
-    "proofname": {},
-    "glossaryname": {},
-    "DH": {},
-    "NG": {},
-    "dj": {},
-    "ng": {},
-    "k{}": {
-      "snippet": "k{${1:arg}}"
+    {
+      "name": "doc"
     },
-    "guillemotleft": {},
-    "guillemotright": {},
-    "guilsinglleft": {},
-    "guilsinglright": {},
-    "quotedblbase": {},
-    "quotesinglbase": {},
-    "textquotedbl": {},
-    "DJ": {},
-    "th": {},
-    "TH": {},
-    "dh": {},
-    "Hwithstroke": {},
-    "hwithstroke": {},
-    "textogonekcentered{}": {
-      "snippet": "textogonekcentered{${1:arg}}"
+    {
+      "name": "pbox"
     },
-    "guillemetleft": {},
-    "guillemetright": {}
-  },
-  "envs": {
-    "enumerate*": {},
-    "enumerate*[]": {
-      "name": "enumerate*",
-      "snippet": "[${1:options}]"
+    {
+      "name": "keyvaltable"
     },
-    "itemize*": {},
-    "itemize*[]": {
-      "name": "itemize*",
-      "snippet": "[${1:options}]"
+    {
+      "name": "hologo"
     },
-    "description*": {},
-    "description*[]": {
-      "name": "description*",
-      "snippet": "[${1:options}]"
+    {
+      "name": "showexpl"
     }
+  ],
+  "macros": [
+    {
+      "name": "NiceDescribeMacro",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:macro%cmd}}{${2:parameters}}"
+      }
+    },
+    {
+      "name": "NiceDescribeMacro",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:idx}]{${1:macro%cmd}}{${2:parameters}}"
+      }
+    },
+    {
+      "name": "NiceDescribeEnv",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:envname}}{${2:parameters}}"
+      }
+    },
+    {
+      "name": "NiceDescribeEnv",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:idx}]{${1:envname}}{${2:parameters}}"
+      }
+    },
+    {
+      "name": "NiceDescribeCounter",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:counter}}{${2:qualifiers}}"
+      }
+    },
+    {
+      "name": "NiceDescribeCounter",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:idx}]{${1:counter}}{${2:qualifiers}}"
+      }
+    },
+    {
+      "name": "NiceDescribeKey",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:keyname}}{${2:keyconfig}}"
+      }
+    },
+    {
+      "name": "NiceDescribeKey",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:idx}]{${1:keyname}}{${2:keyconfig}}"
+      }
+    },
+    {
+      "name": "NewNiceDescription",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:type}}{${2:efmt}}{${3:afmt}}{${4:icmd}}"
+      }
+    },
+    {
+      "name": "SpecialOtherIndex",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:type}}{${2:types}}{${3:name}}"
+      }
+    },
+    {
+      "name": "env",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:envname}}"
+      }
+    },
+    {
+      "name": "pkgname",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:package}}"
+      }
+    },
+    {
+      "name": "pkgnames",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:package1,package2,...}}"
+      }
+    },
+    {
+      "name": "cmarg",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "coarg",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "captionsenglish",
+      "unusual": true
+    },
+    {
+      "name": "dateenglish",
+      "unusual": true
+    },
+    {
+      "name": "extrasenglish",
+      "unusual": true
+    },
+    {
+      "name": "noextrasenglish",
+      "unusual": true
+    },
+    {
+      "name": "englishhyphenmins",
+      "unusual": true
+    },
+    {
+      "name": "britishhyphenmins",
+      "unusual": true
+    },
+    {
+      "name": "americanhyphenmins",
+      "unusual": true
+    },
+    {
+      "name": "prefacename",
+      "unusual": true
+    },
+    {
+      "name": "bibname",
+      "unusual": true
+    },
+    {
+      "name": "chaptername",
+      "unusual": true
+    },
+    {
+      "name": "enclname",
+      "unusual": true
+    },
+    {
+      "name": "ccname",
+      "unusual": true
+    },
+    {
+      "name": "headtoname",
+      "unusual": true
+    },
+    {
+      "name": "seename",
+      "unusual": true
+    },
+    {
+      "name": "alsoname",
+      "unusual": true
+    },
+    {
+      "name": "proofname",
+      "unusual": true
+    },
+    {
+      "name": "glossaryname",
+      "unusual": true
+    },
+    {
+      "name": "DH"
+    },
+    {
+      "name": "NG"
+    },
+    {
+      "name": "dj"
+    },
+    {
+      "name": "ng"
+    },
+    {
+      "name": "k",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "guillemotleft",
+      "unusual": true
+    },
+    {
+      "name": "guillemotright",
+      "unusual": true
+    },
+    {
+      "name": "guilsinglleft"
+    },
+    {
+      "name": "guilsinglright"
+    },
+    {
+      "name": "quotedblbase"
+    },
+    {
+      "name": "quotesinglbase"
+    },
+    {
+      "name": "textquotedbl"
+    },
+    {
+      "name": "DJ"
+    },
+    {
+      "name": "th"
+    },
+    {
+      "name": "TH"
+    },
+    {
+      "name": "dh"
+    },
+    {
+      "name": "Hwithstroke",
+      "unusual": true
+    },
+    {
+      "name": "hwithstroke",
+      "unusual": true
+    },
+    {
+      "name": "textogonekcentered",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "guillemetleft"
+    },
+    {
+      "name": "guillemetright"
+    }
+  ],
+  "envs": [
+    {
+      "name": "enumerate*"
+    },
+    {
+      "name": "enumerate*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "itemize*"
+    },
+    {
+      "name": "itemize*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "description*"
+    },
+    {
+      "name": "description*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\LTXinputExample,\\begin{LTXexample}": [
+      "morepreset=${1:code}\r"
+    ]
   },
-  "options": [],
-  "keyvals": []
+  "args": []
 }

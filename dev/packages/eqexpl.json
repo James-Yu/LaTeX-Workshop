@@ -1,46 +1,113 @@
 {
-  "includes": {
-    "calc": [],
-    "etoolbox": []
-  },
-  "macros": {
-    "eqexplSetSpace{}": {
-      "snippet": "eqexplSetSpace{${1:space}}"
+  "deps": [
+    {
+      "name": "calc"
     },
-    "eqexplSetIntro{}": {
-      "snippet": "eqexplSetIntro{${1:text}}"
-    },
-    "eqexplSetDelim{}": {
-      "snippet": "eqexplSetDelim{${1:symbol}}"
-    },
-    "eqexplSetItemWidth{}": {
-      "snippet": "eqexplSetItemWidth{${1:width}}"
-    },
-    "eqexplSetItemAlign{}": {
-      "snippet": "eqexplSetItemAlign{${1:align}}"
-    },
-    "item{}": {
-      "snippet": "item{${1:label}}"
-    },
-    "item{}[]": {
-      "snippet": "item{${1:label}}[${2:symbol}]"
-    },
-    "eqexplDelim": {},
-    "eqexplIntro": {},
-    "eqexplItemAlign": {},
-    "eqexplItemWidth": {},
-    "eqexplSpaceWidth": {},
-    "itemWidth": {},
-    "leftSideWidth": {},
-    "olditem": {}
-  },
-  "envs": {
-    "eqexpl": {},
-    "eqexpl[]": {
-      "name": "eqexpl",
-      "snippet": "[${1:width}]"
+    {
+      "name": "etoolbox"
     }
+  ],
+  "macros": [
+    {
+      "name": "eqexplSetSpace",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:space%l}}"
+      }
+    },
+    {
+      "name": "eqexplSetIntro",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "eqexplSetDelim",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol}}"
+      }
+    },
+    {
+      "name": "eqexplSetItemWidth",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:width}}"
+      }
+    },
+    {
+      "name": "eqexplSetItemAlign",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:align%keyvals}}",
+        "keys": [
+          "\\eqexplSetItemAlign"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "item",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "item",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:label}}[${2:symbol}]"
+      }
+    },
+    {
+      "name": "eqexplDelim",
+      "unusual": true
+    },
+    {
+      "name": "eqexplIntro",
+      "unusual": true
+    },
+    {
+      "name": "eqexplItemAlign",
+      "unusual": true
+    },
+    {
+      "name": "eqexplItemWidth",
+      "unusual": true
+    },
+    {
+      "name": "eqexplSpaceWidth",
+      "unusual": true
+    },
+    {
+      "name": "itemWidth",
+      "unusual": true
+    },
+    {
+      "name": "leftSideWidth",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "eqexpl"
+    },
+    {
+      "name": "eqexpl",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:width}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\eqexplSetItemAlign": [
+      "l\r",
+      "c\r",
+      "r\r"
+    ]
   },
-  "options": [],
-  "keyvals": []
+  "args": []
 }

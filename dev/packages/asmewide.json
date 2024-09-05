@@ -1,25 +1,46 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "cuted": [],
-    "flushend": []
-  },
-  "macros": {
-    "savparskip": {}
-  },
-  "envs": {
-    "widetext": {},
-    "widetext[]": {
-      "name": "widetext",
-      "snippet": "[${1:stripsep}]"
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "widetext[][]": {
-      "name": "widetext",
-      "snippet": "[${1:stripsep}][${2:placement}]"
+    {
+      "name": "cuted"
+    },
+    {
+      "name": "flushend"
     }
-  },
-  "options": [
-    "raggedend"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "savparskip",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "widetext"
+    },
+    {
+      "name": "widetext",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:stripsep}]"
+      }
+    },
+    {
+      "name": "widetext",
+      "arg": {
+        "format": "[][]",
+        "snippet": "[${1:stripsep}][${2:placement}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/asmewide#c": [
+      "raggedend\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/asmewide#c"
+  ]
 }

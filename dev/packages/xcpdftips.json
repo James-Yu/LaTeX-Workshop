@@ -1,43 +1,71 @@
 {
-  "includes": {
-    "bibentry": [],
-    "pdfcomment": [],
-    "etoolbox": [],
-    "pdfbase": [
-      "ocg"
-    ],
-    "ocgbase": [
-      "ocg"
-    ],
-    "calc": [
-      "ocg"
-    ],
-    "linegoal": [
-      "ocg"
-    ],
-    "xcolor": [
-      "ocg"
-    ],
-    "tcolorbox": [
-      "tcolorbox"
+  "deps": [
+    {
+      "name": "bibentry"
+    },
+    {
+      "name": "pdfcomment"
+    },
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "pdfbase",
+      "if": "ocg"
+    },
+    {
+      "name": "ocgbase",
+      "if": "ocg"
+    },
+    {
+      "name": "calc",
+      "if": "ocg"
+    },
+    {
+      "name": "linegoal",
+      "if": "ocg"
+    },
+    {
+      "name": "xcolor",
+      "if": "ocg"
+    },
+    {
+      "name": "tcolorbox",
+      "if": "tcolorbox"
+    }
+  ],
+  "macros": [
+    {
+      "name": "xpdfcite",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keylist}}"
+      }
+    },
+    {
+      "name": "xpdfcite",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:postfix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "xpdfcite",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:prefix}][${3:postfix}]{${1:keylist}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/xcpdftips#c": [
+      "redefcite\r",
+      "ocg\r",
+      "tcolorbox\r"
     ]
   },
-  "macros": {
-    "xpdfcite{}": {
-      "snippet": "xpdfcite{${1:keylist}}"
-    },
-    "xpdfcite[]{}": {
-      "snippet": "xpdfcite[${2:postfix}]{${1:keylist}}"
-    },
-    "xpdfcite[][]{}": {
-      "snippet": "xpdfcite[${2:prefix}][${3:postfix}]{${1:keylist}}"
-    }
-  },
-  "envs": {},
-  "options": [
-    "redefcite",
-    "ocg",
-    "tcolorbox"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/xcpdftips#c"
+  ]
 }

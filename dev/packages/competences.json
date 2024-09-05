@@ -1,67 +1,165 @@
 {
-  "includes": {
-    "todonotes": [],
-    "datatool": [],
-    "etoolbox": [],
-    "longtable": []
-  },
-  "macros": {
-    "declareprefix{}": {
-      "snippet": "declareprefix{${1:prefix}}"
+  "deps": [
+    {
+      "name": "todonotes"
     },
-    "declarecompetence{}": {
-      "snippet": "declarecompetence{${1:competence}}"
+    {
+      "name": "datatool"
     },
-    "addGlobalCompetence{}": {
-      "snippet": "addGlobalCompetence{${1:competence}}"
+    {
+      "name": "etoolbox"
     },
-    "addGlobalCompetence[]{}": {
-      "snippet": "addGlobalCompetence[${2:value}]{${1:competence}}"
+    {
+      "name": "longtable"
+    }
+  ],
+  "macros": [
+    {
+      "name": "declareprefix",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:prefix}}"
+      }
     },
-    "addcompetence{}": {
-      "snippet": "addcompetence{${1:competence}}"
+    {
+      "name": "declarecompetence",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:competence}}"
+      }
     },
-    "addcompetence[]{}": {
-      "snippet": "addcompetence[${2:value}]{${1:competence}}"
+    {
+      "name": "addGlobalCompetence",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:competence}}"
+      }
     },
-    "tableaupartie{}": {
-      "snippet": "tableaupartie{${1:partie}}"
+    {
+      "name": "addGlobalCompetence",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:value}]{${1:competence}}"
+      }
     },
-    "tableauprefix{}": {
-      "snippet": "tableauprefix{${1:partie1,${2:partie2},...}}"
+    {
+      "name": "addcompetence",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:competence}}"
+      }
     },
-    "cstotal": {},
-    "dummyMacro": {},
-    "getCurrentSectionNumber": {},
-    "getCurrentpartiedocument": {},
-    "gptotal": {},
-    "gtotal": {},
-    "ifcompexists{}{}{}": {
-      "snippet": "ifcompexists{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    {
+      "name": "addcompetence",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:value}]{${1:competence}}"
+      }
     },
-    "ifpartexists{}{}{}": {
-      "snippet": "ifpartexists{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    {
+      "name": "tableaupartie",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:partie}}"
+      }
     },
-    "ifquestexists{}{}{}": {
-      "snippet": "ifquestexists{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    {
+      "name": "tableauprefix",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:partie1,partie2,...}}"
+      }
     },
-    "partie": {},
-    "pctotal": {},
-    "pftotal": {},
-    "ptotal": {},
-    "quest": {},
-    "sumcspartie{}{}": {
-      "snippet": "sumcspartie{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "cstotal",
+      "unusual": true
     },
-    "sumpfpartie{}{}": {
-      "snippet": "sumpfpartie{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "getCurrentSectionNumber",
+      "unusual": true
     },
-    "tableaucompetences": {},
-    "total": {}
-  },
-  "envs": {
-    "dummyEnv": {}
-  },
-  "options": [],
-  "keyvals": []
+    {
+      "name": "getCurrentpartiedocument",
+      "unusual": true
+    },
+    {
+      "name": "gptotal",
+      "unusual": true
+    },
+    {
+      "name": "gtotal",
+      "unusual": true
+    },
+    {
+      "name": "ifcompexists",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "ifpartexists",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "ifquestexists",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "partie",
+      "unusual": true
+    },
+    {
+      "name": "pctotal",
+      "unusual": true
+    },
+    {
+      "name": "pftotal",
+      "unusual": true
+    },
+    {
+      "name": "ptotal",
+      "unusual": true
+    },
+    {
+      "name": "quest",
+      "unusual": true
+    },
+    {
+      "name": "sumcspartie",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "sumpfpartie",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "tableaucompetences",
+      "unusual": true
+    },
+    {
+      "name": "total",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

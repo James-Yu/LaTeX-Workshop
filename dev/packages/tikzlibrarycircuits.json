@@ -1,12 +1,53 @@
 {
-  "includes": {
-    "tikzlibrarycalc": [],
-    "tikzlibrarydecorations.marking": []
+  "deps": [
+    {
+      "name": "tikzlibrarycalc"
+    },
+    {
+      "name": "tikzlibrarydecorations.marking"
+    }
+  ],
+  "macros": [],
+  "envs": [],
+  "keys": {
+    "\\begin{tikzpicture}#c,\\tikz#c,\\begin{scope}#c,\\tikzset#c,\\scoped#c": [
+      "circuits\r",
+      "huge circuit symbols\r",
+      "large circuit symbols\r",
+      "medium circuit symbols\r",
+      "small circuit symbols\r",
+      "tiny circuit symbols\r",
+      "circuit declare symbol=${1:name}\r",
+      "every circuit symbol/.style={${1:options}}\r",
+      "circuit declare unit={${1:name}}{${2:unit}}\r",
+      "circuit declare annotation={${1:name}}{${2:distance}}{${3:path}}\r",
+      "circuit symbol open/.style={${1:options}}\r",
+      "circuit symbol filled/.style={${1:options}}\r",
+      "circuit symbol lines/.style={${1:options}}\r",
+      "circuit symbol wires/.style={${1:options}}\r"
+    ],
+    "\\begin{tikzpicture}#c,\\tikz#c,\\begin{scope}#c,\\tikzset#c,\\scoped#c,\\path#c,\\draw#c,\\fill#c,\\filldraw#c,\\pattern#c,\\shade#c,\\shadedraw#c,\\clip#c": [
+      "circuit symbol unit=",
+      "circuit symbol size=width ${1:〈width〉} height ${2:〈height〉}\r"
+    ],
+    "\\node#c,\\coordinate#c,\\nodepart#c,\\pic#c": [
+      "point up\r",
+      "point down\r",
+      "point left\r",
+      "point right\r",
+      "info=${1:text}\r",
+      "info=${1:〈angle〉}:${2:〈text〉}\r",
+      "info=[${1:options}]${2:〈angle〉}:${3:〈text〉}\r",
+      "info'=${1:text}\r",
+      "info'=${1:〈angle〉}:${2:〈text〉}\r",
+      "info'=[${1:options}]${2:〈angle〉}:${3:〈text〉}\r",
+      "info sloped=${1:text}\r",
+      "info sloped=${1:〈angle〉}:${2:〈text〉}\r",
+      "info sloped=[${1:options}]${2:〈angle〉}:${3:〈text〉}\r",
+      "info' sloped=${1:text}\r",
+      "info' sloped=${1:〈angle〉}:${2:〈text〉}\r",
+      "info' sloped=[${1:options}]${2:〈angle〉}:${3:〈text〉}\r"
+    ]
   },
-  "macros": {
-    "tikzcircuitssizeunit": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

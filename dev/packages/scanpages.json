@@ -1,67 +1,124 @@
 {
-  "includes": {
-    "ifpdf": [],
-    "pgffor": [],
-    "xcolor": [],
-    "xkeyval": [],
-    "fp-basic": [],
-    "graphicx": [],
-    "etoolbox": []
-  },
-  "macros": {
-    "scanpage{}": {
-      "snippet": "scanpage{${1:imagefile}}"
+  "deps": [
+    {
+      "name": "ifpdf"
     },
-    "scanpage[]{}": {
-      "snippet": "scanpage[${2:options}]{${1:imagefile}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "pgffor"
     },
-    "initviewport{}{}{}{}{}": {
-      "snippet": "initviewport{${1:scale}}{${2:llx}}{${3:lly}}{${4:w}}{${5:h}}"
+    {
+      "name": "xcolor"
     },
-    "whitesq(){}": {
-      "snippet": "whitesq(${2:x},${3:y}){${1:scale}}"
+    {
+      "name": "xkeyval"
     },
-    "whitesq(){}[]": {
-      "snippet": "whitesq(${3:x},${4:y}){${1:x-scale}}[${2:y-scale}]"
+    {
+      "name": "fp-basic"
     },
-    "whitecirc(){}": {
-      "snippet": "whitecirc(${2:x},${3:y}){${1:scale}}"
+    {
+      "name": "graphicx"
     },
-    "whitecirc(){}[]": {
-      "snippet": "whitecirc(${3:x},${4:y}){${1:x-scale}}[${2:y-scale}]"
-    },
-    "origpgcmd": {},
-    "origpgnum": {},
-    "putn(){}": {
-      "snippet": "putn(${2:x},${3:y}){${1:stuff}}"
-    },
-    "thegrid{}{}": {
-      "snippet": "thegrid{${1:width}}{${2:height}}"
-    },
-    "fileversion": {},
-    "filedate": {}
-  },
-  "envs": {},
-  "options": [
-    "nogrid",
-    "scale=${1:factor}",
-    "llx=",
-    "lly=",
-    "w=",
-    "h="
+    {
+      "name": "etoolbox"
+    }
   ],
-  "keyvals": [
-    [
-      "origpgnum=${1:page number}",
+  "macros": [
+    {
+      "name": "scanpage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "scanpage",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "initviewport",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:scale}}{${2:llx%l}}{${3:lly%l}}{${4:w%l}}{${5:h%l}}"
+      }
+    },
+    {
+      "name": "whitesq(x,y)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:scale}}"
+      }
+    },
+    {
+      "name": "whitesq(x,y)",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:x-scale}}[${2:y-scale}]"
+      }
+    },
+    {
+      "name": "whitecirc(x,y)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:scale}}"
+      }
+    },
+    {
+      "name": "whitecirc(x,y)",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:x-scale}}[${2:y-scale}]"
+      }
+    },
+    {
+      "name": "origpgcmd",
+      "unusual": true
+    },
+    {
+      "name": "origpgnum",
+      "unusual": true
+    },
+    {
+      "name": "putn(x,y)",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:stuff}}"
+      }
+    },
+    {
+      "name": "thegrid",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:width}}{${2:height}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/scanpages#c": [
+      "nogrid",
+      "scale=${1:factor}\r",
+      "llx=",
+      "lly=",
+      "w=",
+      "h="
+    ],
+    "\\scanpage": [
+      "origpgnum=${1:page number}\r",
       "origindest",
       "origpgnumoff",
       "dx=",
       "dy=",
-      "page=${1:page number}",
-      "rot=${1:degrees}",
-      "tanrot=${1:tangent}"
+      "page=${1:page number}\r",
+      "rot=${1:degrees}\r",
+      "tanrot=${1:tangent}\r"
     ]
+  },
+  "args": [
+    "\\usepackage/scanpages#c"
   ]
 }

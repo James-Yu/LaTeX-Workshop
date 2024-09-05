@@ -1,62 +1,101 @@
 {
-  "includes": {
-    "pstricks": [],
-    "multido": [],
-    "pst-node": [],
-    "pst-xkey": []
-  },
-  "macros": {
-    "PstWallToWall()": {
-      "snippet": "PstWallToWall(${1:x},${2:y})"
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "PstWallToWall[]()": {
-      "snippet": "PstWallToWall[${1:options}](${2:x},${3:y})"
+    {
+      "name": "multido"
     },
-    "PstSphereToWall()": {
-      "snippet": "PstSphereToWall(${1:x},${2:y})"
+    {
+      "name": "pst-node"
     },
-    "PstSphereToWall[]()": {
-      "snippet": "PstSphereToWall[${1:options}](${2:x},${3:y})"
+    {
+      "name": "pst-xkey"
+    }
+  ],
+  "macros": [
+    {
+      "name": "PstWallToWall(x,y)"
     },
-    "PstPad()": {
-      "snippet": "PstPad(${1:x},${2:y})"
+    {
+      "name": "PstWallToWall",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:options%keyvals}](${2:x},${3:y})"
+      }
     },
-    "PstPad[]()": {
-      "snippet": "PstPad[${1:options}](${2:x},${3:y})"
+    {
+      "name": "PstSphereToWall(x,y)"
     },
-    "PstFluid()": {
-      "snippet": "PstFluid(${1:x},${2:y})"
+    {
+      "name": "PstSphereToWall",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:options%keyvals}](${2:x},${3:y})"
+      }
     },
-    "PstFluid[]()": {
-      "snippet": "PstFluid[${1:options}](${2:x},${3:y})"
+    {
+      "name": "PstPad(x,y)"
     },
-    "PstWall()": {
-      "snippet": "PstWall(${1:x},${2:y})"
+    {
+      "name": "PstPad",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:options%keyvals}](${2:x},${3:y})"
+      }
     },
-    "PstWall[]()": {
-      "snippet": "PstWall[${1:options}](${2:x},${3:y})"
+    {
+      "name": "PstFluid(x,y)"
     },
-    "PstWallRough()": {
-      "snippet": "PstWallRough(${1:x},${2:y})"
+    {
+      "name": "PstFluid",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:options%keyvals}](${2:x},${3:y})"
+      }
     },
-    "PstWallRough[]()": {
-      "snippet": "PstWallRough[${1:options}](${2:x},${3:y})"
+    {
+      "name": "PstWall(x,y)"
     },
-    "PstSphere()": {
-      "snippet": "PstSphere(${1:x},${2:y})"
+    {
+      "name": "PstWall",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:options%keyvals}](${2:x},${3:y})"
+      }
     },
-    "PstSphere[]()": {
-      "snippet": "PstSphere[${1:options}](${2:x},${3:y})"
+    {
+      "name": "PstWallRough(x,y)"
     },
-    "PstFlattenedSphere()": {
-      "snippet": "PstFlattenedSphere(${1:x},${2:y})"
+    {
+      "name": "PstWallRough",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:options%keyvals}](${2:x},${3:y})"
+      }
     },
-    "PstFlattenedSphere[]()": {
-      "snippet": "PstFlattenedSphere[${1:options}](${2:x},${3:y})"
+    {
+      "name": "PstSphere(x,y)"
     },
-    "PSTpadLoaded": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "PstSphere",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:options%keyvals}](${2:x},${3:y})"
+      }
+    },
+    {
+      "name": "PstFlattenedSphere(x,y)"
+    },
+    {
+      "name": "PstFlattenedSphere",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:options%keyvals}](${2:x},${3:y})"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

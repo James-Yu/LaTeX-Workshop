@@ -1,66 +1,147 @@
 {
-  "includes": {
-    "l3keys2e": [],
-    "class-scrartcl": [],
-    "tudafonts": [],
-    "tikz": [],
-    "tikzlibrarycalc": [],
-    "tcolorbox": [],
-    "tcolorboxlibraryposter": [],
-    "pdfcol": [],
-    "geometry": [],
-    "tudarules": [],
-    "tudacolors": [],
-    "qrcode": [],
-    "hyperref": [],
-    "pdfx": [
+  "deps": [
+    {
+      "name": "l3keys2e"
+    },
+    {
+      "name": "class-scrartcl"
+    },
+    {
+      "name": "tudafonts"
+    },
+    {
+      "name": "tikz"
+    },
+    {
+      "name": "tikzlibrarycalc"
+    },
+    {
+      "name": "tcolorbox"
+    },
+    {
+      "name": "tcolorboxlibraryposter"
+    },
+    {
+      "name": "pdfcol"
+    },
+    {
+      "name": "geometry"
+    },
+    {
+      "name": "tudarules"
+    },
+    {
+      "name": "tudacolors"
+    },
+    {
+      "name": "qrcode"
+    },
+    {
+      "name": "hyperref"
+    },
+    {
+      "name": "pdfx",
+      "if": "pdfa"
+    },
+    {
+      "name": "pdfx",
+      "if": "pdfa=true"
+    }
+  ],
+  "macros": [
+    {
+      "name": "footergraphics",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:graphics code}}"
+      }
+    },
+    {
+      "name": "footer",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "footerqrcode",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:URL}}"
+      }
+    },
+    {
+      "name": "footerqrcode*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:URL}}"
+      }
+    },
+    {
+      "name": "Metadata",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "authorandname",
+      "unusual": true
+    },
+    {
+      "name": "titlegraphic",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:graphics code}}"
+      }
+    },
+    {
+      "name": "institute",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Einrichtung}}"
+      }
+    },
+    {
+      "name": "inst",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "contentwidth"
+    },
+    {
+      "name": "contentheight"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\documentclass/tudasciposter#c": [
+      "color=",
+      "accentcolor=",
+      "textaccentcolor=",
+      "identbarcolor=",
+      "footer",
       "pdfa",
-      "pdfa=true"
+      "boxstyle=${1|official,colored,boxed,default\r|}",
+      "paper=${1|a0,a1,a2,a3\r|}",
+      "fontsize=",
+      "logofile=${1:Dateipfad}\r",
+      "title=${1|default,large,small\r|}",
+      "colorback"
+    ],
+    "\\posterbox,\\begin{posterboxenv}": [
+      "TUDa\r",
+      "TUDa-inner\r",
+      "TUDa-colored\r",
+      "TUDa-colored-inner\r",
+      "TUDa-boxed\r",
+      "TUDa-boxed-inner\r"
     ]
   },
-  "macros": {
-    "footergraphics{}": {
-      "snippet": "footergraphics{${1:graphics code}}"
-    },
-    "footer{}": {
-      "snippet": "footer{${1:text}}"
-    },
-    "footerqrcode{}": {
-      "snippet": "footerqrcode{${1:URL}}"
-    },
-    "footerqrcode*{}": {
-      "snippet": "footerqrcode*{${1:URL}}"
-    },
-    "Metadata{}": {
-      "snippet": "Metadata{${1:keyvals}}"
-    },
-    "authorandname": {},
-    "titlegraphic{}": {
-      "snippet": "titlegraphic{${1:graphics code}}"
-    },
-    "institute{}": {
-      "snippet": "institute{${1:Einrichtung}}"
-    },
-    "inst{}": {
-      "snippet": "inst{${1:arg}}"
-    },
-    "contentwidth": {},
-    "contentheight": {}
-  },
-  "envs": {},
-  "options": [
-    "color=",
-    "accentcolor=",
-    "textaccentcolor=",
-    "identbarcolor=",
-    "footer",
-    "pdfa",
-    "boxstyle=${1|official,colored,boxed,default|}",
-    "paper=${1|a0,a1,a2,a3|}",
-    "fontsize=",
-    "logofile=${1:Dateipfad}",
-    "title=${1|default,large,small|}",
-    "colorback"
-  ],
-  "keyvals": []
+  "args": [
+    "\\documentclass/tudasciposter#c"
+  ]
 }

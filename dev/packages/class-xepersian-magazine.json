@@ -1,163 +1,442 @@
 {
-  "includes": {
-    "ifthen": [],
-    "ifxetex": [],
-    "multido": [],
-    "datetime": [],
-    "multicol": [],
-    "fancyhdr": [],
-    "fancybox": [],
-    "geometry": [],
-    "textpos": [],
-    "hyphenat": [],
-    "lastpage": [],
-    "setspace": [],
-    "ragged2e": []
-  },
-  "macros": {
-    "firstimage{}{}": {
-      "snippet": "firstimage{${1:imagefile}}{${2:description}}"
+  "deps": [
+    {
+      "name": "ifthen"
     },
-    "firstarticle{}{}{}": {
-      "snippet": "firstarticle{${1:title}}{${2:opening}}{${3:time}}"
+    {
+      "name": "ifxetex"
     },
-    "secondarticle{}{}{}{}{}": {
-      "snippet": "secondarticle{${1:title}}{${2:subtitle}}{${3:opening}}{${4:pagesof}}{${5:time}}"
+    {
+      "name": "multido"
     },
-    "thirdarticle{}{}{}{}{}": {
-      "snippet": "thirdarticle{${1:title}}{${2:subtitle}}{${3:opening}}{${4:pagesof}}{${5:time}}"
+    {
+      "name": "datetime"
     },
-    "indexitem{}{}": {
-      "snippet": "indexitem{${1:title}}{${2:label}}"
+    {
+      "name": "multicol"
     },
-    "weatheritem{}{}{}{}{}": {
-      "snippet": "weatheritem{${1:imagefile}}{${2:day}}{${3:max}}{${4:min}}{${5:description}}"
+    {
+      "name": "fancyhdr"
     },
-    "authorandplace{}{}": {
-      "snippet": "authorandplace{${1:author}}{${2:place}}"
+    {
+      "name": "fancybox"
     },
-    "timestamp{}": {
-      "snippet": "timestamp{${1:time}}"
+    {
+      "name": "geometry"
     },
-    "image{}{}": {
-      "snippet": "image{${1:imagefile}}{${2:description}}"
+    {
+      "name": "textpos"
     },
-    "columntitle{}{}": {
-      "snippet": "columntitle{${1:type}}{${2:text}}"
+    {
+      "name": "hyphenat"
     },
-    "expandedtitle{}{}": {
-      "snippet": "expandedtitle{${1:type}}{${2:text}}"
+    {
+      "name": "lastpage"
     },
-    "shortarticleitem{}{}": {
-      "snippet": "shortarticleitem{${1:title}}{${2:text}}"
+    {
+      "name": "setspace"
     },
-    "articlesep": {},
-    "newsection{}": {
-      "snippet": "newsection{${1:name}}"
-    },
-    "customlogo{}": {
-      "snippet": "customlogo{${1:text}}"
-    },
-    "customminilogo{}": {
-      "snippet": "customminilogo{${1:text}}"
-    },
-    "custommagazinename{}": {
-      "snippet": "custommagazinename{${1:text}}"
-    },
-    "edition{}": {
-      "snippet": "edition{${1:edition}}"
-    },
-    "editionFormat": {},
-    "indexFormat": {},
-    "indexEntryFormat": {},
-    "indexEntryPageTxt": {},
-    "indexEntryPageFormat": {},
-    "indexEntrySeparator": {},
-    "weatherFormat": {},
-    "weatherTempFormat": {},
-    "weatherUnits": {},
-    "firstTitleFormat": {},
-    "firstTextFormat": {},
-    "secondTitleFormat": {},
-    "secondSubtitleFormat": {},
-    "secondTextFormat": {},
-    "thirdTitleFormat": {},
-    "thirdSubtitleFormat": {},
-    "thirdTextFormat": {},
-    "pictureCaptionFormat": {},
-    "pagesFormat": {},
-    "innerTitleFormat": {},
-    "innerSubtitleFormat": {},
-    "innerAuthorFormat": {},
-    "innerPlaceFormat": {},
-    "timestampTxt": {},
-    "timestampSeparator": {},
-    "timestampFormat": {},
-    "innerTextFinalMark": {},
-    "minraggedcols": {},
-    "raggedFormat": {},
-    "heading{}{}{}": {
-      "snippet": "heading{${1:left}}{${2:center}}{${3:right}}"
-    },
-    "foot{}{}{}": {
-      "snippet": "foot{${1:left}}{${2:center}}{${3:right}}"
-    },
-    "columnlines": {},
-    "customwwwTxt{}": {
-      "snippet": "customwwwTxt{${1:text}}"
-    },
-    "editorialAuthorFormat": {},
-    "editorialTitleFormat": {},
-    "grid{}{}": {
-      "snippet": "grid{${1:cols}}{${2:rows}}"
-    },
-    "grid[]{}{}": {
-      "snippet": "grid[${3:show}]{${1:cols}}{${2:rows}}"
-    },
-    "headDateTimeFormat": {},
-    "logo": {},
-    "minilogo": {},
-    "mylogo{}": {
-      "snippet": "mylogo{${1:text}}"
-    },
-    "shortarticleItemTitleFormat": {},
-    "shortarticleSubtitleFormat": {},
-    "shortarticleTitleFormat": {},
-    "xepersianInit": {}
-  },
-  "envs": {
-    "frontpage": {},
-    "indexblock{}": {
-      "name": "indexblock",
-      "snippet": "{${1:title}}"
-    },
-    "authorblock": {},
-    "weatherblock{}": {
-      "name": "weatherblock",
-      "snippet": "{${1:title}}"
-    },
-    "article{}{}{}{}{}": {
-      "name": "article",
-      "snippet": "{${1:num of columns}}{${2:title}}{${3:subtitle}}{${4:pagesof}}{${5:label}}"
-    },
-    "editorial{}{}{}{}": {
-      "name": "editorial",
-      "snippet": "{${1:num of columns}}{${2:title}}{${3:author}}{${4:label}}"
-    },
-    "shortarticle{}{}{}{}": {
-      "name": "shortarticle",
-      "snippet": "{${1:num of columns}}{${2:title}}{${3:subtitle}}{${4:label}}"
+    {
+      "name": "ragged2e"
     }
-  },
-  "options": [
-    "10pt",
-    "11pt",
-    "12pt",
-    "9pt",
-    "hyphenatedtitles",
-    "columnlines",
-    "showgrid",
-    "a3paper"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "firstimage",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:imagefile}}{${2:description%text}}"
+      }
+    },
+    {
+      "name": "firstarticle",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:title%text}}{${2:opening%text}}{${3:time}}"
+      }
+    },
+    {
+      "name": "secondarticle",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:title%text}}{${2:subtitle%text}}{${3:opening%text}}{${4:pagesof}}{${5:time}}"
+      }
+    },
+    {
+      "name": "thirdarticle",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:title%text}}{${2:subtitle%text}}{${3:opening%text}}{${4:pagesof}}{${5:time}}"
+      }
+    },
+    {
+      "name": "indexitem",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:title%text}}{${2:label}}"
+      }
+    },
+    {
+      "name": "weatheritem",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:imagefile}}{${2:day}}{${3:max}}{${4:min}}{${5:description%text}}"
+      }
+    },
+    {
+      "name": "authorandplace",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:author}}{${2:place%text}}"
+      }
+    },
+    {
+      "name": "timestamp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:time}}"
+      }
+    },
+    {
+      "name": "image",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:imagefile}}{${2:description%text}}"
+      }
+    },
+    {
+      "name": "columntitle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:type%keyvals}}{${2:text}}",
+        "keys": [
+          "\\columntitle,\\expandedtitle"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "expandedtitle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:type%keyvals}}{${2:text}}",
+        "keys": [
+          "\\columntitle,\\expandedtitle"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "shortarticleitem",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:title%text}}{${2:text}}"
+      }
+    },
+    {
+      "name": "articlesep"
+    },
+    {
+      "name": "newsection",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name%text}}"
+      }
+    },
+    {
+      "name": "customlogo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "customminilogo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "custommagazinename",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "edition",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:edition}}"
+      }
+    },
+    {
+      "name": "editionFormat",
+      "unusual": true
+    },
+    {
+      "name": "indexFormat",
+      "unusual": true
+    },
+    {
+      "name": "indexEntryFormat",
+      "unusual": true
+    },
+    {
+      "name": "indexEntryPageTxt",
+      "unusual": true
+    },
+    {
+      "name": "indexEntryPageFormat",
+      "unusual": true
+    },
+    {
+      "name": "indexEntrySeparator",
+      "unusual": true
+    },
+    {
+      "name": "weatherFormat",
+      "unusual": true
+    },
+    {
+      "name": "weatherTempFormat",
+      "unusual": true
+    },
+    {
+      "name": "weatherUnits",
+      "unusual": true
+    },
+    {
+      "name": "firstTitleFormat",
+      "unusual": true
+    },
+    {
+      "name": "firstTextFormat",
+      "unusual": true
+    },
+    {
+      "name": "secondTitleFormat",
+      "unusual": true
+    },
+    {
+      "name": "secondSubtitleFormat",
+      "unusual": true
+    },
+    {
+      "name": "secondTextFormat",
+      "unusual": true
+    },
+    {
+      "name": "thirdTitleFormat",
+      "unusual": true
+    },
+    {
+      "name": "thirdSubtitleFormat",
+      "unusual": true
+    },
+    {
+      "name": "thirdTextFormat",
+      "unusual": true
+    },
+    {
+      "name": "pictureCaptionFormat",
+      "unusual": true
+    },
+    {
+      "name": "pagesFormat",
+      "unusual": true
+    },
+    {
+      "name": "innerTitleFormat",
+      "unusual": true
+    },
+    {
+      "name": "innerSubtitleFormat",
+      "unusual": true
+    },
+    {
+      "name": "innerAuthorFormat",
+      "unusual": true
+    },
+    {
+      "name": "innerPlaceFormat",
+      "unusual": true
+    },
+    {
+      "name": "timestampTxt",
+      "unusual": true
+    },
+    {
+      "name": "timestampSeparator",
+      "unusual": true
+    },
+    {
+      "name": "timestampFormat",
+      "unusual": true
+    },
+    {
+      "name": "innerTextFinalMark",
+      "unusual": true
+    },
+    {
+      "name": "minraggedcols",
+      "unusual": true
+    },
+    {
+      "name": "raggedFormat",
+      "unusual": true
+    },
+    {
+      "name": "heading",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:left%text}}{${2:center%text}}{${3:right%text}}"
+      }
+    },
+    {
+      "name": "foot",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:left%text}}{${2:center%text}}{${3:right%text}}"
+      }
+    },
+    {
+      "name": "columnlines",
+      "unusual": true
+    },
+    {
+      "name": "customwwwTxt",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "editorialAuthorFormat",
+      "unusual": true
+    },
+    {
+      "name": "editorialTitleFormat",
+      "unusual": true
+    },
+    {
+      "name": "grid",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cols}}{${2:rows}}"
+      }
+    },
+    {
+      "name": "grid",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:show}]{${1:cols}}{${2:rows}}"
+      }
+    },
+    {
+      "name": "headDateTimeFormat",
+      "unusual": true
+    },
+    {
+      "name": "logo",
+      "unusual": true
+    },
+    {
+      "name": "minilogo",
+      "unusual": true
+    },
+    {
+      "name": "mylogo",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "shortarticleItemTitleFormat",
+      "unusual": true
+    },
+    {
+      "name": "shortarticleSubtitleFormat",
+      "unusual": true
+    },
+    {
+      "name": "shortarticleTitleFormat",
+      "unusual": true
+    },
+    {
+      "name": "xepersianInit",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "frontpage"
+    },
+    {
+      "name": "indexblock",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
+    },
+    {
+      "name": "authorblock"
+    },
+    {
+      "name": "weatherblock",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
+    },
+    {
+      "name": "article",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:num of columns}}{${2:title%text}}{${3:subtitle%text}}{${4:pagesof}}{${5:label}}"
+      }
+    },
+    {
+      "name": "editorial",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:num of columns}}{${2:title%text}}{${3:author}}{${4:label}}"
+      }
+    },
+    {
+      "name": "shortarticle",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:num of columns}}{${2:title%text}}{${3:subtitle%text}}{${4:label}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\documentclass/xepersian-magazine#c": [
+      "10pt\r",
+      "11pt\r",
+      "12pt\r",
+      "9pt\r",
+      "hyphenatedtitles\r",
+      "columnlines\r",
+      "showgrid\r",
+      "a3paper\r"
+    ],
+    "\\columntitle,\\expandedtitle": [
+      "shadowbox\r",
+      "doublebox\r",
+      "ovalbox\r",
+      "Ovalbox\r",
+      "lines\r"
+    ]
+  },
+  "args": [
+    "\\documentclass/xepersian-magazine#c"
+  ]
 }

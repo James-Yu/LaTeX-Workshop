@@ -1,15 +1,27 @@
 {
-  "includes": {},
-  "macros": {
-    "commaform{}": {
-      "snippet": "commaform{${1:counter}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "commaform",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
     },
-    "commaformtoken": {},
-    "addcomma{}{}{}{}": {
-      "snippet": "addcomma{${1:digit1}}{${2:digit2}}{${3:digit3}}{${4:digit4 or \\relax}}"
+    {
+      "name": "commaformtoken",
+      "unusual": true
+    },
+    {
+      "name": "addcomma",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:digit1}}{${2:digit2}}{${3:digit3}}{${4:digit4 or \\relax}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

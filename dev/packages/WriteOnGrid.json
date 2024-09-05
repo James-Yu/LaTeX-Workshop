@@ -1,293 +1,447 @@
 {
-  "includes": {
-    "tikz": [],
-    "simplekv": [],
-    "xstring": [],
-    "tikzlibrarycalc": [],
-    "tikzlibrarypositioning": [],
-    "setspace": []
-  },
-  "macros": {
-    "ColSeyes": {},
-    "ColRuled": {},
-    "DispGrid[]": {
-      "snippet": "DispGrid[${1:keyvals}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "DispGrid[]<>": {
-      "snippet": "DispGrid[${1:keyvals}]<${2:color}>",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "simplekv"
     },
-    "WriteLine{}": {
-      "snippet": "WriteLine{${1:text}}"
+    {
+      "name": "xstring"
     },
-    "WriteLine<>{}": {
-      "snippet": "WriteLine<${2:alignment}>{${1:text}}"
+    {
+      "name": "tikzlibrarycalc"
     },
-    "WriteLine[]{}": {
-      "snippet": "WriteLine[${2:keyvals}]{${1:text}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "tikzlibrarypositioning"
     },
-    "WriteLine[]<>{}": {
-      "snippet": "WriteLine[${2:keyvals}]<${3:alignment}>{${1:text}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "PassLine": {},
-    "CoulSeyes": {},
-    "CoulRuled": {},
-    "AffQuadrillage[]": {
-      "snippet": "AffQuadrillage[${1:clés}]"
-    },
-    "AffQuadrillage[]<>": {
-      "snippet": "AffQuadrillage[${1:clés}]<${2:color}>"
-    },
-    "EcrireLigne{}": {
-      "snippet": "EcrireLigne{${1:text}}"
-    },
-    "EcrireLigne<>{}": {
-      "snippet": "EcrireLigne<${2:alignement}>{${1:text}}"
-    },
-    "EcrireLigne[]{}": {
-      "snippet": "EcrireLigne[${2:clés}]{${1:text}}"
-    },
-    "EcrireLigne[]<>{}": {
-      "snippet": "EcrireLigne[${2:clés}]<${3:alignement}>{${1:text}}"
-    },
-    "PasseLigne": {},
-    "LignePapierSeyes{}": {
-      "snippet": "LignePapierSeyes{${1:text}}"
-    },
-    "LignePapierSeyes[]{}": {
-      "snippet": "LignePapierSeyes[${2:options}]{${1:text}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "LignePapierSeyes[]<>(){}": {
-      "snippet": "LignePapierSeyes[${2:options}]<${3:alignement}>(${4:ajustement}){${1:text}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "CadreNoteSeyes{}": {
-      "snippet": "CadreNoteSeyes{${1:numligne}}"
-    },
-    "CadreNoteSeyes[]{}": {
-      "snippet": "CadreNoteSeyes[${2:hauteur}]{${1:numligne}}"
-    },
-    "ParagraphePapierSeyes{}": {
-      "snippet": "ParagraphePapierSeyes{${1:text}}"
-    },
-    "ParagraphePapierSeyes[]{}": {
-      "snippet": "ParagraphePapierSeyes[${2:options}]{${1:text}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "ParagraphePapierSeyes[]<>(){}": {
-      "snippet": "ParagraphePapierSeyes[${2:options}]<${3:alignement}>(${4:ajustement}){${1:text}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "LignePapierCinqCinq{}": {
-      "snippet": "LignePapierCinqCinq{${1:text}}"
-    },
-    "LignePapierCinqCinq[]{}": {
-      "snippet": "LignePapierCinqCinq[${2:options}]{${1:text}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "LignePapierCinqCinq[]<>(){}": {
-      "snippet": "LignePapierCinqCinq[${2:options}]<${3:alignement}>(${4:ajustement}){${1:text}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "CadreNoteCinqCinq{}": {
-      "snippet": "CadreNoteCinqCinq{${1:numligne}}"
-    },
-    "CadreNoteCinqCinq[]{}": {
-      "snippet": "CadreNoteCinqCinq[${2:hauteur}]{${1:numligne}}"
-    },
-    "ParagraphePapierCinqCinq{}": {
-      "snippet": "ParagraphePapierCinqCinq{${1:text}}"
-    },
-    "ParagraphePapierCinqCinq[]{}": {
-      "snippet": "ParagraphePapierCinqCinq[${2:options}]{${1:text}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "ParagraphePapierCinqCinq[]<>(){}": {
-      "snippet": "ParagraphePapierCinqCinq[${2:options}]<${3:alignement}>(${4:ajustement}){${1:text}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "LignePapierRuled{}": {
-      "snippet": "LignePapierRuled{${1:text}}"
-    },
-    "LignePapierRuled[]{}": {
-      "snippet": "LignePapierRuled[${2:options}]{${1:text}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "LignePapierRuled[]<>(){}": {
-      "snippet": "LignePapierRuled[${2:options}]<${3:alignement}>(${4:ajustement}){${1:text}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "CadreNoteRuled{}": {
-      "snippet": "CadreNoteRuled{${1:numligne}}"
-    },
-    "CadreNoteRuled[]{}": {
-      "snippet": "CadreNoteRuled[${2:hauteur}]{${1:numligne}}"
-    },
-    "ParagraphePapierRuled{}": {
-      "snippet": "ParagraphePapierRuled{${1:text}}"
-    },
-    "ParagraphePapierRuled[]{}": {
-      "snippet": "ParagraphePapierRuled[${2:options}]{${1:text}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "ParagraphePapierRuled[]<>(){}": {
-      "snippet": "ParagraphePapierRuled[${2:options}]<${3:alignement}>(${4:ajustement}){${1:text}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "CCFullCoul": {},
-    "CCFullCoulM": {},
-    "CCLigne": {},
-    "CCLigneCouleur": {},
-    "CCLigneEchelle": {},
-    "CCLigneLarg": {},
-    "CCPar": {},
-    "CCParBase": {},
-    "CCParCouleur": {},
-    "CCParEchelle": {},
-    "CCParLarg": {},
-    "QuadCoulA": {},
-    "QuadCoulB": {},
-    "QuadCoulSeyes": {},
-    "QuadEchelle": {},
-    "QuadElar": {},
-    "QuadElarD": {},
-    "QuadElarG": {},
-    "QuadNbCar": {},
-    "QuadNbLig": {},
-    "QuadReglureSeyes": {},
-    "QuadType": {},
-    "RuledFullCoul": {},
-    "RuledFullCoulMarge": {},
-    "RuledLigne": {},
-    "RuledLigneCouleur": {},
-    "RuledLigneEchelle": {},
-    "RuledLigneLarg": {},
-    "RuledPar": {},
-    "RuledParBase": {},
-    "RuledParCouleur": {},
-    "RuledParEchelle": {},
-    "RuledParLarg": {},
-    "SeyesFullCoulM": {},
-    "SeyesFullCoulP": {},
-    "SeyesFullCoulS": {},
-    "SeyesLigne": {},
-    "SeyesLigneCouleur": {},
-    "SeyesLigneEchelle": {},
-    "SeyesLigneLarg": {},
-    "SeyesPar": {},
-    "SeyesParBase": {},
-    "SeyesParCouleur": {},
-    "SeyesParEchelle": {},
-    "SeyesParLarg": {},
-    "thelgquadri": {},
-    "ValeurCarreau": {}
-  },
-  "envs": {
-    "EnvGrid[]": {
-      "name": "EnvGrid",
-      "snippet": "[${1:keyvals}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "EnvGrid[]<>": {
-      "name": "EnvGrid",
-      "snippet": "[${1:keyvals}]<${2:color}>",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "EnvQuadrillage[]": {
-      "name": "EnvQuadrillage",
-      "snippet": "[${1:clés}]"
-    },
-    "EnvQuadrillage[]<>": {
-      "name": "EnvQuadrillage",
-      "snippet": "[${1:clés}]<${2:color}>"
-    },
-    "PleinePageSeyes": {},
-    "PleinePageSeyes[]": {
-      "name": "PleinePageSeyes",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 4,
-      "keyvalpos": 0
-    },
-    "PleinePageCinqCinq": {},
-    "PleinePageCinqCinq[]": {
-      "name": "PleinePageCinqCinq",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 5,
-      "keyvalpos": 0
-    },
-    "PleinePageRuled": {},
-    "PleinePageRuled[]": {
-      "name": "PleinePageRuled",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 5,
-      "keyvalpos": 0
+    {
+      "name": "setspace"
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
-      "NumSquares=${1:<cols>x<rows>}",
-      "Unit=${1:number}",
-      "Margin=${1:number}",
+  ],
+  "macros": [
+    {
+      "name": "ColSeyes"
+    },
+    {
+      "name": "ColRuled"
+    },
+    {
+      "name": "DispGrid",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:keyvals}]"
+      }
+    },
+    {
+      "name": "DispGrid",
+      "arg": {
+        "format": "[]<>",
+        "snippet": "[${1:keyvals}]<${2:color}>"
+      }
+    },
+    {
+      "name": "WriteLine",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "WriteLine<alignment>",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "WriteLine",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "WriteLine",
+      "arg": {
+        "format": "[]<>{}",
+        "snippet": "[${2:keyvals}]<${3:alignment}>{${1:text}}"
+      }
+    },
+    {
+      "name": "PassLine"
+    },
+    {
+      "name": "CoulSeyes"
+    },
+    {
+      "name": "CoulRuled"
+    },
+    {
+      "name": "AffQuadrillage",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:clés%keyvals}]"
+      }
+    },
+    {
+      "name": "AffQuadrillage",
+      "arg": {
+        "format": "[]<>",
+        "snippet": "[${1:clés%keyvals}]<${2:color}>"
+      }
+    },
+    {
+      "name": "EcrireLigne",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "EcrireLigne<alignement>",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "EcrireLigne",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:clés%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "EcrireLigne",
+      "arg": {
+        "format": "[]<>{}",
+        "snippet": "[${2:clés%keyvals}]<${3:alignement}>{${1:text}}"
+      }
+    },
+    {
+      "name": "PasseLigne"
+    },
+    {
+      "name": "LignePapierSeyes",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "LignePapierSeyes",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "LignePapierSeyes",
+      "arg": {
+        "format": "[]<>(){}",
+        "snippet": "[${2:options%keyvals}]<${3:alignement}>(${4:ajustement}){${1:text}}"
+      }
+    },
+    {
+      "name": "CadreNoteSeyes",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:numligne}}"
+      }
+    },
+    {
+      "name": "CadreNoteSeyes",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:hauteur}]{${1:numligne}}"
+      }
+    },
+    {
+      "name": "ParagraphePapierSeyes",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ParagraphePapierSeyes",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "ParagraphePapierSeyes",
+      "arg": {
+        "format": "[]<>(){}",
+        "snippet": "[${2:options%keyvals}]<${3:alignement}>(${4:ajustement}){${1:text}}"
+      }
+    },
+    {
+      "name": "LignePapierCinqCinq",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "LignePapierCinqCinq",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "LignePapierCinqCinq",
+      "arg": {
+        "format": "[]<>(){}",
+        "snippet": "[${2:options%keyvals}]<${3:alignement}>(${4:ajustement}){${1:text}}"
+      }
+    },
+    {
+      "name": "CadreNoteCinqCinq",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:numligne}}"
+      }
+    },
+    {
+      "name": "CadreNoteCinqCinq",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:hauteur}]{${1:numligne}}"
+      }
+    },
+    {
+      "name": "ParagraphePapierCinqCinq",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ParagraphePapierCinqCinq",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "ParagraphePapierCinqCinq",
+      "arg": {
+        "format": "[]<>(){}",
+        "snippet": "[${2:options%keyvals}]<${3:alignement}>(${4:ajustement}){${1:text}}"
+      }
+    },
+    {
+      "name": "LignePapierRuled",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "LignePapierRuled",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "LignePapierRuled",
+      "arg": {
+        "format": "[]<>(){}",
+        "snippet": "[${2:options%keyvals}]<${3:alignement}>(${4:ajustement}){${1:text}}"
+      }
+    },
+    {
+      "name": "CadreNoteRuled",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:numligne}}"
+      }
+    },
+    {
+      "name": "CadreNoteRuled",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:hauteur}]{${1:numligne}}"
+      }
+    },
+    {
+      "name": "ParagraphePapierRuled",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ParagraphePapierRuled",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "ParagraphePapierRuled",
+      "arg": {
+        "format": "[]<>(){}",
+        "snippet": "[${2:options%keyvals}]<${3:alignement}>(${4:ajustement}){${1:text}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "EnvGrid",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:keyvals}]"
+      }
+    },
+    {
+      "name": "EnvGrid",
+      "arg": {
+        "format": "[]<>",
+        "snippet": "[${1:keyvals}]<${2:color}>"
+      }
+    },
+    {
+      "name": "EnvQuadrillage",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:clés%keyvals}]"
+      }
+    },
+    {
+      "name": "EnvQuadrillage",
+      "arg": {
+        "format": "[]<>",
+        "snippet": "[${1:clés%keyvals}]<${2:color}>"
+      }
+    },
+    {
+      "name": "PleinePageSeyes"
+    },
+    {
+      "name": "PleinePageSeyes",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "PleinePageCinqCinq"
+    },
+    {
+      "name": "PleinePageCinqCinq",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "PleinePageRuled"
+    },
+    {
+      "name": "PleinePageRuled",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\DispGrid,\\begin{EnvGrid}": [
+      "NumSquares=${1:<cols>x<rows>}\r",
+      "Unit=${1:number}\r",
+      "Margin=${1:number}\r",
       "DispBar",
-      "Enlarge=${1:L/R}",
+      "Enlarge=${1:L/R}\r",
       "Border",
-      "Grid=${1|5x5,Seyes,Ruled|}",
+      "Grid=${1|5x5,Seyes,Ruled\r|}",
       "Seyes"
     ],
-    [
-      "OffsetH=${1:num squares}",
+    "\\WriteLine": [
+      "OffsetH=${1:num squares}\r",
       "OffsetV=",
-      "Scale=${1:factor}"
+      "Scale=${1:factor}\r"
     ],
-    [
-      "Couleur=",
-      "Ligne=${1:numéro}",
-      "Echelle=${1:nombre}",
-      "Largeur=${1:nombre}"
+    "\\AffQuadrillage,\\begin{EnvQuadrillage}": [
+      "NbCarreaux=${1:<nbCol>x<nbLig>}\r",
+      "Unite=${1:nombre}\r",
+      "Marge=${1:nombre}\r",
+      "AffBarre",
+      "Elargir=${1:L/R}\r",
+      "Cadre",
+      "Grille=${1|5x5,Seyes,Ruled\r|}",
+      "ReglureSeyes=${1:nombre}\r",
+      "CouleurBarreSeyes="
     ],
-    [
-      "Couleur=",
-      "Ligne=${1:numéro}",
-      "Echelle=${1:nombre}",
-      "Espacement=${1:nombre}",
-      "Largeur=${1:nombre}"
+    "\\EcrireLigne": [
+      "DecalH=${1:nombre carreaux}\r",
+      "DecalV=",
+      "Echelle=${1:factor}\r"
     ],
-    [
+    "\\begin{PleinePageSeyes}": [
       "CouleurP=",
       "CouleurS=",
       "CouleurMarge=",
       "NumLignes",
-      "ReglureSeyes=${1:nombre}",
-      "FormatPapier=${1|A4,A5,lxh|}"
+      "ReglureSeyes=${1:nombre}\r",
+      "FormatPapier=${1|A4,A5,lxh\r|}"
     ],
-    [
+    "\\LignePapierSeyes": [
+      "Couleur=",
+      "Ligne=${1:numéro}\r",
+      "Echelle=${1:nombre}\r",
+      "Largeur=${1:nombre}\r"
+    ],
+    "\\ParagraphePapierSeyes": [
+      "Couleur=",
+      "Ligne=${1:numéro}\r",
+      "Echelle=${1:nombre}\r",
+      "Espacement=${1:nombre}\r",
+      "Largeur=${1:nombre}\r"
+    ],
+    "\\begin{PleinePageCinqCinq}": [
       "Couleur=",
       "CouleurMarge=",
       "NumLignes",
-      "FormatPapier=${1|A4,A5,lxh|}"
+      "FormatPapier=${1|A4,A5,lxh\r|}"
+    ],
+    "\\LignePapierCinqCinq": [
+      "Couleur=",
+      "Ligne=${1:numéro}\r",
+      "Echelle=${1:nombre}\r",
+      "Largeur=${1:nombre}\r"
+    ],
+    "\\ParagraphePapierCinqCinq": [
+      "Couleur=",
+      "Ligne=${1:numéro}\r",
+      "Echelle=${1:nombre}\r",
+      "Espacement=${1:nombre}\r",
+      "Largeur=${1:nombre}\r"
+    ],
+    "\\begin{PleinePageRuled}": [
+      "Couleur=",
+      "CouleurMarge=",
+      "NumLignes",
+      "FormatPapier=${1|A4,A5,lxh\r|}"
+    ],
+    "\\LignePapierRuled": [
+      "Couleur=",
+      "Ligne=${1:numéro}\r",
+      "Echelle=${1:nombre}\r",
+      "Largeur=${1:nombre}\r"
+    ],
+    "\\ParagraphePapierRuled": [
+      "Couleur=",
+      "Ligne=${1:numéro}\r",
+      "Echelle=${1:nombre}\r",
+      "Espacement=${1:nombre}\r",
+      "Largeur=${1:nombre}\r"
     ]
-  ]
+  },
+  "args": []
 }

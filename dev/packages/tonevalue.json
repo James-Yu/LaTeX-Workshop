@@ -1,80 +1,167 @@
 {
-  "includes": {
-    "contour": [],
-    "etoolbox": [],
-    "listofitems": [],
-    "tikz": [],
-    "tikzlibrarypositioning": [],
-    "tikzlibrarydecorations.markings": [],
-    "xcolor": [],
-    "xkeyval": [],
-    "xstring": []
-  },
-  "macros": {
-    "untpoint{}{}": {
-      "snippet": "untpoint{${1:tone value}}{${2:tone name}}"
+  "deps": [
+    {
+      "name": "contour"
     },
-    "untpoint[]{}{}": {
-      "snippet": "untpoint[${3:options}]{${1:tone value}}{${2:tone name}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "etoolbox"
     },
-    "linkuntpoints{{}{}{{}{}": {
-      "snippet": "linkuntpoints{{${1:toneval1}}{${2:tonename1}}}{{${3:toneval2}}{${4:tonename2}}}"
+    {
+      "name": "listofitems"
     },
-    "linkuntpoints[]{{}{}{{}{}": {
-      "snippet": "linkuntpoints[${5:options}]{{${1:toneval1}}{${2:tonename1}}}{{${3:toneval2}}{${4:tonename2}}}"
+    {
+      "name": "tikz"
     },
-    "drawuntpoint{}{}{}{}{}{}{}{}": {
-      "snippet": "drawuntpoint{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}{${7:arg7}}{${8:arg8}}"
+    {
+      "name": "tikzlibrarypositioning"
     },
-    "drawuntpoint[]{}{}{}{}{}{}{}{}": {
-      "snippet": "drawuntpoint[${9:opt}]{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}{${7:arg7}}{${8:arg8}}"
+    {
+      "name": "tikzlibrarydecorations.markings"
     },
-    "len": {},
-    "sendiauToListStr{}": {
-      "snippet": "sendiauToListStr{${1:arg}}"
+    {
+      "name": "xcolor"
     },
-    "sendiaulistStr": {},
-    "sendiaulist": {},
-    "thesumOfPitchHeights": {},
-    "toneVisualisationFontCmd": {},
-    "xend": {},
-    "xjoinbycomma": {},
-    "xstart": {},
-    "yend": {},
-    "ystart": {}
-  },
-  "envs": {
-    "untVisualisation": {},
-    "untVisualisation[]": {
-      "name": "untVisualisation",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "xkeyval"
+    },
+    {
+      "name": "xstring"
     }
-  },
-  "options": [
-    "fontcmd=${1:font commands}",
-    "draft",
-    "contourlength=",
-    "contournumber=${1:integer}",
-    "defaultcolors"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "untpoint",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:tone value}}{${2:tone name}}"
+      }
+    },
+    {
+      "name": "untpoint",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:tone value}}{${2:tone name}}"
+      }
+    },
+    {
+      "name": "linkuntpoints",
+      "arg": {
+        "format": "{{}{}}{{}{}}",
+        "snippet": "{{${1:toneval1}}{${2:tonename1}}}{{${3:toneval2}}{${4:tonename2}}}"
+      }
+    },
+    {
+      "name": "linkuntpoints",
+      "arg": {
+        "format": "[]{{}{}}{{}{}}",
+        "snippet": "[${5:options}]{{${1:toneval1}}{${2:tonename1}}}{{${3:toneval2}}{${4:tonename2}}}"
+      }
+    },
+    {
+      "name": "drawuntpoint",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}{${7:arg7}}{${8:arg8}}"
+      }
+    },
+    {
+      "name": "drawuntpoint",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}{}{}{}{}{}",
+        "snippet": "[${9:opt}]{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}{${7:arg7}}{${8:arg8}}"
+      }
+    },
+    {
+      "name": "len",
+      "unusual": true
+    },
+    {
+      "name": "sendiauToListStr",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "sendiaulistStr",
+      "unusual": true
+    },
+    {
+      "name": "sendiaulist",
+      "unusual": true
+    },
+    {
+      "name": "thesumOfPitchHeights",
+      "unusual": true
+    },
+    {
+      "name": "toneVisualisationFontCmd",
+      "unusual": true
+    },
+    {
+      "name": "xend",
+      "unusual": true
+    },
+    {
+      "name": "xjoinbycomma",
+      "unusual": true
+    },
+    {
+      "name": "xstart",
+      "unusual": true
+    },
+    {
+      "name": "yend",
+      "unusual": true
+    },
+    {
+      "name": "ystart",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "untVisualisation"
+    },
+    {
+      "name": "untVisualisation",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/tonevalue#c": [
+      "fontcmd=${1:font commands}\r",
+      "draft\r",
+      "contourlength=",
+      "contournumber=${1:integer}\r",
+      "defaultcolors\r"
+    ],
+    "\\begin{untVisualisation}#c": [
+      "minmax={${1:min,max}}\r",
+      "scale=${1:factor}\r",
+      "showlabels"
+    ],
+    "\\untpoint#c": [
       "stem",
-      "label=${1|above,below,left,right,above left,above right,below left,below right|}",
+      "label=${1|above,below,left,right,above left,above right,below left,below right\r|}",
       "bgcolor=",
       "xshift=",
       "yshift=",
-      "scale=${1:factor}",
-      "tikzoptions={${1:TikZ options}}"
+      "scale=${1:factor}\r",
+      "tikzoptions={${1:TikZ options}}\r"
     ],
-    [
-      "minmax={${1:min,max}}",
-      "scale=${1:factor}",
-      "showlabels"
+    "\\linkuntpoints#c": [
+      "color=",
+      "bend=${1|bend left,bend right\r|}"
     ]
+  },
+  "args": [
+    "\\usepackage/tonevalue#c"
   ]
 }

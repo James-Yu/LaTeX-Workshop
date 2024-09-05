@@ -1,17 +1,43 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "pgfopts": [],
-    "calc": [],
-    "tikz": []
-  },
-  "macros": {
-    "molochset{}": {
-      "snippet": "molochset{${1:options}}"
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "mreducelistspacing": {}
+    {
+      "name": "pgfopts"
+    },
+    {
+      "name": "calc"
+    },
+    {
+      "name": "tikz"
+    }
+  ],
+  "macros": [
+    {
+      "name": "molochset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usetheme/moloch#c,\\molochset": [
+      "titleformat=${1|regular,smallcaps,allsmallcaps,allcaps\r|}",
+      "titleformat plain=${1|regular,smallcaps,allsmallcaps,allcaps\r|}",
+      "sectionpage=${1|none,simple,progressbar\r|}",
+      "subsectionpage=${1|none,simple,progressbar\r|}",
+      "numbering=${1|none,counter,fraction\r|}",
+      "progressbar=${1|none,head,frametitle,foot\r|}",
+      "block=${1|transparent,fill\r|}",
+      "background=${1|dark,light\r|}",
+      "titleformat title=${1|regular,smallcaps,allsmallcaps,allcaps\r|}",
+      "titleformat subtitle=${1|regular,smallcaps,allsmallcaps,allcaps\r|}",
+      "titleformat section=${1|regular,smallcaps,allsmallcaps,allcaps\r|}",
+      "titleformat frame=${1|regular,smallcaps,allsmallcaps,allcaps\r|}"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

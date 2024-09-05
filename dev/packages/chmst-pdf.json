@@ -1,120 +1,109 @@
 {
-  "includes": {
-    "chemist": [],
-    "xymtx-pdf": []
-  },
-  "macros": {
-    "chmstpdfsw": {},
-    "electronHldshiftarrow()()": {
-      "snippet": "electronHldshiftarrow(${1:xend},${2:yend})(${3:xstart},${4:ystart})"
+  "deps": [
+    {
+      "name": "chemist"
     },
-    "electronHldshiftarrow[]()()": {
-      "snippet": "electronHldshiftarrow[${1:direction}](${2:xend},${3:yend})(${4:xstart},${5:ystart})"
-    },
-    "electronHlushiftarrow()()": {
-      "snippet": "electronHlushiftarrow(${1:xstart},${2:ystart})(${3:xend},${4:yend})"
-    },
-    "electronHlushiftarrow[]()()": {
-      "snippet": "electronHlushiftarrow[${1:direction}](${2:xstart},${3:ystart})(${4:xend},${5:yend})"
-    },
-    "electronHrdshiftarrow()()": {
-      "snippet": "electronHrdshiftarrow(${1:xend},${2:yend})(${3:xstart},${4:ystart})"
-    },
-    "electronHrdshiftarrow[]()()": {
-      "snippet": "electronHrdshiftarrow[${1:direction}](${2:xend},${3:yend})(${4:xstart},${5:ystart})"
-    },
-    "electronHrushiftarrow()()": {
-      "snippet": "electronHrushiftarrow(${1:xstart},${2:ystart})(${3:xend},${4:yend})"
-    },
-    "electronHrushiftarrow[]()()": {
-      "snippet": "electronHrushiftarrow[${1:direction}](${2:xstart},${3:ystart})(${4:xend},${5:yend})"
-    },
-    "electronlshiftarrow()()": {
-      "snippet": "electronlshiftarrow(${1:xend},${2:yend})(${3:xstart},${4:ystart})"
-    },
-    "electronlshiftarrow[]()()": {
-      "snippet": "electronlshiftarrow[${1:direction}](${2:xend},${3:yend})(${4:xstart},${5:ystart})"
-    },
-    "electronrshiftarrow()()": {
-      "snippet": "electronrshiftarrow(${1:xstart},${2:ystart})(${3:xend},${4:yend})"
-    },
-    "electronrshiftarrow[]()()": {
-      "snippet": "electronrshiftarrow[${1:direction}](${2:xstart},${3:ystart})(${4:xend},${5:yend})"
-    },
-    "electronshiftArrowl()()()()": {
-      "snippet": "electronshiftArrowl(${1:xstart},${2:ystart})(${3:xctrl1},${4:yctrl1})(${5:xctrl2},${6:yctrl2})(${7:xend},${8:yend})"
-    },
-    "electronshiftArrowr()()()()": {
-      "snippet": "electronshiftArrowr(${1:xstart},${2:ystart})(${3:xctrl1},${4:yctrl1})(${5:xctrl2},${6:yctrl2})(${7:xend},${8:yend})"
-    },
-    "electronshiftHld()()()()": {
-      "snippet": "electronshiftHld(${1:xstart},${2:ystart})(${3:xctrl1},${4:yctrl1})(${5:xctrl2},${6:yctrl2})(${7:xend},${8:yend})"
-    },
-    "electronshiftHlu()()()()": {
-      "snippet": "electronshiftHlu(${1:xstart},${2:ystart})(${3:xctrl1},${4:yctrl1})(${5:xctrl2},${6:yctrl2})(${7:xend},${8:yend})"
-    },
-    "electronshiftHrd()()()()": {
-      "snippet": "electronshiftHrd(${1:xstart},${2:ystart})(${3:xctrl1},${4:yctrl1})(${5:xctrl2},${6:yctrl2})(${7:xend},${8:yend})"
-    },
-    "electronshiftHru()()()()": {
-      "snippet": "electronshiftHru(${1:xstart},${2:ystart})(${3:xctrl1},${4:yctrl1})(${5:xctrl2},${6:yctrl2})(${7:xend},${8:yend})"
-    },
-    "futuresubst{}": {
-      "snippet": "futuresubst{${1:content}}"
-    },
-    "electronAHshift": {},
-    "electronshiftAH{}": {
-      "snippet": "electronshiftAH{${1:arg1}}"
-    },
-    "leftharpoondownElement{}": {
-      "snippet": "leftharpoondownElement{${1:arg1}}"
-    },
-    "leftharpoonupElement{}": {
-      "snippet": "leftharpoonupElement{${1:arg1}}"
-    },
-    "newreactDEqarrow": {},
-    "newreactEqarrow": {},
-    "newreactLEqarrow": {},
-    "newreactREqarrow": {},
-    "newreactUEqarrow": {},
-    "newreactVEqarrow": {},
-    "newreactdarrow": {},
-    "newreactdeqarrow": {},
-    "newreactdlrarrow": {},
-    "newreactduarrow": {},
-    "newreacteqarrow": {},
-    "newreactlarrow": {},
-    "newreactleqarrow": {},
-    "newreactlrarrow": {},
-    "newreactnearrow": {},
-    "newreactnwarrow": {},
-    "newreactrarrow": {},
-    "newreactreqarrow": {},
-    "newreactsearrow": {},
-    "newreactswarrow": {},
-    "newreactuarrow": {},
-    "newreactueqarrow": {},
-    "newreactulrarrow": {},
-    "newreactveqarrow": {},
-    "newschemelarrow{}{}{}{}": {
-      "snippet": "newschemelarrow{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "newschemelrarrow{}{}{}{}": {
-      "snippet": "newschemelrarrow{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "newschemerarrow{}{}{}{}": {
-      "snippet": "newschemerarrow{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "rightharpoondownElement{}": {
-      "snippet": "rightharpoondownElement{${1:arg1}}"
-    },
-    "rightharpoonupElement{}": {
-      "snippet": "rightharpoonupElement{${1:arg1}}"
+    {
+      "name": "xymtx-pdf"
     }
-  },
-  "envs": {},
-  "options": [
-    "chemtimes"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "chmstpdfsw"
+    },
+    {
+      "name": "electronHldshiftarrow(xend,yend)(xstart,ystart)"
+    },
+    {
+      "name": "electronHldshiftarrow",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "[${1:direction}](${2:xend},${3:yend})(${4:xstart},${5:ystart})"
+      }
+    },
+    {
+      "name": "electronHlushiftarrow(xstart,ystart)(xend,yend)"
+    },
+    {
+      "name": "electronHlushiftarrow",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "[${1:direction}](${2:xstart},${3:ystart})(${4:xend},${5:yend})"
+      }
+    },
+    {
+      "name": "electronHrdshiftarrow(xend,yend)(xstart,ystart)"
+    },
+    {
+      "name": "electronHrdshiftarrow",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "[${1:direction}](${2:xend},${3:yend})(${4:xstart},${5:ystart})"
+      }
+    },
+    {
+      "name": "electronHrushiftarrow(xstart,ystart)(xend,yend)"
+    },
+    {
+      "name": "electronHrushiftarrow",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "[${1:direction}](${2:xstart},${3:ystart})(${4:xend},${5:yend})"
+      }
+    },
+    {
+      "name": "electronlshiftarrow(xend,yend)(xstart,ystart)"
+    },
+    {
+      "name": "electronlshiftarrow",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "[${1:direction}](${2:xend},${3:yend})(${4:xstart},${5:ystart})"
+      }
+    },
+    {
+      "name": "electronrshiftarrow(xstart,ystart)(xend,yend)"
+    },
+    {
+      "name": "electronrshiftarrow",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "[${1:direction}](${2:xstart},${3:ystart})(${4:xend},${5:yend})"
+      }
+    },
+    {
+      "name": "electronshiftArrowl(xstart,ystart)(xctrl1,yctrl1)(xctrl2,yctrl2)(xend,yend)"
+    },
+    {
+      "name": "electronshiftArrowr(xstart,ystart)(xctrl1,yctrl1)(xctrl2,yctrl2)(xend,yend)"
+    },
+    {
+      "name": "electronshiftHld(xstart,ystart)(xctrl1,yctrl1)(xctrl2,yctrl2)(xend,yend)"
+    },
+    {
+      "name": "electronshiftHlu(xstart,ystart)(xctrl1,yctrl1)(xctrl2,yctrl2)(xend,yend)"
+    },
+    {
+      "name": "electronshiftHrd(xstart,ystart)(xctrl1,yctrl1)(xctrl2,yctrl2)(xend,yend)"
+    },
+    {
+      "name": "electronshiftHru(xstart,ystart)(xctrl1,yctrl1)(xctrl2,yctrl2)(xend,yend)"
+    },
+    {
+      "name": "futuresubst",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/chmst-pdf#c": [
+      "chemtimes\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/chmst-pdf#c"
+  ]
 }

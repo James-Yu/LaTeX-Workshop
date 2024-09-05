@@ -1,402 +1,917 @@
 {
-  "includes": {
-    "ifthen": [],
-    "calc": [],
-    "pifont": [],
-    "pgf": [],
-    "xkeyval": []
-  },
-  "macros": {
-    "sseqpacking": {},
-    "sspacksmart": {},
-    "sspackhorizontal": {},
-    "sspackvertical": {},
-    "sspackdiagonal": {},
-    "ssmoveto{}{}": {
-      "snippet": "ssmoveto{${1:x}}{${2:y}}"
+  "deps": [
+    {
+      "name": "ifthen"
     },
-    "ssmove{}{}": {
-      "snippet": "ssmove{${1:x}}{${2:y}}"
+    {
+      "name": "calc"
     },
-    "ssdrop{}": {
-      "snippet": "ssdrop{${1:math}}"
+    {
+      "name": "pifont"
     },
-    "ssdrop[]{}": {
-      "snippet": "ssdrop[${2:options}]{${1:math}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "pgf"
     },
-    "ssname{}": {
-      "snippet": "ssname{${1:name}}"
-    },
-    "ssgoto{}": {
-      "snippet": "ssgoto{${1:name}}"
-    },
-    "ssprefix{}": {
-      "snippet": "ssprefix{${1:prefix}}"
-    },
-    "ssresetprefix": {},
-    "ssabsgoto{}": {
-      "snippet": "ssabsgoto{${1:name}}"
-    },
-    "ssdroplabel{}": {
-      "snippet": "ssdroplabel{${1:label}}"
-    },
-    "ssdroplabel[]{}": {
-      "snippet": "ssdroplabel[${2:options}]{${1:label}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "ssdropextension": {},
-    "ssstroke": {},
-    "ssstroke[]": {
-      "snippet": "ssstroke[${1:options}]",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "ssarrowhead": {},
-    "ssarrowhead[]": {
-      "snippet": "ssarrowhead[${1:arrow style}]"
-    },
-    "ssinversearrowhead": {},
-    "ssinversearrowhead[]": {
-      "snippet": "ssinversearrowhead[${1:arrow style}]"
-    },
-    "ssline{}{}": {
-      "snippet": "ssline{${1:x}}{${2:y}}"
-    },
-    "ssline[]{}{}": {
-      "snippet": "ssline[${3:options}]{${1:x}}{${2:y}}"
-    },
-    "ssarrow{}{}": {
-      "snippet": "ssarrow{${1:x}}{${2:y}}"
-    },
-    "ssarrow[]{}{}": {
-      "snippet": "ssarrow[${3:options}]{${1:x}}{${2:y}}"
-    },
-    "ssbullstring{}{}{}": {
-      "snippet": "ssbullstring{${1:x}}{${2:y}}{${3:n}}"
-    },
-    "ssinfbullstring{}{}{}": {
-      "snippet": "ssinfbullstring{${1:x}}{${2:y}}{${3:n}}"
-    },
-    "ssdropbull": {},
-    "ssdropboxed{}": {
-      "snippet": "ssdropboxed{${1:math}}"
-    },
-    "ssdropcircled{}": {
-      "snippet": "ssdropcircled{${1:math}}"
-    },
-    "sscurve{}": {
-      "snippet": "sscurve{${1:value}}"
-    },
-    "ssdashedstroke": {},
-    "ssdashedcurve{}": {
-      "snippet": "ssdashedcurve{${1:value}}"
-    },
-    "ssdottedstroke": {},
-    "ssdottedcurve{}": {
-      "snippet": "ssdottedcurve{${1:value}}"
-    },
-    "sscurvedline{}{}{}": {
-      "snippet": "sscurvedline{${1:value}}{${2:x}}{${3:y}}"
-    },
-    "ssdashedline{}{}": {
-      "snippet": "ssdashedline{${1:x}}{${2:y}}"
-    },
-    "sscurveddashedline{}{}{}": {
-      "snippet": "sscurveddashedline{${1:value}}{${2:x}}{${3:y}}"
-    },
-    "sscurvedarrow{}{}{}": {
-      "snippet": "sscurvedarrow{${1:value}}{${2:x}}{${3:y}}"
-    },
-    "ssdashedarrow{}{}": {
-      "snippet": "ssdashedarrow{${1:x}}{${2:y}}"
-    },
-    "sscurveddashedarrow{}{}{}": {
-      "snippet": "sscurveddashedarrow{${1:value}}{${2:x}}{${3:y}}"
-    },
-    "ssvoidline{}{}": {
-      "snippet": "ssvoidline{${1:x}}{${2:y}}"
-    },
-    "ssvoidarrow{}{}": {
-      "snippet": "ssvoidarrow{${1:x}}{${2:y}}"
-    },
-    "ssinversevoidarrow{}{}": {
-      "snippet": "ssinversevoidarrow{${1:x}}{${2:y}}"
-    },
-    "ssplaceboxed{}{}{}": {
-      "snippet": "ssplaceboxed{${1:arg1}}{${2:arg2}}{${3:math}}"
-    },
-    "ssplacecircled{}{}{}": {
-      "snippet": "ssplacecircled{${1:arg1}}{${2:arg2}}{${3:math}}"
-    },
-    "ssplace{}{}{}": {
-      "snippet": "ssplace{${1:arg1}}{${2:arg2}}{${3:math}}"
-    },
-    "currprefix": {},
-    "dropvarname{}{}": {
-      "snippet": "dropvarname{${1:arg1}}{${2:arg2}}"
-    },
-    "extractcoords": {},
-    "ifcurroutofrange": {},
-    "ifoutofrange": {},
-    "outofrangetrue": {},
-    "outofrangefalse": {},
-    "ifnodrop{}{}": {
-      "snippet": "ifnodrop{${1:arg1}}{${2:arg2}}"
-    },
-    "ifuniquedrop{}{}": {
-      "snippet": "ifuniquedrop{${1:arg1}}{${2:arg2}}"
-    },
-    "ntimes{}{}": {
-      "snippet": "ntimes{${1:arg1}}{${2:arg2}}"
-    },
-    "putxyq{}": {
-      "snippet": "putxyq{${1:code}}"
-    },
-    "putxy{}": {
-      "snippet": "putxy{${1:code}}"
-    },
-    "setcnt": {},
-    "ssassertsource": {},
-    "ssconncolor": {},
-    "ssdroperrormsg{}{}": {
-      "snippet": "ssdroperrormsg{${1:arg1}}{${2:arg2}}"
-    },
-    "sseqbullcnt": {},
-    "sseqconcludeconnection": {},
-    "sseqconncommand": {},
-    "sseqgridstyle": {},
-    "sseqpack{}{}": {
-      "snippet": "sseqpack{${1:arg1}}{${2:arg2}}"
-    },
-    "sseqrearrange{}{}{}{}{}": {
-      "snippet": "sseqrearrange{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
-    },
-    "sseqsavecnti": {},
-    "sseqsavecntii": {},
-    "sseqsavecntiii": {},
-    "sseqsavecntiv": {},
-    "sseqsavecntix": {},
-    "sseqsavecnto": {},
-    "sseqsavecntv": {},
-    "sseqsavecntvi": {},
-    "sseqsavecntvii": {},
-    "sseqsavecntviii": {},
-    "sseqstacking{}{}{}": {
-      "snippet": "sseqstacking{${1:x}}{${2:y}}{${3:n}}"
-    },
-    "sseqwritecolor{}": {
-      "snippet": "sseqwritecolor{${1:color}}"
-    },
-    "sseqxlabel": {},
-    "sseqylabel": {},
-    "ssfinishpos": {},
-    "ssglobalname{}": {
-      "snippet": "ssglobalname{${1:name}}"
-    },
-    "ssgridchess{}{}": {
-      "snippet": "ssgridchess{${1:arg1}}{${2:arg2}}"
-    },
-    "ssgridcrossword{}{}": {
-      "snippet": "ssgridcrossword{${1:arg1}}{${2:arg2}}"
-    },
-    "ssgriddots{}{}": {
-      "snippet": "ssgriddots{${1:arg1}}{${2:arg2}}"
-    },
-    "ssgridgo{}{}": {
-      "snippet": "ssgridgo{${1:arg1}}{${2:arg2}}"
-    },
-    "ssgridnone{}{}": {
-      "snippet": "ssgridnone{${1:arg1}}{${2:arg2}}"
-    },
-    "sslabelcolor": {},
-    "ssplacecolor": {},
-    "ssprepareline{}{}": {
-      "snippet": "ssprepareline{${1:arg1}}{${2:arg2}}"
-    },
-    "sssetglobalname{}": {
-      "snippet": "sssetglobalname{${1:name}}"
-    },
-    "act": {},
-    "for": {},
-    "lst": {},
-    "temp": {},
-    "tempcmd": {},
-    "tempoutercmd": {},
-    "temptwo": {},
-    "tmpcnt": {},
-    "tmpname": {},
-    "tmpval": {},
-    "pgfdecoratedcompleteddistance": {},
-    "pgfdecoratedremainingdistance": {},
-    "pgfdecoratedinputsegmentcompleteddistance": {},
-    "pgfdecoratedinputsegmentremainingdistance": {},
-    "pgfdecorationsegmentamplitude": {},
-    "pgfdecorationsegmentlength": {},
-    "pgfdecorationsegmentangle": {},
-    "pgfdecorationsegmentaspect": {},
-    "pgfmetadecorationsegmentamplitude": {},
-    "pgfmetadecorationsegmentlength": {},
-    "ifpgfdecoratepathhascorners": {},
-    "pgfdecoratepathhascornerstrue": {},
-    "pgfdecoratepathhascornersfalse": {},
-    "pgfdeclaredecoration{}{}{}": {
-      "snippet": "pgfdeclaredecoration{${1:name}}{${2:initial state}}{${3:states}}"
-    },
-    "state{}{}": {
-      "snippet": "state{${1:name}}{${2:code}}"
-    },
-    "state{}[]{}": {
-      "snippet": "state{${1:name}}[${2:options}]{${3:code}}",
-      "keyvalindex": 3,
-      "keyvalpos": 1
-    },
-    "pgfifdecoration{}{}{}": {
-      "snippet": "pgfifdecoration{${1:name}}{${2:if code}}{${3:else code}}"
-    },
-    "pgfdeclaremetadecoration{}{}{}": {
-      "snippet": "pgfdeclaremetadecoration{${1:name}}{${2:initial state}}{${3:states}}"
-    },
-    "pgfifmetadecoration{}{}{}": {
-      "snippet": "pgfifmetadecoration{${1:name}}{${2:if code}}{${3:else code}}"
-    },
-    "decoration{}": {
-      "snippet": "decoration{${1:name}}"
-    },
-    "beforedecoration{}": {
-      "snippet": "beforedecoration{${1:before code}}"
-    },
-    "afterdecoration{}": {
-      "snippet": "afterdecoration{${1:after code}}"
-    },
-    "pgfmetadecoratedpathlength": {},
-    "pgfmetadecoratedcompleteddistance": {},
-    "pgfmetadecoratedinputsegmentcompleteddistance": {},
-    "pgfmetadecoratedinputsegmentremainingdistance": {},
-    "pgfdecoratebeforecode": {},
-    "pgfdecorateaftercode": {},
-    "pgfdecoratepath{}{}": {
-      "snippet": "pgfdecoratepath{${1:name}}{${2:path commands}}"
-    },
-    "pgfdecoratecurrentpath{}": {
-      "snippet": "pgfdecoratecurrentpath{${1:name}}"
-    },
-    "pgfdecoration{}": {
-      "snippet": "pgfdecoration{${1:name}}"
-    },
-    "endpgfdecoration": {},
-    "pgfdecorationpath": {},
-    "pgfdecoratedpath": {},
-    "pgfdecorateexistingpath": {},
-    "pgfdecoratedpathlength": {},
-    "pgfpointdecoratedpathfirst": {},
-    "pgfpointdecoratedpathlast": {},
-    "pgfpointdecoratedinputsegmentfirst": {},
-    "pgfpointdecoratedinputsegmentlast": {},
-    "pgfsetdecorationsegmenttransformation{}": {
-      "snippet": "pgfsetdecorationsegmenttransformation{${1:code}}"
-    },
-    "pgfmetadecoratedremainingdistance": {},
-    "pgfpointmetadecoratedpathfirst": {},
-    "pgfpointmetadecoratedpathlast": {},
-    "pgfdecoratedinputsegmentlength": {},
-    "pgfdecoratedangle": {},
-    "pgfdecoratedinputsegmentstartangle": {},
-    "pgfdecoratedinputsegmentendangle": {},
-    "pgfdecorationcurrentinputsegment": {},
-    "pgfdecorationnextinputsegmentobject": {},
-    "pgfdecorationinputsegmentmoveto": {},
-    "pgfdecorationinputsegmentlineto": {},
-    "pgfdecorationinputsegmentcurveto": {},
-    "pgfdecorationinputsegmentclosepath": {},
-    "pgfdecorationinputsegmentlast": {},
-    "ifpgfdecoraterectangleclockwise": {},
-    "pgfdecoraterectangleclockwisetrue": {},
-    "pgfdecoraterectangleclockwisefalse": {},
-    "pgfmetadecoration{}": {
-      "snippet": "pgfmetadecoration{${1:name}}"
-    },
-    "endpgfmetadecoration": {}
-  },
-  "envs": {
-    "sseq{}{}": {
-      "name": "sseq",
-      "snippet": "{${1:x-range}}{${2:y-range}}"
-    },
-    "sseq[]{}{}": {
-      "name": "sseq",
-      "snippet": "[${3:options}]{${1:x-range}}{${2:y-range}}",
-      "keyvalindex": 4,
-      "keyvalpos": 0
-    },
-    "pgfdecoration{}": {
-      "name": "pgfdecoration",
-      "snippet": "{${1:name}}"
-    },
-    "pgfmetadecoration{}": {
-      "name": "pgfmetadecoration",
-      "snippet": "{${1:name}}"
+    {
+      "name": "xkeyval"
     }
-  },
-  "options": [
-    "color",
-    "nocolor",
-    "debug"
   ],
-  "keyvals": [
-    [
-      "circled",
-      "boxed",
-      "color=",
-      "name=${1:name}"
+  "macros": [
+    {
+      "name": "sseqpacking"
+    },
+    {
+      "name": "sspacksmart"
+    },
+    {
+      "name": "sspackhorizontal"
+    },
+    {
+      "name": "sspackvertical"
+    },
+    {
+      "name": "sspackdiagonal"
+    },
+    {
+      "name": "ssmoveto",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:x}}{${2:y}}"
+      }
+    },
+    {
+      "name": "ssmove",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:x}}{${2:y}}"
+      }
+    },
+    {
+      "name": "ssdrop",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:math%formula}}"
+      }
+    },
+    {
+      "name": "ssdrop",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:math%formula}}"
+      }
+    },
+    {
+      "name": "ssname",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "ssgoto",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "ssprefix",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:prefix}}"
+      }
+    },
+    {
+      "name": "ssresetprefix"
+    },
+    {
+      "name": "ssabsgoto",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "ssdroplabel",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "ssdroplabel",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:label}}"
+      }
+    },
+    {
+      "name": "ssdropextension"
+    },
+    {
+      "name": "ssstroke"
+    },
+    {
+      "name": "ssstroke",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "ssarrowhead"
+    },
+    {
+      "name": "ssarrowhead",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:arrow style}]"
+      }
+    },
+    {
+      "name": "ssinversearrowhead"
+    },
+    {
+      "name": "ssinversearrowhead",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:arrow style}]"
+      }
+    },
+    {
+      "name": "ssline",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:x}}{${2:y}}"
+      }
+    },
+    {
+      "name": "ssline",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:x}}{${2:y}}"
+      }
+    },
+    {
+      "name": "ssarrow",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:x}}{${2:y}}"
+      }
+    },
+    {
+      "name": "ssarrow",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:x}}{${2:y}}"
+      }
+    },
+    {
+      "name": "ssbullstring",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:x}}{${2:y}}{${3:n}}"
+      }
+    },
+    {
+      "name": "ssinfbullstring",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:x}}{${2:y}}{${3:n}}"
+      }
+    },
+    {
+      "name": "ssdropbull",
+      "unusual": true
+    },
+    {
+      "name": "ssdropboxed",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:math%formula}}"
+      }
+    },
+    {
+      "name": "ssdropcircled",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:math%formula}}"
+      }
+    },
+    {
+      "name": "sscurve",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:value}}"
+      }
+    },
+    {
+      "name": "ssdashedstroke",
+      "unusual": true
+    },
+    {
+      "name": "ssdashedcurve",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:value}}"
+      }
+    },
+    {
+      "name": "ssdottedstroke",
+      "unusual": true
+    },
+    {
+      "name": "ssdottedcurve",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:value}}"
+      }
+    },
+    {
+      "name": "sscurvedline",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:value}}{${2:x}}{${3:y}}"
+      }
+    },
+    {
+      "name": "ssdashedline",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:x}}{${2:y}}"
+      }
+    },
+    {
+      "name": "sscurveddashedline",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:value}}{${2:x}}{${3:y}}"
+      }
+    },
+    {
+      "name": "sscurvedarrow",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:value}}{${2:x}}{${3:y}}"
+      }
+    },
+    {
+      "name": "ssdashedarrow",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:x}}{${2:y}}"
+      }
+    },
+    {
+      "name": "sscurveddashedarrow",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:value}}{${2:x}}{${3:y}}"
+      }
+    },
+    {
+      "name": "ssvoidline",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:x}}{${2:y}}"
+      }
+    },
+    {
+      "name": "ssvoidarrow",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:x}}{${2:y}}"
+      }
+    },
+    {
+      "name": "ssinversevoidarrow",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:x}}{${2:y}}"
+      }
+    },
+    {
+      "name": "ssplaceboxed",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:math%formula}}"
+      }
+    },
+    {
+      "name": "ssplacecircled",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:math%formula}}"
+      }
+    },
+    {
+      "name": "ssplace",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:math%formula}}"
+      }
+    },
+    {
+      "name": "currprefix",
+      "unusual": true
+    },
+    {
+      "name": "dropvarname",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "extractcoords",
+      "unusual": true
+    },
+    {
+      "name": "ifcurroutofrange",
+      "unusual": true
+    },
+    {
+      "name": "ifoutofrange",
+      "unusual": true
+    },
+    {
+      "name": "outofrangetrue",
+      "unusual": true
+    },
+    {
+      "name": "outofrangefalse",
+      "unusual": true
+    },
+    {
+      "name": "ifnodrop",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "ifuniquedrop",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "ntimes",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "putxyq",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "putxy",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "setcnt",
+      "unusual": true
+    },
+    {
+      "name": "ssassertsource",
+      "unusual": true
+    },
+    {
+      "name": "ssconncolor",
+      "unusual": true
+    },
+    {
+      "name": "ssdroperrormsg",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "sseqbullcnt",
+      "unusual": true
+    },
+    {
+      "name": "sseqconcludeconnection",
+      "unusual": true
+    },
+    {
+      "name": "sseqconncommand",
+      "unusual": true
+    },
+    {
+      "name": "sseqgridstyle",
+      "unusual": true
+    },
+    {
+      "name": "sseqpack",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "sseqrearrange",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
+      }
+    },
+    {
+      "name": "sseqsavecnti",
+      "unusual": true
+    },
+    {
+      "name": "sseqsavecntii",
+      "unusual": true
+    },
+    {
+      "name": "sseqsavecntiii",
+      "unusual": true
+    },
+    {
+      "name": "sseqsavecntiv",
+      "unusual": true
+    },
+    {
+      "name": "sseqsavecntix",
+      "unusual": true
+    },
+    {
+      "name": "sseqsavecnto",
+      "unusual": true
+    },
+    {
+      "name": "sseqsavecntv",
+      "unusual": true
+    },
+    {
+      "name": "sseqsavecntvi",
+      "unusual": true
+    },
+    {
+      "name": "sseqsavecntvii",
+      "unusual": true
+    },
+    {
+      "name": "sseqsavecntviii",
+      "unusual": true
+    },
+    {
+      "name": "sseqstacking",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:x}}{${2:y}}{${3:n}}"
+      }
+    },
+    {
+      "name": "sseqwritecolor",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "sseqxlabel",
+      "unusual": true
+    },
+    {
+      "name": "sseqylabel",
+      "unusual": true
+    },
+    {
+      "name": "ssfinishpos",
+      "unusual": true
+    },
+    {
+      "name": "ssglobalname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "ssgridchess",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "ssgridcrossword",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "ssgriddots",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "ssgridgo",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "ssgridnone",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "sslabelcolor",
+      "unusual": true
+    },
+    {
+      "name": "ssplacecolor",
+      "unusual": true
+    },
+    {
+      "name": "ssprepareline",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "sssetglobalname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "pgfdecoratedcompleteddistance",
+      "unusual": true
+    },
+    {
+      "name": "pgfdecoratedremainingdistance",
+      "unusual": true
+    },
+    {
+      "name": "pgfdecoratedinputsegmentcompleteddistance",
+      "unusual": true
+    },
+    {
+      "name": "pgfdecoratedinputsegmentremainingdistance",
+      "unusual": true
+    },
+    {
+      "name": "pgfdecorationsegmentamplitude",
+      "unusual": true
+    },
+    {
+      "name": "pgfdecorationsegmentlength",
+      "unusual": true
+    },
+    {
+      "name": "pgfdecorationsegmentangle",
+      "unusual": true
+    },
+    {
+      "name": "pgfdecorationsegmentaspect",
+      "unusual": true
+    },
+    {
+      "name": "pgfmetadecorationsegmentamplitude",
+      "unusual": true
+    },
+    {
+      "name": "pgfmetadecorationsegmentlength",
+      "unusual": true
+    },
+    {
+      "name": "ifpgfdecoratepathhascorners",
+      "unusual": true
+    },
+    {
+      "name": "pgfdecoratepathhascornerstrue",
+      "unusual": true
+    },
+    {
+      "name": "pgfdecoratepathhascornersfalse",
+      "unusual": true
+    },
+    {
+      "name": "pgfdeclaredecoration",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:initial state}}{${3:states}}"
+      }
+    },
+    {
+      "name": "state",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:code}}"
+      }
+    },
+    {
+      "name": "state",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:name}}[${3:options%keyvals}]{${2:code}}"
+      }
+    },
+    {
+      "name": "pgfifdecoration",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:if code}}{${3:else code}}"
+      }
+    },
+    {
+      "name": "pgfdeclaremetadecoration",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:initial state}}{${3:states}}"
+      }
+    },
+    {
+      "name": "pgfifmetadecoration",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:if code}}{${3:else code}}"
+      }
+    },
+    {
+      "name": "decoration",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "beforedecoration",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:before code}}"
+      }
+    },
+    {
+      "name": "afterdecoration",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:after code}}"
+      }
+    },
+    {
+      "name": "pgfmetadecoratedpathlength",
+      "unusual": true
+    },
+    {
+      "name": "pgfmetadecoratedcompleteddistance",
+      "unusual": true
+    },
+    {
+      "name": "pgfmetadecoratedinputsegmentcompleteddistance",
+      "unusual": true
+    },
+    {
+      "name": "pgfmetadecoratedinputsegmentremainingdistance",
+      "unusual": true
+    },
+    {
+      "name": "pgfdecoratebeforecode",
+      "unusual": true
+    },
+    {
+      "name": "pgfdecorateaftercode",
+      "unusual": true
+    },
+    {
+      "name": "pgfdecoratepath",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:path commands}}"
+      }
+    },
+    {
+      "name": "pgfdecoratecurrentpath",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "pgfdecorationpath",
+      "unusual": true
+    },
+    {
+      "name": "pgfdecoratedpath",
+      "unusual": true
+    },
+    {
+      "name": "pgfdecorateexistingpath",
+      "unusual": true
+    },
+    {
+      "name": "pgfdecoratedpathlength",
+      "unusual": true
+    },
+    {
+      "name": "pgfpointdecoratedpathfirst",
+      "unusual": true
+    },
+    {
+      "name": "pgfpointdecoratedpathlast",
+      "unusual": true
+    },
+    {
+      "name": "pgfpointdecoratedinputsegmentfirst",
+      "unusual": true
+    },
+    {
+      "name": "pgfpointdecoratedinputsegmentlast",
+      "unusual": true
+    },
+    {
+      "name": "pgfsetdecorationsegmenttransformation",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "pgfmetadecoratedremainingdistance",
+      "unusual": true
+    },
+    {
+      "name": "pgfpointmetadecoratedpathfirst",
+      "unusual": true
+    },
+    {
+      "name": "pgfpointmetadecoratedpathlast",
+      "unusual": true
+    },
+    {
+      "name": "pgfdecoratedinputsegmentlength",
+      "unusual": true
+    },
+    {
+      "name": "pgfdecoratedangle",
+      "unusual": true
+    },
+    {
+      "name": "pgfdecoratedinputsegmentstartangle",
+      "unusual": true
+    },
+    {
+      "name": "pgfdecoratedinputsegmentendangle",
+      "unusual": true
+    },
+    {
+      "name": "pgfdecorationcurrentinputsegment",
+      "unusual": true
+    },
+    {
+      "name": "pgfdecorationnextinputsegmentobject",
+      "unusual": true
+    },
+    {
+      "name": "pgfdecorationinputsegmentmoveto",
+      "unusual": true
+    },
+    {
+      "name": "pgfdecorationinputsegmentlineto",
+      "unusual": true
+    },
+    {
+      "name": "pgfdecorationinputsegmentcurveto",
+      "unusual": true
+    },
+    {
+      "name": "pgfdecorationinputsegmentclosepath",
+      "unusual": true
+    },
+    {
+      "name": "pgfdecorationinputsegmentlast",
+      "unusual": true
+    },
+    {
+      "name": "ifpgfdecoraterectangleclockwise",
+      "unusual": true
+    },
+    {
+      "name": "pgfdecoraterectangleclockwisetrue",
+      "unusual": true
+    },
+    {
+      "name": "pgfdecoraterectangleclockwisefalse",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "sseq",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:x-range}}{${2:y-range}}"
+      }
+    },
+    {
+      "name": "sseq",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:x-range}}{${2:y-range}}"
+      }
+    },
+    {
+      "name": "pgfdecoration",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "pgfmetadecoration",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/sseq#c": [
+      "color\r",
+      "nocolor\r",
+      "debug\r"
     ],
-    [
-      "U",
-      "LU",
-      "RU",
-      "L",
-      "R",
-      "LD",
-      "RD",
-      "D",
-      "color="
-    ],
-    [
-      "color=",
-      "curve=${1:value}",
-      "dashed",
-      "dashed=${1:dash type}",
-      "dotted",
-      "dotted=${1:dash type}",
-      "arrowfrom",
-      "arrowfrom=${1:arrow style}",
-      "arrowto",
-      "arrowto=${1:arrow style}",
-      "void"
-    ],
-    [
-      "switch if less than=${1:dimen} to ${2:new state}",
-      "switch if input segment less than=${1:dimen} to ${2:new state}",
-      "width=",
-      "repeat state=${1:repetitions}",
-      "next state=${1:new state}",
-      "if input segment is closepath={${1:options}}",
-      "auto end on length=",
-      "auto corner on length=",
-      "persistent precomputation=${1:precode}",
-      "persistent postcomputation=${1:postcode}"
-    ],
-    [
-      "grid=${1|none,crossword,go,dots,chess|}",
+    "\\begin{sseq}": [
+      "grid=${1|none,crossword,go,dots,chess\r|}",
       "entrysize=",
-      "labels=${1:labels}",
-      "xlabels=${1:labels}",
-      "ylabels=${1:labels}",
-      "labelstep=${1:integer}",
-      "xlabelstep=${1:integer}",
-      "ylabelstep=${1:integer}",
+      "labels=${1:labels}\r",
+      "xlabels=${1:labels}\r",
+      "ylabels=${1:labels}\r",
+      "labelstep=${1:integer}\r",
+      "xlabelstep=${1:integer}\r",
+      "ylabelstep=${1:integer}\r",
       "gapsize=",
       "xgapsize=",
       "ygapsize=",
@@ -404,7 +919,52 @@
       "leak=",
       "xleak=",
       "yleak=",
-      "arrows=${1:arrow type}"
+      "arrows=${1:arrow type}\r"
+    ],
+    "\\ssdrop": [
+      "circled\r",
+      "boxed\r",
+      "color=",
+      "name=${1:name}\r"
+    ],
+    "\\ssdroplabel": [
+      "U\r",
+      "LU\r",
+      "RU\r",
+      "L\r",
+      "R\r",
+      "LD\r",
+      "RD\r",
+      "D\r",
+      "color="
+    ],
+    "\\ssstroke,\\ssline,\\ssarrow": [
+      "color=",
+      "curve=${1:value}\r",
+      "dashed\r",
+      "dashed=${1:dash type}\r",
+      "dotted\r",
+      "dotted=${1:dash type}\r",
+      "arrowfrom\r",
+      "arrowfrom=${1:arrow style}\r",
+      "arrowto\r",
+      "arrowto=${1:arrow style}\r",
+      "void\r"
+    ],
+    "\\state#c": [
+      "switch if less than=${1:dimen} to ${2:new state}\r",
+      "switch if input segment less than=${1:dimen} to ${2:new state}\r",
+      "width=",
+      "repeat state=${1:repetitions}\r",
+      "next state=${1:new state}\r",
+      "if input segment is closepath={${1:options}}\r",
+      "auto end on length=",
+      "auto corner on length=",
+      "persistent precomputation=${1:precode}\r",
+      "persistent postcomputation=${1:postcode}\r"
     ]
+  },
+  "args": [
+    "\\usepackage/sseq#c"
   ]
 }

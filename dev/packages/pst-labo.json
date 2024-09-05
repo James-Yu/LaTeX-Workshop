@@ -1,114 +1,237 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-plot": [],
-    "multido": [],
-    "pst-grad": [],
-    "pst-xkey": []
-  },
-  "macros": {
-    "pstBullesChampagne": {},
-    "pstBullesChampagne[]": {
-      "snippet": "pstBullesChampagne[${1:value}]"
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "pstFilaments{}": {
-      "snippet": "pstFilaments{${1:color}}"
+    {
+      "name": "pst-plot"
     },
-    "pstFilaments[]{}": {
-      "snippet": "pstFilaments[${2:value}]{${1:color}}"
+    {
+      "name": "multido"
     },
-    "pstBilles": {},
-    "pstBilles[]": {
-      "snippet": "pstBilles[${1:value}]"
+    {
+      "name": "pst-grad"
     },
-    "pstBULLES{}": {
-      "snippet": "pstBULLES{${1:color}}"
+    {
+      "name": "pst-xkey"
+    }
+  ],
+  "macros": [
+    {
+      "name": "pstBullesChampagne"
     },
-    "pstBULLES[]{}": {
-      "snippet": "pstBULLES[${2:value}]{${1:color}}"
+    {
+      "name": "pstBullesChampagne",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:value}]"
+      }
     },
-    "pstTournureCuivre": {},
-    "pstTournureCuivre[]": {
-      "snippet": "pstTournureCuivre[${1:value}]"
+    {
+      "name": "pstFilaments",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
     },
-    "pstClouFer": {},
-    "pstClouFer[]": {
-      "snippet": "pstClouFer[${1:value}]"
+    {
+      "name": "pstFilaments",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:value}]{${1:color}}"
+      }
     },
-    "pstGrenailleZinc": {},
-    "pstGrenailleZinc[]": {
-      "snippet": "pstGrenailleZinc[${1:value}]"
+    {
+      "name": "pstBilles"
     },
-    "pstTubeEssais": {},
-    "pstTubeEssais[]": {
-      "snippet": "pstTubeEssais[${1:options}]"
+    {
+      "name": "pstBilles",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:value}]"
+      }
     },
-    "pstChauffageTube": {},
-    "pstChauffageTube[]": {
-      "snippet": "pstChauffageTube[${1:options}]"
+    {
+      "name": "pstBULLES",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
     },
-    "pstBallon": {},
-    "pstBallon[]": {
-      "snippet": "pstBallon[${1:options}]"
+    {
+      "name": "pstBULLES",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:value}]{${1:color}}"
+      }
     },
-    "pstChauffageBallon": {},
-    "pstChauffageBallon[]": {
-      "snippet": "pstChauffageBallon[${1:options}]"
+    {
+      "name": "pstTournureCuivre"
     },
-    "pstEntonnoir": {},
-    "pstEntonnoir[]": {
-      "snippet": "pstEntonnoir[${1:options}]"
+    {
+      "name": "pstTournureCuivre",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:value}]"
+      }
     },
-    "pstEprouvette": {},
-    "pstEprouvette[]": {
-      "snippet": "pstEprouvette[${1:options}]"
+    {
+      "name": "pstClouFer"
     },
-    "pstpipette": {},
-    "pstpipette[]": {
-      "snippet": "pstpipette[${1:options}]"
+    {
+      "name": "pstClouFer",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:value}]"
+      }
     },
-    "pstDosage": {},
-    "pstDosage[]": {
-      "snippet": "pstDosage[${1:options}]"
+    {
+      "name": "pstGrenailleZinc"
     },
-    "pstDistillation()()": {
-      "snippet": "pstDistillation(${1:x1},${2:y1})(${3:x2},${4:y2})"
+    {
+      "name": "pstGrenailleZinc",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:value}]"
+      }
     },
-    "pstDistillation[]()()": {
-      "snippet": "pstDistillation[${1:options}](${2:x1},${3:y1})(${4:x2},${5:y2})"
+    {
+      "name": "pstTubeEssais"
     },
-    "pstSeparateFunnel": {},
-    "pstSeparateFunnel[]": {
-      "snippet": "pstSeparateFunnel[${1:options}]"
+    {
+      "name": "pstTubeEssais",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     },
-    "pstSupport": {},
-    "chauffe": {},
-    "Cristallisoir": {},
-    "InterieurCristallisoir": {},
-    "BulleX": {},
-    "BulleY": {},
-    "GrenailleX": {},
-    "GrenailleY": {},
-    "TournureX": {},
-    "TournureY": {},
-    "RAYONBULLE": {},
-    "ClouX": {},
-    "ClouY": {},
-    "randomi": {},
-    "nextrandom": {},
-    "setrannum{}{}{}": {
-      "snippet": "setrannum{${1:count register}}{${2:min}}{${3:max}}"
+    {
+      "name": "pstChauffageTube"
     },
-    "setrandim{}{}{}": {
-      "snippet": "setrandim{${1:dimen register}}{${2:min}}{${3:max}}"
+    {
+      "name": "pstChauffageTube",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     },
-    "pointless": {},
-    "PoinTless": {},
-    "ranval": {},
-    "PSTLabofileversion": {},
-    "PSTLaboLoaded": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "pstBallon"
+    },
+    {
+      "name": "pstBallon",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "pstChauffageBallon"
+    },
+    {
+      "name": "pstChauffageBallon",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "pstEntonnoir"
+    },
+    {
+      "name": "pstEntonnoir",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "pstEprouvette"
+    },
+    {
+      "name": "pstEprouvette",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "pstpipette"
+    },
+    {
+      "name": "pstpipette",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "pstDosage"
+    },
+    {
+      "name": "pstDosage",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "pstDistillation(x1,y1)(x2,y2)"
+    },
+    {
+      "name": "pstDistillation",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "[${1:options%keyvals}](${2:x1},${3:y1})(${4:x2},${5:y2})"
+      }
+    },
+    {
+      "name": "pstSeparateFunnel"
+    },
+    {
+      "name": "pstSeparateFunnel",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "pstSupport"
+    },
+    {
+      "name": "chauffe",
+      "unusual": true
+    },
+    {
+      "name": "Cristallisoir",
+      "unusual": true
+    },
+    {
+      "name": "InterieurCristallisoir",
+      "unusual": true
+    },
+    {
+      "name": "setrannum",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:count register%cmd}}{${2:min}}{${3:max}}"
+      }
+    },
+    {
+      "name": "setrandim",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:dimen register%cmd}}{${2:min}}{${3:max}}"
+      }
+    },
+    {
+      "name": "pointless",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

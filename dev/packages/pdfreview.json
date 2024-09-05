@@ -1,108 +1,217 @@
 {
-  "includes": {
-    "adjustbox": [],
-    "calc": [],
-    "environ": [],
-    "etoolbox": [],
-    "fp": [],
-    "graphicx": [],
-    "kvoptions": [],
-    "tikz": [],
-    "tikzlibrarycalc": [],
-    "tikzlibrarypositioning": [],
-    "twoopt": [],
-    "xstring": [],
-    "grffile": [],
-    "ulem": [],
-    "hyperref": [],
-    "bookmark": [],
-    "geometry": []
-  },
-  "macros": {
-    "note{}{}": {
-      "snippet": "note{${1:height}}{${2:text}}"
+  "deps": [
+    {
+      "name": "adjustbox"
     },
-    "note[]{}{}": {
-      "snippet": "note[${3:alignment}]{${1:height}}{${2:text}}"
+    {
+      "name": "calc"
     },
-    "bnote{}{}": {
-      "snippet": "bnote{${1:height}}{${2:text}}"
+    {
+      "name": "environ"
     },
-    "cnote{}{}": {
-      "snippet": "cnote{${1:height}}{${2:text}}"
+    {
+      "name": "etoolbox"
     },
-    "tnote{}{}": {
-      "snippet": "tnote{${1:height}}{${2:text}}"
+    {
+      "name": "fp"
     },
-    "sourcedoc{}": {
-      "snippet": "sourcedoc{${1:file}}"
+    {
+      "name": "graphicx"
     },
-    "pagegrid": {},
-    "pagegrid[]": {
-      "snippet": "pagegrid[${1:TikZ settings}]"
+    {
+      "name": "kvoptions"
     },
-    "pagegrid[][]": {
-      "snippet": "pagegrid[${1:TikZ settings}][${2:steps}]"
+    {
+      "name": "tikz"
     },
-    "gsetlength{}{}": {
-      "snippet": "gsetlength{${1:length macro}}{${2:length}}"
+    {
+      "name": "tikzlibrarycalc"
     },
-    "thenote": {},
-    "resettrim": {},
-    "resettrim[]": {
-      "snippet": "resettrim[${1:length}]"
+    {
+      "name": "tikzlibrarypositioning"
     },
-    "remark": {},
-    "ssout{}": {
-      "snippet": "ssout{${1:text}}"
+    {
+      "name": "twoopt"
+    },
+    {
+      "name": "xstring"
+    },
+    {
+      "name": "grffile"
+    },
+    {
+      "name": "ulem"
+    },
+    {
+      "name": "hyperref"
+    },
+    {
+      "name": "bookmark"
+    },
+    {
+      "name": "geometry"
     }
-  },
-  "envs": {
-    "page{}": {
-      "name": "page",
-      "snippet": "{${1:page number}}"
-    },
-    "page[]{}": {
-      "name": "page",
-      "snippet": "[${2:options}]{${1:page number}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "leftnotes": {},
-    "rightnotes": {},
-    "insertpage": {},
-    "insertpage[]": {
-      "name": "insertpage",
-      "snippet": "[${1:heading}]"
-    },
-    "listofnotes": {}
-  },
-  "options": [
-    "grid",
-    "twocolumn",
-    "notenumbers",
-    "inline",
-    "withnotesonly",
-    "staggered",
-    "scaletopage=${1:factor}",
-    "gridcolor=",
-    "bodywidth=${1:factor}",
-    "trim=",
-    "trimshift=",
-    "bodyframe=",
-    "sourcedoc=${1:file name}",
-    "pageoffset=${1:integer}",
-    "alignnotes=${1|t,b,c|}",
-    "notesbg=",
-    "important=",
-    "notesframe=",
-    "notesep=",
-    "fontsize=${1:fontsize csname}",
-    "maxscale=${1:integer}",
-    "insertpagemargin="
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "note",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:height}}{${2:text}}"
+      }
+    },
+    {
+      "name": "note",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:alignment%keyvals}]{${1:height}}{${2:text}}"
+      }
+    },
+    {
+      "name": "bnote",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:height}}{${2:text}}"
+      }
+    },
+    {
+      "name": "cnote",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:height}}{${2:text}}"
+      }
+    },
+    {
+      "name": "tnote",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:height}}{${2:text}}"
+      }
+    },
+    {
+      "name": "sourcedoc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file%file}}"
+      }
+    },
+    {
+      "name": "pagegrid"
+    },
+    {
+      "name": "pagegrid",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:TikZ settings}]"
+      }
+    },
+    {
+      "name": "pagegrid",
+      "arg": {
+        "format": "[][]",
+        "snippet": "[${1:TikZ settings}][${2:steps}]"
+      }
+    },
+    {
+      "name": "gsetlength",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:length macro}}{${2:length}}"
+      }
+    },
+    {
+      "name": "thenote",
+      "unusual": true
+    },
+    {
+      "name": "resettrim",
+      "unusual": true
+    },
+    {
+      "name": "resettrim",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:length}]"
+      }
+    },
+    {
+      "name": "ssout",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "page",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:page number}}"
+      }
+    },
+    {
+      "name": "page",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:page number}}"
+      }
+    },
+    {
+      "name": "leftnotes"
+    },
+    {
+      "name": "rightnotes"
+    },
+    {
+      "name": "insertpage"
+    },
+    {
+      "name": "insertpage",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "listofnotes",
+      "unusual": true
+    }
+  ],
+  "keys": {
+    "\\usepackage/pdfreview#c": [
+      "grid",
+      "twocolumn",
+      "notenumbers",
+      "inline",
+      "withnotesonly",
+      "staggered",
+      "scaletopage=${1:factor}",
+      "gridcolor=",
+      "bodywidth=${1:factor}",
+      "trim=",
+      "trimshift=",
+      "bodyframe=",
+      "sourcedoc=${1:file name}",
+      "pageoffset=${1:integer}",
+      "alignnotes=${1|t,b,c|}",
+      "notesbg=",
+      "important=",
+      "notesframe=",
+      "notesep=",
+      "fontsize=${1:fontsize csname}",
+      "maxscale=${1:integer}",
+      "insertpagemargin="
+    ],
+    "\\note": [
+      "b",
+      "c",
+      "t"
+    ],
+    "\\begin{page}": [
       "alt={${1:alt text}}",
       "bb=${1:llx lly urx ury}",
       "bbllx=",
@@ -270,5 +379,8 @@
       "gstore sizes=",
       "process"
     ]
+  },
+  "args": [
+    "\\usepackage/pdfreview#c"
   ]
 }

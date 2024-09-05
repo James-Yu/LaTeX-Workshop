@@ -1,113 +1,253 @@
 {
-  "includes": {
-    "tikz": [],
-    "tikzlibraryshapes.multipart": [],
-    "tikzlibrarybackgrounds": [],
-    "tikzlibraryfit": []
-  },
-  "macros": {
-    "attribute{}": {
-      "snippet": "attribute{${1:text}}"
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "operation{}": {
-      "snippet": "operation{${1:text}}"
+    {
+      "name": "tikzlibraryshapes.multipart"
     },
-    "operation[]{}": {
-      "snippet": "operation[${2:0}]{${1:text}}"
+    {
+      "name": "tikzlibrarybackgrounds"
     },
-    "instanceOf{}": {
-      "snippet": "instanceOf{${1:class name}}"
-    },
-    "switchUmlcdSchool": {},
-    "inherit{}": {
-      "snippet": "inherit{${1:class name}}"
-    },
-    "implement{}": {
-      "snippet": "implement{${1:interface name}}"
-    },
-    "association{}{}{}{}{}{}": {
-      "snippet": "association{${1:class1}}{${2:abovetext1}}{${3:belowtext1}}{${4:class2}}{${5:abovetext2}}{${6:belowtext2}}"
-    },
-    "unidirectionalAssociation{}{}{}{}": {
-      "snippet": "unidirectionalAssociation{${1:class1}}{${2:abovetext}}{${3:belowtext}}{${4:class2}}"
-    },
-    "aggregation{}{}{}{}": {
-      "snippet": "aggregation{${1:class1}}{${2:abovetext}}{${3:belowtext}}{${4:class2}}"
-    },
-    "composition{}{}{}{}": {
-      "snippet": "composition{${1:class1}}{${2:abovetext}}{${3:belowtext}}{${4:class2}}"
-    },
-    "calcuateNumberOfParts": {},
-    "insertAttributesAndOperations": {},
-    "theumlcdClassAbstractClassNum": {},
-    "theumlcdClassAttributesNum": {},
-    "theumlcdClassInterfaceNum": {},
-    "theumlcdClassOperationsNum": {},
-    "theumlcdClassSplitPartNum": {},
-    "umlcdClassAbstractClass": {},
-    "umlcdClassAbstractClassOld": {},
-    "umlcdClassAttributes": {},
-    "umlcdClassAttributesOld": {},
-    "umlcdClassInterface": {},
-    "umlcdClassInterfaceOld": {},
-    "umlcdClassName": {},
-    "umlcdClassOperations": {},
-    "umlcdClassOperationsOld": {},
-    "umlcdClassPos": {},
-    "umlcdPackageFit": {},
-    "umlcdPackageFitOld": {},
-    "umlcdPackageName": {},
-    "umldObjectName": {},
-    "umldrawcolor": {},
-    "umlfillcolor": {},
-    "umltextcolor": {},
-    "virtualoperation": {}
-  },
-  "envs": {
-    "class{}{}": {
-      "name": "class",
-      "snippet": "{${1:class name}}{${2:x,y}}"
-    },
-    "class[]{}{}": {
-      "name": "class",
-      "snippet": "[${3:TikZ options}]{${1:class name}}{${2:x,y}}"
-    },
-    "abstractclass{}{}": {
-      "name": "abstractclass",
-      "snippet": "{${1:class name}}{${2:x,y}}"
-    },
-    "abstractclass[]{}{}": {
-      "name": "abstractclass",
-      "snippet": "[${3:TikZ options}]{${1:class name}}{${2:x,y}}"
-    },
-    "interface{}{}": {
-      "name": "interface",
-      "snippet": "{${1:interface name}}{${2:x,y}}"
-    },
-    "interface[]{}{}": {
-      "name": "interface",
-      "snippet": "[${3:TikZ options}]{${1:interface name}}{${2:x,y}}"
-    },
-    "object{}{}": {
-      "name": "object",
-      "snippet": "{${1:object name}}{${2:x,y}}"
-    },
-    "object[]{}{}": {
-      "name": "object",
-      "snippet": "[${3:TikZ options}]{${1:object name}}{${2:x,y}}"
-    },
-    "package{}": {
-      "name": "package",
-      "snippet": "{${1:package name}}"
-    },
-    "classAndInterfaceCommon{}{}{}": {
-      "name": "classAndInterfaceCommon",
-      "snippet": "{${1:TikZ options}}{${2:name}}{${3:x,y}}"
+    {
+      "name": "tikzlibraryfit"
     }
-  },
-  "options": [
-    "school",
-    "simplified"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "attribute",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "operation",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "operation",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:0}]{${1:text}}"
+      }
+    },
+    {
+      "name": "instanceOf",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:class name}}"
+      }
+    },
+    {
+      "name": "switchUmlcdSchool"
+    },
+    {
+      "name": "inherit",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:class name}}"
+      }
+    },
+    {
+      "name": "implement",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:interface name}}"
+      }
+    },
+    {
+      "name": "association",
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "{${1:class1}}{${2:abovetext1}}{${3:belowtext1}}{${4:class2}}{${5:abovetext2}}{${6:belowtext2}}"
+      }
+    },
+    {
+      "name": "unidirectionalAssociation",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:class1}}{${2:abovetext}}{${3:belowtext}}{${4:class2}}"
+      }
+    },
+    {
+      "name": "aggregation",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:class1}}{${2:abovetext}}{${3:belowtext}}{${4:class2}}"
+      }
+    },
+    {
+      "name": "composition",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:class1}}{${2:abovetext}}{${3:belowtext}}{${4:class2}}"
+      }
+    },
+    {
+      "name": "calcuateNumberOfParts",
+      "unusual": true
+    },
+    {
+      "name": "insertAttributesAndOperations",
+      "unusual": true
+    },
+    {
+      "name": "theumlcdClassAbstractClassNum",
+      "unusual": true
+    },
+    {
+      "name": "theumlcdClassAttributesNum",
+      "unusual": true
+    },
+    {
+      "name": "theumlcdClassInterfaceNum",
+      "unusual": true
+    },
+    {
+      "name": "theumlcdClassOperationsNum",
+      "unusual": true
+    },
+    {
+      "name": "theumlcdClassSplitPartNum",
+      "unusual": true
+    },
+    {
+      "name": "umlcdClassAbstractClass",
+      "unusual": true
+    },
+    {
+      "name": "umlcdClassAttributes",
+      "unusual": true
+    },
+    {
+      "name": "umlcdClassInterface",
+      "unusual": true
+    },
+    {
+      "name": "umlcdClassName",
+      "unusual": true
+    },
+    {
+      "name": "umlcdClassOperations",
+      "unusual": true
+    },
+    {
+      "name": "umlcdClassPos",
+      "unusual": true
+    },
+    {
+      "name": "umlcdPackageFit",
+      "unusual": true
+    },
+    {
+      "name": "umlcdPackageName",
+      "unusual": true
+    },
+    {
+      "name": "umldObjectName",
+      "unusual": true
+    },
+    {
+      "name": "umldrawcolor",
+      "unusual": true
+    },
+    {
+      "name": "umlfillcolor",
+      "unusual": true
+    },
+    {
+      "name": "umltextcolor",
+      "unusual": true
+    },
+    {
+      "name": "virtualoperation",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "class",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:class name%text}}{${2:x,y}}"
+      }
+    },
+    {
+      "name": "class",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:TikZ options}]{${1:class name%text}}{${2:x,y}}"
+      }
+    },
+    {
+      "name": "abstractclass",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:class name%text}}{${2:x,y}}"
+      }
+    },
+    {
+      "name": "abstractclass",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:TikZ options}]{${1:class name%text}}{${2:x,y}}"
+      }
+    },
+    {
+      "name": "interface",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:interface name%text}}{${2:x,y}}"
+      }
+    },
+    {
+      "name": "interface",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:TikZ options}]{${1:interface name%text}}{${2:x,y}}"
+      }
+    },
+    {
+      "name": "object",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:object name%text}}{${2:x,y}}"
+      }
+    },
+    {
+      "name": "object",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:TikZ options}]{${1:object name%text}}{${2:x,y}}"
+      }
+    },
+    {
+      "name": "package",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:package name%text}}"
+      }
+    },
+    {
+      "name": "classAndInterfaceCommon",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:TikZ options}}{${2:name%text}}{${3:x,y}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/pgf-umlcd#c": [
+      "school\r",
+      "simplified\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/pgf-umlcd#c"
+  ]
 }

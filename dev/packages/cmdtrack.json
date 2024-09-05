@@ -1,25 +1,47 @@
 {
-  "includes": {},
-  "macros": {
-    "commandlist": {},
-    "untrack{}": {
-      "snippet": "untrack{${1:cmd1,${2:cmd2},...}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "commandlist"
     },
-    "logcmd{}{}": {
-      "snippet": "logcmd{${1:cmd1}}{${2:cmd2}}"
+    {
+      "name": "untrack",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cmd1,cmd2,...}}"
+      }
     },
-    "testthm{}": {
-      "snippet": "testthm{${1:arg}}"
+    {
+      "name": "logcmd",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd1%cmd}}{${2:cmd2%cmd}}"
+      }
     },
-    "ShowPackageInfo{}": {
-      "snippet": "ShowPackageInfo{${1:package}}"
+    {
+      "name": "testthm",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "ShowPackageInfo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:package}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [
-    "?",
-    "morose",
-    "simple"
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/cmdtrack#c": [
+      "?\r",
+      "morose\r",
+      "simple\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/cmdtrack#c"
+  ]
 }

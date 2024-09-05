@@ -1,43 +1,98 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-grad": [],
-    "pst-slpe": [],
-    "pst-eucl": [],
-    "pstricks-add": []
-  },
-  "macros": {
-    "pspulleys": {},
-    "pspulleys[]": {
-      "snippet": "pspulleys[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "pulleyA": {},
-    "pulleyB": {},
-    "pulleyC": {},
-    "radianAI": {},
-    "radianBI": {},
-    "radianCI": {},
-    "poulieA": {},
-    "poulieB": {},
-    "poulieC": {},
-    "poulieD": {},
-    "poulieE": {},
-    "poulieF": {},
-    "flzlx": {},
-    "Npulleys": {},
-    "PSTpulleyLoaded": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "pst-grad"
+    },
+    {
+      "name": "pst-slpe"
+    },
+    {
+      "name": "pst-eucl"
+    },
+    {
+      "name": "pstricks-add"
+    }
+  ],
+  "macros": [
+    {
+      "name": "pspulleys"
+    },
+    {
+      "name": "pspulleys",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "pulleyA",
+      "unusual": true
+    },
+    {
+      "name": "pulleyB",
+      "unusual": true
+    },
+    {
+      "name": "pulleyC",
+      "unusual": true
+    },
+    {
+      "name": "radianAI",
+      "unusual": true
+    },
+    {
+      "name": "radianBI",
+      "unusual": true
+    },
+    {
+      "name": "radianCI",
+      "unusual": true
+    },
+    {
+      "name": "poulieA",
+      "unusual": true
+    },
+    {
+      "name": "poulieB",
+      "unusual": true
+    },
+    {
+      "name": "poulieC",
+      "unusual": true
+    },
+    {
+      "name": "poulieD",
+      "unusual": true
+    },
+    {
+      "name": "poulieE",
+      "unusual": true
+    },
+    {
+      "name": "poulieF",
+      "unusual": true
+    },
+    {
+      "name": "flzlx",
+      "unusual": true
+    },
+    {
+      "name": "Npulleys",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\pspulleys#c": [
       "pulleyGrid",
-      "N=${1|1,2,3,4,5,6|}",
-      "M=${1:mass in kg}",
-      "h=${1:height in cm}",
-      "Dx=${1:number}"
+      "N=${1|1,2,3,4,5,6\r|}",
+      "M=${1:mass in kg}\r",
+      "h=${1:height in cm}\r",
+      "Dx=${1:number}\r"
     ]
-  ]
+  },
+  "args": []
 }

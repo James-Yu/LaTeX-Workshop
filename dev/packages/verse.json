@@ -1,104 +1,276 @@
 {
-  "includes": {},
-  "macros": {
-    "indentpattern{}": {
-      "snippet": "indentpattern{${1:digits}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "indentpattern",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:digits}}"
+      }
     },
-    "versewidth": {},
-    "vin": {},
-    "vgap": {},
-    "vindent": {},
-    "leftmargini": {},
-    "stanzaskip": {},
-    "verselinebreak": {},
-    "verselinebreak[]": {
-      "snippet": "verselinebreak[${1:length}]"
+    {
+      "name": "versewidth"
     },
-    "flagverse{}": {
-      "snippet": "flagverse{${1:flag}}"
+    {
+      "name": "vin"
     },
-    "vleftskip": {},
-    "vrightskip": {},
-    "poemlines{}": {
-      "snippet": "poemlines{${1:nth}}"
+    {
+      "name": "vgap"
     },
-    "setverselinenums{}{}": {
-      "snippet": "setverselinenums{${1:first line num}}{${2:start nums at}}"
+    {
+      "name": "vindent"
     },
-    "thepoemline": {},
-    "verselinenumfont{}": {
-      "snippet": "verselinenumfont{${1:font-spec}}"
+    {
+      "name": "leftmargini"
     },
-    "verselinenumbersleft": {},
-    "verselinenumbersright": {},
-    "poemtitle{}{}": {
-      "snippet": "poemtitle{${1:short}}{${2:long}}"
+    {
+      "name": "stanzaskip"
     },
-    "poemtitle*{}{}": {
-      "snippet": "poemtitle*{${1:short}}{${2:long}}"
+    {
+      "name": "verselinebreak"
     },
-    "poemtoc": {},
-    "poemtitlefont": {},
-    "beforepoemtitleskip": {},
-    "afterpoemtitleskip": {},
-    "poemtitlemark{}": {
-      "snippet": "poemtitlemark{${1:title}}"
+    {
+      "name": "verselinebreak",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:length}]"
+      }
     },
-    "newarray{}{}{}": {
-      "snippet": "newarray{${1:array name}}{${2:low}}{${3:high}}"
+    {
+      "name": "flagverse",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:flag}}"
+      }
     },
-    "setarrayelement{}{}{}": {
-      "snippet": "setarrayelement{${1:array name}}{${2:index}}{${3:text}}"
+    {
+      "name": "vleftskip"
     },
-    "getarrayelement{}{}{}": {
-      "snippet": "getarrayelement{${1:array name}}{${2:index}}{${3:result}}"
+    {
+      "name": "vrightskip"
     },
-    "checkarrayindex{}{}": {
-      "snippet": "checkarrayindex{${1:array name}}{${2:index}}"
+    {
+      "name": "poemlines",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:nth}}"
+      }
     },
-    "stringtoarray{}{}": {
-      "snippet": "stringtoarray{${1:array name}}{${2:string}}"
+    {
+      "name": "setverselinenums",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:first line num}}{${2:start nums at}}"
+      }
     },
-    "arraytostring{}{}": {
-      "snippet": "arraytostring{${1:array name}}{${2:result}}"
+    {
+      "name": "thepoemline"
     },
-    "checkifinteger{}": {
-      "snippet": "checkifinteger{${1:number}}"
+    {
+      "name": "verselinenumfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font-spec}}"
+      }
     },
-    "altindentfalse": {},
-    "altindenttrue": {},
-    "bounderrorfalse": {},
-    "bounderrortrue": {},
-    "gobm{}": {
-      "snippet": "gobm{${1:number}}"
+    {
+      "name": "verselinenumbersleft"
     },
-    "ifaltindent": {},
-    "ifbounderror": {},
-    "ifinteger": {},
-    "ifpattern": {},
-    "ifstarpattern": {},
-    "integerfalse": {},
-    "integertrue": {},
-    "patternfalse": {},
-    "patterntrue": {},
-    "starpatternfalse": {},
-    "starpatterntrue": {},
-    "thechrsinstr": {},
-    "thefvsline": {},
-    "theHpoemline": {},
-    "thevslineno": {},
-    "vlnumfont": {}
-  },
-  "envs": {
-    "verse": {},
-    "verse[]": {
+    {
+      "name": "verselinenumbersright"
+    },
+    {
+      "name": "poemtitle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:short}}{${2:long}}"
+      }
+    },
+    {
+      "name": "poemtitle*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:short}}{${2:long}}"
+      }
+    },
+    {
+      "name": "poemtoc"
+    },
+    {
+      "name": "poemtitlefont"
+    },
+    {
+      "name": "beforepoemtitleskip"
+    },
+    {
+      "name": "afterpoemtitleskip"
+    },
+    {
+      "name": "poemtitlemark",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "newarray",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:array name}}{${2:low}}{${3:high}}"
+      }
+    },
+    {
+      "name": "setarrayelement",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:array name}}{${2:index}}{${3:text}}"
+      }
+    },
+    {
+      "name": "getarrayelement",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:array name}}{${2:index}}{${3:result}}"
+      }
+    },
+    {
+      "name": "checkarrayindex",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:array name}}{${2:index}}"
+      }
+    },
+    {
+      "name": "stringtoarray",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:array name}}{${2:string}}"
+      }
+    },
+    {
+      "name": "arraytostring",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:array name}}{${2:result}}"
+      }
+    },
+    {
+      "name": "checkifinteger",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "altindentfalse",
+      "unusual": true
+    },
+    {
+      "name": "altindenttrue",
+      "unusual": true
+    },
+    {
+      "name": "bounderrorfalse",
+      "unusual": true
+    },
+    {
+      "name": "bounderrortrue",
+      "unusual": true
+    },
+    {
+      "name": "gobm",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "ifaltindent",
+      "unusual": true
+    },
+    {
+      "name": "ifbounderror",
+      "unusual": true
+    },
+    {
+      "name": "ifinteger",
+      "unusual": true
+    },
+    {
+      "name": "ifpattern",
+      "unusual": true
+    },
+    {
+      "name": "ifstarpattern",
+      "unusual": true
+    },
+    {
+      "name": "integerfalse",
+      "unusual": true
+    },
+    {
+      "name": "integertrue",
+      "unusual": true
+    },
+    {
+      "name": "patternfalse",
+      "unusual": true
+    },
+    {
+      "name": "patterntrue",
+      "unusual": true
+    },
+    {
+      "name": "starpatternfalse",
+      "unusual": true
+    },
+    {
+      "name": "starpatterntrue",
+      "unusual": true
+    },
+    {
+      "name": "thechrsinstr",
+      "unusual": true
+    },
+    {
+      "name": "thefvsline",
+      "unusual": true
+    },
+    {
+      "name": "theHpoemline",
+      "unusual": true
+    },
+    {
+      "name": "thevslineno",
+      "unusual": true
+    },
+    {
+      "name": "vlnumfont",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "verse"
+    },
+    {
       "name": "verse",
-      "snippet": "[${1:length of average line}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:length of average line}]"
+      }
     },
-    "altverse": {},
-    "patverse": {},
-    "patverse*": {}
-  },
-  "options": [],
-  "keyvals": []
+    {
+      "name": "altverse"
+    },
+    {
+      "name": "patverse"
+    },
+    {
+      "name": "patverse*"
+    }
+  ],
+  "keys": {},
+  "args": []
 }

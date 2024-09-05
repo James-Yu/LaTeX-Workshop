@@ -1,102 +1,112 @@
 {
-  "includes": {
-    "ifluatex": [],
-    "color": [],
-    "graphics": []
-  },
-  "macros": {
-    "crop": {},
-    "crop[]": {
-      "snippet": "crop[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "ifluatex"
     },
-    "cropdef{}{}{}{}{}": {
-      "snippet": "cropdef{${1:ul-macro}}{${2:ur-macro}}{${3:ll-macro}}{${4:lr-macro}}{${5:mode name}}"
+    {
+      "name": "color"
     },
-    "cropdef[]{}{}{}{}{}": {
-      "snippet": "cropdef[${6:page-info macro}]{${1:ul-macro}}{${2:ur-macro}}{${3:ll-macro}}{${4:lr-macro}}{${5:mode name}}"
-    },
-    "stockwidth": {},
-    "stockheight": {}
-  },
-  "envs": {},
-  "options": [
-    "a0",
-    "a1",
-    "a2",
-    "a3",
-    "a4",
-    "a5",
-    "a6",
-    "b0",
-    "b1",
-    "b2",
-    "b3",
-    "b4",
-    "b5",
-    "b6",
-    "letter",
-    "legal",
-    "executive",
-    "width=",
-    "height=",
-    "center",
-    "landscape",
-    "dvips",
-    "pdftex",
-    "pdflatex",
-    "luatex",
-    "lualatex",
-    "vtex",
-    "nodriver",
-    "mirror",
-    "rotate",
-    "invert",
-    "notext",
-    "cam",
-    "cross",
-    "frame",
-    "off",
-    "odd",
-    "even",
-    "axes",
-    "noaxes",
-    "info",
-    "noinfo",
-    "font=${1:font csname}",
-    "color=",
-    "mount1",
-    "mount1=${1:integer}",
-    "mount2",
-    "mount2=${1:integer}",
-    "horigin=",
-    "vorigin=",
-    "graphics",
-    "nographics"
+    {
+      "name": "graphics"
+    }
   ],
-  "keyvals": [
-    [
-      "cam",
-      "cross",
-      "frame",
-      "off",
-      "odd",
-      "even",
-      "axes",
-      "noaxes",
-      "info",
-      "noinfo",
-      "font=${1:font csname}",
+  "macros": [
+    {
+      "name": "crop"
+    },
+    {
+      "name": "crop",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "cropdef",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:ul-macro}}{${2:ur-macro}}{${3:ll-macro}}{${4:lr-macro}}{${5:mode name}}"
+      }
+    },
+    {
+      "name": "cropdef",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}{}{}",
+        "snippet": "[${6:page-info macro}]{${1:ul-macro}}{${2:ur-macro}}{${3:ll-macro}}{${4:lr-macro}}{${5:mode name}}"
+      }
+    },
+    {
+      "name": "stockwidth",
+      "unusual": true
+    },
+    {
+      "name": "stockheight",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/crop#c": [
+      "a0\r",
+      "a1\r",
+      "a2\r",
+      "a3\r",
+      "a4\r",
+      "a5\r",
+      "a6\r",
+      "b0\r",
+      "b1\r",
+      "b2\r",
+      "b3\r",
+      "b4\r",
+      "b5\r",
+      "b6\r",
+      "letter\r",
+      "legal\r",
+      "executive\r",
+      "width=",
+      "height=",
+      "center\r",
+      "landscape\r",
+      "dvips\r",
+      "pdftex\r",
+      "pdflatex\r",
+      "luatex\r",
+      "lualatex\r",
+      "vtex\r",
+      "nodriver\r",
+      "mirror\r",
+      "rotate\r",
+      "invert\r",
+      "notext\r"
+    ],
+    "\\crop,\\usepackage/crop#c": [
+      "cam\r",
+      "cross\r",
+      "frame\r",
+      "off\r",
+      "odd\r",
+      "even\r",
+      "axes\r",
+      "noaxes\r",
+      "info\r",
+      "noinfo\r",
+      "font=${1:font csname}\r",
       "color=",
-      "mount1",
-      "mount1=${1:integer}",
-      "mount2",
-      "mount2=${1:integer}",
+      "mount1\r",
+      "mount1=${1:integer}\r",
+      "mount2\r",
+      "mount2=${1:integer}\r",
       "horigin=",
       "vorigin=",
-      "graphics",
-      "nographics"
+      "graphics\r",
+      "nographics\r"
     ]
+  },
+  "args": [
+    "\\usepackage/crop#c",
+    "\\crop,\\usepackage/crop#c"
   ]
 }

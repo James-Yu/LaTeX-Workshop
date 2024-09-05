@@ -1,50 +1,124 @@
 {
-  "includes": {},
-  "macros": {
-    "ForEach{}{}{}": {
-      "snippet": "ForEach{${1:separator}}{${2:function}}{${3:list}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "ForEach",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:separator}}{${2:function}}{${3:list}}"
+      }
     },
-    "thislevelitem": {},
-    "thislevelcount": {},
-    "ForEachX{}{}{}": {
-      "snippet": "ForEachX{${1:separator}}{${2:function}}{${3:list token}}"
+    {
+      "name": "thislevelitem",
+      "unusual": true
     },
-    "ForEachSublevel{}{}": {
-      "snippet": "ForEachSublevel{${1:separator}}{${2:function}}"
+    {
+      "name": "thislevelcount",
+      "unusual": true
     },
-    "endforeach": {},
-    "ExitForEach": {},
-    "ForArray{}{}{}{}{}": {
-      "snippet": "ForArray{${1:sep list}}{${2:sublevel tok}}{${3:func list sep}}{${4:func list}}{${5:array}}"
+    {
+      "name": "ForEachX",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:separator}}{${2:function}}{${3:list token}}"
+      }
     },
-    "ForArray{}[]{}{}{}{}": {
-      "snippet": "ForArray{${1:sep list}}[${2:marker list}]{${3:sublevel tok}}{${4:func list sep}}{${5:func list}}{${6:array}}"
+    {
+      "name": "ForEachSublevel",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:separator}}{${2:function}}"
+      }
     },
-    "thislevelmarker": {},
-    "thislevelnr": {},
-    "ExitForEachLevels{}{}": {
-      "snippet": "ExitForEachLevels{${1:start level}}{${2:num of levels}}"
+    {
+      "name": "ExitForEach",
+      "unusual": true
     },
-    "DefineArrayVar{}{}{}{}{}{}": {
-      "snippet": "DefineArrayVar{${1:name}}{${2:varnamesep}}{${3:varlistsep}}{${4:varlist}}{${5:varcontentlistsep}}{${6:varcontent}}"
+    {
+      "name": "ForArray",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:sep list}}{${2:sublevel tok}}{${3:func list sep}}{${4:func list}}{${5:array}}"
+      }
     },
-    "DefineArrayVars{}{}{}{}{}{}{}": {
-      "snippet": "DefineArrayVars{${1:varlistsep}}{${2:arraydefsep}}{${3:arraynamesep}}{${4:contentsep}}{${5:varnamesep}}{${6:varlist}}{${7:contentlist}}"
+    {
+      "name": "ForArray",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}{}{}{}",
+        "snippet": "{${1:sep list}}[${6:marker list}]{${2:sublevel tok}}{${3:func list sep}}{${4:func list}}{${5:array}}"
+      }
     },
-    "DefineArrayDefault{}{}{}{}{}": {
-      "snippet": "DefineArrayDefault{${1:arraylistsep}}{${2:varnamesep}}{${3:indexvar}}{${4:defaultvar}}{${5:arraylist}}"
+    {
+      "name": "thislevelmarker",
+      "unusual": true
     },
-    "DefineArrayVarTo{}{}{}{}{}": {
-      "snippet": "DefineArrayVarTo{${1:varlistsep}}{${2:varnamesep}}{${3:array name}}{${4:content}}{${5:varlist}}"
+    {
+      "name": "thislevelnr",
+      "unusual": true
     },
-    "CommandForEach{}{}{}": {
-      "snippet": "CommandForEach{${1:varlist sep}}{${2:command}}{${3:var list}}"
+    {
+      "name": "ExitForEachLevels",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:start level}}{${2:num of levels}}"
+      }
     },
-    "FunctionForEach{}{}{}": {
-      "snippet": "FunctionForEach{${1:varlist sep}}{${2:command}}{${3:var list}}"
+    {
+      "name": "DefineArrayVar",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "{${1:name}}{${2:varnamesep}}{${3:varlistsep}}{${4:varlist}}{${5:varcontentlistsep}}{${6:varcontent}}"
+      }
+    },
+    {
+      "name": "DefineArrayVars",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}{}{}",
+        "snippet": "{${1:varlistsep}}{${2:arraydefsep}}{${3:arraynamesep}}{${4:contentsep}}{${5:varnamesep}}{${6:varlist}}{${7:contentlist}}"
+      }
+    },
+    {
+      "name": "DefineArrayDefault",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:arraylistsep}}{${2:varnamesep}}{${3:indexvar}}{${4:defaultvar}}{${5:arraylist}}"
+      }
+    },
+    {
+      "name": "DefineArrayVarTo",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:varlistsep}}{${2:varnamesep}}{${3:array name}}{${4:content}}{${5:varlist}}"
+      }
+    },
+    {
+      "name": "CommandForEach",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:varlist sep}}{${2:command}}{${3:var list}}"
+      }
+    },
+    {
+      "name": "FunctionForEach",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:varlist sep}}{${2:command}}{${3:var list}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

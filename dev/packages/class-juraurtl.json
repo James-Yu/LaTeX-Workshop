@@ -1,69 +1,170 @@
 {
-  "includes": {
-    "jurabase": [],
-    "fancyhdr": [],
-    "class-scrartcl": []
-  },
-  "macros": {
-    "angeklagt{}": {
-      "snippet": "angeklagt{${1:verbrecher}}"
+  "deps": [
+    {
+      "name": "jurabase"
     },
-    "az{}": {
-      "snippet": "az{${1:aktenzeichen}}"
+    {
+      "name": "fancyhdr"
     },
-    "beweiswuerdigung": {},
-    "bl{}": {
-      "snippet": "bl{${1:seitenzahl}}"
-    },
-    "gegen": {},
-    "gericht{}": {
-      "snippet": "gericht{${1:gericht}}"
-    },
-    "kosten": {},
-    "lebenslauf": {},
-    "lmv{}": {
-      "snippet": "lmv{${1:datum}}"
-    },
-    "nextsec": {},
-    "rechtlichewuerdigung": {},
-    "richter{}": {
-      "snippet": "richter{${1:namen}}"
-    },
-    "rjust{}": {
-      "snippet": "rjust{${1:ausdruck}}"
-    },
-    "sachverhalt": {},
-    "straftatbestand{}": {
-      "snippet": "straftatbestand{${1:tatbestände}}"
-    },
-    "strafzumessung": {},
-    "urteilsart{}": {
-      "snippet": "urteilsart{${1:typ}}"
-    },
-    "AG{}": {
-      "snippet": "AG{${1:arg}}"
-    },
-    "drafthintssize": {},
-    "gruendename": {},
-    "gutachtenname": {},
-    "textpercent": {},
-    "thensec": {}
-  },
-  "envs": {
-    "eingerueckt": {},
-    "gruende": {},
-    "gutachten": {},
-    "rubrum": {},
-    "tatbestand": {},
-    "tenor": {},
-    "urteilsformel": {},
-    "wortlaut": {},
-    "antraege": {}
-  },
-  "options": [
-    "strafurteil",
-    "modern",
-    "draft"
+    {
+      "name": "class-scrartcl"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "angeklagt",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:verbrecher}}"
+      }
+    },
+    {
+      "name": "az",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:aktenzeichen}}"
+      }
+    },
+    {
+      "name": "beweiswuerdigung"
+    },
+    {
+      "name": "bl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:seitenzahl}}"
+      }
+    },
+    {
+      "name": "gegen"
+    },
+    {
+      "name": "gericht",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:gericht}}"
+      }
+    },
+    {
+      "name": "kosten"
+    },
+    {
+      "name": "lebenslauf"
+    },
+    {
+      "name": "lmv",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:datum}}"
+      }
+    },
+    {
+      "name": "nextsec"
+    },
+    {
+      "name": "rechtlichewuerdigung"
+    },
+    {
+      "name": "richter",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:namen}}"
+      }
+    },
+    {
+      "name": "rjust",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ausdruck}}"
+      }
+    },
+    {
+      "name": "sachverhalt"
+    },
+    {
+      "name": "straftatbestand",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tatbestände}}"
+      }
+    },
+    {
+      "name": "strafzumessung"
+    },
+    {
+      "name": "urteilsart",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:typ}}"
+      }
+    },
+    {
+      "name": "AG",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "drafthintssize",
+      "unusual": true
+    },
+    {
+      "name": "gruendename",
+      "unusual": true
+    },
+    {
+      "name": "gutachtenname",
+      "unusual": true
+    },
+    {
+      "name": "textpercent",
+      "unusual": true
+    },
+    {
+      "name": "thensec",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "eingerueckt"
+    },
+    {
+      "name": "gruende"
+    },
+    {
+      "name": "gutachten"
+    },
+    {
+      "name": "rubrum"
+    },
+    {
+      "name": "tatbestand"
+    },
+    {
+      "name": "tenor"
+    },
+    {
+      "name": "urteilsformel"
+    },
+    {
+      "name": "wortlaut"
+    },
+    {
+      "name": "antraege",
+      "unusual": true
+    }
+  ],
+  "keys": {
+    "\\documentclass/juraurtl#c": [
+      "strafurteil\r",
+      "modern\r",
+      "draft\r"
+    ]
+  },
+  "args": [
+    "\\documentclass/juraurtl#c"
+  ]
 }

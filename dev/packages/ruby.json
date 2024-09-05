@@ -1,24 +1,48 @@
 {
-  "includes": {
-    "CJK": []
-  },
-  "macros": {
-    "rubysize": {},
-    "rubysep": {},
-    "rubyoverlap": {},
-    "rubynooverlap": {},
-    "rubyCJK": {},
-    "rubylatin": {},
-    "ruby{}{}": {
-      "snippet": "ruby{${1:base characters}}{${2:ruby}}"
+  "deps": [
+    {
+      "name": "CJK"
     }
-  },
-  "envs": {},
-  "options": [
-    "overlap",
-    "nooverlap",
-    "CJK",
-    "latin"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "rubysize",
+      "unusual": true
+    },
+    {
+      "name": "rubysep",
+      "unusual": true
+    },
+    {
+      "name": "rubyoverlap"
+    },
+    {
+      "name": "rubynooverlap"
+    },
+    {
+      "name": "rubyCJK"
+    },
+    {
+      "name": "rubylatin"
+    },
+    {
+      "name": "ruby",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:base characters}}{${2:ruby}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/ruby#c": [
+      "overlap\r",
+      "nooverlap\r",
+      "CJK\r",
+      "latin\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/ruby#c"
+  ]
 }

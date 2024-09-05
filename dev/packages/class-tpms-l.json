@@ -1,49 +1,70 @@
 {
-  "includes": {
-    "class-amsart": []
-  },
-  "macros": {
-    "ifeditorial": {},
-    "editorialtrue": {},
-    "editorialfalse": {},
-    "englishvolinfo": {},
-    "datereceivedname": {},
-    "dateacceptedname": {},
-    "dateaccepted{}": {
-      "snippet": "dateaccepted{${1:date}}"
-    },
-    "UDC{}": {
-      "snippet": "UDC{${1:UDC number}}"
+  "deps": [
+    {
+      "name": "class-amsart"
     }
-  },
-  "envs": {},
-  "options": [
-    "editor",
-    "10pt",
-    "11pt",
-    "12pt",
-    "8pt",
-    "9pt",
-    "a4paper",
-    "centertags",
-    "draft",
-    "e-only",
-    "final",
-    "fleqn",
-    "landscape",
-    "leqno",
-    "letterpaper",
-    "noamsfonts",
-    "nomath",
-    "notitlepage",
-    "onecolumn",
-    "oneside",
-    "portrait",
-    "reqno",
-    "tbtags",
-    "titlepage",
-    "twocolumn",
-    "twoside"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "englishvolinfo",
+      "unusual": true
+    },
+    {
+      "name": "datereceivedname",
+      "unusual": true
+    },
+    {
+      "name": "dateacceptedname",
+      "unusual": true
+    },
+    {
+      "name": "dateaccepted",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:date}}"
+      }
+    },
+    {
+      "name": "UDC",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:UDC number}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\documentclass/tpms-l#c": [
+      "editor\r",
+      "10pt\r",
+      "11pt\r",
+      "12pt\r",
+      "8pt\r",
+      "9pt\r",
+      "a4paper\r",
+      "centertags\r",
+      "draft\r",
+      "e-only\r",
+      "final\r",
+      "fleqn\r",
+      "landscape\r",
+      "leqno\r",
+      "letterpaper\r",
+      "noamsfonts\r",
+      "nomath\r",
+      "notitlepage\r",
+      "onecolumn\r",
+      "oneside\r",
+      "portrait\r",
+      "reqno\r",
+      "tbtags\r",
+      "titlepage\r",
+      "twocolumn\r",
+      "twoside\r"
+    ]
+  },
+  "args": [
+    "\\documentclass/tpms-l#c"
+  ]
 }

@@ -1,34 +1,92 @@
 {
-  "includes": {
-    "hologo": []
-  },
-  "macros": {
-    "pxlThisTeX": {},
-    "pxlThisTeX[]": {
-      "snippet": "pxlThisTeX[${1:engine}]"
-    },
-    "pxlThisLaTeX": {},
-    "pxlThisPLaTeX": {},
-    "IfpxlTeX{}{}{}": {
-      "snippet": "IfpxlTeX{${1:engine}}{${2:true}}{${3:false}}"
-    },
-    "IfpxlTeX*{}{}": {
-      "snippet": "IfpxlTeX*{${1:engine}}{${2:code}}"
-    },
-    "IfpxlTeX*[]{}{}": {
-      "snippet": "IfpxlTeX*[${3:T/F}]{${1:engine}}{${2:code}}"
-    },
-    "IfpxlTeXpxl{}{}{}": {
-      "snippet": "IfpxlTeXpxl{${1:pdftex cmd}}{${2:xetex cmd}}{${3:luatex cmd}}"
-    },
-    "IfpxlTeXpxl*{}{}{}{}": {
-      "snippet": "IfpxlTeXpxl*{${1:engine1}}{${2:engine2}}{${3:engine1 cmd}}{${4:engine2 cmd}}"
-    },
-    "pxlRequireTeX{}": {
-      "snippet": "pxlRequireTeX{${1:engine}}"
+  "deps": [
+    {
+      "name": "hologo"
     }
+  ],
+  "macros": [
+    {
+      "name": "pxlThisTeX"
+    },
+    {
+      "name": "pxlThisTeX",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:engine%keyvals}]"
+      }
+    },
+    {
+      "name": "pxlThisLaTeX"
+    },
+    {
+      "name": "pxlThisPLaTeX"
+    },
+    {
+      "name": "IfpxlTeX",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:engine%keyvals}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "IfpxlTeX*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:engine%keyvals}}{${2:code}}"
+      }
+    },
+    {
+      "name": "IfpxlTeX*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:T/F}]{${1:engine%keyvals}}{${2:code}}"
+      }
+    },
+    {
+      "name": "IfpxlTeXpxl",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:pdftex cmd}}{${2:xetex cmd}}{${3:luatex cmd}}"
+      }
+    },
+    {
+      "name": "IfpxlTeXpxl*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:engine1%keyvals}}{${2:engine2%keyvals}}{${3:engine1 cmd}}{${4:engine2 cmd}}"
+      }
+    },
+    {
+      "name": "pxlRequireTeX",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:engine%keyvals}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\pxlThisTeX#c": [
+      "eTeX",
+      "LaTeX",
+      "LuaLaTeX",
+      "LuaTeX",
+      "pdfLaTeX",
+      "pdfTeX",
+      "PLaTeX",
+      "pTeX",
+      "TeX",
+      "XeLaTeX",
+      "XeTeX"
+    ],
+    "\\IfpxlTeX#c,\\IfpxlTeX*#c,\\IfpxlTeXpxl*#c,\\pxlRequireTeX#c": [
+      "p",
+      "x",
+      "l"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

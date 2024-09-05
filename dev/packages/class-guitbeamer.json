@@ -1,142 +1,263 @@
 {
-  "includes": {
-    "xcolor": [],
-    "class-beamer": [],
-    "graphicx": [],
-    "guit": [],
-    "ucs": [
-      "ucs",
-      "utf8x"
-    ],
-    "inputenc": [
-      "utf8x",
-      "utf8"
+  "deps": [
+    {
+      "name": "xcolor"
+    },
+    {
+      "name": "class-beamer"
+    },
+    {
+      "name": "graphicx"
+    },
+    {
+      "name": "guit"
+    },
+    {
+      "name": "ucs",
+      "if": "ucs"
+    },
+    {
+      "name": "inputenc",
+      "if": "utf8x"
+    },
+    {
+      "name": "ucs",
+      "if": "utf8x"
+    },
+    {
+      "name": "inputenc",
+      "if": "utf8"
+    }
+  ],
+  "macros": [
+    {
+      "name": "aalert",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:highlighted text%text}}"
+      }
+    },
+    {
+      "name": "aalert<overlay specification>",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:highlighted text%text}}"
+      }
+    },
+    {
+      "name": "bs",
+      "unusual": true
+    },
+    {
+      "name": "lb",
+      "unusual": true
+    },
+    {
+      "name": "rb",
+      "unusual": true
+    },
+    {
+      "name": "ls",
+      "unusual": true
+    },
+    {
+      "name": "rs",
+      "unusual": true
+    },
+    {
+      "name": "Lsty",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:package}}"
+      }
+    },
+    {
+      "name": "Lsty<overlay specification>",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:package}}"
+      }
+    },
+    {
+      "name": "Lcls",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:class}}"
+      }
+    },
+    {
+      "name": "Lcls<overlay specification>",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:class}}"
+      }
+    },
+    {
+      "name": "Lopt",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:option}}"
+      }
+    },
+    {
+      "name": "Lenv",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:envname}}"
+      }
+    },
+    {
+      "name": "n"
+    },
+    {
+      "name": "nn"
+    },
+    {
+      "name": "fakeind"
+    },
+    {
+      "name": "LCmd",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:csname}}"
+      }
+    },
+    {
+      "name": "LCmd",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:prefix char}]{${1:csname}}"
+      }
+    },
+    {
+      "name": "LCmdArg",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:csname}}{${2:arg}}"
+      }
+    },
+    {
+      "name": "tbs",
+      "unusual": true
+    },
+    {
+      "name": "tlb",
+      "unusual": true
+    },
+    {
+      "name": "trb",
+      "unusual": true
+    },
+    {
+      "name": "tls",
+      "unusual": true
+    },
+    {
+      "name": "trs",
+      "unusual": true
+    },
+    {
+      "name": "ncGuIT"
+    }
+  ],
+  "envs": [
+    {
+      "name": "LaTeXcode"
+    },
+    {
+      "name": "LaTeXcode",
+      "arg": {
+        "format": "<>",
+        "snippet": "<${1:overlay specification}>"
+      }
+    },
+    {
+      "name": "LaTeXcode",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:title}]"
+      }
+    },
+    {
+      "name": "LaTeXcode",
+      "arg": {
+        "format": "[]<>",
+        "snippet": "[${1:title}]<${2:overlay specification}>"
+      }
+    },
+    {
+      "name": "LaTeXoutput"
+    },
+    {
+      "name": "LaTeXoutput",
+      "arg": {
+        "format": "<>",
+        "snippet": "<${1:overlay specification}>"
+      }
+    },
+    {
+      "name": "LaTeXoutput",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:title}]"
+      }
+    },
+    {
+      "name": "LaTeXoutput",
+      "arg": {
+        "format": "[]<>",
+        "snippet": "[${1:title}]<${2:overlay specification}>"
+      }
+    }
+  ],
+  "keys": {
+    "\\documentclass/guitbeamer#c": [
+      "usepdftitle",
+      "envcountsect\r",
+      "notheorems\r",
+      "noamsthm\r",
+      "compress\r",
+      "t\r",
+      "c\r",
+      "leqno\r",
+      "fleqn\r",
+      "handout\r",
+      "trans\r",
+      "pdftex\r",
+      "nativepdf\r",
+      "pdfmark\r",
+      "dvips\r",
+      "dviwindo\r",
+      "dvipsone\r",
+      "vtex\r",
+      "ps2pdf\r",
+      "ignorenonframetext\r",
+      "noamssymb\r",
+      "bigger\r",
+      "smaller\r",
+      "8pt\r",
+      "9pt\r",
+      "10pt\r",
+      "11pt\r",
+      "12pt\r",
+      "14pt\r",
+      "17pt\r",
+      "20pt\r",
+      "draft\r",
+      "CJK\r",
+      "cjk\r",
+      "onlytextwidth\r",
+      "pgf={${1:pgf options}}\r",
+      "hyperref={${1:hyperref options}}\r",
+      "color={${1:color options}}\r",
+      "xcolor={${1:xcolor options}}\r",
+      "ucs\r",
+      "utf8x\r",
+      "utf8\r",
+      "aspectratio=${2|2013,1610,169,149,141,54,43,32,${1:xxxx}\r|}"
     ]
   },
-  "macros": {
-    "aalert{}": {
-      "snippet": "aalert{${1:highlighted text}}"
-    },
-    "aalert<>{}": {
-      "snippet": "aalert<${2:overlay specification}>{${1:highlighted text}}"
-    },
-    "bs": {},
-    "lb": {},
-    "rb": {},
-    "ls": {},
-    "rs": {},
-    "Lsty{}": {
-      "snippet": "Lsty{${1:package}}"
-    },
-    "Lsty<>{}": {
-      "snippet": "Lsty<${2:overlay specification}>{${1:package}}"
-    },
-    "Lcls{}": {
-      "snippet": "Lcls{${1:class}}"
-    },
-    "Lcls<>{}": {
-      "snippet": "Lcls<${2:overlay specification}>{${1:class}}"
-    },
-    "Lopt{}": {
-      "snippet": "Lopt{${1:option}}"
-    },
-    "Lenv{}": {
-      "snippet": "Lenv{${1:envname}}"
-    },
-    "n": {
-      "detail": "𝑛",
-      "documentation": "MATHEMATICAL ITALIC SMALL N"
-    },
-    "nn": {},
-    "fakeind": {},
-    "LCmd{}": {
-      "snippet": "LCmd{${1:csname}}"
-    },
-    "LCmd[]{}": {
-      "snippet": "LCmd[${2:prefix char}]{${1:csname}}"
-    },
-    "LCmdArg{}{}": {
-      "snippet": "LCmdArg{${1:csname}}{${2:arg}}"
-    },
-    "tbs": {},
-    "tlb": {},
-    "trb": {},
-    "tls": {},
-    "trs": {},
-    "ncGuIT": {}
-  },
-  "envs": {
-    "LaTeXcode": {},
-    "LaTeXcode<>": {
-      "name": "LaTeXcode",
-      "snippet": "<${1:overlay specification}>"
-    },
-    "LaTeXcode[]": {
-      "name": "LaTeXcode",
-      "snippet": "[${1:title}]"
-    },
-    "LaTeXcode[]<>": {
-      "name": "LaTeXcode",
-      "snippet": "[${1:title}]<${2:overlay specification}>"
-    },
-    "LaTeXoutput": {},
-    "LaTeXoutput<>": {
-      "name": "LaTeXoutput",
-      "snippet": "<${1:overlay specification}>"
-    },
-    "LaTeXoutput[]": {
-      "name": "LaTeXoutput",
-      "snippet": "[${1:title}]"
-    },
-    "LaTeXoutput[]<>": {
-      "name": "LaTeXoutput",
-      "snippet": "[${1:title}]<${2:overlay specification}>"
-    }
-  },
-  "options": [
-    "usepdftitle",
-    "envcountsect",
-    "notheorems",
-    "noamsthm",
-    "compress",
-    "t",
-    "c",
-    "leqno",
-    "fleqn",
-    "handout",
-    "trans",
-    "pdftex",
-    "nativepdf",
-    "pdfmark",
-    "dvips",
-    "dviwindo",
-    "dvipsone",
-    "vtex",
-    "ps2pdf",
-    "ignorenonframetext",
-    "noamssymb",
-    "bigger",
-    "smaller",
-    "8pt",
-    "9pt",
-    "10pt",
-    "11pt",
-    "12pt",
-    "14pt",
-    "17pt",
-    "20pt",
-    "draft",
-    "CJK",
-    "cjk",
-    "onlytextwidth",
-    "pgf={${1:pgf options}}",
-    "hyperref={${1:hyperref options}}",
-    "color={${1:color options}}",
-    "xcolor={${1:xcolor options}}",
-    "ucs",
-    "utf8x",
-    "utf8",
-    "aspectratio=${1|2013,1610,169,149,141,54,43,32,${1:xxxx}|}"
-  ],
-  "keyvals": []
+  "args": [
+    "\\documentclass/guitbeamer#c"
+  ]
 }

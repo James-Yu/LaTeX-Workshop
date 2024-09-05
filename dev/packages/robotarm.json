@@ -1,98 +1,137 @@
 {
-  "includes": {
-    "tikz": [],
-    "tikzlibrarypatterns": []
-  },
-  "macros": {
-    "robotArm{}": {
-      "snippet": "robotArm{${1:number}}"
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "robotArm[]{}": {
-      "snippet": "robotArm[${2:options}]{${1:number}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "tikzlibrarypatterns"
+    }
+  ],
+  "macros": [
+    {
+      "name": "robotArm",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
     },
-    "robotArmBaseLink": {},
-    "robotArmBaseLink[]": {
-      "snippet": "robotArmBaseLink[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "robotArm",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:number}}"
+      }
     },
-    "robotArmLink": {},
-    "robotArmLink[]": {
-      "snippet": "robotArmLink[${1:options}]",
-      "keyvalindex": 2,
-      "keyvalpos": 0
+    {
+      "name": "robotArmBaseLink"
     },
-    "robotArmEndEffector": {},
-    "robotArmEndEffector[]": {
-      "snippet": "robotArmEndEffector[${1:options}]",
-      "keyvalindex": 3,
-      "keyvalpos": 0
+    {
+      "name": "robotArmBaseLink",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     },
-    "robotarmset{}": {
-      "snippet": "robotarmset{${1:options}}",
-      "keyvalindex": 4,
-      "keyvalpos": 0
+    {
+      "name": "robotArmLink"
     },
-    "angleannotationcase": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "geometry={${1:keyvals}}",
-      "config={${1:keyvals}}",
-      "styles={${1:styles}}"
+    {
+      "name": "robotArmLink",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "robotArmEndEffector"
+    },
+    {
+      "name": "robotArmEndEffector",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "robotarmset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}"
+      }
+    },
+    {
+      "name": "angleannotationcase",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\robotArm#c": [
+      "geometry={${1:keyvals}}\r",
+      "config={${1:keyvals}}\r",
+      "styles={${1:styles}}\r"
     ],
-    [
-      "height=${1:value}",
-      "width=${1:value}",
-      "world width=${1:value}",
-      "world height=${1:value}",
-      "draw base link/.code={${1:code}}",
-      "draw world/.code={${1:code}}"
+    "\\robotArmBaseLink#c": [
+      "height=${1:value}\r",
+      "width=${1:value}\r",
+      "world width=${1:value}\r",
+      "world height=${1:value}\r",
+      "draw base link/.code={${1:code}}\r",
+      "draw world/.code={${1:code}}\r"
     ],
-    [
-      "width=${1:value}",
-      "length=${1:value}",
-      "joint radius=${1:value}",
-      "draw link/.code={${1:code}}",
-      "draw joint/.code={${1:code}}"
+    "\\robotArmLink#c": [
+      "width=${1:value}\r",
+      "length=${1:value}\r",
+      "joint radius=${1:value}\r",
+      "draw link/.code={${1:code}}\r",
+      "draw joint/.code={${1:code}}\r"
     ],
-    [
-      "width=${1:value}",
-      "length=${1:value}",
-      "joint radius=${1:value}",
-      "gripper radius=${1:value}",
-      "gripper opening angle=${1:degrees}",
-      "draw link/.code={${1:code}}",
-      "draw joint/.code={${1:code}}",
-      "draw end effector/.code={${1:code}}"
+    "\\robotArmEndEffector#c": [
+      "width=${1:value}\r",
+      "length=${1:value}\r",
+      "joint radius=${1:value}\r",
+      "gripper radius=${1:value}\r",
+      "gripper opening angle=${1:degrees}\r",
+      "draw link/.code={${1:code}}\r",
+      "draw joint/.code={${1:code}}\r",
+      "draw end effector/.code={${1:code}}\r"
     ],
-    [
-      "geometry={${1:keyvals}}",
-      "config={${1:keyvals}}",
-      "styles={${1:styles}}",
-      "base link/height=${1:value}",
-      "base link/width=${1:value}",
-      "base link/world width=${1:value}",
-      "base link/world height=${1:value}",
-      "base link/draw base link/.code={${1:code}}",
-      "base link/draw world/.code={${1:code}}",
-      "link/width=${1:value}",
-      "link/length=${1:value}",
-      "link/joint radius=${1:value}",
-      "link/draw link/.code={${1:code}}",
-      "link/draw joint/.code={${1:code}}",
-      "end effector/width=${1:value}",
-      "end effector/length=${1:value}",
-      "end effector/joint radius=${1:value}",
-      "end effector/gripper radius=${1:value}",
-      "end effector/gripper opening angle=${1:degrees}",
-      "end effector/draw link/.code={${1:code}}",
-      "end effector/draw joint/.code={${1:code}}",
-      "end effector/draw end effector/.code={${1:code}}"
+    "\\robotarmset#c": [
+      "geometry={${1:keyvals}}\r",
+      "config={${1:keyvals}}\r",
+      "styles={${1:styles}}\r",
+      "base link/height=${1:value}\r",
+      "base link/width=${1:value}\r",
+      "base link/world width=${1:value}\r",
+      "base link/world height=${1:value}\r",
+      "base link/draw base link/.code={${1:code}}\r",
+      "base link/draw world/.code={${1:code}}\r",
+      "link/width=${1:value}\r",
+      "link/length=${1:value}\r",
+      "link/joint radius=${1:value}\r",
+      "link/draw link/.code={${1:code}}\r",
+      "link/draw joint/.code={${1:code}}\r",
+      "end effector/width=${1:value}\r",
+      "end effector/length=${1:value}\r",
+      "end effector/joint radius=${1:value}\r",
+      "end effector/gripper radius=${1:value}\r",
+      "end effector/gripper opening angle=${1:degrees}\r",
+      "end effector/draw link/.code={${1:code}}\r",
+      "end effector/draw joint/.code={${1:code}}\r",
+      "end effector/draw end effector/.code={${1:code}}\r"
+    ],
+    "\\path#c,\\draw#c": [
+      "link style\r",
+      "world style\r"
+    ],
+    "\\tikzset#c": [
+      "link style/.style={${1:TikZ keys}}\r",
+      "world style/.style={${1:TikZ keys}}\r",
+      "in link/.style={${1:TikZ keys}}\r",
+      "in base link/.style={${1:TikZ keys}}\r",
+      "in world/.style={${1:TikZ keys}}\r",
+      "in end effector/.style={${1:TikZ keys}}\r"
     ]
-  ]
+  },
+  "args": []
 }

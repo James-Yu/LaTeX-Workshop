@@ -1,105 +1,187 @@
 {
-  "includes": {
-    "exerquiz": [],
-    "fetchbibpes": []
-  },
-  "macros": {
-    "qFP{}": {
-      "snippet": "qFP{${1:book ch:vrs}}"
+  "deps": [
+    {
+      "name": "exerquiz"
     },
-    "qFP[]{}": {
-      "snippet": "qFP[${2:options}]{${1:book ch:vrs}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "fetchbibpes"
+    }
+  ],
+  "macros": [
+    {
+      "name": "qFP",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:book ch:vrs}}"
+      }
     },
-    "sFP{}": {
-      "snippet": "sFP{${1:book ch:vrs}}"
+    {
+      "name": "qFP",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:book ch:vrs}}"
+      }
     },
-    "sFP[]{}": {
-      "snippet": "sFP[${2:options}]{${1:book ch:vrs}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "sFP",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:book ch:vrs}}"
+      }
     },
-    "qFV{}": {
-      "snippet": "qFV{${1:book ch:vrs}}"
+    {
+      "name": "sFP",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:book ch:vrs}}"
+      }
     },
-    "qFV[]{}": {
-      "snippet": "qFV[${2:options}]{${1:book ch:vrs}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "qFV",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:book ch:vrs}}"
+      }
     },
-    "sFV{}": {
-      "snippet": "sFV{${1:book ch:vrs}}"
+    {
+      "name": "qFV",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:book ch:vrs}}"
+      }
     },
-    "sFV[]{}": {
-      "snippet": "sFV[${2:options}]{${1:book ch:vrs}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "sFV",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:book ch:vrs}}"
+      }
     },
-    "useNumbersOn": {},
-    "useNumbersOff": {},
-    "adjCAB{}": {
-      "snippet": "adjCAB{${1:code}}"
+    {
+      "name": "sFV",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:book ch:vrs}}"
+      }
     },
-    "adjCAB[]{}": {
-      "snippet": "adjCAB[${2:hfill code}]{${1:code}}"
+    {
+      "name": "useNumbersOn"
     },
-    "adjTBX{}": {
-      "snippet": "adjTBX{${1:code}}"
+    {
+      "name": "useNumbersOff"
     },
-    "adjTBX[]{}": {
-      "snippet": "adjTBX[${2:hfill code}]{${1:code}}"
+    {
+      "name": "adjCAB",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
     },
-    "priorRBT{}": {
-      "snippet": "priorRBT{${1:code}}"
+    {
+      "name": "adjCAB",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:hfill code}]{${1:code}}"
+      }
     },
-    "priorPsg{}": {
-      "snippet": "priorPsg{${1:code}}"
+    {
+      "name": "adjTBX",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
     },
-    "setRBTWidthTo{}": {
-      "snippet": "setRBTWidthTo{${1:content}}"
+    {
+      "name": "adjTBX",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:hfill code}]{${1:code}}"
+      }
     },
-    "setRBTWidth{}": {
-      "snippet": "setRBTWidth{${1:width}}"
+    {
+      "name": "priorRBT",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
     },
-    "RBTWidth": {},
-    "CATorTBX{}": {
-      "snippet": "CATorTBX{${1:arg}}"
+    {
+      "name": "priorPsg",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
     },
-    "eqfQorS": {},
-    "presetMBbl": {}
-  },
-  "envs": {
-    "BblPsg": {},
-    "BblVrs": {}
-  },
-  "options": [],
-  "keyvals": [
-    [
-      "abbr=${1|esword,none,long,short|}",
+    {
+      "name": "setRBTWidthTo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content}}"
+      }
+    },
+    {
+      "name": "setRBTWidth",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:width}}"
+      }
+    },
+    {
+      "name": "RBTWidth",
+      "unusual": true
+    },
+    {
+      "name": "CATorTBX",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "eqfQorS",
+      "unusual": true
+    },
+    {
+      "name": "presetMBbl",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "BblPsg"
+    },
+    {
+      "name": "BblVrs"
+    }
+  ],
+  "keys": {
+    "\\qFP,\\sFP,\\qFV,\\sFV": [
+      "abbr=${1|esword,none,long,short\r|}",
       "roman",
-      "from=${1|KVJ,KVJ+,ISV|}",
-      "alt=${1:word}",
-      "alt*={${1:word1,word2,...}}",
-      "transl=${1:text}",
-      "from*=${1|KJV,KJV+,ISV|}",
+      "from=${1|KVJ,KVJ+,ISV\r|}",
+      "alt=${1:word}\r",
+      "alt*={${1:word1,word2,...}}\r",
+      "transl=${1:text}\r",
+      "from*=${1|KJV,KJV+,ISV\r|}",
       "pcolor=",
-      "pformat=${1:format cmds}",
-      "delims=${1:<tok1><tok2>}",
-      "enclosewith=${1:<tok1><tok2>\\quote}",
-      "format=${1:format cmds}",
+      "pformat=${1:format cmds}\r",
+      "delims=${1:<tok1><tok2>}\r",
+      "enclosewith=${1:<tok1><tok2>\\quote}\r",
+      "format=${1:format cmds}\r",
       "caps",
       "showfirst",
-      "shownone",
+      "shownone\r",
       "useperiod",
       "citeatend",
-      "nocite",
-      "priorref=",
-      "ltxquotes",
-      "replace={${1:find1}}{${2:replace1}}${3:{find2}{replace2}...}",
-      "localdefs={${1:localdefs}}",
-      "typeset=",
-      "typeset*="
+      "nocite\r",
+      "priorref=\r",
+      "ltxquotes\r",
+      "replace={${1:find1}}{${2:replace1}}${3:{find2}{replace2}...}\r",
+      "localdefs={${1:localdefs}}\r",
+      "typeset=\r",
+      "typeset*=\r"
     ]
-  ]
+  },
+  "args": []
 }

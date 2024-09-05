@@ -1,17 +1,31 @@
 {
-  "includes": {},
-  "macros": {
-    "interpretfile{}{}": {
-      "snippet": "interpretfile{${1:language}}{${2:file}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "interpretfile",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:language}}{${2:file}}"
+      }
     },
-    "interpretergobble{}": {
-      "snippet": "interpretergobble{${1:arg}}"
+    {
+      "name": "interpretergobble",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
     },
-    "interpreterinput{}": {
-      "snippet": "interpreterinput{${1:file}}"
+    {
+      "name": "interpreterinput",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

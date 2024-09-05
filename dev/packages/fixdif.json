@@ -1,41 +1,84 @@
 {
-  "includes": {},
-  "macros": {
-    "resetdfont{}": {
-      "snippet": "resetdfont{${1:math font cmd}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "resetdfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:math font cmd%cmd}}"
+      }
     },
-    "letdif{}{}": {
-      "snippet": "letdif{${1:cmd}}{${2:csname}}"
+    {
+      "name": "letdif",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:csname}}"
+      }
     },
-    "letdif*{}{}": {
-      "snippet": "letdif*{${1:cmd}}{${2:csname}}"
+    {
+      "name": "letdif*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:csname}}"
+      }
     },
-    "partialnondif": {},
-    "newdif{}{}": {
-      "snippet": "newdif{${1:cmd}}{${2:def}}"
+    {
+      "name": "partialnondif",
+      "unusual": true
     },
-    "newdif*{}{}": {
-      "snippet": "newdif*{${1:cmd}}{${2:def}}"
+    {
+      "name": "newdif",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:def}}"
+      }
     },
-    "renewdif{}{}": {
-      "snippet": "renewdif{${1:cmd}}{${2:def}}"
+    {
+      "name": "newdif*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:def}}"
+      }
     },
-    "renewdif*{}{}": {
-      "snippet": "renewdif*{${1:cmd}}{${2:def}}"
+    {
+      "name": "renewdif",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:def}}"
+      }
     },
-    "mathdif{}": {
-      "snippet": "mathdif{${1:symbol}}"
+    {
+      "name": "renewdif*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:def}}"
+      }
     },
-    "mathdif*{}": {
-      "snippet": "mathdif*{${1:symbol}}"
+    {
+      "name": "mathdif",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol}}"
+      }
+    },
+    {
+      "name": "mathdif*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [
-    "rm",
-    "normal",
-    "partial",
-    "nopartial"
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/fixdif#c": [
+      "rm\r",
+      "normal\r",
+      "partial\r",
+      "nopartial\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/fixdif#c"
+  ]
 }

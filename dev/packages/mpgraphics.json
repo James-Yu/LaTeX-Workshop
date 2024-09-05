@@ -1,96 +1,234 @@
 {
-  "includes": {
-    "graphicx": [],
-    "color": [],
-    "moreverb": [],
-    "xkeyval": [],
-    "ifplatform": [],
-    "iftex": [],
-    "ifpdf": []
-  },
-  "macros": {
-    "mpgOff": {},
-    "mpgOn": {},
-    "NoProcess": {},
-    "NoProcess[]": {
-      "snippet": "NoProcess[${1:ranges}]"
+  "deps": [
+    {
+      "name": "graphicx"
     },
-    "configure[][]": {
-      "snippet": "configure[${1:mpgraphic}][${2:keyvals}]",
-      "keyvalindex": 0,
-      "keyvalpos": 1
+    {
+      "name": "color"
     },
-    "ArrayIterator{}{}": {
-      "snippet": "ArrayIterator{${1:array}}{${2:arg}}"
+    {
+      "name": "moreverb"
     },
-    "Array{}[]{}": {
-      "snippet": "Array{${1:name}}[${2:length}]{${3:arg}}"
+    {
+      "name": "xkeyval"
     },
-    "BeforeMPDEFSStream": {},
-    "BeforeMPGStream": {},
-    "DeclareArray{}": {
-      "snippet": "DeclareArray{${1:name}}"
+    {
+      "name": "ifplatform"
     },
-    "MPDEFSverbatimwrite{}": {
-      "snippet": "MPDEFSverbatimwrite{${1:file}}"
+    {
+      "name": "iftex"
     },
-    "MPGCutFile": {},
-    "MPGgraphicsProcess": {},
-    "MPGgraphicsinclude": {},
-    "MPGinlinegraphicsinclude": {},
-    "MPGverbatimwrite{}": {
-      "snippet": "MPGverbatimwrite{${1:file}}"
-    },
-    "NotIfFileExists{}{}": {
-      "snippet": "NotIfFileExists{${1:file}}{${2:code}}"
-    },
-    "OnlyIfFileExists{}{}": {
-      "snippet": "OnlyIfFileExists{${1:file}}{${2:code}}"
-    },
-    "addToArray{}{}": {
-      "snippet": "addToArray{${1:array}}{${2:arg}}"
-    },
-    "clearArray{}": {
-      "snippet": "clearArray{${1:array}}"
-    },
-    "endMPDEFSverbatimwrite": {},
-    "endMPGhook": {},
-    "endMPGverbatimwrite": {},
-    "getArraylength{}": {
-      "snippet": "getArraylength{${1:array}}"
-    },
-    "mpgfigname": {},
-    "mpgnoprocess": {},
-    "theArrayIndex": {},
-    "theCtr": {},
-    "thearraylength": {},
-    "thempgfig": {},
-    "therecordCtr": {},
-    "thezeroCtr": {}
-  },
-  "envs": {
-    "mpdisplay": {},
-    "mpinline": {},
-    "mpdefs": {},
-    "ltxpreamble": {}
-  },
-  "options": [
-    "metapost={${1:MetaPost options}}",
-    "epstopdf={${1:epstopdf options}}",
-    "compilation=${1|on,off|}",
-    "debug=${1|on,off|}",
-    "runs=${1:integer}"
+    {
+      "name": "ifpdf"
+    }
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "mpgOff"
+    },
+    {
+      "name": "mpgOn"
+    },
+    {
+      "name": "NoProcess"
+    },
+    {
+      "name": "NoProcess",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:ranges}]"
+      }
+    },
+    {
+      "name": "configure",
+      "arg": {
+        "format": "[][]",
+        "snippet": "[${1:mpgraphic}][${2:keyvals}]"
+      }
+    },
+    {
+      "name": "ArrayIterator",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:array}}{${2:arg}}"
+      }
+    },
+    {
+      "name": "Array",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:name}}[${3:length%plain}]{${2:arg}}"
+      }
+    },
+    {
+      "name": "BeforeMPDEFSStream",
+      "unusual": true
+    },
+    {
+      "name": "BeforeMPGStream",
+      "unusual": true
+    },
+    {
+      "name": "DeclareArray",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "MPDEFSverbatimwrite",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "MPGCutFile",
+      "unusual": true
+    },
+    {
+      "name": "MPGgraphicsProcess",
+      "unusual": true
+    },
+    {
+      "name": "MPGgraphicsinclude",
+      "unusual": true
+    },
+    {
+      "name": "MPGinlinegraphicsinclude",
+      "unusual": true
+    },
+    {
+      "name": "MPGverbatimwrite",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "NotIfFileExists",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:file}}{${2:code}}"
+      }
+    },
+    {
+      "name": "OnlyIfFileExists",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:file}}{${2:code}}"
+      }
+    },
+    {
+      "name": "addToArray",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:array}}{${2:arg}}"
+      }
+    },
+    {
+      "name": "clearArray",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:array}}"
+      }
+    },
+    {
+      "name": "endMPDEFSverbatimwrite",
+      "unusual": true
+    },
+    {
+      "name": "endMPGhook",
+      "unusual": true
+    },
+    {
+      "name": "endMPGverbatimwrite",
+      "unusual": true
+    },
+    {
+      "name": "getArraylength",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:array}}"
+      }
+    },
+    {
+      "name": "mpgfigname",
+      "unusual": true
+    },
+    {
+      "name": "mpgnoprocess",
+      "unusual": true
+    },
+    {
+      "name": "theArrayIndex",
+      "unusual": true
+    },
+    {
+      "name": "theCtr",
+      "unusual": true
+    },
+    {
+      "name": "thearraylength",
+      "unusual": true
+    },
+    {
+      "name": "thempgfig",
+      "unusual": true
+    },
+    {
+      "name": "therecordCtr",
+      "unusual": true
+    },
+    {
+      "name": "thezeroCtr",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "mpdisplay"
+    },
+    {
+      "name": "mpinline"
+    },
+    {
+      "name": "mpdefs"
+    },
+    {
+      "name": "ltxpreamble"
+    }
+  ],
+  "keys": {
+    "\\usepackage/mpgraphics#c": [
+      "metapost={${1:MetaPost options}}\r",
+      "epstopdf={${1:epstopdf options}}\r",
+      "compilation=${1|on,off\r|}",
+      "debug=${1|on,off\r|}",
+      "runs=${1:integer}\r"
+    ],
+    "\\configure": [
       "width=",
       "height=",
-      "scale=${1:factor}",
+      "scale=${1:factor}\r",
       "color=",
       "linecolor=",
       "background=",
       "linewidth=",
       "rulesep="
     ]
+  },
+  "args": [
+    "\\usepackage/mpgraphics#c"
   ]
 }

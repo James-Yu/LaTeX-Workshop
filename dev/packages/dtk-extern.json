@@ -1,36 +1,103 @@
 {
-  "includes": {
-    "fancyvrb": [],
-    "graphicx": [],
-    "marginnote": [],
-    "shellesc": [],
-    "xkeyval": []
-  },
-  "macros": {
-    "ResetKeys": {},
-    "LineWidth": {},
-    "DoubleperCent": {},
-    "dtkExternDateiname": {},
-    "perCent": {}
-  },
-  "envs": {
-    "externalDocument{}": {
-      "name": "externalDocument",
-      "snippet": "{${1:Dateiname}}"
+  "deps": [
+    {
+      "name": "fancyvrb"
     },
-    "externalDocument[]{}": {
-      "name": "externalDocument",
-      "snippet": "[${2:Optionen}]{${1:Dateiname}}"
+    {
+      "name": "graphicx"
     },
-    "ErstelleGrafik{}": {
-      "name": "ErstelleGrafik",
-      "snippet": "{${1:Dateiname}}"
+    {
+      "name": "marginnote"
     },
-    "ErstelleGrafik[]{}": {
-      "name": "ErstelleGrafik",
-      "snippet": "[${2:Optionen}]{${1:Dateiname}}"
+    {
+      "name": "shellesc"
+    },
+    {
+      "name": "xkeyval"
     }
+  ],
+  "macros": [
+    {
+      "name": "ResetKeys"
+    },
+    {
+      "name": "LineWidth",
+      "unusual": true
+    },
+    {
+      "name": "DoubleperCent",
+      "unusual": true
+    },
+    {
+      "name": "dtkExternDateiname",
+      "unusual": true
+    },
+    {
+      "name": "perCent",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "externalDocument",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Dateiname}}"
+      }
+    },
+    {
+      "name": "externalDocument",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:Optionen%keyvals}]{${1:Dateiname}}"
+      }
+    },
+    {
+      "name": "ErstelleGrafik",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Dateiname}}"
+      }
+    },
+    {
+      "name": "ErstelleGrafik",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:Optionen%keyvals}]{${1:Dateiname}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\begin{externalDocument},\\begin{ErstelleGrafik}": [
+      "compiler=${1:compiler}\r",
+      "runsequence=${1:runsequence}\r",
+      "runs=${1:number}\r",
+      "grfOptions={${1:\\includegraphics options}}\r",
+      "lstOptions={${1:listings options}}\r",
+      "docType=${1:type}\r",
+      "caption=${1:text}\r",
+      "label=",
+      "pages={${1:pages}}\r",
+      "mpwidth=",
+      "usefancyvrb",
+      "showFilename",
+      "code",
+      "force",
+      "crop",
+      "biber",
+      "xindex",
+      "xindexOptions={${1:xindex options}}\r",
+      "includegraphic",
+      "inline",
+      "frame",
+      "float",
+      "cleanup",
+      "copyToExampleDir",
+      "align=${1:alignment commands}\r",
+      "ExamplesDir=${1:name}\r"
+    ]
   },
-  "options": [],
-  "keyvals": []
+  "args": []
 }

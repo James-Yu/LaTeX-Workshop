@@ -1,181 +1,367 @@
 {
-  "includes": {},
-  "macros": {
-    "tcboxfit{}": {
-      "snippet": "tcboxfit{${1:box content}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "tcboxfit",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:box content%text}}"
+      }
     },
-    "tcboxfit[]{}": {
-      "snippet": "tcboxfit[${2:options}]{${1:box content}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "tcboxfit",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:box content%text}}"
+      }
     },
-    "newtcboxfit{}{}": {
-      "snippet": "newtcboxfit{${1:cmd}}{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
+    {
+      "name": "newtcboxfit",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcolorbox},\\tcbsetforeverylayer,\\tcbox,\\newtcolorbox,\\renewtcolorbox,\\newtcbox,\\renewtcbox,\\tcolorboxenvironment,\\tcbsubtitle,\\tcbsidebyside,\\tcbsubskin,\\tcbincludegraphics,\\tcbincludepdf,\\begin{tcbraster},\\begin{tcbitemize},\\tcbitem,\\begin{tcboxedraster},\\begin{tcboxeditemize},\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\NewTcbTheorem,\\newtcbtheorem,\\RenewTcbTheorem,\\renewtcbtheorem,\\ProvideTcbTheorem,\\DeclareTcbTheorem,\\tcboxmath,\\tcbhighmath,\\usetcboxarray,\\consumetcboxarray,\\posterbox,\\begin{posterboxenv},\\tcboxfit,\\newtcboxfit,\\renewtcboxfit,\\DeclareTColorBox,\\NewTColorBox,\\RenewTColorBox,\\ProvideTColorBox,\\DeclareTotalTColorBox,\\NewTotalTColorBox,\\RenewTotalTColorBox,\\ProvideTotalTColorBox,\\DeclareTCBox,\\NewTCBox,\\RenewTCBox,\\ProvideTCBox,\\DeclareTotalTCBox,\\NewTotalTCBox,\\RenewTotalTCBox,\\ProvideTotalTCBox,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing,\\DeclareTCBoxFit,\\NewTCBoxFit,\\RenewTCBoxFit,\\ProvideTCBoxFit,\\DeclareTotalTCBoxFit,\\NewTotalTCBoxFit,\\RenewTotalTCBoxFit,\\ProvideTotalTCBoxFit,\\tcboxverb,\\begin{docCommand},\\begin{docCommand*},\\begin{docCommands},\\begin{docEnvironment},\\begin{docEnvironment*},\\begin{docEnvironments},\\begin{docKey},\\begin{docKey*},\\begin{docKeys},\\begin{docPathOperation},\\begin{docPathOperation*},\\begin{docPathOperations},\\docValue,\\docValue*,\\docAuxCommand,\\docAuxCommand*,\\docAuxEnvironment,\\docAuxEnvironment*,\\docAuxKey,\\docAuxKey*,\\docCounter,\\docCounter*,\\docLength,\\docLength*,\\docColor,\\docColor*,\\begin{dispExample*},\\begin{dispListing*},\\tcbdocmarginnote"
+        ],
+        "keyPos": 1
+      }
     },
-    "newtcboxfit{}[]{}": {
-      "snippet": "newtcboxfit{${1:cmd}}[${2:args}]{${3:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 2
+    {
+      "name": "newtcboxfit",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:args}]{${2:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcolorbox},\\tcbsetforeverylayer,\\tcbox,\\newtcolorbox,\\renewtcolorbox,\\newtcbox,\\renewtcbox,\\tcolorboxenvironment,\\tcbsubtitle,\\tcbsidebyside,\\tcbsubskin,\\tcbincludegraphics,\\tcbincludepdf,\\begin{tcbraster},\\begin{tcbitemize},\\tcbitem,\\begin{tcboxedraster},\\begin{tcboxeditemize},\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\NewTcbTheorem,\\newtcbtheorem,\\RenewTcbTheorem,\\renewtcbtheorem,\\ProvideTcbTheorem,\\DeclareTcbTheorem,\\tcboxmath,\\tcbhighmath,\\usetcboxarray,\\consumetcboxarray,\\posterbox,\\begin{posterboxenv},\\tcboxfit,\\newtcboxfit,\\renewtcboxfit,\\DeclareTColorBox,\\NewTColorBox,\\RenewTColorBox,\\ProvideTColorBox,\\DeclareTotalTColorBox,\\NewTotalTColorBox,\\RenewTotalTColorBox,\\ProvideTotalTColorBox,\\DeclareTCBox,\\NewTCBox,\\RenewTCBox,\\ProvideTCBox,\\DeclareTotalTCBox,\\NewTotalTCBox,\\RenewTotalTCBox,\\ProvideTotalTCBox,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing,\\DeclareTCBoxFit,\\NewTCBoxFit,\\RenewTCBoxFit,\\ProvideTCBoxFit,\\DeclareTotalTCBoxFit,\\NewTotalTCBoxFit,\\RenewTotalTCBoxFit,\\ProvideTotalTCBoxFit,\\tcboxverb,\\begin{docCommand},\\begin{docCommand*},\\begin{docCommands},\\begin{docEnvironment},\\begin{docEnvironment*},\\begin{docEnvironments},\\begin{docKey},\\begin{docKey*},\\begin{docKeys},\\begin{docPathOperation},\\begin{docPathOperation*},\\begin{docPathOperations},\\docValue,\\docValue*,\\docAuxCommand,\\docAuxCommand*,\\docAuxEnvironment,\\docAuxEnvironment*,\\docAuxKey,\\docAuxKey*,\\docCounter,\\docCounter*,\\docLength,\\docLength*,\\docColor,\\docColor*,\\begin{dispExample*},\\begin{dispListing*},\\tcbdocmarginnote"
+        ],
+        "keyPos": 2
+      }
     },
-    "newtcboxfit{}[][]{}": {
-      "snippet": "newtcboxfit{${1:cmd}}[${2:args}][${3:default}]{${4:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 3
+    {
+      "name": "newtcboxfit",
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "{${1:cmd}}[${3:args}][${4:default}]{${2:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcolorbox},\\tcbsetforeverylayer,\\tcbox,\\newtcolorbox,\\renewtcolorbox,\\newtcbox,\\renewtcbox,\\tcolorboxenvironment,\\tcbsubtitle,\\tcbsidebyside,\\tcbsubskin,\\tcbincludegraphics,\\tcbincludepdf,\\begin{tcbraster},\\begin{tcbitemize},\\tcbitem,\\begin{tcboxedraster},\\begin{tcboxeditemize},\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\NewTcbTheorem,\\newtcbtheorem,\\RenewTcbTheorem,\\renewtcbtheorem,\\ProvideTcbTheorem,\\DeclareTcbTheorem,\\tcboxmath,\\tcbhighmath,\\usetcboxarray,\\consumetcboxarray,\\posterbox,\\begin{posterboxenv},\\tcboxfit,\\newtcboxfit,\\renewtcboxfit,\\DeclareTColorBox,\\NewTColorBox,\\RenewTColorBox,\\ProvideTColorBox,\\DeclareTotalTColorBox,\\NewTotalTColorBox,\\RenewTotalTColorBox,\\ProvideTotalTColorBox,\\DeclareTCBox,\\NewTCBox,\\RenewTCBox,\\ProvideTCBox,\\DeclareTotalTCBox,\\NewTotalTCBox,\\RenewTotalTCBox,\\ProvideTotalTCBox,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing,\\DeclareTCBoxFit,\\NewTCBoxFit,\\RenewTCBoxFit,\\ProvideTCBoxFit,\\DeclareTotalTCBoxFit,\\NewTotalTCBoxFit,\\RenewTotalTCBoxFit,\\ProvideTotalTCBoxFit,\\tcboxverb,\\begin{docCommand},\\begin{docCommand*},\\begin{docCommands},\\begin{docEnvironment},\\begin{docEnvironment*},\\begin{docEnvironments},\\begin{docKey},\\begin{docKey*},\\begin{docKeys},\\begin{docPathOperation},\\begin{docPathOperation*},\\begin{docPathOperations},\\docValue,\\docValue*,\\docAuxCommand,\\docAuxCommand*,\\docAuxEnvironment,\\docAuxEnvironment*,\\docAuxKey,\\docAuxKey*,\\docCounter,\\docCounter*,\\docLength,\\docLength*,\\docColor,\\docColor*,\\begin{dispExample*},\\begin{dispListing*},\\tcbdocmarginnote"
+        ],
+        "keyPos": 3
+      }
     },
-    "newtcboxfit[]{}{}": {
-      "snippet": "newtcboxfit[${3:init options}]{${1:cmd}}{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 2
+    {
+      "name": "newtcboxfit",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:init options}]{${1:cmd}}{${2:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcolorbox},\\tcbsetforeverylayer,\\tcbox,\\newtcolorbox,\\renewtcolorbox,\\newtcbox,\\renewtcbox,\\tcolorboxenvironment,\\tcbsubtitle,\\tcbsidebyside,\\tcbsubskin,\\tcbincludegraphics,\\tcbincludepdf,\\begin{tcbraster},\\begin{tcbitemize},\\tcbitem,\\begin{tcboxedraster},\\begin{tcboxeditemize},\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\NewTcbTheorem,\\newtcbtheorem,\\RenewTcbTheorem,\\renewtcbtheorem,\\ProvideTcbTheorem,\\DeclareTcbTheorem,\\tcboxmath,\\tcbhighmath,\\usetcboxarray,\\consumetcboxarray,\\posterbox,\\begin{posterboxenv},\\tcboxfit,\\newtcboxfit,\\renewtcboxfit,\\DeclareTColorBox,\\NewTColorBox,\\RenewTColorBox,\\ProvideTColorBox,\\DeclareTotalTColorBox,\\NewTotalTColorBox,\\RenewTotalTColorBox,\\ProvideTotalTColorBox,\\DeclareTCBox,\\NewTCBox,\\RenewTCBox,\\ProvideTCBox,\\DeclareTotalTCBox,\\NewTotalTCBox,\\RenewTotalTCBox,\\ProvideTotalTCBox,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing,\\DeclareTCBoxFit,\\NewTCBoxFit,\\RenewTCBoxFit,\\ProvideTCBoxFit,\\DeclareTotalTCBoxFit,\\NewTotalTCBoxFit,\\RenewTotalTCBoxFit,\\ProvideTotalTCBoxFit,\\tcboxverb,\\begin{docCommand},\\begin{docCommand*},\\begin{docCommands},\\begin{docEnvironment},\\begin{docEnvironment*},\\begin{docEnvironments},\\begin{docKey},\\begin{docKey*},\\begin{docKeys},\\begin{docPathOperation},\\begin{docPathOperation*},\\begin{docPathOperations},\\docValue,\\docValue*,\\docAuxCommand,\\docAuxCommand*,\\docAuxEnvironment,\\docAuxEnvironment*,\\docAuxKey,\\docAuxKey*,\\docCounter,\\docCounter*,\\docLength,\\docLength*,\\docColor,\\docColor*,\\begin{dispExample*},\\begin{dispListing*},\\tcbdocmarginnote"
+        ],
+        "keyPos": 2
+      }
     },
-    "newtcboxfit[]{}[]{}": {
-      "snippet": "newtcboxfit[${3:init options}]{${1:cmd}}[${4:args}]{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 3
+    {
+      "name": "newtcboxfit",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]{}",
+        "snippet": "[${3:init options}]{${1:cmd}}[${4:args}]{${2:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcolorbox},\\tcbsetforeverylayer,\\tcbox,\\newtcolorbox,\\renewtcolorbox,\\newtcbox,\\renewtcbox,\\tcolorboxenvironment,\\tcbsubtitle,\\tcbsidebyside,\\tcbsubskin,\\tcbincludegraphics,\\tcbincludepdf,\\begin{tcbraster},\\begin{tcbitemize},\\tcbitem,\\begin{tcboxedraster},\\begin{tcboxeditemize},\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\NewTcbTheorem,\\newtcbtheorem,\\RenewTcbTheorem,\\renewtcbtheorem,\\ProvideTcbTheorem,\\DeclareTcbTheorem,\\tcboxmath,\\tcbhighmath,\\usetcboxarray,\\consumetcboxarray,\\posterbox,\\begin{posterboxenv},\\tcboxfit,\\newtcboxfit,\\renewtcboxfit,\\DeclareTColorBox,\\NewTColorBox,\\RenewTColorBox,\\ProvideTColorBox,\\DeclareTotalTColorBox,\\NewTotalTColorBox,\\RenewTotalTColorBox,\\ProvideTotalTColorBox,\\DeclareTCBox,\\NewTCBox,\\RenewTCBox,\\ProvideTCBox,\\DeclareTotalTCBox,\\NewTotalTCBox,\\RenewTotalTCBox,\\ProvideTotalTCBox,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing,\\DeclareTCBoxFit,\\NewTCBoxFit,\\RenewTCBoxFit,\\ProvideTCBoxFit,\\DeclareTotalTCBoxFit,\\NewTotalTCBoxFit,\\RenewTotalTCBoxFit,\\ProvideTotalTCBoxFit,\\tcboxverb,\\begin{docCommand},\\begin{docCommand*},\\begin{docCommands},\\begin{docEnvironment},\\begin{docEnvironment*},\\begin{docEnvironments},\\begin{docKey},\\begin{docKey*},\\begin{docKeys},\\begin{docPathOperation},\\begin{docPathOperation*},\\begin{docPathOperations},\\docValue,\\docValue*,\\docAuxCommand,\\docAuxCommand*,\\docAuxEnvironment,\\docAuxEnvironment*,\\docAuxKey,\\docAuxKey*,\\docCounter,\\docCounter*,\\docLength,\\docLength*,\\docColor,\\docColor*,\\begin{dispExample*},\\begin{dispListing*},\\tcbdocmarginnote"
+        ],
+        "keyPos": 3
+      }
     },
-    "newtcboxfit[]{}[][]{}": {
-      "snippet": "newtcboxfit[${3:init options}]{${1:cmd}}[${4:args}][${5:default}]{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 4
+    {
+      "name": "newtcboxfit",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[][]{}",
+        "snippet": "[${3:init options}]{${1:cmd}}[${4:args}][${5:default}]{${2:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcolorbox},\\tcbsetforeverylayer,\\tcbox,\\newtcolorbox,\\renewtcolorbox,\\newtcbox,\\renewtcbox,\\tcolorboxenvironment,\\tcbsubtitle,\\tcbsidebyside,\\tcbsubskin,\\tcbincludegraphics,\\tcbincludepdf,\\begin{tcbraster},\\begin{tcbitemize},\\tcbitem,\\begin{tcboxedraster},\\begin{tcboxeditemize},\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\NewTcbTheorem,\\newtcbtheorem,\\RenewTcbTheorem,\\renewtcbtheorem,\\ProvideTcbTheorem,\\DeclareTcbTheorem,\\tcboxmath,\\tcbhighmath,\\usetcboxarray,\\consumetcboxarray,\\posterbox,\\begin{posterboxenv},\\tcboxfit,\\newtcboxfit,\\renewtcboxfit,\\DeclareTColorBox,\\NewTColorBox,\\RenewTColorBox,\\ProvideTColorBox,\\DeclareTotalTColorBox,\\NewTotalTColorBox,\\RenewTotalTColorBox,\\ProvideTotalTColorBox,\\DeclareTCBox,\\NewTCBox,\\RenewTCBox,\\ProvideTCBox,\\DeclareTotalTCBox,\\NewTotalTCBox,\\RenewTotalTCBox,\\ProvideTotalTCBox,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing,\\DeclareTCBoxFit,\\NewTCBoxFit,\\RenewTCBoxFit,\\ProvideTCBoxFit,\\DeclareTotalTCBoxFit,\\NewTotalTCBoxFit,\\RenewTotalTCBoxFit,\\ProvideTotalTCBoxFit,\\tcboxverb,\\begin{docCommand},\\begin{docCommand*},\\begin{docCommands},\\begin{docEnvironment},\\begin{docEnvironment*},\\begin{docEnvironments},\\begin{docKey},\\begin{docKey*},\\begin{docKeys},\\begin{docPathOperation},\\begin{docPathOperation*},\\begin{docPathOperations},\\docValue,\\docValue*,\\docAuxCommand,\\docAuxCommand*,\\docAuxEnvironment,\\docAuxEnvironment*,\\docAuxKey,\\docAuxKey*,\\docCounter,\\docCounter*,\\docLength,\\docLength*,\\docColor,\\docColor*,\\begin{dispExample*},\\begin{dispListing*},\\tcbdocmarginnote"
+        ],
+        "keyPos": 4
+      }
     },
-    "renewtcboxfit{}{}": {
-      "snippet": "renewtcboxfit{${1:cmd}}{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
+    {
+      "name": "renewtcboxfit",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcolorbox},\\tcbsetforeverylayer,\\tcbox,\\newtcolorbox,\\renewtcolorbox,\\newtcbox,\\renewtcbox,\\tcolorboxenvironment,\\tcbsubtitle,\\tcbsidebyside,\\tcbsubskin,\\tcbincludegraphics,\\tcbincludepdf,\\begin{tcbraster},\\begin{tcbitemize},\\tcbitem,\\begin{tcboxedraster},\\begin{tcboxeditemize},\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\NewTcbTheorem,\\newtcbtheorem,\\RenewTcbTheorem,\\renewtcbtheorem,\\ProvideTcbTheorem,\\DeclareTcbTheorem,\\tcboxmath,\\tcbhighmath,\\usetcboxarray,\\consumetcboxarray,\\posterbox,\\begin{posterboxenv},\\tcboxfit,\\newtcboxfit,\\renewtcboxfit,\\DeclareTColorBox,\\NewTColorBox,\\RenewTColorBox,\\ProvideTColorBox,\\DeclareTotalTColorBox,\\NewTotalTColorBox,\\RenewTotalTColorBox,\\ProvideTotalTColorBox,\\DeclareTCBox,\\NewTCBox,\\RenewTCBox,\\ProvideTCBox,\\DeclareTotalTCBox,\\NewTotalTCBox,\\RenewTotalTCBox,\\ProvideTotalTCBox,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing,\\DeclareTCBoxFit,\\NewTCBoxFit,\\RenewTCBoxFit,\\ProvideTCBoxFit,\\DeclareTotalTCBoxFit,\\NewTotalTCBoxFit,\\RenewTotalTCBoxFit,\\ProvideTotalTCBoxFit,\\tcboxverb,\\begin{docCommand},\\begin{docCommand*},\\begin{docCommands},\\begin{docEnvironment},\\begin{docEnvironment*},\\begin{docEnvironments},\\begin{docKey},\\begin{docKey*},\\begin{docKeys},\\begin{docPathOperation},\\begin{docPathOperation*},\\begin{docPathOperations},\\docValue,\\docValue*,\\docAuxCommand,\\docAuxCommand*,\\docAuxEnvironment,\\docAuxEnvironment*,\\docAuxKey,\\docAuxKey*,\\docCounter,\\docCounter*,\\docLength,\\docLength*,\\docColor,\\docColor*,\\begin{dispExample*},\\begin{dispListing*},\\tcbdocmarginnote"
+        ],
+        "keyPos": 1
+      }
     },
-    "renewtcboxfit{}[]{}": {
-      "snippet": "renewtcboxfit{${1:cmd}}[${2:args}]{${3:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 2
+    {
+      "name": "renewtcboxfit",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:args}]{${2:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcolorbox},\\tcbsetforeverylayer,\\tcbox,\\newtcolorbox,\\renewtcolorbox,\\newtcbox,\\renewtcbox,\\tcolorboxenvironment,\\tcbsubtitle,\\tcbsidebyside,\\tcbsubskin,\\tcbincludegraphics,\\tcbincludepdf,\\begin{tcbraster},\\begin{tcbitemize},\\tcbitem,\\begin{tcboxedraster},\\begin{tcboxeditemize},\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\NewTcbTheorem,\\newtcbtheorem,\\RenewTcbTheorem,\\renewtcbtheorem,\\ProvideTcbTheorem,\\DeclareTcbTheorem,\\tcboxmath,\\tcbhighmath,\\usetcboxarray,\\consumetcboxarray,\\posterbox,\\begin{posterboxenv},\\tcboxfit,\\newtcboxfit,\\renewtcboxfit,\\DeclareTColorBox,\\NewTColorBox,\\RenewTColorBox,\\ProvideTColorBox,\\DeclareTotalTColorBox,\\NewTotalTColorBox,\\RenewTotalTColorBox,\\ProvideTotalTColorBox,\\DeclareTCBox,\\NewTCBox,\\RenewTCBox,\\ProvideTCBox,\\DeclareTotalTCBox,\\NewTotalTCBox,\\RenewTotalTCBox,\\ProvideTotalTCBox,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing,\\DeclareTCBoxFit,\\NewTCBoxFit,\\RenewTCBoxFit,\\ProvideTCBoxFit,\\DeclareTotalTCBoxFit,\\NewTotalTCBoxFit,\\RenewTotalTCBoxFit,\\ProvideTotalTCBoxFit,\\tcboxverb,\\begin{docCommand},\\begin{docCommand*},\\begin{docCommands},\\begin{docEnvironment},\\begin{docEnvironment*},\\begin{docEnvironments},\\begin{docKey},\\begin{docKey*},\\begin{docKeys},\\begin{docPathOperation},\\begin{docPathOperation*},\\begin{docPathOperations},\\docValue,\\docValue*,\\docAuxCommand,\\docAuxCommand*,\\docAuxEnvironment,\\docAuxEnvironment*,\\docAuxKey,\\docAuxKey*,\\docCounter,\\docCounter*,\\docLength,\\docLength*,\\docColor,\\docColor*,\\begin{dispExample*},\\begin{dispListing*},\\tcbdocmarginnote"
+        ],
+        "keyPos": 2
+      }
     },
-    "renewtcboxfit{}[][]{}": {
-      "snippet": "renewtcboxfit{${1:cmd}}[${2:args}][${3:default}]{${4:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 3
+    {
+      "name": "renewtcboxfit",
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "{${1:cmd}}[${3:args}][${4:default}]{${2:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcolorbox},\\tcbsetforeverylayer,\\tcbox,\\newtcolorbox,\\renewtcolorbox,\\newtcbox,\\renewtcbox,\\tcolorboxenvironment,\\tcbsubtitle,\\tcbsidebyside,\\tcbsubskin,\\tcbincludegraphics,\\tcbincludepdf,\\begin{tcbraster},\\begin{tcbitemize},\\tcbitem,\\begin{tcboxedraster},\\begin{tcboxeditemize},\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\NewTcbTheorem,\\newtcbtheorem,\\RenewTcbTheorem,\\renewtcbtheorem,\\ProvideTcbTheorem,\\DeclareTcbTheorem,\\tcboxmath,\\tcbhighmath,\\usetcboxarray,\\consumetcboxarray,\\posterbox,\\begin{posterboxenv},\\tcboxfit,\\newtcboxfit,\\renewtcboxfit,\\DeclareTColorBox,\\NewTColorBox,\\RenewTColorBox,\\ProvideTColorBox,\\DeclareTotalTColorBox,\\NewTotalTColorBox,\\RenewTotalTColorBox,\\ProvideTotalTColorBox,\\DeclareTCBox,\\NewTCBox,\\RenewTCBox,\\ProvideTCBox,\\DeclareTotalTCBox,\\NewTotalTCBox,\\RenewTotalTCBox,\\ProvideTotalTCBox,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing,\\DeclareTCBoxFit,\\NewTCBoxFit,\\RenewTCBoxFit,\\ProvideTCBoxFit,\\DeclareTotalTCBoxFit,\\NewTotalTCBoxFit,\\RenewTotalTCBoxFit,\\ProvideTotalTCBoxFit,\\tcboxverb,\\begin{docCommand},\\begin{docCommand*},\\begin{docCommands},\\begin{docEnvironment},\\begin{docEnvironment*},\\begin{docEnvironments},\\begin{docKey},\\begin{docKey*},\\begin{docKeys},\\begin{docPathOperation},\\begin{docPathOperation*},\\begin{docPathOperations},\\docValue,\\docValue*,\\docAuxCommand,\\docAuxCommand*,\\docAuxEnvironment,\\docAuxEnvironment*,\\docAuxKey,\\docAuxKey*,\\docCounter,\\docCounter*,\\docLength,\\docLength*,\\docColor,\\docColor*,\\begin{dispExample*},\\begin{dispListing*},\\tcbdocmarginnote"
+        ],
+        "keyPos": 3
+      }
     },
-    "renewtcboxfit[]{}{}": {
-      "snippet": "renewtcboxfit[${3:init options}]{${1:cmd}}{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 2
+    {
+      "name": "renewtcboxfit",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:init options}]{${1:cmd}}{${2:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcolorbox},\\tcbsetforeverylayer,\\tcbox,\\newtcolorbox,\\renewtcolorbox,\\newtcbox,\\renewtcbox,\\tcolorboxenvironment,\\tcbsubtitle,\\tcbsidebyside,\\tcbsubskin,\\tcbincludegraphics,\\tcbincludepdf,\\begin{tcbraster},\\begin{tcbitemize},\\tcbitem,\\begin{tcboxedraster},\\begin{tcboxeditemize},\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\NewTcbTheorem,\\newtcbtheorem,\\RenewTcbTheorem,\\renewtcbtheorem,\\ProvideTcbTheorem,\\DeclareTcbTheorem,\\tcboxmath,\\tcbhighmath,\\usetcboxarray,\\consumetcboxarray,\\posterbox,\\begin{posterboxenv},\\tcboxfit,\\newtcboxfit,\\renewtcboxfit,\\DeclareTColorBox,\\NewTColorBox,\\RenewTColorBox,\\ProvideTColorBox,\\DeclareTotalTColorBox,\\NewTotalTColorBox,\\RenewTotalTColorBox,\\ProvideTotalTColorBox,\\DeclareTCBox,\\NewTCBox,\\RenewTCBox,\\ProvideTCBox,\\DeclareTotalTCBox,\\NewTotalTCBox,\\RenewTotalTCBox,\\ProvideTotalTCBox,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing,\\DeclareTCBoxFit,\\NewTCBoxFit,\\RenewTCBoxFit,\\ProvideTCBoxFit,\\DeclareTotalTCBoxFit,\\NewTotalTCBoxFit,\\RenewTotalTCBoxFit,\\ProvideTotalTCBoxFit,\\tcboxverb,\\begin{docCommand},\\begin{docCommand*},\\begin{docCommands},\\begin{docEnvironment},\\begin{docEnvironment*},\\begin{docEnvironments},\\begin{docKey},\\begin{docKey*},\\begin{docKeys},\\begin{docPathOperation},\\begin{docPathOperation*},\\begin{docPathOperations},\\docValue,\\docValue*,\\docAuxCommand,\\docAuxCommand*,\\docAuxEnvironment,\\docAuxEnvironment*,\\docAuxKey,\\docAuxKey*,\\docCounter,\\docCounter*,\\docLength,\\docLength*,\\docColor,\\docColor*,\\begin{dispExample*},\\begin{dispListing*},\\tcbdocmarginnote"
+        ],
+        "keyPos": 2
+      }
     },
-    "renewtcboxfit[]{}[]{}": {
-      "snippet": "renewtcboxfit[${3:init options}]{${1:cmd}}[${4:args}]{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 3
+    {
+      "name": "renewtcboxfit",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]{}",
+        "snippet": "[${3:init options}]{${1:cmd}}[${4:args}]{${2:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcolorbox},\\tcbsetforeverylayer,\\tcbox,\\newtcolorbox,\\renewtcolorbox,\\newtcbox,\\renewtcbox,\\tcolorboxenvironment,\\tcbsubtitle,\\tcbsidebyside,\\tcbsubskin,\\tcbincludegraphics,\\tcbincludepdf,\\begin{tcbraster},\\begin{tcbitemize},\\tcbitem,\\begin{tcboxedraster},\\begin{tcboxeditemize},\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\NewTcbTheorem,\\newtcbtheorem,\\RenewTcbTheorem,\\renewtcbtheorem,\\ProvideTcbTheorem,\\DeclareTcbTheorem,\\tcboxmath,\\tcbhighmath,\\usetcboxarray,\\consumetcboxarray,\\posterbox,\\begin{posterboxenv},\\tcboxfit,\\newtcboxfit,\\renewtcboxfit,\\DeclareTColorBox,\\NewTColorBox,\\RenewTColorBox,\\ProvideTColorBox,\\DeclareTotalTColorBox,\\NewTotalTColorBox,\\RenewTotalTColorBox,\\ProvideTotalTColorBox,\\DeclareTCBox,\\NewTCBox,\\RenewTCBox,\\ProvideTCBox,\\DeclareTotalTCBox,\\NewTotalTCBox,\\RenewTotalTCBox,\\ProvideTotalTCBox,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing,\\DeclareTCBoxFit,\\NewTCBoxFit,\\RenewTCBoxFit,\\ProvideTCBoxFit,\\DeclareTotalTCBoxFit,\\NewTotalTCBoxFit,\\RenewTotalTCBoxFit,\\ProvideTotalTCBoxFit,\\tcboxverb,\\begin{docCommand},\\begin{docCommand*},\\begin{docCommands},\\begin{docEnvironment},\\begin{docEnvironment*},\\begin{docEnvironments},\\begin{docKey},\\begin{docKey*},\\begin{docKeys},\\begin{docPathOperation},\\begin{docPathOperation*},\\begin{docPathOperations},\\docValue,\\docValue*,\\docAuxCommand,\\docAuxCommand*,\\docAuxEnvironment,\\docAuxEnvironment*,\\docAuxKey,\\docAuxKey*,\\docCounter,\\docCounter*,\\docLength,\\docLength*,\\docColor,\\docColor*,\\begin{dispExample*},\\begin{dispListing*},\\tcbdocmarginnote"
+        ],
+        "keyPos": 3
+      }
     },
-    "renewtcboxfit[]{}[][]{}": {
-      "snippet": "renewtcboxfit[${3:init options}]{${1:cmd}}[${4:args}][${5:default}]{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 4
+    {
+      "name": "renewtcboxfit",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[][]{}",
+        "snippet": "[${3:init options}]{${1:cmd}}[${4:args}][${5:default}]{${2:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcolorbox},\\tcbsetforeverylayer,\\tcbox,\\newtcolorbox,\\renewtcolorbox,\\newtcbox,\\renewtcbox,\\tcolorboxenvironment,\\tcbsubtitle,\\tcbsidebyside,\\tcbsubskin,\\tcbincludegraphics,\\tcbincludepdf,\\begin{tcbraster},\\begin{tcbitemize},\\tcbitem,\\begin{tcboxedraster},\\begin{tcboxeditemize},\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\NewTcbTheorem,\\newtcbtheorem,\\RenewTcbTheorem,\\renewtcbtheorem,\\ProvideTcbTheorem,\\DeclareTcbTheorem,\\tcboxmath,\\tcbhighmath,\\usetcboxarray,\\consumetcboxarray,\\posterbox,\\begin{posterboxenv},\\tcboxfit,\\newtcboxfit,\\renewtcboxfit,\\DeclareTColorBox,\\NewTColorBox,\\RenewTColorBox,\\ProvideTColorBox,\\DeclareTotalTColorBox,\\NewTotalTColorBox,\\RenewTotalTColorBox,\\ProvideTotalTColorBox,\\DeclareTCBox,\\NewTCBox,\\RenewTCBox,\\ProvideTCBox,\\DeclareTotalTCBox,\\NewTotalTCBox,\\RenewTotalTCBox,\\ProvideTotalTCBox,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing,\\DeclareTCBoxFit,\\NewTCBoxFit,\\RenewTCBoxFit,\\ProvideTCBoxFit,\\DeclareTotalTCBoxFit,\\NewTotalTCBoxFit,\\RenewTotalTCBoxFit,\\ProvideTotalTCBoxFit,\\tcboxverb,\\begin{docCommand},\\begin{docCommand*},\\begin{docCommands},\\begin{docEnvironment},\\begin{docEnvironment*},\\begin{docEnvironments},\\begin{docKey},\\begin{docKey*},\\begin{docKeys},\\begin{docPathOperation},\\begin{docPathOperation*},\\begin{docPathOperations},\\docValue,\\docValue*,\\docAuxCommand,\\docAuxCommand*,\\docAuxEnvironment,\\docAuxEnvironment*,\\docAuxKey,\\docAuxKey*,\\docCounter,\\docCounter*,\\docLength,\\docLength*,\\docColor,\\docColor*,\\begin{dispExample*},\\begin{dispListing*},\\tcbdocmarginnote"
+        ],
+        "keyPos": 4
+      }
     },
-    "DeclareTCBoxFit{}{}{}": {
-      "snippet": "DeclareTCBoxFit{${1:cmd}}{${2:xargs}}{${3:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 2
+    {
+      "name": "DeclareTCBoxFit",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:xargs}}{${3:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcolorbox},\\tcbsetforeverylayer,\\tcbox,\\newtcolorbox,\\renewtcolorbox,\\newtcbox,\\renewtcbox,\\tcolorboxenvironment,\\tcbsubtitle,\\tcbsidebyside,\\tcbsubskin,\\tcbincludegraphics,\\tcbincludepdf,\\begin{tcbraster},\\begin{tcbitemize},\\tcbitem,\\begin{tcboxedraster},\\begin{tcboxeditemize},\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\NewTcbTheorem,\\newtcbtheorem,\\RenewTcbTheorem,\\renewtcbtheorem,\\ProvideTcbTheorem,\\DeclareTcbTheorem,\\tcboxmath,\\tcbhighmath,\\usetcboxarray,\\consumetcboxarray,\\posterbox,\\begin{posterboxenv},\\tcboxfit,\\newtcboxfit,\\renewtcboxfit,\\DeclareTColorBox,\\NewTColorBox,\\RenewTColorBox,\\ProvideTColorBox,\\DeclareTotalTColorBox,\\NewTotalTColorBox,\\RenewTotalTColorBox,\\ProvideTotalTColorBox,\\DeclareTCBox,\\NewTCBox,\\RenewTCBox,\\ProvideTCBox,\\DeclareTotalTCBox,\\NewTotalTCBox,\\RenewTotalTCBox,\\ProvideTotalTCBox,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing,\\DeclareTCBoxFit,\\NewTCBoxFit,\\RenewTCBoxFit,\\ProvideTCBoxFit,\\DeclareTotalTCBoxFit,\\NewTotalTCBoxFit,\\RenewTotalTCBoxFit,\\ProvideTotalTCBoxFit,\\tcboxverb,\\begin{docCommand},\\begin{docCommand*},\\begin{docCommands},\\begin{docEnvironment},\\begin{docEnvironment*},\\begin{docEnvironments},\\begin{docKey},\\begin{docKey*},\\begin{docKeys},\\begin{docPathOperation},\\begin{docPathOperation*},\\begin{docPathOperations},\\docValue,\\docValue*,\\docAuxCommand,\\docAuxCommand*,\\docAuxEnvironment,\\docAuxEnvironment*,\\docAuxKey,\\docAuxKey*,\\docCounter,\\docCounter*,\\docLength,\\docLength*,\\docColor,\\docColor*,\\begin{dispExample*},\\begin{dispListing*},\\tcbdocmarginnote"
+        ],
+        "keyPos": 2
+      }
     },
-    "DeclareTCBoxFit[]{}{}{}": {
-      "snippet": "DeclareTCBoxFit[${4:init options}]{${1:cmd}}{${2:xargs}}{${3:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 3
+    {
+      "name": "DeclareTCBoxFit",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:init options}]{${1:cmd}}{${2:xargs}}{${3:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcolorbox},\\tcbsetforeverylayer,\\tcbox,\\newtcolorbox,\\renewtcolorbox,\\newtcbox,\\renewtcbox,\\tcolorboxenvironment,\\tcbsubtitle,\\tcbsidebyside,\\tcbsubskin,\\tcbincludegraphics,\\tcbincludepdf,\\begin{tcbraster},\\begin{tcbitemize},\\tcbitem,\\begin{tcboxedraster},\\begin{tcboxeditemize},\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\NewTcbTheorem,\\newtcbtheorem,\\RenewTcbTheorem,\\renewtcbtheorem,\\ProvideTcbTheorem,\\DeclareTcbTheorem,\\tcboxmath,\\tcbhighmath,\\usetcboxarray,\\consumetcboxarray,\\posterbox,\\begin{posterboxenv},\\tcboxfit,\\newtcboxfit,\\renewtcboxfit,\\DeclareTColorBox,\\NewTColorBox,\\RenewTColorBox,\\ProvideTColorBox,\\DeclareTotalTColorBox,\\NewTotalTColorBox,\\RenewTotalTColorBox,\\ProvideTotalTColorBox,\\DeclareTCBox,\\NewTCBox,\\RenewTCBox,\\ProvideTCBox,\\DeclareTotalTCBox,\\NewTotalTCBox,\\RenewTotalTCBox,\\ProvideTotalTCBox,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing,\\DeclareTCBoxFit,\\NewTCBoxFit,\\RenewTCBoxFit,\\ProvideTCBoxFit,\\DeclareTotalTCBoxFit,\\NewTotalTCBoxFit,\\RenewTotalTCBoxFit,\\ProvideTotalTCBoxFit,\\tcboxverb,\\begin{docCommand},\\begin{docCommand*},\\begin{docCommands},\\begin{docEnvironment},\\begin{docEnvironment*},\\begin{docEnvironments},\\begin{docKey},\\begin{docKey*},\\begin{docKeys},\\begin{docPathOperation},\\begin{docPathOperation*},\\begin{docPathOperations},\\docValue,\\docValue*,\\docAuxCommand,\\docAuxCommand*,\\docAuxEnvironment,\\docAuxEnvironment*,\\docAuxKey,\\docAuxKey*,\\docCounter,\\docCounter*,\\docLength,\\docLength*,\\docColor,\\docColor*,\\begin{dispExample*},\\begin{dispListing*},\\tcbdocmarginnote"
+        ],
+        "keyPos": 3
+      }
     },
-    "NewTCBoxFit{}{}{}": {
-      "snippet": "NewTCBoxFit{${1:cmd}}{${2:xargs}}{${3:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 2
+    {
+      "name": "NewTCBoxFit",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:xargs}}{${3:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcolorbox},\\tcbsetforeverylayer,\\tcbox,\\newtcolorbox,\\renewtcolorbox,\\newtcbox,\\renewtcbox,\\tcolorboxenvironment,\\tcbsubtitle,\\tcbsidebyside,\\tcbsubskin,\\tcbincludegraphics,\\tcbincludepdf,\\begin{tcbraster},\\begin{tcbitemize},\\tcbitem,\\begin{tcboxedraster},\\begin{tcboxeditemize},\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\NewTcbTheorem,\\newtcbtheorem,\\RenewTcbTheorem,\\renewtcbtheorem,\\ProvideTcbTheorem,\\DeclareTcbTheorem,\\tcboxmath,\\tcbhighmath,\\usetcboxarray,\\consumetcboxarray,\\posterbox,\\begin{posterboxenv},\\tcboxfit,\\newtcboxfit,\\renewtcboxfit,\\DeclareTColorBox,\\NewTColorBox,\\RenewTColorBox,\\ProvideTColorBox,\\DeclareTotalTColorBox,\\NewTotalTColorBox,\\RenewTotalTColorBox,\\ProvideTotalTColorBox,\\DeclareTCBox,\\NewTCBox,\\RenewTCBox,\\ProvideTCBox,\\DeclareTotalTCBox,\\NewTotalTCBox,\\RenewTotalTCBox,\\ProvideTotalTCBox,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing,\\DeclareTCBoxFit,\\NewTCBoxFit,\\RenewTCBoxFit,\\ProvideTCBoxFit,\\DeclareTotalTCBoxFit,\\NewTotalTCBoxFit,\\RenewTotalTCBoxFit,\\ProvideTotalTCBoxFit,\\tcboxverb,\\begin{docCommand},\\begin{docCommand*},\\begin{docCommands},\\begin{docEnvironment},\\begin{docEnvironment*},\\begin{docEnvironments},\\begin{docKey},\\begin{docKey*},\\begin{docKeys},\\begin{docPathOperation},\\begin{docPathOperation*},\\begin{docPathOperations},\\docValue,\\docValue*,\\docAuxCommand,\\docAuxCommand*,\\docAuxEnvironment,\\docAuxEnvironment*,\\docAuxKey,\\docAuxKey*,\\docCounter,\\docCounter*,\\docLength,\\docLength*,\\docColor,\\docColor*,\\begin{dispExample*},\\begin{dispListing*},\\tcbdocmarginnote"
+        ],
+        "keyPos": 2
+      }
     },
-    "NewTCBoxFit[]{}{}{}": {
-      "snippet": "NewTCBoxFit[${4:init options}]{${1:cmd}}{${2:xargs}}{${3:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 3
+    {
+      "name": "NewTCBoxFit",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:init options}]{${1:cmd}}{${2:xargs}}{${3:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcolorbox},\\tcbsetforeverylayer,\\tcbox,\\newtcolorbox,\\renewtcolorbox,\\newtcbox,\\renewtcbox,\\tcolorboxenvironment,\\tcbsubtitle,\\tcbsidebyside,\\tcbsubskin,\\tcbincludegraphics,\\tcbincludepdf,\\begin{tcbraster},\\begin{tcbitemize},\\tcbitem,\\begin{tcboxedraster},\\begin{tcboxeditemize},\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\NewTcbTheorem,\\newtcbtheorem,\\RenewTcbTheorem,\\renewtcbtheorem,\\ProvideTcbTheorem,\\DeclareTcbTheorem,\\tcboxmath,\\tcbhighmath,\\usetcboxarray,\\consumetcboxarray,\\posterbox,\\begin{posterboxenv},\\tcboxfit,\\newtcboxfit,\\renewtcboxfit,\\DeclareTColorBox,\\NewTColorBox,\\RenewTColorBox,\\ProvideTColorBox,\\DeclareTotalTColorBox,\\NewTotalTColorBox,\\RenewTotalTColorBox,\\ProvideTotalTColorBox,\\DeclareTCBox,\\NewTCBox,\\RenewTCBox,\\ProvideTCBox,\\DeclareTotalTCBox,\\NewTotalTCBox,\\RenewTotalTCBox,\\ProvideTotalTCBox,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing,\\DeclareTCBoxFit,\\NewTCBoxFit,\\RenewTCBoxFit,\\ProvideTCBoxFit,\\DeclareTotalTCBoxFit,\\NewTotalTCBoxFit,\\RenewTotalTCBoxFit,\\ProvideTotalTCBoxFit,\\tcboxverb,\\begin{docCommand},\\begin{docCommand*},\\begin{docCommands},\\begin{docEnvironment},\\begin{docEnvironment*},\\begin{docEnvironments},\\begin{docKey},\\begin{docKey*},\\begin{docKeys},\\begin{docPathOperation},\\begin{docPathOperation*},\\begin{docPathOperations},\\docValue,\\docValue*,\\docAuxCommand,\\docAuxCommand*,\\docAuxEnvironment,\\docAuxEnvironment*,\\docAuxKey,\\docAuxKey*,\\docCounter,\\docCounter*,\\docLength,\\docLength*,\\docColor,\\docColor*,\\begin{dispExample*},\\begin{dispListing*},\\tcbdocmarginnote"
+        ],
+        "keyPos": 3
+      }
     },
-    "RenewTCBoxFit{}{}{}": {
-      "snippet": "RenewTCBoxFit{${1:cmd}}{${2:xargs}}{${3:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 2
+    {
+      "name": "RenewTCBoxFit",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:xargs}}{${3:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcolorbox},\\tcbsetforeverylayer,\\tcbox,\\newtcolorbox,\\renewtcolorbox,\\newtcbox,\\renewtcbox,\\tcolorboxenvironment,\\tcbsubtitle,\\tcbsidebyside,\\tcbsubskin,\\tcbincludegraphics,\\tcbincludepdf,\\begin{tcbraster},\\begin{tcbitemize},\\tcbitem,\\begin{tcboxedraster},\\begin{tcboxeditemize},\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\NewTcbTheorem,\\newtcbtheorem,\\RenewTcbTheorem,\\renewtcbtheorem,\\ProvideTcbTheorem,\\DeclareTcbTheorem,\\tcboxmath,\\tcbhighmath,\\usetcboxarray,\\consumetcboxarray,\\posterbox,\\begin{posterboxenv},\\tcboxfit,\\newtcboxfit,\\renewtcboxfit,\\DeclareTColorBox,\\NewTColorBox,\\RenewTColorBox,\\ProvideTColorBox,\\DeclareTotalTColorBox,\\NewTotalTColorBox,\\RenewTotalTColorBox,\\ProvideTotalTColorBox,\\DeclareTCBox,\\NewTCBox,\\RenewTCBox,\\ProvideTCBox,\\DeclareTotalTCBox,\\NewTotalTCBox,\\RenewTotalTCBox,\\ProvideTotalTCBox,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing,\\DeclareTCBoxFit,\\NewTCBoxFit,\\RenewTCBoxFit,\\ProvideTCBoxFit,\\DeclareTotalTCBoxFit,\\NewTotalTCBoxFit,\\RenewTotalTCBoxFit,\\ProvideTotalTCBoxFit,\\tcboxverb,\\begin{docCommand},\\begin{docCommand*},\\begin{docCommands},\\begin{docEnvironment},\\begin{docEnvironment*},\\begin{docEnvironments},\\begin{docKey},\\begin{docKey*},\\begin{docKeys},\\begin{docPathOperation},\\begin{docPathOperation*},\\begin{docPathOperations},\\docValue,\\docValue*,\\docAuxCommand,\\docAuxCommand*,\\docAuxEnvironment,\\docAuxEnvironment*,\\docAuxKey,\\docAuxKey*,\\docCounter,\\docCounter*,\\docLength,\\docLength*,\\docColor,\\docColor*,\\begin{dispExample*},\\begin{dispListing*},\\tcbdocmarginnote"
+        ],
+        "keyPos": 2
+      }
     },
-    "RenewTCBoxFit[]{}{}{}": {
-      "snippet": "RenewTCBoxFit[${4:init options}]{${1:cmd}}{${2:xargs}}{${3:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 3
+    {
+      "name": "RenewTCBoxFit",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:init options}]{${1:cmd}}{${2:xargs}}{${3:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcolorbox},\\tcbsetforeverylayer,\\tcbox,\\newtcolorbox,\\renewtcolorbox,\\newtcbox,\\renewtcbox,\\tcolorboxenvironment,\\tcbsubtitle,\\tcbsidebyside,\\tcbsubskin,\\tcbincludegraphics,\\tcbincludepdf,\\begin{tcbraster},\\begin{tcbitemize},\\tcbitem,\\begin{tcboxedraster},\\begin{tcboxeditemize},\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\NewTcbTheorem,\\newtcbtheorem,\\RenewTcbTheorem,\\renewtcbtheorem,\\ProvideTcbTheorem,\\DeclareTcbTheorem,\\tcboxmath,\\tcbhighmath,\\usetcboxarray,\\consumetcboxarray,\\posterbox,\\begin{posterboxenv},\\tcboxfit,\\newtcboxfit,\\renewtcboxfit,\\DeclareTColorBox,\\NewTColorBox,\\RenewTColorBox,\\ProvideTColorBox,\\DeclareTotalTColorBox,\\NewTotalTColorBox,\\RenewTotalTColorBox,\\ProvideTotalTColorBox,\\DeclareTCBox,\\NewTCBox,\\RenewTCBox,\\ProvideTCBox,\\DeclareTotalTCBox,\\NewTotalTCBox,\\RenewTotalTCBox,\\ProvideTotalTCBox,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing,\\DeclareTCBoxFit,\\NewTCBoxFit,\\RenewTCBoxFit,\\ProvideTCBoxFit,\\DeclareTotalTCBoxFit,\\NewTotalTCBoxFit,\\RenewTotalTCBoxFit,\\ProvideTotalTCBoxFit,\\tcboxverb,\\begin{docCommand},\\begin{docCommand*},\\begin{docCommands},\\begin{docEnvironment},\\begin{docEnvironment*},\\begin{docEnvironments},\\begin{docKey},\\begin{docKey*},\\begin{docKeys},\\begin{docPathOperation},\\begin{docPathOperation*},\\begin{docPathOperations},\\docValue,\\docValue*,\\docAuxCommand,\\docAuxCommand*,\\docAuxEnvironment,\\docAuxEnvironment*,\\docAuxKey,\\docAuxKey*,\\docCounter,\\docCounter*,\\docLength,\\docLength*,\\docColor,\\docColor*,\\begin{dispExample*},\\begin{dispListing*},\\tcbdocmarginnote"
+        ],
+        "keyPos": 3
+      }
     },
-    "ProvideTCBoxFit{}{}{}": {
-      "snippet": "ProvideTCBoxFit{${1:cmd}}{${2:xargs}}{${3:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 2
+    {
+      "name": "ProvideTCBoxFit",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:xargs}}{${3:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcolorbox},\\tcbsetforeverylayer,\\tcbox,\\newtcolorbox,\\renewtcolorbox,\\newtcbox,\\renewtcbox,\\tcolorboxenvironment,\\tcbsubtitle,\\tcbsidebyside,\\tcbsubskin,\\tcbincludegraphics,\\tcbincludepdf,\\begin{tcbraster},\\begin{tcbitemize},\\tcbitem,\\begin{tcboxedraster},\\begin{tcboxeditemize},\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\NewTcbTheorem,\\newtcbtheorem,\\RenewTcbTheorem,\\renewtcbtheorem,\\ProvideTcbTheorem,\\DeclareTcbTheorem,\\tcboxmath,\\tcbhighmath,\\usetcboxarray,\\consumetcboxarray,\\posterbox,\\begin{posterboxenv},\\tcboxfit,\\newtcboxfit,\\renewtcboxfit,\\DeclareTColorBox,\\NewTColorBox,\\RenewTColorBox,\\ProvideTColorBox,\\DeclareTotalTColorBox,\\NewTotalTColorBox,\\RenewTotalTColorBox,\\ProvideTotalTColorBox,\\DeclareTCBox,\\NewTCBox,\\RenewTCBox,\\ProvideTCBox,\\DeclareTotalTCBox,\\NewTotalTCBox,\\RenewTotalTCBox,\\ProvideTotalTCBox,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing,\\DeclareTCBoxFit,\\NewTCBoxFit,\\RenewTCBoxFit,\\ProvideTCBoxFit,\\DeclareTotalTCBoxFit,\\NewTotalTCBoxFit,\\RenewTotalTCBoxFit,\\ProvideTotalTCBoxFit,\\tcboxverb,\\begin{docCommand},\\begin{docCommand*},\\begin{docCommands},\\begin{docEnvironment},\\begin{docEnvironment*},\\begin{docEnvironments},\\begin{docKey},\\begin{docKey*},\\begin{docKeys},\\begin{docPathOperation},\\begin{docPathOperation*},\\begin{docPathOperations},\\docValue,\\docValue*,\\docAuxCommand,\\docAuxCommand*,\\docAuxEnvironment,\\docAuxEnvironment*,\\docAuxKey,\\docAuxKey*,\\docCounter,\\docCounter*,\\docLength,\\docLength*,\\docColor,\\docColor*,\\begin{dispExample*},\\begin{dispListing*},\\tcbdocmarginnote"
+        ],
+        "keyPos": 2
+      }
     },
-    "ProvideTCBoxFit[]{}{}{}": {
-      "snippet": "ProvideTCBoxFit[${4:init options}]{${1:cmd}}{${2:xargs}}{${3:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 3
+    {
+      "name": "ProvideTCBoxFit",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:init options}]{${1:cmd}}{${2:xargs}}{${3:options%keyvals}}",
+        "keys": [
+          "\\tcbset,\\begin{tcolorbox},\\tcbsetforeverylayer,\\tcbox,\\newtcolorbox,\\renewtcolorbox,\\newtcbox,\\renewtcbox,\\tcolorboxenvironment,\\tcbsubtitle,\\tcbsidebyside,\\tcbsubskin,\\tcbincludegraphics,\\tcbincludepdf,\\begin{tcbraster},\\begin{tcbitemize},\\tcbitem,\\begin{tcboxedraster},\\begin{tcboxeditemize},\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\NewTcbTheorem,\\newtcbtheorem,\\RenewTcbTheorem,\\renewtcbtheorem,\\ProvideTcbTheorem,\\DeclareTcbTheorem,\\tcboxmath,\\tcbhighmath,\\usetcboxarray,\\consumetcboxarray,\\posterbox,\\begin{posterboxenv},\\tcboxfit,\\newtcboxfit,\\renewtcboxfit,\\DeclareTColorBox,\\NewTColorBox,\\RenewTColorBox,\\ProvideTColorBox,\\DeclareTotalTColorBox,\\NewTotalTColorBox,\\RenewTotalTColorBox,\\ProvideTotalTColorBox,\\DeclareTCBox,\\NewTCBox,\\RenewTCBox,\\ProvideTCBox,\\DeclareTotalTCBox,\\NewTotalTCBox,\\RenewTotalTCBox,\\ProvideTotalTCBox,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing,\\DeclareTCBoxFit,\\NewTCBoxFit,\\RenewTCBoxFit,\\ProvideTCBoxFit,\\DeclareTotalTCBoxFit,\\NewTotalTCBoxFit,\\RenewTotalTCBoxFit,\\ProvideTotalTCBoxFit,\\tcboxverb,\\begin{docCommand},\\begin{docCommand*},\\begin{docCommands},\\begin{docEnvironment},\\begin{docEnvironment*},\\begin{docEnvironments},\\begin{docKey},\\begin{docKey*},\\begin{docKeys},\\begin{docPathOperation},\\begin{docPathOperation*},\\begin{docPathOperations},\\docValue,\\docValue*,\\docAuxCommand,\\docAuxCommand*,\\docAuxEnvironment,\\docAuxEnvironment*,\\docAuxKey,\\docAuxKey*,\\docCounter,\\docCounter*,\\docLength,\\docLength*,\\docColor,\\docColor*,\\begin{dispExample*},\\begin{dispListing*},\\tcbdocmarginnote"
+        ],
+        "keyPos": 3
+      }
     },
-    "DeclareTotalTCBoxFit{}{}{}{}": {
-      "snippet": "DeclareTotalTCBoxFit{${1:cmd}}{${2:xargs}}{${3:options}}{${4:content}}",
-      "keyvalindex": 0,
-      "keyvalpos": 2
+    {
+      "name": "DeclareTotalTCBoxFit",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:cmd}}{${2:xargs}}{${3:options%keyvals}}{${4:content%text}}",
+        "keys": [
+          "\\tcbset,\\begin{tcolorbox},\\tcbsetforeverylayer,\\tcbox,\\newtcolorbox,\\renewtcolorbox,\\newtcbox,\\renewtcbox,\\tcolorboxenvironment,\\tcbsubtitle,\\tcbsidebyside,\\tcbsubskin,\\tcbincludegraphics,\\tcbincludepdf,\\begin{tcbraster},\\begin{tcbitemize},\\tcbitem,\\begin{tcboxedraster},\\begin{tcboxeditemize},\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\NewTcbTheorem,\\newtcbtheorem,\\RenewTcbTheorem,\\renewtcbtheorem,\\ProvideTcbTheorem,\\DeclareTcbTheorem,\\tcboxmath,\\tcbhighmath,\\usetcboxarray,\\consumetcboxarray,\\posterbox,\\begin{posterboxenv},\\tcboxfit,\\newtcboxfit,\\renewtcboxfit,\\DeclareTColorBox,\\NewTColorBox,\\RenewTColorBox,\\ProvideTColorBox,\\DeclareTotalTColorBox,\\NewTotalTColorBox,\\RenewTotalTColorBox,\\ProvideTotalTColorBox,\\DeclareTCBox,\\NewTCBox,\\RenewTCBox,\\ProvideTCBox,\\DeclareTotalTCBox,\\NewTotalTCBox,\\RenewTotalTCBox,\\ProvideTotalTCBox,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing,\\DeclareTCBoxFit,\\NewTCBoxFit,\\RenewTCBoxFit,\\ProvideTCBoxFit,\\DeclareTotalTCBoxFit,\\NewTotalTCBoxFit,\\RenewTotalTCBoxFit,\\ProvideTotalTCBoxFit,\\tcboxverb,\\begin{docCommand},\\begin{docCommand*},\\begin{docCommands},\\begin{docEnvironment},\\begin{docEnvironment*},\\begin{docEnvironments},\\begin{docKey},\\begin{docKey*},\\begin{docKeys},\\begin{docPathOperation},\\begin{docPathOperation*},\\begin{docPathOperations},\\docValue,\\docValue*,\\docAuxCommand,\\docAuxCommand*,\\docAuxEnvironment,\\docAuxEnvironment*,\\docAuxKey,\\docAuxKey*,\\docCounter,\\docCounter*,\\docLength,\\docLength*,\\docColor,\\docColor*,\\begin{dispExample*},\\begin{dispListing*},\\tcbdocmarginnote"
+        ],
+        "keyPos": 2
+      }
     },
-    "DeclareTotalTCBoxFit[]{}{}{}{}": {
-      "snippet": "DeclareTotalTCBoxFit[${5:init options}]{${1:cmd}}{${2:xargs}}{${3:options}}{${4:content}}",
-      "keyvalindex": 0,
-      "keyvalpos": 3
+    {
+      "name": "DeclareTotalTCBoxFit",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "[${5:init options}]{${1:cmd}}{${2:xargs}}{${3:options%keyvals}}{${4:content%text}}",
+        "keys": [
+          "\\tcbset,\\begin{tcolorbox},\\tcbsetforeverylayer,\\tcbox,\\newtcolorbox,\\renewtcolorbox,\\newtcbox,\\renewtcbox,\\tcolorboxenvironment,\\tcbsubtitle,\\tcbsidebyside,\\tcbsubskin,\\tcbincludegraphics,\\tcbincludepdf,\\begin{tcbraster},\\begin{tcbitemize},\\tcbitem,\\begin{tcboxedraster},\\begin{tcboxeditemize},\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\NewTcbTheorem,\\newtcbtheorem,\\RenewTcbTheorem,\\renewtcbtheorem,\\ProvideTcbTheorem,\\DeclareTcbTheorem,\\tcboxmath,\\tcbhighmath,\\usetcboxarray,\\consumetcboxarray,\\posterbox,\\begin{posterboxenv},\\tcboxfit,\\newtcboxfit,\\renewtcboxfit,\\DeclareTColorBox,\\NewTColorBox,\\RenewTColorBox,\\ProvideTColorBox,\\DeclareTotalTColorBox,\\NewTotalTColorBox,\\RenewTotalTColorBox,\\ProvideTotalTColorBox,\\DeclareTCBox,\\NewTCBox,\\RenewTCBox,\\ProvideTCBox,\\DeclareTotalTCBox,\\NewTotalTCBox,\\RenewTotalTCBox,\\ProvideTotalTCBox,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing,\\DeclareTCBoxFit,\\NewTCBoxFit,\\RenewTCBoxFit,\\ProvideTCBoxFit,\\DeclareTotalTCBoxFit,\\NewTotalTCBoxFit,\\RenewTotalTCBoxFit,\\ProvideTotalTCBoxFit,\\tcboxverb,\\begin{docCommand},\\begin{docCommand*},\\begin{docCommands},\\begin{docEnvironment},\\begin{docEnvironment*},\\begin{docEnvironments},\\begin{docKey},\\begin{docKey*},\\begin{docKeys},\\begin{docPathOperation},\\begin{docPathOperation*},\\begin{docPathOperations},\\docValue,\\docValue*,\\docAuxCommand,\\docAuxCommand*,\\docAuxEnvironment,\\docAuxEnvironment*,\\docAuxKey,\\docAuxKey*,\\docCounter,\\docCounter*,\\docLength,\\docLength*,\\docColor,\\docColor*,\\begin{dispExample*},\\begin{dispListing*},\\tcbdocmarginnote"
+        ],
+        "keyPos": 3
+      }
     },
-    "NewTotalTCBoxFit{}{}{}{}": {
-      "snippet": "NewTotalTCBoxFit{${1:cmd}}{${2:xargs}}{${3:options}}{${4:content}}",
-      "keyvalindex": 0,
-      "keyvalpos": 2
+    {
+      "name": "NewTotalTCBoxFit",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:cmd}}{${2:xargs}}{${3:options%keyvals}}{${4:content%text}}",
+        "keys": [
+          "\\tcbset,\\begin{tcolorbox},\\tcbsetforeverylayer,\\tcbox,\\newtcolorbox,\\renewtcolorbox,\\newtcbox,\\renewtcbox,\\tcolorboxenvironment,\\tcbsubtitle,\\tcbsidebyside,\\tcbsubskin,\\tcbincludegraphics,\\tcbincludepdf,\\begin{tcbraster},\\begin{tcbitemize},\\tcbitem,\\begin{tcboxedraster},\\begin{tcboxeditemize},\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\NewTcbTheorem,\\newtcbtheorem,\\RenewTcbTheorem,\\renewtcbtheorem,\\ProvideTcbTheorem,\\DeclareTcbTheorem,\\tcboxmath,\\tcbhighmath,\\usetcboxarray,\\consumetcboxarray,\\posterbox,\\begin{posterboxenv},\\tcboxfit,\\newtcboxfit,\\renewtcboxfit,\\DeclareTColorBox,\\NewTColorBox,\\RenewTColorBox,\\ProvideTColorBox,\\DeclareTotalTColorBox,\\NewTotalTColorBox,\\RenewTotalTColorBox,\\ProvideTotalTColorBox,\\DeclareTCBox,\\NewTCBox,\\RenewTCBox,\\ProvideTCBox,\\DeclareTotalTCBox,\\NewTotalTCBox,\\RenewTotalTCBox,\\ProvideTotalTCBox,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing,\\DeclareTCBoxFit,\\NewTCBoxFit,\\RenewTCBoxFit,\\ProvideTCBoxFit,\\DeclareTotalTCBoxFit,\\NewTotalTCBoxFit,\\RenewTotalTCBoxFit,\\ProvideTotalTCBoxFit,\\tcboxverb,\\begin{docCommand},\\begin{docCommand*},\\begin{docCommands},\\begin{docEnvironment},\\begin{docEnvironment*},\\begin{docEnvironments},\\begin{docKey},\\begin{docKey*},\\begin{docKeys},\\begin{docPathOperation},\\begin{docPathOperation*},\\begin{docPathOperations},\\docValue,\\docValue*,\\docAuxCommand,\\docAuxCommand*,\\docAuxEnvironment,\\docAuxEnvironment*,\\docAuxKey,\\docAuxKey*,\\docCounter,\\docCounter*,\\docLength,\\docLength*,\\docColor,\\docColor*,\\begin{dispExample*},\\begin{dispListing*},\\tcbdocmarginnote"
+        ],
+        "keyPos": 2
+      }
     },
-    "NewTotalTCBoxFit[]{}{}{}{}": {
-      "snippet": "NewTotalTCBoxFit[${5:init options}]{${1:cmd}}{${2:xargs}}{${3:options}}{${4:content}}",
-      "keyvalindex": 0,
-      "keyvalpos": 3
+    {
+      "name": "NewTotalTCBoxFit",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "[${5:init options}]{${1:cmd}}{${2:xargs}}{${3:options%keyvals}}{${4:content%text}}",
+        "keys": [
+          "\\tcbset,\\begin{tcolorbox},\\tcbsetforeverylayer,\\tcbox,\\newtcolorbox,\\renewtcolorbox,\\newtcbox,\\renewtcbox,\\tcolorboxenvironment,\\tcbsubtitle,\\tcbsidebyside,\\tcbsubskin,\\tcbincludegraphics,\\tcbincludepdf,\\begin{tcbraster},\\begin{tcbitemize},\\tcbitem,\\begin{tcboxedraster},\\begin{tcboxeditemize},\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\NewTcbTheorem,\\newtcbtheorem,\\RenewTcbTheorem,\\renewtcbtheorem,\\ProvideTcbTheorem,\\DeclareTcbTheorem,\\tcboxmath,\\tcbhighmath,\\usetcboxarray,\\consumetcboxarray,\\posterbox,\\begin{posterboxenv},\\tcboxfit,\\newtcboxfit,\\renewtcboxfit,\\DeclareTColorBox,\\NewTColorBox,\\RenewTColorBox,\\ProvideTColorBox,\\DeclareTotalTColorBox,\\NewTotalTColorBox,\\RenewTotalTColorBox,\\ProvideTotalTColorBox,\\DeclareTCBox,\\NewTCBox,\\RenewTCBox,\\ProvideTCBox,\\DeclareTotalTCBox,\\NewTotalTCBox,\\RenewTotalTCBox,\\ProvideTotalTCBox,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing,\\DeclareTCBoxFit,\\NewTCBoxFit,\\RenewTCBoxFit,\\ProvideTCBoxFit,\\DeclareTotalTCBoxFit,\\NewTotalTCBoxFit,\\RenewTotalTCBoxFit,\\ProvideTotalTCBoxFit,\\tcboxverb,\\begin{docCommand},\\begin{docCommand*},\\begin{docCommands},\\begin{docEnvironment},\\begin{docEnvironment*},\\begin{docEnvironments},\\begin{docKey},\\begin{docKey*},\\begin{docKeys},\\begin{docPathOperation},\\begin{docPathOperation*},\\begin{docPathOperations},\\docValue,\\docValue*,\\docAuxCommand,\\docAuxCommand*,\\docAuxEnvironment,\\docAuxEnvironment*,\\docAuxKey,\\docAuxKey*,\\docCounter,\\docCounter*,\\docLength,\\docLength*,\\docColor,\\docColor*,\\begin{dispExample*},\\begin{dispListing*},\\tcbdocmarginnote"
+        ],
+        "keyPos": 3
+      }
     },
-    "RenewTotalTCBoxFit{}{}{}{}": {
-      "snippet": "RenewTotalTCBoxFit{${1:cmd}}{${2:xargs}}{${3:options}}{${4:content}}",
-      "keyvalindex": 0,
-      "keyvalpos": 2
+    {
+      "name": "RenewTotalTCBoxFit",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:cmd}}{${2:xargs}}{${3:options%keyvals}}{${4:content%text}}",
+        "keys": [
+          "\\tcbset,\\begin{tcolorbox},\\tcbsetforeverylayer,\\tcbox,\\newtcolorbox,\\renewtcolorbox,\\newtcbox,\\renewtcbox,\\tcolorboxenvironment,\\tcbsubtitle,\\tcbsidebyside,\\tcbsubskin,\\tcbincludegraphics,\\tcbincludepdf,\\begin{tcbraster},\\begin{tcbitemize},\\tcbitem,\\begin{tcboxedraster},\\begin{tcboxeditemize},\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\NewTcbTheorem,\\newtcbtheorem,\\RenewTcbTheorem,\\renewtcbtheorem,\\ProvideTcbTheorem,\\DeclareTcbTheorem,\\tcboxmath,\\tcbhighmath,\\usetcboxarray,\\consumetcboxarray,\\posterbox,\\begin{posterboxenv},\\tcboxfit,\\newtcboxfit,\\renewtcboxfit,\\DeclareTColorBox,\\NewTColorBox,\\RenewTColorBox,\\ProvideTColorBox,\\DeclareTotalTColorBox,\\NewTotalTColorBox,\\RenewTotalTColorBox,\\ProvideTotalTColorBox,\\DeclareTCBox,\\NewTCBox,\\RenewTCBox,\\ProvideTCBox,\\DeclareTotalTCBox,\\NewTotalTCBox,\\RenewTotalTCBox,\\ProvideTotalTCBox,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing,\\DeclareTCBoxFit,\\NewTCBoxFit,\\RenewTCBoxFit,\\ProvideTCBoxFit,\\DeclareTotalTCBoxFit,\\NewTotalTCBoxFit,\\RenewTotalTCBoxFit,\\ProvideTotalTCBoxFit,\\tcboxverb,\\begin{docCommand},\\begin{docCommand*},\\begin{docCommands},\\begin{docEnvironment},\\begin{docEnvironment*},\\begin{docEnvironments},\\begin{docKey},\\begin{docKey*},\\begin{docKeys},\\begin{docPathOperation},\\begin{docPathOperation*},\\begin{docPathOperations},\\docValue,\\docValue*,\\docAuxCommand,\\docAuxCommand*,\\docAuxEnvironment,\\docAuxEnvironment*,\\docAuxKey,\\docAuxKey*,\\docCounter,\\docCounter*,\\docLength,\\docLength*,\\docColor,\\docColor*,\\begin{dispExample*},\\begin{dispListing*},\\tcbdocmarginnote"
+        ],
+        "keyPos": 2
+      }
     },
-    "RenewTotalTCBoxFit[]{}{}{}{}": {
-      "snippet": "RenewTotalTCBoxFit[${5:init options}]{${1:cmd}}{${2:xargs}}{${3:options}}{${4:content}}",
-      "keyvalindex": 0,
-      "keyvalpos": 3
+    {
+      "name": "RenewTotalTCBoxFit",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "[${5:init options}]{${1:cmd}}{${2:xargs}}{${3:options%keyvals}}{${4:content%text}}",
+        "keys": [
+          "\\tcbset,\\begin{tcolorbox},\\tcbsetforeverylayer,\\tcbox,\\newtcolorbox,\\renewtcolorbox,\\newtcbox,\\renewtcbox,\\tcolorboxenvironment,\\tcbsubtitle,\\tcbsidebyside,\\tcbsubskin,\\tcbincludegraphics,\\tcbincludepdf,\\begin{tcbraster},\\begin{tcbitemize},\\tcbitem,\\begin{tcboxedraster},\\begin{tcboxeditemize},\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\NewTcbTheorem,\\newtcbtheorem,\\RenewTcbTheorem,\\renewtcbtheorem,\\ProvideTcbTheorem,\\DeclareTcbTheorem,\\tcboxmath,\\tcbhighmath,\\usetcboxarray,\\consumetcboxarray,\\posterbox,\\begin{posterboxenv},\\tcboxfit,\\newtcboxfit,\\renewtcboxfit,\\DeclareTColorBox,\\NewTColorBox,\\RenewTColorBox,\\ProvideTColorBox,\\DeclareTotalTColorBox,\\NewTotalTColorBox,\\RenewTotalTColorBox,\\ProvideTotalTColorBox,\\DeclareTCBox,\\NewTCBox,\\RenewTCBox,\\ProvideTCBox,\\DeclareTotalTCBox,\\NewTotalTCBox,\\RenewTotalTCBox,\\ProvideTotalTCBox,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing,\\DeclareTCBoxFit,\\NewTCBoxFit,\\RenewTCBoxFit,\\ProvideTCBoxFit,\\DeclareTotalTCBoxFit,\\NewTotalTCBoxFit,\\RenewTotalTCBoxFit,\\ProvideTotalTCBoxFit,\\tcboxverb,\\begin{docCommand},\\begin{docCommand*},\\begin{docCommands},\\begin{docEnvironment},\\begin{docEnvironment*},\\begin{docEnvironments},\\begin{docKey},\\begin{docKey*},\\begin{docKeys},\\begin{docPathOperation},\\begin{docPathOperation*},\\begin{docPathOperations},\\docValue,\\docValue*,\\docAuxCommand,\\docAuxCommand*,\\docAuxEnvironment,\\docAuxEnvironment*,\\docAuxKey,\\docAuxKey*,\\docCounter,\\docCounter*,\\docLength,\\docLength*,\\docColor,\\docColor*,\\begin{dispExample*},\\begin{dispListing*},\\tcbdocmarginnote"
+        ],
+        "keyPos": 3
+      }
     },
-    "ProvideTotalTCBoxFit{}{}{}{}": {
-      "snippet": "ProvideTotalTCBoxFit{${1:cmd}}{${2:xargs}}{${3:options}}{${4:content}}",
-      "keyvalindex": 0,
-      "keyvalpos": 2
+    {
+      "name": "ProvideTotalTCBoxFit",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:cmd}}{${2:xargs}}{${3:options%keyvals}}{${4:content%text}}",
+        "keys": [
+          "\\tcbset,\\begin{tcolorbox},\\tcbsetforeverylayer,\\tcbox,\\newtcolorbox,\\renewtcolorbox,\\newtcbox,\\renewtcbox,\\tcolorboxenvironment,\\tcbsubtitle,\\tcbsidebyside,\\tcbsubskin,\\tcbincludegraphics,\\tcbincludepdf,\\begin{tcbraster},\\begin{tcbitemize},\\tcbitem,\\begin{tcboxedraster},\\begin{tcboxeditemize},\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\NewTcbTheorem,\\newtcbtheorem,\\RenewTcbTheorem,\\renewtcbtheorem,\\ProvideTcbTheorem,\\DeclareTcbTheorem,\\tcboxmath,\\tcbhighmath,\\usetcboxarray,\\consumetcboxarray,\\posterbox,\\begin{posterboxenv},\\tcboxfit,\\newtcboxfit,\\renewtcboxfit,\\DeclareTColorBox,\\NewTColorBox,\\RenewTColorBox,\\ProvideTColorBox,\\DeclareTotalTColorBox,\\NewTotalTColorBox,\\RenewTotalTColorBox,\\ProvideTotalTColorBox,\\DeclareTCBox,\\NewTCBox,\\RenewTCBox,\\ProvideTCBox,\\DeclareTotalTCBox,\\NewTotalTCBox,\\RenewTotalTCBox,\\ProvideTotalTCBox,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing,\\DeclareTCBoxFit,\\NewTCBoxFit,\\RenewTCBoxFit,\\ProvideTCBoxFit,\\DeclareTotalTCBoxFit,\\NewTotalTCBoxFit,\\RenewTotalTCBoxFit,\\ProvideTotalTCBoxFit,\\tcboxverb,\\begin{docCommand},\\begin{docCommand*},\\begin{docCommands},\\begin{docEnvironment},\\begin{docEnvironment*},\\begin{docEnvironments},\\begin{docKey},\\begin{docKey*},\\begin{docKeys},\\begin{docPathOperation},\\begin{docPathOperation*},\\begin{docPathOperations},\\docValue,\\docValue*,\\docAuxCommand,\\docAuxCommand*,\\docAuxEnvironment,\\docAuxEnvironment*,\\docAuxKey,\\docAuxKey*,\\docCounter,\\docCounter*,\\docLength,\\docLength*,\\docColor,\\docColor*,\\begin{dispExample*},\\begin{dispListing*},\\tcbdocmarginnote"
+        ],
+        "keyPos": 2
+      }
     },
-    "ProvideTotalTCBoxFit[]{}{}{}{}": {
-      "snippet": "ProvideTotalTCBoxFit[${5:init options}]{${1:cmd}}{${2:xargs}}{${3:options}}{${4:content}}",
-      "keyvalindex": 0,
-      "keyvalpos": 3
+    {
+      "name": "ProvideTotalTCBoxFit",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "[${5:init options}]{${1:cmd}}{${2:xargs}}{${3:options%keyvals}}{${4:content%text}}",
+        "keys": [
+          "\\tcbset,\\begin{tcolorbox},\\tcbsetforeverylayer,\\tcbox,\\newtcolorbox,\\renewtcolorbox,\\newtcbox,\\renewtcbox,\\tcolorboxenvironment,\\tcbsubtitle,\\tcbsidebyside,\\tcbsubskin,\\tcbincludegraphics,\\tcbincludepdf,\\begin{tcbraster},\\begin{tcbitemize},\\tcbitem,\\begin{tcboxedraster},\\begin{tcboxeditemize},\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\NewTcbTheorem,\\newtcbtheorem,\\RenewTcbTheorem,\\renewtcbtheorem,\\ProvideTcbTheorem,\\DeclareTcbTheorem,\\tcboxmath,\\tcbhighmath,\\usetcboxarray,\\consumetcboxarray,\\posterbox,\\begin{posterboxenv},\\tcboxfit,\\newtcboxfit,\\renewtcboxfit,\\DeclareTColorBox,\\NewTColorBox,\\RenewTColorBox,\\ProvideTColorBox,\\DeclareTotalTColorBox,\\NewTotalTColorBox,\\RenewTotalTColorBox,\\ProvideTotalTColorBox,\\DeclareTCBox,\\NewTCBox,\\RenewTCBox,\\ProvideTCBox,\\DeclareTotalTCBox,\\NewTotalTCBox,\\RenewTotalTCBox,\\ProvideTotalTCBox,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing,\\DeclareTCBoxFit,\\NewTCBoxFit,\\RenewTCBoxFit,\\ProvideTCBoxFit,\\DeclareTotalTCBoxFit,\\NewTotalTCBoxFit,\\RenewTotalTCBoxFit,\\ProvideTotalTCBoxFit,\\tcboxverb,\\begin{docCommand},\\begin{docCommand*},\\begin{docCommands},\\begin{docEnvironment},\\begin{docEnvironment*},\\begin{docEnvironments},\\begin{docKey},\\begin{docKey*},\\begin{docKeys},\\begin{docPathOperation},\\begin{docPathOperation*},\\begin{docPathOperations},\\docValue,\\docValue*,\\docAuxCommand,\\docAuxCommand*,\\docAuxEnvironment,\\docAuxEnvironment*,\\docAuxKey,\\docAuxKey*,\\docCounter,\\docCounter*,\\docLength,\\docLength*,\\docColor,\\docColor*,\\begin{dispExample*},\\begin{dispListing*},\\tcbdocmarginnote"
+        ],
+        "keyPos": 3
+      }
     },
-    "tcbfitdim": {},
-    "tcbfontsize{}": {
-      "snippet": "tcbfontsize{${1:factor}}"
+    {
+      "name": "tcbfitdim"
     },
-    "tcbfitsteps": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "fit",
-      "fit to=${1:width} and ${2:height}",
+    {
+      "name": "tcbfontsize",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:factor}}"
+      }
+    },
+    {
+      "name": "tcbfitsteps"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\tcbset,\\begin{tcolorbox},\\tcbsetforeverylayer,\\tcbox,\\newtcolorbox,\\renewtcolorbox,\\newtcbox,\\renewtcbox,\\tcolorboxenvironment,\\tcbsubtitle,\\tcbsidebyside,\\tcbsubskin,\\tcbincludegraphics,\\tcbincludepdf,\\begin{tcbraster},\\begin{tcbitemize},\\tcbitem,\\begin{tcboxedraster},\\begin{tcboxeditemize},\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\NewTcbTheorem,\\newtcbtheorem,\\RenewTcbTheorem,\\renewtcbtheorem,\\ProvideTcbTheorem,\\DeclareTcbTheorem,\\tcboxmath,\\tcbhighmath,\\usetcboxarray,\\consumetcboxarray,\\posterbox,\\begin{posterboxenv},\\tcboxfit,\\newtcboxfit,\\renewtcboxfit,\\DeclareTColorBox,\\NewTColorBox,\\RenewTColorBox,\\ProvideTColorBox,\\DeclareTotalTColorBox,\\NewTotalTColorBox,\\RenewTotalTColorBox,\\ProvideTotalTColorBox,\\DeclareTCBox,\\NewTCBox,\\RenewTCBox,\\ProvideTCBox,\\DeclareTotalTCBox,\\NewTotalTCBox,\\RenewTotalTCBox,\\ProvideTotalTCBox,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing,\\DeclareTCBoxFit,\\NewTCBoxFit,\\RenewTCBoxFit,\\ProvideTCBoxFit,\\DeclareTotalTCBoxFit,\\NewTotalTCBoxFit,\\RenewTotalTCBoxFit,\\ProvideTotalTCBoxFit,\\tcboxverb,\\begin{docCommand},\\begin{docCommand*},\\begin{docCommands},\\begin{docEnvironment},\\begin{docEnvironment*},\\begin{docEnvironments},\\begin{docKey},\\begin{docKey*},\\begin{docKeys},\\begin{docPathOperation},\\begin{docPathOperation*},\\begin{docPathOperations},\\docValue,\\docValue*,\\docAuxCommand,\\docAuxCommand*,\\docAuxEnvironment,\\docAuxEnvironment*,\\docAuxKey,\\docAuxKey*,\\docCounter,\\docCounter*,\\docLength,\\docLength*,\\docColor,\\docColor*,\\begin{dispExample*},\\begin{dispListing*},\\tcbdocmarginnote": [
+      "fit\r",
+      "fit to=${1:width} and ${2:height}\r",
       "fit to height=",
       "fit basedim=",
-      "fit skip=${1:factor}",
-      "fit fontsize macros",
+      "fit skip=${1:factor}\r",
+      "fit fontsize macros\r",
       "fit height plus=",
       "fit width plus=",
-      "fit width from=${1:min} to ${2:max}",
-      "fit height from=${1:min} to ${2:max}",
-      "fit algorithm=${1|fontsize,fontsize*,areasize,areasize*,hybrid,hybrid*,squeeze|}",
-      "fit maxstep=${1:number}",
+      "fit width from=${1:min} to ${2:max}\r",
+      "fit height from=${1:min} to ${2:max}\r",
+      "fit algorithm=${1|fontsize,fontsize*,areasize,areasize*,hybrid,hybrid*,squeeze\r|}",
+      "fit maxstep=${1:number}\r",
       "fit maxfontdiff=",
       "fit maxfontdiffgap=",
       "fit maxwidthdiff=",
       "fit maxwidthdiffgap=",
-      "fit warning=${1|off,on,final|}"
+      "fit warning=${1|off,on,final\r|}"
     ]
-  ]
+  },
+  "args": []
 }

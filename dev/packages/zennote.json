@@ -1,29 +1,56 @@
 {
-  "includes": {
-    "tcolorbox": [],
-    "tcolorboxlibrarymost": []
-  },
-  "macros": {
-    "titlebox{}": {
-      "snippet": "titlebox{${1:settings}}"
+  "deps": [
+    {
+      "name": "tcolorbox"
     },
-    "thenotenumber": {}
-  },
-  "envs": {
-    "noteframe": {},
-    "noteframe[]": {
-      "name": "noteframe",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "tcolorboxlibrarymost"
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "titlebox",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:settings%keyvals}}",
+        "keys": [
+          "\\titlebox"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "thenotenumber",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "noteframe"
+    },
+    {
+      "name": "noteframe",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\titlebox": [
+      "top-left={${1:text}}\r",
+      "top-right={${1:text}}\r",
+      "bottom-left={${1:text}}\r",
+      "bottom-right={${1:text}}\r",
+      "notenumber=${1:integer}\r",
+      "topic={${1:text}}\r",
+      "type={${1:text}}\r"
+    ],
+    "\\begin{noteframe}": [
       "color=",
-      "style=${1|zero,one,two|}",
-      "title={${1:text}}"
+      "style=${1|zero,one,two\r|}",
+      "title={${1:text}}\r"
     ]
-  ]
+  },
+  "args": []
 }

@@ -1,158 +1,311 @@
 {
-  "includes": {
-    "ifthen": [],
-    "amssymb": [],
-    "amsmath": [],
-    "amsthm": [],
-    "amsfonts": [],
-    "latexsym": [],
-    "graphicx": [],
-    "mathrsfs": [],
-    "geometry": [],
-    "fancyhdr": [],
-    "booktabs": [],
-    "multirow": [],
-    "array": [],
-    "caption": [],
-    "xcolor": [],
-    "enumitem": [],
-    "float": [
-      "gdminitabs"
-    ]
-  },
-  "macros": {
-    "GDabstracts": {},
-    "GDaffilitem{}{}": {
-      "snippet": "GDaffilitem{${1:label}}{${2:text}}"
+  "deps": [
+    {
+      "name": "ifthen"
     },
-    "GDannee{}": {
-      "snippet": "GDannee{${1:year}}"
+    {
+      "name": "amssymb"
     },
-    "GDarticlestart": {},
-    "GDauteursCopyright{}": {
-      "snippet": "GDauteursCopyright{${1:authors}}"
+    {
+      "name": "amsmath"
     },
-    "GDauteursCourts{}": {
-      "snippet": "GDauteursCourts{${1:authors}}"
+    {
+      "name": "amsthm"
     },
-    "GDauthitem{}": {
-      "snippet": "GDauthitem{${1:text}}"
+    {
+      "name": "amsfonts"
     },
-    "GDauthorsCopyright{}": {
-      "snippet": "GDauthorsCopyright{${1:authors}}"
+    {
+      "name": "latexsym"
     },
-    "GDauthorsShort{}": {
-      "snippet": "GDauthorsShort{${1:authors}}"
+    {
+      "name": "graphicx"
     },
-    "GDcoverpage": {},
-    "GDcoverpagewhitespace{}": {
-      "snippet": "GDcoverpagewhitespace{${1:length}}"
+    {
+      "name": "mathrsfs"
     },
-    "GDemailitem{}": {
-      "snippet": "GDemailitem{${1:text}}"
+    {
+      "name": "geometry"
     },
-    "GDmois{}{}": {
-      "snippet": "GDmois{${1:French month}}{${2:English month}}"
+    {
+      "name": "fancyhdr"
     },
-    "GDmonth{}{}": {
-      "snippet": "GDmonth{${1:French month}}{${2:English month}}"
+    {
+      "name": "booktabs"
     },
-    "GDnumber{}": {
-      "snippet": "GDnumber{${1:number}}"
+    {
+      "name": "multirow"
     },
-    "GDnumero{}": {
-      "snippet": "GDnumero{${1:number}}"
+    {
+      "name": "array"
     },
-    "GDpageCouverture": {},
-    "GDpostpubcitation{}{}": {
-      "snippet": "GDpostpubcitation{${1:text}}{${2:URL}}"
+    {
+      "name": "caption"
     },
-    "GDrefsep": {},
-    "GDrevised{}{}{}": {
-      "snippet": "GDrevised{${1:French month}}{${2:English month}}{${3:year}}"
+    {
+      "name": "xcolor"
     },
-    "GDsupplementname{}": {
-      "snippet": "GDsupplementname{${1:text}}"
+    {
+      "name": "enumitem"
     },
-    "GDtitle{}": {
-      "snippet": "GDtitle{${1:text}}"
-    },
-    "GDtitre{}": {
-      "snippet": "GDtitre{${1:text}}"
-    },
-    "GDyear{}": {
-      "snippet": "GDyear{${1:year}}"
+    {
+      "name": "float",
+      "if": "gdminitabs"
     }
-  },
-  "envs": {
-    "GDabstract{}": {
-      "name": "GDabstract",
-      "snippet": "{${1:title}}"
-    },
-    "GDacknowledgements": {},
-    "GDaffillist": {},
-    "GDaffillist[]": {
-      "name": "GDaffillist",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "GDauthlist": {},
-    "GDauthlist[]": {
-      "name": "GDauthlist",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "GDemaillist": {},
-    "GDemaillist[]": {
-      "name": "GDemaillist",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "GDpagetitre": {},
-    "GDtitlepage": {},
-    "proof": {},
-    "proof[]": {
-      "name": "proof",
-      "snippet": "[${1:heading}]"
-    }
-  },
-  "options": [
-    "gdweb",
-    "gdpaper",
-    "gdplain",
-    "gdsmallhead",
-    "gdfinal",
-    "gdpostpub",
-    "gdsupplement",
-    "gdrevised",
-    "gdminitabs",
-    "a4paper",
-    "a5paper",
-    "b5paper",
-    "letterpaper",
-    "legalpaper",
-    "executivepaper",
-    "landscape",
-    "10pt",
-    "11pt",
-    "12pt",
-    "oneside",
-    "twoside",
-    "draft",
-    "final",
-    "titlepage",
-    "notitlepage",
-    "onecolumn",
-    "twocolumn",
-    "leqno",
-    "fleqn",
-    "openbib"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "GDabstracts"
+    },
+    {
+      "name": "GDaffilitem",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label}}{${2:text}}"
+      }
+    },
+    {
+      "name": "GDannee",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:year}}"
+      }
+    },
+    {
+      "name": "GDarticlestart"
+    },
+    {
+      "name": "GDauteursCopyright",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:authors}}"
+      }
+    },
+    {
+      "name": "GDauteursCourts",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:authors}}"
+      }
+    },
+    {
+      "name": "GDauthitem",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "GDauthorsCopyright",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:authors}}"
+      }
+    },
+    {
+      "name": "GDauthorsShort",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:authors}}"
+      }
+    },
+    {
+      "name": "GDcoverpage"
+    },
+    {
+      "name": "GDcoverpagewhitespace",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
+    },
+    {
+      "name": "GDemailitem",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "GDmois",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:French month}}{${2:English month}}"
+      }
+    },
+    {
+      "name": "GDmonth",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:French month}}{${2:English month}}"
+      }
+    },
+    {
+      "name": "GDnumber",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "GDnumero",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "GDpageCouverture",
+      "unusual": true
+    },
+    {
+      "name": "GDpostpubcitation",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:URL}}"
+      }
+    },
+    {
+      "name": "GDrefsep"
+    },
+    {
+      "name": "GDrevised",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:French month}}{${2:English month}}{${3:year}}"
+      }
+    },
+    {
+      "name": "GDsupplementname",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "GDtitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "GDtitre",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "GDyear",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:year}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "GDabstract",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "GDacknowledgements"
+    },
+    {
+      "name": "GDaffillist"
+    },
+    {
+      "name": "GDaffillist",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "GDauthlist"
+    },
+    {
+      "name": "GDauthlist",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "GDemaillist"
+    },
+    {
+      "name": "GDemaillist",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "GDpagetitre",
+      "unusual": true
+    },
+    {
+      "name": "GDtitlepage"
+    },
+    {
+      "name": "proof"
+    },
+    {
+      "name": "proof",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\documentclass/geradwp#c": [
+      "gdweb\r",
+      "gdpaper\r",
+      "gdplain\r",
+      "gdsmallhead\r",
+      "gdfinal\r",
+      "gdpostpub\r",
+      "gdsupplement\r",
+      "gdrevised\r",
+      "gdminitabs\r",
+      "a4paper\r",
+      "a5paper\r",
+      "b5paper\r",
+      "letterpaper\r",
+      "legalpaper\r",
+      "executivepaper\r",
+      "landscape\r",
+      "10pt\r",
+      "11pt\r",
+      "12pt\r",
+      "oneside\r",
+      "twoside\r",
+      "draft\r",
+      "final\r",
+      "titlepage\r",
+      "notitlepage\r",
+      "onecolumn\r",
+      "twocolumn\r",
+      "leqno\r",
+      "fleqn\r",
+      "openbib\r"
+    ],
+    "\\theoremstyle#c": [
+      "gerad\r"
+    ],
+    "\\begin{GDaffillist}#c,\\begin{GDauthlist}#c,\\begin{GDemaillist}#c": [
       "topsep=",
       "partopsep=",
       "parsep=",
@@ -163,44 +316,47 @@
       "labelwidth=",
       "labelsep=",
       "itemindent=",
-      "label=${1:commands}",
-      "label*=${1:commands}",
-      "ref=${1:commands}",
-      "font=${1:commands}",
-      "format=${1:commands}",
-      "align=${1|left,right,parleft|}",
+      "label=${1:commands}\r",
+      "label*=${1:commands}\r",
+      "ref=${1:commands}\r",
+      "font=${1:commands}\r",
+      "format=${1:commands}\r",
+      "align=${1|left,right,parleft\r|}",
       "labelindent=",
-      "left=${1:labelindent}",
-      "left=${1:labelindent} .. ${2:leftmargin}",
-      "widest",
-      "widest=${1:string}",
-      "widest*=${1:integer}",
+      "left=${1:labelindent}\r",
+      "left=${1:labelindent} .. ${2:leftmargin}\r",
+      "widest\r",
+      "widest=${1:string}\r",
+      "widest*=${1:integer}\r",
       "labelsep*=",
       "labelindent*=",
-      "start=${1:integer}",
-      "resume",
-      "resume=${1:series name}",
-      "resume*",
-      "resume*=${1:series name}",
-      "series=${1:series name}",
-      "beginpenalty=${1:integer}",
-      "midpenalty=${1:integer}",
-      "endpenalty=${1:integer}",
-      "before=${1:code}",
-      "before*=${1:code}",
-      "after=${1:code}",
-      "after*=${1:code}",
-      "first=${1:code}",
-      "first*=${1:code}",
-      "style=${1|standard,unboxed,nextline,sameline,multiline|}",
-      "noitemsep",
-      "nosep",
-      "wide",
-      "wide=${1:parindent}",
-      "itemjoin=${1:string}",
-      "itemjoin*=${1:string}",
-      "afterlabel=${1:string}",
-      "mode=${1|unboxed,boxed|}"
+      "start=${1:integer}\r",
+      "resume\r",
+      "resume=${1:series name}\r",
+      "resume*\r",
+      "resume*=${1:series name}\r",
+      "series=${1:series name}\r",
+      "beginpenalty=${1:integer}\r",
+      "midpenalty=${1:integer}\r",
+      "endpenalty=${1:integer}\r",
+      "before=${1:code}\r",
+      "before*=${1:code}\r",
+      "after=${1:code}\r",
+      "after*=${1:code}\r",
+      "first=${1:code}\r",
+      "first*=${1:code}\r",
+      "style=${1|standard,unboxed,nextline,sameline,multiline\r|}",
+      "noitemsep\r",
+      "nosep\r",
+      "wide\r",
+      "wide=${1:parindent}\r",
+      "itemjoin=${1:string}\r",
+      "itemjoin*=${1:string}\r",
+      "afterlabel=${1:string}\r",
+      "mode=${1|unboxed,boxed\r|}"
     ]
+  },
+  "args": [
+    "\\documentclass/geradwp#c"
   ]
 }

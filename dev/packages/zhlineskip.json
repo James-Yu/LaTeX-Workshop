@@ -1,32 +1,60 @@
 {
-  "includes": {
-    "kvoptions": [],
-    "xintexpr": [],
-    "etoolbox": [],
-    "mathtools": []
-  },
-  "macros": {
-    "SetMathEnvironmentSinglespace{}": {
-      "snippet": "SetMathEnvironmentSinglespace{${1:factor}}"
+  "deps": [
+    {
+      "name": "kvoptions"
     },
-    "RestoreMathEnvironmentLeading{}": {
-      "snippet": "RestoreMathEnvironmentLeading{${1:envname}}"
+    {
+      "name": "xintexpr"
     },
-    "SetTextEnvironmentSinglespace{}": {
-      "snippet": "SetTextEnvironmentSinglespace{${1:factor}}"
+    {
+      "name": "etoolbox"
     },
-    "RestoreTextEnvironmentLeading{}": {
-      "snippet": "RestoreTextEnvironmentLeading{${1:envname}}"
+    {
+      "name": "mathtools"
     }
-  },
-  "envs": {},
-  "options": [
-    "bodytextleadingratio=${1:number}",
-    "footnoteleadingratio=${1:number}",
-    "restoremathleading",
-    "UseMSWordMultipleLineSpacing",
-    "MSWordLineSpacingMultiple=${1:number}",
-    "MSWordSinglespaceRatio=${1:number}"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "SetMathEnvironmentSinglespace",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:factor}}"
+      }
+    },
+    {
+      "name": "RestoreMathEnvironmentLeading",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:envname}}"
+      }
+    },
+    {
+      "name": "SetTextEnvironmentSinglespace",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:factor}}"
+      }
+    },
+    {
+      "name": "RestoreTextEnvironmentLeading",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:envname}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/zhlineskip#c": [
+      "bodytextleadingratio=${1:number}\r",
+      "footnoteleadingratio=${1:number}\r",
+      "restoremathleading",
+      "UseMSWordMultipleLineSpacing",
+      "MSWordLineSpacingMultiple=${1:number}\r",
+      "MSWordSinglespaceRatio=${1:number}\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/zhlineskip#c"
+  ]
 }

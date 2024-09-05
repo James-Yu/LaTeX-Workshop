@@ -1,13 +1,43 @@
 {
-  "includes": {
-    "tikzlibrarypositioning": []
+  "deps": [
+    {
+      "name": "tikzlibrarypositioning"
+    }
+  ],
+  "macros": [
+    {
+      "name": "tikzchaincount",
+      "unusual": true
+    },
+    {
+      "name": "tikzchaincurrent",
+      "unusual": true
+    },
+    {
+      "name": "tikzchainprevious",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\begin{tikzpicture}#c,\\tikz#c,\\begin{scope}#c,\\scoped#c": [
+      "start chain\r",
+      "chain default direction=${1:direction}\r"
+    ],
+    "\\node#c,\\coordinate#c,\\nodepart#c,\\pic#c,\\chainin#c": [
+      "continue chain\r",
+      "continue chain=${1:direction}\r",
+      "continue chain=${1:〈chain name〉〈direction〉}\r",
+      "on chain\r",
+      "on chain=${1:direction}\r",
+      "on chain=${1:〈chain name〉〈direction〉}\r",
+      "join\r",
+      "join=with ${1:with} by {${2:options}}\r"
+    ],
+    "\\begin{tikzpicture}#c,\\tikz#c,\\begin{scope}#c,\\tikzset#c,\\scoped#c": [
+      "every on chain/.style={${1:options}}\r",
+      "every join/.style={${1:options}}\r"
+    ]
   },
-  "macros": {
-    "tikzchaincount": {},
-    "tikzchaincurrent": {},
-    "tikzchainprevious": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

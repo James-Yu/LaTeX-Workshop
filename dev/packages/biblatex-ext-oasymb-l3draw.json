@@ -1,18 +1,38 @@
 {
-  "includes": {
-    "l3keys2e": [],
-    "l3draw": []
-  },
-  "macros": {
-    "oasymbol": {},
-    "DefineOASymbol": {},
-    "DefineOASymbol[]": {
-      "snippet": "DefineOASymbol[${1:symbol}]"
+  "deps": [
+    {
+      "name": "l3keys2e"
+    },
+    {
+      "name": "l3draw"
     }
-  },
-  "envs": {},
-  "options": [
-    "symbol=${1|plos,oanet|}"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "oasymbol"
+    },
+    {
+      "name": "DefineOASymbol"
+    },
+    {
+      "name": "DefineOASymbol",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:symbol%keyvals}]"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/biblatex-ext-oasymb-l3draw#c": [
+      "symbol=${1|plos,oanet\r|}"
+    ],
+    "\\DefineOASymbol#c": [
+      "plos\r",
+      "oanet\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/biblatex-ext-oasymb-l3draw#c"
+  ]
 }

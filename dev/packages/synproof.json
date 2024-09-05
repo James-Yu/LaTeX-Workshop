@@ -1,94 +1,190 @@
 {
-  "includes": {
-    "ifthen": [],
-    "pstricks": [],
-    "pst-node": [],
-    "keyval": []
-  },
-  "macros": {
-    "Exists": {
-      "option": "symbols"
+  "deps": [
+    {
+      "name": "ifthen"
     },
-    "Forall": {
-      "option": "symbols"
+    {
+      "name": "pstricks"
     },
-    "Neg": {
-      "option": "symbols"
+    {
+      "name": "pst-node"
     },
-    "And": {
-      "option": "symbols"
-    },
-    "Or": {
-      "option": "symbols"
-    },
-    "Falsum": {
-      "option": "symbols"
-    },
-    "Implies": {
-      "option": "symbols"
-    },
-    "SetDim{}": {
-      "snippet": "SetDim{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "step{}{}": {
-      "snippet": "step{${1:expression}}{${2:rule}}"
-    },
-    "step{}{}[]": {
-      "snippet": "step{${1:expression}}{${2:rule}}[${3:label}]"
-    },
-    "step[]{}{}": {
-      "snippet": "step[${3:line number}]{${1:expression}}{${2:rule}}"
-    },
-    "step[]{}{}[]": {
-      "snippet": "step[${3:line number}]{${1:expression}}{${2:rule}}[${4:label}]"
-    },
-    "LineNum{}": {
-      "snippet": "LineNum{${1:number}}"
-    },
-    "assumption": {},
-    "assumend": {},
-    "AssumeLine": {},
-    "ExToRule": {},
-    "LineSpace": {},
-    "newctr{}": {
-      "snippet": "newctr{${1:counter name}}"
-    },
-    "Num": {},
-    "NumToEx": {},
-    "OutLine": {},
-    "ResetDim": {},
-    "Start": {},
-    "theembedding": {},
-    "theendassumption": {},
-    "theinfline": {},
-    "thelab": {},
-    "thestep": {}
-  },
-  "envs": {
-    "synproof{}": {
-      "name": "synproof",
-      "snippet": "{${1:derivation length}}"
-    },
-    "synproof[]{}": {
-      "name": "synproof",
-      "snippet": "[${2:options}]{${1:derivation length}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "keyval"
     }
-  },
-  "options": [
-    "symbols"
   ],
-  "keyvals": [
-    [
-      "NumToEx=${1:number}",
-      "ExToRule=${1:number}",
-      "OutLine=${1:number}",
-      "LineSpace=${1:number}",
-      "AssumeLine=${1:number}",
-      "HorAlign=${1:number}"
+  "macros": [
+    {
+      "name": "Exists",
+      "if": "symbols"
+    },
+    {
+      "name": "Forall",
+      "if": "symbols"
+    },
+    {
+      "name": "Neg",
+      "if": "symbols"
+    },
+    {
+      "name": "And",
+      "if": "symbols"
+    },
+    {
+      "name": "Or",
+      "if": "symbols"
+    },
+    {
+      "name": "Falsum",
+      "if": "symbols"
+    },
+    {
+      "name": "Implies",
+      "if": "symbols"
+    },
+    {
+      "name": "SetDim",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\SetDim,\\begin{synproof}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "step",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:expression}}{${2:rule}}"
+      }
+    },
+    {
+      "name": "step",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:expression}}{${2:rule}}[${3:label}]"
+      }
+    },
+    {
+      "name": "step",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:line number}]{${1:expression}}{${2:rule}}"
+      }
+    },
+    {
+      "name": "step",
+      "arg": {
+        "format": "[]{}{}[]",
+        "snippet": "[${3:line number}]{${1:expression}}{${2:rule}}[${4:label}]"
+      }
+    },
+    {
+      "name": "LineNum",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "assumption"
+    },
+    {
+      "name": "assumend"
+    },
+    {
+      "name": "AssumeLine",
+      "unusual": true
+    },
+    {
+      "name": "ExToRule",
+      "unusual": true
+    },
+    {
+      "name": "LineSpace",
+      "unusual": true
+    },
+    {
+      "name": "newctr",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter name}}"
+      }
+    },
+    {
+      "name": "Num",
+      "unusual": true
+    },
+    {
+      "name": "NumToEx",
+      "unusual": true
+    },
+    {
+      "name": "OutLine",
+      "unusual": true
+    },
+    {
+      "name": "ResetDim",
+      "unusual": true
+    },
+    {
+      "name": "Start",
+      "unusual": true
+    },
+    {
+      "name": "theembedding",
+      "unusual": true
+    },
+    {
+      "name": "theendassumption",
+      "unusual": true
+    },
+    {
+      "name": "theinfline",
+      "unusual": true
+    },
+    {
+      "name": "thelab",
+      "unusual": true
+    },
+    {
+      "name": "thestep",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "synproof",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:derivation length}}"
+      }
+    },
+    {
+      "name": "synproof",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:derivation length}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/synproof#c": [
+      "symbols\r"
+    ],
+    "\\SetDim,\\begin{synproof}": [
+      "NumToEx=${1:number}\r",
+      "ExToRule=${1:number}\r",
+      "OutLine=${1:number}\r",
+      "LineSpace=${1:number}\r",
+      "AssumeLine=${1:number}\r",
+      "HorAlign=${1:number}\r"
     ]
+  },
+  "args": [
+    "\\usepackage/synproof#c"
   ]
 }

@@ -1,116 +1,235 @@
 {
-  "includes": {
-    "enumitem": [],
-    "environ": [],
-    "etoolbox": [],
-    "longtable": [],
-    "newfile": [],
-    "pgffor": [],
-    "xstring": []
-  },
-  "macros": {
-    "mctheversion": {},
-    "mcexamoptions{}": {
-      "snippet": "mcexamoptions{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "enumitem"
     },
-    "question": {
-      "detail": "?",
-      "documentation": "QUESTION MARK"
+    {
+      "name": "environ"
     },
-    "question[]": {
-      "snippet": "question[${1:option}]"
+    {
+      "name": "etoolbox"
     },
-    "answer": {},
-    "answer[]": {
-      "snippet": "answer[${1:mark}]"
+    {
+      "name": "longtable"
     },
-    "answer{}{}": {
-      "snippet": "answer{${1:n}}{${2:answer}}"
+    {
+      "name": "newfile"
     },
-    "answer[]{}{}": {
-      "snippet": "answer[${3:mark}]{${1:n}}{${2:answer}}"
+    {
+      "name": "pgffor"
     },
-    "answernum{}": {
-      "snippet": "answernum{${1:n}}"
-    },
-    "mcifoutput{}{}": {
-      "snippet": "mcifoutput{${1:output type}}{${2:text}}"
-    },
-    "mcifoutput[]{}{}": {
-      "snippet": "mcifoutput[${3:versions}]{${1:output type}}{${2:text}}"
-    },
-    "mcsetupConcept{}": {
-      "snippet": "mcsetupConcept{${1:keyvals}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "mcsetupExam{}": {
-      "snippet": "mcsetupExam{${1:keyvals}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "mcsetupKey{}": {
-      "snippet": "mcsetupKey{${1:keyvals}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "mcsetupAnswers{}": {
-      "snippet": "mcsetupAnswers{${1:keyvals}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "mcsetupAnalysis{}": {
-      "snippet": "mcsetupAnalysis{${1:keyvals}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "mcversionlabelfmt": {},
-    "mcquestionlabelfmt": {},
-    "mcanswerlabelfmt": {}
-  },
-  "envs": {
-    "mcquestions": {},
-    "mcanswerslist": {},
-    "mcanswerslist[]": {
-      "name": "mcanswerslist",
-      "snippet": "[${1:option}]"
-    },
-    "mcanswers": {},
-    "mcanswers[]": {
-      "name": "mcanswers",
-      "snippet": "[${1:option}]"
-    },
-    "mcquestioninstruction": {},
-    "mcexplanation": {},
-    "mcnotes": {},
-    "mcquestions[]": {
-      "name": "mcquestions",
-      "snippet": "[${1:R file ext}]",
-      "option": "writeRfile"
+    {
+      "name": "xstring"
     }
-  },
-  "options": [
-    "output=${1|concept,exam,key,answers,analysis|}",
-    "numberofversions=${1:integer}",
-    "version=${1:integer}",
-    "seed=${1:integer}",
-    "randomizequestions",
-    "randomizeanswers",
-    "writeRfile"
   ],
-  "keyvals": [
-    [
-      "output=${1|concept,exam,key,answers,analysis|}",
-      "numberofversions=${1:integer}",
-      "version=${1:integer}",
-      "seed=${1:integer}",
+  "macros": [
+    {
+      "name": "mctheversion",
+      "unusual": true
+    },
+    {
+      "name": "mcexamoptions",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\mcexamoptions,\\usepackage/mcexam#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "question",
+      "detail": "?",
+      "doc": "Question mark"
+    },
+    {
+      "name": "question",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:option%keyvals}]"
+      },
+      "detail": "?",
+      "doc": "Question mark"
+    },
+    {
+      "name": "answer"
+    },
+    {
+      "name": "answer",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:mark}]"
+      }
+    },
+    {
+      "name": "answer",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:n}}{${2:answer}}"
+      }
+    },
+    {
+      "name": "answer",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:mark}]{${1:n}}{${2:answer}}"
+      }
+    },
+    {
+      "name": "answernum",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:n}}"
+      }
+    },
+    {
+      "name": "mcifoutput",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:output type%keyvals}}{${2:text}}",
+        "keys": [
+          "\\mcifoutput"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "mcifoutput",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:versions}]{${1:output type%keyvals}}{${2:text}}",
+        "keys": [
+          "\\mcifoutput"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "mcsetupConcept",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "mcsetupExam",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "mcsetupKey",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "mcsetupAnswers",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "mcsetupAnalysis",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "mcversionlabelfmt",
+      "unusual": true
+    },
+    {
+      "name": "mcquestionlabelfmt",
+      "unusual": true
+    },
+    {
+      "name": "mcanswerlabelfmt",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "mcquestions"
+    },
+    {
+      "name": "mcanswerslist"
+    },
+    {
+      "name": "mcanswerslist",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:option%keyvals}]"
+      }
+    },
+    {
+      "name": "mcanswers"
+    },
+    {
+      "name": "mcanswers",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:option%keyvals}]"
+      }
+    },
+    {
+      "name": "mcquestioninstruction"
+    },
+    {
+      "name": "mcexplanation"
+    },
+    {
+      "name": "mcnotes"
+    },
+    {
+      "name": "mcquestions",
+      "if": "writeRfile=true",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:R file ext}]"
+      }
+    },
+    {
+      "name": "mcquestions",
+      "if": "writeRfile",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:R file ext}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\mcexamoptions,\\usepackage/mcexam#c": [
+      "output=${1|concept,exam,key,answers,analysis\r|}",
+      "numberofversions=${1:integer}\r",
+      "version=${1:integer}\r",
+      "seed=${1:integer}\r",
       "randomizequestions",
       "randomizeanswers",
       "writeRfile"
     ],
-    [
+    "\\question": [
+      "follow\r"
+    ],
+    "\\begin{mcanswerslist}#c,\\begin{mcanswers}#c": [
+      "permuteall\r",
+      "ordinal\r",
+      "fixlast\r",
+      "permutenone\r"
+    ],
+    "\\mcifoutput": [
+      "concept\r",
+      "exam\r",
+      "key\r",
+      "answers\r",
+      "analysis\r"
+    ],
+    "\\mcsetupConcept,\\mcsetupExam,\\mcsetupKey,\\mcsetupAnswers,\\mcsetupAnalysis": [
       "showPerVersion",
       "showQuestionPermutationtable",
       "showQuestionsAnalysis",
@@ -123,5 +242,8 @@
       "showNotes",
       "showKeytable"
     ]
+  },
+  "args": [
+    "\\mcexamoptions,\\usepackage/mcexam#c"
   ]
 }

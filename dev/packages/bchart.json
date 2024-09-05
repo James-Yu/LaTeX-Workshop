@@ -1,73 +1,83 @@
 {
-  "includes": {
-    "ifthen": [],
-    "tikz": [],
-    "tikzlibrarycalc": []
-  },
-  "macros": {
-    "bcbar{}": {
-      "snippet": "bcbar{${1:number}}"
+  "deps": [
+    {
+      "name": "ifthen"
     },
-    "bcbar[]{}": {
-      "snippet": "bcbar[${2:options}]{${1:number}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "tikz"
     },
-    "bcskip{}": {
-      "snippet": "bcskip{${1:length}}"
-    },
-    "bcxlabel{}": {
-      "snippet": "bcxlabel{${1:label}}"
-    },
-    "bclabel{}": {
-      "snippet": "bclabel{${1:label}}"
-    },
-    "bcfontstyle": {},
-    "bcpos": {},
-    "bcwidth": {},
-    "bcunit": {},
-    "bcmin": {},
-    "bcmax": {},
-    "bcstep": {},
-    "bcsteps": {},
-    "bcscale": {},
-    "bcplainchart": {},
-    "bcbarcolor": {},
-    "bcbartext": {},
-    "bcbarlabel": {},
-    "bcbarvalue": {},
-    "bcplainbar": {},
-    "bcskiplabel": {},
-    "bcstripunit{}": {
-      "snippet": "bcstripunit{${1:arg}}"
+    {
+      "name": "tikzlibrarycalc"
     }
-  },
-  "envs": {
-    "bchart[]": {
+  ],
+  "macros": [
+    {
+      "name": "bcbar",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "bcbar",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:number}}"
+      }
+    },
+    {
+      "name": "bcskip",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
+    },
+    {
+      "name": "bcxlabel",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "bclabel",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "bcfontstyle",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
       "name": "bchart",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
-      "text=",
-      "color=",
-      "plain",
-      "value=",
-      "label="
-    ],
-    [
-      "max=${1:number}",
-      "min=${1:number}",
-      "step=",
-      "steps=",
-      "plain",
-      "unit=",
+  ],
+  "keys": {
+    "\\begin{bchart}": [
+      "max=${1:number}\r",
+      "min=${1:number}\r",
+      "step=\r",
+      "steps=\r",
+      "plain\r",
+      "unit=\r",
       "width=",
-      "scale="
+      "scale=\r"
+    ],
+    "\\bcbar": [
+      "text=\r",
+      "color=",
+      "plain\r",
+      "value=\r",
+      "label=\r"
     ]
-  ]
+  },
+  "args": []
 }

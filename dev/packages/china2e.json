@@ -1,154 +1,441 @@
 {
-  "includes": {},
-  "macros": {
-    "TerrEle{}": {
-      "snippet": "TerrEle{${1:number}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "TerrEle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
     },
-    "terrele{}": {
-      "snippet": "terrele{${1:number}}"
+    {
+      "name": "terrele",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
     },
-    "AstrEle{}": {
-      "snippet": "AstrEle{${1:number}}"
+    {
+      "name": "AstrEle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
     },
-    "astrele{}": {
-      "snippet": "astrele{${1:number}}"
+    {
+      "name": "astrele",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
     },
-    "MoonSta{}": {
-      "snippet": "MoonSta{${1:number}}"
+    {
+      "name": "MoonSta",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
     },
-    "moonsta{}": {
-      "snippet": "moonsta{${1:number}}"
+    {
+      "name": "moonsta",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
     },
-    "MoonPha{}": {
-      "snippet": "MoonPha{${1:number}}"
+    {
+      "name": "MoonPha",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
     },
-    "CyclYears": {},
-    "Year": {},
-    "Month": {},
-    "Day": {},
-    "Book": {},
-    "MoonStations": {},
-    "WaxingZodiac": {},
-    "WaningZodiac": {},
-    "ZodiacSign": {},
-    "New": {},
-    "TerrElements": {},
-    "AstrElements": {},
-    "Solar": {},
-    "Lunar": {},
-    "Festival": {},
-    "Beginning": {},
-    "Morning": {},
-    "Leap": {},
-    "NewGregYear": {},
-    "NewChinYear": {},
-    "Calendar": {},
-    "Wood": {},
-    "Fire": {},
-    "Earth": {},
-    "Metal": {},
-    "Water": {},
-    "Nul": {},
-    "One": {},
-    "Two": {},
-    "Three": {},
-    "Four": {},
-    "Five": {},
-    "Six": {},
-    "Seven": {},
-    "Eight": {},
-    "Nine": {},
-    "Ten": {},
-    "Eleven": {},
-    "Twelve": {},
-    "Thirteen": {},
-    "Fourteen": {},
-    "Fifteen": {},
-    "Sixteen": {},
-    "Seventeen": {},
-    "Eighteen": {},
-    "Nineteen": {},
-    "Twenty": {},
-    "Thirty": {},
-    "Forty": {},
-    "Fifty": {},
-    "Sixty": {},
-    "Seventy": {},
-    "Eighty": {},
-    "Ninety": {},
-    "Hundred": {},
-    "Thousand": {},
-    "FirstMonth": {},
-    "Euro": {},
-    "Greenpoint": {},
-    "Info": {},
-    "Request": {},
-    "Postbox": {},
-    "Pound": {},
-    "Telephone": {},
-    "symA": {},
-    "symB": {},
-    "symC": {},
-    "symD": {},
-    "symE": {},
-    "symF": {},
-    "symG": {},
-    "symH": {},
-    "symI": {},
-    "symJ": {},
-    "symK": {},
-    "symL": {},
-    "symM": {},
-    "symN": {},
-    "symO": {},
-    "symP": {},
-    "symQ": {},
-    "symR": {},
-    "symS": {},
-    "symT": {},
-    "symU": {},
-    "symV": {},
-    "symW": {},
-    "symX": {},
-    "symY": {},
-    "symZ": {},
-    "symAE": {},
-    "symOE": {},
-    "symUE": {},
-    "Chinasym": {},
-    "BLOCK": {},
-    "AE": {},
-    "OE": {},
-    "UE": {},
-    "Real": {},
-    "Natural": {},
-    "Integer": {},
-    "Rational": {},
-    "Complex": {},
-    "REAL": {},
-    "NATURAL": {},
-    "INTEGER": {},
-    "RATIONAL": {},
-    "COMPLEX": {},
-    "chin": {},
-    "textchi{}": {
-      "snippet": "textchi{${1:text}}"
+    {
+      "name": "CyclYears"
     },
-    "chinarg": {},
-    "upperlimit": {},
-    "prtarg": {},
-    "Beginerr": {},
-    "Terrerr": {},
-    "Astrerr": {},
-    "Staterr": {},
-    "Moonerr": {},
-    "errmess": {},
-    "chiprt{}{}{}{}": {
-      "snippet": "chiprt{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    {
+      "name": "Year"
     },
-    "chincorr": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "Month"
+    },
+    {
+      "name": "Day"
+    },
+    {
+      "name": "Book"
+    },
+    {
+      "name": "MoonStations"
+    },
+    {
+      "name": "WaxingZodiac"
+    },
+    {
+      "name": "WaningZodiac"
+    },
+    {
+      "name": "ZodiacSign"
+    },
+    {
+      "name": "New"
+    },
+    {
+      "name": "TerrElements"
+    },
+    {
+      "name": "AstrElements"
+    },
+    {
+      "name": "Solar"
+    },
+    {
+      "name": "Lunar"
+    },
+    {
+      "name": "Festival"
+    },
+    {
+      "name": "Beginning"
+    },
+    {
+      "name": "Morning"
+    },
+    {
+      "name": "Leap"
+    },
+    {
+      "name": "NewGregYear"
+    },
+    {
+      "name": "NewChinYear"
+    },
+    {
+      "name": "Calendar"
+    },
+    {
+      "name": "Wood"
+    },
+    {
+      "name": "Fire"
+    },
+    {
+      "name": "Earth"
+    },
+    {
+      "name": "Metal"
+    },
+    {
+      "name": "Water"
+    },
+    {
+      "name": "Nul"
+    },
+    {
+      "name": "One"
+    },
+    {
+      "name": "Two"
+    },
+    {
+      "name": "Three"
+    },
+    {
+      "name": "Four"
+    },
+    {
+      "name": "Five"
+    },
+    {
+      "name": "Six"
+    },
+    {
+      "name": "Seven"
+    },
+    {
+      "name": "Eight"
+    },
+    {
+      "name": "Nine"
+    },
+    {
+      "name": "Ten"
+    },
+    {
+      "name": "Eleven"
+    },
+    {
+      "name": "Twelve"
+    },
+    {
+      "name": "Thirteen"
+    },
+    {
+      "name": "Fourteen"
+    },
+    {
+      "name": "Fifteen"
+    },
+    {
+      "name": "Sixteen"
+    },
+    {
+      "name": "Seventeen"
+    },
+    {
+      "name": "Eighteen"
+    },
+    {
+      "name": "Nineteen"
+    },
+    {
+      "name": "Twenty"
+    },
+    {
+      "name": "Thirty"
+    },
+    {
+      "name": "Forty"
+    },
+    {
+      "name": "Fifty"
+    },
+    {
+      "name": "Sixty"
+    },
+    {
+      "name": "Seventy"
+    },
+    {
+      "name": "Eighty"
+    },
+    {
+      "name": "Ninety"
+    },
+    {
+      "name": "Hundred"
+    },
+    {
+      "name": "Thousand"
+    },
+    {
+      "name": "FirstMonth"
+    },
+    {
+      "name": "Euro"
+    },
+    {
+      "name": "Greenpoint"
+    },
+    {
+      "name": "Info"
+    },
+    {
+      "name": "Request"
+    },
+    {
+      "name": "Postbox"
+    },
+    {
+      "name": "Pound"
+    },
+    {
+      "name": "Telephone"
+    },
+    {
+      "name": "symA"
+    },
+    {
+      "name": "symB"
+    },
+    {
+      "name": "symC"
+    },
+    {
+      "name": "symD"
+    },
+    {
+      "name": "symE"
+    },
+    {
+      "name": "symF"
+    },
+    {
+      "name": "symG"
+    },
+    {
+      "name": "symH"
+    },
+    {
+      "name": "symI"
+    },
+    {
+      "name": "symJ"
+    },
+    {
+      "name": "symK"
+    },
+    {
+      "name": "symL"
+    },
+    {
+      "name": "symM"
+    },
+    {
+      "name": "symN"
+    },
+    {
+      "name": "symO"
+    },
+    {
+      "name": "symP"
+    },
+    {
+      "name": "symQ"
+    },
+    {
+      "name": "symR"
+    },
+    {
+      "name": "symS"
+    },
+    {
+      "name": "symT"
+    },
+    {
+      "name": "symU"
+    },
+    {
+      "name": "symV"
+    },
+    {
+      "name": "symW"
+    },
+    {
+      "name": "symX"
+    },
+    {
+      "name": "symY"
+    },
+    {
+      "name": "symZ"
+    },
+    {
+      "name": "symAE"
+    },
+    {
+      "name": "symOE"
+    },
+    {
+      "name": "symUE"
+    },
+    {
+      "name": "Chinasym"
+    },
+    {
+      "name": "BLOCK"
+    },
+    {
+      "name": "AE"
+    },
+    {
+      "name": "OE"
+    },
+    {
+      "name": "UE"
+    },
+    {
+      "name": "Real"
+    },
+    {
+      "name": "Natural"
+    },
+    {
+      "name": "Integer"
+    },
+    {
+      "name": "Rational"
+    },
+    {
+      "name": "Complex"
+    },
+    {
+      "name": "REAL"
+    },
+    {
+      "name": "NATURAL"
+    },
+    {
+      "name": "INTEGER"
+    },
+    {
+      "name": "RATIONAL"
+    },
+    {
+      "name": "COMPLEX"
+    },
+    {
+      "name": "chin",
+      "unusual": true
+    },
+    {
+      "name": "textchi",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "chinarg",
+      "unusual": true
+    },
+    {
+      "name": "upperlimit",
+      "unusual": true
+    },
+    {
+      "name": "prtarg",
+      "unusual": true
+    },
+    {
+      "name": "Beginerr",
+      "unusual": true
+    },
+    {
+      "name": "Terrerr",
+      "unusual": true
+    },
+    {
+      "name": "Astrerr",
+      "unusual": true
+    },
+    {
+      "name": "Staterr",
+      "unusual": true
+    },
+    {
+      "name": "Moonerr",
+      "unusual": true
+    },
+    {
+      "name": "errmess",
+      "unusual": true
+    },
+    {
+      "name": "chiprt",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+      }
+    },
+    {
+      "name": "chincorr",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

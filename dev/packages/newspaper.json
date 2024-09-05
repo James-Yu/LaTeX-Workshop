@@ -1,40 +1,86 @@
 {
-  "includes": {
-    "yfonts": []
-  },
-  "macros": {
-    "SetHeaderName{}": {
-      "snippet": "SetHeaderName{${1:text}}"
+  "deps": [
+    {
+      "name": "yfonts"
+    }
+  ],
+  "macros": [
+    {
+      "name": "SetHeaderName",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "SetPaperLocation{}": {
-      "snippet": "SetPaperLocation{${1:text}}"
+    {
+      "name": "SetPaperLocation",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "SetPaperName{}": {
-      "snippet": "SetPaperName{${1:text}}"
+    {
+      "name": "SetPaperName",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "SetPaperPrice{}": {
-      "snippet": "SetPaperPrice{${1:text}}"
+    {
+      "name": "SetPaperPrice",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "SetPaperSlogan{}": {
-      "snippet": "SetPaperSlogan{${1:text}}"
+    {
+      "name": "SetPaperSlogan",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "byline{}{}": {
-      "snippet": "byline{${1:headline}}{${2:author}}"
+    {
+      "name": "byline",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:headline%text}}{${2:author}}"
+      }
     },
-    "closearticle": {},
-    "currentissue{}": {
-      "snippet": "currentissue{${1:number}}"
+    {
+      "name": "closearticle"
     },
-    "currentvolume{}": {
-      "snippet": "currentvolume{${1:number}}"
+    {
+      "name": "currentissue",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
     },
-    "headline{}": {
-      "snippet": "headline{${1:text}}"
+    {
+      "name": "currentvolume",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
     },
-    "theissue": {},
-    "thevolume": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "headline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "theissue",
+      "unusual": true
+    },
+    {
+      "name": "thevolume",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

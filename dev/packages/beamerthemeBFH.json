@@ -1,38 +1,93 @@
 {
-  "includes": {
-    "bfhfonts": [],
-    "l3keys2e": [],
-    "trimclip": [],
-    "bfhlogo": [],
-    "bfhcolors": []
-  },
-  "macros": {
-    "version{}": {
-      "snippet": "version{${1:version}}"
+  "deps": [
+    {
+      "name": "bfhfonts"
     },
-    "insertversion": {},
-    "versionformat{}": {
-      "snippet": "versionformat{${1:text}}"
+    {
+      "name": "l3keys2e"
     },
-    "partnerlogo{}": {
-      "snippet": "partnerlogo{${1:graphics code}}"
+    {
+      "name": "trimclip"
     },
-    "insertpartnerlogo": {},
-    "titlegraphic*{}": {
-      "snippet": "titlegraphic*{${1:text}}"
+    {
+      "name": "bfhlogo"
     },
-    "inserttitleVcenter{}": {
-      "snippet": "inserttitleVcenter{${1:text}}"
-    },
-    "lecturepage": {},
-    "separatorpage{}": {
-      "snippet": "separatorpage{${1:type}}"
-    },
-    "separatorpage*{}": {
-      "snippet": "separatorpage*{${1:type}}"
+    {
+      "name": "bfhcolors"
     }
+  ],
+  "macros": [
+    {
+      "name": "version",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:version}}"
+      }
+    },
+    {
+      "name": "insertversion",
+      "unusual": true
+    },
+    {
+      "name": "versionformat",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "partnerlogo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:graphics code}}"
+      }
+    },
+    {
+      "name": "insertpartnerlogo",
+      "unusual": true
+    },
+    {
+      "name": "titlegraphic*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "inserttitleVcenter",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "lecturepage",
+      "unusual": true
+    },
+    {
+      "name": "separatorpage",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:type}}"
+      }
+    },
+    {
+      "name": "separatorpage*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:type}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usetheme/BFH#c": [
+      "logofile=${1:file}\r",
+      "authorontitle"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

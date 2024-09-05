@@ -1,47 +1,81 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "xkvltxp": [],
-    "geometry": [],
-    "tabularx": [],
-    "booktabs": [],
-    "colortbl": [],
-    "xifthen": [],
-    "background": [],
-    "transparent": [],
-    "pgfplotstable": []
-  },
-  "macros": {
-    "milog{}": {
-      "snippet": "milog{${1:CSV file}}"
+  "deps": [
+    {
+      "name": "xkeyval"
     },
-    "milog[]{}": {
-      "snippet": "milog[${2:options}]{${1:CSV file}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "xkvltxp"
     },
-    "Formular": {},
-    "milogsetup{}": {
-      "snippet": "milogsetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "geometry"
+    },
+    {
+      "name": "tabularx"
+    },
+    {
+      "name": "booktabs"
+    },
+    {
+      "name": "colortbl"
+    },
+    {
+      "name": "xifthen"
+    },
+    {
+      "name": "background"
+    },
+    {
+      "name": "transparent"
+    },
+    {
+      "name": "pgfplotstable"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "milog",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:CSV file%file}}"
+      }
+    },
+    {
+      "name": "milog",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:CSV file%file}}"
+      }
+    },
+    {
+      "name": "Formular"
+    },
+    {
+      "name": "milogsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\milog,\\milogsetup"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\milog,\\milogsetup": [
       "color=",
-      "companyname=${1:Firma}",
-      "company=${1:Firmenname}",
-      "namename=${1:Name, Vorname}",
-      "name=${1:name}",
-      "idname=${1:Geburtsdatum, Personalnummer}",
-      "id=${1:Zusatz-Id}",
-      "monthname=${1:Monat/Jahr}",
-      "month=${1:Monat}",
-      "heading=${1:Überschrift}",
+      "companyname=${1:Firma}\r",
+      "company=${1:Firmenname}\r",
+      "namename=${1:Name, Vorname}\r",
+      "name=${1:name}\r",
+      "idname=${1:Geburtsdatum, Personalnummer}\r",
+      "id=${1:Zusatz-Id}\r",
+      "monthname=${1:Monat/Jahr}\r",
+      "month=${1:Monat}\r",
+      "heading=${1:Überschrift}\r",
       "cc"
     ]
-  ]
+  },
+  "args": []
 }

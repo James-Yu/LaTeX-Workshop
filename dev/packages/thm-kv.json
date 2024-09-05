@@ -1,108 +1,118 @@
 {
-  "includes": {
-    "keyval": [],
-    "kvsetkeys": [],
-    "thm-patch": []
-  },
-  "macros": {
-    "declaretheoremstyle{}": {
-      "snippet": "declaretheoremstyle{${1:style name}}"
+  "deps": [
+    {
+      "name": "keyval"
     },
-    "declaretheoremstyle[]{}": {
-      "snippet": "declaretheoremstyle[${2:options}]{${1:style name}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "kvsetkeys"
     },
-    "declaretheorem{}": {
-      "snippet": "declaretheorem{${1:envname}}"
-    },
-    "declaretheorem[]{}": {
-      "snippet": "declaretheorem[${2:options}]{${1:envname}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "declaretheorem[]{}[]": {
-      "snippet": "declaretheorem[${2:options}]{${1:envname}}[${3:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "declaretheorem{}[]": {
-      "snippet": "declaretheorem{${1:envname}}[${2:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 1
-    },
-    "thmcontinues{}": {
-      "snippet": "thmcontinues{${1:key}}"
+    {
+      "name": "thm-patch"
     }
-  },
-  "envs": {},
-  "options": [
-    "lowercase",
-    "uppercase",
-    "anycase"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "declaretheoremstyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:style name}}"
+      }
+    },
+    {
+      "name": "declaretheoremstyle",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:style name}}"
+      }
+    },
+    {
+      "name": "declaretheorem",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:envname}}"
+      }
+    },
+    {
+      "name": "declaretheorem",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:envname}}"
+      }
+    },
+    {
+      "name": "declaretheorem",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:options%keyvals}]{${1:envname}}[${3:options}]"
+      }
+    },
+    {
+      "name": "declaretheorem",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:envname}}[${2:options}]"
+      }
+    },
+    {
+      "name": "thmcontinues",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:key}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/thm-kv#c": [
+      "lowercase\r",
+      "uppercase\r",
+      "anycase\r"
+    ],
+    "\\declaretheoremstyle": [
       "spaceabove=",
       "spacebelow=",
-      "headfont=${1:font commands}",
-      "notefont=${1:font commands}",
-      "bodyfont=${1:font commands}",
-      "headpunct=${1:symbol}",
-      "notebraces=${1:two chars}",
-      "break",
+      "headfont=${1:font commands}\r",
+      "notefont=${1:font commands}\r",
+      "bodyfont=${1:font commands}\r",
+      "headpunct=${1:symbol}\r",
+      "notebraces=${1:two chars}\r",
+      "break\r",
       "postheadspace=",
-      "headformat=${1:code}",
-      "headstyle=${1:code}",
-      "headindent=",
-      "parent=${1:counter}",
-      "numberwithin=${1:counter}",
-      "within=${1:counter}",
-      "sibling=${1:counter}",
-      "numberlike=${1:counter}",
-      "sharenumber=${1:counter}",
-      "title=${1:title}",
-      "name=${1:name}",
-      "heading=${1:heading}",
-      "numbered=${1|yes,no,unless unique|}",
-      "style=${1:style name}",
-      "preheadhook=${1:code}",
-      "postheadhook=${1:code}",
-      "prefoothook=${1:code}",
-      "postfoothook=${1:code}",
-      "refname=${1:name}",
-      "refname={${1:singular-name,plural-name}}",
-      "Refname=${1:name}",
-      "Refname={${1:singular-name,plural-name}}",
-      "shaded={${1:shade options}}",
-      "thmbox=${1|L,M,S|}",
-      "mdframed={${1:mdframed options}}",
-      "qed=${1:symbol}"
+      "headformat=${1:code}\r",
+      "headstyle=${1:code}\r",
+      "headindent="
     ],
-    [
-      "parent=${1:counter}",
-      "numberwithin=${1:counter}",
-      "within=${1:counter}",
-      "sibling=${1:counter}",
-      "numberlike=${1:counter}",
-      "sharenumber=${1:counter}",
-      "title=${1:title}",
-      "name=${1:name}",
-      "heading=${1:heading}",
-      "numbered=${1|yes,no,unless unique|}",
-      "style=${1:style name}",
-      "preheadhook=${1:code}",
-      "postheadhook=${1:code}",
-      "prefoothook=${1:code}",
-      "postfoothook=${1:code}",
-      "refname=${1:name}",
-      "refname={${1:singular-name,plural-name}}",
-      "Refname=${1:name}",
-      "Refname={${1:singular-name,plural-name}}",
-      "shaded={${1:shade options}}",
-      "thmbox=${1|L,M,S|}",
-      "mdframed={${1:mdframed options}}",
-      "qed=${1:symbol}"
+    "\\declaretheoremstyle,\\declaretheorem": [
+      "parent=${1:counter}\r",
+      "numberwithin=${1:counter}\r",
+      "within=${1:counter}\r",
+      "sibling=${1:counter}\r",
+      "numberlike=${1:counter}\r",
+      "sharenumber=${1:counter}\r",
+      "title=${1:title}\r",
+      "name=${1:name}\r",
+      "heading=${1:heading}\r",
+      "numbered=${1|yes,no,unless unique\r|}",
+      "style=${1:style name}\r",
+      "preheadhook=${1:code}\r",
+      "postheadhook=${1:code}\r",
+      "prefoothook=${1:code}\r",
+      "postfoothook=${1:code}\r",
+      "refname=${1:name}\r",
+      "refname={${1:singular-name,plural-name}}\r",
+      "Refname=${1:name}\r",
+      "Refname={${1:singular-name,plural-name}}\r",
+      "shaded={${1:shade options}}\r",
+      "thmbox=${1|L,M,S\r|}",
+      "mdframed={${1:mdframed options}}\r",
+      "qed=${1:symbol}\r"
     ]
+  },
+  "args": [
+    "\\usepackage/thm-kv#c"
   ]
 }

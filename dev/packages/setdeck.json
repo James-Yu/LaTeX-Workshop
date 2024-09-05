@@ -1,18 +1,32 @@
 {
-  "includes": {
-    "xcolor": [],
-    "tikz": [],
-    "tikzlibrarypatterns": []
-  },
-  "macros": {
-    "setcard{}{}{}{}{}": {
-      "snippet": "setcard{${1:num}}{${2:shadingnum}}{${3:colornum}}{${4:shapenum}}{${5:scaling}}"
+  "deps": [
+    {
+      "name": "xcolor"
     },
-    "smallsetcard{}{}{}{}{}": {
-      "snippet": "smallsetcard{${1:num}}{${2:shadingnum}}{${3:colornum}}{${4:shapenum}}{${5:scaling}}"
+    {
+      "name": "tikz"
+    },
+    {
+      "name": "tikzlibrarypatterns"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "setcard",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:num}}{${2:shadingnum}}{${3:colornum}}{${4:shapenum}}{${5:scaling}}"
+      }
+    },
+    {
+      "name": "smallsetcard",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:num}}{${2:shadingnum}}{${3:colornum}}{${4:shapenum}}{${5:scaling}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

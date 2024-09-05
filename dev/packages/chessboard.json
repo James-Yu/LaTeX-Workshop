@@ -1,115 +1,227 @@
 {
-  "includes": {
-    "chessfss": [],
-    "xifthen": [],
-    "ifpdf": [],
-    "tikz": [],
-    "etoolbox": []
-  },
-  "macros": {
-    "chessboard": {},
-    "chessboard[]": {
-      "snippet": "chessboard[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "chessfss"
     },
-    "setchessboard{}": {
-      "snippet": "setchessboard{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "xifthen"
     },
-    "storechessboardstyle{}{}": {
-      "snippet": "storechessboardstyle{${1:name}}{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
+    {
+      "name": "ifpdf"
     },
-    "cblistK": {},
-    "cblistQ": {},
-    "cblistR": {},
-    "cblistB": {},
-    "cblistN": {},
-    "cblistP": {},
-    "cblistk": {},
-    "cblistq": {},
-    "cblistr": {},
-    "cblistb": {},
-    "cblistn": {},
-    "cblistp": {},
-    "cbDefineLanguage{}": {
-      "snippet": "cbDefineLanguage{${1:language}}"
+    {
+      "name": "tikz"
     },
-    "cbDefineTranslation{}{}": {
-      "snippet": "cbDefineTranslation{${1:piece letter}}{${2:new piece letter}}"
+    {
+      "name": "etoolbox"
+    }
+  ],
+  "macros": [
+    {
+      "name": "chessboard"
     },
-    "cbDefineMoverStyle{}{}{}{}{}": {
-      "snippet": "cbDefineMoverStyle{${1:name}}{${2:white top}}{${3:white bot}}{${4:black top}}{${5:black bot}}"
+    {
+      "name": "chessboard",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     },
-    "cbDefineMoverStyle[]{}{}{}{}{}": {
-      "snippet": "cbDefineMoverStyle[${6:cmds}]{${1:name}}{${2:white top}}{${3:white bot}}{${4:black top}}{${5:black bot}}"
+    {
+      "name": "setchessboard",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\chessboard,\\setchessboard,\\storechessboardstyle,\\newchessgame,\\resumechessgame"
+        ],
+        "keyPos": 0
+      }
     },
-    "cbDefinePgfFieldStyle{}{}": {
-      "snippet": "cbDefinePgfFieldStyle{${1:name}}{${2:definition}}"
+    {
+      "name": "storechessboardstyle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:options%keyvals}}",
+        "keys": [
+          "\\chessboard,\\setchessboard,\\storechessboardstyle,\\newchessgame,\\resumechessgame"
+        ],
+        "keyPos": 1
+      }
     },
-    "cbDefinePgfRegionStyle{}{}": {
-      "snippet": "cbDefinePgfRegionStyle{${1:name}}{${2:definition}}"
+    {
+      "name": "cblistK"
     },
-    "cbDefinePgfMoveStyle{}{}": {
-      "snippet": "cbDefinePgfMoveStyle{${1:name}}{${2:definition}}"
+    {
+      "name": "cblistQ"
     },
-    "cbDefineNewPiece{}{}{}{}": {
-      "snippet": "cbDefineNewPiece{${1:color}}{${2:char}}{${3:on white}}{${4:on black}}"
+    {
+      "name": "cblistR"
     },
-    "cbDefineNewPiece[]{}{}{}{}": {
-      "snippet": "cbDefineNewPiece[${5:game}]{${1:color}}{${2:char}}{${3:on white}}{${4:on black}}"
+    {
+      "name": "cblistB"
     },
-    "printarea": {},
-    "board": {},
-    "currentbk": {},
-    "currentbq": {},
-    "currentwk": {},
-    "currentwq": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "style=${1:style}",
-      "maxfield=${1:field}",
+    {
+      "name": "cblistN"
+    },
+    {
+      "name": "cblistP"
+    },
+    {
+      "name": "cblistk"
+    },
+    {
+      "name": "cblistq"
+    },
+    {
+      "name": "cblistr"
+    },
+    {
+      "name": "cblistb"
+    },
+    {
+      "name": "cblistn"
+    },
+    {
+      "name": "cblistp"
+    },
+    {
+      "name": "cbDefineLanguage",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "cbDefineTranslation",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:piece letter}}{${2:new piece letter}}"
+      }
+    },
+    {
+      "name": "cbDefineMoverStyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:name}}{${2:white top}}{${3:white bot}}{${4:black top}}{${5:black bot}}"
+      }
+    },
+    {
+      "name": "cbDefineMoverStyle",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}{}{}",
+        "snippet": "[${6:cmds}]{${1:name}}{${2:white top}}{${3:white bot}}{${4:black top}}{${5:black bot}}"
+      }
+    },
+    {
+      "name": "cbDefinePgfFieldStyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "cbDefinePgfRegionStyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "cbDefinePgfMoveStyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "cbDefineNewPiece",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:color}}{${2:char}}{${3:on white}}{${4:on black}}"
+      }
+    },
+    {
+      "name": "cbDefineNewPiece",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "[${5:game}]{${1:color}}{${2:char}}{${3:on white}}{${4:on black}}"
+      }
+    },
+    {
+      "name": "printarea",
+      "unusual": true
+    },
+    {
+      "name": "board",
+      "unusual": true
+    },
+    {
+      "name": "currentbk",
+      "unusual": true
+    },
+    {
+      "name": "currentbq",
+      "unusual": true
+    },
+    {
+      "name": "currentwk",
+      "unusual": true
+    },
+    {
+      "name": "currentwq",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\chessboard,\\setchessboard,\\storechessboardstyle,\\newchessgame,\\resumechessgame": [
+      "style=${1:style}\r",
+      "maxfield=${1:field}\r",
       "zero",
       "clearboard",
-      "cleararea=${1:area}",
-      "clearfile=${1:file}",
-      "clearfiles=${1:files}",
-      "clearrank=${1:rank}",
-      "clearranks={${1:list of ranks}}",
-      "clearfield=${1:field}",
-      "clearfields={${1:list of fields}}",
-      "setpieces={${1:list of positions}}",
-      "addpieces={${1:list of positions}}",
-      "setwhite={${1:list of positions}}",
-      "addwhite={${1:list of positions}}",
-      "setblack={${1:list of positions}}",
-      "addblack={${1:list of positions}}",
-      "setfen=${1:FEN}",
-      "addfen=${1:FEN}",
-      "startfen=${1:field}",
-      "startfill=${1:field}",
-      "stopfill=${1:field}",
-      "fillarea=${1:area}",
-      "storefen=${1:name}",
-      "savefen=${1:filename}",
-      "startstore=${1:field}",
-      "stopstore=${1:field}",
-      "storearea=${1:area}",
-      "mover=${1|w,b|}",
-      "castling=${1:castling possibilies}",
-      "enpassant=${1:field}",
-      "halfmove=${1:integer}",
-      "fullmove=${1:integer}",
-      "getpiecelists",
-      "restorefen=${1:name}",
-      "loadfen=${1:name}",
-      "language=${1:language}",
+      "cleararea=${1:area}\r",
+      "clearfile=${1:file}\r",
+      "clearfiles=${1:files}\r",
+      "clearrank=${1:rank}\r",
+      "clearranks={${1:list of ranks}}\r",
+      "clearfield=${1:field}\r",
+      "clearfields={${1:list of fields}}\r",
+      "setpieces={${1:list of positions}}\r",
+      "addpieces={${1:list of positions}}\r",
+      "setwhite={${1:list of positions}}\r",
+      "addwhite={${1:list of positions}}\r",
+      "setblack={${1:list of positions}}\r",
+      "addblack={${1:list of positions}}\r",
+      "setfen=${1:FEN}\r",
+      "addfen=${1:FEN}\r",
+      "startfen=${1:field}\r",
+      "startfill=${1:field}\r",
+      "stopfill=${1:field}\r",
+      "fillarea=${1:area}\r",
+      "storefen=${1:name}\r",
+      "savefen=${1:filename}\r",
+      "startstore=${1:field}\r",
+      "stopstore=${1:field}\r",
+      "storearea=${1:area}\r",
+      "mover=${1|w,b\r|}",
+      "castling=${1:castling possibilies}\r",
+      "enpassant=${1:field}\r",
+      "halfmove=${1:integer}\r",
+      "fullmove=${1:integer}\r",
+      "getpiecelists\r",
+      "restorefen=${1:name}\r",
+      "loadfen=${1:name}\r",
+      "language=${1:language}\r",
       "marginleftwidth=",
       "marginrightwidth=",
       "margintopwidth=",
@@ -147,14 +259,14 @@
       "bordercolor=",
       "boardfontsize=",
       "fontsize=",
-      "tinyboard",
-      "smallboard",
-      "normalboard",
-      "largeboard",
-      "boardfontfamily=${1:font family}",
-      "boardfontseries=${1:font series}",
-      "boardfontencoding=${1:font encoding}",
-      "clearfontcolors",
+      "tinyboard\r",
+      "smallboard\r",
+      "normalboard\r",
+      "largeboard\r",
+      "boardfontfamily=${1:font family}\r",
+      "boardfontseries=${1:font series}\r",
+      "boardfontencoding=${1:font encoding}\r",
+      "clearfontcolors\r",
       "whitefieldmaskcolor=",
       "blackfieldmaskcolor=",
       "fieldmaskcolor=",
@@ -173,20 +285,20 @@
       "whitepiececolor=",
       "blackpiececolor=",
       "piececolor=",
-      "setfontcolors",
-      "addfontcolors",
-      "emphstyle=${1:cmds}",
+      "setfontcolors\r",
+      "addfontcolors\r",
+      "emphstyle=${1:cmds}\r",
       "coloremph",
-      "coloremphstyle=${1:cmds}",
-      "emphboard",
-      "empharea=${1:area}",
-      "emphareas={${1:list of areas}}",
-      "emphfile=${1:file}",
-      "emphfiles={${1:list of files}}",
-      "emphrank=${1:rank}",
-      "emphranks={${1:list of ranks}}",
-      "emphfield=${1:field}",
-      "emphfields={${1:list of fields}}",
+      "coloremphstyle=${1:cmds}\r",
+      "emphboard\r",
+      "empharea=${1:area}\r",
+      "emphareas={${1:list of areas}}\r",
+      "emphfile=${1:file}\r",
+      "emphfiles={${1:list of files}}\r",
+      "emphrank=${1:rank}\r",
+      "emphranks={${1:list of ranks}}\r",
+      "emphfield=${1:field}\r",
+      "emphfields={${1:list of fields}}\r",
       "labelleft",
       "labelright",
       "labeltop",
@@ -203,21 +315,21 @@
       "labeltoplift=",
       "labelbottomlift=",
       "vlabellift=",
-      "labelleftfont=${1:font cmd}",
-      "labelrightfont=${1:font cmd}",
-      "labeltopfont=${1:font cmd}",
-      "labelbottomfont=${1:font cmd}",
-      "hlabelfont=${1:font cmd}",
-      "vlabelfont=${1:font cmd}",
-      "labelfont=${1:font cmd}",
+      "labelleftfont=${1:font cmd}\r",
+      "labelrightfont=${1:font cmd}\r",
+      "labeltopfont=${1:font cmd}\r",
+      "labelbottomfont=${1:font cmd}\r",
+      "hlabelfont=${1:font cmd}\r",
+      "vlabelfont=${1:font cmd}\r",
+      "labelfont=${1:font cmd}\r",
       "labelfontsize=",
-      "labelleftformat=${1:cmds}",
-      "labelrightformat=${1:cmds}",
-      "labeltopformat=${1:cmds}",
-      "labelbottomformat=${1:cmds}",
-      "hlabelformat=${1:cmds}",
-      "vlabelformat=${1:cmds}",
-      "labelformat=${1:cmds}",
+      "labelleftformat=${1:cmds}\r",
+      "labelrightformat=${1:cmds}\r",
+      "labeltopformat=${1:cmds}\r",
+      "labelbottomformat=${1:cmds}\r",
+      "hlabelformat=${1:cmds}\r",
+      "vlabelformat=${1:cmds}\r",
+      "labelformat=${1:cmds}\r",
       "showmover",
       "moversize=",
       "moverlift=",
@@ -226,85 +338,85 @@
       "movershift=",
       "movertopshift=",
       "moverbottomshift=",
-      "moverstyle=${1|circle,triangle,squarearrow,unknown|}",
+      "moverstyle=${1|circle,triangle,squarearrow,unknown\r|}",
       "print",
-      "startprint=${1:field}",
-      "stopprint=${1:field}",
-      "printarea=${1:field}",
+      "startprint=${1:field}\r",
+      "stopprint=${1:field}\r",
+      "printarea=${1:field}\r",
       "inverse",
-      "hideboard",
-      "hidearea=${1:area}",
-      "hideareas={${1:list of areas}}",
-      "hidefile=${1:file}",
-      "hidefiles={${1:list of files}}",
-      "hiderank=${1:rank}",
-      "hideranks={${1:list of ranks}}",
-      "hidefield=${1:field}",
-      "hidefields{${1:list of fields}}",
-      "hidepiece=${1:piece char}",
-      "hidepieces={${1:list of piece chars}}",
-      "hidewhite",
-      "hideblack",
-      "hideall",
-      "showboard",
-      "showarea=${1:area}",
-      "showareas={${1:list of areas}}",
-      "showfile=${1:file}",
-      "showfiles={${1:list of files}}",
-      "showrank=${1:rank}",
-      "showranks={${1:list of ranks}}",
-      "showfield=${1:field}",
-      "showfields={${1:list of fields}}",
-      "showpiece=${1:piece char}",
-      "showpieces={${1:list of piece chars}}",
-      "showwhite",
-      "showblack",
-      "showall",
+      "hideboard\r",
+      "hidearea=${1:area}\r",
+      "hideareas={${1:list of areas}}\r",
+      "hidefile=${1:file}\r",
+      "hidefiles={${1:list of files}}\r",
+      "hiderank=${1:rank}\r",
+      "hideranks={${1:list of ranks}}\r",
+      "hidefield=${1:field}\r",
+      "hidefields{${1:list of fields}}\r",
+      "hidepiece=${1:piece char}\r",
+      "hidepieces={${1:list of piece chars}}\r",
+      "hidewhite\r",
+      "hideblack\r",
+      "hideall\r",
+      "showboard\r",
+      "showarea=${1:area}\r",
+      "showareas={${1:list of areas}}\r",
+      "showfile=${1:file}\r",
+      "showfiles={${1:list of files}}\r",
+      "showrank=${1:rank}\r",
+      "showranks={${1:list of ranks}}\r",
+      "showfield=${1:field}\r",
+      "showfields={${1:list of fields}}\r",
+      "showpiece=${1:piece char}\r",
+      "showpieces={${1:list of piece chars}}\r",
+      "showwhite\r",
+      "showblack\r",
+      "showall\r",
       "pgf",
-      "markboard",
-      "markarea=${1:area}",
-      "markareas={${1:list of areas}}",
-      "markfile=${1:file}",
-      "markfiles={${1:list of files}}",
-      "markrank=${1:rank}",
-      "markranks={${1:list of ranks}}",
-      "markfield=${1:field}",
-      "markfields={${1:list of fields}}",
-      "backboard",
-      "backarea=${1:area}",
-      "backareas={${1:list of areas}}",
-      "backfile=${1:file}",
-      "backfiles={${1:list of files}}",
-      "backrank=${1:rank}",
-      "backranks={${1:list of ranks}}",
-      "backfield=${1:field}",
-      "backfields={${1:list of fields}}",
-      "markregions={${1:list of regions}}",
-      "markregion={${1:list of regions}}",
-      "backregions={${1:list of regions}}",
-      "backregion={${1:list of regions}}",
-      "markmoves={${1:list of moves}}",
-      "markmove={${1:list of moves}}",
-      "backmoves={${1:list of moves}}",
-      "backmove={${1:list of moves}}",
-      "markstyle=${1:style}",
-      "markstyle=[${1:options}]${2:style}",
-      "backstyle=${1:style}",
-      "backstyle=[${1:options}]${2:style}",
-      "pgfstyle=${1:style}",
-      "pgfstyle=[${1:options}]${2:style}",
+      "markboard\r",
+      "markarea=${1:area}\r",
+      "markareas={${1:list of areas}}\r",
+      "markfile=${1:file}\r",
+      "markfiles={${1:list of files}}\r",
+      "markrank=${1:rank}\r",
+      "markranks={${1:list of ranks}}\r",
+      "markfield=${1:field}\r",
+      "markfields={${1:list of fields}}\r",
+      "backboard\r",
+      "backarea=${1:area}\r",
+      "backareas={${1:list of areas}}\r",
+      "backfile=${1:file}\r",
+      "backfiles={${1:list of files}}\r",
+      "backrank=${1:rank}\r",
+      "backranks={${1:list of ranks}}\r",
+      "backfield=${1:field}\r",
+      "backfields={${1:list of fields}}\r",
+      "markregions={${1:list of regions}}\r",
+      "markregion={${1:list of regions}}\r",
+      "backregions={${1:list of regions}}\r",
+      "backregion={${1:list of regions}}\r",
+      "markmoves={${1:list of moves}}\r",
+      "markmove={${1:list of moves}}\r",
+      "backmoves={${1:list of moves}}\r",
+      "backmove={${1:list of moves}}\r",
+      "markstyle=${1:style}\r",
+      "markstyle=[${1:options}]${2:style}\r",
+      "backstyle=${1:style}\r",
+      "backstyle=[${1:options}]${2:style}\r",
+      "pgfstyle=${1:style}\r",
+      "pgfstyle=[${1:options}]${2:style}\r",
       "color=",
       "pgfcolor=",
-      "opacity=${1:factor}",
-      "pgfopacity=${1:factor}",
-      "fillopacity=${1:factor}",
-      "pgffillopacity=${1:factor}",
-      "strokeopacity=${1:factor}",
-      "pgfstrokeopacity=${1:factor}",
+      "opacity=${1:factor}\r",
+      "pgfopacity=${1:factor}\r",
+      "fillopacity=${1:factor}\r",
+      "pgffillopacity=${1:factor}\r",
+      "strokeopacity=${1:factor}\r",
+      "pgfstrokeopacity=${1:factor}\r",
       "padding=",
       "pgfpadding=",
-      "arrow=${1:arrow type}",
-      "pgfarrow=${1:arrow type}",
+      "arrow=${1:arrow type}\r",
+      "pgfarrow=${1:arrow type}\r",
       "shortenstart=",
       "pgfshortenstart=",
       "shortenend=",
@@ -318,39 +430,40 @@
       "cornerarc=",
       "pgfcornerarc=",
       "backcornerarc=",
-      "addpgf=${1:pgf cmds}",
-      "usepgf",
-      "usepgf=${1|back,mark,all,both,none|}",
-      "pgfborder",
-      "pgfborder=${1:area}",
-      "colorbackboard",
-      "colorbackarea=${1:area}",
-      "colorbackareas={${1:list of areas}}",
-      "colorbackfile=${1:file}",
-      "colorbackfiles={${1:list of files}}",
-      "colorbackrank=${1:rank}",
-      "colorbackranks={${1:list of ranks}}",
-      "colorbackfield=${1:field}",
-      "colorbackfields={${1:list of fields}}",
-      "colorwhitebackfields={${1:list of fields}}",
-      "colorblackbackfields={${1:list of fields}}",
-      "clearpgf",
-      "clearbackpgf",
-      "clearmarkpgf",
-      "clip",
-      "clip=",
-      "markclip",
-      "markclip=",
-      "backclip",
-      "backclip=",
-      "trimarea",
-      "trimare=${1:area}",
+      "addpgf=${1:pgf cmds}\r",
+      "usepgf\r",
+      "usepgf=${1|back,mark,all,both,none\r|}",
+      "pgfborder\r",
+      "pgfborder=${1:area}\r",
+      "colorbackboard\r",
+      "colorbackarea=${1:area}\r",
+      "colorbackareas={${1:list of areas}}\r",
+      "colorbackfile=${1:file}\r",
+      "colorbackfiles={${1:list of files}}\r",
+      "colorbackrank=${1:rank}\r",
+      "colorbackranks={${1:list of ranks}}\r",
+      "colorbackfield=${1:field}\r",
+      "colorbackfields={${1:list of fields}}\r",
+      "colorwhitebackfields={${1:list of fields}}\r",
+      "colorblackbackfields={${1:list of fields}}\r",
+      "clearpgf\r",
+      "clearbackpgf\r",
+      "clearmarkpgf\r",
+      "clip\r",
+      "clip=\r",
+      "markclip\r",
+      "markclip=\r",
+      "backclip\r",
+      "backclip=\r",
+      "trimarea\r",
+      "trimare=${1:area}\r",
       "captrimtoprint",
       "trim",
-      "trimtocolor=${1|white,black,false|}",
+      "trimtocolor=${1|white,black,false\r|}",
       "psset",
       "psskak",
-      "text=${1:text}"
+      "text=${1:text}\r"
     ]
-  ]
+  },
+  "args": []
 }

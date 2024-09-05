@@ -1,181 +1,203 @@
 {
-  "includes": {
-    "tikz": [],
-    "pgfopts": [],
-    "tikzlibrarygraphs": [],
-    "tikzlibrarycalc": [],
-    "tikzlibrarydecorations": [],
-    "tikzlibrarydecorations.markings": [],
-    "tikzlibrarydecorations.pathmorphing": [],
-    "tikzlibrarydecorations.pathreplacing": [],
-    "tikzlibraryexternal": [],
-    "tikzlibrarypatterns": [],
-    "tikzlibrarypositioning": [],
-    "tikzlibraryshapes.geometric": []
-  },
-  "macros": {
-    "tikzfeynhandset{}": {
-      "snippet": "tikzfeynhandset{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "feynhand": {},
-    "endfeynhand": {},
-    "vertex": {},
-    "vertex[]": {
-      "snippet": "vertex[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "pgfopts"
     },
-    "propagator": {},
-    "propagator[]": {
-      "snippet": "propagator[${1:options}]",
-      "keyvalindex": 2,
-      "keyvalpos": 0
+    {
+      "name": "tikzlibrarygraphs"
     },
-    "propag": {},
-    "propag[]": {
-      "snippet": "propag[${1:options}]",
-      "keyvalindex": 2,
-      "keyvalpos": 0
+    {
+      "name": "tikzlibrarycalc"
     },
-    "iftikzfeynhandallowemptynode": {},
-    "tikzfeynhandallowemptynodetrue": {},
-    "tikzfeynhandallowemptynodefalse": {},
-    "iftikzfeynhandvertex": {},
-    "tikzfeynhandvertextrue": {},
-    "tikzfeynhandvertexfalse": {},
-    "feynhanddotsize": {},
-    "feynhandblobsize": {},
-    "feynhandlinesize": {},
-    "feynhandarrowsize": {},
-    "feynhandtopsep": {},
-    "feynhandtopsepcolor": {}
-  },
-  "envs": {
-    "feynhand": {}
-  },
-  "options": [],
-  "keyvals": [
-    [
-      "particle",
-      "dot",
-      "ringdot",
-      "squaredot",
-      "crossdot",
-      "blob",
-      "ringblob",
-      "grayblob",
-      "NWblob",
-      "NEblob",
-      "%color",
-      "plain",
-      "top",
-      "fer",
-      "fermion",
-      "antfer",
-      "anti fermion",
-      "pho",
-      "photon",
-      "bos",
-      "boson",
-      "chabos",
-      "charged boson",
-      "antbos",
-      "anti charged boson",
-      "glu",
-      "gluon",
-      "sca",
-      "scalar",
-      "chasca",
-      "charged scalar",
-      "antsca",
-      "anti charged scalar",
-      "gho",
-      "ghost",
-      "chagho",
-      "charged ghost",
-      "antgho",
-      "anti charged ghost",
-      "maj",
-      "majorana",
-      "antmaj",
-      "anti majorana",
-      "momentum={${1:[options] label}}",
-      "momentum'={${1:[options] label}}",
-      "reversed momentum={${1:[options] label}}",
-      "reversed momentum'={${1:[options] label}}",
-      "mom={${1:[options] label}}",
-      "mom'={${1:[options] label}}",
-      "revmom={${1:[options] label}}",
-      "revmom'={${1:[options] label}}",
-      "insertion={${1:[options] fraction}}",
-      "slash={${1:[options] fraction}}",
-      "backslash={${1:[options] fraction}}",
-      "with arrow=${1:fraction}",
-      "with reversed arrow=${1:fraction}",
-      "%color"
+    {
+      "name": "tikzlibrarydecorations"
+    },
+    {
+      "name": "tikzlibrarydecorations.markings"
+    },
+    {
+      "name": "tikzlibrarydecorations.pathmorphing"
+    },
+    {
+      "name": "tikzlibrarydecorations.pathreplacing"
+    },
+    {
+      "name": "tikzlibraryexternal"
+    },
+    {
+      "name": "tikzlibrarypatterns"
+    },
+    {
+      "name": "tikzlibrarypositioning"
+    },
+    {
+      "name": "tikzlibraryshapes.geometric"
+    }
+  ],
+  "macros": [
+    {
+      "name": "tikzfeynhandset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\vertex,\\tikzfeynhandset",
+          "\\propagator,\\propag,\\tikzfeynhandset"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "vertex"
+    },
+    {
+      "name": "vertex",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "propagator",
+      "unusual": true
+    },
+    {
+      "name": "propagator",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "propag"
+    },
+    {
+      "name": "propag",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "iftikzfeynhandallowemptynode",
+      "unusual": true
+    },
+    {
+      "name": "tikzfeynhandallowemptynodetrue",
+      "unusual": true
+    },
+    {
+      "name": "tikzfeynhandallowemptynodefalse",
+      "unusual": true
+    },
+    {
+      "name": "iftikzfeynhandvertex",
+      "unusual": true
+    },
+    {
+      "name": "tikzfeynhandvertextrue",
+      "unusual": true
+    },
+    {
+      "name": "tikzfeynhandvertexfalse",
+      "unusual": true
+    },
+    {
+      "name": "feynhanddotsize",
+      "unusual": true
+    },
+    {
+      "name": "feynhandblobsize",
+      "unusual": true
+    },
+    {
+      "name": "feynhandlinesize",
+      "unusual": true
+    },
+    {
+      "name": "feynhandarrowsize",
+      "unusual": true
+    },
+    {
+      "name": "feynhandtopsep",
+      "unusual": true
+    },
+    {
+      "name": "feynhandtopsepcolor",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "feynhand"
+    }
+  ],
+  "keys": {
+    "\\vertex,\\tikzfeynhandset": [
+      "particle\r",
+      "dot\r",
+      "ringdot\r",
+      "squaredot\r",
+      "crossdot\r",
+      "blob\r",
+      "ringblob\r",
+      "grayblob\r",
+      "NWblob\r",
+      "NEblob\r",
+      "%color\r"
     ],
-    [
-      "particle",
-      "dot",
-      "ringdot",
-      "squaredot",
-      "crossdot",
-      "blob",
-      "ringblob",
-      "grayblob",
-      "NWblob",
-      "NEblob",
-      "%color"
-    ],
-    [
-      "plain",
-      "top",
-      "fer",
-      "fermion",
-      "antfer",
-      "anti fermion",
-      "pho",
-      "photon",
-      "bos",
-      "boson",
-      "chabos",
-      "charged boson",
-      "antbos",
-      "anti charged boson",
-      "glu",
-      "gluon",
-      "sca",
-      "scalar",
-      "chasca",
-      "charged scalar",
-      "antsca",
-      "anti charged scalar",
-      "gho",
-      "ghost",
-      "chagho",
-      "charged ghost",
-      "antgho",
-      "anti charged ghost",
-      "maj",
-      "majorana",
-      "antmaj",
-      "anti majorana",
-      "momentum={${1:[options] label}}",
-      "momentum'={${1:[options] label}}",
-      "reversed momentum={${1:[options] label}}",
-      "reversed momentum'={${1:[options] label}}",
-      "mom={${1:[options] label}}",
-      "mom'={${1:[options] label}}",
-      "revmom={${1:[options] label}}",
-      "revmom'={${1:[options] label}}",
-      "insertion={${1:[options] fraction}}",
-      "slash={${1:[options] fraction}}",
-      "backslash={${1:[options] fraction}}",
-      "with arrow=${1:fraction}",
-      "with reversed arrow=${1:fraction}",
-      "%color"
+    "\\propagator,\\propag,\\tikzfeynhandset": [
+      "plain\r",
+      "top\r",
+      "fer\r",
+      "fermion\r",
+      "antfer\r",
+      "anti fermion\r",
+      "pho\r",
+      "photon\r",
+      "bos\r",
+      "boson\r",
+      "chabos\r",
+      "charged boson\r",
+      "antbos\r",
+      "anti charged boson\r",
+      "glu\r",
+      "gluon\r",
+      "sca\r",
+      "scalar\r",
+      "chasca\r",
+      "charged scalar\r",
+      "antsca\r",
+      "anti charged scalar\r",
+      "gho\r",
+      "ghost\r",
+      "chagho\r",
+      "charged ghost\r",
+      "antgho\r",
+      "anti charged ghost\r",
+      "maj\r",
+      "majorana\r",
+      "antmaj\r",
+      "anti majorana\r",
+      "momentum={${1:[options] label}}\r",
+      "momentum'={${1:[options] label}}\r",
+      "reversed momentum={${1:[options] label}}\r",
+      "reversed momentum'={${1:[options] label}}\r",
+      "mom={${1:[options] label}}\r",
+      "mom'={${1:[options] label}}\r",
+      "revmom={${1:[options] label}}\r",
+      "revmom'={${1:[options] label}}\r",
+      "insertion={${1:[options] fraction}}\r",
+      "slash={${1:[options] fraction}}\r",
+      "backslash={${1:[options] fraction}}\r",
+      "with arrow=${1:fraction}\r",
+      "with reversed arrow=${1:fraction}\r",
+      "%color\r"
     ]
-  ]
+  },
+  "args": []
 }

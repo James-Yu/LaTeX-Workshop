@@ -1,50 +1,112 @@
 {
-  "includes": {},
-  "macros": {
-    "StopDoing": {},
-    "setdo{}": {
-      "snippet": "setdo{${1:definition}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "StopDoing",
+      "unusual": true
     },
-    "DoWithAllOf{}{}": {
-      "snippet": "DoWithAllOf{${1:cmd}}{${2:<arg1><arg2>...<${3:argN}>}}"
+    {
+      "name": "setdo",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:definition}}"
+      }
     },
-    "DoDoWithAllOf{}": {
-      "snippet": "DoDoWithAllOf{${1:<arg1><arg2>...<${2:argN}>}}"
+    {
+      "name": "DoWithAllOf",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:<arg1><arg2>...<${3:argN}>}}"
+      }
     },
-    "DoWithAllIn{}{}": {
-      "snippet": "DoWithAllIn{${1:cmd}}{${2:list macro}}"
+    {
+      "name": "DoDoWithAllOf",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:<arg1><arg2>...<${2:argN}>}}"
+      }
     },
-    "DoDoWithAllIn{}": {
-      "snippet": "DoDoWithAllIn{${1:list macro}}"
+    {
+      "name": "DoWithAllIn",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:list macro}}"
+      }
     },
-    "InitializeListMacro{}": {
-      "snippet": "InitializeListMacro{${1:list macro}}"
+    {
+      "name": "DoDoWithAllIn",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:list macro}}"
+      }
     },
-    "ReInitializeListMacro{}": {
-      "snippet": "ReInitializeListMacro{${1:list macro}}"
+    {
+      "name": "InitializeListMacro",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:list macro}}"
+      }
     },
-    "ToListMacroAdd{}{}": {
-      "snippet": "ToListMacroAdd{${1:list macro}}{${2:cmd-or}}"
+    {
+      "name": "ReInitializeListMacro",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:list macro}}"
+      }
     },
-    "TestListMacroForToken{}{}": {
-      "snippet": "TestListMacroForToken{${1:list macro}}{${2:cmd}}"
+    {
+      "name": "ToListMacroAdd",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:list macro}}{${2:cmd-or}}"
+      }
     },
-    "FromTokenListMacroRemove{}{}": {
-      "snippet": "FromTokenListMacroRemove{${1:list macro}}{${2:cmd}}"
+    {
+      "name": "TestListMacroForToken",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:list macro}}{${2:cmd}}"
+      }
     },
-    "InTokenListMacroProvide{}{}": {
-      "snippet": "InTokenListMacroProvide{${1:list macro}}{${2:cmd}}"
+    {
+      "name": "FromTokenListMacroRemove",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:list macro}}{${2:cmd}}"
+      }
     },
-    "filename": {},
-    "fileinfo": {},
-    "filedate": {},
-    "fileversion": {},
-    "ifltx": {},
-    "PushCatMakeLetterAt": {},
-    "PopLetterCatAt": {},
-    "plainpkginfo": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "InTokenListMacroProvide",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:list macro}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "ifltx",
+      "unusual": true
+    },
+    {
+      "name": "PushCatMakeLetterAt",
+      "unusual": true
+    },
+    {
+      "name": "PopLetterCatAt",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

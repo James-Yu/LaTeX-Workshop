@@ -1,19 +1,34 @@
 {
-  "includes": {
-    "array": []
-  },
-  "macros": {
-    "hlineB{}": {
-      "snippet": "hlineB{${1:width}}"
-    },
-    "clineB{}{}": {
-      "snippet": "clineB{${1:i-j}}{${2:width}}"
-    },
-    "hlxB{}": {
-      "snippet": "hlxB{${1:width}}"
+  "deps": [
+    {
+      "name": "array"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "hlineB",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:width}}"
+      }
+    },
+    {
+      "name": "clineB",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:i-j}}{${2:width}}"
+      }
+    },
+    {
+      "name": "hlxB",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:width}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

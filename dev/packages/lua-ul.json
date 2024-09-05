@@ -1,98 +1,191 @@
 {
-  "includes": {
-    "luatex": []
-  },
-  "macros": {
-    "underLine{}": {
-      "snippet": "underLine{${1:text}}"
-    },
-    "underLine[]{}": {
-      "snippet": "underLine[${2:options}]{${1:text}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "highLight{}": {
-      "snippet": "highLight{${1:text}}"
-    },
-    "highLight[]{}": {
-      "snippet": "highLight[${2:color}]{${1:text}}"
-    },
-    "strikeThrough{}": {
-      "snippet": "strikeThrough{${1:text}}"
-    },
-    "strikeThrough[]{}": {
-      "snippet": "strikeThrough[${2:color}]{${1:text}}"
-    },
-    "ul{}": {
-      "snippet": "ul{${1:text}}",
-      "option": "soul"
-    },
-    "ul[]{}": {
-      "snippet": "ul[${2:options}]{${1:text}}",
-      "option": "soul"
-    },
-    "textul{}": {
-      "snippet": "textul{${1:text}}",
-      "option": "soul"
-    },
-    "textul[]{}": {
-      "snippet": "textul[${2:options}]{${1:text}}",
-      "option": "soul"
-    },
-    "hl{}": {
-      "snippet": "hl{${1:text}}",
-      "option": "soul"
-    },
-    "hl[]{}": {
-      "snippet": "hl[${2:color}]{${1:text}}",
-      "option": "soul"
-    },
-    "texthl{}": {
-      "snippet": "texthl{${1:text}}",
-      "option": "soul"
-    },
-    "texthl[]{}": {
-      "snippet": "texthl[${2:color}]{${1:text}}",
-      "option": "soul"
-    },
-    "st{}": {
-      "snippet": "st{${1:text}}",
-      "option": "soul"
-    },
-    "st[]{}": {
-      "snippet": "st[${2:color}]{${1:text}}",
-      "option": "soul"
-    },
-    "textst{}": {
-      "snippet": "textst{${1:text}}",
-      "option": "soul"
-    },
-    "textst[]{}": {
-      "snippet": "textst[${2:color}]{${1:text}}",
-      "option": "soul"
-    },
-    "LuaULSetHighLightColor{}": {
-      "snippet": "LuaULSetHighLightColor{${1:color}}"
-    },
-    "newunderlinetype{}{}": {
-      "snippet": "newunderlinetype{${1:cmd}}{${2:leaderscmd}}"
-    },
-    "newunderlinetype{}[]{}": {
-      "snippet": "newunderlinetype{${1:cmd}}[${2:context specifier}]{${3:leaderscmd}}"
+  "deps": [
+    {
+      "name": "luatex"
     }
-  },
-  "envs": {},
-  "options": [
-    "minimal",
-    "soul"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "underLine",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "underLine",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "highLight",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "highLight",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:color}]{${1:text}}"
+      }
+    },
+    {
+      "name": "strikeThrough",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "strikeThrough",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:color}]{${1:text}}"
+      }
+    },
+    {
+      "name": "ul",
+      "if": "soul",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ul",
+      "if": "soul",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textul",
+      "if": "soul",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textul",
+      "if": "soul",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "hl",
+      "if": "soul",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "hl",
+      "if": "soul",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:color}]{${1:text}}"
+      }
+    },
+    {
+      "name": "texthl",
+      "if": "soul",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "texthl",
+      "if": "soul",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:color}]{${1:text}}"
+      }
+    },
+    {
+      "name": "st",
+      "if": "soul",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "st",
+      "if": "soul",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:color}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textst",
+      "if": "soul",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textst",
+      "if": "soul",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:color}]{${1:text}}"
+      }
+    },
+    {
+      "name": "LuaULSetHighLightColor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "newunderlinetype",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:leaderscmd%definition}}"
+      }
+    },
+    {
+      "name": "newunderlinetype",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:context specifier}]{${2:leaderscmd%definition}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/lua-ul#c": [
+      "minimal\r",
+      "soul\r"
+    ],
+    "\\underLine,\\ul,\\textul": [
       "textcolor",
       "color=",
       "top=",
       "bottom=",
       "height="
     ]
+  },
+  "args": [
+    "\\usepackage/lua-ul#c"
   ]
 }

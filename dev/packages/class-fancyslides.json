@@ -1,91 +1,153 @@
 {
-  "includes": {
-    "class-beamer": [],
-    "framed": [],
-    "tikz": []
-  },
-  "macros": {
-    "fitem{}": {
-      "snippet": "fitem{${1:text}}"
+  "deps": [
+    {
+      "name": "class-beamer"
     },
-    "pitem{}": {
-      "snippet": "pitem{${1:text}}"
+    {
+      "name": "framed"
     },
-    "customtextcol{}": {
-      "snippet": "customtextcol{${1:text}}"
-    },
-    "slogan{}": {
-      "snippet": "slogan{${1:slogan}}"
-    },
-    "fbckg{}": {
-      "snippet": "fbckg{${1:imagefile}}"
-    },
-    "thankyou": {},
-    "pointedsl{}": {
-      "snippet": "pointedsl{${1:slogan}}"
-    },
-    "framedsl{}": {
-      "snippet": "framedsl{${1:slogan}}"
-    },
-    "itemized{}": {
-      "snippet": "itemized{${1:itemize contents}}"
-    },
-    "startingslide": {},
-    "misc{}": {
-      "snippet": "misc{${1:content}}"
-    },
-    "sources{}": {
-      "snippet": "sources{${1:list of resources}}"
+    {
+      "name": "tikz"
     }
-  },
-  "envs": {
-    "mybox": {},
-    "mybox2": {}
-  },
-  "options": [
-    "usepdftitle",
-    "envcountsect",
-    "notheorems",
-    "noamsthm",
-    "compress",
-    "t",
-    "c",
-    "leqno",
-    "fleqn",
-    "handout",
-    "trans",
-    "pdftex",
-    "nativepdf",
-    "pdfmark",
-    "dvips",
-    "dviwindo",
-    "dvipsone",
-    "vtex",
-    "ps2pdf",
-    "ignorenonframetext",
-    "noamssymb",
-    "bigger",
-    "smaller",
-    "8pt",
-    "9pt",
-    "10pt",
-    "11pt",
-    "12pt",
-    "14pt",
-    "17pt",
-    "20pt",
-    "draft",
-    "CJK",
-    "cjk",
-    "onlytextwidth",
-    "pgf={${1:pgf options}}",
-    "hyperref={${1:hyperref options}}",
-    "color={${1:color options}}",
-    "xcolor={${1:xcolor options}}",
-    "ucs",
-    "utf8x",
-    "utf8",
-    "aspectratio=${1|2013,1610,169,149,141,54,43,32,${1:xxxx}|}"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "fitem",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "pitem",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "customtextcol",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "slogan",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:slogan%text}}"
+      }
+    },
+    {
+      "name": "fbckg",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "thankyou"
+    },
+    {
+      "name": "pointedsl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:slogan%text}}"
+      }
+    },
+    {
+      "name": "framedsl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:slogan%text}}"
+      }
+    },
+    {
+      "name": "itemized",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:itemize contents%text}}"
+      }
+    },
+    {
+      "name": "startingslide"
+    },
+    {
+      "name": "misc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content%text}}"
+      }
+    },
+    {
+      "name": "sources",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:list of resources%text}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "mybox",
+      "unusual": true
+    },
+    {
+      "name": "mybox2",
+      "unusual": true
+    }
+  ],
+  "keys": {
+    "\\documentclass/fancyslides#c": [
+      "usepdftitle",
+      "envcountsect\r",
+      "notheorems\r",
+      "noamsthm\r",
+      "compress\r",
+      "t\r",
+      "c\r",
+      "leqno\r",
+      "fleqn\r",
+      "handout\r",
+      "trans\r",
+      "pdftex\r",
+      "nativepdf\r",
+      "pdfmark\r",
+      "dvips\r",
+      "dviwindo\r",
+      "dvipsone\r",
+      "vtex\r",
+      "ps2pdf\r",
+      "ignorenonframetext\r",
+      "noamssymb\r",
+      "bigger\r",
+      "smaller\r",
+      "8pt\r",
+      "9pt\r",
+      "10pt\r",
+      "11pt\r",
+      "12pt\r",
+      "14pt\r",
+      "17pt\r",
+      "20pt\r",
+      "draft\r",
+      "CJK\r",
+      "cjk\r",
+      "onlytextwidth\r",
+      "pgf={${1:pgf options}}\r",
+      "hyperref={${1:hyperref options}}\r",
+      "color={${1:color options}}\r",
+      "xcolor={${1:xcolor options}}\r",
+      "ucs\r",
+      "utf8x\r",
+      "utf8\r",
+      "aspectratio=${2|2013,1610,169,149,141,54,43,32,${1:xxxx}\r|}"
+    ]
+  },
+  "args": [
+    "\\documentclass/fancyslides#c"
+  ]
 }

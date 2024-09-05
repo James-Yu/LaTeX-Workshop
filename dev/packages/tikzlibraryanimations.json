@@ -1,38 +1,56 @@
 {
-  "includes": {},
-  "macros": {
-    "tikzanimateset{}": {
-      "snippet": "tikzanimateset{${1:options}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "pgfanimateattribute",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:attribute%keyvals}}{${2:options}}"
+      }
     },
-    "tikzanimationattributesset{}": {
-      "snippet": "tikzanimationattributesset{${1:options}}"
+    {
+      "name": "pgfanimateattributecode",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:attribute%keyvals}}{${2:code}}"
+      }
     },
-    "tikzanimationdefineattribute{}{}": {
-      "snippet": "tikzanimationdefineattribute{${1:attribute}}{${2:config}}"
+    {
+      "name": "pgfparsetime",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:time}}"
+      }
     },
-    "tikzanimationdefineattributelist{}{}": {
-      "snippet": "tikzanimationdefineattributelist{${1:name}}{${2:list of attributes}}"
+    {
+      "name": "pgfsnapshot",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:time}}"
+      }
     },
-    "tikzanimationattachto{}{}": {
-      "snippet": "tikzanimationattachto{${1:name}}{${2:animation code}}"
-    },
-    "pgfanimateattribute{}{}": {
-      "snippet": "pgfanimateattribute{${1:attribute}}{${2:options}}"
-    },
-    "pgfanimateattributecode{}{}": {
-      "snippet": "pgfanimateattributecode{${1:attribute}}{${2:code}}"
-    },
-    "pgfparsetime{}": {
-      "snippet": "pgfparsetime{${1:time}}"
-    },
-    "pgfsnapshot{}": {
-      "snippet": "pgfsnapshot{${1:time}}"
-    },
-    "pgfsnapshotafter{}": {
-      "snippet": "pgfsnapshotafter{${1:time}}"
+    {
+      "name": "pgfsnapshotafter",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:time}}"
+      }
     }
+  ],
+  "envs": [],
+  "keys": {
+    "\\begin{tikzpicture}#c,\\tikz#c,\\begin{scope}#c,\\tikzset#c,\\scoped#c,\\path#c,\\draw#c,\\fill#c,\\filldraw#c,\\pattern#c,\\shade#c,\\shadedraw#c,\\clip#c,\\node#c,\\coordinate#c,\\nodepart#c,\\pic#c,\\matrix#c,\\calendar#c,\\chainin#c,\\arrow#c,\\arrowreversed#c": [
+      "animate={${1:animation specification}}\r",
+      "make snapshot of=${1:time}\r",
+      "make snapshot after=${1:time}\r",
+      "make snapshot if necessary\r",
+      "make snapshot if necessary=${1:time}\r"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

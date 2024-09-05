@@ -1,62 +1,138 @@
 {
-  "includes": {
-    "refcount": [],
-    "hyperref": [
-      "backref",
-      "backref=true"
+  "deps": [
+    {
+      "name": "refcount"
+    },
+    {
+      "name": "hyperref",
+      "if": "backref"
+    },
+    {
+      "name": "hyperref",
+      "if": "backref=true"
+    }
+  ],
+  "macros": [
+    {
+      "name": "multifootnotemark",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:label}]"
+      }
+    },
+    {
+      "name": "footnotenumber",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:label}]"
+      }
+    },
+    {
+      "name": "multifootnotemarkmanual",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:label}]"
+      }
+    },
+    {
+      "name": "footnotenumbermanual",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:label}]"
+      }
+    },
+    {
+      "name": "multifootnotetext",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:list of labels}]{${1:text}}"
+      }
+    },
+    {
+      "name": "multifootnote",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:list of labels}]{${1:text}}"
+      }
+    },
+    {
+      "name": "multifootnotetextmanual",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:list of labels}]{${1:text}}"
+      }
+    },
+    {
+      "name": "multifootnotemanual",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:list of labels}]{${1:text}}"
+      }
+    },
+    {
+      "name": "multifootnotetag",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:list of tags%specialDef}}"
+      }
+    },
+    {
+      "name": "footnotetag",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:list of tags%specialDef}}"
+      }
+    },
+    {
+      "name": "multifootnotetagmanual",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:list of tags%specialDef}}"
+      }
+    },
+    {
+      "name": "footnotetagmanual",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:list of tags%specialDef}}"
+      }
+    },
+    {
+      "name": "multifootnotetagtext",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:tag%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "multifootnotetagtextmanual",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:tag%keyvals}]{${1:text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/multifootnote#c": [
+      "backref\r",
+      "left align\r",
+      "left indent\r",
+      "left indent=",
+      "manual\r"
+    ],
+    "\\multifootnotetagtext#c,\\multifootnotetagtextmanual#c": [
+      "%multifootnotetag\r"
     ]
   },
-  "macros": {
-    "multifootnotemark[]": {
-      "snippet": "multifootnotemark[${1:label}]"
-    },
-    "footnotenumber[]": {
-      "snippet": "footnotenumber[${1:label}]"
-    },
-    "multifootnotemarkmanual[]": {
-      "snippet": "multifootnotemarkmanual[${1:label}]"
-    },
-    "footnotenumbermanual[]": {
-      "snippet": "footnotenumbermanual[${1:label}]"
-    },
-    "multifootnotetext[]{}": {
-      "snippet": "multifootnotetext[${2:list of labels}]{${1:text}}"
-    },
-    "multifootnote[]{}": {
-      "snippet": "multifootnote[${2:list of labels}]{${1:text}}"
-    },
-    "multifootnotetextmanual[]{}": {
-      "snippet": "multifootnotetextmanual[${2:list of labels}]{${1:text}}"
-    },
-    "multifootnotemanual[]{}": {
-      "snippet": "multifootnotemanual[${2:list of labels}]{${1:text}}"
-    },
-    "multifootnotetag{}": {
-      "snippet": "multifootnotetag{${1:list of tags}}"
-    },
-    "footnotetag{}": {
-      "snippet": "footnotetag{${1:list of tags}}"
-    },
-    "multifootnotetagmanual{}": {
-      "snippet": "multifootnotetagmanual{${1:list of tags}}"
-    },
-    "footnotetagmanual{}": {
-      "snippet": "footnotetagmanual{${1:list of tags}}"
-    },
-    "multifootnotetagtext[]{}": {
-      "snippet": "multifootnotetagtext[${2:tag}]{${1:text}}"
-    },
-    "multifootnotetagtextmanual[]{}": {
-      "snippet": "multifootnotetagtextmanual[${2:tag}]{${1:text}}"
-    }
-  },
-  "envs": {},
-  "options": [
-    "backref",
-    "left align",
-    "left indent",
-    "left indent=",
-    "manual"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/multifootnote#c"
+  ]
 }

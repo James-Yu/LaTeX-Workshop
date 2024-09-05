@@ -1,15 +1,94 @@
 {
-  "includes": {
-    "tikzlibrarydecorations": [],
-    "tikzlibrarydecorations.markings": [],
-    "tikzlibrarydecorations.pathreplacing": [],
-    "etoolbox": []
+  "deps": [
+    {
+      "name": "tikzlibrarydecorations"
+    },
+    {
+      "name": "tikzlibrarydecorations.markings"
+    },
+    {
+      "name": "tikzlibrarydecorations.pathreplacing"
+    },
+    {
+      "name": "etoolbox"
+    }
+  ],
+  "macros": [],
+  "envs": [],
+  "keys": {
+    "\\begin{tikzpicture}#c,\\tikz#c,\\begin{scope}#c,\\scoped#c": [
+      "use optics\r"
+    ],
+    "\\node#c,\\coordinate#c": [
+      "object height=",
+      "object aspect ratio=${1:number}\r",
+      "lens\r",
+      "draw focal points\r",
+      "draw focal points={${1:TikZ keys}}\r",
+      "focal length=",
+      "lens height=${1:number}\r",
+      "lens type=${1|converging,diverging\r|}",
+      "slit\r",
+      "slit height=${1:number}\r",
+      "double slit\r",
+      "slit separation=${1:number}\r",
+      "mirror\r",
+      "mirror decoration separation=${1:number}\r",
+      "mirror decoration amplitude=${1:number}\r",
+      "spherical mirror\r",
+      "spherical mirror angle=${1:degrees}\r",
+      "spherical mirror type=${1|concave,convex\r|}",
+      "concave mirror\r",
+      "convex mirror\r",
+      "spherical mirror orientation=${1|ltr,rtl\r|}",
+      "draw mirror center\r",
+      "draw mirror center={${1:TikZ keys}}\r",
+      "draw mirror focus\r",
+      "draw mirror focus={${1:TikZ keys}}\r",
+      "polarizer\r",
+      "beam splitter\r",
+      "double amici prism\r",
+      "prism height=",
+      "prism apex angle=${1:degrees}\r",
+      "thin optics element\r",
+      "thick optics element\r",
+      "heat filter\r",
+      "screen\r",
+      "diffraction grating\r",
+      "grid\r",
+      "semi-transparent mirror\r",
+      "diaphragm\r",
+      "generic optics io\r",
+      "io body height=",
+      "io body aspect ratio=${1:number}\r",
+      "io aperture width=${1:number}\r",
+      "io aperture height=${1:number}\r",
+      "io aperture shift=${1:number}\r",
+      "io orientation=${1|ltr,rtl\r|}",
+      "sensor line\r",
+      "sensor line height=",
+      "sensor line aspect ratio=${1:number}\r",
+      "sensor line pixel number=${1:number}\r",
+      "sensor line pixel width=${1:number}\r",
+      "sensor line inner ysep=${1:number}\r",
+      "generic sensor\r",
+      "generic lamp\r",
+      "halogen lamp\r",
+      "spectral lamp\r",
+      "laser\r",
+      "laser'\r"
+    ],
+    "\\draw#c": [
+      "->-\r",
+      "-<-\r",
+      "->>-\r",
+      "-<<-\r",
+      "->n={n=${1:〈num〉,〈specs〉}}\r",
+      "-<n={n=${1:〈num〉,〈specs〉}}\r",
+      "put arrow\r",
+      "put arrow={${1:options}}\r",
+      "put coordinate=${1:coord} at ${2:position}\r"
+    ]
   },
-  "macros": {
-    "tikzopticsversiondate": {},
-    "tikzopticsversion": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

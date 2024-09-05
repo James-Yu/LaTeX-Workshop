@@ -1,56 +1,138 @@
 {
-  "includes": {
-    "geometry": []
-  },
-  "macros": {
-    "BottomRule": {},
-    "CopyrightLine[]{}{}": {
-      "snippet": "CopyrightLine[${3:prefix}]{${1:year}}{${2:text}}"
-    },
-    "CopyrightLine{}{}": {
-      "snippet": "CopyrightLine{${1:year}}{${2:text}}"
-    },
-    "copyrightowner{}": {
-      "snippet": "copyrightowner{${1:text}}"
-    },
-    "copyrightyear{}": {
-      "snippet": "copyrightyear{${1:year}}"
-    },
-    "dochead{}": {
-      "snippet": "dochead{${1:text}}"
-    },
-    "dummyjnllogo": {},
-    "dummylogowidth": {},
-    "elslogo": {},
-    "firstpage{}": {
-      "snippet": "firstpage{${1:number}}"
-    },
-    "jid{}": {
-      "snippet": "jid{${1:abbrv}}"
-    },
-    "jnllogo": {},
-    "jnltitlebox": {},
-    "jnltitlelogo{}": {
-      "snippet": "jnltitlelogo{${1:text}}"
-    },
-    "journalname{}": {
-      "snippet": "journalname{${1:text}}"
-    },
-    "lastpage": {},
-    "MaketitleBox": {},
-    "reprintline": {},
-    "runauth{}": {
-      "snippet": "runauth{${1:name}}"
-    },
-    "sdlogo": {},
-    "TopRule": {},
-    "volume{}": {
-      "snippet": "volume{${1:number}}"
+  "deps": [
+    {
+      "name": "geometry"
     }
-  },
-  "envs": {},
-  "options": [
-    "procedia"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "BottomRule",
+      "unusual": true
+    },
+    {
+      "name": "CopyrightLine",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:prefix}]{${1:year}}{${2:text}}"
+      }
+    },
+    {
+      "name": "CopyrightLine",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:year}}{${2:text}}"
+      }
+    },
+    {
+      "name": "copyrightowner",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "copyrightyear",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:year}}"
+      }
+    },
+    {
+      "name": "dochead",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "dummyjnllogo",
+      "unusual": true
+    },
+    {
+      "name": "dummylogowidth",
+      "unusual": true
+    },
+    {
+      "name": "elslogo",
+      "unusual": true
+    },
+    {
+      "name": "firstpage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "jid",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:abbrv}}"
+      }
+    },
+    {
+      "name": "jnllogo",
+      "unusual": true
+    },
+    {
+      "name": "jnltitlebox",
+      "unusual": true
+    },
+    {
+      "name": "jnltitlelogo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "journalname",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "lastpage"
+    },
+    {
+      "name": "MaketitleBox",
+      "unusual": true
+    },
+    {
+      "name": "reprintline",
+      "unusual": true
+    },
+    {
+      "name": "runauth",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "sdlogo",
+      "unusual": true
+    },
+    {
+      "name": "TopRule",
+      "unusual": true
+    },
+    {
+      "name": "volume",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/ecrc#c": [
+      "procedia\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/ecrc#c"
+  ]
 }

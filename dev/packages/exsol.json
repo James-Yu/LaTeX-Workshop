@@ -1,93 +1,102 @@
 {
-  "includes": {
-    "ifmtarg": [],
-    "fancyvrb": [],
-    "ifthen": [],
-    "kvoptions": [],
-    "multicol": [],
-    "varwidth": []
-  },
-  "macros": {
-    "exercisename": {},
-    "exercisesname": {},
-    "seriesname": {},
-    "solutionname": {},
-    "solutionsname": {},
-    "loadSolutions": {},
-    "columncount": {},
-    "exercisesfontsize": {},
-    "exercisestream": {},
-    "exsolexerciseitemindent": {},
-    "exsolexerciselabelsep": {},
-    "exsolexerciselabelwidth": {},
-    "exsolexerciseleftmargin": {},
-    "exsolexerciseparindent": {},
-    "exsolexerciseparsep": {},
-    "exsolexerciserightmargin": {},
-    "exsolexercisesaboveskip": {},
-    "exsolexercisesbelowskip": {},
-    "exsolexercisetopbottomsep": {},
-    "exsubrule": {},
-    "formulacollectionstream": {},
-    "formulastream": {},
-    "ifnoexinchapter": {},
-    "noexercisesinchapter": {},
-    "noexercisesinnextchapter": {},
-    "noexinchapterfalse": {},
-    "noexinchaptertrue": {},
-    "solsubrule": {},
-    "solutionstream": {},
-    "theexercise": {},
-    "theexerciseseries": {}
-  },
-  "envs": {
-    "exercises": {},
-    "exercises[]": {
-      "name": "exercises",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "ifmtarg"
     },
-    "exerciseseries{}": {
-      "name": "exerciseseries",
-      "snippet": "{${1:title}}"
+    {
+      "name": "fancyvrb"
     },
-    "exerciseseries[]{}": {
-      "name": "exerciseseries",
-      "snippet": "[${2:options}]{${1:title}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "ifthen"
     },
-    "exercise": {},
-    "solution": {},
-    "informulacollection": {},
-    "informulacollectiononly": {},
-    "solutionseries{}{}": {
-      "name": "solutionseries",
-      "snippet": "{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "kvoptions"
     },
-    "solutionseries[]{}{}": {
-      "name": "solutionseries",
-      "snippet": "[${3:options}]{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "multicol"
+    },
+    {
+      "name": "varwidth"
     }
-  },
-  "options": [
-    "local",
-    "external",
-    "inline",
-    "nolabels",
-    "exercisesfontsize=${1:fontsize csname}",
-    "exerciseaslist",
-    "copyexercisesinsolutions",
-    "minipage",
-    "usesolutionserieslabels"
   ],
-  "keyvals": [
-    [
-      "columns=${1:integer}",
-      "exsubrule",
-      "solsubrule",
-      "subrule"
+  "macros": [
+    {
+      "name": "exercisename"
+    },
+    {
+      "name": "exercisesname"
+    },
+    {
+      "name": "seriesname"
+    },
+    {
+      "name": "solutionname"
+    },
+    {
+      "name": "solutionsname"
+    },
+    {
+      "name": "loadSolutions"
+    }
+  ],
+  "envs": [
+    {
+      "name": "exercises"
+    },
+    {
+      "name": "exercises",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "exerciseseries",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
+    },
+    {
+      "name": "exerciseseries",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:title%text}}"
+      }
+    },
+    {
+      "name": "exercise"
+    },
+    {
+      "name": "solution"
+    },
+    {
+      "name": "informulacollection"
+    },
+    {
+      "name": "informulacollectiononly"
+    }
+  ],
+  "keys": {
+    "\\usepackage/exsol#c": [
+      "local",
+      "external",
+      "inline",
+      "nolabels",
+      "exercisesfontsize=${1:fontsize csname}\r",
+      "exerciseaslist",
+      "copyexercisesinsolutions",
+      "minipage",
+      "usesolutionserieslabels"
+    ],
+    "\\begin{exercises},\\begin{exerciseseries}": [
+      "columns=${1:integer}\r",
+      "exsubrule\r",
+      "solsubrule\r",
+      "subrule\r"
     ]
+  },
+  "args": [
+    "\\usepackage/exsol#c"
   ]
 }

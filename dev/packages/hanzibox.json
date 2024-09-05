@@ -1,132 +1,205 @@
 {
-  "includes": {
-    "xtemplate": [],
-    "l3keys2e": [],
-    "l3draw": [],
-    "xpinyin": []
-  },
-  "macros": {
-    "hanzibox{}": {
-      "snippet": "hanzibox{${1:character}}"
+  "deps": [
+    {
+      "name": "xtemplate"
     },
-    "hanzibox{}[]": {
-      "snippet": "hanzibox{${1:character}}[${2:pinyin}]"
+    {
+      "name": "l3keys2e"
     },
-    "hanzibox{}[][]": {
-      "snippet": "hanzibox{${1:character}}[${2:pinyin}][${3:translation}]"
+    {
+      "name": "l3draw"
     },
-    "hanzibox[]{}": {
-      "snippet": "hanzibox[${2:options}]{${1:character}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "hanzibox[]{}[]": {
-      "snippet": "hanzibox[${2:options}]{${1:character}}[${3:pinyin}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "hanzibox[]{}[][]": {
-      "snippet": "hanzibox[${2:options}]{${1:character}}[${3:pinyin}][${4:translation}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "hanzibox*{}": {
-      "snippet": "hanzibox*{${1:character}}"
-    },
-    "hanzibox*{}[]": {
-      "snippet": "hanzibox*{${1:character}}[${2:pinyin}]"
-    },
-    "hanzibox*{}[][]": {
-      "snippet": "hanzibox*{${1:character}}[${2:pinyin}][${3:translation}]"
-    },
-    "hanzibox*[]{}": {
-      "snippet": "hanzibox*[${2:options}]{${1:character}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "hanzibox*[]{}[]": {
-      "snippet": "hanzibox*[${2:options}]{${1:character}}[${3:pinyin}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "hanzibox*[]{}[][]": {
-      "snippet": "hanzibox*[${2:options}]{${1:character}}[${3:pinyin}][${4:translation}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "hanzidialog{}": {
-      "snippet": "hanzidialog{${1:characters}}"
-    },
-    "hanzidialog{}[]": {
-      "snippet": "hanzidialog{${1:characters}}[${2:pinyin}]"
-    },
-    "hanzidialog{}[][]": {
-      "snippet": "hanzidialog{${1:characters}}[${2:pinyin}][${3:translation}]"
-    },
-    "hanzidialog[]{}": {
-      "snippet": "hanzidialog[${2:options}]{${1:characters}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "hanzidialog[]{}[]": {
-      "snippet": "hanzidialog[${2:options}]{${1:characters}}[${3:pinyin}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "hanzidialog[]{}[][]": {
-      "snippet": "hanzidialog[${2:options}]{${1:characters}}[${3:pinyin}][${4:translation}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "writegrid{}": {
-      "snippet": "writegrid{${1:number of rows}}"
-    },
-    "writegrid[]{}": {
-      "snippet": "writegrid[${2:options}]{${1:number of rows}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "hanziboxset{}": {
-      "snippet": "hanziboxset{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "xpinyin"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "basechar=${1:character}",
-      "zihao=${1:font size}",
-      "pinyinf=${1:fontsize command}",
-      "charf=${1:fontsize command}",
-      "tranf=${1:fontsize command}",
-      "frametype=${1|none,十,×,米,口,田,咪|}",
-      "resize=${1|none,real,base|}",
-      "xscale=${1:scale ratio}",
-      "yscale=${1:scale ratio}",
-      "scale=${1:scale ratio}",
+  ],
+  "macros": [
+    {
+      "name": "hanzibox",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:character}}"
+      }
+    },
+    {
+      "name": "hanzibox",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:character}}[${2:pinyin}]"
+      }
+    },
+    {
+      "name": "hanzibox",
+      "arg": {
+        "format": "{}[][]",
+        "snippet": "{${1:character}}[${2:pinyin}][${3:translation}]"
+      }
+    },
+    {
+      "name": "hanzibox",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:character}}"
+      }
+    },
+    {
+      "name": "hanzibox",
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:options%keyvals}]{${1:character}}[${3:pinyin}]"
+      }
+    },
+    {
+      "name": "hanzibox",
+      "arg": {
+        "format": "[]{}[][]",
+        "snippet": "[${2:options%keyvals}]{${1:character}}[${3:pinyin}][${4:translation}]"
+      }
+    },
+    {
+      "name": "hanzibox*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:character}}"
+      }
+    },
+    {
+      "name": "hanzibox*",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:character}}[${2:pinyin}]"
+      }
+    },
+    {
+      "name": "hanzibox*",
+      "arg": {
+        "format": "{}[][]",
+        "snippet": "{${1:character}}[${2:pinyin}][${3:translation}]"
+      }
+    },
+    {
+      "name": "hanzibox*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:character}}"
+      }
+    },
+    {
+      "name": "hanzibox*",
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:options%keyvals}]{${1:character}}[${3:pinyin}]"
+      }
+    },
+    {
+      "name": "hanzibox*",
+      "arg": {
+        "format": "[]{}[][]",
+        "snippet": "[${2:options%keyvals}]{${1:character}}[${3:pinyin}][${4:translation}]"
+      }
+    },
+    {
+      "name": "hanzidialog",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:characters}}"
+      }
+    },
+    {
+      "name": "hanzidialog",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:characters}}[${2:pinyin}]"
+      }
+    },
+    {
+      "name": "hanzidialog",
+      "arg": {
+        "format": "{}[][]",
+        "snippet": "{${1:characters}}[${2:pinyin}][${3:translation}]"
+      }
+    },
+    {
+      "name": "hanzidialog",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:characters}}"
+      }
+    },
+    {
+      "name": "hanzidialog",
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:options%keyvals}]{${1:characters}}[${3:pinyin}]"
+      }
+    },
+    {
+      "name": "hanzidialog",
+      "arg": {
+        "format": "[]{}[][]",
+        "snippet": "[${2:options%keyvals}]{${1:characters}}[${3:pinyin}][${4:translation}]"
+      }
+    },
+    {
+      "name": "writegrid",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number of rows}}"
+      }
+    },
+    {
+      "name": "writegrid",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:number of rows}}"
+      }
+    },
+    {
+      "name": "hanziboxset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\hanzibox,\\hanzibox*,\\hanzidialog,\\writegrid,\\hanziboxset"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\hanzibox,\\hanzibox*,\\hanzidialog,\\writegrid,\\hanziboxset": [
+      "basechar=${1:character}\r",
+      "zihao=${1:font size}\r",
+      "pinyinf=${1:fontsize command}\r",
+      "charf=${1:fontsize command}\r",
+      "tranf=${1:fontsize command}\r",
+      "frametype=${1|none,十,×,米,口,田,咪\r|}",
+      "resize=${1|none,real,base\r|}",
+      "xscale=${1:scale ratio}\r",
+      "yscale=${1:scale ratio}\r",
+      "scale=${1:scale ratio}\r",
       "width=",
       "height=",
       "linewidth=",
-      "dashpattern={${1:dim1,dim2,...}}",
+      "dashpattern={${1:dim1,dim2,...}}\r",
       "framearc=",
-      "framearc*={${1:dim1}}{${2:dim2}}",
+      "framearc*={${1:dim1}}{${2:dim2}}\r",
       "framelinewidth=",
       "pinyinlinewidth=",
       "crosslinewidth=",
-      "crosscolorratio=${1:integer}",
+      "crosscolorratio=${1:integer}\r",
       "framecolor=",
-      "framecolor*={${1:model}}{${2:value}}",
+      "framecolor*={${1:model}}{${2:value}}\r",
       "charcolor=",
-      "charcolor*={${1:model}}{${2:value}}",
+      "charcolor*={${1:model}}{${2:value}}\r",
       "pinyincolor=",
-      "pinyincolor*={${1:model}}{${2:value}}",
+      "pinyincolor*={${1:model}}{${2:value}}\r",
       "trancolor=",
-      "trancolor*={${1:model}}{${2:value}}",
+      "trancolor*={${1:model}}{${2:value}}\r",
       "fillcolor=",
-      "fillcolor*={${1:model}}{${2:value}}",
-      "charstroke=${1|none,solid,dashed,invisible|}",
+      "fillcolor*={${1:model}}{${2:value}}\r",
+      "charstroke=${1|none,solid,dashed,invisible\r|}",
       "initial",
       "vowel",
       "tone",
@@ -134,8 +207,9 @@
       "pinyin",
       "hanzi",
       "tran",
-      "gridsepv=${1:number}",
-      "gridcols=${1:integer}"
+      "gridsepv=${1:number}\r",
+      "gridcols=${1:integer}\r"
     ]
-  ]
+  },
+  "args": []
 }

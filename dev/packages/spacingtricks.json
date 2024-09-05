@@ -1,84 +1,210 @@
 {
-  "includes": {
-    "ifthen": [],
-    "setspace": [],
-    "calc": [],
-    "xspace": [],
-    "centeredline": [],
-    "pifont": [
-      "pifont"
+  "deps": [
+    {
+      "name": "ifthen"
+    },
+    {
+      "name": "setspace"
+    },
+    {
+      "name": "calc"
+    },
+    {
+      "name": "xspace"
+    },
+    {
+      "name": "centeredline"
+    },
+    {
+      "name": "pifont",
+      "if": "pifont"
+    }
+  ],
+  "macros": [
+    {
+      "name": "centered",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "footnotespace",
+      "unusual": true
+    },
+    {
+      "name": "footnoteindent",
+      "unusual": true
+    },
+    {
+      "name": "footnt",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "footnt",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:number}]{${1:text}}"
+      }
+    },
+    {
+      "name": "strutheight",
+      "unusual": true
+    },
+    {
+      "name": "strutdepth",
+      "unusual": true
+    },
+    {
+      "name": "vstrut",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:height}}"
+      }
+    },
+    {
+      "name": "vstrut",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:depth}]{${1:height}}"
+      }
+    },
+    {
+      "name": "cstrut",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:height}}"
+      }
+    },
+    {
+      "name": "parindentlength",
+      "unusual": true
+    },
+    {
+      "name": "bul",
+      "unusual": true
+    },
+    {
+      "name": "dash",
+      "unusual": true
+    },
+    {
+      "name": "ddash",
+      "unusual": true
+    },
+    {
+      "name": "aster",
+      "unusual": true
+    },
+    {
+      "name": "hand",
+      "unusual": true
+    },
+    {
+      "name": "checksymb",
+      "unusual": true
+    },
+    {
+      "name": "arrowsymb",
+      "unusual": true
+    },
+    {
+      "name": "compactlistindent",
+      "unusual": true
+    },
+    {
+      "name": "ie"
+    },
+    {
+      "name": "eg"
+    },
+    {
+      "name": "dualboxes",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:left}}{${2:right}}"
+      }
+    },
+    {
+      "name": "dualboxes",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:pos}]{${1:left}}{${2:right}}"
+      }
+    },
+    {
+      "name": "dualboxes*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:left}}{${2:right}}"
+      }
+    },
+    {
+      "name": "dualboxes*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:pos}]{${1:left}}{${2:right}}"
+      }
+    },
+    {
+      "name": "otherside"
+    },
+    {
+      "name": "juxtopskip",
+      "unusual": true
+    },
+    {
+      "name": "juxbottomskip",
+      "unusual": true
+    },
+    {
+      "name": "juxsepspace",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "indentblock"
+    },
+    {
+      "name": "indentblock",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:length}]"
+      }
+    },
+    {
+      "name": "compactlist"
+    },
+    {
+      "name": "compactlist",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:symbol}]"
+      }
+    },
+    {
+      "name": "juxtapose"
+    },
+    {
+      "name": "juxtapose",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:left-ratio}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/spacingtricks#c": [
+      "pifont\r"
     ]
   },
-  "macros": {
-    "centered{}": {
-      "snippet": "centered{${1:text}}"
-    },
-    "footnotespace": {},
-    "footnoteindent": {},
-    "footnt{}": {
-      "snippet": "footnt{${1:text}}"
-    },
-    "footnt[]{}": {
-      "snippet": "footnt[${2:number}]{${1:text}}"
-    },
-    "strutheight": {},
-    "strutdepth": {},
-    "vstrut{}": {
-      "snippet": "vstrut{${1:height}}"
-    },
-    "vstrut[]{}": {
-      "snippet": "vstrut[${2:depth}]{${1:height}}"
-    },
-    "cstrut{}": {
-      "snippet": "cstrut{${1:height}}"
-    },
-    "parindentlength": {},
-    "bul": {},
-    "dash": {},
-    "ddash": {},
-    "aster": {},
-    "hand": {},
-    "checksymb": {},
-    "arrowsymb": {},
-    "compactlistindent": {},
-    "ie": {},
-    "eg": {},
-    "dualboxes{}{}": {
-      "snippet": "dualboxes{${1:left}}{${2:right}}"
-    },
-    "dualboxes[]{}{}": {
-      "snippet": "dualboxes[${3:pos}]{${1:left}}{${2:right}}"
-    },
-    "dualboxes*{}{}": {
-      "snippet": "dualboxes*{${1:left}}{${2:right}}"
-    },
-    "dualboxes*[]{}{}": {
-      "snippet": "dualboxes*[${3:pos}]{${1:left}}{${2:right}}"
-    },
-    "otherside": {},
-    "juxtopskip": {},
-    "juxbottomskip": {},
-    "juxsepspace": {}
-  },
-  "envs": {
-    "indentblock": {},
-    "indentblock[]": {
-      "name": "indentblock",
-      "snippet": "[${1:length}]"
-    },
-    "compactlist": {},
-    "compactlist[]": {
-      "name": "compactlist",
-      "snippet": "[${1:symbol}]"
-    },
-    "juxtapose": {},
-    "juxtapose[]": {
-      "name": "juxtapose",
-      "snippet": "[${1:left-ratio}]"
-    }
-  },
-  "options": [
-    "pifont"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/spacingtricks#c"
+  ]
 }

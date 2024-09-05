@@ -1,84 +1,118 @@
 {
-  "includes": {
-    "verbatim": [],
-    "graphicx": []
-  },
-  "macros": {
-    "chemobabel{}{}": {
-      "snippet": "chemobabel{${1:imagefile}}{${2:obabel options}}"
+  "deps": [
+    {
+      "name": "verbatim"
     },
-    "chemobabel[]{}{}": {
-      "snippet": "chemobabel[${3:options}]{${1:imagefile}}{${2:obabel options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "chemobabel*{}": {
-      "snippet": "chemobabel*{${1:imagefile}}"
-    },
-    "chemobabel*[]{}": {
-      "snippet": "chemobabel*[${2:options}]{${1:imagefile}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "smilesobabel{}{}": {
-      "snippet": "smilesobabel{${1:SMILES notation}}{${2:obabel options}}"
-    },
-    "smilesobabel[]{}{}": {
-      "snippet": "smilesobabel[${3:options}]{${1:SMILES notation}}{${2:obabel options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "smilesobabel*{}": {
-      "snippet": "smilesobabel*{${1:SMILES notation}}"
-    },
-    "smilesobabel*[]{}": {
-      "snippet": "smilesobabel*[${2:options}]{${1:SMILES notation}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "chemobabelimgdir": {}
-  },
-  "envs": {},
-  "options": [
-    "extract",
-    "pdf",
-    "eps",
-    "inkscape-old",
-    "inkscape",
-    "librsvg",
-    "nocrop"
+    {
+      "name": "graphicx"
+    }
   ],
-  "keyvals": [
-    [
-      "alt={${1:alt text}}",
-      "bb=${1:llx lly urx ury}",
-      "bbllx=",
-      "bblly=",
-      "bburx=",
-      "bbury=",
-      "natwidth=",
-      "natheight=",
+  "macros": [
+    {
+      "name": "chemobabel",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:imagefile}}{${2:obabel options}}"
+      }
+    },
+    {
+      "name": "chemobabel",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:imagefile}}{${2:obabel options}}"
+      }
+    },
+    {
+      "name": "chemobabel*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "chemobabel*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "smilesobabel",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:SMILES notation%definition}}{${2:obabel options}}"
+      }
+    },
+    {
+      "name": "smilesobabel",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:SMILES notation%definition}}{${2:obabel options}}"
+      }
+    },
+    {
+      "name": "smilesobabel*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:SMILES notation%definition}}"
+      }
+    },
+    {
+      "name": "smilesobabel*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:SMILES notation%definition}}"
+      }
+    },
+    {
+      "name": "chemobabelimgdir",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/chemobabel#c": [
+      "extract\r",
+      "pdf\r",
+      "eps\r",
+      "inkscape-old\r",
+      "inkscape\r",
+      "librsvg\r",
+      "nocrop\r"
+    ],
+    "\\chemobabel,\\chemobabel*,\\smilesobabel,\\smilesobabel*": [
+      "alt={${1:alt text}}\r",
+      "bb=${1:llx lly urx ury}\r",
+      "bbllx=\r",
+      "bblly=\r",
+      "bburx=\r",
+      "bbury=\r",
+      "natwidth=\r",
+      "natheight=\r",
       "hiresbb",
-      "pagebox=${1|mediabox,cropbox,bleedbox,trimbox,artbox|}",
-      "viewport=${1:llx lly urx ury}",
-      "trim=${1:llx lly urx ury}",
-      "angle=${1:degrees}",
-      "origin=",
+      "pagebox=${1|mediabox,cropbox,bleedbox,trimbox,artbox\r|}",
+      "viewport=${1:llx lly urx ury}\r",
+      "trim=${1:llx lly urx ury}\r",
+      "angle=${1:degrees}\r",
+      "origin=\r",
       "width=",
       "height=",
       "totalheight=",
       "keepaspectratio",
-      "scale=${1:factor}",
+      "scale=${1:factor}\r",
       "clip",
       "draft",
-      "type=${1:file type}",
-      "ext=${1:file extension}",
-      "read=${1:read-file extension}",
-      "command=",
-      "quiet",
-      "page=${1:page number}",
+      "type=${1:file type}\r",
+      "ext=${1:file extension}\r",
+      "read=${1:read-file extension}\r",
+      "command=\r",
+      "quiet\r",
+      "page=${1:page number}\r",
       "interpolate",
-      "decodearray={${1:color array}}"
+      "decodearray={${1:color array}}\r"
     ]
+  },
+  "args": [
+    "\\usepackage/chemobabel#c"
   ]
 }

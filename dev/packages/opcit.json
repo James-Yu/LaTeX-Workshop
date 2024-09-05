@@ -1,67 +1,144 @@
 {
-  "includes": {
-    "xspace": [],
-    "hyperref": [
-      "hyperref"
+  "deps": [
+    {
+      "name": "xspace"
+    },
+    {
+      "name": "hyperref",
+      "if": "hyperref"
+    }
+  ],
+  "macros": [
+    {
+      "name": "bibcase",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:word}}"
+      }
+    },
+    {
+      "name": "bibhereafter",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:style}}"
+      }
+    },
+    {
+      "name": "biblastnames",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:last names}}"
+      }
+    },
+    {
+      "name": "bibpunctuation",
+      "unusual": true
+    },
+    {
+      "name": "bibref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "cite*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "cited",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keylist}}"
+      }
+    },
+    {
+      "name": "hereafter"
+    },
+    {
+      "name": "idemtext",
+      "unusual": true
+    },
+    {
+      "name": "newBibCommand",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:command}}{${2:footnote style}}{${3:list style}}"
+      }
+    },
+    {
+      "name": "nobibliography",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bib file}}"
+      }
+    },
+    {
+      "name": "opcitends"
+    },
+    {
+      "name": "opcitstart"
+    },
+    {
+      "name": "opcittext",
+      "unusual": true
+    },
+    {
+      "name": "opcitwarning",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:warning%text}}"
+      }
+    },
+    {
+      "name": "QuoteOrNot",
+      "unusual": true
+    },
+    {
+      "name": "resetcites"
+    },
+    {
+      "name": "sameauthors"
+    },
+    {
+      "name": "sameauthorsrule",
+      "unusual": true
+    },
+    {
+      "name": "toomit",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "with",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:field}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/opcit#c": [
+      "custombst\r",
+      "nocustombst\r",
+      "hyperref\r",
+      "nohyperref\r",
+      "omitting\r",
+      "noomitting\r",
+      "idem\r",
+      "noidem\r",
+      "checkidem\r",
+      "nocheckidem\r"
     ]
   },
-  "macros": {
-    "bibcase{}": {
-      "snippet": "bibcase{${1:word}}"
-    },
-    "bibhereafter{}": {
-      "snippet": "bibhereafter{${1:style}}"
-    },
-    "biblastnames{}": {
-      "snippet": "biblastnames{${1:last names}}"
-    },
-    "bibpunctuation": {},
-    "bibref{}": {
-      "snippet": "bibref{${1:bibid}}"
-    },
-    "cite*{}": {
-      "snippet": "cite*{${1:bibid}}"
-    },
-    "cited{}": {
-      "snippet": "cited{${1:keylist}}"
-    },
-    "hereafter": {},
-    "idemtext": {},
-    "newBibCommand{}{}{}": {
-      "snippet": "newBibCommand{${1:command}}{${2:footnote style}}{${3:list style}}"
-    },
-    "nobibliography{}": {
-      "snippet": "nobibliography{${1:bib file}}"
-    },
-    "opcitends": {},
-    "opcitstart": {},
-    "opcittext": {},
-    "opcitwarning{}": {
-      "snippet": "opcitwarning{${1:warning}}"
-    },
-    "QuoteOrNot": {},
-    "resetcites": {},
-    "sameauthors": {},
-    "sameauthorsrule": {},
-    "toomit{}": {
-      "snippet": "toomit{${1:text}}"
-    },
-    "with{}": {
-      "snippet": "with{${1:field}}"
-    }
-  },
-  "envs": {},
-  "options": [
-    "custombst",
-    "nocustombst",
-    "hyperref",
-    "nohyperref",
-    "omitting",
-    "noomitting",
-    "idem",
-    "noidem",
-    "checkidem",
-    "nocheckidem"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/opcit#c"
+  ]
 }

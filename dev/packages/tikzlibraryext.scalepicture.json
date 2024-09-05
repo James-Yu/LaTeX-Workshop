@@ -1,10 +1,33 @@
 {
-  "includes": {},
-  "macros": {
-    "tikzextpicturewidth": {},
-    "tikzextpictureheight": {}
+  "deps": [],
+  "macros": [
+    {
+      "name": "tikzextpicturewidth"
+    },
+    {
+      "name": "tikzextpictureheight"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\begin{tikzpicture}#c": [
+      "save picture size\r",
+      "picture width=",
+      "minimum picture width=",
+      "maximum picture width=",
+      "picture height=",
+      "minimum picture height=",
+      "maximum picture height=",
+      "minimum picture size={${1:width}}{${2:height}}\r",
+      "maximum picture size={${1:width}}{${2:height}}\r",
+      "picture width*=",
+      "minimum picture width*=",
+      "maximum picture width*=",
+      "picture height*=",
+      "minimum picture height*=",
+      "maximum picture height*=",
+      "picture size*={${1:width}}{${2:height}}\r"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

@@ -1,17 +1,29 @@
 {
-  "includes": {
-    "lineno": [],
-    "varioref": []
-  },
-  "macros": {
-    "vpagelineref{}": {
-      "snippet": "vpagelineref{${1:label}}"
+  "deps": [
+    {
+      "name": "lineno"
     },
-    "LineWithPage{}": {
-      "snippet": "LineWithPage{${1:label}}"
+    {
+      "name": "varioref"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "vpagelineref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "LineWithPage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

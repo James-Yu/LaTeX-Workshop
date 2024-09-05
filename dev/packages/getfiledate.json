@@ -1,46 +1,64 @@
 {
-  "includes": {
-    "etextools": [],
-    "ltxnew": [],
-    "xkeyval": [],
-    "xcolor": [],
-    "amssymb": [],
-    "boxedminipage": []
-  },
-  "macros": {
-    "getfiledate{}": {
-      "snippet": "getfiledate{${1:file}}"
+  "deps": [
+    {
+      "name": "etextools"
     },
-    "getfiledate[]{}": {
-      "snippet": "getfiledate[${2:options}]{${1:file}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "ltxnew"
+    },
+    {
+      "name": "xkeyval"
+    },
+    {
+      "name": "xcolor"
+    },
+    {
+      "name": "amssymb"
+    },
+    {
+      "name": "boxedminipage"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "file=",
-      "prefix=",
-      "postfix=",
+  ],
+  "macros": [
+    {
+      "name": "getfiledate",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "getfiledate",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:file}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\getfiledate": [
+      "file=\r",
+      "prefix=\r",
+      "postfix=\r",
       "width=",
       "head=",
       "foot=",
-      "marker=",
+      "marker=\r",
       "markercolor=",
       "filenamecolor=",
       "datecolor=",
       "inlinespace=",
-      "separator=",
+      "separator=\r",
       "sepcolor=",
       "framecolor=",
       "framesep=",
       "framerule=",
-      "align=${1|center,left,right,justified|}",
+      "align=${1|center,left,right,justified\r|}",
       "putprefix",
       "notime",
       "boxed"
     ]
-  ]
+  },
+  "args": []
 }

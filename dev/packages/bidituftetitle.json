@@ -1,27 +1,66 @@
 {
-  "includes": {
-    "biditools": []
-  },
-  "macros": {
-    "maketitlepage": {},
-    "plainauthor": {},
-    "plainpublisher": {},
-    "plaintitle": {},
-    "publisher{}": {
-      "snippet": "publisher{${1:publisher}}"
-    },
-    "publisher[]{}": {
-      "snippet": "publisher[${2:short text}]{${1:publisher}}"
-    },
-    "thanklessauthor": {},
-    "thanklesspublisher": {},
-    "thanklesstitle": {},
-    "thedate": {}
-  },
-  "envs": {},
-  "options": [
-    "titlepage",
-    "notitlepage"
+  "deps": [
+    {
+      "name": "biditools"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "maketitlepage",
+      "unusual": true
+    },
+    {
+      "name": "plainauthor",
+      "unusual": true
+    },
+    {
+      "name": "plainpublisher",
+      "unusual": true
+    },
+    {
+      "name": "plaintitle",
+      "unusual": true
+    },
+    {
+      "name": "publisher",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:publisher}}"
+      }
+    },
+    {
+      "name": "publisher",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short text}]{${1:publisher}}"
+      }
+    },
+    {
+      "name": "thanklessauthor",
+      "unusual": true
+    },
+    {
+      "name": "thanklesspublisher",
+      "unusual": true
+    },
+    {
+      "name": "thanklesstitle",
+      "unusual": true
+    },
+    {
+      "name": "thedate",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/bidituftetitle#c": [
+      "titlepage\r",
+      "notitlepage\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/bidituftetitle#c"
+  ]
 }

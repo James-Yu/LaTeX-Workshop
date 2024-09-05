@@ -1,85 +1,131 @@
 {
-  "includes": {
-    "l3keys2e": [],
-    "calc": [],
-    "fp": [],
-    "ifoddpage": [],
-    "graphics": [],
-    "mparhack": [],
-    "etoolbox": [],
-    "fancyhdr": [],
-    "eso-pic": [
-      "show"
+  "deps": [
+    {
+      "name": "l3keys2e"
+    },
+    {
+      "name": "calc"
+    },
+    {
+      "name": "fp"
+    },
+    {
+      "name": "ifoddpage"
+    },
+    {
+      "name": "graphics"
+    },
+    {
+      "name": "mparhack"
+    },
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "fancyhdr"
+    },
+    {
+      "name": "eso-pic",
+      "if": "show"
+    }
+  ],
+  "macros": [
+    {
+      "name": "NewMarginPage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:marginalgrid}}"
+      }
+    },
+    {
+      "name": "NewMarginPage",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:grid}]{${1:marginalgrid}}"
+      }
+    },
+    {
+      "name": "NewFullPage"
+    },
+    {
+      "name": "OldMarginPage"
+    },
+    {
+      "name": "ResetFlexiPage"
+    },
+    {
+      "name": "IfNoValueOrEmptyTF",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "fleximarginparsep",
+      "unusual": true
+    },
+    {
+      "name": "marginparsepeven",
+      "unusual": true
+    },
+    {
+      "name": "marginparsepodd",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "Landscape"
+    },
+    {
+      "name": "landscape"
+    }
+  ],
+  "keys": {
+    "\\usepackage/flexipage#c": [
+      "binding=",
+      "inner=",
+      "outer=",
+      "top=",
+      "bot=",
+      "marginparsep=",
+      "paperheight=",
+      "paperwidth=",
+      "outerbleed=",
+      "innerbleed=",
+      "grid=${1:number}\r",
+      "marginalgrid=${1:number}\r",
+      "show\r",
+      "NoFixMargin\r",
+      "headsep=",
+      "headheight=",
+      "footskip=",
+      "extrafirstfoot=",
+      "fancyhdrOff\r",
+      "a4paper\r",
+      "a5paper\r",
+      "b4paper\r",
+      "b5paper\r",
+      "c4paper\r",
+      "c5paper\r",
+      "b4jpaper\r",
+      "b5jpaper\r",
+      "letterpaper\r",
+      "legalpaper\r",
+      "executivepaper\r",
+      "10x8paper\r",
+      "US-Trade\r",
+      "UK-B-Format\r",
+      "US-B-Format\r",
+      "UK-Royal\r",
+      "Quarto\r",
+      "Octavo\r",
+      "CrownQuarto\r",
+      "Demi\r"
     ]
   },
-  "macros": {
-    "NewMarginPage{}": {
-      "snippet": "NewMarginPage{${1:marginalgrid}}"
-    },
-    "NewMarginPage[]{}": {
-      "snippet": "NewMarginPage[${2:grid}]{${1:marginalgrid}}"
-    },
-    "NewFullPage": {},
-    "OldMarginPage": {},
-    "ResetFlexiPage": {},
-    "Landscape": {},
-    "endLandscape": {},
-    "landscape": {},
-    "endlandscape": {},
-    "IfNoValueOrEmptyTF{}{}{}": {
-      "snippet": "IfNoValueOrEmptyTF{${1:arg}}{${2:true}}{${3:false}}"
-    },
-    "fleximarginparsep": {},
-    "marginparsepeven": {},
-    "marginparsepodd": {},
-    "patch": {},
-    "patcherr": {},
-    "patchok": {}
-  },
-  "envs": {
-    "Landscape": {},
-    "landscape": {}
-  },
-  "options": [
-    "binding=",
-    "inner=",
-    "outer=",
-    "top=",
-    "bot=",
-    "marginparsep=",
-    "paperheight=",
-    "paperwidth=",
-    "outerbleed=",
-    "innerbleed=",
-    "grid=${1:number}",
-    "marginalgrid=${1:number}",
-    "show",
-    "NoFixMargin",
-    "headsep=",
-    "headheight=",
-    "footskip=",
-    "extrafirstfoot=",
-    "fancyhdrOff",
-    "a4paper",
-    "a5paper",
-    "b4paper",
-    "b5paper",
-    "c4paper",
-    "c5paper",
-    "b4jpaper",
-    "b5jpaper",
-    "letterpaper",
-    "legalpaper",
-    "executivepaper",
-    "10x8paper",
-    "US-Trade",
-    "UK-B-Format",
-    "US-B-Format",
-    "UK-Royal",
-    "Quarto",
-    "Octavo",
-    "CrownQuarto",
-    "Demi"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/flexipage#c"
+  ]
 }

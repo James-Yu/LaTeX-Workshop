@@ -1,41 +1,85 @@
 {
-  "includes": {
-    "kvoptions": [],
-    "ifthen": []
-  },
-  "macros": {
-    "adobecaslonfamily": {},
-    "textadobecaslon{}": {
-      "snippet": "textadobecaslon{${1:text}}"
+  "deps": [
+    {
+      "name": "kvoptions"
     },
-    "sbseries": {},
-    "textsb{}": {
-      "snippet": "textsb{${1:text}}"
-    },
-    "adobecaslonexpert": {},
-    "adobecaslonosf": {},
-    "adobecaslonalternate": {},
-    "adobecaslonlongs": {},
-    "adobecasloneighteenth": {},
-    "adobecaslonswashit": {},
-    "adobecaslonswashcaps": {},
-    "adobecaslonornaments": {}
-  },
-  "envs": {},
-  "options": [
-    "expert",
-    "osf",
-    "swashit",
-    "alternate",
-    "longs",
-    "c18th",
-    "swashlongs",
-    "extraligs",
-    "rmdefault",
-    "normdefault",
-    "scaled=${1:factor}",
-    "bold",
-    "semibold"
+    {
+      "name": "ifthen"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "adobecaslonfamily"
+    },
+    {
+      "name": "textadobecaslon",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "sbseries"
+    },
+    {
+      "name": "textsb",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "adobecaslonexpert",
+      "unusual": true
+    },
+    {
+      "name": "adobecaslonosf",
+      "unusual": true
+    },
+    {
+      "name": "adobecaslonalternate",
+      "unusual": true
+    },
+    {
+      "name": "adobecaslonlongs",
+      "unusual": true
+    },
+    {
+      "name": "adobecasloneighteenth",
+      "unusual": true
+    },
+    {
+      "name": "adobecaslonswashit",
+      "unusual": true
+    },
+    {
+      "name": "adobecaslonswashcaps",
+      "unusual": true
+    },
+    {
+      "name": "adobecaslonornaments",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/adobecaslon#c": [
+      "expert\r",
+      "osf\r",
+      "swashit\r",
+      "alternate\r",
+      "longs\r",
+      "c18th\r",
+      "swashlongs\r",
+      "extraligs",
+      "rmdefault",
+      "normdefault",
+      "scaled=${1:factor}\r",
+      "bold",
+      "semibold"
+    ]
+  },
+  "args": [
+    "\\usepackage/adobecaslon#c"
+  ]
 }

@@ -1,75 +1,211 @@
 {
-  "includes": {
-    "xcolor": [],
-    "float": [],
-    "caption": [],
-    "mdframed": [],
-    "kvoptions": [],
-    "relsize": [],
-    "stringstrings": [],
-    "ifthen": []
+  "deps": [
+    {
+      "name": "xcolor"
+    },
+    {
+      "name": "float"
+    },
+    {
+      "name": "caption"
+    },
+    {
+      "name": "mdframed"
+    },
+    {
+      "name": "kvoptions"
+    },
+    {
+      "name": "relsize"
+    },
+    {
+      "name": "stringstrings"
+    },
+    {
+      "name": "ifthen"
+    }
+  ],
+  "macros": [
+    {
+      "name": "shchange",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:key%keyvals}}{${2:value}}",
+        "keys": [
+          "\\shchange,\\shchangecolor",
+          "\\shchange,\\shchangesymbol",
+          "\\shchange"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "shchangecolor",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:color key%keyvals}}{${2:color}}",
+        "keys": [
+          "\\shchange,\\shchangecolor"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "shchangesymbol",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:symbol key%keyvals}}{${2:symbol}}",
+        "keys": [
+          "\\shchange,\\shchangesymbol"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "shpreset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:option%keyvals}}"
+      }
+    },
+    {
+      "name": "shpresetdef",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "shuser",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:user name}}"
+      }
+    },
+    {
+      "name": "shmachine",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:machine name}}"
+      }
+    },
+    {
+      "name": "shline",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:path}}{${2:command}}"
+      }
+    },
+    {
+      "name": "shpath"
+    },
+    {
+      "name": "shoutput",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:shell cmd options}}{${2:text%plain}}"
+      }
+    },
+    {
+      "name": "shlistname",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:sessions list name}}"
+      }
+    },
+    {
+      "name": "shfloatname",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:sessions float name}}"
+      }
+    },
+    {
+      "name": "shread",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:init cmd}}{${2:file}}"
+      }
+    },
+    {
+      "name": "shrun",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:shell command}}"
+      }
+    },
+    {
+      "name": "shautoread",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:init cmd}}{${2:file}}"
+      }
+    },
+    {
+      "name": "shautorun",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:shell command}}"
+      }
+    },
+    {
+      "name": "shautopath",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:true or false}}"
+      }
+    },
+    {
+      "name": "shautoformat",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:true or false}}"
+      }
+    },
+    {
+      "name": "shclearfiles"
+    },
+    {
+      "name": "listofsh"
+    },
+    {
+      "name": "theshlinenumber"
+    }
+  ],
+  "envs": [
+    {
+      "name": "sh"
+    },
+    {
+      "name": "shbox"
+    }
+  ],
+  "keys": {
+    "\\shchange,\\shchangecolor": [
+      "backgroundcolor\r",
+      "usernamecolor\r",
+      "machinenamecolor\r",
+      "indicatorcolor\r",
+      "separatorcolor\r",
+      "pathcolor\r",
+      "optioncolor\r",
+      "textcolor\r"
+    ],
+    "\\shchange,\\shchangesymbol": [
+      "indicatorsymbol\r",
+      "separatorsymbol\r"
+    ],
+    "\\shchange": [
+      "defaultpath=${1:path}\r"
+    ],
+    "\\shpreset#c": [
+      "default\r",
+      "mint\r",
+      "arrows\r",
+      "darkblue\r",
+      "airy\r",
+      "blackwhite\r"
+    ]
   },
-  "macros": {
-    "shchange{}{}": {
-      "snippet": "shchange{${1:key}}{${2:value}}"
-    },
-    "shchangecolor{}{}": {
-      "snippet": "shchangecolor{${1:color key}}{${2:color}}"
-    },
-    "shchangesymbol{}{}": {
-      "snippet": "shchangesymbol{${1:symbol key}}{${2:symbol}}"
-    },
-    "shpreset{}": {
-      "snippet": "shpreset{${1:option}}"
-    },
-    "shpresetdef{}{}": {
-      "snippet": "shpresetdef{${1:name}}{${2:definition}}"
-    },
-    "shuser{}": {
-      "snippet": "shuser{${1:user name}}"
-    },
-    "shmachine{}": {
-      "snippet": "shmachine{${1:machine name}}"
-    },
-    "shline{}{}": {
-      "snippet": "shline{${1:path}}{${2:command}}"
-    },
-    "shpath": {},
-    "shoutput{}{}": {
-      "snippet": "shoutput{${1:shell cmd options}}{${2:text}}"
-    },
-    "shlistname{}": {
-      "snippet": "shlistname{${1:sessions list name}}"
-    },
-    "shfloatname{}": {
-      "snippet": "shfloatname{${1:sessions float name}}"
-    },
-    "shread{}{}": {
-      "snippet": "shread{${1:init cmd}}{${2:file}}"
-    },
-    "shrun{}": {
-      "snippet": "shrun{${1:shell command}}"
-    },
-    "shautoread{}{}": {
-      "snippet": "shautoread{${1:init cmd}}{${2:file}}"
-    },
-    "shautorun{}": {
-      "snippet": "shautorun{${1:shell command}}"
-    },
-    "shautopath{}": {
-      "snippet": "shautopath{${1:true or false}}"
-    },
-    "shautoformat{}": {
-      "snippet": "shautoformat{${1:true or false}}"
-    },
-    "shclearfiles": {},
-    "listofsh": {},
-    "theshlinenumber": {}
-  },
-  "envs": {
-    "sh": {},
-    "shbox": {}
-  },
-  "options": [],
-  "keyvals": []
+  "args": []
 }

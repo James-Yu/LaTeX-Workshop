@@ -1,30 +1,43 @@
 {
-  "includes": {
-    "tikz": [],
-    "pgfopts": [],
-    "tikzlibrarycalc": [],
-    "tikzlibraryexternal": []
-  },
-  "macros": {
-    "wick{}": {
-      "snippet": "wick{${1:arg}}"
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "wick[]{}": {
-      "snippet": "wick[${2:options}]{${1:arg}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "pgfopts"
     },
-    "c": {
-      "detail": "𝑐",
-      "documentation": "MATHEMATICAL ITALIC SMALL C"
+    {
+      "name": "tikzlibrarycalc"
+    },
+    {
+      "name": "tikzlibraryexternal"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "wick",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "wick",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:arg}}"
+      }
+    },
+    {
+      "name": "c"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\wick": [
       "sep=",
       "offset="
     ]
-  ]
+  },
+  "args": []
 }

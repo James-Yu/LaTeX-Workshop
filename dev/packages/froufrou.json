@@ -1,14 +1,32 @@
 {
-  "includes": {},
-  "macros": {
-    "setfroufrou{}": {
-      "snippet": "setfroufrou{${1:ornament}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "setfroufrou",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ornament%keyvals}}"
+      }
     },
-    "froufrou[]": {
-      "snippet": "froufrou[${1:ornament}]"
+    {
+      "name": "froufrou",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:ornament%keyvals}]"
+      }
     }
+  ],
+  "envs": [],
+  "keys": {
+    "\\setfroufrou#c,\\froufrou#c": [
+      "fleuron\r",
+      "simplefleuron\r",
+      "asterism\r",
+      "tightasterism\r",
+      "trueasterism\r",
+      "dinkus\r",
+      "closing\r"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

@@ -1,72 +1,133 @@
 {
-  "includes": {
-    "xcolor": [],
-    "newtxtt": [],
-    "tikz": [],
-    "tikzlibrarycalc": [],
-    "tikzlibraryshapes": [],
-    "tikzlibraryshadows": [],
-    "tikzlibrarybackgrounds": [],
-    "tikzlibrarybabel": [],
-    "ifthen": [],
-    "xkeyval": [],
-    "mathtools": [],
-    "amssymb": [],
-    "multido": [],
-    "multirow": []
-  },
-  "macros": {
-    "TiC": {},
-    "TiC[]": {
-      "snippet": "TiC[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "xcolor"
     },
-    "Aff": {},
-    "TiRacine": {},
-    "ContrastDown": {},
-    "ContrastUp": {},
-    "Div": {},
-    "TiCMenu{}": {
-      "snippet": "TiCMenu{${1:name}}"
+    {
+      "name": "newtxtt"
     },
-    "TiCMenu[]{}": {
-      "snippet": "TiCMenu[${2:options}]{${1:name}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "tikz"
     },
-    "TiCScreen{}": {
-      "snippet": "TiCScreen{${1:expression}}"
+    {
+      "name": "tikzlibrarycalc"
     },
-    "TiCScreen[]{}": {
-      "snippet": "TiCScreen[${2:options}]{${1:expression}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
+    {
+      "name": "tikzlibraryshapes"
     },
-    "TiCCalc": {},
-    "TiCCalc[]": {
-      "snippet": "TiCCalc[${1:options}]",
-      "keyvalindex": 3,
-      "keyvalpos": 0
+    {
+      "name": "tikzlibraryshadows"
     },
-    "TiCCalc*": {},
-    "TiCCalc*[]": {
-      "snippet": "TiCCalc*[${1:options}]",
-      "keyvalindex": 4,
-      "keyvalpos": 0
+    {
+      "name": "tikzlibrarybackgrounds"
+    },
+    {
+      "name": "tikzlibrarybabel"
+    },
+    {
+      "name": "ifthen"
+    },
+    {
+      "name": "xkeyval"
+    },
+    {
+      "name": "mathtools"
+    },
+    {
+      "name": "amssymb"
+    },
+    {
+      "name": "multido"
+    },
+    {
+      "name": "multirow"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "style=${1|general,number,arrows|}",
-      "rounded=${1|none,left,right|}",
-      "principal=${1:text}",
-      "position=${1:number}",
+  ],
+  "macros": [
+    {
+      "name": "TiC"
+    },
+    {
+      "name": "TiC",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "Aff"
+    },
+    {
+      "name": "TiRacine"
+    },
+    {
+      "name": "ContrastDown"
+    },
+    {
+      "name": "ContrastUp"
+    },
+    {
+      "name": "Div"
+    },
+    {
+      "name": "TiCMenu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "TiCMenu",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:name}}"
+      }
+    },
+    {
+      "name": "TiCScreen",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "TiCScreen",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:expression}}"
+      }
+    },
+    {
+      "name": "TiCCalc"
+    },
+    {
+      "name": "TiCCalc",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "TiCCalc*"
+    },
+    {
+      "name": "TiCCalc*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\TiC": [
+      "style=${1|general,number,arrows\r|}",
+      "rounded=${1|none,left,right\r|}",
+      "principal=${1:text}\r",
+      "position=${1:number}\r",
       "fontsize=",
       "raise=",
-      "second=${1:text}",
+      "second=${1:text}\r",
       "colour text=",
       "color text=",
       "colour second=",
@@ -82,31 +143,32 @@
       "circledown",
       "circleleft",
       "circleright",
-      "name="
+      "name=\r"
     ],
-    [
+    "\\TiCMenu": [
       "size=",
       "select",
       "colour box=",
       "color box=",
-      "text="
+      "text=\r"
     ],
-    [
+    "\\TiCScreen": [
       "colour screen=",
       "color screen=",
-      "screenname=",
-      "width=${1:number}",
-      "height=${1:number}"
+      "screenname=\r",
+      "width=${1:number}\r",
+      "height=${1:number}\r"
     ],
-    [
-      "title=",
+    "\\TiCCalc": [
+      "title=\r",
       "colour calc=",
       "color calc="
     ],
-    [
-      "calcscale=${1:number}",
-      "calcrotate=${1:degrees}",
+    "\\TiCCalc*": [
+      "calcscale=${1:number}\r",
+      "calcrotate=${1:degrees}\r",
       "calcraise="
     ]
-  ]
+  },
+  "args": []
 }

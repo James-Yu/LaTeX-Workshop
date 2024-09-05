@@ -1,40 +1,68 @@
 {
-  "includes": {
-    "ifxetex": [],
-    "ifluatex": [],
-    "xkeyval": [],
-    "fontenc": [],
-    "fontaxes": [],
-    "mweights": []
-  },
-  "macros": {
-    "liningnums{}": {
-      "snippet": "liningnums{${1:text}}"
+  "deps": [
+    {
+      "name": "ifxetex"
     },
-    "tabularnums{}": {
-      "snippet": "tabularnums{${1:text}}"
+    {
+      "name": "ifluatex"
     },
-    "proportionalnums{}": {
-      "snippet": "proportionalnums{${1:text}}"
+    {
+      "name": "xkeyval"
+    },
+    {
+      "name": "fontenc"
+    },
+    {
+      "name": "fontaxes"
+    },
+    {
+      "name": "mweights"
     }
-  },
-  "envs": {},
-  "options": [
-    "scaled=${1:factor}",
-    "type1",
-    "lining",
-    "nf",
-    "lf",
-    "oldstyle",
-    "osf",
-    "tabular",
-    "t",
-    "proportional",
-    "p",
-    "l",
-    "el",
-    "sb",
-    "h"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "liningnums",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "tabularnums",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "proportionalnums",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/coelacanth#c": [
+      "scaled=${1:factor}\r",
+      "type1\r",
+      "lining\r",
+      "nf\r",
+      "lf\r",
+      "oldstyle\r",
+      "osf\r",
+      "tabular\r",
+      "t\r",
+      "proportional\r",
+      "p\r",
+      "l\r",
+      "el\r",
+      "sb\r",
+      "h\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/coelacanth#c"
+  ]
 }

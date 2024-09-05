@@ -1,50 +1,83 @@
 {
-  "includes": {
-    "geometry": [],
-    "mathptmx": [],
-    "helvet": [],
-    "courier": [],
-    "array": [],
-    "titlesec": []
-  },
-  "macros": {
-    "email{}": {
-      "snippet": "email{${1:email}}"
+  "deps": [
+    {
+      "name": "geometry"
     },
-    "callout{}": {
-      "snippet": "callout{${1:text}}"
+    {
+      "name": "mathptmx"
     },
-    "dobeforekey{}{}": {
-      "snippet": "dobeforekey{${1:bibid}}{${2:commands}}"
+    {
+      "name": "helvet"
     },
-    "extrareflistcode": {}
-  },
-  "envs": {
-    "affiliation": {}
-  },
-  "options": [
-    "latex8",
-    "a4paper",
-    "a5paper",
-    "b5paper",
-    "letterpaper",
-    "legalpaper",
-    "executivepaper",
-    "landscape",
-    "10pt",
-    "11pt",
-    "12pt",
-    "oneside",
-    "twoside",
-    "draft",
-    "final",
-    "titlepage",
-    "notitlepage",
-    "onecolumn",
-    "twocolumn",
-    "leqno",
-    "fleqn",
-    "openbib"
+    {
+      "name": "courier"
+    },
+    {
+      "name": "array"
+    },
+    {
+      "name": "titlesec"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "email",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:email%URL}}"
+      }
+    },
+    {
+      "name": "callout",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "dobeforekey",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:bibid}}{${2:commands}}"
+      }
+    },
+    {
+      "name": "extrareflistcode",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "affiliation"
+    }
+  ],
+  "keys": {
+    "\\documentclass/IEEEconf#c": [
+      "latex8\r",
+      "a4paper\r",
+      "a5paper\r",
+      "b5paper\r",
+      "letterpaper\r",
+      "legalpaper\r",
+      "executivepaper\r",
+      "landscape\r",
+      "10pt\r",
+      "11pt\r",
+      "12pt\r",
+      "oneside\r",
+      "twoside\r",
+      "draft\r",
+      "final\r",
+      "titlepage\r",
+      "notitlepage\r",
+      "onecolumn\r",
+      "twocolumn\r",
+      "leqno\r",
+      "fleqn\r",
+      "openbib\r"
+    ]
+  },
+  "args": [
+    "\\documentclass/IEEEconf#c"
+  ]
 }

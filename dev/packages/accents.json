@@ -1,32 +1,57 @@
 {
-  "includes": {},
-  "macros": {
-    "ring{}": {
-      "snippet": "ring{${1:symbol}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "ring",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol}}"
+      }
     },
-    "accentset{}{}": {
-      "snippet": "accentset{${1:accent}}{${2:symbol}}"
+    {
+      "name": "accentset",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:accent}}{${2:symbol}}"
+      }
     },
-    "dddot{}": {
-      "snippet": "dddot{${1:symbol}}"
+    {
+      "name": "dddot",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol}}"
+      }
     },
-    "ddddot{}": {
-      "snippet": "ddddot{${1:symbol}}"
+    {
+      "name": "ddddot",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol}}"
+      }
     },
-    "underaccent{}{}": {
-      "snippet": "underaccent{${1:accent}}{${2:symbol}}"
+    {
+      "name": "underaccent",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:accent}}{${2:symbol}}"
+      }
     },
-    "undertilde{}": {
-      "snippet": "undertilde{${1:symbols}}"
-    },
-    "mathaccentV{}": {
-      "snippet": "mathaccentV{${1:arg}}"
+    {
+      "name": "undertilde",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbols}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [
-    "nonscript",
-    "single"
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/accents#c": [
+      "nonscript\r",
+      "single\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/accents#c"
+  ]
 }

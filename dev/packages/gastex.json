@@ -1,434 +1,448 @@
 {
-  "includes": {
-    "iftex": [],
-    "xkeyval": [],
-    "xifthen": [],
-    "calc": [],
-    "trig": [],
-    "environ": [],
-    "xcolor": [],
-    "graphicx": [],
-    "auto-pst-pdf": []
-  },
-  "macros": {
-    "gasset{}": {
-      "snippet": "gasset{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "iftex"
     },
-    "gsavepicture{}": {
-      "snippet": "gsavepicture{${1:name}}"
+    {
+      "name": "xkeyval"
     },
-    "gusepicture{}": {
-      "snippet": "gusepicture{${1:name}}"
+    {
+      "name": "xifthen"
     },
-    "gusepicture[]{}": {
-      "snippet": "gusepicture[${2:options}]{${1:name}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "calc"
     },
-    "node()(){}": {
-      "snippet": "node(${2:name})(${3:x},${4:y}){${1:label text}}"
+    {
+      "name": "trig"
     },
-    "node[]()(){}": {
-      "snippet": "node[${2:options}](${3:name})(${4:x},${5:y}){${1:label text}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "environ"
     },
-    "rpnode()()(){}": {
-      "snippet": "rpnode(${2:name})(${3:x},${4:y})(${5:n},${6:r}){${1:label text}}"
+    {
+      "name": "xcolor"
     },
-    "rpnode[]()()(){}": {
-      "snippet": "rpnode[${2:options}](${3:name})(${4:x},${5:y})(${6:n},${7:r}){${1:label text}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "graphicx"
     },
-    "imark()": {
-      "snippet": "imark(${1:node name})"
-    },
-    "imark[]()": {
-      "snippet": "imark[${1:options}](${2:node name})",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "fmark()": {
-      "snippet": "fmark(${1:node name})"
-    },
-    "fmark[]()": {
-      "snippet": "fmark[${1:options}](${2:node name})",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "rmark()": {
-      "snippet": "rmark(${1:node name})"
-    },
-    "rmark[]()": {
-      "snippet": "rmark[${1:options}](${2:node name})",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "nodelabel(){}": {
-      "snippet": "nodelabel(${2:node name}){${1:label text}}"
-    },
-    "nodelabel[](){}": {
-      "snippet": "nodelabel[${2:options}](${3:node name}){${1:label text}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "drawedge(){}": {
-      "snippet": "drawedge(${2:startNode},${3:endNode}){${1:label text}}"
-    },
-    "drawedge[](){}": {
-      "snippet": "drawedge[${2:options}](${3:startNode},${4:endNode}){${1:label text}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "drawloop(){}": {
-      "snippet": "drawloop(${2:node name}){${1:label text}}"
-    },
-    "drawloop[](){}": {
-      "snippet": "drawloop[${2:options}](${3:node name}){${1:label text}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "drawqbedge(){}": {
-      "snippet": "drawqbedge(${2:startNode},${3:x},${4:y},${5:endNode}){${1:label text}}"
-    },
-    "drawqbedge[](){}": {
-      "snippet": "drawqbedge[${2:options}](${3:startNode},${4:x},${5:y},${6:endNode}){${1:label text}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "drawqbpedge(){}": {
-      "snippet": "drawqbpedge(${2:startNode},${3:sa},${4:endNode},${5:ea}){${1:label text}}"
-    },
-    "drawqbpedge[](){}": {
-      "snippet": "drawqbpedge[${2:options}](${3:startNode},${4:sa},${5:endNode},${6:ea}){${1:label text}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "drawbcedge(){}": {
-      "snippet": "drawbcedge(${2:startNode},${3:xs},${4:ys},${5:endNode},${6:xe},${7:ye}){${1:label text}}"
-    },
-    "drawbcedge[](){}": {
-      "snippet": "drawbcedge[${2:options}](${3:startNode},${4:xs},${5:ys},${6:endNode},${7:xe},${8:ye}){${1:label text}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "drawcbedge(){}": {
-      "snippet": "drawcbedge(${2:startNode},${3:xs},${4:ys},${5:endNode},${6:xe},${7:ye}){${1:label text}}"
-    },
-    "drawcbedge[](){}": {
-      "snippet": "drawcbedge[${2:options}](${3:startNode},${4:xs},${5:ys},${6:endNode},${7:xe},${8:ye}){${1:label text}}"
-    },
-    "drawbpedge(){}": {
-      "snippet": "drawbpedge(${2:startNode},${3:sa},${4:sr},${5:endNode},${6:ea},${7:er}){${1:label text}}"
-    },
-    "drawbpedge[](){}": {
-      "snippet": "drawbpedge[${2:options}](${3:startNode},${4:sa},${5:sr},${6:endNode},${7:ea},${8:er}){${1:label text}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "drawcbpedge(){}": {
-      "snippet": "drawcbpedge(${2:startNode},${3:sa},${4:sr},${5:endNode},${6:ea},${7:er}){${1:label text}}"
-    },
-    "drawcbpedge[](){}": {
-      "snippet": "drawcbpedge[${2:options}](${3:startNode},${4:sa},${5:sr},${6:endNode},${7:ea},${8:er}){${1:label text}}"
-    },
-    "drawcircle()": {
-      "snippet": "drawcircle(${1:x},${2:y},${3:d})"
-    },
-    "drawcircle[]()": {
-      "snippet": "drawcircle[${1:options}](${2:x},${3:y},${4:d})",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "drawarc()": {
-      "snippet": "drawarc(${1:x},${2:y},${3:r},${4:a},${5:b})"
-    },
-    "drawarc[]()": {
-      "snippet": "drawarc[${1:options}](${2:x},${3:y},${4:r},${5:a},${6:b})",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "drawrect()": {
-      "snippet": "drawrect(${1:x0},${2:y0},${3:x1},${4:y1})"
-    },
-    "drawrect[]()": {
-      "snippet": "drawrect[${1:options}](${2:x0},${3:y0},${4:x1},${5:y1})",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "drawoval()": {
-      "snippet": "drawoval(${1:x},${2:y},${3:w},${4:h},${5:mr})"
-    },
-    "drawoval[]()": {
-      "snippet": "drawoval[${1:options}](${2:x},${3:y},${4:w},${5:h},${6:mr})",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "drawrpolygon()()": {
-      "snippet": "drawrpolygon(${1:x},${2:y})(${3:n},${4:r})"
-    },
-    "drawrpolygon[]()()": {
-      "snippet": "drawrpolygon[${1:options}](${2:x},${3:y})(${4:n},${5:r})",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "drawqbezier()": {
-      "snippet": "drawqbezier(${1:x0},${2:y0},${3:x1},${4:y1},${5:x2},${6:y2})"
-    },
-    "drawqbezier[]()": {
-      "snippet": "drawqbezier[${1:options}](${2:x0},${3:y0},${4:x1},${5:y1},${6:x2},${7:y2})",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "drawcbezier()": {
-      "snippet": "drawcbezier(${1:x0},${2:y0},${3:x1},${4:y1},${5:x2},${6:y2},${7:x3},${8:y3})"
-    },
-    "drawcbezier[]()": {
-      "snippet": "drawcbezier[${1:options}](${2:x0},${3:y0},${4:x1},${5:y1},${6:x2},${7:y2},${8:x3},${9:y3})",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "drawsnake()()": {
-      "snippet": "drawsnake(${1:x1},${2:y1})(${3:x2},${4:y2})"
-    },
-    "drawsnake[]()()": {
-      "snippet": "drawsnake[${1:options}](${2:x1},${3:y1})(${4:x2},${5:y2})",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "ifgastexslide": {},
-    "gastexslidetrue": {},
-    "gastexslidefalse": {},
-    "cbezier": {},
-    "cbeziervector": {},
-    "compatiblegastexun": {},
-    "compatiblepspictpg": {},
-    "drawcbezieredge": {},
-    "drawcbeziertrans": {},
-    "drawcircledvertex": {},
-    "drawcurvededge": {},
-    "drawcurvedtrans": {},
-    "drawdisk": {},
-    "drawfinalstate": {},
-    "drawinitialstate": {},
-    "drawqbezieredge": {},
-    "drawqbeziertrans": {},
-    "drawrepeatedstate": {},
-    "drawstate": {},
-    "drawtrans": {},
-    "drawundirectedcbezieredge": {},
-    "drawundirectedcurvededge": {},
-    "drawundirectededge": {},
-    "drawundirectedloop": {},
-    "drawundirectedqbezieredge": {},
-    "drawvector": {},
-    "drawvertex": {},
-    "letstate": {},
-    "letvertex": {},
-    "pcolor": {},
-    "pictcolor": {},
-    "qbeziervector": {},
-    "setedgedecal": {},
-    "setedgelabelskip": {},
-    "setloopdiam": {},
-    "setmaxbezier": {},
-    "setnbptbezier": {},
-    "setprecision": {},
-    "setprofcurve": {},
-    "setpsdash": {},
-    "setpsgray": {},
-    "setrepeatedstatediam": {},
-    "setstatediam": {},
-    "settransdecal": {},
-    "settranslabelskip": {},
-    "setvertexdiam": {}
-  },
-  "envs": {
-    "gpicture": {},
-    "gpicture(width,height)": {
-      "name": "gpicture",
-      "snippet": "(${1:width},${2:height})"
-    },
-    "gpicture(width,height)(xoffset,yoffset)": {
-      "name": "gpicture",
-      "snippet": "(${1:width},${2:height})(${3:xoffset},${4:yoffset})"
-    },
-    "gpicture[]": {
-      "name": "gpicture",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "gpicture[](width,height)": {
-      "name": "gpicture",
-      "snippet": "[${1:options}](${2:width},${3:height})",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "gpicture[](width,height)(xoffset,yoffset)": {
-      "name": "gpicture",
-      "snippet": "[${1:options}](${2:width},${3:height})(${4:xoffset},${5:yoffset})",
-      "keyvalindex": 2,
-      "keyvalpos": 0
+    {
+      "name": "auto-pst-pdf"
     }
-  },
-  "options": [
-    "slide",
-    "paper",
-    "pdflatex",
-    "recompilepics=${1|auto,true,false|}",
-    "runs=${1:number}",
-    "crop=${1|on,off|}"
   ],
-  "keyvals": [
-    [
-      "AHangle=${1:degrees}",
-      "AHdist=${1:number}",
-      "AHLength=${1:number}",
-      "AHlength=${1:number}",
-      "AHnb=${1:integer}",
-      "arcPie=${1|y,n|}",
-      "arcradius=${1:number}",
-      "ATangle=${1:degrees}",
-      "ATdist=${1:number}",
-      "ATLength=${1:number}",
-      "ATlength=${1:number}",
-      "ATnb=${1:integer}",
-      "curvedepth=${1:number}",
-      "dash={${1:pattern}}{${2:offset}}",
-      "ELdist=${1:number}",
-      "ELdistC=${1|y,n|}",
-      "ELpos=${1:value 0-100}",
-      "ELside=${1|l,r|}",
-      "exo=${1:number}",
-      "ExtNL=${1|y,n|}",
-      "eyo=${1:number}",
-      "fangle=${1:degrees}",
-      "fillcolor=",
-      "fillgray=${1:factor}",
-      "flength=${1:number}",
-      "frame",
-      "iangle=${1:degrees}",
-      "ilength=${1:number}",
-      "linecolor=",
-      "linegray=${1:factor}",
-      "linewidth=${1:number}",
-      "loopangle=${1:degrees}",
-      "loopCW=${1|y,n|}",
-      "loopdiam=${1:number}",
-      "loopheight=${1:number}",
-      "loopwidth=${1:number}",
-      "Nadjust=${1:combination of w,h,n}",
-      "Nadjustdist=${1:number}",
-      "Nfill=${1|y,n|}",
-      "Nframe=${1|y,n|}",
-      "Nh=${1:number}",
-      "NLangle=${1:degrees}",
-      "NLdist=${1:number}",
-      "Nmarks=${1:combination of i,f,r,n}",
-      "Nmr=${1:number}",
-      "Nw=${1:number}",
-      "polyangle=${1:degrees}",
-      "rdist=${1:number}",
-      "snakeh=${1:number}",
-      "snakew=${1:number}",
-      "sxo=${1:number}",
-      "syo=${1:number}"
+  "macros": [
+    {
+      "name": "gasset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\gasset,\\begin{gpicture},\\node,\\rpnode,\\imark,\\fmark,\\rmark,\\nodelabel,\\drawedge,\\drawloop,\\drawqbedge,\\drawqbpedge,\\drawbcedge,\\drawbpedge,\\drawline,\\drawcurve,\\drawpolygon,\\drawccurve,\\drawcircle,\\drawarc,\\drawrect,\\drawoval,\\drawrpolygon,\\drawqbezier,\\drawcbezier,\\drawsnake"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "gsavepicture",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "gusepicture",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "gusepicture",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:name}}"
+      }
+    },
+    {
+      "name": "node(name)(x,y)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label text}}"
+      }
+    },
+    {
+      "name": "node",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:name})(${4:x},${5:y}){${1:label text}}"
+      }
+    },
+    {
+      "name": "rpnode(name)(x,y)(n,r)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label text}}"
+      }
+    },
+    {
+      "name": "rpnode",
+      "arg": {
+        "format": "[]()()(){}",
+        "snippet": "[${2:options%keyvals}](${3:name})(${4:x},${5:y})(${6:n},${7:r}){${1:label text}}"
+      }
+    },
+    {
+      "name": "imark(node name)"
+    },
+    {
+      "name": "imark",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:options%keyvals}](${2:node name})"
+      }
+    },
+    {
+      "name": "fmark(node name)"
+    },
+    {
+      "name": "fmark",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:options%keyvals}](${2:node name})"
+      }
+    },
+    {
+      "name": "rmark(node name)"
+    },
+    {
+      "name": "rmark",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:options%keyvals}](${2:node name})"
+      }
+    },
+    {
+      "name": "nodelabel(node name)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label text}}"
+      }
+    },
+    {
+      "name": "nodelabel",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:options%keyvals}](${3:node name}){${1:label text}}"
+      }
+    },
+    {
+      "name": "drawedge(startNode,endNode)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label text}}"
+      }
+    },
+    {
+      "name": "drawedge",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:options%keyvals}](${3:startNode},${4:endNode}){${1:label text}}"
+      }
+    },
+    {
+      "name": "drawloop(node name)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label text}}"
+      }
+    },
+    {
+      "name": "drawloop",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:options%keyvals}](${3:node name}){${1:label text}}"
+      }
+    },
+    {
+      "name": "drawqbedge(startNode,x,y,endNode)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label text}}"
+      }
+    },
+    {
+      "name": "drawqbedge",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:options%keyvals}](${3:startNode},${4:x},${5:y},${6:endNode}){${1:label text}}"
+      }
+    },
+    {
+      "name": "drawqbpedge(startNode,sa,endNode,ea)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label text}}"
+      }
+    },
+    {
+      "name": "drawqbpedge",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:options%keyvals}](${3:startNode},${4:sa},${5:endNode},${6:ea}){${1:label text}}"
+      }
+    },
+    {
+      "name": "drawbcedge(startNode,xs,ys,endNode,xe,ye)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label text}}"
+      }
+    },
+    {
+      "name": "drawbcedge",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:options%keyvals}](${3:startNode},${4:xs},${5:ys},${6:endNode},${7:xe},${8:ye}){${1:label text}}"
+      }
+    },
+    {
+      "name": "drawbpedge(startNode,sa,sr,endNode,ea,er)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label text}}"
+      }
+    },
+    {
+      "name": "drawbpedge",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:options%keyvals}](${3:startNode},${4:sa},${5:sr},${6:endNode},${7:ea},${8:er}){${1:label text}}"
+      }
+    },
+    {
+      "name": "drawcircle(x,y,d)"
+    },
+    {
+      "name": "drawcircle",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:options%keyvals}](${2:x},${3:y},${4:d})"
+      }
+    },
+    {
+      "name": "drawarc(x,y,r,a,b)"
+    },
+    {
+      "name": "drawarc",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:options%keyvals}](${2:x},${3:y},${4:r},${5:a},${6:b})"
+      }
+    },
+    {
+      "name": "drawrect(x0,y0,x1,y1)"
+    },
+    {
+      "name": "drawrect",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:options%keyvals}](${2:x0},${3:y0},${4:x1},${5:y1})"
+      }
+    },
+    {
+      "name": "drawoval(x,y,w,h,mr)"
+    },
+    {
+      "name": "drawoval",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:options%keyvals}](${2:x},${3:y},${4:w},${5:h},${6:mr})"
+      }
+    },
+    {
+      "name": "drawrpolygon(x,y)(n,r)"
+    },
+    {
+      "name": "drawrpolygon",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "[${1:options%keyvals}](${2:x},${3:y})(${4:n},${5:r})"
+      }
+    },
+    {
+      "name": "drawqbezier(x0,y0,x1,y1,x2,y2)"
+    },
+    {
+      "name": "drawqbezier",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:options%keyvals}](${2:x0},${3:y0},${4:x1},${5:y1},${6:x2},${7:y2})"
+      }
+    },
+    {
+      "name": "drawcbezier(x0,y0,x1,y1,x2,y2,x3,y3)"
+    },
+    {
+      "name": "drawcbezier",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:options%keyvals}](${2:x0},${3:y0},${4:x1},${5:y1},${6:x2},${7:y2},${8:x3},${9:y3})"
+      }
+    },
+    {
+      "name": "drawsnake(x1,y1)(x2,y2)"
+    },
+    {
+      "name": "drawsnake",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "[${1:options%keyvals}](${2:x1},${3:y1})(${4:x2},${5:y2})"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "gpicture"
+    },
+    {
+      "name": "gpicture",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:width},${2:height})"
+      }
+    },
+    {
+      "name": "gpicture",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:width},${2:height})(${3:xoffset},${4:yoffset})"
+      }
+    },
+    {
+      "name": "gpicture",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "gpicture",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:options%keyvals}](${2:width},${3:height})"
+      }
+    },
+    {
+      "name": "gpicture",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "[${1:options%keyvals}](${2:width},${3:height})(${4:xoffset},${5:yoffset})"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/gastex#c": [
+      "slide\r",
+      "paper\r",
+      "pdflatex",
+      "recompilepics=${1|auto,true,false\r|}",
+      "runs=${1:number}\r",
+      "crop=${1|on,off\r|}"
     ],
-    [
+    "\\gusepicture": [
       "frame",
       "innerframe",
       "ignore",
       "showname",
-      "namefont=${1:font commands}",
-      "alt={${1:alt text}}",
-      "bb=${1:llx lly urx ury}",
-      "bbllx=",
-      "bblly=",
-      "bburx=",
-      "bbury=",
-      "natwidth=",
-      "natheight=",
+      "namefont=${1:font commands}\r",
+      "alt={${1:alt text}}\r",
+      "bb=${1:llx lly urx ury}\r",
+      "bbllx=\r",
+      "bblly=\r",
+      "bburx=\r",
+      "bbury=\r",
+      "natwidth=\r",
+      "natheight=\r",
       "hiresbb",
-      "pagebox=${1|mediabox,cropbox,bleedbox,trimbox,artbox|}",
-      "viewport=${1:llx lly urx ury}",
-      "trim=${1:llx lly urx ury}",
-      "angle=${1:degrees}",
-      "origin=",
+      "pagebox=${1|mediabox,cropbox,bleedbox,trimbox,artbox\r|}",
+      "viewport=${1:llx lly urx ury}\r",
+      "trim=${1:llx lly urx ury}\r",
+      "angle=${1:degrees}\r",
+      "origin=\r",
       "width=",
       "height=",
       "totalheight=",
       "keepaspectratio",
-      "scale=${1:factor}",
+      "scale=${1:factor}\r",
       "clip",
       "draft",
-      "type=${1:file type}",
-      "ext=${1:file extension}",
-      "read=${1:read-file extension}",
-      "command=",
-      "quiet",
-      "page=${1:page number}",
+      "type=${1:file type}\r",
+      "ext=${1:file extension}\r",
+      "read=${1:read-file extension}\r",
+      "command=\r",
+      "quiet\r",
+      "page=${1:page number}\r",
       "interpolate",
-      "decodearray={${1:color array}}"
+      "decodearray={${1:color array}}\r"
     ],
-    [
-      "AHangle=${1:degrees}",
-      "AHdist=${1:number}",
-      "AHLength=${1:number}",
-      "AHlength=${1:number}",
-      "AHnb=${1:integer}",
-      "arcPie=${1|y,n|}",
-      "arcradius=${1:number}",
-      "ATangle=${1:degrees}",
-      "ATdist=${1:number}",
-      "ATLength=${1:number}",
-      "ATlength=${1:number}",
-      "ATnb=${1:integer}",
-      "curvedepth=${1:number}",
-      "dash={${1:pattern}}{${2:offset}}",
-      "ELdist=${1:number}",
-      "ELdistC=${1|y,n|}",
-      "ELpos=${1:value 0-100}",
-      "ELside=${1|l,r|}",
-      "exo=${1:number}",
-      "ExtNL=${1|y,n|}",
-      "eyo=${1:number}",
-      "fangle=${1:degrees}",
+    "\\gasset,\\begin{gpicture},\\node,\\rpnode,\\imark,\\fmark,\\rmark,\\nodelabel,\\drawedge,\\drawloop,\\drawqbedge,\\drawqbpedge,\\drawbcedge,\\drawbpedge,\\drawline,\\drawcurve,\\drawpolygon,\\drawccurve,\\drawcircle,\\drawarc,\\drawrect,\\drawoval,\\drawrpolygon,\\drawqbezier,\\drawcbezier,\\drawsnake": [
+      "AHangle=${1:degrees}\r",
+      "AHdist=${1:number}\r",
+      "AHLength=${1:number}\r",
+      "AHlength=${1:number}\r",
+      "AHnb=${1:integer}\r",
+      "arcPie=${1|y,n\r|}",
+      "arcradius=${1:number}\r",
+      "ATangle=${1:degrees}\r",
+      "ATdist=${1:number}\r",
+      "ATLength=${1:number}\r",
+      "ATlength=${1:number}\r",
+      "ATnb=${1:integer}\r",
+      "curvedepth=${1:number}\r",
+      "dash={${1:pattern}}{${2:offset}}\r",
+      "ELdist=${1:number}\r",
+      "ELdistC=${1|y,n\r|}",
+      "ELpos=${1:value 0-100}\r",
+      "ELside=${1|l,r\r|}",
+      "exo=${1:number}\r",
+      "ExtNL=${1|y,n\r|}",
+      "eyo=${1:number}\r",
+      "fangle=${1:degrees}\r",
       "fillcolor=",
-      "fillgray=${1:factor}",
-      "flength=${1:number}",
+      "fillgray=${1:factor}\r",
+      "flength=${1:number}\r",
       "frame",
-      "iangle=${1:degrees}",
-      "ilength=${1:number}",
+      "iangle=${1:degrees}\r",
+      "ilength=${1:number}\r",
       "linecolor=",
-      "linegray=${1:factor}",
-      "linewidth=${1:number}",
-      "loopangle=${1:degrees}",
-      "loopCW=${1|y,n|}",
-      "loopdiam=${1:number}",
-      "loopheight=${1:number}",
-      "loopwidth=${1:number}",
-      "Nadjust=${1:combination of w,h,n}",
-      "Nadjustdist=${1:number}",
-      "Nfill=${1|y,n|}",
-      "Nframe=${1|y,n|}",
-      "Nh=${1:number}",
-      "NLangle=${1:degrees}",
-      "NLdist=${1:number}",
-      "Nmarks=${1:combination of i,f,r,n}",
-      "Nmr=${1:number}",
-      "Nw=${1:number}",
-      "polyangle=${1:degrees}",
-      "rdist=${1:number}",
-      "snakeh=${1:number}",
-      "snakew=${1:number}",
-      "sxo=${1:number}",
-      "syo=${1:number}",
-      "ignore",
-      "name=${1:name}"
+      "linegray=${1:factor}\r",
+      "linewidth=${1:number}\r",
+      "loopangle=${1:degrees}\r",
+      "loopCW=${1|y,n\r|}",
+      "loopdiam=${1:number}\r",
+      "loopheight=${1:number}\r",
+      "loopwidth=${1:number}\r",
+      "Nadjust=${1:combination of w,h,n}\r",
+      "Nadjustdist=${1:number}\r",
+      "Nfill=${1|y,n\r|}",
+      "Nframe=${1|y,n\r|}",
+      "Nh=${1:number}\r",
+      "NLangle=${1:degrees}\r",
+      "NLdist=${1:number}\r",
+      "Nmarks=${1:combination of i,f,r,n}\r",
+      "Nmr=${1:number}\r",
+      "Nw=${1:number}\r",
+      "polyangle=${1:degrees}\r",
+      "rdist=${1:number}\r",
+      "snakeh=${1:number}\r",
+      "snakew=${1:number}\r",
+      "sxo=${1:number}\r",
+      "syo=${1:number}\r"
+    ],
+    "\\begin{gpicture}": [
+      "ignore\r",
+      "name=${1:name}\r"
     ]
+  },
+  "args": [
+    "\\usepackage/gastex#c"
   ]
 }

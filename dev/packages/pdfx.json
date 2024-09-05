@@ -1,399 +1,1033 @@
 {
-  "includes": {
-    "iftex": [],
-    "ifpdf": [],
-    "ifxetex": [],
-    "everyshi": [],
-    "ifluatex": [],
-    "pdftexcmds": [],
-    "xcolor": [],
-    "inputenc": [],
-    "hyperref": [],
-    "colorprofiles": [],
-    "stringenc": [],
-    "ifthen": [],
-    "xmpincl": []
-  },
-  "macros": {
-    "sep": {},
-    "Author{}": {
-      "snippet": "Author{${1:author}}"
+  "deps": [
+    {
+      "name": "iftex"
     },
-    "Title{}": {
-      "snippet": "Title{${1:title}}"
+    {
+      "name": "ifpdf"
     },
-    "Language{}": {
-      "snippet": "Language{${1:language}}"
+    {
+      "name": "ifxetex"
     },
-    "Keywords{}": {
-      "snippet": "Keywords{${1:keywords}}"
+    {
+      "name": "everyshi"
     },
-    "Publisher{}": {
-      "snippet": "Publisher{${1:publisher}}"
+    {
+      "name": "ifluatex"
     },
-    "Subject{}": {
-      "snippet": "Subject{${1:subject}}"
+    {
+      "name": "pdftexcmds"
     },
-    "Copyright{}": {
-      "snippet": "Copyright{${1:statement}}"
+    {
+      "name": "xcolor"
     },
-    "CopyrightURL{}": {
-      "snippet": "CopyrightURL{${1:URL}}"
+    {
+      "name": "inputenc"
     },
-    "Copyrighted{}": {
-      "snippet": "Copyrighted{${1:True or False}}"
+    {
+      "name": "hyperref"
     },
-    "Owner{}": {
-      "snippet": "Owner{${1:owner}}"
+    {
+      "name": "colorprofiles"
     },
-    "CertificateURL{}": {
-      "snippet": "CertificateURL{${1:URL}}"
+    {
+      "name": "stringenc"
     },
-    "Contributor{}": {
-      "snippet": "Contributor{${1:contributor}}"
+    {
+      "name": "ifthen"
     },
-    "Coverage{}": {
-      "snippet": "Coverage{${1:statement}}"
-    },
-    "Date{}": {
-      "snippet": "Date{${1:YYYY-MM-DD}}"
-    },
-    "PublicationType{}": {
-      "snippet": "PublicationType{${1:type}}"
-    },
-    "Relation{}": {
-      "snippet": "Relation{${1:relation}}"
-    },
-    "Source{}": {
-      "snippet": "Source{${1:document}}"
-    },
-    "Doi{}": {
-      "snippet": "Doi{${1:DOI}}"
-    },
-    "ISBN{}": {
-      "snippet": "ISBN{${1:ISBN}}"
-    },
-    "URLlink{}": {
-      "snippet": "URLlink{${1:URL}}"
-    },
-    "Journaltitle{}": {
-      "snippet": "Journaltitle{${1:title}}"
-    },
-    "Journalnumber{}": {
-      "snippet": "Journalnumber{${1:number}}"
-    },
-    "Volume{}": {
-      "snippet": "Volume{${1:volume}}"
-    },
-    "Issue{}": {
-      "snippet": "Issue{${1:issue}}"
-    },
-    "Firstpage{}": {
-      "snippet": "Firstpage{${1:number}}"
-    },
-    "Lastpage{}": {
-      "snippet": "Lastpage{${1:number}}"
-    },
-    "CoverDisplayDate{}": {
-      "snippet": "CoverDisplayDate{${1:YYYY-MM-DD}}"
-    },
-    "CoverDate{}": {
-      "snippet": "CoverDate{${1:YYYY-MM-DD}}"
-    },
-    "AuthoritativeDomain{}": {
-      "snippet": "AuthoritativeDomain{${1:extra names}}"
-    },
-    "Creator{}": {
-      "snippet": "Creator{${1:tool}}"
-    },
-    "CreatorTool{}": {
-      "snippet": "CreatorTool{${1:tool}}"
-    },
-    "Org{}": {
-      "snippet": "Org{${1:organization}}"
-    },
-    "WebStatement{}": {
-      "snippet": "WebStatement{${1:URL}}"
-    },
-    "Advisory{}": {
-      "snippet": "Advisory{${1:statement}}"
-    },
-    "BaseURL{}": {
-      "snippet": "BaseURL{${1:URL}}"
-    },
-    "Identifier{}": {
-      "snippet": "Identifier{${1:identifier}}"
-    },
-    "Nickname{}": {
-      "snippet": "Nickname{${1:nickname}}"
-    },
-    "Thumbnails{}": {
-      "snippet": "Thumbnails{${1:thumbnails}}"
-    },
-    "MMversionID{}": {
-      "snippet": "MMversionID{${1:id}}"
-    },
-    "Producer{}": {
-      "snippet": "Producer{${1:producer}}"
-    },
-    "textLAT{}": {
-      "snippet": "textLAT{${1:text}}"
-    },
-    "textLII{}": {
-      "snippet": "textLII{${1:text}}"
-    },
-    "textLIII{}": {
-      "snippet": "textLIII{${1:text}}"
-    },
-    "textLIV{}": {
-      "snippet": "textLIV{${1:text}}"
-    },
-    "textLTV{}": {
-      "snippet": "textLTV{${1:text}}"
-    },
-    "textLVI{}": {
-      "snippet": "textLVI{${1:text}}"
-    },
-    "textLVII{}": {
-      "snippet": "textLVII{${1:text}}"
-    },
-    "textLIIX{}": {
-      "snippet": "textLIIX{${1:text}}"
-    },
-    "textLIX{}": {
-      "snippet": "textLIX{${1:text}}"
-    },
-    "textKOI{}": {
-      "snippet": "textKOI{${1:text}}"
-    },
-    "textLGR{}": {
-      "snippet": "textLGR{${1:text}}"
-    },
-    "textARM{}": {
-      "snippet": "textARM{${1:text}}"
-    },
-    "textHEB{}": {
-      "snippet": "textHEB{${1:text}}"
-    },
-    "textHEBO{}": {
-      "snippet": "textHEBO{${1:text}}"
-    },
-    "textLF": {},
-    "pdfxEnableCommands{}": {
-      "snippet": "pdfxEnableCommands{${1:commands}}"
-    },
-    "pdfxDisableCommands{}": {
-      "snippet": "pdfxDisableCommands{${1:commands}}"
-    },
-    "setRGBcolorprofile{}{}{}{}": {
-      "snippet": "setRGBcolorprofile{${1:file}}{${2:identifier}}{${3:info string}}{${4:registry URL}}"
-    },
-    "setCMYKcolorprofile{}{}{}{}": {
-      "snippet": "setCMYKcolorprofile{${1:file}}{${2:output intent}}{${3:identifier}}{${4:registry URL}}"
-    },
-    "setEXTERNALprofile{}{}{}{}{}{}{}{}{}": {
-      "snippet": "setEXTERNALprofile{${1:profile}}{${2:output intent}}{${3:id}}{${4:regURL}}{${5:colorspace}}{${6:ICCver}}{${7:providerURL}}{${8:info}}{${9:checksum}}"
-    },
-    "pdfxSetRGBcolorProfileDir{}": {
-      "snippet": "pdfxSetRGBcolorProfileDir{${1:path}}"
-    },
-    "pdfxSetCMYKcolorProfileDir{}": {
-      "snippet": "pdfxSetCMYKcolorProfileDir{${1:path}}"
-    },
-    "MacOSColordir": {},
-    "MacOSLibraryColordir": {},
-    "AdobeMacOSdir": {},
-    "WindowsColordir": {},
-    "showLICRs{}": {
-      "snippet": "showLICRs{${1:arg}}"
-    },
-    "pdfxBookmark{}{}{}": {
-      "snippet": "pdfxBookmark{${1:section cmd}}{${2:title}}{${3:text}}"
-    },
-    "pdfxBookmark[]{}{}{}": {
-      "snippet": "pdfxBookmark[${4:short title}]{${1:section cmd}}{${2:title}}{${3:text}}"
-    },
-    "pdfxBookmarkString{}{}": {
-      "snippet": "pdfxBookmarkString{${1:cmd}}{${2:string}}"
-    },
-    "LIIXUmapTeXnames": {},
-    "LIIXUscriptcommands": {},
-    "LIIXUtipacommands": {},
-    "LIIXUmapmathletterlikes": {},
-    "LIIXUmapmathspaces": {},
-    "ifcyrxmp": {},
-    "ifcyrKOIxmp": {},
-    "ifgrkxmp": {},
-    "ifgrkLGRxmp": {},
-    "ifhebxmp": {},
-    "ifhebHEBxmp": {},
-    "ifarbxmp": {},
-    "ifarmxmp": {},
-    "ifarmSCIxmp": {},
-    "ifdevxmp": {},
-    "ifvnmxmp": {},
-    "iflatEXTxmp": {},
-    "iflatLATxmp": {},
-    "ifipaxmp": {},
-    "ifmathxmp": {},
-    "ifexternalICCprofiles": {},
-    "cyrxmptrue": {},
-    "cyrKOIxmptrue": {},
-    "grkxmptrue": {},
-    "grkLGRxmptrue": {},
-    "hebxmptrue": {},
-    "hebHEBxmptrue": {},
-    "arbxmptrue": {},
-    "armxmptrue": {},
-    "armSCIxmptrue": {},
-    "devxmptrue": {},
-    "vnmxmptrue": {},
-    "latEXTxmptrue": {},
-    "latLATxmptrue": {},
-    "ipaxmptrue": {},
-    "mathxmptrue": {},
-    "externalICCprofilestrue": {},
-    "cyrxmpfalse": {},
-    "cyrKOIxmpfalse": {},
-    "grkxmpfalse": {},
-    "grkLGRxmpfalse": {},
-    "hebxmpfalse": {},
-    "hebHEBxmpfalse": {},
-    "arbxmpfalse": {},
-    "armxmpfalse": {},
-    "armSCIxmpfalse": {},
-    "devxmpfalse": {},
-    "vnmxmpfalse": {},
-    "latEXTxmpfalse": {},
-    "latLATxmpfalse": {},
-    "ipaxmpfalse": {},
-    "mathxmpfalse": {},
-    "externalICCprofilesfalse": {},
-    "LIIXUmaparabicletters": {
-      "option": "allxmp"
-    },
-    "LIIXUmaparmenianletters": {
-      "option": "allxmp"
-    },
-    "LIIXUmapdevaccents": {
-      "option": "allxmp"
-    },
-    "LIIXUmapgreekletters": {
-      "option": "allxmp"
-    },
-    "LIIXUmaphebrewletters": {
-      "option": "allxmp"
-    },
-    "LIIXUmaplatinchars": {
-      "option": "allxmp"
-    },
-    "LIIXUcancelfontswitches": {
-      "option": "allxmp"
-    },
-    "LIIXUmapmathaccents": {
-      "option": "allxmp"
-    },
-    "LIIXUmapisomathgreek": {
-      "option": "allxmp"
-    },
-    "LIIXUmapmatharrowsA": {
-      "option": "allxmp"
-    },
-    "LIIXUmapmathoperatorsA": {
-      "option": "allxmp"
-    },
-    "LIIXUmapmathoperatorsB": {
-      "option": "allxmp"
-    },
-    "LIIXUmapmiscmathsymbolsA": {
-      "option": "allxmp"
-    },
-    "LIIXUmapsupparrowsA": {
-      "option": "allxmp"
-    },
-    "LIIXUmapsupparrowsB": {
-      "option": "allxmp"
-    },
-    "LIIXUmapmiscmathsymbolsB": {
-      "option": "allxmp"
-    },
-    "LIIXUmapsuppmathoperators": {
-      "option": "allxmp"
-    },
-    "LIIXUmapunimathgreek": {
-      "option": "allxmp"
-    },
-    "LIIXUmapmathalphabets": {
-      "option": "allxmp"
-    },
-    "AcrobatMenu": {},
-    "TextCopyright": {},
-    "insertbackfindforwardnavigationsymbol": {},
-    "insertslidenavigationsymbol": {},
-    "mathaccentV": {},
-    "paddingline": {},
-    "pdfinterwordspace": {},
-    "pdfstringdefPreHook": {},
-    "pdfxProducer": {},
-    "pdfxSetColorProfileDir": {},
-    "setCUSTOMcolorprofile": {},
-    "setGRAYcolorprofile": {},
-    "thepdfminorversion": {},
-    "Type": {}
-  },
-  "envs": {},
-  "options": [
-    "a-1a",
-    "a-1b",
-    "a-2a",
-    "a-2b",
-    "a-2u",
-    "a-3a",
-    "a-3b",
-    "a-3u",
-    "e-1",
-    "e",
-    "ua-1",
-    "ua",
-    "vt-1",
-    "vt-2",
-    "vt-2s",
-    "x-1",
-    "x-1a",
-    "x-2",
-    "x-3",
-    "x-4",
-    "x-4p",
-    "x-5g",
-    "x-5n",
-    "x-5pg",
-    "useBOM",
-    "noBOM",
-    "noerr",
-    "pdf12",
-    "pdf13",
-    "pdf14",
-    "pdf15",
-    "pdf16",
-    "pdf17",
-    "pdf20",
-    "nocharset",
-    "usecharset",
-    "latxmp",
-    "armxmp",
-    "cyrxmp",
-    "grkxmp",
-    "hebxmp",
-    "arbxmp",
-    "vnmxmp",
-    "ipaxmp",
-    "mathxmp",
-    "allxmp",
-    "LATxmp",
-    "KOIxmp",
-    "LGRxmp",
-    "AR8xmp",
-    "HEBxmp"
+    {
+      "name": "xmpincl"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "sep",
+      "unusual": true
+    },
+    {
+      "name": "Author",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:author}}"
+      }
+    },
+    {
+      "name": "Title",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
+    },
+    {
+      "name": "Language",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "Keywords",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keywords%text}}"
+      }
+    },
+    {
+      "name": "Publisher",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:publisher}}"
+      }
+    },
+    {
+      "name": "Subject",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:subject%text}}"
+      }
+    },
+    {
+      "name": "Copyright",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:statement%text}}"
+      }
+    },
+    {
+      "name": "CopyrightURL",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:URL}}"
+      }
+    },
+    {
+      "name": "Copyrighted",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:True or False}}"
+      }
+    },
+    {
+      "name": "Owner",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:owner}}"
+      }
+    },
+    {
+      "name": "CertificateURL",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:URL}}"
+      }
+    },
+    {
+      "name": "Contributor",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:contributor}}"
+      }
+    },
+    {
+      "name": "Coverage",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:statement%text}}"
+      }
+    },
+    {
+      "name": "Date",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:YYYY-MM-DD}}"
+      }
+    },
+    {
+      "name": "PublicationType",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:type%keyvals}}"
+      }
+    },
+    {
+      "name": "Relation",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:relation%text}}"
+      }
+    },
+    {
+      "name": "Source",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:document}}"
+      }
+    },
+    {
+      "name": "Doi",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:DOI}}"
+      }
+    },
+    {
+      "name": "ISBN",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ISBN}}"
+      }
+    },
+    {
+      "name": "URLlink",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:URL}}"
+      }
+    },
+    {
+      "name": "Journaltitle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
+    },
+    {
+      "name": "Journalnumber",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "Volume",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:volume}}"
+      }
+    },
+    {
+      "name": "Issue",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:issue}}"
+      }
+    },
+    {
+      "name": "Firstpage",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "Lastpage",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "CoverDisplayDate",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:YYYY-MM-DD}}"
+      }
+    },
+    {
+      "name": "CoverDate",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:YYYY-MM-DD}}"
+      }
+    },
+    {
+      "name": "AuthoritativeDomain",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:extra names}}"
+      }
+    },
+    {
+      "name": "Creator",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tool%text}}"
+      }
+    },
+    {
+      "name": "CreatorTool",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tool%text}}"
+      }
+    },
+    {
+      "name": "Org",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:organization}}"
+      }
+    },
+    {
+      "name": "WebStatement",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:URL}}"
+      }
+    },
+    {
+      "name": "Advisory",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:statement%text}}"
+      }
+    },
+    {
+      "name": "BaseURL",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:URL}}"
+      }
+    },
+    {
+      "name": "Identifier",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:identifier}}"
+      }
+    },
+    {
+      "name": "Nickname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:nickname}}"
+      }
+    },
+    {
+      "name": "Thumbnails",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:thumbnails}}"
+      }
+    },
+    {
+      "name": "MMversionID",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "Producer",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:producer}}"
+      }
+    },
+    {
+      "name": "textLAT",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textLII",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textLIII",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textLIV",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textLTV",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textLVI",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textLVII",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textLIIX",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textLIX",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textKOI",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textLGR",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textARM",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textHEB",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textHEBO",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textLF",
+      "unusual": true
+    },
+    {
+      "name": "pdfxEnableCommands",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:commands}}"
+      }
+    },
+    {
+      "name": "pdfxDisableCommands",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:commands}}"
+      }
+    },
+    {
+      "name": "setRGBcolorprofile",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:file}}{${2:identifier}}{${3:info string}}{${4:registry URL%URL}}"
+      }
+    },
+    {
+      "name": "setCMYKcolorprofile",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:file}}{${2:output intent}}{${3:identifier}}{${4:registry URL%URL}}"
+      }
+    },
+    {
+      "name": "setEXTERNALprofile",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}{}{}{}{}",
+        "snippet": "{${1:profile}}{${2:output intent}}{${3:id}}{${4:regURL%URL}}{${5:colorspace}}{${6:ICCver}}{${7:providerURL%URL}}{${8:info}}{${9:checksum}}"
+      }
+    },
+    {
+      "name": "pdfxSetRGBcolorProfileDir",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:path}}"
+      }
+    },
+    {
+      "name": "pdfxSetCMYKcolorProfileDir",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:path}}"
+      }
+    },
+    {
+      "name": "MacOSColordir",
+      "unusual": true
+    },
+    {
+      "name": "MacOSLibraryColordir",
+      "unusual": true
+    },
+    {
+      "name": "AdobeMacOSdir",
+      "unusual": true
+    },
+    {
+      "name": "WindowsColordir",
+      "unusual": true
+    },
+    {
+      "name": "showLICRs",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "pdfxBookmark",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:section cmd}}{${2:title}}{${3:text}}"
+      }
+    },
+    {
+      "name": "pdfxBookmark",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:short title}]{${1:section cmd}}{${2:title}}{${3:text}}"
+      }
+    },
+    {
+      "name": "pdfxBookmarkString",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:string}}"
+      }
+    },
+    {
+      "name": "LIIXUmapTeXnames"
+    },
+    {
+      "name": "LIIXUscriptcommands"
+    },
+    {
+      "name": "LIIXUtipacommands"
+    },
+    {
+      "name": "LIIXUmapmathletterlikes"
+    },
+    {
+      "name": "LIIXUmapmathspaces"
+    },
+    {
+      "name": "ifcyrxmp",
+      "unusual": true
+    },
+    {
+      "name": "ifcyrKOIxmp",
+      "unusual": true
+    },
+    {
+      "name": "ifgrkxmp",
+      "unusual": true
+    },
+    {
+      "name": "ifgrkLGRxmp",
+      "unusual": true
+    },
+    {
+      "name": "ifhebxmp",
+      "unusual": true
+    },
+    {
+      "name": "ifhebHEBxmp",
+      "unusual": true
+    },
+    {
+      "name": "ifarbxmp",
+      "unusual": true
+    },
+    {
+      "name": "ifarmxmp",
+      "unusual": true
+    },
+    {
+      "name": "ifarmSCIxmp",
+      "unusual": true
+    },
+    {
+      "name": "ifdevxmp",
+      "unusual": true
+    },
+    {
+      "name": "ifvnmxmp",
+      "unusual": true
+    },
+    {
+      "name": "iflatEXTxmp",
+      "unusual": true
+    },
+    {
+      "name": "iflatLATxmp",
+      "unusual": true
+    },
+    {
+      "name": "ifipaxmp",
+      "unusual": true
+    },
+    {
+      "name": "ifmathxmp",
+      "unusual": true
+    },
+    {
+      "name": "ifexternalICCprofiles",
+      "unusual": true
+    },
+    {
+      "name": "cyrxmptrue",
+      "unusual": true
+    },
+    {
+      "name": "cyrKOIxmptrue",
+      "unusual": true
+    },
+    {
+      "name": "grkxmptrue",
+      "unusual": true
+    },
+    {
+      "name": "grkLGRxmptrue",
+      "unusual": true
+    },
+    {
+      "name": "hebxmptrue",
+      "unusual": true
+    },
+    {
+      "name": "hebHEBxmptrue",
+      "unusual": true
+    },
+    {
+      "name": "arbxmptrue",
+      "unusual": true
+    },
+    {
+      "name": "armxmptrue",
+      "unusual": true
+    },
+    {
+      "name": "armSCIxmptrue",
+      "unusual": true
+    },
+    {
+      "name": "devxmptrue",
+      "unusual": true
+    },
+    {
+      "name": "vnmxmptrue",
+      "unusual": true
+    },
+    {
+      "name": "latEXTxmptrue",
+      "unusual": true
+    },
+    {
+      "name": "latLATxmptrue",
+      "unusual": true
+    },
+    {
+      "name": "ipaxmptrue",
+      "unusual": true
+    },
+    {
+      "name": "mathxmptrue",
+      "unusual": true
+    },
+    {
+      "name": "externalICCprofilestrue",
+      "unusual": true
+    },
+    {
+      "name": "cyrxmpfalse",
+      "unusual": true
+    },
+    {
+      "name": "cyrKOIxmpfalse",
+      "unusual": true
+    },
+    {
+      "name": "grkxmpfalse",
+      "unusual": true
+    },
+    {
+      "name": "grkLGRxmpfalse",
+      "unusual": true
+    },
+    {
+      "name": "hebxmpfalse",
+      "unusual": true
+    },
+    {
+      "name": "hebHEBxmpfalse",
+      "unusual": true
+    },
+    {
+      "name": "arbxmpfalse",
+      "unusual": true
+    },
+    {
+      "name": "armxmpfalse",
+      "unusual": true
+    },
+    {
+      "name": "armSCIxmpfalse",
+      "unusual": true
+    },
+    {
+      "name": "devxmpfalse",
+      "unusual": true
+    },
+    {
+      "name": "vnmxmpfalse",
+      "unusual": true
+    },
+    {
+      "name": "latEXTxmpfalse",
+      "unusual": true
+    },
+    {
+      "name": "latLATxmpfalse",
+      "unusual": true
+    },
+    {
+      "name": "ipaxmpfalse",
+      "unusual": true
+    },
+    {
+      "name": "mathxmpfalse",
+      "unusual": true
+    },
+    {
+      "name": "externalICCprofilesfalse",
+      "unusual": true
+    },
+    {
+      "name": "LIIXUmaparabicletters",
+      "if": "arbxmp"
+    },
+    {
+      "name": "LIIXUmaparmenianletters",
+      "if": "armxmp"
+    },
+    {
+      "name": "LIIXUmaparmenianletters",
+      "if": "AR8xmp"
+    },
+    {
+      "name": "LIIXUmapdevaccents",
+      "if": "devxmp"
+    },
+    {
+      "name": "LIIXUmapgreekletters",
+      "if": "grkxmp"
+    },
+    {
+      "name": "LIIXUmaphebrewletters",
+      "if": "hebxmp"
+    },
+    {
+      "name": "LIIXUmaphebrewletters",
+      "if": "HEBxmp"
+    },
+    {
+      "name": "LIIXUmapgreekletters",
+      "if": "LGRxmp"
+    },
+    {
+      "name": "LIIXUmaplatinchars",
+      "if": "LATxmp"
+    },
+    {
+      "name": "LIIXUcancelfontswitches",
+      "if": "LATxmp"
+    },
+    {
+      "name": "LIIXUmapmathaccents",
+      "if": "mathxmp"
+    },
+    {
+      "name": "LIIXUmapisomathgreek",
+      "if": "mathxmp"
+    },
+    {
+      "name": "LIIXUmapmatharrowsA",
+      "if": "mathxmp"
+    },
+    {
+      "name": "LIIXUmapmathoperatorsA",
+      "if": "mathxmp"
+    },
+    {
+      "name": "LIIXUmapmathoperatorsB",
+      "if": "mathxmp"
+    },
+    {
+      "name": "LIIXUmapmiscmathsymbolsA",
+      "if": "mathxmp"
+    },
+    {
+      "name": "LIIXUmapsupparrowsA",
+      "if": "mathxmp"
+    },
+    {
+      "name": "LIIXUmapsupparrowsB",
+      "if": "mathxmp"
+    },
+    {
+      "name": "LIIXUmapmiscmathsymbolsB",
+      "if": "mathxmp"
+    },
+    {
+      "name": "LIIXUmapsuppmathoperators",
+      "if": "mathxmp"
+    },
+    {
+      "name": "LIIXUmapunimathgreek",
+      "if": "mathxmp"
+    },
+    {
+      "name": "LIIXUmapmathalphabets",
+      "if": "mathxmp"
+    },
+    {
+      "name": "LIIXUmaparabicletters",
+      "if": "allxmp"
+    },
+    {
+      "name": "LIIXUmaparmenianletters",
+      "if": "allxmp"
+    },
+    {
+      "name": "LIIXUmaparmenianletters",
+      "if": "allxmp"
+    },
+    {
+      "name": "LIIXUmapdevaccents",
+      "if": "allxmp"
+    },
+    {
+      "name": "LIIXUmapgreekletters",
+      "if": "allxmp"
+    },
+    {
+      "name": "LIIXUmaphebrewletters",
+      "if": "allxmp"
+    },
+    {
+      "name": "LIIXUmaphebrewletters",
+      "if": "allxmp"
+    },
+    {
+      "name": "LIIXUmapgreekletters",
+      "if": "allxmp"
+    },
+    {
+      "name": "LIIXUmaplatinchars",
+      "if": "allxmp"
+    },
+    {
+      "name": "LIIXUcancelfontswitches",
+      "if": "allxmp"
+    },
+    {
+      "name": "LIIXUmapmathaccents",
+      "if": "allxmp"
+    },
+    {
+      "name": "LIIXUmapisomathgreek",
+      "if": "allxmp"
+    },
+    {
+      "name": "LIIXUmapmatharrowsA",
+      "if": "allxmp"
+    },
+    {
+      "name": "LIIXUmapmathoperatorsA",
+      "if": "allxmp"
+    },
+    {
+      "name": "LIIXUmapmathoperatorsB",
+      "if": "allxmp"
+    },
+    {
+      "name": "LIIXUmapmiscmathsymbolsA",
+      "if": "allxmp"
+    },
+    {
+      "name": "LIIXUmapsupparrowsA",
+      "if": "allxmp"
+    },
+    {
+      "name": "LIIXUmapsupparrowsB",
+      "if": "allxmp"
+    },
+    {
+      "name": "LIIXUmapmiscmathsymbolsB",
+      "if": "allxmp"
+    },
+    {
+      "name": "LIIXUmapsuppmathoperators",
+      "if": "allxmp"
+    },
+    {
+      "name": "LIIXUmapunimathgreek",
+      "if": "allxmp"
+    },
+    {
+      "name": "LIIXUmapmathalphabets",
+      "if": "allxmp"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/pdfx#c": [
+      "a-1a\r",
+      "a-1b\r",
+      "a-2a\r",
+      "a-2b\r",
+      "a-2u\r",
+      "a-3a\r",
+      "a-3b\r",
+      "a-3u\r",
+      "e-1\r",
+      "e\r",
+      "ua-1\r",
+      "ua\r",
+      "vt-1\r",
+      "vt-2\r",
+      "vt-2s\r",
+      "x-1\r",
+      "x-1a\r",
+      "x-2\r",
+      "x-3\r",
+      "x-4\r",
+      "x-4p\r",
+      "x-5g\r",
+      "x-5n\r",
+      "x-5pg\r",
+      "useBOM\r",
+      "noBOM\r",
+      "noerr\r",
+      "pdf12\r",
+      "pdf13\r",
+      "pdf14\r",
+      "pdf15\r",
+      "pdf16\r",
+      "pdf17\r",
+      "pdf20\r",
+      "nocharset\r",
+      "usecharset\r",
+      "latxmp\r",
+      "armxmp\r",
+      "cyrxmp\r",
+      "grkxmp\r",
+      "hebxmp\r",
+      "arbxmp\r",
+      "vnmxmp\r",
+      "ipaxmp\r",
+      "mathxmp\r",
+      "allxmp\r",
+      "LATxmp\r",
+      "KOIxmp\r",
+      "LGRxmp\r",
+      "AR8xmp\r",
+      "HEBxmp\r"
+    ],
+    "\\PublicationType#c": [
+      "book\r",
+      "catalog\r",
+      "feed\r",
+      "journal\r",
+      "magazine\r",
+      "manual\r",
+      "newsletter\r",
+      "pamphlet\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/pdfx#c"
+  ]
 }

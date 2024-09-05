@@ -1,19 +1,22 @@
 {
-  "includes": {},
-  "macros": {},
-  "envs": {
-    "polaraxis": {},
-    "polaraxis[]": {
+  "deps": [],
+  "macros": [],
+  "envs": [
+    {
+      "name": "polaraxis"
+    },
+    {
       "name": "polaraxis",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
-      "polar comb"
+  ],
+  "keys": {
+    "\\begin{axis}#c,\\begin{loglogaxis}#c,\\begin{semilogxaxis}#c,\\begin{semilogyaxis}#c,\\addplot#c,\\addplot3#c,\\addplot+#c,\\pgfplotsset#c,\\begin{groupplot}#c,\\nextgroupplot#c,\\begin{polaraxis}#c": [
+      "polar comb\r"
     ]
-  ]
+  },
+  "args": []
 }

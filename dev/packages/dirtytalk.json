@@ -1,19 +1,31 @@
 {
-  "includes": {
-    "kvoptions": [],
-    "ifthen": []
-  },
-  "macros": {
-    "say{}": {
-      "snippet": "say{${1:quotation}}"
+  "deps": [
+    {
+      "name": "kvoptions"
+    },
+    {
+      "name": "ifthen"
     }
-  },
-  "envs": {},
-  "options": [
-    "left=${1:symbol}",
-    "right=${1:symbol}",
-    "leftsub=${1:symbol}",
-    "rightsub=${1:symbol}"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "say",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:quotation%text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/dirtytalk#c": [
+      "left=${1:symbol}\r",
+      "right=${1:symbol}\r",
+      "leftsub=${1:symbol}\r",
+      "rightsub=${1:symbol}\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/dirtytalk#c"
+  ]
 }

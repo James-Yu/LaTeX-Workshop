@@ -1,192 +1,185 @@
 {
-  "includes": {
-    "graphicx": [],
-    "tikz": [],
-    "tikzlibrarycalc": [],
-    "pgffor": [],
-    "listofitems": [],
-    "xstring": [],
-    "simplekv": [],
-    "xinttools": [],
-    "randomlist": [],
-    "pifont": []
-  },
-  "macros": {
-    "AffCarteJeu{}": {
-      "snippet": "AffCarteJeu{${1:carte}}"
+  "deps": [
+    {
+      "name": "graphicx"
     },
-    "AffCarteJeu[]{}": {
-      "snippet": "AffCarteJeu[${2:options}]{${1:carte}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "tikz"
     },
-    "AffCartesJeu{}": {
-      "snippet": "AffCartesJeu{${1:liste de cartes}}"
+    {
+      "name": "tikzlibrarycalc"
     },
-    "AffCartesJeu[]{}": {
-      "snippet": "AffCartesJeu[${2:options}]{${1:liste de cartes}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "pgffor"
     },
-    "MainCartesJeu{}": {
-      "snippet": "MainCartesJeu{${1:liste de cartes}}"
+    {
+      "name": "listofitems"
     },
-    "MainCartesJeu[]{}": {
-      "snippet": "MainCartesJeu[${2:options}]{${1:liste de cartes}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
+    {
+      "name": "xstring"
     },
-    "MainCartesJeuAleatoire{}": {
-      "snippet": "MainCartesJeuAleatoire{${1:nombre de cartes}}"
+    {
+      "name": "simplekv"
     },
-    "MainCartesJeuAleatoire[]{}": {
-      "snippet": "MainCartesJeuAleatoire[${2:options}]{${1:nombre de cartes}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
+    {
+      "name": "xinttools"
     },
-    "AffMiniCarteJeu{}": {
-      "snippet": "AffMiniCarteJeu{${1:carte}}"
+    {
+      "name": "randomlist"
     },
-    "AffMiniCarteJeu[]{}": {
-      "snippet": "AffMiniCarteJeu[${2:options}]{${1:carte}}",
-      "keyvalindex": 4,
-      "keyvalpos": 0
+    {
+      "name": "pifont"
+    }
+  ],
+  "macros": [
+    {
+      "name": "AffCarteJeu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:carte}}"
+      }
     },
-    "MainMiniCartesJeu{}": {
-      "snippet": "MainMiniCartesJeu{${1:liste de cartes}}"
+    {
+      "name": "AffCarteJeu",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:carte}}"
+      }
     },
-    "MainMiniCartesJeu[]{}": {
-      "snippet": "MainMiniCartesJeu[${2:options}]{${1:liste de cartes}}",
-      "keyvalindex": 4,
-      "keyvalpos": 0
+    {
+      "name": "AffCartesJeu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:liste de cartes}}"
+      }
     },
-    "MainMiniCartesJeuAleatoire{}": {
-      "snippet": "MainMiniCartesJeuAleatoire{${1:nombre de cartes}}"
+    {
+      "name": "AffCartesJeu",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:liste de cartes}}"
+      }
     },
-    "MainMiniCartesJeuAleatoire[]{}": {
-      "snippet": "MainMiniCartesJeuAleatoire[${2:options}]{${1:nombre de cartes}}",
-      "keyvalindex": 5,
-      "keyvalpos": 0
+    {
+      "name": "MainCartesJeu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:liste de cartes}}"
+      }
     },
-    "AffCarteJeuAlignementV": {},
-    "AffCarteJeuDecalageX": {},
-    "AffCarteJeuDecalageY": {},
-    "AffCarteJeuHauteur": {},
-    "AffCarteJeuRotation": {},
-    "AffCarteJeuStyle": {},
-    "AffCarteJeuType": {},
-    "CarteDebutRand": {},
-    "CarteMain": {},
-    "CarteMainChoisie": {},
-    "CarteMainPrefixe": {},
-    "CarteMainType": {},
-    "CartePrefixe": {},
-    "CartesJeuBataille": {},
-    "CartesJeuBelote": {},
-    "CartesJeuPoker": {},
-    "CartesJeuRami": {},
-    "CartesJeuTarot": {},
-    "CartesJeuUno": {},
-    "csCoul": {},
-    "csCplt": {},
-    "csFond": {},
-    "csSymb": {},
-    "csVal": {},
-    "DecAngleMain": {},
-    "EchelleCarteDecalage": {},
-    "HauteurGenerique": {},
-    "ListeCartesMain": {},
-    "ListeCartesMainlen": {},
-    "MainAleaAlignementV": {},
-    "MainAleaDecalH": {},
-    "MainAleaDecalV": {},
-    "MainAleaHauteur": {},
-    "MainAleaJeuStyle": {},
-    "MainAleaJeuType": {},
-    "MainAleaRotation": {},
-    "MainAlignementV": {},
-    "MainDecalH": {},
-    "MainDecalV": {},
-    "MainHauteur": {},
-    "MainJeuStyle": {},
-    "MainJeuType": {},
-    "MainOffset": {},
-    "MainRotation": {},
-    "MainSimpleHauteur": {},
-    "MainSimpleJeuStyle": {},
-    "MainSimpleJeuType": {},
-    "MiniCarteFondAtout": {},
-    "MiniCarteLargeur": {},
-    "MiniCarteMainChoisie": {},
-    "MiniCartesJeuBataille": {},
-    "MiniCartesJeuBatailleEN": {},
-    "MiniCartesJeuBelote": {},
-    "MiniCartesJeuBeloteEN": {},
-    "MiniCartesJeuPoker": {},
-    "MiniCartesJeuPokerEN": {},
-    "MiniCartesJeuRami": {},
-    "MiniCartesJeuRamiEN": {},
-    "MiniCartesJeuTarot": {},
-    "MiniCartesMain": {},
-    "MiniMainAleaFondAtout": {},
-    "MiniMainAleaLargeur": {},
-    "MiniMainAleaType": {},
-    "MiniMainFondAtout": {},
-    "MiniMainLargeur": {},
-    "NbCartesMain": {},
-    "OptionTikzCBB": {},
-    "RaiseBoxByDepth": {},
-    "SecondOffset": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "Hauteur=${1:nombre}",
-      "TypeJeu=${1|Poker,Pokerv2,Pokerv3,Pokerv4,Pokerv5,Tarot,Uno|}",
-      "StyleJeu=${1|v1,v2,v3,v4,v5,fr,bicycl|}",
-      "Rotation=${1:degrees}",
-      "AlignementV=${1:factor}",
+    {
+      "name": "MainCartesJeu",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:liste de cartes}}"
+      }
+    },
+    {
+      "name": "MainCartesJeuAleatoire",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:nombre de cartes}}"
+      }
+    },
+    {
+      "name": "MainCartesJeuAleatoire",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:nombre de cartes}}"
+      }
+    },
+    {
+      "name": "AffMiniCarteJeu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:carte}}"
+      }
+    },
+    {
+      "name": "AffMiniCarteJeu",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:carte}}"
+      }
+    },
+    {
+      "name": "MainMiniCartesJeu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:liste de cartes}}"
+      }
+    },
+    {
+      "name": "MainMiniCartesJeu",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:liste de cartes}}"
+      }
+    },
+    {
+      "name": "MainMiniCartesJeuAleatoire",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:nombre de cartes}}"
+      }
+    },
+    {
+      "name": "MainMiniCartesJeuAleatoire",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:nombre de cartes}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\AffCarteJeu": [
+      "Hauteur=${1:nombre}\r",
+      "TypeJeu=${1|Poker,Pokerv2,Pokerv3,Pokerv4,Pokerv5,Tarot,Uno\r|}",
+      "StyleJeu=${1|v1,v2,v3,v4,v5,fr,bicycl\r|}",
+      "Rotation=${1:degrees}\r",
+      "AlignementV=${1:factor}\r",
       "Tikz",
-      "DecalageX=${1:nombre}",
-      "DecalageY=${1:nombre}",
+      "DecalageX=${1:nombre}\r",
+      "DecalageY=${1:nombre}\r",
       "TikzAutonome"
     ],
-    [
-      "Hauteur=${1:nombre}",
-      "TypeJeu=${1|Poker,Pokerv2,Pokerv3,Pokerv4,Pokerv5,Tarot,Uno|}",
-      "StyleJeu=${1|v1,v2,v3,v4,v5,fr,bicycl|}"
+    "\\AffCartesJeu": [
+      "Hauteur=${1:nombre}\r",
+      "TypeJeu=${1|Poker,Pokerv2,Pokerv3,Pokerv4,Pokerv5,Tarot,Uno\r|}",
+      "StyleJeu=${1|v1,v2,v3,v4,v5,fr,bicycl\r|}"
     ],
-    [
-      "Hauteur=${1:nombre}",
-      "TypeJeu=${1|Poker,Pokerv2,Pokerv3,Pokerv4,Pokerv5,Tarot,Uno|}",
-      "StyleJeu=${1|v1,v2,v3,v4,v5,fr,bicycl|}",
-      "EspH=${1:coefficient}",
-      "EspV=${1:coefficient}",
+    "\\MainCartesJeu": [
+      "Hauteur=${1:nombre}\r",
+      "TypeJeu=${1|Poker,Pokerv2,Pokerv3,Pokerv4,Pokerv5,Tarot,Uno\r|}",
+      "StyleJeu=${1|v1,v2,v3,v4,v5,fr,bicycl\r|}",
+      "EspH=${1:coefficient}\r",
+      "EspV=${1:coefficient}\r",
       "Eventail",
-      "Rotation=${1:degrees}",
-      "AlignementV=${1:factor}",
+      "Rotation=${1:degrees}\r",
+      "AlignementV=${1:factor}\r",
       "Inverse"
     ],
-    [
-      "Hauteur=${1:nombre}",
-      "TypeJeu=${1|Poker,Pokerv2,Pokerv3,Pokerv4,Pokerv5,Tarot,Belote,Belotev2,Belotev3,Belotev4,Belotev5,Bataille,Bataillev2,Bataillev3,Bataillev4,Bataillev5,Rami,Ramiv2,Ramiv3,Ramiv4,Ramiv5,Uno|}",
-      "StyleJeu=${1|v1,v2,v3,v4,v5,fr,bicycl|}",
-      "EspH=${1:coefficient}",
-      "EspV=${1:coefficient}",
+    "\\MainCartesJeuAleatoire": [
+      "Hauteur=${1:nombre}\r",
+      "TypeJeu=${1|Poker,Pokerv2,Pokerv3,Pokerv4,Pokerv5,Tarot,Belote,Belotev2,Belotev3,Belotev4,Belotev5,Bataille,Bataillev2,Bataillev3,Bataillev4,Bataillev5,Rami,Ramiv2,Ramiv3,Ramiv4,Ramiv5,Uno\r|}",
+      "StyleJeu=${1|v1,v2,v3,v4,v5,fr,bicycl\r|}",
+      "EspH=${1:coefficient}\r",
+      "EspV=${1:coefficient}\r",
       "Eventail",
-      "Rotation=${1:degrees}",
-      "AlignementV=${1:factor}",
+      "Rotation=${1:degrees}\r",
+      "AlignementV=${1:factor}\r",
       "Inverse"
     ],
-    [
+    "\\AffMiniCarteJeu,\\MainMiniCartesJeu": [
       "Largeur=",
       "FondAtout="
     ],
-    [
+    "\\MainMiniCartesJeuAleatoire": [
       "Largeur=",
       "FondAtout=",
-      "TypeJeu=${1|Poker,Tarot,Belote,Bataille,Rami,PokerEN,BeloteEN,BatailleEN,RamiEN|}"
+      "TypeJeu=${1|Poker,Tarot,Belote,Bataille,Rami,PokerEN,BeloteEN,BatailleEN,RamiEN\r|}"
     ]
-  ]
+  },
+  "args": []
 }

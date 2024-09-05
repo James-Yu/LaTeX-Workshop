@@ -1,26 +1,53 @@
 {
-  "includes": {},
-  "macros": {
-    "shorttableofcontents{}{}": {
-      "snippet": "shorttableofcontents{${1:title}}{${2:depth}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "shorttableofcontents",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:title%text}}{${2:depth}}"
+      }
     },
-    "shorttoc{}{}": {
-      "snippet": "shorttoc{${1:title}}{${2:depth}}"
+    {
+      "name": "shorttoc",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:title%text}}{${2:depth}}"
+      }
     },
-    "anothertableofcontents{}{}{}": {
-      "snippet": "anothertableofcontents{${1:document}}{${2:title}}{${3:depth}}"
+    {
+      "name": "anothertableofcontents",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:document}}{${2:title%text}}{${3:depth}}"
+      }
     },
-    "anothertableofcontents[]{}{}{}": {
-      "snippet": "anothertableofcontents[${4:suffix}]{${1:document}}{${2:title}}{${3:depth}}"
+    {
+      "name": "anothertableofcontents",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:suffix}]{${1:document}}{${2:title%text}}{${3:depth}}"
+      }
     },
-    "anothertoc{}{}{}": {
-      "snippet": "anothertoc{${1:document}}{${2:title}}{${3:depth}}"
+    {
+      "name": "anothertoc",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:document}}{${2:title%text}}{${3:depth}}"
+      }
     },
-    "anothertoc[]{}{}{}": {
-      "snippet": "anothertoc[${4:suffix}]{${1:document}}{${2:title}}{${3:depth}}"
+    {
+      "name": "anothertoc",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:suffix}]{${1:document}}{${2:title%text}}{${3:depth}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

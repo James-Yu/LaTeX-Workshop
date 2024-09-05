@@ -1,27 +1,59 @@
 {
-  "includes": {
-    "hyperref": [],
-    "catchfile": [],
-    "pdftexcmds": [],
-    "datetime2": [],
-    "ifthen": [],
-    "ifluatex": [],
-    "shellesc": []
-  },
-  "macros": {
-    "gitVer": {},
-    "versionBox": {},
-    "getenv{}": {
-      "snippet": "getenv{${1:env-var}}"
+  "deps": [
+    {
+      "name": "hyperref"
     },
-    "getenv[]{}": {
-      "snippet": "getenv[${2:cmd}]{${1:env-var}}"
+    {
+      "name": "catchfile"
+    },
+    {
+      "name": "pdftexcmds"
+    },
+    {
+      "name": "datetime2"
+    },
+    {
+      "name": "ifthen"
+    },
+    {
+      "name": "ifluatex"
+    },
+    {
+      "name": "shellesc"
     }
-  },
-  "envs": {},
-  "options": [
-    "noheader",
-    "nopdfinfo"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "gitVer"
+    },
+    {
+      "name": "versionBox"
+    },
+    {
+      "name": "getenv",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:env-var}}"
+      }
+    },
+    {
+      "name": "getenv",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:cmd}]{${1:env-var}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/gitver#c": [
+      "noheader\r",
+      "nopdfinfo\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/gitver#c"
+  ]
 }

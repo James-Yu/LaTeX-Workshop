@@ -1,35 +1,71 @@
 {
-  "includes": {
-    "iftex": [],
-    "fontspec": []
-  },
-  "macros": {
-    "frakfamily": {},
-    "gothfamily": {},
-    "swabfamily": {},
-    "textgoth{}": {
-      "snippet": "textgoth{${1:text}}"
+  "deps": [
+    {
+      "name": "iftex"
     },
-    "textfrak{}": {
-      "snippet": "textfrak{${1:text}}"
-    },
-    "textswab{}": {
-      "snippet": "textswab{${1:text}}"
-    },
-    "etc": {},
-    "Jvar": {},
-    "longs": {},
-    "shorts": {},
-    "ZWNJ": {},
-    "ZWS": {},
-    "fileversion": {},
-    "filedate": {}
-  },
-  "envs": {},
-  "options": [
-    "oldumlaut",
-    "varumlaut",
-    "gothvarlongs"
+    {
+      "name": "fontspec"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "frakfamily"
+    },
+    {
+      "name": "gothfamily"
+    },
+    {
+      "name": "swabfamily"
+    },
+    {
+      "name": "textgoth",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textfrak",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textswab",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "etc"
+    },
+    {
+      "name": "Jvar"
+    },
+    {
+      "name": "longs"
+    },
+    {
+      "name": "shorts"
+    },
+    {
+      "name": "ZWNJ"
+    },
+    {
+      "name": "ZWS"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/oldgerm-otf#c": [
+      "oldumlaut\r",
+      "varumlaut\r",
+      "gothvarlongs\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/oldgerm-otf#c"
+  ]
 }

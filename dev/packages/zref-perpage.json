@@ -1,21 +1,45 @@
 {
-  "includes": {
-    "zref-base": [],
-    "zref-abspage": []
-  },
-  "macros": {
-    "zmakeperpage{}": {
-      "snippet": "zmakeperpage{${1:counter}}"
+  "deps": [
+    {
+      "name": "zref-base"
     },
-    "zmakeperpage[]{}": {
-      "snippet": "zmakeperpage[${2:reset}]{${1:counter}}"
-    },
-    "thezpage": {},
-    "zunmakeperpage{}": {
-      "snippet": "zunmakeperpage{${1:counter}}"
+    {
+      "name": "zref-abspage"
     }
+  ],
+  "macros": [
+    {
+      "name": "zmakeperpage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "zmakeperpage",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:reset}]{${1:counter}}"
+      }
+    },
+    {
+      "name": "thezpage"
+    },
+    {
+      "name": "zunmakeperpage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\zref#c": [
+      "abspage\r",
+      "pagevalue\r",
+      "page\r"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

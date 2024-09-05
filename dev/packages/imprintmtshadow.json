@@ -1,19 +1,28 @@
 {
-  "includes": {
-    "keyval": []
-  },
-  "macros": {
-    "imprintmtshadowfamily": {},
-    "textimprintmtshadow{}": {
-      "snippet": "textimprintmtshadow{${1:text}}"
-    },
-    "ProcessOptionsWithKV{}": {
-      "snippet": "ProcessOptionsWithKV{${1:family}}"
+  "deps": [
+    {
+      "name": "keyval"
     }
-  },
-  "envs": {},
-  "options": [
-    "scaled=${1:factor}"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "imprintmtshadowfamily"
+    },
+    {
+      "name": "textimprintmtshadow",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/imprintmtshadow#c": [
+      "scaled=${1:factor}\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/imprintmtshadow#c"
+  ]
 }

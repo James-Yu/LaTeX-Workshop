@@ -1,16 +1,29 @@
 {
-  "includes": {
-    "coseoul": [],
-    "ifthen": [],
-    "import": []
-  },
-  "macros": {
-    "subimportlevel{}{}{}": {
-      "snippet": "subimportlevel{${1:file path}}{${2:file}}{${3:levels}}"
+  "deps": [
+    {
+      "name": "coseoul"
     },
-    "thecurrentimportdepth": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "ifthen"
+    },
+    {
+      "name": "import"
+    }
+  ],
+  "macros": [
+    {
+      "name": "subimportlevel",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:file path%definition}}{${2:file}}{${3:levels}}"
+      }
+    },
+    {
+      "name": "thecurrentimportdepth",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

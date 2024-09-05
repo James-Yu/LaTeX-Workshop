@@ -1,59 +1,112 @@
 {
-  "includes": {
-    "ifthen": [],
-    "fancyhdr": [],
-    "extramarks": [],
-    "titlesec": [],
-    "enumitem": [],
-    "draftwatermark": [
-      "draft"
-    ],
-    "scrtime": [
-      "draft"
-    ],
-    "prelim2e": [
-      "draft"
-    ]
-  },
-  "macros": {
-    "gbsection{}": {
-      "snippet": "gbsection{${1:id}}"
+  "deps": [
+    {
+      "name": "ifthen"
     },
-    "gbturn{}": {
-      "snippet": "gbturn{${1:id}}"
+    {
+      "name": "fancyhdr"
     },
-    "gbturntext": {},
-    "gbitem{}{}": {
-      "snippet": "gbitem{${1:text}}{${2:id}}"
+    {
+      "name": "extramarks"
     },
-    "gbvillain{}{}{}{}{}": {
-      "snippet": "gbvillain{${1:name}}{${2:skill}}{${3:skill level}}{${4:life}}{${5:life level}}"
+    {
+      "name": "titlesec"
     },
-    "gbheader": {},
-    "gbheadtext": {},
-    "gbdebugx{}": {
-      "snippet": "gbdebugx{${1:arg}}"
+    {
+      "name": "enumitem"
     },
-    "gbdebug{}": {
-      "snippet": "gbdebug{${1:arg}}"
+    {
+      "name": "draftwatermark",
+      "if": "draft"
+    },
+    {
+      "name": "scrtime",
+      "if": "draft"
+    },
+    {
+      "name": "prelim2e",
+      "if": "draft"
     }
-  },
-  "envs": {
-    "gbturnoptions": {},
-    "gbturnoptions[]": {
-      "name": "gbturnoptions",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "gbtabbing": {}
-  },
-  "options": [
-    "debug",
-    "draft"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "gbsection",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id%labeldef}}"
+      }
+    },
+    {
+      "name": "gbturn",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id%ref}}"
+      }
+    },
+    {
+      "name": "gbturntext",
+      "unusual": true
+    },
+    {
+      "name": "gbitem",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:id%ref}}"
+      }
+    },
+    {
+      "name": "gbvillain",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:name}}{${2:skill%text}}{${3:skill level%text}}{${4:life%text}}{${5:life level%text}}"
+      }
+    },
+    {
+      "name": "gbheader"
+    },
+    {
+      "name": "gbheadtext",
+      "unusual": true
+    },
+    {
+      "name": "gbdebugx",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "gbdebug",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "gbturnoptions"
+    },
+    {
+      "name": "gbturnoptions",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "gbtabbing",
+      "unusual": true
+    }
+  ],
+  "keys": {
+    "\\usepackage/gamebook#c": [
+      "debug\r",
+      "draft\r"
+    ],
+    "\\begin{gbturnoptions}": [
       "topsep=",
       "partopsep=",
       "parsep=",
@@ -64,44 +117,47 @@
       "labelwidth=",
       "labelsep=",
       "itemindent=",
-      "label=${1:commands}",
-      "label*=${1:commands}",
-      "ref=${1:commands}",
-      "font=${1:commands}",
-      "format=${1:commands}",
-      "align=${1|left,right,parleft|}",
+      "label=${1:commands}\r",
+      "label*=${1:commands}\r",
+      "ref=${1:commands}\r",
+      "font=${1:commands}\r",
+      "format=${1:commands}\r",
+      "align=${1|left,right,parleft\r|}",
       "labelindent=",
-      "left=${1:labelindent}",
-      "left=${1:labelindent} .. ${2:leftmargin}",
-      "widest",
-      "widest=${1:string}",
-      "widest*=${1:integer}",
+      "left=${1:labelindent}\r",
+      "left=${1:labelindent} .. ${2:leftmargin}\r",
+      "widest\r",
+      "widest=${1:string}\r",
+      "widest*=${1:integer}\r",
       "labelsep*=",
       "labelindent*=",
-      "start=${1:integer}",
-      "resume",
-      "resume=${1:series name}",
-      "resume*",
-      "resume*=${1:series name}",
-      "series=${1:series name}",
-      "beginpenalty=${1:integer}",
-      "midpenalty=${1:integer}",
-      "endpenalty=${1:integer}",
-      "before=${1:code}",
-      "before*=${1:code}",
-      "after=${1:code}",
-      "after*=${1:code}",
-      "first=${1:code}",
-      "first*=${1:code}",
-      "style=${1|standard,unboxed,nextline,sameline,multiline|}",
-      "noitemsep",
-      "nosep",
-      "wide",
-      "wide=${1:parindent}",
-      "itemjoin=${1:string}",
-      "itemjoin*=${1:string}",
-      "afterlabel=${1:string}",
-      "mode=${1|unboxed,boxed|}"
+      "start=${1:integer}\r",
+      "resume\r",
+      "resume=${1:series name}\r",
+      "resume*\r",
+      "resume*=${1:series name}\r",
+      "series=${1:series name}\r",
+      "beginpenalty=${1:integer}\r",
+      "midpenalty=${1:integer}\r",
+      "endpenalty=${1:integer}\r",
+      "before=${1:code}\r",
+      "before*=${1:code}\r",
+      "after=${1:code}\r",
+      "after*=${1:code}\r",
+      "first=${1:code}\r",
+      "first*=${1:code}\r",
+      "style=${1|standard,unboxed,nextline,sameline,multiline\r|}",
+      "noitemsep\r",
+      "nosep\r",
+      "wide\r",
+      "wide=${1:parindent}\r",
+      "itemjoin=${1:string}\r",
+      "itemjoin*=${1:string}\r",
+      "afterlabel=${1:string}\r",
+      "mode=${1|unboxed,boxed\r|}"
     ]
+  },
+  "args": [
+    "\\usepackage/gamebook#c"
   ]
 }

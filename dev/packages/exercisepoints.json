@@ -1,60 +1,142 @@
 {
-  "includes": {
-    "ifthen": []
-  },
-  "macros": {
-    "points{}": {
-      "snippet": "points{${1:number}}"
-    },
-    "itempoints{}": {
-      "snippet": "itempoints{${1:number}}"
-    },
-    "setitempointsunit{}{}": {
-      "snippet": "setitempointsunit{${1:singular}}{${2:plural}}"
-    },
-    "numberofexercises": {},
-    "totalpoints": {},
-    "getpoints{}": {
-      "snippet": "getpoints{${1:exercise number}}"
-    },
-    "bonuspoints{}": {
-      "snippet": "bonuspoints{${1:number}}"
-    },
-    "getbonuspoints": {},
-    "totalpointswithbonus": {},
-    "AtBeginExercise{}": {
-      "snippet": "AtBeginExercise{${1:code}}"
-    },
-    "AtEndExercise{}": {
-      "snippet": "AtEndExercise{${1:code}}"
-    },
-    "currentexercisetitle": {},
-    "currentexercisenumber": {},
-    "currentexercisepoints": {},
-    "AtBeginSubexercise{}": {
-      "snippet": "AtBeginSubexercise{${1:code}}"
-    },
-    "AtEndSubexercise{}": {
-      "snippet": "AtEndSubexercise{${1:code}}"
-    },
-    "currentsubexercisenumber": {},
-    "currentsubexercisepoints": {},
-    "currentsubexercisetitle": {}
-  },
-  "envs": {
-    "exercise": {},
-    "exercise[]": {
-      "name": "exercise",
-      "snippet": "[${1:title}]"
-    },
-    "subexercise": {},
-    "subexercise[]": {
-      "name": "subexercise",
-      "snippet": "[${1:title}]"
+  "deps": [
+    {
+      "name": "ifthen"
     }
-  },
-  "options": [
-    "customlayout"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "points",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "itempoints",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "setitempointsunit",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:singular}}{${2:plural}}"
+      }
+    },
+    {
+      "name": "numberofexercises"
+    },
+    {
+      "name": "totalpoints"
+    },
+    {
+      "name": "getpoints",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:exercise number}}"
+      }
+    },
+    {
+      "name": "bonuspoints",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "getbonuspoints"
+    },
+    {
+      "name": "totalpointswithbonus"
+    },
+    {
+      "name": "AtBeginExercise",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "AtEndExercise",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "currentexercisetitle",
+      "unusual": true
+    },
+    {
+      "name": "currentexercisenumber",
+      "unusual": true
+    },
+    {
+      "name": "currentexercisepoints",
+      "unusual": true
+    },
+    {
+      "name": "AtBeginSubexercise",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "AtEndSubexercise",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "currentsubexercisenumber",
+      "unusual": true
+    },
+    {
+      "name": "currentsubexercisepoints",
+      "unusual": true
+    },
+    {
+      "name": "currentsubexercisetitle",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "exercise"
+    },
+    {
+      "name": "exercise",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:title%text}]"
+      }
+    },
+    {
+      "name": "subexercise"
+    },
+    {
+      "name": "subexercise",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:title%text}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/exercisepoints#c": [
+      "customlayout\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/exercisepoints#c"
+  ]
 }

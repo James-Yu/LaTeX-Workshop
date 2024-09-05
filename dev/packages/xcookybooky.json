@@ -1,220 +1,483 @@
 {
-  "includes": {
-    "tikz": [],
-    "graphicx": [],
-    "xcolor": [],
-    "ifsym": [],
-    "cookingsymbols": [],
-    "wrapfig": [],
-    "iflang": [],
-    "ifthen": [],
-    "xkeyval": [],
-    "lettrine": [],
-    "fancyhdr": [],
-    "units": [],
-    "eso-pic": [],
-    "picture": [],
-    "tabulary": [],
-    "framed": [],
-    "emerald": [
-      "handwritten"
-    ]
-  },
-  "macros": {
-    "graph{}": {
-      "snippet": "graph{${1:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "ingredients{}": {
-      "snippet": "ingredients{${1:ingredients}}"
+    {
+      "name": "graphicx"
     },
-    "ingredients[]{}": {
-      "snippet": "ingredients[${2:lines}]{${1:ingredients}}"
+    {
+      "name": "xcolor"
     },
-    "preparation{}": {
-      "snippet": "preparation{${1:steps}}"
+    {
+      "name": "ifsym"
     },
-    "step": {},
-    "introduction{}": {
-      "snippet": "introduction{${1:text}}"
+    {
+      "name": "cookingsymbols"
     },
-    "suggestion{}": {
-      "snippet": "suggestion{${1:text}}"
+    {
+      "name": "wrapfig"
     },
-    "suggestion[]{}": {
-      "snippet": "suggestion[${2:headline}]{${1:text}}"
+    {
+      "name": "iflang"
     },
-    "portion{}": {
-      "snippet": "portion{${1:value}}"
+    {
+      "name": "ifthen"
     },
-    "portion[]{}": {
-      "snippet": "portion[${2:unit}]{${1:value}}"
+    {
+      "name": "xkeyval"
     },
-    "hint{}": {
-      "snippet": "hint{${1:text}}"
+    {
+      "name": "lettrine"
     },
-    "bakingtemperature{}": {
-      "snippet": "bakingtemperature{${1:keyvals}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "fancyhdr"
     },
-    "setRecipeColors{}": {
-      "snippet": "setRecipeColors{${1:keyvals}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
+    {
+      "name": "units"
     },
-    "setRecipeLengths{}": {
-      "snippet": "setRecipeLengths{${1:keyvals}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
+    {
+      "name": "eso-pic"
     },
-    "setRecipeSizes{}": {
-      "snippet": "setRecipeSizes{${1:keyvals}}",
-      "keyvalindex": 4,
-      "keyvalpos": 0
+    {
+      "name": "picture"
     },
-    "setRecipenameFont{}{}{}{}": {
-      "snippet": "setRecipenameFont{${1:family}}{${2:encoding}}{${3:series}}{${4:shape}}"
+    {
+      "name": "tabulary"
     },
-    "setHeadlines{}": {
-      "snippet": "setHeadlines{${1:keyvals}}",
-      "keyvalindex": 5,
-      "keyvalpos": 0
+    {
+      "name": "framed"
     },
-    "setBackgroundPicture{}": {
-      "snippet": "setBackgroundPicture{${1:imagefile}}"
-    },
-    "setBackgroundPicture[]{}": {
-      "snippet": "setBackgroundPicture[${2:options}]{${1:imagefile}}",
-      "keyvalindex": 6,
-      "keyvalpos": 0
-    },
-    "postingredients{}": {
-      "snippet": "postingredients{${1:code}}"
-    },
-    "postpreparation{}": {
-      "snippet": "postpreparation{${1:code}}"
-    },
-    "pregraph{}": {
-      "snippet": "pregraph{${1:code}}"
-    },
-    "preingredients{}": {
-      "snippet": "preingredients{${1:code}}"
-    },
-    "prepreparation{}": {
-      "snippet": "prepreparation{${1:code}}"
-    },
-    "prerecipeoverview{}": {
-      "snippet": "prerecipeoverview{${1:code}}"
-    },
-    "pretitle{}": {
-      "snippet": "pretitle{${1:code}}"
-    },
-    "recipesection{}": {
-      "snippet": "recipesection{${1:title}}"
-    },
-    "recipesection[]{}": {
-      "snippet": "recipesection[${2:short title}]{${1:title}}"
-    },
-    "thestep": {},
-    "ifclkfamily": {},
-    "textifclk{}": {
-      "snippet": "textifclk{${1:text}}"
-    },
-    "showclock{}{}": {
-      "snippet": "showclock{${1:hour}}{${2:minute}}"
-    },
-    "Taschenuhr": {},
-    "VarTaschenuhr": {},
-    "StopWatchStart": {},
-    "StopWatchEnd": {},
-    "Interval": {},
-    "Wecker": {},
-    "VarClock": {},
-    "Letter": {},
-    "Telephone": {},
-    "SectioningDiamond": {},
-    "FilledSectioningDiamond": {},
-    "PaperPortrait": {},
-    "PaperLandscape": {},
-    "Cube{}": {
-      "snippet": "Cube{${1:integer}}"
-    },
-    "Irritant": {},
-    "Fire": {},
-    "Radiation": {},
-    "StrokeOne": {},
-    "StrokeTwo": {},
-    "StrokeThree": {},
-    "StrokeFour": {},
-    "StrokeFive": {},
-    "textweathersymbol{}": {
-      "snippet": "textweathersymbol{${1:slot}}"
-    },
-    "Sun": {
-      "detail": "☉",
-      "documentation": "SUN"
-    },
-    "HalfSun": {},
-    "NoSun": {},
-    "Fog": {},
-    "ThinFog": {},
-    "Rain": {},
-    "WeakRain": {},
-    "Hail": {},
-    "Sleet": {},
-    "Snow": {},
-    "Lightning": {},
-    "Cloud": {},
-    "RainCloud": {},
-    "WeakRainCloud": {},
-    "SunCloud": {},
-    "SnowCloud": {},
-    "FilledCloud": {},
-    "FilledRainCloud": {},
-    "FilledWeakRainCloud": {},
-    "FilledSunCloud": {},
-    "FilledSnowCloud": {},
-    "wind{}{}{}": {
-      "snippet": "wind{${1:integer}}{${2:angle}}{${3:speed}}"
-    },
-    "Thermo{}": {
-      "snippet": "Thermo{${1:integer}}"
+    {
+      "name": "emerald",
+      "if": "handwritten"
     }
-  },
-  "envs": {
-    "recipe{}": {
-      "name": "recipe",
-      "snippet": "{${1:name}}"
-    },
-    "recipe[]{}": {
-      "name": "recipe",
-      "snippet": "[${2:options}]{${1:name}}",
-      "keyvalindex": 7,
-      "keyvalpos": 0
-    }
-  },
-  "options": [
-    "handwritten",
-    "nowarnings",
-    "myconfig"
   ],
-  "keyvals": [
-    [
-      "small=${1:imagefile}",
+  "macros": [
+    {
+      "name": "graph",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "ingredients",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ingredients%text}}"
+      }
+    },
+    {
+      "name": "ingredients",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:lines}]{${1:ingredients%text}}"
+      }
+    },
+    {
+      "name": "preparation",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:steps%text}}"
+      }
+    },
+    {
+      "name": "step"
+    },
+    {
+      "name": "introduction",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "suggestion",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "suggestion",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:headline%text}]{${1:text}}"
+      }
+    },
+    {
+      "name": "portion",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:value}}"
+      }
+    },
+    {
+      "name": "portion",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:unit}]{${1:value}}"
+      }
+    },
+    {
+      "name": "hint",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "bakingtemperature",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "setRecipeColors",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "setRecipeLengths",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "setRecipeSizes",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "setRecipenameFont",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:family}}{${2:encoding}}{${3:series}}{${4:shape}}"
+      }
+    },
+    {
+      "name": "setHeadlines",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "setBackgroundPicture",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "setBackgroundPicture",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "postingredients",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "postpreparation",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "pregraph",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "preingredients",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "prepreparation",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "prerecipeoverview",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "pretitle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "recipesection",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "recipesection",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short title}]{${1:title}}"
+      }
+    },
+    {
+      "name": "thestep",
+      "unusual": true
+    },
+    {
+      "name": "ifclkfamily",
+      "unusual": true
+    },
+    {
+      "name": "textifclk",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "showclock",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:hour}}{${2:minute}}"
+      }
+    },
+    {
+      "name": "Taschenuhr"
+    },
+    {
+      "name": "VarTaschenuhr"
+    },
+    {
+      "name": "StopWatchStart"
+    },
+    {
+      "name": "StopWatchEnd"
+    },
+    {
+      "name": "Interval"
+    },
+    {
+      "name": "Wecker"
+    },
+    {
+      "name": "VarClock"
+    },
+    {
+      "name": "Letter"
+    },
+    {
+      "name": "Telephone"
+    },
+    {
+      "name": "SectioningDiamond"
+    },
+    {
+      "name": "FilledSectioningDiamond"
+    },
+    {
+      "name": "PaperPortrait"
+    },
+    {
+      "name": "PaperLandscape"
+    },
+    {
+      "name": "Cube",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:integer}}"
+      }
+    },
+    {
+      "name": "Irritant"
+    },
+    {
+      "name": "Fire"
+    },
+    {
+      "name": "Radiation"
+    },
+    {
+      "name": "StrokeOne"
+    },
+    {
+      "name": "StrokeTwo"
+    },
+    {
+      "name": "StrokeThree"
+    },
+    {
+      "name": "StrokeFour"
+    },
+    {
+      "name": "StrokeFive"
+    },
+    {
+      "name": "textweathersymbol",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:slot}}"
+      }
+    },
+    {
+      "name": "Sun"
+    },
+    {
+      "name": "HalfSun"
+    },
+    {
+      "name": "NoSun"
+    },
+    {
+      "name": "Fog"
+    },
+    {
+      "name": "ThinFog"
+    },
+    {
+      "name": "Rain"
+    },
+    {
+      "name": "WeakRain"
+    },
+    {
+      "name": "Hail"
+    },
+    {
+      "name": "Sleet"
+    },
+    {
+      "name": "Snow"
+    },
+    {
+      "name": "Lightning"
+    },
+    {
+      "name": "Cloud"
+    },
+    {
+      "name": "RainCloud"
+    },
+    {
+      "name": "WeakRainCloud"
+    },
+    {
+      "name": "SunCloud"
+    },
+    {
+      "name": "SnowCloud"
+    },
+    {
+      "name": "FilledCloud"
+    },
+    {
+      "name": "FilledRainCloud"
+    },
+    {
+      "name": "FilledWeakRainCloud"
+    },
+    {
+      "name": "FilledSunCloud"
+    },
+    {
+      "name": "FilledSnowCloud"
+    },
+    {
+      "name": "wind",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:integer}}{${2:angle}}{${3:speed}}"
+      }
+    },
+    {
+      "name": "Thermo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:integer}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "recipe",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name%text}}"
+      }
+    },
+    {
+      "name": "recipe",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:name%text}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/xcookybooky#c": [
+      "handwritten\r",
+      "nowarnings\r",
+      "myconfig\r"
+    ],
+    "\\begin{recipe}": [
+      "preparationtime={${1:time}}\r",
+      "bakingtime={${1:time}}\r",
+      "bakingtemperature={${1:temperature}}\r",
+      "portion={${1:portion}}\r",
+      "calory={${1:calory}}\r",
+      "source={${1:source}}\r"
+    ],
+    "\\graph": [
+      "small=${1:imagefile}\r",
       "smallpicturewidth=",
       "bigpicturewidth=",
-      "big=${1:imagefile}"
+      "big=${1:imagefile}\r"
     ],
-    [
-      "fanoven=${1:temperature}",
-      "topbottomheat=${1:temperature}",
-      "topheat=${1:temperature}",
-      "bottomheat=${1:temperature}",
-      "gasstove=${1:temperature}"
+    "\\bakingtemperature": [
+      "fanoven=${1:temperature}\r",
+      "topbottomheat=${1:temperature}\r",
+      "topheat=${1:temperature}\r",
+      "bottomheat=${1:temperature}\r",
+      "gasstove=${1:temperature}\r"
     ],
-    [
+    "\\setRecipeColors": [
       "recipename=",
       "intro=",
       "ing=",
@@ -229,7 +492,7 @@
       "hintline=",
       "numeration="
     ],
-    [
+    "\\setRecipeLengths": [
       "pictureheight=",
       "bigpicturewidth=",
       "smallpicturewidth=",
@@ -237,45 +500,40 @@
       "preparationwidth=",
       "ingredientswidth="
     ],
-    [
-      "recipename=${1:fontsize commands}",
-      "intro=${1:fontsize commands}",
-      "ing=${1:fontsize commands}",
-      "inghead=${1:fontsize commands}",
-      "prep=${1:fontsize commands}",
-      "prephead=${1:fontsize commands}",
-      "suggestion=${1:fontsize commands}",
-      "hint=${1:fontsize commands}",
-      "hinthead=${1:fontsize commands}"
+    "\\setRecipeSizes": [
+      "recipename=${1:fontsize commands}\r",
+      "intro=${1:fontsize commands}\r",
+      "ing=${1:fontsize commands}\r",
+      "inghead=${1:fontsize commands}\r",
+      "prep=${1:fontsize commands}\r",
+      "prephead=${1:fontsize commands}\r",
+      "suggestion=${1:fontsize commands}\r",
+      "hint=${1:fontsize commands}\r",
+      "hinthead=${1:fontsize commands}\r"
     ],
-    [
-      "inghead=${1:text}",
-      "prephead=${1:text}",
-      "hinthead=${1:text}",
-      "continuationhead=${1:text}",
-      "continuationfoot=${1:text}",
-      "preparationtime=${1:text}",
-      "bakingtime=${1:text}",
-      "bakingtemperature=${1:text}",
-      "portion=${1:text}",
-      "portionvalue=${1:text}",
-      "calory=${1:text}",
-      "source=${1:text}"
+    "\\setHeadlines": [
+      "inghead=${1:text}\r",
+      "prephead=${1:text}\r",
+      "hinthead=${1:text}\r",
+      "continuationhead=${1:text}\r",
+      "continuationfoot=${1:text}\r",
+      "preparationtime=${1:text}\r",
+      "bakingtime=${1:text}\r",
+      "bakingtemperature=${1:text}\r",
+      "portion=${1:text}\r",
+      "portionvalue=${1:text}\r",
+      "calory=${1:text}\r",
+      "source=${1:text}\r"
     ],
-    [
+    "\\setBackgroundPicture": [
       "width=",
       "height=",
       "x=",
       "y=",
-      "orientation=${1|default,pagecenter,textcenter,stockcenter|}"
-    ],
-    [
-      "preparationtime={${1:time}}",
-      "bakingtime={${1:time}}",
-      "bakingtemperature={${1:temperature}}",
-      "portion={${1:portion}}",
-      "calory={${1:calory}}",
-      "source={${1:source}}"
+      "orientation=${1|default,pagecenter,textcenter,stockcenter\r|}"
     ]
+  },
+  "args": [
+    "\\usepackage/xcookybooky#c"
   ]
 }

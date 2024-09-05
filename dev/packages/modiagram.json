@@ -1,100 +1,151 @@
 {
-  "includes": {
-    "l3keys2e": [],
-    "tikz": [],
-    "chemgreek": []
-  },
-  "macros": {
-    "setmodiagram{}": {
-      "snippet": "setmodiagram{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "l3keys2e"
     },
-    "atom{}{}": {
-      "snippet": "atom{${1:left or right}}{${2:AO-spec}}"
+    {
+      "name": "tikz"
     },
-    "atom[]{}{}": {
-      "snippet": "atom[${3:name}]{${1:left or right}}{${2:AO-spec}}"
-    },
-    "molecule{}": {
-      "snippet": "molecule{${1:MO-spec}}"
-    },
-    "molecule[]{}": {
-      "snippet": "molecule[${2:name}]{${1:MO-spec}}"
-    },
-    "AO(){}{}": {
-      "snippet": "AO(${3:xshift}){${1:type}}{${2:energy; el-spec}}"
-    },
-    "AO(){}[]{}": {
-      "snippet": "AO(${4:xshift}){${1:type}}[${2:options}]{${3:energy; el-spec}}",
-      "keyvalindex": 1,
-      "keyvalpos": 2
-    },
-    "AO[](){}{}": {
-      "snippet": "AO[${3:name}](${4:xshift}){${1:type}}{${2:energy; el-spec}}"
-    },
-    "AO[](){}[]{}": {
-      "snippet": "AO[${3:name}](${5:xshift}){${1:type}}[${4:options}]{${2:energy; el-spec}}",
-      "keyvalindex": 1,
-      "keyvalpos": 3
-    },
-    "connect{}": {
-      "snippet": "connect{${1:AO-connect}}"
-    },
-    "EnergyAxis": {},
-    "EnergyAxis[]": {
-      "snippet": "EnergyAxis[${1:options}]",
-      "keyvalindex": 2,
-      "keyvalpos": 0
+    {
+      "name": "chemgreek"
     }
-  },
-  "envs": {
-    "modiagram": {},
-    "modiagram[]": {
+  ],
+  "macros": [
+    {
+      "name": "setmodiagram",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}"
+      }
+    },
+    {
+      "name": "atom",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:left or right}}{${2:AO-spec%keyvals}}"
+      }
+    },
+    {
+      "name": "atom",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:name}]{${1:left or right}}{${2:AO-spec%keyvals}}"
+      }
+    },
+    {
+      "name": "molecule",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:MO-spec%keyvals}}"
+      }
+    },
+    {
+      "name": "molecule",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:name}]{${1:MO-spec%keyvals}}"
+      }
+    },
+    {
+      "name": "AO",
+      "arg": {
+        "format": "[](){}{}",
+        "snippet": "[${3:name}](${4:%<xshift%>}){${1:type}}{${2:energy; el-spec}}"
+      }
+    },
+    {
+      "name": "AO",
+      "arg": {
+        "format": "[](){}[]{}",
+        "snippet": "[${3:name}](${5:%<xshift%>}){${1:type}}[${4:options}]{${2:energy; el-spec}}"
+      }
+    },
+    {
+      "name": "connect",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:AO-connect}}"
+      }
+    },
+    {
+      "name": "EnergyAxis"
+    },
+    {
+      "name": "EnergyAxis",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "modiagram"
+    },
+    {
       "name": "modiagram",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
-      "style=${1|plain,square,circle,round,fancy|}",
+  ],
+  "keys": {
+    "\\setmodiagram#c,\\begin{modiagram}#c": [
+      "style=${1|plain,square,circle,round,fancy\r|}",
       "distance=",
       "AO-width=",
-      "el-sep=${1:number}",
-      "up-el-pos=${1:number}",
-      "down-el-pos=${1:number}",
-      "lines={${1:TikZ}}",
+      "el-sep=${1:number}\r",
+      "up-el-pos=${1:number}\r",
+      "down-el-pos=${1:number}\r",
+      "lines={${1:TikZ}}\r",
       "names",
-      "names-style={${1:TikZ}}",
-      "names-style-add={${1:TikZ}}",
+      "names-style={${1:TikZ}}\r",
+      "names-style-add={${1:TikZ}}\r",
       "labels",
-      "labels-fs=${1:cmd}",
-      "labels-style={${1:TikZ}}"
+      "labels-fs=${1:cmd}\r",
+      "labels-style={${1:TikZ}}\r"
     ],
-    [
-      "label=",
-      "label[x]=",
-      "label[y]=",
-      "label[z]=",
+    "\\atom#c": [
+      "1s={${1:rel-energy}; ${2:el-spec}}\r",
+      "2s={${1:rel-energy}; ${2:el-spec}}\r",
+      "2p={${1:rel-energy}; ${2:x el-spec}, ${3:y el-spec}, ${4:z el-spec}}\r",
+      "label=\r",
+      "color=\r",
+      "up-el-pos=\r",
+      "down-el-pos=\r"
+    ],
+    "\\molecule#c": [
+      "1sMO={${1:energy gain}/${2:energy loss}; ${3:s el-spec}, ${4:s* el-spec}}\r",
+      "2sMO={${1:energy gain}/${2:energy loss}; ${3:s el-spec}, ${4:s* el-spec}}\r",
+      "2pMO={${1:s gain}/${2:s loss}, ${3:p gain}/${4:p loss}; ${5:s}, ${6:py}, ${7:pz}, ${8:py*}, ${9:pz*}, ${10:s*}}\r",
+      "label=\r",
+      "color=\r",
+      "up-el-pos=\r",
+      "down-el-pos=\r"
+    ],
+    "\\AO#c": [
+      "label=\r",
+      "label[x]=\r",
+      "label[y]=\r",
+      "label[z]=\r",
       "color=",
       "color[x]=",
       "color[y]=",
       "color[z]=",
-      "up-el-pos=${1:number}",
-      "up-el-pos[x]=${1:number}",
-      "up-el-pos[y]=${1:number}",
-      "up-el-pos[z]=${1:number}",
-      "down-el-pos=${1:number}",
-      "down-el-pos[x]=${1:number}",
-      "down-el-pos[y]=${1:number}",
-      "down-el-pos[z]=${1:number}"
+      "up-el-pos=${1:number}\r",
+      "up-el-pos[x]=${1:number}\r",
+      "up-el-pos[y]=${1:number}\r",
+      "up-el-pos[z]=${1:number}\r",
+      "down-el-pos=${1:number}\r",
+      "down-el-pos[x]=${1:number}\r",
+      "down-el-pos[y]=${1:number}\r",
+      "down-el-pos[z]=${1:number}\r"
     ],
-    [
-      "title=",
-      "head=${1:TikZ arrow head}"
+    "\\EnergyAxis": [
+      "title=\r",
+      "head=${1:TikZ arrow head}\r"
     ]
-  ]
+  },
+  "args": []
 }

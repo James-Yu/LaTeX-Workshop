@@ -1,50 +1,124 @@
 {
-  "includes": {
-    "environ": [],
-    "etoolbox": [],
-    "fancyvrb": [],
-    "ifthen": [],
-    "kvoptions": [],
-    "catchfile": [],
-    "amsthm": [],
-    "bibunits": []
-  },
-  "macros": {
-    "newtheoremrep{}{}": {
-      "snippet": "newtheoremrep{${1:envname}}{${2:title}}"
+  "deps": [
+    {
+      "name": "environ"
     },
-    "newtheoremrep{}[]{}": {
-      "snippet": "newtheoremrep{${1:envname}}[${2:counter}]{${3:title}}"
+    {
+      "name": "etoolbox"
     },
-    "newtheoremrep{}{}[]": {
-      "snippet": "newtheoremrep{${1:envname}}{${2:title}}[${3:countersec}]"
+    {
+      "name": "fancyvrb"
     },
-    "newtheoremrep{}[]{}[]": {
-      "snippet": "newtheoremrep{${1:envname}}[${2:counter}]{${3:title}}[${4:countersec}]"
+    {
+      "name": "ifthen"
     },
-    "mainbodyrepeatedtheorem": {},
-    "appendixsectionformat{}{}": {
-      "snippet": "appendixsectionformat{${1:number}}{${2:title}}"
+    {
+      "name": "kvoptions"
     },
-    "appendixrefname": {},
-    "appendixbibliographystyle": {},
-    "appendixbibliographyprelim": {},
-    "appendixprelim": {},
-    "noproofinappendix": {},
-    "nosectionappendix": {}
-  },
-  "envs": {
-    "toappendix": {},
-    "appendixproof": {},
-    "proofsketch": {},
-    "inlineproof": {},
-    "nestedproof": {}
-  },
-  "options": [
-    "appendix=${1|append,inline,strip|}",
-    "bibliography=${1|common,separate|}",
-    "repeqn=${1|same,independent|}",
-    "forwardlinking=${1|yes,no|}"
+    {
+      "name": "catchfile"
+    },
+    {
+      "name": "amsthm"
+    },
+    {
+      "name": "bibunits"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "newtheoremrep",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:envname}}{${2:title%text}}"
+      }
+    },
+    {
+      "name": "newtheoremrep",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:envname}}[${3:counter}]{${2:title%text}}"
+      }
+    },
+    {
+      "name": "newtheoremrep",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:envname}}{${2:title%text}}[${3:countersec}]"
+      }
+    },
+    {
+      "name": "newtheoremrep",
+      "arg": {
+        "format": "{}[]{}[]",
+        "snippet": "{${1:envname}}[${3:counter}]{${2:title%text}}[${4:countersec}]"
+      }
+    },
+    {
+      "name": "mainbodyrepeatedtheorem",
+      "unusual": true
+    },
+    {
+      "name": "appendixsectionformat",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:number}}{${2:title%text}}"
+      }
+    },
+    {
+      "name": "appendixrefname",
+      "unusual": true
+    },
+    {
+      "name": "appendixbibliographystyle",
+      "unusual": true
+    },
+    {
+      "name": "appendixbibliographyprelim",
+      "unusual": true
+    },
+    {
+      "name": "appendixprelim",
+      "unusual": true
+    },
+    {
+      "name": "noproofinappendix",
+      "unusual": true
+    },
+    {
+      "name": "nosectionappendix",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "toappendix"
+    },
+    {
+      "name": "appendixproof"
+    },
+    {
+      "name": "proofsketch"
+    },
+    {
+      "name": "inlineproof"
+    },
+    {
+      "name": "nestedproof",
+      "unusual": true
+    }
+  ],
+  "keys": {
+    "\\usepackage/apxproof#c": [
+      "appendix=${1|append,inline,strip\r|}",
+      "bibliography=${1|common,separate\r|}",
+      "repeqn=${1|same,independent\r|}",
+      "forwardlinking=${1|yes,no\r|}"
+    ]
+  },
+  "args": [
+    "\\usepackage/apxproof#c"
+  ]
 }

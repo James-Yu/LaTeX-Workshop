@@ -1,69 +1,148 @@
 {
-  "includes": {
-    "luatex": [],
-    "iftex": [],
-    "tikz": [],
-    "tikzlibrarycalc": [],
-    "tikzlibrarymatrix": [],
-    "xstring": []
-  },
-  "macros": {
-    "autoterms[]": {
-      "snippet": "autoterms[${1:content}]"
+  "deps": [
+    {
+      "name": "luatex"
     },
-    "indeterminants{}": {
-      "snippet": "indeterminants{${1:cells}}"
+    {
+      "name": "iftex"
     },
-    "manualterms{}": {
-      "snippet": "manualterms{${1:contents}}"
+    {
+      "name": "tikz"
     },
-    "maxterms{}": {
-      "snippet": "maxterms{${1:cells}}"
+    {
+      "name": "tikzlibrarycalc"
     },
-    "minterms{}": {
-      "snippet": "minterms{${1:cells}}"
+    {
+      "name": "tikzlibrarymatrix"
     },
-    "terms{}{}": {
-      "snippet": "terms{${1:cells}}{${2:content}}"
-    },
-    "implicant{}{}": {
-      "snippet": "implicant{${1:NWcell}}{${2:SEcell}}"
-    },
-    "implicant{}{}[]": {
-      "snippet": "implicant{${1:NWcell}}{${2:SEcell}}[${3:submaps}]"
-    },
-    "implicantedge{}{}{}{}": {
-      "snippet": "implicantedge{${1:NWpart_NWcell}}{${2:NWpart_SEcell}}{${3:SEpart_NWcell}}{${4:SEpart_SEcell}}"
-    },
-    "implicantedge{}{}{}{}[]": {
-      "snippet": "implicantedge{${1:NWpart_NWcell}}{${2:NWpart_SEcell}}{${3:SEpart_NWcell}}{${4:SEpart_SEcell}}[${5:submaps}]"
-    },
-    "implicantcorner[]": {
-      "snippet": "implicantcorner[${1:submaps}]"
-    },
-    "implicantspread{}{}": {
-      "snippet": "implicantspread{${1:inner}}{${2:outer}}"
-    },
-    "resetimplicantspread": {},
-    "changecolor{}": {
-      "snippet": "changecolor{${1:color}}"
+    {
+      "name": "xstring"
     }
-  },
-  "envs": {
-    "cartonaugh": {},
-    "cartonaugh[][][][][][]": {
-      "name": "cartonaugh",
-      "snippet": "[${1:Xsize}][${2:Ysize}][${3:Zsize}][${4:Xlabel}][${5:Ylabel}][${6:Zlabel}]"
+  ],
+  "macros": [
+    {
+      "name": "autoterms",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:content}]"
+      }
     },
-    "cartonaugh[][][][][][][]": {
-      "name": "cartonaugh",
-      "snippet": "[${1:Xsize}][${2:Ysize}][${3:Zsize}][${4:Xlabel}][${5:Ylabel}][${6:Zlabel}][${7:submap_sep_type}]"
+    {
+      "name": "indeterminants",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cells}}"
+      }
     },
-    "cartonaugh*[][][][][][][]": {
-      "name": "cartonaugh",
-      "snippet": "*[${1:Xsize}][${2:Ysize}][${3:Zsize}][${4:Xlabel}][${5:Ylabel}][${6:Zlabel}][${7:submap_sep_type}]"
+    {
+      "name": "manualterms",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:contents}}"
+      }
+    },
+    {
+      "name": "maxterms",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cells}}"
+      }
+    },
+    {
+      "name": "minterms",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cells}}"
+      }
+    },
+    {
+      "name": "terms",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cells}}{${2:content}}"
+      }
+    },
+    {
+      "name": "implicant",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:NWcell}}{${2:SEcell}}"
+      }
+    },
+    {
+      "name": "implicant",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:NWcell}}{${2:SEcell}}[${3:submaps}]"
+      }
+    },
+    {
+      "name": "implicantedge",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:NWpart_NWcell}}{${2:NWpart_SEcell}}{${3:SEpart_NWcell}}{${4:SEpart_SEcell}}"
+      }
+    },
+    {
+      "name": "implicantedge",
+      "arg": {
+        "format": "{}{}{}{}[]",
+        "snippet": "{${1:NWpart_NWcell}}{${2:NWpart_SEcell}}{${3:SEpart_NWcell}}{${4:SEpart_SEcell}}[${5:submaps}]"
+      }
+    },
+    {
+      "name": "implicantcorner",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:submaps}]"
+      }
+    },
+    {
+      "name": "implicantspread",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:inner%l}}{${2:outer%l}}"
+      }
+    },
+    {
+      "name": "resetimplicantspread"
+    },
+    {
+      "name": "changecolor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "envs": [
+    {
+      "name": "cartonaugh"
+    },
+    {
+      "name": "cartonaugh",
+      "arg": {
+        "format": "[][][][][][]",
+        "snippet": "[${1:Xsize}][${2:Ysize}][${3:Zsize}][${4:Xlabel}][${5:Ylabel}][${6:Zlabel}]"
+      }
+    },
+    {
+      "name": "cartonaugh",
+      "unusual": true,
+      "arg": {
+        "format": "[][][][][][][]",
+        "snippet": "[${1:Xsize}][${2:Ysize}][${3:Zsize}][${4:Xlabel}][${5:Ylabel}][${6:Zlabel}][${7:submap_sep_type}]"
+      }
+    },
+    {
+      "name": "cartonaugh",
+      "unusual": true,
+      "arg": {
+        "format": "*[][][][][][][]",
+        "snippet": "*[${1:Xsize}][${2:Ysize}][${3:Zsize}][${4:Xlabel}][${5:Ylabel}][${6:Zlabel}][${7:submap_sep_type}]"
+      }
+    }
+  ],
+  "keys": {},
+  "args": []
 }

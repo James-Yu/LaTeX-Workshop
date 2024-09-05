@@ -1,106 +1,201 @@
 {
-  "includes": {
-    "xstring": [],
-    "amssymb": [],
-    "bbding": [],
-    "suffix": [],
-    "colortbl": [],
-    "rotating": [],
-    "arydshln": [],
-    "hhline": [
-      "usehhline"
+  "deps": [
+    {
+      "name": "xstring"
+    },
+    {
+      "name": "amssymb"
+    },
+    {
+      "name": "bbding"
+    },
+    {
+      "name": "suffix"
+    },
+    {
+      "name": "colortbl"
+    },
+    {
+      "name": "rotating"
+    },
+    {
+      "name": "arydshln"
+    },
+    {
+      "name": "hhline",
+      "if": "usehhline"
+    }
+  ],
+  "macros": [
+    {
+      "name": "inp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:input%text}}"
+      }
+    },
+    {
+      "name": "ips",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "const",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:constraint%text}}"
+      }
+    },
+    {
+      "name": "const*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:constraint%text}}"
+      }
+    },
+    {
+      "name": "cand",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:candidate%text}}"
+      }
+    },
+    {
+      "name": "cand",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:symbol}]{${1:candidate%text}}"
+      }
+    },
+    {
+      "name": "cand*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:candidate%text}}"
+      }
+    },
+    {
+      "name": "cand*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:symbol}]{${1:candidate%text}}"
+      }
+    },
+    {
+      "name": "vio",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:violation%text}}"
+      }
+    },
+    {
+      "name": "vio*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:violation%text}}"
+      }
+    },
+    {
+      "name": "SetCellShading",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:factor}}"
+      }
+    },
+    {
+      "name": "Optimal"
+    },
+    {
+      "name": "OptimalMarker",
+      "unusual": true
+    },
+    {
+      "name": "ViolationMarker",
+      "unusual": true
+    },
+    {
+      "name": "CircledViolationMarker",
+      "unusual": true
+    },
+    {
+      "name": "TipaOn"
+    },
+    {
+      "name": "TipaOff"
+    },
+    {
+      "name": "CircledViolationsOn"
+    },
+    {
+      "name": "CircledViolationsOff"
+    },
+    {
+      "name": "ShadingOn"
+    },
+    {
+      "name": "ShadingOff"
+    },
+    {
+      "name": "FingerBeforeLetter"
+    },
+    {
+      "name": "LetterBeforeFinger"
+    },
+    {
+      "name": "mcand",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:candidate%text}}"
+      }
+    },
+    {
+      "name": "mcand",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:symbol}]{${1:candidate%text}}"
+      }
+    },
+    {
+      "name": "mcand*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:candidate%text}}"
+      }
+    },
+    {
+      "name": "mcand*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:symbol}]{${1:candidate%text}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "tableau",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:preamble}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/ot-tableau#c": [
+      "notipa\r",
+      "circledviolations\r",
+      "shadedcells\r",
+      "fingerafter\r",
+      "usehhline\r"
     ]
   },
-  "macros": {
-    "inp{}": {
-      "snippet": "inp{${1:input}}"
-    },
-    "ips{}": {
-      "snippet": "ips{${1:text}}"
-    },
-    "const{}": {
-      "snippet": "const{${1:constraint}}"
-    },
-    "const*{}": {
-      "snippet": "const*{${1:constraint}}"
-    },
-    "cand{}": {
-      "snippet": "cand{${1:candidate}}"
-    },
-    "cand[]{}": {
-      "snippet": "cand[${2:symbol}]{${1:candidate}}"
-    },
-    "cand*{}": {
-      "snippet": "cand*{${1:candidate}}"
-    },
-    "cand*[]{}": {
-      "snippet": "cand*[${2:symbol}]{${1:candidate}}"
-    },
-    "vio{}": {
-      "snippet": "vio{${1:violation}}"
-    },
-    "vio*{}": {
-      "snippet": "vio*{${1:violation}}"
-    },
-    "SetCellShading{}": {
-      "snippet": "SetCellShading{${1:factor}}"
-    },
-    "Optimal": {},
-    "OptimalMarker": {},
-    "ViolationMarker": {},
-    "CircledViolationMarker": {},
-    "TipaOn": {},
-    "TipaOff": {},
-    "CircledViolationsOn": {},
-    "CircledViolationsOff": {},
-    "ShadingOn": {},
-    "ShadingOff": {},
-    "FingerBeforeLetter": {},
-    "LetterBeforeFinger": {},
-    "mcand{}": {
-      "snippet": "mcand{${1:candidate}}"
-    },
-    "mcand[]{}": {
-      "snippet": "mcand[${2:symbol}]{${1:candidate}}"
-    },
-    "mcand*{}": {
-      "snippet": "mcand*{${1:candidate}}"
-    },
-    "mcand*[]{}": {
-      "snippet": "mcand*[${2:symbol}]{${1:candidate}}"
-    },
-    "CellShading": {},
-    "ConstraintString": {},
-    "DoubleLine": {},
-    "ExclOff": {},
-    "ExclOn": {},
-    "OptimalOff": {},
-    "OptimalOn": {},
-    "ShadeTheCell": {},
-    "TopOrBottomLine": {},
-    "UnshadeTheCell": {},
-    "ipa{}": {
-      "snippet": "ipa{${1:text}}"
-    },
-    "ip{}": {
-      "snippet": "ip{${1:text}}"
-    },
-    "properlines": {},
-    "rowletter": {},
-    "thetableaurow": {}
-  },
-  "envs": {
-    "tableau{}": {
-      "name": "tableau",
-      "snippet": "{${1:preamble}}"
-    }
-  },
-  "options": [
-    "notipa",
-    "circledviolations",
-    "shadedcells",
-    "fingerafter",
-    "usehhline"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/ot-tableau#c"
+  ]
 }

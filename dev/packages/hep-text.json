@@ -1,127 +1,299 @@
 {
-  "includes": {
-    "kvoptions": [],
-    "babel": [],
-    "csquotes": [],
-    "soulutf8": [],
-    "pdftexcmds": [],
-    "foreign": [],
-    "relsize": [],
-    "enumitem": []
-  },
-  "macros": {
-    "vs": {},
-    "no{}": {
-      "snippet": "no{${1:number}}"
+  "deps": [
+    {
+      "name": "kvoptions"
     },
-    "software{}": {
-      "snippet": "software{${1:name}}"
+    {
+      "name": "babel"
     },
-    "software[]{}": {
-      "snippet": "software[${2:version}]{${1:name}}"
+    {
+      "name": "csquotes"
     },
-    "online{}{}": {
-      "snippet": "online{${1:URL}}{${2:text}}"
+    {
+      "name": "soulutf8"
     },
-    "email{}": {
-      "snippet": "email{${1:email}}"
+    {
+      "name": "pdftexcmds"
     },
-    "prefix{}{}": {
-      "snippet": "prefix{${1:prefix}}{${2:word}}"
+    {
+      "name": "foreign"
     },
-    "subsubparagraph": {},
-    "addendum": {},
-    "Addendum": {},
-    "adhoc": {},
-    "Adhoc": {},
-    "aposteriori": {},
-    "Aposteriori": {},
-    "apriori": {},
-    "Apriori": {},
-    "caveat": {},
-    "Caveat": {},
-    "circa": {},
-    "Circa": {},
-    "curriculum": {},
-    "Curriculum": {},
-    "erratum": {},
-    "Erratum": {},
-    "ibidem": {},
-    "Ibidem": {},
-    "idem": {},
-    "Idem": {},
-    "sic": {},
-    "Sic": {},
-    "viceversa": {},
-    "Viceversa": {},
-    "vitae": {},
-    "Vitae": {},
-    "ala": {},
-    "Ala": {},
-    "visavis": {},
-    "Visavis": {},
-    "ansatz": {},
-    "Ansatz": {},
-    "gedanken": {},
-    "Gedanken": {},
-    "cf": {},
-    "eg": {},
-    "etal": {},
-    "etc": {},
-    "etseq": {},
-    "ibid": {},
-    "ie": {},
-    "loccit": {},
-    "opcit": {},
-    "viz": {},
-    "Cf": {},
-    "Eg": {},
-    "Etal": {},
-    "Etc": {},
-    "Etseq": {},
-    "Ibid": {},
-    "Ie": {},
-    "Loccit": {},
-    "Opcit": {},
-    "Viz": {}
-  },
-  "envs": {
-    "inlinelist": {},
-    "inlinelist[]": {
-      "name": "inlinelist",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "relsize"
     },
-    "enumdescript": {},
-    "enumdescript[]": {
-      "name": "enumdescript",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "enumdesc": {},
-    "enumerate*": {},
-    "enumerate*[]": {
-      "name": "enumerate*",
-      "snippet": "[${1:options}]"
-    },
-    "itemize*": {},
-    "itemize*[]": {
-      "name": "itemize*",
-      "snippet": "[${1:options}]"
-    },
-    "description*": {},
-    "description*[]": {
-      "name": "description*",
-      "snippet": "[${1:options}]"
+    {
+      "name": "enumitem"
     }
-  },
-  "options": [
-    "lang=${1:language}"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "vs"
+    },
+    {
+      "name": "no",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "software",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "software",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:version}]{${1:name}}"
+      }
+    },
+    {
+      "name": "online",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:URL}}{${2:text%plain}}"
+      }
+    },
+    {
+      "name": "email",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:email%URL}}"
+      }
+    },
+    {
+      "name": "prefix",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:prefix}}{${2:word%text}}"
+      }
+    },
+    {
+      "name": "subsubparagraph"
+    },
+    {
+      "name": "addendum"
+    },
+    {
+      "name": "Addendum"
+    },
+    {
+      "name": "adhoc"
+    },
+    {
+      "name": "Adhoc"
+    },
+    {
+      "name": "aposteriori"
+    },
+    {
+      "name": "Aposteriori"
+    },
+    {
+      "name": "apriori"
+    },
+    {
+      "name": "Apriori"
+    },
+    {
+      "name": "caveat"
+    },
+    {
+      "name": "Caveat"
+    },
+    {
+      "name": "circa"
+    },
+    {
+      "name": "Circa"
+    },
+    {
+      "name": "curriculum"
+    },
+    {
+      "name": "Curriculum"
+    },
+    {
+      "name": "erratum"
+    },
+    {
+      "name": "Erratum"
+    },
+    {
+      "name": "ibidem"
+    },
+    {
+      "name": "Ibidem"
+    },
+    {
+      "name": "idem"
+    },
+    {
+      "name": "Idem"
+    },
+    {
+      "name": "sic"
+    },
+    {
+      "name": "Sic"
+    },
+    {
+      "name": "viceversa"
+    },
+    {
+      "name": "Viceversa"
+    },
+    {
+      "name": "vitae"
+    },
+    {
+      "name": "Vitae"
+    },
+    {
+      "name": "ala"
+    },
+    {
+      "name": "Ala"
+    },
+    {
+      "name": "visavis"
+    },
+    {
+      "name": "Visavis"
+    },
+    {
+      "name": "ansatz"
+    },
+    {
+      "name": "Ansatz"
+    },
+    {
+      "name": "gedanken"
+    },
+    {
+      "name": "Gedanken"
+    },
+    {
+      "name": "cf"
+    },
+    {
+      "name": "eg"
+    },
+    {
+      "name": "etal"
+    },
+    {
+      "name": "etc"
+    },
+    {
+      "name": "etseq"
+    },
+    {
+      "name": "ibid"
+    },
+    {
+      "name": "ie"
+    },
+    {
+      "name": "loccit"
+    },
+    {
+      "name": "opcit"
+    },
+    {
+      "name": "viz"
+    },
+    {
+      "name": "Cf"
+    },
+    {
+      "name": "Eg"
+    },
+    {
+      "name": "Etal"
+    },
+    {
+      "name": "Etc"
+    },
+    {
+      "name": "Etseq"
+    },
+    {
+      "name": "Ibid"
+    },
+    {
+      "name": "Ie"
+    },
+    {
+      "name": "Loccit"
+    },
+    {
+      "name": "Opcit"
+    },
+    {
+      "name": "Viz"
+    }
+  ],
+  "envs": [
+    {
+      "name": "inlinelist"
+    },
+    {
+      "name": "inlinelist",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "enumdescript"
+    },
+    {
+      "name": "enumdescript",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "enumerate*"
+    },
+    {
+      "name": "enumerate*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "itemize*"
+    },
+    {
+      "name": "itemize*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "description*"
+    },
+    {
+      "name": "description*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/hep-text#c": [
+      "lang=${1:language}\r"
+    ],
+    "\\begin{inlinelist}#c,\\begin{enumdescript}#c": [
       "topsep=",
       "partopsep=",
       "parsep=",
@@ -132,44 +304,47 @@
       "labelwidth=",
       "labelsep=",
       "itemindent=",
-      "label=${1:commands}",
-      "label*=${1:commands}",
-      "ref=${1:commands}",
-      "font=${1:commands}",
-      "format=${1:commands}",
-      "align=${1|left,right,parleft|}",
+      "label=${1:commands}\r",
+      "label*=${1:commands}\r",
+      "ref=${1:commands}\r",
+      "font=${1:commands}\r",
+      "format=${1:commands}\r",
+      "align=${1|left,right,parleft\r|}",
       "labelindent=",
-      "left=${1:labelindent}",
-      "left=${1:labelindent} .. ${2:leftmargin}",
-      "widest",
-      "widest=${1:string}",
-      "widest*=${1:integer}",
+      "left=${1:labelindent}\r",
+      "left=${1:labelindent} .. ${2:leftmargin}\r",
+      "widest\r",
+      "widest=${1:string}\r",
+      "widest*=${1:integer}\r",
       "labelsep*=",
       "labelindent*=",
-      "start=${1:integer}",
-      "resume",
-      "resume=${1:series name}",
-      "resume*",
-      "resume*=${1:series name}",
-      "series=${1:series name}",
-      "beginpenalty=${1:integer}",
-      "midpenalty=${1:integer}",
-      "endpenalty=${1:integer}",
-      "before=${1:code}",
-      "before*=${1:code}",
-      "after=${1:code}",
-      "after*=${1:code}",
-      "first=${1:code}",
-      "first*=${1:code}",
-      "style=${1|standard,unboxed,nextline,sameline,multiline|}",
-      "noitemsep",
-      "nosep",
-      "wide",
-      "wide=${1:parindent}",
-      "itemjoin=${1:string}",
-      "itemjoin*=${1:string}",
-      "afterlabel=${1:string}",
-      "mode=${1|unboxed,boxed|}"
+      "start=${1:integer}\r",
+      "resume\r",
+      "resume=${1:series name}\r",
+      "resume*\r",
+      "resume*=${1:series name}\r",
+      "series=${1:series name}\r",
+      "beginpenalty=${1:integer}\r",
+      "midpenalty=${1:integer}\r",
+      "endpenalty=${1:integer}\r",
+      "before=${1:code}\r",
+      "before*=${1:code}\r",
+      "after=${1:code}\r",
+      "after*=${1:code}\r",
+      "first=${1:code}\r",
+      "first*=${1:code}\r",
+      "style=${1|standard,unboxed,nextline,sameline,multiline\r|}",
+      "noitemsep\r",
+      "nosep\r",
+      "wide\r",
+      "wide=${1:parindent}\r",
+      "itemjoin=${1:string}\r",
+      "itemjoin*=${1:string}\r",
+      "afterlabel=${1:string}\r",
+      "mode=${1|unboxed,boxed\r|}"
     ]
+  },
+  "args": [
+    "\\usepackage/hep-text#c"
   ]
 }

@@ -1,71 +1,153 @@
 {
-  "includes": {
-    "graphicx": [],
-    "pifont": []
-  },
-  "macros": {
-    "setmargins{}{}{}{}": {
-      "snippet": "setmargins{${1:top}}{${2:bottom}}{${3:left}}{${4:right}}"
+  "deps": [
+    {
+      "name": "graphicx"
     },
-    "CutLine{}": {
-      "snippet": "CutLine{${1:page num}}"
-    },
-    "CutLine*{}": {
-      "snippet": "CutLine*{${1:page num}}"
-    },
-    "AddToBackground{}{}": {
-      "snippet": "AddToBackground{${1:page num}}{${2:picture commands}}"
-    },
-    "AddToBackground*{}{}": {
-      "snippet": "AddToBackground*{${1:page num}}{${2:picture commands}}"
-    },
-    "noparskip": {},
-    "sectfont": {},
-    "descfont": {},
-    "foldmarkrule": {},
-    "foldmarklength": {},
-    "Scissors": {},
-    "iflandscape": {},
-    "landscapetrue": {},
-    "landscapefalse": {},
-    "iftumble": {},
-    "tumbletrue": {},
-    "tumblefalse": {},
-    "iftwopart": {},
-    "twoparttrue": {},
-    "twopartfalse": {},
-    "iffoldcorr": {},
-    "foldcorrtrue": {},
-    "foldcorrfalse": {}
-  },
-  "envs": {},
-  "options": [
-    "dvips",
-    "pdftex",
-    "vtex",
-    "dvipdfm",
-    "twoside",
-    "twocolumn",
-    "landscape",
-    "portrait",
-    "debug",
-    "twopart",
-    "notwopart",
-    "nospecialtricks",
-    "a3paper",
-    "combine",
-    "nocombine",
-    "frontside",
-    "backside",
-    "bothsides",
-    "tumble",
-    "notumble",
-    "foldmark",
-    "nofoldmark",
-    "foldcorr",
-    "nofoldcorr",
-    "draft",
-    "final"
+    {
+      "name": "pifont"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "setmargins",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:top%l}}{${2:bottom%l}}{${3:left%l}}{${4:right%l}}"
+      }
+    },
+    {
+      "name": "CutLine",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:page num}}"
+      }
+    },
+    {
+      "name": "CutLine*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:page num}}"
+      }
+    },
+    {
+      "name": "AddToBackground",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:page num}}{${2:picture commands%definition}}"
+      }
+    },
+    {
+      "name": "AddToBackground*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:page num}}{${2:picture commands%definition}}"
+      }
+    },
+    {
+      "name": "noparskip",
+      "unusual": true
+    },
+    {
+      "name": "sectfont",
+      "unusual": true
+    },
+    {
+      "name": "descfont",
+      "unusual": true
+    },
+    {
+      "name": "foldmarkrule",
+      "unusual": true
+    },
+    {
+      "name": "foldmarklength",
+      "unusual": true
+    },
+    {
+      "name": "Scissors",
+      "unusual": true
+    },
+    {
+      "name": "iflandscape",
+      "unusual": true
+    },
+    {
+      "name": "landscapetrue",
+      "unusual": true
+    },
+    {
+      "name": "landscapefalse",
+      "unusual": true
+    },
+    {
+      "name": "iftumble",
+      "unusual": true
+    },
+    {
+      "name": "tumbletrue",
+      "unusual": true
+    },
+    {
+      "name": "tumblefalse",
+      "unusual": true
+    },
+    {
+      "name": "iftwopart",
+      "unusual": true
+    },
+    {
+      "name": "twoparttrue",
+      "unusual": true
+    },
+    {
+      "name": "twopartfalse",
+      "unusual": true
+    },
+    {
+      "name": "iffoldcorr",
+      "unusual": true
+    },
+    {
+      "name": "foldcorrtrue",
+      "unusual": true
+    },
+    {
+      "name": "foldcorrfalse",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\documentclass/leaflet#c": [
+      "dvips\r",
+      "pdftex\r",
+      "vtex\r",
+      "dvipdfm\r",
+      "twoside\r",
+      "twocolumn\r",
+      "landscape\r",
+      "portrait\r",
+      "debug\r",
+      "twopart\r",
+      "notwopart\r",
+      "nospecialtricks\r",
+      "a3paper\r",
+      "combine\r",
+      "nocombine\r",
+      "frontside\r",
+      "backside\r",
+      "bothsides\r",
+      "tumble\r",
+      "notumble\r",
+      "foldmark\r",
+      "nofoldmark\r",
+      "foldcorr\r",
+      "nofoldcorr\r",
+      "draft\r",
+      "final\r"
+    ]
+  },
+  "args": [
+    "\\documentclass/leaflet#c"
+  ]
 }

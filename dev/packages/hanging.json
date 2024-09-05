@@ -1,30 +1,55 @@
 {
-  "includes": {},
-  "macros": {
-    "hangpara{}{}": {
-      "snippet": "hangpara{${1:indent}}{${2:afternum}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "hangpara",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:indent%l}}{${2:afternum}}"
+      }
     },
-    "nhpt": {},
-    "nhlq": {},
-    "nhrq": {},
-    "activatepunct": {}
-  },
-  "envs": {
-    "hangparas{}{}": {
-      "name": "hangparas",
-      "snippet": "{${1:indent}}{${2:afternum}}"
+    {
+      "name": "nhpt",
+      "unusual": true
     },
-    "hangpunct": {}
-  },
-  "options": [
-    "notcomma",
-    "notperiod",
-    "notquote",
-    "notquery",
-    "notexcl",
-    "notcolon",
-    "notscolon",
-    "fine"
+    {
+      "name": "nhlq",
+      "unusual": true
+    },
+    {
+      "name": "nhrq",
+      "unusual": true
+    },
+    {
+      "name": "activatepunct",
+      "unusual": true
+    }
   ],
-  "keyvals": []
+  "envs": [
+    {
+      "name": "hangparas",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:indent%l}}{${2:afternum}}"
+      }
+    },
+    {
+      "name": "hangpunct"
+    }
+  ],
+  "keys": {
+    "\\usepackage/hanging#c": [
+      "notcomma\r",
+      "notperiod\r",
+      "notquote\r",
+      "notquery\r",
+      "notexcl\r",
+      "notcolon\r",
+      "notscolon\r",
+      "fine\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/hanging#c"
+  ]
 }

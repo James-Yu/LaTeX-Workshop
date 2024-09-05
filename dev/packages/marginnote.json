@@ -1,28 +1,55 @@
 {
-  "includes": {},
-  "macros": {
-    "marginnote[]{}": {
-      "snippet": "marginnote[${2:left}]{${1:right}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "marginnote",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:left}]{${1:right}}"
+      }
     },
-    "marginnote[]{}[]": {
-      "snippet": "marginnote[${2:left}]{${1:right}}[${3:voffset}]"
+    {
+      "name": "marginnote",
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:left}]{${1:right}}[${3:voffset%l}]"
+      }
     },
-    "marginnotetextwidth": {},
-    "marginnotevadjust": {},
-    "raggedleftmarginnote": {},
-    "raggedrightmarginnote": {},
-    "marginfont": {}
-  },
-  "envs": {},
-  "options": [
-    "verbose",
-    "quiet",
-    "fulladjust",
-    "heightadjust",
-    "depthadjust",
-    "noadjust",
-    "parboxrestore",
-    "noparboxrestore"
+    {
+      "name": "marginnotetextwidth",
+      "unusual": true
+    },
+    {
+      "name": "marginnotevadjust",
+      "unusual": true
+    },
+    {
+      "name": "raggedleftmarginnote",
+      "unusual": true
+    },
+    {
+      "name": "raggedrightmarginnote",
+      "unusual": true
+    },
+    {
+      "name": "marginfont",
+      "unusual": true
+    }
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/marginnote#c": [
+      "verbose\r",
+      "quiet\r",
+      "fulladjust\r",
+      "heightadjust\r",
+      "depthadjust\r",
+      "noadjust\r",
+      "parboxrestore\r",
+      "noparboxrestore\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/marginnote#c"
+  ]
 }

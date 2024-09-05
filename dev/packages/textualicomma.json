@@ -1,17 +1,31 @@
 {
-  "includes": {
-    "amstext": []
-  },
-  "macros": {
-    "textualicommafont{}": {
-      "snippet": "textualicommafont{${1:font family}}"
-    },
-    "mathcomma": {}
-  },
-  "envs": {},
-  "options": [
-    "sffamily",
-    "ttfamily"
+  "deps": [
+    {
+      "name": "amstext"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "textualicommafont",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font family}}"
+      }
+    },
+    {
+      "name": "mathcomma",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/textualicomma#c": [
+      "sffamily\r",
+      "ttfamily\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/textualicomma#c"
+  ]
 }

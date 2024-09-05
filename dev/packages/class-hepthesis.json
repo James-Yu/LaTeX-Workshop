@@ -1,222 +1,473 @@
 {
-  "includes": {
-    "class-scrbook": [],
-    "fontenc": [],
-    "etoolbox": [],
-    "microtype": [],
-    "changepage": [],
-    "varwidth": [],
-    "amsmath": [],
-    "booktabs": [],
-    "setspace": [],
-    "fancyhdr": [],
-    "tocbibind": [],
-    "comment": [],
-    "rotating": [],
-    "caption": [],
-    "afterpage": [],
-    "csquotes": [],
-    "makeidx": [
-      "index"
+  "deps": [
+    {
+      "name": "class-scrbook"
+    },
+    {
+      "name": "fontenc"
+    },
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "microtype"
+    },
+    {
+      "name": "changepage"
+    },
+    {
+      "name": "varwidth"
+    },
+    {
+      "name": "amsmath"
+    },
+    {
+      "name": "booktabs"
+    },
+    {
+      "name": "setspace"
+    },
+    {
+      "name": "fancyhdr"
+    },
+    {
+      "name": "tocbibind"
+    },
+    {
+      "name": "comment"
+    },
+    {
+      "name": "rotating"
+    },
+    {
+      "name": "caption"
+    },
+    {
+      "name": "afterpage"
+    },
+    {
+      "name": "csquotes"
+    },
+    {
+      "name": "makeidx",
+      "if": "index"
+    },
+    {
+      "name": "titling",
+      "if": "titling"
+    },
+    {
+      "name": "hep",
+      "if": "hep"
+    },
+    {
+      "name": "hep",
+      "if": "hepfd"
+    },
+    {
+      "name": "hep",
+      "if": "heplayout"
+    },
+    {
+      "name": "hep",
+      "if": "hephyper"
+    },
+    {
+      "name": "hep",
+      "if": "hepfloat"
+    },
+    {
+      "name": "hep",
+      "if": "hepall"
+    },
+    {
+      "name": "lineno",
+      "if": "draft"
+    },
+    {
+      "name": "draftcopy",
+      "if": "draft"
+    },
+    {
+      "name": "hyperref",
+      "if": "hyper"
+    },
+    {
+      "name": "color",
+      "if": "hyper"
+    },
+    {
+      "name": "hyperref",
+      "if": "hyperpdf"
+    },
+    {
+      "name": "color",
+      "if": "hyperpdf"
+    }
+  ],
+  "macros": [
+    {
+      "name": "setspacing",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:choice%keyvals}}",
+        "keys": [
+          "\\setspacing,\\setfrontmatterspacing,\\setmainmatterspacing,\\setappendixspacing,\\setbackmatterspacing"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setfrontmatterspacing",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:choice%keyvals}}",
+        "keys": [
+          "\\setspacing,\\setfrontmatterspacing,\\setmainmatterspacing,\\setappendixspacing,\\setbackmatterspacing"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setmainmatterspacing",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:choice%keyvals}}",
+        "keys": [
+          "\\setspacing,\\setfrontmatterspacing,\\setmainmatterspacing,\\setappendixspacing,\\setbackmatterspacing"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setappendixspacing",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:choice%keyvals}}",
+        "keys": [
+          "\\setspacing,\\setfrontmatterspacing,\\setmainmatterspacing,\\setappendixspacing,\\setbackmatterspacing"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setbackmatterspacing",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:choice%keyvals}}",
+        "keys": [
+          "\\setspacing,\\setfrontmatterspacing,\\setmainmatterspacing,\\setappendixspacing,\\setbackmatterspacing"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setextramargins",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
+    },
+    {
+      "name": "setfrontmatterextramargins",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
+    },
+    {
+      "name": "setmainmatterextramargins",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
+    },
+    {
+      "name": "setappendixextramargins",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
+    },
+    {
+      "name": "setbackmatterextramargins",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
+    },
+    {
+      "name": "setabstractextramargins",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
+    },
+    {
+      "name": "setdeclarationextramargins",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
+    },
+    {
+      "name": "setacknowledgementsextramargins",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
+    },
+    {
+      "name": "setprefaceextramargins",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
+    },
+    {
+      "name": "thetitle"
+    },
+    {
+      "name": "theauthor"
+    },
+    {
+      "name": "titlepage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
+    },
+    {
+      "name": "titlepage",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:elaboration%text}]{${1:title%text}}"
+      }
+    },
+    {
+      "name": "dedication",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "frontquote",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:quote%text}}{${2:who}}"
+      }
+    },
+    {
+      "name": "frontquote",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:language}]{${1:quote%text}}{${2:who}}"
+      }
+    },
+    {
+      "name": "chapterquote",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:quote%text}}{${2:who}}"
+      }
+    },
+    {
+      "name": "chapterquote",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:language}]{${1:quote%text}}{${2:who}}"
+      }
+    },
+    {
+      "name": "pagequote",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:quote%text}}{${2:who}}"
+      }
+    },
+    {
+      "name": "pagequote",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:language}]{${1:quote%text}}{${2:who}}"
+      }
+    },
+    {
+      "name": "verysubsection",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "smallfigwidth",
+      "unusual": true
+    },
+    {
+      "name": "mediumfigwidth",
+      "unusual": true
+    },
+    {
+      "name": "largefigwidth",
+      "unusual": true
+    },
+    {
+      "name": "hugefigwidth",
+      "unusual": true
+    },
+    {
+      "name": "Chapter"
+    },
+    {
+      "name": "Section"
+    },
+    {
+      "name": "Appendix"
+    },
+    {
+      "name": "Figure"
+    },
+    {
+      "name": "Table"
+    },
+    {
+      "name": "Equation"
+    },
+    {
+      "name": "Reference"
+    },
+    {
+      "name": "Page"
+    },
+    {
+      "name": "ChapterRef",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "SectionRef",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "AppendixRef",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "FigureRef",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "TableRef",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "EquationRef",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "ReferenceRef",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "PageRef",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "frontmatter"
+    },
+    {
+      "name": "mainmatter"
+    },
+    {
+      "name": "appendices"
+    },
+    {
+      "name": "backmatter"
+    },
+    {
+      "name": "declaration"
+    },
+    {
+      "name": "acknowledgements"
+    },
+    {
+      "name": "preface"
+    },
+    {
+      "name": "colophon"
+    }
+  ],
+  "keys": {
+    "\\documentclass/hepthesis#c": [
+      "oneside\r",
+      "twoside\r",
+      "sftitles\r",
+      "rmtitles\r",
+      "bind\r",
+      "nobind\r",
+      "bindnopdf\r",
+      "noams\r",
+      "alphafoot\r",
+      "draft\r",
+      "hidefront\r",
+      "hideback\r",
+      "hidefrontback\r",
+      "hyper\r",
+      "hyperpdf\r",
+      "booktabs\r",
+      "nobooktabs\r",
+      "index\r",
+      "titling\r",
+      "hep\r",
+      "a4paper\r",
+      "a4narrow\r",
+      "a5paper\r",
+      "b5paper\r",
+      "letterpaper\r",
+      "legalpaper\r",
+      "executivepaper\r",
+      "10pt\r",
+      "11pt\r",
+      "12pt\r",
+      "hepfd\r",
+      "heplayout\r",
+      "hephyper\r",
+      "hepfloat\r",
+      "hepall\r"
     ],
-    "titling": [
-      "titling"
-    ],
-    "hep": [
-      "hep",
-      "hepfd",
-      "heplayout",
-      "hephyper",
-      "hepfloat",
-      "hepall"
-    ],
-    "lineno": [
-      "draft"
-    ],
-    "draftcopy": [
-      "draft"
-    ],
-    "hyperref": [
-      "hyper",
-      "hyperpdf"
-    ],
-    "color": [
-      "hyper",
-      "hyperpdf"
+    "\\setspacing,\\setfrontmatterspacing,\\setmainmatterspacing,\\setappendixspacing,\\setbackmatterspacing": [
+      "single\r",
+      "onehalf\r",
+      "double\r"
     ]
   },
-  "macros": {
-    "setspacing{}": {
-      "snippet": "setspacing{${1:choice}}"
-    },
-    "setfrontmatterspacing{}": {
-      "snippet": "setfrontmatterspacing{${1:choice}}"
-    },
-    "setmainmatterspacing{}": {
-      "snippet": "setmainmatterspacing{${1:choice}}"
-    },
-    "setappendixspacing{}": {
-      "snippet": "setappendixspacing{${1:choice}}"
-    },
-    "setbackmatterspacing{}": {
-      "snippet": "setbackmatterspacing{${1:choice}}"
-    },
-    "setextramargins{}": {
-      "snippet": "setextramargins{${1:length}}"
-    },
-    "setfrontmatterextramargins{}": {
-      "snippet": "setfrontmatterextramargins{${1:length}}"
-    },
-    "setmainmatterextramargins{}": {
-      "snippet": "setmainmatterextramargins{${1:length}}"
-    },
-    "setappendixextramargins{}": {
-      "snippet": "setappendixextramargins{${1:length}}"
-    },
-    "setbackmatterextramargins{}": {
-      "snippet": "setbackmatterextramargins{${1:length}}"
-    },
-    "setabstractextramargins{}": {
-      "snippet": "setabstractextramargins{${1:length}}"
-    },
-    "setdeclarationextramargins{}": {
-      "snippet": "setdeclarationextramargins{${1:length}}"
-    },
-    "setacknowledgementsextramargins{}": {
-      "snippet": "setacknowledgementsextramargins{${1:length}}"
-    },
-    "setprefaceextramargins{}": {
-      "snippet": "setprefaceextramargins{${1:length}}"
-    },
-    "thetitle": {},
-    "theauthor": {},
-    "titlepage{}": {
-      "snippet": "titlepage{${1:title}}"
-    },
-    "titlepage[]{}": {
-      "snippet": "titlepage[${2:elaboration}]{${1:title}}"
-    },
-    "dedication{}": {
-      "snippet": "dedication{${1:text}}"
-    },
-    "frontquote{}{}": {
-      "snippet": "frontquote{${1:quote}}{${2:who}}"
-    },
-    "frontquote[]{}{}": {
-      "snippet": "frontquote[${3:language}]{${1:quote}}{${2:who}}"
-    },
-    "chapterquote{}{}": {
-      "snippet": "chapterquote{${1:quote}}{${2:who}}"
-    },
-    "chapterquote[]{}{}": {
-      "snippet": "chapterquote[${3:language}]{${1:quote}}{${2:who}}"
-    },
-    "pagequote{}{}": {
-      "snippet": "pagequote{${1:quote}}{${2:who}}"
-    },
-    "pagequote[]{}{}": {
-      "snippet": "pagequote[${3:language}]{${1:quote}}{${2:who}}"
-    },
-    "verysubsection{}": {
-      "snippet": "verysubsection{${1:title}}"
-    },
-    "smallfigwidth": {},
-    "mediumfigwidth": {},
-    "largefigwidth": {},
-    "hugefigwidth": {},
-    "Chapter": {},
-    "Section": {},
-    "Appendix": {},
-    "Figure": {},
-    "Table": {},
-    "Equation": {},
-    "Reference": {},
-    "Page": {},
-    "ChapterRef{}": {
-      "snippet": "ChapterRef{${1:label}}"
-    },
-    "SectionRef{}": {
-      "snippet": "SectionRef{${1:label}}"
-    },
-    "AppendixRef{}": {
-      "snippet": "AppendixRef{${1:label}}"
-    },
-    "FigureRef{}": {
-      "snippet": "FigureRef{${1:label}}"
-    },
-    "TableRef{}": {
-      "snippet": "TableRef{${1:label}}"
-    },
-    "EquationRef{}": {
-      "snippet": "EquationRef{${1:label}}"
-    },
-    "ReferenceRef{}": {
-      "snippet": "ReferenceRef{${1:label}}"
-    },
-    "PageRef{}": {
-      "snippet": "PageRef{${1:label}}"
-    },
-    "bigfigwidth": {},
-    "filedate": {},
-    "fileversion": {},
-    "frontmattertitleskip": {},
-    "italic": {},
-    "littlefigwidth": {},
-    "sans": {},
-    "sansit": {},
-    "thearg": {},
-    "theiterlist": {},
-    "definethesis{}{}": {
-      "snippet": "definethesis{${1:arg1}}{${2:arg2}}"
-    }
-  },
-  "envs": {
-    "frontmatter": {},
-    "mainmatter": {},
-    "appendices": {},
-    "backmatter": {},
-    "declaration": {},
-    "acknowledgements": {},
-    "preface": {},
-    "colophon": {},
-    "chapterintro": {}
-  },
-  "options": [
-    "oneside",
-    "twoside",
-    "sftitles",
-    "rmtitles",
-    "bind",
-    "nobind",
-    "bindnopdf",
-    "noams",
-    "alphafoot",
-    "draft",
-    "hidefront",
-    "hideback",
-    "hidefrontback",
-    "hyper",
-    "hyperpdf",
-    "booktabs",
-    "nobooktabs",
-    "index",
-    "titling",
-    "hep",
-    "a4paper",
-    "a4narrow",
-    "a5paper",
-    "b5paper",
-    "letterpaper",
-    "legalpaper",
-    "executivepaper",
-    "10pt",
-    "11pt",
-    "12pt",
-    "hepfd",
-    "heplayout",
-    "hephyper",
-    "hepfloat",
-    "hepall"
-  ],
-  "keyvals": []
+  "args": [
+    "\\documentclass/hepthesis#c"
+  ]
 }

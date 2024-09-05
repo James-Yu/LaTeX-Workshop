@@ -1,20 +1,30 @@
 {
-  "includes": {},
-  "macros": {
-    "rescansyncPacked{}": {
-      "snippet": "rescansyncPacked{${1:macro}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "rescansyncPacked",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:macro}}"
+      }
     }
-  },
-  "envs": {
-    "rescansyncSaveenvPacked{}": {
+  ],
+  "envs": [
+    {
       "name": "rescansyncSaveenvPacked",
-      "snippet": "{${1:macro}}"
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:macro%cmd}}"
+      }
     },
-    "rescansyncSaveenvghostPacked{}": {
+    {
       "name": "rescansyncSaveenvghostPacked",
-      "snippet": "{${1:macro}}"
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:macro%cmd}}"
+      }
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "keys": {},
+  "args": []
 }

@@ -1,66 +1,119 @@
 {
-  "includes": {
-    "graphicx": [],
-    "collectbox": [],
-    "adjcalc": [],
-    "pgf": [
-      "pgf"
+  "deps": [
+    {
+      "name": "graphicx"
+    },
+    {
+      "name": "collectbox"
+    },
+    {
+      "name": "adjcalc"
+    },
+    {
+      "name": "pgf",
+      "if": "pgf"
+    }
+  ],
+  "macros": [
+    {
+      "name": "trimbox",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:trim specs}}{${2:content%text}}"
+      }
+    },
+    {
+      "name": "trimbox*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:trim specs}}{${2:content%text}}"
+      }
+    },
+    {
+      "name": "clipbox",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:clip specs}}{${2:content%text}}"
+      }
+    },
+    {
+      "name": "clipbox*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:clip specs}}{${2:content%text}}"
+      }
+    },
+    {
+      "name": "marginbox",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:margin specs}}{${2:content%text}}"
+      }
+    },
+    {
+      "name": "marginbox*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:margin specs}}{${2:content%text}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "trimbox",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:trim specs}}"
+      }
+    },
+    {
+      "name": "trimbox*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:trim specs}}"
+      }
+    },
+    {
+      "name": "clipbox",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:clip specs}}"
+      }
+    },
+    {
+      "name": "clipbox*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:clip specs}}"
+      }
+    },
+    {
+      "name": "marginbox",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:margin specs}}"
+      }
+    },
+    {
+      "name": "marginbox*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:margin specs}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/trimclip#c": [
+      "pdftex\r",
+      "luatex\r",
+      "dvips\r",
+      "xetex\r",
+      "dvipdfm\r",
+      "dvipdfmx\r",
+      "pgf\r"
     ]
   },
-  "macros": {
-    "trimbox{}{}": {
-      "snippet": "trimbox{${1:trim specs}}{${2:content}}"
-    },
-    "trimbox*{}{}": {
-      "snippet": "trimbox*{${1:trim specs}}{${2:content}}"
-    },
-    "clipbox{}{}": {
-      "snippet": "clipbox{${1:clip specs}}{${2:content}}"
-    },
-    "clipbox*{}{}": {
-      "snippet": "clipbox*{${1:clip specs}}{${2:content}}"
-    },
-    "marginbox{}{}": {
-      "snippet": "marginbox{${1:margin specs}}{${2:content}}"
-    },
-    "marginbox*{}{}": {
-      "snippet": "marginbox*{${1:margin specs}}{${2:content}}"
-    }
-  },
-  "envs": {
-    "trimbox{}": {
-      "name": "trimbox",
-      "snippet": "{${1:trim specs}}"
-    },
-    "trimbox*{}": {
-      "name": "trimbox*",
-      "snippet": "{${1:trim specs}}"
-    },
-    "clipbox{}": {
-      "name": "clipbox",
-      "snippet": "{${1:clip specs}}"
-    },
-    "clipbox*{}": {
-      "name": "clipbox*",
-      "snippet": "{${1:clip specs}}"
-    },
-    "marginbox{}": {
-      "name": "marginbox",
-      "snippet": "{${1:margin specs}}"
-    },
-    "marginbox*{}": {
-      "name": "marginbox*",
-      "snippet": "{${1:margin specs}}"
-    }
-  },
-  "options": [
-    "pdftex",
-    "luatex",
-    "dvips",
-    "xetex",
-    "dvipdfm",
-    "dvipdfmx",
-    "pgf"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/trimclip#c"
+  ]
 }

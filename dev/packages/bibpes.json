@@ -1,29 +1,52 @@
 {
-  "includes": {
-    "xkeyval": []
-  },
-  "macros": {
-    "reportOnBibPes": {},
-    "readbackDefFile": {},
-    "bibpesBody": {},
-    "ifreadOK": {},
-    "readOKtrue": {},
-    "readOKfalse": {},
-    "inbiblepassage": {},
-    "outbiblepassage": {},
-    "iwo": {},
-    "FN": {},
-    "CO": {},
-    "CF": {}
-  },
-  "envs": {},
-  "options": [
-    "infolder=${1:file path}",
-    "outfolder=${1:file path}",
-    "txtfilein=${1:base name}",
-    "deffileout=${1:base name}",
-    "build",
-    "!build"
+  "deps": [
+    {
+      "name": "xkeyval"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "reportOnBibPes"
+    },
+    {
+      "name": "readbackDefFile"
+    },
+    {
+      "name": "bibpesBody"
+    },
+    {
+      "name": "ifreadOK",
+      "unusual": true
+    },
+    {
+      "name": "readOKtrue",
+      "unusual": true
+    },
+    {
+      "name": "readOKfalse",
+      "unusual": true
+    },
+    {
+      "name": "inbiblepassage",
+      "unusual": true
+    },
+    {
+      "name": "outbiblepassage",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/bibpes#c": [
+      "infolder=${1:file path}\r",
+      "outfolder=${1:file path}\r",
+      "txtfilein=${1:base name}\r",
+      "deffileout=${1:base name}\r",
+      "build\r",
+      "!build\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/bibpes#c"
+  ]
 }

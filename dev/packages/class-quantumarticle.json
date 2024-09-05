@@ -1,186 +1,269 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "etoolbox": [],
-    "geometry": [],
-    "ltxgrid": [],
-    "fancyhdr": [],
-    "caption": [],
-    "lmodern": [],
-    "bbm": [],
-    "xcolor": [],
-    "xstring": [],
-    "tikz": [],
-    "tikzlibrarycalc": [],
-    "hyperref": [],
-    "amsfonts": [
-      "amsfonts"
-    ],
-    "amsmath": [
-      "amsmath"
-    ],
-    "amssymb": [
-      "amssymb"
+  "deps": [
+    {
+      "name": "xkeyval"
+    },
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "geometry"
+    },
+    {
+      "name": "ltxgrid"
+    },
+    {
+      "name": "fancyhdr"
+    },
+    {
+      "name": "caption"
+    },
+    {
+      "name": "lmodern"
+    },
+    {
+      "name": "bbm"
+    },
+    {
+      "name": "xcolor"
+    },
+    {
+      "name": "xstring"
+    },
+    {
+      "name": "tikz"
+    },
+    {
+      "name": "tikzlibrarycalc"
+    },
+    {
+      "name": "hyperref"
+    },
+    {
+      "name": "amsfonts",
+      "if": "amsfonts"
+    },
+    {
+      "name": "amsmath",
+      "if": "amsmath"
+    },
+    {
+      "name": "amssymb",
+      "if": "amssymb"
+    }
+  ],
+  "macros": [
+    {
+      "name": "acknowledgmentsname",
+      "unusual": true
+    },
+    {
+      "name": "addauthortolabel",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "address",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:id}]{${1:affiliation}}"
+      }
+    },
+    {
+      "name": "address",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:affiliation}}"
+      }
+    },
+    {
+      "name": "affil",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:id}]{${1:affiliation}}"
+      }
+    },
+    {
+      "name": "affil",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:affiliation}}"
+      }
+    },
+    {
+      "name": "affiliation",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:affiliation}}"
+      }
+    },
+    {
+      "name": "altaffiliation",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:affiliation}}"
+      }
+    },
+    {
+      "name": "author",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:id}]{${1:name}}"
+      }
+    },
+    {
+      "name": "collaboration",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "ead",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:url}]{${1:URL}}"
+      }
+    },
+    {
+      "name": "ead",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:email%URL}}"
+      }
+    },
+    {
+      "name": "email",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:prefix}]{${1:email%URL}}"
+      }
+    },
+    {
+      "name": "email",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:email%URL}}"
+      }
+    },
+    {
+      "name": "homepage",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:prefix}]{${1:URL}}"
+      }
+    },
+    {
+      "name": "homepage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:URL}}"
+      }
+    },
+    {
+      "name": "keywords",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keywords}}"
+      }
+    },
+    {
+      "name": "nocontentsline",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "openone"
+    },
+    {
+      "name": "orcid",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:prefix}]{${1:ORCID}}"
+      }
+    },
+    {
+      "name": "orcid",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ORCID}}"
+      }
+    },
+    {
+      "name": "Quantum"
+    },
+    {
+      "name": "quantumarticleversion",
+      "unusual": true
+    },
+    {
+      "name": "thanks",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:prefix}]{${1:text}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "acknowledgements"
+    },
+    {
+      "name": "widetext"
+    }
+  ],
+  "keys": {
+    "\\documentclass/quantumarticle#c": [
+      "a4paper\r",
+      "a5paper\r",
+      "b5paper\r",
+      "letterpaper\r",
+      "legalpaper\r",
+      "executivepaper\r",
+      "landscape\r",
+      "10pt\r",
+      "11pt\r",
+      "12pt\r",
+      "oneside\r",
+      "twoside\r",
+      "draft\r",
+      "final\r",
+      "titlepage\r",
+      "notitlepage\r",
+      "onecolumn\r",
+      "twocolumn\r",
+      "leqno\r",
+      "fleqn\r",
+      "openbib\r",
+      "amsfonts\r",
+      "noamsfonts\r",
+      "amssymb\r",
+      "noamssymb\r",
+      "amsmath\r",
+      "noamsmath\r",
+      "unpublished\r",
+      "accepted=${1:YYYY-MM-DD}\r",
+      "noarxiv\r"
     ]
   },
-  "macros": {
-    "acknowledgments{}": {
-      "snippet": "acknowledgments{${1:text}}"
-    },
-    "acknowledgmentsname": {},
-    "addauthortolabel{}{}": {
-      "snippet": "addauthortolabel{${1:arg1}}{${2:arg2}}"
-    },
-    "address[]{}": {
-      "snippet": "address[${2:id}]{${1:affiliation}}"
-    },
-    "address{}": {
-      "snippet": "address{${1:affiliation}}"
-    },
-    "affil[]{}": {
-      "snippet": "affil[${2:id}]{${1:affiliation}}"
-    },
-    "affil{}": {
-      "snippet": "affil{${1:affiliation}}"
-    },
-    "affiliation{}": {
-      "snippet": "affiliation{${1:affiliation}}"
-    },
-    "altaffiliation{}": {
-      "snippet": "altaffiliation{${1:affiliation}}"
-    },
-    "author[]{}": {
-      "snippet": "author[${2:id}]{${1:name}}"
-    },
-    "collaboration{}": {
-      "snippet": "collaboration{${1:name}}"
-    },
-    "ead[]{}": {
-      "snippet": "ead[${2:url}]{${1:URL}}"
-    },
-    "ead{}": {
-      "snippet": "ead{${1:email}}"
-    },
-    "email[]{}": {
-      "snippet": "email[${2:prefix}]{${1:email}}"
-    },
-    "email{}": {
-      "snippet": "email{${1:email}}"
-    },
-    "homepage[]{}": {
-      "snippet": "homepage[${2:prefix}]{${1:URL}}"
-    },
-    "homepage{}": {
-      "snippet": "homepage{${1:URL}}"
-    },
-    "keywords{}": {
-      "snippet": "keywords{${1:keywords}}"
-    },
-    "nocontentsline{}{}{}": {
-      "snippet": "nocontentsline{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "openone": {},
-    "orcid[]{}": {
-      "snippet": "orcid[${2:prefix}]{${1:ORCID}}"
-    },
-    "orcid{}": {
-      "snippet": "orcid{${1:ORCID}}"
-    },
-    "Quantum": {},
-    "quantumarticleversion": {},
-    "thanks[]{}": {
-      "snippet": "thanks[${2:prefix}]{${1:text}}"
-    },
-    "ao": {},
-    "ap": {},
-    "apl": {},
-    "apj": {},
-    "bell": {},
-    "jqe": {},
-    "assp": {},
-    "aprop": {},
-    "mtt": {},
-    "iovs": {},
-    "jcp": {},
-    "jmo": {},
-    "josa": {},
-    "josaa": {},
-    "josab": {},
-    "jpp": {},
-    "nat": {},
-    "oc": {},
-    "ol": {},
-    "pl": {},
-    "pra": {},
-    "prb": {},
-    "prc": {},
-    "prd": {},
-    "pre": {},
-    "prl": {},
-    "rmp": {},
-    "pspie": {},
-    "sjqe": {},
-    "vr": {},
-    "pacs{}": {
-      "snippet": "pacs{${1:arg}}"
-    },
-    "preprint{}": {
-      "snippet": "preprint{${1:arg}}"
-    },
-    "volumeyear{}": {
-      "snippet": "volumeyear{${1:arg}}"
-    },
-    "volumenumber{}": {
-      "snippet": "volumenumber{${1:arg}}"
-    },
-    "issuenumber{}": {
-      "snippet": "issuenumber{${1:arg}}"
-    },
-    "eid{}": {
-      "snippet": "eid{${1:arg}}"
-    },
-    "startpage{}": {
-      "snippet": "startpage{${1:arg}}"
-    },
-    "endpage{}": {
-      "snippet": "endpage{${1:arg}}"
-    }
-  },
-  "envs": {
-    "acknowledgements": {},
-    "widetext": {}
-  },
-  "options": [
-    "a4paper",
-    "a5paper",
-    "b5paper",
-    "letterpaper",
-    "legalpaper",
-    "executivepaper",
-    "landscape",
-    "10pt",
-    "11pt",
-    "12pt",
-    "oneside",
-    "twoside",
-    "draft",
-    "final",
-    "titlepage",
-    "notitlepage",
-    "onecolumn",
-    "twocolumn",
-    "leqno",
-    "fleqn",
-    "openbib",
-    "amsfonts",
-    "noamsfonts",
-    "amssymb",
-    "noamssymb",
-    "amsmath",
-    "noamsmath",
-    "unpublished",
-    "accepted=${1:YYYY-MM-DD}",
-    "noarxiv"
-  ],
-  "keyvals": []
+  "args": [
+    "\\documentclass/quantumarticle#c"
+  ]
 }

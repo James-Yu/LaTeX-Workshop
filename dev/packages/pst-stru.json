@@ -1,44 +1,103 @@
 {
-  "includes": {
-    "pstricks": [],
-    "multido": [],
-    "pst-node": [],
-    "pst-plot": [],
-    "pst-xkey": []
-  },
-  "macros": {
-    "arrow": {},
-    "circput()(){}{}": {
-      "snippet": "circput(${3:nodeA})(${4:nodeB}){${1:stuffA}}{${2:stuffB}}"
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "clockCouple": {},
-    "debut": {},
-    "fin": {},
-    "fixedend": {},
-    "guide": {},
-    "hinge": {},
-    "interhinge": {},
-    "noclockCouple": {},
-    "node()": {
-      "snippet": "node(${1:name})"
+    {
+      "name": "multido"
     },
-    "nStart": {},
-    "PAS": {},
-    "Position": {},
-    "psArrowCivil()(){}": {
-      "snippet": "psArrowCivil(${2:nodeA})(${3:nodeB}){${1:stuff}}"
+    {
+      "name": "pst-node"
     },
-    "psArrowCivil[]()(){}": {
-      "snippet": "psArrowCivil[${2:options}](${3:nodeA})(${4:nodeB}){${1:stuff}}"
+    {
+      "name": "pst-plot"
     },
-    "roller": {},
-    "Start": {},
-    "triload": {},
-    "triload[]": {
-      "snippet": "triload[${1:options}]"
+    {
+      "name": "pst-xkey"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "arrow"
+    },
+    {
+      "name": "circput(nodeA)(nodeB)",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:stuffA}}{${2:stuffB}}"
+      }
+    },
+    {
+      "name": "clockCouple"
+    },
+    {
+      "name": "debut",
+      "unusual": true
+    },
+    {
+      "name": "fin",
+      "unusual": true
+    },
+    {
+      "name": "fixedend"
+    },
+    {
+      "name": "guide"
+    },
+    {
+      "name": "hinge"
+    },
+    {
+      "name": "interhinge"
+    },
+    {
+      "name": "noclockCouple"
+    },
+    {
+      "name": "node(name)"
+    },
+    {
+      "name": "PAS",
+      "unusual": true
+    },
+    {
+      "name": "Position",
+      "unusual": true
+    },
+    {
+      "name": "psArrowCivil(nodeA)(nodeB)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:stuff}}"
+      }
+    },
+    {
+      "name": "psArrowCivil",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:nodeA})(${4:nodeB}){${1:stuff}}"
+      }
+    },
+    {
+      "name": "roller"
+    },
+    {
+      "name": "Start",
+      "unusual": true
+    },
+    {
+      "name": "triload"
+    },
+    {
+      "name": "triload",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

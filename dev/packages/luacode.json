@@ -1,35 +1,68 @@
 {
-  "includes": {
-    "ifluatex": [],
-    "luatexbase": []
-  },
-  "macros": {
-    "luadirect{}": {
-      "snippet": "luadirect{${1:lua code}}"
+  "deps": [
+    {
+      "name": "ifluatex"
     },
-    "luaexec{}": {
-      "snippet": "luaexec{${1:lua code}}"
+    {
+      "name": "luatexbase"
+    }
+  ],
+  "macros": [
+    {
+      "name": "luadirect",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:lua code%definition}}"
+      }
     },
-    "luacode": {},
-    "endluacode": {},
-    "luacodestar": {},
-    "endluacodestar": {},
-    "luastring{}": {
-      "snippet": "luastring{${1:string}}"
+    {
+      "name": "luaexec",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:lua code%definition}}"
+      }
     },
-    "luastringN{}": {
-      "snippet": "luastringN{${1:string}}"
+    {
+      "name": "luastring",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:string}}"
+      }
     },
-    "luastringO{}": {
-      "snippet": "luastringO{${1:string}}"
+    {
+      "name": "luastringN",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:string}}"
+      }
     },
-    "LuaCodeDebugOn": {},
-    "LuaCodeDebugOff": {}
-  },
-  "envs": {
-    "luacode": {},
-    "luacode*": {}
-  },
-  "options": [],
-  "keyvals": []
+    {
+      "name": "luastringO",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:string}}"
+      }
+    },
+    {
+      "name": "LuaCodeDebugOn",
+      "unusual": true
+    },
+    {
+      "name": "LuaCodeDebugOff",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "luacode"
+    },
+    {
+      "name": "luacode*"
+    }
+  ],
+  "keys": {},
+  "args": []
 }

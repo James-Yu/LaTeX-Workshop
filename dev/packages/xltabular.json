@@ -1,25 +1,45 @@
 {
-  "includes": {
-    "tabularx": [],
-    "ltablex": []
-  },
-  "macros": {
-    "endfirstfoot": {},
-    "endlastfoot": {},
-    "endfirsthead": {},
-    "endfoot": {},
-    "endhead": {}
-  },
-  "envs": {
-    "xltabular{}{}": {
-      "name": "xltabular",
-      "snippet": "{${1:width}}{${2:preamble}}"
+  "deps": [
+    {
+      "name": "tabularx"
     },
-    "xltabular[]{}{}": {
-      "name": "xltabular",
-      "snippet": "[${3:hPos}]{${1:width}}{${2:preamble}}"
+    {
+      "name": "ltablex"
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "endfirstfoot"
+    },
+    {
+      "name": "endlastfoot"
+    },
+    {
+      "name": "endfirsthead"
+    },
+    {
+      "name": "endfoot"
+    },
+    {
+      "name": "endhead"
+    }
+  ],
+  "envs": [
+    {
+      "name": "xltabular",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:width}}{${2:preamble}}"
+      }
+    },
+    {
+      "name": "xltabular",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:hPos}]{${1:width}}{${2:preamble}}"
+      }
+    }
+  ],
+  "keys": {},
+  "args": []
 }

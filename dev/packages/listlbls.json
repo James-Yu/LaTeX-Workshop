@@ -1,21 +1,33 @@
 {
-  "includes": {
-    "translations": []
-  },
-  "macros": {
-    "listoflabels": {},
-    "listoflabels[]": {
-      "snippet": "listoflabels[${1:label}]"
+  "deps": [
+    {
+      "name": "translations"
     }
-  },
-  "envs": {},
-  "options": [
-    "draft",
-    "final",
-    "totoc",
-    "notoc",
-    "numtoc",
-    "nonameref"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "listoflabels"
+    },
+    {
+      "name": "listoflabels",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:label}]"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/listlbls#c": [
+      "draft\r",
+      "final\r",
+      "totoc\r",
+      "notoc\r",
+      "numtoc\r",
+      "nonameref\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/listlbls#c"
+  ]
 }

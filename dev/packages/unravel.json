@@ -1,26 +1,35 @@
 {
-  "includes": {
-    "gtl": []
-  },
-  "macros": {
-    "unravel{}": {
-      "snippet": "unravel{${1:content}}"
-    },
-    "unravel[]{}": {
-      "snippet": "unravel[${2:keyvals}]{${1:content}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "unravelsetup{}": {
-      "snippet": "unravelsetup{${1:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "gtl"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "unravel",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content}}"
+      }
+    },
+    {
+      "name": "unravel",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:keyvals}]{${1:content}}"
+      }
+    },
+    {
+      "name": "unravelsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\unravel,\\unravelsetup": [
       "explicit-prompt",
       "internal-debug",
       "machine",
@@ -36,5 +45,6 @@
       "trace-other",
       "welcome-message"
     ]
-  ]
+  },
+  "args": []
 }

@@ -1,111 +1,234 @@
 {
-  "includes": {},
-  "macros": {
-    "framelatex{}": {
-      "snippet": "framelatex{${1:contents}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "framelatex",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:contents%text}}"
+      }
     },
-    "refcounter{}": {
-      "snippet": "refcounter{${1:counter}}"
+    {
+      "name": "refcounter",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
     },
-    "thesubsectionslide": {},
-    "insertframetitle": {},
-    "insertframesubtitle": {},
-    "resetcounteronoverlays{}": {
-      "snippet": "resetcounteronoverlays{${1:counter}}"
+    {
+      "name": "thesubsectionslide",
+      "unusual": true
     },
-    "resetcountonoverlays{}": {
-      "snippet": "resetcountonoverlays{${1:count register}}"
+    {
+      "name": "insertframetitle",
+      "unusual": true
     },
-    "endframe": {},
-    "framewidth": {},
-    "beamerclosesubstitutedenvironement{}": {
-      "snippet": "beamerclosesubstitutedenvironement{${1:envname}}"
+    {
+      "name": "insertframesubtitle",
+      "unusual": true
     },
-    "includeonlyframes{}": {
-      "snippet": "includeonlyframes{${1:frame label list}}"
+    {
+      "name": "resetcounteronoverlays",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
     },
-    "theframenumber": {},
-    "insertframenumber": {},
-    "insertslidenumber": {},
-    "insertoverlaynumber": {},
-    "pagebreak<>": {
-      "snippet": "pagebreak<${1:overlay specifications}>"
+    {
+      "name": "resetcountonoverlays",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:count register}}"
+      }
     },
-    "nopagebreak<>": {
-      "snippet": "nopagebreak<${1:overlay specifications}>"
+    {
+      "name": "framewidth",
+      "unusual": true
     },
-    "framebreak": {},
-    "noframebreak": {},
-    "againframe{}": {
-      "snippet": "againframe{${1:name}}"
+    {
+      "name": "beamerclosesubstitutedenvironement",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:envname}}"
+      }
     },
-    "againframe<>{}": {
-      "snippet": "againframe<${2:overlay specification}>{${1:name}}"
+    {
+      "name": "includeonlyframes",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:frame label list}}"
+      }
     },
-    "againframe<>[]{}": {
-      "snippet": "againframe<${3:overlay specification}>[${2:options}]{${1:name}}"
+    {
+      "name": "theframenumber",
+      "unusual": true
     },
-    "againframe[]{}": {
-      "snippet": "againframe[${2:options}]{${1:name}}"
+    {
+      "name": "insertframenumber",
+      "unusual": true
     },
-    "againframe[][]{}": {
-      "snippet": "againframe[${2:<default overlay specification>}][${3:options}]{${1:name}}"
+    {
+      "name": "insertslidenumber",
+      "unusual": true
     },
-    "againframe<>[][]{}": {
-      "snippet": "againframe<${4:overlay specification}>[${2:<default overlay specification>}][${3:options}]{${1:name}}"
+    {
+      "name": "insertoverlaynumber",
+      "unusual": true
+    },
+    {
+      "name": "pagebreak<overlay specifications>"
+    },
+    {
+      "name": "nopagebreak<overlay specifications>"
+    },
+    {
+      "name": "framebreak"
+    },
+    {
+      "name": "noframebreak"
+    },
+    {
+      "name": "againframe",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "againframe<overlay specification>",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "againframe<overlay specification>",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options}]{${1:name}}"
+      }
+    },
+    {
+      "name": "againframe",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options}]{${1:name}}"
+      }
+    },
+    {
+      "name": "againframe",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:<default overlay specification>}][${3:options}]{${1:name}}"
+      }
+    },
+    {
+      "name": "againframe<overlay specification>",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:<default overlay specification>}][${3:options}]{${1:name}}"
+      }
     }
-  },
-  "envs": {
-    "frame": {},
-    "frame<>": {
-      "name": "frame",
-      "snippet": "<${1:overlay specification}>"
+  ],
+  "envs": [
+    {
+      "name": "frame"
     },
-    "frame<>[]": {
+    {
       "name": "frame",
-      "snippet": "<${2:overlay specification}>[${1:<default overlay specification>}]"
+      "arg": {
+        "format": "<>",
+        "snippet": "<${1:overlay specification}>"
+      }
     },
-    "frame<>[][]": {
+    {
       "name": "frame",
-      "snippet": "<${3:overlay specification}>[${1:<default overlay specification>}][${2:options}]"
+      "arg": {
+        "format": "<>[]",
+        "snippet": "<${2:overlay specification}>[${1:<default overlay specification>}]"
+      }
     },
-    "frame<>[][]{}": {
+    {
       "name": "frame",
-      "snippet": "<${4:overlay specification}>[${2:<default overlay specification>}][${3:options}]{${1:title}}"
+      "arg": {
+        "format": "<>[][]",
+        "snippet": "<${3:overlay specification}>[${1:<default overlay specification>}][${2:options}]"
+      }
     },
-    "frame<>[][]{}{}": {
+    {
       "name": "frame",
-      "snippet": "<${5:overlay specification}>[${3:<default overlay specification>}][${4:options}]{${1:title}}{${2:subtitle}}"
+      "arg": {
+        "format": "<>[][]{}",
+        "snippet": "<${4:overlay specification}>[${2:<default overlay specification>}][${3:options}]{${1:title}}"
+      }
     },
-    "frame[]": {
+    {
       "name": "frame",
-      "snippet": "[${1:options}]"
+      "arg": {
+        "format": "<>[][]{}{}",
+        "snippet": "<${5:overlay specification}>[${3:<default overlay specification>}][${4:options}]{${1:title}}{${2:subtitle}}"
+      }
     },
-    "frame[][]": {
+    {
       "name": "frame",
-      "snippet": "[${1:<default overlay specification>}][${2:options}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:<default overlay specification>}]"
+      }
     },
-    "frame[][]{}": {
+    {
       "name": "frame",
-      "snippet": "[${2:<default overlay specification>}][${3:options}]{${1:title}}"
+      "arg": {
+        "format": "[][]",
+        "snippet": "[${1:<default overlay specification>}][${2:options}]"
+      }
     },
-    "frame[][]{}{}": {
+    {
       "name": "frame",
-      "snippet": "[${3:<default overlay specification>}][${4:options}]{${1:title}}{${2:subtitle}}"
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:<default overlay specification>}][${3:options}]{${1:title}}"
+      }
     },
-    "frame[]{}": {
+    {
       "name": "frame",
-      "snippet": "[${2:options}]{${1:title}}"
+      "arg": {
+        "format": "[][]{}{}",
+        "snippet": "[${3:<default overlay specification>}][${4:options}]{${1:title}}{${2:subtitle}}"
+      }
     },
-    "frame[]{}{}": {
+    {
       "name": "frame",
-      "snippet": "[${3:options}]{${1:title}}{${2:subtitle}}"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options}]"
+      }
     },
-    "frame{}": {
+    {
       "name": "frame",
-      "snippet": "{${1:title}}"
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options}]{${1:title}}"
+      }
+    },
+    {
+      "name": "frame",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options}]{${1:title}}{${2:subtitle}}"
+      }
+    },
+    {
+      "name": "frame",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "keys": {},
+  "args": []
 }

@@ -1,116 +1,181 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "graphicx": [],
-    "ifpdf": [],
-    "ifxetex": [],
-    "environ": []
-  },
-  "macros": {
-    "gmpoptions{}": {
-      "snippet": "gmpoptions{${1:options}}"
+  "deps": [
+    {
+      "name": "xkeyval"
     },
-    "usempxclass{}": {
-      "snippet": "usempxclass{${1:class}}"
+    {
+      "name": "graphicx"
     },
-    "usempxclass[]{}": {
-      "snippet": "usempxclass[${2:options}]{${1:class}}"
+    {
+      "name": "ifpdf"
     },
-    "usempxpackage{}": {
-      "snippet": "usempxpackage{${1:package}}"
+    {
+      "name": "ifxetex"
     },
-    "usempxpackage[]{}": {
-      "snippet": "usempxpackage[${2:options}]{${1:package}}"
-    },
-    "resetmpxpackages": {},
-    "mpxcommands{}": {
-      "snippet": "mpxcommands{${1:commands}}"
-    },
-    "resetmpxcommands": {},
-    "mpdim{}": {
-      "snippet": "mpdim{${1:dimen param}}"
-    },
-    "usempost{}": {
-      "snippet": "usempost{${1:string}}"
-    },
-    "usempost[]{}": {
-      "snippet": "usempost[${2:options}]{${1:string}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "btex": {},
-    "verbatimtex": {}
-  },
-  "envs": {
-    "mpost": {},
-    "mpost[]": {
-      "name": "mpost",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "mpost*": {},
-    "mpost*[]": {
-      "name": "mpost*",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "environ"
     }
-  },
-  "options": [
-    "tex",
-    "latex",
-    "noshellescape",
-    "shellescape",
-    "nowrite",
-    "write",
-    "envname=${1:envname}",
-    "extension=${1:extension}",
-    "everymp={${1:metapost code}}",
-    "clean=${1|none,aux,mp|}",
-    "rmcommand=${1:cmd}",
-    "postrmcommand=${1:cmd}"
   ],
-  "keyvals": [
-    [
-      "alt={${1:alt text}}",
-      "bb=${1:llx lly urx ury}",
-      "bbllx=",
-      "bblly=",
-      "bburx=",
-      "bbury=",
-      "natwidth=",
-      "natheight=",
+  "macros": [
+    {
+      "name": "gmpoptions",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\usepackage/gmp#c,\\gmpoptions"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "usempxclass",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:class}}"
+      }
+    },
+    {
+      "name": "usempxclass",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options}]{${1:class}}"
+      }
+    },
+    {
+      "name": "usempxpackage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:package}}"
+      }
+    },
+    {
+      "name": "usempxpackage",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options}]{${1:package}}"
+      }
+    },
+    {
+      "name": "resetmpxpackages"
+    },
+    {
+      "name": "mpxcommands",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:commands}}"
+      }
+    },
+    {
+      "name": "resetmpxcommands"
+    },
+    {
+      "name": "mpdim",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:dimen param}}"
+      }
+    },
+    {
+      "name": "usempost",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:string}}"
+      }
+    },
+    {
+      "name": "usempost",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options}]{${1:string}}"
+      }
+    },
+    {
+      "name": "btex"
+    },
+    {
+      "name": "verbatimtex"
+    }
+  ],
+  "envs": [
+    {
+      "name": "mpost"
+    },
+    {
+      "name": "mpost",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "mpost*"
+    },
+    {
+      "name": "mpost*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/gmp#c,\\gmpoptions": [
+      "tex\r",
+      "latex\r",
+      "noshellescape\r",
+      "shellescape\r",
+      "nowrite\r",
+      "write\r",
+      "envname=${1:envname}\r",
+      "extension=${1:extension}\r",
+      "everymp={${1:metapost code}}\r",
+      "clean=${1|none,aux,mp\r|}",
+      "rmcommand=${1:cmd}\r",
+      "postrmcommand=${1:cmd}\r"
+    ],
+    "\\usempost": [
+      "alt={${1:alt text}}\r",
+      "bb=${1:llx lly urx ury}\r",
+      "bbllx=\r",
+      "bblly=\r",
+      "bburx=\r",
+      "bbury=\r",
+      "natwidth=\r",
+      "natheight=\r",
       "hiresbb",
-      "pagebox=${1|mediabox,cropbox,bleedbox,trimbox,artbox|}",
-      "viewport=${1:llx lly urx ury}",
-      "trim=${1:llx lly urx ury}",
-      "angle=${1:degrees}",
-      "origin=",
+      "pagebox=${1|mediabox,cropbox,bleedbox,trimbox,artbox\r|}",
+      "viewport=${1:llx lly urx ury}\r",
+      "trim=${1:llx lly urx ury}\r",
+      "angle=${1:degrees}\r",
+      "origin=\r",
       "width=",
       "height=",
       "totalheight=",
       "keepaspectratio",
-      "scale=${1:factor}",
+      "scale=${1:factor}\r",
       "clip",
       "draft",
-      "type=${1:file type}",
-      "ext=${1:file extension}",
-      "read=${1:read-file extension}",
-      "command=",
-      "quiet",
-      "page=${1:page number}",
+      "type=${1:file type}\r",
+      "ext=${1:file extension}\r",
+      "read=${1:read-file extension}\r",
+      "command=\r",
+      "quiet\r",
+      "page=${1:page number}\r",
       "interpolate",
-      "decodearray={${1:color array}}"
+      "decodearray={${1:color array}}\r"
     ],
-    [
-      "name=${1:string}",
+    "\\begin{mpost},\\begin{mpost*}": [
+      "name=${1:string}\r",
       "use",
-      "mpmem=${1:metapost format}",
-      "mpxprogram=${1|tex,latex|}",
-      "mpxcommands=${1:commands}",
-      "mpsettings={${1:metapost code}}",
-      "runs=${1:number}"
+      "mpmem=${1:metapost format}\r",
+      "mpxprogram=${1|tex,latex\r|}",
+      "mpxcommands=${1:commands}\r",
+      "mpsettings={${1:metapost code}}\r",
+      "runs=${1:number}\r"
     ]
+  },
+  "args": [
+    "\\usepackage/gmp#c,\\gmpoptions"
   ]
 }

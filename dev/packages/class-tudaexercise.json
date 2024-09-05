@@ -1,161 +1,337 @@
 {
-  "includes": {
-    "l3keys2e": [],
-    "environ": [],
-    "class-scrartcl": [],
-    "tudarules": [],
-    "scrlayer-scrpage": [],
-    "tudafonts": [],
-    "geometry": [],
-    "tudacolors": [],
-    "graphicx": [],
-    "hyperref": [],
-    "pgf": [
-      "department=mecheng"
-    ]
-  },
-  "macros": {
-    "MechEngArrow{}": {
-      "snippet": "MechEngArrow{${1:Länge}}",
-      "option": "department=mecheng"
+  "deps": [
+    {
+      "name": "l3keys2e"
     },
-    "MechEngArrow*{}": {
-      "snippet": "MechEngArrow*{${1:Länge}}",
-      "option": "department=mecheng"
+    {
+      "name": "environ"
     },
-    "title[]{}": {
-      "snippet": "title[${2:Kurztitel für die Kopfzeile}]{${1:text}}"
+    {
+      "name": "class-scrartcl"
     },
-    "term{}": {
-      "snippet": "term{${1:Semester}}"
+    {
+      "name": "tudarules"
     },
-    "sheetnumber{}": {
-      "snippet": "sheetnumber{${1:Nummer des Übungsblatts}}"
+    {
+      "name": "scrlayer-scrpage"
     },
-    "thetask": {},
-    "thesubtask": {},
-    "ConfigureHeadline{}": {
-      "snippet": "ConfigureHeadline{${1:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "tudafonts"
     },
-    "ShortTitle": {},
-    "StudentID": {},
-    "StudentName": {},
-    "IfSolutionT{}": {
-      "snippet": "IfSolutionT{${1:true code}}"
+    {
+      "name": "geometry"
     },
-    "IfSolutionF{}": {
-      "snippet": "IfSolutionF{${1:false code}}"
+    {
+      "name": "tudacolors"
     },
-    "IfSolutionTF{}{}": {
-      "snippet": "IfSolutionTF{${1:true code}}{${2:false code}}"
+    {
+      "name": "graphicx"
     },
-    "creditformat{}": {
-      "snippet": "creditformat{${1:text}}"
+    {
+      "name": "hyperref"
     },
-    "creditformatsum{}": {
-      "snippet": "creditformatsum{${1:text}}"
-    },
-    "PointName": {},
-    "PointsName": {},
-    "pointformat{}": {
-      "snippet": "pointformat{${1:text}}"
-    },
-    "getPoints{}": {
-      "snippet": "getPoints{${1:Nummer}}"
-    },
-    "getPointsTotal": {},
-    "refPoints{}": {
-      "snippet": "refPoints{${1:label}}"
-    },
-    "mapPoints{}": {
-      "snippet": "mapPoints{${1:code}}"
-    },
-    "mapPoints*{}": {
-      "snippet": "mapPoints*{${1:code}}"
-    },
-    "authorandname": {},
-    "institution{}": {
-      "snippet": "institution{${1:Einrichtung}}"
-    },
-    "sheetsep": {},
-    "solutionsep": {},
-    "StudentIDname": {},
-    "StudentIDsep": {},
-    "StudentNamesep": {},
-    "subtaskformat": {},
-    "taskformat": {},
-    "tasksep": {},
-    "titleimage{}": {
-      "snippet": "titleimage{${1:graphics code}}"
-    },
-    "examheaderdefault": {},
-    "subsubtitle{}": {
-      "snippet": "subsubtitle{${1:text}}"
+    {
+      "name": "pgf",
+      "if": "department=mecheng"
     }
-  },
-  "envs": {
-    "task{}": {
-      "name": "task",
-      "snippet": "{${1:Überschrift}}"
-    },
-    "task[]{}": {
-      "name": "task",
-      "snippet": "[${2:Optionen}]{${1:Überschrift}}"
-    },
-    "task*{}": {
-      "name": "task*",
-      "snippet": "{${1:Aufgabentitel}}"
-    },
-    "task*[]{}": {
-      "name": "task*",
-      "snippet": "[${2:Optionen}]{${1:Aufgabentitel}}"
-    },
-    "subtask": {},
-    "subtask[]": {
-      "name": "subtask",
-      "snippet": "[${1:Optionen}]"
-    },
-    "subtask*{}": {
-      "name": "subtask*",
-      "snippet": "{${1:Titel der Teilaufgabe}}"
-    },
-    "subtask*[]{}": {
-      "name": "subtask*",
-      "snippet": "[${2:Optionen}]{${1:Titel der Teilaufgabe}}"
-    },
-    "solution": {},
-    "solution*": {},
-    "examheader": {}
-  },
-  "options": [
-    "color=",
-    "accentcolor=",
-    "textaccentcolor=",
-    "identbarcolor=",
-    "custommargins=${1|true,false,geometry|}",
-    "fontsize=",
-    "BCOR=${1:Länge}",
-    "paper=${1|a0,a1,a2,a3,a4,a5,a6|}",
-    "logofile=${1:Dateipfad}",
-    "credit",
-    "headontitle",
-    "colorback=${1|true,false|}",
-    "title=${1|default,small,large|}",
-    "department=mecheng",
-    "departmentlogofile=${1:Dateipfad}",
-    "match-task-subtask-syntax",
-    "solution",
-    "points=${1|true,false,auto|}",
-    "subtask=${1|ruled,runin,plain|}"
   ],
-  "keyvals": [
-    [
-      "headline={${1:text}}",
-      "even={${1:text}}",
-      "odd={${1:text}}",
-      "oneside={${1:text}}"
+  "macros": [
+    {
+      "name": "MechEngArrow",
+      "if": "department=mecheng",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Länge}}"
+      }
+    },
+    {
+      "name": "MechEngArrow*",
+      "if": "department=mecheng",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Länge}}"
+      }
+    },
+    {
+      "name": "title",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:Kurztitel für die Kopfzeile%text}]{${1:text}}"
+      }
+    },
+    {
+      "name": "term",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Semester}}"
+      }
+    },
+    {
+      "name": "sheetnumber",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Nummer des Übungsblatts}}"
+      }
+    },
+    {
+      "name": "thetask"
+    },
+    {
+      "name": "thesubtask"
+    },
+    {
+      "name": "ConfigureHeadline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "ShortTitle"
+    },
+    {
+      "name": "StudentID"
+    },
+    {
+      "name": "StudentName"
+    },
+    {
+      "name": "IfSolutionT",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:true code}}"
+      }
+    },
+    {
+      "name": "IfSolutionF",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:false code}}"
+      }
+    },
+    {
+      "name": "IfSolutionTF",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:true code}}{${2:false code}}"
+      }
+    },
+    {
+      "name": "creditformat",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "creditformatsum",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "PointName",
+      "unusual": true
+    },
+    {
+      "name": "PointsName",
+      "unusual": true
+    },
+    {
+      "name": "pointformat",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "getPoints",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Nummer}}"
+      }
+    },
+    {
+      "name": "getPointsTotal"
+    },
+    {
+      "name": "refPoints",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "mapPoints",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code%text}}"
+      }
+    },
+    {
+      "name": "mapPoints*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code%text}}"
+      }
+    },
+    {
+      "name": "authorandname",
+      "unusual": true
+    },
+    {
+      "name": "institution",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Einrichtung}}"
+      }
+    },
+    {
+      "name": "sheetsep",
+      "unusual": true
+    },
+    {
+      "name": "solutionsep",
+      "unusual": true
+    },
+    {
+      "name": "StudentIDname",
+      "unusual": true
+    },
+    {
+      "name": "StudentIDsep",
+      "unusual": true
+    },
+    {
+      "name": "StudentNamesep",
+      "unusual": true
+    },
+    {
+      "name": "subtaskformat",
+      "unusual": true
+    },
+    {
+      "name": "taskformat",
+      "unusual": true
+    },
+    {
+      "name": "tasksep",
+      "unusual": true
+    },
+    {
+      "name": "titleimage",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:graphics code}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "task",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Überschrift%text}}"
+      }
+    },
+    {
+      "name": "task",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:Optionen%keyvals}]{${1:Überschrift%text}}"
+      }
+    },
+    {
+      "name": "task*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Aufgabentitel%text}}"
+      }
+    },
+    {
+      "name": "task*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:Optionen%keyvals}]{${1:Aufgabentitel%text}}"
+      }
+    },
+    {
+      "name": "subtask"
+    },
+    {
+      "name": "subtask",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:Optionen%keyvals}]"
+      }
+    },
+    {
+      "name": "subtask*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Titel der Teilaufgabe%text}}"
+      }
+    },
+    {
+      "name": "subtask*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:Optionen%keyvals}]{${1:Titel der Teilaufgabe%text}}"
+      }
+    },
+    {
+      "name": "solution"
+    },
+    {
+      "name": "solution*"
+    }
+  ],
+  "keys": {
+    "\\documentclass/tudaexercise#c": [
+      "color=",
+      "accentcolor=",
+      "textaccentcolor=",
+      "identbarcolor=",
+      "custommargins=${1|true,false,geometry\r|}",
+      "fontsize=",
+      "BCOR=${1:Länge}\r",
+      "paper=${1|a0,a1,a2,a3,a4,a5,a6\r|}",
+      "logofile=${1:Dateipfad}\r",
+      "credit\r",
+      "headontitle",
+      "colorback=${1|true,false\r|}",
+      "title=${1|default,small,large\r|}",
+      "department=mecheng\r",
+      "departmentlogofile=${1:Dateipfad}\r",
+      "match-task-subtask-syntax",
+      "solution",
+      "points=${1|true,false,auto\r|}",
+      "subtask=${1|ruled,runin,plain\r|}"
+    ],
+    "\\begin{task}#c,\\begin{task*}#c": [
+      "points=${1:auto|<Nummer>}\r",
+      "credit=${1:Nummer}\r",
+      "solution"
+    ],
+    "\\begin{subtask}#c,\\begin{subtask*}#c": [
+      "points=${1:Nummer}\r",
+      "credit=${1:Nummer}\r",
+      "title=${1:text}\r"
+    ],
+    "\\ConfigureHeadline#c": [
+      "headline={${1:text}}\r",
+      "even={${1:text}}\r",
+      "odd={${1:text}}\r",
+      "oneside={${1:text}}\r"
     ]
+  },
+  "args": [
+    "\\documentclass/tudaexercise#c"
   ]
 }

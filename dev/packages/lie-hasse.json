@@ -1,92 +1,142 @@
 {
-  "includes": {
-    "xcolor": [],
-    "dynkin-diagrams": [],
-    "contour": [],
-    "tikzlibrarypositioning": [],
-    "tikzlibraryfadings": [],
-    "tikzlibraryquotes": []
-  },
-  "macros": {
-    "hasse{}{}": {
-      "snippet": "hasse{${1:letter}}{${2:rank}}"
+  "deps": [
+    {
+      "name": "xcolor"
     },
-    "hasse[]{}{}": {
-      "snippet": "hasse[${3:options}]{${1:letter}}{${2:rank}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "dynkin-diagrams"
     },
-    "hasseDiagrams{}": {
-      "snippet": "hasseDiagrams{${1:type1;type2;...}}"
+    {
+      "name": "contour"
     },
-    "rootSystemHeight{}": {
-      "snippet": "rootSystemHeight{${1:count register}}"
+    {
+      "name": "tikzlibrarypositioning"
     },
-    "rootSystemHeight[][]{}": {
-      "snippet": "rootSystemHeight[${2:letter}][${3:rank}]{${1:count register}}"
+    {
+      "name": "tikzlibraryfadings"
     },
-    "rootSystemWidthAtGrade{}{}": {
-      "snippet": "rootSystemWidthAtGrade{${1:grade}}{${2:count register}}"
+    {
+      "name": "tikzlibraryquotes"
+    }
+  ],
+  "macros": [
+    {
+      "name": "hasse",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:letter}}{${2:rank}}"
+      }
     },
-    "rootSystemWidthAtGrade[]{}{}": {
-      "snippet": "rootSystemWidthAtGrade[${3:letter}]{${1:grade}}{${2:count register}}"
+    {
+      "name": "hasse",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options}]{${1:letter}}{${2:rank}}"
+      }
     },
-    "rootSystemWidthAtGrade[][]{}{}": {
-      "snippet": "rootSystemWidthAtGrade[${3:letter}][${4:rank}]{${1:grade}}{${2:count register}}"
+    {
+      "name": "hasseDiagrams",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:type1;type2;...}}"
+      }
     },
-    "rootSum{}{}{}": {
-      "snippet": "rootSum{${1:first-pos}}{${2:second-pos}}{${3:cmd}}"
+    {
+      "name": "rootSystemHeight",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:count register}}"
+      }
     },
-    "rootSum[]{}{}{}": {
-      "snippet": "rootSum[${4:letter}]{${1:first-pos}}{${2:second-pos}}{${3:cmd}}"
+    {
+      "name": "rootSystemHeight",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:letter}][${3:rank}]{${1:count register}}"
+      }
     },
-    "rootSum[][]{}{}{}": {
-      "snippet": "rootSum[${4:letter}][${5:rank}]{${1:first-pos}}{${2:second-pos}}{${3:cmd}}"
+    {
+      "name": "rootSystemWidthAtGrade",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:grade}}{${2:count register}}"
+      }
     },
-    "drawRootAsDynkinSum{}{}": {
-      "snippet": "drawRootAsDynkinSum{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "rootSystemWidthAtGrade",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:letter}]{${1:grade}}{${2:count register}}"
+      }
     },
-    "edgeQuote{}": {
-      "snippet": "edgeQuote{${1:arg}}"
+    {
+      "name": "rootSystemWidthAtGrade",
+      "arg": {
+        "format": "[][]{}{}",
+        "snippet": "[${3:letter}][${4:rank}]{${1:grade}}{${2:count register}}"
+      }
     },
-    "forAllPositiveRoots{}": {
-      "snippet": "forAllPositiveRoots{${1:command}}"
+    {
+      "name": "rootSum",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:first-pos}}{${2:second-pos}}{${3:cmd}}"
+      }
     },
-    "studyHasseDiagramOfRootSystem{}{}": {
-      "snippet": "studyHasseDiagramOfRootSystem{${1:letter}}{${2:rank}}"
+    {
+      "name": "rootSum",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:letter}]{${1:first-pos}}{${2:second-pos}}{${3:cmd}}"
+      }
     },
-    "studyHasseDiagramOfRootSystem[]{}{}": {
-      "snippet": "studyHasseDiagramOfRootSystem[${3:options}]{${1:letter}}{${2:rank}}"
+    {
+      "name": "rootSum",
+      "arg": {
+        "format": "[][]{}{}{}",
+        "snippet": "[${4:letter}][${5:rank}]{${1:first-pos}}{${2:second-pos}}{${3:cmd}}"
+      }
     },
-    "doRootThing{}{}": {
-      "snippet": "doRootThing{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "drawRootAsDynkinSum",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
     },
-    "drawRootDecomp{}{}": {
-      "snippet": "drawRootDecomp{${1:first-pos}}{${2:second-pos}}"
+    {
+      "name": "edgeQuote",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
     },
-    "hasseAttachGtwo": {},
-    "attachDynkin": {},
-    "doHasseDiagram{}": {
-      "snippet": "doHasseDiagram{${1:arg}}"
-    },
-    "forscsvlist": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "forAllPositiveRoots",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:command}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\hasse#c": [
       "edge length=",
-      "edge/.style={${1:TikZ options}}",
+      "edge/.style={${1:TikZ options}}\r",
       "edge length=",
-      "edge quotes/.style={${1:TikZ options}}",
-      "compact edge/.style={${1:TikZ options}}",
-      "noncompact edge/.style={${1:TikZ options}}",
+      "edge quotes/.style={${1:TikZ options}}\r",
+      "compact edge/.style={${1:TikZ options}}\r",
+      "noncompact edge/.style={${1:TikZ options}}\r",
       "attach Dynkin diagram",
       "three D",
-      "z shift=${1:factor}",
-      "top/.style={${1:TikZ options}}",
-      "right/.style={${1:TikZ options}}",
-      "left/.style={${1:TikZ options}}",
+      "z shift=${1:factor}\r",
+      "top/.style={${1:TikZ options}}\r",
+      "right/.style={${1:TikZ options}}\r",
+      "left/.style={${1:TikZ options}}\r",
       "show ordering",
       "show name",
       "show widths",
@@ -94,5 +144,6 @@
       "show Levi",
       "show unipotent radical"
     ]
-  ]
+  },
+  "args": []
 }

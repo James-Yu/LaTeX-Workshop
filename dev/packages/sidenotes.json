@@ -1,63 +1,135 @@
 {
-  "includes": {
-    "l3keys2e": [],
-    "marginnote": [],
-    "caption": [],
-    "changepage": []
-  },
-  "macros": {
-    "sidenote{}": {
-      "snippet": "sidenote{${1:text}}"
+  "deps": [
+    {
+      "name": "l3keys2e"
     },
-    "sidenote[]{}": {
-      "snippet": "sidenote[${2:number}]{${1:text}}"
+    {
+      "name": "marginnote"
     },
-    "sidenote[][]{}": {
-      "snippet": "sidenote[${2:number}][${3:offset}]{${1:text}}"
+    {
+      "name": "caption"
     },
-    "sidenotemark{}": {
-      "snippet": "sidenotemark{${1:text}}"
-    },
-    "sidenotemark[]{}": {
-      "snippet": "sidenotemark[${2:number}]{${1:text}}"
-    },
-    "sidenotemark[][]{}": {
-      "snippet": "sidenotemark[${2:number}][${3:offset}]{${1:text}}"
-    },
-    "sidenotetext{}": {
-      "snippet": "sidenotetext{${1:text}}"
-    },
-    "sidenotetext[]{}": {
-      "snippet": "sidenotetext[${2:number}]{${1:text}}"
-    },
-    "sidenotetext[][]{}": {
-      "snippet": "sidenotetext[${2:number}][${3:offset}]{${1:text}}"
-    },
-    "sidecaption{}": {
-      "snippet": "sidecaption{${1:text}}"
-    },
-    "sidecaption[]{}": {
-      "snippet": "sidecaption[${2:entry}]{${1:text}}"
-    },
-    "sidecaption[][]{}": {
-      "snippet": "sidecaption[${2:entry}][${3:offset}]{${1:text}}"
-    },
-    "thesidenote": {}
-  },
-  "envs": {
-    "marginfigure": {},
-    "marginfigure[]": {
-      "name": "marginfigure",
-      "snippet": "[${1:offset}]"
-    },
-    "margintable": {},
-    "margintable[]": {
-      "name": "margintable",
-      "snippet": "[${1:offset}]"
+    {
+      "name": "changepage"
     }
-  },
-  "options": [
-    "oneside"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "sidenote",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "sidenote",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:number}]{${1:text}}"
+      }
+    },
+    {
+      "name": "sidenote",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:number}][${3:offset%l}]{${1:text}}"
+      }
+    },
+    {
+      "name": "sidenotemark",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "sidenotemark",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:number}]{${1:text}}"
+      }
+    },
+    {
+      "name": "sidenotemark",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:number}][${3:offset%l}]{${1:text}}"
+      }
+    },
+    {
+      "name": "sidenotetext",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "sidenotetext",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:number}]{${1:text}}"
+      }
+    },
+    {
+      "name": "sidenotetext",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:number}][${3:offset%l}]{${1:text}}"
+      }
+    },
+    {
+      "name": "sidecaption",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "sidecaption",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:entry}]{${1:text}}"
+      }
+    },
+    {
+      "name": "sidecaption",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:entry}][${3:offset%l}]{${1:text}}"
+      }
+    },
+    {
+      "name": "thesidenote"
+    }
+  ],
+  "envs": [
+    {
+      "name": "marginfigure"
+    },
+    {
+      "name": "marginfigure",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:offset%l}]"
+      }
+    },
+    {
+      "name": "margintable"
+    },
+    {
+      "name": "margintable",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:offset%l}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/sidenotes#c": [
+      "oneside\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/sidenotes#c"
+  ]
 }

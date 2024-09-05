@@ -1,18 +1,28 @@
 {
-  "includes": {
-    "xkeyval": []
-  },
-  "macros": {
-    "psset{}": {
-      "snippet": "psset{${1:keyvals}}"
+  "deps": [
+    {
+      "name": "xkeyval"
+    }
+  ],
+  "macros": [
+    {
+      "name": "psset",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
     },
-    "psset[]{}": {
-      "snippet": "psset[${2:families}]{${1:keyvals}}"
-    },
-    "PSTXKeyLoaded": {},
-    "PSTXKeyCatcodes": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "psset",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:families}]{${1:keyvals}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

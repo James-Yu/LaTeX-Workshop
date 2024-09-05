@@ -1,88 +1,70 @@
 {
-  "includes": {
-    "fp": [],
-    "pstricks": [],
-    "pst-3d": [],
-    "multido": [],
-    "pst-xkey": []
-  },
-  "macros": {
-    "psCalendar": {},
-    "psCalendar[]": {
-      "snippet": "psCalendar[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "fp"
     },
-    "psCalDodecaeder": {},
-    "psCalDodecaeder[]": {
-      "snippet": "psCalDodecaeder[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "pstricks"
     },
-    "RA": {},
-    "rb": {},
-    "ra": {},
-    "rc": {},
-    "rd": {},
-    "faceA": {},
-    "faceB": {},
-    "faceC": {},
-    "faceD": {},
-    "Test": {},
-    "colonne": {},
-    "ligne": {},
-    "Year": {},
-    "GY": {},
-    "Cent": {},
-    "Iter": {},
-    "Iterdiv": {},
-    "Hepact": {},
-    "Inbre": {},
-    "Jnbreinter": {},
-    "Jnbre": {},
-    "Lnbre": {},
-    "Month": {},
-    "Day": {},
-    "DayAscension": {},
-    "MonthAscension": {},
-    "TestJourPentecote": {},
-    "DayPentecote": {},
-    "MonthPentecote": {},
-    "TestSiJourAvril": {},
-    "YearBissextil": {},
-    "adddays": {},
-    "NbreJours": {},
-    "NbYearBissextil": {},
-    "Name": {},
-    "NbDays": {},
-    "Frac": {},
-    "Quotient": {},
-    "firstDay": {}
-  },
-  "envs": {},
-  "options": [
-    "english",
-    "french",
-    "ngerman"
+    {
+      "name": "pst-3d"
+    },
+    {
+      "name": "multido"
+    },
+    {
+      "name": "pst-xkey"
+    }
   ],
-  "keyvals": [
-    [
-      "Year=${1:integer}",
-      "Month=${1:integer}",
-      "MonthUse=${1:integer}",
-      "Day=${1:integer}",
-      "style=${1:month}",
-      "Jour=${1:integer}",
-      "MoisChoisi=${1:integer}",
-      "Mois=${1:integer}",
-      "An=${1:integer}",
-      "Tag=${1:integer}",
-      "MonatT=${1:integer}",
-      "Monat=${1:integer}",
-      "Jahr=${1:integer}",
-      "Vx=${1:integer}",
-      "Vy=${1:integer}",
-      "Vz=${1:integer}"
+  "macros": [
+    {
+      "name": "psCalendar"
+    },
+    {
+      "name": "psCalendar",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "psCalDodecaeder"
+    },
+    {
+      "name": "psCalDodecaeder",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/pst-calendar#c": [
+      "english\r",
+      "french\r",
+      "ngerman\r"
+    ],
+    "\\psCalendar,\\psCalDodecaeder": [
+      "Year=${1:integer}\r",
+      "Month=${1:integer}\r",
+      "MonthUse=${1:integer}\r",
+      "Day=${1:integer}\r",
+      "style=${1:month}\r",
+      "Jour=${1:integer}\r",
+      "MoisChoisi=${1:integer}\r",
+      "Mois=${1:integer}\r",
+      "An=${1:integer}\r",
+      "Tag=${1:integer}\r",
+      "MonatT=${1:integer}\r",
+      "Monat=${1:integer}\r",
+      "Jahr=${1:integer}\r",
+      "Vx=${1:integer}\r",
+      "Vy=${1:integer}\r",
+      "Vz=${1:integer}\r"
     ]
+  },
+  "args": [
+    "\\usepackage/pst-calendar#c"
   ]
 }

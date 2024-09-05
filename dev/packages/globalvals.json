@@ -1,14 +1,22 @@
 {
-  "includes": {},
-  "macros": {
-    "defVal{}{}": {
-      "snippet": "defVal{${1:key}}{${2:value}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "defVal",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:key%special}}{${2:value}}"
+      }
     },
-    "useVal{}": {
-      "snippet": "useVal{${1:key}}"
+    {
+      "name": "useVal",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:key%special}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

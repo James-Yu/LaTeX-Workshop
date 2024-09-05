@@ -1,73 +1,193 @@
 {
-  "includes": {
-    "makeidx": []
-  },
-  "macros": {
-    "gobblepageref": {},
-    "indexincontents": {},
-    "setindex{}": {
-      "snippet": "setindex{${1:tag}}"
-    },
-    "sindex{}": {
-      "snippet": "sindex{${1:entry}}"
-    },
-    "sindex[]{}": {
-      "snippet": "sindex[${2:tag}]{${1:entry}}"
-    },
-    "indexcapstyle{}": {
-      "snippet": "indexcapstyle{${1:arg}}"
-    },
-    "altsort": {},
-    "capitalsinindex{}": {
-      "snippet": "capitalsinindex{${1:arg1}}"
-    },
-    "cndhyprndxwrng": {},
-    "encpageref{}{}": {
-      "snippet": "encpageref{${1:arg1}}{${2:arg2}}"
-    },
-    "extraheaders": {},
-    "findEndPageRange{}": {
-      "snippet": "findEndPageRange{${1:arg1}}"
-    },
-    "findencap{}": {
-      "snippet": "findencap{${1:arg1}}"
-    },
-    "gobbleindpageref": {},
-    "gobbletillnine": {},
-    "indexcapitalhead{}": {
-      "snippet": "indexcapitalhead{${1:arg1}}"
-    },
-    "indexpreamble": {},
-    "indnr{}": {
-      "snippet": "indnr{${1:arg1}}"
-    },
-    "indpageref{}": {
-      "snippet": "indpageref{${1:arg1}}"
-    },
-    "indstring": {},
-    "jmptonine": {},
-    "newindex{}": {
-      "snippet": "newindex{${1:arg1}}"
-    },
-    "olditem": {},
-    "robustchoice": {},
-    "robustcutpoint": {},
-    "theindexctr": {},
-    "themaxindctr": {},
-    "themultindctr": {},
-    "untilrobustcutpoint{}": {
-      "snippet": "untilrobustcutpoint{${1:arg1}}"
-    },
-    "wrapindpageref{}": {
-      "snippet": "wrapindpageref{${1:arg1}}"
-    },
-    "wrappageref{}": {
-      "snippet": "wrappageref{${1:arg}}"
+  "deps": [
+    {
+      "name": "makeidx"
     }
-  },
-  "envs": {},
-  "options": [
-    "multind"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "gobblepageref"
+    },
+    {
+      "name": "indexincontents"
+    },
+    {
+      "name": "setindex",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tag}}"
+      }
+    },
+    {
+      "name": "sindex",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:entry}}"
+      }
+    },
+    {
+      "name": "sindex",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:tag}]{${1:entry}}"
+      }
+    },
+    {
+      "name": "indexcapstyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "altsort",
+      "unusual": true
+    },
+    {
+      "name": "capitalsinindex",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    },
+    {
+      "name": "cndhyprndxwrng",
+      "unusual": true
+    },
+    {
+      "name": "encpageref",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "extraheaders",
+      "unusual": true
+    },
+    {
+      "name": "findEndPageRange",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    },
+    {
+      "name": "findencap",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    },
+    {
+      "name": "gobbleindpageref",
+      "unusual": true
+    },
+    {
+      "name": "gobbletillnine",
+      "unusual": true
+    },
+    {
+      "name": "indexcapitalhead",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    },
+    {
+      "name": "indexpreamble",
+      "unusual": true
+    },
+    {
+      "name": "indnr",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    },
+    {
+      "name": "indpageref",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    },
+    {
+      "name": "indstring",
+      "unusual": true
+    },
+    {
+      "name": "jmptonine",
+      "unusual": true
+    },
+    {
+      "name": "newindex",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    },
+    {
+      "name": "robustchoice",
+      "unusual": true
+    },
+    {
+      "name": "robustcutpoint",
+      "unusual": true
+    },
+    {
+      "name": "theindexctr",
+      "unusual": true
+    },
+    {
+      "name": "themaxindctr",
+      "unusual": true
+    },
+    {
+      "name": "themultindctr",
+      "unusual": true
+    },
+    {
+      "name": "untilrobustcutpoint",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    },
+    {
+      "name": "wrapindpageref",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    },
+    {
+      "name": "wrappageref",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/robustindex#c": [
+      "multind\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/robustindex#c"
+  ]
 }

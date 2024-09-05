@@ -1,14 +1,28 @@
 {
-  "includes": {
-    "array": []
-  },
-  "macros": {
-    "pcolbegin{}{}": {
-      "snippet": "pcolbegin{${1:alignment}}{${2:pattern}}"
+  "deps": [
+    {
+      "name": "array"
+    }
+  ],
+  "macros": [
+    {
+      "name": "pcolbegin",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:alignment%keyvals}}{${2:pattern}}"
+      }
     },
-    "pcolend": {}
+    {
+      "name": "pcolend"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\pcolbegin#c": [
+      "l\r",
+      "c\r",
+      "r\r"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

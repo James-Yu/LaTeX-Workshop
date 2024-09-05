@@ -1,20 +1,41 @@
 {
-  "includes": {
-    "kvoptions": [],
-    "xkeyval": []
-  },
-  "macros": {
-    "appendmask[]{}[]": {
-      "snippet": "appendmask[${2:prefix}]{${1:key}}[${3:values}]"
+  "deps": [
+    {
+      "name": "kvoptions"
     },
-    "ifinmask[]{}[]{}{}": {
-      "snippet": "ifinmask[${4:prefix}]{${1:key}}[${5:values}]{${2:true}}{${3:false}}"
-    },
-    "clearmask": {}
-  },
-  "envs": {},
-  "options": [
-    "prefix=${1:prefix}"
+    {
+      "name": "xkeyval"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "appendmask",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:prefix}]{${1:key%plain}}[${3:values}]"
+      }
+    },
+    {
+      "name": "ifinmask",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]{}{}",
+        "snippet": "[${4:prefix}]{${1:key%plain}}[${5:values}]{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "clearmask",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/xkeymask#c": [
+      "prefix=${1:prefix}\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/xkeymask#c"
+  ]
 }

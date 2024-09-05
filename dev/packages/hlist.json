@@ -1,40 +1,51 @@
 {
-  "includes": {
-    "simplekv": []
-  },
-  "macros": {
-    "hitem": {},
-    "hitem>": {},
-    "hitem*": {},
-    "hitem*>": {},
-    "hitem()": {
-      "snippet": "hitem(${1:num})"
-    },
-    "sethlist{}": {
-      "snippet": "sethlist{${1:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "setdefaulthlist{}": {
-      "snippet": "setdefaulthlist{${1:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "hlstname": {},
-    "hlstdate": {},
-    "hlstver": {},
-    "hlist": {},
-    "endhlist": {}
-  },
-  "envs": {
-    "hlist{}": {
-      "name": "hlist",
-      "snippet": "{${1:num of colums}}"
+  "deps": [
+    {
+      "name": "simplekv"
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "hitem"
+    },
+    {
+      "name": "hitem>"
+    },
+    {
+      "name": "hitem*"
+    },
+    {
+      "name": "hitem*>"
+    },
+    {
+      "name": "hitem(num)"
+    },
+    {
+      "name": "sethlist",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "setdefaulthlist",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "hlist",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:num of colums}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\sethlist,\\setdefaulthlist": [
       "pre skip=",
       "post skip=",
       "left margin=",
@@ -55,5 +66,6 @@
       "list parindent=",
       "show frame"
     ]
-  ]
+  },
+  "args": []
 }

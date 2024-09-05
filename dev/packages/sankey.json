@@ -1,265 +1,405 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "tikz": [],
-    "tikzlibrarycalc": [],
-    "tikzlibrarydecorations.markings": [],
-    "tikzlibrarydubins": []
-  },
-  "macros": {
-    "sankeyset{}": {
-      "snippet": "sankeyset{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "sankeynode{}": {
-      "snippet": "sankeynode{${1:node parameters}}"
+    {
+      "name": "tikz"
     },
-    "sankeynode[]{}": {
-      "snippet": "sankeynode[${2:options}]{${1:node parameters}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "tikzlibrarycalc"
     },
-    "sankeynodestart{}": {
-      "snippet": "sankeynodestart{${1:node parameters}}"
+    {
+      "name": "tikzlibrarydecorations.markings"
     },
-    "sankeynodestart[]{}": {
-      "snippet": "sankeynodestart[${2:options}]{${1:node parameters}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "sankeynodeend{}": {
-      "snippet": "sankeynodeend{${1:node parameters}}"
-    },
-    "sankeynodeend[]{}": {
-      "snippet": "sankeynodeend[${2:options}]{${1:node parameters}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "sankeygetnodeqty{}": {
-      "snippet": "sankeygetnodeqty{${1:node name}}"
-    },
-    "sankeyqtytolen{}": {
-      "snippet": "sankeyqtytolen{${1:quantity}}"
-    },
-    "sankeygetnodeorient{}": {
-      "snippet": "sankeygetnodeorient{${1:node name}}"
-    },
-    "sankeyadvance{}{}": {
-      "snippet": "sankeyadvance{${1:node name}}{${2:distance}}"
-    },
-    "sankeyadvance[]{}{}": {
-      "snippet": "sankeyadvance[${3:options}]{${1:node name}}{${2:distance}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "sankeyadvance*{}{}": {
-      "snippet": "sankeyadvance*{${1:node name}}{${2:distance}}"
-    },
-    "sankeyadvance*[]{}{}": {
-      "snippet": "sankeyadvance*[${3:options}]{${1:node name}}{${2:distance}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "sankeyturn{}{}": {
-      "snippet": "sankeyturn{${1:node name}}{${2:angle}}"
-    },
-    "sankeyturn[]{}{}": {
-      "snippet": "sankeyturn[${3:options}]{${1:node name}}{${2:angle}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "sankeyturn*{}{}": {
-      "snippet": "sankeyturn*{${1:node name}}{${2:angle}}"
-    },
-    "sankeyturn*[]{}{}": {
-      "snippet": "sankeyturn*[${3:options}]{${1:node name}}{${2:angle}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "sankeyturnleft{}{}": {
-      "snippet": "sankeyturnleft{${1:node name}}{${2:angle}}"
-    },
-    "sankeyturnleft[]{}{}": {
-      "snippet": "sankeyturnleft[${3:options}]{${1:node name}}{${2:angle}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "sankeyturnleft*{}{}": {
-      "snippet": "sankeyturnleft*{${1:node name}}{${2:angle}}"
-    },
-    "sankeyturnleft*[]{}{}": {
-      "snippet": "sankeyturnleft*[${3:options}]{${1:node name}}{${2:angle}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "sankeyturnleftbackward{}{}": {
-      "snippet": "sankeyturnleftbackward{${1:node name}}{${2:angle}}"
-    },
-    "sankeyturnleftbackward[]{}{}": {
-      "snippet": "sankeyturnleftbackward[${3:options}]{${1:node name}}{${2:angle}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "sankeyturnleftbackward*{}{}": {
-      "snippet": "sankeyturnleftbackward*{${1:node name}}{${2:angle}}"
-    },
-    "sankeyturnleftbackward*[]{}{}": {
-      "snippet": "sankeyturnleftbackward*[${3:options}]{${1:node name}}{${2:angle}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "sankeyturnright{}{}": {
-      "snippet": "sankeyturnright{${1:node name}}{${2:angle}}"
-    },
-    "sankeyturnright[]{}{}": {
-      "snippet": "sankeyturnright[${3:options}]{${1:node name}}{${2:angle}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "sankeyturnright*{}{}": {
-      "snippet": "sankeyturnright*{${1:node name}}{${2:angle}}"
-    },
-    "sankeyturnright*[]{}{}": {
-      "snippet": "sankeyturnright*[${3:options}]{${1:node name}}{${2:angle}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "sankeyturnrightbackward{}{}": {
-      "snippet": "sankeyturnrightbackward{${1:node name}}{${2:angle}}"
-    },
-    "sankeyturnrightbackward[]{}{}": {
-      "snippet": "sankeyturnrightbackward[${3:options}]{${1:node name}}{${2:angle}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "sankeyturnrightbackward*{}{}": {
-      "snippet": "sankeyturnrightbackward*{${1:node name}}{${2:angle}}"
-    },
-    "sankeyturnrightbackward*[]{}{}": {
-      "snippet": "sankeyturnrightbackward*[${3:options}]{${1:node name}}{${2:angle}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "sankeyoutin{}{}": {
-      "snippet": "sankeyoutin{${1:nodeA}}{${2:nodeB}}"
-    },
-    "sankeyoutin[]{}{}": {
-      "snippet": "sankeyoutin[${3:options}]{${1:nodeA}}{${2:nodeB}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "sankeydubins{}{}": {
-      "snippet": "sankeydubins{${1:nodeA}}{${2:nodeB}}"
-    },
-    "sankeydubins[]{}{}": {
-      "snippet": "sankeydubins[${3:options}]{${1:nodeA}}{${2:nodeB}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "sankeystart{}": {
-      "snippet": "sankeystart{${1:node name}}"
-    },
-    "sankeystart[]{}": {
-      "snippet": "sankeystart[${2:options}]{${1:node name}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "sankeyend{}": {
-      "snippet": "sankeyend{${1:node name}}"
-    },
-    "sankeyend[]{}": {
-      "snippet": "sankeyend[${2:options}]{${1:node name}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "sankeyfork{}{}": {
-      "snippet": "sankeyfork{${1:node name}}{${2:qty1/name1,${3:qty2/name2},...}}"
-    },
-    "sankeyfork[]{}{}": {
-      "snippet": "sankeyfork[${3:options}]{${1:node name}}{${2:qty1/name1,${4:qty2/name2},...}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "sankeynodealias{}{}": {
-      "snippet": "sankeynodealias{${1:orig name}}{${2:clone name}}"
-    },
-    "name": {},
-    "qty": {},
-    "orient": {},
-    "pos": {}
-  },
-  "envs": {
-    "sankeydiagram": {},
-    "sankeydiagram[]": {
-      "name": "sankeydiagram",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 3,
-      "keyvalpos": 0
+    {
+      "name": "tikzlibrarydubins"
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
-      "every diagram/.style={${1:options}}",
-      "debug color/.style={${1:options}}",
-      "debug line/.style={${1:options}}",
-      "debug normal/.style={${1:options}}",
-      "debug label/.style={${1:options}}",
-      "ratio quantity=${1:number}",
-      "ratio length=",
-      "ratio=${1:distance}/${2:number}",
-      "rotate=${1:degrees}",
-      "minimum radius=",
-      "outin steps=${1:integer}",
-      "fill/.style={${1:options}}",
-      "draw/.style={${1:options}}",
-      "start style=${1|none,simple,arrow|}",
-      "end style=${1|none,simple,arrow|}",
-      "new start style={${1:name}}{${2:fill path}}{${3:draw path}}",
-      "new end style={${1:name}}{${2:fill path}}{${3:draw path}}",
-      "debug",
-      "every node/.style={${1:node parameters}}",
-      "debug color="
+  ],
+  "macros": [
+    {
+      "name": "sankeyset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}"
+      }
+    },
+    {
+      "name": "sankeynode",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:node parameters%keyvals}}"
+      }
+    },
+    {
+      "name": "sankeynode",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options}]{${1:node parameters%keyvals}}"
+      }
+    },
+    {
+      "name": "sankeynodestart",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:node parameters%keyvals}}"
+      }
+    },
+    {
+      "name": "sankeynodestart",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options}]{${1:node parameters%keyvals}}"
+      }
+    },
+    {
+      "name": "sankeynodeend",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:node parameters%keyvals}}"
+      }
+    },
+    {
+      "name": "sankeynodeend",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options}]{${1:node parameters%keyvals}}"
+      }
+    },
+    {
+      "name": "sankeygetnodeqty",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:node name}}"
+      }
+    },
+    {
+      "name": "sankeyqtytolen",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:quantity}}"
+      }
+    },
+    {
+      "name": "sankeygetnodeorient",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:node name}}"
+      }
+    },
+    {
+      "name": "sankeyadvance",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:node name}}{${2:distance%l}}"
+      }
+    },
+    {
+      "name": "sankeyadvance",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:node name}}{${2:distance%l}}"
+      }
+    },
+    {
+      "name": "sankeyadvance*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:node name}}{${2:distance%l}}"
+      }
+    },
+    {
+      "name": "sankeyadvance*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:node name}}{${2:distance%l}}"
+      }
+    },
+    {
+      "name": "sankeyturn",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:node name}}{${2:angle}}"
+      }
+    },
+    {
+      "name": "sankeyturn",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:node name}}{${2:angle}}"
+      }
+    },
+    {
+      "name": "sankeyturn*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:node name}}{${2:angle}}"
+      }
+    },
+    {
+      "name": "sankeyturn*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:node name}}{${2:angle}}"
+      }
+    },
+    {
+      "name": "sankeyturnleft",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:node name}}{${2:angle}}"
+      }
+    },
+    {
+      "name": "sankeyturnleft",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:node name}}{${2:angle}}"
+      }
+    },
+    {
+      "name": "sankeyturnleft*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:node name}}{${2:angle}}"
+      }
+    },
+    {
+      "name": "sankeyturnleft*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:node name}}{${2:angle}}"
+      }
+    },
+    {
+      "name": "sankeyturnleftbackward",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:node name}}{${2:angle}}"
+      }
+    },
+    {
+      "name": "sankeyturnleftbackward",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:node name}}{${2:angle}}"
+      }
+    },
+    {
+      "name": "sankeyturnleftbackward*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:node name}}{${2:angle}}"
+      }
+    },
+    {
+      "name": "sankeyturnleftbackward*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:node name}}{${2:angle}}"
+      }
+    },
+    {
+      "name": "sankeyturnright",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:node name}}{${2:angle}}"
+      }
+    },
+    {
+      "name": "sankeyturnright",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:node name}}{${2:angle}}"
+      }
+    },
+    {
+      "name": "sankeyturnright*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:node name}}{${2:angle}}"
+      }
+    },
+    {
+      "name": "sankeyturnright*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:node name}}{${2:angle}}"
+      }
+    },
+    {
+      "name": "sankeyturnrightbackward",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:node name}}{${2:angle}}"
+      }
+    },
+    {
+      "name": "sankeyturnrightbackward",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:node name}}{${2:angle}}"
+      }
+    },
+    {
+      "name": "sankeyturnrightbackward*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:node name}}{${2:angle}}"
+      }
+    },
+    {
+      "name": "sankeyturnrightbackward*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:node name}}{${2:angle}}"
+      }
+    },
+    {
+      "name": "sankeyoutin",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:nodeA}}{${2:nodeB}}"
+      }
+    },
+    {
+      "name": "sankeyoutin",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:nodeA}}{${2:nodeB}}"
+      }
+    },
+    {
+      "name": "sankeydubins",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:nodeA}}{${2:nodeB}}"
+      }
+    },
+    {
+      "name": "sankeydubins",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:nodeA}}{${2:nodeB}}"
+      }
+    },
+    {
+      "name": "sankeystart",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:node name}}"
+      }
+    },
+    {
+      "name": "sankeystart",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:node name}}"
+      }
+    },
+    {
+      "name": "sankeyend",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:node name}}"
+      }
+    },
+    {
+      "name": "sankeyend",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:node name}}"
+      }
+    },
+    {
+      "name": "sankeyfork",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:node name}}{${2:qty1/name1,qty2/name2,...}}"
+      }
+    },
+    {
+      "name": "sankeyfork",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:node name}}{${2:qty1/name1,qty2/name2,...}}"
+      }
+    },
+    {
+      "name": "sankeynodealias",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:orig name}}{${2:clone name}}"
+      }
+    },
+    {
+      "name": "name",
+      "unusual": true
+    },
+    {
+      "name": "qty",
+      "unusual": true
+    },
+    {
+      "name": "orient",
+      "unusual": true
+    },
+    {
+      "name": "pos",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "sankeydiagram"
+    },
+    {
+      "name": "sankeydiagram",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\sankeynode#c,\\sankeynodestart#c,\\sankeynodeend#c": [
+      "name=${1:name}\r",
+      "quantity=${1:quantity}\r",
+      "angle=${1:degrees}\r",
+      "at={${1:x,y}}\r",
+      "anchor=${1|center,left,right\r|}",
+      "as=${1:name}\r",
+      "forked={${1:qty1/name1,qty2/name2,...}}\r",
+      "fork anchor=${1:node}.${2:anchor}\r"
     ],
-    [
-      "name=${1:name}",
-      "quantity=${1:quantity}",
-      "angle=${1:degrees}",
-      "at={${1:x,y}}",
-      "anchor=${1|center,left,right|}",
-      "as=${1:name}",
-      "forked={${1:qty1/name1,qty2/name2,...}}",
-      "fork anchor=${1:node}.${2:anchor}",
+    "\\sankeynode#c": [
       "start",
       "end"
     ],
-    [
-      "name=${1:name}",
-      "quantity=${1:quantity}",
-      "angle=${1:degrees}",
-      "at={${1:x,y}}",
-      "anchor=${1|center,left,right|}",
-      "as=${1:name}",
-      "forked={${1:qty1/name1,qty2/name2,...}}",
-      "fork anchor=${1:node}.${2:anchor}"
+    "\\sankeyset#c": [
+      "every diagram/.style={${1:options}}\r",
+      "debug color/.style={${1:options}}\r",
+      "debug line/.style={${1:options}}\r",
+      "debug normal/.style={${1:options}}\r",
+      "debug label/.style={${1:options}}\r"
     ],
-    [
-      "ratio quantity=${1:number}",
+    "\\sankeyset#c,\\begin{sankeydiagram}#c,\\sankeyadvance#c,\\sankeyadvance*#c,\\sankeyturn#c,\\sankeyturn*#c,\\sankeyturnleft#c,\\sankeyturnleft*#c,\\sankeyturnleftbackward#c,\\sankeyturnleftbackward*#c,\\sankeyturnright#c,\\sankeyturnright*#c,\\sankeyturnrightbackward#c,\\sankeyturnrightbackward*#c,\\sankeyoutin#c,\\sankeydubins#c,\\sankeystart#c,\\sankeyend#c,\\sankeyfork#c": [
+      "ratio quantity=${1:number}\r",
       "ratio length=",
-      "ratio=${1:distance}/${2:number}",
-      "rotate=${1:degrees}",
+      "ratio=${1:distance}/${2:number}\r",
+      "rotate=${1:degrees}\r",
       "minimum radius=",
-      "outin steps=${1:integer}",
-      "fill/.style={${1:options}}",
-      "draw/.style={${1:options}}",
-      "start style=${1|none,simple,arrow|}",
-      "end style=${1|none,simple,arrow|}",
-      "new start style={${1:name}}{${2:fill path}}{${3:draw path}}",
-      "new end style={${1:name}}{${2:fill path}}{${3:draw path}}",
+      "outin steps=${1:integer}\r",
+      "fill/.style={${1:options}}\r",
+      "draw/.style={${1:options}}\r",
+      "start style=${1|none,simple,arrow\r|}",
+      "end style=${1|none,simple,arrow\r|}",
+      "new start style={${1:name}}{${2:fill path}}{${3:draw path}}\r",
+      "new end style={${1:name}}{${2:fill path}}{${3:draw path}}\r",
       "debug",
-      "every node/.style={${1:node parameters}}",
+      "every node/.style={${1:node parameters}}\r",
       "debug color="
     ]
-  ]
+  },
+  "args": []
 }

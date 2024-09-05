@@ -1,84 +1,437 @@
 {
-  "includes": {
-    "tikz": [],
-    "tikzlibraryshapes": [],
-    "tikzlibraryfadings": [],
-    "afterpage": []
+  "deps": [
+    {
+      "name": "tikz"
+    },
+    {
+      "name": "tikzlibraryshapes"
+    },
+    {
+      "name": "tikzlibraryfadings"
+    },
+    {
+      "name": "afterpage"
+    }
+  ],
+  "macros": [
+    {
+      "name": "spot",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "spot",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:node options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "spot(node name)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "spot(node name)",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:node options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "spot<overlay spec>",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "spot<overlay spec>",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:node options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "spot<overlay spec>(node name)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "spot<overlay spec>(node name)",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:node options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "spot*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "spot*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:node options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "spot*(node name)",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "spot*(node name)",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:node options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "spot*<overlay spec>",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "spot*<overlay spec>",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:node options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "spot*<overlay spec>(node name)",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "spot*<overlay spec>(node name)",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:node options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "setspotlightcolor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "resetspotlightcolor"
+    },
+    {
+      "name": "spotlightcolor",
+      "unusual": true
+    },
+    {
+      "name": "setspotlightstyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:node options%keyvals}}"
+      }
+    },
+    {
+      "name": "resetspotlightstyle"
+    },
+    {
+      "name": "spotlightnodeoptions",
+      "unusual": true
+    },
+    {
+      "name": "dospots"
+    },
+    {
+      "name": "dospotsheader"
+    },
+    {
+      "name": "dospotsfooter"
+    },
+    {
+      "name": "AtEndFrame",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "AtEveryBeginFrame",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "AtEveryEndFrame",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\spot#c,\\spot*#c,\\setspotlightstyle#c": [
+      "x=${1:<dimen> or <coord>}\r",
+      "y=${1:<dimen> or <coord>}\r",
+      "z=${1:<dimen> or <coord>}\r",
+      "name path=${1:path}\r",
+      "name path global=${1:path}\r",
+      "name intersections={${1:options}}\r",
+      "turn\r",
+      "current point is local",
+      "name=${1:name}\r",
+      "append after command=${1:path}\r",
+      "prefix after command=${1:path}\r",
+      "rounded corners\r",
+      "rounded corners=",
+      "sharp corners\r",
+      "x radius=${1:<num> or <dimen>}\r",
+      "y radius=${1:<num> or <dimen>}\r",
+      "radius=",
+      "at=${1:coord}\r",
+      "start angle=${1:degrees}\r",
+      "end angle=${1:degrees}\r",
+      "delta angle=${1:degrees}\r",
+      "step=${1:<num> or <dimen> or <coord>}\r",
+      "xstep=${1:<num> or <dimen>}\r",
+      "ystep=${1:<num> or <dimen>}\r",
+      "help lines\r",
+      "bend=${1:coord}\r",
+      "bend pos=${1:fraction}\r",
+      "parabola height=",
+      "bend at start\r",
+      "bend at end\r",
+      "to path=${1:path}\r",
+      "save path=${1:macro}\r",
+      "use path=${1:macro}\r",
+      "color=",
+      "%color\r",
+      "draw\r",
+      "draw=",
+      "line width=",
+      "ultra thin\r",
+      "very thin\r",
+      "thin\r",
+      "semithick\r",
+      "thick\r",
+      "very thick\r",
+      "ultra thick\r",
+      "line cap=${1|round,rect,butt\r|}",
+      "line join=${1|round,bevel,miter\r|}",
+      "miter limit=${1:factor}\r",
+      "dash pattern=${1:dash pattern}\r",
+      "dash phase=${1:dash phase}\r",
+      "dash=${1:dash pattern} phase ${2:dash phase}\r",
+      "dash expand off\r",
+      "solid\r",
+      "dotted\r",
+      "densely dotted\r",
+      "loosely dotted\r",
+      "dashed\r",
+      "densely dashed\r",
+      "loosely dashed\r",
+      "dash dot\r",
+      "densely dash dot\r",
+      "loosely dash dot\r",
+      "dash dot dot\r",
+      "densely dash dot dot \r",
+      "loosely dash dot dot\r",
+      "double\r",
+      "double=",
+      "double distance=",
+      "double distance between line centers=",
+      "double equal sign distance\r",
+      "fill\r",
+      "fill=",
+      "pattern\r",
+      "pattern=${1:name}\r",
+      "pattern color=",
+      "nonzero rule\r",
+      "even odd rule\r",
+      "shade\r",
+      "shading=${1|axis,radial,ball\r|}",
+      "shading angle=${1:degrees}\r",
+      "arrows=${1:start spec}-${2:end spec}\r",
+      "->\r",
+      "<-\r",
+      "<->\r",
+      "tips\r",
+      "tips=${1|true,proper,on draw,on proper draw,never,false\r|}",
+      ">=${1:end arrow spec}\r",
+      "shorten <=",
+      "shorten >=",
+      "inner sep=",
+      "inner xsep=",
+      "inner ysep=",
+      "outer sep=${1:<dimen> or auto}\r",
+      "outer xsep=",
+      "outer ysep=",
+      "minimum height=",
+      "minimum width=",
+      "minimum size=",
+      "shape aspect=${1:aspect ratio}\r",
+      "shape border uses incircle",
+      "shape border rotate=${1:degrees}\r",
+      "text=",
+      "node font=${1:font commands}\r",
+      "font=${1:font commands}\r",
+      "text width=",
+      "align=${1|left,flush left,right,flush right,center,flush center,justify\r|}",
+      "text height=",
+      "text depth=",
+      "anchor=${1|north west,north,north east,west,center,east,mid west,mid,mid east,base west,base,base east,south west,south,south east,text\r|}",
+      "above\r",
+      "above=",
+      "below\r",
+      "below=",
+      "right\r",
+      "right=",
+      "left\r",
+      "left=",
+      "above left\r",
+      "above right\r",
+      "below left\r",
+      "below right\r",
+      "centered\r",
+      "on grid",
+      "node distance=",
+      "base left=\r",
+      "base right=\r",
+      "mid left=\r",
+      "mid right=\r",
+      "above=of ${1:node}\r",
+      "below=of ${1:node}\r",
+      "right=of ${1:node}\r",
+      "left=of ${1:node}\r",
+      "transform shape\r",
+      "transform shape nonlinear",
+      "pos=${1:fraction}\r",
+      "auto\r",
+      "auto=${1|left,right,false\r|}",
+      "swap\r",
+      "sloped\r",
+      "allow upside down",
+      "midway\r",
+      "near start\r",
+      "near end\r",
+      "very near start\r",
+      "very near end\r",
+      "at start\r",
+      "at end\r",
+      "label=${1:angle}:${2:text}\r",
+      "label=[${1:options}]${2:angle}:${3:text}\r",
+      "label position=${1:degrees}\r",
+      "absolute",
+      "label distance=",
+      "pin=${1:angle}:${2:text}\r",
+      "pin=[${1:options}]${2:angle}:${3:text}\r",
+      "pin distance=",
+      "pin edge={${1:options}}\r",
+      "node quotes mean=${1:replacement}\r",
+      "remember picture",
+      "overlay",
+      "every new ->\r",
+      "every new --\r",
+      "every new <->\r",
+      "every new <-\r",
+      "every new -!-\r",
+      "new set=${1:set name}\r",
+      "set=${1:set name}\r",
+      "growth parent anchor=${1|north west,north,north east,west,center,east,mid west,mid,mid east,base west,base,base east,south west,south,south east,text\r|}",
+      "growth function=${1:macro}\r",
+      "edge from parent path=${1:path}\r",
+      "draw opacity=${1:value}\r",
+      "opacity=${1:value}\r",
+      "transparent\r",
+      "ultra nearly transparent\r",
+      "very nearly transparent \r",
+      "nearly transparent\r",
+      "semitransparent\r",
+      "nearly opaque \r",
+      "very nearly opaque\r",
+      "ultra nearly opaque\r",
+      "opaque\r",
+      "fill opacity=${1:value}\r",
+      "text opacity=${1:value}\r",
+      "path fading\r",
+      "path fading=${1:name}\r",
+      "fit fading",
+      "fading transform={${1:options}}\r",
+      "fading angle=${1:degrees}\r",
+      "scope fading=${1:name}\r",
+      "decoration={${1:options}}\r",
+      "decorate",
+      "shift={${1:coordinate}}\r",
+      "shift only\r",
+      "xshift=",
+      "yshift=",
+      "scale=${1:scale}\r",
+      "xscale=${1:scale}\r",
+      "yscale=${1:scale}\r",
+      "xslant=${1:factor}\r",
+      "yslant=${1:factor}\r",
+      "rotate=${1:degrees}\r",
+      "rotate around={${1:degree}:${2:coordinate}}\r",
+      "rotate around x=${1:degrees}\r",
+      "rotate around y=${1:degrees}\r",
+      "rotate around z=${1:degrees}\r",
+      "cm={${1:a,b,c,d,coord}}\r",
+      "reset cm\r",
+      "transform canvas={${1:options}}\r",
+      "out=${1:degrees}\r",
+      "in=${1:degrees}\r",
+      "relative",
+      "bend left\r",
+      "bend left=${1:degrees}\r",
+      "bend right\r",
+      "bend right=${1:degrees}\r",
+      "bend angle=${1:degrees}\r",
+      "looseness=${1:number}\r",
+      "out looseness=${1:number}\r",
+      "in looseness=${1:number}\r",
+      "min distance=",
+      "max distance=",
+      "out min distance=",
+      "out max distance=",
+      "in min distance=",
+      "in max distance=",
+      "distance=",
+      "out distance=",
+      "in distance=",
+      "out control=${1:coord}\r",
+      "in control=${1:coord}\r",
+      "controls=${1:coord1} and ${2:coord2}\r",
+      "%tikzstyle\r",
+      "matrix"
+    ]
   },
-  "macros": {
-    "spot{}": {
-      "snippet": "spot{${1:text}}"
-    },
-    "spot[]{}": {
-      "snippet": "spot[${2:node options}]{${1:text}}"
-    },
-    "spot(){}": {
-      "snippet": "spot(${2:node name}){${1:text}}"
-    },
-    "spot()[]{}": {
-      "snippet": "spot(${3:node name})[${2:node options}]{${1:text}}"
-    },
-    "spot<>{}": {
-      "snippet": "spot<${2:overlay spec}>{${1:text}}"
-    },
-    "spot<>[]{}": {
-      "snippet": "spot<${3:overlay spec}>[${2:node options}]{${1:text}}"
-    },
-    "spot<>(){}": {
-      "snippet": "spot<${2:overlay spec}>(${3:node name}){${1:text}}"
-    },
-    "spot<>()[]{}": {
-      "snippet": "spot<${3:overlay spec}>(${4:node name})[${2:node options}]{${1:text}}"
-    },
-    "spot*{}": {
-      "snippet": "spot*{${1:text}}"
-    },
-    "spot*[]{}": {
-      "snippet": "spot*[${2:node options}]{${1:text}}"
-    },
-    "spot*(){}": {
-      "snippet": "spot*(${2:node name}){${1:text}}"
-    },
-    "spot*()[]{}": {
-      "snippet": "spot*(${3:node name})[${2:node options}]{${1:text}}"
-    },
-    "spot*<>{}": {
-      "snippet": "spot*<${2:overlay spec}>{${1:text}}"
-    },
-    "spot*<>[]{}": {
-      "snippet": "spot*<${3:overlay spec}>[${2:node options}]{${1:text}}"
-    },
-    "spot*<>(){}": {
-      "snippet": "spot*<${2:overlay spec}>(${3:node name}){${1:text}}"
-    },
-    "spot*<>()[]{}": {
-      "snippet": "spot*<${3:overlay spec}>(${4:node name})[${2:node options}]{${1:text}}"
-    },
-    "setspotlightcolor{}": {
-      "snippet": "setspotlightcolor{${1:color}}"
-    },
-    "resetspotlightcolor": {},
-    "spotlightcolor": {},
-    "setspotlightstyle{}": {
-      "snippet": "setspotlightstyle{${1:node options}}"
-    },
-    "resetspotlightstyle": {},
-    "spotlightnodeoptions": {},
-    "dospots": {},
-    "dospotsheader": {},
-    "dospotsfooter": {},
-    "AtEndFrame{}": {
-      "snippet": "AtEndFrame{${1:code}}"
-    },
-    "AtEveryBeginFrame{}": {
-      "snippet": "AtEveryBeginFrame{${1:code}}"
-    },
-    "AtEveryEndFrame{}": {
-      "snippet": "AtEveryEndFrame{${1:code}}"
-    },
-    "xa": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

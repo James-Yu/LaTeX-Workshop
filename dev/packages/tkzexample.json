@@ -1,64 +1,90 @@
 {
-  "includes": {
-    "calc": [],
-    "mdframed": [],
-    "fancyvrb": []
-  },
-  "macros": {
-    "commenthandler": {},
-    "fileexample": {},
-    "iftkzcodesaved": {},
-    "killienc": {},
-    "tkzcodesavedfalse": {},
-    "tkzcodesavedtrue": {},
-    "tkzexamplebox": {},
-    "tkzexamplewidth": {},
-    "tkzFileSavedPrefix": {},
-    "tkzltxexamplebox": {},
-    "tkzltxexamplewidth": {},
-    "tkzref": {},
-    "tkzSavedCode": {},
-    "tkzSavedCode[]": {
-      "snippet": "tkzSavedCode[${1:prefix=prefix}]"
+  "deps": [
+    {
+      "name": "calc"
     },
-    "typesetcomment": {},
-    "typesetcommentnum": {}
-  },
-  "envs": {
-    "tkzexample[]": {
-      "name": "tkzexample",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "mdframed"
     },
-    "tkzltxexample[]": {
-      "name": "tkzltxexample",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "fancyvrb"
     }
-  },
-  "options": [
-    "saved"
   ],
-  "keyvals": [
-    [
-      "execute code",
-      "show num",
-      "overhang",
-      "code only",
+  "macros": [
+    {
+      "name": "tkzexamplebox",
+      "unusual": true
+    },
+    {
+      "name": "tkzexamplewidth",
+      "unusual": true
+    },
+    {
+      "name": "tkzFileSavedPrefix",
+      "unusual": true
+    },
+    {
+      "name": "tkzltxexamplebox",
+      "unusual": true
+    },
+    {
+      "name": "tkzltxexamplewidth",
+      "unusual": true
+    },
+    {
+      "name": "tkzref",
+      "unusual": true
+    },
+    {
+      "name": "tkzSavedCode",
+      "unusual": true
+    },
+    {
+      "name": "tkzSavedCode",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:prefix=prefix}]"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "tkzexample",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "tkzltxexample",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/tkzexample#c": [
+      "saved\r"
+    ],
+    "\\begin{tkzexample}#c": [
+      "execute code\r",
+      "show num\r",
+      "overhang\r",
+      "code only\r",
       "width=",
       "code=",
       "graphic=",
-      "overhang",
-      "num",
+      "overhang\r",
+      "num\r",
       "numcolor=",
       "numbkgcolor=",
-      "global num",
-      "code style=${1:font commands}",
-      "normal",
-      "small",
-      "very small",
+      "global num\r",
+      "code style=${1:font commands}\r",
+      "normal\r",
+      "small\r",
+      "very small\r",
       "right margin=",
       "left margin=",
       "inner left margin=",
@@ -71,23 +97,23 @@
       "above skip=",
       "below skip=",
       "hsep=",
-      "pre=${1:code}",
-      "post=${1:code}",
+      "pre=${1:code}\r",
+      "post=${1:code}\r",
       "latex=",
-      "vbox"
+      "vbox\r"
     ],
-    [
+    "\\begin{tkzltxexample}#c": [
       "width=",
       "code=",
-      "show num",
-      "num",
-      "global num",
+      "show num\r",
+      "num\r",
+      "global num\r",
       "numcolor=",
       "numbkgcolor=",
-      "normal",
-      "small",
-      "very small",
-      "right margin",
+      "normal\r",
+      "small\r",
+      "very small\r",
+      "right margin\r",
       "left margin=",
       "inner left margin=",
       "inner right margin=",
@@ -95,11 +121,14 @@
       "inner bottom margin=",
       "line frame width=",
       "hsep=",
-      "typeset listing",
+      "typeset listing\r",
       "frame code=",
-      "ignorespaces",
-      "leave comments",
-      "vbox"
+      "ignorespaces\r",
+      "leave comments\r",
+      "vbox\r"
     ]
+  },
+  "args": [
+    "\\usepackage/tkzexample#c"
   ]
 }

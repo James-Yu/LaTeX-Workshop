@@ -1,54 +1,119 @@
 {
-  "includes": {
-    "l3keys2e": [],
-    "ifluatex": []
-  },
-  "macros": {
-    "setkanbun{}": {
-      "snippet": "setkanbun{${1:options}}"
+  "deps": [
+    {
+      "name": "l3keys2e"
     },
-    "kanjiunit{}{}{}{}{}{}": {
-      "snippet": "kanjiunit{${1:}}{${2:left punct}}{${3:kanji}}{${4:other punct}}{${5:kaeriten}}{${6:}}"
-    },
-    "furiokuri{}{}": {
-      "snippet": "furiokuri{${1:furigana}}{${2:okurigana}}"
-    },
-    "kanbunfont": {},
-    "multifuriokuri{}{}": {
-      "snippet": "multifuriokuri{${1:furigana}}{${2:okurigana}}"
-    },
-    "multifuriokuri[]{}{}": {
-      "snippet": "multifuriokuri[${3:raise}]{${1:furigana}}{${2:okurigana}}"
-    },
-    "Kanbun": {},
-    "EndKanbun": {},
-    "printkanbun": {},
-    "printkanbuncode": {},
-    "printkanbunnopar": {},
-    "printkanbunnoparcode": {},
-    "createcatcodes": {},
-    "kaeriten{}": {
-      "snippet": "kaeriten{${1:arg}}"
-    },
-    "matchkana{}": {
-      "snippet": "matchkana{${1:arg}}"
-    },
-    "Space": {}
-  },
-  "envs": {
-    "kanjipar": {}
-  },
-  "options": [
-    "scale=${1:ratio}",
-    "fontcmd=${1:font command}",
-    "rubyfontcmd=${1:font command}",
-    "unit=",
-    "yokoaki=${1:ratio}",
-    "tateaki=${1:ratio}",
-    "okuriintrusion=${1:ratio}",
-    "kumi=${1|aki,beta|}",
-    "aki",
-    "beta"
+    {
+      "name": "ifluatex"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "setkanbun",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\usepackage/kanbun#c,\\setkanbun"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "kanjiunit",
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "{${1:}}{${2:left punct}}{${3:kanji}}{${4:other punct}}{${5:kaeriten}}{${6:}}"
+      }
+    },
+    {
+      "name": "furiokuri",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:furigana}}{${2:okurigana}}"
+      }
+    },
+    {
+      "name": "kanbunfont"
+    },
+    {
+      "name": "multifuriokuri",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:furigana}}{${2:okurigana}}"
+      }
+    },
+    {
+      "name": "multifuriokuri",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:raise}]{${1:furigana}}{${2:okurigana}}"
+      }
+    },
+    {
+      "name": "Kanbun"
+    },
+    {
+      "name": "EndKanbun"
+    },
+    {
+      "name": "printkanbun"
+    },
+    {
+      "name": "printkanbuncode"
+    },
+    {
+      "name": "printkanbunnopar"
+    },
+    {
+      "name": "printkanbunnoparcode"
+    },
+    {
+      "name": "createcatcodes",
+      "unusual": true
+    },
+    {
+      "name": "kaeriten",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "matchkana",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "Space",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "kanjipar",
+      "unusual": true
+    }
+  ],
+  "keys": {
+    "\\usepackage/kanbun#c,\\setkanbun": [
+      "scale=${1:ratio}\r",
+      "fontcmd=${1:font command}\r",
+      "rubyfontcmd=${1:font command}\r",
+      "unit=",
+      "yokoaki=${1:ratio}\r",
+      "tateaki=${1:ratio}\r",
+      "okuriintrusion=${1:ratio}\r",
+      "kumi=${1|aki,beta\r|}",
+      "aki\r",
+      "beta\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/kanbun#c,\\setkanbun"
+  ]
 }

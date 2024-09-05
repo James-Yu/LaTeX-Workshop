@@ -1,36 +1,66 @@
 {
-  "includes": {
-    "class-memoir": []
-  },
-  "macros": {
-    "subtitle{}": {
-      "snippet": "subtitle{${1:text}}"
-    },
-    "degreesought{}": {
-      "snippet": "degreesought{${1:degree}}"
-    },
-    "degreediscipline{}": {
-      "snippet": "degreediscipline{${1:discipline}}"
-    },
-    "degreecompletionyear{}": {
-      "snippet": "degreecompletionyear{${1:year}}"
-    },
-    "thesisdedication{}": {
-      "snippet": "thesisdedication{${1:text}}"
+  "deps": [
+    {
+      "name": "class-memoir"
     }
-  },
-  "envs": {},
-  "options": [
-    "10pt",
-    "11pt",
-    "12pt",
-    "examcopy",
-    "partial",
-    "doublespace",
-    "singlespace",
-    "onehalfspace",
-    "oneside",
-    "draft"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "subtitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "degreesought",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:degree%text}}"
+      }
+    },
+    {
+      "name": "degreediscipline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:discipline%text}}"
+      }
+    },
+    {
+      "name": "degreecompletionyear",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:year}}"
+      }
+    },
+    {
+      "name": "thesisdedication",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\documentclass/aucklandthesis#c": [
+      "10pt\r",
+      "11pt\r",
+      "12pt\r",
+      "examcopy\r",
+      "partial\r",
+      "doublespace\r",
+      "singlespace\r",
+      "onehalfspace\r",
+      "oneside\r",
+      "draft\r"
+    ],
+    "\\chapterstyle,\\pagestyle#c,\\thispagestyle#c": [
+      "Forder\r",
+      "Sewell\r"
+    ]
+  },
+  "args": [
+    "\\documentclass/aucklandthesis#c"
+  ]
 }

@@ -1,72 +1,165 @@
 {
-  "includes": {
-    "calc": [],
-    "fp": [],
-    "pst-xkey": [],
-    "fmtcount": [],
-    "ifthen": []
-  },
-  "macros": {
-    "BDConnHNext{}{}": {
-      "snippet": "BDConnHNext{${1:n}}{${2:m}}"
+  "deps": [
+    {
+      "name": "calc"
     },
-    "BDConnH{}{}{}{}": {
-      "snippet": "BDConnH{${1:n}}{${2:m}}{${3:p}}{${4:label text}}"
+    {
+      "name": "fp"
     },
-    "BDConnH[]{}{}{}{}": {
-      "snippet": "BDConnH[${5:options}]{${1:n}}{${2:m}}{${3:p}}{${4:label text}}"
+    {
+      "name": "pst-xkey"
     },
-    "BDConnV{}{}{}{}": {
-      "snippet": "BDConnV{${1:n}}{${2:m}}{${3:q}}{${4:label text}}"
+    {
+      "name": "fmtcount"
     },
-    "BDConnV[]{}{}{}{}": {
-      "snippet": "BDConnV[${5:options}]{${1:n}}{${2:m}}{${3:q}}{${4:label text}}"
-    },
-    "BDsplit": {},
-    "BDadd": {},
-    "BDsub": {},
-    "BDmul": {},
-    "BDdelay": {},
-    "BDdelayN{}": {
-      "snippet": "BDdelayN{${1:N}}"
-    },
-    "BDfilter{}": {
-      "snippet": "BDfilter{${1:label text}}"
-    },
-    "BDfilterMulti{}": {
-      "snippet": "BDfilterMulti{${1:label text}}"
-    },
-    "BDlowpass": {},
-    "BDlowpass[]": {
-      "snippet": "BDlowpass[${1:size}]"
-    },
-    "BDsampler": {},
-    "BDsamplerFramed": {},
-    "BDsamplerFramed[]": {
-      "snippet": "BDsamplerFramed[${1:size}]"
-    },
-    "BDsinc": {},
-    "BDsinc[]": {
-      "snippet": "BDsinc[${1:size}]"
-    },
-    "BDupsmp{}": {
-      "snippet": "BDupsmp{${1:N}}"
-    },
-    "BDdwsmp{}": {
-      "snippet": "BDdwsmp{${1:N}}"
-    },
-    "BDwidth": {},
-    "BDclip": {},
-    "BDclip[]": {
-      "snippet": "BDclip[${1:length}]"
+    {
+      "name": "ifthen"
     }
-  },
-  "envs": {
-    "dspBlocks{}{}": {
+  ],
+  "macros": [
+    {
+      "name": "BDConnHNext",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:n}}{${2:m}}"
+      }
+    },
+    {
+      "name": "BDConnH",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:n}}{${2:m}}{${3:p}}{${4:label text}}"
+      }
+    },
+    {
+      "name": "BDConnH",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "[${5:options%keyvals}]{${1:n}}{${2:m}}{${3:p}}{${4:label text}}"
+      }
+    },
+    {
+      "name": "BDConnV",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:n}}{${2:m}}{${3:q}}{${4:label text}}"
+      }
+    },
+    {
+      "name": "BDConnV",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "[${5:options%keyvals}]{${1:n}}{${2:m}}{${3:q}}{${4:label text}}"
+      }
+    },
+    {
+      "name": "BDsplit"
+    },
+    {
+      "name": "BDadd"
+    },
+    {
+      "name": "BDsub"
+    },
+    {
+      "name": "BDmul"
+    },
+    {
+      "name": "BDdelay"
+    },
+    {
+      "name": "BDdelayN",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:N}}"
+      }
+    },
+    {
+      "name": "BDfilter",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label text}}"
+      }
+    },
+    {
+      "name": "BDfilterMulti",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label text}}"
+      }
+    },
+    {
+      "name": "BDlowpass"
+    },
+    {
+      "name": "BDlowpass",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:size%l}]"
+      }
+    },
+    {
+      "name": "BDsampler"
+    },
+    {
+      "name": "BDsamplerFramed"
+    },
+    {
+      "name": "BDsamplerFramed",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:size%l}]"
+      }
+    },
+    {
+      "name": "BDsinc"
+    },
+    {
+      "name": "BDsinc",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:size%l}]"
+      }
+    },
+    {
+      "name": "BDupsmp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:N}}"
+      }
+    },
+    {
+      "name": "BDdwsmp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:N}}"
+      }
+    },
+    {
+      "name": "BDwidth"
+    },
+    {
+      "name": "BDclip",
+      "unusual": true
+    },
+    {
+      "name": "BDclip",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:length}]"
+      }
+    }
+  ],
+  "envs": [
+    {
       "name": "dspBlocks",
-      "snippet": "{${1:x}}{${2:y}}"
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:x}}{${2:y}}"
+      }
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "keys": {},
+  "args": []
 }

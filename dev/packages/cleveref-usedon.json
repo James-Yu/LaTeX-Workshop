@@ -1,58 +1,74 @@
 {
-  "includes": {
-    "cleveref": []
-  },
-  "macros": {
-    "cref[]{}": {
-      "snippet": "cref[${2:option}]{${1:labellist}}"
-    },
-    "cref*[]{}": {
-      "snippet": "cref*[${2:option}]{${1:labellist}}"
-    },
-    "Cref[]{}": {
-      "snippet": "Cref[${2:option}]{${1:labellist}}"
-    },
-    "Cref*[]{}": {
-      "snippet": "Cref*[${2:option}]{${1:labellist}}"
-    },
-    "UsedByAndOnMessage{}{}": {
-      "snippet": "UsedByAndOnMessage{${1:arg1}}{${2:arg2}}"
-    },
-    "UsedByMessage{}": {
-      "snippet": "UsedByMessage{${1:arg}}"
-    },
-    "UsedOnMessage{}": {
-      "snippet": "UsedOnMessage{${1:arg}}"
-    },
-    "UsedOnPackageDate": {},
-    "UsedOnPackageVersion": {}
-  },
-  "envs": {},
-  "options": [
-    "poorman",
-    "sort",
-    "compress",
-    "sort&compress",
-    "nosort",
-    "capitalise",
-    "capitalize",
-    "nameinlink",
-    "noabbrev",
-    "english",
-    "german",
-    "ngerman",
-    "dutch",
-    "french",
-    "spanish",
-    "italian",
-    "russian",
-    "ukrainian",
-    "norsk",
-    "danish",
-    "esperanto",
-    "swedish",
-    "brazilian",
-    "catalan"
+  "deps": [
+    {
+      "name": "cleveref"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "cref",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:option%keyvals}]{${1:labellist}}"
+      }
+    },
+    {
+      "name": "cref*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:option%keyvals}]{${1:labellist}}"
+      }
+    },
+    {
+      "name": "Cref",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:option%keyvals}]{${1:labellist}}"
+      }
+    },
+    {
+      "name": "Cref*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:option%keyvals}]{${1:labellist}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/cleveref-usedon#c": [
+      "poorman\r",
+      "sort\r",
+      "compress\r",
+      "sort&compress\r",
+      "nosort\r",
+      "capitalise\r",
+      "capitalize\r",
+      "nameinlink\r",
+      "noabbrev\r",
+      "english\r",
+      "german\r",
+      "ngerman\r",
+      "dutch\r",
+      "french\r",
+      "spanish\r",
+      "italian\r",
+      "russian\r",
+      "ukrainian\r",
+      "norsk\r",
+      "danish\r",
+      "esperanto\r",
+      "swedish\r",
+      "brazilian\r",
+      "catalan\r"
+    ],
+    "\\cref#c,\\cref*#c,\\Cref#c,\\Cref*#c": [
+      "UsedOn\r",
+      "UsedBy\r",
+      "UsedByAndOn\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/cleveref-usedon#c"
+  ]
 }

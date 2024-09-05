@@ -1,11 +1,33 @@
 {
-  "includes": {
-    "graphicx": []
-  },
-  "macros": {},
-  "envs": {},
-  "options": [
-    "nobeamer"
+  "deps": [
+    {
+      "name": "graphicx"
+    }
   ],
-  "keyvals": []
+  "macros": [],
+  "envs": [],
+  "keys": {
+    "\\usepackage/graphbox#c": [
+      "nobeamer"
+    ],
+    "\\includegraphics": [
+      "hide",
+      "align=${1|b,c,l,m,t,u|}",
+      "vsmash=${1|b,c,l,m,n,t,u|}",
+      "hsmash=${1|c,l,n,r|}",
+      "smash=${1:vpos}${2:hpos}",
+      "vshift=",
+      "hshift=",
+      "tmargin=",
+      "bmargin=",
+      "vmargin=",
+      "lmargin=",
+      "rmargin=",
+      "hmargin=",
+      "margin="
+    ]
+  },
+  "args": [
+    "\\usepackage/graphbox#c"
+  ]
 }

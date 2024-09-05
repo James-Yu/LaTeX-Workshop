@@ -1,36 +1,53 @@
 {
-  "includes": {
-    "tikz": []
-  },
-  "macros": {
-    "pgfinterferencepattern{}": {
-      "snippet": "pgfinterferencepattern{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "pgfinterferenceoptions{}": {
-      "snippet": "pgfinterferenceoptions{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "tikz"
     }
-  },
-  "envs": {},
-  "options": [
-    "draft"
   ],
-  "keyvals": [
-    [
-      "wavelength=${1:number}",
-      "intensity=${1:number}",
-      "slits=${1:integer}",
-      "slit-distance=${1:number}",
-      "slit-width=${1:number}",
-      "screen-distance=${1:number}",
-      "screen-width=${1:number}",
-      "screen-height=${1:number}",
-      "scale=${1:factor}",
+  "macros": [
+    {
+      "name": "pgfinterferencepattern",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\pgfinterferencepattern,\\pgfinterferenceoptions"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pgfinterferenceoptions",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\pgfinterferencepattern,\\pgfinterferenceoptions"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/pgf-interference#c": [
+      "draft\r"
+    ],
+    "\\pgfinterferencepattern,\\pgfinterferenceoptions": [
+      "wavelength=${1:number}\r",
+      "intensity=${1:number}\r",
+      "slits=${1:integer}\r",
+      "slit-distance=${1:number}\r",
+      "slit-width=${1:number}\r",
+      "screen-distance=${1:number}\r",
+      "screen-width=${1:number}\r",
+      "screen-height=${1:number}\r",
+      "scale=${1:factor}\r",
       "screen-color=",
-      "ruler=${1|above,below,screen,none|}"
+      "ruler=${1|above,below,screen,none\r|}"
     ]
+  },
+  "args": [
+    "\\usepackage/pgf-interference#c"
   ]
 }

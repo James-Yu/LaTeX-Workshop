@@ -1,14 +1,102 @@
 {
-  "includes": {
-    "iftex": [],
-    "infwarerr": []
-  },
-  "macros": {
-    "magicnum{}": {
-      "snippet": "magicnum{${1:access key}}"
+  "deps": [
+    {
+      "name": "iftex"
+    },
+    {
+      "name": "infwarerr"
     }
+  ],
+  "macros": [
+    {
+      "name": "magicnum",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:access key%keyvals}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\magicnum#c": [
+      "tex.catcode.escape\r",
+      "tex.catcode.begingroup\r",
+      "tex.catcode.endgroup\r",
+      "tex.catcode.math\r",
+      "tex.catcode.align\r",
+      "tex.catcode.eol\r",
+      "tex.catcode.parameter\r",
+      "tex.catcode.superscript\r",
+      "tex.catcode.subscript\r",
+      "tex.catcode.ignore\r",
+      "tex.catcode.space\r",
+      "tex.catcode.letter\r",
+      "tex.catcode.other\r",
+      "tex.catcode.active\r",
+      "tex.catcode.comment\r",
+      "tex.catcode.invalid\r",
+      "etex.grouptype.bottomlevel\r",
+      "etex.grouptype.simple\r",
+      "etex.grouptype.hbox\r",
+      "etex.grouptype.adjustedhbox\r",
+      "etex.grouptype.vbox\r",
+      "etex.grouptype.align\r",
+      "etex.grouptype.noalign\r",
+      "etex.grouptype.output\r",
+      "etex.grouptype.math\r",
+      "etex.grouptype.disc\r",
+      "etex.grouptype.insert\r",
+      "etex.grouptype.vcenter\r",
+      "etex.grouptype.mathchoice\r",
+      "etex.grouptype.semisimple\r",
+      "etex.grouptype.mathshift\r",
+      "etex.grouptype.mathleft\r",
+      "etex.iftype.none\r",
+      "etex.iftype.char\r",
+      "etex.iftype.cat\r",
+      "etex.iftype.num\r",
+      "etex.iftype.dim\r",
+      "etex.iftype.odd\r",
+      "etex.iftype.vmode\r",
+      "etex.iftype.hmode\r",
+      "etex.iftype.mmode\r",
+      "etex.iftype.inner\r",
+      "etex.iftype.void\r",
+      "etex.iftype.hbox\r",
+      "etex.iftype.vbox\r",
+      "etex.iftype.x\r",
+      "etex.iftype.eof\r",
+      "etex.iftype.true\r",
+      "etex.iftype.false\r",
+      "etex.iftype.case\r",
+      "etex.iftype.defined\r",
+      "etex.iftype.csname\r",
+      "etex.iftype.fontchar\r",
+      "etex.nodetype.none\r",
+      "etex.nodetype.char\r",
+      "etex.nodetype.hlist\r",
+      "etex.nodetype.vlist\r",
+      "etex.nodetype.rule\r",
+      "etex.nodetype.ins\r",
+      "etex.nodetype.mark\r",
+      "etex.nodetype.adjust\r",
+      "etex.nodetype.ligature\r",
+      "etex.nodetype.disc\r",
+      "etex.nodetype.whatsit\r",
+      "etex.nodetype.math\r",
+      "etex.nodetype.glue\r",
+      "etex.nodetype.kern\r",
+      "etex.nodetype.penalty\r",
+      "etex.nodetype.unset\r",
+      "etex.nodetype.maths\r",
+      "etex.interactionmode.batch\r",
+      "etex.interactionmode.nonstop\r",
+      "etex.interactionmode.scroll\r",
+      "etex.interactionmode.errorstop\r",
+      "luatex.pdfliteral.mode.setorigin\r",
+      "luatex.pdfliteral.mode.page\r",
+      "luatex.pdfliteral.mode.direct\r"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

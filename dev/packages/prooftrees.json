@@ -1,40 +1,117 @@
 {
-  "includes": {
-    "svn-prov": [],
-    "etoolbox": [],
-    "forest": [],
-    "amssymb": [],
-    "amstext": [],
-    "tikzlibraryexternal": [
-      "external"
+  "deps": [
+    {
+      "name": "svn-prov"
+    },
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "forest"
+    },
+    {
+      "name": "amssymb"
+    },
+    {
+      "name": "amstext"
+    },
+    {
+      "name": "tikzlibraryexternal",
+      "if": "external"
+    }
+  ],
+  "macros": [
+    {
+      "name": "standardnodestrut",
+      "if": "linguistics",
+      "unusual": true
+    },
+    {
+      "name": "standardnodestrutbox",
+      "if": "linguistics",
+      "unusual": true
+    },
+    {
+      "name": "linenumberstyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "tableau",
+      "if": "tableaux",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tree preamble%keyvals}}"
+      }
+    },
+    {
+      "name": "tableau",
+      "if": "tableau",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tree preamble%keyvals}}"
+      }
+    },
+    {
+      "name": "prooftree",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tree preamble%keyvals}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/prooftrees#c": [
+      "tableaux\r",
+      "external\r",
+      "linguistics\r",
+      "debug\r"
+    ],
+    "\\begin{prooftree}#c,\\begin{tableau}#c,\\forestset#c": [
+      "auto move",
+      "not auto move\r",
+      "line numbering",
+      "not line numbering\r",
+      "justifications",
+      "not justifications\r",
+      "single branches",
+      "not single branches\r",
+      "line no width=",
+      "just sep=",
+      "line no sep=",
+      "close sep=",
+      "proof tree inner proof width=",
+      "proof tree inner proof midpoint=",
+      "line no shift=${1:integer}\r",
+      "zero start\r",
+      "to prove={${1:wff}}\r",
+      "check with=${1:symbol}\r",
+      "check right",
+      "not check right\r",
+      "check left\r",
+      "close with=${1:symbol}\r",
+      "close with format={${1:TikZ keys}}\r",
+      "close format={${1:TikZ keys}}\r",
+      "subs with=${1:symbol}\r",
+      "subs right",
+      "not subs right\r",
+      "subs left\r",
+      "just refs left",
+      "not just refs left\r",
+      "just refs right\r",
+      "just format={${1:TikZ keys}}\r",
+      "line no format={${1:TikZ keys}}\r",
+      "wff format={${1:TikZ keys}}\r",
+      "proof statement format={${1:TikZ keys}}\r",
+      "highlight format={${1:TikZ keys}}\r",
+      "merge delimiter=${1:punctuation}\r"
     ]
   },
-  "macros": {
-    "standardnodestrut": {
-      "option": "linguistics"
-    },
-    "standardnodestrutbox": {
-      "option": "linguistics"
-    },
-    "linenumberstyle{}": {
-      "snippet": "linenumberstyle{${1:number}}"
-    }
-  },
-  "envs": {
-    "tableau{}": {
-      "name": "tableau",
-      "snippet": "{${1:tree preamble}}"
-    },
-    "prooftree{}": {
-      "name": "prooftree",
-      "snippet": "{${1:tree preamble}}"
-    }
-  },
-  "options": [
-    "tableaux",
-    "external",
-    "linguistics",
-    "debug"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/prooftrees#c"
+  ]
 }

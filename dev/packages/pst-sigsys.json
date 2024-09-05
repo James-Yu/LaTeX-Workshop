@@ -1,273 +1,617 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-node": [],
-    "pst-xkey": []
-  },
-  "macros": {
-    "psaxeslabels()()(){}{}": {
-      "snippet": "psaxeslabels(${3:x0},${4:y0})(${5:x1},${6:y1})(${7:x2},${8:y2}){${1:x label}}{${2:y label}}"
-    },
-    "psaxeslabels{}()()(){}{}": {
-      "snippet": "psaxeslabels{${1:arrows}}(${4:x0},${5:y0})(${6:x1},${7:y1})(${8:x2},${9:y2}){${2:x label}}{${3:y label}}"
-    },
-    "psaxeslabels[]()()(){}{}": {
-      "snippet": "psaxeslabels[${3:options}](${4:x0},${5:y0})(${6:x1},${7:y1})(${8:x2},${9:y2}){${1:x label}}{${2:y label}}"
-    },
-    "psaxeslabels[]{}()()(){}{}": {
-      "snippet": "psaxeslabels[${4:options}]{${1:arrows}}(${5:x0},${6:y0})(${7:x1},${8:y1})(${9:x2},${10:y2}){${2:x label}}{${3:y label}}"
-    },
-    "pstick(){}": {
-      "snippet": "pstick(${2:x},${3:y}){${1:ticklength}}"
-    },
-    "pstick{}(){}": {
-      "snippet": "pstick{${1:angle}}(${3:x},${4:y}){${2:ticklength}}"
-    },
-    "pstick[](){}": {
-      "snippet": "pstick[${2:options}](${3:x},${4:y}){${1:ticklength}}"
-    },
-    "pstick[]{}(){}": {
-      "snippet": "pstick[${3:options}]{${1:angle}}(${4:x},${5:y}){${2:ticklength}}"
-    },
-    "psTick()": {
-      "snippet": "psTick(${1:x},${2:y})"
-    },
-    "psTick{}()": {
-      "snippet": "psTick{${1:angle}}(${2:x},${3:y})"
-    },
-    "psTick[]()": {
-      "snippet": "psTick[${1:options}](${2:x},${3:y})"
-    },
-    "psTick[]{}()": {
-      "snippet": "psTick[${2:options}]{${1:angle}}(${3:x},${4:y})"
-    },
-    "pssignal(){}{}": {
-      "snippet": "pssignal(${3:x},${4:y}){${1:node}}{${2:stuff}}"
-    },
-    "pssignal[](){}{}": {
-      "snippet": "pssignal[${3:options}](${4:x},${5:y}){${1:node}}{${2:stuff}}"
-    },
-    "psstem{}": {
-      "snippet": "psstem{${1:list}}"
-    },
-    "psstem(){}": {
-      "snippet": "psstem(${2:x},${3:∆x}){${1:list}}"
-    },
-    "psstem[]{}": {
-      "snippet": "psstem[${2:options}]{${1:list}}"
-    },
-    "psstem[](){}": {
-      "snippet": "psstem[${2:options}](${3:x},${4:∆x}){${1:list}}"
-    },
-    "pszero(){}": {
-      "snippet": "pszero(${2:x},${3:y}){${1:node}}"
-    },
-    "pszero[](){}": {
-      "snippet": "pszero[${2:options}](${3:x},${4:y}){${1:node}}"
-    },
-    "pspole(){}": {
-      "snippet": "pspole(${2:x},${3:y}){${1:node}}"
-    },
-    "pspole[](){}": {
-      "snippet": "pspole[${2:options}](${3:x},${4:y}){${1:node}}"
-    },
-    "pscircleop(){}": {
-      "snippet": "pscircleop(${2:x},${3:y}){${1:node}}"
-    },
-    "pscircleop[](){}": {
-      "snippet": "pscircleop[${2:options}](${3:x},${4:y}){${1:node}}"
-    },
-    "psframeop(){}": {
-      "snippet": "psframeop(${2:x},${3:y}){${1:node}}"
-    },
-    "psframeop[](){}": {
-      "snippet": "psframeop[${2:options}](${3:x},${4:y}){${1:node}}"
-    },
-    "psdisk(){}": {
-      "snippet": "psdisk(${2:x},${3:y}){${1:radius}}"
-    },
-    "psdisk[](){}": {
-      "snippet": "psdisk[${2:options}](${3:x},${4:y}){${1:radius}}"
-    },
-    "psring(){}{}": {
-      "snippet": "psring(${3:x},${4:y}){${1:inner radius}}{${2:outer radius}}"
-    },
-    "psring[](){}{}": {
-      "snippet": "psring[${3:options}](${4:x},${5:y}){${1:inner radius}}{${2:outer radius}}"
-    },
-    "psdiskc()(){}": {
-      "snippet": "psdiskc(${2:x},${3:y})(${4:x0},${5:y0}){${1:radius}}"
-    },
-    "psdiskc[]()(){}": {
-      "snippet": "psdiskc[${2:options}](${3:x},${4:y})(${5:x0},${6:y0}){${1:radius}}"
-    },
-    "psldots()": {
-      "snippet": "psldots(${1:x},${2:y})"
-    },
-    "psldots{}()": {
-      "snippet": "psldots{${1:angle}}(${2:x},${3:y})"
-    },
-    "psldots[]()": {
-      "snippet": "psldots[${1:options}](${2:x},${3:y})"
-    },
-    "psldots[]{}()": {
-      "snippet": "psldots[${2:options}]{${1:angle}}(${3:x},${4:y})"
-    },
-    "ldotsnode(){}": {
-      "snippet": "ldotsnode(${2:x},${3:y}){${1:node}}"
-    },
-    "ldotsnode{}(){}": {
-      "snippet": "ldotsnode{${1:angle}}(${3:x},${4:y}){${2:node}}"
-    },
-    "ldotsnode[](){}": {
-      "snippet": "ldotsnode[${2:options}](${3:x},${4:y}){${1:node}}"
-    },
-    "ldotsnode[]{}(){}": {
-      "snippet": "ldotsnode[${3:options}]{${1:angle}}(${4:x},${5:y}){${2:node}}"
-    },
-    "psblock(){}{}": {
-      "snippet": "psblock(${3:x},${4:y}){${1:node}}{${2:stuff}}"
-    },
-    "psblock[](){}{}": {
-      "snippet": "psblock[${3:options}](${4:x},${5:y}){${1:node}}{${2:stuff}}"
-    },
-    "psfblock(){}{}": {
-      "snippet": "psfblock(${3:x},${4:y}){${1:node}}{${2:stuff}}"
-    },
-    "psfblock[](){}{}": {
-      "snippet": "psfblock[${3:options}](${4:x},${5:y}){${1:node}}{${2:stuff}}"
-    },
-    "psadaptive{}(){}": {
-      "snippet": "psadaptive{${1:nodeA}}(${3:x},${4:y}){${2:nodeB}}"
-    },
-    "psadaptive{}{}(){}": {
-      "snippet": "psadaptive{${1:arrows}}{${2:nodeA}}(${4:x},${5:y}){${3:nodeB}}"
-    },
-    "psadaptive[]{}(){}": {
-      "snippet": "psadaptive[${3:options}]{${1:nodeA}}(${4:x},${5:y}){${2:nodeB}}"
-    },
-    "psadaptive[]{}{}(){}": {
-      "snippet": "psadaptive[${4:options}]{${1:arrows}}{${2:nodeA}}(${5:x},${6:y}){${3:nodeB}}"
-    },
-    "psknob(){}": {
-      "snippet": "psknob(${2:x},${3:y}){${1:node}}"
-    },
-    "psknob[](){}": {
-      "snippet": "psknob[${2:options}](${3:x},${4:y}){${1:node}}"
-    },
-    "psusampler(){}{}": {
-      "snippet": "psusampler(${3:x},${4:y}){${1:node}}{${2:stuff}}"
-    },
-    "psusampler[](){}{}": {
-      "snippet": "psusampler[${3:options}](${4:x},${5:y}){${1:node}}{${2:stuff}}"
-    },
-    "psdsampler(){}{}": {
-      "snippet": "psdsampler(${3:x},${4:y}){${1:node}}{${2:stuff}}"
-    },
-    "psdsampler[](){}{}": {
-      "snippet": "psdsampler[${3:options}](${4:x},${5:y}){${1:node}}{${2:stuff}}"
-    },
-    "nclist{}{}": {
-      "snippet": "nclist{${1:nc csname}}{${2:list}}"
-    },
-    "nclist{}[]{}": {
-      "snippet": "nclist{${1:nc csname}}[${2:nc label}]{${3:list}}"
-    },
-    "nclist{}{}{}": {
-      "snippet": "nclist{${1:arrows}}{${2:nc csname}}{${3:list}}"
-    },
-    "nclist{}{}[]{}": {
-      "snippet": "nclist{${1:arrows}}{${2:nc csname}}[${3:nc label}]{${4:list}}"
-    },
-    "nclist[]{}{}": {
-      "snippet": "nclist[${3:options}]{${1:nc csname}}{${2:list}}"
-    },
-    "nclist[]{}[]{}": {
-      "snippet": "nclist[${3:options}]{${1:nc csname}}[${4:nc label}]{${2:list}}"
-    },
-    "nclist[]{}{}{}": {
-      "snippet": "nclist[${4:options}]{${1:arrows}}{${2:nc csname}}{${3:list}}"
-    },
-    "nclist[]{}{}[]{}": {
-      "snippet": "nclist[${4:options}]{${1:arrows}}{${2:nc csname}}[${5:nc label}]{${3:list}}"
-    },
-    "ncstar{}{}{}": {
-      "snippet": "ncstar{${1:nc csname}}{${2:list}}{${3:node}}"
-    },
-    "ncstar{}[]{}{}": {
-      "snippet": "ncstar{${1:nc csname}}[${2:nc label}]{${3:list}}{${4:node}}"
-    },
-    "ncstar{}{}{}{}": {
-      "snippet": "ncstar{${1:arrows}}{${2:nc csname}}{${3:list}}{${4:node}}"
-    },
-    "ncstar{}{}[]{}{}": {
-      "snippet": "ncstar{${1:arrows}}{${2:nc csname}}[${3:nc label}]{${4:list}}{${5:node}}"
-    },
-    "ncstar[]{}{}{}": {
-      "snippet": "ncstar[${4:options}]{${1:nc csname}}{${2:list}}{${3:node}}"
-    },
-    "ncstar[]{}[]{}{}": {
-      "snippet": "ncstar[${4:options}]{${1:nc csname}}[${5:nc label}]{${2:list}}{${3:node}}"
-    },
-    "ncstar[]{}{}{}{}": {
-      "snippet": "ncstar[${5:options}]{${1:arrows}}{${2:nc csname}}{${3:list}}{${4:node}}"
-    },
-    "ncstar[]{}{}[]{}{}": {
-      "snippet": "ncstar[${5:options}]{${1:arrows}}{${2:nc csname}}[${6:nc label}]{${3:list}}{${4:node}}"
-    },
-    "psBraceUp()(){}": {
-      "snippet": "psBraceUp(${2:A})(${3:B}){${1:text}}"
-    },
-    "psBraceUp[]()(){}": {
-      "snippet": "psBraceUp[${2:options}](${3:A})(${4:B}){${1:text}}"
-    },
-    "psBraceUp*()(){}": {
-      "snippet": "psBraceUp*(${2:A})(${3:B}){${1:text}}"
-    },
-    "psBraceUp*[]()(){}": {
-      "snippet": "psBraceUp*[${2:options}](${3:A})(${4:B}){${1:text}}"
-    },
-    "psBraceDown()(){}": {
-      "snippet": "psBraceDown(${2:A})(${3:B}){${1:text}}"
-    },
-    "psBraceDown[]()(){}": {
-      "snippet": "psBraceDown[${2:options}](${3:A})(${4:B}){${1:text}}"
-    },
-    "psBraceDown*()(){}": {
-      "snippet": "psBraceDown*(${2:A})(${3:B}){${1:text}}"
-    },
-    "psBraceDown*[]()(){}": {
-      "snippet": "psBraceDown*[${2:options}](${3:A})(${4:B}){${1:text}}"
-    },
-    "psBraceRight()(){}": {
-      "snippet": "psBraceRight(${2:A})(${3:B}){${1:text}}"
-    },
-    "psBraceRight[]()(){}": {
-      "snippet": "psBraceRight[${2:options}](${3:A})(${4:B}){${1:text}}"
-    },
-    "psBraceRight*()(){}": {
-      "snippet": "psBraceRight*(${2:A})(${3:B}){${1:text}}"
-    },
-    "psBraceRight*[]()(){}": {
-      "snippet": "psBraceRight*[${2:options}](${3:A})(${4:B}){${1:text}}"
-    },
-    "psBraceLeft()(){}": {
-      "snippet": "psBraceLeft(${2:A})(${3:B}){${1:text}}"
-    },
-    "psBraceLeft[]()(){}": {
-      "snippet": "psBraceLeft[${2:options}](${3:A})(${4:B}){${1:text}}"
-    },
-    "psBraceLeft*()(){}": {
-      "snippet": "psBraceLeft*(${2:A})(${3:B}){${1:text}}"
-    },
-    "psBraceLeft*[]()(){}": {
-      "snippet": "psBraceLeft*[${2:options}](${3:A})(${4:B}){${1:text}}"
-    },
-    "pstsigsysFV": {},
-    "pstsigsysFD": {},
-    "PSTsigsysLoaded": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "deps": [
+    {
+      "name": "pstricks"
+    },
+    {
+      "name": "pst-node"
+    },
+    {
+      "name": "pst-xkey"
+    }
+  ],
+  "macros": [
+    {
+      "name": "psaxeslabels(x0,y0)(x1,y1)(x2,y2)",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:x label}}{${2:y label}}"
+      }
+    },
+    {
+      "name": "psaxeslabels",
+      "unusual": true,
+      "arg": {
+        "format": "{}()()(){}{}",
+        "snippet": "{${1:arrows}}(${4:x0},${5:y0})(${6:x1},${7:y1})(${8:x2},${9:y2}){${2:x label}}{${3:y label}}"
+      }
+    },
+    {
+      "name": "psaxeslabels",
+      "arg": {
+        "format": "[]()()(){}{}",
+        "snippet": "[${3:options%keyvals}](${4:x0},${5:y0})(${6:x1},${7:y1})(${8:x2},${9:y2}){${1:x label}}{${2:y label}}"
+      }
+    },
+    {
+      "name": "psaxeslabels",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}()()(){}{}",
+        "snippet": "[${4:options%keyvals}]{${1:arrows}}(${5:x0},${6:y0})(${7:x1},${8:y1})(${9:x2},${10:y2}){${2:x label}}{${3:y label}}"
+      }
+    },
+    {
+      "name": "pstick(x,y)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ticklength}}"
+      }
+    },
+    {
+      "name": "pstick",
+      "arg": {
+        "format": "{}(){}",
+        "snippet": "{${1:angle}}(${3:x},${4:y}){${2:ticklength}}"
+      }
+    },
+    {
+      "name": "pstick",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:options%keyvals}](${3:x},${4:y}){${1:ticklength}}"
+      }
+    },
+    {
+      "name": "pstick",
+      "arg": {
+        "format": "[]{}(){}",
+        "snippet": "[${3:options%keyvals}]{${1:angle}}(${4:x},${5:y}){${2:ticklength}}"
+      }
+    },
+    {
+      "name": "psTick(x,y)"
+    },
+    {
+      "name": "psTick",
+      "arg": {
+        "format": "{}()",
+        "snippet": "{${1:angle}}(${2:x},${3:y})"
+      }
+    },
+    {
+      "name": "psTick",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:options%keyvals}](${2:x},${3:y})"
+      }
+    },
+    {
+      "name": "psTick",
+      "arg": {
+        "format": "[]{}()",
+        "snippet": "[${2:options%keyvals}]{${1:angle}}(${3:x},${4:y})"
+      }
+    },
+    {
+      "name": "pssignal(x,y)",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:node}}{${2:stuff}}"
+      }
+    },
+    {
+      "name": "pssignal",
+      "arg": {
+        "format": "[](){}{}",
+        "snippet": "[${3:options%keyvals}](${4:x},${5:y}){${1:node}}{${2:stuff}}"
+      }
+    },
+    {
+      "name": "psstem",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:list}}"
+      }
+    },
+    {
+      "name": "psstem",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:list}}"
+      }
+    },
+    {
+      "name": "psstem",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:options%keyvals}](${3:x},${4:∆x}){${1:list}}"
+      }
+    },
+    {
+      "name": "pszero(x,y)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:node}}"
+      }
+    },
+    {
+      "name": "pszero",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:options%keyvals}](${3:x},${4:y}){${1:node}}"
+      }
+    },
+    {
+      "name": "pspole(x,y)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:node}}"
+      }
+    },
+    {
+      "name": "pspole",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:options%keyvals}](${3:x},${4:y}){${1:node}}"
+      }
+    },
+    {
+      "name": "pscircleop(x,y)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:node}}"
+      }
+    },
+    {
+      "name": "pscircleop",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:options%keyvals}](${3:x},${4:y}){${1:node}}"
+      }
+    },
+    {
+      "name": "psframeop(x,y)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:node}}"
+      }
+    },
+    {
+      "name": "psframeop",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:options%keyvals}](${3:x},${4:y}){${1:node}}"
+      }
+    },
+    {
+      "name": "psdisk(x,y)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:radius}}"
+      }
+    },
+    {
+      "name": "psdisk",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:options%keyvals}](${3:x},${4:y}){${1:radius}}"
+      }
+    },
+    {
+      "name": "psring(x,y)",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:inner radius}}{${2:outer radius}}"
+      }
+    },
+    {
+      "name": "psring",
+      "arg": {
+        "format": "[](){}{}",
+        "snippet": "[${3:options%keyvals}](${4:x},${5:y}){${1:inner radius}}{${2:outer radius}}"
+      }
+    },
+    {
+      "name": "psdiskc(x,y)(x0,y0)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:radius}}"
+      }
+    },
+    {
+      "name": "psdiskc",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:x},${4:y})(${5:x0},${6:y0}){${1:radius}}"
+      }
+    },
+    {
+      "name": "psldots(x,y)"
+    },
+    {
+      "name": "psldots",
+      "arg": {
+        "format": "{}()",
+        "snippet": "{${1:angle}}(${2:x},${3:y})"
+      }
+    },
+    {
+      "name": "psldots",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:options%keyvals}](${2:x},${3:y})"
+      }
+    },
+    {
+      "name": "psldots",
+      "arg": {
+        "format": "[]{}()",
+        "snippet": "[${2:options%keyvals}]{${1:angle}}(${3:x},${4:y})"
+      }
+    },
+    {
+      "name": "ldotsnode(x,y)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:node}}"
+      }
+    },
+    {
+      "name": "ldotsnode",
+      "arg": {
+        "format": "{}(){}",
+        "snippet": "{${1:angle}}(${3:x},${4:y}){${2:node}}"
+      }
+    },
+    {
+      "name": "ldotsnode",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:options%keyvals}](${3:x},${4:y}){${1:node}}"
+      }
+    },
+    {
+      "name": "ldotsnode",
+      "arg": {
+        "format": "[]{}(){}",
+        "snippet": "[${3:options%keyvals}]{${1:angle}}(${4:x},${5:y}){${2:node}}"
+      }
+    },
+    {
+      "name": "psblock(x,y)",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:node}}{${2:stuff}}"
+      }
+    },
+    {
+      "name": "psblock",
+      "arg": {
+        "format": "[](){}{}",
+        "snippet": "[${3:options%keyvals}](${4:x},${5:y}){${1:node}}{${2:stuff}}"
+      }
+    },
+    {
+      "name": "psfblock(x,y)",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:node}}{${2:stuff}}"
+      }
+    },
+    {
+      "name": "psfblock",
+      "arg": {
+        "format": "[](){}{}",
+        "snippet": "[${3:options%keyvals}](${4:x},${5:y}){${1:node}}{${2:stuff}}"
+      }
+    },
+    {
+      "name": "psadaptive",
+      "arg": {
+        "format": "{}(){}",
+        "snippet": "{${1:nodeA}}(${3:x},${4:y}){${2:nodeB}}"
+      }
+    },
+    {
+      "name": "psadaptive",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}(){}",
+        "snippet": "{${1:arrows}}{${2:nodeA}}(${4:x},${5:y}){${3:nodeB}}"
+      }
+    },
+    {
+      "name": "psadaptive",
+      "arg": {
+        "format": "[]{}(){}",
+        "snippet": "[${3:options%keyvals}]{${1:nodeA}}(${4:x},${5:y}){${2:nodeB}}"
+      }
+    },
+    {
+      "name": "psadaptive",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}(){}",
+        "snippet": "[${4:options%keyvals}]{${1:arrows}}{${2:nodeA}}(${5:x},${6:y}){${3:nodeB}}"
+      }
+    },
+    {
+      "name": "psknob(x,y)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:node}}"
+      }
+    },
+    {
+      "name": "psknob",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:options%keyvals}](${3:x},${4:y}){${1:node}}"
+      }
+    },
+    {
+      "name": "psusampler(x,y)",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:node}}{${2:stuff}}"
+      }
+    },
+    {
+      "name": "psusampler",
+      "arg": {
+        "format": "[](){}{}",
+        "snippet": "[${3:options%keyvals}](${4:x},${5:y}){${1:node}}{${2:stuff}}"
+      }
+    },
+    {
+      "name": "psdsampler(x,y)",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:node}}{${2:stuff}}"
+      }
+    },
+    {
+      "name": "psdsampler",
+      "arg": {
+        "format": "[](){}{}",
+        "snippet": "[${3:options%keyvals}](${4:x},${5:y}){${1:node}}{${2:stuff}}"
+      }
+    },
+    {
+      "name": "nclist",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:nc csname}}{${2:list}}"
+      }
+    },
+    {
+      "name": "nclist",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:nc csname}}[${3:nc label}]{${2:list}}"
+      }
+    },
+    {
+      "name": "nclist",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arrows}}{${2:nc csname}}{${3:list}}"
+      }
+    },
+    {
+      "name": "nclist",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]{}",
+        "snippet": "{${1:arrows}}{${2:nc csname}}[${4:nc label}]{${3:list}}"
+      }
+    },
+    {
+      "name": "nclist",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:nc csname}}{${2:list}}"
+      }
+    },
+    {
+      "name": "nclist",
+      "arg": {
+        "format": "[]{}[]{}",
+        "snippet": "[${3:options%keyvals}]{${1:nc csname}}[${4:nc label}]{${2:list}}"
+      }
+    },
+    {
+      "name": "nclist",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:options%keyvals}]{${1:arrows}}{${2:nc csname}}{${3:list}}"
+      }
+    },
+    {
+      "name": "nclist",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}[]{}",
+        "snippet": "[${4:options%keyvals}]{${1:arrows}}{${2:nc csname}}[${5:nc label}]{${3:list}}"
+      }
+    },
+    {
+      "name": "ncstar",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:nc csname}}{${2:list}}{${3:node}}"
+      }
+    },
+    {
+      "name": "ncstar",
+      "arg": {
+        "format": "{}[]{}{}",
+        "snippet": "{${1:nc csname}}[${4:nc label}]{${2:list}}{${3:node}}"
+      }
+    },
+    {
+      "name": "ncstar",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:arrows}}{${2:nc csname}}{${3:list}}{${4:node}}"
+      }
+    },
+    {
+      "name": "ncstar",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]{}{}",
+        "snippet": "{${1:arrows}}{${2:nc csname}}[${5:nc label}]{${3:list}}{${4:node}}"
+      }
+    },
+    {
+      "name": "ncstar",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:options%keyvals}]{${1:nc csname}}{${2:list}}{${3:node}}"
+      }
+    },
+    {
+      "name": "ncstar",
+      "arg": {
+        "format": "[]{}[]{}{}",
+        "snippet": "[${4:options%keyvals}]{${1:nc csname}}[${5:nc label}]{${2:list}}{${3:node}}"
+      }
+    },
+    {
+      "name": "ncstar",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "[${5:options%keyvals}]{${1:arrows}}{${2:nc csname}}{${3:list}}{${4:node}}"
+      }
+    },
+    {
+      "name": "ncstar",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}[]{}{}",
+        "snippet": "[${5:options%keyvals}]{${1:arrows}}{${2:nc csname}}[${6:nc label}]{${3:list}}{${4:node}}"
+      }
+    },
+    {
+      "name": "psBraceUp(A)(B)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "psBraceUp",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:A})(${4:B}){${1:text}}"
+      }
+    },
+    {
+      "name": "psBraceUp*(A)(B)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "psBraceUp*",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:A})(${4:B}){${1:text}}"
+      }
+    },
+    {
+      "name": "psBraceDown(A)(B)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "psBraceDown",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:A})(${4:B}){${1:text}}"
+      }
+    },
+    {
+      "name": "psBraceDown*(A)(B)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "psBraceDown*",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:A})(${4:B}){${1:text}}"
+      }
+    },
+    {
+      "name": "psBraceRight(A)(B)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "psBraceRight",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:A})(${4:B}){${1:text}}"
+      }
+    },
+    {
+      "name": "psBraceRight*(A)(B)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "psBraceRight*",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:A})(${4:B}){${1:text}}"
+      }
+    },
+    {
+      "name": "psBraceLeft(A)(B)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "psBraceLeft",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:A})(${4:B}){${1:text}}"
+      }
+    },
+    {
+      "name": "psBraceLeft*(A)(B)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "psBraceLeft*",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:options%keyvals}](${3:A})(${4:B}){${1:text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

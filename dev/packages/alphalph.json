@@ -1,20 +1,42 @@
 {
-  "includes": {},
-  "macros": {
-    "AlphAlph{}": {
-      "snippet": "AlphAlph{${1:number}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "AlphAlph",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
     },
-    "alphalph{}": {
-      "snippet": "alphalph{${1:number}}"
+    {
+      "name": "alphalph",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
     },
-    "newalphalph{}{}{}": {
-      "snippet": "newalphalph{${1:cmd}}{${2:symbols provider}}{${3:num of symbols}}"
+    {
+      "name": "newalphalph",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:symbols provider}}{${3:num of symbols}}"
+      }
     },
-    "newalphalph{}[]{}{}": {
-      "snippet": "newalphalph{${1:cmd}}[${2:method}]{${3:symbols provider}}{${4:num of symbols}}"
+    {
+      "name": "newalphalph",
+      "arg": {
+        "format": "{}[]{}{}",
+        "snippet": "{${1:cmd}}[${4:method%keyvals}]{${2:symbols provider}}{${3:num of symbols}}"
+      }
     }
+  ],
+  "envs": [],
+  "keys": {
+    "\\newalphalph": [
+      "alph\r",
+      "wrap\r",
+      "mult\r"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

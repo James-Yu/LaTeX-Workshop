@@ -1,104 +1,216 @@
 {
-  "includes": {
-    "enumitem": [],
-    "fancyhdr": [],
-    "fullpage": [],
-    "ragged2e": [],
-    "newtxtext": [],
-    "titlesec": [],
-    "xstring": [],
-    "babel": [],
-    "csquotes": [],
-    "hanging": [],
-    "biblatex": [],
-    "caption": [],
-    "float": [],
-    "graphicx": [],
-    "enotez": [],
-    "hyperref": [],
-    "microtype": [
-      "microtype"
+  "deps": [
+    {
+      "name": "enumitem"
+    },
+    {
+      "name": "fancyhdr"
+    },
+    {
+      "name": "fullpage"
+    },
+    {
+      "name": "ragged2e"
+    },
+    {
+      "name": "newtxtext"
+    },
+    {
+      "name": "titlesec"
+    },
+    {
+      "name": "xstring"
+    },
+    {
+      "name": "babel"
+    },
+    {
+      "name": "csquotes"
+    },
+    {
+      "name": "hanging"
+    },
+    {
+      "name": "biblatex"
+    },
+    {
+      "name": "caption"
+    },
+    {
+      "name": "float"
+    },
+    {
+      "name": "graphicx"
+    },
+    {
+      "name": "enotez"
+    },
+    {
+      "name": "hyperref"
+    },
+    {
+      "name": "microtype",
+      "if": "microtype"
+    }
+  ],
+  "macros": [
+    {
+      "name": "mladate"
+    },
+    {
+      "name": "professor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:professor}}"
+      }
+    },
+    {
+      "name": "course",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:course%text}}"
+      }
+    },
+    {
+      "name": "makemlaheader",
+      "unusual": true
+    },
+    {
+      "name": "openrangeformat",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "openrangemark",
+      "unusual": true
+    },
+    {
+      "name": "mlanamedash",
+      "unusual": true
+    },
+    {
+      "name": "headlesscite",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:prenote}][${3:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "headlesscite",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "headlesscite",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "headlessfullcite",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:prenote}][${3:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "headlessfullcite",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "headlessfullcite",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "titleandsubtitle",
+      "unusual": true,
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:prenote}][${3:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "titleandsubtitle",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "titleandsubtitle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "noindent",
+      "unusual": true
+    },
+    {
+      "name": "blockquote"
+    },
+    {
+      "name": "paper"
+    },
+    {
+      "name": "notes"
+    },
+    {
+      "name": "mlanotes"
+    },
+    {
+      "name": "workscited"
+    }
+  ],
+  "keys": {
+    "\\documentclass/mla#c": [
+      "mla7\r",
+      "mla8\r",
+      "mla8alt\r",
+      "nofigures\r",
+      "nonotes\r",
+      "microtype\r",
+      "nopaperheader\r",
+      "nopageheader\r",
+      "noheaders\r",
+      "plainheadings\r",
+      "fullpage\r"
+    ],
+    "\\usepackage/biblatex#c,\\ExecuteBibliographyOptions#c": [
+      "annotation",
+      "showlocation",
+      "longdash",
+      "noremoteinfo",
+      "isan",
+      "ismn",
+      "isrn",
+      "issn",
+      "firstlonghand",
+      "nofullfootnote",
+      "mancitepar",
+      "footnoterulestrict",
+      "mladraft\r"
     ]
   },
-  "macros": {
-    "mladate": {},
-    "professor{}": {
-      "snippet": "professor{${1:professor}}"
-    },
-    "course{}": {
-      "snippet": "course{${1:course}}"
-    },
-    "makemlaheader": {},
-    "openrangeformat{}": {
-      "snippet": "openrangeformat{${1:arg}}"
-    },
-    "openrangemark": {},
-    "mlanamedash": {},
-    "splitfootnoterule": {},
-    "pagefootnoterule": {},
-    "mlasymbolfootnote": {},
-    "themladraftnote": {},
-    "headlesscite[][]{}": {
-      "snippet": "headlesscite[${2:prenote}][${3:postnote}]{${1:bibid}}"
-    },
-    "headlesscite[]{}": {
-      "snippet": "headlesscite[${2:postnote}]{${1:bibid}}"
-    },
-    "headlesscite{}": {
-      "snippet": "headlesscite{${1:bibid}}"
-    },
-    "headlessfullcite[][]{}": {
-      "snippet": "headlessfullcite[${2:prenote}][${3:postnote}]{${1:bibid}}"
-    },
-    "headlessfullcite[]{}": {
-      "snippet": "headlessfullcite[${2:postnote}]{${1:bibid}}"
-    },
-    "headlessfullcite{}": {
-      "snippet": "headlessfullcite{${1:bibid}}"
-    },
-    "titleandsubtitle[][]{}": {
-      "snippet": "titleandsubtitle[${2:prenote}][${3:postnote}]{${1:bibid}}"
-    },
-    "titleandsubtitle[]{}": {
-      "snippet": "titleandsubtitle[${2:postnote}]{${1:bibid}}"
-    },
-    "titleandsubtitle{}": {
-      "snippet": "titleandsubtitle{${1:bibid}}"
-    }
-  },
-  "envs": {
-    "noindent": {},
-    "blockquote": {},
-    "paper": {},
-    "notes": {},
-    "mlanotes": {},
-    "workscited": {}
-  },
-  "options": [
-    "mla7",
-    "mla8",
-    "mla8alt",
-    "nofigures",
-    "nonotes",
-    "microtype",
-    "nopaperheader",
-    "nopageheader",
-    "noheaders",
-    "plainheadings",
-    "fullpage",
-    "annotation",
-    "showlocation",
-    "longdash",
-    "noremoteinfo",
-    "isan",
-    "ismn",
-    "isrn",
-    "issn",
-    "firstlonghand",
-    "nofullfootnote",
-    "mancitepar",
-    "footnoterulestrict",
-    "mladraft"
-  ],
-  "keyvals": []
+  "args": [
+    "\\documentclass/mla#c",
+    "\\usepackage/biblatex#c,\\ExecuteBibliographyOptions#c"
+  ]
 }

@@ -1,128 +1,307 @@
 {
-  "includes": {
-    "fontspec": [],
-    "xunicode": [],
-    "polyglossia": [],
-    "numprint": [],
-    "fltpoint": [],
-    "tikz": [],
-    "graphicx": [],
-    "fancyhdr": [],
-    "array": [],
-    "longtable": [],
-    "colortbl": [],
-    "advdate": [],
-    "xargs": []
-  },
-  "macros": {
-    "TVAdefaut{}": {
-      "snippet": "TVAdefaut{${1:taux}}"
+  "deps": [
+    {
+      "name": "fontspec"
     },
-    "type{}": {
-      "snippet": "type{${1:type}}"
+    {
+      "name": "xunicode"
     },
-    "numero{}": {
-      "snippet": "numero{${1:numero}}"
+    {
+      "name": "polyglossia"
     },
-    "date{}": {
-      "snippet": "date{${1:JJ/MM/AAAA}}"
+    {
+      "name": "numprint"
     },
-    "datelimite{}": {
-      "snippet": "datelimite{${1:nbjours}}"
+    {
+      "name": "fltpoint"
     },
-    "nomemet{}": {
-      "snippet": "nomemet{${1:texte}}"
+    {
+      "name": "tikz"
     },
-    "adresseemet{}": {
-      "snippet": "adresseemet{${1:texte}}"
+    {
+      "name": "graphicx"
     },
-    "pied{}": {
-      "snippet": "pied{${1:texte}}"
+    {
+      "name": "fancyhdr"
     },
-    "dest{}": {
-      "snippet": "dest{${1:adresse}}"
+    {
+      "name": "array"
     },
-    "fact{}": {
-      "snippet": "fact{${1:adresse}}"
+    {
+      "name": "longtable"
     },
-    "codedest{}": {
-      "snippet": "codedest{${1:code}}"
+    {
+      "name": "colortbl"
     },
-    "entete": {},
-    "ligne{}{}": {
-      "snippet": "ligne{${1:produit}}{${2:prix unitaire HT}}"
+    {
+      "name": "advdate"
     },
-    "ligne{}{}[]": {
-      "snippet": "ligne{${1:produit}}{${2:prix unitaire HT}}[${3:remise}]"
-    },
-    "ligne{}{}[][]": {
-      "snippet": "ligne{${1:produit}}{${2:prix unitaire HT}}[${3:remise}][${4:taux de TVA}]"
-    },
-    "ligne{}[]{}": {
-      "snippet": "ligne{${1:produit}}[${2:quantité}]{${3:prix unitaire HT}}"
-    },
-    "ligne{}[]{}[]": {
-      "snippet": "ligne{${1:produit}}[${2:quantité}]{${3:prix unitaire HT}}[${4:remise}]"
-    },
-    "ligne{}[]{}[][]": {
-      "snippet": "ligne{${1:produit}}[${2:quantité}]{${3:prix unitaire HT}}[${4:remise}][${5:taux de TVA}]"
-    },
-    "postTotaux": {},
-    "HT": {},
-    "TTC": {},
-    "TVA": {},
-    "TVAtxt": {},
-    "afficheTVA{}": {
-      "snippet": "afficheTVA{${1:numero}}"
-    },
-    "codeclient": {},
-    "datelimitetxt": {},
-    "datetxt": {},
-    "epaisseurcadre": {},
-    "facturation": {},
-    "facturetxt": {},
-    "largeurChiffres": {},
-    "largeurChiffresAvecTVA": {},
-    "largeurDescriptif": {},
-    "largeurTVA": {},
-    "libelle{}": {
-      "snippet": "libelle{${1:text}}"
-    },
-    "lignesansTVA{}{}{}{}{}": {
-      "snippet": "lignesansTVA{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
-    },
-    "livraison": {},
-    "livraisonfacturation": {},
-    "ntxt": {},
-    "prix": {},
-    "prixHT": {},
-    "prixTTC": {},
-    "prixtxt": {},
-    "produit": {},
-    "quantite": {},
-    "remise": {},
-    "tot": {},
-    "totHT": {},
-    "totHTtxt": {},
-    "totTTC": {},
-    "totTTCtxt": {},
-    "totTVA": {},
-    "totTVAtxt": {},
-    "tottxt": {},
-    "unite": {},
-    "ifsansTVA": {},
-    "sansTVAtrue": {},
-    "sansTVAfalse": {},
-    "ifsansremise": {},
-    "sansremisetrue": {},
-    "sansremisefalse": {}
-  },
-  "envs": {
-    "facture": {}
-  },
-  "options": [
-    "sansTVA",
-    "sansremise"
+    {
+      "name": "xargs"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "TVAdefaut",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:taux}}"
+      }
+    },
+    {
+      "name": "type",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:type}}"
+      }
+    },
+    {
+      "name": "numero",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:numero}}"
+      }
+    },
+    {
+      "name": "date",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:JJ/MM/AAAA}}"
+      }
+    },
+    {
+      "name": "datelimite",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:nbjours}}"
+      }
+    },
+    {
+      "name": "nomemet",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:texte%text}}"
+      }
+    },
+    {
+      "name": "adresseemet",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:texte%text}}"
+      }
+    },
+    {
+      "name": "pied",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:texte%text}}"
+      }
+    },
+    {
+      "name": "dest",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:adresse%text}}"
+      }
+    },
+    {
+      "name": "fact",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:adresse%text}}"
+      }
+    },
+    {
+      "name": "codedest",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "entete"
+    },
+    {
+      "name": "ligne",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:produit%text}}{${2:prix unitaire HT}}"
+      }
+    },
+    {
+      "name": "ligne",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:produit%text}}{${2:prix unitaire HT}}[${3:remise}]"
+      }
+    },
+    {
+      "name": "ligne",
+      "arg": {
+        "format": "{}{}[][]",
+        "snippet": "{${1:produit%text}}{${2:prix unitaire HT}}[${3:remise}][${4:taux de TVA}]"
+      }
+    },
+    {
+      "name": "ligne",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:produit%text}}[${3:quantité}]{${2:prix unitaire HT}}"
+      }
+    },
+    {
+      "name": "ligne",
+      "arg": {
+        "format": "{}[]{}[]",
+        "snippet": "{${1:produit%text}}[${3:quantité}]{${2:prix unitaire HT}}[${4:remise}]"
+      }
+    },
+    {
+      "name": "ligne",
+      "arg": {
+        "format": "{}[]{}[][]",
+        "snippet": "{${1:produit%text}}[${3:quantité}]{${2:prix unitaire HT}}[${4:remise}][${5:taux de TVA}]"
+      }
+    },
+    {
+      "name": "postTotaux"
+    },
+    {
+      "name": "TVAtxt",
+      "unusual": true
+    },
+    {
+      "name": "afficheTVA",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:numero}}"
+      }
+    },
+    {
+      "name": "codeclient",
+      "unusual": true
+    },
+    {
+      "name": "datelimitetxt",
+      "unusual": true
+    },
+    {
+      "name": "datetxt",
+      "unusual": true
+    },
+    {
+      "name": "epaisseurcadre",
+      "unusual": true
+    },
+    {
+      "name": "facturation",
+      "unusual": true
+    },
+    {
+      "name": "facturetxt",
+      "unusual": true
+    },
+    {
+      "name": "largeurChiffres",
+      "unusual": true
+    },
+    {
+      "name": "largeurChiffresAvecTVA",
+      "unusual": true
+    },
+    {
+      "name": "largeurDescriptif",
+      "unusual": true
+    },
+    {
+      "name": "largeurTVA",
+      "unusual": true
+    },
+    {
+      "name": "libelle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "lignesansTVA",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
+      }
+    },
+    {
+      "name": "livraison",
+      "unusual": true
+    },
+    {
+      "name": "livraisonfacturation",
+      "unusual": true
+    },
+    {
+      "name": "ntxt",
+      "unusual": true
+    },
+    {
+      "name": "prixHT",
+      "unusual": true
+    },
+    {
+      "name": "prixTTC",
+      "unusual": true
+    },
+    {
+      "name": "prixtxt",
+      "unusual": true
+    },
+    {
+      "name": "produit",
+      "unusual": true
+    },
+    {
+      "name": "quantite",
+      "unusual": true
+    },
+    {
+      "name": "remise",
+      "unusual": true
+    },
+    {
+      "name": "totHTtxt",
+      "unusual": true
+    },
+    {
+      "name": "totTTCtxt",
+      "unusual": true
+    },
+    {
+      "name": "totTVAtxt",
+      "unusual": true
+    },
+    {
+      "name": "tottxt",
+      "unusual": true
+    },
+    {
+      "name": "unite",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "facture"
+    }
+  ],
+  "keys": {
+    "\\documentclass/facture#c": [
+      "sansTVA\r",
+      "sansremise\r"
+    ]
+  },
+  "args": [
+    "\\documentclass/facture#c"
+  ]
 }

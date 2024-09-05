@@ -1,13 +1,117 @@
 {
-  "includes": {
-    "spath3": []
-  },
-  "macros": {
-    "getComponentOf{}{}": {
-      "snippet": "getComponentOf{${1:macro}}{${2:number}}"
+  "deps": [
+    {
+      "name": "spath3"
     }
+  ],
+  "macros": [
+    {
+      "name": "getComponentOf",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:macro%cmd}}{${2:number}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\path#c,\\draw#c,\\fill#c,\\filldraw#c,\\pattern#c,\\shade#c,\\shadedraw#c,\\clip#c": [
+      "spath/adjust and close globally=${1:path}\r",
+      "spath/adjust and close=${1:path}\r",
+      "spath/append no move=${1:name}\r",
+      "spath/append reverse no move=${1:name}\r",
+      "spath/append reverse=${1:name}\r",
+      "spath/append=${1:name}\r",
+      "spath/clone globally={${1:target}}{${2:source}}\r",
+      "spath/clone={${1:target}}{${2:source}}\r",
+      "spath/close globally with curve={${1:path}}{${2:splice path}}\r",
+      "spath/close globally with={${1:path}}{${2:splice path}}\r",
+      "spath/close globally=${1:path}\r",
+      "spath/close with curve={${1:path}}{${2:splice path}}\r",
+      "spath/close with={${1:path}}{${2:splice path}}\r",
+      "spath/close=${1:path}\r",
+      "spath/join with={${1:path}}{${2:path, options}}\r",
+      "spath/open globally=${1:path}\r",
+      "spath/open=${1:path}\r",
+      "spath/reverse globally=${1:name}\r",
+      "spath/reverse=${1:name}\r",
+      "spath/save global=${1:name}\r",
+      "spath/save=${1:name}\r",
+      "spath/shorten at both ends={${1:path}}{${2:length}}\r",
+      "spath/shorten at end={${1:path}}{${2:length}}\r",
+      "spath/shorten at start={${1:path}}{${2:length}}\r",
+      "spath/shorten globally at both ends={${1:path}}{${2:length}}\r",
+      "spath/shorten globally at end={${1:path}}{${2:length}}\r",
+      "spath/shorten globally at start={${1:path}}{${2:length}}\r",
+      "spath/show current path\r",
+      "spath/show=${1:name}\r",
+      "spath/split at into={${1:start path}}{${2:end path}}{${3:path}}{${4:parameter}}\r",
+      "spath/split at keep end={${1:path}}{${2:parameter}}\r",
+      "spath/split at keep middle={${1:path}}{${2:parameter}}{${3:parameter}}\r",
+      "spath/split at keep start={${1:path}}{${2:parameter}}\r",
+      "spath/split at={${1:path}}{${2:parameter}}\r",
+      "spath/split globally at into={${1:start path}}{${2:end path}}{${3:path}}{${4:parameter}}\r",
+      "spath/split globally at keep end={${1:path}}{${2:parameter}}\r",
+      "spath/split globally at keep middle={${1:path}}{${2:parameter}}{${3:parameter}}\r",
+      "spath/split globally at keep start={${1:path}}{${2:parameter}}\r",
+      "spath/split globally at={${1:path}}{${2:parameter}}\r",
+      "spath/to=${1:name}\r",
+      "spath/transform global={${1:name}}{${2:transformations}}\r",
+      "spath/transform={${1:name}}{${2:transformations}}\r",
+      "spath/translate globally={${1:name}}{${2:x-dimen}}{${3:y-dimen}}\r",
+      "spath/translate={${1:name}}{${2:x-dimen}}{${3:y-dimen}}\r",
+      "spath/use=${1:name}\r",
+      "spath/use={${1:name,options}}\r"
+    ],
+    "\\node#c,\\coordinate#c,\\nodepart#c": [
+      "spath/transform to={${1:path}}{${2:parameter}}\r",
+      "spath/upright transform to={${1:path}}{${2:parameter}}\r"
+    ],
+    "\\begin{tikzpicture}#c,\\tikz#c,\\begin{scope}#c,\\scoped#c": [
+      "spath/get components of globally={${1:path}}{${2:macro}}\r",
+      "spath/get components of={${1:path}}{${2:macro}}\r",
+      "spath/global knot={${1:path}}{${2:gap}}{${3:components}}\r",
+      "spath/insert gaps after components={${1:path}}{${2:gap}}\r",
+      "spath/insert gaps after components={${1:path}}{${2:gap}}{${3:components}}\r",
+      "spath/insert gaps after segments={${1:path}}{${2:gap}}\r",
+      "spath/insert gaps after segments={${1:path}}{${2:gap}}{${3:segments}}\r",
+      "spath/insert gaps globally after components={${1:path}}{${2:gap}}\r",
+      "spath/insert gaps globally after components={${1:path}}{${2:gap}}{${3:components}}\r",
+      "spath/insert gaps globally after segments={${1:path}}{${2:gap}}\r",
+      "spath/insert gaps globally after segments={${1:path}}{${2:gap}}{${3:segments}}\r",
+      "spath/join components globally upright with={${1:path}}{${2:splice path}}\r",
+      "spath/join components globally upright with={${1:path}}{${2:splice path}}{${3:list}}\r",
+      "spath/join components globally with curve={${1:path}}\r",
+      "spath/join components globally with curve={${1:path}}{${2:list}}\r",
+      "spath/join components globally with={${1:path}}{${2:splice path}}\r",
+      "spath/join components globally with={${1:path}}{${2:splice path}}{${3:list}}\r",
+      "spath/join components globally={${1:path}}{${2:components}}\r",
+      "spath/join components upright with={${1:path}}{${2:splice path}}\r",
+      "spath/join components upright with={${1:path}}{${2:splice path}}{${3:list}}\r",
+      "spath/join components with curve={${1:path}}\r",
+      "spath/join components with curve={${1:path}}{${2:list}}\r",
+      "spath/join components with={${1:path}}{${2:splice path}}\r",
+      "spath/join components with={${1:path}}{${2:splice path}}{${3:list}}\r",
+      "spath/join components={${1:path}}{${2:components}}\r",
+      "spath/knot={${1:path}}{${2:gap}}{${3:components}}\r",
+      "spath/remove components globally={${1:path}}{${2:list}}\r",
+      "spath/remove components={${1:path}}{${2:list}}\r",
+      "spath/remove empty components globally=${1:path}\r",
+      "spath/remove empty components=${1:path}\r",
+      "spath/render components=${1:path}\r",
+      "spath/replace lines globally=${1:path}\r",
+      "spath/replace lines=${1:path}\r",
+      "spath/span global={${1:name}}{${2:start point}}{${3:end point}}\r",
+      "spath/span={${1:name}}{${2:start point}}{${3:end point}}\r",
+      "spath/split at intersections with={${1:first}}{${2:second}}\r",
+      "spath/split at intersections={${1:first}}{${2:second}}\r",
+      "spath/split at self intersections=${1:path}\r",
+      "spath/split globally at intersections with={${1:first}}{${2:second}}\r",
+      "spath/split globally at intersections={${1:first}}{${2:second}}\r",
+      "spath/split globally at self intersections=${1:path}\r",
+      "spath/spot weld globally=${1:path}\r",
+      "spath/spot weld=${1:path}\r"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

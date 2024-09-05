@@ -1,96 +1,152 @@
 {
-  "includes": {
-    "ifplatform": [],
-    "graphicx": [],
-    "animate": [
-      "all",
-      "animate"
-    ]
-  },
-  "macros": {
-    "animatedgifonthefly[]{}{}{}{}{}": {
-      "snippet": "animatedgifonthefly[${6:options}]{${1:fps}}{${2:image name}}{${3:start}}{${4:end}}{${5:URL}}",
-      "option": "animate",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "ifplatform"
     },
-    "animatedgifonthefly*[]{}{}{}{}{}": {
-      "snippet": "animatedgifonthefly*[${6:options}]{${1:fps}}{${2:image name}}{${3:start}}{${4:end}}{${5:URL}}",
-      "option": "animate",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "graphicx"
     },
-    "animatedgif[]{}{}{}{}": {
-      "snippet": "animatedgif[${5:options}]{${1:fps}}{${2:image name}}{${3:start}}{${4:end}}",
-      "option": "animate",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "animate",
+      "if": "all"
     },
-    "usegifonthefly[]{}": {
-      "snippet": "usegifonthefly[${2:options}]{${1:fps,${3:start},end}}",
-      "option": "animate",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "animategraphicsonthefly[]{}{}{}{}{}": {
-      "snippet": "animategraphicsonthefly[${6:options}]{${1:fps}}{${2:image name}}{${3:start}}{${4:end}}{${5:URL}}",
-      "option": "animate",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "animategraphicsonthefly*[]{}{}{}{}{}": {
-      "snippet": "animategraphicsonthefly*[${6:options}]{${1:fps}}{${2:image name}}{${3:start}}{${4:end}}{${5:URL}}",
-      "option": "animate",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "includegraphicsonthefly{}{}": {
-      "snippet": "includegraphicsonthefly{${1:image name}}{${2:URL}}"
-    },
-    "includegraphicsonthefly[]{}{}": {
-      "snippet": "includegraphicsonthefly[${3:options}]{${1:image name}}{${2:URL}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "includegraphicsonthefly*{}{}": {
-      "snippet": "includegraphicsonthefly*{${1:image name}}{${2:URL}}"
-    },
-    "includegraphicsonthefly*[]{}{}": {
-      "snippet": "includegraphicsonthefly*[${3:options}]{${1:image name}}{${2:URL}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "prepareimgonthefly{}{}": {
-      "snippet": "prepareimgonthefly{${1:image name}}{${2:URL}}"
-    },
-    "prepareimgonthefly*{}{}": {
-      "snippet": "prepareimgonthefly*{${1:image name}}{${2:URL}}"
-    },
-    "useimgonthefly[]": {
-      "snippet": "useimgonthefly[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "CoalesceOption": {},
-    "ConvertCommand": {},
-    "RemoveCommand": {},
-    "WgetCommand": {}
-  },
-  "envs": {},
-  "options": [
-    "renewall",
-    "animate",
-    "all",
-    "curl",
-    "nocoalesce",
-    "convert"
+    {
+      "name": "animate",
+      "if": "animate"
+    }
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "animatedgifonthefly",
+      "if": "all",
+      "arg": {
+        "format": "[]{}{}{}{}{}",
+        "snippet": "[${6:options%keyvals}]{${1:fps}}{${2:image name}}{${3:start}}{${4:end}}{${5:URL}}"
+      }
+    },
+    {
+      "name": "animatedgifonthefly*",
+      "if": "all",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}{}{}",
+        "snippet": "[${6:options%keyvals}]{${1:fps}}{${2:image name}}{${3:start}}{${4:end}}{${5:URL}}"
+      }
+    },
+    {
+      "name": "animatedgif",
+      "if": "all",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "[${5:options%keyvals}]{${1:fps}}{${2:image name}}{${3:start}}{${4:end}}"
+      }
+    },
+    {
+      "name": "usegifonthefly",
+      "if": "all",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options}]{${1:fps,start,end}}"
+      }
+    },
+    {
+      "name": "animatedgifonthefly",
+      "if": "animate",
+      "arg": {
+        "format": "[]{}{}{}{}{}",
+        "snippet": "[${6:options%keyvals}]{${1:fps}}{${2:image name}}{${3:start}}{${4:end}}{${5:URL}}"
+      }
+    },
+    {
+      "name": "animatedgifonthefly*",
+      "if": "animate",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}{}{}",
+        "snippet": "[${6:options%keyvals}]{${1:fps}}{${2:image name}}{${3:start}}{${4:end}}{${5:URL}}"
+      }
+    },
+    {
+      "name": "animatedgif",
+      "if": "animate",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "[${5:options%keyvals}]{${1:fps}}{${2:image name}}{${3:start}}{${4:end}}"
+      }
+    },
+    {
+      "name": "usegifonthefly",
+      "if": "animate",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options}]{${1:fps,start,end}}"
+      }
+    },
+    {
+      "name": "includegraphicsonthefly",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:image name}}{${2:URL}}"
+      }
+    },
+    {
+      "name": "includegraphicsonthefly",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:image name}}{${2:URL}}"
+      }
+    },
+    {
+      "name": "includegraphicsonthefly*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:image name}}{${2:URL}}"
+      }
+    },
+    {
+      "name": "includegraphicsonthefly*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:image name}}{${2:URL}}"
+      }
+    },
+    {
+      "name": "prepareimgonthefly",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:image name}}{${2:URL}}"
+      }
+    },
+    {
+      "name": "prepareimgonthefly*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:image name}}{${2:URL}}"
+      }
+    },
+    {
+      "name": "useimgonthefly",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options}]"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/graphicsonthefly#c": [
+      "renewall",
+      "animate",
+      "all",
+      "curl",
+      "nocoalesce",
+      "convert"
+    ],
+    "\\animatedgifonthefly#c,\\animatedgifonthefly*#c,\\animatedgif#c,\\usegifonthefly#c,\\animategraphicsonthefly#c,\\animategraphicsonthefly*#c": [
       "label=${1:label}",
       "type=${1:file ext}",
       "poster",
-      "poster=${1|first,last,none,${1:number}|}",
+      "poster=${2|first,last,none,${1:number}|}",
       "every=${1:number}",
       "autopause",
       "autoplay",
@@ -111,7 +167,7 @@
       "interpolate",
       "pagebox=${1|mediabox,cropbox,bleedbox,trimbox,artbox|}",
       "controls=${1|all,true,on,none,false,off|}",
-      "controlsaligned=${2|left,left+${1:<indent>},center,right,right+${2:<indent>}|}",
+      "controlsaligned=${3|left,left+${1:<indent>},center,right,right+${2:<indent>}|}",
       "buttonsize=",
       "buttonbg=",
       "buttonfg=",
@@ -121,12 +177,12 @@
       "nomouse",
       "method=${1|icon,widget,ocg|}",
       "measure",
-      "alttext=${1|none,${1:alt description}|}",
+      "alttext=${2|none,${1:alt description}|}",
       "begin={${1:begin code}}",
       "end={${1:end code}}",
       "timeline=${1:file}"
     ],
-    [
+    "\\includegraphicsonthefly#c,\\includegraphicsonthefly*#c,\\useimgonthefly#c": [
       "alt={${1:alt text}}",
       "bb=${1:llx lly urx ury}",
       "bbllx=",
@@ -157,5 +213,8 @@
       "interpolate",
       "decodearray={${1:color array}}"
     ]
+  },
+  "args": [
+    "\\usepackage/graphicsonthefly#c"
   ]
 }

@@ -1,57 +1,104 @@
 {
-  "includes": {
-    "listings": [],
-    "xcolor": [],
-    "tcolorbox": [],
-    "tcolorboxlibrarylistings": [],
-    "tcolorboxlibraryskins": []
-  },
-  "macros": {
-    "ArduinoSketch{}{}": {
-      "snippet": "ArduinoSketch{${1:file}}{${2:caption}}",
-      "option": "arduino"
+  "deps": [
+    {
+      "name": "listings"
     },
-    "ArduinoInline{}": {
-      "snippet": "ArduinoInline{${1:code}}",
-      "option": "arduino"
+    {
+      "name": "xcolor"
     },
-    "ProcessingSketch{}{}": {
-      "snippet": "ProcessingSketch{${1:file}}{${2:caption}}",
-      "option": "processing"
+    {
+      "name": "tcolorbox"
     },
-    "ProcessingInline{}": {
-      "snippet": "ProcessingInline{${1:code}}",
-      "option": "processing"
+    {
+      "name": "tcolorboxlibrarylistings"
     },
-    "FormatDigit{}": {
-      "snippet": "FormatDigit{${1:digits}}"
+    {
+      "name": "tcolorboxlibraryskins"
     }
-  },
-  "envs": {
-    "ArduinoSketchBox{}": {
-      "name": "ArduinoSketchBox",
-      "snippet": "{${1:title}}",
-      "option": "arduino"
-    },
-    "ArduinoSketchBox[]{}": {
-      "name": "ArduinoSketchBox",
-      "snippet": "[${2:tcolorbox options}]{${1:title}}",
-      "option": "arduino"
-    },
-    "ProcessingSketchBox{}": {
-      "name": "ProcessingSketchBox",
-      "snippet": "{${1:title}}",
-      "option": "processing"
-    },
-    "ProcessingSketchBox[]{}": {
-      "name": "ProcessingSketchBox",
-      "snippet": "[${2:tcolorbox options}]{${1:title}}",
-      "option": "processing"
-    }
-  },
-  "options": [
-    "arduino",
-    "processing"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "ArduinoSketch",
+      "if": "arduino",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:file}}{${2:caption%text}}"
+      }
+    },
+    {
+      "name": "ArduinoInline",
+      "if": "arduino",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code%definition}}"
+      }
+    },
+    {
+      "name": "ProcessingSketch",
+      "if": "processing",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:file}}{${2:caption%text}}"
+      }
+    },
+    {
+      "name": "ProcessingInline",
+      "if": "processing",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code%definition}}"
+      }
+    },
+    {
+      "name": "FormatDigit",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:digits}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "ArduinoSketchBox",
+      "if": "arduino",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
+    },
+    {
+      "name": "ArduinoSketchBox",
+      "if": "arduino",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:tcolorbox options}]{${1:title%text}}"
+      }
+    },
+    {
+      "name": "ProcessingSketchBox",
+      "if": "processing",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
+    },
+    {
+      "name": "ProcessingSketchBox",
+      "if": "processing",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:tcolorbox options}]{${1:title%text}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/maker#c": [
+      "arduino\r",
+      "processing\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/maker#c"
+  ]
 }

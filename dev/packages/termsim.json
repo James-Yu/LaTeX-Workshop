@@ -1,70 +1,125 @@
 {
-  "includes": {
-    "xtemplate": [],
-    "l3keys2e": [],
-    "fontawesome5": [],
-    "varwidth": [],
-    "amssymb": [],
-    "xcolor": [],
-    "etoolbox": [],
-    "minted": [],
-    "tcolorbox": [],
-    "tcolorboxlibraryskins": [],
-    "tcolorboxlibrarybreakable": [],
-    "tikzlibraryshapes.geometric": []
-  },
-  "macros": {
-    "termfile{}{}": {
-      "snippet": "termfile{${1:title}}{${2:file}}"
+  "deps": [
+    {
+      "name": "xtemplate"
     },
-    "termfile[]{}{}": {
-      "snippet": "termfile[${3:options}]{${1:title}}{${2:file}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "l3keys2e"
     },
-    "termfile*[][]{}{}": {
-      "snippet": "termfile*[${3:options}][${4:comments}]{${1:title}}{${2:file}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "fontawesome5"
     },
-    "termset{}": {
-      "snippet": "termset{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "varwidth"
     },
-    "UbuntuMin": {},
-    "UbuntuClose": {},
-    "UbuntuMax": {},
-    "WindowsLogo": {}
-  },
-  "envs": {
-    "terminal{}": {
-      "name": "terminal",
-      "snippet": "{${1:title}}"
+    {
+      "name": "amssymb"
     },
-    "terminal[]{}": {
-      "name": "terminal",
-      "snippet": "[${2:options}]{${1:title}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "xcolor"
     },
-    "terminal*[][]{}": {
-      "name": "terminal*",
-      "snippet": "[${2:options}][${3:comments}]{${1:title}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "minted"
+    },
+    {
+      "name": "tcolorbox"
+    },
+    {
+      "name": "tcolorboxlibraryskins"
+    },
+    {
+      "name": "tcolorboxlibrarybreakable"
+    },
+    {
+      "name": "tikzlibraryshapes.geometric"
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "termfile",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:title%text}}{${2:file}}"
+      }
+    },
+    {
+      "name": "termfile",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:title%text}}{${2:file}}"
+      }
+    },
+    {
+      "name": "termfile*",
+      "arg": {
+        "format": "[][]{}{}",
+        "snippet": "[${3:options%keyvals}][${4:comments%text}]{${1:title%text}}{${2:file}}"
+      }
+    },
+    {
+      "name": "termset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\begin{terminal},\\begin{terminal*},\\termfile,\\termfile*,\\termset"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "UbuntuMin",
+      "unusual": true
+    },
+    {
+      "name": "UbuntuClose",
+      "unusual": true
+    },
+    {
+      "name": "UbuntuMax",
+      "unusual": true
+    },
+    {
+      "name": "WindowsLogo",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "terminal",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
+    },
+    {
+      "name": "terminal",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:title%text}}"
+      }
+    },
+    {
+      "name": "terminal*",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:options%keyvals}][${3:comments%text}]{${1:title%text}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\begin{terminal},\\begin{terminal*},\\termfile,\\termfile*,\\termset": [
       "minted",
-      "os=${1|win10,mac,ubuntu|}",
-      "theme=${1|dark,light,white|}",
-      "shstyle=${1:style}",
-      "shsize=${1:font size command}",
-      "commentf=${1:format commands}",
-      "shstretch=${1:factor}"
+      "os=${1|win10,mac,ubuntu\r|}",
+      "theme=${1|dark,light,white\r|}",
+      "shstyle=${1:style}\r",
+      "shsize=${1:font size command}\r",
+      "commentf=${1:format commands}\r",
+      "shstretch=${1:factor}\r"
     ]
-  ]
+  },
+  "args": []
 }

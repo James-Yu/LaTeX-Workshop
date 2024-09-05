@@ -1,43 +1,91 @@
 {
-  "includes": {},
-  "macros": {
-    "DescribeRoutine{}": {
-      "snippet": "DescribeRoutine{${1:name}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "DescribeRoutine",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
     },
-    "routinestring": {},
-    "routineheadname": {},
-    "DescribeVariable{}": {
-      "snippet": "DescribeVariable{${1:name}}"
+    {
+      "name": "routinestring",
+      "unusual": true
     },
-    "variablestring": {},
-    "variableheadname": {},
-    "Describe{}{}{}": {
-      "snippet": "Describe{${1:head}}{${2:flag}}{${3:name}}"
+    {
+      "name": "routineheadname",
+      "unusual": true
     },
-    "PrintMfpName{}": {
-      "snippet": "PrintMfpName{${1:name}}"
+    {
+      "name": "DescribeVariable",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
     },
-    "SpecialMainMfpIndex{}{}{}": {
-      "snippet": "SpecialMainMfpIndex{${1:name}}{${2:string}}{${3:heading}}"
+    {
+      "name": "variablestring",
+      "unusual": true
     },
-    "SpecialMfpIndex{}{}{}": {
-      "snippet": "SpecialMfpIndex{${1:name}}{${2:string}}{${3:heading}}"
+    {
+      "name": "variableheadname",
+      "unusual": true
+    },
+    {
+      "name": "Describe",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:head}}{${2:flag}}{${3:name}}"
+      }
+    },
+    {
+      "name": "PrintMfpName",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "SpecialMainMfpIndex",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:string}}{${3:heading}}"
+      }
+    },
+    {
+      "name": "SpecialMfpIndex",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:string}}{${3:heading}}"
+      }
     }
-  },
-  "envs": {
-    "routine{}": {
+  ],
+  "envs": [
+    {
       "name": "routine",
-      "snippet": "{${1:macro}}"
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:macro}}"
+      }
     },
-    "variable{}": {
+    {
       "name": "variable",
-      "snippet": "{${1:variable}}"
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:variable}}"
+      }
     },
-    "Code{}{}{}": {
+    {
       "name": "Code",
-      "snippet": "{${1:head}}{${2:flag}}{${3:name}}"
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:head}}{${2:flag}}{${3:name}}"
+      }
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "keys": {},
+  "args": []
 }

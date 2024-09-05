@@ -1,264 +1,928 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "dsserif": [
-      "bb=dsserif"
-    ],
-    "bboldx": [
-      "bb=bboldx",
-      "bb=bboldx-light"
+  "deps": [
+    {
+      "name": "xkeyval"
+    },
+    {
+      "name": "dsserif",
+      "if": "bb=dsserif"
+    },
+    {
+      "name": "bboldx",
+      "if": "bb=bboldx"
+    },
+    {
+      "name": "bboldx",
+      "if": "bb=bboldx-light"
+    }
+  ],
+  "macros": [
+    {
+      "name": "mathbbb",
+      "if": "oldbold",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbcal",
+      "if": "oldbold",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbscr",
+      "if": "oldbold",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbfrak",
+      "if": "oldbold",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbfscr",
+      "if": "scr=bickham",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbfscr",
+      "if": "scr=bickhams",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbfscr",
+      "if": "scr=boondox",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbfscr",
+      "if": "scr=boondoxo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbfscr",
+      "if": "scr=boondoxupr",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbfscr",
+      "if": "scr=cm",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbfscr",
+      "if": "scr=dutchcal",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbfscr",
+      "if": "scr=euler",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbfscr",
+      "if": "scr=kp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbfscr",
+      "if": "scr=lucida",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbfscr",
+      "if": "scr=mma",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbfscr",
+      "if": "scr=mt",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbfscr",
+      "if": "scr=pxtx",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbfscr",
+      "if": "scr=stix",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbfscr",
+      "if": "scr=stixfancy",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbfscr",
+      "if": "scr=stixplain",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbfscr",
+      "if": "scr=stixtwofancys",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbfscr",
+      "if": "scr=stixtwoplain",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbfscr",
+      "if": "scr=txupr",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbfcal",
+      "if": "cal=bickham",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbfcal",
+      "if": "cal=bickhams",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbfcal",
+      "if": "cal=boondox",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbfcal",
+      "if": "cal=boondoxo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbfcal",
+      "if": "cal=boondoxupr",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbfcal",
+      "if": "cal=cm",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbfcal",
+      "if": "cal=dutchcal",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbfcal",
+      "if": "cal=euler",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbfcal",
+      "if": "cal=kp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbfcal",
+      "if": "cal=lucida",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbfcal",
+      "if": "cal=mma",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbfcal",
+      "if": "cal=mt",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbfcal",
+      "if": "cal=pxtx",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbfcal",
+      "if": "cal=stix",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbfcal",
+      "if": "cal=stixfancy",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbfcal",
+      "if": "cal=stixplain",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbfcal",
+      "if": "cal=stixtwofancy",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbfcal",
+      "if": "cal=stixtwoplain",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbfcal",
+      "if": "cal=txupr",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathfrak",
+      "if": "frak=euler",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbffrak",
+      "if": "frak=euler",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathfrak",
+      "if": "frak=lucida",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathfrak",
+      "if": "frak=mathpi",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathfrak",
+      "if": "frak=mma",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbffrak",
+      "if": "frak=mma",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathfrak",
+      "if": "frak=mt",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbffrak",
+      "if": "frak=mt",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathfrak",
+      "if": "frak=esstix",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathfrak",
+      "if": "frak=boondox",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbffrak",
+      "if": "frak=boondox",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathfrak",
+      "if": "frak=pxtx",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbffrak",
+      "if": "frak=pxtx",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathfrak",
+      "if": "frak=stixtwo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbffrak",
+      "if": "frak=stixtwo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbfbb",
+      "if": "bb=lucida",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbfbb",
+      "if": "bb=mma",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbfbb",
+      "if": "bb=mt",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbfbb",
+      "if": "bb=mth",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbfbb",
+      "if": "bb=boondox",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbbb",
+      "if": "bb=px",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbfbb",
+      "if": "bb=tx",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbfbb",
+      "if": "bb=txof",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "txtbbGamma",
+      "if": "bb=stixtwo",
+      "unusual": true
+    },
+    {
+      "name": "txtbbgamma",
+      "if": "bb=stixtwo",
+      "unusual": true
+    },
+    {
+      "name": "txtbbPi",
+      "if": "bb=stixtwo",
+      "unusual": true
+    },
+    {
+      "name": "txtbbpi",
+      "if": "bb=stixtwo",
+      "unusual": true
+    },
+    {
+      "name": "txtbbdotlessi",
+      "if": "bb=stixtwo",
+      "unusual": true
+    },
+    {
+      "name": "txtbbdotlessj",
+      "if": "bb=stixtwo",
+      "unusual": true
+    },
+    {
+      "name": "txtbbzero",
+      "if": "bb=stixtwo",
+      "unusual": true
+    },
+    {
+      "name": "txtbbone",
+      "if": "bb=stixtwo",
+      "unusual": true
+    },
+    {
+      "name": "txtbbtwo",
+      "if": "bb=stixtwo",
+      "unusual": true
+    },
+    {
+      "name": "txtbbthree",
+      "if": "bb=stixtwo",
+      "unusual": true
+    },
+    {
+      "name": "txtbbfour",
+      "if": "bb=stixtwo",
+      "unusual": true
+    },
+    {
+      "name": "txtbbfive",
+      "if": "bb=stixtwo",
+      "unusual": true
+    },
+    {
+      "name": "txtbbsix",
+      "if": "bb=stixtwo",
+      "unusual": true
+    },
+    {
+      "name": "txtbbseven",
+      "if": "bb=stixtwo",
+      "unusual": true
+    },
+    {
+      "name": "txtbbeight",
+      "if": "bb=stixtwo",
+      "unusual": true
+    },
+    {
+      "name": "txtbbnine",
+      "if": "bb=stixtwo",
+      "unusual": true
+    },
+    {
+      "name": "mathbbi",
+      "if": "bb=stix",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbfbb",
+      "if": "bb=stix",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbfbbi",
+      "if": "bb=stix",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "txtbbGamma",
+      "if": "bb=stix",
+      "unusual": true
+    },
+    {
+      "name": "txtbbgamma",
+      "if": "bb=stix",
+      "unusual": true
+    },
+    {
+      "name": "txtbbPi",
+      "if": "bb=stix",
+      "unusual": true
+    },
+    {
+      "name": "txtbbpi",
+      "if": "bb=stix",
+      "unusual": true
+    },
+    {
+      "name": "txtbbdotlessi",
+      "if": "bb=stix",
+      "unusual": true
+    },
+    {
+      "name": "txtbbdotlessj",
+      "if": "bb=stix",
+      "unusual": true
+    },
+    {
+      "name": "txtbbzero",
+      "if": "bb=stix",
+      "unusual": true
+    },
+    {
+      "name": "txtbbone",
+      "if": "bb=stix",
+      "unusual": true
+    },
+    {
+      "name": "txtbbtwo",
+      "if": "bb=stix",
+      "unusual": true
+    },
+    {
+      "name": "txtbbthree",
+      "if": "bb=stix",
+      "unusual": true
+    },
+    {
+      "name": "txtbbfour",
+      "if": "bb=stix",
+      "unusual": true
+    },
+    {
+      "name": "txtbbfive",
+      "if": "bb=stix",
+      "unusual": true
+    },
+    {
+      "name": "txtbbsix",
+      "if": "bb=stix",
+      "unusual": true
+    },
+    {
+      "name": "txtbbseven",
+      "if": "bb=stix",
+      "unusual": true
+    },
+    {
+      "name": "txtbbeight",
+      "if": "bb=stix",
+      "unusual": true
+    },
+    {
+      "name": "txtbbnine",
+      "if": "bb=stix",
+      "unusual": true
+    },
+    {
+      "name": "imathbb",
+      "if": "bbsymbols"
+    },
+    {
+      "name": "jmathbb",
+      "if": "bbsymbols"
+    },
+    {
+      "name": "bbdotlessi",
+      "if": "bbsymbols"
+    },
+    {
+      "name": "bbdotlessj",
+      "if": "bbsymbols"
+    },
+    {
+      "name": "bbGamma",
+      "if": "bbsymbols"
+    },
+    {
+      "name": "bbDelta",
+      "if": "bbsymbols"
+    },
+    {
+      "name": "bbTheta",
+      "if": "bbsymbols"
+    },
+    {
+      "name": "bbLambda",
+      "if": "bbsymbols"
+    },
+    {
+      "name": "bbXi",
+      "if": "bbsymbols"
+    },
+    {
+      "name": "bbPi",
+      "if": "bbsymbols"
+    },
+    {
+      "name": "bbSigma",
+      "if": "bbsymbols"
+    },
+    {
+      "name": "bbUpsilon",
+      "if": "bbsymbols"
+    },
+    {
+      "name": "bbPhi",
+      "if": "bbsymbols"
+    },
+    {
+      "name": "bbPsi",
+      "if": "bbsymbols"
+    },
+    {
+      "name": "bbOmega",
+      "if": "bbsymbols"
+    },
+    {
+      "name": "bbalpha",
+      "if": "bbsymbols"
+    },
+    {
+      "name": "bbbeta",
+      "if": "bbsymbols"
+    },
+    {
+      "name": "bbgamma",
+      "if": "bbsymbols"
+    },
+    {
+      "name": "bbdelta",
+      "if": "bbsymbols"
+    },
+    {
+      "name": "bbepsilon",
+      "if": "bbsymbols"
+    },
+    {
+      "name": "bbzeta",
+      "if": "bbsymbols"
+    },
+    {
+      "name": "bbeta",
+      "if": "bbsymbols"
+    },
+    {
+      "name": "bbtheta",
+      "if": "bbsymbols"
+    },
+    {
+      "name": "bbiota",
+      "if": "bbsymbols"
+    },
+    {
+      "name": "bbkappa",
+      "if": "bbsymbols"
+    },
+    {
+      "name": "bblambda",
+      "if": "bbsymbols"
+    },
+    {
+      "name": "bbmu",
+      "if": "bbsymbols"
+    },
+    {
+      "name": "bbnu",
+      "if": "bbsymbols"
+    },
+    {
+      "name": "bbxi",
+      "if": "bbsymbols"
+    },
+    {
+      "name": "bbpi",
+      "if": "bbsymbols"
+    },
+    {
+      "name": "bbrho",
+      "if": "bbsymbols"
+    },
+    {
+      "name": "bbsigma",
+      "if": "bbsymbols"
+    },
+    {
+      "name": "bbtau",
+      "if": "bbsymbols"
+    },
+    {
+      "name": "bbupsilon",
+      "if": "bbsymbols"
+    },
+    {
+      "name": "bbphi",
+      "if": "bbsymbols"
+    },
+    {
+      "name": "bbchi",
+      "if": "bbsymbols"
+    },
+    {
+      "name": "bbpsi",
+      "if": "bbsymbols"
+    },
+    {
+      "name": "bbomega",
+      "if": "bbsymbols"
+    },
+    {
+      "name": "bbLbrack",
+      "if": "bbsymbols"
+    },
+    {
+      "name": "bbRbrack",
+      "if": "bbsymbols"
+    },
+    {
+      "name": "bbLangle",
+      "if": "bbsymbols"
+    },
+    {
+      "name": "bbRangle",
+      "if": "bbsymbols"
+    },
+    {
+      "name": "bbLparen",
+      "if": "bbsymbols"
+    },
+    {
+      "name": "bbRparen",
+      "if": "bbsymbols"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/mathalfa": [
+      "cal=${1|cm,euler,rsfs,rsfso,lucida,mathpi,mma,pxtx,mt,mtc,zapfc,esstix,boondox,boondoxo,dutchcal,bickham,bickhams,stix,txupr,boondoxupr,kp,stixplain,stixfancy,stixtwoplain,stixtwofancy\r|}",
+      "calscaled=${1:factor}\r",
+      "bfcal\r",
+      "calsymbols\r",
+      "scr=${1|cm,euler,rsfs,rsfso,lucida,mathpi,mma,pxtx,mt,mtc,zapfc,esstix,boondox,boondoxo,dutchcal,bickham,bickhams,stix,txupr,boondoxupr,kp,stixplain,stixfancy,stixtwoplain,stixtwofancys\r|}",
+      "scrscaled=${1:factor}\r",
+      "bfscr\r",
+      "scrsymbols\r",
+      "frak=${1|euler,lucida,mathpi,mma,mt,esstix,boondox,pxtx,stixtwo\r|}",
+      "frakscaled=${1:factor}\r",
+      "bffrak\r",
+      "fraksymbols\r",
+      "bb=${1|ams,lucida,mathpi,mma,mt,mth,pazo,fourier,esstix,boondox,px,tx,txof,libus,dsserif,bboldx,bboldx-light,dsfontserif,dsfontsans,stixtwo,stix\r|}",
+      "bbscaled=${1:factor}\r",
+      "bfbb\r",
+      "bbsymbols\r",
+      "oldbold\r",
+      "scaled=${1:factor}\r",
+      "showoptions\r"
     ]
   },
-  "macros": {
-    "mathbbb{}": {
-      "snippet": "mathbbb{${1:text}}",
-      "option": "bb=px"
-    },
-    "mathbcal{}": {
-      "snippet": "mathbcal{${1:text}}",
-      "option": "oldbold"
-    },
-    "mathbscr{}": {
-      "snippet": "mathbscr{${1:text}}",
-      "option": "oldbold"
-    },
-    "mathbfrak{}": {
-      "snippet": "mathbfrak{${1:text}}",
-      "option": "oldbold"
-    },
-    "mathbfscr{}": {
-      "snippet": "mathbfscr{${1:text}}",
-      "option": "scr=txupr"
-    },
-    "mathbfcal{}": {
-      "snippet": "mathbfcal{${1:text}}",
-      "option": "cal=txupr"
-    },
-    "mathfrak{}": {
-      "snippet": "mathfrak{${1:text}}",
-      "option": "frak=stixtwo"
-    },
-    "mathbffrak{}": {
-      "snippet": "mathbffrak{${1:text}}",
-      "option": "frak=stixtwo"
-    },
-    "mathbfbb{}": {
-      "snippet": "mathbfbb{${1:text}}",
-      "option": "bb=stix"
-    },
-    "txtbbGamma": {
-      "option": "bb=stix"
-    },
-    "txtbbgamma": {
-      "option": "bb=stix"
-    },
-    "txtbbPi": {
-      "option": "bb=stix"
-    },
-    "txtbbpi": {
-      "option": "bb=stix"
-    },
-    "txtbbdotlessi": {
-      "option": "bb=stix"
-    },
-    "txtbbdotlessj": {
-      "option": "bb=stix"
-    },
-    "txtbbzero": {
-      "option": "bb=stix"
-    },
-    "txtbbone": {
-      "option": "bb=stix"
-    },
-    "txtbbtwo": {
-      "option": "bb=stix"
-    },
-    "txtbbthree": {
-      "option": "bb=stix"
-    },
-    "txtbbfour": {
-      "option": "bb=stix"
-    },
-    "txtbbfive": {
-      "option": "bb=stix"
-    },
-    "txtbbsix": {
-      "option": "bb=stix"
-    },
-    "txtbbseven": {
-      "option": "bb=stix"
-    },
-    "txtbbeight": {
-      "option": "bb=stix"
-    },
-    "txtbbnine": {
-      "option": "bb=stix"
-    },
-    "mathbbi{}": {
-      "snippet": "mathbbi{${1:text}}",
-      "option": "bb=stix"
-    },
-    "mathbfbbi{}": {
-      "snippet": "mathbfbbi{${1:text}}",
-      "option": "bb=stix"
-    },
-    "imathbb": {
-      "option": "bbsymbols"
-    },
-    "jmathbb": {
-      "option": "bbsymbols"
-    },
-    "bbdotlessi": {
-      "option": "bbsymbols"
-    },
-    "bbdotlessj": {
-      "option": "bbsymbols"
-    },
-    "bbGamma": {
-      "option": "bbsymbols"
-    },
-    "bbDelta": {
-      "option": "bbsymbols"
-    },
-    "bbTheta": {
-      "option": "bbsymbols"
-    },
-    "bbLambda": {
-      "option": "bbsymbols"
-    },
-    "bbXi": {
-      "option": "bbsymbols"
-    },
-    "bbPi": {
-      "option": "bbsymbols"
-    },
-    "bbSigma": {
-      "option": "bbsymbols"
-    },
-    "bbUpsilon": {
-      "option": "bbsymbols"
-    },
-    "bbPhi": {
-      "option": "bbsymbols"
-    },
-    "bbPsi": {
-      "option": "bbsymbols"
-    },
-    "bbOmega": {
-      "option": "bbsymbols"
-    },
-    "bbalpha": {
-      "option": "bbsymbols"
-    },
-    "bbbeta": {
-      "option": "bbsymbols"
-    },
-    "bbgamma": {
-      "option": "bbsymbols"
-    },
-    "bbdelta": {
-      "option": "bbsymbols"
-    },
-    "bbepsilon": {
-      "option": "bbsymbols"
-    },
-    "bbzeta": {
-      "option": "bbsymbols"
-    },
-    "bbeta": {
-      "option": "bbsymbols"
-    },
-    "bbtheta": {
-      "option": "bbsymbols"
-    },
-    "bbiota": {
-      "option": "bbsymbols"
-    },
-    "bbkappa": {
-      "option": "bbsymbols"
-    },
-    "bblambda": {
-      "option": "bbsymbols"
-    },
-    "bbmu": {
-      "option": "bbsymbols"
-    },
-    "bbnu": {
-      "option": "bbsymbols"
-    },
-    "bbxi": {
-      "option": "bbsymbols"
-    },
-    "bbpi": {
-      "option": "bbsymbols"
-    },
-    "bbrho": {
-      "option": "bbsymbols"
-    },
-    "bbsigma": {
-      "option": "bbsymbols"
-    },
-    "bbtau": {
-      "option": "bbsymbols"
-    },
-    "bbupsilon": {
-      "option": "bbsymbols"
-    },
-    "bbphi": {
-      "option": "bbsymbols"
-    },
-    "bbchi": {
-      "option": "bbsymbols"
-    },
-    "bbpsi": {
-      "option": "bbsymbols"
-    },
-    "bbomega": {
-      "option": "bbsymbols"
-    },
-    "bbLbrack": {
-      "option": "bbsymbols"
-    },
-    "bbRbrack": {
-      "option": "bbsymbols"
-    },
-    "bbLangle": {
-      "option": "bbsymbols"
-    },
-    "bbRangle": {
-      "option": "bbsymbols"
-    },
-    "bbLparen": {
-      "option": "bbsymbols"
-    },
-    "bbRparen": {
-      "option": "bbsymbols"
-    },
-    "mathalphaVersion": {},
-    "mathalphaDate": {},
-    "amsloaded": {}
-  },
-  "envs": {},
-  "options": [
-    "cal=${1|cm,euler,rsfs,rsfso,lucida,mathpi,mma,pxtx,mt,mtc,zapfc,esstix,boondox,boondoxo,dutchcal,bickham,bickhams,stix,txupr,boondoxupr,kp,stixplain,stixfancy,stixtwoplain,stixtwofancy|}",
-    "calscaled=${1:factor}",
-    "bfcal",
-    "calsymbols",
-    "scr=${1|cm,euler,rsfs,rsfso,lucida,mathpi,mma,pxtx,mt,mtc,zapfc,esstix,boondox,boondoxo,dutchcal,bickham,bickhams,stix,txupr,boondoxupr,kp,stixplain,stixfancy,stixtwoplain,stixtwofancys|}",
-    "scrscaled=${1:factor}",
-    "bfscr",
-    "scrsymbols",
-    "frak=${1|euler,lucida,mathpi,mma,mt,esstix,boondox,pxtx,stixtwo|}",
-    "frakscaled=${1:factor}",
-    "bffrak",
-    "fraksymbols",
-    "bb=${1|ams,lucida,mathpi,mma,mt,mth,pazo,fourier,esstix,boondox,px,tx,txof,libus,dsserif,bboldx,bboldx-light,dsfontserif,dsfontsans,stixtwo,stix|}",
-    "bbscaled=${1:factor}",
-    "bfbb",
-    "bbsymbols",
-    "oldbold",
-    "scaled=${1:factor}",
-    "showoptions"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/mathalfa"
+  ]
 }

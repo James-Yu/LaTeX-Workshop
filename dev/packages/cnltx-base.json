@@ -1,108 +1,262 @@
 {
-  "includes": {
-    "pgfopts": [],
-    "etoolbox": [],
-    "ltxcmds": [],
-    "pdftexcmds": [],
-    "trimspaces": [],
-    "xcolor": []
-  },
-  "macros": {
-    "iftest{}{}{}": {
-      "snippet": "iftest{${1:test directive}}{${2:true}}{${3:false}}"
+  "deps": [
+    {
+      "name": "pgfopts"
     },
-    "nottest{}{}{}": {
-      "snippet": "nottest{${1:test directive}}{${2:not true}}{${3:not false}}"
+    {
+      "name": "etoolbox"
     },
-    "expandtwice{}": {
-      "snippet": "expandtwice{${1:code}}"
+    {
+      "name": "ltxcmds"
     },
-    "cnltxat": {},
-    "cnltxletterat": {},
-    "cnltxotherat": {},
-    "cnltxbang": {},
-    "cnltxequal": {},
-    "setcnltx{}": {
-      "snippet": "setcnltx{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "pdftexcmds"
     },
-    "DeclareCounterRepresentation{}{}": {
-      "snippet": "DeclareCounterRepresentation{${1:cmd}}{${2:definition}}"
+    {
+      "name": "trimspaces"
     },
-    "newcounterrepresentation{}{}": {
-      "snippet": "newcounterrepresentation{${1:cmd}}{${2:definition}}"
-    },
-    "providecounterrepresentation{}{}": {
-      "snippet": "providecounterrepresentation{${1:cmd}}{${2:definition}}"
-    },
-    "renewcounterrepresentation{}{}": {
-      "snippet": "renewcounterrepresentation{${1:cmd}}{${2:definition}}"
-    },
-    "newexpandablecmd{}{}": {
-      "snippet": "newexpandablecmd{${1:cmd}}{${2:definition}}"
-    },
-    "newexpandablecmd{}[]{}": {
-      "snippet": "newexpandablecmd{${1:cmd}}[${2:args}]{${3:definition}}"
-    },
-    "newexpandablecmd{}[][]{}": {
-      "snippet": "newexpandablecmd{${1:cmd}}[${2:args}][${3:default}]{${4:definition}}"
-    },
-    "newexpandablecmd*{}{}": {
-      "snippet": "newexpandablecmd*{${1:cmd}}{${2:definition}}"
-    },
-    "newexpandablecmd*{}[]{}": {
-      "snippet": "newexpandablecmd*{${1:cmd}}[${2:args}]{${3:definition}}"
-    },
-    "newexpandablecmd*{}[][]{}": {
-      "snippet": "newexpandablecmd*{${1:cmd}}[${2:args}][${3:default}]{${4:definition}}"
-    },
-    "renewexpandablecmd{}{}": {
-      "snippet": "renewexpandablecmd{${1:cmd}}{${2:definition}}"
-    },
-    "renewexpandablecmd{}[]{}": {
-      "snippet": "renewexpandablecmd{${1:cmd}}[${2:args}]{${3:definition}}"
-    },
-    "renewexpandablecmd{}[][]{}": {
-      "snippet": "renewexpandablecmd{${1:cmd}}[${2:args}][${3:default}]{${4:definition}}"
-    },
-    "renewexpandablecmd*{}{}": {
-      "snippet": "renewexpandablecmd*{${1:cmd}}{${2:definition}}"
-    },
-    "renewexpandablecmd*{}[]{}": {
-      "snippet": "renewexpandablecmd*{${1:cmd}}[${2:args}]{${3:definition}}"
-    },
-    "renewexpandablecmd*{}[][]{}": {
-      "snippet": "renewexpandablecmd*{${1:cmd}}[${2:args}][${3:default}]{${4:definition}}"
-    },
-    "provideexpandablecmd{}{}": {
-      "snippet": "provideexpandablecmd{${1:cmd}}{${2:definition}}"
-    },
-    "provideexpandablecmd{}[]{}": {
-      "snippet": "provideexpandablecmd{${1:cmd}}[${2:args}]{${3:definition}}"
-    },
-    "provideexpandablecmd{}[][]{}": {
-      "snippet": "provideexpandablecmd{${1:cmd}}[${2:args}][${3:default}]{${4:definition}}"
-    },
-    "provideexpandablecmd*{}{}": {
-      "snippet": "provideexpandablecmd*{${1:cmd}}{${2:definition}}"
-    },
-    "provideexpandablecmd*{}[]{}": {
-      "snippet": "provideexpandablecmd*{${1:cmd}}[${2:args}]{${3:definition}}"
-    },
-    "provideexpandablecmd*{}[][]{}": {
-      "snippet": "provideexpandablecmd*{${1:cmd}}[${2:args}][${3:default}]{${4:definition}}"
-    },
-    "definecolorscheme{}{}": {
-      "snippet": "definecolorscheme{${1:name}}{${2:color assignments}}"
+    {
+      "name": "xcolor"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "color-scheme=${1:color scheme name}",
-      "set-trail-punct={${1:punctuation marks}}"
+  ],
+  "macros": [
+    {
+      "name": "iftest",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:test directive}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "nottest",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:test directive}}{${2:not true}}{${3:not false}}"
+      }
+    },
+    {
+      "name": "expandtwice",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "cnltxat",
+      "unusual": true
+    },
+    {
+      "name": "cnltxletterat",
+      "unusual": true
+    },
+    {
+      "name": "cnltxotherat",
+      "unusual": true
+    },
+    {
+      "name": "cnltxbang",
+      "unusual": true
+    },
+    {
+      "name": "cnltxequal",
+      "unusual": true
+    },
+    {
+      "name": "setcnltx",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}"
+      }
+    },
+    {
+      "name": "DeclareCounterRepresentation",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "newcounterrepresentation",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "providecounterrepresentation",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "renewcounterrepresentation",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "newexpandablecmd",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "newexpandablecmd",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:args}]{${2:definition}}"
+      }
+    },
+    {
+      "name": "newexpandablecmd",
+      "unusual": true,
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "{${1:cmd}}[${3:args}][${4:default}]{${2:definition}}"
+      }
+    },
+    {
+      "name": "newexpandablecmd*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "newexpandablecmd*",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:args}]{${2:definition}}"
+      }
+    },
+    {
+      "name": "newexpandablecmd*",
+      "unusual": true,
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "{${1:cmd}}[${3:args}][${4:default}]{${2:definition}}"
+      }
+    },
+    {
+      "name": "renewexpandablecmd",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "renewexpandablecmd",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:args}]{${2:definition}}"
+      }
+    },
+    {
+      "name": "renewexpandablecmd",
+      "unusual": true,
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "{${1:cmd}}[${3:args}][${4:default}]{${2:definition}}"
+      }
+    },
+    {
+      "name": "renewexpandablecmd*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "renewexpandablecmd*",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:args}]{${2:definition}}"
+      }
+    },
+    {
+      "name": "renewexpandablecmd*",
+      "unusual": true,
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "{${1:cmd}}[${3:args}][${4:default}]{${2:definition}}"
+      }
+    },
+    {
+      "name": "provideexpandablecmd",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "provideexpandablecmd",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:args}]{${2:definition}}"
+      }
+    },
+    {
+      "name": "provideexpandablecmd",
+      "unusual": true,
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "{${1:cmd}}[${3:args}][${4:default}]{${2:definition}}"
+      }
+    },
+    {
+      "name": "provideexpandablecmd*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "provideexpandablecmd*",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:args}]{${2:definition}}"
+      }
+    },
+    {
+      "name": "provideexpandablecmd*",
+      "unusual": true,
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "{${1:cmd}}[${3:args}][${4:default}]{${2:definition}}"
+      }
+    },
+    {
+      "name": "definecolorscheme",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:color assignments}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\setcnltx#c": [
+      "color-scheme=${1:color scheme name}\r",
+      "set-trail-punct={${1:punctuation marks}}\r"
     ]
-  ]
+  },
+  "args": []
 }

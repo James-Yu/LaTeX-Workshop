@@ -1,105 +1,249 @@
 {
-  "includes": {
-    "hypdoc": [],
-    "hyperref": [],
-    "pdftexcmds": [],
-    "ltxcmds": [],
-    "hologo": [],
-    "array": []
-  },
-  "macros": {
-    "historyname": {},
-    "StartHistory": {},
-    "HistVersion{}": {
-      "snippet": "HistVersion{${1:title}}"
+  "deps": [
+    {
+      "name": "hypdoc"
     },
-    "HistLabel{}": {
-      "snippet": "HistLabel{${1:label}}"
+    {
+      "name": "hyperref"
     },
-    "URL{}{}": {
-      "snippet": "URL{${1:text}}{${2:URL}}"
+    {
+      "name": "pdftexcmds"
     },
-    "link": {},
-    "NameEmail{}{}": {
-      "snippet": "NameEmail{${1:name}}{${2:email}}"
+    {
+      "name": "ltxcmds"
     },
-    "Package{}": {
-      "snippet": "Package{${1:package name}}"
+    {
+      "name": "hologo"
     },
-    "File{}": {
-      "snippet": "File{${1:file name}}"
-    },
-    "Verb{}": {
-      "snippet": "Verb{${1:text}}"
-    },
-    "CS{}": {
-      "snippet": "CS{${1:csname}}"
-    },
-    "bibpackage{}{}{}{}": {
-      "snippet": "bibpackage{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "CTAN{}": {
-      "snippet": "CTAN{${1:path}}"
-    },
-    "CTANinstall{}": {
-      "snippet": "CTANinstall{${1:path}}"
-    },
-    "CTANpkg{}": {
-      "snippet": "CTANpkg{${1:package name}}"
-    },
-    "Newsgroup{}": {
-      "snippet": "Newsgroup{${1:path}}"
-    },
-    "xpackage{}": {
-      "snippet": "xpackage{${1:package name}}"
-    },
-    "xmodule{}": {
-      "snippet": "xmodule{${1:module name}}"
-    },
-    "xclass{}": {
-      "snippet": "xclass{${1:class name}}"
-    },
-    "xoption{}": {
-      "snippet": "xoption{${1:option name}}"
-    },
-    "xfile{}": {
-      "snippet": "xfile{${1:file name}}"
-    },
-    "xext{}": {
-      "snippet": "xext{${1:ext name}}"
-    },
-    "xemail{}": {
-      "snippet": "xemail{${1:email}}"
-    },
-    "xnewsgroup{}": {
-      "snippet": "xnewsgroup{${1:URL}}"
-    },
-    "eTeX": {},
-    "pdfTeX": {},
-    "pdfLaTeX": {},
-    "LuaTeX": {},
-    "LuaLaTeX": {},
-    "XeTeX": {},
-    "XeLaTeX": {},
-    "plainTeX": {},
-    "teTeX": {},
-    "mikTeX": {},
-    "MakeIndex": {},
-    "docstrip": {},
-    "iniTeX": {},
-    "VTeX": {}
-  },
-  "envs": {
-    "History": {},
-    "Version{}": {
-      "name": "Version",
-      "snippet": "{${1:version number}}"
-    },
-    "declcs{}": {
-      "name": "declcs",
-      "snippet": "{${1:csname}}"
+    {
+      "name": "array"
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "historyname",
+      "unusual": true
+    },
+    {
+      "name": "StartHistory",
+      "unusual": true
+    },
+    {
+      "name": "HistVersion",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "HistLabel",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "URL",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text%plain}}{${2:URL}}"
+      }
+    },
+    {
+      "name": "link",
+      "unusual": true
+    },
+    {
+      "name": "NameEmail",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:email%URL}}"
+      }
+    },
+    {
+      "name": "Package",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:package name}}"
+      }
+    },
+    {
+      "name": "File",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file name}}"
+      }
+    },
+    {
+      "name": "Verb",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "CS",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:csname}}"
+      }
+    },
+    {
+      "name": "bibpackage",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+      }
+    },
+    {
+      "name": "CTAN",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:path%URL}}"
+      }
+    },
+    {
+      "name": "CTANinstall",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:path%URL}}"
+      }
+    },
+    {
+      "name": "CTANpkg",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:package name}}"
+      }
+    },
+    {
+      "name": "Newsgroup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:path%URL}}"
+      }
+    },
+    {
+      "name": "xpackage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:package name}}"
+      }
+    },
+    {
+      "name": "xmodule",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:module name}}"
+      }
+    },
+    {
+      "name": "xclass",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:class name}}"
+      }
+    },
+    {
+      "name": "xoption",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:option name}}"
+      }
+    },
+    {
+      "name": "xfile",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file name}}"
+      }
+    },
+    {
+      "name": "xext",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ext name}}"
+      }
+    },
+    {
+      "name": "xemail",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:email%URL}}"
+      }
+    },
+    {
+      "name": "xnewsgroup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:URL}}"
+      }
+    },
+    {
+      "name": "eTeX"
+    },
+    {
+      "name": "pdfTeX"
+    },
+    {
+      "name": "pdfLaTeX"
+    },
+    {
+      "name": "LuaTeX"
+    },
+    {
+      "name": "LuaLaTeX"
+    },
+    {
+      "name": "XeTeX"
+    },
+    {
+      "name": "XeLaTeX"
+    },
+    {
+      "name": "plainTeX"
+    },
+    {
+      "name": "teTeX"
+    },
+    {
+      "name": "mikTeX"
+    },
+    {
+      "name": "MakeIndex"
+    },
+    {
+      "name": "docstrip"
+    },
+    {
+      "name": "iniTeX"
+    },
+    {
+      "name": "VTeX"
+    }
+  ],
+  "envs": [
+    {
+      "name": "History"
+    },
+    {
+      "name": "Version",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:version number}}"
+      }
+    },
+    {
+      "name": "declcs",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:csname}}"
+      }
+    }
+  ],
+  "keys": {},
+  "args": []
 }

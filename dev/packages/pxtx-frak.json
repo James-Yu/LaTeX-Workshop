@@ -1,20 +1,38 @@
 {
-  "includes": {
-    "xkeyval": []
-  },
-  "macros": {
-    "mathfrak{}": {
-      "snippet": "mathfrak{${1:text}}"
-    },
-    "mathbfrak{}": {
-      "snippet": "mathbfrak{${1:text}}"
-    },
-    "frakdotlessi": {},
-    "frakdotlessj": {}
-  },
-  "envs": {},
-  "options": [
-    "scaled=${1:factor}"
+  "deps": [
+    {
+      "name": "xkeyval"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "mathfrak",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbfrak",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "frakdotlessi"
+    },
+    {
+      "name": "frakdotlessj"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/pxtx-frak#c": [
+      "scaled=${1:factor}\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/pxtx-frak#c"
+  ]
 }

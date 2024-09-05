@@ -1,90 +1,202 @@
 {
-  "includes": {
-    "ifthen": [],
-    "kvoptions": [],
-    "ifpdf": [],
-    "ifxetex": [],
-    "ifluatex": [],
-    "xcolor": [],
-    "mathpazo": [],
-    "beramono": [],
-    "microtype": [],
-    "typearea": [],
-    "mparhack": [],
-    "booktabs": [],
-    "textcase": [],
-    "scrlayer-scrpage": [],
-    "titlesec": [],
-    "tocloft": [],
-    "footmisc": [],
-    "scrtime": [],
-    "caption": [],
-    "remreset": [],
-    "hyperref": [],
-    "prelim2e": [
+  "deps": [
+    {
+      "name": "ifthen"
+    },
+    {
+      "name": "kvoptions"
+    },
+    {
+      "name": "ifpdf"
+    },
+    {
+      "name": "ifxetex"
+    },
+    {
+      "name": "ifluatex"
+    },
+    {
+      "name": "xcolor"
+    },
+    {
+      "name": "mathpazo"
+    },
+    {
+      "name": "beramono"
+    },
+    {
+      "name": "microtype"
+    },
+    {
+      "name": "typearea"
+    },
+    {
+      "name": "mparhack"
+    },
+    {
+      "name": "booktabs"
+    },
+    {
+      "name": "textcase"
+    },
+    {
+      "name": "scrlayer-scrpage"
+    },
+    {
+      "name": "titlesec"
+    },
+    {
+      "name": "tocloft"
+    },
+    {
+      "name": "footmisc"
+    },
+    {
+      "name": "scrtime"
+    },
+    {
+      "name": "caption"
+    },
+    {
+      "name": "remreset"
+    },
+    {
+      "name": "hyperref"
+    },
+    {
+      "name": "prelim2e",
+      "if": "drafting"
+    },
+    {
+      "name": "prelim2e",
+      "if": "drafting=true"
+    },
+    {
+      "name": "classicthesis-arsclassica",
+      "if": "style=arsclassica"
+    }
+  ],
+  "macros": [
+    {
+      "name": "ctparttext",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "spacedallcaps",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "spacedlowsmallcaps",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "classicthesis",
+      "unusual": true
+    },
+    {
+      "name": "chapterNumber",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "beforebibskip",
+      "unusual": true
+    },
+    {
+      "name": "figurelabelwidth",
+      "unusual": true
+    },
+    {
+      "name": "finalVersionString",
+      "unusual": true
+    },
+    {
+      "name": "listingslabelwidth",
+      "unusual": true
+    },
+    {
+      "name": "myVersion",
+      "unusual": true
+    },
+    {
+      "name": "newchnumberwidth",
+      "unusual": true
+    },
+    {
+      "name": "newnumberwidth",
+      "unusual": true
+    },
+    {
+      "name": "oldmarginpar",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:right%text}}"
+      }
+    },
+    {
+      "name": "oldmarginpar",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:left}]{${1:right%text}}"
+      }
+    },
+    {
+      "name": "tablelabelwidth",
+      "unusual": true
+    },
+    {
+      "name": "tocEntry",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "deactivateaddvspace",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "aenumerate"
+    }
+  ],
+  "keys": {
+    "\\usepackage/classicthesis#c": [
       "drafting",
-      "drafting=true"
-    ],
-    "classicthesis-arsclassica": [
-      "style=arsclassica"
+      "parts",
+      "linedheaders",
+      "style=${1|classicthesis,arsclassica\r|}",
+      "palatino",
+      "eulerchapternumbers",
+      "beramono",
+      "eulermath",
+      "tocaligned\r",
+      "dottedtoc\r",
+      "manychapters\r",
+      "floatperchapter\r",
+      "a4paper\r",
+      "a5paper\r",
+      "b5paper\r",
+      "letterpaper\r"
     ]
   },
-  "macros": {
-    "ctparttext{}": {
-      "snippet": "ctparttext{${1:text}}"
-    },
-    "spacedallcaps{}": {
-      "snippet": "spacedallcaps{${1:text}}"
-    },
-    "spacedlowsmallcaps{}": {
-      "snippet": "spacedlowsmallcaps{${1:text}}"
-    },
-    "classicthesis": {},
-    "chapterNumber{}": {
-      "snippet": "chapterNumber{${1:text}}"
-    },
-    "beforebibskip": {},
-    "figurelabelwidth": {},
-    "finalVersionString": {},
-    "listingslabelwidth": {},
-    "myVersion": {},
-    "newchnumberwidth": {},
-    "newnumberwidth": {},
-    "oldmarginpar{}": {
-      "snippet": "oldmarginpar{${1:right}}"
-    },
-    "oldmarginpar[]{}": {
-      "snippet": "oldmarginpar[${2:left}]{${1:right}}"
-    },
-    "tablelabelwidth": {},
-    "tocEntry{}": {
-      "snippet": "tocEntry{${1:text}}"
-    },
-    "deactivateaddvspace": {},
-    "myChapter": {},
-    "myPart": {},
-    "graffito": {}
-  },
-  "envs": {
-    "aenumerate": {}
-  },
-  "options": [
-    "drafting",
-    "parts",
-    "linedheaders",
-    "style=${1|classicthesis,arsclassica|}",
-    "palatino",
-    "eulerchapternumbers",
-    "beramono",
-    "eulermath",
-    "tocaligned",
-    "dottedtoc",
-    "manychapters",
-    "floatperchapter",
-    "a4paper",
-    "a5paper",
-    "b5paper",
-    "letterpaper"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/classicthesis#c"
+  ]
 }

@@ -1,20 +1,36 @@
 {
-  "includes": {
-    "graphicx": []
-  },
-  "macros": {
-    "ifboustright": {},
-    "boustrighttrue": {},
-    "boustrightfalse": {}
-  },
-  "envs": {
-    "boustrophedon": {},
-    "rtl": {},
-    "sidewaysflip{}": {
-      "name": "sidewaysflip",
-      "snippet": "{${1:width}}"
+  "deps": [
+    {
+      "name": "graphicx"
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "ifboustright",
+      "unusual": true
+    },
+    {
+      "name": "boustrighttrue"
+    },
+    {
+      "name": "boustrightfalse"
+    }
+  ],
+  "envs": [
+    {
+      "name": "boustrophedon"
+    },
+    {
+      "name": "rtl"
+    },
+    {
+      "name": "sidewaysflip",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:width}}"
+      }
+    }
+  ],
+  "keys": {},
+  "args": []
 }

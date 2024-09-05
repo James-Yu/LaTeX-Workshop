@@ -1,67 +1,74 @@
 {
-  "includes": {
-    "tikz": [],
-    "tkz-euclide": [],
-    "simplekv": [],
-    "listofitems": [],
-    "ifthen": []
-  },
-  "macros": {
-    "roueQuestions{}": {
-      "snippet": "roueQuestions{${1:liste}}"
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "roueQuestions[]{}": {
-      "snippet": "roueQuestions[${2:options}]{${1:liste}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "tkz-euclide"
     },
-    "rouesQuestions{}{}": {
-      "snippet": "rouesQuestions{${1:listeQuestions}}{${2:listeRéponses}}"
+    {
+      "name": "simplekv"
     },
-    "rouesQuestions[]{}{}": {
-      "snippet": "rouesQuestions[${3:options}]{${1:listeQuestions}}{${2:listeRéponses}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "listofitems"
+    },
+    {
+      "name": "ifthen"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "Titre={${1:texte}}",
-      "Consigne={${1:texte}}",
+  ],
+  "macros": [
+    {
+      "name": "roueQuestions",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:liste}}"
+      }
+    },
+    {
+      "name": "roueQuestions",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:liste}}"
+      }
+    },
+    {
+      "name": "rouesQuestions",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:listeQuestions}}{${2:listeRéponses}}"
+      }
+    },
+    {
+      "name": "rouesQuestions",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:listeQuestions}}{${2:listeRéponses}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\roueQuestions,\\rouesQuestions": [
+      "Titre={${1:texte}}\r",
+      "Consigne={${1:texte}}\r",
       "LineWidth=",
-      "RayonCentral=${1:nombre}",
-      "RayonTotal=${1:nombre}",
+      "RayonCentral=${1:nombre}\r",
+      "RayonTotal=${1:nombre}\r",
       "BordureCouleur=",
       "CasesCouleur=",
       "CentreCouleur=",
-      "Image=${1:imagefile}",
-      "ImageOpacite=${1:factor}",
+      "Image=${1:imagefile}\r",
+      "ImageOpacite=${1:factor}\r",
       "Decoupe",
       "DecoupeCouleur=",
       "Pliage",
       "PliageCouleur=",
       "Solution"
     ],
-    [
-      "Titre={${1:texte}}",
-      "Consigne={${1:texte}}",
-      "LineWidth=",
-      "RayonCentral=${1:nombre}",
-      "RayonTotal=${1:nombre}",
-      "BordureCouleur=",
-      "CasesCouleur=",
-      "CentreCouleur=",
-      "Image=${1:imagefile}",
-      "ImageOpacite=${1:factor}",
-      "Decoupe",
-      "DecoupeCouleur=",
-      "Pliage",
-      "PliageCouleur=",
-      "Solution",
-      "Conseil={${1:texte}}",
+    "\\rouesQuestions": [
+      "Conseil={${1:texte}}\r",
       "EspaceRoues="
     ]
-  ]
+  },
+  "args": []
 }

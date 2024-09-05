@@ -1,203 +1,513 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "xifthen": [],
-    "hardwrap": [],
-    "ifluatex": [],
-    "ifxetex": [],
-    "class-book": [],
-    "ifpdf": [],
-    "titlesec": [],
-    "titletoc": [],
-    "hyperref": [],
-    "ragged2e": [],
-    "geometry": [],
-    "changepage": [],
-    "paralist": [],
-    "textcase": [],
-    "letterspace": [],
-    "setspace": [],
-    "xcolor": [],
-    "natbib": [],
-    "bibentry": [],
-    "optparams": [],
-    "placeins": [],
-    "mathpazo": [],
-    "helvet": [],
-    "beramono": [],
-    "fontenc": [],
-    "fancyhdr": [],
-    "multicol": [],
-    "bidi": [
-      "bidi"
+  "deps": [
+    {
+      "name": "xkeyval"
+    },
+    {
+      "name": "xifthen"
+    },
+    {
+      "name": "hardwrap"
+    },
+    {
+      "name": "ifluatex"
+    },
+    {
+      "name": "ifxetex"
+    },
+    {
+      "name": "class-book"
+    },
+    {
+      "name": "ifpdf"
+    },
+    {
+      "name": "titlesec"
+    },
+    {
+      "name": "titletoc"
+    },
+    {
+      "name": "hyperref"
+    },
+    {
+      "name": "ragged2e"
+    },
+    {
+      "name": "geometry"
+    },
+    {
+      "name": "changepage"
+    },
+    {
+      "name": "paralist"
+    },
+    {
+      "name": "textcase"
+    },
+    {
+      "name": "letterspace"
+    },
+    {
+      "name": "setspace"
+    },
+    {
+      "name": "xcolor"
+    },
+    {
+      "name": "natbib"
+    },
+    {
+      "name": "bibentry"
+    },
+    {
+      "name": "optparams"
+    },
+    {
+      "name": "placeins"
+    },
+    {
+      "name": "mathpazo"
+    },
+    {
+      "name": "helvet"
+    },
+    {
+      "name": "beramono"
+    },
+    {
+      "name": "fontenc"
+    },
+    {
+      "name": "fancyhdr"
+    },
+    {
+      "name": "multicol"
+    },
+    {
+      "name": "bidi",
+      "if": "bidi"
+    }
+  ],
+  "macros": [
+    {
+      "name": "allcaps",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "allcapsspacing",
+      "unusual": true
+    },
+    {
+      "name": "caption",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:short text}][${3:offset%l}]{${1:text}}"
+      }
+    },
+    {
+      "name": "doi",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:DOI}}"
+      }
+    },
+    {
+      "name": "floatalignment",
+      "unusual": true
+    },
+    {
+      "name": "footnotelayout",
+      "unusual": true
+    },
+    {
+      "name": "forcerectofloat"
+    },
+    {
+      "name": "forceversofloat"
+    },
+    {
+      "name": "gsetboolean",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:truth value}}"
+      }
+    },
+    {
+      "name": "gsetlength",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:length cmd}}{${2:length}}"
+      }
+    },
+    {
+      "name": "langwohyphens",
+      "unusual": true
+    },
+    {
+      "name": "lettergroup",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "maketitlepage",
+      "unusual": true
+    },
+    {
+      "name": "marginnote",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:offset%l}]{${1:text}}"
+      }
+    },
+    {
+      "name": "marginnote",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "morefloats"
+    },
+    {
+      "name": "multfootsep",
+      "unusual": true
+    },
+    {
+      "name": "multiplefootnotemarker",
+      "unusual": true
+    },
+    {
+      "name": "newlinetospace",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "newthought",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "nohyphenation",
+      "unusual": true
+    },
+    {
+      "name": "nohyphens",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "plainauthor",
+      "unusual": true
+    },
+    {
+      "name": "plainpublisher",
+      "unusual": true
+    },
+    {
+      "name": "plaintitle",
+      "unusual": true
+    },
+    {
+      "name": "PrintTufteSettings",
+      "unusual": true
+    },
+    {
+      "name": "publisher",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short text}]{${1:publisher}}"
+      }
+    },
+    {
+      "name": "publisher",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:publisher}}"
+      }
+    },
+    {
+      "name": "setcaptionfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font commands}}"
+      }
+    },
+    {
+      "name": "setcitationfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font commands}}"
+      }
+    },
+    {
+      "name": "setfloatalignment",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pos%keyvals}}"
+      }
+    },
+    {
+      "name": "setmarginnotefont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font commands}}"
+      }
+    },
+    {
+      "name": "setsidenotefont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font commands}}"
+      }
+    },
+    {
+      "name": "sidenote",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:number}][${3:offset%l}]{${1:text}}"
+      }
+    },
+    {
+      "name": "sidenote",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:number}]{${1:text}}"
+      }
+    },
+    {
+      "name": "sidenote",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "smallcaps",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "smallcapsspacing",
+      "unusual": true
+    },
+    {
+      "name": "textsmallcaps",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "thanklessauthor",
+      "unusual": true
+    },
+    {
+      "name": "thanklesspublisher",
+      "unusual": true
+    },
+    {
+      "name": "thanklesstitle",
+      "unusual": true
+    },
+    {
+      "name": "thedate",
+      "unusual": true
+    },
+    {
+      "name": "tuftebreak",
+      "unusual": true
+    },
+    {
+      "name": "TufteLoadHyperref",
+      "unusual": true
+    },
+    {
+      "name": "TufteRecalculate",
+      "unusual": true
+    },
+    {
+      "name": "tufteskip",
+      "unusual": true
+    },
+    {
+      "name": "tufteskipamount",
+      "unusual": true
+    },
+    {
+      "name": "typeoutbool",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:boolean}}"
+      }
+    },
+    {
+      "name": "typeoutstr",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:string}}"
+      }
+    },
+    {
+      "name": "DH"
+    },
+    {
+      "name": "NG"
+    },
+    {
+      "name": "dj"
+    },
+    {
+      "name": "ng"
+    },
+    {
+      "name": "k",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "guillemotleft",
+      "unusual": true
+    },
+    {
+      "name": "guillemotright",
+      "unusual": true
+    },
+    {
+      "name": "guilsinglleft"
+    },
+    {
+      "name": "guilsinglright"
+    },
+    {
+      "name": "quotedblbase"
+    },
+    {
+      "name": "quotesinglbase"
+    },
+    {
+      "name": "textquotedbl"
+    },
+    {
+      "name": "DJ"
+    },
+    {
+      "name": "th"
+    },
+    {
+      "name": "TH"
+    },
+    {
+      "name": "dh"
+    },
+    {
+      "name": "Hwithstroke",
+      "unusual": true
+    },
+    {
+      "name": "hwithstroke",
+      "unusual": true
+    },
+    {
+      "name": "textogonekcentered",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "guillemetleft"
+    },
+    {
+      "name": "guillemetright"
+    }
+  ],
+  "envs": [
+    {
+      "name": "fullwidth"
+    },
+    {
+      "name": "marginfigure"
+    },
+    {
+      "name": "marginfigure",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:offset%l}]"
+      }
+    },
+    {
+      "name": "margintable"
+    },
+    {
+      "name": "margintable",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:offset%l}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\documentclass/tufte-handout#c": [
+      "debug\r",
+      "fonts\r",
+      "nofonts\r",
+      "ls\r",
+      "nols\r",
+      "nobib\r",
+      "titlepage\r",
+      "notitlepage\r",
+      "a4paper\r",
+      "b5paper\r",
+      "sfsidenotes\r",
+      "symmetric\r",
+      "twoside\r",
+      "notoc\r",
+      "toc\r",
+      "justified\r",
+      "bidi\r",
+      "nobidi\r",
+      "hyper\r",
+      "nohyper\r",
+      "sidenote=${1|justified,raggedleft,raggedright,raggedouter,auto\r|}",
+      "marginnote=${1|justified,raggedleft,raggedright,raggedouter,auto\r|}",
+      "caption=${1|justified,raggedleft,raggedright,raggedouter,auto\r|}",
+      "citation=${1|justified,raggedleft,raggedright,raggedouter,auto\r|}",
+      "marginals=${1|justified,raggedleft,raggedright,raggedouter,auto\r|}"
+    ],
+    "\\setfloatalignment#c": [
+      "t\r",
+      "b\r"
     ]
   },
-  "macros": {
-    "allcaps{}": {
-      "snippet": "allcaps{${1:text}}"
-    },
-    "allcapsspacing": {},
-    "caption[][]{}": {
-      "snippet": "caption[${2:short text}][${3:offset}]{${1:text}}"
-    },
-    "doi{}": {
-      "snippet": "doi{${1:DOI}}"
-    },
-    "floatalignment": {},
-    "footnotelayout": {},
-    "forcerectofloat": {},
-    "forceversofloat": {},
-    "gsetboolean{}{}": {
-      "snippet": "gsetboolean{${1:name}}{${2:truth value}}"
-    },
-    "gsetlength{}{}": {
-      "snippet": "gsetlength{${1:length cmd}}{${2:length}}"
-    },
-    "langwohyphens": {},
-    "lettergroup{}": {
-      "snippet": "lettergroup{${1:text}}"
-    },
-    "maketitlepage": {},
-    "marginnote[]{}": {
-      "snippet": "marginnote[${2:offset}]{${1:text}}"
-    },
-    "marginnote{}": {
-      "snippet": "marginnote{${1:text}}"
-    },
-    "morefloats": {},
-    "multfootsep": {},
-    "multiplefootnotemarker": {},
-    "newlinetospace{}": {
-      "snippet": "newlinetospace{${1:arg}}"
-    },
-    "newthought{}": {
-      "snippet": "newthought{${1:text}}"
-    },
-    "nohyphenation": {},
-    "nohyphens{}": {
-      "snippet": "nohyphens{${1:text}}"
-    },
-    "plainauthor": {},
-    "plainpublisher": {},
-    "plaintitle": {},
-    "PrintTufteSettings": {},
-    "publisher[]{}": {
-      "snippet": "publisher[${2:short text}]{${1:publisher}}"
-    },
-    "publisher{}": {
-      "snippet": "publisher{${1:publisher}}"
-    },
-    "setcaptionfont{}": {
-      "snippet": "setcaptionfont{${1:font commands}}"
-    },
-    "setcitationfont{}": {
-      "snippet": "setcitationfont{${1:font commands}}"
-    },
-    "setfloatalignment{}": {
-      "snippet": "setfloatalignment{${1:pos}}"
-    },
-    "setmarginnotefont{}": {
-      "snippet": "setmarginnotefont{${1:font commands}}"
-    },
-    "setsidenotefont{}": {
-      "snippet": "setsidenotefont{${1:font commands}}"
-    },
-    "sidenote[][]{}": {
-      "snippet": "sidenote[${2:number}][${3:offset}]{${1:text}}"
-    },
-    "sidenote[]{}": {
-      "snippet": "sidenote[${2:number}]{${1:text}}"
-    },
-    "sidenote{}": {
-      "snippet": "sidenote{${1:text}}"
-    },
-    "smallcaps{}": {
-      "snippet": "smallcaps{${1:text}}"
-    },
-    "smallcapsspacing": {},
-    "textsmallcaps{}": {
-      "snippet": "textsmallcaps{${1:text}}"
-    },
-    "thanklessauthor": {},
-    "thanklesspublisher": {},
-    "thanklesstitle": {},
-    "thedate": {},
-    "tuftebreak": {},
-    "TufteLoadHyperref": {},
-    "TufteRecalculate": {},
-    "tufteskip": {},
-    "tufteskipamount": {},
-    "typeoutbool{}{}": {
-      "snippet": "typeoutbool{${1:text}}{${2:boolean}}"
-    },
-    "typeoutstr{}{}": {
-      "snippet": "typeoutstr{${1:text}}{${2:string}}"
-    },
-    "DH": {},
-    "NG": {},
-    "dj": {},
-    "ng": {},
-    "k{}": {
-      "snippet": "k{${1:arg}}"
-    },
-    "guillemotleft": {},
-    "guillemotright": {},
-    "guilsinglleft": {},
-    "guilsinglright": {},
-    "quotedblbase": {},
-    "quotesinglbase": {},
-    "textquotedbl": {},
-    "DJ": {},
-    "th": {},
-    "TH": {},
-    "dh": {},
-    "Hwithstroke": {},
-    "hwithstroke": {},
-    "textogonekcentered{}": {
-      "snippet": "textogonekcentered{${1:arg}}"
-    },
-    "guillemetleft": {},
-    "guillemetright": {}
-  },
-  "envs": {
-    "fullwidth": {},
-    "marginfigure": {},
-    "marginfigure[]": {
-      "name": "marginfigure",
-      "snippet": "[${1:offset}]"
-    },
-    "margintable": {},
-    "margintable[]": {
-      "name": "margintable",
-      "snippet": "[${1:offset}]"
-    }
-  },
-  "options": [
-    "debug",
-    "fonts",
-    "nofonts",
-    "ls",
-    "nols",
-    "nobib",
-    "titlepage",
-    "notitlepage",
-    "a4paper",
-    "b5paper",
-    "sfsidenotes",
-    "symmetric",
-    "twoside",
-    "notoc",
-    "toc",
-    "justified",
-    "bidi",
-    "nobidi",
-    "hyper",
-    "nohyper",
-    "sidenote=${1|justified,raggedleft,raggedright,raggedouter,auto|}",
-    "marginnote=${1|justified,raggedleft,raggedright,raggedouter,auto|}",
-    "caption=${1|justified,raggedleft,raggedright,raggedouter,auto|}",
-    "citation=${1|justified,raggedleft,raggedright,raggedouter,auto|}",
-    "marginals=${1|justified,raggedleft,raggedright,raggedouter,auto|}"
-  ],
-  "keyvals": []
+  "args": [
+    "\\documentclass/tufte-handout#c"
+  ]
 }

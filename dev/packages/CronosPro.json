@@ -1,34 +1,54 @@
 {
-  "includes": {
-    "kvoptions": [],
-    "CronosPro-FontDef": [],
-    "microtype": [],
-    "fontaxes": []
-  },
-  "macros": {
-    "smallfrac{}{}": {
-      "snippet": "smallfrac{${1:numerator}}{${2:denominator}}"
+  "deps": [
+    {
+      "name": "kvoptions"
     },
-    "slantfrac{}{}": {
-      "snippet": "slantfrac{${1:numerator}}{${2:denominator}}"
+    {
+      "name": "CronosPro-FontDef"
+    },
+    {
+      "name": "microtype"
+    },
+    {
+      "name": "fontaxes"
     }
-  },
-  "envs": {},
-  "options": [
-    "scale=${1:factor}",
-    "slides",
-    "noopticals",
-    "opticals",
-    "smallfamily",
-    "medfamily",
-    "normalsize",
-    "nonormalsize",
-    "textosf",
-    "textlf",
-    "osf",
-    "lf",
-    "footnotefigures",
-    "loosequotes"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "smallfrac",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:numerator}}{${2:denominator}}"
+      }
+    },
+    {
+      "name": "slantfrac",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:numerator}}{${2:denominator}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/CronosPro#c": [
+      "scale=${1:factor}\r",
+      "slides\r",
+      "noopticals\r",
+      "opticals\r",
+      "smallfamily\r",
+      "medfamily\r",
+      "normalsize\r",
+      "nonormalsize\r",
+      "textosf\r",
+      "textlf\r",
+      "osf\r",
+      "lf\r",
+      "footnotefigures\r",
+      "loosequotes\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/CronosPro#c"
+  ]
 }

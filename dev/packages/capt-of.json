@@ -1,14 +1,27 @@
 {
-  "includes": {},
-  "macros": {
-    "captionof{}{}": {
-      "snippet": "captionof{${1:type}}{${2:caption}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "captionof",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:type%keyvals}}{${2:caption%text}}"
+      }
     },
-    "captionof{}[]{}": {
-      "snippet": "captionof{${1:type}}[${2:move}]{${3:caption}}"
+    {
+      "name": "captionof",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:type%keyvals}}[${3:move}]{${2:caption%text}}"
+      }
     }
+  ],
+  "envs": [],
+  "keys": {
+    "\\captionof#c": [
+      "figure\r",
+      "table\r"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

@@ -1,31 +1,71 @@
 {
-  "includes": {
-    "graphicx": [],
-    "xstring": [],
-    "filemod": [],
-    "letltxmacro": [],
-    "pgfopts": [],
-    "pgffor": [],
-    "ifplatform": [],
-    "pdftexcmds": [],
-    "ltxcmds": []
-  },
-  "macros": {
-    "includegraphicscache{}{}": {
-      "snippet": "includegraphicscache{${1:options}}{${2:imagefile}}"
+  "deps": [
+    {
+      "name": "graphicx"
     },
-    "includegraphicscache[]{}{}": {
-      "snippet": "includegraphicscache[${3:graphicx options}]{${1:options}}{${2:imagefile}}"
+    {
+      "name": "xstring"
+    },
+    {
+      "name": "filemod"
+    },
+    {
+      "name": "letltxmacro"
+    },
+    {
+      "name": "pgfopts"
+    },
+    {
+      "name": "pgffor"
+    },
+    {
+      "name": "ifplatform"
+    },
+    {
+      "name": "pdftexcmds"
+    },
+    {
+      "name": "ltxcmds"
     }
-  },
-  "envs": {},
-  "options": [
-    "compress=${1|false,flat,jpeg|}",
-    "dpi=${1:number}",
-    "qfactor=${1:number}",
-    "listing",
-    "render",
-    "cachedir=${1:directory}"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "includegraphicscache",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:options%keyvals}}{${2:imagefile}}",
+        "keys": [
+          "\\usepackage/graphicscache#c,\\includegraphics,\\includegraphicscache"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "includegraphicscache",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:graphicx options}]{${1:options%keyvals}}{${2:imagefile}}",
+        "keys": [
+          "\\usepackage/graphicscache#c,\\includegraphics,\\includegraphicscache"
+        ],
+        "keyPos": 1
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/graphicscache#c,\\includegraphics,\\includegraphicscache": [
+      "compress=${1|false,flat,jpeg\r|}",
+      "dpi=${1:number}\r",
+      "qfactor=${1:number}\r",
+      "listing",
+      "render",
+      "cachedir=${1:directory}\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/graphicscache#c,\\includegraphics,\\includegraphicscache"
+  ]
 }

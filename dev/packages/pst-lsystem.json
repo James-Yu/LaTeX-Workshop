@@ -1,33 +1,38 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-xkey": []
-  },
-  "macros": {
-    "pslsystem()": {
-      "snippet": "pslsystem(${1:x},${2:y})"
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "pslsystem[]()": {
-      "snippet": "pslsystem[${1:options}](${2:x},${3:y})",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "pst-xkey"
+    }
+  ],
+  "macros": [
+    {
+      "name": "pslsystem(x,y)"
     },
-    "PSTlsystemLoaded": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "F=${1:Rule F → (F)}",
-      "X=${1:Rule X → (F,X,Y)}",
-      "Y=${1:Rule Y → (F,X,Y)}",
-      "Start=${1:Startrule S → (F,X,Y)}",
-      "Angle=${1:degrees}",
-      "N=${1:number of recursive calls}",
-      "Ftype=${1|1,2,3,4|}",
+    {
+      "name": "pslsystem",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:options%keyvals}](${2:x},${3:y})"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\pslsystem#c": [
+      "F=${1:Rule F → (F)}\r",
+      "X=${1:Rule X → (F,X,Y)}\r",
+      "Y=${1:Rule Y → (F,X,Y)}\r",
+      "Start=${1:Startrule S → (F,X,Y)}\r",
+      "Angle=${1:degrees}\r",
+      "N=${1:number of recursive calls}\r",
+      "Ftype=${1|1,2,3,4\r|}",
       "BaseLength=",
-      "usecolor=${1|0,1,2,3,4|}",
+      "usecolor=${1|0,1,2,3,4\r|}",
       "linecolor="
     ]
-  ]
+  },
+  "args": []
 }

@@ -1,370 +1,922 @@
 {
-  "includes": {
-    "ifpdf": []
-  },
-  "macros": {
-    "xyoption{}": {
-      "snippet": "xyoption{${1:option}}"
-    },
-    "xyrequire{}": {
-      "snippet": "xyrequire{${1:option}}"
-    },
-    "xywithoption{}{}": {
-      "snippet": "xywithoption{${1:option}}{${2:code}}"
-    },
-    "xyeverywithoption{}{}": {
-      "snippet": "xyeverywithoption{${1:option}}{${2:code}}"
-    },
-    "xyeveryrequest{}{}": {
-      "snippet": "xyeveryrequest{${1:option}}{${2:code}}"
-    },
-    "afterPATH{}": {
-      "snippet": "afterPATH{${1:decor}}"
-    },
-    "afterPOS{}": {
-      "snippet": "afterPOS{${1:decor}}"
-    },
-    "AliasPattern{}{}{}": {
-      "snippet": "AliasPattern{${1:alias}}{${2:name}}{${3:file}}"
-    },
-    "ar[]": {
-      "snippet": "ar[${1:hop}]"
-    },
-    "arrowobject{}": {
-      "snippet": "arrowobject{${1:object}}"
-    },
-    "cir{}": {
-      "snippet": "cir{${1:spec}}"
-    },
-    "cir<>{}": {
-      "snippet": "cir<${2:radius}>{${1:spec}}"
-    },
-    "circleEdge": {},
-    "Col": {},
-    "CompileFixPoint{}": {
-      "snippet": "CompileFixPoint{${1:id}}"
-    },
-    "CompileMatrices": {},
-    "CompilePrefix{}": {
-      "snippet": "CompilePrefix{${1:prefix}}"
-    },
-    "composite{}": {
-      "snippet": "composite{${1:objects}}"
-    },
-    "connect": {},
-    "croplattice{}{}{}{}{}{}{}{}": {
-      "snippet": "croplattice{${1:pt1}}{${2:pt2}}{${3:pt3}}{${4:pt4}}{${5:pt5}}{${6:pt6}}{${7:pt7}}{${8:pt8}}"
-    },
-    "crv{}": {
-      "snippet": "crv{${1:poslist}}"
-    },
-    "crvs{}": {
-      "snippet": "crvs{${1:dir}}"
-    },
-    "curve{}": {
-      "snippet": "curve{${1:poslist}}"
-    },
-    "curveobject{}": {
-      "snippet": "curveobject{${1:object}}"
-    },
-    "ddtwocell": {},
-    "defaultlatticebody": {},
-    "dir{}": {
-      "snippet": "dir{${1:dir}}"
-    },
-    "Direction": {},
-    "dltwocell": {},
-    "drop": {},
-    "drtwocell": {},
-    "dtwocell": {},
-    "dumpPSdict{}": {
-      "snippet": "dumpPSdict{${1:filename}}"
-    },
-    "dutwocell": {},
-    "ellipse{}": {
-      "snippet": "ellipse{${1:style}}"
-    },
-    "ellipse<>{}": {
-      "snippet": "ellipse<${2:dimen}>{${1:style}}"
-    },
-    "endxy": {},
-    "frm{}": {
-      "snippet": "frm{${1:frame}}"
-    },
-    "halfrootthree": {},
-    "halfroottwo": {},
-    "knotstyle{}": {
-      "snippet": "knotstyle{${1:char}}"
-    },
-    "knotSTYLE{}": {
-      "snippet": "knotSTYLE{${1:code}}"
-    },
-    "knotstyles{}{}": {
-      "snippet": "knotstyles{${1:char1}}{${2:char2}}"
-    },
-    "labelbox": {},
-    "labelmargin": {},
-    "labelstyle": {},
-    "latticeA": {},
-    "latticeB": {},
-    "latticebody": {},
-    "latticeX": {},
-    "latticeY": {},
-    "ldtwocell": {},
-    "lltwocell": {},
-    "LoadAllPatterns{}": {
-      "snippet": "LoadAllPatterns{${1:file}}"
-    },
-    "LoadPattern{}{}": {
-      "snippet": "LoadPattern{${1:name}}{${2:file}}"
-    },
-    "lowercurveobject{}": {
-      "snippet": "lowercurveobject{${1:object}}"
-    },
-    "lrtwocell": {},
-    "ltwocell": {},
-    "lutwocell": {},
-    "MakeOutlines": {},
-    "maxTPICpoints{}": {
-      "snippet": "maxTPICpoints{${1:number}}"
-    },
-    "modmapobject{}": {
-      "snippet": "modmapobject{${1:object}}"
-    },
-    "MovieSetup{}": {
-      "snippet": "MovieSetup{${1:width=width,height=height}}"
-    },
-    "MultipleDrivers": {},
-    "newdir{}{}": {
-      "snippet": "newdir{${1:directional}}{${2:composite}}"
-    },
-    "newgraphescape{}{}": {
-      "snippet": "newgraphescape{${1:letter}}{${2:graph}}"
-    },
-    "newxycolor{}{}": {
-      "snippet": "newxycolor{${1:name}}{${2:code}}"
-    },
-    "newxypattern{}{}": {
-      "snippet": "newxypattern{${1:name}}{${2:data}}"
-    },
-    "NoCompileMatrices": {},
-    "NoEMspecials": {},
-    "NoOutlines": {},
-    "NoPScolor": {},
-    "NoPSframes": {},
-    "NoPSlines": {},
-    "NoPSrotate": {},
-    "NoPSspecials": {},
-    "NoPStiles": {},
-    "NoResizing": {},
-    "NoRules": {},
-    "NoTips": {},
-    "NoTPICframes": {},
-    "NoTPICspecials": {},
-    "object": {},
-    "objectbox{}": {
-      "snippet": "objectbox{${1:text}}"
-    },
-    "objectheight": {},
-    "objectmargin": {},
-    "objectstyle": {},
-    "objectwidth": {},
-    "OnlyOutlines": {},
-    "partroottwo": {},
-    "PATH": {},
-    "PATHafterPOS": {},
-    "POS": {},
-    "qspline{}": {
-      "snippet": "qspline{${1:style}}"
-    },
-    "rdtwocell": {},
-    "rectangleEdge": {},
-    "restore": {},
-    "rltwocell": {},
-    "Row": {},
-    "rrtwocell": {},
-    "rtwocell": {},
-    "rutwocell": {},
-    "save": {},
-    "scene": {},
-    "SelectTips{}{}": {
-      "snippet": "SelectTips{${1:family}}{${2:size}}"
-    },
-    "ShowOutlines": {},
-    "SilentMatrices": {},
-    "SloppyCurves": {},
-    "splinetolerance{}": {
-      "snippet": "splinetolerance{${1:dimen}}"
-    },
-    "turnradius": {},
-    "twocell": {},
-    "twocellhead{}": {
-      "snippet": "twocellhead{${1:object}}"
-    },
-    "twocellstyle": {},
-    "twocelltail{}": {
-      "snippet": "twocelltail{${1:object}}"
-    },
-    "txt{}": {
-      "snippet": "txt{${1:text}}"
-    },
-    "txt<>{}": {
-      "snippet": "txt<${2:width}>{${1:text}}"
-    },
-    "udtwocell": {},
-    "ultwocell": {},
-    "uppercurveobject{}": {
-      "snippet": "uppercurveobject{${1:object}}"
-    },
-    "urtwocell": {},
-    "UseAllTwocells": {},
-    "UseCompositeMaps": {},
-    "UseCrayolaColors": {},
-    "UseCurvedFrames": {},
-    "UseEMspecials": {},
-    "UseFontFrames": {},
-    "UseHalfTwocells": {},
-    "UsePatternFile{}": {
-      "snippet": "UsePatternFile{${1:file}}"
-    },
-    "UsePScolor": {},
-    "UsePSframes": {},
-    "UsePSheader{}": {
-      "snippet": "UsePSheader{${1:file}}"
-    },
-    "UsePSlines": {},
-    "UsePSrotate": {},
-    "UsePSspecials{}": {
-      "snippet": "UsePSspecials{${1:driver}}"
-    },
-    "UsePStiles": {},
-    "UseResizing": {},
-    "UseRules": {},
-    "UseSingleDriver": {},
-    "UseTips": {},
-    "UseTPICframes": {},
-    "UseTPICspecials": {},
-    "UseTwocells": {},
-    "utwocell": {},
-    "uutwocell": {},
-    "xtwocell[]{}": {
-      "snippet": "xtwocell[${2:hop}]{${1:displace}}"
-    },
-    "xtwocell{}": {
-      "snippet": "xtwocell{${1:displace}}"
-    },
-    "Xy": {},
-    "xy": {},
-    "xyatipfont": {},
-    "xybox{}": {
-      "snippet": "xybox{${1:<${2:pos}><${3:decor}>}}"
-    },
-    "xybsqlfont": {},
-    "xybtipfont": {},
-    "xycircfont": {},
-    "xycircle(){}": {
-      "snippet": "xycircle(${2:x},${3:y}){${1:style}}"
-    },
-    "xycircle<>{}": {
-      "snippet": "xycircle<${2:radius}>{${1:style}}"
-    },
-    "xycompile{}": {
-      "snippet": "xycompile{${1:<${2:pos}><${3:decor}>}}"
-    },
-    "xycompileto{}{}": {
-      "snippet": "xycompileto{${1:name}}{${2:<${3:pos}><${4:decor}>}}"
-    },
-    "xydashfont": {},
-    "xydate": {},
-    "xyecho": {},
-    "xygraph{}": {
-      "snippet": "xygraph{${1:graph}}"
-    },
-    "xyignore{}": {
-      "snippet": "xyignore{${1:<${2:pos}><${3:decor}>}}"
-    },
-    "xyimport()(){}": {
-      "snippet": "xyimport(${2:width},${3:height})(${4:xoffset},${5:yoffset}){${1:graphics code}}"
-    },
-    "xyimport(){}": {
-      "snippet": "xyimport(${2:width},${3:height}){${1:graphics code}}"
-    },
-    "xylattice{}{}{}{}": {
-      "snippet": "xylattice{${1:pt1}}{${2:pt2}}{${3:pt3}}{${4:pt4}}"
-    },
-    "xymatrix{}": {
-      "snippet": "xymatrix{${1:xy code}}"
-    },
-    "xymatrixcolsep": {},
-    "xymatrixcompile{}": {
-      "snippet": "xymatrixcompile{${1:xy code}}"
-    },
-    "xymatrixnocompile{}": {
-      "snippet": "xymatrixnocompile{${1:xy code}}"
-    },
-    "xymatrixrowsep": {},
-    "xypolygon": {},
-    "xypolyline{}": {
-      "snippet": "xypolyline{${1:toks}}"
-    },
-    "xypolyname": {},
-    "xypolynode": {},
-    "xypolynum": {},
-    "xyprovide{}{}{}{}{}{}": {
-      "snippet": "xyprovide{${1:option}}{${2:name}}{${3:version}}{${4:author}}{${5:email}}{${6:address}}"
-    },
-    "xyPSdefaultdict": {},
-    "xyquiet": {},
-    "xyReloadDrivers": {},
-    "xyresetcatcodes": {},
-    "xyShowDrivers": {},
-    "xytracing": {},
-    "xyverbose": {},
-    "xyversion": {},
-    "zeroDivideLimit{}": {
-      "snippet": "zeroDivideLimit{${1:number}}"
+  "deps": [
+    {
+      "name": "ifpdf"
     }
-  },
-  "envs": {
-    "xy": {}
-  },
-  "options": [
-    "curve",
-    "frame",
-    "tips",
-    "line",
-    "rotate",
-    "color",
-    "tile",
-    "import",
-    "movie",
-    "ps",
-    "tpic",
-    "emtex",
-    "necula",
-    "picture",
-    "all",
-    "dummy",
-    "arrow",
-    "2cell",
-    "matrix",
-    "graph",
-    "poly",
-    "web",
-    "arc",
-    "knot",
-    "smart",
-    "barr",
-    "dvidrv",
-    "dvips",
-    "dvitops",
-    "oztex",
-    "17oztex",
-    "textures",
-    "16textures",
-    "xdvi",
-    "pdf",
-    "v2"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "xyoption",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:option%keyvals}}"
+      }
+    },
+    {
+      "name": "xyrequire",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:option%keyvals}}"
+      }
+    },
+    {
+      "name": "xywithoption",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:option%keyvals}}{${2:code}}"
+      }
+    },
+    {
+      "name": "xyeverywithoption",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:option%keyvals}}{${2:code}}"
+      }
+    },
+    {
+      "name": "xyeveryrequest",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:option%keyvals}}{${2:code}}"
+      }
+    },
+    {
+      "name": "afterPATH",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:decor}}"
+      }
+    },
+    {
+      "name": "afterPOS",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:decor}}"
+      }
+    },
+    {
+      "name": "AliasPattern",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:alias}}{${2:name}}{${3:file}}"
+      }
+    },
+    {
+      "name": "ar",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:hop}]"
+      }
+    },
+    {
+      "name": "arrowobject",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:object}}"
+      }
+    },
+    {
+      "name": "cir",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:spec}}"
+      }
+    },
+    {
+      "name": "cir<radius>",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:spec}}"
+      }
+    },
+    {
+      "name": "circleEdge",
+      "unusual": true
+    },
+    {
+      "name": "Col"
+    },
+    {
+      "name": "CompileFixPoint",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
+    },
+    {
+      "name": "CompileMatrices"
+    },
+    {
+      "name": "CompilePrefix",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:prefix}}"
+      }
+    },
+    {
+      "name": "composite",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:objects}}"
+      }
+    },
+    {
+      "name": "connect"
+    },
+    {
+      "name": "croplattice",
+      "arg": {
+        "format": "{}{}{}{}{}{}{}{}",
+        "snippet": "{${1:pt1}}{${2:pt2}}{${3:pt3}}{${4:pt4}}{${5:pt5}}{${6:pt6}}{${7:pt7}}{${8:pt8}}"
+      }
+    },
+    {
+      "name": "crv",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:poslist}}"
+      }
+    },
+    {
+      "name": "crvs",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:dir}}"
+      }
+    },
+    {
+      "name": "curve",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:poslist}}"
+      }
+    },
+    {
+      "name": "curveobject",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:object}}"
+      }
+    },
+    {
+      "name": "ddtwocell"
+    },
+    {
+      "name": "defaultlatticebody",
+      "unusual": true
+    },
+    {
+      "name": "dir",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:dir}}"
+      }
+    },
+    {
+      "name": "Direction",
+      "unusual": true
+    },
+    {
+      "name": "dltwocell"
+    },
+    {
+      "name": "drop"
+    },
+    {
+      "name": "drtwocell"
+    },
+    {
+      "name": "dtwocell"
+    },
+    {
+      "name": "dumpPSdict",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:filename}}"
+      }
+    },
+    {
+      "name": "dutwocell"
+    },
+    {
+      "name": "ellipse",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:style}}"
+      }
+    },
+    {
+      "name": "ellipse<dimen>",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:style}}"
+      }
+    },
+    {
+      "name": "endxy",
+      "unusual": true
+    },
+    {
+      "name": "frm",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:frame}}"
+      }
+    },
+    {
+      "name": "halfrootthree",
+      "unusual": true
+    },
+    {
+      "name": "halfroottwo",
+      "unusual": true
+    },
+    {
+      "name": "knotstyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:char}}"
+      }
+    },
+    {
+      "name": "knotSTYLE",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "knotstyles",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:char1}}{${2:char2}}"
+      }
+    },
+    {
+      "name": "labelbox",
+      "unusual": true
+    },
+    {
+      "name": "labelmargin"
+    },
+    {
+      "name": "labelstyle",
+      "unusual": true
+    },
+    {
+      "name": "latticeA",
+      "unusual": true
+    },
+    {
+      "name": "latticeB",
+      "unusual": true
+    },
+    {
+      "name": "latticebody",
+      "unusual": true
+    },
+    {
+      "name": "latticeX",
+      "unusual": true
+    },
+    {
+      "name": "latticeY",
+      "unusual": true
+    },
+    {
+      "name": "ldtwocell"
+    },
+    {
+      "name": "lltwocell"
+    },
+    {
+      "name": "LoadAllPatterns",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "LoadPattern",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:file}}"
+      }
+    },
+    {
+      "name": "lowercurveobject",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:object}}"
+      }
+    },
+    {
+      "name": "lrtwocell"
+    },
+    {
+      "name": "ltwocell"
+    },
+    {
+      "name": "lutwocell"
+    },
+    {
+      "name": "MakeOutlines"
+    },
+    {
+      "name": "maxTPICpoints",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "modmapobject",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:object}}"
+      }
+    },
+    {
+      "name": "MovieSetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:width=width,height=height}}"
+      }
+    },
+    {
+      "name": "MultipleDrivers",
+      "unusual": true
+    },
+    {
+      "name": "newdir",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:directional}}{${2:composite}}"
+      }
+    },
+    {
+      "name": "newgraphescape",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:letter}}{${2:graph%formula}}"
+      }
+    },
+    {
+      "name": "newxycolor",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:code}}"
+      }
+    },
+    {
+      "name": "newxypattern",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:data}}"
+      }
+    },
+    {
+      "name": "NoCompileMatrices"
+    },
+    {
+      "name": "NoEMspecials"
+    },
+    {
+      "name": "NoOutlines"
+    },
+    {
+      "name": "NoPScolor"
+    },
+    {
+      "name": "NoPSframes"
+    },
+    {
+      "name": "NoPSlines"
+    },
+    {
+      "name": "NoPSrotate"
+    },
+    {
+      "name": "NoPSspecials"
+    },
+    {
+      "name": "NoPStiles"
+    },
+    {
+      "name": "NoResizing"
+    },
+    {
+      "name": "NoRules"
+    },
+    {
+      "name": "NoTips"
+    },
+    {
+      "name": "NoTPICframes"
+    },
+    {
+      "name": "NoTPICspecials"
+    },
+    {
+      "name": "object"
+    },
+    {
+      "name": "objectbox",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "objectheight"
+    },
+    {
+      "name": "objectmargin"
+    },
+    {
+      "name": "objectstyle",
+      "unusual": true
+    },
+    {
+      "name": "objectwidth"
+    },
+    {
+      "name": "OnlyOutlines"
+    },
+    {
+      "name": "partroottwo",
+      "unusual": true
+    },
+    {
+      "name": "PATH"
+    },
+    {
+      "name": "PATHafterPOS"
+    },
+    {
+      "name": "POS"
+    },
+    {
+      "name": "qspline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:style}}"
+      }
+    },
+    {
+      "name": "rdtwocell"
+    },
+    {
+      "name": "rectangleEdge",
+      "unusual": true
+    },
+    {
+      "name": "restore"
+    },
+    {
+      "name": "rltwocell"
+    },
+    {
+      "name": "Row"
+    },
+    {
+      "name": "rrtwocell"
+    },
+    {
+      "name": "rtwocell"
+    },
+    {
+      "name": "rutwocell"
+    },
+    {
+      "name": "save"
+    },
+    {
+      "name": "scene"
+    },
+    {
+      "name": "SelectTips",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:family}}{${2:size}}"
+      }
+    },
+    {
+      "name": "ShowOutlines"
+    },
+    {
+      "name": "SilentMatrices"
+    },
+    {
+      "name": "SloppyCurves"
+    },
+    {
+      "name": "splinetolerance",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:dimen%l}}"
+      }
+    },
+    {
+      "name": "turnradius"
+    },
+    {
+      "name": "twocell"
+    },
+    {
+      "name": "twocellhead",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:object}}"
+      }
+    },
+    {
+      "name": "twocellstyle",
+      "unusual": true
+    },
+    {
+      "name": "twocelltail",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:object}}"
+      }
+    },
+    {
+      "name": "txt",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "txt<width>",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "udtwocell"
+    },
+    {
+      "name": "ultwocell"
+    },
+    {
+      "name": "uppercurveobject",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:object}}"
+      }
+    },
+    {
+      "name": "urtwocell"
+    },
+    {
+      "name": "UseAllTwocells"
+    },
+    {
+      "name": "UseCompositeMaps"
+    },
+    {
+      "name": "UseCrayolaColors"
+    },
+    {
+      "name": "UseCurvedFrames"
+    },
+    {
+      "name": "UseEMspecials"
+    },
+    {
+      "name": "UseFontFrames"
+    },
+    {
+      "name": "UseHalfTwocells"
+    },
+    {
+      "name": "UsePatternFile",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "UsePScolor"
+    },
+    {
+      "name": "UsePSframes"
+    },
+    {
+      "name": "UsePSheader",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "UsePSlines"
+    },
+    {
+      "name": "UsePSrotate"
+    },
+    {
+      "name": "UsePSspecials",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:driver}}"
+      }
+    },
+    {
+      "name": "UsePStiles"
+    },
+    {
+      "name": "UseResizing"
+    },
+    {
+      "name": "UseRules"
+    },
+    {
+      "name": "UseSingleDriver",
+      "unusual": true
+    },
+    {
+      "name": "UseTips"
+    },
+    {
+      "name": "UseTPICframes"
+    },
+    {
+      "name": "UseTPICspecials"
+    },
+    {
+      "name": "UseTwocells"
+    },
+    {
+      "name": "utwocell"
+    },
+    {
+      "name": "uutwocell"
+    },
+    {
+      "name": "xtwocell",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:hop}]{${1:displace}}"
+      }
+    },
+    {
+      "name": "xtwocell",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:displace}}"
+      }
+    },
+    {
+      "name": "Xy",
+      "unusual": true
+    },
+    {
+      "name": "xy",
+      "unusual": true
+    },
+    {
+      "name": "xyatipfont",
+      "unusual": true
+    },
+    {
+      "name": "xybox",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:<pos><${2:decor}>}}"
+      }
+    },
+    {
+      "name": "xybsqlfont",
+      "unusual": true
+    },
+    {
+      "name": "xybtipfont",
+      "unusual": true
+    },
+    {
+      "name": "xycircfont",
+      "unusual": true
+    },
+    {
+      "name": "xycircle(x,y)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:style}}"
+      }
+    },
+    {
+      "name": "xycircle<radius>",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:style}}"
+      }
+    },
+    {
+      "name": "xycompile",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:<pos><${2:decor}>}}"
+      }
+    },
+    {
+      "name": "xycompileto",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:<pos><${3:decor}>}}"
+      }
+    },
+    {
+      "name": "xydashfont",
+      "unusual": true
+    },
+    {
+      "name": "xyecho",
+      "unusual": true
+    },
+    {
+      "name": "xygraph",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:graph%formula}}"
+      }
+    },
+    {
+      "name": "xyignore",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:<pos><${2:decor}>}}"
+      }
+    },
+    {
+      "name": "xyimport(width,height)(xoffset,yoffset)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:graphics code}}"
+      }
+    },
+    {
+      "name": "xyimport(width,height)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:graphics code}}"
+      }
+    },
+    {
+      "name": "xylattice",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:pt1}}{${2:pt2}}{${3:pt3}}{${4:pt4}}"
+      }
+    },
+    {
+      "name": "xymatrix",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:xy code%formula}}"
+      }
+    },
+    {
+      "name": "xymatrixcolsep"
+    },
+    {
+      "name": "xymatrixcompile",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:xy code%formula}}"
+      }
+    },
+    {
+      "name": "xymatrixnocompile",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:xy code%formula}}"
+      }
+    },
+    {
+      "name": "xymatrixrowsep"
+    },
+    {
+      "name": "xypolygon"
+    },
+    {
+      "name": "xypolyline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:toks}}"
+      }
+    },
+    {
+      "name": "xypolyname",
+      "unusual": true
+    },
+    {
+      "name": "xypolynode"
+    },
+    {
+      "name": "xypolynum",
+      "unusual": true
+    },
+    {
+      "name": "xyprovide",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "{${1:option}}{${2:name}}{${3:version}}{${4:author}}{${5:email}}{${6:address}}"
+      }
+    },
+    {
+      "name": "xyPSdefaultdict",
+      "unusual": true
+    },
+    {
+      "name": "xyquiet",
+      "unusual": true
+    },
+    {
+      "name": "xyReloadDrivers",
+      "unusual": true
+    },
+    {
+      "name": "xyresetcatcodes",
+      "unusual": true
+    },
+    {
+      "name": "xyShowDrivers",
+      "unusual": true
+    },
+    {
+      "name": "xytracing",
+      "unusual": true
+    },
+    {
+      "name": "xyverbose",
+      "unusual": true
+    },
+    {
+      "name": "zeroDivideLimit",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "xy"
+    }
+  ],
+  "keys": {
+    "\\usepackage/xy#c,\\xyoption#c,\\xyrequire#c,\\xywithoption#c,\\xyeverywithoption#c,\\xyeveryrequest#c": [
+      "curve",
+      "frame",
+      "tips",
+      "line",
+      "rotate",
+      "color",
+      "tile",
+      "import",
+      "movie",
+      "ps",
+      "tpic",
+      "emtex",
+      "necula",
+      "picture",
+      "all",
+      "dummy",
+      "arrow",
+      "2cell",
+      "matrix",
+      "graph",
+      "poly",
+      "web",
+      "arc",
+      "knot",
+      "smart",
+      "barr",
+      "dvidrv",
+      "dvips",
+      "dvitops",
+      "oztex",
+      "17oztex",
+      "textures",
+      "16textures",
+      "xdvi",
+      "pdf",
+      "v2"
+    ]
+  },
+  "args": [
+    "\\usepackage/xy#c,\\xyoption#c,\\xyrequire#c,\\xywithoption#c,\\xyeverywithoption#c,\\xyeveryrequest#c"
+  ]
 }

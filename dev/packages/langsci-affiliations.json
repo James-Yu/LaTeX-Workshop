@@ -1,48 +1,70 @@
 {
-  "includes": {},
-  "macros": {
-    "ResolveAffiliations{}": {
-      "snippet": "ResolveAffiliations{${1:author}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "ResolveAffiliations",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:author}}"
+      }
     },
-    "ResolveAffiliations[]{}": {
-      "snippet": "ResolveAffiliations[${2:options}]{${1:author}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "ResolveAffiliations",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:author}}"
+      }
     },
-    "LinkToORCIDinAffiliations{}": {
-      "snippet": "LinkToORCIDinAffiliations{${1:arg}}"
+    {
+      "name": "LinkToORCIDinAffiliations",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
     },
-    "CountAuthorsFromAffiliations{}": {
-      "snippet": "CountAuthorsFromAffiliations{${1:author}}"
+    {
+      "name": "CountAuthorsFromAffiliations",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:author}}"
+      }
     },
-    "CountAuthorsFromAffiliations[]{}": {
-      "snippet": "CountAuthorsFromAffiliations[${2:options}]{${1:author}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "CountAuthorsFromAffiliations",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:author}}"
+      }
     },
-    "SetupAffiliations{}": {
-      "snippet": "SetupAffiliations{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "SetupAffiliations",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\ResolveAffiliations,\\CountAuthorsFromAffiliations,\\SetupAffiliations"
+        ],
+        "keyPos": 0
+      }
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "mark style=${1|alphabetic,numeric,circled,none|}",
+  ],
+  "envs": [],
+  "keys": {
+    "\\ResolveAffiliations,\\CountAuthorsFromAffiliations,\\SetupAffiliations": [
+      "mark style=${1|alphabetic,numeric,circled,none\r|}",
       "output affiliation",
-      "orcid placement=",
+      "orcid placement=\r",
       "output in groups",
-      "separator between two=${1:separator}",
-      "separator between multiple=${1:separator}",
-      "separator between final two=${1:separator}",
-      "separator between indices=${1:separator}",
-      "separator between affiliations=${1:separator}",
-      "output authors font=${1:font commands}",
-      "output affiliation font=${1:font commands}",
-      "input names separator=${1:separator}",
-      "input affiliation separator=${1:separator}"
+      "separator between two=${1:separator}\r",
+      "separator between multiple=${1:separator}\r",
+      "separator between final two=${1:separator}\r",
+      "separator between indices=${1:separator}\r",
+      "separator between affiliations=${1:separator}\r",
+      "output authors font=${1:font commands}\r",
+      "output affiliation font=${1:font commands}\r",
+      "input names separator=${1:separator}\r",
+      "input affiliation separator=${1:separator}\r"
     ]
-  ]
+  },
+  "args": []
 }

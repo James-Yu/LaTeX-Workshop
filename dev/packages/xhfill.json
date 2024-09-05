@@ -1,33 +1,67 @@
 {
-  "includes": {
-    "xcolor": [],
-    "calc": [],
-    "xspace": []
-  },
-  "macros": {
-    "xhrulefill{}{}": {
-      "snippet": "xhrulefill{${1:color}}{${2:ruleheight}}"
+  "deps": [
+    {
+      "name": "xcolor"
     },
-    "xrfill{}": {
-      "snippet": "xrfill{${1:ruleheight}}"
+    {
+      "name": "calc"
     },
-    "xrfill{}[]": {
-      "snippet": "xrfill{${1:ruleheight}}[${2:color}]"
-    },
-    "xrfill[]{}[]": {
-      "snippet": "xrfill[${2:raise}]{${1:ruleheight}}[${3:color}]"
-    },
-    "xhrectanglefill{}{}": {
-      "snippet": "xhrectanglefill{${1:height}}{${2:linewidth}}"
-    },
-    "xdotfill{}": {
-      "snippet": "xdotfill{${1:dotheight}}"
-    },
-    "xdotfill{}[]": {
-      "snippet": "xdotfill{${1:dotheight}}[${2:color}]"
+    {
+      "name": "xspace"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "xhrulefill",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:color}}{${2:ruleheight%l}}"
+      }
+    },
+    {
+      "name": "xrfill",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ruleheight%l}}"
+      }
+    },
+    {
+      "name": "xrfill",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:ruleheight%l}}[${2:color}]"
+      }
+    },
+    {
+      "name": "xrfill",
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:raise%l}]{${1:ruleheight%l}}[${3:color}]"
+      }
+    },
+    {
+      "name": "xhrectanglefill",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:height}}{${2:linewidth%l}}"
+      }
+    },
+    {
+      "name": "xdotfill",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:dotheight%l}}"
+      }
+    },
+    {
+      "name": "xdotfill",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:dotheight%l}}[${2:color}]"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

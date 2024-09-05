@@ -1,902 +1,1295 @@
 {
-  "includes": {
-    "glossaries": [],
-    "accsupp": [],
-    "translator": [
-      "translate",
-      "translate=true"
-    ],
-    "tracklang": [
-      "translate",
-      "translate=true"
-    ],
-    "glossaries-babel": [
-      "translate=babel"
-    ]
-  },
-  "macros": {
-    "printsymbols": {
-      "option": "symbols"
-    },
-    "printsymbols[]": {
-      "snippet": "printsymbols[${1:options}]",
-      "option": "symbols"
-    },
-    "printnumbers": {
-      "option": "numbers"
-    },
-    "printnumbers[]": {
-      "snippet": "printnumbers[${1:options}]",
-      "option": "numbers"
-    },
-    "newterm{term{": {
-      "option": "index"
-    },
-    "newterm[]{}": {
-      "snippet": "newterm[${2:options}]{${1:term}}",
-      "option": "index",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "printindex": {
-      "option": "index"
-    },
-    "printindex[]": {
-      "snippet": "printindex[${1:options}]",
-      "option": "index"
-    },
-    "printacronyms": {
-      "option": "acronyms"
-    },
-    "printacronyms[]": {
-      "snippet": "printacronyms[${1:options}]",
-      "option": "acronyms"
-    },
-    "acs{}": {
-      "snippet": "acs{${1:label}}",
-      "option": "shortcuts"
-    },
-    "acs[]{}": {
-      "snippet": "acs[${2:options}]{${1:label}}",
-      "option": "shortcuts"
-    },
-    "acs{}[]": {
-      "snippet": "acs{${1:label}}[${2:insert}]",
-      "option": "shortcuts"
-    },
-    "acs[]{}[]": {
-      "snippet": "acs[${2:options}]{${1:label}}[${3:insert}]",
-      "option": "shortcuts"
-    },
-    "acs*{}": {
-      "snippet": "acs*{${1:label}}",
-      "option": "shortcuts"
-    },
-    "acs*[]{}": {
-      "snippet": "acs*[${2:options}]{${1:label}}",
-      "option": "shortcuts"
-    },
-    "acs*{}[]": {
-      "snippet": "acs*{${1:label}}[${2:insert}]",
-      "option": "shortcuts"
-    },
-    "acs*[]{}[]": {
-      "snippet": "acs*[${2:options}]{${1:label}}[${3:insert}]",
-      "option": "shortcuts"
-    },
-    "Acs{}": {
-      "snippet": "Acs{${1:label}}",
-      "option": "shortcuts"
-    },
-    "Acs[]{}": {
-      "snippet": "Acs[${2:options}]{${1:label}}",
-      "option": "shortcuts"
-    },
-    "Acs{}[]": {
-      "snippet": "Acs{${1:label}}[${2:insert}]",
-      "option": "shortcuts"
-    },
-    "Acs[]{}[]": {
-      "snippet": "Acs[${2:options}]{${1:label}}[${3:insert}]",
-      "option": "shortcuts"
-    },
-    "Acs*{}": {
-      "snippet": "Acs*{${1:label}}",
-      "option": "shortcuts"
-    },
-    "Acs*[]{}": {
-      "snippet": "Acs*[${2:options}]{${1:label}}",
-      "option": "shortcuts"
-    },
-    "Acs*{}[]": {
-      "snippet": "Acs*{${1:label}}[${2:insert}]",
-      "option": "shortcuts"
-    },
-    "Acs*[]{}[]": {
-      "snippet": "Acs*[${2:options}]{${1:label}}[${3:insert}]",
-      "option": "shortcuts"
-    },
-    "acsp{}": {
-      "snippet": "acsp{${1:label}}",
-      "option": "shortcuts"
-    },
-    "acsp[]{}": {
-      "snippet": "acsp[${2:options}]{${1:label}}",
-      "option": "shortcuts"
-    },
-    "acsp{}[]": {
-      "snippet": "acsp{${1:label}}[${2:insert}]",
-      "option": "shortcuts"
-    },
-    "acsp[]{}[]": {
-      "snippet": "acsp[${2:options}]{${1:label}}[${3:insert}]",
-      "option": "shortcuts"
-    },
-    "acsp*{}": {
-      "snippet": "acsp*{${1:label}}",
-      "option": "shortcuts"
-    },
-    "acsp*[]{}": {
-      "snippet": "acsp*[${2:options}]{${1:label}}",
-      "option": "shortcuts"
-    },
-    "acsp*{}[]": {
-      "snippet": "acsp*{${1:label}}[${2:insert}]",
-      "option": "shortcuts"
-    },
-    "acsp*[]{}[]": {
-      "snippet": "acsp*[${2:options}]{${1:label}}[${3:insert}]",
-      "option": "shortcuts"
-    },
-    "Acsp{}": {
-      "snippet": "Acsp{${1:label}}",
-      "option": "shortcuts"
-    },
-    "Acsp[]{}": {
-      "snippet": "Acsp[${2:options}]{${1:label}}",
-      "option": "shortcuts"
-    },
-    "Acsp{}[]": {
-      "snippet": "Acsp{${1:label}}[${2:insert}]",
-      "option": "shortcuts"
-    },
-    "Acsp[]{}[]": {
-      "snippet": "Acsp[${2:options}]{${1:label}}[${3:insert}]",
-      "option": "shortcuts"
-    },
-    "Acsp*{}": {
-      "snippet": "Acsp*{${1:label}}",
-      "option": "shortcuts"
-    },
-    "Acsp*[]{}": {
-      "snippet": "Acsp*[${2:options}]{${1:label}}",
-      "option": "shortcuts"
-    },
-    "Acsp*{}[]": {
-      "snippet": "Acsp*{${1:label}}[${2:insert}]",
-      "option": "shortcuts"
-    },
-    "Acsp*[]{}[]": {
-      "snippet": "Acsp*[${2:options}]{${1:label}}[${3:insert}]",
-      "option": "shortcuts"
-    },
-    "acl{}": {
-      "snippet": "acl{${1:label}}",
-      "option": "shortcuts"
-    },
-    "acl[]{}": {
-      "snippet": "acl[${2:options}]{${1:label}}",
-      "option": "shortcuts"
-    },
-    "acl{}[]": {
-      "snippet": "acl{${1:label}}[${2:insert}]",
-      "option": "shortcuts"
-    },
-    "acl[]{}[]": {
-      "snippet": "acl[${2:options}]{${1:label}}[${3:insert}]",
-      "option": "shortcuts"
-    },
-    "acl*{}": {
-      "snippet": "acl*{${1:label}}",
-      "option": "shortcuts"
-    },
-    "acl*[]{}": {
-      "snippet": "acl*[${2:options}]{${1:label}}",
-      "option": "shortcuts"
-    },
-    "acl*{}[]": {
-      "snippet": "acl*{${1:label}}[${2:insert}]",
-      "option": "shortcuts"
-    },
-    "acl*[]{}[]": {
-      "snippet": "acl*[${2:options}]{${1:label}}[${3:insert}]",
-      "option": "shortcuts"
-    },
-    "Acl{}": {
-      "snippet": "Acl{${1:label}}",
-      "option": "shortcuts"
-    },
-    "Acl[]{}": {
-      "snippet": "Acl[${2:options}]{${1:label}}",
-      "option": "shortcuts"
-    },
-    "Acl{}[]": {
-      "snippet": "Acl{${1:label}}[${2:insert}]",
-      "option": "shortcuts"
-    },
-    "Acl[]{}[]": {
-      "snippet": "Acl[${2:options}]{${1:label}}[${3:insert}]",
-      "option": "shortcuts"
-    },
-    "Acl*{}": {
-      "snippet": "Acl*{${1:label}}",
-      "option": "shortcuts"
-    },
-    "Acl*[]{}": {
-      "snippet": "Acl*[${2:options}]{${1:label}}",
-      "option": "shortcuts"
-    },
-    "Acl*{}[]": {
-      "snippet": "Acl*{${1:label}}[${2:insert}]",
-      "option": "shortcuts"
-    },
-    "Acl*[]{}[]": {
-      "snippet": "Acl*[${2:options}]{${1:label}}[${3:insert}]",
-      "option": "shortcuts"
-    },
-    "aclp{}": {
-      "snippet": "aclp{${1:label}}",
-      "option": "shortcuts"
-    },
-    "aclp[]{}": {
-      "snippet": "aclp[${2:options}]{${1:label}}",
-      "option": "shortcuts"
-    },
-    "aclp{}[]": {
-      "snippet": "aclp{${1:label}}[${2:insert}]",
-      "option": "shortcuts"
-    },
-    "aclp[]{}[]": {
-      "snippet": "aclp[${2:options}]{${1:label}}[${3:insert}]",
-      "option": "shortcuts"
-    },
-    "aclp*{}": {
-      "snippet": "aclp*{${1:label}}",
-      "option": "shortcuts"
-    },
-    "aclp*[]{}": {
-      "snippet": "aclp*[${2:options}]{${1:label}}",
-      "option": "shortcuts"
-    },
-    "aclp*{}[]": {
-      "snippet": "aclp*{${1:label}}[${2:insert}]",
-      "option": "shortcuts"
-    },
-    "aclp*[]{}[]": {
-      "snippet": "aclp*[${2:options}]{${1:label}}[${3:insert}]",
-      "option": "shortcuts"
-    },
-    "Aclp{}": {
-      "snippet": "Aclp{${1:label}}",
-      "option": "shortcuts"
-    },
-    "Aclp[]{}": {
-      "snippet": "Aclp[${2:options}]{${1:label}}",
-      "option": "shortcuts"
-    },
-    "Aclp{}[]": {
-      "snippet": "Aclp{${1:label}}[${2:insert}]",
-      "option": "shortcuts"
-    },
-    "Aclp[]{}[]": {
-      "snippet": "Aclp[${2:options}]{${1:label}}[${3:insert}]",
-      "option": "shortcuts"
-    },
-    "Aclp*{}": {
-      "snippet": "Aclp*{${1:label}}",
-      "option": "shortcuts"
-    },
-    "Aclp*[]{}": {
-      "snippet": "Aclp*[${2:options}]{${1:label}}",
-      "option": "shortcuts"
-    },
-    "Aclp*{}[]": {
-      "snippet": "Aclp*{${1:label}}[${2:insert}]",
-      "option": "shortcuts"
-    },
-    "Aclp*[]{}[]": {
-      "snippet": "Aclp*[${2:options}]{${1:label}}[${3:insert}]",
-      "option": "shortcuts"
-    },
-    "acf{}": {
-      "snippet": "acf{${1:label}}",
-      "option": "shortcuts"
-    },
-    "acf[]{}": {
-      "snippet": "acf[${2:options}]{${1:label}}",
-      "option": "shortcuts"
-    },
-    "acf{}[]": {
-      "snippet": "acf{${1:label}}[${2:insert}]",
-      "option": "shortcuts"
-    },
-    "acf[]{}[]": {
-      "snippet": "acf[${2:options}]{${1:label}}[${3:insert}]",
-      "option": "shortcuts"
-    },
-    "acf*{}": {
-      "snippet": "acf*{${1:label}}",
-      "option": "shortcuts"
-    },
-    "acf*[]{}": {
-      "snippet": "acf*[${2:options}]{${1:label}}",
-      "option": "shortcuts"
-    },
-    "acf*{}[]": {
-      "snippet": "acf*{${1:label}}[${2:insert}]",
-      "option": "shortcuts"
-    },
-    "acf*[]{}[]": {
-      "snippet": "acf*[${2:options}]{${1:label}}[${3:insert}]",
-      "option": "shortcuts"
-    },
-    "Acf{}": {
-      "snippet": "Acf{${1:label}}",
-      "option": "shortcuts"
-    },
-    "Acf[]{}": {
-      "snippet": "Acf[${2:options}]{${1:label}}",
-      "option": "shortcuts"
-    },
-    "Acf{}[]": {
-      "snippet": "Acf{${1:label}}[${2:insert}]",
-      "option": "shortcuts"
-    },
-    "Acf[]{}[]": {
-      "snippet": "Acf[${2:options}]{${1:label}}[${3:insert}]",
-      "option": "shortcuts"
-    },
-    "Acf*{}": {
-      "snippet": "Acf*{${1:label}}",
-      "option": "shortcuts"
-    },
-    "Acf*[]{}": {
-      "snippet": "Acf*[${2:options}]{${1:label}}",
-      "option": "shortcuts"
-    },
-    "Acf*{}[]": {
-      "snippet": "Acf*{${1:label}}[${2:insert}]",
-      "option": "shortcuts"
-    },
-    "Acf*[]{}[]": {
-      "snippet": "Acf*[${2:options}]{${1:label}}[${3:insert}]",
-      "option": "shortcuts"
-    },
-    "acfp{}": {
-      "snippet": "acfp{${1:label}}",
-      "option": "shortcuts"
-    },
-    "acfp[]{}": {
-      "snippet": "acfp[${2:options}]{${1:label}}",
-      "option": "shortcuts"
-    },
-    "acfp{}[]": {
-      "snippet": "acfp{${1:label}}[${2:insert}]",
-      "option": "shortcuts"
-    },
-    "acfp[]{}[]": {
-      "snippet": "acfp[${2:options}]{${1:label}}[${3:insert}]",
-      "option": "shortcuts"
-    },
-    "acfp*{}": {
-      "snippet": "acfp*{${1:label}}",
-      "option": "shortcuts"
-    },
-    "acfp*[]{}": {
-      "snippet": "acfp*[${2:options}]{${1:label}}",
-      "option": "shortcuts"
-    },
-    "acfp*{}[]": {
-      "snippet": "acfp*{${1:label}}[${2:insert}]",
-      "option": "shortcuts"
-    },
-    "acfp*[]{}[]": {
-      "snippet": "acfp*[${2:options}]{${1:label}}[${3:insert}]",
-      "option": "shortcuts"
-    },
-    "Acfp{}": {
-      "snippet": "Acfp{${1:label}}",
-      "option": "shortcuts"
-    },
-    "Acfp[]{}": {
-      "snippet": "Acfp[${2:options}]{${1:label}}",
-      "option": "shortcuts"
-    },
-    "Acfp{}[]": {
-      "snippet": "Acfp{${1:label}}[${2:insert}]",
-      "option": "shortcuts"
-    },
-    "Acfp[]{}[]": {
-      "snippet": "Acfp[${2:options}]{${1:label}}[${3:insert}]",
-      "option": "shortcuts"
-    },
-    "Acfp*{}": {
-      "snippet": "Acfp*{${1:label}}",
-      "option": "shortcuts"
-    },
-    "Acfp*[]{}": {
-      "snippet": "Acfp*[${2:options}]{${1:label}}",
-      "option": "shortcuts"
-    },
-    "Acfp*{}[]": {
-      "snippet": "Acfp*{${1:label}}[${2:insert}]",
-      "option": "shortcuts"
-    },
-    "Acfp*[]{}[]": {
-      "snippet": "Acfp*[${2:options}]{${1:label}}[${3:insert}]",
-      "option": "shortcuts"
-    },
-    "ac{}": {
-      "snippet": "ac{${1:label}}",
-      "option": "shortcuts"
-    },
-    "ac[]{}": {
-      "snippet": "ac[${2:options}]{${1:label}}",
-      "option": "shortcuts"
-    },
-    "ac{}[]": {
-      "snippet": "ac{${1:label}}[${2:insert}]",
-      "option": "shortcuts"
-    },
-    "ac[]{}[]": {
-      "snippet": "ac[${2:options}]{${1:label}}[${3:insert}]",
-      "option": "shortcuts"
-    },
-    "Ac{}": {
-      "snippet": "Ac{${1:label}}",
-      "option": "shortcuts"
-    },
-    "Ac[]{}": {
-      "snippet": "Ac[${2:options}]{${1:label}}",
-      "option": "shortcuts"
-    },
-    "Ac{}[]": {
-      "snippet": "Ac{${1:label}}[${2:insert}]",
-      "option": "shortcuts"
-    },
-    "Ac[]{}[]": {
-      "snippet": "Ac[${2:options}]{${1:label}}[${3:insert}]",
-      "option": "shortcuts"
-    },
-    "ac*{}": {
-      "snippet": "ac*{${1:label}}",
-      "option": "shortcuts"
-    },
-    "ac*[]{}": {
-      "snippet": "ac*[${2:options}]{${1:label}}",
-      "option": "shortcuts"
-    },
-    "ac*{}[]": {
-      "snippet": "ac*{${1:label}}[${2:insert}]",
-      "option": "shortcuts"
-    },
-    "ac*[]{}[]": {
-      "snippet": "ac*[${2:options}]{${1:label}}[${3:insert}]",
-      "option": "shortcuts"
-    },
-    "Ac*{}": {
-      "snippet": "Ac*{${1:label}}",
-      "option": "shortcuts"
-    },
-    "Ac*[]{}": {
-      "snippet": "Ac*[${2:options}]{${1:label}}",
-      "option": "shortcuts"
-    },
-    "Ac*{}[]": {
-      "snippet": "Ac*{${1:label}}[${2:insert}]",
-      "option": "shortcuts"
-    },
-    "Ac*[]{}[]": {
-      "snippet": "Ac*[${2:options}]{${1:label}}[${3:insert}]",
-      "option": "shortcuts"
-    },
-    "acp{}": {
-      "snippet": "acp{${1:label}}",
-      "option": "shortcuts"
-    },
-    "acp[]{}": {
-      "snippet": "acp[${2:options}]{${1:label}}",
-      "option": "shortcuts"
-    },
-    "acp{}[]": {
-      "snippet": "acp{${1:label}}[${2:insert}]",
-      "option": "shortcuts"
-    },
-    "acp[]{}[]": {
-      "snippet": "acp[${2:options}]{${1:label}}[${3:insert}]",
-      "option": "shortcuts"
-    },
-    "Acp{}": {
-      "snippet": "Acp{${1:label}}",
-      "option": "shortcuts"
-    },
-    "Acp[]{}": {
-      "snippet": "Acp[${2:options}]{${1:label}}",
-      "option": "shortcuts"
-    },
-    "Acp{}[]": {
-      "snippet": "Acp{${1:label}}[${2:insert}]",
-      "option": "shortcuts"
-    },
-    "Acp[]{}[]": {
-      "snippet": "Acp[${2:options}]{${1:label}}[${3:insert}]",
-      "option": "shortcuts"
-    },
-    "acp*{}": {
-      "snippet": "acp*{${1:label}}",
-      "option": "shortcuts"
-    },
-    "acp*[]{}": {
-      "snippet": "acp*[${2:options}]{${1:label}}",
-      "option": "shortcuts"
-    },
-    "acp*{}[]": {
-      "snippet": "acp*{${1:label}}[${2:insert}]",
-      "option": "shortcuts"
-    },
-    "acp*[]{}[]": {
-      "snippet": "acp*[${2:options}]{${1:label}}[${3:insert}]",
-      "option": "shortcuts"
-    },
-    "Acp*{}": {
-      "snippet": "Acp*{${1:label}}",
-      "option": "shortcuts"
-    },
-    "Acp*[]{}": {
-      "snippet": "Acp*[${2:options}]{${1:label}}",
-      "option": "shortcuts"
-    },
-    "Acp*{}[]": {
-      "snippet": "Acp*{${1:label}}[${2:insert}]",
-      "option": "shortcuts"
-    },
-    "Acp*[]{}[]": {
-      "snippet": "Acp*[${2:options}]{${1:label}}[${3:insert}]",
-      "option": "shortcuts"
-    },
-    "GlsAddXdyStyle{}": {
-      "snippet": "GlsAddXdyStyle{${1:style-name}}",
-      "option": "xindy"
-    },
-    "GlsSetXdyStyles{}": {
-      "snippet": "GlsSetXdyStyles{${1:style name list}}",
-      "option": "xindy"
-    },
-    "GlsSetXdyLanguage{}": {
-      "snippet": "GlsSetXdyLanguage{${1:language}}",
-      "option": "xindy"
-    },
-    "GlsSetXdyLanguage[]{}": {
-      "snippet": "GlsSetXdyLanguage[${2:glossary-type}]{${1:language}}",
-      "option": "xindy"
-    },
-    "GlsSetXdyCodePage{}": {
-      "snippet": "GlsSetXdyCodePage{${1:codepage}}",
-      "option": "xindy"
-    },
-    "GlsAddXdyCounters{}": {
-      "snippet": "GlsAddXdyCounters{${1:counter list}}",
-      "option": "xindy"
-    },
-    "GlsAddXdyAttribute{}": {
-      "snippet": "GlsAddXdyAttribute{${1:name}}",
-      "option": "xindy"
-    },
-    "GlsAddXdyLocation{}{}": {
-      "snippet": "GlsAddXdyLocation{${1:name}}{${2:definition}}",
-      "option": "xindy"
-    },
-    "GlsAddXdyLocation[]{}{}": {
-      "snippet": "GlsAddXdyLocation[${3:H-prefix}]{${1:name}}{${2:definition}}",
-      "option": "xindy"
-    },
-    "GlsSetXdyLocationClassOrder{}": {
-      "snippet": "GlsSetXdyLocationClassOrder{${1:location names}}",
-      "option": "xindy"
-    },
-    "GlsSetXdyMinRangeLength{}": {
-      "snippet": "GlsSetXdyMinRangeLength{${1:integer}}",
-      "option": "xindy"
-    },
-    "GlsSetXdyFirstLetterAfterDigits{}": {
-      "snippet": "GlsSetXdyFirstLetterAfterDigits{${1:letter}}",
-      "option": "xindy"
-    },
-    "GlsSetXdyNumberGroupOrder{}": {
-      "snippet": "GlsSetXdyNumberGroupOrder{${1:relative location}}",
-      "option": "xindy"
-    },
-    "GlsAddLetterGroup{}{}": {
-      "snippet": "GlsAddLetterGroup{${1:name}}{${2:xindy code}}",
-      "option": "xindy"
-    },
-    "GlsAddSortRule{}{}": {
-      "snippet": "GlsAddSortRule{${1:arg1}}{${2:arg2}}",
-      "option": "xindy"
-    },
-    "GlsAddXdyAlphabet{}{}": {
-      "snippet": "GlsAddXdyAlphabet{${1:name}}{${2:definition}}",
-      "option": "xindy"
-    },
-    "glsdefaultshortaccess{}{}": {
-      "snippet": "glsdefaultshortaccess{${1:long}}{${2:short}}"
-    },
-    "glsaccsupp{}{}": {
-      "snippet": "glsaccsupp{${1:replacement}}{${2:content}}"
-    },
-    "xglsaccsupp{}{}": {
-      "snippet": "xglsaccsupp{${1:replacement}}{${2:content}}"
-    },
-    "glsfieldaccsupp{}{}{}{}": {
-      "snippet": "glsfieldaccsupp{${1:replacement}}{${2:content}}{${3:field}}{${4:label}}"
-    },
-    "xglsfieldaccsupp{}{}{}{}": {
-      "snippet": "xglsfieldaccsupp{${1:replacement}}{${2:content}}{${3:field}}{${4:label}}"
-    },
-    "glsshortaccsupp{}{}": {
-      "snippet": "glsshortaccsupp{${1:replacement}}{${2:content}}"
-    },
-    "glsshortplaccsupp{}{}": {
-      "snippet": "glsshortplaccsupp{${1:replacement}}{${2:content}}"
-    },
-    "glsaccessibility{}{}{}": {
-      "snippet": "glsaccessibility{${1:tag}}{${2:value}}{${3:content}}"
-    },
-    "glsaccessibility[]{}{}{}": {
-      "snippet": "glsaccessibility[${4:options}]{${1:tag}}{${2:value}}{${3:content}}"
-    },
-    "glsentryaccess{}": {
-      "snippet": "glsentryaccess{${1:label}}"
-    },
-    "glsentrytextaccess{}": {
-      "snippet": "glsentrytextaccess{${1:label}}"
-    },
-    "glsentryfirstaccess{}": {
-      "snippet": "glsentryfirstaccess{${1:label}}"
-    },
-    "glsentrypluralaccess{}": {
-      "snippet": "glsentrypluralaccess{${1:label}}"
-    },
-    "glsentryfirstpluralaccess{}": {
-      "snippet": "glsentryfirstpluralaccess{${1:label}}"
-    },
-    "glsentrysymbolaccess{}": {
-      "snippet": "glsentrysymbolaccess{${1:label}}"
-    },
-    "glsentrysymbolpluralaccess{}": {
-      "snippet": "glsentrysymbolpluralaccess{${1:label}}"
-    },
-    "glsentrydescaccess{}": {
-      "snippet": "glsentrydescaccess{${1:label}}"
-    },
-    "glsentrydescpluralaccess{}": {
-      "snippet": "glsentrydescpluralaccess{${1:label}}"
-    },
-    "glsentryshortaccess{}": {
-      "snippet": "glsentryshortaccess{${1:label}}"
-    },
-    "glsentryshortpluralaccess{}": {
-      "snippet": "glsentryshortpluralaccess{${1:label}}"
-    },
-    "glsentrylongaccess{}": {
-      "snippet": "glsentrylongaccess{${1:label}}"
-    },
-    "glsentrylongpluralaccess{}": {
-      "snippet": "glsentrylongpluralaccess{${1:label}}"
-    },
-    "glsentryuseriaccess{}": {
-      "snippet": "glsentryuseriaccess{${1:label}}"
-    },
-    "glsentryuseriiaccess{}": {
-      "snippet": "glsentryuseriiaccess{${1:label}}"
-    },
-    "glsentryuseriiiaccess{}": {
-      "snippet": "glsentryuseriiiaccess{${1:label}}"
-    },
-    "glsentryuserivaccess{}": {
-      "snippet": "glsentryuserivaccess{${1:label}}"
-    },
-    "glsentryuservaccess{}": {
-      "snippet": "glsentryuservaccess{${1:label}}"
-    },
-    "glsentryuserviaccess{}": {
-      "snippet": "glsentryuserviaccess{${1:label}}"
-    },
-    "glsnameaccessdisplay{}{}": {
-      "snippet": "glsnameaccessdisplay{${1:text}}{${2:label}}"
-    },
-    "glstextaccessdisplay{}{}": {
-      "snippet": "glstextaccessdisplay{${1:text}}{${2:label}}"
-    },
-    "glspluralaccessdisplay{}{}": {
-      "snippet": "glspluralaccessdisplay{${1:text}}{${2:label}}"
-    },
-    "glsfirstaccessdisplay{}{}": {
-      "snippet": "glsfirstaccessdisplay{${1:text}}{${2:label}}"
-    },
-    "glsfirstpluralaccessdisplay{}{}": {
-      "snippet": "glsfirstpluralaccessdisplay{${1:text}}{${2:label}}"
-    },
-    "glssymbolaccessdisplay{}{}": {
-      "snippet": "glssymbolaccessdisplay{${1:text}}{${2:label}}"
-    },
-    "glssymbolpluralaccessdisplay{}{}": {
-      "snippet": "glssymbolpluralaccessdisplay{${1:text}}{${2:label}}"
-    },
-    "glsdescriptionaccessdisplay{}{}": {
-      "snippet": "glsdescriptionaccessdisplay{${1:text}}{${2:label}}"
-    },
-    "glsdescriptionpluralaccessdisplay{}{}": {
-      "snippet": "glsdescriptionpluralaccessdisplay{${1:text}}{${2:label}}"
-    },
-    "glsshortaccessdisplay{}{}": {
-      "snippet": "glsshortaccessdisplay{${1:text}}{${2:label}}"
-    },
-    "glsshortpluralaccessdisplay{}{}": {
-      "snippet": "glsshortpluralaccessdisplay{${1:text}}{${2:label}}"
-    },
-    "glslongaccessdisplay{}{}": {
-      "snippet": "glslongaccessdisplay{${1:text}}{${2:label}}"
-    },
-    "glslongpluralaccessdisplay{}{}": {
-      "snippet": "glslongpluralaccessdisplay{${1:text}}{${2:label}}"
-    },
-    "glsuseriaccessdisplay{}{}": {
-      "snippet": "glsuseriaccessdisplay{${1:text}}{${2:label}}"
-    },
-    "glsuseriiaccessdisplay{}{}": {
-      "snippet": "glsuseriiaccessdisplay{${1:text}}{${2:label}}"
-    },
-    "glsuseriiiaccessdisplay{}{}": {
-      "snippet": "glsuseriiiaccessdisplay{${1:text}}{${2:label}}"
-    },
-    "glsuserivaccessdisplay{}{}": {
-      "snippet": "glsuserivaccessdisplay{${1:text}}{${2:label}}"
-    },
-    "glsuservaccessdisplay{}{}": {
-      "snippet": "glsuservaccessdisplay{${1:text}}{${2:label}}"
-    },
-    "glsuserviaccessdisplay{}{}": {
-      "snippet": "glsuserviaccessdisplay{${1:text}}{${2:label}}"
-    },
-    "glsaccessdisplay{}{}": {
-      "snippet": "glsaccessdisplay{${1:text}}{${2:label}}"
-    },
-    "accsuppglossaryentryfield{}{}{}{}{}": {
-      "snippet": "accsuppglossaryentryfield{${1:label}}{${2:name}}{${3:description}}{${4:symbol}}{${5:page-list}}"
-    },
-    "accsuppglossarysubentryfield{}{}{}{}{}{}": {
-      "snippet": "accsuppglossarysubentryfield{${1:level}}{${2:label}}{${3:name}}{${4:description}}{${5:symbol}}{${6:page-list}}"
-    },
-    "showglonameaccess{}": {
-      "snippet": "showglonameaccess{${1:label}}"
-    },
-    "showglotextaccess{}": {
-      "snippet": "showglotextaccess{${1:label}}"
-    },
-    "showglopluralaccess{}": {
-      "snippet": "showglopluralaccess{${1:label}}"
-    },
-    "showglofirstaccess{}": {
-      "snippet": "showglofirstaccess{${1:label}}"
-    },
-    "showglosymbolaccess{}": {
-      "snippet": "showglosymbolaccess{${1:label}}"
-    },
-    "showglosymbolpluralaccess{}": {
-      "snippet": "showglosymbolpluralaccess{${1:label}}"
-    },
-    "showglodescaccess{}": {
-      "snippet": "showglodescaccess{${1:label}}"
-    },
-    "showglodescpluralaccess{}": {
-      "snippet": "showglodescpluralaccess{${1:label}}"
-    },
-    "showgloshortaccess{}": {
-      "snippet": "showgloshortaccess{${1:label}}"
-    },
-    "showgloshortpluralaccess{}": {
-      "snippet": "showgloshortpluralaccess{${1:label}}"
-    },
-    "showglolongaccess{}": {
-      "snippet": "showglolongaccess{${1:label}}"
-    },
-    "showglolongpluralaccess{}": {
-      "snippet": "showglolongpluralaccess{${1:label}}"
+  "deps": [
+    {
+      "name": "glossaries"
+    },
+    {
+      "name": "accsupp"
+    },
+    {
+      "name": "translator",
+      "if": "translate"
+    },
+    {
+      "name": "tracklang",
+      "if": "translate"
+    },
+    {
+      "name": "translator",
+      "if": "translate=true"
+    },
+    {
+      "name": "tracklang",
+      "if": "translate=true"
+    },
+    {
+      "name": "glossaries-babel",
+      "if": "translate=babel"
     }
-  },
-  "envs": {},
-  "options": [
-    "nowarn",
-    "nolangwarn",
-    "noredefwarn",
-    "translate=${1|true,false,babel|}",
-    "notranslate",
-    "languages=${1:language}",
-    "nolong",
-    "nosuper",
-    "nolist",
-    "notree",
-    "nostyles",
-    "makeindex",
-    "xindy",
-    "xindy={${1:options}}",
-    "xindygloss",
-    "xindynoglsnumbers",
-    "acronym",
-    "acronyms",
-    "debug=${1|false,true,showtargets,showaccsupp|}",
-    "savewrites",
-    "hyperfirst",
-    "writeglslabels",
-    "writeglslabelnames",
-    "toc",
-    "numberline",
-    "section=${1:section unit}",
-    "ucmark",
-    "numberedsection=${1|false,nolabel,autolabel|}",
-    "savenumberlist",
-    "entrycounter",
-    "counterwithin=${1:counter}",
-    "subentrycounter",
-    "style=${1:style-name}",
-    "nonumberlist",
-    "seeautonumberlist",
-    "counter=${1:counter}",
-    "nopostdot",
-    "nogroupskip",
-    "seenoindex=${1|error,warn,ignore|}",
-    "esclocations",
-    "indexonlyfirst",
-    "sanitizesort",
-    "sort=${1|none,clear,def,use,standard|}",
-    "order=${1|word,letter|}",
-    "automake=${1|false,delayed,immediate,makegloss,lite|}",
-    "automakegloss",
-    "automakeglosslite",
-    "disablemakegloss",
-    "restoremakegloss",
-    "nohypertypes={${1:list}}",
-    "symbols",
-    "numbers",
-    "index",
-    "noglossaryindex",
-    "acronymlists={${1:label-list}}",
-    "shortcuts",
-    "mfirstuc=${1|expanded,unexpanded|}",
-    "kernelglossredefs=${1|false,true,nowarn|}"
   ],
-  "keyvals": [
-    [
-      "access=${1:text}",
-      "textaccess=${1:text}",
-      "firstaccess=${1:text}",
-      "pluralaccess=${1:text}",
-      "firstpluralaccess=${1:text}",
-      "symbolaccess=${1:text}",
-      "symbolpluralaccess=${1:text}",
-      "descriptionaccess=${1:text}",
-      "descriptionpluralaccess=${1:text}",
-      "longaccess=${1:text}",
-      "shortaccess=${1:text}",
-      "longpluralaccess=${1:text}",
-      "shortpluralaccess=${1:text}",
-      "user1access=${1:text}",
-      "user2access=${1:text}",
-      "user3access=${1:text}",
-      "user4access=${1:text}",
-      "user5access=${1:text}",
-      "user6access=${1:text}"
+  "macros": [
+    {
+      "name": "printsymbols",
+      "if": "symbols"
+    },
+    {
+      "name": "printsymbols",
+      "if": "symbols",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "printnumbers",
+      "if": "numbers"
+    },
+    {
+      "name": "printnumbers",
+      "if": "numbers",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "newterm",
+      "if": "index",
+      "arg": {
+        "format": "{term{",
+        "snippet": "{term{"
+      }
+    },
+    {
+      "name": "newterm",
+      "if": "index",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:term}}"
+      }
+    },
+    {
+      "name": "printindex",
+      "if": "index"
+    },
+    {
+      "name": "printindex",
+      "if": "index",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "printacronyms",
+      "if": "acronym"
+    },
+    {
+      "name": "printacronyms",
+      "if": "acronym",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "printacronyms",
+      "if": "acronym=true"
+    },
+    {
+      "name": "printacronyms",
+      "if": "acronym=true",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "printacronyms",
+      "if": "acronyms"
+    },
+    {
+      "name": "printacronyms",
+      "if": "acronyms",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "acs",
+      "if": "shortcuts",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "acs",
+      "if": "shortcuts",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:label}}"
+      }
+    },
+    {
+      "name": "acs",
+      "if": "shortcuts",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:label}}[${2:insert}]"
+      }
+    },
+    {
+      "name": "acs",
+      "if": "shortcuts",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+      }
+    },
+    {
+      "name": "Acs",
+      "if": "shortcuts",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "Acs",
+      "if": "shortcuts",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:label}}"
+      }
+    },
+    {
+      "name": "Acs",
+      "if": "shortcuts",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:label}}[${2:insert}]"
+      }
+    },
+    {
+      "name": "Acs",
+      "if": "shortcuts",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+      }
+    },
+    {
+      "name": "acsp",
+      "if": "shortcuts",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "acsp",
+      "if": "shortcuts",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:label}}"
+      }
+    },
+    {
+      "name": "acsp",
+      "if": "shortcuts",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:label}}[${2:insert}]"
+      }
+    },
+    {
+      "name": "acsp",
+      "if": "shortcuts",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+      }
+    },
+    {
+      "name": "Acsp",
+      "if": "shortcuts",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "Acsp",
+      "if": "shortcuts",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:label}}"
+      }
+    },
+    {
+      "name": "Acsp",
+      "if": "shortcuts",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:label}}[${2:insert}]"
+      }
+    },
+    {
+      "name": "Acsp",
+      "if": "shortcuts",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+      }
+    },
+    {
+      "name": "acl",
+      "if": "shortcuts",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "acl",
+      "if": "shortcuts",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:label}}"
+      }
+    },
+    {
+      "name": "acl",
+      "if": "shortcuts",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:label}}[${2:insert}]"
+      }
+    },
+    {
+      "name": "acl",
+      "if": "shortcuts",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+      }
+    },
+    {
+      "name": "Acl",
+      "if": "shortcuts",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "Acl",
+      "if": "shortcuts",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:label}}"
+      }
+    },
+    {
+      "name": "Acl",
+      "if": "shortcuts",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:label}}[${2:insert}]"
+      }
+    },
+    {
+      "name": "Acl",
+      "if": "shortcuts",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+      }
+    },
+    {
+      "name": "aclp",
+      "if": "shortcuts",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "aclp",
+      "if": "shortcuts",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:label}}"
+      }
+    },
+    {
+      "name": "aclp",
+      "if": "shortcuts",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:label}}[${2:insert}]"
+      }
+    },
+    {
+      "name": "aclp",
+      "if": "shortcuts",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+      }
+    },
+    {
+      "name": "Aclp",
+      "if": "shortcuts",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "Aclp",
+      "if": "shortcuts",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:label}}"
+      }
+    },
+    {
+      "name": "Aclp",
+      "if": "shortcuts",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:label}}[${2:insert}]"
+      }
+    },
+    {
+      "name": "Aclp",
+      "if": "shortcuts",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+      }
+    },
+    {
+      "name": "acf",
+      "if": "shortcuts",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "acf",
+      "if": "shortcuts",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:label}}"
+      }
+    },
+    {
+      "name": "acf",
+      "if": "shortcuts",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:label}}[${2:insert}]"
+      }
+    },
+    {
+      "name": "acf",
+      "if": "shortcuts",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+      }
+    },
+    {
+      "name": "Acf",
+      "if": "shortcuts",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "Acf",
+      "if": "shortcuts",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:label}}"
+      }
+    },
+    {
+      "name": "Acf",
+      "if": "shortcuts",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:label}}[${2:insert}]"
+      }
+    },
+    {
+      "name": "Acf",
+      "if": "shortcuts",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+      }
+    },
+    {
+      "name": "acfp",
+      "if": "shortcuts",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "acfp",
+      "if": "shortcuts",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:label}}"
+      }
+    },
+    {
+      "name": "acfp",
+      "if": "shortcuts",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:label}}[${2:insert}]"
+      }
+    },
+    {
+      "name": "acfp",
+      "if": "shortcuts",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+      }
+    },
+    {
+      "name": "Acfp",
+      "if": "shortcuts",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "Acfp",
+      "if": "shortcuts",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:label}}"
+      }
+    },
+    {
+      "name": "Acfp",
+      "if": "shortcuts",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:label}}[${2:insert}]"
+      }
+    },
+    {
+      "name": "Acfp",
+      "if": "shortcuts",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+      }
+    },
+    {
+      "name": "ac",
+      "if": "shortcuts",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "ac",
+      "if": "shortcuts",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:label}}"
+      }
+    },
+    {
+      "name": "ac",
+      "if": "shortcuts",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:label}}[${2:insert}]"
+      }
+    },
+    {
+      "name": "ac",
+      "if": "shortcuts",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+      }
+    },
+    {
+      "name": "Ac",
+      "if": "shortcuts",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "Ac",
+      "if": "shortcuts",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:label}}"
+      }
+    },
+    {
+      "name": "Ac",
+      "if": "shortcuts",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:label}}[${2:insert}]"
+      }
+    },
+    {
+      "name": "Ac",
+      "if": "shortcuts",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+      }
+    },
+    {
+      "name": "acp",
+      "if": "shortcuts",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "acp",
+      "if": "shortcuts",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:label}}"
+      }
+    },
+    {
+      "name": "acp",
+      "if": "shortcuts",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:label}}[${2:insert}]"
+      }
+    },
+    {
+      "name": "acp",
+      "if": "shortcuts",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+      }
+    },
+    {
+      "name": "Acp",
+      "if": "shortcuts",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "Acp",
+      "if": "shortcuts",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:label}}"
+      }
+    },
+    {
+      "name": "Acp",
+      "if": "shortcuts",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:label}}[${2:insert}]"
+      }
+    },
+    {
+      "name": "Acp",
+      "if": "shortcuts",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+      }
+    },
+    {
+      "name": "GlsAddXdyStyle",
+      "if": "xindy",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:style-name}}"
+      }
+    },
+    {
+      "name": "GlsSetXdyStyles",
+      "if": "xindy",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:style name list}}"
+      }
+    },
+    {
+      "name": "GlsSetXdyLanguage",
+      "if": "xindy",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "GlsSetXdyLanguage",
+      "if": "xindy",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:glossary-type}]{${1:language}}"
+      }
+    },
+    {
+      "name": "GlsSetXdyCodePage",
+      "if": "xindy",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:codepage}}"
+      }
+    },
+    {
+      "name": "GlsAddXdyCounters",
+      "if": "xindy",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter list}}"
+      }
+    },
+    {
+      "name": "GlsAddXdyAttribute",
+      "if": "xindy",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "GlsAddXdyLocation",
+      "if": "xindy",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "GlsAddXdyLocation",
+      "if": "xindy",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:H-prefix}]{${1:name}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "GlsSetXdyLocationClassOrder",
+      "if": "xindy",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:location names}}"
+      }
+    },
+    {
+      "name": "GlsSetXdyMinRangeLength",
+      "if": "xindy",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:integer}}"
+      }
+    },
+    {
+      "name": "GlsSetXdyFirstLetterAfterDigits",
+      "if": "xindy",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:letter}}"
+      }
+    },
+    {
+      "name": "GlsSetXdyNumberGroupOrder",
+      "if": "xindy",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:relative location}}"
+      }
+    },
+    {
+      "name": "GlsAddLetterGroup",
+      "if": "xindy",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:xindy code}}"
+      }
+    },
+    {
+      "name": "GlsAddSortRule",
+      "if": "xindy",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "GlsAddXdyAlphabet",
+      "if": "xindy",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "glsdefaultshortaccess",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:long}}{${2:short}}"
+      }
+    },
+    {
+      "name": "glsaccsupp",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:replacement}}{${2:content}}"
+      }
+    },
+    {
+      "name": "xglsaccsupp",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:replacement}}{${2:content}}"
+      }
+    },
+    {
+      "name": "glsfieldaccsupp",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:replacement}}{${2:content}}{${3:field}}{${4:label}}"
+      }
+    },
+    {
+      "name": "xglsfieldaccsupp",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:replacement}}{${2:content}}{${3:field}}{${4:label}}"
+      }
+    },
+    {
+      "name": "glsshortaccsupp",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:replacement}}{${2:content}}"
+      }
+    },
+    {
+      "name": "glsshortplaccsupp",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:replacement}}{${2:content}}"
+      }
+    },
+    {
+      "name": "glsaccessibility",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:tag}}{${2:value}}{${3:content}}"
+      }
+    },
+    {
+      "name": "glsaccessibility",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:options}]{${1:tag}}{${2:value}}{${3:content}}"
+      }
+    },
+    {
+      "name": "glsentryaccess",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "glsentrytextaccess",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "glsentryfirstaccess",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "glsentrypluralaccess",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "glsentryfirstpluralaccess",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "glsentrysymbolaccess",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "glsentrysymbolpluralaccess",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "glsentrydescaccess",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "glsentrydescpluralaccess",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "glsentryshortaccess",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "glsentryshortpluralaccess",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "glsentrylongaccess",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "glsentrylongpluralaccess",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "glsentryuseriaccess",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "glsentryuseriiaccess",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "glsentryuseriiiaccess",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "glsentryuserivaccess",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "glsentryuservaccess",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "glsentryuserviaccess",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "glsnameaccessdisplay",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:label}}"
+      }
+    },
+    {
+      "name": "glstextaccessdisplay",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:label}}"
+      }
+    },
+    {
+      "name": "glspluralaccessdisplay",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:label}}"
+      }
+    },
+    {
+      "name": "glsfirstaccessdisplay",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:label}}"
+      }
+    },
+    {
+      "name": "glsfirstpluralaccessdisplay",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:label}}"
+      }
+    },
+    {
+      "name": "glssymbolaccessdisplay",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:label}}"
+      }
+    },
+    {
+      "name": "glssymbolpluralaccessdisplay",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:label}}"
+      }
+    },
+    {
+      "name": "glsdescriptionaccessdisplay",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:label}}"
+      }
+    },
+    {
+      "name": "glsdescriptionpluralaccessdisplay",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:label}}"
+      }
+    },
+    {
+      "name": "glsshortaccessdisplay",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:label}}"
+      }
+    },
+    {
+      "name": "glsshortpluralaccessdisplay",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:label}}"
+      }
+    },
+    {
+      "name": "glslongaccessdisplay",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:label}}"
+      }
+    },
+    {
+      "name": "glslongaccessdisplay",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:label}}"
+      }
+    },
+    {
+      "name": "glslongpluralaccessdisplay",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:label}}"
+      }
+    },
+    {
+      "name": "glsuseriaccessdisplay",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:label}}"
+      }
+    },
+    {
+      "name": "glsuseriiaccessdisplay",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:label}}"
+      }
+    },
+    {
+      "name": "glsuseriiiaccessdisplay",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:label}}"
+      }
+    },
+    {
+      "name": "glsuserivaccessdisplay",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:label}}"
+      }
+    },
+    {
+      "name": "glsuservaccessdisplay",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:label}}"
+      }
+    },
+    {
+      "name": "glsuserviaccessdisplay",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:label}}"
+      }
+    },
+    {
+      "name": "glsaccessdisplay",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:label}}"
+      }
+    },
+    {
+      "name": "accsuppglossaryentryfield",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:label}}{${2:name}}{${3:description}}{${4:symbol}}{${5:page-list}}"
+      }
+    },
+    {
+      "name": "accsuppglossarysubentryfield",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "{${1:level}}{${2:label}}{${3:name}}{${4:description}}{${5:symbol}}{${6:page-list}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/glossaries-accsupp#c": [
+      "nowarn\r",
+      "nolangwarn\r",
+      "noredefwarn\r",
+      "translate=${1|true,false,babel\r|}",
+      "notranslate\r",
+      "languages=${1:language}\r",
+      "nolong\r",
+      "nosuper\r",
+      "nolist\r",
+      "notree\r",
+      "nostyles\r",
+      "makeindex\r",
+      "xindy\r",
+      "xindy={${1:options}}\r",
+      "xindygloss\r",
+      "xindynoglsnumbers\r",
+      "acronym",
+      "acronyms\r",
+      "debug=${1|false,true,showtargets,showaccsupp\r|}",
+      "savewrites",
+      "hyperfirst",
+      "writeglslabels\r",
+      "writeglslabelnames\r",
+      "toc",
+      "numberline",
+      "section=${1:section unit}\r",
+      "ucmark",
+      "numberedsection=${1|false,nolabel,autolabel\r|}",
+      "savenumberlist",
+      "entrycounter",
+      "counterwithin=${1:counter}\r",
+      "subentrycounter",
+      "style=${1:style-name}\r",
+      "nonumberlist\r",
+      "seeautonumberlist\r",
+      "counter=${1:counter}\r",
+      "nopostdot",
+      "nogroupskip",
+      "seenoindex=${1|error,warn,ignore\r|}",
+      "esclocations",
+      "indexonlyfirst",
+      "sanitizesort",
+      "sort=${1|none,clear,def,use,standard\r|}",
+      "order=${1|word,letter\r|}",
+      "automake=${1|false,delayed,immediate,makegloss,lite\r|}",
+      "automakegloss\r",
+      "automakeglosslite\r",
+      "disablemakegloss\r",
+      "restoremakegloss\r",
+      "nohypertypes={${1:list}}\r",
+      "symbols\r",
+      "numbers\r",
+      "index\r",
+      "noglossaryindex\r",
+      "acronymlists={${1:label-list}}\r",
+      "shortcuts",
+      "mfirstuc=${1|expanded,unexpanded\r|}",
+      "kernelglossredefs=${1|false,true,nowarn\r|}"
+    ],
+    "\\newglossaryentry#c,\\longnewglossaryentry#c,\\provideglossaryentry#c,\\longprovideglossaryentry#c,\\newacronym#c,\\newterm#c,\\longnewglossaryentry*#c,\\newentry#c,\\newabbr#c,\\newsym#c,\\newnum#c,\\glsxtrnewsymbol#c,\\glsxtrnewnumber#c,\\newabbreviation#c": [
+      "access=${1:text}\r",
+      "textaccess=${1:text}\r",
+      "firstaccess=${1:text}\r",
+      "pluralaccess=${1:text}\r",
+      "firstpluralaccess=${1:text}\r",
+      "symbolaccess=${1:text}\r",
+      "symbolpluralaccess=${1:text}\r",
+      "descriptionaccess=${1:text}\r",
+      "descriptionpluralaccess=${1:text}\r",
+      "longaccess=${1:text}\r",
+      "shortaccess=${1:text}\r",
+      "longpluralaccess=${1:text}\r",
+      "shortpluralaccess=${1:text}\r",
+      "user1access=${1:text}\r",
+      "user2access=${1:text}\r",
+      "user3access=${1:text}\r",
+      "user4access=${1:text}\r",
+      "user5access=${1:text}\r",
+      "user6access=${1:text}\r"
     ]
+  },
+  "args": [
+    "\\usepackage/glossaries-accsupp#c"
   ]
 }

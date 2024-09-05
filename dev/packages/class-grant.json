@@ -1,178 +1,487 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "class-book": [],
-    "babel": [],
-    "inputenc": [],
-    "fontenc": [],
-    "uarial": [],
-    "ulem": [],
-    "soul": [],
-    "xcolor": [],
-    "framed": [],
-    "setspace": [],
-    "geometry": [],
-    "titlesec": [],
-    "chappg": [],
-    "fancyhdr": [],
-    "paralist": [],
-    "enumitem": [],
-    "hyphenat": [],
-    "biblatex": [],
-    "graphicx": [],
-    "caption": [],
-    "hyperref": [],
-    "tabularx": [],
-    "longtable": [],
-    "ltxtable": [],
-    "placeins": [],
-    "pdfpages": [],
-    "lineno": [],
-    "booktabs": [],
-    "wrapfig": [],
-    "amsmath": [],
-    "csquotes": [],
-    "pdfcomment": [],
-    "multicol": []
-  },
-  "macros": {
-    "AbstractName": {},
-    "AbstractOtherPersonnelName": {},
-    "AdminAddress": {},
-    "AdminEmail": {},
-    "AdminFax": {},
-    "AdminInstitution": {},
-    "AdminName": {},
-    "AdminPhone": {},
-    "AdminTitle": {},
-    "chapternonum[]{}": {
-      "snippet": "chapternonum[${2:secunit}]{${1:title}}"
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "chapternonum{}": {
-      "snippet": "chapternonum{${1:title}}"
+    {
+      "name": "class-book"
     },
-    "chapternotitle{}": {
-      "snippet": "chapternotitle{${1:title}}"
+    {
+      "name": "babel"
     },
-    "dontcite{}": {
-      "snippet": "dontcite{${1:bibid}}"
+    {
+      "name": "inputenc"
     },
-    "fntsiz": {},
-    "FundingAgency": {},
-    "FundingDeadline": {},
-    "FundingId": {},
-    "FundingIdTitle": {},
-    "FundingTitle": {},
-    "FundingUrl": {},
-    "LeadOrganizationAddress": {},
-    "LeadOrganizationCAGE": {},
-    "LeadOrganizationDUNS": {},
-    "LeadOrganizationName": {},
-    "LeadOrganizationTIN": {},
-    "makeabstractcoverpage": {},
-    "makecoverpage": {},
-    "oldcite{}": {
-      "snippet": "oldcite{${1:bibid}}"
+    {
+      "name": "fontenc"
     },
-    "OtherKeyPersonnel": {},
-    "partnonum[]{}": {
-      "snippet": "partnonum[${2:secunit}]{${1:title}}"
+    {
+      "name": "uarial"
     },
-    "partnonum{}": {
-      "snippet": "partnonum{${1:title}}"
+    {
+      "name": "ulem"
     },
-    "PiAddress": {},
-    "PiDepartment": {},
-    "PiEmail": {},
-    "PiFax": {},
-    "PiInstitution": {},
-    "PiName": {},
-    "PiPhone": {},
-    "PiTitle": {},
-    "PiUrl": {},
-    "PoAddress": {},
-    "PoEmail": {},
-    "PoName": {},
-    "PoPhone": {},
-    "ProposalCostInMillions": {},
-    "ProposalDurationInYears": {},
-    "ProposalTitle": {},
-    "sectionnonum[]{}": {
-      "snippet": "sectionnonum[${2:secunit}]{${1:title}}"
+    {
+      "name": "soul"
     },
-    "sectionnonum{}": {
-      "snippet": "sectionnonum{${1:title}}"
+    {
+      "name": "xcolor"
     },
-    "subsectionnonum[]{}": {
-      "snippet": "subsectionnonum[${2:secunit}]{${1:title}}"
+    {
+      "name": "framed"
     },
-    "subsectionnonum{}": {
-      "snippet": "subsectionnonum{${1:title}}"
+    {
+      "name": "setspace"
     },
-    "subsubsectionnonum[]{}": {
-      "snippet": "subsubsectionnonum[${2:secunit}]{${1:title}}"
+    {
+      "name": "geometry"
     },
-    "subsubsectionnonum{}": {
-      "snippet": "subsubsectionnonum{${1:title}}"
+    {
+      "name": "titlesec"
     },
-    "captionsenglish": {},
-    "dateenglish": {},
-    "extrasenglish": {},
-    "noextrasenglish": {},
-    "englishhyphenmins": {},
-    "britishhyphenmins": {},
-    "americanhyphenmins": {},
-    "prefacename": {},
-    "bibname": {},
-    "chaptername": {},
-    "enclname": {},
-    "ccname": {},
-    "headtoname": {},
-    "seename": {},
-    "alsoname": {},
-    "proofname": {},
-    "glossaryname": {},
-    "DH": {},
-    "dh": {},
-    "dj": {},
-    "DJ": {},
-    "guillemetleft": {},
-    "guillemetright": {},
-    "guillemotleft": {},
-    "guillemotright": {},
-    "guilsinglleft": {},
-    "guilsinglright": {},
-    "Hwithstroke": {},
-    "hwithstroke": {},
-    "k{}": {
-      "snippet": "k{${1:arg}}"
+    {
+      "name": "chappg"
     },
-    "NG": {},
-    "ng": {},
-    "quotedblbase": {},
-    "quotesinglbase": {},
-    "textogonekcentered{}": {
-      "snippet": "textogonekcentered{${1:arg}}"
+    {
+      "name": "fancyhdr"
     },
-    "textquotedbl": {},
-    "th": {},
-    "TH": {}
-  },
-  "envs": {},
-  "options": [
-    "10pt",
-    "11pt",
-    "12pt",
-    "isdraft",
-    "isnotdraft",
-    "iswhitepaper",
-    "isnotwhitepaper",
-    "issectioncompact",
-    "isnotsectioncompact",
-    "isbibcompact",
-    "isnotbibcompact",
-    "articletitle",
-    "intitle"
+    {
+      "name": "paralist"
+    },
+    {
+      "name": "enumitem"
+    },
+    {
+      "name": "hyphenat"
+    },
+    {
+      "name": "biblatex"
+    },
+    {
+      "name": "graphicx"
+    },
+    {
+      "name": "caption"
+    },
+    {
+      "name": "hyperref"
+    },
+    {
+      "name": "tabularx"
+    },
+    {
+      "name": "longtable"
+    },
+    {
+      "name": "ltxtable"
+    },
+    {
+      "name": "placeins"
+    },
+    {
+      "name": "pdfpages"
+    },
+    {
+      "name": "lineno"
+    },
+    {
+      "name": "booktabs"
+    },
+    {
+      "name": "wrapfig"
+    },
+    {
+      "name": "amsmath"
+    },
+    {
+      "name": "csquotes"
+    },
+    {
+      "name": "pdfcomment"
+    },
+    {
+      "name": "multicol"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "AbstractName"
+    },
+    {
+      "name": "AbstractOtherPersonnelName"
+    },
+    {
+      "name": "AdminAddress"
+    },
+    {
+      "name": "AdminEmail"
+    },
+    {
+      "name": "AdminFax"
+    },
+    {
+      "name": "AdminInstitution"
+    },
+    {
+      "name": "AdminName"
+    },
+    {
+      "name": "AdminPhone"
+    },
+    {
+      "name": "AdminTitle"
+    },
+    {
+      "name": "chapternonum",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:secunit}]{${1:title}}"
+      }
+    },
+    {
+      "name": "chapternonum",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "chapternotitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "dontcite",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "fntsiz",
+      "unusual": true
+    },
+    {
+      "name": "FundingAgency"
+    },
+    {
+      "name": "FundingDeadline"
+    },
+    {
+      "name": "FundingId"
+    },
+    {
+      "name": "FundingIdTitle"
+    },
+    {
+      "name": "FundingTitle"
+    },
+    {
+      "name": "FundingUrl"
+    },
+    {
+      "name": "LeadOrganizationAddress"
+    },
+    {
+      "name": "LeadOrganizationCAGE"
+    },
+    {
+      "name": "LeadOrganizationDUNS"
+    },
+    {
+      "name": "LeadOrganizationName"
+    },
+    {
+      "name": "LeadOrganizationTIN"
+    },
+    {
+      "name": "makeabstractcoverpage"
+    },
+    {
+      "name": "makecoverpage"
+    },
+    {
+      "name": "oldcite",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "OtherKeyPersonnel"
+    },
+    {
+      "name": "partnonum",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:secunit}]{${1:title}}"
+      }
+    },
+    {
+      "name": "partnonum",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "PiAddress"
+    },
+    {
+      "name": "PiDepartment"
+    },
+    {
+      "name": "PiEmail"
+    },
+    {
+      "name": "PiFax"
+    },
+    {
+      "name": "PiInstitution"
+    },
+    {
+      "name": "PiName"
+    },
+    {
+      "name": "PiPhone"
+    },
+    {
+      "name": "PiTitle"
+    },
+    {
+      "name": "PiUrl"
+    },
+    {
+      "name": "PoAddress"
+    },
+    {
+      "name": "PoEmail"
+    },
+    {
+      "name": "PoName"
+    },
+    {
+      "name": "PoPhone"
+    },
+    {
+      "name": "ProposalCostInMillions"
+    },
+    {
+      "name": "ProposalDurationInYears"
+    },
+    {
+      "name": "ProposalTitle"
+    },
+    {
+      "name": "sectionnonum",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:secunit}]{${1:title}}"
+      }
+    },
+    {
+      "name": "sectionnonum",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "subsectionnonum",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:secunit}]{${1:title}}"
+      }
+    },
+    {
+      "name": "subsectionnonum",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "subsubsectionnonum",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:secunit}]{${1:title}}"
+      }
+    },
+    {
+      "name": "subsubsectionnonum",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "captionsenglish",
+      "unusual": true
+    },
+    {
+      "name": "dateenglish",
+      "unusual": true
+    },
+    {
+      "name": "extrasenglish",
+      "unusual": true
+    },
+    {
+      "name": "noextrasenglish",
+      "unusual": true
+    },
+    {
+      "name": "englishhyphenmins",
+      "unusual": true
+    },
+    {
+      "name": "britishhyphenmins",
+      "unusual": true
+    },
+    {
+      "name": "americanhyphenmins",
+      "unusual": true
+    },
+    {
+      "name": "prefacename",
+      "unusual": true
+    },
+    {
+      "name": "bibname",
+      "unusual": true
+    },
+    {
+      "name": "chaptername",
+      "unusual": true
+    },
+    {
+      "name": "enclname",
+      "unusual": true
+    },
+    {
+      "name": "ccname",
+      "unusual": true
+    },
+    {
+      "name": "headtoname",
+      "unusual": true
+    },
+    {
+      "name": "seename",
+      "unusual": true
+    },
+    {
+      "name": "alsoname",
+      "unusual": true
+    },
+    {
+      "name": "proofname",
+      "unusual": true
+    },
+    {
+      "name": "glossaryname",
+      "unusual": true
+    },
+    {
+      "name": "DH"
+    },
+    {
+      "name": "dh"
+    },
+    {
+      "name": "dj"
+    },
+    {
+      "name": "DJ"
+    },
+    {
+      "name": "guillemetleft"
+    },
+    {
+      "name": "guillemetright"
+    },
+    {
+      "name": "guillemotleft",
+      "unusual": true
+    },
+    {
+      "name": "guillemotright",
+      "unusual": true
+    },
+    {
+      "name": "guilsinglleft"
+    },
+    {
+      "name": "guilsinglright"
+    },
+    {
+      "name": "Hwithstroke"
+    },
+    {
+      "name": "hwithstroke"
+    },
+    {
+      "name": "k",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "NG"
+    },
+    {
+      "name": "ng"
+    },
+    {
+      "name": "quotedblbase"
+    },
+    {
+      "name": "quotesinglbase"
+    },
+    {
+      "name": "textogonekcentered",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textquotedbl"
+    },
+    {
+      "name": "th"
+    },
+    {
+      "name": "TH"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\documentclass/grant#c": [
+      "10pt\r",
+      "11pt\r",
+      "12pt\r",
+      "isdraft\r",
+      "isnotdraft\r",
+      "iswhitepaper\r",
+      "isnotwhitepaper\r",
+      "issectioncompact\r",
+      "isnotsectioncompact\r",
+      "isbibcompact\r",
+      "isnotbibcompact\r"
+    ],
+    "\\usepackage/biblatex#c,\\ExecuteBibliographyOptions#c": [
+      "articletitle",
+      "intitle"
+    ]
+  },
+  "args": [
+    "\\documentclass/grant#c",
+    "\\usepackage/biblatex#c,\\ExecuteBibliographyOptions#c"
+  ]
 }

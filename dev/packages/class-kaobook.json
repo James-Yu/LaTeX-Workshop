@@ -1,31 +1,70 @@
 {
-  "includes": {
-    "class-scrbook": [],
-    "kao": []
+  "deps": [
+    {
+      "name": "class-scrbook"
+    },
+    {
+      "name": "kao"
+    }
+  ],
+  "macros": [
+    {
+      "name": "setchapterstyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:style name%keyvals}}",
+        "keys": [
+          "\\setchapterstyle"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "chapterstylebar",
+      "unusual": true
+    },
+    {
+      "name": "chapterstylekao",
+      "unusual": true
+    },
+    {
+      "name": "chapterstylelines",
+      "unusual": true
+    },
+    {
+      "name": "chapterstyleplain",
+      "unusual": true
+    },
+    {
+      "name": "setchapterimage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "setchapterimage",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:height}]{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "hrulefill",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:height}]"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\setchapterstyle": [
+      "plain\r",
+      "kao\r",
+      "bar\r",
+      "lines\r"
+    ]
   },
-  "macros": {
-    "setchapterstyle{}": {
-      "snippet": "setchapterstyle{${1:style name}}"
-    },
-    "chapterstylebar": {},
-    "chapterstylekao": {},
-    "chapterstylelines": {},
-    "chapterstyleplain": {},
-    "setchapterimage{}": {
-      "snippet": "setchapterimage{${1:imagefile}}"
-    },
-    "setchapterimage[]{}": {
-      "snippet": "setchapterimage[${2:height}]{${1:imagefile}}"
-    },
-    "hrulefill[]": {
-      "snippet": "hrulefill[${1:height}]"
-    },
-    "oldappendix": {},
-    "oldbackmatter": {},
-    "oldfrontmatter": {},
-    "oldmainmatter": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

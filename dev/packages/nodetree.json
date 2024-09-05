@@ -1,47 +1,80 @@
 {
-  "includes": {
-    "luatex": [],
-    "kvoptions": []
-  },
-  "macros": {
-    "NodetreeSet{}": {
-      "snippet": "NodetreeSet{${1:options}}"
+  "deps": [
+    {
+      "name": "luatex"
     },
-    "nodetreeset{}": {
-      "snippet": "nodetreeset{${1:options}}"
-    },
-    "NodetreeSetOption[]{}": {
-      "snippet": "NodetreeSetOption[${2:option}]{${1:value}}"
-    },
-    "nodetreeoption[]{}": {
-      "snippet": "nodetreeoption[${2:option}]{${1:value}}"
-    },
-    "NodetreeResetOption{}": {
-      "snippet": "NodetreeResetOption{${1:option}}"
-    },
-    "NodetreeReset": {},
-    "nodetreereset": {},
-    "NodetreeRegisterCallback{}": {
-      "snippet": "NodetreeRegisterCallback{${1:callbacks}}"
-    },
-    "nodetreeregister{}": {
-      "snippet": "nodetreeregister{${1:callbacks}}"
-    },
-    "NodetreeUnregisterCallback{}": {
-      "snippet": "NodetreeUnregisterCallback{${1:callbacks}}"
-    },
-    "nodetreeunregister{}": {
-      "snippet": "nodetreeunregister{${1:callbacks}}"
+    {
+      "name": "kvoptions"
     }
-  },
-  "envs": {},
-  "options": [
-    "channel=${1:output channel}",
-    "callback={${1:callbacks}}",
-    "verbosity=${1:integer}",
-    "color=${1|colored,no|}",
-    "unit=${1|pt,pc,in,bp,cm,mm,dd,cc,sp,ex,em|}",
-    "decimalplaces=${1:integer}"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "NodetreeSet",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\usepackage/nodetree#c,\\NodetreeSet,\\nodetreeset"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "NodetreeSetOption",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:option%keyvals}]{${1:value}}"
+      }
+    },
+    {
+      "name": "NodetreeResetOption",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:option%keyvals}}",
+        "keys": [
+          "\\NodetreeSetOption,\\nodetreeoption,\\NodetreeResetOption"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "NodetreeReset"
+    },
+    {
+      "name": "NodetreeRegisterCallback",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:callbacks}}"
+      }
+    },
+    {
+      "name": "NodetreeUnregisterCallback",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:callbacks}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/nodetree#c,\\NodetreeSet,\\nodetreeset": [
+      "channel=${1:output channel}\r",
+      "callback={${1:callbacks}}\r",
+      "verbosity=${1:integer}\r",
+      "color=${1|colored,no\r|}",
+      "unit=${1|pt,pc,in,bp,cm,mm,dd,cc,sp,ex,em\r|}",
+      "decimalplaces=${1:integer}\r"
+    ],
+    "\\NodetreeSetOption,\\nodetreeoption,\\NodetreeResetOption": [
+      "channel\r",
+      "callback\r",
+      "verbosity\r",
+      "color\r",
+      "unit\r",
+      "decimalplaces\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/nodetree#c,\\NodetreeSet,\\nodetreeset"
+  ]
 }

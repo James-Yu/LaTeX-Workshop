@@ -1,195 +1,219 @@
 {
-  "includes": {
-    "keyval": []
-  },
-  "macros": {
-    "setfontsize{}": {
-      "snippet": "setfontsize{${1:id}}"
+  "deps": [
+    {
+      "name": "keyval"
+    }
+  ],
+  "macros": [
+    {
+      "name": "setfontsize",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:id}}"
+      }
     },
-    "definefontsize{}{}": {
-      "snippet": "definefontsize{${1:id}}{${2:definições}}"
+    {
+      "name": "definefontsize",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:id}}{${2:definições}}"
+      }
     },
-    "sizedef{}{}{}{}": {
-      "snippet": "sizedef{${1:cmd}}{${2:tamanho}}{${3:entrelinha natural}}{${4:definições}}"
+    {
+      "name": "sizedef",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:cmd}}{${2:tamanho}}{${3:entrelinha natural}}{${4:definições}}"
+      }
     },
-    "spacing{}": {
-      "snippet": "spacing{${1:factor}}"
+    {
+      "name": "spacing",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:factor}}"
+      }
     },
-    "singlesp": {},
-    "onehalfsp": {},
-    "doublesp": {},
-    "setlayout{}": {
-      "snippet": "setlayout{${1:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "singlesp"
     },
-    "pretextual": {},
-    "textual": {},
-    "tocifont": {},
-    "tociifont": {},
-    "tociiifont": {},
-    "tocivfont": {},
-    "tocvfont": {},
-    "sectionfont": {},
-    "subsectionfont": {},
-    "subsubsectionfont": {},
-    "paragraphfont": {},
-    "subparagraphfont": {},
-    "abovesection": {},
-    "abovesubsection": {},
-    "abovesubsubsection": {},
-    "aboveparagraph": {},
-    "abovesubparagraph": {},
-    "belowsection": {},
-    "belowsubsection": {},
-    "belowsubsubsection": {},
-    "belowparagraph": {},
-    "belowsubparagraph": {},
-    "maketoc": {},
-    "place{}": {
-      "snippet": "place{${1:content}}"
+    {
+      "name": "onehalfsp"
     },
-    "legend{}{}": {
-      "snippet": "legend{${1:type}}{${2:content}}"
+    {
+      "name": "doublesp"
     },
-    "src{}": {
-      "snippet": "src{${1:texto}}"
+    {
+      "name": "setlayout",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
     },
-    "aboveplace": {},
-    "belowplace": {},
-    "definelegendplace{}{}{}{}{}": {
-      "snippet": "definelegendplace{${1:type}}{${2:name}}{${3:list name}}{${4:ref def}}{${5:ext}}"
+    {
+      "name": "pretextual"
     },
-    "enquote{}": {
-      "snippet": "enquote{${1:texto}}"
+    {
+      "name": "textual"
     },
-    "Enquote{}": {
-      "snippet": "Enquote{${1:texto}}"
+    {
+      "name": "tocifont",
+      "unusual": true
     },
-    "annex": {},
-    "appendixlabelwidth": {},
-    "annexlabelwidth": {},
-    "corrprinton": {},
-    "corrprintoff": {},
-    "addtotoc": {},
-    "advcount{}": {
-      "snippet": "advcount{${1:arg1}}"
+    {
+      "name": "tociifont",
+      "unusual": true
     },
-    "annexlabelbox{}": {
-      "snippet": "annexlabelbox{${1:arg}}"
+    {
+      "name": "tociiifont",
+      "unusual": true
     },
-    "appendixlabelbox{}": {
-      "snippet": "appendixlabelbox{${1:arg}}"
+    {
+      "name": "tocivfont",
+      "unusual": true
     },
-    "cfparagraph": {},
-    "cfsection": {},
-    "cfsubparagraph": {},
-    "cfsubsection": {},
-    "cfsubsubsection": {},
-    "countannex": {},
-    "countappendix": {},
-    "countparagraph": {},
-    "countseclevel": {},
-    "countsection": {},
-    "countsubparagraph": {},
-    "countsubsection": {},
-    "countsubsubsection": {},
-    "counttopics": {},
-    "counttopicsdepth": {},
-    "currspacing": {},
-    "Enter": {},
-    "extlabelwidth": {},
-    "extleaders": {},
-    "extline{}{}{}{}": {
-      "snippet": "extline{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    {
+      "name": "tocvfont",
+      "unusual": true
     },
-    "extpagenumwidth": {},
-    "extrightmargin": {},
-    "hangfrom": {},
-    "heading{}": {
-      "snippet": "heading{${1:arg1}}"
+    {
+      "name": "sectionfont",
+      "unusual": true
     },
-    "hreftocline{}": {
-      "snippet": "hreftocline{${1:arg1}}"
+    {
+      "name": "subsectionfont",
+      "unusual": true
     },
-    "identifyparagraph": {},
-    "identifysection": {},
-    "identifysubparagraph": {},
-    "identifysubsection": {},
-    "identifysubsubsection": {},
-    "indexcard{}": {
-      "snippet": "indexcard{${1:arg1}}"
+    {
+      "name": "subsubsectionfont",
+      "unusual": true
     },
-    "indexcardA{}": {
-      "snippet": "indexcardA{${1:arg1}}"
+    {
+      "name": "paragraphfont",
+      "unusual": true
     },
-    "indexcardbar": {},
-    "judgeline{}": {
-      "snippet": "judgeline{${1:arg1}}"
+    {
+      "name": "subparagraphfont",
+      "unusual": true
     },
-    "legendlabel": {},
-    "legendmaxwidth": {},
-    "legendname": {},
-    "makeext{}": {
-      "snippet": "makeext{${1:arg}}"
+    {
+      "name": "abovesection",
+      "unusual": true
     },
-    "marksection{}": {
-      "snippet": "marksection{${1:arg}}"
+    {
+      "name": "abovesubsection",
+      "unusual": true
     },
-    "marksubsection{}": {
-      "snippet": "marksubsection{${1:arg}}"
+    {
+      "name": "abovesubsubsection",
+      "unusual": true
     },
-    "nbpar": {},
-    "noindentfirst": {},
-    "recountseci": {},
-    "recountsecii": {},
-    "recountseciii": {},
-    "recountseciv": {},
-    "setcurrlabel{}": {
-      "snippet": "setcurrlabel{${1:arg}}"
+    {
+      "name": "aboveparagraph",
+      "unusual": true
     },
-    "setnormalsize": {},
-    "setsmall": {},
-    "srclabel": {},
-    "startparagraph{}": {
-      "snippet": "startparagraph{${1:arg}}"
+    {
+      "name": "abovesubparagraph",
+      "unusual": true
     },
-    "startsection{}": {
-      "snippet": "startsection{${1:arg}}"
+    {
+      "name": "belowsection",
+      "unusual": true
     },
-    "startsubparagraph{}": {
-      "snippet": "startsubparagraph{${1:arg}}"
+    {
+      "name": "belowsubsection",
+      "unusual": true
     },
-    "startsubsection{}": {
-      "snippet": "startsubsection{${1:arg}}"
+    {
+      "name": "belowsubsubsection",
+      "unusual": true
     },
-    "startsubsubsection{}": {
-      "snippet": "startsubsubsection{${1:arg}}"
+    {
+      "name": "belowparagraph",
+      "unusual": true
     },
-    "theannex": {},
-    "theappendix": {},
-    "thelegend": {},
-    "toclabelbox{}": {
-      "snippet": "toclabelbox{${1:arg1}}"
+    {
+      "name": "belowsubparagraph",
+      "unusual": true
     },
-    "toclabelwidth": {},
-    "tocname": {},
-    "topicsitem": {},
-    "topicslabeli": {},
-    "topicslabelii": {},
-    "topicslabelwidth": {},
-    "topicsmakelabel": {},
-    "tryindentfirst": {},
-    "twonewpage": {},
-    "xindexcardbar": {}
-  },
-  "envs": {
-    "topics": {}
-  },
-  "options": [],
-  "keyvals": [
-    [
-      "paper=${1:size}",
+    {
+      "name": "maketoc"
+    },
+    {
+      "name": "place",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content%text}}"
+      }
+    },
+    {
+      "name": "legend",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:type}}{${2:content%text}}"
+      }
+    },
+    {
+      "name": "src",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:texto%text}}"
+      }
+    },
+    {
+      "name": "aboveplace",
+      "unusual": true
+    },
+    {
+      "name": "belowplace",
+      "unusual": true
+    },
+    {
+      "name": "definelegendplace",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:type}}{${2:name}}{${3:list name}}{${4:ref def}}{${5:ext}}"
+      }
+    },
+    {
+      "name": "enquote",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:texto%text}}"
+      }
+    },
+    {
+      "name": "Enquote",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:texto%text}}"
+      }
+    },
+    {
+      "name": "annex"
+    },
+    {
+      "name": "appendixlabelwidth",
+      "unusual": true
+    },
+    {
+      "name": "annexlabelwidth",
+      "unusual": true
+    },
+    {
+      "name": "corrprinton"
+    },
+    {
+      "name": "corrprintoff"
+    }
+  ],
+  "envs": [
+    {
+      "name": "topics"
+    }
+  ],
+  "keys": {
+    "\\setlayout": [
+      "paper=${1:size}\r",
       "width=",
       "height=",
       "left=",
@@ -198,5 +222,6 @@
       "bottom=",
       "twoside"
     ]
-  ]
+  },
+  "args": []
 }

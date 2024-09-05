@@ -1,90 +1,211 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "xargs": [],
-    "xstring": [],
-    "nomencl": [],
-    "splitidx": [],
-    "ifthen": [],
-    "stringstrings": []
-  },
-  "macros": {
-    "DeclareLex{}{}": {
-      "snippet": "DeclareLex{${1:csname}}{${2:abbrev}}"
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "DeclareLex{}{}[]": {
-      "snippet": "DeclareLex{${1:csname}}{${2:abbrev}}[${3:full name}]"
+    {
+      "name": "xargs"
     },
-    "DeclareLex{}{}[][]": {
-      "snippet": "DeclareLex{${1:csname}}{${2:abbrev}}[${3:full name}][${4:alt}]"
+    {
+      "name": "xstring"
     },
-    "sq": {},
-    "sqq": {},
-    "bis": {},
-    "ter": {},
-    "quater": {},
-    "quinquies": {},
-    "sexies": {},
-    "septies": {},
-    "octies": {},
-    "nonies": {},
-    "RenewLexShortcut{}{}": {
-      "snippet": "RenewLexShortcut{${1:shortcut}}{${2:redefinition}}"
+    {
+      "name": "nomencl"
     },
-    "RenewLexShortcut{}{}[]": {
-      "snippet": "RenewLexShortcut{${1:shortcut}}{${2:redefinition}}[${3:nomenclature}]"
+    {
+      "name": "splitidx"
     },
-    "lexciteindextempone": {},
-    "thelexcitecountinteger": {},
-    "NewLexShortcut{}{}": {
-      "snippet": "NewLexShortcut{${1:shortcut}}{${2:definition}}"
+    {
+      "name": "ifthen"
     },
-    "NewLexShortcut{}{}[]": {
-      "snippet": "NewLexShortcut{${1:shortcut}}{${2:definition}}[${3:nomenclature}]"
-    },
-    "LexRefPrefixTests{}": {
-      "snippet": "LexRefPrefixTests{${1:arg}}"
-    },
-    "LexRef{}{}": {
-      "snippet": "LexRef{${1:name}}{${2:art. num}}"
-    },
-    "LexRef{}{}[][][]": {
-      "snippet": "LexRef{${1:name}}{${2:art. num}}[${3:para num}][${4:num}][${5:letter}]"
-    },
-    "LexRefns{}{}": {
-      "snippet": "LexRefns{${1:name}}{${2:art. num}}"
-    },
-    "LexRefns{}{}[][][]": {
-      "snippet": "LexRefns{${1:name}}{${2:art. num}}[${3:para num}][${4:num}][${5:letter}]"
-    },
-    "npLexRef{}{}": {
-      "snippet": "npLexRef{${1:name}}{${2:art. num}}"
-    },
-    "npLexRef{}{}[][][]": {
-      "snippet": "npLexRef{${1:name}}{${2:art. num}}[${3:para num}][${4:num}][${5:letter}]"
-    },
-    "npLexRefns{}{}": {
-      "snippet": "npLexRefns{${1:name}}{${2:art. num}}"
-    },
-    "npLexRefns{}{}[][][]": {
-      "snippet": "npLexRefns{${1:name}}{${2:art. num}}[${3:para num}][${4:num}][${5:letter}]"
-    },
-    "LexIndex{}{}{}": {
-      "snippet": "LexIndex{${1:csname}}{${2:art. num}}{${3:abbrev}}"
-    },
-    "LexIndex{}{}[][][]{}": {
-      "snippet": "LexIndex{${1:csname}}{${2:art. num}}[${3:para num}][${4:num}][${5:letter}]{${6:abbrev}}"
+    {
+      "name": "stringstrings"
     }
-  },
-  "envs": {},
-  "options": [
-    "noprint",
-    "indexing",
-    "nomencl",
-    "shortcutstolist",
-    "CHfr",
-    "CHde",
-    "DE"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "DeclareLex",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:csname}}{${2:abbrev}}"
+      }
+    },
+    {
+      "name": "DeclareLex",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:csname}}{${2:abbrev}}[${3:full name}]"
+      }
+    },
+    {
+      "name": "DeclareLex",
+      "arg": {
+        "format": "{}{}[][]",
+        "snippet": "{${1:csname}}{${2:abbrev}}[${3:full name}][${4:alt}]"
+      }
+    },
+    {
+      "name": "sq"
+    },
+    {
+      "name": "sqq"
+    },
+    {
+      "name": "bis"
+    },
+    {
+      "name": "ter"
+    },
+    {
+      "name": "quater"
+    },
+    {
+      "name": "quinquies"
+    },
+    {
+      "name": "sexies"
+    },
+    {
+      "name": "septies"
+    },
+    {
+      "name": "octies"
+    },
+    {
+      "name": "nonies"
+    },
+    {
+      "name": "RenewLexShortcut",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:shortcut}}{${2:redefinition}}"
+      }
+    },
+    {
+      "name": "RenewLexShortcut",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:shortcut}}{${2:redefinition}}[${3:nomenclature}]"
+      }
+    },
+    {
+      "name": "NewLexShortcut",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:shortcut}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "NewLexShortcut",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:shortcut}}{${2:definition}}[${3:nomenclature}]"
+      }
+    },
+    {
+      "name": "LexRefPrefixTests",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "LexRef",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:art. num}}"
+      }
+    },
+    {
+      "name": "LexRef",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[][][]",
+        "snippet": "{${1:name}}{${2:art. num}}[${3:para num}][${4:num}][${5:letter}]"
+      }
+    },
+    {
+      "name": "LexRefns",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:art. num}}"
+      }
+    },
+    {
+      "name": "LexRefns",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[][][]",
+        "snippet": "{${1:name}}{${2:art. num}}[${3:para num}][${4:num}][${5:letter}]"
+      }
+    },
+    {
+      "name": "npLexRef",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:art. num}}"
+      }
+    },
+    {
+      "name": "npLexRef",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[][][]",
+        "snippet": "{${1:name}}{${2:art. num}}[${3:para num}][${4:num}][${5:letter}]"
+      }
+    },
+    {
+      "name": "npLexRefns",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:art. num}}"
+      }
+    },
+    {
+      "name": "npLexRefns",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[][][]",
+        "snippet": "{${1:name}}{${2:art. num}}[${3:para num}][${4:num}][${5:letter}]"
+      }
+    },
+    {
+      "name": "LexIndex",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:csname}}{${2:art. num}}{${3:abbrev}}"
+      }
+    },
+    {
+      "name": "LexIndex",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[][][]{}",
+        "snippet": "{${1:csname}}{${2:art. num}}[${4:para num}][${5:num}][${6:letter}]{${3:abbrev}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/lexref#c": [
+      "noprint\r",
+      "indexing\r",
+      "nomencl\r",
+      "shortcutstolist\r",
+      "CHfr\r",
+      "CHde\r",
+      "DE\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/lexref#c"
+  ]
 }

@@ -1,15 +1,39 @@
 {
-  "includes": {
-    "tikzlibrarycircuits": []
-  },
-  "macros": {
-    "ladderskip": {},
-    "ladderrungend{}": {
-      "snippet": "ladderrungend{${1:number}}"
+  "deps": [
+    {
+      "name": "tikzlibrarycircuits"
+    }
+  ],
+  "macros": [
+    {
+      "name": "ladderskip"
     },
-    "ladderpowerrails": {}
+    {
+      "name": "ladderrungend",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "ladderpowerrails"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\begin{tikzpicture}#c,\\tikz#c,\\begin{scope}#c,\\tikzset#c,\\scoped#c": [
+      "circuit plc ladder\r",
+      "ladderrungsep=${1:number}\r"
+    ],
+    "\\node#c": [
+      "symbol=${1:symbol}\r",
+      "symbol color=",
+      "clksize=",
+      "input sep=",
+      "output sep=",
+      "inputs={${1:input1,input2,...}}\r",
+      "outputs={${1:output1,output2,...}}\r"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

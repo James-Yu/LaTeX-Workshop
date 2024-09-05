@@ -1,56 +1,89 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "xcolor": [],
-    "showexpl": [],
-    "accsupp": [],
-    "changepage": [],
-    "tcolorbox": [],
-    "tcolorboxlibrarylistings": [],
-    "tcolorboxlibrarybreakable": [],
-    "tcolorboxlibraryskins": []
-  },
-  "macros": {
-    "hwidth": {},
-    "noaccsupp{}": {
-      "snippet": "noaccsupp{${1:text}}"
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "filedate": {},
-    "fileversion": {}
-  },
-  "envs": {
-    "PSTcode": {},
-    "PSTcode[]": {
-      "name": "PSTcode",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "xcolor"
     },
-    "PSTexample": {},
-    "PSTexample[]": {
-      "name": "PSTexample",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "showexpl"
+    },
+    {
+      "name": "accsupp"
+    },
+    {
+      "name": "changepage"
+    },
+    {
+      "name": "tcolorbox"
+    },
+    {
+      "name": "tcolorboxlibrarylistings"
+    },
+    {
+      "name": "tcolorboxlibrarybreakable"
+    },
+    {
+      "name": "tcolorboxlibraryskins"
     }
-  },
-  "options": [
-    "swpl",
-    "tcb",
-    "pdf"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "hwidth",
+      "unusual": true
+    },
+    {
+      "name": "noaccsupp",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "PSTcode"
+    },
+    {
+      "name": "PSTcode",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "PSTexample"
+    },
+    {
+      "name": "PSTexample",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/pst-exa#c": [
+      "swpl\r",
+      "tcb\r",
+      "pdf\r"
+    ],
+    "\\begin{PSTcode}#c,\\begin{PSTexample}#c": [
       "hwidth=",
-      "graphic={${1:includegraphics options}}{${2:imagefile}}",
-      "numbers=${1|true,none,out,fancy|}",
+      "graphic={${1:includegraphics options}}{${2:imagefile}}\r",
+      "numbers=${1|true,none,out,fancy\r|}",
       "fcolor=",
       "tcolor=",
       "bcolor=",
       "scolor=",
       "hsep=",
       "vsep=",
-      "pos=${1|r,l,b,t,e|}"
+      "pos=${1|r,l,b,t,e\r|}"
     ]
+  },
+  "args": [
+    "\\usepackage/pst-exa#c"
   ]
 }

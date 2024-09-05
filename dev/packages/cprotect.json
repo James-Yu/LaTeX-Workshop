@@ -1,24 +1,50 @@
 {
-  "includes": {
-    "ifthen": [],
-    "suffix": []
-  },
-  "macros": {
-    "cprotect": {},
-    "cprotect[]": {
-      "snippet": "cprotect[${1:args}]"
+  "deps": [
+    {
+      "name": "ifthen"
     },
-    "cMakeRobust": {},
-    "icprotect": {},
-    "cprotEnv": {},
-    "CPTbegin{}": {
-      "snippet": "CPTbegin{${1:envname}}"
-    },
-    "ReadVerbatimUntil[]{}": {
-      "snippet": "ReadVerbatimUntil[${2:arg1}]{${1:arg2}}"
+    {
+      "name": "suffix"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "cprotect"
+    },
+    {
+      "name": "cprotect",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:args}]"
+      }
+    },
+    {
+      "name": "cMakeRobust"
+    },
+    {
+      "name": "icprotect"
+    },
+    {
+      "name": "cprotEnv"
+    },
+    {
+      "name": "CPTbegin",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:envname}}"
+      }
+    },
+    {
+      "name": "ReadVerbatimUntil",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:arg1}]{${1:arg2}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

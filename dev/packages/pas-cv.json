@@ -1,48 +1,95 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "graphicx": [],
-    "tikz": [],
-    "tikzlibraryshadows": [],
-    "tikzlibrarycalc": [],
-    "tikzlibraryfadings": [],
-    "tikzlibraryshapes.geometric": [],
-    "tikzlibrarypatterns": [],
-    "tikzlibrarydecorations.pathmorphing": [],
-    "eso-pic": [],
-    "fp": [],
-    "geometry": []
-  },
-  "macros": {
-    "CVbg[]": {
-      "snippet": "CVbg[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "xkeyval"
     },
-    "infoLeft{}": {
-      "snippet": "infoLeft{${1:info}}"
+    {
+      "name": "graphicx"
     },
-    "infoRight{}": {
-      "snippet": "infoRight{${1:info}}"
+    {
+      "name": "tikz"
     },
-    "CVmargins": {},
-    "CVtitle{}": {
-      "snippet": "CVtitle{${1:le titre}}"
+    {
+      "name": "tikzlibraryshadows"
     },
-    "CVtitle[]{}": {
-      "snippet": "CVtitle[${2:options}]{${1:le titre}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "tikzlibrarycalc"
     },
-    "CVclearpage": {},
-    "CVh{}": {
-      "snippet": "CVh{${1:hauteur en cm}}"
+    {
+      "name": "tikzlibraryfadings"
+    },
+    {
+      "name": "tikzlibraryshapes.geometric"
+    },
+    {
+      "name": "tikzlibrarypatterns"
+    },
+    {
+      "name": "tikzlibrarydecorations.pathmorphing"
+    },
+    {
+      "name": "eso-pic"
+    },
+    {
+      "name": "fp"
+    },
+    {
+      "name": "geometry"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "CVbg",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "infoLeft",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:info%text}}"
+      }
+    },
+    {
+      "name": "infoRight",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:info%text}}"
+      }
+    },
+    {
+      "name": "CVmargins"
+    },
+    {
+      "name": "CVtitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:le titre%text}}"
+      }
+    },
+    {
+      "name": "CVtitle",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:le titre%text}}"
+      }
+    },
+    {
+      "name": "CVclearpage"
+    },
+    {
+      "name": "CVh",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:hauteur en cm}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\CVbg": [
       "modele=${1|andromede,architecte,centaure,dynamique,gaia,jupiter,mars,neptune,orion,pegase,pluton,saturne,univers,uranus,venus|}",
       "bgcolor=",
       "bordercolor=",
@@ -53,9 +100,10 @@
       "borderpic=",
       "scalepic=${1:factor}"
     ],
-    [
+    "\\CVtitle": [
       "color=",
       "bordercolor="
     ]
-  ]
+  },
+  "args": []
 }

@@ -1,46 +1,60 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-node": [],
-    "pst-plot": [],
-    "pst-3d": [],
-    "pst-grad": [],
-    "pst-tools": [],
-    "pst-xkey": []
-  },
-  "macros": {
-    "SolarSystem": {},
-    "SolarSystem[]": {
-      "snippet": "SolarSystem[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "Jupiter": {
-      "detail": "♃",
-      "documentation": "JUPITER"
+    {
+      "name": "pst-node"
     },
-    "Saturn": {
-      "detail": "♄",
-      "documentation": "SATURN"
+    {
+      "name": "pst-plot"
     },
-    "PSTSOLARSYSTEMELoaded": {},
-    "SolarSystemLangEN": {},
-    "SolarSystemLangDE": {},
-    "SolarSystemLangFR": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "Day=${1:day}",
-      "Month=${1:month}",
-      "Year=${1:year}",
-      "Hour=${1:hour}",
-      "Minute=${1:minute}",
-      "Second=${1:second}",
+    {
+      "name": "pst-3d"
+    },
+    {
+      "name": "pst-grad"
+    },
+    {
+      "name": "pst-tools"
+    },
+    {
+      "name": "pst-xkey"
+    }
+  ],
+  "macros": [
+    {
+      "name": "SolarSystem"
+    },
+    {
+      "name": "SolarSystem",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "Jupiter",
+      "unusual": true
+    },
+    {
+      "name": "Saturn",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\SolarSystem#c": [
+      "Day=${1:day}\r",
+      "Month=${1:month}\r",
+      "Year=${1:year}\r",
+      "Hour=${1:hour}\r",
+      "Minute=${1:minute}\r",
+      "Second=${1:second}\r",
       "solarValues",
-      "viewpoint=",
-      "language=${1|DE,FR,EN|}"
+      "viewpoint=\r",
+      "language=${1|DE,FR,EN\r|}"
     ]
-  ]
+  },
+  "args": []
 }

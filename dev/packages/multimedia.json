@@ -1,49 +1,80 @@
 {
-  "includes": {
-    "keyval": [],
-    "ifpdf": []
-  },
-  "macros": {
-    "movie[]{}{}": {
-      "snippet": "movie[${3:options}]{${1:poster text}}{${2:movie filename}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "keyval"
     },
-    "movie{}{}": {
-      "snippet": "movie{${1:poster text}}{${2:movie filename}}"
-    },
-    "hyperlinkmovie[]{}{}": {
-      "snippet": "hyperlinkmovie[${3:options}]{${1:movie label}}{${2:text}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "hyperlinkmovie{}{}": {
-      "snippet": "hyperlinkmovie{${1:movie label}}{${2:text}}"
-    },
-    "sound[]{}{}": {
-      "snippet": "sound[${3:options}]{${1:sound poster text}}{${2:sound filename}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "sound{}{}": {
-      "snippet": "sound{${1:sound poster text}}{${2:sound filename}}"
-    },
-    "hyperlinksound[]{}{}": {
-      "snippet": "hyperlinksound[${3:options}]{${1:sound label}}{${2:text}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "hyperlinksound{}{}": {
-      "snippet": "hyperlinksound{${1:sound label}}{${2:text}}"
-    },
-    "hyperlinkmute{}": {
-      "snippet": "hyperlinkmute{${1:text}}"
+    {
+      "name": "ifpdf"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "movie",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:poster text%text}}{${2:movie filename%file}}"
+      }
+    },
+    {
+      "name": "movie",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:poster text%text}}{${2:movie filename%file}}"
+      }
+    },
+    {
+      "name": "hyperlinkmovie",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:movie label}}{${2:text}}"
+      }
+    },
+    {
+      "name": "hyperlinkmovie",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:movie label}}{${2:text}}"
+      }
+    },
+    {
+      "name": "sound",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:sound poster text}}{${2:sound filename%file}}"
+      }
+    },
+    {
+      "name": "sound",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:sound poster text}}{${2:sound filename%file}}"
+      }
+    },
+    {
+      "name": "hyperlinksound",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:sound label}}{${2:text}}"
+      }
+    },
+    {
+      "name": "hyperlinksound",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:sound label}}{${2:text}}"
+      }
+    },
+    {
+      "name": "hyperlinkmute",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\movie": [
       "autostart",
       "borderwidth=",
       "depth=",
@@ -61,7 +92,7 @@
       "start=${1:time}s",
       "width="
     ],
-    [
+    "\\hyperlinkmovie": [
       "duration=${1:time}s",
       "loop",
       "once",
@@ -74,7 +105,7 @@
       "start=${1:time}s",
       "stop"
     ],
-    [
+    "\\sound": [
       "autostart",
       "automute",
       "bitspersample=${1|8,16|}",
@@ -91,10 +122,11 @@
       "samplingrate=${1:number}",
       "width="
     ],
-    [
+    "\\hyperlinksound": [
       "loop",
       "mixsound",
       "repeat"
     ]
-  ]
+  },
+  "args": []
 }

@@ -1,63 +1,77 @@
 {
-  "includes": {
-    "tikz": [],
-    "pgfplots": [],
-    "xstring": [],
-    "xkeyval": []
-  },
-  "macros": {
-    "signchart{}{}": {
-      "snippet": "signchart{${1:values}}{${2:signs}}"
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "signchart[]{}{}": {
-      "snippet": "signchart[${3:options}]{${1:values}}{${2:signs}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "pgfplots"
     },
-    "signHeightKey": {},
-    "valNorthSouthKey": {},
-    "valSepKey": {},
-    "signChartWidth": {},
-    "signHeight": {},
-    "valNorthSouth": {},
-    "valSep": {},
-    "snht": {},
-    "wid": {},
-    "vals": {},
-    "signs": {},
-    "valsarray": {},
-    "theArrow": {},
-    "thisVal": {},
-    "len": {},
-    "k": {
-      "detail": "𝑘",
-      "documentation": "MATHEMATICAL ITALIC SMALL K"
+    {
+      "name": "xstring"
     },
-    "pos": {},
-    "leftParti": {},
-    "rightPart": {},
-    "aLength": {},
-    "cutAmount": {},
-    "leftPartii": {},
-    "valpos": {},
-    "signpos": {},
-    "s": {
-      "detail": "𝑠",
-      "documentation": "MATHEMATICAL ITALIC SMALL S"
+    {
+      "name": "xkeyval"
     }
-  },
-  "envs": {},
-  "options": [
-    "signunder",
-    "valunder"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "signchart",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:values}}{${2:signs}}"
+      }
+    },
+    {
+      "name": "signchart",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:values}}{${2:signs}}"
+      }
+    },
+    {
+      "name": "signHeightKey",
+      "unusual": true
+    },
+    {
+      "name": "valNorthSouthKey",
+      "unusual": true
+    },
+    {
+      "name": "valSepKey",
+      "unusual": true
+    },
+    {
+      "name": "signChartWidth",
+      "unusual": true
+    },
+    {
+      "name": "signHeight",
+      "unusual": true
+    },
+    {
+      "name": "valNorthSouth",
+      "unusual": true
+    },
+    {
+      "name": "valSep",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/signchart#c": [
+      "signunder\r",
+      "valunder\r"
+    ],
+    "\\signchart": [
       "height=",
-      "valanchor=${1:anchor name}",
+      "valanchor=${1:anchor name}\r",
       "valsep=",
       "width=",
-      "arrows=${1:arrow style}"
+      "arrows=${1:arrow style}\r"
     ]
+  },
+  "args": [
+    "\\usepackage/signchart#c"
   ]
 }

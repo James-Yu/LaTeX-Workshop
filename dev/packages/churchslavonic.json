@@ -1,74 +1,174 @@
 {
-  "includes": {
-    "ifluatex": [],
-    "cu-num": [],
-    "cu-calendar": [],
-    "cu-util": [],
-    "cu-kinovar": [],
-    "cu-kruk": []
-  },
-  "macros": {
-    "cuMarginMark{}": {
-      "snippet": "cuMarginMark{${1:text}}"
+  "deps": [
+    {
+      "name": "ifluatex"
     },
-    "cuMarginMarkSkip": {},
-    "cuMarginMarkText{}": {
-      "snippet": "cuMarginMarkText{${1:text}}"
+    {
+      "name": "cu-num"
     },
-    "textchurchslavonic[]{}": {
-      "snippet": "textchurchslavonic[${2:options}]{${1:text}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "cu-calendar"
     },
-    "textchurchslavonic{}": {
-      "snippet": "textchurchslavonic{${1:text}}"
+    {
+      "name": "cu-util"
     },
-    "captionschurchslavonic": {},
-    "datechurchslavonic": {},
-    "Azbuk{}": {
-      "snippet": "Azbuk{${1:counter}}"
+    {
+      "name": "cu-kinovar"
     },
-    "azbuk{}": {
-      "snippet": "azbuk{${1:counter}}"
-    },
-    "sh": {},
-    "ch": {},
-    "tg": {},
-    "arctg": {},
-    "arcctg": {},
-    "th": {},
-    "ctg": {},
-    "cth": {},
-    "cosec": {},
-    "Prob": {},
-    "Variance": {},
-    "nod": {},
-    "nok": {},
-    "NOD": {},
-    "NOK": {},
-    "Proj": {}
-  },
-  "envs": {
-    "churchslavonic[]": {
-      "name": "churchslavonic",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "churchslavonic": {}
-  },
-  "options": [
-    "color",
-    "gray",
-    "bw",
-    "autocolormarks",
-    "noautocolormarks"
+    {
+      "name": "cu-kruk"
+    }
   ],
-  "keyvals": [
-    [
-      "spelling=${1|modern,traditional|}",
-      "numerals=${1|latin,cyrillic|}",
+  "macros": [
+    {
+      "name": "cuMarginMark",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "cuMarginMarkSkip",
+      "unusual": true
+    },
+    {
+      "name": "cuMarginMarkText",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textchurchslavonic",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textchurchslavonic",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "captionschurchslavonic",
+      "unusual": true
+    },
+    {
+      "name": "datechurchslavonic",
+      "unusual": true
+    },
+    {
+      "name": "Azbuk",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "azbuk",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "sh",
+      "unusual": true
+    },
+    {
+      "name": "ch",
+      "unusual": true
+    },
+    {
+      "name": "tg",
+      "unusual": true
+    },
+    {
+      "name": "arctg",
+      "unusual": true
+    },
+    {
+      "name": "arcctg",
+      "unusual": true
+    },
+    {
+      "name": "th",
+      "unusual": true
+    },
+    {
+      "name": "ctg",
+      "unusual": true
+    },
+    {
+      "name": "cth",
+      "unusual": true
+    },
+    {
+      "name": "cosec",
+      "unusual": true
+    },
+    {
+      "name": "Prob",
+      "unusual": true
+    },
+    {
+      "name": "Variance",
+      "unusual": true
+    },
+    {
+      "name": "nod",
+      "unusual": true
+    },
+    {
+      "name": "nok",
+      "unusual": true
+    },
+    {
+      "name": "NOD",
+      "unusual": true
+    },
+    {
+      "name": "NOK",
+      "unusual": true
+    },
+    {
+      "name": "Proj",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "churchslavonic",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "churchslavonic"
+    }
+  ],
+  "keys": {
+    "\\usepackage/churchslavonic#c": [
+      "color\r",
+      "gray\r",
+      "bw\r",
+      "autocolormarks\r",
+      "noautocolormarks\r"
+    ],
+    "\\setdefaultlanguage/churchslavonic#c,\\setmainlanguage/churchslavonic#c,\\setotherlanguage/churchslavonic#c,\\textlang/churchslavonic#c,\\textchurchslavonic#c,\\begin{lang}/churchslavonic#c,\\begin{churchslavonic}#c,\\selectlanguage/churchslavonic#c,\\foreignlanguage/churchslavonic#c,\\begin{otherlanguage}/churchslavonic#c,\\begin{otherlanguage*}/churchslavonic#c,\\resetdefaultlanguage/churchslavonic#c,\\setlanguagealias/churchslavonic#c,\\setlanguagealias*/churchslavonic#c,\\pghyphenation/churchslavonic#c,\\setlanghyphenmins/churchslavonic#c": [
+      "spelling=${1|modern,traditional\r|}",
+      "numerals=${1|latin,cyrillic\r|}",
       "babelshorthands"
     ]
+  },
+  "args": [
+    "\\usepackage/churchslavonic#c"
   ]
 }

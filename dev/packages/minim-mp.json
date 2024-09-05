@@ -1,119 +1,239 @@
 {
-  "includes": {
-    "luatex": []
-  },
-  "macros": {
-    "mplibtextextlabel{}": {
-      "snippet": "mplibtextextlabel{${1:choice}}",
-      "option": "luamplib"
-    },
-    "mplibshowlog{}": {
-      "snippet": "mplibshowlog{${1:choice}}",
-      "option": "luamplib"
-    },
-    "mplibcodeinherit{}": {
-      "snippet": "mplibcodeinherit{${1:choice}}",
-      "option": "luamplib"
-    },
-    "mplibsetformat{}": {
-      "snippet": "mplibsetformat{${1:format name}}",
-      "option": "luamplib"
-    },
-    "mplibnumbersystem{}": {
-      "snippet": "mplibnumbersystem{${1:type}}",
-      "option": "luamplib"
-    },
-    "everymplib{}": {
-      "snippet": "everymplib{${1:metapost code}}",
-      "option": "luamplib"
-    },
-    "everymplib[]{}": {
-      "snippet": "everymplib[${2:instance name}]{${1:metapost code}}",
-      "option": "luamplib"
-    },
-    "everyendmplib{}": {
-      "snippet": "everyendmplib{${1:metapost code}}",
-      "option": "luamplib"
-    },
-    "everyendmplib[]{}": {
-      "snippet": "everyendmplib[${2:instance name}]{${1:metapost code}}",
-      "option": "luamplib"
-    },
-    "newmetapostenvironment{}": {
-      "snippet": "newmetapostenvironment{${1:envname}}"
-    },
-    "newmetapostenvironment[]{}": {
-      "snippet": "newmetapostenvironment[${2:options}]{${1:envname}}"
-    },
-    "mpcolor{}": {
-      "snippet": "mpcolor{${1:color}}"
-    },
-    "minimpcolor{}": {
-      "snippet": "minimpcolor{${1:color}}"
-    },
-    "dominimpcolor{}{}": {
-      "snippet": "dominimpcolor{${1:color}}{${2:arg}}"
-    },
-    "mpcolorspectoks": {},
-    "mpcolorruntoks": {},
-    "mpcolorvaltoks": {},
-    "directmetapost{}": {
-      "snippet": "directmetapost{${1:metapost code}}"
-    },
-    "directmetapost[]{}": {
-      "snippet": "directmetapost[${2:options}]{${1:metapost code}}"
-    },
-    "newmetapostinstance{}": {
-      "snippet": "newmetapostinstance{${1:cmd}}"
-    },
-    "newmetapostinstance[]{}": {
-      "snippet": "newmetapostinstance[${2:options}]{${1:cmd}}"
-    },
-    "convertmpcolours": {},
-    "RtoG": {},
-    "GtoG": {},
-    "BtoG": {},
-    "everymaketext": {},
-    "voidbox": {},
-    "ignore{}": {
-      "snippet": "ignore{${1:arg}}"
-    },
-    "unbrace{}": {
-      "snippet": "unbrace{${1:arg}}"
-    },
-    "firstoftwo{}{}": {
-      "snippet": "firstoftwo{${1:arg1}}{${2:arg2}}"
-    },
-    "secondoftwo{}{}": {
-      "snippet": "secondoftwo{${1:arg1}}{${2:arg2}}"
-    },
-    "nextif": {},
-    "nextifx": {},
-    "nextifcat": {},
-    "withoptions[]{}": {
-      "snippet": "withoptions[${2:default}]{${1:code}}"
-    },
-    "splitcommalist{}{}": {
-      "snippet": "splitcommalist{${1:code}}{${2:list}}"
-    },
-    "unset": {},
-    "setluachunkname{}{}": {
-      "snippet": "setluachunkname{${1:cmd}}{${2:actual name}}"
-    },
-    "hairspace": {},
-    "threeperemspace": {},
-    "fourperemspace": {},
-    "decompressedpdf": {}
-  },
-  "envs": {
-    "metapost": {},
-    "metapost[]": {
-      "name": "metapost",
-      "snippet": "[${1:options}]"
+  "deps": [
+    {
+      "name": "luatex"
     }
-  },
-  "options": [
-    "luamplib"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "mplibtextextlabel",
+      "if": "luamplib",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:choice%keyvals}}"
+      }
+    },
+    {
+      "name": "mplibshowlog",
+      "if": "luamplib",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:choice%keyvals}}"
+      }
+    },
+    {
+      "name": "mplibcodeinherit",
+      "if": "luamplib",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:choice%keyvals}}"
+      }
+    },
+    {
+      "name": "mplibsetformat",
+      "if": "luamplib",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:format name%keyvals}}"
+      }
+    },
+    {
+      "name": "mplibnumbersystem",
+      "if": "luamplib",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:type%keyvals}}"
+      }
+    },
+    {
+      "name": "everymplib",
+      "if": "luamplib",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:metapost code}}"
+      }
+    },
+    {
+      "name": "everymplib",
+      "if": "luamplib",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:instance name}]{${1:metapost code}}"
+      }
+    },
+    {
+      "name": "everyendmplib",
+      "if": "luamplib",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:metapost code%definition}}"
+      }
+    },
+    {
+      "name": "everyendmplib",
+      "if": "luamplib",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:instance name}]{${1:metapost code}}"
+      }
+    },
+    {
+      "name": "newmetapostenvironment",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:envname}}"
+      }
+    },
+    {
+      "name": "newmetapostenvironment",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options}]{${1:envname}}"
+      }
+    },
+    {
+      "name": "mpcolor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "directmetapost",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:metapost code}}"
+      }
+    },
+    {
+      "name": "directmetapost",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options}]{${1:metapost code}}"
+      }
+    },
+    {
+      "name": "newmetapostinstance",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cmd}}"
+      }
+    },
+    {
+      "name": "newmetapostinstance",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options}]{${1:cmd}}"
+      }
+    },
+    {
+      "name": "voidbox",
+      "unusual": true
+    },
+    {
+      "name": "ignore",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "unbrace",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "firstoftwo",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "secondoftwo",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "nextif",
+      "unusual": true
+    },
+    {
+      "name": "nextifx",
+      "unusual": true
+    },
+    {
+      "name": "nextifcat",
+      "unusual": true
+    },
+    {
+      "name": "withoptions",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:default}]{${1:code}}"
+      }
+    },
+    {
+      "name": "splitcommalist",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:code}}{${2:list}}"
+      }
+    },
+    {
+      "name": "unset",
+      "unusual": true
+    },
+    {
+      "name": "setluachunkname",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:actual name}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "metapost"
+    },
+    {
+      "name": "metapost",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/minim-mp#c": [
+      "luamplib\r"
+    ],
+    "\\mplibtextextlabel#c,\\mplibshowlog#c,\\mplibcodeinherit#c": [
+      "enable\r",
+      "disable\r"
+    ],
+    "\\mplibsetformat#c": [
+      "plain\r",
+      "metafun\r"
+    ],
+    "\\mplibnumbersystem#c": [
+      "scaled\r",
+      "double\r",
+      "decimal\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/minim-mp#c"
+  ]
 }

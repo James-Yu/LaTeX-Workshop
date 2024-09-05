@@ -1,114 +1,405 @@
 {
-  "includes": {
-    "pgf": [],
-    "tikz": [],
-    "listofitems": [],
-    "simplekv": [],
-    "ifthen": []
+  "deps": [
+    {
+      "name": "pgf"
+    },
+    {
+      "name": "tikz"
+    },
+    {
+      "name": "listofitems"
+    },
+    {
+      "name": "simplekv"
+    },
+    {
+      "name": "ifthen"
+    }
+  ],
+  "macros": [
+    {
+      "name": "TubeAEssai",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:}}"
+      }
+    },
+    {
+      "name": "TubeAEssai",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:clés%keyvals}]{${1:}}"
+      }
+    },
+    {
+      "name": "EchelleTube",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:nombre}}"
+      }
+    },
+    {
+      "name": "EchelleTube",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:clés%keyvals}]{${1:nombre}}"
+      }
+    },
+    {
+      "name": "Becher",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:}}"
+      }
+    },
+    {
+      "name": "Becher",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:clés%keyvals}]{${1:}}"
+      }
+    },
+    {
+      "name": "FioleJaugee",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:}}"
+      }
+    },
+    {
+      "name": "FioleJaugee",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:clés%keyvals}]{${1:}}"
+      }
+    },
+    {
+      "name": "Erlen",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:}}"
+      }
+    },
+    {
+      "name": "Erlen",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:clés%keyvals}]{${1:}}"
+      }
+    },
+    {
+      "name": "Dosage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:}}"
+      }
+    },
+    {
+      "name": "Dosage",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:clés%keyvals}]{${1:}}"
+      }
+    },
+    {
+      "name": "CouleurActuelle",
+      "unusual": true
+    },
+    {
+      "name": "CouleurBecher",
+      "unusual": true
+    },
+    {
+      "name": "CouleurBecherd",
+      "unusual": true
+    },
+    {
+      "name": "CouleurErlen",
+      "unusual": true
+    },
+    {
+      "name": "CouleurFiole",
+      "unusual": true
+    },
+    {
+      "name": "CouleurTitrant",
+      "unusual": true
+    },
+    {
+      "name": "CouleurTitre",
+      "unusual": true
+    },
+    {
+      "name": "CouleurTube",
+      "unusual": true
+    },
+    {
+      "name": "EchelleActuelle",
+      "unusual": true
+    },
+    {
+      "name": "erlenpartielfalse",
+      "unusual": true
+    },
+    {
+      "name": "erlenpartieltrue",
+      "unusual": true
+    },
+    {
+      "name": "erlenpleinfalse",
+      "unusual": true
+    },
+    {
+      "name": "erlenpleintrue",
+      "unusual": true
+    },
+    {
+      "name": "erlenvidefalse",
+      "unusual": true
+    },
+    {
+      "name": "erlenvidetrue",
+      "unusual": true
+    },
+    {
+      "name": "fiolepleinefalse",
+      "unusual": true
+    },
+    {
+      "name": "fiolepleinetrue",
+      "unusual": true
+    },
+    {
+      "name": "fiolevidefalse",
+      "unusual": true
+    },
+    {
+      "name": "fiolevidetrue",
+      "unusual": true
+    },
+    {
+      "name": "gendeerlenfalsefalse",
+      "unusual": true
+    },
+    {
+      "name": "gendeerlenfalsetrue",
+      "unusual": true
+    },
+    {
+      "name": "hauteurerlen",
+      "unusual": true
+    },
+    {
+      "name": "hauteurfiole",
+      "unusual": true
+    },
+    {
+      "name": "hauteurmaxtube",
+      "unusual": true
+    },
+    {
+      "name": "HauteurTube",
+      "unusual": true
+    },
+    {
+      "name": "iferlenpartiel",
+      "unusual": true
+    },
+    {
+      "name": "iferlenplein",
+      "unusual": true
+    },
+    {
+      "name": "iferlenvide",
+      "unusual": true
+    },
+    {
+      "name": "iffiolepleine",
+      "unusual": true
+    },
+    {
+      "name": "iffiolevide",
+      "unusual": true
+    },
+    {
+      "name": "iflegende",
+      "unusual": true
+    },
+    {
+      "name": "iflegendeerlen",
+      "unusual": true
+    },
+    {
+      "name": "iflegendefiole",
+      "unusual": true
+    },
+    {
+      "name": "iflegendesouserlen",
+      "unusual": true
+    },
+    {
+      "name": "iflegendetube",
+      "unusual": true
+    },
+    {
+      "name": "iftrait",
+      "unusual": true
+    },
+    {
+      "name": "iftraitnoirbecher",
+      "unusual": true
+    },
+    {
+      "name": "iftraitnoirerlen",
+      "unusual": true
+    },
+    {
+      "name": "LegendeActuelle",
+      "unusual": true
+    },
+    {
+      "name": "LegendeActuelleB",
+      "unusual": true
+    },
+    {
+      "name": "LegendeActuelleD",
+      "unusual": true
+    },
+    {
+      "name": "LegendeActuelleF",
+      "unusual": true
+    },
+    {
+      "name": "LegendeActuelleT",
+      "unusual": true
+    },
+    {
+      "name": "legendeerlenfalse",
+      "unusual": true
+    },
+    {
+      "name": "legendeerlenfalse",
+      "unusual": true
+    },
+    {
+      "name": "legendeerlentrue",
+      "unusual": true
+    },
+    {
+      "name": "legendefalse",
+      "unusual": true
+    },
+    {
+      "name": "legendefiolefalse",
+      "unusual": true
+    },
+    {
+      "name": "legendefioletrue",
+      "unusual": true
+    },
+    {
+      "name": "legendesouserlenfalse",
+      "unusual": true
+    },
+    {
+      "name": "legendesouserlentrue",
+      "unusual": true
+    },
+    {
+      "name": "legendetrue",
+      "unusual": true
+    },
+    {
+      "name": "legendetubefalse",
+      "unusual": true
+    },
+    {
+      "name": "legendetubetrue",
+      "unusual": true
+    },
+    {
+      "name": "ListeAvantCouleurs",
+      "unusual": true
+    },
+    {
+      "name": "ListeAvantLegendes",
+      "unusual": true
+    },
+    {
+      "name": "ListeCouleurs",
+      "unusual": true
+    },
+    {
+      "name": "ListeLegendes",
+      "unusual": true
+    },
+    {
+      "name": "nombretube",
+      "unusual": true
+    },
+    {
+      "name": "traitfalse",
+      "unusual": true
+    },
+    {
+      "name": "traitnoirbecherfalse",
+      "unusual": true
+    },
+    {
+      "name": "traitnoirbechertrue",
+      "unusual": true
+    },
+    {
+      "name": "traitnoirerlenfalse",
+      "unusual": true
+    },
+    {
+      "name": "traitnoirerlentrue",
+      "unusual": true
+    },
+    {
+      "name": "traittrue",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\TubeAEssai": [
+      "Couleurs=",
+      "Echelle=${1:valeur}\r",
+      "Legende=${1:text}\r",
+      "Hauteur=${1:valeur}\r"
+    ],
+    "\\EchelleTube": [
+      "Couleurs={${1:color1,color2,...}}\r",
+      "Echelle=${1:valeur}\r",
+      "Legendes={${1:label1,label2,...}}\r"
+    ],
+    "\\Becher": [
+      "Couleurs=",
+      "Echelle=${1:valeur}\r",
+      "Legende=${1:text}\r"
+    ],
+    "\\FioleJaugee": [
+      "Couleurs=",
+      "Echelle=${1:valeur}\r",
+      "Legende=${1:text}\r",
+      "Hauteur=${1:valeur}\r"
+    ],
+    "\\Erlen": [
+      "Couleurs=",
+      "Echelle=${1:valeur}\r",
+      "Legende=${1:text}\r",
+      "LegendeDessous=${1:text}\r",
+      "Hauteur=${1:valeur}\r"
+    ],
+    "\\Dosage": [
+      "Titrant=${1:titrant}\r",
+      "Titre=${1:titre}\r",
+      "Echelle=${1:valeur}\r",
+      "CouleurTitrant=",
+      "CouleurTitre="
+    ]
   },
-  "macros": {
-    "TubeAEssai{}": {
-      "snippet": "TubeAEssai{${1:}}"
-    },
-    "TubeAEssai[]{}": {
-      "snippet": "TubeAEssai[${2:clés}]{${1:}}"
-    },
-    "EchelleTube{}": {
-      "snippet": "EchelleTube{${1:nombre}}"
-    },
-    "EchelleTube[]{}": {
-      "snippet": "EchelleTube[${2:clés}]{${1:nombre}}"
-    },
-    "Becher{}": {
-      "snippet": "Becher{${1:}}"
-    },
-    "Becher[]{}": {
-      "snippet": "Becher[${2:clés}]{${1:}}"
-    },
-    "FioleJaugee{}": {
-      "snippet": "FioleJaugee{${1:}}"
-    },
-    "FioleJaugee[]{}": {
-      "snippet": "FioleJaugee[${2:clés}]{${1:}}"
-    },
-    "Erlen{}": {
-      "snippet": "Erlen{${1:}}"
-    },
-    "Erlen[]{}": {
-      "snippet": "Erlen[${2:clés}]{${1:}}"
-    },
-    "Dosage{}": {
-      "snippet": "Dosage{${1:}}"
-    },
-    "Dosage[]{}": {
-      "snippet": "Dosage[${2:clés}]{${1:}}"
-    },
-    "CouleurActuelle": {},
-    "CouleurBecher": {},
-    "CouleurBecherd": {},
-    "CouleurErlen": {},
-    "CouleurFiole": {},
-    "CouleurTitrant": {},
-    "CouleurTitre": {},
-    "CouleurTube": {},
-    "EchelleActuelle": {},
-    "erlenpartielfalse": {},
-    "erlenpartieltrue": {},
-    "erlenpleinfalse": {},
-    "erlenpleintrue": {},
-    "erlenvidefalse": {},
-    "erlenvidetrue": {},
-    "fiolepleinefalse": {},
-    "fiolepleinetrue": {},
-    "fiolevidefalse": {},
-    "fiolevidetrue": {},
-    "gendeerlenfalsefalse": {},
-    "gendeerlenfalsetrue": {},
-    "hauteurerlen": {},
-    "hauteurfiole": {},
-    "hauteurmaxtube": {},
-    "HauteurTube": {},
-    "iferlenpartiel": {},
-    "iferlenplein": {},
-    "iferlenvide": {},
-    "iffiolepleine": {},
-    "iffiolevide": {},
-    "iflegende": {},
-    "iflegendeerlen": {},
-    "iflegendefiole": {},
-    "iflegendesouserlen": {},
-    "iflegendetube": {},
-    "iftrait": {},
-    "iftraitnoirbecher": {},
-    "iftraitnoirerlen": {},
-    "LegendeActuelle": {},
-    "LegendeActuelleB": {},
-    "LegendeActuelleD": {},
-    "LegendeActuelleF": {},
-    "LegendeActuelleT": {},
-    "legendeerlenfalse": {},
-    "legendeerlentrue": {},
-    "legendefalse": {},
-    "legendefiolefalse": {},
-    "legendefioletrue": {},
-    "legendesouserlenfalse": {},
-    "legendesouserlentrue": {},
-    "legendetrue": {},
-    "legendetubefalse": {},
-    "legendetubetrue": {},
-    "ListeAvantCouleurs": {},
-    "ListeAvantLegendes": {},
-    "ListeCouleurs": {},
-    "ListeLegendes": {},
-    "nombretube": {},
-    "traitfalse": {},
-    "traitnoirbecherfalse": {},
-    "traitnoirbechertrue": {},
-    "traitnoirerlenfalse": {},
-    "traitnoirerlentrue": {},
-    "traittrue": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

@@ -1,52 +1,116 @@
 {
-  "includes": {
-    "luatex": [],
-    "kvoptions": []
-  },
-  "macros": {
-    "py{}": {
-      "snippet": "py{${1:code}}"
+  "deps": [
+    {
+      "name": "luatex"
     },
-    "pyq{}": {
-      "snippet": "pyq{${1:code}}"
-    },
-    "pyc{}": {
-      "snippet": "pyc{${1:code}}"
-    },
-    "pycq{}": {
-      "snippet": "pycq{${1:code}}"
-    },
-    "pyfile{}": {
-      "snippet": "pyfile{${1:file}}"
-    },
-    "pyfileq{}": {
-      "snippet": "pyfileq{${1:file}}"
-    },
-    "pyfilerepl{}": {
-      "snippet": "pyfilerepl{${1:file}}"
-    },
-    "pysession{}": {
-      "snippet": "pysession{${1:session}}"
-    },
-    "pyoption{}{}": {
-      "snippet": "pyoption{${1:option}}{${2:value}}"
-    },
-    "pyif{}{}{}": {
-      "snippet": "pyif{${1:test}}{${2:then clause}}{${3:else clause}}"
-    },
-    "PyLTVerbatimEnv": {}
-  },
-  "envs": {
-    "python": {},
-    "pythonq": {},
-    "pythonrepl": {}
-  },
-  "options": [
-    "executable=${1:path}",
-    "ignoreerrors",
-    "localimports",
-    "shutdown=${1|veryveryend,veryenddocument,off|}",
-    "verbose"
+    {
+      "name": "kvoptions"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "py",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code%definition}}"
+      }
+    },
+    {
+      "name": "pyq",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code%definition}}"
+      }
+    },
+    {
+      "name": "pyc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code%definition}}"
+      }
+    },
+    {
+      "name": "pycq",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code%definition}}"
+      }
+    },
+    {
+      "name": "pyfile",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "pyfileq",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "pyfilerepl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "pysession",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:session}}"
+      }
+    },
+    {
+      "name": "pyoption",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:option%keyvals}}{${2:value}}",
+        "keys": [
+          "\\pyoption"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pyif",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:test}}{${2:then clause}}{${3:else clause}}"
+      }
+    },
+    {
+      "name": "PyLTVerbatimEnv"
+    }
+  ],
+  "envs": [
+    {
+      "name": "python"
+    },
+    {
+      "name": "pythonq"
+    },
+    {
+      "name": "pythonrepl"
+    }
+  ],
+  "keys": {
+    "\\usepackage/pyluatex#c": [
+      "executable=${1:path}\r",
+      "ignoreerrors",
+      "localimports",
+      "shutdown=${1|veryveryend,veryenddocument,off\r|}",
+      "verbose"
+    ],
+    "\\pyoption": [
+      "ignoreerrors\r",
+      "verbose\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/pyluatex#c"
+  ]
 }

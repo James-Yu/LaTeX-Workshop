@@ -1,24 +1,47 @@
 {
-  "includes": {
-    "letltxmacro": []
-  },
-  "macros": {
-    "capstart": {},
-    "hypcapspace": {},
-    "hypcapredef{}": {
-      "snippet": "hypcapredef{${1:envname}}"
-    },
-    "capstartfalse": {},
-    "capstarttrue": {},
-    "ifcapstart": {}
-  },
-  "envs": {},
-  "options": [
-    "figure",
-    "figure*",
-    "table",
-    "table*",
-    "all"
+  "deps": [
+    {
+      "name": "letltxmacro"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "capstart"
+    },
+    {
+      "name": "hypcapspace",
+      "unusual": true
+    },
+    {
+      "name": "hypcapredef",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:envname}}"
+      }
+    },
+    {
+      "name": "capstartfalse"
+    },
+    {
+      "name": "capstarttrue"
+    },
+    {
+      "name": "ifcapstart",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/hypcap#c": [
+      "figure\r",
+      "figure*\r",
+      "table\r",
+      "table*\r",
+      "all\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/hypcap#c"
+  ]
 }

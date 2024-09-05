@@ -1,50 +1,74 @@
 {
-  "includes": {
-    "embedfile": [],
-    "filehook": [],
-    "currfile": [],
-    "etoolbox": [],
-    "letltxmacro": [
-      "compat"
-    ]
-  },
-  "macros": {
-    "embedsource": {},
-    "embedsource[]": {
-      "snippet": "embedsource[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "embedfile"
     },
-    "embedinput{}": {
-      "snippet": "embedinput{${1:file}}"
+    {
+      "name": "filehook"
     },
-    "embedinput[]{}": {
-      "snippet": "embedinput[${2:options}]{${1:file}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "currfile"
+    },
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "letltxmacro",
+      "if": "compat"
     }
-  },
-  "envs": {},
-  "options": [
-    "all",
-    "notall",
-    "main",
-    "input",
-    "include",
-    "graphicx",
-    "csvsimple",
-    "compat"
   ],
-  "keyvals": [
-    [
-      "filespec=",
-      "ucfilespec=",
-      "filesystem=",
-      "mimetype=",
-      "desc=${1:description}",
-      "afrelationship=${1:PDF name}",
-      "stringmethod=${1|psd,escape|}",
-      "id="
+  "macros": [
+    {
+      "name": "embedsource"
+    },
+    {
+      "name": "embedsource",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "embedinput",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "embedinput",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:file}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/embedall#c": [
+      "all\r",
+      "notall\r",
+      "main\r",
+      "input\r",
+      "include\r",
+      "graphicx\r",
+      "csvsimple\r",
+      "compat\r"
+    ],
+    "\\embedsource#c,\\embedinput#c": [
+      "filespec=\r",
+      "ucfilespec=\r",
+      "filesystem=\r",
+      "mimetype=\r",
+      "desc=${1:description}\r",
+      "afrelationship=${1:PDF name}\r",
+      "stringmethod=${1|psd,escape\r|}",
+      "id=\r"
     ]
+  },
+  "args": [
+    "\\usepackage/embedall#c"
   ]
 }

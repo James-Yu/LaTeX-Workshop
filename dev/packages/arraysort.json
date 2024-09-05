@@ -1,55 +1,118 @@
 {
-  "includes": {
-    "arrayjobx": [],
-    "calc": [],
-    "ifthen": [],
-    "etoolbox": [],
-    "xargs": [],
-    "macroswap": [],
-    "pdftexcmds": [
-      "comparestr"
+  "deps": [
+    {
+      "name": "arrayjobx"
+    },
+    {
+      "name": "calc"
+    },
+    {
+      "name": "ifthen"
+    },
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "xargs"
+    },
+    {
+      "name": "macroswap"
+    },
+    {
+      "name": "pdftexcmds",
+      "if": "comparestr"
+    },
+    {
+      "name": "lcg",
+      "if": "randompart"
+    }
+  ],
+  "macros": [
+    {
+      "name": "sortArray",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:integer}}{${2:array}}"
+      }
+    },
+    {
+      "name": "sortArray",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:comparator%keyvals}]{${1:integer}}{${2:array}}"
+      }
+    },
+    {
+      "name": "sortArray",
+      "arg": {
+        "format": "[][]{}{}",
+        "snippet": "[${3:comparator%keyvals}][${4:start}]{${1:integer}}{${2:array}}"
+      }
+    },
+    {
+      "name": "arraysortcomparestr",
+      "if": "comparestr",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "arraysortcomparenum",
+      "if": "comparenum",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "sortArrayPartitionRand",
+      "if": "randompart",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:comparator}}{${2:start}}{${3:end}}{${4:array}}"
+      }
+    },
+    {
+      "name": "sortArrayPartitionMed",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:comparator}}{${2:start}}{${3:end}}{${4:array}}"
+      }
+    },
+    {
+      "name": "sortArrayPartitionMid",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:comparator}}{${2:start}}{${3:end}}{${4:array}}"
+      }
+    },
+    {
+      "name": "sortArrayPartitionFirst",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:comparator}}{${2:start}}{${3:end}}{${4:array}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/arraysort#c": [
+      "comparestr\r",
+      "comparenum\r",
+      "randompart\r"
     ],
-    "lcg": [
-      "randompart"
+    "\\sortArray#c": [
+      "arraysortcomparenum\r"
     ]
   },
-  "macros": {
-    "sortArray{}{}": {
-      "snippet": "sortArray{${1:integer}}{${2:array}}"
-    },
-    "sortArray[]{}{}": {
-      "snippet": "sortArray[${3:comparator}]{${1:integer}}{${2:array}}"
-    },
-    "sortArray[][]{}{}": {
-      "snippet": "sortArray[${3:comparator}][${4:start}]{${1:integer}}{${2:array}}"
-    },
-    "arraysortcomparestr{}{}": {
-      "snippet": "arraysortcomparestr{${1:arg1}}{${2:arg2}}",
-      "option": "comparestr"
-    },
-    "arraysortcomparenum{}{}": {
-      "snippet": "arraysortcomparenum{${1:arg1}}{${2:arg2}}",
-      "option": "comparenum"
-    },
-    "sortArrayPartitionRand{}{}{}{}": {
-      "snippet": "sortArrayPartitionRand{${1:comparator}}{${2:start}}{${3:end}}{${4:array}}",
-      "option": "randompart"
-    },
-    "sortArrayPartitionMed{}{}{}{}": {
-      "snippet": "sortArrayPartitionMed{${1:comparator}}{${2:start}}{${3:end}}{${4:array}}"
-    },
-    "sortArrayPartitionMid{}{}{}{}": {
-      "snippet": "sortArrayPartitionMid{${1:comparator}}{${2:start}}{${3:end}}{${4:array}}"
-    },
-    "sortArrayPartitionFirst{}{}{}{}": {
-      "snippet": "sortArrayPartitionFirst{${1:comparator}}{${2:start}}{${3:end}}{${4:array}}"
-    }
-  },
-  "envs": {},
-  "options": [
-    "comparestr",
-    "comparenum",
-    "randompart"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/arraysort#c"
+  ]
 }

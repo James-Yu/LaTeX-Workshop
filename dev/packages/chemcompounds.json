@@ -1,32 +1,78 @@
 {
-  "includes": {},
-  "macros": {
-    "declarecompound{}": {
-      "snippet": "declarecompound{${1:label}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "declarecompound",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label%specialDef}}"
+      }
     },
-    "declarecompound[]{}": {
-      "snippet": "declarecompound[${2:name}]{${1:label}}"
+    {
+      "name": "declarecompound",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:name}]{${1:label}}"
+      }
     },
-    "compound{}": {
-      "snippet": "compound{${1:label1,${2:label2},...}}"
+    {
+      "name": "compound",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label1,label2,...%keyvals}}"
+      }
     },
-    "compound*{}": {
-      "snippet": "compound*{${1:label1,${2:label2},...}}"
+    {
+      "name": "compound*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label1,label2,...%keyvals}}"
+      }
     },
-    "compoundseparator": {},
-    "compoundglobalprefix": {},
-    "compoundglobalsuffix": {},
-    "compoundprefix": {},
-    "compoundsuffix": {},
-    "compoundstyle": {},
-    "printcompound{}": {
-      "snippet": "printcompound{${1:text}}"
+    {
+      "name": "compoundseparator",
+      "unusual": true
+    },
+    {
+      "name": "compoundglobalprefix",
+      "unusual": true
+    },
+    {
+      "name": "compoundglobalsuffix",
+      "unusual": true
+    },
+    {
+      "name": "compoundprefix",
+      "unusual": true
+    },
+    {
+      "name": "compoundsuffix",
+      "unusual": true
+    },
+    {
+      "name": "compoundstyle",
+      "unusual": true
+    },
+    {
+      "name": "printcompound",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [
-    "implicit",
-    "noimplicit"
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/chemcompounds#c": [
+      "implicit\r",
+      "noimplicit\r"
+    ],
+    "\\compound#c,\\compound*#c,\\compound+#c": [
+      "%compound\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/chemcompounds#c"
+  ]
 }

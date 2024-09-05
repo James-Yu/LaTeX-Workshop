@@ -1,23 +1,46 @@
 {
-  "includes": {
-    "amsmath": [],
-    "catchfile": []
-  },
-  "macros": {
-    "MoveEqLeft": {},
-    "MoveEqLeft[]": {
-      "snippet": "MoveEqLeft[${1:length}]"
+  "deps": [
+    {
+      "name": "amsmath"
     },
-    "everybeforeautobreak{}": {
-      "snippet": "everybeforeautobreak{${1:tokens}}"
-    },
-    "everyaftereautobreak{}": {
-      "snippet": "everyaftereautobreak{${1:tokens}}"
+    {
+      "name": "catchfile"
     }
-  },
-  "envs": {
-    "autobreak": {}
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "MoveEqLeft"
+    },
+    {
+      "name": "MoveEqLeft",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:length%plain}]"
+      }
+    },
+    {
+      "name": "everybeforeautobreak",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tokens}}"
+      }
+    },
+    {
+      "name": "everyaftereautobreak",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tokens}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "autobreak",
+      "unusual": true
+    }
+  ],
+  "keys": {},
+  "args": []
 }

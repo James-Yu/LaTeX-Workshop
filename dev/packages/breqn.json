@@ -1,222 +1,393 @@
 {
-  "includes": {
-    "amsmath": [],
-    "graphicx": [],
-    "flexisym": [],
-    "keyval": [],
-    "calc": []
-  },
-  "macros": {
-    "breqnsetup{}": {
-      "snippet": "breqnsetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "amsmath"
     },
-    "condition{}": {
-      "snippet": "condition{${1:text}}"
+    {
+      "name": "graphicx"
     },
-    "condition[]{}": {
-      "snippet": "condition[${2:punctuation mark}]{${1:text}}"
+    {
+      "name": "flexisym"
     },
-    "condition*{}": {
-      "snippet": "condition*{${1:formula}}"
+    {
+      "name": "keyval"
     },
-    "hiderel{}": {
-      "snippet": "hiderel{${1:rel symbol}}"
+    {
+      "name": "calc"
+    }
+  ],
+  "macros": [
+    {
+      "name": "breqnsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\begin{dmath},\\begin{dmath*},\\begin{dseries},\\begin{dseries*},\\begin{dgroup},\\begin{dgroup*},\\begin{darray},\\begin{darray*},\\breqnsetup"
+        ],
+        "keyPos": 0
+      }
     },
-    "intertext{}": {
-      "snippet": "intertext{${1:text}}"
+    {
+      "name": "condition",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "breqnpopcats": {},
-    "conditionpunct": {},
-    "conditionsep": {},
-    "darraycolsep": {},
-    "debugwr{}": {
-      "snippet": "debugwr{${1:text}}"
+    {
+      "name": "condition",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:punctuation mark}]{${1:text}}"
+      }
     },
-    "DeclareTwang{}{}": {
-      "snippet": "DeclareTwang{${1:symbol}}{${2:number}}"
+    {
+      "name": "condition*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:formula}}"
+      }
     },
-    "discretionarytimes": {},
-    "Dmedmuskip": {},
-    "dquad": {},
-    "Dthickmuskip": {},
-    "eqbinoffset": {},
-    "eqbreakdepth": {},
-    "eqcolor": {},
-    "eqdelimoffset": {},
-    "eqfontsize": {},
-    "eqframe{}{}": {
-      "snippet": "eqframe{${1:width}}{${2:height}}"
+    {
+      "name": "hiderel",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:rel symbol}}"
+      }
     },
-    "eqindent": {},
-    "eqindentstep": {},
-    "eqinfo": {},
-    "eqinterlinepenalty": {},
-    "eqleftskip": {},
-    "eqlineskip": {},
-    "eqlineskiplimit": {},
-    "eqlinespacing": {},
-    "eqmargin": {},
-    "eqnumcolor": {},
-    "eqnumfont": {},
-    "eqnumform": {},
-    "eqnumplace": {},
-    "eqnumsep": {},
-    "eqnumside": {},
-    "eqnumsize": {},
-    "eqpunct": {},
-    "eqrightskip": {},
-    "eqstyle": {},
-    "intereqpenalty": {},
-    "intereqskip": {},
-    "listwidth": {},
-    "mathaxis": {},
-    "maxint": {},
-    "nref{}": {
-      "snippet": "nref{${1:label}}"
+    {
+      "name": "intertext",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "postmath": {},
-    "prebinoppenalty": {},
-    "premath": {},
-    "prerelpenalty": {},
-    "replicate{}": {
-      "snippet": "replicate{${1:token list}}"
+    {
+      "name": "breqnpopcats",
+      "unusual": true
     },
-    "theparentequation": {}
-  },
-  "envs": {
-    "dmath": {},
-    "dmath[]": {
+    {
+      "name": "conditionpunct",
+      "unusual": true
+    },
+    {
+      "name": "conditionsep",
+      "unusual": true
+    },
+    {
+      "name": "darraycolsep",
+      "unusual": true
+    },
+    {
+      "name": "debugwr",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "DeclareTwang",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:symbol}}{${2:number}}"
+      }
+    },
+    {
+      "name": "discretionarytimes",
+      "unusual": true
+    },
+    {
+      "name": "Dmedmuskip",
+      "unusual": true
+    },
+    {
+      "name": "dquad",
+      "unusual": true
+    },
+    {
+      "name": "Dthickmuskip",
+      "unusual": true
+    },
+    {
+      "name": "eqbinoffset",
+      "unusual": true
+    },
+    {
+      "name": "eqbreakdepth",
+      "unusual": true
+    },
+    {
+      "name": "eqcolor",
+      "unusual": true
+    },
+    {
+      "name": "eqdelimoffset",
+      "unusual": true
+    },
+    {
+      "name": "eqfontsize",
+      "unusual": true
+    },
+    {
+      "name": "eqframe",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "eqindent",
+      "unusual": true
+    },
+    {
+      "name": "eqindentstep",
+      "unusual": true
+    },
+    {
+      "name": "eqinfo",
+      "unusual": true
+    },
+    {
+      "name": "eqinterlinepenalty",
+      "unusual": true
+    },
+    {
+      "name": "eqleftskip",
+      "unusual": true
+    },
+    {
+      "name": "eqlineskip",
+      "unusual": true
+    },
+    {
+      "name": "eqlineskiplimit",
+      "unusual": true
+    },
+    {
+      "name": "eqlinespacing",
+      "unusual": true
+    },
+    {
+      "name": "eqmargin",
+      "unusual": true
+    },
+    {
+      "name": "eqnumcolor",
+      "unusual": true
+    },
+    {
+      "name": "eqnumfont",
+      "unusual": true
+    },
+    {
+      "name": "eqnumform",
+      "unusual": true
+    },
+    {
+      "name": "eqnumplace",
+      "unusual": true
+    },
+    {
+      "name": "eqnumsep",
+      "unusual": true
+    },
+    {
+      "name": "eqnumside",
+      "unusual": true
+    },
+    {
+      "name": "eqnumsize",
+      "unusual": true
+    },
+    {
+      "name": "eqpunct",
+      "unusual": true
+    },
+    {
+      "name": "eqrightskip",
+      "unusual": true
+    },
+    {
+      "name": "eqstyle",
+      "unusual": true
+    },
+    {
+      "name": "intereqpenalty",
+      "unusual": true
+    },
+    {
+      "name": "intereqskip",
+      "unusual": true
+    },
+    {
+      "name": "listwidth",
+      "unusual": true
+    },
+    {
+      "name": "mathaxis",
+      "unusual": true
+    },
+    {
+      "name": "maxint",
+      "unusual": true
+    },
+    {
+      "name": "nref",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "postmath",
+      "unusual": true
+    },
+    {
+      "name": "prebinoppenalty",
+      "unusual": true
+    },
+    {
+      "name": "premath",
+      "unusual": true
+    },
+    {
+      "name": "prerelpenalty",
+      "unusual": true
+    },
+    {
+      "name": "replicate",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:token list}}"
+      }
+    },
+    {
+      "name": "theparentequation",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "dmath"
+    },
+    {
       "name": "dmath",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     },
-    "dmath*": {},
-    "dmath*[]": {
+    {
+      "name": "dmath*"
+    },
+    {
       "name": "dmath*",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     },
-    "dseries": {},
-    "dseries[]": {
+    {
+      "name": "dseries"
+    },
+    {
       "name": "dseries",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     },
-    "dseries*": {},
-    "dseries*[]": {
+    {
+      "name": "dseries*"
+    },
+    {
       "name": "dseries*",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     },
-    "dgroup": {},
-    "dgroup[]": {
+    {
+      "name": "dgroup"
+    },
+    {
       "name": "dgroup",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     },
-    "dgroup*": {},
-    "dgroup*[]": {
+    {
+      "name": "dgroup*"
+    },
+    {
       "name": "dgroup*",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     },
-    "darray": {},
-    "darray[]": {
+    {
+      "name": "darray"
+    },
+    {
       "name": "darray",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 2,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     },
-    "darray*": {},
-    "darray*[]": {
+    {
+      "name": "darray*"
+    },
+    {
       "name": "darray*",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 2,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     },
-    "dsuspend": {}
-  },
-  "options": [],
-  "keyvals": [
-    [
-      "style=${1:cmds}",
-      "number=${1:text}",
-      "labelprefix=${1:prefix}",
+    {
+      "name": "dsuspend"
+    }
+  ],
+  "keys": {
+    "\\begin{dmath},\\begin{dmath*},\\begin{dseries},\\begin{dseries*},\\begin{dgroup},\\begin{dgroup*},\\begin{darray},\\begin{darray*},\\breqnsetup": [
+      "style=${1:cmds}\r",
+      "number=${1:text}\r",
+      "labelprefix=${1:prefix}\r",
       "label=",
       "indentstep=",
-      "compact",
-      "compact=${1:number}",
+      "compact\r",
+      "compact=${1:number}\r",
       "spread=",
-      "frame",
+      "frame\r",
       "frame=",
       "framesep=",
-      "breakdepth=${1:number}",
-      "shiftnumber",
-      "holdnumber",
-      "density=",
-      "layout=",
+      "breakdepth=${1:number}\r",
+      "shiftnumber\r",
+      "holdnumber\r",
+      "density=\r",
+      "layout=\r",
       "shortskiplimit=",
       "background=",
       "color=",
-      "center",
-      "nocenter"
+      "center\r",
+      "nocenter\r"
     ],
-    [
-      "style=${1:cmds}",
-      "number=${1:text}",
-      "labelprefix=${1:prefix}",
-      "label=",
-      "indentstep=",
-      "compact",
-      "compact=${1:number}",
-      "spread=",
-      "frame",
-      "frame=",
-      "framesep=",
-      "breakdepth=${1:number}",
-      "shiftnumber",
-      "holdnumber",
-      "density=",
-      "layout=",
-      "shortskiplimit=",
-      "background=",
-      "color=",
-      "center",
-      "nocenter",
-      "noalign",
-      "brace"
+    "\\begin{dgroup},\\begin{dgroup*}": [
+      "noalign\r",
+      "brace\r"
     ],
-    [
-      "style=${1:cmds}",
-      "number=${1:text}",
-      "labelprefix=${1:prefix}",
-      "label=",
-      "indentstep=",
-      "compact",
-      "compact=${1:number}",
-      "spread=",
-      "frame",
-      "frame=",
-      "framesep=",
-      "breakdepth=${1:number}",
-      "shiftnumber",
-      "holdnumber",
-      "density=",
-      "layout=",
-      "shortskiplimit=",
-      "background=",
-      "color=",
-      "center",
-      "nocenter",
-      "cols={${1:col specs}}"
+    "\\begin{darray},\\begin{darray*}": [
+      "cols={${1:col specs}}\r"
     ]
-  ]
+  },
+  "args": []
 }

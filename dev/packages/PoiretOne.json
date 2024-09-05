@@ -1,22 +1,43 @@
 {
-  "includes": {
-    "ifxetex": [],
-    "ifluatex": [],
-    "xkeyval": [],
-    "fontenc": [],
-    "fontaxes": [],
-    "mweights": []
-  },
-  "macros": {
-    "poiretone": {},
-    "poiretonefamily": {}
-  },
-  "envs": {},
-  "options": [
-    "scaled=${1:factor}",
-    "default",
-    "sfdefault",
-    "type1"
+  "deps": [
+    {
+      "name": "ifxetex"
+    },
+    {
+      "name": "ifluatex"
+    },
+    {
+      "name": "xkeyval"
+    },
+    {
+      "name": "fontenc"
+    },
+    {
+      "name": "fontaxes"
+    },
+    {
+      "name": "mweights"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "poiretone"
+    },
+    {
+      "name": "poiretonefamily",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/PoiretOne#c": [
+      "scaled=${1:factor}\r",
+      "default\r",
+      "sfdefault\r",
+      "type1\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/PoiretOne#c"
+  ]
 }

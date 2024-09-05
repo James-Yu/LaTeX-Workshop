@@ -1,131 +1,302 @@
 {
-  "includes": {
-    "ifthen": [],
-    "iftex": [],
-    "stmaryrd": [],
-    "amsmath": [],
-    "amsfonts": [],
-    "amsthm": [],
-    "amssymb": [],
-    "amsbsy": [],
-    "color": [],
-    "braket": [],
-    "graphicx": [],
-    "babel": [],
-    "letltxmacro": [],
-    "etoolbox": [],
-    "algorithm": [],
-    "algpseudocode": [],
-    "hyperref": [],
-    "mathpazo": [
-      "pretty"
-    ],
-    "xcolor": [
-      "uselistings"
-    ],
-    "listings": [
-      "uselistings"
+  "deps": [
+    {
+      "name": "ifthen"
+    },
+    {
+      "name": "iftex"
+    },
+    {
+      "name": "stmaryrd"
+    },
+    {
+      "name": "amsmath"
+    },
+    {
+      "name": "amsfonts"
+    },
+    {
+      "name": "amsthm"
+    },
+    {
+      "name": "amssymb"
+    },
+    {
+      "name": "amsbsy"
+    },
+    {
+      "name": "color"
+    },
+    {
+      "name": "braket"
+    },
+    {
+      "name": "graphicx"
+    },
+    {
+      "name": "babel"
+    },
+    {
+      "name": "letltxmacro"
+    },
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "algorithm"
+    },
+    {
+      "name": "algpseudocode"
+    },
+    {
+      "name": "hyperref"
+    },
+    {
+      "name": "mathpazo",
+      "if": "pretty"
+    },
+    {
+      "name": "xcolor",
+      "if": "uselistings"
+    },
+    {
+      "name": "listings",
+      "if": "uselistings"
+    }
+  ],
+  "macros": [
+    {
+      "name": "todo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%todo}}"
+      }
+    },
+    {
+      "name": "TODO"
+    },
+    {
+      "name": "todolist",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:contents%todo}}"
+      }
+    },
+    {
+      "name": "ii"
+    },
+    {
+      "name": "dd"
+    },
+    {
+      "name": "defeq"
+    },
+    {
+      "name": "expect"
+    },
+    {
+      "name": "id"
+    },
+    {
+      "name": "llbracket"
+    },
+    {
+      "name": "rrbracket"
+    },
+    {
+      "name": "newaffil",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:shorthand}}{${2:description%text}}"
+      }
+    },
+    {
+      "name": "affilTODO"
+    },
+    {
+      "name": "affilEQuSUSyd"
+    },
+    {
+      "name": "affilEQuSMacq"
+    },
+    {
+      "name": "affilUSydPhys"
+    },
+    {
+      "name": "affilIQC"
+    },
+    {
+      "name": "affilUWPhys"
+    },
+    {
+      "name": "affilUWAMath"
+    },
+    {
+      "name": "affilUWChem"
+    },
+    {
+      "name": "affilPI"
+    },
+    {
+      "name": "affilCIFAR"
+    },
+    {
+      "name": "affilCQuIC"
+    },
+    {
+      "name": "affilIBMTJW"
+    },
+    {
+      "name": "inlinecomment",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "linecomment",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "booloption",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:boolean name}}{${2:option name}}{${3:true|false}}"
+      }
+    },
+    {
+      "name": "newnew",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "algorithmautorefname",
+      "unusual": true
+    },
+    {
+      "name": "lemmaautorefname",
+      "unusual": true
+    },
+    {
+      "name": "citeneed",
+      "unusual": true
+    },
+    {
+      "name": "definelanguagealias",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:alias}}{${2:language}}"
+      }
+    },
+    {
+      "name": "captionsenglish",
+      "unusual": true
+    },
+    {
+      "name": "dateenglish",
+      "unusual": true
+    },
+    {
+      "name": "extrasenglish",
+      "unusual": true
+    },
+    {
+      "name": "noextrasenglish",
+      "unusual": true
+    },
+    {
+      "name": "englishhyphenmins",
+      "unusual": true
+    },
+    {
+      "name": "britishhyphenmins",
+      "unusual": true
+    },
+    {
+      "name": "americanhyphenmins",
+      "unusual": true
+    },
+    {
+      "name": "prefacename",
+      "unusual": true
+    },
+    {
+      "name": "bibname",
+      "unusual": true
+    },
+    {
+      "name": "chaptername",
+      "unusual": true
+    },
+    {
+      "name": "enclname",
+      "unusual": true
+    },
+    {
+      "name": "ccname",
+      "unusual": true
+    },
+    {
+      "name": "headtoname",
+      "unusual": true
+    },
+    {
+      "name": "seename",
+      "unusual": true
+    },
+    {
+      "name": "alsoname",
+      "unusual": true
+    },
+    {
+      "name": "proofname",
+      "unusual": true
+    },
+    {
+      "name": "glossaryname",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "theorem"
+    },
+    {
+      "name": "theorem",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "lemma"
+    },
+    {
+      "name": "lemma",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/revquantum#c": [
+      "final\r",
+      "pretty\r",
+      "uselistings\r",
+      "nobibtexhacks\r",
+      "strict\r"
     ]
   },
-  "macros": {
-    "todo{}": {
-      "snippet": "todo{${1:text}}"
-    },
-    "TODO": {},
-    "todolist{}": {
-      "snippet": "todolist{${1:contents}}"
-    },
-    "ii": {
-      "detail": "ⅈ",
-      "documentation": "DOUBLE-STRUCK ITALIC SMALL I"
-    },
-    "dd": {
-      "detail": "ⅆ",
-      "documentation": "DOUBLE-STRUCK ITALIC SMALL D"
-    },
-    "defeq": {},
-    "expect": {},
-    "id": {},
-    "llbracket": {
-      "detail": "⟦",
-      "documentation": "MATHEMATICAL LEFT WHITE SQUARE BRACKET"
-    },
-    "rrbracket": {
-      "detail": "⟧",
-      "documentation": "MATHEMATICAL RIGHT WHITE SQUARE BRACKET"
-    },
-    "newaffil{}{}": {
-      "snippet": "newaffil{${1:shorthand}}{${2:description}}"
-    },
-    "affilTODO": {},
-    "affilEQuSUSyd": {},
-    "affilEQuSMacq": {},
-    "affilUSydPhys": {},
-    "affilIQC": {},
-    "affilUWPhys": {},
-    "affilUWAMath": {},
-    "affilUWChem": {},
-    "affilPI": {},
-    "affilCIFAR": {},
-    "affilCQuIC": {},
-    "affilIBMTJW": {},
-    "inlinecomment{}": {
-      "snippet": "inlinecomment{${1:text}}"
-    },
-    "linecomment{}": {
-      "snippet": "linecomment{${1:text}}"
-    },
-    "booloption{}{}{}": {
-      "snippet": "booloption{${1:boolean name}}{${2:option name}}{${3:true|false}}"
-    },
-    "newnew{}{}": {
-      "snippet": "newnew{${1:name}}{${2:definition}}"
-    },
-    "algorithmautorefname": {},
-    "lemmaautorefname": {},
-    "citeneed": {},
-    "definelanguagealias{}{}": {
-      "snippet": "definelanguagealias{${1:alias}}{${2:language}}"
-    },
-    "ORIGselectlanguage{}": {
-      "snippet": "ORIGselectlanguage{${1:language}}"
-    },
-    "captionsenglish": {},
-    "dateenglish": {},
-    "extrasenglish": {},
-    "noextrasenglish": {},
-    "englishhyphenmins": {},
-    "britishhyphenmins": {},
-    "americanhyphenmins": {},
-    "prefacename": {},
-    "bibname": {},
-    "chaptername": {},
-    "enclname": {},
-    "ccname": {},
-    "headtoname": {},
-    "seename": {},
-    "alsoname": {},
-    "proofname": {},
-    "glossaryname": {}
-  },
-  "envs": {
-    "theorem": {},
-    "theorem[]": {
-      "name": "theorem",
-      "snippet": "[${1:heading}]"
-    },
-    "lemma": {},
-    "lemma[]": {
-      "name": "lemma",
-      "snippet": "[${1:heading}]"
-    }
-  },
-  "options": [
-    "final",
-    "pretty",
-    "uselistings",
-    "nobibtexhacks",
-    "strict"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/revquantum#c"
+  ]
 }

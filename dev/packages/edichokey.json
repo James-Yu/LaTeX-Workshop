@@ -1,28 +1,58 @@
 {
-  "includes": {
-    "hyperref": []
-  },
-  "macros": {
-    "alter": {},
-    "name{}": {
-      "snippet": "name{${1:taxon name}}"
-    },
-    "name[]{}": {
-      "snippet": "name[${2:prefix}]{${1:taxon name}}"
-    },
-    "edknamestyle": {},
-    "alterindent": {},
-    "taxonrightskip": {}
-  },
-  "envs": {
-    "Key": {},
-    "Key[]": {
-      "name": "Key",
-      "snippet": "[${1:prefix}]"
+  "deps": [
+    {
+      "name": "hyperref"
     }
-  },
-  "options": [
-    "hyperref"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "alter"
+    },
+    {
+      "name": "name",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:taxon name}}"
+      }
+    },
+    {
+      "name": "name",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:prefix}]{${1:taxon name}}"
+      }
+    },
+    {
+      "name": "edknamestyle",
+      "unusual": true
+    },
+    {
+      "name": "alterindent",
+      "unusual": true
+    },
+    {
+      "name": "taxonrightskip",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "Key"
+    },
+    {
+      "name": "Key",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:prefix}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/edichokey#c": [
+      "hyperref\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/edichokey#c"
+  ]
 }

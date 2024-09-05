@@ -1,30 +1,40 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "longtable": []
-  },
-  "macros": {
-    "xkvview{}": {
-      "snippet": "xkvview{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "xkeyval"
+    },
+    {
+      "name": "longtable"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "prefix=",
-      "family=",
-      "type=",
-      "default=",
-      "columns=",
+  ],
+  "macros": [
+    {
+      "name": "xkvview",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\xkvview"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\xkvview": [
+      "prefix=\r",
+      "family=\r",
+      "type=\r",
+      "default=\r",
+      "columns=\r",
       "vlabels",
-      "file=",
+      "file=\r",
       "wcolsep=",
-      "weol=",
+      "weol=\r",
       "wlabels",
       "view"
     ]
-  ]
+  },
+  "args": []
 }

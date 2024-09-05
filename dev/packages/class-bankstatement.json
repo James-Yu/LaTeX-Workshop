@@ -1,43 +1,73 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "xkvltxp": [],
-    "geometry": [],
-    "longtable": [],
-    "tabularx": [],
-    "xcolor": [],
-    "graphicx": [],
-    "booktabs": [],
-    "datatool": [],
-    "calc": [],
-    "ifthen": [],
-    "siunitx": []
-  },
-  "macros": {
-    "bankstatement{}": {
-      "snippet": "bankstatement{${1:csv file}}"
+  "deps": [
+    {
+      "name": "xkeyval"
     },
-    "bankstatement[]{}": {
-      "snippet": "bankstatement[${2:options}]{${1:csv file}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "xkvltxp"
+    },
+    {
+      "name": "geometry"
+    },
+    {
+      "name": "longtable"
+    },
+    {
+      "name": "tabularx"
+    },
+    {
+      "name": "xcolor"
+    },
+    {
+      "name": "graphicx"
+    },
+    {
+      "name": "booktabs"
+    },
+    {
+      "name": "datatool"
+    },
+    {
+      "name": "calc"
+    },
+    {
+      "name": "ifthen"
+    },
+    {
+      "name": "siunitx"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "title=${1:title}",
-      "logo=${1:logo}",
+  ],
+  "macros": [
+    {
+      "name": "bankstatement",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:csv file%file}}"
+      }
+    },
+    {
+      "name": "bankstatement",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:csv file%file}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\bankstatement": [
+      "title=${1:title}\r",
+      "logo=${1:logo}\r",
       "logowidth=",
-      "holder=${1:account holder}",
-      "bic=${1:BIC}",
-      "iban=${1:IBAN}",
+      "holder=${1:account holder}\r",
+      "bic=${1:BIC}\r",
+      "iban=${1:IBAN}\r",
       "referencewidth=",
       "negativecolor=",
-      "sort=${1:sort key}",
-      "openingbalance=",
-      "closingbalance="
+      "sort=${1:sort key}\r",
+      "openingbalance=\r",
+      "closingbalance=\r"
     ]
-  ]
+  },
+  "args": []
 }

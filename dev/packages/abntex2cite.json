@@ -1,262 +1,667 @@
 {
-  "includes": {
-    "ifthen": [],
-    "calc": [],
-    "abntex2abrev": [],
-    "setspace": [],
-    "url": [],
-    "ifpdf": [],
-    "ifxetex": [],
-    "breakurl": [],
-    "relsize": []
-  },
-  "macros": {
-    "citeonline{}": {
-      "snippet": "citeonline{${1:keylist}}"
+  "deps": [
+    {
+      "name": "ifthen"
     },
-    "citeonline[]{}": {
-      "snippet": "citeonline[${2:add. text}]{${1:keylist}}"
+    {
+      "name": "calc"
     },
-    "apud{}{}": {
-      "snippet": "apud{${1:keylist}}{${2:keylist}}"
+    {
+      "name": "abntex2abrev"
     },
-    "apud[]{}{}": {
-      "snippet": "apud[${3:add. text}]{${1:keylist}}{${2:keylist}}"
+    {
+      "name": "setspace"
     },
-    "apudonline{}{}": {
-      "snippet": "apudonline{${1:keylist}}{${2:keylist}}"
+    {
+      "name": "url"
     },
-    "apudonline[]{}{}": {
-      "snippet": "apudonline[${3:add. text}]{${1:keylist}}{${2:keylist}}"
+    {
+      "name": "ifpdf"
     },
-    "footciteref{}": {
-      "snippet": "footciteref{${1:keylist}}"
+    {
+      "name": "ifxetex"
     },
-    "Idem{}": {
-      "snippet": "Idem{${1:keylist}}"
+    {
+      "name": "breakurl"
     },
-    "Idem[]{}": {
-      "snippet": "Idem[${2:add. text}]{${1:keylist}}"
-    },
-    "Ibidem{}": {
-      "snippet": "Ibidem{${1:keylist}}"
-    },
-    "Ibidem[]{}": {
-      "snippet": "Ibidem[${2:add. text}]{${1:keylist}}"
-    },
-    "opcit{}": {
-      "snippet": "opcit{${1:keylist}}"
-    },
-    "opcit[]{}": {
-      "snippet": "opcit[${2:add. text}]{${1:keylist}}"
-    },
-    "passim{}": {
-      "snippet": "passim{${1:keylist}}"
-    },
-    "passim[]{}": {
-      "snippet": "passim[${2:add. text}]{${1:keylist}}"
-    },
-    "loccit{}": {
-      "snippet": "loccit{${1:keylist}}"
-    },
-    "loccit[]{}": {
-      "snippet": "loccit[${2:add. text}]{${1:keylist}}"
-    },
-    "cfcite{}": {
-      "snippet": "cfcite{${1:keylist}}"
-    },
-    "cfcite[]{}": {
-      "snippet": "cfcite[${2:add. text}]{${1:keylist}}"
-    },
-    "etseq{}": {
-      "snippet": "etseq{${1:keylist}}"
-    },
-    "etseq[]{}": {
-      "snippet": "etseq[${2:add. text}]{${1:keylist}}"
-    },
-    "citeauthoronline{}": {
-      "snippet": "citeauthoronline{${1:keylist}}"
-    },
-    "citeauthor{}": {
-      "snippet": "citeauthor{${1:keylist}}"
-    },
-    "citetext{}": {
-      "snippet": "citetext{${1:keylist}}"
-    },
-    "authorcapstyle": {},
-    "authorstyle": {},
-    "yearstyle": {},
-    "citebrackets{}{}": {
-      "snippet": "citebrackets{${1:delim1}}{${2:delim2}}"
-    },
-    "bibtextitlecommand{}{}": {
-      "snippet": "bibtextitlecommand{${1:tipo}}{${2:campo}}"
-    },
-    "citeoption{}": {
-      "snippet": "citeoption{${1:option}}"
-    },
-    "ABCIaddtocitelist{}": {
-      "snippet": "ABCIaddtocitelist{${1:arg1}}"
-    },
-    "ABCIaftercitex": {},
-    "ABCIaux": {},
-    "ABCIauxlen": {},
-    "ABCIccomma": {},
-    "ABCIcitation": {},
-    "ABCIcitecolondefault": {},
-    "ABCIcitecomma": {},
-    "ABCIcitecommadefault": {},
-    "ABCIcitelist": {},
-    "ABCIcomma": {},
-    "ABCIdemand{}": {
-      "snippet": "ABCIdemand{${1:arg}}"
-    },
-    "ABCIfirst": {},
-    "ABCIgetcitetext{}": {
-      "snippet": "ABCIgetcitetext{${1:arg1}}"
-    },
-    "ABCIgetcitetextecho{}": {
-      "snippet": "ABCIgetcitetextecho{${1:arg1}}"
-    },
-    "ABCIinitcitecomma": {},
-    "ABCIlast": {},
-    "ABCIlistwithoutmaximum{}": {
-      "snippet": "ABCIlistwithoutmaximum{${1:arg1}}"
-    },
-    "ABCInewblock": {},
-    "ABCIoutputgroupedcitelist": {},
-    "ABCIprocesscitetext": {},
-    "ABCIscriptfont": {},
-    "ABCIsortlist{}": {
-      "snippet": "ABCIsortlist{${1:arg1}}"
-    },
-    "ABCItemplist": {},
-    "ABCItempslist": {},
-    "ABCIthebibliformat": {},
-    "ABCIthebiblihook": {},
-    "ABCItoken{}": {
-      "snippet": "ABCItoken{${1:arg}}"
-    },
-    "AbntCitetype": {},
-    "AbntCitetypeALF": {},
-    "abntnextkey": {},
-    "abntrefinfo{}{}{}": {
-      "snippet": "abntrefinfo{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "addtociteoptionlist{}": {
-      "snippet": "addtociteoptionlist{${1:option}}"
-    },
-    "AfterTheBibliography{}": {
-      "snippet": "AfterTheBibliography{${1:code}}"
-    },
-    "apudname": {},
-    "bibciteEXPL{}{}": {
-      "snippet": "bibciteEXPL{${1:arg1}}{${2:arg2}}"
-    },
-    "bibciteIMPL{}{}": {
-      "snippet": "bibciteIMPL{${1:arg1}}{${2:arg2}}"
-    },
-    "bibciteYEAR{}{}": {
-      "snippet": "bibciteYEAR{${1:arg1}}{${2:arg2}}"
-    },
-    "biblabelsep": {},
-    "biblabeltext": {},
-    "cfcitename": {},
-    "citeclose": {},
-    "citeifnotcited{}": {
-      "snippet": "citeifnotcited{${1:keylist}}"
-    },
-    "citen[]{}": {
-      "snippet": "citen[${2:add. text}]{${1:keylist}}"
-    },
-    "citen{}": {
-      "snippet": "citen{${1:keylist}}"
-    },
-    "citenum[]{}": {
-      "snippet": "citenum[${2:add. text}]{${1:keylist}}"
-    },
-    "citenum{}": {
-      "snippet": "citenum{${1:keylist}}"
-    },
-    "citenumstyle": {},
-    "citeonlineifnotcited{}": {
-      "snippet": "citeonlineifnotcited{${1:keylist}}"
-    },
-    "citeopen": {},
-    "citeoptionlist": {},
-    "etseqname": {},
-    "grabseven{}{}{}{}{}{}{}": {
-      "snippet": "grabseven{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}{${7:arg7}}"
-    },
-    "grabsix{}{}{}{}{}{}": {
-      "snippet": "grabsix{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}"
-    },
-    "hiddenbibitem{}": {
-      "snippet": "hiddenbibitem{${1:arg}}"
-    },
-    "Ibidemname": {},
-    "Idemname": {},
-    "ifcited{}{}{}": {
-      "snippet": "ifcited{${1:key}}{${2:true}}{${3:false}}"
-    },
-    "ifconsecutive{}{}{}{}": {
-      "snippet": "ifconsecutive{${1:num1}}{${2:num2}}{${3:block1}}{${4:block2}}"
-    },
-    "IfSubStringInString{}{}{}{}": {
-      "snippet": "IfSubStringInString{${1:substring}}{${2:string}}{${3:true}}{${4:false}}"
-    },
-    "loccitname": {},
-    "maximuminlist{}": {
-      "snippet": "maximuminlist{${1:list}}"
-    },
-    "minimumbiblabelwidth": {},
-    "opcitname": {},
-    "optionaltextstyle": {},
-    "passimname": {},
-    "setcitebrackets": {},
-    "texforht": {},
-    "theABCIaux": {},
-    "theABCImax": {},
-    "thebibliographyBkUp": {}
-  },
-  "envs": {},
-  "options": [
-    "alf",
-    "num",
-    "foot",
-    "not-foot",
-    "load-text-on-demand",
-    "load-text",
-    "alfantigo",
-    "experimental",
-    "bibjustif",
-    "bibleftalign",
-    "biblabel-on-margin",
-    "biblabel-not-on-margin",
-    "abnt-option-file",
-    "no-abnt-option-file",
-    "recuo",
-    "indent",
-    "overcite",
-    "inlinecite",
-    "versalete",
-    "abnt-substyle=COPPE",
-    "abnt-and-type=${1|e,&|}",
-    "abnt-etal-cite=${1|0,2,3,4,5|}",
-    "abnt-etal-list=${1|0,2,3,4,5|}",
-    "abnt-etal-text=${1|none,default,emph,it|}",
-    "abnt-full-initials=${1|no,yes|}",
-    "abnt-last-names=${1|abnt,bibtex|}",
-    "abnt-missing-year=${1|void,sd|}",
-    "abnt-repeated-author-omit=${1|no,yes|}",
-    "abnt-repeated-title-omit=${1|no,yes|}",
-    "abnt-thesis-year=${1|final,title,both|}",
-    "abnt-refinfo=${1|no,yes|}",
-    "abnt-show-options=${1|no,warn,list|}",
-    "abnt-verbatim-entry=${1|no,yes|}",
-    "abnt-doi=${1|expand,link,doi|}",
-    "abnt-substyle=${1|COPPE,UFLA|}",
-    "abnt-nbr10520=${1|2001,1988|}"
+    {
+      "name": "relsize"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "citeonline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keylist}}"
+      }
+    },
+    {
+      "name": "citeonline",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:add. text}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "apud",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:keylist}}{${2:keylist}}"
+      }
+    },
+    {
+      "name": "apud",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:add. text}]{${1:keylist}}{${2:keylist}}"
+      }
+    },
+    {
+      "name": "apudonline",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:keylist}}{${2:keylist}}"
+      }
+    },
+    {
+      "name": "apudonline",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:add. text}]{${1:keylist}}{${2:keylist}}"
+      }
+    },
+    {
+      "name": "footciteref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keylist}}"
+      }
+    },
+    {
+      "name": "Idem",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keylist}}"
+      }
+    },
+    {
+      "name": "Idem",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:add. text}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "Ibidem",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keylist}}"
+      }
+    },
+    {
+      "name": "Ibidem",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:add. text}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "opcit",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keylist}}"
+      }
+    },
+    {
+      "name": "opcit",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:add. text}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "passim",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keylist}}"
+      }
+    },
+    {
+      "name": "passim",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:add. text}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "loccit",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keylist}}"
+      }
+    },
+    {
+      "name": "loccit",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:add. text}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "cfcite",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keylist}}"
+      }
+    },
+    {
+      "name": "cfcite",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:add. text}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "etseq",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keylist}}"
+      }
+    },
+    {
+      "name": "etseq",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:add. text}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "citeauthoronline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keylist}}"
+      }
+    },
+    {
+      "name": "citeauthor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keylist}}"
+      }
+    },
+    {
+      "name": "citetext",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keylist}}"
+      }
+    },
+    {
+      "name": "authorcapstyle",
+      "unusual": true
+    },
+    {
+      "name": "authorstyle",
+      "unusual": true
+    },
+    {
+      "name": "yearstyle",
+      "unusual": true
+    },
+    {
+      "name": "citebrackets",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:delim1}}{${2:delim2}}"
+      }
+    },
+    {
+      "name": "bibtextitlecommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:tipo}}{${2:campo}}"
+      }
+    },
+    {
+      "name": "citeoption",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:option%keyvals}}"
+      }
+    },
+    {
+      "name": "ABCIaddtocitelist",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    },
+    {
+      "name": "ABCIaftercitex",
+      "unusual": true
+    },
+    {
+      "name": "ABCIaux",
+      "unusual": true
+    },
+    {
+      "name": "ABCIauxlen",
+      "unusual": true
+    },
+    {
+      "name": "ABCIccomma",
+      "unusual": true
+    },
+    {
+      "name": "ABCIcitation",
+      "unusual": true
+    },
+    {
+      "name": "ABCIcitecolondefault",
+      "unusual": true
+    },
+    {
+      "name": "ABCIcitecomma",
+      "unusual": true
+    },
+    {
+      "name": "ABCIcitecommadefault",
+      "unusual": true
+    },
+    {
+      "name": "ABCIcitelist",
+      "unusual": true
+    },
+    {
+      "name": "ABCIcomma",
+      "unusual": true
+    },
+    {
+      "name": "ABCIdemand",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "ABCIfirst",
+      "unusual": true
+    },
+    {
+      "name": "ABCIgetcitetext",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    },
+    {
+      "name": "ABCIgetcitetextecho",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    },
+    {
+      "name": "ABCIinitcitecomma",
+      "unusual": true
+    },
+    {
+      "name": "ABCIlast",
+      "unusual": true
+    },
+    {
+      "name": "ABCIlistwithoutmaximum",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    },
+    {
+      "name": "ABCInewblock",
+      "unusual": true
+    },
+    {
+      "name": "ABCIoutputgroupedcitelist",
+      "unusual": true
+    },
+    {
+      "name": "ABCIprocesscitetext",
+      "unusual": true
+    },
+    {
+      "name": "ABCIscriptfont",
+      "unusual": true
+    },
+    {
+      "name": "ABCIsortlist",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    },
+    {
+      "name": "ABCItemplist",
+      "unusual": true
+    },
+    {
+      "name": "ABCItempslist",
+      "unusual": true
+    },
+    {
+      "name": "ABCIthebibliformat",
+      "unusual": true
+    },
+    {
+      "name": "ABCIthebiblihook",
+      "unusual": true
+    },
+    {
+      "name": "ABCItoken",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "AbntCitetype",
+      "unusual": true
+    },
+    {
+      "name": "AbntCitetypeALF",
+      "unusual": true
+    },
+    {
+      "name": "abntnextkey",
+      "unusual": true
+    },
+    {
+      "name": "abntrefinfo",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "addtociteoptionlist",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:option}}"
+      }
+    },
+    {
+      "name": "AfterTheBibliography",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "apudname",
+      "unusual": true
+    },
+    {
+      "name": "bibciteEXPL",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "bibciteIMPL",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "bibciteYEAR",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "biblabelsep",
+      "unusual": true
+    },
+    {
+      "name": "biblabeltext",
+      "unusual": true
+    },
+    {
+      "name": "cfcitename",
+      "unusual": true
+    },
+    {
+      "name": "citeclose",
+      "unusual": true
+    },
+    {
+      "name": "citeifnotcited",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keylist}}"
+      }
+    },
+    {
+      "name": "citen",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:add. text}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "citen",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keylist}}"
+      }
+    },
+    {
+      "name": "citenum",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:add. text}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "citenum",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keylist}}"
+      }
+    },
+    {
+      "name": "citenumstyle",
+      "unusual": true
+    },
+    {
+      "name": "citeonlineifnotcited",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keylist}}"
+      }
+    },
+    {
+      "name": "citeopen",
+      "unusual": true
+    },
+    {
+      "name": "citeoptionlist",
+      "unusual": true
+    },
+    {
+      "name": "etseqname",
+      "unusual": true
+    },
+    {
+      "name": "grabseven",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}{${7:arg7}}"
+      }
+    },
+    {
+      "name": "grabsix",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}"
+      }
+    },
+    {
+      "name": "hiddenbibitem",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "Ibidemname",
+      "unusual": true
+    },
+    {
+      "name": "Idemname",
+      "unusual": true
+    },
+    {
+      "name": "ifcited",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:key}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "ifconsecutive",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:num1}}{${2:num2}}{${3:block1}}{${4:block2}}"
+      }
+    },
+    {
+      "name": "IfSubStringInString",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:substring}}{${2:string}}{${3:true}}{${4:false}}"
+      }
+    },
+    {
+      "name": "loccitname",
+      "unusual": true
+    },
+    {
+      "name": "maximuminlist",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:list}}"
+      }
+    },
+    {
+      "name": "minimumbiblabelwidth",
+      "unusual": true
+    },
+    {
+      "name": "opcitname",
+      "unusual": true
+    },
+    {
+      "name": "optionaltextstyle",
+      "unusual": true
+    },
+    {
+      "name": "passimname",
+      "unusual": true
+    },
+    {
+      "name": "setcitebrackets",
+      "unusual": true
+    },
+    {
+      "name": "texforht",
+      "unusual": true
+    },
+    {
+      "name": "theABCIaux",
+      "unusual": true
+    },
+    {
+      "name": "theABCImax",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/abntex2cite": [
+      "alf\r",
+      "num\r",
+      "foot\r",
+      "not-foot\r",
+      "load-text-on-demand\r",
+      "load-text\r",
+      "alfantigo\r",
+      "experimental\r",
+      "bibjustif\r",
+      "bibleftalign\r",
+      "biblabel-on-margin\r",
+      "biblabel-not-on-margin\r",
+      "abnt-option-file\r",
+      "no-abnt-option-file\r",
+      "recuo\r",
+      "indent\r",
+      "overcite\r",
+      "inlinecite\r",
+      "versalete\r",
+      "abnt-substyle=COPPE\r"
+    ],
+    "\\bibliographystyle#c": [
+      "abntex2-alf\r"
+    ],
+    "\\citeoption#c,\\usepackage/abntex2cite#c": [
+      "abnt-and-type=${1|e,&\r|}",
+      "abnt-etal-cite=${1|0,2,3,4,5\r|}",
+      "abnt-etal-list=${1|0,2,3,4,5\r|}",
+      "abnt-etal-text=${1|none,default,emph,it\r|}",
+      "abnt-full-initials=${1|no,yes\r|}",
+      "abnt-last-names=${1|abnt,bibtex\r|}",
+      "abnt-missing-year=${1|void,sd\r|}",
+      "abnt-repeated-author-omit=${1|no,yes\r|}",
+      "abnt-repeated-title-omit=${1|no,yes\r|}",
+      "abnt-thesis-year=${1|final,title,both\r|}",
+      "abnt-refinfo=${1|no,yes\r|}",
+      "abnt-show-options=${1|no,warn,list\r|}",
+      "abnt-verbatim-entry=${1|no,yes\r|}",
+      "abnt-doi=${1|expand,link,doi\r|}",
+      "abnt-substyle=${1|COPPE,UFLA\r|}",
+      "abnt-nbr10520=${1|2001,1988\r|}"
+    ]
+  },
+  "args": [
+    "\\usepackage/abntex2cite",
+    "\\citeoption#c,\\usepackage/abntex2cite#c"
+  ]
 }

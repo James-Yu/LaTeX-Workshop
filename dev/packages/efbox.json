@@ -1,27 +1,42 @@
 {
-  "includes": {
-    "color": [],
-    "pgfkeys": []
-  },
-  "macros": {
-    "efbox{}": {
-      "snippet": "efbox{${1:text}}"
+  "deps": [
+    {
+      "name": "color"
     },
-    "efbox[]{}": {
-      "snippet": "efbox[${2:options}]{${1:text}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "efboxsetup{}": {
-      "snippet": "efboxsetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "pgfkeys"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "efbox",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "efbox",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "efboxsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\efbox,\\efboxsetup"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\efbox,\\efboxsetup": [
       "leftline",
       "rightline",
       "topline",
@@ -31,8 +46,9 @@
       "linecolor=",
       "linewidth=",
       "margin=",
-      "font=",
-      "baselinestretch="
+      "font=\r",
+      "baselinestretch=\r"
     ]
-  ]
+  },
+  "args": []
 }

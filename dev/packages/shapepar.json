@@ -1,69 +1,195 @@
 {
-  "includes": {},
-  "macros": {
-    "shapepar{}": {
-      "snippet": "shapepar{${1:shape spec}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "shapepar",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:shape spec}}"
+      }
     },
-    "shapepar[]{}": {
-      "snippet": "shapepar[${2:scale len}]{${1:shape spec}}"
+    {
+      "name": "shapepar",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:scale len}]{${1:shape spec}}"
+      }
     },
-    "Shapepar{}": {
-      "snippet": "Shapepar{${1:shape spec}}"
+    {
+      "name": "Shapepar",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:shape spec}}"
+      }
     },
-    "Shapepar[]{}": {
-      "snippet": "Shapepar[${2:scale len}]{${1:shape spec}}"
+    {
+      "name": "Shapepar",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:scale len}]{${1:shape spec}}"
+      }
     },
-    "cutout{}()": {
-      "snippet": "cutout{${1:side}}(${2:hoffset},${3:voffset})"
+    {
+      "name": "cutout",
+      "arg": {
+        "format": "{}()",
+        "snippet": "{${1:side%keyvals}}(${2:hoffset},${3:voffset})",
+        "keys": [
+          "\\cutout"
+        ],
+        "keyPos": 0
+      }
     },
-    "squareshape": {},
-    "squarepar": {},
-    "circleshape": {},
-    "circlepar": {},
-    "CDlabshape": {},
-    "CDlabel": {},
-    "diamondshape": {},
-    "diamondpar": {},
-    "heartshape": {},
-    "heartpar": {},
-    "starshape": {},
-    "starpar": {},
-    "hexagonshape": {},
-    "hexagonpar": {},
-    "nutshape": {},
-    "nutpar": {},
-    "rectangleshape{}{}": {
-      "snippet": "rectangleshape{${1:height}}{${2:width}}"
+    {
+      "name": "squareshape"
     },
-    "cutoutsep": {},
-    "cutoutsepstretch": {},
-    "RefineBaselines": {},
-    "ScaleMaxTries": {},
-    "SmallestGap": {},
-    "SmallGap": {},
-    "SmallestSegment": {},
-    "Pointless{}": {
-      "snippet": "Pointless{${1:dimen}}"
+    {
+      "name": "squarepar"
     },
-    "AbsVal{}": {
-      "snippet": "AbsVal{${1:dimen}}"
+    {
+      "name": "circleshape"
     },
-    "fpdivide{}{}": {
-      "snippet": "fpdivide{${1:dimen1}}{${2:dimen2}}"
+    {
+      "name": "circlepar"
     },
-    "sqrtofdim{}": {
-      "snippet": "sqrtofdim{${1:dimen}}"
+    {
+      "name": "CDlabshape"
     },
-    "specA": {},
-    "specB": {},
-    "sqrtcount": {},
-    "sqrtofcount": {},
-    "squinitial{}{}": {
-      "snippet": "squinitial{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "CDlabel"
     },
-    "squiterate": {}
+    {
+      "name": "diamondshape"
+    },
+    {
+      "name": "diamondpar"
+    },
+    {
+      "name": "heartshape"
+    },
+    {
+      "name": "heartpar"
+    },
+    {
+      "name": "starshape"
+    },
+    {
+      "name": "starpar"
+    },
+    {
+      "name": "hexagonshape"
+    },
+    {
+      "name": "hexagonpar"
+    },
+    {
+      "name": "nutshape"
+    },
+    {
+      "name": "nutpar"
+    },
+    {
+      "name": "rectangleshape",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:height}}{${2:width}}"
+      }
+    },
+    {
+      "name": "cutoutsep",
+      "unusual": true
+    },
+    {
+      "name": "cutoutsepstretch",
+      "unusual": true
+    },
+    {
+      "name": "RefineBaselines",
+      "unusual": true
+    },
+    {
+      "name": "ScaleMaxTries",
+      "unusual": true
+    },
+    {
+      "name": "SmallestGap",
+      "unusual": true
+    },
+    {
+      "name": "SmallGap",
+      "unusual": true
+    },
+    {
+      "name": "SmallestSegment",
+      "unusual": true
+    },
+    {
+      "name": "Pointless",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:dimen}}"
+      }
+    },
+    {
+      "name": "AbsVal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:dimen}}"
+      }
+    },
+    {
+      "name": "fpdivide",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:dimen1}}{${2:dimen2}}"
+      }
+    },
+    {
+      "name": "sqrtofdim",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:dimen}}"
+      }
+    },
+    {
+      "name": "specA",
+      "unusual": true
+    },
+    {
+      "name": "specB",
+      "unusual": true
+    },
+    {
+      "name": "sqrtcount",
+      "unusual": true
+    },
+    {
+      "name": "sqrtofcount",
+      "unusual": true
+    },
+    {
+      "name": "squinitial",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "squiterate",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\cutout": [
+      "l\r",
+      "r\r"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

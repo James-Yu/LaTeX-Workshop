@@ -1,33 +1,47 @@
 {
-  "includes": {},
-  "macros": {
-    "pangram": {},
-    "pangram[]": {
-      "snippet": "pangram[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [],
+  "macros": [
+    {
+      "name": "pangram"
     },
-    "PangramSetup{}": {
-      "snippet": "PangramSetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "pangram",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     },
-    "NewPangramClass{}{}": {
-      "snippet": "NewPangramClass{${1:text class}}{${2:text}}"
+    {
+      "name": "PangramSetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\pangram,\\PangramSetup"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "NewPangramClass",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text class}}{${2:text}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "textclass=${1:text-class}",
-      "sizes={${1:size1,size2,...}}",
+  ],
+  "envs": [],
+  "keys": {
+    "\\pangram,\\PangramSetup": [
+      "textclass=${1:text-class}\r",
+      "sizes={${1:size1,size2,...}}\r",
       "linegap=",
       "tagskip=",
-      "tagfont=${1:font commands}",
-      "font=${1:font commands}",
-      "before=${1:code}",
-      "after=${1:code}"
+      "tagfont=${1:font commands}\r",
+      "font=${1:font commands}\r",
+      "before=${1:code}\r",
+      "after=${1:code}\r"
     ]
-  ]
+  },
+  "args": []
 }

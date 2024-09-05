@@ -1,192 +1,1186 @@
 {
-  "includes": {
-    "xint": []
-  },
-  "macros": {
-    "xintTeXFromScifracmacro{}{}": {
-      "snippet": "xintTeXFromScifracmacro{${1:num}}{${2:den}}"
+  "deps": [
+    {
+      "name": "xint"
+    }
+  ],
+  "macros": [
+    {
+      "name": "xintTeXFromSci",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
     },
-    "xintMaxof{}": {
-      "snippet": "xintMaxof{${1:list}}"
+    {
+      "name": "xintTeXFrac",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
     },
-    "xintMinof{}": {
-      "snippet": "xintMinof{${1:list}}"
+    {
+      "name": "xintTeXsignedFrac",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
     },
-    "xintSum{}": {
-      "snippet": "xintSum{${1:list}}"
+    {
+      "name": "xintTeXOver",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
     },
-    "xintPrd{}": {
-      "snippet": "xintPrd{${1:list}}"
+    {
+      "name": "xintTeXFromScifracmacro",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:num}}{${2:den}}"
+      }
     },
-    "xintGCDof{}": {
-      "snippet": "xintGCDof{${1:list}}"
+    {
+      "name": "xintTeXsignedOver",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
     },
-    "xintLCMof{}": {
-      "snippet": "xintLCMof{${1:list}}"
+    {
+      "name": "xintLen",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
     },
-    "xintDigits": {},
-    "xinttheDigits": {},
-    "xinttheGuardDigits": {},
-    "xintSetDigits{}": {
-      "snippet": "xintSetDigits{${1:expr}}"
+    {
+      "name": "xintNum",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
     },
-    "xintFloatZero": {},
-    "xintPFloatZero": {},
-    "xintPFloatE": {},
-    "xintPFloatNoSciEmax": {},
-    "xintPFloatNoSciEmin": {},
-    "xintPFloatIntSuffix": {},
-    "xintPFloatLengthOneSuffix": {},
-    "xintPFloatMinTrimmed": {},
-    "XINTinRandomFloatS[]": {
-      "snippet": "XINTinRandomFloatS[${1:digits}]"
+    {
+      "name": "xintRaw",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
     },
-    "XINTinRandomFloatSixteen": {},
-    "XINTinFloatMaxof{}": {
-      "snippet": "XINTinFloatMaxof{${1:list}}"
+    {
+      "name": "xintRawBraced",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
     },
-    "XINTinFloatMinof{}": {
-      "snippet": "XINTinFloatMinof{${1:list}}"
+    {
+      "name": "xintiLogTen",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
     },
-    "XINTinFloatSum{}": {
-      "snippet": "XINTinFloatSum{${1:list}}"
+    {
+      "name": "xintNumerator",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
     },
-    "XINTinFloatPrd{}": {
-      "snippet": "XINTinFloatPrd{${1:list}}"
+    {
+      "name": "xintDenominator",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
     },
-    "XINTinFloatdigits": {},
-    "XINTinFloatSdigits": {},
-    "XINTFloatiLogTendigits": {},
-    "XINTinRandomFloatSdigits": {},
-    "XINTinFloatFacdigits": {},
-    "XINTinFloatSqrtdigits": {},
-    "xintlen": {},
-    "xinteq": {},
-    "xintifeq": {},
-    "xintgt": {},
-    "xintlt": {},
-    "xintgtoreq": {},
-    "xintltoreq": {},
-    "xintiszero": {},
-    "xintisnotzero": {},
-    "xintodd": {},
-    "xinteven": {},
-    "xintifsgn": {},
-    "xintifcmp": {},
-    "xintifgt": {},
-    "xintiflt": {},
-    "xintifzero": {},
-    "xintifnotzero": {},
-    "xintifone": {},
-    "xintifodd": {},
-    "xintraw": {},
-    "xintrawbraced": {},
-    "xintilogten": {},
-    "xintpraw": {},
-    "xintspraw": {},
-    "xintrawwithzeros": {},
-    "xintdectostring": {},
-    "xintdectostringrez": {},
-    "xintfloor": {},
-    "xintifloor": {},
-    "xintceil": {},
-    "xinticeil": {},
-    "xintnumerator": {},
-    "xintdenominator": {},
-    "xintsignedfrac": {},
-    "xintrez": {},
-    "xinte": {},
-    "xintirr": {},
-    "xintpirr": {},
-    "xintifint": {},
-    "xintisint": {},
-    "xintjrr": {},
-    "xinttfrac": {},
-    "xinttrunc": {},
-    "xintitrunc": {},
-    "xintttrunc": {},
-    "xintround": {},
-    "xintiround": {},
-    "xintadd": {},
-    "xintsub": {},
-    "xintsum": {},
-    "xintmul": {},
-    "xintsqr": {},
-    "xintipow": {},
-    "xintpow": {},
-    "xintfac": {},
-    "xintbinomial": {},
-    "xintipfactorial": {},
-    "xintpfactorial": {},
-    "xintprd": {},
-    "xintdiv": {},
-    "xintdivfloor": {},
-    "xintdivtrunc": {},
-    "xintdivround": {},
-    "xintmodtrunc": {},
-    "xintdivmod": {},
-    "xintmod": {},
-    "xintisone": {},
-    "xintgeq": {},
-    "xintmax": {},
-    "xintmaxof": {},
-    "xintmin": {},
-    "xintminof": {},
-    "xintcmp": {},
-    "xintabs": {},
-    "xintopp": {},
-    "xintinv": {},
-    "xintsgn": {},
-    "xintsignbit": {},
-    "xintgcd": {},
-    "xintgcdof": {},
-    "xintlcm": {},
-    "xintlcmof": {},
-    "XINTdigits": {},
-    "XINTguarddigits": {},
-    "xintfloat": {},
-    "xintfloatbraced": {},
-    "xintpfloatsciexp": {},
-    "xintfloatsignificand": {},
-    "XINTinfloat": {},
-    "XINTinfloatS": {},
-    "XINTfloatilogten": {},
-    "xintpfloat": {},
-    "xintfloattodecimal": {},
-    "XINTinfloatfrac": {},
-    "xintfloatadd": {},
-    "XINTinfloatadd": {},
-    "xintfloatsub": {},
-    "XINTinfloatsub": {},
-    "xintfloatmul": {},
-    "XINTinfloatmul": {},
-    "xintfloatsqr": {},
-    "XINTinfloatsqr": {},
-    "xintfloatdiv": {},
-    "XINTinfloatdiv": {},
-    "xintfloatpow": {},
-    "XINTinfloatpow": {},
-    "xintfloatpower": {},
-    "XINTinfloatpower": {},
-    "xintfloatfac": {},
-    "XINTinfloatfac": {},
-    "xintfloatpfactorial": {},
-    "XINTinfloatpfactorial": {},
-    "xintfloatbinomial": {},
-    "XINTinfloatbinomial": {},
-    "xintfloatsqrt": {},
-    "XINTinfloatsqrt": {},
-    "xintfloate": {},
-    "XINTinfloate": {},
-    "XINTinfloatmod": {},
-    "XINTinfloatdivfloor": {},
-    "XINTinfloatdivmod": {},
-    "xintiffloatint": {},
-    "xintfloatisint": {},
-    "xintfloatinttype": {},
-    "XINTinrandomfloatS": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "xintRawWithZeros",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
+    },
+    {
+      "name": "xintREZ",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
+    },
+    {
+      "name": "xintIrr",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
+    },
+    {
+      "name": "xintPIrr",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
+    },
+    {
+      "name": "xintJrr",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
+    },
+    {
+      "name": "xintPRaw",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
+    },
+    {
+      "name": "xintSPRaw",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
+    },
+    {
+      "name": "xintFracToSci",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
+    },
+    {
+      "name": "xintFracToDecimal",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
+    },
+    {
+      "name": "xintDecToStringREZ",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
+    },
+    {
+      "name": "xintDecToString",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
+    },
+    {
+      "name": "xintTrunc",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:integer}}{${2:A/B[${3:n}]}}"
+      }
+    },
+    {
+      "name": "xintXTrunc",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:integer}}{${2:A/B[${3:n}]}}"
+      }
+    },
+    {
+      "name": "xintTFrac",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
+    },
+    {
+      "name": "xintRound",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:integer}}{${2:A/B[${3:n}]}}"
+      }
+    },
+    {
+      "name": "xintFloor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
+    },
+    {
+      "name": "xintCeil",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
+    },
+    {
+      "name": "xintiTrunc",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:integer}}{${2:A/B[${3:n}]}}"
+      }
+    },
+    {
+      "name": "xintTTrunc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
+    },
+    {
+      "name": "xintiRound",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:integer}}{${2:A/B[${3:n}]}}"
+      }
+    },
+    {
+      "name": "xintiFloor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
+    },
+    {
+      "name": "xintiCeil",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
+    },
+    {
+      "name": "xintE",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:A/B[${3:n}]}}{${2:integer}}"
+      }
+    },
+    {
+      "name": "xintCmp",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:A1/B1[${3:n1}]}}{${2:A2/B2[${4:n2}]}}"
+      }
+    },
+    {
+      "name": "xintEq",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:A1/B1[${3:n1}]}}{${2:A2/B2[${4:n2}]}}"
+      }
+    },
+    {
+      "name": "xintNotEq",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:A1/B1[${3:n1}]}}{${2:A2/B2[${4:n2}]}}"
+      }
+    },
+    {
+      "name": "xintGeq",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:A1/B1[${3:n1}]}}{${2:A2/B2[${4:n2}]}}"
+      }
+    },
+    {
+      "name": "xintGt",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:A1/B1[${3:n1}]}}{${2:A2/B2[${4:n2}]}}"
+      }
+    },
+    {
+      "name": "xintLt",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:A1/B1[${3:n1}]}}{${2:A2/B2[${4:n2}]}}"
+      }
+    },
+    {
+      "name": "xintGtorEq",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:A1/B1[${3:n1}]}}{${2:A2/B2[${4:n2}]}}"
+      }
+    },
+    {
+      "name": "xintLtorEq",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:A1/B1[${3:n1}]}}{${2:A2/B2[${4:n2}]}}"
+      }
+    },
+    {
+      "name": "xintIsZero",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
+    },
+    {
+      "name": "xintIsNotZero",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
+    },
+    {
+      "name": "xintIsOne",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
+    },
+    {
+      "name": "xintOdd",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
+    },
+    {
+      "name": "xintEven",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
+    },
+    {
+      "name": "xintifSgn",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:A/B[${5:n}]}}{${2:neg-code}}{${3:zero-code}}{${4:pos-code}}"
+      }
+    },
+    {
+      "name": "xintifZero",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:A/B[${4:n}]}}{${2:zero-code}}{${3:not-zero-code}}"
+      }
+    },
+    {
+      "name": "xintifNotZero",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:A/B[${4:n}]}}{${2:not-zero-code}}{${3:zero-code}}"
+      }
+    },
+    {
+      "name": "xintifOne",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:A/B[${4:n}]}}{${2:one-code}}{${3:not-one-code}}"
+      }
+    },
+    {
+      "name": "xintifOdd",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:A/B[${4:n}]}}{${2:odd-code}}{${3:even-code}}"
+      }
+    },
+    {
+      "name": "xintifCmp",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:A1/B1[${6:n1}]}}{${2:A2/B2[${7:n2}]}}{${3:less-code}}{${4:equal-code}}{${5:greater-code}}"
+      }
+    },
+    {
+      "name": "xintifEq",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:A1/B1[${5:n1}]}}{${2:A2/B2[${6:n2}]}}{${3:equals-code}}{${4:not-equals-code}}"
+      }
+    },
+    {
+      "name": "xintifGt",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:A1/B1[${5:n1}]}}{${2:A2/B2[${6:n2}]}}{${3:greater-code}}{${4:not-greater-code}}"
+      }
+    },
+    {
+      "name": "xintifLt",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:A1/B1[${5:n1}]}}{${2:A2/B2[${6:n2}]}}{${3:less-code}}{${4:not-less-code}}"
+      }
+    },
+    {
+      "name": "xintifInt",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:A/B[${4:n}]}}{${2:integer-code}}{${3:not-integer-code}}"
+      }
+    },
+    {
+      "name": "xintIsInt",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
+    },
+    {
+      "name": "xintSgn",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
+    },
+    {
+      "name": "xintSignBit",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
+    },
+    {
+      "name": "xintOpp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
+    },
+    {
+      "name": "xintInv",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
+    },
+    {
+      "name": "xintAbs",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
+    },
+    {
+      "name": "xintAdd",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:A1/B1[${3:n1}]}}{${2:A2/B2[${4:n2}]}}"
+      }
+    },
+    {
+      "name": "xintSub",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:A1/B1[${3:n1}]}}{${2:A2/B2[${4:n2}]}}"
+      }
+    },
+    {
+      "name": "xintMul",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:A1/B1[${3:n1}]}}{${2:A2/B2[${4:n2}]}}"
+      }
+    },
+    {
+      "name": "xintDiv",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:A1/B1[${3:n1}]}}{${2:A2/B2[${4:n2}]}}"
+      }
+    },
+    {
+      "name": "xintDivFloor",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:A1/B1[${3:n1}]}}{${2:A2/B2[${4:n2}]}}"
+      }
+    },
+    {
+      "name": "xintMod",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:A1/B1[${3:n1}]}}{${2:A2/B2[${4:n2}]}}"
+      }
+    },
+    {
+      "name": "xintDivMod",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:A1/B1[${3:n1}]}}{${2:A2/B2[${4:n2}]}}"
+      }
+    },
+    {
+      "name": "xintDivTrunc",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:A1/B1[${3:n1}]}}{${2:A2/B2[${4:n2}]}}"
+      }
+    },
+    {
+      "name": "xintModTrunc",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:A1/B1[${3:n1}]}}{${2:A2/B2[${4:n2}]}}"
+      }
+    },
+    {
+      "name": "xintDivRound",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:A1/B1[${3:n1}]}}{${2:A2/B2[${4:n2}]}}"
+      }
+    },
+    {
+      "name": "xintSqr",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
+    },
+    {
+      "name": "xintPow",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:A1/B1[${3:n1}]}}{${2:A2/B2[${4:n2}]}}"
+      }
+    },
+    {
+      "name": "xintFac",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
+    },
+    {
+      "name": "xintBinomial",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:A1/B1[${3:n1}]}}{${2:A2/B2[${4:n2}]}}"
+      }
+    },
+    {
+      "name": "xintPFactorial",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:A1/B1[${3:n1}]}}{${2:A2/B2[${4:n2}]}}"
+      }
+    },
+    {
+      "name": "xintMax",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:A1/B1[${3:n1}]}}{${2:A2/B2[${4:n2}]}}"
+      }
+    },
+    {
+      "name": "xintMin",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:A1/B1[${3:n1}]}}{${2:A2/B2[${4:n2}]}}"
+      }
+    },
+    {
+      "name": "xintMaxof",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:list}}"
+      }
+    },
+    {
+      "name": "xintMinof",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:list}}"
+      }
+    },
+    {
+      "name": "xintSum",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:list}}"
+      }
+    },
+    {
+      "name": "xintPrd",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:list}}"
+      }
+    },
+    {
+      "name": "xintGCD",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:A1/B1[${3:n1}]}}{${2:A2/B2[${4:n2}]}}"
+      }
+    },
+    {
+      "name": "xintLCM",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:A1/B1[${3:n1}]}}{${2:A2/B2[${4:n2}]}}"
+      }
+    },
+    {
+      "name": "xintGCDof",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:list}}"
+      }
+    },
+    {
+      "name": "xintLCMof",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:list}}"
+      }
+    },
+    {
+      "name": "xintDigits"
+    },
+    {
+      "name": "xinttheDigits"
+    },
+    {
+      "name": "xinttheGuardDigits",
+      "unusual": true
+    },
+    {
+      "name": "xintSetDigits",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expr}}"
+      }
+    },
+    {
+      "name": "xintFloat",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
+    },
+    {
+      "name": "xintFloat",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:digits}]{${1:A/B[${3:n}]}}"
+      }
+    },
+    {
+      "name": "xintFloatBraced",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
+    },
+    {
+      "name": "xintFloatBraced",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:digits}]{${1:A/B[${3:n}]}}"
+      }
+    },
+    {
+      "name": "xintFloatZero"
+    },
+    {
+      "name": "xintFloatE",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
+    },
+    {
+      "name": "xintFloatE",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:digits}]{${1:A/B[${3:n}]}}"
+      }
+    },
+    {
+      "name": "xintFloatSciExp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
+    },
+    {
+      "name": "xintFloatSciExp",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:digits}]{${1:A/B[${3:n}]}}"
+      }
+    },
+    {
+      "name": "xintFloatSignificand",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
+    },
+    {
+      "name": "xintFloatSignificand",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:digits}]{${1:A/B[${3:n}]}}"
+      }
+    },
+    {
+      "name": "xintPFloat",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
+    },
+    {
+      "name": "xintPFloat",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:digits}]{${1:A/B[${3:n}]}}"
+      }
+    },
+    {
+      "name": "xintPFloatZero"
+    },
+    {
+      "name": "xintPFloatE"
+    },
+    {
+      "name": "xintPFloatNoSciEmax"
+    },
+    {
+      "name": "xintPFloatNoSciEmin"
+    },
+    {
+      "name": "xintPFloatIntSuffix"
+    },
+    {
+      "name": "xintPFloatLengthOneSuffix"
+    },
+    {
+      "name": "xintPFloatMinTrimmed"
+    },
+    {
+      "name": "xintFloatToDecimal",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
+    },
+    {
+      "name": "xintFloatToDecimal",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:digits}]{${1:A/B[${3:n}]}}"
+      }
+    },
+    {
+      "name": "xintFloatAdd",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:A1/B1[${3:n1}]}}{${2:A2/B2[${4:n2}]}}"
+      }
+    },
+    {
+      "name": "xintFloatAdd",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:digits}]{${1:A1/B1[${4:n1}]}}{${2:A2/B2[${5:n2}]}}"
+      }
+    },
+    {
+      "name": "xintFloatSub",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:A1/B1[${3:n1}]}}{${2:A2/B2[${4:n2}]}}"
+      }
+    },
+    {
+      "name": "xintFloatSub",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:digits}]{${1:A1/B1[${4:n1}]}}{${2:A2/B2[${5:n2}]}}"
+      }
+    },
+    {
+      "name": "xintFloatMul",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:A1/B1[${3:n1}]}}{${2:A2/B2[${4:n2}]}}"
+      }
+    },
+    {
+      "name": "xintFloatMul",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:digits}]{${1:A1/B1[${4:n1}]}}{${2:A2/B2[${5:n2}]}}"
+      }
+    },
+    {
+      "name": "xintFloatSqr",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
+    },
+    {
+      "name": "xintFloatSqr",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:digits}]{${1:A/B[${3:n}]}}"
+      }
+    },
+    {
+      "name": "xintFloatDiv",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:A1/B1[${3:n1}]}}{${2:A2/B2[${4:n2}]}}"
+      }
+    },
+    {
+      "name": "xintFloatDiv",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:digits}]{${1:A1/B1[${4:n1}]}}{${2:A2/B2[${5:n2}]}}"
+      }
+    },
+    {
+      "name": "xintFloatPow",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:A/B[${3:n}]}}{${2:power}}"
+      }
+    },
+    {
+      "name": "xintFloatPow",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:digits}]{${1:A/B[${4:n}]}}{${2:power}}"
+      }
+    },
+    {
+      "name": "xintFloatPower",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:A1/B1[${3:n1}]}}{${2:A2/B2[${4:n2}]}}"
+      }
+    },
+    {
+      "name": "xintFloatPower",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:digits}]{${1:A1/B1[${4:n1}]}}{${2:A2/B2[${5:n2}]}}"
+      }
+    },
+    {
+      "name": "xintFloatSqrt",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
+    },
+    {
+      "name": "xintFloatSqrt",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:digits}]{${1:A/B[${3:n}]}}"
+      }
+    },
+    {
+      "name": "xintFloatFac",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
+    },
+    {
+      "name": "xintFloatFac",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:digits}]{${1:A/B[${3:n}]}}"
+      }
+    },
+    {
+      "name": "xintFloatBinomial",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:A1/B1[${3:n1}]}}{${2:A2/B2[${4:n2}]}}"
+      }
+    },
+    {
+      "name": "xintFloatBinomial",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:digits}]{${1:A1/B1[${4:n1}]}}{${2:A2/B2[${5:n2}]}}"
+      }
+    },
+    {
+      "name": "xintFloatPFactorial",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:A1/B1[${3:n1}]}}{${2:A2/B2[${4:n2}]}}"
+      }
+    },
+    {
+      "name": "xintFloatPFactorial",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:digits}]{${1:A1/B1[${4:n1}]}}{${2:A2/B2[${5:n2}]}}"
+      }
+    },
+    {
+      "name": "xintifFloatInt",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:A/B[${4:n}]}}{${2:integer-code}}{${3:not-integer-code}}"
+      }
+    },
+    {
+      "name": "xintFloatIsInt",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
+    },
+    {
+      "name": "xintFloatIntType",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
+    },
+    {
+      "name": "XINTinFloat",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:digits}]{${1:A/B[${3:n}]}}"
+      }
+    },
+    {
+      "name": "XINTinFloatS",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:digits}]{${1:A/B[${3:n}]}}"
+      }
+    },
+    {
+      "name": "XINTinFloatFrac",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
+    },
+    {
+      "name": "XINTinFloatAdd",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:A1/B1[${3:n1}]}}{${2:A2/B2[${4:n2}]}}"
+      }
+    },
+    {
+      "name": "XINTinFloatSub",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:A1/B1[${3:n1}]}}{${2:A2/B2[${4:n2}]}}"
+      }
+    },
+    {
+      "name": "XINTinFloatMul",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:A1/B1[${3:n1}]}}{${2:A2/B2[${4:n2}]}}"
+      }
+    },
+    {
+      "name": "XINTinFloatSqr",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
+    },
+    {
+      "name": "XINTinFloatInv",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
+    },
+    {
+      "name": "XINTinFloatDiv",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:A1/B1[${3:n1}]}}{${2:A2/B2[${4:n2}]}}"
+      }
+    },
+    {
+      "name": "XINTinFloatPow",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:A1/B1[${3:n1}]}}{${2:power}}"
+      }
+    },
+    {
+      "name": "XINTinFloatPower",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:A1/B1[${3:n1}]}}{${2:A2/B2[${4:n2}]}}"
+      }
+    },
+    {
+      "name": "XINTinFloatFac",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:digits}]{${1:A/B[${3:n}]}}"
+      }
+    },
+    {
+      "name": "XINTinFloatPFactorial",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
+    },
+    {
+      "name": "XINTinFloatBinomial",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:A1/B1[${3:n1}]}}{${2:A2/B2[${4:n2}]}}"
+      }
+    },
+    {
+      "name": "XINTinFloatSqrt",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:digits}]{${1:A/B[${3:n}]}}"
+      }
+    },
+    {
+      "name": "XINTinFloatE",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:A/B[${2:n}]}}"
+      }
+    },
+    {
+      "name": "XINTinFloatMod",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:A1/B1[${3:n1}]}}{${2:A2/B2[${4:n2}]}}"
+      }
+    },
+    {
+      "name": "XINTinFloatDivFloor",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:A1/B1[${3:n1}]}}{${2:A2/B2[${4:n2}]}}"
+      }
+    },
+    {
+      "name": "XINTinFloatDivMod",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:A1/B1[${3:n1}]}}{${2:A2/B2[${4:n2}]}}"
+      }
+    },
+    {
+      "name": "XINTinRandomFloatS",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:digits}]"
+      }
+    },
+    {
+      "name": "XINTinRandomFloatSixteen",
+      "unusual": true
+    },
+    {
+      "name": "XINTFloatiLogTen",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:digits}]{${1:A/B[${3:n}]}}"
+      }
+    },
+    {
+      "name": "XINTinFloatMaxof",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:list}}"
+      }
+    },
+    {
+      "name": "XINTinFloatMinof",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:list}}"
+      }
+    },
+    {
+      "name": "XINTinFloatSum",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:list}}"
+      }
+    },
+    {
+      "name": "XINTinFloatPrd",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:list}}"
+      }
+    },
+    {
+      "name": "XINTinFloatdigits",
+      "unusual": true
+    },
+    {
+      "name": "XINTinFloatSdigits",
+      "unusual": true
+    },
+    {
+      "name": "XINTFloatiLogTendigits",
+      "unusual": true
+    },
+    {
+      "name": "XINTinRandomFloatSdigits",
+      "unusual": true
+    },
+    {
+      "name": "XINTinFloatFacdigits",
+      "unusual": true
+    },
+    {
+      "name": "XINTinFloatSqrtdigits",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

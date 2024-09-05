@@ -1,372 +1,299 @@
 {
-  "includes": {
-    "tikz": [],
-    "tikzlibraryfadings": [],
-    "fontenc": [],
-    "xetex": [
-      "numerals=dvn"
-    ],
-    "zhnumber": [
-      "numerals=zh"
-    ]
-  },
-  "macros": {
-    "pgfPTdvnfont{}": {
-      "snippet": "pgfPTdvnfont{${1:font name}}"
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "pgfPTdvnfont[]{}": {
-      "snippet": "pgfPTdvnfont[${2:font options}]{${1:font name}}"
+    {
+      "name": "tikzlibraryfadings"
     },
-    "pgfPTdvn": {},
-    "pgfPTnumberfont": {},
-    "pgfPTzhfont{}": {
-      "snippet": "pgfPTzhfont{${1:font name}}"
+    {
+      "name": "fontenc"
     },
-    "pgfPTzhfont[]{}": {
-      "snippet": "pgfPTzhfont[${2:font options}]{${1:font name}}"
+    {
+      "name": "xetex",
+      "if": "numerals=dvn"
     },
-    "pgfPTzhnumber{}": {
-      "snippet": "pgfPTzhnumber{${1:list}}"
-    },
-    "pgfPTzhnumber[]{}": {
-      "snippet": "pgfPTzhnumber[${2:true|false}]{${1:list}}"
-    },
-    "pgfPTzhnumberfont": {},
-    "pgfPT": {},
-    "pgfPT[]": {
-      "snippet": "pgfPT[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "pgfPTstyle[]": {
-      "snippet": "pgfPTstyle[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "pgfPTresetstyle": {},
-    "pgfPTbuildcell()[]": {
-      "snippet": "pgfPTbuildcell(${2:rows},${3:columns})[${1:entries}]"
-    },
-    "pgfPTresetcell": {},
-    "pgfPTbuildcellstyle{}()[]": {
-      "snippet": "pgfPTbuildcellstyle{${1:name}}(${3:rows},${4:columns})[${2:entries}]"
-    },
-    "pgfPTpreviewcell": {},
-    "pgfPTpreviewcell[]": {
-      "snippet": "pgfPTpreviewcell[${1:scale}]"
-    },
-    "pgfPTpreviewcellstyle{}": {
-      "snippet": "pgfPTpreviewcellstyle{${1:name}}"
-    },
-    "pgfPTpreviewcellstyle[]{}": {
-      "snippet": "pgfPTpreviewcellstyle[${2:scale}]{${1:name}}"
-    },
-    "pgfPTnewColorScheme{}{}": {
-      "snippet": "pgfPTnewColorScheme{${1:name}}{${2:r1/g1/b1,${3:r2/g2/b2},...}}"
-    },
-    "pgfPTnewColorScheme[]{}{}": {
-      "snippet": "pgfPTnewColorScheme[${3:r/g/b}]{${1:name}}{${2:r1/g1/b1,${4:r2/g2/b2},...}}"
-    },
-    "pgfPTnewZlist{}{}": {
-      "snippet": "pgfPTnewZlist{${1:name}}{${2:list}}"
-    },
-    "usepgfPTlibrary{}": {
-      "snippet": "usepgfPTlibrary{${1:library}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "pgfPTGroupColors{}{}": {
-      "snippet": "pgfPTGroupColors{${1:new colorscheme name}}{${2:options}}",
-      "keyvalindex": 2,
-      "keyvalpos": 1
-    },
-    "pgfPTGroupColors[]{}{}": {
-      "snippet": "pgfPTGroupColors[${3:default color}]{${1:new colorscheme name}}{${2:options}}",
-      "keyvalindex": 2,
-      "keyvalpos": 2
-    },
-    "pgfPTPeriodColors{}{}": {
-      "snippet": "pgfPTPeriodColors{${1:new colorscheme name}}{${2:options}}",
-      "keyvalindex": 3,
-      "keyvalpos": 1
-    },
-    "pgfPTPeriodColors[]{}{}": {
-      "snippet": "pgfPTPeriodColors[${3:default color}]{${1:new colorscheme name}}{${2:options}}",
-      "keyvalindex": 3,
-      "keyvalpos": 2
-    },
-    "pgfPTCScombine{}": {
-      "snippet": "pgfPTCScombine{${1:colorscheme1,${2:colorscheme2},new colorscheme name}}"
-    },
-    "pgfPTCScombine[]{}": {
-      "snippet": "pgfPTCScombine[${2:proportion,${3:mode}]{${1:colorscheme1},${4:colorscheme2},new colorscheme name}}"
-    },
-    "pgfPTCSwrite{}": {
-      "snippet": "pgfPTCSwrite{${1:list of colorschemes}}"
-    },
-    "pgfPTCSwrite[]{}": {
-      "snippet": "pgfPTCSwrite[${2:filename}]{${1:list of colorschemes}}"
-    },
-    "DH": {},
-    "dh": {},
-    "dj": {},
-    "DJ": {},
-    "guillemetleft": {},
-    "guillemetright": {},
-    "guillemotleft": {},
-    "guillemotright": {},
-    "guilsinglleft": {},
-    "guilsinglright": {},
-    "Hwithstroke": {},
-    "hwithstroke": {},
-    "k{}": {
-      "snippet": "k{${1:arg}}"
-    },
-    "NG": {},
-    "ng": {},
-    "quotedblbase": {},
-    "quotesinglbase": {},
-    "textogonekcentered{}": {
-      "snippet": "textogonekcentered{${1:arg}}"
-    },
-    "textquotedbl": {},
-    "th": {},
-    "TH": {},
-    "ifpgfPTblocos": {},
-    "ifpgfPTexCapitals": {},
-    "ifpgfPTexMode": {},
-    "ifpgfPTfamilias": {},
-    "ifpgfPTgrlabels": {},
-    "ifpgfPTIUPACMMIX": {},
-    "ifpgfPTLaAclabels": {},
-    "ifpgfPTlegacro": {},
-    "ifpgfPTlegenda": {},
-    "ifpgfPTlegendaextra": {},
-    "ifpgfPTlegendapins": {},
-    "ifpgfPTMNMline": {},
-    "ifpgfPTonlycells": {},
-    "ifpgfPTonlycellsPerAndGroupNum": {},
-    "ifpgfPTonlycellsPerAndGroupNumZ": {},
-    "ifpgfPTonlycellsZ": {},
-    "ifpgfPTperlabels": {},
-    "ifpgfPTtitulo": {},
-    "ifpgfPTvariations": {},
-    "ifpgfZuseboxwidth": {},
-    "loadcell{}": {
-      "snippet": "loadcell{${1:arg1}}"
-    },
-    "pgfPTArcolor": {},
-    "pgfPTArfont": {},
-    "pgfPTArlabel": {},
-    "pgfPTArprecision": {},
-    "pgfPTArstarcolor": {},
-    "pgfPTbcs": {},
-    "pgfPTbcsolid": {},
-    "pgfPTblocksfont": {},
-    "pgfPTblocosfalse": {},
-    "pgfPTblocostrue": {},
-    "pgfPTcellht": {},
-    "pgfPTcellinewd": {},
-    "pgfPTcelllinecolor": {},
-    "pgfPTcelllinewd": {},
-    "pgfPTcells": {},
-    "pgfPTcellstyle": {},
-    "pgfPTcellwd": {},
-    "pgfPTcolorSchemeInfo": {},
-    "pgfPTCpcolor": {},
-    "pgfPTCpfont": {},
-    "pgfPTCpprecision": {},
-    "pgfPTCScolor": {},
-    "pgfPTCSfont": {},
-    "pgfPTCSolc": {},
-    "pgfPTCSolwd": {},
-    "pgfPTcSQgas": {},
-    "pgfPTcSQliq": {},
-    "pgfPTcSQsint": {},
-    "pgfPTcSQsol": {},
-    "pgfPTCSrender": {},
-    "pgfPTdblockcolor": {},
-    "pgfPTdblockfontcolor": {},
-    "pgfPTdblocklinewidth": {},
-    "pgfPTdcolor": {},
-    "pgfPTdfont": {},
-    "pgfPTDiscCcolor": {},
-    "pgfPTDiscCfont": {},
-    "pgfPTDiscYBCscale": {},
-    "pgfPTDiscYcolor": {},
-    "pgfPTDiscYfont": {},
-    "pgfPTdprecision": {},
-    "pgfPTdunit": {},
-    "pgfPTeaffcolor": {},
-    "pgfPTeafffont": {},
-    "pgfPTeConfigncolor": {},
-    "pgfPTeConfignfont": {},
-    "pgfPTeConfignlcolor": {},
-    "pgfPTeConfignlfont": {},
-    "pgfPTeDistcolor": {},
-    "pgfPTeDistfont": {},
-    "pgfPTeDistsep": {},
-    "pgfPTEicolor": {},
-    "pgfPTEifont": {},
-    "pgfPTenegcolor": {},
-    "pgfPTenegfont": {},
-    "pgfPTEprecision": {},
-    "pgfPTexCapitalsfalse": {},
-    "pgfPTexCapitalstrue": {},
-    "pgfPTexModefalse": {},
-    "pgfPTexModetrue": {},
-    "pgfPTfamiliasfalse": {},
-    "pgfPTfamiliastrue": {},
-    "pgfPTfamiliesfont": {},
-    "pgfPTfblockcolor": {},
-    "pgfPTfblockfontcolor": {},
-    "pgfPTfblocklinewidth": {},
-    "pgfPTglobalfont": {},
-    "pgfPTgrlabelsfalse": {},
-    "pgfPTgrlabelstrue": {},
-    "pgfPTgrnum": {},
-    "pgfPTiblockcolor": {},
-    "pgfPTiblockfontcolor": {},
-    "pgfPTiblocklinewidth": {},
-    "pgfPTIUPACMMIXfalse": {},
-    "pgfPTIUPACMMIXtrue": {},
-    "pgfPTkTcolor": {},
-    "pgfPTkTfont": {},
-    "pgfPTkTprecision": {},
-    "pgfPTLaAclabelsfalse": {},
-    "pgfPTLaAclabelstrue": {},
-    "pgfPTLaAclabelsUSER": {},
-    "pgfPTlabfont": {},
-    "pgfPTlabgrcolor": {},
-    "pgfPTlabLaAcfont": {},
-    "pgfPTlabpercolor": {},
-    "pgfPTlanguages": {},
-    "pgfPTlegacrofalse": {},
-    "pgfPTlegacrotrue": {},
-    "pgfPTlegendaextrafalse": {},
-    "pgfPTlegendaextratrue": {},
-    "pgfPTlegendafalse": {},
-    "pgfPTlegendapinsfalse": {},
-    "pgfPTlegendapinstrue": {},
-    "pgfPTlegendatrue": {},
-    "pgfPTlegendbackcolor": {},
-    "pgfPTlegendCScolor": {},
-    "pgfPTlegendradiocolor": {},
-    "pgfPTlegendZcolor": {},
-    "pgfPTlsacolor": {},
-    "pgfPTlsafont": {},
-    "pgfPTlsalign": {},
-    "pgfPTlsbcolor": {},
-    "pgfPTlsbfont": {},
-    "pgfPTlscacolor": {},
-    "pgfPTlscafont": {},
-    "pgfPTlsccolor": {},
-    "pgfPTlscfont": {},
-    "pgfPTlscolor": {},
-    "pgfPTlsfont": {},
-    "pgfPTlsprecision": {},
-    "pgfPTlstxtfig": {},
-    "pgfPTlsunit": {},
-    "pgfPTMNMlinecolor": {},
-    "pgfPTMNMlinefalse": {},
-    "pgfPTMNMlinetrue": {},
-    "pgfPTMNMlinewidth": {},
-    "pgfPTnamealign": {},
-    "pgfPTnamecolor": {},
-    "pgfPTnamefont": {},
-    "pgfPTNames": {},
-    "pgfPTOcolor": {},
-    "pgfPTOfont": {},
-    "pgfPTonlycellsfalse": {},
-    "pgfPTonlycellsPerAndGroupNumfalse": {},
-    "pgfPTonlycellsPerAndGroupNumtrue": {},
-    "pgfPTonlycellsPerAndGroupNumZfalse": {},
-    "pgfPTonlycellsPerAndGroupNumZtrue": {},
-    "pgfPTonlycellstrue": {},
-    "pgfPTonlycellsZfalse": {},
-    "pgfPTonlycellsZtrue": {},
-    "pgfPTotherLangColor": {},
-    "pgfPTotherLangFont": {},
-    "pgfPTpblockcolor": {},
-    "pgfPTpblockfontcolor": {},
-    "pgfPTpblocklinewidth": {},
-    "pgfPTperlabelsfalse": {},
-    "pgfPTperlabelstrue": {},
-    "pgfPTradiocolor": {},
-    "pgfPTrblockcolor": {},
-    "pgfPTrblockfontcolor": {},
-    "pgfPTrblocklinewidth": {},
-    "pgfPTRcolor": {},
-    "pgfPTRcovcolor": {},
-    "pgfPTRcovfont": {},
-    "pgfPTRfont": {},
-    "pgfPTRioncolor": {},
-    "pgfPTRionfont": {},
-    "pgfPTsblockcolor": {},
-    "pgfPTsblockfontcolor": {},
-    "pgfPTsblocklinewidth": {},
-    "pgfPTsetLanguage{}": {
-      "snippet": "pgfPTsetLanguage{${1:arg1}}"
-    },
-    "pgfPTspectracolor": {},
-    "pgfPTspectrafont": {},
-    "pgfPTtblockcolor": {},
-    "pgfPTtblockfontcolor": {},
-    "pgfPTtblocklinewidth": {},
-    "pgfPTTboilCcolor": {},
-    "pgfPTTboilCfont": {},
-    "pgfPTTboilcolor": {},
-    "pgfPTTboilfont": {},
-    "pgfPTtitlecolor": {},
-    "pgfPTtitlefont": {},
-    "pgfPTtitulofalse": {},
-    "pgfPTtitulotrue": {},
-    "pgfPTTmeltCcolor": {},
-    "pgfPTTmeltCfont": {},
-    "pgfPTTmeltcolor": {},
-    "pgfPTTmeltfont": {},
-    "pgfPTTprecision": {},
-    "pgfPTtxtcolor": {},
-    "pgfPTvareaffcolor": {},
-    "pgfPTvareafffont": {},
-    "pgfPTvareafffontcolor": {},
-    "pgfPTvarEicolor": {},
-    "pgfPTvarEifont": {},
-    "pgfPTvarEifontcolor": {},
-    "pgfPTvariationsfalse": {},
-    "pgfPTvariationstrue": {},
-    "pgfPTvarRcolor": {},
-    "pgfPTvarRfont": {},
-    "pgfPTvarRfontcolor": {},
-    "pgfPTZalign": {},
-    "pgfPTZback": {},
-    "pgfPTZcolor": {},
-    "pgfPTZexlist": {},
-    "pgfPTZexlistcolor": {},
-    "pgfPTZexlistfont": {},
-    "pgfPTZfont": {},
-    "pgfPTZspace": {},
-    "pgfZuseboxwidthfalse": {},
-    "pgfZuseboxwidthtrue": {},
-    "thetinysize": {},
-    "ifpgfPTORoman": {},
-    "pgfPTORomantrue": {},
-    "pgfPTORomanfalse": {}
-  },
-  "envs": {},
-  "options": [
-    "pt",
-    "en",
-    "fr",
-    "de",
-    "it",
-    "es",
-    "br",
-    "userlang=${1:ISO 639-1 code}",
-    "numerals=${1|dvn,zh|}"
+    {
+      "name": "zhnumber",
+      "if": "numerals=zh"
+    }
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "pgfPTdvnfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font name}}"
+      }
+    },
+    {
+      "name": "pgfPTdvnfont",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:font options}]{${1:font name}}"
+      }
+    },
+    {
+      "name": "pgfPTzhfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font name}}"
+      }
+    },
+    {
+      "name": "pgfPTzhfont",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:font options}]{${1:font name}}"
+      }
+    },
+    {
+      "name": "pgfPTzhnumber",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:list}}"
+      }
+    },
+    {
+      "name": "pgfPTzhnumber",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:true|false}]{${1:list}}"
+      }
+    },
+    {
+      "name": "pgfPT"
+    },
+    {
+      "name": "pgfPT",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "pgfPTstyle",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "pgfPTresetstyle"
+    },
+    {
+      "name": "pgfPTbuildcell(rows,columns)",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:entries}]"
+      }
+    },
+    {
+      "name": "pgfPTresetcell"
+    },
+    {
+      "name": "pgfPTbuildcellstyle",
+      "arg": {
+        "format": "{}()[]",
+        "snippet": "{${1:name%specialDef}}(${3:rows},${4:columns})[${2:entries}]"
+      }
+    },
+    {
+      "name": "pgfPTpreviewcell"
+    },
+    {
+      "name": "pgfPTpreviewcell",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:scale}]"
+      }
+    },
+    {
+      "name": "pgfPTpreviewcellstyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "pgfPTpreviewcellstyle",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:scale}]{${1:name}}"
+      }
+    },
+    {
+      "name": "pgfPTnewColorScheme",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name%specialDef}}{${2:r1/g1/b1,r2/g2/b2,...}}"
+      }
+    },
+    {
+      "name": "pgfPTnewColorScheme",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:r/g/b}]{${1:name}}{${2:r1/g1/b1,r2/g2/b2,...}}"
+      }
+    },
+    {
+      "name": "pgfPTnewZlist",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name%specialDef}}{${2:list}}"
+      }
+    },
+    {
+      "name": "usepgfPTlibrary",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:library%keyvals}}"
+      }
+    },
+    {
+      "name": "pgfPTGroupColors",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:new colorscheme name}}{${2:options%keyvals}}"
+      }
+    },
+    {
+      "name": "pgfPTGroupColors",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:default color}]{${1:new colorscheme name}}{${2:options%keyvals}}"
+      }
+    },
+    {
+      "name": "pgfPTPeriodColors",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:new colorscheme name}}{${2:options%keyvals}}"
+      }
+    },
+    {
+      "name": "pgfPTPeriodColors",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:default color}]{${1:new colorscheme name}}{${2:options%keyvals}}"
+      }
+    },
+    {
+      "name": "pgfPTCScombine",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:colorscheme1,colorscheme2,new colorscheme name}}"
+      }
+    },
+    {
+      "name": "pgfPTCScombine",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:proportion,mode}]{${1:colorscheme1,colorscheme2,new colorscheme name}}"
+      }
+    },
+    {
+      "name": "pgfPTCSwrite",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:list of colorschemes}}"
+      }
+    },
+    {
+      "name": "pgfPTCSwrite",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:filename%file}]{${1:list of colorschemes}}"
+      }
+    },
+    {
+      "name": "DH"
+    },
+    {
+      "name": "dh"
+    },
+    {
+      "name": "dj"
+    },
+    {
+      "name": "DJ"
+    },
+    {
+      "name": "guillemetleft"
+    },
+    {
+      "name": "guillemetright"
+    },
+    {
+      "name": "guillemotleft",
+      "unusual": true
+    },
+    {
+      "name": "guillemotright",
+      "unusual": true
+    },
+    {
+      "name": "guilsinglleft"
+    },
+    {
+      "name": "guilsinglright"
+    },
+    {
+      "name": "Hwithstroke"
+    },
+    {
+      "name": "hwithstroke"
+    },
+    {
+      "name": "k",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "NG"
+    },
+    {
+      "name": "ng"
+    },
+    {
+      "name": "quotedblbase"
+    },
+    {
+      "name": "quotesinglbase"
+    },
+    {
+      "name": "textogonekcentered",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textquotedbl"
+    },
+    {
+      "name": "th"
+    },
+    {
+      "name": "TH"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/pgf-PeriodicTable#c": [
+      "pt\r",
+      "en\r",
+      "fr\r",
+      "de\r",
+      "it\r",
+      "es\r",
+      "br\r",
+      "userlang=${1:ISO 639-1 code}\r",
+      "numerals=${1|dvn,zh\r|}"
+    ],
+    "\\pgfPT#c,\\pgfPTstyle#c": [
       "Z list=",
       "cell width=",
       "cell height=",
@@ -374,62 +301,62 @@
       "cell line width=",
       "cell line color=",
       "cell style=",
-      "cell={${1:keyvals}}",
-      "font=${1:font family}",
+      "cell={${1:keyvals}}\r",
+      "font=${1:font family}\r",
       "back color scheme=",
       "back color=",
-      "csSolid",
+      "csSolid\r",
       "csSolid=",
-      "csSoft",
-      "csJmol",
-      "csCPK",
-      "csRasmol",
-      "csRasmolNew",
-      "csWikipedia",
-      "csMNM",
-      "csPS",
-      "csRadio",
-      "csBlocks",
-      "background={${1:TikZ keys}}",
+      "csSoft\r",
+      "csJmol\r",
+      "csCPK\r",
+      "csRasmol\r",
+      "csRasmolNew\r",
+      "csWikipedia\r",
+      "csMNM\r",
+      "csPS\r",
+      "csRadio\r",
+      "csBlocks\r",
+      "background={${1:TikZ keys}}\r",
       "IUPAC",
       "show label LaAc",
-      "label LaAc font=${1:font commands}",
-      "languages={${1:lang1,lang2,...}}",
-      "other languages font=${1:font commands}",
+      "label LaAc font=${1:font commands}\r",
+      "languages={${1:lang1,lang2,...}}\r",
+      "other languages font=${1:font commands}\r",
       "other languages color=",
-      "other lang={${1:keyvals}}",
+      "other lang={${1:keyvals}}\r",
       "show MNM line",
       "MNM line color=",
       "MNM line width=",
-      "MNM={${1:keyvals}}",
+      "MNM={${1:keyvals}}\r",
       "show title",
-      "title font=${1:font commands}",
+      "title font=${1:font commands}\r",
       "title color=",
-      "title={${1:keyvals}}",
+      "title={${1:keyvals}}\r",
       "show legend",
       "legend acronyms",
-      "legend box={${1:TikZ keys}}",
+      "legend box={${1:TikZ keys}}\r",
       "legend back color=",
       "legend radio color=",
       "legend CS color=",
       "legend Z color=",
       "show legend pins",
-      "legend pins={${1:TikZ keys}}",
+      "legend pins={${1:TikZ keys}}\r",
       "show extra legend",
-      "extra legend={${1:TikZ keys}}",
-      "legend={${1:keyvals}}",
+      "extra legend={${1:TikZ keys}}\r",
+      "legend={${1:keyvals}}\r",
       "show period numbers",
       "show group numbers",
-      "group numbers=${1|arabic,CAS,IUPAC,CAS*,IUPAC*|}",
+      "group numbers=${1|arabic,CAS,IUPAC,CAS*,IUPAC*\r|}",
       "period label color=",
       "group label color=",
       "Roman label color=",
-      "label font=${1:font commands}",
-      "per={${1:keyvals}}",
-      "gr={${1:keyvals}}",
-      "per+gr={${1:keyvals}}",
+      "label font=${1:font commands}\r",
+      "per={${1:keyvals}}\r",
+      "gr={${1:keyvals}}\r",
+      "per+gr={${1:keyvals}}\r",
       "show blocks",
-      "blocks font=${1:font commands}",
+      "blocks font=${1:font commands}\r",
       "s block color=",
       "s block font color=",
       "s block line width=",
@@ -444,9 +371,9 @@
       "f block line width=",
       "blocks font color=",
       "blocks line width=",
-      "blocks={${1:keyvals}}",
+      "blocks={${1:keyvals}}\r",
       "show families",
-      "families font=${1:font commands}",
+      "families font=${1:font commands}\r",
       "r family color=",
       "r family font color=",
       "r family line width=",
@@ -458,87 +385,87 @@
       "itm family line width=",
       "families font color=",
       "families line width=",
-      "families={${1:keyvals}}",
+      "families={${1:keyvals}}\r",
       "show periodic variations",
       "varR color=",
-      "varR font=${1:font commands}",
+      "varR font=${1:font commands}\r",
       "varR font color=",
       "varEi color=",
-      "varEi font=${1:font commands}",
+      "varEi font=${1:font commands}\r",
       "varEi font color=",
       "vareaff color=",
-      "vareaff font=${1:font commands}",
+      "vareaff font=${1:font commands}\r",
       "vareaff font color=",
-      "var font=${1:font commands}",
+      "var font=${1:font commands}\r",
       "var color=",
-      "varR={${1:keyvals}}",
-      "varEi={${1:keyvals}}",
-      "vareaff={${1:keyvals}}",
-      "dark mode",
+      "varR={${1:keyvals}}\r",
+      "varEi={${1:keyvals}}\r",
+      "vareaff={${1:keyvals}}\r",
+      "dark mode\r",
       "only cells",
       "only cells plus Z",
       "only cells with periods and group numbers",
       "only cells with periods and group numbers plus Z",
-      "Z exercise list={${1:csv list}}",
+      "Z exercise list={${1:csv list}}\r",
       "exercise list in capitals",
       "exercise list color=",
-      "exercise list font=${1:font commands}",
-      "cells+Z",
-      "cells+p+g",
-      "cells+p+g+Z",
-      "exnocaps",
+      "exercise list font=${1:font commands}\r",
+      "cells+Z\r",
+      "cells+p+g\r",
+      "cells+p+g+Z\r",
+      "exnocaps\r",
       "exColor=",
-      "exFont=${1:font commands}",
-      "ex={${1:keyvals}}",
+      "exFont=${1:font commands}\r",
+      "ex={${1:keyvals}}\r",
       "Z backcolor=",
       "Z color=",
-      "Z font=${1:font commands}",
+      "Z font=${1:font commands}\r",
       "Z use box width",
-      "Z align=${1|left,center,right|}",
+      "Z align=${1|left,center,right\r|}",
       "Z padding=",
-      "Z box",
-      "Z={${1:keyvals}}",
+      "Z box\r",
+      "Z={${1:keyvals}}\r",
       "CS solid=",
       "CS liquid=",
       "CS gas=",
       "CS synt=",
       "CS all=",
-      "CS font=${1:font commands}",
-      "CS render mode=${1|fill,outline,fill and outline|}",
+      "CS font=${1:font commands}\r",
+      "CS render mode=${1|fill,outline,fill and outline\r|}",
       "CS outline color=",
       "CS outline width=",
-      "CS={${1:keyvals}}",
+      "CS={${1:keyvals}}\r",
       "name color=",
-      "name font=${1:font commands}",
-      "name align=${1|left,center,right|}",
+      "name font=${1:font commands}\r",
+      "name align=${1|left,center,right\r|}",
       "capitalize element names",
-      "name",
-      "Name",
-      "NAME",
+      "name\r",
+      "Name\r",
+      "NAME\r",
       "Ar color=",
-      "Ar font=${1:font commands}",
-      "Ar label=${1|m,w|}",
-      "Ar precision=${1:integer}",
-      "Ar={${1:keyvals}}",
+      "Ar font=${1:font commands}\r",
+      "Ar label=${1|m,w\r|}",
+      "Ar precision=${1:integer}\r",
+      "Ar={${1:keyvals}}\r",
       "O Roman",
       "d color=",
-      "d font=${1:font commands}",
-      "d unit=${1|g/dm3,g/cm3,both|}",
-      "d precision=${1:integer}",
-      "d={${1:keyvals}}",
-      "ls=${1|fig,txt,fig+txt|}",
+      "d font=${1:font commands}\r",
+      "d unit=${1|g/dm3,g/cm3,both\r|}",
+      "d precision=${1:integer}\r",
+      "d={${1:keyvals}}\r",
+      "ls=${1|fig,txt,fig+txt\r|}",
       "ls color=",
-      "ls font=${1:font commands}",
-      "ls align=${1|left,center,right|}",
-      "ls unit=${1|pm,A|}",
-      "ls precision=${1:integer}",
-      "lat={${1:keyvals}}",
+      "ls font=${1:font commands}\r",
+      "ls align=${1|left,center,right\r|}",
+      "ls unit=${1|pm,A\r|}",
+      "ls precision=${1:integer}\r",
+      "lat={${1:keyvals}}\r",
       "DiscY color=",
-      "DiscY font=${1:font commands}",
-      "DiscY BC scale=${1:factor}",
+      "DiscY font=${1:font commands}\r",
+      "DiscY BC scale=${1:factor}\r",
       "eDist color=",
-      "eDist font=${1:font commands}",
-      "eDist sep=${1:separator}",
+      "eDist font=${1:font commands}\r",
+      "eDist sep=${1:separator}\r",
       "R color=",
       "Rcov color=",
       "Rion color=",
@@ -560,38 +487,38 @@
       "lsca color=",
       "DiscC color=",
       "spectra color=",
-      "R font=${1:font commands}",
-      "Rcov font=${1:font commands}",
-      "Rion font=${1:font commands}",
-      "Ei font=${1:font commands}",
-      "eneg font=${1:font commands}",
-      "eaff font=${1:font commands}",
-      "O font=${1:font commands}",
-      "Tmelt font=${1:font commands}",
-      "TmeltC font=${1:font commands}",
-      "Tboil font=${1:font commands}",
-      "TboilC font=${1:font commands}",
-      "eConfign font=${1:font commands}",
-      "eConfignl font=${1:font commands}",
-      "Cp font=${1:font commands}",
-      "kT font=${1:font commands}",
-      "lsa font=${1:font commands}",
-      "lsb font=${1:font commands}",
-      "lsc font=${1:font commands}",
-      "lsca font=${1:font commands}",
-      "DiscC font=${1:font commands}",
-      "spectra font=${1:font commands}",
-      "cell font=${1:font commands}",
+      "R font=${1:font commands}\r",
+      "Rcov font=${1:font commands}\r",
+      "Rion font=${1:font commands}\r",
+      "Ei font=${1:font commands}\r",
+      "eneg font=${1:font commands}\r",
+      "eaff font=${1:font commands}\r",
+      "O font=${1:font commands}\r",
+      "Tmelt font=${1:font commands}\r",
+      "TmeltC font=${1:font commands}\r",
+      "Tboil font=${1:font commands}\r",
+      "TboilC font=${1:font commands}\r",
+      "eConfign font=${1:font commands}\r",
+      "eConfignl font=${1:font commands}\r",
+      "Cp font=${1:font commands}\r",
+      "kT font=${1:font commands}\r",
+      "lsa font=${1:font commands}\r",
+      "lsb font=${1:font commands}\r",
+      "lsc font=${1:font commands}\r",
+      "lsca font=${1:font commands}\r",
+      "DiscC font=${1:font commands}\r",
+      "spectra font=${1:font commands}\r",
+      "cell font=${1:font commands}\r",
       "cell color=",
-      "E precision=${1:integer}",
-      "T precision=${1:integer}",
-      "Cp precision=${1:integer}",
-      "kT precision=${1:integer}"
+      "E precision=${1:integer}\r",
+      "T precision=${1:integer}\r",
+      "Cp precision=${1:integer}\r",
+      "kT precision=${1:integer}\r"
     ],
-    [
-      "colorschemes"
+    "\\usepgfPTlibrary#c": [
+      "colorschemes\r"
     ],
-    [
+    "\\pgfPTGroupColors#c": [
       "G1=",
       "G2=",
       "G3=",
@@ -613,15 +540,15 @@
       "left color=",
       "middle color=",
       "right color=",
-      "gradient={${1:keyvals}}",
+      "gradient={${1:keyvals}}\r",
       "H=",
       "La=",
       "Lanta=",
       "Ac=",
       "Actin=",
-      "period blending={${1:keyvals}}"
+      "period blending={${1:keyvals}}\r"
     ],
-    [
+    "\\pgfPTPeriodColors#c": [
       "P1=",
       "P2=",
       "P3=",
@@ -632,13 +559,16 @@
       "top color=",
       "middle color=",
       "bottom color=",
-      "gradient={${1:keyvals}}",
+      "gradient={${1:keyvals}}\r",
       "H=",
       "La=",
       "Lanta=",
       "Ac=",
       "Actin=",
-      "group blending={${1:keyvals}}"
+      "group blending={${1:keyvals}}\r"
     ]
+  },
+  "args": [
+    "\\usepackage/pgf-PeriodicTable#c"
   ]
 }

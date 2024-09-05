@@ -1,22 +1,42 @@
 {
-  "includes": {
-    "l3keys2e": [],
-    "xcolor": [],
-    "tikz": [],
-    "graphicx": []
-  },
-  "macros": {
-    "usym{}": {
-      "snippet": "usym{${1:symbolID}}"
+  "deps": [
+    {
+      "name": "l3keys2e"
     },
-    "usymH{}{}": {
-      "snippet": "usymH{${1:symbolID}}{${2:height}}"
+    {
+      "name": "xcolor"
     },
-    "usymW{}{}": {
-      "snippet": "usymW{${1:symbolID}}{${2:width}}"
+    {
+      "name": "tikz"
+    },
+    {
+      "name": "graphicx"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "usym",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbolID}}"
+      }
+    },
+    {
+      "name": "usymH",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:symbolID}}{${2:height}}"
+      }
+    },
+    {
+      "name": "usymW",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:symbolID}}{${2:width}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

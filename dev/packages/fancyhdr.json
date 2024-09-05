@@ -1,132 +1,315 @@
 {
-  "includes": {},
-  "macros": {
-    "fancyfoot[]{}": {
-      "snippet": "fancyfoot[${2:places}]{${1:footer}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "fancyfoot",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:places}]{${1:footer%text}}"
+      }
     },
-    "fancyfoot{}": {
-      "snippet": "fancyfoot{${1:footer}}"
+    {
+      "name": "fancyfoot",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:footer%text}}"
+      }
     },
-    "fancyhead[]{}": {
-      "snippet": "fancyhead[${2:places}]{${1:header}}"
+    {
+      "name": "fancyhead",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:places}]{${1:header%text}}"
+      }
     },
-    "fancyhead{}": {
-      "snippet": "fancyhead{${1:header}}"
+    {
+      "name": "fancyhead",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:header%text}}"
+      }
     },
-    "fancyhf[]{}": {
-      "snippet": "fancyhf[${2:places}]{${1:output}}"
+    {
+      "name": "fancyhf",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:places}]{${1:output%text}}"
+      }
     },
-    "fancyhf{}": {
-      "snippet": "fancyhf{${1:output}}"
+    {
+      "name": "fancyhf",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:output%text}}"
+      }
     },
-    "fancyfootoffset[]{}": {
-      "snippet": "fancyfootoffset[${2:places}]{${1:length}}"
+    {
+      "name": "fancyfootoffset",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:places}]{${1:length}}"
+      }
     },
-    "fancyfootoffset{}": {
-      "snippet": "fancyfootoffset{${1:length}}"
+    {
+      "name": "fancyfootoffset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
     },
-    "fancyheadoffset[]{}": {
-      "snippet": "fancyheadoffset[${2:places}]{${1:length}}"
+    {
+      "name": "fancyheadoffset",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:places}]{${1:length}}"
+      }
     },
-    "fancyheadoffset{}": {
-      "snippet": "fancyheadoffset{${1:length}}"
+    {
+      "name": "fancyheadoffset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
     },
-    "fancyhfoffset[]{}": {
-      "snippet": "fancyhfoffset[${2:places}]{${1:length}}"
+    {
+      "name": "fancyhfoffset",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:places}]{${1:length}}"
+      }
     },
-    "fancyhfoffset{}": {
-      "snippet": "fancyhfoffset{${1:length}}"
+    {
+      "name": "fancyhfoffset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
     },
-    "fancypagestyle{}[]{}": {
-      "snippet": "fancypagestyle{${1:style name}}[${2:base style}]{${3:definitions}}"
+    {
+      "name": "fancypagestyle",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:style name}}[${3:base style}]{${2:definitions%text}}"
+      }
     },
-    "fancypagestyle{}{}": {
-      "snippet": "fancypagestyle{${1:style name}}{${2:definitions}}"
+    {
+      "name": "fancypagestyle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:style name%specialDef}}{${2:definitions%text}}"
+      }
     },
-    "iftopfloat{}{}": {
-      "snippet": "iftopfloat{${1:float page}}{${2:other}}"
+    {
+      "name": "iftopfloat",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:float page%text}}{${2:other%text}}"
+      }
     },
-    "ifbotfloat{}{}": {
-      "snippet": "ifbotfloat{${1:float page}}{${2:other}}"
+    {
+      "name": "ifbotfloat",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:float page%text}}{${2:other%text}}"
+      }
     },
-    "iffloatpage{}{}": {
-      "snippet": "iffloatpage{${1:float page}}{${2:other}}"
+    {
+      "name": "iffloatpage",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:float page%text}}{${2:other%text}}"
+      }
     },
-    "iffootnote{}{}": {
-      "snippet": "iffootnote{${1:float page}}{${2:other}}"
+    {
+      "name": "iffootnote",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:float page%text}}{${2:other%text}}"
+      }
     },
-    "headrulewidth": {},
-    "footrulewidth": {},
-    "headruleskip": {},
-    "footruleskip": {},
-    "headrule": {},
-    "footrule": {},
-    "headwidth": {},
-    "fancyheadinit{}": {
-      "snippet": "fancyheadinit{${1:code}}"
+    {
+      "name": "headrulewidth"
     },
-    "fancyfootinit{}": {
-      "snippet": "fancyfootinit{${1:code}}"
+    {
+      "name": "footrulewidth"
     },
-    "fancyhfinit{}": {
-      "snippet": "fancyhfinit{${1:code}}"
+    {
+      "name": "headruleskip"
     },
-    "fancycenter[][]{}{}{}": {
-      "snippet": "fancycenter[${4:distance}][${5:stretch}]{${1:left-mark}}{${2:center-mark}}{${3:right-mark}}"
+    {
+      "name": "footruleskip"
     },
-    "fancycenter[]{}{}{}": {
-      "snippet": "fancycenter[${4:distance}]{${1:left-mark}}{${2:center-mark}}{${3:right-mark}}"
+    {
+      "name": "headrule"
     },
-    "fancycenter{}{}{}": {
-      "snippet": "fancycenter{${1:left-mark}}{${2:center-mark}}{${3:right-mark}}"
+    {
+      "name": "footrule"
     },
-    "nouppercase{}": {
-      "snippet": "nouppercase{${1:text}}"
+    {
+      "name": "headwidth"
     },
-    "chead[]{}": {
-      "snippet": "chead[${2:CH-even}]{${1:CH-odd}}"
+    {
+      "name": "fancyheadinit",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
     },
-    "chead{}": {
-      "snippet": "chead{${1:header}}"
+    {
+      "name": "fancyfootinit",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
     },
-    "cfoot[]{}": {
-      "snippet": "cfoot[${2:CF-even}]{${1:CF-odd}}"
+    {
+      "name": "fancyhfinit",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
     },
-    "cfoot{}": {
-      "snippet": "cfoot{${1:footer}}"
+    {
+      "name": "fancycenter",
+      "arg": {
+        "format": "[][]{}{}{}",
+        "snippet": "[${4:distance%l}][${5:stretch}]{${1:left-mark%text}}{${2:center-mark%text}}{${3:right-mark%text}}"
+      }
     },
-    "lhead[]{}": {
-      "snippet": "lhead[${2:LH-even}]{${1:LH-odd}}"
+    {
+      "name": "fancycenter",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:distance%l}]{${1:left-mark%text}}{${2:center-mark%text}}{${3:right-mark%text}}"
+      }
     },
-    "lhead{}": {
-      "snippet": "lhead{${1:header}}"
+    {
+      "name": "fancycenter",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:left-mark%text}}{${2:center-mark%text}}{${3:right-mark%text}}"
+      }
     },
-    "lfoot[]{}": {
-      "snippet": "lfoot[${2:LF-even}]{${1:LF-odd}}"
+    {
+      "name": "nouppercase",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "lfoot{}": {
-      "snippet": "lfoot{${1:footer}}"
+    {
+      "name": "chead",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:CH-even%text}]{${1:CH-odd%text}}"
+      }
     },
-    "rhead[]{}": {
-      "snippet": "rhead[${2:RH-even}]{${1:RH-odd}}"
+    {
+      "name": "chead",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:header%text}}"
+      }
     },
-    "rhead{}": {
-      "snippet": "rhead{${1:header}}"
+    {
+      "name": "cfoot",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:CF-even%text}]{${1:CF-odd%text}}"
+      }
     },
-    "rfoot[]{}": {
-      "snippet": "rfoot[${2:RF-even}]{${1:RF-odd}}"
+    {
+      "name": "cfoot",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:footer%text}}"
+      }
     },
-    "rfoot{}": {
-      "snippet": "rfoot{${1:footer}}"
+    {
+      "name": "lhead",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:LH-even%text}]{${1:LH-odd%text}}"
+      }
+    },
+    {
+      "name": "lhead",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:header%text}}"
+      }
+    },
+    {
+      "name": "lfoot",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:LF-even%text}]{${1:LF-odd%text}}"
+      }
+    },
+    {
+      "name": "lfoot",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:footer%text}}"
+      }
+    },
+    {
+      "name": "rhead",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:RH-even%text}]{${1:RH-odd%text}}"
+      }
+    },
+    {
+      "name": "rhead",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:header%text}}"
+      }
+    },
+    {
+      "name": "rfoot",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:RF-even%text}]{${1:RF-odd%text}}"
+      }
+    },
+    {
+      "name": "rfoot",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:footer%text}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [
-    "nocheck",
-    "compatV3",
-    "twoside",
-    "myheadings",
-    "headings"
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/fancyhdr#c": [
+      "nocheck",
+      "compatV3",
+      "twoside",
+      "myheadings",
+      "headings"
+    ],
+    "\\pagestyle#c,\\thispagestyle#c": [
+      "fancy",
+      "%fancypagestyle"
+    ]
+  },
+  "args": [
+    "\\usepackage/fancyhdr#c"
+  ]
 }

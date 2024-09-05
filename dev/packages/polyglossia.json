@@ -1,1858 +1,4011 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "fontspec": [],
-    "iftex": [],
-    "bidi": [],
-    "luabidi": [],
-    "calc": [],
-    "arabicnumbers": [],
-    "hijrical": [],
-    "xpg-cyrillicnumbers": [],
-    "devanagaridigits": [],
-    "bengalidigits": [],
-    "luavlna": [],
-    "hebrewcal": [],
-    "farsical": [],
-    "nkonumbers": []
-  },
-  "macros": {
-    "setdefaultlanguage{}": {
-      "snippet": "setdefaultlanguage{${1:language}}"
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "setdefaultlanguage[]{}": {
-      "snippet": "setdefaultlanguage[${2:options}]{${1:language}}"
+    {
+      "name": "fontspec"
     },
-    "setmainlanguage{}": {
-      "snippet": "setmainlanguage{${1:language}}"
+    {
+      "name": "iftex"
     },
-    "setmainlanguage[]{}": {
-      "snippet": "setmainlanguage[${2:options}]{${1:language}}"
+    {
+      "name": "bidi"
     },
-    "setotherlanguage{}": {
-      "snippet": "setotherlanguage{${1:language}}"
+    {
+      "name": "luabidi"
     },
-    "setotherlanguage[]{}": {
-      "snippet": "setotherlanguage[${2:options}]{${1:language}}"
+    {
+      "name": "calc"
     },
-    "setotherlanguages{}": {
-      "snippet": "setotherlanguages{${1:lang1,${2:lang2},...}}"
+    {
+      "name": "arabicnumbers"
     },
-    "inheritbabelshorthands{}{}": {
-      "snippet": "inheritbabelshorthands{${1:source language}}{${2:target language}}"
+    {
+      "name": "hijrical"
     },
-    "usebabelshorthands{}": {
-      "snippet": "usebabelshorthands{${1:language}}"
+    {
+      "name": "xpg-cyrillicnumbers"
     },
-    "textlang{}{}": {
-      "snippet": "textlang{${1:language}}{${2:text}}"
+    {
+      "name": "devanagaridigits"
     },
-    "textlang[]{}{}": {
-      "snippet": "textlang[${3:options}]{${1:language}}{${2:text}}"
+    {
+      "name": "bengalidigits"
     },
-    "textafrikaans[]{}": {
-      "snippet": "textafrikaans[${2:options}]{${1:text}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "luavlna"
     },
-    "textafrikaans{}": {
-      "snippet": "textafrikaans{${1:text}}"
+    {
+      "name": "hebrewcal"
     },
-    "textalbanian[]{}": {
-      "snippet": "textalbanian[${2:options}]{${1:text}}"
+    {
+      "name": "farsical"
     },
-    "textalbanian{}": {
-      "snippet": "textalbanian{${1:text}}"
-    },
-    "textamharic[]{}": {
-      "snippet": "textamharic[${2:options}]{${1:text}}"
-    },
-    "textamharic{}": {
-      "snippet": "textamharic{${1:text}}"
-    },
-    "textarabic[]{}": {
-      "snippet": "textarabic[${2:options}]{${1:text}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "textarabic{}": {
-      "snippet": "textarabic{${1:text}}"
-    },
-    "textarmenian[]{}": {
-      "snippet": "textarmenian[${2:options}]{${1:text}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "textarmenian{}": {
-      "snippet": "textarmenian{${1:text}}"
-    },
-    "textasturian[]{}": {
-      "snippet": "textasturian[${2:options}]{${1:text}}"
-    },
-    "textasturian{}": {
-      "snippet": "textasturian{${1:text}}"
-    },
-    "textbasque[]{}": {
-      "snippet": "textbasque[${2:options}]{${1:text}}"
-    },
-    "textbasque{}": {
-      "snippet": "textbasque{${1:text}}"
-    },
-    "textbelarusian[]{}": {
-      "snippet": "textbelarusian[${2:options}]{${1:text}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "textbelarusian{}": {
-      "snippet": "textbelarusian{${1:text}}"
-    },
-    "textbengali[]{}": {
-      "snippet": "textbengali[${2:options}]{${1:text}}",
-      "keyvalindex": 4,
-      "keyvalpos": 0
-    },
-    "textbengali{}": {
-      "snippet": "textbengali{${1:text}}"
-    },
-    "textbosnian[]{}": {
-      "snippet": "textbosnian[${2:options}]{${1:text}}"
-    },
-    "textbosnian{}": {
-      "snippet": "textbosnian{${1:text}}"
-    },
-    "textbreton[]{}": {
-      "snippet": "textbreton[${2:options}]{${1:text}}"
-    },
-    "textbreton{}": {
-      "snippet": "textbreton{${1:text}}"
-    },
-    "textbulgarian[]{}": {
-      "snippet": "textbulgarian[${2:options}]{${1:text}}"
-    },
-    "textbulgarian{}": {
-      "snippet": "textbulgarian{${1:text}}"
-    },
-    "textcatalan[]{}": {
-      "snippet": "textcatalan[${2:options}]{${1:text}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "textcatalan{}": {
-      "snippet": "textcatalan{${1:text}}"
-    },
-    "textchinese[]{}": {
-      "snippet": "textchinese[${2:options}]{${1:text}}",
-      "keyvalindex": 5,
-      "keyvalpos": 0
-    },
-    "textchinese{}": {
-      "snippet": "textchinese{${1:text}}"
-    },
-    "textcoptic[]{}": {
-      "snippet": "textcoptic[${2:options}]{${1:text}}"
-    },
-    "textcoptic{}": {
-      "snippet": "textcoptic{${1:text}}"
-    },
-    "textcroatian[]{}": {
-      "snippet": "textcroatian[${2:options}]{${1:text}}",
-      "keyvalindex": 6,
-      "keyvalpos": 0
-    },
-    "textcroatian{}": {
-      "snippet": "textcroatian{${1:text}}"
-    },
-    "textczech[]{}": {
-      "snippet": "textczech[${2:options}]{${1:text}}",
-      "keyvalindex": 7,
-      "keyvalpos": 0
-    },
-    "textczech{}": {
-      "snippet": "textczech{${1:text}}"
-    },
-    "textdanish[]{}": {
-      "snippet": "textdanish[${2:options}]{${1:text}}"
-    },
-    "textdanish{}": {
-      "snippet": "textdanish{${1:text}}"
-    },
-    "textdivehi[]{}": {
-      "snippet": "textdivehi[${2:options}]{${1:text}}"
-    },
-    "textdivehi{}": {
-      "snippet": "textdivehi{${1:text}}"
-    },
-    "textdutch[]{}": {
-      "snippet": "textdutch[${2:options}]{${1:text}}",
-      "keyvalindex": 8,
-      "keyvalpos": 0
-    },
-    "textdutch{}": {
-      "snippet": "textdutch{${1:text}}"
-    },
-    "textenglish[]{}": {
-      "snippet": "textenglish[${2:options}]{${1:text}}",
-      "keyvalindex": 9,
-      "keyvalpos": 0
-    },
-    "textenglish{}": {
-      "snippet": "textenglish{${1:text}}"
-    },
-    "textesperanto[]{}": {
-      "snippet": "textesperanto[${2:options}]{${1:text}}"
-    },
-    "textesperanto{}": {
-      "snippet": "textesperanto{${1:text}}"
-    },
-    "textestonian[]{}": {
-      "snippet": "textestonian[${2:options}]{${1:text}}"
-    },
-    "textestonian{}": {
-      "snippet": "textestonian{${1:text}}"
-    },
-    "textfinnish[]{}": {
-      "snippet": "textfinnish[${2:options}]{${1:text}}",
-      "keyvalindex": 10,
-      "keyvalpos": 0
-    },
-    "textfinnish{}": {
-      "snippet": "textfinnish{${1:text}}"
-    },
-    "textfrench[]{}": {
-      "snippet": "textfrench[${2:options}]{${1:text}}",
-      "keyvalindex": 11,
-      "keyvalpos": 0
-    },
-    "textfrench{}": {
-      "snippet": "textfrench{${1:text}}"
-    },
-    "textfriulian[]{}": {
-      "snippet": "textfriulian[${2:options}]{${1:text}}"
-    },
-    "textfriulian{}": {
-      "snippet": "textfriulian{${1:text}}"
-    },
-    "textgaelic[]{}": {
-      "snippet": "textgaelic[${2:options}]{${1:text}}",
-      "keyvalindex": 12,
-      "keyvalpos": 0
-    },
-    "textgaelic{}": {
-      "snippet": "textgaelic{${1:text}}"
-    },
-    "textgalician[]{}": {
-      "snippet": "textgalician[${2:options}]{${1:text}}"
-    },
-    "textgalician{}": {
-      "snippet": "textgalician{${1:text}}"
-    },
-    "textgeorgian[]{}": {
-      "snippet": "textgeorgian[${2:options}]{${1:text}}",
-      "keyvalindex": 13,
-      "keyvalpos": 0
-    },
-    "textgeorgian{}": {
-      "snippet": "textgeorgian{${1:text}}"
-    },
-    "textgerman[]{}": {
-      "snippet": "textgerman[${2:options}]{${1:text}}",
-      "keyvalindex": 14,
-      "keyvalpos": 0
-    },
-    "textgerman{}": {
-      "snippet": "textgerman{${1:text}}"
-    },
-    "textgreek[]{}": {
-      "snippet": "textgreek[${2:options}]{${1:text}}",
-      "keyvalindex": 15,
-      "keyvalpos": 0
-    },
-    "textgreek{}": {
-      "snippet": "textgreek{${1:text}}"
-    },
-    "texthebrew[]{}": {
-      "snippet": "texthebrew[${2:options}]{${1:text}}",
-      "keyvalindex": 16,
-      "keyvalpos": 0
-    },
-    "texthebrew{}": {
-      "snippet": "texthebrew{${1:text}}"
-    },
-    "texthindi[]{}": {
-      "snippet": "texthindi[${2:options}]{${1:text}}",
-      "keyvalindex": 17,
-      "keyvalpos": 0
-    },
-    "texthindi{}": {
-      "snippet": "texthindi{${1:text}}"
-    },
-    "texthungarian[]{}": {
-      "snippet": "texthungarian[${2:options}]{${1:text}}",
-      "keyvalindex": 18,
-      "keyvalpos": 0
-    },
-    "texthungarian{}": {
-      "snippet": "texthungarian{${1:text}}"
-    },
-    "texticelandic[]{}": {
-      "snippet": "texticelandic[${2:options}]{${1:text}}"
-    },
-    "texticelandic{}": {
-      "snippet": "texticelandic{${1:text}}"
-    },
-    "textinterlingua[]{}": {
-      "snippet": "textinterlingua[${2:options}]{${1:text}}"
-    },
-    "textinterlingua{}": {
-      "snippet": "textinterlingua{${1:text}}"
-    },
-    "textitalian[]{}": {
-      "snippet": "textitalian[${2:options}]{${1:text}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "textitalian{}": {
-      "snippet": "textitalian{${1:text}}"
-    },
-    "textjapanese[]{}": {
-      "snippet": "textjapanese[${2:options}]{${1:text}}"
-    },
-    "textjapanese{}": {
-      "snippet": "textjapanese{${1:text}}"
-    },
-    "textkannada[]{}": {
-      "snippet": "textkannada[${2:options}]{${1:text}}"
-    },
-    "textkannada{}": {
-      "snippet": "textkannada{${1:text}}"
-    },
-    "textkhmer[]{}": {
-      "snippet": "textkhmer[${2:options}]{${1:text}}"
-    },
-    "textkhmer{}": {
-      "snippet": "textkhmer{${1:text}}"
-    },
-    "textkorean[]{}": {
-      "snippet": "textkorean[${2:options}]{${1:text}}",
-      "keyvalindex": 19,
-      "keyvalpos": 0
-    },
-    "textkorean{}": {
-      "snippet": "textkorean{${1:text}}"
-    },
-    "textkurdish[]{}": {
-      "snippet": "textkurdish[${2:options}]{${1:text}}",
-      "keyvalindex": 20,
-      "keyvalpos": 0
-    },
-    "textkurdish{}": {
-      "snippet": "textkurdish{${1:text}}"
-    },
-    "textlao[]{}": {
-      "snippet": "textlao[${2:options}]{${1:text}}",
-      "keyvalindex": 21,
-      "keyvalpos": 0
-    },
-    "textlao{}": {
-      "snippet": "textlao{${1:text}}"
-    },
-    "textlatin[]{}": {
-      "snippet": "textlatin[${2:options}]{${1:text}}",
-      "keyvalindex": 22,
-      "keyvalpos": 0
-    },
-    "textlatin{}": {
-      "snippet": "textlatin{${1:text}}"
-    },
-    "textlatvian[]{}": {
-      "snippet": "textlatvian[${2:options}]{${1:text}}"
-    },
-    "textlatvian{}": {
-      "snippet": "textlatvian{${1:text}}"
-    },
-    "textlithuanian[]{}": {
-      "snippet": "textlithuanian[${2:options}]{${1:text}}"
-    },
-    "textlithuanian{}": {
-      "snippet": "textlithuanian{${1:text}}"
-    },
-    "textmacedonian[]{}": {
-      "snippet": "textmacedonian[${2:options}]{${1:text}}"
-    },
-    "textmacedonian{}": {
-      "snippet": "textmacedonian{${1:text}}"
-    },
-    "textmalay[]{}": {
-      "snippet": "textmalay[${2:options}]{${1:text}}",
-      "keyvalindex": 23,
-      "keyvalpos": 0
-    },
-    "textmalay{}": {
-      "snippet": "textmalay{${1:text}}"
-    },
-    "textmalayalam[]{}": {
-      "snippet": "textmalayalam[${2:options}]{${1:text}}"
-    },
-    "textmalayalam{}": {
-      "snippet": "textmalayalam{${1:text}}"
-    },
-    "textmarathi[]{}": {
-      "snippet": "textmarathi[${2:options}]{${1:text}}",
-      "keyvalindex": 24,
-      "keyvalpos": 0
-    },
-    "textmarathi{}": {
-      "snippet": "textmarathi{${1:text}}"
-    },
-    "textmongolian[]{}": {
-      "snippet": "textmongolian[${2:options}]{${1:text}}",
-      "keyvalindex": 25,
-      "keyvalpos": 0
-    },
-    "textmongolian{}": {
-      "snippet": "textmongolian{${1:text}}"
-    },
-    "textnko[]{}": {
-      "snippet": "textnko[${2:options}]{${1:text}}"
-    },
-    "textnko{}": {
-      "snippet": "textnko{${1:text}}"
-    },
-    "textnorwegian[]{}": {
-      "snippet": "textnorwegian[${2:options}]{${1:text}}",
-      "keyvalindex": 26,
-      "keyvalpos": 0
-    },
-    "textnorwegian{}": {
-      "snippet": "textnorwegian{${1:text}}"
-    },
-    "textoccitan[]{}": {
-      "snippet": "textoccitan[${2:options}]{${1:text}}"
-    },
-    "textoccitan{}": {
-      "snippet": "textoccitan{${1:text}}"
-    },
-    "textodia[]{}": {
-      "snippet": "textodia[${2:options}]{${1:text}}",
-      "keyvalindex": 27,
-      "keyvalpos": 0
-    },
-    "textodia{}": {
-      "snippet": "textodia{${1:text}}"
-    },
-    "textpersian[]{}": {
-      "snippet": "textpersian[${2:options}]{${1:text}}",
-      "keyvalindex": 28,
-      "keyvalpos": 0
-    },
-    "textpersian{}": {
-      "snippet": "textpersian{${1:text}}"
-    },
-    "textpiedmontese[]{}": {
-      "snippet": "textpiedmontese[${2:options}]{${1:text}}"
-    },
-    "textpiedmontese{}": {
-      "snippet": "textpiedmontese{${1:text}}"
-    },
-    "textpolish[]{}": {
-      "snippet": "textpolish[${2:options}]{${1:text}}",
-      "keyvalindex": 7,
-      "keyvalpos": 0
-    },
-    "textpolish{}": {
-      "snippet": "textpolish{${1:text}}"
-    },
-    "textportuguese[]{}": {
-      "snippet": "textportuguese[${2:options}]{${1:text}}",
-      "keyvalindex": 29,
-      "keyvalpos": 0
-    },
-    "textportuguese{}": {
-      "snippet": "textportuguese{${1:text}}"
-    },
-    "textpunjabi[]{}": {
-      "snippet": "textpunjabi[${2:options}]{${1:text}}",
-      "keyvalindex": 30,
-      "keyvalpos": 0
-    },
-    "textpunjabi{}": {
-      "snippet": "textpunjabi{${1:text}}"
-    },
-    "textromanian[]{}": {
-      "snippet": "textromanian[${2:options}]{${1:text}}"
-    },
-    "textromanian{}": {
-      "snippet": "textromanian{${1:text}}"
-    },
-    "textromansh[]{}": {
-      "snippet": "textromansh[${2:options}]{${1:text}}"
-    },
-    "textromansh{}": {
-      "snippet": "textromansh{${1:text}}"
-    },
-    "textrussian[]{}": {
-      "snippet": "textrussian[${2:options}]{${1:text}}",
-      "keyvalindex": 31,
-      "keyvalpos": 0
-    },
-    "textrussian{}": {
-      "snippet": "textrussian{${1:text}}"
-    },
-    "textsami[]{}": {
-      "snippet": "textsami[${2:options}]{${1:text}}"
-    },
-    "textsami{}": {
-      "snippet": "textsami{${1:text}}"
-    },
-    "textsanskrit[]{}": {
-      "snippet": "textsanskrit[${2:options}]{${1:text}}",
-      "keyvalindex": 32,
-      "keyvalpos": 0
-    },
-    "textsanskrit{}": {
-      "snippet": "textsanskrit{${1:text}}"
-    },
-    "textserbian[]{}": {
-      "snippet": "textserbian[${2:options}]{${1:text}}",
-      "keyvalindex": 33,
-      "keyvalpos": 0
-    },
-    "textserbian{}": {
-      "snippet": "textserbian{${1:text}}"
-    },
-    "textslovak[]{}": {
-      "snippet": "textslovak[${2:options}]{${1:text}}",
-      "keyvalindex": 7,
-      "keyvalpos": 0
-    },
-    "textslovak{}": {
-      "snippet": "textslovak{${1:text}}"
-    },
-    "textslovenian[]{}": {
-      "snippet": "textslovenian[${2:options}]{${1:text}}",
-      "keyvalindex": 34,
-      "keyvalpos": 0
-    },
-    "textslovenian{}": {
-      "snippet": "textslovenian{${1:text}}"
-    },
-    "textsorbian[]{}": {
-      "snippet": "textsorbian[${2:options}]{${1:text}}",
-      "keyvalindex": 35,
-      "keyvalpos": 0
-    },
-    "textsorbian{}": {
-      "snippet": "textsorbian{${1:text}}"
-    },
-    "textspanish[]{}": {
-      "snippet": "textspanish[${2:options}]{${1:text}}",
-      "keyvalindex": 36,
-      "keyvalpos": 0
-    },
-    "textspanish{}": {
-      "snippet": "textspanish{${1:text}}"
-    },
-    "textswedish[]{}": {
-      "snippet": "textswedish[${2:options}]{${1:text}}"
-    },
-    "textswedish{}": {
-      "snippet": "textswedish{${1:text}}"
-    },
-    "textsyriac[]{}": {
-      "snippet": "textsyriac[${2:options}]{${1:text}}",
-      "keyvalindex": 37,
-      "keyvalpos": 0
-    },
-    "textsyriac{}": {
-      "snippet": "textsyriac{${1:text}}"
-    },
-    "texttamil[]{}": {
-      "snippet": "texttamil[${2:options}]{${1:text}}"
-    },
-    "texttamil{}": {
-      "snippet": "texttamil{${1:text}}"
-    },
-    "texttelugu[]{}": {
-      "snippet": "texttelugu[${2:options}]{${1:text}}"
-    },
-    "texttelugu{}": {
-      "snippet": "texttelugu{${1:text}}"
-    },
-    "textthai[]{}": {
-      "snippet": "textthai[${2:options}]{${1:text}}",
-      "keyvalindex": 38,
-      "keyvalpos": 0
-    },
-    "textthai{}": {
-      "snippet": "textthai{${1:text}}"
-    },
-    "texttibetan[]{}": {
-      "snippet": "texttibetan[${2:options}]{${1:text}}",
-      "keyvalindex": 39,
-      "keyvalpos": 0
-    },
-    "texttibetan{}": {
-      "snippet": "texttibetan{${1:text}}"
-    },
-    "textturkish[]{}": {
-      "snippet": "textturkish[${2:options}]{${1:text}}"
-    },
-    "textturkish{}": {
-      "snippet": "textturkish{${1:text}}"
-    },
-    "textturkmen[]{}": {
-      "snippet": "textturkmen[${2:options}]{${1:text}}"
-    },
-    "textturkmen{}": {
-      "snippet": "textturkmen{${1:text}}"
-    },
-    "textukrainian[]{}": {
-      "snippet": "textukrainian[${2:options}]{${1:text}}",
-      "keyvalindex": 40,
-      "keyvalpos": 0
-    },
-    "textukrainian{}": {
-      "snippet": "textukrainian{${1:text}}"
-    },
-    "texturdu[]{}": {
-      "snippet": "texturdu[${2:options}]{${1:text}}",
-      "keyvalindex": 41,
-      "keyvalpos": 0
-    },
-    "texturdu{}": {
-      "snippet": "texturdu{${1:text}}"
-    },
-    "textuyghur[]{}": {
-      "snippet": "textuyghur[${2:options}]{${1:text}}",
-      "keyvalindex": 42,
-      "keyvalpos": 0
-    },
-    "textuyghur{}": {
-      "snippet": "textuyghur{${1:text}}"
-    },
-    "textvietnamese[]{}": {
-      "snippet": "textvietnamese[${2:options}]{${1:text}}"
-    },
-    "textvietnamese{}": {
-      "snippet": "textvietnamese{${1:text}}"
-    },
-    "textwelsh[]{}": {
-      "snippet": "textwelsh[${2:options}]{${1:text}}",
-      "keyvalindex": 43,
-      "keyvalpos": 0
-    },
-    "textwelsh{}": {
-      "snippet": "textwelsh{${1:text}}"
-    },
-    "selectlanguage{}": {
-      "snippet": "selectlanguage{${1:language}}"
-    },
-    "selectlanguage[]{}": {
-      "snippet": "selectlanguage[${2:options}]{${1:language}}"
-    },
-    "foreignlanguage{}{}": {
-      "snippet": "foreignlanguage{${1:language}}{${2:text}}"
-    },
-    "foreignlanguage[]{}{}": {
-      "snippet": "foreignlanguage[${3:options}]{${1:language}}{${2:text}}"
-    },
-    "selectbackgroundlanguage{}": {
-      "snippet": "selectbackgroundlanguage{${1:language}}"
-    },
-    "resetdefaultlanguage{}": {
-      "snippet": "resetdefaultlanguage{${1:language}}"
-    },
-    "resetdefaultlanguage[]{}": {
-      "snippet": "resetdefaultlanguage[${2:options}]{${1:language}}"
-    },
-    "normalfontlatin": {},
-    "rmfamilylatin": {},
-    "sffamilylatin": {},
-    "ttfamilylatin": {},
-    "latinalph": {},
-    "latinAlph": {},
-    "setlanguagealias{}{}": {
-      "snippet": "setlanguagealias{${1:language}}{${2:alias}}"
-    },
-    "setlanguagealias[]{}{}": {
-      "snippet": "setlanguagealias[${3:options}]{${1:language}}{${2:alias}}"
-    },
-    "setlanguagealias*{}{}": {
-      "snippet": "setlanguagealias*{${1:language}}{${2:alias}}"
-    },
-    "setlanguagealias*[]{}{}": {
-      "snippet": "setlanguagealias*[${3:options}]{${1:language}}{${2:alias}}"
-    },
-    "pghyphenation{}{}": {
-      "snippet": "pghyphenation{${1:language}}{${2:exceptions}}"
-    },
-    "pghyphenation[]{}{}": {
-      "snippet": "pghyphenation[${3:options}]{${1:language}}{${2:exceptions}}"
-    },
-    "setlanghyphenmins{}{}{}": {
-      "snippet": "setlanghyphenmins{${1:language}}{${2:l}}{${3:r}}"
-    },
-    "setlanghyphenmins[]{}{}{}": {
-      "snippet": "setlanghyphenmins[${4:options}]{${1:language}}{${2:l}}{${3:r}}"
-    },
-    "disablehyphenation": {},
-    "enablehyphenation": {},
-    "abjad{}": {
-      "snippet": "abjad{${1:text}}"
-    },
-    "abjadmaghribi{}": {
-      "snippet": "abjadmaghribi{${1:text}}"
-    },
-    "abjadalph": {},
-    "aemph{}": {
-      "snippet": "aemph{${1:text}}"
-    },
-    "Asbuk{}": {
-      "snippet": "Asbuk{${1:counter}}"
-    },
-    "asbuk{}": {
-      "snippet": "asbuk{${1:counter}}"
-    },
-    "AsbukTrad{}": {
-      "snippet": "AsbukTrad{${1:counter}}"
-    },
-    "asbukTrad{}": {
-      "snippet": "asbukTrad{${1:counter}}"
-    },
-    "hodiau": {},
-    "hodiaun": {},
-    "NoAutoSpacing": {},
-    "AutoSpacing": {},
-    "Greeknumber{}": {
-      "snippet": "Greeknumber{${1:number}}"
-    },
-    "greeknumber{}": {
-      "snippet": "greeknumber{${1:number}}"
-    },
-    "atticnumeral": {},
-    "atticnum": {},
-    "hebrewnumeral{}": {
-      "snippet": "hebrewnumeral{${1:number}}"
-    },
-    "hebrewalph{}": {
-      "snippet": "hebrewalph{${1:text}}"
-    },
-    "ontoday": {},
-    "ondatehungarian": {},
-    "todayGen": {},
-    "todayArabic": {},
-    "todayRoman": {},
-    "oldtoday": {},
-    "arcsen": {},
-    "arctg": {},
-    "sen": {},
-    "senh": {},
-    "tg": {},
-    "tgh": {},
-    "spanishoperator{}": {
-      "snippet": "spanishoperator{${1:name}}"
-    },
-    "abjadsyriac{}": {
-      "snippet": "abjadsyriac{${1:text}}"
-    },
-    "uyghurordinal{}": {
-      "snippet": "uyghurordinal{${1:number}}"
-    },
-    "uyghurord{}": {
-      "snippet": "uyghurord{${1:counter}}"
-    },
-    "captionsafrikaans": {},
-    "captionsalbanian": {},
-    "captionsamharic": {},
-    "captionsarabic": {},
-    "captionsarmenian": {},
-    "captionsasturian": {},
-    "captionsbasque": {},
-    "captionsbelarusian": {},
-    "captionsbengali": {},
-    "captionsbosnian": {},
-    "captionsbreton": {},
-    "captionsbulgarian": {},
-    "captionscatalan": {},
-    "captionschinese": {},
-    "captionscoptic": {},
-    "captionscroatian": {},
-    "captionsczech": {},
-    "captionsdanish": {},
-    "captionsdivehi": {},
-    "captionsdutch": {},
-    "captionsenglish": {},
-    "captionsesperanto": {},
-    "captionsestonian": {},
-    "captionsfinnish": {},
-    "captionsfrench": {},
-    "captionsfriulian": {},
-    "captionsgaelic": {},
-    "captionsgalician": {},
-    "captionsgeorgian": {},
-    "captionsgerman": {},
-    "captionsgreek": {},
-    "captionshebrew": {},
-    "captionshindi": {},
-    "captionshungarian": {},
-    "captionsicelandic": {},
-    "captionsinterlingua": {},
-    "captionsitalian": {},
-    "captionsjapanese": {},
-    "captionskannada": {},
-    "captionskhmer": {},
-    "captionskorean": {},
-    "captionskurdish": {},
-    "captionslao": {},
-    "captionslatin": {},
-    "captionslatvian": {},
-    "captionslithuanian": {},
-    "captionsmacedonian": {},
-    "captionsmalay": {},
-    "captionsmalayalam": {},
-    "captionsmarathi": {},
-    "captionsmongolian": {},
-    "captionsnko": {},
-    "captionsnorwegian": {},
-    "captionsoccitan": {},
-    "captionspersian": {},
-    "captionspiedmontese": {},
-    "captionspolish": {},
-    "captionsportuguese": {},
-    "captionspunjabi": {},
-    "captionsromanian": {},
-    "captionsromansh": {},
-    "captionsrussian": {},
-    "captionssami": {},
-    "captionssanskrit": {},
-    "captionsserbian": {},
-    "captionsslovak": {},
-    "captionsslovenian": {},
-    "captionssorbian": {},
-    "captionsspanish": {},
-    "captionsswedish": {},
-    "captionssyriac": {},
-    "captionstamil": {},
-    "captionstelugu": {},
-    "captionsthai": {},
-    "captionstibetan": {},
-    "captionsturkish": {},
-    "captionsturkmen": {},
-    "captionsukrainian": {},
-    "captionsurdu": {},
-    "captionsuyghur": {},
-    "captionsvietnamese": {},
-    "captionswelsh": {},
-    "dateafrikaans": {},
-    "datealbanian": {},
-    "dateamharic": {},
-    "datearabic": {},
-    "datearmenian": {},
-    "dateasturian": {},
-    "datebasque": {},
-    "datebelarusian": {},
-    "datebengali": {},
-    "datebosnian": {},
-    "datebreton": {},
-    "datebulgarian": {},
-    "datecatalan": {},
-    "datechinese": {},
-    "datecoptic": {},
-    "datecroatian": {},
-    "dateczech": {},
-    "datedanish": {},
-    "datedivehi": {},
-    "datedutch": {},
-    "dateenglish": {},
-    "dateesperanto": {},
-    "dateestonian": {},
-    "datefinnish": {},
-    "datefrench": {},
-    "datefriulian": {},
-    "dategaelic": {},
-    "dategalician": {},
-    "dategeorgian": {},
-    "dategerman": {},
-    "dategreek": {},
-    "datehebrew": {},
-    "datehindi": {},
-    "datehungarian": {},
-    "dateicelandic": {},
-    "dateinterlingua": {},
-    "dateitalian": {},
-    "datejapanese": {},
-    "datekannada": {},
-    "datekhmer": {},
-    "datekorean": {},
-    "datekurdish": {},
-    "datelao": {},
-    "datelatin": {},
-    "datelatvian": {},
-    "datelithuanian": {},
-    "datemacedonian": {},
-    "datemalay": {},
-    "datemalayalam": {},
-    "datemarathi": {},
-    "datemongolian": {},
-    "datenko": {},
-    "datenorwegian": {},
-    "dateoccitan": {},
-    "datepersian": {},
-    "datepiedmontese": {},
-    "datepolish": {},
-    "dateportuguese": {},
-    "datepunjabi": {},
-    "dateromanian": {},
-    "dateromansh": {},
-    "daterussian": {},
-    "datesami": {},
-    "datesanskrit": {},
-    "dateserbian": {},
-    "dateslovak": {},
-    "dateslovenian": {},
-    "datesorbian": {},
-    "datespanish": {},
-    "dateswedish": {},
-    "datesyriac": {},
-    "datetamil": {},
-    "datetelugu": {},
-    "datethai": {},
-    "datetibetan": {},
-    "dateturkish": {},
-    "dateturkmen": {},
-    "dateukrainian": {},
-    "dateurdu": {},
-    "dateuyghur": {},
-    "datevietnamese": {},
-    "datewelsh": {},
-    "localnumeral{}": {
-      "snippet": "localnumeral{${1:number}}"
-    },
-    "localnumeral[]{}": {
-      "snippet": "localnumeral[${2:option}]{${1:number}}"
-    },
-    "localnumeral*{}": {
-      "snippet": "localnumeral*{${1:counter}}"
-    },
-    "localnumeral*[]{}": {
-      "snippet": "localnumeral*[${2:option}]{${1:counter}}"
-    },
-    "Localnumeral{}": {
-      "snippet": "Localnumeral{${1:number}}"
-    },
-    "Localnumeral[]{}": {
-      "snippet": "Localnumeral[${2:option}]{${1:number}}"
-    },
-    "Localnumeral*{}": {
-      "snippet": "Localnumeral*{${1:counter}}"
-    },
-    "Localnumeral*[]{}": {
-      "snippet": "Localnumeral*[${2:option}]{${1:counter}}"
-    },
-    "arabicdigits{}": {
-      "snippet": "arabicdigits{${1:text}}"
-    },
-    "bengalidigits{}": {
-      "snippet": "bengalidigits{${1:text}}"
-    },
-    "devanagaridigits{}": {
-      "snippet": "devanagaridigits{${1:text}}"
-    },
-    "farsidigits{}": {
-      "snippet": "farsidigits{${1:text}}"
-    },
-    "gurmukhidigits{}": {
-      "snippet": "gurmukhidigits{${1:text}}"
-    },
-    "kannadadigits{}": {
-      "snippet": "kannadadigits{${1:text}}"
-    },
-    "khmerdigits{}": {
-      "snippet": "khmerdigits{${1:text}}"
-    },
-    "laodigits{}": {
-      "snippet": "laodigits{${1:text}}"
-    },
-    "nkodigits{}": {
-      "snippet": "nkodigits{${1:text}}"
-    },
-    "thaidigits{}": {
-      "snippet": "thaidigits{${1:text}}"
-    },
-    "tibetandigits{}": {
-      "snippet": "tibetandigits{${1:text}}"
-    },
-    "armeniannumeral{}": {
-      "snippet": "armeniannumeral{${1:number}}"
-    },
-    "belarusiannumeral{}": {
-      "snippet": "belarusiannumeral{${1:number}}"
-    },
-    "Belarusiannumeral{}": {
-      "snippet": "Belarusiannumeral{${1:number}}"
-    },
-    "chinesenumeral{}": {
-      "snippet": "chinesenumeral{${1:number}}"
-    },
-    "georgiannumeral{}": {
-      "snippet": "georgiannumeral{${1:number}}"
-    },
-    "greeknumeral{}": {
-      "snippet": "greeknumeral{${1:number}}"
-    },
-    "Greeknumeral{}": {
-      "snippet": "Greeknumeral{${1:number}}"
-    },
-    "Hebrewnumeral{}": {
-      "snippet": "Hebrewnumeral{${1:number}}"
-    },
-    "Hebrewnumeralfinal{}": {
-      "snippet": "Hebrewnumeralfinal{${1:number}}"
-    },
-    "mongoliannumeral{}": {
-      "snippet": "mongoliannumeral{${1:number}}"
-    },
-    "Mongoliannumeral{}": {
-      "snippet": "Mongoliannumeral{${1:number}}"
-    },
-    "punjabinumeral{}": {
-      "snippet": "punjabinumeral{${1:number}}"
-    },
-    "russiannumeral{}": {
-      "snippet": "russiannumeral{${1:number}}"
-    },
-    "Russiannumeral{}": {
-      "snippet": "Russiannumeral{${1:number}}"
-    },
-    "serbiannumeral{}": {
-      "snippet": "serbiannumeral{${1:number}}"
-    },
-    "Serbiannumeral{}": {
-      "snippet": "Serbiannumeral{${1:number}}"
-    },
-    "ukrainiannumeral{}": {
-      "snippet": "ukrainiannumeral{${1:number}}"
-    },
-    "Ukrainiannumeral{}": {
-      "snippet": "Ukrainiannumeral{${1:number}}"
-    },
-    "RTLfootnote{}": {
-      "snippet": "RTLfootnote{${1:text}}"
-    },
-    "LTRfootnote{}": {
-      "snippet": "LTRfootnote{${1:text}}"
-    },
-    "leftfootnoterule": {},
-    "rightfootnoterule": {},
-    "autofootnoterule": {},
-    "textwidthfootnoterule": {},
-    "charifavailable{}{}": {
-      "snippet": "charifavailable{${1:char code}}{${2:substitution}}"
-    },
-    "IfCharIsAvailableTF{}{}{}": {
-      "snippet": "IfCharIsAvailableTF{${1:char code}}{${2:true}}{${3:false}}"
-    },
-    "languagename": {},
-    "mainlanguagename": {},
-    "languagevariant": {},
-    "mainlanguagevariant": {},
-    "babelname": {},
-    "mainbabelname": {},
-    "languageid{}": {
-      "snippet": "languageid{${1:type}}"
-    },
-    "mainlanguageid{}": {
-      "snippet": "mainlanguageid{${1:type}}"
-    },
-    "iflanguageloaded{}{}{}": {
-      "snippet": "iflanguageloaded{${1:language}}{${2:true}}{${3:false}}"
-    },
-    "ifbabellanguageloaded{}{}{}": {
-      "snippet": "ifbabellanguageloaded{${1:language}}{${2:true}}{${3:false}}"
-    },
-    "iflanguageidloaded{}{}{}{}": {
-      "snippet": "iflanguageidloaded{${1:type}}{${2:id}}{${3:true}}{${4:false}}"
-    },
-    "iflanguageoption{}{}{}{}{}": {
-      "snippet": "iflanguageoption{${1:language}}{${2:opt key}}{${3:opt value}}{${4:true}}{${5:false}}"
-    },
-    "setforeignlanguage{}": {
-      "snippet": "setforeignlanguage{${1:language}}"
-    },
-    "ifxpginauxfile": {},
-    "xpginauxfilefalse": {},
-    "xpginauxfiletrue": {},
-    "XPGNoPatternsFallback{}": {
-      "snippet": "XPGNoPatternsFallback{${1:arg}}"
-    },
-    "XPGNoPatternsFallback[]{}": {
-      "snippet": "XPGNoPatternsFallback[${2:opt}]{${1:arg}}"
-    },
-    "PolyglossiaSetup{}{}": {
-      "snippet": "PolyglossiaSetup{${1:arg1}}{${2:arg2}}"
-    },
-    "CheckHyphenationPatterns{}": {
-      "snippet": "CheckHyphenationPatterns{${1:arg}}"
-    },
-    "SetupPolyglossiaLangPatterns{}": {
-      "snippet": "SetupPolyglossiaLangPatterns{${1:arg}}"
-    },
-    "SetupLatinPolyglossiaFont{}": {
-      "snippet": "SetupLatinPolyglossiaFont{${1:arg}}"
-    },
-    "SetupNonLatinPolyglossiaFont{}": {
-      "snippet": "SetupNonLatinPolyglossiaFont{${1:arg}}"
-    },
-    "InheritGlossFile{}": {
-      "snippet": "InheritGlossFile{${1:arg}}"
-    },
-    "SetGlossOptions{}{}": {
-      "snippet": "SetGlossOptions{${1:arg1}}{${2:arg2}}"
-    },
-    "InitializeGlossOptions{}{}": {
-      "snippet": "InitializeGlossOptions{${1:arg1}}{${2:arg2}}"
-    },
-    "SetLanguageAliasValues{}{}{}": {
-      "snippet": "SetLanguageAliasValues{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "IfMainLanguageTF{}{}{}": {
-      "snippet": "IfMainLanguageTF{${1:arg}}{${2:true}}{${3:false}}"
-    },
-    "IfMainLanguageT{}{}": {
-      "snippet": "IfMainLanguageT{${1:arg}}{${2:true}}"
-    },
-    "IfMainLanguageF{}{}": {
-      "snippet": "IfMainLanguageF{${1:arg}}{${2:false}}"
-    },
-    "IfLanguageDefinedTF{}{}{}": {
-      "snippet": "IfLanguageDefinedTF{${1:arg}}{${2:true}}{${3:false}}"
-    },
-    "IfLanguageDefinedT{}{}": {
-      "snippet": "IfLanguageDefinedT{${1:arg}}{${2:true}}"
-    },
-    "IfLanguageDefinedF{}{}": {
-      "snippet": "IfLanguageDefinedF{${1:arg}}{${2:false}}"
-    },
-    "TryPatternWithFallback{}{}": {
-      "snippet": "TryPatternWithFallback{${1:arg1}}{${2:arg2}}"
-    },
-    "setlocalhyphenmins{}{}{}": {
-      "snippet": "setlocalhyphenmins{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "InitializeBabelShorthands": {},
-    "prefacename": {},
-    "bibname": {},
-    "chaptername": {},
-    "enclname": {},
-    "ccname": {},
-    "headtoname": {},
-    "seename": {},
-    "alsoname": {},
-    "proofname": {},
-    "ethiop{}": {
-      "snippet": "ethiop{${1:arg}}"
-    },
-    "ethnum{}": {
-      "snippet": "ethnum{${1:arg}}"
-    },
-    "leftllkern": {},
-    "rightllkern": {},
-    "raiselldim": {},
-    "lgem": {},
-    "Lgem": {},
-    "lslash": {},
-    "Lslash": {},
-    "chinesenumber{}": {
-      "snippet": "chinesenumber{${1:number}}"
-    },
-    "ier": {},
-    "iers": {},
-    "iere": {},
-    "ieres": {},
-    "ieme": {},
-    "iemes": {},
-    "nd": {},
-    "nds": {},
-    "nde": {},
-    "ndes": {},
-    "no": {},
-    "nos": {},
-    "mme": {},
-    "mmes": {},
-    "mr": {},
-    "mrs": {},
-    "monogreekcaptions": {},
-    "datemonogreek": {},
-    "polygreekcaptions": {},
-    "datepolygreek": {},
-    "greektoday": {},
-    "Greektoday": {},
-    "ancientgreekcaptions": {},
-    "dateancientgreek": {},
-    "koreanAlph{}": {
-      "snippet": "koreanAlph{${1:counter}}"
-    },
-    "koreanalph{}": {
-      "snippet": "koreanalph{${1:counter}}"
-    },
-    "kurdishmonthkurmanji{}": {
-      "snippet": "kurdishmonthkurmanji{${1:number}}"
-    },
-    "hebrewgregmonth{}": {
-      "snippet": "hebrewgregmonth{${1:number}}"
-    },
-    "hijrimonthmalay": {},
-    "occitanday": {},
-    "farsigregmonth{}": {
-      "snippet": "farsigregmonth{${1:number}}"
-    },
-    "farsimonth{}": {
-      "snippet": "farsimonth{${1:number}}"
-    },
-    "punjabinumber{}": {
-      "snippet": "punjabinumber{${1:number}}"
-    },
-    "nkodayprefix{}": {
-      "snippet": "nkodayprefix{${1:number}}"
-    },
-    "nkoday{}": {
-      "snippet": "nkoday{${1:number}}"
-    },
-    "abeceda{}": {
-      "snippet": "abeceda{${1:counter}}"
-    },
-    "Abeceda{}": {
-      "snippet": "Abeceda{${1:counter}}"
-    },
-    "wbr": {},
-    "hijrimonthturkish{}": {
-      "snippet": "hijrimonthturkish{${1:number}}"
-    },
-    "urdugregmonth{}": {
-      "snippet": "urdugregmonth{${1:number}}"
-    },
-    "urduhijrimonth{}": {
-      "snippet": "urduhijrimonth{${1:number}}"
-    },
-    "uyghurmonth{}": {
-      "snippet": "uyghurmonth{${1:number}}"
-    },
-    "formaltoday": {},
-    "standardtoday": {}
-  },
-  "envs": {
-    "lang{}": {
-      "name": "lang",
-      "snippet": "{${1:language}}"
-    },
-    "lang[]{}": {
-      "name": "lang",
-      "snippet": "[${2:options}]{${1:language}}",
-      "keyvalindex": 44,
-      "keyvalpos": 0
-    },
-    "afrikaans[]": {
-      "name": "afrikaans",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "afrikaans": {},
-    "albanian[]": {
-      "name": "albanian",
-      "snippet": "[${1:options}]"
-    },
-    "albanian": {},
-    "amharic[]": {
-      "name": "amharic",
-      "snippet": "[${1:options}]"
-    },
-    "amharic": {},
-    "Arabic[]": {
-      "name": "Arabic",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "Arabic": {},
-    "armenian[]": {
-      "name": "armenian",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "armenian": {},
-    "asturian[]": {
-      "name": "asturian",
-      "snippet": "[${1:options}]"
-    },
-    "asturian": {},
-    "basque[]": {
-      "name": "basque",
-      "snippet": "[${1:options}]"
-    },
-    "basque": {},
-    "belarusian[]": {
-      "name": "belarusian",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "belarusian": {},
-    "bengali[]": {
-      "name": "bengali",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 4,
-      "keyvalpos": 0
-    },
-    "bengali": {},
-    "bosnian[]": {
-      "name": "bosnian",
-      "snippet": "[${1:options}]"
-    },
-    "bosnian": {},
-    "breton[]": {
-      "name": "breton",
-      "snippet": "[${1:options}]"
-    },
-    "breton": {},
-    "bulgarian[]": {
-      "name": "bulgarian",
-      "snippet": "[${1:options}]"
-    },
-    "bulgarian": {},
-    "catalan[]": {
-      "name": "catalan",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "catalan": {},
-    "chinese[]": {
-      "name": "chinese",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 5,
-      "keyvalpos": 0
-    },
-    "chinese": {},
-    "coptic[]": {
-      "name": "coptic",
-      "snippet": "[${1:options}]"
-    },
-    "coptic": {},
-    "croatian[]": {
-      "name": "croatian",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 6,
-      "keyvalpos": 0
-    },
-    "croatian": {},
-    "czech[]": {
-      "name": "czech",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 7,
-      "keyvalpos": 0
-    },
-    "czech": {},
-    "danish[]": {
-      "name": "danish",
-      "snippet": "[${1:options}]"
-    },
-    "danish": {},
-    "divehi[]": {
-      "name": "divehi",
-      "snippet": "[${1:options}]"
-    },
-    "divehi": {},
-    "dutch[]": {
-      "name": "dutch",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 8,
-      "keyvalpos": 0
-    },
-    "dutch": {},
-    "english[]": {
-      "name": "english",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 9,
-      "keyvalpos": 0
-    },
-    "english": {},
-    "esperanto[]": {
-      "name": "esperanto",
-      "snippet": "[${1:options}]"
-    },
-    "esperanto": {},
-    "estonian[]": {
-      "name": "estonian",
-      "snippet": "[${1:options}]"
-    },
-    "estonian": {},
-    "finnish[]": {
-      "name": "finnish",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 10,
-      "keyvalpos": 0
-    },
-    "finnish": {},
-    "french[]": {
-      "name": "french",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 11,
-      "keyvalpos": 0
-    },
-    "french": {},
-    "friulian[]": {
-      "name": "friulian",
-      "snippet": "[${1:options}]"
-    },
-    "friulian": {},
-    "gaelic[]": {
-      "name": "gaelic",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 12,
-      "keyvalpos": 0
-    },
-    "gaelic": {},
-    "galician[]": {
-      "name": "galician",
-      "snippet": "[${1:options}]"
-    },
-    "galician": {},
-    "georgian[]": {
-      "name": "georgian",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 13,
-      "keyvalpos": 0
-    },
-    "georgian": {},
-    "german[]": {
-      "name": "german",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 14,
-      "keyvalpos": 0
-    },
-    "german": {},
-    "greek[]": {
-      "name": "greek",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 15,
-      "keyvalpos": 0
-    },
-    "greek": {},
-    "hebrew[]": {
-      "name": "hebrew",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 16,
-      "keyvalpos": 0
-    },
-    "hebrew": {},
-    "hindi[]": {
-      "name": "hindi",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 17,
-      "keyvalpos": 0
-    },
-    "hindi": {},
-    "hungarian[]": {
-      "name": "hungarian",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 18,
-      "keyvalpos": 0
-    },
-    "hungarian": {},
-    "icelandic[]": {
-      "name": "icelandic",
-      "snippet": "[${1:options}]"
-    },
-    "icelandic": {},
-    "interlingua[]": {
-      "name": "interlingua",
-      "snippet": "[${1:options}]"
-    },
-    "interlingua": {},
-    "italian[]": {
-      "name": "italian",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "italian": {},
-    "japanese[]": {
-      "name": "japanese",
-      "snippet": "[${1:options}]"
-    },
-    "japanese": {},
-    "kannada[]": {
-      "name": "kannada",
-      "snippet": "[${1:options}]"
-    },
-    "kannada": {},
-    "khmer[]": {
-      "name": "khmer",
-      "snippet": "[${1:options}]"
-    },
-    "khmer": {},
-    "korean[]": {
-      "name": "korean",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 19,
-      "keyvalpos": 0
-    },
-    "korean": {},
-    "kurdish[]": {
-      "name": "kurdish",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 20,
-      "keyvalpos": 0
-    },
-    "kurdish": {},
-    "lao[]": {
-      "name": "lao",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 21,
-      "keyvalpos": 0
-    },
-    "lao": {},
-    "latin[]": {
-      "name": "latin",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 22,
-      "keyvalpos": 0
-    },
-    "latin": {},
-    "latvian[]": {
-      "name": "latvian",
-      "snippet": "[${1:options}]"
-    },
-    "latvian": {},
-    "lithuanian[]": {
-      "name": "lithuanian",
-      "snippet": "[${1:options}]"
-    },
-    "lithuanian": {},
-    "macedonian[]": {
-      "name": "macedonian",
-      "snippet": "[${1:options}]"
-    },
-    "macedonian": {},
-    "malay[]": {
-      "name": "malay",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 23,
-      "keyvalpos": 0
-    },
-    "malay": {},
-    "malayalam[]": {
-      "name": "malayalam",
-      "snippet": "[${1:options}]"
-    },
-    "malayalam": {},
-    "marathi[]": {
-      "name": "marathi",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 24,
-      "keyvalpos": 0
-    },
-    "marathi": {},
-    "mongolian[]": {
-      "name": "mongolian",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 25,
-      "keyvalpos": 0
-    },
-    "mongolian": {},
-    "nko[]": {
-      "name": "nko",
-      "snippet": "[${1:options}]"
-    },
-    "nko": {},
-    "norwegian[]": {
-      "name": "norwegian",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 26,
-      "keyvalpos": 0
-    },
-    "norwegian": {},
-    "occitan[]": {
-      "name": "occitan",
-      "snippet": "[${1:options}]"
-    },
-    "occitan": {},
-    "odia[]": {
-      "name": "odia",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 27,
-      "keyvalpos": 0
-    },
-    "odia": {},
-    "persian[]": {
-      "name": "persian",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 28,
-      "keyvalpos": 0
-    },
-    "persian": {},
-    "piedmontese[]": {
-      "name": "piedmontese",
-      "snippet": "[${1:options}]"
-    },
-    "piedmontese": {},
-    "polish[]": {
-      "name": "polish",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 7,
-      "keyvalpos": 0
-    },
-    "polish": {},
-    "portuguese[]": {
-      "name": "portuguese",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 29,
-      "keyvalpos": 0
-    },
-    "portuguese": {},
-    "punjabi[]": {
-      "name": "punjabi",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 30,
-      "keyvalpos": 0
-    },
-    "punjabi": {},
-    "romanian[]": {
-      "name": "romanian",
-      "snippet": "[${1:options}]"
-    },
-    "romanian": {},
-    "romansh[]": {
-      "name": "romansh",
-      "snippet": "[${1:options}]"
-    },
-    "romansh": {},
-    "russian[]": {
-      "name": "russian",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 31,
-      "keyvalpos": 0
-    },
-    "russian": {},
-    "sami[]": {
-      "name": "sami",
-      "snippet": "[${1:options}]"
-    },
-    "sami": {},
-    "sanskrit[]": {
-      "name": "sanskrit",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 32,
-      "keyvalpos": 0
-    },
-    "sanskrit": {},
-    "serbian[]": {
-      "name": "serbian",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 33,
-      "keyvalpos": 0
-    },
-    "serbian": {},
-    "slovak[]": {
-      "name": "slovak",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 7,
-      "keyvalpos": 0
-    },
-    "slovak": {},
-    "slovenian[]": {
-      "name": "slovenian",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 34,
-      "keyvalpos": 0
-    },
-    "slovenian": {},
-    "sorbian[]": {
-      "name": "sorbian",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 35,
-      "keyvalpos": 0
-    },
-    "sorbian": {},
-    "spanish[]": {
-      "name": "spanish",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 36,
-      "keyvalpos": 0
-    },
-    "spanish": {},
-    "swedish[]": {
-      "name": "swedish",
-      "snippet": "[${1:options}]"
-    },
-    "swedish": {},
-    "syriac[]": {
-      "name": "syriac",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 37,
-      "keyvalpos": 0
-    },
-    "syriac": {},
-    "tamil[]": {
-      "name": "tamil",
-      "snippet": "[${1:options}]"
-    },
-    "tamil": {},
-    "telugu[]": {
-      "name": "telugu",
-      "snippet": "[${1:options}]"
-    },
-    "telugu": {},
-    "thai[]": {
-      "name": "thai",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 38,
-      "keyvalpos": 0
-    },
-    "thai": {},
-    "tibetan[]": {
-      "name": "tibetan",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 39,
-      "keyvalpos": 0
-    },
-    "tibetan": {},
-    "turkish[]": {
-      "name": "turkish",
-      "snippet": "[${1:options}]"
-    },
-    "turkish": {},
-    "turkmen[]": {
-      "name": "turkmen",
-      "snippet": "[${1:options}]"
-    },
-    "turkmen": {},
-    "ukrainian[]": {
-      "name": "ukrainian",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 40,
-      "keyvalpos": 0
-    },
-    "ukrainian": {},
-    "urdu[]": {
-      "name": "urdu",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 41,
-      "keyvalpos": 0
-    },
-    "urdu": {},
-    "uyghur[]": {
-      "name": "uyghur",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 42,
-      "keyvalpos": 0
-    },
-    "uyghur": {},
-    "vietnamese[]": {
-      "name": "vietnamese",
-      "snippet": "[${1:options}]"
-    },
-    "vietnamese": {},
-    "welsh[]": {
-      "name": "welsh",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 43,
-      "keyvalpos": 0
-    },
-    "welsh": {},
-    "otherlanguage{}": {
-      "name": "otherlanguage",
-      "snippet": "{${1:language}}"
-    },
-    "otherlanguage[]{}": {
-      "name": "otherlanguage",
-      "snippet": "[${2:options}]{${1:language}}",
-      "keyvalindex": 44,
-      "keyvalpos": 0
-    },
-    "otherlanguage*{}": {
-      "name": "otherlanguage*",
-      "snippet": "{${1:language}}"
-    },
-    "otherlanguage*[]{}": {
-      "name": "otherlanguage*",
-      "snippet": "[${2:options}]{${1:language}}",
-      "keyvalindex": 44,
-      "keyvalpos": 0
-    },
-    "hyphenrules{}": {
-      "name": "hyphenrules",
-      "snippet": "{${1:language}}"
-    },
-    "hyphenrules[]{}": {
-      "name": "hyphenrules",
-      "snippet": "[${2:options}]{${1:language}}"
+    {
+      "name": "nkonumbers"
     }
-  },
-  "options": [
-    "babelshorthands",
-    "localmarks",
-    "luatexrenderer=${1:renderer}",
-    "verbose"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "setdefaultlanguage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "setdefaultlanguage",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:language}}"
+      }
+    },
+    {
+      "name": "setmainlanguage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "setmainlanguage",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:language}}"
+      }
+    },
+    {
+      "name": "setotherlanguage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "setotherlanguage",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:language}}"
+      }
+    },
+    {
+      "name": "setotherlanguages",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:lang1,lang2,...}}"
+      }
+    },
+    {
+      "name": "inheritbabelshorthands",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:source language}}{${2:target language}}"
+      }
+    },
+    {
+      "name": "usebabelshorthands",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "textlang",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:language}}{${2:text}}"
+      }
+    },
+    {
+      "name": "textlang",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:language}}{${2:text}}"
+      }
+    },
+    {
+      "name": "textafrikaans",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textafrikaans",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textalbanian",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textalbanian",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textamharic",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textamharic",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textarabic",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textarabic",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textarmenian",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textarmenian",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textasturian",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textasturian",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textbasque",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textbasque",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textbelarusian",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textbelarusian",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textbengali",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textbengali",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textbosnian",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textbosnian",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textbreton",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textbreton",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textbulgarian",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textbulgarian",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textcatalan",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textcatalan",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textchinese",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textchinese",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textcoptic",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textcoptic",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textcroatian",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textcroatian",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textczech",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textczech",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textdanish",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textdanish",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textdivehi",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textdivehi",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textdutch",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textdutch",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textenglish",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textenglish",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textesperanto",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textesperanto",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textestonian",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textestonian",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textfinnish",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textfinnish",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textfrench",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textfrench",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textfriulian",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textfriulian",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textgaelic",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textgaelic",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textgalician",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textgalician",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textgeorgian",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textgeorgian",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textgerman",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textgerman",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textgreek",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textgreek",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "texthebrew",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "texthebrew",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "texthindi",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "texthindi",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "texthungarian",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "texthungarian",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "texticelandic",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "texticelandic",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textinterlingua",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textinterlingua",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textitalian",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textitalian",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textjapanese",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textjapanese",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textkannada",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textkannada",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textkhmer",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textkhmer",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textkorean",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textkorean",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textkurdish",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textkurdish",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textlao",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textlao",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textlatin",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textlatin",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textlatvian",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textlatvian",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textlithuanian",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textlithuanian",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textmacedonian",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textmacedonian",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textmalay",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textmalay",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textmalayalam",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textmalayalam",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textmarathi",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textmarathi",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textmongolian",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textmongolian",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textnko",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textnko",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textnorwegian",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textnorwegian",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textoccitan",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textoccitan",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textodia",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textodia",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textpersian",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textpersian",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textpiedmontese",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textpiedmontese",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textpolish",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textpolish",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textportuguese",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textportuguese",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textpunjabi",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textpunjabi",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textromanian",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textromanian",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textromansh",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textromansh",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textrussian",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textrussian",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textsami",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textsami",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textsanskrit",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textsanskrit",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textserbian",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textserbian",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textslovak",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textslovak",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textslovenian",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textslovenian",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textsorbian",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textsorbian",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textspanish",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textspanish",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textswedish",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textswedish",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textsyriac",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textsyriac",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "texttamil",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "texttamil",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "texttelugu",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "texttelugu",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textthai",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textthai",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "texttibetan",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "texttibetan",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textturkish",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textturkish",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textturkmen",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textturkmen",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textukrainian",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textukrainian",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "texturdu",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "texturdu",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textuyghur",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textuyghur",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textvietnamese",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textvietnamese",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textwelsh",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textwelsh",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "selectlanguage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "selectlanguage",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:language}}"
+      }
+    },
+    {
+      "name": "foreignlanguage",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:language}}{${2:text}}"
+      }
+    },
+    {
+      "name": "foreignlanguage",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:language}}{${2:text}}"
+      }
+    },
+    {
+      "name": "selectbackgroundlanguage",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "resetdefaultlanguage",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "resetdefaultlanguage",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:language}}"
+      }
+    },
+    {
+      "name": "normalfontlatin",
+      "unusual": true
+    },
+    {
+      "name": "rmfamilylatin",
+      "unusual": true
+    },
+    {
+      "name": "sffamilylatin",
+      "unusual": true
+    },
+    {
+      "name": "ttfamilylatin",
+      "unusual": true
+    },
+    {
+      "name": "latinalph",
+      "unusual": true
+    },
+    {
+      "name": "latinAlph",
+      "unusual": true
+    },
+    {
+      "name": "setlanguagealias",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:language}}{${2:alias%envname}}"
+      }
+    },
+    {
+      "name": "setlanguagealias",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:language}}{${2:alias%envname}}"
+      }
+    },
+    {
+      "name": "setlanguagealias*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:language}}{${2:alias}}"
+      }
+    },
+    {
+      "name": "setlanguagealias*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:language}}{${2:alias}}"
+      }
+    },
+    {
+      "name": "pghyphenation",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:language}}{${2:exceptions}}"
+      }
+    },
+    {
+      "name": "pghyphenation",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:language}}{${2:exceptions}}"
+      }
+    },
+    {
+      "name": "setlanghyphenmins",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:language}}{${2:l}}{${3:r}}"
+      }
+    },
+    {
+      "name": "setlanghyphenmins",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:options%keyvals}]{${1:language}}{${2:l}}{${3:r}}"
+      }
+    },
+    {
+      "name": "disablehyphenation",
+      "unusual": true
+    },
+    {
+      "name": "enablehyphenation",
+      "unusual": true
+    },
+    {
+      "name": "abjad",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "abjadmaghribi",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "abjadalph",
+      "unusual": true
+    },
+    {
+      "name": "aemph",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "Asbuk",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "asbuk",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "AsbukTrad",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "asbukTrad",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "hodiau",
+      "unusual": true
+    },
+    {
+      "name": "hodiaun",
+      "unusual": true
+    },
+    {
+      "name": "NoAutoSpacing",
+      "unusual": true
+    },
+    {
+      "name": "AutoSpacing",
+      "unusual": true
+    },
+    {
+      "name": "atticnumeral",
+      "unusual": true
+    },
+    {
+      "name": "hebrewnumeral",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "hebrewalph",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ontoday",
+      "unusual": true
+    },
+    {
+      "name": "ondatehungarian",
+      "unusual": true
+    },
+    {
+      "name": "todayGen",
+      "unusual": true
+    },
+    {
+      "name": "todayArabic",
+      "unusual": true
+    },
+    {
+      "name": "todayRoman",
+      "unusual": true
+    },
+    {
+      "name": "oldtoday",
+      "unusual": true
+    },
+    {
+      "name": "arcsen",
+      "unusual": true
+    },
+    {
+      "name": "arctg",
+      "unusual": true
+    },
+    {
+      "name": "sen",
+      "unusual": true
+    },
+    {
+      "name": "senh",
+      "unusual": true
+    },
+    {
+      "name": "tg",
+      "unusual": true
+    },
+    {
+      "name": "tgh",
+      "unusual": true
+    },
+    {
+      "name": "spanishoperator",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "abjadsyriac",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "uyghurordinal",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "uyghurord",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "captionsafrikaans",
+      "unusual": true
+    },
+    {
+      "name": "captionsalbanian",
+      "unusual": true
+    },
+    {
+      "name": "captionsamharic",
+      "unusual": true
+    },
+    {
+      "name": "captionsarabic",
+      "unusual": true
+    },
+    {
+      "name": "captionsarmenian",
+      "unusual": true
+    },
+    {
+      "name": "captionsasturian",
+      "unusual": true
+    },
+    {
+      "name": "captionsbasque",
+      "unusual": true
+    },
+    {
+      "name": "captionsbelarusian",
+      "unusual": true
+    },
+    {
+      "name": "captionsbengali",
+      "unusual": true
+    },
+    {
+      "name": "captionsbosnian",
+      "unusual": true
+    },
+    {
+      "name": "captionsbreton",
+      "unusual": true
+    },
+    {
+      "name": "captionsbulgarian",
+      "unusual": true
+    },
+    {
+      "name": "captionscatalan",
+      "unusual": true
+    },
+    {
+      "name": "captionschinese",
+      "unusual": true
+    },
+    {
+      "name": "captionscoptic",
+      "unusual": true
+    },
+    {
+      "name": "captionscroatian",
+      "unusual": true
+    },
+    {
+      "name": "captionsczech",
+      "unusual": true
+    },
+    {
+      "name": "captionsdanish",
+      "unusual": true
+    },
+    {
+      "name": "captionsdivehi",
+      "unusual": true
+    },
+    {
+      "name": "captionsdutch",
+      "unusual": true
+    },
+    {
+      "name": "captionsenglish",
+      "unusual": true
+    },
+    {
+      "name": "captionsesperanto",
+      "unusual": true
+    },
+    {
+      "name": "captionsestonian",
+      "unusual": true
+    },
+    {
+      "name": "captionsfinnish",
+      "unusual": true
+    },
+    {
+      "name": "captionsfrench",
+      "unusual": true
+    },
+    {
+      "name": "captionsfriulian",
+      "unusual": true
+    },
+    {
+      "name": "captionsgaelic",
+      "unusual": true
+    },
+    {
+      "name": "captionsgalician",
+      "unusual": true
+    },
+    {
+      "name": "captionsgeorgian",
+      "unusual": true
+    },
+    {
+      "name": "captionsgerman",
+      "unusual": true
+    },
+    {
+      "name": "captionsgreek",
+      "unusual": true
+    },
+    {
+      "name": "captionshebrew",
+      "unusual": true
+    },
+    {
+      "name": "captionshindi",
+      "unusual": true
+    },
+    {
+      "name": "captionshungarian",
+      "unusual": true
+    },
+    {
+      "name": "captionsicelandic",
+      "unusual": true
+    },
+    {
+      "name": "captionsinterlingua",
+      "unusual": true
+    },
+    {
+      "name": "captionsitalian",
+      "unusual": true
+    },
+    {
+      "name": "captionsjapanese",
+      "unusual": true
+    },
+    {
+      "name": "captionskannada",
+      "unusual": true
+    },
+    {
+      "name": "captionskhmer",
+      "unusual": true
+    },
+    {
+      "name": "captionskorean",
+      "unusual": true
+    },
+    {
+      "name": "captionskurdish",
+      "unusual": true
+    },
+    {
+      "name": "captionslao",
+      "unusual": true
+    },
+    {
+      "name": "captionslatin",
+      "unusual": true
+    },
+    {
+      "name": "captionslatvian",
+      "unusual": true
+    },
+    {
+      "name": "captionslithuanian",
+      "unusual": true
+    },
+    {
+      "name": "captionsmacedonian",
+      "unusual": true
+    },
+    {
+      "name": "captionsmalay",
+      "unusual": true
+    },
+    {
+      "name": "captionsmalayalam",
+      "unusual": true
+    },
+    {
+      "name": "captionsmarathi",
+      "unusual": true
+    },
+    {
+      "name": "captionsmongolian",
+      "unusual": true
+    },
+    {
+      "name": "captionsnko",
+      "unusual": true
+    },
+    {
+      "name": "captionsnorwegian",
+      "unusual": true
+    },
+    {
+      "name": "captionsoccitan",
+      "unusual": true
+    },
+    {
+      "name": "captionspersian",
+      "unusual": true
+    },
+    {
+      "name": "captionspiedmontese",
+      "unusual": true
+    },
+    {
+      "name": "captionspolish",
+      "unusual": true
+    },
+    {
+      "name": "captionsportuguese",
+      "unusual": true
+    },
+    {
+      "name": "captionspunjabi",
+      "unusual": true
+    },
+    {
+      "name": "captionsromanian",
+      "unusual": true
+    },
+    {
+      "name": "captionsromansh",
+      "unusual": true
+    },
+    {
+      "name": "captionsrussian",
+      "unusual": true
+    },
+    {
+      "name": "captionssami",
+      "unusual": true
+    },
+    {
+      "name": "captionssanskrit",
+      "unusual": true
+    },
+    {
+      "name": "captionsserbian",
+      "unusual": true
+    },
+    {
+      "name": "captionsslovak",
+      "unusual": true
+    },
+    {
+      "name": "captionsslovenian",
+      "unusual": true
+    },
+    {
+      "name": "captionssorbian",
+      "unusual": true
+    },
+    {
+      "name": "captionsspanish",
+      "unusual": true
+    },
+    {
+      "name": "captionsswedish",
+      "unusual": true
+    },
+    {
+      "name": "captionssyriac",
+      "unusual": true
+    },
+    {
+      "name": "captionstamil",
+      "unusual": true
+    },
+    {
+      "name": "captionstelugu",
+      "unusual": true
+    },
+    {
+      "name": "captionsthai",
+      "unusual": true
+    },
+    {
+      "name": "captionstibetan",
+      "unusual": true
+    },
+    {
+      "name": "captionsturkish",
+      "unusual": true
+    },
+    {
+      "name": "captionsturkmen",
+      "unusual": true
+    },
+    {
+      "name": "captionsukrainian",
+      "unusual": true
+    },
+    {
+      "name": "captionsurdu",
+      "unusual": true
+    },
+    {
+      "name": "captionsuyghur",
+      "unusual": true
+    },
+    {
+      "name": "captionsvietnamese",
+      "unusual": true
+    },
+    {
+      "name": "captionswelsh",
+      "unusual": true
+    },
+    {
+      "name": "dateafrikaans",
+      "unusual": true
+    },
+    {
+      "name": "datealbanian",
+      "unusual": true
+    },
+    {
+      "name": "dateamharic",
+      "unusual": true
+    },
+    {
+      "name": "datearabic",
+      "unusual": true
+    },
+    {
+      "name": "datearmenian",
+      "unusual": true
+    },
+    {
+      "name": "dateasturian",
+      "unusual": true
+    },
+    {
+      "name": "datebasque",
+      "unusual": true
+    },
+    {
+      "name": "datebelarusian",
+      "unusual": true
+    },
+    {
+      "name": "datebengali",
+      "unusual": true
+    },
+    {
+      "name": "datebosnian",
+      "unusual": true
+    },
+    {
+      "name": "datebreton",
+      "unusual": true
+    },
+    {
+      "name": "datebulgarian",
+      "unusual": true
+    },
+    {
+      "name": "datecatalan",
+      "unusual": true
+    },
+    {
+      "name": "datechinese",
+      "unusual": true
+    },
+    {
+      "name": "datecoptic",
+      "unusual": true
+    },
+    {
+      "name": "datecroatian",
+      "unusual": true
+    },
+    {
+      "name": "dateczech",
+      "unusual": true
+    },
+    {
+      "name": "datedanish",
+      "unusual": true
+    },
+    {
+      "name": "datedivehi",
+      "unusual": true
+    },
+    {
+      "name": "datedutch",
+      "unusual": true
+    },
+    {
+      "name": "dateenglish",
+      "unusual": true
+    },
+    {
+      "name": "dateesperanto",
+      "unusual": true
+    },
+    {
+      "name": "dateestonian",
+      "unusual": true
+    },
+    {
+      "name": "datefinnish",
+      "unusual": true
+    },
+    {
+      "name": "datefrench",
+      "unusual": true
+    },
+    {
+      "name": "datefriulian",
+      "unusual": true
+    },
+    {
+      "name": "dategaelic",
+      "unusual": true
+    },
+    {
+      "name": "dategalician",
+      "unusual": true
+    },
+    {
+      "name": "dategeorgian",
+      "unusual": true
+    },
+    {
+      "name": "dategerman",
+      "unusual": true
+    },
+    {
+      "name": "dategreek",
+      "unusual": true
+    },
+    {
+      "name": "datehebrew",
+      "unusual": true
+    },
+    {
+      "name": "datehindi",
+      "unusual": true
+    },
+    {
+      "name": "datehungarian",
+      "unusual": true
+    },
+    {
+      "name": "dateicelandic",
+      "unusual": true
+    },
+    {
+      "name": "dateinterlingua",
+      "unusual": true
+    },
+    {
+      "name": "dateitalian",
+      "unusual": true
+    },
+    {
+      "name": "datejapanese",
+      "unusual": true
+    },
+    {
+      "name": "datekannada",
+      "unusual": true
+    },
+    {
+      "name": "datekhmer",
+      "unusual": true
+    },
+    {
+      "name": "datekorean",
+      "unusual": true
+    },
+    {
+      "name": "datekurdish",
+      "unusual": true
+    },
+    {
+      "name": "datelao",
+      "unusual": true
+    },
+    {
+      "name": "datelatin",
+      "unusual": true
+    },
+    {
+      "name": "datelatvian",
+      "unusual": true
+    },
+    {
+      "name": "datelithuanian",
+      "unusual": true
+    },
+    {
+      "name": "datemacedonian",
+      "unusual": true
+    },
+    {
+      "name": "datemalay",
+      "unusual": true
+    },
+    {
+      "name": "datemalayalam",
+      "unusual": true
+    },
+    {
+      "name": "datemarathi",
+      "unusual": true
+    },
+    {
+      "name": "datemongolian",
+      "unusual": true
+    },
+    {
+      "name": "datenko",
+      "unusual": true
+    },
+    {
+      "name": "datenorwegian",
+      "unusual": true
+    },
+    {
+      "name": "dateoccitan",
+      "unusual": true
+    },
+    {
+      "name": "datepersian",
+      "unusual": true
+    },
+    {
+      "name": "datepiedmontese",
+      "unusual": true
+    },
+    {
+      "name": "datepolish",
+      "unusual": true
+    },
+    {
+      "name": "dateportuguese",
+      "unusual": true
+    },
+    {
+      "name": "datepunjabi",
+      "unusual": true
+    },
+    {
+      "name": "dateromanian",
+      "unusual": true
+    },
+    {
+      "name": "dateromansh",
+      "unusual": true
+    },
+    {
+      "name": "daterussian",
+      "unusual": true
+    },
+    {
+      "name": "datesami",
+      "unusual": true
+    },
+    {
+      "name": "datesanskrit",
+      "unusual": true
+    },
+    {
+      "name": "dateserbian",
+      "unusual": true
+    },
+    {
+      "name": "dateslovak",
+      "unusual": true
+    },
+    {
+      "name": "dateslovenian",
+      "unusual": true
+    },
+    {
+      "name": "datesorbian",
+      "unusual": true
+    },
+    {
+      "name": "datespanish",
+      "unusual": true
+    },
+    {
+      "name": "dateswedish",
+      "unusual": true
+    },
+    {
+      "name": "datesyriac",
+      "unusual": true
+    },
+    {
+      "name": "datetamil",
+      "unusual": true
+    },
+    {
+      "name": "datetelugu",
+      "unusual": true
+    },
+    {
+      "name": "datethai",
+      "unusual": true
+    },
+    {
+      "name": "datetibetan",
+      "unusual": true
+    },
+    {
+      "name": "dateturkish",
+      "unusual": true
+    },
+    {
+      "name": "dateturkmen",
+      "unusual": true
+    },
+    {
+      "name": "dateukrainian",
+      "unusual": true
+    },
+    {
+      "name": "dateurdu",
+      "unusual": true
+    },
+    {
+      "name": "dateuyghur",
+      "unusual": true
+    },
+    {
+      "name": "datevietnamese",
+      "unusual": true
+    },
+    {
+      "name": "datewelsh",
+      "unusual": true
+    },
+    {
+      "name": "localnumeral",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "localnumeral",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:option%keyvals}]{${1:number}}"
+      }
+    },
+    {
+      "name": "localnumeral*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "localnumeral*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:option%keyvals}]{${1:counter}}"
+      }
+    },
+    {
+      "name": "Localnumeral",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "Localnumeral",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:option%keyvals}]{${1:number}}"
+      }
+    },
+    {
+      "name": "Localnumeral*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "Localnumeral*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:option%keyvals}]{${1:counter}}"
+      }
+    },
+    {
+      "name": "arabicdigits",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "bengalidigits",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "devanagaridigits",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "farsidigits",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "gurmukhidigits",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "kannadadigits",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "khmerdigits",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "laodigits",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "nkodigits",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "thaidigits",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "tibetandigits",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "armeniannumeral",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "belarusiannumeral",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "Belarusiannumeral",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "chinesenumeral",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "georgiannumeral",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "greeknumeral",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "Greeknumeral",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "hebrewnumeral",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "Hebrewnumeral",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "Hebrewnumeralfinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "mongoliannumeral",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "Mongoliannumeral",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "punjabinumeral",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "russiannumeral",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "Russiannumeral",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "serbiannumeral",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "Serbiannumeral",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "ukrainiannumeral",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "Ukrainiannumeral",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "RTLfootnote",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "LTRfootnote",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "leftfootnoterule",
+      "unusual": true
+    },
+    {
+      "name": "rightfootnoterule",
+      "unusual": true
+    },
+    {
+      "name": "autofootnoterule",
+      "unusual": true
+    },
+    {
+      "name": "textwidthfootnoterule",
+      "unusual": true
+    },
+    {
+      "name": "charifavailable",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:char code}}{${2:substitution}}"
+      }
+    },
+    {
+      "name": "IfCharIsAvailableTF",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:char code}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "languagename",
+      "unusual": true
+    },
+    {
+      "name": "mainlanguagename",
+      "unusual": true
+    },
+    {
+      "name": "languagevariant",
+      "unusual": true
+    },
+    {
+      "name": "mainlanguagevariant",
+      "unusual": true
+    },
+    {
+      "name": "babelname",
+      "unusual": true
+    },
+    {
+      "name": "mainbabelname",
+      "unusual": true
+    },
+    {
+      "name": "languageid",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:type}}"
+      }
+    },
+    {
+      "name": "mainlanguageid",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:type}}"
+      }
+    },
+    {
+      "name": "iflanguageloaded",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:language}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "ifbabellanguageloaded",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:language}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "iflanguageidloaded",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:type}}{${2:id}}{${3:true}}{${4:false}}"
+      }
+    },
+    {
+      "name": "iflanguageoption",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:language}}{${2:opt key}}{${3:opt value}}{${4:true}}{${5:false}}"
+      }
+    },
+    {
+      "name": "prefacename",
+      "unusual": true
+    },
+    {
+      "name": "bibname",
+      "unusual": true
+    },
+    {
+      "name": "chaptername",
+      "unusual": true
+    },
+    {
+      "name": "enclname",
+      "unusual": true
+    },
+    {
+      "name": "ccname",
+      "unusual": true
+    },
+    {
+      "name": "headtoname",
+      "unusual": true
+    },
+    {
+      "name": "seename",
+      "unusual": true
+    },
+    {
+      "name": "alsoname",
+      "unusual": true
+    },
+    {
+      "name": "proofname",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "lang",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "lang",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:language}}"
+      }
+    },
+    {
+      "name": "afrikaans",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "afrikaans",
+      "unusual": true
+    },
+    {
+      "name": "albanian",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "albanian",
+      "unusual": true
+    },
+    {
+      "name": "amharic",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "amharic",
+      "unusual": true
+    },
+    {
+      "name": "Arabic",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "Arabic",
+      "unusual": true
+    },
+    {
+      "name": "armenian",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "armenian",
+      "unusual": true
+    },
+    {
+      "name": "asturian",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "asturian",
+      "unusual": true
+    },
+    {
+      "name": "basque",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "basque",
+      "unusual": true
+    },
+    {
+      "name": "belarusian",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "belarusian",
+      "unusual": true
+    },
+    {
+      "name": "bengali",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "bengali",
+      "unusual": true
+    },
+    {
+      "name": "bosnian",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "bosnian",
+      "unusual": true
+    },
+    {
+      "name": "breton",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "breton",
+      "unusual": true
+    },
+    {
+      "name": "bulgarian",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "bulgarian",
+      "unusual": true
+    },
+    {
+      "name": "catalan",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "catalan",
+      "unusual": true
+    },
+    {
+      "name": "chinese",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "chinese",
+      "unusual": true
+    },
+    {
+      "name": "coptic",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "coptic",
+      "unusual": true
+    },
+    {
+      "name": "croatian",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "croatian",
+      "unusual": true
+    },
+    {
+      "name": "czech",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "czech",
+      "unusual": true
+    },
+    {
+      "name": "danish",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "danish",
+      "unusual": true
+    },
+    {
+      "name": "divehi",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "divehi",
+      "unusual": true
+    },
+    {
+      "name": "dutch",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "dutch",
+      "unusual": true
+    },
+    {
+      "name": "english",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "english",
+      "unusual": true
+    },
+    {
+      "name": "esperanto",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "esperanto",
+      "unusual": true
+    },
+    {
+      "name": "estonian",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "estonian",
+      "unusual": true
+    },
+    {
+      "name": "finnish",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "finnish",
+      "unusual": true
+    },
+    {
+      "name": "french",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "french",
+      "unusual": true
+    },
+    {
+      "name": "friulian",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "friulian",
+      "unusual": true
+    },
+    {
+      "name": "gaelic",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "gaelic",
+      "unusual": true
+    },
+    {
+      "name": "galician",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "galician",
+      "unusual": true
+    },
+    {
+      "name": "georgian",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "georgian",
+      "unusual": true
+    },
+    {
+      "name": "german",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "german",
+      "unusual": true
+    },
+    {
+      "name": "greek",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "greek",
+      "unusual": true
+    },
+    {
+      "name": "hebrew",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "hebrew",
+      "unusual": true
+    },
+    {
+      "name": "hindi",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "hindi",
+      "unusual": true
+    },
+    {
+      "name": "hungarian",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "hungarian",
+      "unusual": true
+    },
+    {
+      "name": "icelandic",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "icelandic",
+      "unusual": true
+    },
+    {
+      "name": "interlingua",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "interlingua",
+      "unusual": true
+    },
+    {
+      "name": "italian",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "italian",
+      "unusual": true
+    },
+    {
+      "name": "japanese",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "japanese",
+      "unusual": true
+    },
+    {
+      "name": "kannada",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "kannada",
+      "unusual": true
+    },
+    {
+      "name": "khmer",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "khmer",
+      "unusual": true
+    },
+    {
+      "name": "korean",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "korean",
+      "unusual": true
+    },
+    {
+      "name": "kurdish",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "kurdish",
+      "unusual": true
+    },
+    {
+      "name": "lao",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "lao",
+      "unusual": true
+    },
+    {
+      "name": "latin",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "latin",
+      "unusual": true
+    },
+    {
+      "name": "latvian",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "latvian",
+      "unusual": true
+    },
+    {
+      "name": "lithuanian",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "lithuanian",
+      "unusual": true
+    },
+    {
+      "name": "macedonian",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "macedonian",
+      "unusual": true
+    },
+    {
+      "name": "malay",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "malay",
+      "unusual": true
+    },
+    {
+      "name": "malayalam",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "malayalam",
+      "unusual": true
+    },
+    {
+      "name": "marathi",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "marathi",
+      "unusual": true
+    },
+    {
+      "name": "mongolian",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "mongolian",
+      "unusual": true
+    },
+    {
+      "name": "nko",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "nko",
+      "unusual": true
+    },
+    {
+      "name": "norwegian",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "norwegian",
+      "unusual": true
+    },
+    {
+      "name": "occitan",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "occitan",
+      "unusual": true
+    },
+    {
+      "name": "odia",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "odia",
+      "unusual": true
+    },
+    {
+      "name": "persian",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "persian",
+      "unusual": true
+    },
+    {
+      "name": "piedmontese",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "piedmontese",
+      "unusual": true
+    },
+    {
+      "name": "polish",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "polish",
+      "unusual": true
+    },
+    {
+      "name": "portuguese",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "portuguese",
+      "unusual": true
+    },
+    {
+      "name": "punjabi",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "punjabi",
+      "unusual": true
+    },
+    {
+      "name": "romanian",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "romanian",
+      "unusual": true
+    },
+    {
+      "name": "romansh",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "romansh",
+      "unusual": true
+    },
+    {
+      "name": "russian",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "russian",
+      "unusual": true
+    },
+    {
+      "name": "sami",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "sami",
+      "unusual": true
+    },
+    {
+      "name": "sanskrit",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "sanskrit",
+      "unusual": true
+    },
+    {
+      "name": "serbian",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "serbian",
+      "unusual": true
+    },
+    {
+      "name": "slovak",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "slovak",
+      "unusual": true
+    },
+    {
+      "name": "slovenian",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "slovenian",
+      "unusual": true
+    },
+    {
+      "name": "sorbian",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "sorbian",
+      "unusual": true
+    },
+    {
+      "name": "spanish",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "spanish",
+      "unusual": true
+    },
+    {
+      "name": "swedish",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "swedish",
+      "unusual": true
+    },
+    {
+      "name": "syriac",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "syriac",
+      "unusual": true
+    },
+    {
+      "name": "tamil",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "tamil",
+      "unusual": true
+    },
+    {
+      "name": "telugu",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "telugu",
+      "unusual": true
+    },
+    {
+      "name": "thai",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "thai",
+      "unusual": true
+    },
+    {
+      "name": "tibetan",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "tibetan",
+      "unusual": true
+    },
+    {
+      "name": "turkish",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "turkish",
+      "unusual": true
+    },
+    {
+      "name": "turkmen",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "turkmen",
+      "unusual": true
+    },
+    {
+      "name": "ukrainian",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "ukrainian",
+      "unusual": true
+    },
+    {
+      "name": "urdu",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "urdu",
+      "unusual": true
+    },
+    {
+      "name": "uyghur",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "uyghur",
+      "unusual": true
+    },
+    {
+      "name": "vietnamese",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "vietnamese",
+      "unusual": true
+    },
+    {
+      "name": "welsh",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "welsh",
+      "unusual": true
+    },
+    {
+      "name": "otherlanguage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "otherlanguage",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:language}}"
+      }
+    },
+    {
+      "name": "otherlanguage*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "otherlanguage*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:language}}"
+      }
+    },
+    {
+      "name": "hyphenrules",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "hyphenrules",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options}]{${1:language}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/polyglossia#c": [
+      "babelshorthands",
+      "localmarks",
+      "luatexrenderer=${1:renderer}\r",
+      "verbose"
+    ],
+    "\\setdefaultlanguage/afrikaans#c,\\setmainlanguage/afrikaans#c,\\setotherlanguage/afrikaans#c,\\textlang/afrikaans#c,\\textafrikaans#c,\\begin{lang}/afrikaans#c,\\begin{afrikaans}#c,\\selectlanguage/afrikaans#c,\\foreignlanguage/afrikaans#c,\\begin{otherlanguage}/afrikaans#c,\\begin{otherlanguage*}/afrikaans#c,\\resetdefaultlanguage/afrikaans#c,\\setlanguagealias/afrikaans#c,\\setlanguagealias*/afrikaans#c,\\pghyphenation/afrikaans#c,\\setlanghyphenmins/afrikaans#c": [
       "babelshorthands"
     ],
-    [
-      "calendar=${1|gregorian,islamic,hijri|}",
-      "hijricorrection=${1:integer}",
-      "locale=${1|default,mashriq,libya,algeria,tunisia,morocco,mauritania|}",
-      "numerals=${1|mashriq,eastern,maghrib,western|}",
-      "sectionsep=${1:code}",
+    "\\setdefaultlanguage/arabic#c,\\setmainlanguage/arabic#c,\\setotherlanguage/arabic#c,\\textlang/arabic#c,\\textarabic#c,\\begin{lang}/arabic#c,\\begin{Arabic}#c,\\selectlanguage/arabic#c,\\foreignlanguage/arabic#c,\\begin{otherlanguage}/arabic#c,\\begin{otherlanguage*}/arabic#c,\\resetdefaultlanguage/arabic#c,\\setlanguagealias/arabic#c,\\setlanguagealias*/arabic#c,\\pghyphenation/arabic#c,\\setlanghyphenmins/arabic#c": [
+      "calendar=${1|gregorian,islamic,hijri\r|}",
+      "hijricorrection=${1:integer}\r",
+      "locale=${1|default,mashriq,libya,algeria,tunisia,morocco,mauritania\r|}",
+      "numerals=${1|mashriq,eastern,maghrib,western\r|}",
+      "sectionsep=${1:code}\r",
       "abjadalph",
       "abjadjimnotail"
     ],
-    [
-      "variant=${1|eastern,western|}",
-      "numerals=${1|armenian,arabic|}",
+    "\\setdefaultlanguage/armenian#c,\\setmainlanguage/armenian#c,\\setotherlanguage/armenian#c,\\textlang/armenian#c,\\textarmenian#c,\\begin{lang}/armenian#c,\\begin{armenian}#c,\\selectlanguage/armenian#c,\\foreignlanguage/armenian#c,\\begin{otherlanguage}/armenian#c,\\begin{otherlanguage*}/armenian#c,\\resetdefaultlanguage/armenian#c,\\setlanguagealias/armenian#c,\\setlanguagealias*/armenian#c,\\pghyphenation/armenian#c,\\setlanghyphenmins/armenian#c": [
+      "variant=${1|eastern,western\r|}",
+      "numerals=${1|armenian,arabic\r|}",
       "capitalyiwn"
     ],
-    [
+    "\\setdefaultlanguage/belarusian#c,\\setmainlanguage/belarusian#c,\\setotherlanguage/belarusian#c,\\textlang/belarusian#c,\\textbelarusian#c,\\begin{lang}/belarusian#c,\\begin{belarusian}#c,\\selectlanguage/belarusian#c,\\foreignlanguage/belarusian#c,\\begin{otherlanguage}/belarusian#c,\\begin{otherlanguage*}/belarusian#c,\\resetdefaultlanguage/belarusian#c,\\setlanguagealias/belarusian#c,\\setlanguagealias*/belarusian#c,\\pghyphenation/belarusian#c,\\setlanghyphenmins/belarusian#c": [
       "babelshorthands",
-      "numerals=${1|arabic,cyrillic-alph,cyrillic-trad|}",
-      "spelling=${1|modern,classic,tarask|}"
+      "numerals=${1|arabic,cyrillic-alph,cyrillic-trad\r|}",
+      "spelling=${1|modern,classic,tarask\r|}"
     ],
-    [
-      "numerals=${1|Western,Bengali,Devanagari|}",
+    "\\setdefaultlanguage/bengali#c,\\setmainlanguage/bengali#c,\\setotherlanguage/bengali#c,\\textlang/bengali#c,\\textbengali#c,\\begin{lang}/bengali#c,\\begin{bengali}#c,\\selectlanguage/bengali#c,\\foreignlanguage/bengali#c,\\begin{otherlanguage}/bengali#c,\\begin{otherlanguage*}/bengali#c,\\resetdefaultlanguage/bengali#c,\\setlanguagealias/bengali#c,\\setlanguagealias*/bengali#c,\\pghyphenation/bengali#c,\\setlanghyphenmins/bengali#c": [
+      "numerals=${1|Western,Bengali,Devanagari\r|}",
       "changecounternumbering"
     ],
-    [
-      "variant=${1|simplified,traditional|}",
-      "numerals=${1|arabic,chinese|}"
+    "\\setdefaultlanguage/catalan#c,\\setmainlanguage/catalan#c,\\setotherlanguage/catalan#c,\\textlang/catalan#c,\\textcatalan#c,\\begin{lang}/catalan#c,\\begin{catalan}#c,\\selectlanguage/catalan#c,\\foreignlanguage/catalan#c,\\begin{otherlanguage}/catalan#c,\\begin{otherlanguage*}/catalan#c,\\resetdefaultlanguage/catalan#c,\\setlanguagealias/catalan#c,\\setlanguagealias*/catalan#c,\\pghyphenation/catalan#c,\\setlanghyphenmins/catalan#c": [
+      "babelshorthands"
     ],
-    [
+    "\\setdefaultlanguage/chinese#c,\\setmainlanguage/chinese#c,\\setotherlanguage/chinese#c,\\textlang/chinese#c,\\textchinese#c,\\begin{lang}/chinese#c,\\begin{chinese}#c,\\selectlanguage/chinese#c,\\foreignlanguage/chinese#c,\\begin{otherlanguage}/chinese#c,\\begin{otherlanguage*}/chinese#c,\\resetdefaultlanguage/chinese#c,\\setlanguagealias/chinese#c,\\setlanguagealias*/chinese#c,\\pghyphenation/chinese#c,\\setlanghyphenmins/chinese#c": [
+      "variant=${1|simplified,traditional\r|}",
+      "numerals=${1|arabic,chinese\r|}"
+    ],
+    "\\setdefaultlanguage/croatian#c,\\setmainlanguage/croatian#c,\\setotherlanguage/croatian#c,\\textlang/croatian#c,\\textcroatian#c,\\begin{lang}/croatian#c,\\begin{croatian}#c,\\selectlanguage/croatian#c,\\foreignlanguage/croatian#c,\\begin{otherlanguage}/croatian#c,\\begin{otherlanguage*}/croatian#c,\\resetdefaultlanguage/croatian#c,\\setlanguagealias/croatian#c,\\setlanguagealias*/croatian#c,\\pghyphenation/croatian#c,\\setlanghyphenmins/croatian#c": [
       "babelshorthands",
       "disabledigraphs",
       "localalph",
       "splithyphens"
     ],
-    [
+    "\\setdefaultlanguage/czech#c,\\setmainlanguage/czech#c,\\setotherlanguage/czech#c,\\textlang/czech#c,\\textczech#c,\\begin{lang}/czech#c,\\begin{czech}#c,\\selectlanguage/czech#c,\\foreignlanguage/czech#c,\\begin{otherlanguage}/czech#c,\\begin{otherlanguage*}/czech#c,\\resetdefaultlanguage/czech#c,\\setlanguagealias/czech#c,\\setlanguagealias*/czech#c,\\pghyphenation/czech#c,\\setlanghyphenmins/czech#c": [
       "babelshorthands",
       "splithyphens",
       "vlna"
     ],
-    [
+    "\\setdefaultlanguage/dutch#c,\\setmainlanguage/dutch#c,\\setotherlanguage/dutch#c,\\textlang/dutch#c,\\textdutch#c,\\begin{lang}/dutch#c,\\begin{dutch}#c,\\selectlanguage/dutch#c,\\foreignlanguage/dutch#c,\\begin{otherlanguage}/dutch#c,\\begin{otherlanguage*}/dutch#c,\\resetdefaultlanguage/dutch#c,\\setlanguagealias/dutch#c,\\setlanguagealias*/dutch#c,\\pghyphenation/dutch#c,\\setlanghyphenmins/dutch#c": [
       "tremahyphenation",
       "babelshorthands"
     ],
-    [
-      "variant=${1|american,us,usmax,british,uk,australian,canadian,newzealand|}",
+    "\\setdefaultlanguage/english#c,\\setmainlanguage/english#c,\\setotherlanguage/english#c,\\textlang/english#c,\\textenglish#c,\\begin{lang}/english#c,\\begin{english}#c,\\selectlanguage/english#c,\\foreignlanguage/english#c,\\begin{otherlanguage}/english#c,\\begin{otherlanguage*}/english#c,\\resetdefaultlanguage/english#c,\\setlanguagealias/english#c,\\setlanguagealias*/english#c,\\pghyphenation/english#c,\\setlanghyphenmins/english#c": [
+      "variant=${1|american,us,usmax,british,uk,australian,canadian,newzealand\r|}",
       "ordinalmonthday"
     ],
-    [
+    "\\setdefaultlanguage/finnish#c,\\setmainlanguage/finnish#c,\\setotherlanguage/finnish#c,\\textlang/finnish#c,\\textfinnish#c,\\begin{lang}/finnish#c,\\begin{finnish}#c,\\selectlanguage/finnish#c,\\foreignlanguage/finnish#c,\\begin{otherlanguage}/finnish#c,\\begin{otherlanguage*}/finnish#c,\\resetdefaultlanguage/finnish#c,\\setlanguagealias/finnish#c,\\setlanguagealias*/finnish#c,\\pghyphenation/finnish#c,\\setlanghyphenmins/finnish#c": [
       "babelshorthands",
       "schoolhyphens"
     ],
-    [
-      "variant=${1|french,canadian,acadian,swiss|}",
+    "\\setdefaultlanguage/french#c,\\setmainlanguage/french#c,\\setotherlanguage/french#c,\\textlang/french#c,\\textfrench#c,\\begin{lang}/french#c,\\begin{french}#c,\\selectlanguage/french#c,\\foreignlanguage/french#c,\\begin{otherlanguage}/french#c,\\begin{otherlanguage*}/french#c,\\resetdefaultlanguage/french#c,\\setlanguagealias/french#c,\\setlanguagealias*/french#c,\\pghyphenation/french#c,\\setlanghyphenmins/french#c": [
+      "variant=${1|french,canadian,acadian,swiss\r|}",
       "autospacing",
       "thincolonspace",
       "autospaceguillemets",
@@ -1860,295 +4013,177 @@
       "frenchfootnote",
       "frenchitemlabels",
       "frenchpart",
-      "itemlabels=${1:code}",
-      "itemlabeli=${1:code}",
-      "itemlabelii=${1:code}",
-      "itemlabeliii=${1:code}",
-      "itemlabeliv=${1:code}"
+      "itemlabels=${1:code}\r",
+      "itemlabeli=${1:code}\r",
+      "itemlabelii=${1:code}\r",
+      "itemlabeliii=${1:code}\r",
+      "itemlabeliv=${1:code}\r"
     ],
-    [
-      "variant=${1|irish,scottish|}"
+    "\\setdefaultlanguage/gaelic#c,\\setmainlanguage/gaelic#c,\\setotherlanguage/gaelic#c,\\textlang/gaelic#c,\\textgaelic#c,\\begin{lang}/gaelic#c,\\begin{gaelic}#c,\\selectlanguage/gaelic#c,\\foreignlanguage/gaelic#c,\\begin{otherlanguage}/gaelic#c,\\begin{otherlanguage*}/gaelic#c,\\resetdefaultlanguage/gaelic#c,\\setlanguagealias/gaelic#c,\\setlanguagealias*/gaelic#c,\\pghyphenation/gaelic#c,\\setlanghyphenmins/gaelic#c": [
+      "variant=${1|irish,scottish\r|}"
     ],
-    [
+    "\\setdefaultlanguage/georgian#c,\\setmainlanguage/georgian#c,\\setotherlanguage/georgian#c,\\textlang/georgian#c,\\textgeorgian#c,\\begin{lang}/georgian#c,\\begin{georgian}#c,\\selectlanguage/georgian#c,\\foreignlanguage/georgian#c,\\begin{otherlanguage}/georgian#c,\\begin{otherlanguage*}/georgian#c,\\resetdefaultlanguage/georgian#c,\\setlanguagealias/georgian#c,\\setlanguagealias*/georgian#c,\\pghyphenation/georgian#c,\\setlanghyphenmins/georgian#c": [
       "babelshorthands",
-      "numerals=${1|arabic,georgian|}",
+      "numerals=${1|arabic,georgian\r|}",
       "oldmonthnames"
     ],
-    [
-      "variant=${1|german,austrian,swiss|}",
-      "spelling=${1|new,old|}",
+    "\\setdefaultlanguage/german#c,\\setmainlanguage/german#c,\\setotherlanguage/german#c,\\textlang/german#c,\\textgerman#c,\\begin{lang}/german#c,\\begin{german}#c,\\selectlanguage/german#c,\\foreignlanguage/german#c,\\begin{otherlanguage}/german#c,\\begin{otherlanguage*}/german#c,\\resetdefaultlanguage/german#c,\\setlanguagealias/german#c,\\setlanguagealias*/german#c,\\pghyphenation/german#c,\\setlanghyphenmins/german#c": [
+      "variant=${1|german,austrian,swiss\r|}",
+      "spelling=${1|new,old\r|}",
       "capitaleszett",
       "babelshorthands",
-      "script=${1|latin,blackletter,fraktur|}"
+      "script=${1|latin,blackletter,fraktur\r|}"
     ],
-    [
-      "variant=${1|monotonic,mono,polytonic,poly,ancient|}",
-      "numerals=${1|greek,arabic|}",
+    "\\setdefaultlanguage/greek#c,\\setmainlanguage/greek#c,\\setotherlanguage/greek#c,\\textlang/greek#c,\\textgreek#c,\\begin{lang}/greek#c,\\begin{greek}#c,\\selectlanguage/greek#c,\\foreignlanguage/greek#c,\\begin{otherlanguage}/greek#c,\\begin{otherlanguage*}/greek#c,\\resetdefaultlanguage/greek#c,\\setlanguagealias/greek#c,\\setlanguagealias*/greek#c,\\pghyphenation/greek#c,\\setlanghyphenmins/greek#c": [
+      "variant=${1|monotonic,mono,polytonic,poly,ancient\r|}",
+      "numerals=${1|greek,arabic\r|}",
       "attic"
     ],
-    [
+    "\\setdefaultlanguage/hebrew#c,\\setmainlanguage/hebrew#c,\\setotherlanguage/hebrew#c,\\textlang/hebrew#c,\\texthebrew#c,\\begin{lang}/hebrew#c,\\begin{hebrew}#c,\\selectlanguage/hebrew#c,\\foreignlanguage/hebrew#c,\\begin{otherlanguage}/hebrew#c,\\begin{otherlanguage*}/hebrew#c,\\resetdefaultlanguage/hebrew#c,\\setlanguagealias/hebrew#c,\\setlanguagealias*/hebrew#c,\\pghyphenation/hebrew#c,\\setlanghyphenmins/hebrew#c": [
       "fullyear",
-      "numerals=${1|hebrew,arabic|}",
-      "calendar=${1|hebrew,gregorian|}",
+      "numerals=${1|hebrew,arabic\r|}",
+      "calendar=${1|hebrew,gregorian\r|}",
       "marcheshvan",
-      "transliteration=${1|academy,alt|}"
+      "transliteration=${1|academy,alt\r|}"
     ],
-    [
-      "numerals=${1|Western,Devanagari|}"
+    "\\setdefaultlanguage/hindi#c,\\setmainlanguage/hindi#c,\\setotherlanguage/hindi#c,\\textlang/hindi#c,\\texthindi#c,\\begin{lang}/hindi#c,\\begin{hindi}#c,\\selectlanguage/hindi#c,\\foreignlanguage/hindi#c,\\begin{otherlanguage}/hindi#c,\\begin{otherlanguage*}/hindi#c,\\resetdefaultlanguage/hindi#c,\\setlanguagealias/hindi#c,\\setlanguagealias*/hindi#c,\\pghyphenation/hindi#c,\\setlanghyphenmins/hindi#c": [
+      "numerals=${1|Western,Devanagari\r|}"
     ],
-    [
-      "swapstrings=${1|all,captions,headings,headers,hheaders,none|}",
+    "\\setdefaultlanguage/hungarian#c,\\setmainlanguage/hungarian#c,\\setotherlanguage/hungarian#c,\\textlang/hungarian#c,\\texthungarian#c,\\begin{lang}/hungarian#c,\\begin{hungarian}#c,\\selectlanguage/hungarian#c,\\foreignlanguage/hungarian#c,\\begin{otherlanguage}/hungarian#c,\\begin{otherlanguage*}/hungarian#c,\\resetdefaultlanguage/hungarian#c,\\setlanguagealias/hungarian#c,\\setlanguagealias*/hungarian#c,\\pghyphenation/hungarian#c,\\setlanghyphenmins/hungarian#c": [
+      "swapstrings=${1|all,captions,headings,headers,hheaders,none\r|}",
       "forceheadingpunctuation"
     ],
-    [
-      "variant=${1|plain,classic,modern|}",
-      "captions=${1|hangul,hanja|}",
-      "swapstrings=${1|all,headers,headings,none|}"
+    "\\setdefaultlanguage/italian#c,\\setmainlanguage/italian#c,\\setotherlanguage/italian#c,\\textlang/italian#c,\\textitalian#c,\\begin{lang}/italian#c,\\begin{italian}#c,\\selectlanguage/italian#c,\\foreignlanguage/italian#c,\\begin{otherlanguage}/italian#c,\\begin{otherlanguage*}/italian#c,\\resetdefaultlanguage/italian#c,\\setlanguagealias/italian#c,\\setlanguagealias*/italian#c,\\pghyphenation/italian#c,\\setlanghyphenmins/italian#c": [
+      "babelshorthands"
     ],
-    [
-      "variant=${1|kurmanji,sorani|}",
-      "script=${1|Arabic,Latin|}",
-      "numerals=${1|western,eastern|}",
-      "sectionsep=${1:code}",
+    "\\setdefaultlanguage/korean#c,\\setmainlanguage/korean#c,\\setotherlanguage/korean#c,\\textlang/korean#c,\\textkorean#c,\\begin{lang}/korean#c,\\begin{korean}#c,\\selectlanguage/korean#c,\\foreignlanguage/korean#c,\\begin{otherlanguage}/korean#c,\\begin{otherlanguage*}/korean#c,\\resetdefaultlanguage/korean#c,\\setlanguagealias/korean#c,\\setlanguagealias*/korean#c,\\pghyphenation/korean#c,\\setlanghyphenmins/korean#c": [
+      "variant=${1|plain,classic,modern\r|}",
+      "captions=${1|hangul,hanja\r|}",
+      "swapstrings=${1|all,headers,headings,none\r|}"
+    ],
+    "\\setdefaultlanguage/kurdish#c,\\setmainlanguage/kurdish#c,\\setotherlanguage/kurdish#c,\\textlang/kurdish#c,\\textkurdish#c,\\begin{lang}/kurdish#c,\\begin{kurdish}#c,\\selectlanguage/kurdish#c,\\foreignlanguage/kurdish#c,\\begin{otherlanguage}/kurdish#c,\\begin{otherlanguage*}/kurdish#c,\\resetdefaultlanguage/kurdish#c,\\setlanguagealias/kurdish#c,\\setlanguagealias*/kurdish#c,\\pghyphenation/kurdish#c,\\setlanghyphenmins/kurdish#c": [
+      "variant=${1|kurmanji,sorani\r|}",
+      "script=${1|Arabic,Latin\r|}",
+      "numerals=${1|western,eastern\r|}",
+      "sectionsep=${1:code}\r",
       "abjadjimnotail"
     ],
-    [
-      "numerals=${1|lao,arabic|}"
+    "\\setdefaultlanguage/lao#c,\\setmainlanguage/lao#c,\\setotherlanguage/lao#c,\\textlang/lao#c,\\textlao#c,\\begin{lang}/lao#c,\\begin{lao}#c,\\selectlanguage/lao#c,\\foreignlanguage/lao#c,\\begin{otherlanguage}/lao#c,\\begin{otherlanguage*}/lao#c,\\resetdefaultlanguage/lao#c,\\setlanguagealias/lao#c,\\setlanguagealias*/lao#c,\\pghyphenation/lao#c,\\setlanghyphenmins/lao#c": [
+      "numerals=${1|lao,arabic\r|}"
     ],
-    [
-      "variant=${1|classic,medieval,modern,ecclesiastic|}",
-      "hyphenation=${1|classic,modern,liturgical|}",
+    "\\setdefaultlanguage/latin#c,\\setmainlanguage/latin#c,\\setotherlanguage/latin#c,\\textlang/latin#c,\\textlatin#c,\\begin{lang}/latin#c,\\begin{latin}#c,\\selectlanguage/latin#c,\\foreignlanguage/latin#c,\\begin{otherlanguage}/latin#c,\\begin{otherlanguage*}/latin#c,\\resetdefaultlanguage/latin#c,\\setlanguagealias/latin#c,\\setlanguagealias*/latin#c,\\pghyphenation/latin#c,\\setlanghyphenmins/latin#c": [
+      "variant=${1|classic,medieval,modern,ecclesiastic\r|}",
+      "hyphenation=${1|classic,modern,liturgical\r|}",
       "ecclesiasticfootnotes",
       "usej",
       "capitalizemonth",
       "babelshorthands",
       "prosodicshorthands"
     ],
-    [
-      "variant=${1|indonesian,malaysian|}"
+    "\\setdefaultlanguage/malay#c,\\setmainlanguage/malay#c,\\setotherlanguage/malay#c,\\textlang/malay#c,\\textmalay#c,\\begin{lang}/malay#c,\\begin{malay}#c,\\selectlanguage/malay#c,\\foreignlanguage/malay#c,\\begin{otherlanguage}/malay#c,\\begin{otherlanguage*}/malay#c,\\resetdefaultlanguage/malay#c,\\setlanguagealias/malay#c,\\setlanguagealias*/malay#c,\\pghyphenation/malay#c,\\setlanghyphenmins/malay#c": [
+      "variant=${1|indonesian,malaysian\r|}"
     ],
-    [
-      "numerals=${1|Devanagari,Western|}"
+    "\\setdefaultlanguage/marathi#c,\\setmainlanguage/marathi#c,\\setotherlanguage/marathi#c,\\textlang/marathi#c,\\textmarathi#c,\\begin{lang}/marathi#c,\\begin{marathi}#c,\\selectlanguage/marathi#c,\\foreignlanguage/marathi#c,\\begin{otherlanguage}/marathi#c,\\begin{otherlanguage*}/marathi#c,\\resetdefaultlanguage/marathi#c,\\setlanguagealias/marathi#c,\\setlanguagealias*/marathi#c,\\pghyphenation/marathi#c,\\setlanghyphenmins/marathi#c": [
+      "numerals=${1|Devanagari,Western\r|}"
     ],
-    [
+    "\\setdefaultlanguage/mongolian#c,\\setmainlanguage/mongolian#c,\\setotherlanguage/mongolian#c,\\textlang/mongolian#c,\\textmongolian#c,\\begin{lang}/mongolian#c,\\begin{mongolian}#c,\\selectlanguage/mongolian#c,\\foreignlanguage/mongolian#c,\\begin{otherlanguage}/mongolian#c,\\begin{otherlanguage*}/mongolian#c,\\resetdefaultlanguage/mongolian#c,\\setlanguagealias/mongolian#c,\\setlanguagealias*/mongolian#c,\\pghyphenation/mongolian#c,\\setlanghyphenmins/mongolian#c": [
       "babelshorthands",
-      "numerals=${1|arabic,cyrillic-alph,cyrillic-trad|}"
+      "numerals=${1|arabic,cyrillic-alph,cyrillic-trad\r|}"
     ],
-    [
-      "variant=${1|bokmal,nynorsk|}"
+    "\\setdefaultlanguage/norwegian#c,\\setmainlanguage/norwegian#c,\\setotherlanguage/norwegian#c,\\textlang/norwegian#c,\\textnorwegian#c,\\begin{lang}/norwegian#c,\\begin{norwegian}#c,\\selectlanguage/norwegian#c,\\foreignlanguage/norwegian#c,\\begin{otherlanguage}/norwegian#c,\\begin{otherlanguage*}/norwegian#c,\\resetdefaultlanguage/norwegian#c,\\setlanguagealias/norwegian#c,\\setlanguagealias*/norwegian#c,\\pghyphenation/norwegian#c,\\setlanghyphenmins/norwegian#c": [
+      "variant=${1|bokmal,nynorsk\r|}"
     ],
-    [
-      "numerals=${1|western,devanagari,odia|}",
+    "\\setdefaultlanguage/odia#c,\\setmainlanguage/odia#c,\\setotherlanguage/odia#c,\\textlang/odia#c,\\textodia#c,\\begin{lang}/odia#c,\\begin{odia}#c,\\selectlanguage/odia#c,\\foreignlanguage/odia#c,\\begin{otherlanguage}/odia#c,\\begin{otherlanguage*}/odia#c,\\resetdefaultlanguage/odia#c,\\setlanguagealias/odia#c,\\setlanguagealias*/odia#c,\\pghyphenation/odia#c,\\setlanghyphenmins/odia#c": [
+      "numerals=${1|western,devanagari,odia\r|}",
       "changecounternumbering"
     ],
-    [
-      "numerals=${1|western,eastern|}",
-      "sectionsep=${1:code}",
+    "\\setdefaultlanguage/persian#c,\\setmainlanguage/persian#c,\\setotherlanguage/persian#c,\\textlang/persian#c,\\textpersian#c,\\begin{lang}/persian#c,\\begin{persian}#c,\\selectlanguage/persian#c,\\foreignlanguage/persian#c,\\begin{otherlanguage}/persian#c,\\begin{otherlanguage*}/persian#c,\\resetdefaultlanguage/persian#c,\\setlanguagealias/persian#c,\\setlanguagealias*/persian#c,\\pghyphenation/persian#c,\\setlanghyphenmins/persian#c": [
+      "numerals=${1|western,eastern\r|}",
+      "sectionsep=${1:code}\r",
       "abjadjimnotail"
     ],
-    [
-      "variant=${1|brazilian,portuguese|}",
+    "\\setdefaultlanguage/polish#c,\\setmainlanguage/polish#c,\\setotherlanguage/polish#c,\\textlang/polish#c,\\textpolish#c,\\begin{lang}/polish#c,\\begin{polish}#c,\\selectlanguage/polish#c,\\foreignlanguage/polish#c,\\begin{otherlanguage}/polish#c,\\begin{otherlanguage*}/polish#c,\\resetdefaultlanguage/polish#c,\\setlanguagealias/polish#c,\\setlanguagealias*/polish#c,\\pghyphenation/polish#c,\\setlanghyphenmins/polish#c": [
+      "babelshorthands",
+      "splithyphens",
+      "vlna"
+    ],
+    "\\setdefaultlanguage/portuguese#c,\\setmainlanguage/portuguese#c,\\setotherlanguage/portuguese#c,\\textlang/portuguese#c,\\textportuguese#c,\\begin{lang}/portuguese#c,\\begin{portuguese}#c,\\selectlanguage/portuguese#c,\\foreignlanguage/portuguese#c,\\begin{otherlanguage}/portuguese#c,\\begin{otherlanguage*}/portuguese#c,\\resetdefaultlanguage/portuguese#c,\\setlanguagealias/portuguese#c,\\setlanguagealias*/portuguese#c,\\pghyphenation/portuguese#c,\\setlanghyphenmins/portuguese#c": [
+      "variant=${1|brazilian,portuguese\r|}",
       "babelshorthands",
       "splithyphens"
     ],
-    [
-      "numerals=${1|western,gurmukhi|}"
+    "\\setdefaultlanguage/punjabi#c,\\setmainlanguage/punjabi#c,\\setotherlanguage/punjabi#c,\\textlang/punjabi#c,\\textpunjabi#c,\\begin{lang}/punjabi#c,\\begin{punjabi}#c,\\selectlanguage/punjabi#c,\\foreignlanguage/punjabi#c,\\begin{otherlanguage}/punjabi#c,\\begin{otherlanguage*}/punjabi#c,\\resetdefaultlanguage/punjabi#c,\\setlanguagealias/punjabi#c,\\setlanguagealias*/punjabi#c,\\pghyphenation/punjabi#c,\\setlanghyphenmins/punjabi#c": [
+      "numerals=${1|western,gurmukhi\r|}"
     ],
-    [
+    "\\setdefaultlanguage/russian#c,\\setmainlanguage/russian#c,\\setotherlanguage/russian#c,\\textlang/russian#c,\\textrussian#c,\\begin{lang}/russian#c,\\begin{russian}#c,\\selectlanguage/russian#c,\\foreignlanguage/russian#c,\\begin{otherlanguage}/russian#c,\\begin{otherlanguage*}/russian#c,\\resetdefaultlanguage/russian#c,\\setlanguagealias/russian#c,\\setlanguagealias*/russian#c,\\pghyphenation/russian#c,\\setlanghyphenmins/russian#c": [
       "babelshorthands",
       "forceheadingpunctuation",
       "indentfirst",
       "mathfunctions",
-      "spelling=${1|modern,old|}",
-      "numerals=${1|arabic,cyrillic-alph,cyrillic-trad|}"
+      "spelling=${1|modern,old\r|}",
+      "numerals=${1|arabic,cyrillic-alph,cyrillic-trad\r|}"
     ],
-    [
-      "script=${1|Devanagari,Gujarati,Malayalam,Bengali,Kannada,Telugu,Latin|}",
-      "numerals=${1|Devanagari,Western|}"
+    "\\setdefaultlanguage/sanskrit#c,\\setmainlanguage/sanskrit#c,\\setotherlanguage/sanskrit#c,\\textlang/sanskrit#c,\\textsanskrit#c,\\begin{lang}/sanskrit#c,\\begin{sanskrit}#c,\\selectlanguage/sanskrit#c,\\foreignlanguage/sanskrit#c,\\begin{otherlanguage}/sanskrit#c,\\begin{otherlanguage*}/sanskrit#c,\\resetdefaultlanguage/sanskrit#c,\\setlanguagealias/sanskrit#c,\\setlanguagealias*/sanskrit#c,\\pghyphenation/sanskrit#c,\\setlanghyphenmins/sanskrit#c": [
+      "script=${1|Devanagari,Gujarati,Malayalam,Bengali,Kannada,Telugu,Latin\r|}",
+      "numerals=${1|Devanagari,Western\r|}"
     ],
-    [
-      "variant=${1|ekavian,ijekavian|}",
-      "script=${1|Cyrillic,Latin|}",
+    "\\setdefaultlanguage/serbian#c,\\setmainlanguage/serbian#c,\\setotherlanguage/serbian#c,\\textlang/serbian#c,\\textserbian#c,\\begin{lang}/serbian#c,\\begin{serbian}#c,\\selectlanguage/serbian#c,\\foreignlanguage/serbian#c,\\begin{otherlanguage}/serbian#c,\\begin{otherlanguage*}/serbian#c,\\resetdefaultlanguage/serbian#c,\\setlanguagealias/serbian#c,\\setlanguagealias*/serbian#c,\\pghyphenation/serbian#c,\\setlanghyphenmins/serbian#c": [
+      "variant=${1|ekavian,ijekavian\r|}",
+      "script=${1|Cyrillic,Latin\r|}",
       "datei",
       "splithyphens",
-      "numerals=${1|arabic,cyrillic-alph,cyrillic-trad|}"
+      "numerals=${1|arabic,cyrillic-alph,cyrillic-trad\r|}"
     ],
-    [
+    "\\setdefaultlanguage/slovak#c,\\setmainlanguage/slovak#c,\\setotherlanguage/slovak#c,\\textlang/slovak#c,\\textslovak#c,\\begin{lang}/slovak#c,\\begin{slovak}#c,\\selectlanguage/slovak#c,\\foreignlanguage/slovak#c,\\begin{otherlanguage}/slovak#c,\\begin{otherlanguage*}/slovak#c,\\resetdefaultlanguage/slovak#c,\\setlanguagealias/slovak#c,\\setlanguagealias*/slovak#c,\\pghyphenation/slovak#c,\\setlanghyphenmins/slovak#c": [
+      "babelshorthands",
+      "splithyphens",
+      "vlna"
+    ],
+    "\\setdefaultlanguage/slovenian#c,\\setmainlanguage/slovenian#c,\\setotherlanguage/slovenian#c,\\textlang/slovenian#c,\\textslovenian#c,\\begin{lang}/slovenian#c,\\begin{slovenian}#c,\\selectlanguage/slovenian#c,\\foreignlanguage/slovenian#c,\\begin{otherlanguage}/slovenian#c,\\begin{otherlanguage*}/slovenian#c,\\resetdefaultlanguage/slovenian#c,\\setlanguagealias/slovenian#c,\\setlanguagealias*/slovenian#c,\\pghyphenation/slovenian#c,\\setlanghyphenmins/slovenian#c": [
       "localalph"
     ],
-    [
-      "variant=${1|lower,upper|}",
+    "\\setdefaultlanguage/sorbian#c,\\setmainlanguage/sorbian#c,\\setotherlanguage/sorbian#c,\\textlang/sorbian#c,\\textsorbian#c,\\begin{lang}/sorbian#c,\\begin{sorbian}#c,\\selectlanguage/sorbian#c,\\foreignlanguage/sorbian#c,\\begin{otherlanguage}/sorbian#c,\\begin{otherlanguage*}/sorbian#c,\\resetdefaultlanguage/sorbian#c,\\setlanguagealias/sorbian#c,\\setlanguagealias*/sorbian#c,\\pghyphenation/sorbian#c,\\setlanghyphenmins/sorbian#c": [
+      "variant=${1|lower,upper\r|}",
       "olddate"
     ],
-    [
-      "variant=${1|spanish,mexican|}",
-      "spanishoperators=${1|all,accented,spaced,none,false|}"
+    "\\setdefaultlanguage/spanish#c,\\setmainlanguage/spanish#c,\\setotherlanguage/spanish#c,\\textlang/spanish#c,\\textspanish#c,\\begin{lang}/spanish#c,\\begin{spanish}#c,\\selectlanguage/spanish#c,\\foreignlanguage/spanish#c,\\begin{otherlanguage}/spanish#c,\\begin{otherlanguage*}/spanish#c,\\resetdefaultlanguage/spanish#c,\\setlanguagealias/spanish#c,\\setlanguagealias*/spanish#c,\\pghyphenation/spanish#c,\\setlanghyphenmins/spanish#c": [
+      "variant=${1|spanish,mexican\r|}",
+      "spanishoperators=${1|all,accented,spaced,none,false\r|}"
     ],
-    [
-      "numerals=${1|western,eastern,abjad|}",
-      "sectionsep=${1:code}"
+    "\\setdefaultlanguage/syriac#c,\\setmainlanguage/syriac#c,\\setotherlanguage/syriac#c,\\textlang/syriac#c,\\textsyriac#c,\\begin{lang}/syriac#c,\\begin{syriac}#c,\\selectlanguage/syriac#c,\\foreignlanguage/syriac#c,\\begin{otherlanguage}/syriac#c,\\begin{otherlanguage*}/syriac#c,\\resetdefaultlanguage/syriac#c,\\setlanguagealias/syriac#c,\\setlanguagealias*/syriac#c,\\pghyphenation/syriac#c,\\setlanghyphenmins/syriac#c": [
+      "numerals=${1|western,eastern,abjad\r|}",
+      "sectionsep=${1:code}\r"
     ],
-    [
-      "numerals=${1|thai,arabic|}"
+    "\\setdefaultlanguage/thai#c,\\setmainlanguage/thai#c,\\setotherlanguage/thai#c,\\textlang/thai#c,\\textthai#c,\\begin{lang}/thai#c,\\begin{thai}#c,\\selectlanguage/thai#c,\\foreignlanguage/thai#c,\\begin{otherlanguage}/thai#c,\\begin{otherlanguage*}/thai#c,\\resetdefaultlanguage/thai#c,\\setlanguagealias/thai#c,\\setlanguagealias*/thai#c,\\pghyphenation/thai#c,\\setlanghyphenmins/thai#c": [
+      "numerals=${1|thai,arabic\r|}"
     ],
-    [
-      "numerals=${1|tibetan,arabic|}"
+    "\\setdefaultlanguage/tibetan#c,\\setmainlanguage/tibetan#c,\\setotherlanguage/tibetan#c,\\textlang/tibetan#c,\\texttibetan#c,\\begin{lang}/tibetan#c,\\begin{tibetan}#c,\\selectlanguage/tibetan#c,\\foreignlanguage/tibetan#c,\\begin{otherlanguage}/tibetan#c,\\begin{otherlanguage*}/tibetan#c,\\resetdefaultlanguage/tibetan#c,\\setlanguagealias/tibetan#c,\\setlanguagealias*/tibetan#c,\\pghyphenation/tibetan#c,\\setlanghyphenmins/tibetan#c": [
+      "numerals=${1|tibetan,arabic\r|}"
     ],
-    [
+    "\\setdefaultlanguage/ukrainian#c,\\setmainlanguage/ukrainian#c,\\setotherlanguage/ukrainian#c,\\textlang/ukrainian#c,\\textukrainian#c,\\begin{lang}/ukrainian#c,\\begin{ukrainian}#c,\\selectlanguage/ukrainian#c,\\foreignlanguage/ukrainian#c,\\begin{otherlanguage}/ukrainian#c,\\begin{otherlanguage*}/ukrainian#c,\\resetdefaultlanguage/ukrainian#c,\\setlanguagealias/ukrainian#c,\\setlanguagealias*/ukrainian#c,\\pghyphenation/ukrainian#c,\\setlanghyphenmins/ukrainian#c": [
       "babelshorthands",
       "mathfunctions",
-      "numerals=${1|arabic,cyrillic-alph,cyrillic-trad|}"
+      "numerals=${1|arabic,cyrillic-alph,cyrillic-trad\r|}"
     ],
-    [
-      "calendar=${1|gregorian,hijri|}",
-      "hijricorrection=${1:integer}",
-      "numerals=${1|western,eastern|}",
-      "sectionsep=${1:code}",
+    "\\setdefaultlanguage/urdu#c,\\setmainlanguage/urdu#c,\\setotherlanguage/urdu#c,\\textlang/urdu#c,\\texturdu#c,\\begin{lang}/urdu#c,\\begin{urdu}#c,\\selectlanguage/urdu#c,\\foreignlanguage/urdu#c,\\begin{otherlanguage}/urdu#c,\\begin{otherlanguage*}/urdu#c,\\resetdefaultlanguage/urdu#c,\\setlanguagealias/urdu#c,\\setlanguagealias*/urdu#c,\\pghyphenation/urdu#c,\\setlanghyphenmins/urdu#c": [
+      "calendar=${1|gregorian,hijri\r|}",
+      "hijricorrection=${1:integer}\r",
+      "numerals=${1|western,eastern\r|}",
+      "sectionsep=${1:code}\r",
       "abjadjimnotail"
     ],
-    [
-      "chapterformat=${1|ordinal,roman,arabic|}",
-      "swapstrings=${1|all,captions,heading,headers,hheaders,none|}"
+    "\\setdefaultlanguage/uyghur#c,\\setmainlanguage/uyghur#c,\\setotherlanguage/uyghur#c,\\textlang/uyghur#c,\\textuyghur#c,\\begin{lang}/uyghur#c,\\begin{uyghur}#c,\\selectlanguage/uyghur#c,\\foreignlanguage/uyghur#c,\\begin{otherlanguage}/uyghur#c,\\begin{otherlanguage*}/uyghur#c,\\resetdefaultlanguage/uyghur#c,\\setlanguagealias/uyghur#c,\\setlanguagealias*/uyghur#c,\\pghyphenation/uyghur#c,\\setlanghyphenmins/uyghur#c": [
+      "chapterformat=${1|ordinal,roman,arabic\r|}",
+      "swapstrings=${1|all,captions,heading,headers,hheaders,none\r|}"
     ],
-    [
-      "date=${1|long,short|}"
+    "\\setdefaultlanguage/welsh#c,\\setmainlanguage/welsh#c,\\setotherlanguage/welsh#c,\\textlang/welsh#c,\\textwelsh#c,\\begin{lang}/welsh#c,\\begin{welsh}#c,\\selectlanguage/welsh#c,\\foreignlanguage/welsh#c,\\begin{otherlanguage}/welsh#c,\\begin{otherlanguage*}/welsh#c,\\resetdefaultlanguage/welsh#c,\\setlanguagealias/welsh#c,\\setlanguagealias*/welsh#c,\\pghyphenation/welsh#c,\\setlanghyphenmins/welsh#c": [
+      "date=${1|long,short\r|}"
     ],
-    [
-      "babelshorthands",
-      "calendar=${1|gregorian,islamic,hijri|}",
-      "hijricorrection=${1:integer}",
-      "locale=${1|default,mashriq,libya,algeria,tunisia,morocco,mauritania|}",
-      "numerals=${1|mashriq,eastern,maghrib,western|}",
-      "sectionsep=${1:code}",
-      "abjadalph",
-      "abjadjimnotail",
-      "variant=${1|eastern,western|}",
-      "numerals=${1|armenian,arabic|}",
-      "capitalyiwn",
-      "babelshorthands",
-      "numerals=${1|arabic,cyrillic-alph,cyrillic-trad|}",
-      "spelling=${1|modern,classic,tarask|}",
-      "numerals=${1|Western,Bengali,Devanagari|}",
-      "changecounternumbering",
-      "babelshorthands",
-      "variant=${1|simplified,traditional|}",
-      "numerals=${1|arabic,chinese|}",
-      "babelshorthands",
-      "disabledigraphs",
-      "localalph",
-      "splithyphens",
-      "babelshorthands",
-      "splithyphens",
-      "vlna",
-      "tremahyphenation",
-      "babelshorthands",
-      "variant=${1|american,us,usmax,british,uk,australian,canadian,newzealand|}",
-      "ordinalmonthday",
-      "babelshorthands",
-      "schoolhyphens",
-      "variant=${1|french,canadian,acadian,swiss|}",
-      "autospacing",
-      "thincolonspace",
-      "autospaceguillemets",
-      "autospacetypewriter",
-      "frenchfootnote",
-      "frenchitemlabels",
-      "frenchpart",
-      "itemlabels=${1:code}",
-      "itemlabeli=${1:code}",
-      "itemlabelii=${1:code}",
-      "itemlabeliii=${1:code}",
-      "itemlabeliv=${1:code}",
-      "variant=${1|irish,scottish|}",
-      "babelshorthands",
-      "numerals=${1|arabic,georgian|}",
-      "oldmonthnames",
-      "variant=${1|german,austrian,swiss|}",
-      "spelling=${1|new,old|}",
-      "capitaleszett",
-      "babelshorthands",
-      "script=${1|latin,blackletter,fraktur|}",
-      "variant=${1|monotonic,mono,polytonic,poly,ancient|}",
-      "numerals=${1|greek,arabic|}",
-      "attic",
-      "fullyear",
-      "numerals=${1|hebrew,arabic|}",
-      "calendar=${1|hebrew,gregorian|}",
-      "marcheshvan",
-      "transliteration=${1|academy,alt|}",
-      "numerals=${1|Western,Devanagari|}",
-      "swapstrings=${1|all,captions,headings,headers,hheaders,none|}",
-      "forceheadingpunctuation",
-      "babelshorthands",
-      "variant=${1|plain,classic,modern|}",
-      "captions=${1|hangul,hanja|}",
-      "swapstrings=${1|all,headers,headings,none|}",
-      "variant=${1|kurmanji,sorani|}",
-      "script=${1|Arabic,Latin|}",
-      "numerals=${1|western,eastern|}",
-      "sectionsep=${1:code}",
-      "abjadjimnotail",
-      "numerals=${1|lao,arabic|}",
-      "variant=${1|classic,medieval,modern,ecclesiastic|}",
-      "hyphenation=${1|classic,modern,liturgical|}",
-      "ecclesiasticfootnotes",
-      "usej",
-      "capitalizemonth",
-      "babelshorthands",
-      "prosodicshorthands",
-      "variant=${1|indonesian,malaysian|}",
-      "numerals=${1|Devanagari,Western|}",
-      "babelshorthands",
-      "numerals=${1|arabic,cyrillic-alph,cyrillic-trad|}",
-      "variant=${1|bokmal,nynorsk|}",
-      "numerals=${1|western,devanagari,odia|}",
-      "changecounternumbering",
-      "numerals=${1|western,eastern|}",
-      "sectionsep=${1:code}",
-      "abjadjimnotail",
-      "babelshorthands",
-      "splithyphens",
-      "vlna",
-      "variant=${1|brazilian,portuguese|}",
-      "babelshorthands",
-      "splithyphens",
-      "numerals=${1|western,gurmukhi|}",
-      "babelshorthands",
-      "forceheadingpunctuation",
-      "indentfirst",
-      "mathfunctions",
-      "spelling=${1|modern,old|}",
-      "numerals=${1|arabic,cyrillic-alph,cyrillic-trad|}",
-      "script=${1|Devanagari,Gujarati,Malayalam,Bengali,Kannada,Telugu,Latin|}",
-      "numerals=${1|Devanagari,Western|}",
-      "variant=${1|ekavian,ijekavian|}",
-      "script=${1|Cyrillic,Latin|}",
-      "datei",
-      "splithyphens",
-      "numerals=${1|arabic,cyrillic-alph,cyrillic-trad|}",
-      "babelshorthands",
-      "splithyphens",
-      "vlna",
-      "localalph",
-      "variant=${1|lower,upper|}",
-      "olddate",
-      "variant=${1|spanish,mexican|}",
-      "spanishoperators=${1|all,accented,spaced,none,false|}",
-      "numerals=${1|western,eastern,abjad|}",
-      "sectionsep=${1:code}",
-      "numerals=${1|thai,arabic|}",
-      "numerals=${1|tibetan,arabic|}",
-      "babelshorthands",
-      "mathfunctions",
-      "numerals=${1|arabic,cyrillic-alph,cyrillic-trad|}",
-      "calendar=${1|gregorian,hijri|}",
-      "hijricorrection=${1:integer}",
-      "numerals=${1|western,eastern|}",
-      "sectionsep=${1:code}",
-      "abjadjimnotail",
-      "chapterformat=${1|ordinal,roman,arabic|}",
-      "swapstrings=${1|all,captions,heading,headers,hheaders,none|}",
-      "date=${1|long,short|}"
+    "\\localnumeral#c,\\localnumeral*#c,\\Localnumeral#c,\\Localnumeral*#c": [
+      "lang=${2|local,main,${1:language}\r|}"
     ]
+  },
+  "args": [
+    "\\usepackage/polyglossia#c"
   ]
 }

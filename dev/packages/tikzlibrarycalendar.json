@@ -1,16 +1,76 @@
 {
-  "includes": {
-    "pgfcalendar": []
+  "deps": [
+    {
+      "name": "pgfcalendar"
+    }
+  ],
+  "macros": [
+    {
+      "name": "tikzdaycode",
+      "unusual": true
+    },
+    {
+      "name": "tikzdaytext",
+      "unusual": true
+    },
+    {
+      "name": "tikzmonthcode",
+      "unusual": true
+    },
+    {
+      "name": "tikzmonthtext",
+      "unusual": true
+    },
+    {
+      "name": "tikzyearcode",
+      "unusual": true
+    },
+    {
+      "name": "tikzyeartext",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\calendar#c": [
+      "dates=${1:start} to ${2:end}\r",
+      "day xshift=",
+      "day yshift=",
+      "month xshift=",
+      "month yshift=",
+      "day code={${1:code}}\r",
+      "day text=${1:text}\r",
+      "month code={${1:code}}\r",
+      "month text=${1:text}\r",
+      "year code={${1:code}}\r",
+      "year text=${1:text}\r",
+      "if=(${1:conditions}) ${2:〈code or options〉}\r",
+      "if=(${1:conditions}) ${2:〈code or options〉} else ${3:〈else code or options〉}\r",
+      "execute before day scope={${1:code}}\r",
+      "execute at begin day scope={${1:code}}\r",
+      "execute at end day scope={${1:code}}\r",
+      "execute after day scope={${1:code}}\r",
+      "day list downward\r",
+      "day list upward\r",
+      "day list right\r",
+      "day list left\r",
+      "week list\r",
+      "month list\r",
+      "month label left\r",
+      "month label left vertical\r",
+      "month label right\r",
+      "month label right vertical\r",
+      "month label above left\r",
+      "month label above centered\r",
+      "month label above right\r",
+      "month label below left\r",
+      "month label below centered\r"
+    ],
+    "\\begin{tikzpicture}#c,\\tikz#c,\\begin{scope}#c,\\tikzset#c,\\scoped#c,\\node#c,\\coordinate#c,\\nodepart#c,\\pic#c": [
+      "every calendar/.style={${1:options}}\r",
+      "every month/.style={${1:options}}\r",
+      "every year/.style={${1:options}}\r"
+    ]
   },
-  "macros": {
-    "tikzdaycode": {},
-    "tikzdaytext": {},
-    "tikzmonthcode": {},
-    "tikzmonthtext": {},
-    "tikzyearcode": {},
-    "tikzyeartext": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

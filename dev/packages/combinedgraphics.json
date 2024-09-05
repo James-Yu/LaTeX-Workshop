@@ -1,51 +1,66 @@
 {
-  "includes": {
-    "keyval": [],
-    "graphicx": [],
-    "color": []
-  },
-  "macros": {
-    "includecombinedgraphics{}": {
-      "snippet": "includecombinedgraphics{${1:file}}"
+  "deps": [
+    {
+      "name": "keyval"
     },
-    "includecombinedgraphics[]{}": {
-      "snippet": "includecombinedgraphics[${2:options}]{${1:file}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "graphicx"
+    },
+    {
+      "name": "color"
     }
-  },
-  "envs": {},
-  "options": [
-    "textfontcmd=${1:font csname}",
-    "textcolorcmd=${1:color csname}",
-    "vecscale=${1:factor}",
-    "vecwidth=",
-    "vecheight=",
-    "vecinclude=${1:file name}",
-    "vecfirst"
   ],
-  "keyvals": [
-    [
-      "textfont=${1:font commands}",
-      "textcolor=${1:color commands}",
-      "vecscale=${1:factor}",
+  "macros": [
+    {
+      "name": "includecombinedgraphics",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "includecombinedgraphics",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:file}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/combinedgraphics#c": [
+      "textfontcmd=${1:font csname}\r",
+      "textcolorcmd=${1:color csname}\r",
+      "vecscale=${1:factor}\r",
       "vecwidth=",
       "vecheight=",
-      "vecinclude=${1|auto,true,false,overwrite|}",
+      "vecinclude=${1:file name}\r",
+      "vecfirst"
+    ],
+    "\\includecombinedgraphics": [
+      "textfont=${1:font commands}\r",
+      "textcolor=${1:color commands}\r",
+      "vecscale=${1:factor}\r",
+      "vecwidth=",
+      "vecheight=",
+      "vecinclude=${1|auto,true,false,overwrite\r|}",
       "vecfirst",
-      "vecfile=${1:file name}",
-      "angle=${1:degrees}",
-      "origin=",
-      "x=",
-      "y=",
-      "units=",
-      "scale=${1:factor}",
-      "hscale=${1:factor}",
-      "vscale=${1:factor}",
+      "vecfile=${1:file name}\r",
+      "angle=${1:degrees}\r",
+      "origin=\r",
+      "x=\r",
+      "y=\r",
+      "units=\r",
+      "scale=${1:factor}\r",
+      "hscale=${1:factor}\r",
+      "vscale=${1:factor}\r",
       "height=",
       "totalheight=",
       "width=",
-      "keepaspectratio"
+      "keepaspectratio\r"
     ]
+  },
+  "args": [
+    "\\usepackage/combinedgraphics#c"
   ]
 }

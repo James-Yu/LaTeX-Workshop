@@ -1,15 +1,29 @@
 {
-  "includes": {
-    "zref-base": [],
-    "atbegshi": [],
-    "zref-abspage": []
-  },
-  "macros": {
-    "zthepage{}": {
-      "snippet": "zthepage{${1:page number}}"
+  "deps": [
+    {
+      "name": "zref-base"
+    },
+    {
+      "name": "atbegshi"
+    },
+    {
+      "name": "zref-abspage"
     }
+  ],
+  "macros": [
+    {
+      "name": "zthepage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:page number}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\zref#c": [
+      "pagevalue\r"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

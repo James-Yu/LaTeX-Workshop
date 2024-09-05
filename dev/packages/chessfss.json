@@ -1,210 +1,594 @@
 {
-  "includes": {
-    "ifthen": [],
-    "xkeyval": []
-  },
-  "macros": {
-    "figfont": {},
-    "figsymbol{}": {
-      "snippet": "figsymbol{${1:text}}"
+  "deps": [
+    {
+      "name": "ifthen"
     },
-    "setfigfontfamily{}": {
-      "snippet": "setfigfontfamily{${1:family}}"
-    },
-    "king": {},
-    "symking": {},
-    "queen": {},
-    "symqueen": {},
-    "rook": {},
-    "symrook": {},
-    "bishop": {},
-    "symbishop": {},
-    "knight": {},
-    "symknight": {},
-    "pawn": {},
-    "sympawn": {},
-    "settextfigchars{}{}{}{}{}{}": {
-      "snippet": "settextfigchars{${1:king}}{${2:queen}}{${3:rook}}{${4:bishop}}{${5:knight}}{${6:pawn}}"
-    },
-    "settextfigchars[]{}{}{}{}{}{}": {
-      "snippet": "settextfigchars[${7:lang}]{${1:king}}{${2:queen}}{${3:rook}}{${4:bishop}}{${5:knight}}{${6:pawn}}"
-    },
-    "settextfiglanguage{}": {
-      "snippet": "settextfiglanguage{${1:language}}"
-    },
-    "textfigsymbol{}": {
-      "snippet": "textfigsymbol{${1:piecechar}}"
-    },
-    "textking": {},
-    "textqueen": {},
-    "textrook": {},
-    "textbishop": {},
-    "textknight": {},
-    "textpawn": {},
-    "textsymfigsymbol{}": {
-      "snippet": "textsymfigsymbol{${1:piece}}"
-    },
-    "textsymking": {},
-    "textsymqueen": {},
-    "textsymrook": {},
-    "textsymbishop": {},
-    "textsymknight": {},
-    "textsympawn": {},
-    "usetextfig": {},
-    "usesymfig": {},
-    "setfigstyle{}": {
-      "snippet": "setfigstyle{${1:font cmds}}"
-    },
-    "boardfont": {},
-    "boardsymbol{}": {
-      "snippet": "boardsymbol{${1:text}}"
-    },
-    "setboardfontfamily{}": {
-      "snippet": "setboardfontfamily{${1:family}}"
-    },
-    "setboardfontseries{}": {
-      "snippet": "setboardfontseries{${1:series}}"
-    },
-    "setboardfontsize{}": {
-      "snippet": "setboardfontsize{${1:size}}"
-    },
-    "setboardfontencoding{}": {
-      "snippet": "setboardfontencoding{${1:encoding}}"
-    },
-    "WhiteEmptySquare": {},
-    "BlackEmptySquare": {},
-    "WhiteKingOnWhite": {},
-    "BlackKingOnWhite": {},
-    "WhiteKingOnBlack": {},
-    "BlackKingOnBlack": {},
-    "WhiteQueenOnWhite": {},
-    "BlackQueenOnWhite": {},
-    "WhiteQueenOnBlack": {},
-    "BlackQueenOnBlack": {},
-    "WhiteRookOnWhite": {},
-    "BlackRookOnWhite": {},
-    "WhiteRookOnBlack": {},
-    "BlackRookOnBlack": {},
-    "WhiteBishopOnWhite": {},
-    "BlackBishopOnWhite": {},
-    "WhiteBishopOnBlack": {},
-    "BlackBishopOnBlack": {},
-    "WhiteKnightOnWhite": {},
-    "BlackKnightOnWhite": {},
-    "WhiteKnightOnBlack": {},
-    "BlackKnightOnBlack": {},
-    "WhitePawnOnWhite": {},
-    "BlackPawnOnWhite": {},
-    "WhitePawnOnBlack": {},
-    "BlackPawnOnBlack": {},
-    "getsquarewidth{}": {
-      "snippet": "getsquarewidth{${1:reference piece}}"
-    },
-    "showchessboardencoding{}": {
-      "snippet": "showchessboardencoding{${1:encoding}}"
-    },
-    "showchessboardencoding[]{}": {
-      "snippet": "showchessboardencoding[${2:font family}]{${1:encoding}}"
-    },
-    "setboardfontcolors{}": {
-      "snippet": "setboardfontcolors{${1:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "inffont": {},
-    "infsymbol{}": {
-      "snippet": "infsymbol{${1:text}}"
-    },
-    "setinffontfamily{}": {
-      "snippet": "setinffontfamily{${1:family}}"
-    },
-    "checksymbol": {},
-    "castlinghyphen": {},
-    "withattack": {},
-    "withinit": {},
-    "zugzwang": {},
-    "withidea": {},
-    "onlymove": {},
-    "diagonal": {},
-    "file": {},
-    "centre": {},
-    "weakpt": {},
-    "ending": {},
-    "qside": {},
-    "kside": {},
-    "etc": {},
-    "morepawns": {},
-    "timelimit": {},
-    "moreroom": {},
-    "counterplay": {},
-    "capturesymbol": {},
-    "bishoppair": {},
-    "betteris": {},
-    "wupperhand": {},
-    "doublepawns": {},
-    "bupperhand": {},
-    "wbetter": {},
-    "bbetter": {},
-    "wdecisive": {},
-    "bdecisive": {},
-    "unclear": {},
-    "chesssee": {},
-    "mate": {},
-    "compensation": {},
-    "opposbishops": {},
-    "seppawns": {},
-    "passedpawn": {},
-    "samebishops": {},
-    "devadvantage": {},
-    "unitedpawns": {},
-    "with": {},
-    "without": {},
-    "comment": {},
-    "markera": {},
-    "markerb": {},
-    "chessetc": {},
-    "sidefont": {},
-    "sidesymbol{}": {
-      "snippet": "sidesymbol{${1:text}}"
-    },
-    "setsidefontencoding{}": {
-      "snippet": "setsidefontencoding{${1:encoding}}"
-    },
-    "setsidefontfamily{}": {
-      "snippet": "setsidefontfamily{${1:family}}"
-    },
-    "setsidefontseries{}": {
-      "snippet": "setsidefontseries{${1:series}}"
-    },
-    "setsidefontshape{}": {
-      "snippet": "setsidefontshape{${1:shape}}"
-    },
-    "setsidefontsize{}": {
-      "snippet": "setsidefontsize{${1:size}}"
-    },
-    "setchessfontfamily{}": {
-      "snippet": "setchessfontfamily{${1:family}}"
-    },
-    "setallchessfontfamily{}": {
-      "snippet": "setallchessfontfamily{${1:family}}"
-    },
-    "castlingchar": {},
-    "longcastling": {},
-    "shortcastling": {},
-    "novelty": {},
-    "chesscomment": {},
-    "various": {},
-    "setfigtextchars{}{}{}{}{}{}": {
-      "snippet": "setfigtextchars{${1:king}}{${2:queen}}{${3:rook}}{${4:bishop}}{${5:knight}}{${6:pawn}}"
-    },
-    "setfigtextchars[]{}{}{}{}{}{}": {
-      "snippet": "setfigtextchars[${7:lang}]{${1:king}}{${2:queen}}{${3:rook}}{${4:bishop}}{${5:knight}}{${6:pawn}}"
+    {
+      "name": "xkeyval"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "figfont",
+      "unusual": true
+    },
+    {
+      "name": "figsymbol",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "setfigfontfamily",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:family}}"
+      }
+    },
+    {
+      "name": "king"
+    },
+    {
+      "name": "symking"
+    },
+    {
+      "name": "queen"
+    },
+    {
+      "name": "symqueen"
+    },
+    {
+      "name": "rook"
+    },
+    {
+      "name": "symrook"
+    },
+    {
+      "name": "bishop"
+    },
+    {
+      "name": "symbishop"
+    },
+    {
+      "name": "knight"
+    },
+    {
+      "name": "symknight"
+    },
+    {
+      "name": "pawn"
+    },
+    {
+      "name": "sympawn"
+    },
+    {
+      "name": "settextfigchars",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "{${1:king}}{${2:queen}}{${3:rook}}{${4:bishop}}{${5:knight}}{${6:pawn}}"
+      }
+    },
+    {
+      "name": "settextfigchars",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}{}{}{}",
+        "snippet": "[${7:lang}]{${1:king}}{${2:queen}}{${3:rook}}{${4:bishop}}{${5:knight}}{${6:pawn}}"
+      }
+    },
+    {
+      "name": "settextfiglanguage",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "textfigsymbol",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:piecechar}}"
+      }
+    },
+    {
+      "name": "textking"
+    },
+    {
+      "name": "textqueen"
+    },
+    {
+      "name": "textrook"
+    },
+    {
+      "name": "textbishop"
+    },
+    {
+      "name": "textknight"
+    },
+    {
+      "name": "textpawn"
+    },
+    {
+      "name": "textsymfigsymbol",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:piece}}"
+      }
+    },
+    {
+      "name": "textsymking",
+      "unusual": true
+    },
+    {
+      "name": "textsymqueen",
+      "unusual": true
+    },
+    {
+      "name": "textsymrook",
+      "unusual": true
+    },
+    {
+      "name": "textsymbishop",
+      "unusual": true
+    },
+    {
+      "name": "textsymknight",
+      "unusual": true
+    },
+    {
+      "name": "textsympawn",
+      "unusual": true
+    },
+    {
+      "name": "usetextfig",
+      "unusual": true
+    },
+    {
+      "name": "usesymfig",
+      "unusual": true
+    },
+    {
+      "name": "setfigstyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font cmds}}"
+      }
+    },
+    {
+      "name": "boardfont",
+      "unusual": true
+    },
+    {
+      "name": "boardsymbol",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "setboardfontfamily",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:family}}"
+      }
+    },
+    {
+      "name": "setboardfontseries",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:series}}"
+      }
+    },
+    {
+      "name": "setboardfontsize",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:size}}"
+      }
+    },
+    {
+      "name": "setboardfontencoding",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:encoding}}"
+      }
+    },
+    {
+      "name": "WhiteEmptySquare",
+      "unusual": true
+    },
+    {
+      "name": "BlackEmptySquare",
+      "unusual": true
+    },
+    {
+      "name": "WhiteKingOnWhite",
+      "unusual": true
+    },
+    {
+      "name": "BlackKingOnWhite",
+      "unusual": true
+    },
+    {
+      "name": "WhiteKingOnBlack",
+      "unusual": true
+    },
+    {
+      "name": "BlackKingOnBlack",
+      "unusual": true
+    },
+    {
+      "name": "WhiteQueenOnWhite",
+      "unusual": true
+    },
+    {
+      "name": "BlackQueenOnWhite",
+      "unusual": true
+    },
+    {
+      "name": "WhiteQueenOnBlack",
+      "unusual": true
+    },
+    {
+      "name": "BlackQueenOnBlack",
+      "unusual": true
+    },
+    {
+      "name": "WhiteRookOnWhite",
+      "unusual": true
+    },
+    {
+      "name": "BlackRookOnWhite",
+      "unusual": true
+    },
+    {
+      "name": "WhiteRookOnBlack",
+      "unusual": true
+    },
+    {
+      "name": "BlackRookOnBlack",
+      "unusual": true
+    },
+    {
+      "name": "WhiteBishopOnWhite",
+      "unusual": true
+    },
+    {
+      "name": "BlackBishopOnWhite",
+      "unusual": true
+    },
+    {
+      "name": "WhiteBishopOnBlack",
+      "unusual": true
+    },
+    {
+      "name": "BlackBishopOnBlack",
+      "unusual": true
+    },
+    {
+      "name": "WhiteKnightOnWhite",
+      "unusual": true
+    },
+    {
+      "name": "BlackKnightOnWhite",
+      "unusual": true
+    },
+    {
+      "name": "WhiteKnightOnBlack",
+      "unusual": true
+    },
+    {
+      "name": "BlackKnightOnBlack",
+      "unusual": true
+    },
+    {
+      "name": "WhitePawnOnWhite",
+      "unusual": true
+    },
+    {
+      "name": "BlackPawnOnWhite",
+      "unusual": true
+    },
+    {
+      "name": "WhitePawnOnBlack",
+      "unusual": true
+    },
+    {
+      "name": "BlackPawnOnBlack",
+      "unusual": true
+    },
+    {
+      "name": "getsquarewidth",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:reference piece}}"
+      }
+    },
+    {
+      "name": "showchessboardencoding",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:encoding}}"
+      }
+    },
+    {
+      "name": "showchessboardencoding",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:font family}]{${1:encoding}}"
+      }
+    },
+    {
+      "name": "setboardfontcolors",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "inffont",
+      "unusual": true
+    },
+    {
+      "name": "infsymbol",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "setinffontfamily",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:family}}"
+      }
+    },
+    {
+      "name": "checksymbol"
+    },
+    {
+      "name": "castlinghyphen"
+    },
+    {
+      "name": "withattack"
+    },
+    {
+      "name": "withinit"
+    },
+    {
+      "name": "zugzwang"
+    },
+    {
+      "name": "withidea"
+    },
+    {
+      "name": "onlymove"
+    },
+    {
+      "name": "diagonal"
+    },
+    {
+      "name": "file"
+    },
+    {
+      "name": "centre"
+    },
+    {
+      "name": "weakpt"
+    },
+    {
+      "name": "ending"
+    },
+    {
+      "name": "qside"
+    },
+    {
+      "name": "kside"
+    },
+    {
+      "name": "etc"
+    },
+    {
+      "name": "morepawns"
+    },
+    {
+      "name": "timelimit"
+    },
+    {
+      "name": "moreroom"
+    },
+    {
+      "name": "counterplay"
+    },
+    {
+      "name": "capturesymbol"
+    },
+    {
+      "name": "bishoppair"
+    },
+    {
+      "name": "betteris"
+    },
+    {
+      "name": "wupperhand"
+    },
+    {
+      "name": "doublepawns"
+    },
+    {
+      "name": "bupperhand"
+    },
+    {
+      "name": "wbetter"
+    },
+    {
+      "name": "bbetter"
+    },
+    {
+      "name": "wdecisive"
+    },
+    {
+      "name": "bdecisive"
+    },
+    {
+      "name": "unclear"
+    },
+    {
+      "name": "chesssee"
+    },
+    {
+      "name": "mate"
+    },
+    {
+      "name": "compensation"
+    },
+    {
+      "name": "opposbishops"
+    },
+    {
+      "name": "seppawns"
+    },
+    {
+      "name": "passedpawn"
+    },
+    {
+      "name": "samebishops"
+    },
+    {
+      "name": "devadvantage"
+    },
+    {
+      "name": "unitedpawns"
+    },
+    {
+      "name": "with"
+    },
+    {
+      "name": "without"
+    },
+    {
+      "name": "comment"
+    },
+    {
+      "name": "markera",
+      "unusual": true
+    },
+    {
+      "name": "markerb",
+      "unusual": true
+    },
+    {
+      "name": "chessetc",
+      "unusual": true
+    },
+    {
+      "name": "sidefont",
+      "unusual": true
+    },
+    {
+      "name": "sidesymbol",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "setsidefontencoding",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:encoding}}"
+      }
+    },
+    {
+      "name": "setsidefontfamily",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:family}}"
+      }
+    },
+    {
+      "name": "setsidefontseries",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:series}}"
+      }
+    },
+    {
+      "name": "setsidefontshape",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:shape}}"
+      }
+    },
+    {
+      "name": "setsidefontsize",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:size}}"
+      }
+    },
+    {
+      "name": "setchessfontfamily",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:family}}"
+      }
+    },
+    {
+      "name": "setallchessfontfamily",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:family}}"
+      }
+    },
+    {
+      "name": "castlingchar"
+    },
+    {
+      "name": "longcastling"
+    },
+    {
+      "name": "shortcastling"
+    },
+    {
+      "name": "novelty"
+    },
+    {
+      "name": "chesscomment"
+    },
+    {
+      "name": "various"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\setboardfontcolors": [
       "whitefieldmask=",
       "blackfieldmask=",
       "whitefield=",
@@ -216,5 +600,6 @@
       "whitepiece=",
       "blackpiece="
     ]
-  ]
+  },
+  "args": []
 }

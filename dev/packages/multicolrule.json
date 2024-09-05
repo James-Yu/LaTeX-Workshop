@@ -1,58 +1,67 @@
 {
-  "includes": {
-    "l3keys2e": [],
-    "xpatch": [],
-    "xcolor": [],
-    "scrlfile": [],
-    "multicol": [],
-    "tikz": [
-      "tikz",
-      "tikz=true"
-    ]
-  },
-  "macros": {
-    "SetMCRule{}": {
-      "snippet": "SetMCRule{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "l3keys2e"
     },
-    "DeclareMCRulePattern{}{}": {
-      "snippet": "DeclareMCRulePattern{${1:name}}{${2:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
+    {
+      "name": "xpatch"
     },
-    "columnseprulecolor": {}
-  },
-  "envs": {},
-  "options": [
-    "tikz",
-    "twocolumn",
-    "paracol"
+    {
+      "name": "xcolor"
+    },
+    {
+      "name": "scrlfile"
+    },
+    {
+      "name": "multicol"
+    },
+    {
+      "name": "tikz",
+      "if": "tikz"
+    },
+    {
+      "name": "tikz",
+      "if": "tikz=true"
+    }
   ],
-  "keyvals": [
-    [
-      "color=",
-      "color-model=",
-      "custom-pattern={${1:pattern}}{${2:shift down}}{${3:shift up}}",
-      "custom-tile={${1:pattern}}{${2:space above}}{${3:space below}}",
-      "double=",
-      "expand=",
-      "extend-bot=",
-      "extend-fill",
-      "extend-reserve=",
-      "extend-top=",
-      "line-style=${1|circles,dash-dot,dash-dot-dot,dashed,default,dense-circles,dense-dots,dense-solid-circles,densely-dash-dot,densely-dash-dot-dot,densely-dashed,densely-dotted,dots,dotted,loose-dots,loose-circles,loose-solid-circles,loosely-dash-dot,loosely-dash-dot-dot,loosely-dashed,loosely-dotted,solid,solid-circles,strut|}",
-      "pattern-after=${1:integer}",
-      "pattern-for=${1:integer}",
-      "patterns=",
-      "single=",
-      "repeat",
-      "repeat-distance=",
-      "shift=",
-      "triple=",
-      "width=",
-      "custom-line={${1:draw command}}",
-      "custom-line={${1:draw command}}"
+  "macros": [
+    {
+      "name": "SetMCRule",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\SetMCRule,\\DeclareMCRulePattern",
+          "\\SetMCRule,\\DeclareMCRulePattern",
+          "\\SetMCRule,\\DeclareMCRulePattern"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DeclareMCRulePattern",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:keyvals}}"
+      }
+    },
+    {
+      "name": "columnseprulecolor",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/multicolrule#c": [
+      "tikz",
+      "twocolumn",
+      "paracol"
+    ],
+    "\\SetMCRule,\\DeclareMCRulePattern": [
+      "custom-line={${1:draw command}}\r"
     ]
+  },
+  "args": [
+    "\\usepackage/multicolrule#c"
   ]
 }

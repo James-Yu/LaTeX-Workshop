@@ -1,58 +1,134 @@
 {
-  "includes": {
-    "ifthen": [],
-    "lmodern": [],
-    "xstring": [],
-    "upquote": [],
-    "amsmath": [],
-    "amssymb": [],
-    "amsfonts": [],
-    "forarray": [],
-    "arrayjob": [],
-    "pgf": [],
-    "tikz": [],
-    "tikzlibraryshapes.misc": [],
-    "tikzlibraryshapes.geometric": []
-  },
-  "macros": {
-    "PDIP(){}": {
-      "snippet": "PDIP(${2:pincount}){${1:pinarray}}"
+  "deps": [
+    {
+      "name": "ifthen"
     },
-    "pctPDIP(){}": {
-      "snippet": "pctPDIP(${2:pincount}){${1:pinarray}}"
+    {
+      "name": "lmodern"
     },
-    "TQFP(){}": {
-      "snippet": "TQFP(${2:pincount}){${1:pinarray}}"
+    {
+      "name": "xstring"
     },
-    "pctTQFP(){}": {
-      "snippet": "pctTQFP(${2:pincount}){${1:pinarray}}"
+    {
+      "name": "upquote"
     },
-    "PLCC(){}": {
-      "snippet": "PLCC(${2:pincount}){${1:pinarray}}"
+    {
+      "name": "amsmath"
     },
-    "pctPLCC(){}": {
-      "snippet": "pctPLCC(${2:pincount}){${1:pinarray}}"
+    {
+      "name": "amssymb"
     },
-    "pinoutikzname": {},
-    "pinoutikzversion": {},
-    "pinoutikzdate": {},
-    "FormatPinLabel{}": {
-      "snippet": "FormatPinLabel{${1:arg}}"
+    {
+      "name": "amsfonts"
     },
-    "CASE(){}": {
-      "snippet": "CASE(${2:arg1}){${1:arg2}}"
+    {
+      "name": "forarray"
     },
-    "PIN[](){}{}": {
-      "snippet": "PIN[${3:arg1}](${4:arg2}){${1:arg3}}{${2:arg4}}"
+    {
+      "name": "arrayjob"
     },
-    "GENFOUREDGE(){}{}{}": {
-      "snippet": "GENFOUREDGE(${4:arg1}){${1:arg2}}{${2:arg3}}{${3:arg4}}"
+    {
+      "name": "pgf"
     },
-    "pardefault": {},
-    "neverindent": {},
-    "autoindent": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "tikz"
+    },
+    {
+      "name": "tikzlibraryshapes.misc"
+    },
+    {
+      "name": "tikzlibraryshapes.geometric"
+    }
+  ],
+  "macros": [
+    {
+      "name": "PDIP(pincount)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pinarray}}"
+      }
+    },
+    {
+      "name": "pctPDIP(pincount)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pinarray}}"
+      }
+    },
+    {
+      "name": "TQFP(pincount)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pinarray}}"
+      }
+    },
+    {
+      "name": "pctTQFP(pincount)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pinarray}}"
+      }
+    },
+    {
+      "name": "PLCC(pincount)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pinarray}}"
+      }
+    },
+    {
+      "name": "pctPLCC(pincount)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pinarray}}"
+      }
+    },
+    {
+      "name": "FormatPinLabel",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "CASE(arg1)",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg2}}"
+      }
+    },
+    {
+      "name": "PIN",
+      "unusual": true,
+      "arg": {
+        "format": "[](){}{}",
+        "snippet": "[${3:arg1}](${4:arg2}){${1:arg3}}{${2:arg4}}"
+      }
+    },
+    {
+      "name": "GENFOUREDGE(arg1)",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg2}}{${2:arg3}}{${3:arg4}}"
+      }
+    },
+    {
+      "name": "pardefault",
+      "unusual": true
+    },
+    {
+      "name": "neverindent",
+      "unusual": true
+    },
+    {
+      "name": "autoindent",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

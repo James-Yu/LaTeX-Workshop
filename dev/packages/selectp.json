@@ -1,14 +1,23 @@
 {
-  "includes": {},
-  "macros": {
-    "outputonly{}": {
-      "snippet": "outputonly{${1:list of page numbers}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "outputonly",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:list of page numbers}}"
+      }
     },
-    "AbsVal{}": {
-      "snippet": "AbsVal{${1:TeX num or dimen}}"
+    {
+      "name": "AbsVal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:TeX num or dimen}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

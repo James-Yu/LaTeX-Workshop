@@ -1,120 +1,130 @@
 {
-  "includes": {
-    "tikz": [],
-    "tikzlibraryshapes.misc": [],
-    "tikzlibrarycalc": [],
-    "cnltx-base": []
-  },
-  "macros": {
-    "chordscheme": {},
-    "chordscheme[]": {
-      "snippet": "chordscheme[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "scales": {},
-    "scales[]": {
-      "snippet": "scales[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "tikzlibraryshapes.misc"
     },
-    "setfingering{}{}{}": {
-      "snippet": "setfingering{${1:name}}{${2:fingers}}{${3:roots}}"
+    {
+      "name": "tikzlibrarycalc"
     },
-    "setchordscheme{}": {
-      "snippet": "setchordscheme{${1:options}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "rootsymbol": {},
-    "showrootsymbol": {},
-    "ringingstring": {},
-    "mutedstring": {}
-  },
-  "envs": {},
-  "options": [
-    "x-unit=",
-    "y-unit=",
-    "rotate=${1:angle}",
-    "finger-format={${1:TeX code}}",
-    "finger-format+={${1:TeX code}}",
-    "position-format={${1:TeX code}}",
-    "position-format+={${1:TeX code}}",
-    "name-format={${1:TeX code}}",
-    "name-format+={${1:TeX code}}",
-    "name-below",
-    "name-distance=",
-    "chord-name-cs=${1:cs}",
-    "scales-name-cs=${1:cs}",
-    "string-name-format={${1:TeX code}}",
-    "string-name-format+={${1:TeX code}}",
-    "strings=${1:number}",
-    "chord-frets=${1:number}",
-    "scales-frets=${1:number}",
-    "line-width=",
-    "finger-radius=${1:number}",
-    "finger-x-offset=${1:number}",
-    "finger-y-offset=${1:number}",
-    "finger-style={${1:TikZ style}}",
-    "root-style={${1:TikZ style}}",
-    "show-root-style={${1:TikZ style}}",
-    "ringing-style={${1:TikZ style}}",
-    "muted-style={${1:TikZ style}}",
-    "tuning={${1:strings}}",
-    "restrict-bounding-box"
+    {
+      "name": "cnltx-base"
+    }
   ],
-  "keyvals": [
-    [
-      "fret-number=${1:number}",
-      "name=${1:chord symbol}",
-      "position=${1:position}",
-      "finger=${1:fret}/${2:string}:${3:label}",
-      "root=${1:fret}/${2:string}:${3:label}",
-      "show-root=${1:fret}/${2:string}",
-      "barre=${1:fret}/${2:string range}:${3:label}",
-      "ring={${1:strings}}",
-      "mute={${1:strings}}"
+  "macros": [
+    {
+      "name": "chordscheme"
+    },
+    {
+      "name": "chordscheme",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "scales"
+    },
+    {
+      "name": "scales",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "setfingering",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:fingers}}{${3:roots}}"
+      }
+    },
+    {
+      "name": "setchordscheme",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\setchordscheme,\\usepackage/guitarchordschemes#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "rootsymbol",
+      "unusual": true
+    },
+    {
+      "name": "showrootsymbol",
+      "unusual": true
+    },
+    {
+      "name": "ringingstring",
+      "unusual": true
+    },
+    {
+      "name": "mutedstring",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\chordscheme": [
+      "fret-number=${1:number}\r",
+      "name=${1:chord symbol}\r",
+      "position=${1:position}\r",
+      "finger=${1:fret}/${2:string}:${3:label}\r",
+      "root=${1:fret}/${2:string}:${3:label}\r",
+      "show-root=${1:fret}/${2:string}\r",
+      "barre=${1:fret}/${2:string range}:${3:label}\r",
+      "ring={${1:strings}}\r",
+      "mute={${1:strings}}\r"
     ],
-    [
-      "fret-number=${1:number}",
-      "name=${1:title}",
-      "position=${1:position}",
-      "finger=${1:fret}/${2:string}:${3:label}",
-      "root=${1:fret}/${2:string}:${3:label}",
-      "fingering=${1|type 1,type 1A,type 2,type 3,type 4|}",
-      "fingering*=${1|type 1,type 1A,type 2,type 3,type 4|}",
-      "fingering?=${1|type 1,type 1A,type 2,type 3,type 4|}"
+    "\\scales#c": [
+      "fret-number=${1:number}\r",
+      "name=${1:title}\r",
+      "position=${1:position}\r",
+      "finger=${1:fret}/${2:string}:${3:label}\r",
+      "root=${1:fret}/${2:string}:${3:label}\r",
+      "fingering=${1|type 1,type 1A,type 2,type 3,type 4\r|}",
+      "fingering*=${1|type 1,type 1A,type 2,type 3,type 4\r|}",
+      "fingering?=${1|type 1,type 1A,type 2,type 3,type 4\r|}"
     ],
-    [
+    "\\setchordscheme,\\usepackage/guitarchordschemes#c": [
       "x-unit=",
       "y-unit=",
-      "rotate=${1:angle}",
-      "finger-format={${1:TeX code}}",
-      "finger-format+={${1:TeX code}}",
-      "position-format={${1:TeX code}}",
-      "position-format+={${1:TeX code}}",
-      "name-format={${1:TeX code}}",
-      "name-format+={${1:TeX code}}",
+      "rotate=${1:angle}\r",
+      "finger-format={${1:TeX code}}\r",
+      "finger-format+={${1:TeX code}}\r",
+      "position-format={${1:TeX code}}\r",
+      "position-format+={${1:TeX code}}\r",
+      "name-format={${1:TeX code}}\r",
+      "name-format+={${1:TeX code}}\r",
       "name-below",
       "name-distance=",
-      "chord-name-cs=${1:cs}",
-      "scales-name-cs=${1:cs}",
-      "string-name-format={${1:TeX code}}",
-      "string-name-format+={${1:TeX code}}",
-      "strings=${1:number}",
-      "chord-frets=${1:number}",
-      "scales-frets=${1:number}",
+      "chord-name-cs=${1:cs}\r",
+      "scales-name-cs=${1:cs}\r",
+      "string-name-format={${1:TeX code}}\r",
+      "string-name-format+={${1:TeX code}}\r",
+      "strings=${1:number}\r",
+      "chord-frets=${1:number}\r",
+      "scales-frets=${1:number}\r",
       "line-width=",
-      "finger-radius=${1:number}",
-      "finger-x-offset=${1:number}",
-      "finger-y-offset=${1:number}",
-      "finger-style={${1:TikZ style}}",
-      "root-style={${1:TikZ style}}",
-      "show-root-style={${1:TikZ style}}",
-      "ringing-style={${1:TikZ style}}",
-      "muted-style={${1:TikZ style}}",
-      "tuning={${1:strings}}",
+      "finger-radius=${1:number}\r",
+      "finger-x-offset=${1:number}\r",
+      "finger-y-offset=${1:number}\r",
+      "finger-style={${1:TikZ style}}\r",
+      "root-style={${1:TikZ style}}\r",
+      "show-root-style={${1:TikZ style}}\r",
+      "ringing-style={${1:TikZ style}}\r",
+      "muted-style={${1:TikZ style}}\r",
+      "tuning={${1:strings}}\r",
       "restrict-bounding-box"
     ]
+  },
+  "args": [
+    "\\setchordscheme,\\usepackage/guitarchordschemes#c"
   ]
 }

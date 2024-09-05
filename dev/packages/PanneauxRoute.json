@@ -1,1176 +1,1936 @@
 {
-  "includes": {
-    "graphicx": []
-  },
-  "macros": {
-    "AffPanneau{}": {
-      "snippet": "AffPanneau{${1:CodePanneau}}"
-    },
-    "AffPanneau[]{}": {
-      "snippet": "AffPanneau[${2:options}]{${1:CodePanneau}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prVirDroit": {},
-    "prVirDroit[]": {
-      "snippet": "prVirDroit[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prVirGauche": {},
-    "prVirGauche[]": {
-      "snippet": "prVirGauche[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prVirsDroit": {},
-    "prVirsDroit[]": {
-      "snippet": "prVirsDroit[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prVirsGauche": {},
-    "prVirsGauche[]": {
-      "snippet": "prVirsGauche[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prDosAne": {},
-    "prDosAne[]": {
-      "snippet": "prDosAne[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prRalDosAne": {},
-    "prRalDosAne[]": {
-      "snippet": "prRalDosAne[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prChausRet": {},
-    "prChausRet[]": {
-      "snippet": "prChausRet[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prChausRetD": {},
-    "prChausRetD[]": {
-      "snippet": "prChausRetD[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prChausRetG": {},
-    "prChausRetG[]": {
-      "snippet": "prChausRetG[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prChaussGliss": {},
-    "prChaussGliss[]": {
-      "snippet": "prChaussGliss[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prPontMob": {},
-    "prPontMob[]": {
-      "snippet": "prPontMob[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prPassNiv": {},
-    "prPassNiv[]": {
-      "snippet": "prPassNiv[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prPassNivVap": {},
-    "prPassNivVap[]": {
-      "snippet": "prPassNivVap[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prPassTram": {},
-    "prPassTram[]": {
-      "snippet": "prPassTram[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prEnfants": {},
-    "prEnfants[]": {
-      "snippet": "prEnfants[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prPietons": {},
-    "prPietons[]": {
-      "snippet": "prPietons[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prDanger": {},
-    "prDanger[]": {
-      "snippet": "prDanger[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prAnimaux": {},
-    "prAnimaux[]": {
-      "snippet": "prAnimaux[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prAnimauxSauv": {},
-    "prAnimauxSauv[]": {
-      "snippet": "prAnimauxSauv[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prCavaliers": {},
-    "prCavaliers[]": {
-      "snippet": "prCavaliers[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prDescente": {},
-    "prDescente[]": {
-      "snippet": "prDescente[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prFeux": {},
-    "prFeux[]": {
-      "snippet": "prFeux[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prDeuxSens": {},
-    "prDeuxSens[]": {
-      "snippet": "prDeuxSens[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prChute": {},
-    "prChute[]": {
-      "snippet": "prChute[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prQuai": {},
-    "prQuai[]": {
-      "snippet": "prQuai[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prVelos": {},
-    "prVelos[]": {
-      "snippet": "prVelos[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prAvions": {},
-    "prAvions[]": {
-      "snippet": "prAvions[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prVent": {},
-    "prVent[]": {
-      "snippet": "prVent[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prIntersect": {},
-    "prIntersect[]": {
-      "snippet": "prIntersect[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prIntersectPrio": {},
-    "prIntersectPrio[]": {
-      "snippet": "prIntersectPrio[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prCedez": {},
-    "prCedez[]": {
-      "snippet": "prCedez[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prCedezInter": {},
-    "prCedezInter[]": {
-      "snippet": "prCedezInter[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prStop": {},
-    "prStop[]": {
-      "snippet": "prStop[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prArretInter": {},
-    "prArretInter[]": {
-      "snippet": "prArretInter[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prRoutePrio": {},
-    "prRoutePrio[]": {
-      "snippet": "prRoutePrio[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prFinRoutePrio": {},
-    "prFinRoutePrio[]": {
-      "snippet": "prFinRoutePrio[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prRondPoint": {},
-    "prRondPoint[]": {
-      "snippet": "prRondPoint[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prCircInterd": {},
-    "prCircInterd[]": {
-      "snippet": "prCircInterd[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prSensInterdit": {},
-    "prSensInterdit[]": {
-      "snippet": "prSensInterdit[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prInterdTournG": {},
-    "prInterdTournG[]": {
-      "snippet": "prInterdTournG[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prInterdTournD": {},
-    "prInterdTournD[]": {
-      "snippet": "prInterdTournD[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prInterdDemiTour": {},
-    "prInterdDemiTour[]": {
-      "snippet": "prInterdDemiTour[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prInterdDepass": {},
-    "prInterdDepass[]": {
-      "snippet": "prInterdDepass[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prInterdVehic": {},
-    "prInterdVehic[]": {
-      "snippet": "prInterdVehic[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prHalteDouane": {},
-    "prHalteDouane[]": {
-      "snippet": "prHalteDouane[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prHalteGendarm": {},
-    "prHalteGendarm[]": {
-      "snippet": "prHalteGendarm[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prHaltePolice": {},
-    "prHaltePolice[]": {
-      "snippet": "prHaltePolice[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prHaltePeage": {},
-    "prHaltePeage[]": {
-      "snippet": "prHaltePeage[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prStationInterd": {},
-    "prStationInterd[]": {
-      "snippet": "prStationInterd[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prStationInterdQA": {},
-    "prStationInterdQA[]": {
-      "snippet": "prStationInterdQA[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prStationInterdQB": {},
-    "prStationInterdQB[]": {
-      "snippet": "prStationInterdQB[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prArStatInterd": {},
-    "prArStatInterd[]": {
-      "snippet": "prArStatInterd[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prInterdMotSaufCyc": {},
-    "prInterdMotSaufCyc[]": {
-      "snippet": "prInterdMotSaufCyc[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prInterdMot": {},
-    "prInterdMot[]": {
-      "snippet": "prInterdMot[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prInterdMarchand": {},
-    "prInterdMarchand[]": {
-      "snippet": "prInterdMarchand[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prInterdPietons": {},
-    "prInterdPietons[]": {
-      "snippet": "prInterdPietons[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prInterdCycles": {},
-    "prInterdCycles[]": {
-      "snippet": "prInterdCycles[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prInterdTracAnim": {},
-    "prInterdTracAnim[]": {
-      "snippet": "prInterdTracAnim[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prInterdAgricMot": {},
-    "prInterdAgricMot[]": {
-      "snippet": "prInterdAgricMot[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prInterdBras": {},
-    "prInterdBras[]": {
-      "snippet": "prInterdBras[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prInterdTranspComm": {},
-    "prInterdTranspComm[]": {
-      "snippet": "prInterdTranspComm[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prInterdCyclomot": {},
-    "prInterdCyclomot[]": {
-      "snippet": "prInterdCyclomot[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prInterdCycloMoto": {},
-    "prInterdCycloMoto[]": {
-      "snippet": "prInterdCycloMoto[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prInterdCaravanes": {},
-    "prInterdCaravanes[]": {
-      "snippet": "prInterdCaravanes[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prInterdLong": {},
-    "prInterdLong[]": {
-      "snippet": "prInterdLong[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prInterdLarg": {},
-    "prInterdLarg[]": {
-      "snippet": "prInterdLarg[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prInterdHaut": {},
-    "prInterdHaut[]": {
-      "snippet": "prInterdHaut[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prInterdPoids": {},
-    "prInterdPoids[]": {
-      "snippet": "prInterdPoids[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prInterdPoidsEssieu": {},
-    "prInterdPoidsEssieu[]": {
-      "snippet": "prInterdPoidsEssieu[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prCedezInv": {},
-    "prCedezInv[]": {
-      "snippet": "prCedezInv[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prInterdSons": {},
-    "prInterdSons[]": {
-      "snippet": "prInterdSons[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prDistance": {},
-    "prDistance[]": {
-      "snippet": "prDistance[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prExplos": {},
-    "prExplos[]": {
-      "snippet": "prExplos[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prPollu": {},
-    "prPollu[]": {
-      "snippet": "prPollu[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prDangereuses": {},
-    "prDangereuses[]": {
-      "snippet": "prDangereuses[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prObliAvDroite": {},
-    "prObliAvDroite[]": {
-      "snippet": "prObliAvDroite[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prObliAvGauche": {},
-    "prObliAvGauche[]": {
-      "snippet": "prObliAvGauche[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prContournDroite": {},
-    "prContournDroite[]": {
-      "snippet": "prContournDroite[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prContournGauche": {},
-    "prContournGauche[]": {
-      "snippet": "prContournGauche[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prToutDroit": {},
-    "prToutDroit[]": {
-      "snippet": "prToutDroit[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prObliDroite": {},
-    "prObliDroite[]": {
-      "snippet": "prObliDroite[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prObliGauche": {},
-    "prObliGauche[]": {
-      "snippet": "prObliGauche[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prObliToutDroite": {},
-    "prObliToutDroite[]": {
-      "snippet": "prObliToutDroite[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prObliToutGauche": {},
-    "prObliToutGauche[]": {
-      "snippet": "prObliToutGauche[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prObliDroiteGauche": {},
-    "prObliDroiteGauche[]": {
-      "snippet": "prObliDroiteGauche[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prObliCycles": {},
-    "prObliCycles[]": {
-      "snippet": "prObliCycles[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prObliPietons": {},
-    "prObliPietons[]": {
-      "snippet": "prObliPietons[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prObliCavaliers": {},
-    "prObliCavaliers[]": {
-      "snippet": "prObliCavaliers[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prObliVitesse": {},
-    "prObliVitesse[]": {
-      "snippet": "prObliVitesse[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prObliChaines": {},
-    "prObliChaines[]": {
-      "snippet": "prObliChaines[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prObliBus": {},
-    "prObliBus[]": {
-      "snippet": "prObliBus[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prObliTrams": {},
-    "prObliTrams[]": {
-      "snippet": "prObliTrams[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prFinInterd": {},
-    "prFinInterd[]": {
-      "snippet": "prFinInterd[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prFinIntDepass": {},
-    "prFinIntDepass[]": {
-      "snippet": "prFinIntDepass[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prFinIntDepassCam": {},
-    "prFinIntDepassCam[]": {
-      "snippet": "prFinIntDepassCam[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prFinIntSons": {},
-    "prFinIntSons[]": {
-      "snippet": "prFinIntSons[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prFinPisteOblCycl": {},
-    "prFinPisteOblCycl[]": {
-      "snippet": "prFinPisteOblCycl[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prFinChemPiet": {},
-    "prFinChemPiet[]": {
-      "snippet": "prFinChemPiet[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prFinChemCav": {},
-    "prFinChemCav[]": {
-      "snippet": "prFinChemCav[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prFinVitObli": {},
-    "prFinVitObli[]": {
-      "snippet": "prFinVitObli[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prFinChaines": {},
-    "prFinChaines[]": {
-      "snippet": "prFinChaines[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prFinVoieBus": {},
-    "prFinVoieBus[]": {
-      "snippet": "prFinVoieBus[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prParking": {},
-    "prParking[]": {
-      "snippet": "prParking[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prParkDisq": {},
-    "prParkDisq[]": {
-      "snippet": "prParkDisq[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prParkPay": {},
-    "prParkPay[]": {
-      "snippet": "prParkPay[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prIncendie": {},
-    "prIncendie[]": {
-      "snippet": "prIncendie[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prVitConseil": {},
-    "prVitConseil[]": {
-      "snippet": "prVitConseil[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prFinVitConseil": {},
-    "prFinVitConseil[]": {
-      "snippet": "prFinVitConseil[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prTaxis": {},
-    "prTaxis[]": {
-      "snippet": "prTaxis[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prArretBus": {},
-    "prArretBus[]": {
-      "snippet": "prArretBus[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prArretUrg": {},
-    "prArretUrg[]": {
-      "snippet": "prArretUrg[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prCircSensUniq": {},
-    "prCircSensUniq[]": {
-      "snippet": "prCircSensUniq[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prImpasse": {},
-    "prImpasse[]": {
-      "snippet": "prImpasse[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prPreImpasse": {},
-    "prPreImpasse[]": {
-      "snippet": "prPreImpasse[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prPriorSensInv": {},
-    "prPriorSensInv[]": {
-      "snippet": "prPriorSensInv[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prPassPietons": {},
-    "prPassPietons[]": {
-      "snippet": "prPassPietons[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prTravTrams": {},
-    "prTravTrams[]": {
-      "snippet": "prTravTrams[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prStatCarav": {},
-    "prStatCarav[]": {
-      "snippet": "prStatCarav[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prVoiesAffA": {},
-    "prVoiesAffA[]": {
-      "snippet": "prVoiesAffA[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prVoiesAffB": {},
-    "prVoiesAffB[]": {
-      "snippet": "prVoiesAffB[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prVoiesAffC": {},
-    "prVoiesAffC[]": {
-      "snippet": "prVoiesAffC[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prVoiesAffD": {},
-    "prVoiesAffD[]": {
-      "snippet": "prVoiesAffD[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prVoiesAffE": {},
-    "prVoiesAffE[]": {
-      "snippet": "prVoiesAffE[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prVoiesAffF": {},
-    "prVoiesAffF[]": {
-      "snippet": "prVoiesAffF[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prVitFront": {},
-    "prVitFront[]": {
-      "snippet": "prVitFront[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prVitAutor": {},
-    "prVitAutor[]": {
-      "snippet": "prVitAutor[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prDetresseD": {},
-    "prDetresseD[]": {
-      "snippet": "prDetresseD[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prDetresseG": {},
-    "prDetresseG[]": {
-      "snippet": "prDetresseG[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prChausseSur": {},
-    "prChausseSur[]": {
-      "snippet": "prChausseSur[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prReducVoieA": {},
-    "prReducVoieA[]": {
-      "snippet": "prReducVoieA[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prReducVoieB": {},
-    "prReducVoieB[]": {
-      "snippet": "prReducVoieB[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prCreneauDepas": {},
-    "prCreneauDepas[]": {
-      "snippet": "prCreneauDepas[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prFinCreneauDepas": {},
-    "prFinCreneauDepas[]": {
-      "snippet": "prFinCreneauDepas[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prTickPeage": {},
-    "prTickPeage[]": {
-      "snippet": "prTickPeage[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prPaiemPeage": {},
-    "prPaiemPeage[]": {
-      "snippet": "prPaiemPeage[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prPaiemCB": {},
-    "prPaiemCB[]": {
-      "snippet": "prPaiemCB[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prPaiemPieces": {},
-    "prPaiemPieces[]": {
-      "snippet": "prPaiemPieces[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prPaiemPiecBil": {},
-    "prPaiemPiecBil[]": {
-      "snippet": "prPaiemPiecBil[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prPaiemTelepeage": {},
-    "prPaiemTelepeage[]": {
-      "snippet": "prPaiemTelepeage[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prRouteRegl": {},
-    "prRouteRegl[]": {
-      "snippet": "prRouteRegl[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prFinRouteRegl": {},
-    "prFinRouteRegl[]": {
-      "snippet": "prFinRouteRegl[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prEntrTunnel": {},
-    "prEntrTunnel[]": {
-      "snippet": "prEntrTunnel[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prSortieTunnel": {},
-    "prSortieTunnel[]": {
-      "snippet": "prSortieTunnel[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prPisteCycl": {},
-    "prPisteCycl[]": {
-      "snippet": "prPisteCycl[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prFinPisteCycl": {},
-    "prFinPisteCycl[]": {
-      "snippet": "prFinPisteCycl[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prVoieVerte": {},
-    "prVoieVerte[]": {
-      "snippet": "prVoieVerte[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prFinVoieVerte": {},
-    "prFinVoieVerte[]": {
-      "snippet": "prFinVoieVerte[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prDebAutor": {},
-    "prDebAutor[]": {
-      "snippet": "prDebAutor[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prFinAutor": {},
-    "prFinAutor[]": {
-      "snippet": "prFinAutor[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prPosteSecours": {},
-    "prPosteSecours[]": {
-      "snippet": "prPosteSecours[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prPosteSecUrg": {},
-    "prPosteSecUrg[]": {
-      "snippet": "prPosteSecUrg[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prCabineTel": {},
-    "prCabineTel[]": {
-      "snippet": "prCabineTel[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prInfos": {},
-    "prInfos[]": {
-      "snippet": "prInfos[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prCampingT": {},
-    "prCampingT[]": {
-      "snippet": "prCampingT[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prCampingC": {},
-    "prCampingC[]": {
-      "snippet": "prCampingC[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prCampingTC": {},
-    "prCampingTC[]": {
-      "snippet": "prCampingTC[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prAubergJeun": {},
-    "prAubergJeun[]": {
-      "snippet": "prAubergJeun[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prGite": {},
-    "prGite[]": {
-      "snippet": "prGite[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prItinPedest": {},
-    "prItinPedest[]": {
-      "snippet": "prItinPedest[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prItinSkiFond": {},
-    "prItinSkiFond[]": {
-      "snippet": "prItinSkiFond[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prPicNic": {},
-    "prPicNic[]": {
-      "snippet": "prPicNic[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prGareAutoTrain": {},
-    "prGareAutoTrain[]": {
-      "snippet": "prGareAutoTrain[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prParkVideo": {},
-    "prParkVideo[]": {
-      "snippet": "prParkVideo[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prEmbarcad": {},
-    "prEmbarcad[]": {
-      "snippet": "prEmbarcad[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prToilettes": {},
-    "prToilettes[]": {
-      "snippet": "prToilettes[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prAccesHandic": {},
-    "prAccesHandic[]": {
-      "snippet": "prAccesHandic[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prEssence": {},
-    "prEssence[]": {
-      "snippet": "prEssence[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prEssenceGPL": {},
-    "prEssenceGPL[]": {
-      "snippet": "prEssenceGPL[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prRestau": {},
-    "prRestau[]": {
-      "snippet": "prRestau[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prHotel": {},
-    "prHotel[]": {
-      "snippet": "prHotel[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prBoissons": {},
-    "prBoissons[]": {
-      "snippet": "prBoissons[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prEmbarcLeg": {},
-    "prEmbarcLeg[]": {
-      "snippet": "prEmbarcLeg[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prTelepher": {},
-    "prTelepher[]": {
-      "snippet": "prTelepher[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prTelecabin": {},
-    "prTelecabin[]": {
-      "snippet": "prTelecabin[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prPointVue": {},
-    "prPointVue[]": {
-      "snippet": "prPointVue[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prRadio": {},
-    "prRadio[]": {
-      "snippet": "prRadio[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prJeuxEnfants": {},
-    "prJeuxEnfants[]": {
-      "snippet": "prJeuxEnfants[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prVidange": {},
-    "prVidange[]": {
-      "snippet": "prVidange[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prDistribBill": {},
-    "prDistribBill[]": {
-      "snippet": "prDistribBill[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prGonflage": {},
-    "prGonflage[]": {
-      "snippet": "prGonflage[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prDetente": {},
-    "prDetente[]": {
-      "snippet": "prDetente[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prPosteDepann": {},
-    "prPosteDepann[]": {
-      "snippet": "prPosteDepann[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prLutteIncendie": {},
-    "prLutteIncendie[]": {
-      "snippet": "prLutteIncendie[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prIssueSecD": {},
-    "prIssueSecD[]": {
-      "snippet": "prIssueSecD[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prIssueSecG": {},
-    "prIssueSecG[]": {
-      "snippet": "prIssueSecG[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prFinLimVit{}": {
-      "snippet": "prFinLimVit{${1:nombre}}"
-    },
-    "prFinLimVit[]{}": {
-      "snippet": "prFinLimVit[${2:options}]{${1:nombre}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "prLimVites{}": {
-      "snippet": "prLimVites{${1:nombre}}"
-    },
-    "prLimVites[]{}": {
-      "snippet": "prLimVites[${2:options}]{${1:nombre}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "graphicx"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "alt={${1:alt text}}",
-      "bb=${1:llx lly urx ury}",
-      "bbllx=",
-      "bblly=",
-      "bburx=",
-      "bbury=",
-      "natwidth=",
-      "natheight=",
+  ],
+  "macros": [
+    {
+      "name": "AffPanneau",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:CodePanneau}}"
+      }
+    },
+    {
+      "name": "AffPanneau",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:CodePanneau}}"
+      }
+    },
+    {
+      "name": "prVirDroit"
+    },
+    {
+      "name": "prVirDroit",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prVirGauche"
+    },
+    {
+      "name": "prVirGauche",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prVirsDroit"
+    },
+    {
+      "name": "prVirsDroit",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prVirsGauche"
+    },
+    {
+      "name": "prVirsGauche",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prDosAne"
+    },
+    {
+      "name": "prDosAne",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prRalDosAne"
+    },
+    {
+      "name": "prRalDosAne",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prChausRet"
+    },
+    {
+      "name": "prChausRet",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prChausRetD"
+    },
+    {
+      "name": "prChausRetD",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prChausRetG"
+    },
+    {
+      "name": "prChausRetG",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prChaussGliss"
+    },
+    {
+      "name": "prChaussGliss",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prPontMob"
+    },
+    {
+      "name": "prPontMob",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prPassNiv"
+    },
+    {
+      "name": "prPassNiv",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prPassNivVap"
+    },
+    {
+      "name": "prPassNivVap",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prPassTram"
+    },
+    {
+      "name": "prPassTram",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prEnfants"
+    },
+    {
+      "name": "prEnfants",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prPietons"
+    },
+    {
+      "name": "prPietons",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prDanger"
+    },
+    {
+      "name": "prDanger",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prAnimaux"
+    },
+    {
+      "name": "prAnimaux",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prAnimauxSauv"
+    },
+    {
+      "name": "prAnimauxSauv",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prCavaliers"
+    },
+    {
+      "name": "prCavaliers",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prDescente"
+    },
+    {
+      "name": "prDescente",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prFeux"
+    },
+    {
+      "name": "prFeux",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prDeuxSens"
+    },
+    {
+      "name": "prDeuxSens",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prChute"
+    },
+    {
+      "name": "prChute",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prQuai"
+    },
+    {
+      "name": "prQuai",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prVelos"
+    },
+    {
+      "name": "prVelos",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prAvions"
+    },
+    {
+      "name": "prAvions",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prVent"
+    },
+    {
+      "name": "prVent",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prIntersect"
+    },
+    {
+      "name": "prIntersect",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prIntersectPrio"
+    },
+    {
+      "name": "prIntersectPrio",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prCedez"
+    },
+    {
+      "name": "prCedez",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prCedezInter"
+    },
+    {
+      "name": "prCedezInter",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prStop"
+    },
+    {
+      "name": "prStop",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prArretInter"
+    },
+    {
+      "name": "prArretInter",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prRoutePrio"
+    },
+    {
+      "name": "prRoutePrio",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prFinRoutePrio"
+    },
+    {
+      "name": "prFinRoutePrio",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prRondPoint"
+    },
+    {
+      "name": "prRondPoint",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prCircInterd"
+    },
+    {
+      "name": "prCircInterd",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prSensInterdit"
+    },
+    {
+      "name": "prSensInterdit",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prInterdTournG"
+    },
+    {
+      "name": "prInterdTournG",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prInterdTournD"
+    },
+    {
+      "name": "prInterdTournD",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prInterdDemiTour"
+    },
+    {
+      "name": "prInterdDemiTour",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prInterdDepass"
+    },
+    {
+      "name": "prInterdDepass",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prInterdVehic"
+    },
+    {
+      "name": "prInterdVehic",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prHalteDouane"
+    },
+    {
+      "name": "prHalteDouane",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prHalteGendarm"
+    },
+    {
+      "name": "prHalteGendarm",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prHaltePolice"
+    },
+    {
+      "name": "prHaltePolice",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prHaltePeage"
+    },
+    {
+      "name": "prHaltePeage",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prStationInterd"
+    },
+    {
+      "name": "prStationInterd",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prStationInterdQA"
+    },
+    {
+      "name": "prStationInterdQA",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prStationInterdQB"
+    },
+    {
+      "name": "prStationInterdQB",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prArStatInterd"
+    },
+    {
+      "name": "prArStatInterd",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prInterdMotSaufCyc"
+    },
+    {
+      "name": "prInterdMotSaufCyc",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prInterdMot"
+    },
+    {
+      "name": "prInterdMot",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prInterdMarchand"
+    },
+    {
+      "name": "prInterdMarchand",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prInterdPietons"
+    },
+    {
+      "name": "prInterdPietons",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prInterdCycles"
+    },
+    {
+      "name": "prInterdCycles",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prInterdTracAnim"
+    },
+    {
+      "name": "prInterdTracAnim",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prInterdAgricMot"
+    },
+    {
+      "name": "prInterdAgricMot",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prInterdBras"
+    },
+    {
+      "name": "prInterdBras",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prInterdTranspComm"
+    },
+    {
+      "name": "prInterdTranspComm",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prInterdCyclomot"
+    },
+    {
+      "name": "prInterdCyclomot",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prInterdCycloMoto"
+    },
+    {
+      "name": "prInterdCycloMoto",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prInterdCaravanes"
+    },
+    {
+      "name": "prInterdCaravanes",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prInterdLong"
+    },
+    {
+      "name": "prInterdLong",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prInterdLarg"
+    },
+    {
+      "name": "prInterdLarg",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prInterdHaut"
+    },
+    {
+      "name": "prInterdHaut",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prInterdPoids"
+    },
+    {
+      "name": "prInterdPoids",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prInterdPoidsEssieu"
+    },
+    {
+      "name": "prInterdPoidsEssieu",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prCedezInv"
+    },
+    {
+      "name": "prCedezInv",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prInterdSons"
+    },
+    {
+      "name": "prInterdSons",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prDistance"
+    },
+    {
+      "name": "prDistance",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prExplos"
+    },
+    {
+      "name": "prExplos",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prPollu"
+    },
+    {
+      "name": "prPollu",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prDangereuses"
+    },
+    {
+      "name": "prDangereuses",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prObliAvDroite"
+    },
+    {
+      "name": "prObliAvDroite",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prObliAvGauche"
+    },
+    {
+      "name": "prObliAvGauche",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prContournDroite"
+    },
+    {
+      "name": "prContournDroite",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prContournGauche"
+    },
+    {
+      "name": "prContournGauche",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prToutDroit"
+    },
+    {
+      "name": "prToutDroit",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prObliDroite"
+    },
+    {
+      "name": "prObliDroite",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prObliGauche"
+    },
+    {
+      "name": "prObliGauche",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prObliToutDroite"
+    },
+    {
+      "name": "prObliToutDroite",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prObliToutGauche"
+    },
+    {
+      "name": "prObliToutGauche",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prObliDroiteGauche"
+    },
+    {
+      "name": "prObliDroiteGauche",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prObliCycles"
+    },
+    {
+      "name": "prObliCycles",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prObliPietons"
+    },
+    {
+      "name": "prObliPietons",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prObliCavaliers"
+    },
+    {
+      "name": "prObliCavaliers",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prObliVitesse"
+    },
+    {
+      "name": "prObliVitesse",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prObliChaines"
+    },
+    {
+      "name": "prObliChaines",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prObliBus"
+    },
+    {
+      "name": "prObliBus",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prObliTrams"
+    },
+    {
+      "name": "prObliTrams",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prFinInterd"
+    },
+    {
+      "name": "prFinInterd",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prFinIntDepass"
+    },
+    {
+      "name": "prFinIntDepass",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prFinIntDepassCam"
+    },
+    {
+      "name": "prFinIntDepassCam",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prFinIntSons"
+    },
+    {
+      "name": "prFinIntSons",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prFinPisteOblCycl"
+    },
+    {
+      "name": "prFinPisteOblCycl",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prFinChemPiet"
+    },
+    {
+      "name": "prFinChemPiet",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prFinChemCav"
+    },
+    {
+      "name": "prFinChemCav",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prFinVitObli"
+    },
+    {
+      "name": "prFinVitObli",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prFinChaines"
+    },
+    {
+      "name": "prFinChaines",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prFinVoieBus"
+    },
+    {
+      "name": "prFinVoieBus",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prParking"
+    },
+    {
+      "name": "prParking",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prParkDisq"
+    },
+    {
+      "name": "prParkDisq",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prParkPay"
+    },
+    {
+      "name": "prParkPay",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prIncendie"
+    },
+    {
+      "name": "prIncendie",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prVitConseil"
+    },
+    {
+      "name": "prVitConseil",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prFinVitConseil"
+    },
+    {
+      "name": "prFinVitConseil",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prTaxis"
+    },
+    {
+      "name": "prTaxis",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prArretBus"
+    },
+    {
+      "name": "prArretBus",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prArretUrg"
+    },
+    {
+      "name": "prArretUrg",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prCircSensUniq"
+    },
+    {
+      "name": "prCircSensUniq",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prImpasse"
+    },
+    {
+      "name": "prImpasse",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prPreImpasse"
+    },
+    {
+      "name": "prPreImpasse",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prPriorSensInv"
+    },
+    {
+      "name": "prPriorSensInv",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prPassPietons"
+    },
+    {
+      "name": "prPassPietons",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prTravTrams"
+    },
+    {
+      "name": "prTravTrams",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prStatCarav"
+    },
+    {
+      "name": "prStatCarav",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prVoiesAffA"
+    },
+    {
+      "name": "prVoiesAffA",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prVoiesAffB"
+    },
+    {
+      "name": "prVoiesAffB",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prVoiesAffC"
+    },
+    {
+      "name": "prVoiesAffC",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prVoiesAffD"
+    },
+    {
+      "name": "prVoiesAffD",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prVoiesAffE"
+    },
+    {
+      "name": "prVoiesAffE",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prVoiesAffF"
+    },
+    {
+      "name": "prVoiesAffF",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prVitFront"
+    },
+    {
+      "name": "prVitFront",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prVitAutor"
+    },
+    {
+      "name": "prVitAutor",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prDetresseD"
+    },
+    {
+      "name": "prDetresseD",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prDetresseG"
+    },
+    {
+      "name": "prDetresseG",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prChausseSur"
+    },
+    {
+      "name": "prChausseSur",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prReducVoieA"
+    },
+    {
+      "name": "prReducVoieA",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prReducVoieB"
+    },
+    {
+      "name": "prReducVoieB",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prCreneauDepas"
+    },
+    {
+      "name": "prCreneauDepas",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prFinCreneauDepas"
+    },
+    {
+      "name": "prFinCreneauDepas",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prTickPeage"
+    },
+    {
+      "name": "prTickPeage",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prPaiemPeage"
+    },
+    {
+      "name": "prPaiemPeage",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prPaiemCB"
+    },
+    {
+      "name": "prPaiemCB",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prPaiemPieces"
+    },
+    {
+      "name": "prPaiemPieces",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prPaiemPiecBil"
+    },
+    {
+      "name": "prPaiemPiecBil",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prPaiemTelepeage"
+    },
+    {
+      "name": "prPaiemTelepeage",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prRouteRegl"
+    },
+    {
+      "name": "prRouteRegl",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prFinRouteRegl"
+    },
+    {
+      "name": "prFinRouteRegl",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prEntrTunnel"
+    },
+    {
+      "name": "prEntrTunnel",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prSortieTunnel"
+    },
+    {
+      "name": "prSortieTunnel",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prPisteCycl"
+    },
+    {
+      "name": "prPisteCycl",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prFinPisteCycl"
+    },
+    {
+      "name": "prFinPisteCycl",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prVoieVerte"
+    },
+    {
+      "name": "prVoieVerte",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prFinVoieVerte"
+    },
+    {
+      "name": "prFinVoieVerte",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prDebAutor"
+    },
+    {
+      "name": "prDebAutor",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prFinAutor"
+    },
+    {
+      "name": "prFinAutor",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prPosteSecours"
+    },
+    {
+      "name": "prPosteSecours",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prPosteSecUrg"
+    },
+    {
+      "name": "prPosteSecUrg",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prCabineTel"
+    },
+    {
+      "name": "prCabineTel",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prInfos"
+    },
+    {
+      "name": "prInfos",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prCampingT"
+    },
+    {
+      "name": "prCampingT",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prCampingC"
+    },
+    {
+      "name": "prCampingC",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prCampingTC"
+    },
+    {
+      "name": "prCampingTC",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prAubergJeun"
+    },
+    {
+      "name": "prAubergJeun",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prGite"
+    },
+    {
+      "name": "prGite",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prItinPedest"
+    },
+    {
+      "name": "prItinPedest",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prItinSkiFond"
+    },
+    {
+      "name": "prItinSkiFond",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prPicNic"
+    },
+    {
+      "name": "prPicNic",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prGareAutoTrain"
+    },
+    {
+      "name": "prGareAutoTrain",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prParkVideo"
+    },
+    {
+      "name": "prParkVideo",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prEmbarcad"
+    },
+    {
+      "name": "prEmbarcad",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prToilettes"
+    },
+    {
+      "name": "prToilettes",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prAccesHandic"
+    },
+    {
+      "name": "prAccesHandic",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prEssence"
+    },
+    {
+      "name": "prEssence",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prEssenceGPL"
+    },
+    {
+      "name": "prEssenceGPL",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prRestau"
+    },
+    {
+      "name": "prRestau",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prHotel"
+    },
+    {
+      "name": "prHotel",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prBoissons"
+    },
+    {
+      "name": "prBoissons",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prEmbarcLeg"
+    },
+    {
+      "name": "prEmbarcLeg",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prTelepher"
+    },
+    {
+      "name": "prTelepher",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prTelecabin"
+    },
+    {
+      "name": "prTelecabin",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prPointVue"
+    },
+    {
+      "name": "prPointVue",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prRadio"
+    },
+    {
+      "name": "prRadio",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prJeuxEnfants"
+    },
+    {
+      "name": "prJeuxEnfants",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prVidange"
+    },
+    {
+      "name": "prVidange",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prDistribBill"
+    },
+    {
+      "name": "prDistribBill",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prGonflage"
+    },
+    {
+      "name": "prGonflage",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prDetente"
+    },
+    {
+      "name": "prDetente",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prPosteDepann"
+    },
+    {
+      "name": "prPosteDepann",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prLutteIncendie"
+    },
+    {
+      "name": "prLutteIncendie",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prIssueSecD"
+    },
+    {
+      "name": "prIssueSecD",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prIssueSecG"
+    },
+    {
+      "name": "prIssueSecG",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "prFinLimVit",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:nombre}}"
+      }
+    },
+    {
+      "name": "prFinLimVit",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:nombre}}"
+      }
+    },
+    {
+      "name": "prLimVites",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:nombre}}"
+      }
+    },
+    {
+      "name": "prLimVites",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:nombre}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\AffPanneau,\\prVirDroit,\\prVirGauche,\\prVirsDroit,\\prVirsGauche,\\prDosAne,\\prRalDosAne,\\prChausRet,\\prChausRetD,\\prChausRetG,\\prChaussGliss,\\prPontMob,\\prPassNiv,\\prPassNivVap,\\prPassTram,\\prEnfants,\\prPietons,\\prDanger,\\prAnimaux,\\prAnimauxSauv,\\prCavaliers,\\prDescente,\\prFeux,\\prDeuxSens,\\prChute,\\prQuai,\\prVelos,\\prAvions,\\prVent,\\prIntersect,\\prIntersectPrio,\\prCedez,\\prCedezInter,\\prStop,\\prArretInter,\\prRoutePrio,\\prFinRoutePrio,\\prRondPoint,\\prCircInterd,\\prSensInterdit,\\prInterdTournG,\\prInterdTournD,\\prInterdDemiTour,\\prInterdDepass,\\prInterdVehic,\\prHalteDouane,\\prHalteGendarm,\\prHaltePolice,\\prHaltePeage,\\prStationInterd,\\prStationInterdQA,\\prStationInterdQB,\\prArStatInterd,\\prInterdMotSaufCyc,\\prInterdMot,\\prInterdMarchand,\\prInterdPietons,\\prInterdCycles,\\prInterdTracAnim,\\prInterdAgricMot,\\prInterdBras,\\prInterdTranspComm,\\prInterdCyclomot,\\prInterdCycloMoto,\\prInterdCaravanes,\\prInterdLong,\\prInterdLarg,\\prInterdHaut,\\prInterdPoids,\\prInterdPoidsEssieu,\\prCedezInv,\\prInterdSons,\\prDistance,\\prExplos,\\prPollu,\\prDangereuses,\\prObliAvDroite,\\prObliAvGauche,\\prContournDroite,\\prContournGauche,\\prToutDroit,\\prObliDroite,\\prObliGauche,\\prObliToutDroite,\\prObliToutGauche,\\prObliDroiteGauche,\\prObliCycles,\\prObliPietons,\\prObliCavaliers,\\prObliVitesse,\\prObliChaines,\\prObliBus,\\prObliTrams,\\prFinInterd,\\prFinIntDepass,\\prFinIntDepassCam,\\prFinIntSons,\\prFinPisteOblCycl,\\prFinChemPiet,\\prFinChemCav,\\prFinVitObli,\\prFinChaines,\\prFinVoieBus,\\prParking,\\prParkDisq,\\prParkPay,\\prIncendie,\\prVitConseil,\\prFinVitConseil,\\prTaxis,\\prArretBus,\\prArretUrg,\\prCircSensUniq,\\prImpasse,\\prPreImpasse,\\prPriorSensInv,\\prPassPietons,\\prTravTrams,\\prStatCarav,\\prVoiesAffA,\\prVoiesAffB,\\prVoiesAffC,\\prVoiesAffD,\\prVoiesAffE,\\prVoiesAffF,\\prVitFront,\\prVitAutor,\\prDetresseD,\\prDetresseG,\\prChausseSur,\\prReducVoieA,\\prReducVoieB,\\prCreneauDepas,\\prFinCreneauDepas,\\prTickPeage,\\prPaiemPeage,\\prPaiemCB,\\prPaiemPieces,\\prPaiemPiecBil,\\prPaiemTelepeage,\\prRouteRegl,\\prFinRouteRegl,\\prEntrTunnel,\\prSortieTunnel,\\prPisteCycl,\\prFinPisteCycl,\\prVoieVerte,\\prFinVoieVerte,\\prDebAutor,\\prFinAutor,\\prPosteSecours,\\prPosteSecUrg,\\prCabineTel,\\prInfos,\\prCampingT,\\prCampingC,\\prCampingTC,\\prAubergJeun,\\prGite,\\prItinPedest,\\prItinSkiFond,\\prPicNic,\\prGareAutoTrain,\\prParkVideo,\\prEmbarcad,\\prToilettes,\\prAccesHandic,\\prEssence,\\prEssenceGPL,\\prRestau,\\prHotel,\\prBoissons,\\prEmbarcLeg,\\prTelepher,\\prTelecabin,\\prPointVue,\\prRadio,\\prJeuxEnfants,\\prVidange,\\prDistribBill,\\prGonflage,\\prDetente,\\prPosteDepann,\\prLutteIncendie,\\prIssueSecD,\\prIssueSecG,\\prFinLimVit,\\prLimVites": [
+      "alt={${1:alt text}}\r",
+      "bb=${1:llx lly urx ury}\r",
+      "bbllx=\r",
+      "bblly=\r",
+      "bburx=\r",
+      "bbury=\r",
+      "natwidth=\r",
+      "natheight=\r",
       "hiresbb",
-      "pagebox=${1|mediabox,cropbox,bleedbox,trimbox,artbox|}",
-      "viewport=${1:llx lly urx ury}",
-      "trim=${1:llx lly urx ury}",
-      "angle=${1:degrees}",
-      "origin=",
+      "pagebox=${1|mediabox,cropbox,bleedbox,trimbox,artbox\r|}",
+      "viewport=${1:llx lly urx ury}\r",
+      "trim=${1:llx lly urx ury}\r",
+      "angle=${1:degrees}\r",
+      "origin=\r",
       "width=",
       "height=",
       "totalheight=",
       "keepaspectratio",
-      "scale=${1:factor}",
+      "scale=${1:factor}\r",
       "clip",
       "draft",
-      "type=${1:file type}",
-      "ext=${1:file extension}",
-      "read=${1:read-file extension}",
-      "command=",
-      "quiet",
-      "page=${1:page number}",
+      "type=${1:file type}\r",
+      "ext=${1:file extension}\r",
+      "read=${1:read-file extension}\r",
+      "command=\r",
+      "quiet\r",
+      "page=${1:page number}\r",
       "interpolate",
-      "decodearray={${1:color array}}"
+      "decodearray={${1:color array}}\r"
     ]
-  ]
+  },
+  "args": []
 }

@@ -1,42 +1,63 @@
 {
-  "includes": {
-    "amsmath": [],
-    "tikz": []
-  },
-  "macros": {
-    "kvmapsetup{}": {
-      "snippet": "kvmapsetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "amsmath"
     },
-    "kvlist{}{}{}{}": {
-      "snippet": "kvlist{${1:width}}{${2:height}}{${3:elements}}{${4:variables}}"
-    },
-    "bundle{}{}{}{}": {
-      "snippet": "bundle{${1:x1}}{${2:y1}}{${3:x2}}{${4:y2}}"
-    },
-    "bundle[]{}{}{}{}": {
-      "snippet": "bundle[${5:options}]{${1:x1}}{${2:y1}}{${3:x2}}{${4:y2}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "tikz"
     }
-  },
-  "envs": {
-    "kvmap": {},
-    "kvmap[]": {
+  ],
+  "macros": [
+    {
+      "name": "kvmapsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}"
+      }
+    },
+    {
+      "name": "kvlist",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:width}}{${2:height}}{${3:elements%formula}}{${4:variables%formula}}"
+      }
+    },
+    {
+      "name": "bundle",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:x1}}{${2:y1}}{${3:x2}}{${4:y2}}"
+      }
+    },
+    {
+      "name": "bundle",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "[${5:options%keyvals}]{${1:x1}}{${2:y1}}{${3:x2}}{${4:y2}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "kvmap"
+    },
+    {
       "name": "kvmap",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     },
-    "kvmatrix{}": {
+    {
       "name": "kvmatrix",
-      "snippet": "{${1:variables}}"
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:variables%formula}}"
+      }
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "keys": {
+    "\\kvmapsetup#c,\\begin{kvmap}#c": [
       "bundle/invert",
       "bundle/hinvert",
       "bundle/vinvert",
@@ -44,7 +65,7 @@
       "bundle/color=",
       "bundle/reducespace="
     ],
-    [
+    "\\bundle": [
       "invert",
       "hinvert",
       "vinvert",
@@ -52,5 +73,6 @@
       "color=",
       "reducespace="
     ]
-  ]
+  },
+  "args": []
 }

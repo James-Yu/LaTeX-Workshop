@@ -1,91 +1,127 @@
 {
-  "includes": {
-    "tikz": [],
-    "tikzlibraryshadings": [],
-    "etoolbox": []
-  },
-  "macros": {
-    "tikzmarkin{}": {
-      "snippet": "tikzmarkin{${1:marker-id}}"
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "tikzmarkin{}()()": {
-      "snippet": "tikzmarkin{${1:marker-id}}(${2:x1},${3:y1})(${4:x2},${5:y2})"
+    {
+      "name": "tikzlibraryshadings"
     },
-    "tikzmarkin[]{}": {
-      "snippet": "tikzmarkin[${2:options}]{${1:marker-id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "tikzmarkend{}": {
-      "snippet": "tikzmarkend{${1:marker-id}}"
-    },
-    "thejumping": {
-      "option": "beamer"
-    },
-    "hfsetfillcolor{}": {
-      "snippet": "hfsetfillcolor{${1:color}}",
-      "option": "customcolors"
-    },
-    "hfsetbordercolor{}": {
-      "snippet": "hfsetbordercolor{${1:color}}",
-      "option": "customcolors"
-    },
-    "ifshowmarkers": {
-      "option": "markings"
-    },
-    "showmarkerstrue": {
-      "option": "markings"
-    },
-    "showmarkersfalse": {
-      "option": "markings"
-    },
-    "fcol": {},
-    "bcol": {},
-    "savepointas{}{}": {
-      "snippet": "savepointas{${1:name}}{${2:point}}"
-    },
-    "oldsavepointas{}{}": {
-      "snippet": "oldsavepointas{${1:name}}{${2:point}}"
-    },
-    "pgfsyspdfmark{}{}{}": {
-      "snippet": "pgfsyspdfmark{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "oldpgfsyspdfmark{}{}{}": {
-      "snippet": "oldpgfsyspdfmark{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    {
+      "name": "etoolbox"
     }
-  },
-  "envs": {},
-  "options": [
-    "nofill",
-    "customcolors",
-    "shade",
-    "beamer",
-    "norndcorners",
-    "markings"
   ],
-  "keyvals": [
-    [
-      "left offset=",
-      "right offset=",
-      "above offset=",
-      "below offset=",
-      "below right offset=",
-      "above left offset=",
-      "top color=",
-      "top color=",
-      "bottom color=",
-      "left color=",
-      "right color=",
-      "outer color=",
-      "inner color=",
-      "disable rounded corners",
-      "set fill color=",
-      "set border color=",
-      "mark at=${1:position}",
-      "use marker id=${1:id number}",
-      "show markers",
+  "macros": [
+    {
+      "name": "tikzmarkin",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:marker-id}}"
+      }
+    },
+    {
+      "name": "tikzmarkin",
+      "arg": {
+        "format": "{}()()",
+        "snippet": "{${1:marker-id}}(${2:x1},${3:y1})(${4:x2},${5:y2})"
+      }
+    },
+    {
+      "name": "tikzmarkin",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:marker-id}}"
+      }
+    },
+    {
+      "name": "tikzmarkend",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:marker-id}}"
+      }
+    },
+    {
+      "name": "thejumping",
+      "if": "beamer",
+      "unusual": true
+    },
+    {
+      "name": "hfsetfillcolor",
+      "if": "customcolors",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "hfsetbordercolor",
+      "if": "customcolors",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "ifshowmarkers",
+      "if": "markings",
+      "unusual": true
+    },
+    {
+      "name": "showmarkerstrue",
+      "if": "markings",
+      "unusual": true
+    },
+    {
+      "name": "showmarkersfalse",
+      "if": "markings",
+      "unusual": true
+    },
+    {
+      "name": "fcol",
+      "unusual": true
+    },
+    {
+      "name": "bcol",
+      "unusual": true
+    },
+    {
+      "name": "savepointas",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:point}}"
+      }
+    },
+    {
+      "name": "pgfsyspdfmark",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/hf-tikz#c": [
+      "nofill\r",
+      "customcolors\r",
+      "shade\r",
+      "beamer\r",
+      "norndcorners\r",
+      "markings\r"
+    ],
+    "\\tikzmarkin#c,\\tikzset#c": [
+      "mark at=${1:position}\r",
+      "use marker id=${1:id number}\r",
+      "show markers\r",
       "marker size=",
       "marker color="
+    ],
+    "\\tikzset#c": [
+      "offset definition/.style={${1:style specs}}\r"
     ]
+  },
+  "args": [
+    "\\usepackage/hf-tikz#c"
   ]
 }

@@ -1,96 +1,218 @@
 {
-  "includes": {
-    "array": [],
-    "etoolbox": [],
-    "ifdraft": [],
-    "iftex": [],
-    "ltxcmds": [],
-    "scrlfile": []
-  },
-  "macros": {
-    "IfDefined{}{}": {
-      "snippet": "IfDefined{${1:command}}{${2:code-defined}}"
+  "deps": [
+    {
+      "name": "array"
     },
-    "IfUndefined{}{}": {
-      "snippet": "IfUndefined{${1:command}}{${2:code-undefined}}"
+    {
+      "name": "etoolbox"
     },
-    "IfElseDefined{}{}{}": {
-      "snippet": "IfElseDefined{${1:command}}{${2:code-defined}}{${3:code-undefined}}"
+    {
+      "name": "ifdraft"
     },
-    "IfElseUndefined{}{}{}": {
-      "snippet": "IfElseUndefined{${1:command}}{${2:code-undefined}}{${3:code-defined}}"
+    {
+      "name": "iftex"
     },
-    "IfMultDefined{}{}{}": {
-      "snippet": "IfMultDefined{${1:list of commands}}{${2:code-defined}}{${3:code-undefined}}"
+    {
+      "name": "ltxcmds"
     },
-    "IfDraft{}": {
-      "snippet": "IfDraft{${1:draft-mode-active code}}"
-    },
-    "IfNotDraft{}": {
-      "snippet": "IfNotDraft{${1:draft-mode-disabled code}}"
-    },
-    "IfNotDraftElse{}{}": {
-      "snippet": "IfNotDraftElse{${1:draft-mode-active code}}{${2:draft-mode-disabled code}}"
-    },
-    "IfPackageLoaded{}{}": {
-      "snippet": "IfPackageLoaded{${1:package}}{${2:is-loaded code}}"
-    },
-    "IfPackageNotLoaded{}{}": {
-      "snippet": "IfPackageNotLoaded{${1:package}}{${2:is-not-loaded code}}"
-    },
-    "IfPackagesLoaded{}{}": {
-      "snippet": "IfPackagesLoaded{${1:list of packages}}{${2:all-are-loaded code}}"
-    },
-    "IfPackagesNotLoaded{}{}": {
-      "snippet": "IfPackagesNotLoaded{${1:list of packages}}{${2:none-are-loaded code}}"
-    },
-    "IfElsePackageLoaded{}{}{}": {
-      "snippet": "IfElsePackageLoaded{${1:package}}{${2:is-loaded code}}{${3:is-not-loaded code}}"
-    },
-    "ExecuteAfterPackage{}{}": {
-      "snippet": "ExecuteAfterPackage{${1:package}}{${2:code}}"
-    },
-    "ExecuteBeforePackage{}{}": {
-      "snippet": "ExecuteBeforePackage{${1:package}}{${2:code}}"
-    },
-    "IfTikzLibraryLoaded{}{}": {
-      "snippet": "IfTikzLibraryLoaded{${1:library}}{${2:if-loaded code}}"
-    },
-    "IfColumntypeDefined{}{}{}": {
-      "snippet": "IfColumntypeDefined{${1:column type}}{${2:code-defined}}{${3:code-undefined}}"
-    },
-    "IfColumntypesDefined{}{}{}": {
-      "snippet": "IfColumntypesDefined{${1:column type}}{${2:code-undefined}}{${3:code-defined}}"
-    },
-    "IfColorDefined{}{}{}": {
-      "snippet": "IfColorDefined{${1:color}}{${2:code-defined}}{${3:code-undefined}}"
-    },
-    "IfColorsDefined{}{}{}": {
-      "snippet": "IfColorsDefined{${1:color}}{${2:code-undefined}}{${3:code-defined}}"
-    },
-    "IfMathVersionDefined{}{}{}": {
-      "snippet": "IfMathVersionDefined{${1:font version}}{${2:code-defined}}{${3:code-undefined}}"
-    },
-    "IfGlossariesStyleDefined{}{}": {
-      "snippet": "IfGlossariesStyleDefined{${1:style name}}{${2:code-defined}}"
-    },
-    "IfBibEnvironmentDefined{}{}": {
-      "snippet": "IfBibEnvironmentDefined{${1:envname}}{${2:code-defined}}"
-    },
-    "SetTemplateDefinition{}{}{}": {
-      "snippet": "SetTemplateDefinition{${1:group}}{${2:property}}{${3:code}}"
-    },
-    "UseDefinition{}{}": {
-      "snippet": "UseDefinition{${1:group}}{${2:property}}"
-    },
-    "CheckIfColumntypeDefined{}": {
-      "snippet": "CheckIfColumntypeDefined{${1:column type}}"
-    },
-    "isColumntypeDefined{}": {
-      "snippet": "isColumntypeDefined{${1:column type}}"
+    {
+      "name": "scrlfile"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "IfDefined",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:command}}{${2:code-defined}}"
+      }
+    },
+    {
+      "name": "IfUndefined",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:command}}{${2:code-undefined}}"
+      }
+    },
+    {
+      "name": "IfElseDefined",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:command}}{${2:code-defined}}{${3:code-undefined}}"
+      }
+    },
+    {
+      "name": "IfElseUndefined",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:command}}{${2:code-undefined}}{${3:code-defined}}"
+      }
+    },
+    {
+      "name": "IfMultDefined",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:list of commands%cmd}}{${2:code-defined}}{${3:code-undefined}}"
+      }
+    },
+    {
+      "name": "IfDraft",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:draft-mode-active code}}"
+      }
+    },
+    {
+      "name": "IfNotDraft",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:draft-mode-disabled code}}"
+      }
+    },
+    {
+      "name": "IfNotDraftElse",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:draft-mode-active code}}{${2:draft-mode-disabled code}}"
+      }
+    },
+    {
+      "name": "IfPackageLoaded",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:package}}{${2:is-loaded code}}"
+      }
+    },
+    {
+      "name": "IfPackageNotLoaded",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:package}}{${2:is-not-loaded code}}"
+      }
+    },
+    {
+      "name": "IfPackagesLoaded",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:list of packages}}{${2:all-are-loaded code}}"
+      }
+    },
+    {
+      "name": "IfPackagesNotLoaded",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:list of packages}}{${2:none-are-loaded code}}"
+      }
+    },
+    {
+      "name": "IfElsePackageLoaded",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:package}}{${2:is-loaded code}}{${3:is-not-loaded code}}"
+      }
+    },
+    {
+      "name": "ExecuteAfterPackage",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:package}}{${2:code}}"
+      }
+    },
+    {
+      "name": "ExecuteBeforePackage",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:package}}{${2:code}}"
+      }
+    },
+    {
+      "name": "IfTikzLibraryLoaded",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:library}}{${2:if-loaded code}}"
+      }
+    },
+    {
+      "name": "IfColumntypeDefined",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:column type}}{${2:code-defined}}{${3:code-undefined}}"
+      }
+    },
+    {
+      "name": "IfColumntypesDefined",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:column type}}{${2:code-undefined}}{${3:code-defined}}"
+      }
+    },
+    {
+      "name": "IfColorDefined",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:color}}{${2:code-defined}}{${3:code-undefined}}"
+      }
+    },
+    {
+      "name": "IfColorsDefined",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:color}}{${2:code-undefined}}{${3:code-defined}}"
+      }
+    },
+    {
+      "name": "IfMathVersionDefined",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:font version}}{${2:code-defined}}{${3:code-undefined}}"
+      }
+    },
+    {
+      "name": "IfGlossariesStyleDefined",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:style name}}{${2:code-defined}}"
+      }
+    },
+    {
+      "name": "IfBibEnvironmentDefined",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:envname}}{${2:code-defined}}"
+      }
+    },
+    {
+      "name": "SetTemplateDefinition",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:group}}{${2:property}}{${3:code}}"
+      }
+    },
+    {
+      "name": "UseDefinition",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:group}}{${2:property}}"
+      }
+    },
+    {
+      "name": "CheckIfColumntypeDefined",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:column type}}"
+      }
+    },
+    {
+      "name": "isColumntypeDefined",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:column type}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

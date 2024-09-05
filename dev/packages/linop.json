@@ -1,50 +1,112 @@
 {
-  "includes": {
-    "bm": []
-  },
-  "macros": {
-    "op{}{}{}{}": {
-      "snippet": "op{${1:operator}}{${2:sub}}{${3:sup}}{${4:supsup}}"
-    },
-    "op[]{}{}{}{}": {
-      "snippet": "op[${5:spacing}]{${1:operator}}{${2:sub}}{${3:sup}}{${4:supsup}}"
-    },
-    "op*{}{}{}{}": {
-      "snippet": "op*{${1:operator}}{${2:sub}}{${3:sup}}{${4:supsup}}"
-    },
-    "op*[]{}{}{}{}": {
-      "snippet": "op*[${5:spacing}]{${1:operator}}{${2:sub}}{${3:sup}}{${4:supsup}}"
-    },
-    "hc{}{}{}{}": {
-      "snippet": "hc{${1:operator}}{${2:sub}}{${3:sup}}{${4:supsup}}"
-    },
-    "hc[]{}{}{}{}": {
-      "snippet": "hc[${5:spacing}]{${1:operator}}{${2:sub}}{${3:sup}}{${4:supsup}}"
-    },
-    "hc*{}{}{}{}": {
-      "snippet": "hc*{${1:operator}}{${2:sub}}{${3:sup}}{${4:supsup}}"
-    },
-    "hc*[]{}{}{}{}": {
-      "snippet": "hc*[${5:spacing}]{${1:operator}}{${2:sub}}{${3:sup}}{${4:supsup}}"
-    },
-    "linopconjugate": {},
-    "linopspacewide": {},
-    "linopspacewidehc": {},
-    "linopstyle": {},
-    "linopstylewide": {},
-    "linopsubscript": {},
-    "linopsuperscript": {},
-    "linopsuperscripthc": {}
-  },
-  "envs": {},
-  "options": [
-    "bold",
-    "bmbold",
-    "wide",
-    "nohat",
-    "star",
-    "compact",
-    "square"
+  "deps": [
+    {
+      "name": "bm"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "op",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:operator}}{${2:sub}}{${3:sup}}{${4:supsup}}"
+      }
+    },
+    {
+      "name": "op",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "[${5:spacing}]{${1:operator}}{${2:sub}}{${3:sup}}{${4:supsup}}"
+      }
+    },
+    {
+      "name": "op*",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:operator}}{${2:sub}}{${3:sup}}{${4:supsup}}"
+      }
+    },
+    {
+      "name": "op*",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "[${5:spacing}]{${1:operator}}{${2:sub}}{${3:sup}}{${4:supsup}}"
+      }
+    },
+    {
+      "name": "hc",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:operator}}{${2:sub}}{${3:sup}}{${4:supsup}}"
+      }
+    },
+    {
+      "name": "hc",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "[${5:spacing}]{${1:operator}}{${2:sub}}{${3:sup}}{${4:supsup}}"
+      }
+    },
+    {
+      "name": "hc*",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:operator}}{${2:sub}}{${3:sup}}{${4:supsup}}"
+      }
+    },
+    {
+      "name": "hc*",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "[${5:spacing}]{${1:operator}}{${2:sub}}{${3:sup}}{${4:supsup}}"
+      }
+    },
+    {
+      "name": "linopconjugate",
+      "unusual": true
+    },
+    {
+      "name": "linopspacewide",
+      "unusual": true
+    },
+    {
+      "name": "linopspacewidehc",
+      "unusual": true
+    },
+    {
+      "name": "linopstyle",
+      "unusual": true
+    },
+    {
+      "name": "linopstylewide",
+      "unusual": true
+    },
+    {
+      "name": "linopsubscript",
+      "unusual": true
+    },
+    {
+      "name": "linopsuperscript",
+      "unusual": true
+    },
+    {
+      "name": "linopsuperscripthc",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/linop#c": [
+      "bold\r",
+      "bmbold\r",
+      "wide\r",
+      "nohat\r",
+      "star\r",
+      "compact\r",
+      "square\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/linop#c"
+  ]
 }

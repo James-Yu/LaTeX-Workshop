@@ -1,35 +1,77 @@
 {
-  "includes": {},
-  "macros": {
-    "glsnavhypertarget{}{}": {
-      "snippet": "glsnavhypertarget{${1:group-label}}{${2:group-title}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "glsnavhypertarget",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:group-label}}{${2:group-title%text}}"
+      }
     },
-    "glsnavhypertarget[]{}{}": {
-      "snippet": "glsnavhypertarget[${3:glossary-label}]{${1:group-label}}{${2:group-title}}"
+    {
+      "name": "glsnavhypertarget",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:glossary-label}]{${1:group-label}}{${2:group-title%text}}"
+      }
     },
-    "glsnavhypergroupdotarget{}{}{}": {
-      "snippet": "glsnavhypergroupdotarget{${1:glossary-label}}{${2:group-label}}{${3:group-title}}"
+    {
+      "name": "glsnavhypergroupdotarget",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:glossary-label}}{${2:group-label}}{${3:group-title}}"
+      }
     },
-    "glsnavhyperlink{}{}": {
-      "snippet": "glsnavhyperlink{${1:group-label}}{${2:group-title}}"
+    {
+      "name": "glsnavhyperlink",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:group-label}}{${2:group-title%text}}"
+      }
     },
-    "glsnavhyperlink[]{}{}": {
-      "snippet": "glsnavhyperlink[${3:glossary-label}]{${1:group-label}}{${2:group-title}}"
+    {
+      "name": "glsnavhyperlink",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:glossary-label}]{${1:group-label}}{${2:group-title%text}}"
+      }
     },
-    "glsnavhyperlinkname{}": {
-      "snippet": "glsnavhyperlinkname{${1:group-label}}"
+    {
+      "name": "glsnavhyperlinkname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:group-label}}"
+      }
     },
-    "glsnavhyperlinkname[]{}": {
-      "snippet": "glsnavhyperlinkname[${2:glossary-label}]{${1:group-label}}"
+    {
+      "name": "glsnavhyperlinkname",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:glossary-label}]{${1:group-label}}"
+      }
     },
-    "glsnavigation": {},
-    "glsnavigationitem{}": {
-      "snippet": "glsnavigationitem{${1:group-label}}"
+    {
+      "name": "glsnavigation"
     },
-    "glshypernavsep": {},
-    "glssymbolnav": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "glsnavigationitem",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:group-label}}"
+      }
+    },
+    {
+      "name": "glshypernavsep",
+      "unusual": true
+    },
+    {
+      "name": "glssymbolnav",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

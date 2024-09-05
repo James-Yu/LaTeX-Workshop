@@ -1,17 +1,30 @@
 {
-  "includes": {},
-  "macros": {
-    "TheKey{}{}": {
-      "snippet": "TheKey{${1:key}}{${2:value}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "TheKey",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:key}}{${2:value}}"
+      }
     },
-    "TheValue{}": {
-      "snippet": "TheValue{${1:key}}"
+    {
+      "name": "TheValue",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:key}}"
+      }
     },
-    "newkey{}{}": {
-      "snippet": "newkey{${1:key}}{${2:value}}"
+    {
+      "name": "newkey",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:key}}{${2:value}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

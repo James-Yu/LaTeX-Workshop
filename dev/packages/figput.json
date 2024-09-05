@@ -1,43 +1,89 @@
 {
-  "includes": {
-    "zref-savepos": [],
-    "zref-thepage": [],
-    "zref-abspage": [],
-    "zref-user": [],
-    "zref-pagelayout": [],
-    "xsim": [],
-    "tikz": [],
-    "verbatim": []
-  },
-  "macros": {
-    "FigPut{}": {
-      "snippet": "FigPut{${1:fig_name,fig_ht}}"
+  "deps": [
+    {
+      "name": "zref-savepos"
     },
-    "FigPut{}[]": {
-      "snippet": "FigPut{${1:fig_name,fig_ht}}[${2:options}]"
+    {
+      "name": "zref-thepage"
     },
-    "SetInnerMargin{}": {
-      "snippet": "SetInnerMargin{${1:length}}"
+    {
+      "name": "zref-abspage"
     },
-    "SetOuterMargin{}": {
-      "snippet": "SetOuterMargin{${1:length}}"
+    {
+      "name": "zref-user"
     },
-    "NeverSkip": {},
-    "AllowSkip": {},
-    "LoadFigureCode{}": {
-      "snippet": "LoadFigureCode{${1:file}}"
+    {
+      "name": "zref-pagelayout"
+    },
+    {
+      "name": "xsim"
+    },
+    {
+      "name": "tikz"
+    },
+    {
+      "name": "verbatim"
     }
-  },
-  "envs": {
-    "figput{}": {
-      "name": "figput",
-      "snippet": "{${1:fig_name,fig_ht}}"
+  ],
+  "macros": [
+    {
+      "name": "FigPut",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:fig_name,fig_ht}}"
+      }
     },
-    "figput{}[]": {
-      "name": "figput",
-      "snippet": "{${1:fig_name,fig_ht}}[${2:options}]"
+    {
+      "name": "FigPut",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:fig_name,fig_ht}}[${2:options}]"
+      }
+    },
+    {
+      "name": "SetInnerMargin",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
+    },
+    {
+      "name": "SetOuterMargin",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
+    },
+    {
+      "name": "NeverSkip"
+    },
+    {
+      "name": "AllowSkip"
+    },
+    {
+      "name": "LoadFigureCode",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "envs": [
+    {
+      "name": "figput",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:fig_name,fig_ht}}"
+      }
+    },
+    {
+      "name": "figput",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:fig_name,fig_ht}}[${2:options}]"
+      }
+    }
+  ],
+  "keys": {},
+  "args": []
 }

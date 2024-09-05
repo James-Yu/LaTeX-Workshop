@@ -1,129 +1,155 @@
 {
-  "includes": {
-    "tikz": [],
-    "xstring": [],
-    "xintexpr": [],
-    "simplekv": [],
-    "settobox": [],
-    "tikzlibrarycalc": [],
-    "tikzlibrarypositioning": []
-  },
-  "macros": {
-    "LigneCalculsGeogebra{}{}": {
-      "snippet": "LigneCalculsGeogebra{${1:commande}}{${2:résultat}}"
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "LigneCalculsGeogebra[]{}{}": {
-      "snippet": "LigneCalculsGeogebra[${3:clés}]{${1:commande}}{${2:résultat}}"
+    {
+      "name": "xstring"
     },
-    "LigneCalculsXcas{}{}": {
-      "snippet": "LigneCalculsXcas{${1:commande}}{${2:résultat}}"
+    {
+      "name": "xintexpr"
     },
-    "LigneCalculsXcas[]{}{}": {
-      "snippet": "LigneCalculsXcas[${3:clés}]{${1:commande}}{${2:résultat}}"
+    {
+      "name": "simplekv"
     },
-    "GEOCFcolfond": {},
-    "GEOCFcolselect": {},
-    "GEOCFcoulentete": {},
-    "GEOCFcoulnum": {},
-    "GEOCFelargirauto": {},
-    "GEOCFfontenete": {},
-    "GEOCFhauteur": {},
-    "GEOCFlarg": {},
-    "GEOCFlargnum": {},
-    "GEOCFoffset": {},
-    "GEOCFoffseth": {},
-    "GEOCFpolnum": {},
-    "GEOCFposrep": {},
-    "GEOCFtaillecmd": {},
-    "GEOCFtailleres": {},
-    "GEOCFtitre": {},
-    "hauteurboitecmdxcas": {},
-    "hauteurboiteggbcmd": {},
-    "hauteurboiteggbres": {},
-    "hauteurboiteggbtitre": {},
-    "hauteurboiteresxcas": {},
-    "maboitecmdxcas": {},
-    "maboiteggbcmd": {},
-    "maboiteggbres": {},
-    "maboiteggbtitre": {},
-    "maboiteresxcas": {},
-    "offsetcfgeogebra": {},
-    "offsetcfxcas": {},
-    "thegeogebracfnum": {},
-    "thexcascfnum": {},
-    "XCCFcoulcmd": {},
-    "XCCFcouleur": {},
-    "XCCFcoulres": {},
-    "XCCFelargirauto": {},
-    "XCCFesplg": {},
-    "XCCFfontenete": {},
-    "XCCFlarg": {},
-    "XCCFoffset": {},
-    "XCCFoffseth": {},
-    "XCCFposres": {},
-    "XCCFtaillecmd": {},
-    "XCCFtailleres": {},
-    "XCCFtxtopts": {},
-    "XCCFcolfond": {}
-  },
-  "envs": {
-    "CalculFormelGeogebra": {},
-    "CalculFormelGeogebra<>": {
-      "name": "CalculFormelGeogebra",
-      "snippet": "<${1:options tikz}>",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "settobox"
     },
-    "CalculFormelGeogebra[]": {
-      "name": "CalculFormelGeogebra",
-      "snippet": "[${1:clés}]"
+    {
+      "name": "tikzlibrarycalc"
     },
-    "CalculFormelGeogebra[]<>": {
-      "name": "CalculFormelGeogebra",
-      "snippet": "[${1:clés}]<${2:options tikz}>",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "CalculFormelXcas": {},
-    "CalculFormelXcas<>": {
-      "name": "CalculFormelXcas",
-      "snippet": "<${1:options tikz}>",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "CalculFormelXcas[]": {
-      "name": "CalculFormelXcas",
-      "snippet": "[${1:clés}]"
-    },
-    "CalculFormelXcas[]<>": {
-      "name": "CalculFormelXcas",
-      "snippet": "[${1:clés}]<${2:options tikz}>",
-      "keyvalindex": 1,
-      "keyvalpos": 1
+    {
+      "name": "tikzlibrarypositioning"
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
-      "Largeur=${1:nombre}",
+  ],
+  "macros": [
+    {
+      "name": "LigneCalculsGeogebra",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:commande}}{${2:résultat}}"
+      }
+    },
+    {
+      "name": "LigneCalculsGeogebra",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:clés%keyvals}]{${1:commande}}{${2:résultat}}"
+      }
+    },
+    {
+      "name": "LigneCalculsXcas",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:commande}}{${2:résultat}}"
+      }
+    },
+    {
+      "name": "LigneCalculsXcas",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:clés%keyvals}]{${1:commande}}{${2:résultat}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "CalculFormelGeogebra"
+    },
+    {
+      "name": "CalculFormelGeogebra",
+      "arg": {
+        "format": "<>",
+        "snippet": "<${1:options tikz}>"
+      }
+    },
+    {
+      "name": "CalculFormelGeogebra",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:clés%keyvals}]"
+      }
+    },
+    {
+      "name": "CalculFormelGeogebra",
+      "arg": {
+        "format": "[]<>",
+        "snippet": "[${1:clés%keyvals}]<${2:options tikz}>"
+      }
+    },
+    {
+      "name": "CalculFormelXcas"
+    },
+    {
+      "name": "CalculFormelXcas",
+      "arg": {
+        "format": "<>",
+        "snippet": "<${1:options tikz}>"
+      }
+    },
+    {
+      "name": "CalculFormelXcas",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:clés%keyvals}]"
+      }
+    },
+    {
+      "name": "CalculFormelXcas",
+      "arg": {
+        "format": "[]<>",
+        "snippet": "[${1:clés%keyvals}]<${2:options tikz}>"
+      }
+    }
+  ],
+  "keys": {
+    "\\begin{CalculFormelGeogebra}": [
+      "Largeur=${1:nombre}\r",
       "CouleurEntete=",
-      "LargeurNumero=${1:nombre}",
+      "LargeurNumero=${1:nombre}\r",
       "CouleurNumero=",
-      "PoliceEntete=${1:commandes}",
-      "PoliceNumero=${1:commandes}",
-      "Titre=${1:texte}",
+      "PoliceEntete=${1:commandes}\r",
+      "PoliceNumero=${1:commandes}\r",
+      "Titre=${1:texte}\r",
       "Entete"
     ],
-    [
-      "Largeur=${1:nombre}",
+    "\\LigneCalculsGeogebra": [
+      "HauteurLigne=${1:nombre}\r",
+      "TailleCommande=${1:commande}\r",
+      "TailleResultat=${1:commande}\r",
+      "PosRes=${1|gauche,centre,droite\r|}",
+      "ElargirAuto=${1:nombre}\r",
+      "HauteurAuto",
+      "MargeV=",
+      "MargeH=${1:nombre}\r",
+      "Fond",
+      "CouleurFond=",
+      "Select",
+      "CouleurSelect="
+    ],
+    "\\begin{CalculFormelXcas}": [
+      "Largeur=${1:nombre}\r",
       "EspaceLg=",
       "Couleur=",
       "Menu",
       "Entete",
       "NoirBlanc",
-      "PoliceEntete=${1:commande}",
+      "PoliceEntete=${1:commande}\r",
       "Sep",
-      "TexteOptions=${1:texte}"
+      "TexteOptions=${1:texte}\r"
+    ],
+    "\\LigneCalculsXcas": [
+      "TailleCommande=${1:commande}\r",
+      "TailleResultat=${1:commande}\r",
+      "ElargirAuto=${1:nombre}\r",
+      "MargeV=",
+      "MargeH=${1:nombre}\r",
+      "CouleurCmd=",
+      "CouleurRes=",
+      "PosRes=${1|centre,gauche,droite\r|}",
+      "Fond",
+      "CouleurFond="
     ]
-  ]
+  },
+  "args": []
 }

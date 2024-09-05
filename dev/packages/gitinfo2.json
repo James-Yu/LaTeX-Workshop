@@ -1,57 +1,133 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "xstring": [],
-    "kvoptions": [],
-    "eso-pic": []
-  },
-  "macros": {
-    "gitReferences": {},
-    "gitBranch": {},
-    "gitDirty": {},
-    "gitAbbrevHash": {},
-    "gitHash": {},
-    "gitAuthorName": {},
-    "gitAuthorEmail": {},
-    "gitAuthorDate": {},
-    "gitAuthorIsoDate": {},
-    "gitAuthorUnixDate": {},
-    "gitCommitterName": {},
-    "gitCommitterEmail": {},
-    "gitCommitterDate": {},
-    "gitCommitterIsoDate": {},
-    "gitCommitterUnixDate": {},
-    "gitVtag": {},
-    "gitVtags": {},
-    "gitVtagn": {},
-    "gitFirstTagDescribe": {},
-    "gitRel": {},
-    "gitRels": {},
-    "gitReln": {},
-    "gitRoff": {},
-    "gitTags": {},
-    "gitDescribe": {},
-    "gitMark": {},
-    "gitMarkFormat": {},
-    "gitMarkPref": {},
-    "gitWrapEmail{}": {
-      "snippet": "gitWrapEmail{${1:email}}"
+  "deps": [
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "xstring"
+    },
+    {
+      "name": "kvoptions"
+    },
+    {
+      "name": "eso-pic"
     }
-  },
-  "envs": {},
-  "options": [
-    "local",
-    "grumpy",
-    "missing=${1:text}",
-    "notags=${1:text}",
-    "dirty=${1:text}",
-    "maxdepth=${1:integer}",
-    "mark",
-    "markifdraft",
-    "markifdirty",
-    "marknotags",
-    "raisemark=",
-    "pcount"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "gitReferences"
+    },
+    {
+      "name": "gitBranch"
+    },
+    {
+      "name": "gitDirty"
+    },
+    {
+      "name": "gitAbbrevHash"
+    },
+    {
+      "name": "gitHash"
+    },
+    {
+      "name": "gitAuthorName"
+    },
+    {
+      "name": "gitAuthorEmail"
+    },
+    {
+      "name": "gitAuthorDate"
+    },
+    {
+      "name": "gitAuthorIsoDate"
+    },
+    {
+      "name": "gitAuthorUnixDate"
+    },
+    {
+      "name": "gitCommitterName"
+    },
+    {
+      "name": "gitCommitterEmail"
+    },
+    {
+      "name": "gitCommitterDate"
+    },
+    {
+      "name": "gitCommitterIsoDate"
+    },
+    {
+      "name": "gitCommitterUnixDate"
+    },
+    {
+      "name": "gitVtag"
+    },
+    {
+      "name": "gitVtags"
+    },
+    {
+      "name": "gitVtagn"
+    },
+    {
+      "name": "gitFirstTagDescribe"
+    },
+    {
+      "name": "gitRel"
+    },
+    {
+      "name": "gitRels"
+    },
+    {
+      "name": "gitReln"
+    },
+    {
+      "name": "gitRoff"
+    },
+    {
+      "name": "gitTags"
+    },
+    {
+      "name": "gitDescribe"
+    },
+    {
+      "name": "gitMark",
+      "unusual": true
+    },
+    {
+      "name": "gitMarkFormat",
+      "unusual": true
+    },
+    {
+      "name": "gitMarkPref",
+      "unusual": true
+    },
+    {
+      "name": "gitWrapEmail",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:email}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/gitinfo2#c": [
+      "local\r",
+      "grumpy\r",
+      "missing=${1:text}\r",
+      "notags=${1:text}\r",
+      "dirty=${1:text}\r",
+      "maxdepth=${1:integer}\r",
+      "mark\r",
+      "markifdraft\r",
+      "markifdirty\r",
+      "marknotags\r",
+      "raisemark=",
+      "pcount\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/gitinfo2#c"
+  ]
 }

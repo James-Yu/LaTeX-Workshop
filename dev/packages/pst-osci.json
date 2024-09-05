@@ -1,66 +1,96 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-plot": [],
-    "multido": [],
-    "pst-xkey": []
-  },
-  "macros": {
-    "Oscillo": {},
-    "Oscillo[]": {
-      "snippet": "Oscillo[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "TriangleA": {},
-    "TriangleB": {},
-    "RectangleA": {},
-    "RectangleB": {},
-    "RDogToothA": {},
-    "RDogToothB": {},
-    "LDogToothA": {},
-    "LDogToothB": {},
-    "SinusA": {},
-    "SinusB": {},
-    "ssf": {},
-    "PSTOscilloLoaded": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "period1=${1:number}",
-      "period2=${1:number}",
-      "periodmodulation1=${1:number}",
-      "freqmod1=${1:number}",
-      "periodmodulation2=${1:number}",
-      "freqmod2=${1:number}",
-      "amplitude1=${1:number}",
-      "amplitude2=${1:number}",
-      "CC1=${1:number}",
-      "CC2=${1:number}",
-      "timediv=${1:number}",
-      "phase1=${1:number}",
-      "phase2=${1:number}",
-      "sensivity1=${1:number}",
-      "sensivity2=${1:number}",
-      "damping1=${1:number}",
-      "damping2=${1:number}",
-      "Fourier=${1:number}",
-      "offset1=${1:number}",
-      "offset2=${1:number}",
-      "offset3=${1:number}",
-      "plotstyle1=${1:style}",
-      "plotstyle2=${1:style}",
-      "plotstyle3=${1:style}",
-      "plotstyle4=${1:style}",
-      "operation=${1|add,sub,mul|}",
-      "Wave1=${1|\\TriangleA,\\RectangleA,\\RDogToothA,\\LDogToothA,\\SinusA|}",
-      "Wave2=${1|\\TriangleB,\\RectangleB,\\RDogToothB,\\LDogToothB,\\SinusB|}",
+    {
+      "name": "pst-plot"
+    },
+    {
+      "name": "multido"
+    },
+    {
+      "name": "pst-xkey"
+    }
+  ],
+  "macros": [
+    {
+      "name": "Oscillo"
+    },
+    {
+      "name": "Oscillo",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "TriangleA"
+    },
+    {
+      "name": "TriangleB"
+    },
+    {
+      "name": "RectangleA"
+    },
+    {
+      "name": "RectangleB"
+    },
+    {
+      "name": "RDogToothA"
+    },
+    {
+      "name": "RDogToothB"
+    },
+    {
+      "name": "LDogToothA"
+    },
+    {
+      "name": "LDogToothB"
+    },
+    {
+      "name": "SinusA"
+    },
+    {
+      "name": "SinusB"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\Oscillo#c": [
+      "period1=${1:number}\r",
+      "period2=${1:number}\r",
+      "periodmodulation1=${1:number}\r",
+      "freqmod1=${1:number}\r",
+      "periodmodulation2=${1:number}\r",
+      "freqmod2=${1:number}\r",
+      "amplitude1=${1:number}\r",
+      "amplitude2=${1:number}\r",
+      "CC1=${1:number}\r",
+      "CC2=${1:number}\r",
+      "timediv=${1:number}\r",
+      "phase1=${1:number}\r",
+      "phase2=${1:number}\r",
+      "sensivity1=${1:number}\r",
+      "sensivity2=${1:number}\r",
+      "damping1=${1:number}\r",
+      "damping2=${1:number}\r",
+      "Fourier=${1:number}\r",
+      "offset1=${1:number}\r",
+      "offset2=${1:number}\r",
+      "offset3=${1:number}\r",
+      "plotstyle1=${1:style}\r",
+      "plotstyle2=${1:style}\r",
+      "plotstyle3=${1:style}\r",
+      "plotstyle4=${1:style}\r",
+      "operation=${1|add,sub,mul\r|}",
+      "Wave1=${1|\\TriangleA,\\RectangleA,\\RDogToothA,\\LDogToothA,\\SinusA\r|}",
+      "Wave2=${1|\\TriangleB,\\RectangleB,\\RDogToothB,\\LDogToothB,\\SinusB\r|}",
       "Lissajous",
       "AllColor",
       "combine",
-      "plotpoints=${1:number}"
+      "plotpoints=${1:number}\r"
     ]
-  ]
+  },
+  "args": []
 }

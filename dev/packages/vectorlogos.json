@@ -1,90 +1,197 @@
 {
-  "includes": {
-    "calc": [],
-    "graphicx": [],
-    "xstring": []
-  },
-  "macros": {
-    "simplevectorlogo{}": {
-      "snippet": "simplevectorlogo{${1:name}}"
+  "deps": [
+    {
+      "name": "calc"
     },
-    "simplevectorlogo[]{}": {
-      "snippet": "simplevectorlogo[${2:options}]{${1:name}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "graphicx"
     },
-    "simplevectorlogo*{}": {
-      "snippet": "simplevectorlogo*{${1:name}}"
-    },
-    "simplevectorlogo*[]{}": {
-      "snippet": "simplevectorlogo*[${2:options}]{${1:name}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "vectorlogo{}": {
-      "snippet": "vectorlogo{${1:name}}"
-    },
-    "vectorlogo[]{}": {
-      "snippet": "vectorlogo[${2:suffix}]{${1:name}}"
-    },
-    "logoscratch": {},
-    "logoscratch[]": {
-      "snippet": "logoscratch[${1:suffix}]"
-    },
-    "logogeogebra": {},
-    "logogeogebra[]": {
-      "snippet": "logogeogebra[${1:suffix}]"
-    },
-    "logotexstudio": {},
-    "logotexstudio[]": {
-      "snippet": "logotexstudio[${1:suffix}]"
-    },
-    "logoemacs": {},
-    "logoemacs[]": {
-      "snippet": "logoemacs[${1:suffix}]"
-    },
-    "logotexmaker": {},
-    "logotexmaker[]": {
-      "snippet": "logotexmaker[${1:suffix}]"
-    },
-    "logomiktex": {},
-    "logomiktex[]": {
-      "snippet": "logomiktex[${1:suffix}]"
-    },
-    "logoctanlion": {},
-    "logoctanlion[]": {
-      "snippet": "logoctanlion[${1:suffix}]"
-    },
-    "logolatexproject": {},
-    "logolatexproject[]": {
-      "snippet": "logolatexproject[${1:suffix}]"
-    },
-    "logotexworks": {},
-    "logotexworks[]": {
-      "snippet": "logotexworks[${1:suffix}]"
-    },
-    "GenMacroLogoVect{}{}": {
-      "snippet": "GenMacroLogoVect{${1:cmd}}{${2:name}}"
+    {
+      "name": "xstring"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "emacs",
-      "geogebra",
-      "scratch",
-      "texmaker",
-      "texstudio",
-      "miktex",
-      "ctanlion",
-      "latexproject",
-      "texworks",
-      "emacs-alt",
-      "geogebra-icon",
-      "scratch-alt",
-      "scratch-cat",
-      "texmaker-alt"
+  ],
+  "macros": [
+    {
+      "name": "simplevectorlogo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name%keyvals}}",
+        "keys": [
+          "\\simplevectorlogo,\\simplevectorlogo*,\\vectorlogo",
+          "\\simplevectorlogo,\\simplevectorlogo*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "simplevectorlogo",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options}]{${1:name%keyvals}}",
+        "keys": [
+          "\\simplevectorlogo,\\simplevectorlogo*,\\vectorlogo",
+          "\\simplevectorlogo,\\simplevectorlogo*"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "simplevectorlogo*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name%keyvals}}",
+        "keys": [
+          "\\simplevectorlogo,\\simplevectorlogo*,\\vectorlogo",
+          "\\simplevectorlogo,\\simplevectorlogo*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "simplevectorlogo*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options}]{${1:name%keyvals}}",
+        "keys": [
+          "\\simplevectorlogo,\\simplevectorlogo*,\\vectorlogo",
+          "\\simplevectorlogo,\\simplevectorlogo*"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "vectorlogo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name%keyvals}}",
+        "keys": [
+          "\\simplevectorlogo,\\simplevectorlogo*,\\vectorlogo"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "vectorlogo",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:suffix}]{${1:name%keyvals}}",
+        "keys": [
+          "\\simplevectorlogo,\\simplevectorlogo*,\\vectorlogo"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "logoscratch"
+    },
+    {
+      "name": "logoscratch",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:suffix}]"
+      }
+    },
+    {
+      "name": "logogeogebra"
+    },
+    {
+      "name": "logogeogebra",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:suffix}]"
+      }
+    },
+    {
+      "name": "logotexstudio"
+    },
+    {
+      "name": "logotexstudio",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:suffix}]"
+      }
+    },
+    {
+      "name": "logoemacs"
+    },
+    {
+      "name": "logoemacs",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:suffix}]"
+      }
+    },
+    {
+      "name": "logotexmaker"
+    },
+    {
+      "name": "logotexmaker",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:suffix}]"
+      }
+    },
+    {
+      "name": "logomiktex"
+    },
+    {
+      "name": "logomiktex",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:suffix}]"
+      }
+    },
+    {
+      "name": "logoctanlion"
+    },
+    {
+      "name": "logoctanlion",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:suffix}]"
+      }
+    },
+    {
+      "name": "logolatexproject"
+    },
+    {
+      "name": "logolatexproject",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:suffix}]"
+      }
+    },
+    {
+      "name": "logotexworks"
+    },
+    {
+      "name": "logotexworks",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:suffix}]"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\simplevectorlogo,\\simplevectorlogo*,\\vectorlogo": [
+      "emacs\r",
+      "geogebra\r",
+      "scratch\r",
+      "texmaker\r",
+      "texstudio\r",
+      "miktex\r",
+      "ctanlion\r",
+      "latexproject\r",
+      "texworks\r"
+    ],
+    "\\simplevectorlogo,\\simplevectorlogo*": [
+      "emacs-alt\r",
+      "geogebra-icon\r",
+      "scratch-alt\r",
+      "scratch-cat\r",
+      "texmaker-alt\r"
     ]
-  ]
+  },
+  "args": []
 }

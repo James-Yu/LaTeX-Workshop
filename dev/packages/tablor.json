@@ -1,116 +1,257 @@
 {
-  "includes": {
-    "ifthen": [],
-    "fancyvrb": [],
-    "ifpdf": []
-  },
-  "macros": {
-    "initablor": {},
-    "initablor[]": {
-      "snippet": "initablor[${1:préfixe}]"
+  "deps": [
+    {
+      "name": "ifthen"
     },
-    "nettoyer": {},
-    "nettoyer[]": {
-      "snippet": "nettoyer[${1:préfixe}]"
+    {
+      "name": "fancyvrb"
     },
-    "ech{}": {
-      "snippet": "ech{${1:nombre}}"
-    },
-    "tv": {},
-    "tvbis": {},
-    "coultab{}": {
-      "snippet": "coultab{${1:color}}"
-    },
-    "dresse{}{}": {
-      "snippet": "dresse{${1:color}}{${2:nom}}"
-    },
-    "dressetoile{}{}": {
-      "snippet": "dressetoile{${1:color}}{${2:nom}}"
-    },
-    "executGiacmp{}": {
-      "snippet": "executGiacmp{${1:file}}"
-    },
-    "couleurtab": {},
-    "cp": {},
-    "cat": {
-      "detail": "⁀",
-      "documentation": "CHARACTER TIE, z notation sequence concatenation"
-    },
-    "echod": {},
-    "echelle": {},
-    "echof": {},
-    "nomtravail": {},
-    "rem": {},
-    "theTVn": {},
-    "theTVnbis": {},
-    "editeur": {}
-  },
-  "envs": {
-    "TV": {},
-    "TSq": {},
-    "TVS": {},
-    "TVZ": {},
-    "TVI": {},
-    "TVIex": {},
-    "TVapp": {},
-    "TVIapp": {},
-    "TVPC": {},
-    "TVP": {},
-    "TSa": {},
-    "TS": {},
-    "TSc": {},
-    "TS*{}": {
-      "name": "TS*",
-      "snippet": "{${1:numéro}}"
-    },
-    "TV*{}": {
-      "name": "TV*",
-      "snippet": "{${1:numéro}}"
-    },
-    "TSq*{}": {
-      "name": "TSq*",
-      "snippet": "{${1:numéro}}"
-    },
-    "TVS*{}": {
-      "name": "TVS*",
-      "snippet": "{${1:numéro}}"
-    },
-    "TVZ*{}": {
-      "name": "TVZ*",
-      "snippet": "{${1:numéro}}"
-    },
-    "TVI*{}": {
-      "name": "TVI*",
-      "snippet": "{${1:numéro}}"
-    },
-    "TVIex*{}": {
-      "name": "TVIex*",
-      "snippet": "{${1:numéro}}"
-    },
-    "TVapp*{}": {
-      "name": "TVapp*",
-      "snippet": "{${1:numéro}}"
-    },
-    "TVIapp*{}": {
-      "name": "TVIapp*",
-      "snippet": "{${1:numéro}}"
-    },
-    "TVPC*{}": {
-      "name": "TVPC*",
-      "snippet": "{${1:numéro}}"
-    },
-    "TVP*{}": {
-      "name": "TVP*",
-      "snippet": "{${1:numéro}}"
-    },
-    "TSc*{}": {
-      "name": "TSc*",
-      "snippet": "{${1:numéro}}"
+    {
+      "name": "ifpdf"
     }
-  },
-  "options": [
-    "xcas",
-    "windows"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "initablor"
+    },
+    {
+      "name": "initablor",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:préfixe}]"
+      }
+    },
+    {
+      "name": "nettoyer"
+    },
+    {
+      "name": "nettoyer",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:préfixe}]"
+      }
+    },
+    {
+      "name": "ech",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:nombre}}"
+      }
+    },
+    {
+      "name": "tv"
+    },
+    {
+      "name": "tvbis"
+    },
+    {
+      "name": "coultab",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "dresse",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:color}}{${2:nom}}"
+      }
+    },
+    {
+      "name": "dressetoile",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:color}}{${2:nom}}"
+      }
+    },
+    {
+      "name": "executGiacmp",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "couleurtab",
+      "unusual": true
+    },
+    {
+      "name": "cp",
+      "unusual": true
+    },
+    {
+      "name": "cat",
+      "unusual": true
+    },
+    {
+      "name": "echod",
+      "unusual": true
+    },
+    {
+      "name": "echelle",
+      "unusual": true
+    },
+    {
+      "name": "echof",
+      "unusual": true
+    },
+    {
+      "name": "nomtravail",
+      "unusual": true
+    },
+    {
+      "name": "rem",
+      "unusual": true
+    },
+    {
+      "name": "theTVn",
+      "unusual": true
+    },
+    {
+      "name": "theTVnbis",
+      "unusual": true
+    },
+    {
+      "name": "editeur",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "TV"
+    },
+    {
+      "name": "TSq"
+    },
+    {
+      "name": "TVS"
+    },
+    {
+      "name": "TVZ"
+    },
+    {
+      "name": "TVI"
+    },
+    {
+      "name": "TVIex"
+    },
+    {
+      "name": "TVapp"
+    },
+    {
+      "name": "TVIapp"
+    },
+    {
+      "name": "TVPC"
+    },
+    {
+      "name": "TVP"
+    },
+    {
+      "name": "TSa"
+    },
+    {
+      "name": "TS"
+    },
+    {
+      "name": "TSc"
+    },
+    {
+      "name": "TS*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:numéro}}"
+      }
+    },
+    {
+      "name": "TV*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:numéro}}"
+      }
+    },
+    {
+      "name": "TSq*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:numéro}}"
+      }
+    },
+    {
+      "name": "TVS*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:numéro}}"
+      }
+    },
+    {
+      "name": "TVZ*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:numéro}}"
+      }
+    },
+    {
+      "name": "TVI*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:numéro}}"
+      }
+    },
+    {
+      "name": "TVIex*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:numéro}}"
+      }
+    },
+    {
+      "name": "TVapp*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:numéro}}"
+      }
+    },
+    {
+      "name": "TVIapp*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:numéro}}"
+      }
+    },
+    {
+      "name": "TVPC*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:numéro}}"
+      }
+    },
+    {
+      "name": "TVP*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:numéro}}"
+      }
+    },
+    {
+      "name": "TSc*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:numéro}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/tablor#c": [
+      "xcas\r",
+      "windows\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/tablor#c"
+  ]
 }

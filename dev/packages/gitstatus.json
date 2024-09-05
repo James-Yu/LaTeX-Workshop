@@ -1,26 +1,44 @@
 {
-  "includes": {
-    "kvoptions": [],
-    "catchfile": [],
-    "xstring": [],
-    "xcolor": [
-      "watermark"
-    ],
-    "xwatermark": [
-      "watermark"
+  "deps": [
+    {
+      "name": "kvoptions"
+    },
+    {
+      "name": "catchfile"
+    },
+    {
+      "name": "xstring"
+    },
+    {
+      "name": "xcolor",
+      "if": "watermark"
+    },
+    {
+      "name": "xwatermark",
+      "if": "watermark"
+    }
+  ],
+  "macros": [
+    {
+      "name": "gitdir"
+    },
+    {
+      "name": "gitcommit"
+    },
+    {
+      "name": "gitbranch"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/gitstatus#c": [
+      "gitdir=${1:file path}\r",
+      "watermark\r",
+      "nowatermark\r",
+      "novariables\r"
     ]
   },
-  "macros": {
-    "gitdir": {},
-    "gitcommit": {},
-    "gitbranch": {}
-  },
-  "envs": {},
-  "options": [
-    "gitdir=${1:file path}",
-    "watermark",
-    "nowatermark",
-    "novariables"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/gitstatus#c"
+  ]
 }

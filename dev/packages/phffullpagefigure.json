@@ -1,112 +1,179 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "ifoddpage": [],
-    "afterpage": [],
-    "placeins": [],
-    "pdfpages": []
-  },
-  "macros": {
-    "figcontent{}": {
-      "snippet": "figcontent{${1:code}}"
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "figpdf{}": {
-      "snippet": "figpdf{${1:file}}"
+    {
+      "name": "ifoddpage"
     },
-    "figpdf[]{}": {
-      "snippet": "figpdf[${2:options}]{${1:file}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "afterpage"
     },
-    "figpageside{}": {
-      "snippet": "figpageside{${1:option}}"
+    {
+      "name": "placeins"
     },
-    "figplacement{}": {
-      "snippet": "figplacement{${1:position}}"
-    },
-    "figcapmaxheight{}": {
-      "snippet": "figcapmaxheight{${1:length}}"
-    },
-    "fullpagefigurecaptionfmt": {},
-    "FlushAllFullPageFigures": {},
-    "FlushAllFullPageFigures[]": {
-      "snippet": "FlushAllFullPageFigures[${1:clear cmd}]"
-    },
-    "phffpfFloatBarrier": {}
-  },
-  "envs": {
-    "fullpagefigure": {},
-    "fullpagefigure[]": {
-      "name": "fullpagefigure",
-      "snippet": "[${1:position}]"
+    {
+      "name": "pdfpages"
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
-      "pages=",
-      "nup=${1:xnup}x${2:ynup}",
+  ],
+  "macros": [
+    {
+      "name": "figcontent",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "figpdf",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "figpdf",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:file}}"
+      }
+    },
+    {
+      "name": "figpageside",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:option%keyvals}}",
+        "keys": [
+          "\\figpageside"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "figplacement",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:position%keyvals}}",
+        "keys": [
+          "\\figplacement,\\begin{fullpagefigure}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "figcapmaxheight",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
+    },
+    {
+      "name": "fullpagefigurecaptionfmt",
+      "unusual": true
+    },
+    {
+      "name": "FlushAllFullPageFigures"
+    },
+    {
+      "name": "FlushAllFullPageFigures",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:clear cmd}]"
+      }
+    },
+    {
+      "name": "phffpfFloatBarrier",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "fullpagefigure"
+    },
+    {
+      "name": "fullpagefigure",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:position%keyvals}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\figpdf": [
+      "pages=\r",
+      "nup=${1:xnup}x${2:ynup}\r",
       "landscape",
-      "delta=${1:delx} ${2:dely}",
-      "offset=${1:offx} ${2:offy}",
+      "delta=${1:delx} ${2:dely}\r",
+      "offset=${1:offx} ${2:offy}\r",
       "frame",
       "column",
       "columnstrict",
       "openright",
       "openrighteach",
-      "pagecommand=${1:code}",
+      "pagecommand=${1:code}\r",
       "turn",
       "noautoscale",
       "fitpaper",
       "reflect",
-      "signature=${1:size}",
-      "signature*=${1:size}",
+      "signature=${1:size}\r",
+      "signature*=${1:size}\r",
       "booklet",
-      "picturecommand=${1:code}",
-      "picturecommand*=${1:code}",
-      "pagetemplate=${1:page number}",
-      "templatesize={${1:width}}{${2:height}}",
+      "picturecommand=${1:code}\r",
+      "picturecommand*=${1:code}\r",
+      "pagetemplate=${1:page number}\r",
+      "templatesize={${1:width}}{${2:height}}\r",
       "rotateoversize",
       "doublepages",
       "doublepagestwist",
       "doublepagestwistodd",
       "doublepagestwist*",
       "doublepagestwistodd*",
-      "duplicatepages=${1:integer}",
-      "lastpage=${1:page number}",
+      "duplicatepages=${1:integer}\r",
+      "lastpage=${1:page number}\r",
       "link",
-      "linkname=${1:default linkname}",
+      "linkname=${1:default linkname}\r",
       "thread",
-      "threadname=",
+      "threadname=\r",
       "linktodoc",
-      "linkfit=",
-      "linktodocfit=",
+      "linkfit=\r",
+      "linktodocfit=\r",
       "newwindow",
-      "linkfilename=",
-      "addtotoc=",
-      "addtolist=",
+      "linkfilename=\r",
+      "addtotoc=\r",
+      "addtolist=\r",
       "survey",
       "survey-nolink",
-      "xr-prefix=",
-      "pagebox=${1|mediabox,cropbox,bleedbox,trimbox,artbox|}",
-      "viewport=",
-      "trim=",
-      "angle=",
-      "origin=",
+      "xr-prefix=\r",
+      "pagebox=${1|mediabox,cropbox,bleedbox,trimbox,artbox\r|}",
+      "viewport=\r",
+      "trim=\r",
+      "angle=\r",
+      "origin=\r",
       "width=",
       "height=",
       "totalheight=",
       "keepaspectratio",
-      "scale=",
+      "scale=\r",
       "clip",
       "draft",
-      "type=",
-      "ext=",
-      "read=",
-      "command=",
-      "quiet",
-      "page=",
+      "type=\r",
+      "ext=\r",
+      "read=\r",
+      "command=\r",
+      "quiet\r",
+      "page=\r",
       "interpolate"
+    ],
+    "\\figpageside": [
+      "even\r",
+      "odd\r"
+    ],
+    "\\figplacement,\\begin{fullpagefigure}": [
+      "b\r",
+      "t\r",
+      "p\r"
     ]
-  ]
+  },
+  "args": []
 }

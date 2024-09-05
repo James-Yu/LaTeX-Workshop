@@ -1,171 +1,372 @@
 {
-  "includes": {
-    "ifthen": []
-  },
-  "macros": {
-    "cfpart{}{}{}": {
-      "snippet": "cfpart{${1:title}}{${2:folder}}{${3:file}}"
-    },
-    "cfpart[]{}{}{}": {
-      "snippet": "cfpart[${4:short title}]{${1:title}}{${2:folder}}{${3:file}}"
-    },
-    "cfpart*{}{}{}": {
-      "snippet": "cfpart*{${1:title}}{${2:folder}}{${3:file}}"
-    },
-    "cfpart*[]{}{}{}": {
-      "snippet": "cfpart*[${4:short title}]{${1:title}}{${2:folder}}{${3:file}}"
-    },
-    "cfchapter{}{}{}": {
-      "snippet": "cfchapter{${1:title}}{${2:folder}}{${3:file}}"
-    },
-    "cfchapter[]{}{}{}": {
-      "snippet": "cfchapter[${4:short title}]{${1:title}}{${2:folder}}{${3:file}}"
-    },
-    "cfchapter*{}{}{}": {
-      "snippet": "cfchapter*{${1:title}}{${2:folder}}{${3:file}}"
-    },
-    "cfchapter*[]{}{}{}": {
-      "snippet": "cfchapter*[${4:short title}]{${1:title}}{${2:folder}}{${3:file}}"
-    },
-    "cfsection{}{}{}": {
-      "snippet": "cfsection{${1:title}}{${2:folder}}{${3:file}}"
-    },
-    "cfsection[]{}{}{}": {
-      "snippet": "cfsection[${4:short title}]{${1:title}}{${2:folder}}{${3:file}}"
-    },
-    "cfsection*{}{}{}": {
-      "snippet": "cfsection*{${1:title}}{${2:folder}}{${3:file}}"
-    },
-    "cfsection*[]{}{}{}": {
-      "snippet": "cfsection*[${4:short title}]{${1:title}}{${2:folder}}{${3:file}}"
-    },
-    "cfsubsection{}{}{}": {
-      "snippet": "cfsubsection{${1:title}}{${2:folder}}{${3:file}}"
-    },
-    "cfsubsection[]{}{}{}": {
-      "snippet": "cfsubsection[${4:short title}]{${1:title}}{${2:folder}}{${3:file}}"
-    },
-    "cfsubsection*{}{}{}": {
-      "snippet": "cfsubsection*{${1:title}}{${2:folder}}{${3:file}}"
-    },
-    "cfsubsection*[]{}{}{}": {
-      "snippet": "cfsubsection*[${4:short title}]{${1:title}}{${2:folder}}{${3:file}}"
-    },
-    "cfinput{}": {
-      "snippet": "cfinput{${1:file}}"
-    },
-    "cfcurrentfolder": {},
-    "cfinputfigure{}": {
-      "snippet": "cfinputfigure{${1:file}}"
-    },
-    "cfcurrentfolderfigure": {},
-    "cfinputlistings{}": {
-      "snippet": "cfinputlistings{${1:file}}"
-    },
-    "cfcurrentfolderlistings": {},
-    "cfinputalgorithms{}": {
-      "snippet": "cfinputalgorithms{${1:file}}"
-    },
-    "cfcurrentfolderalgorithms": {},
-    "cffolderfigure{}{}": {
-      "snippet": "cffolderfigure{${1:folder}}{${2:file}}"
-    },
-    "cfaddFolder{}{}": {
-      "snippet": "cfaddFolder{${1:cmd ext}}{${2:folder}}"
-    },
-    "cfpartstar{}{}{}": {
-      "snippet": "cfpartstar{${1:title}}{${2:folder}}{${3:file}}"
-    },
-    "cfpartstar[]{}{}{}": {
-      "snippet": "cfpartstar[${4:short title}]{${1:title}}{${2:folder}}{${3:file}}"
-    },
-    "cfchapterstar{}{}{}": {
-      "snippet": "cfchapterstar{${1:title}}{${2:folder}}{${3:file}}"
-    },
-    "cfchapterstar[]{}{}{}": {
-      "snippet": "cfchapterstar[${4:short title}]{${1:title}}{${2:folder}}{${3:file}}"
-    },
-    "cfsectionstar{}{}{}": {
-      "snippet": "cfsectionstar{${1:title}}{${2:folder}}{${3:file}}"
-    },
-    "cfsectionstar[]{}{}{}": {
-      "snippet": "cfsectionstar[${4:short title}]{${1:title}}{${2:folder}}{${3:file}}"
-    },
-    "cfsubsectionstar{}{}{}": {
-      "snippet": "cfsubsectionstar{${1:title}}{${2:folder}}{${3:file}}"
-    },
-    "cfsubsectionstar[]{}{}{}": {
-      "snippet": "cfsubsectionstar[${4:short title}]{${1:title}}{${2:folder}}{${3:file}}"
-    },
-    "cfpartstd{}{}{}": {
-      "snippet": "cfpartstd{${1:title}}{${2:folder}}{${3:file}}"
-    },
-    "cfpartstd[]{}{}{}": {
-      "snippet": "cfpartstd[${4:short title}]{${1:title}}{${2:folder}}{${3:file}}"
-    },
-    "cfchapterstd{}{}{}": {
-      "snippet": "cfchapterstd{${1:title}}{${2:folder}}{${3:file}}"
-    },
-    "cfchapterstd[]{}{}{}": {
-      "snippet": "cfchapterstd[${4:short title}]{${1:title}}{${2:folder}}{${3:file}}"
-    },
-    "cfsectionstd{}{}{}": {
-      "snippet": "cfsectionstd{${1:title}}{${2:folder}}{${3:file}}"
-    },
-    "cfsectionstd[]{}{}{}": {
-      "snippet": "cfsectionstd[${4:short title}]{${1:title}}{${2:folder}}{${3:file}}"
-    },
-    "cfsubsectionstd{}{}{}": {
-      "snippet": "cfsubsectionstd{${1:title}}{${2:folder}}{${3:file}}"
-    },
-    "cfsubsectionstd[]{}{}{}": {
-      "snippet": "cfsubsectionstd[${4:short title}]{${1:title}}{${2:folder}}{${3:file}}"
-    },
-    "cffolderinput{}{}": {
-      "snippet": "cffolderinput{${1:folder}}{${2:file}}"
-    },
-    "cfincludegraphics{}": {
-      "snippet": "cfincludegraphics{${1:imagefile}}"
-    },
-    "cfincludegraphics[]{}": {
-      "snippet": "cfincludegraphics[${2:options}]{${1:imagefile}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "ifthen"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "alt={${1:alt text}}",
-      "bb=${1:llx lly urx ury}",
-      "bbllx=",
-      "bblly=",
-      "bburx=",
-      "bbury=",
-      "natwidth=",
-      "natheight=",
+  ],
+  "macros": [
+    {
+      "name": "cfpart",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:title}}{${2:folder%file}}{${3:file%file}}"
+      }
+    },
+    {
+      "name": "cfpart",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:short title}]{${1:title}}{${2:folder%file}}{${3:file%file}}"
+      }
+    },
+    {
+      "name": "cfpart*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:title}}{${2:folder%file}}{${3:file%file}}"
+      }
+    },
+    {
+      "name": "cfpart*",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:short title}]{${1:title}}{${2:folder%file}}{${3:file%file}}"
+      }
+    },
+    {
+      "name": "cfchapter",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:title}}{${2:folder%file}}{${3:file%file}}"
+      }
+    },
+    {
+      "name": "cfchapter",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:short title}]{${1:title}}{${2:folder%file}}{${3:file%file}}"
+      }
+    },
+    {
+      "name": "cfchapter*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:title}}{${2:folder%file}}{${3:file%file}}"
+      }
+    },
+    {
+      "name": "cfchapter*",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:short title}]{${1:title}}{${2:folder%file}}{${3:file%file}}"
+      }
+    },
+    {
+      "name": "cfsection",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:title}}{${2:folder%file}}{${3:file%file}}"
+      }
+    },
+    {
+      "name": "cfsection",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:short title}]{${1:title}}{${2:folder%file}}{${3:file%file}}"
+      }
+    },
+    {
+      "name": "cfsection*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:title}}{${2:folder%file}}{${3:file%file}}"
+      }
+    },
+    {
+      "name": "cfsection*",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:short title}]{${1:title}}{${2:folder%file}}{${3:file%file}}"
+      }
+    },
+    {
+      "name": "cfsubsection",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:title}}{${2:folder%file}}{${3:file%file}}"
+      }
+    },
+    {
+      "name": "cfsubsection",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:short title}]{${1:title}}{${2:folder%file}}{${3:file%file}}"
+      }
+    },
+    {
+      "name": "cfsubsection*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:title}}{${2:folder%file}}{${3:file%file}}"
+      }
+    },
+    {
+      "name": "cfsubsection*",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:short title}]{${1:title}}{${2:folder%file}}{${3:file%file}}"
+      }
+    },
+    {
+      "name": "cfinput",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "cfcurrentfolder",
+      "unusual": true
+    },
+    {
+      "name": "cfinputfigure",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "cfcurrentfolderfigure",
+      "unusual": true
+    },
+    {
+      "name": "cfinputlistings",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "cfcurrentfolderlistings",
+      "unusual": true
+    },
+    {
+      "name": "cfinputalgorithms",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "cfcurrentfolderalgorithms",
+      "unusual": true
+    },
+    {
+      "name": "cffolderfigure",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:folder%file}}{${2:file%file}}"
+      }
+    },
+    {
+      "name": "cfaddFolder",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd ext}}{${2:folder%file}}"
+      }
+    },
+    {
+      "name": "cfpartstar",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:title}}{${2:folder%file}}{${3:file%file}}"
+      }
+    },
+    {
+      "name": "cfpartstar",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:short title}]{${1:title}}{${2:folder%file}}{${3:file%file}}"
+      }
+    },
+    {
+      "name": "cfchapterstar",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:title}}{${2:folder%file}}{${3:file%file}}"
+      }
+    },
+    {
+      "name": "cfchapterstar",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:short title}]{${1:title}}{${2:folder%file}}{${3:file%file}}"
+      }
+    },
+    {
+      "name": "cfsectionstar",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:title}}{${2:folder%file}}{${3:file%file}}"
+      }
+    },
+    {
+      "name": "cfsectionstar",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:short title}]{${1:title}}{${2:folder%file}}{${3:file%file}}"
+      }
+    },
+    {
+      "name": "cfsubsectionstar",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:title}}{${2:folder%file}}{${3:file%file}}"
+      }
+    },
+    {
+      "name": "cfsubsectionstar",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:short title}]{${1:title}}{${2:folder%file}}{${3:file%file}}"
+      }
+    },
+    {
+      "name": "cfpartstd",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:title}}{${2:folder%file}}{${3:file%file}}"
+      }
+    },
+    {
+      "name": "cfpartstd",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:short title}]{${1:title}}{${2:folder%file}}{${3:file%file}}"
+      }
+    },
+    {
+      "name": "cfchapterstd",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:title}}{${2:folder%file}}{${3:file%file}}"
+      }
+    },
+    {
+      "name": "cfchapterstd",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:short title}]{${1:title}}{${2:folder%file}}{${3:file%file}}"
+      }
+    },
+    {
+      "name": "cfsectionstd",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:title}}{${2:folder%file}}{${3:file%file}}"
+      }
+    },
+    {
+      "name": "cfsectionstd",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:short title}]{${1:title}}{${2:folder%file}}{${3:file%file}}"
+      }
+    },
+    {
+      "name": "cfsubsectionstd",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:title}}{${2:folder%file}}{${3:file%file}}"
+      }
+    },
+    {
+      "name": "cfsubsectionstd",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:short title}]{${1:title}}{${2:folder%file}}{${3:file%file}}"
+      }
+    },
+    {
+      "name": "cffolderinput",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:folder%file}}{${2:file%file}}"
+      }
+    },
+    {
+      "name": "cfincludegraphics",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "cfincludegraphics",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:imagefile}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\cfincludegraphics": [
+      "alt={${1:alt text}}\r",
+      "bb=${1:llx lly urx ury}\r",
+      "bbllx=\r",
+      "bblly=\r",
+      "bburx=\r",
+      "bbury=\r",
+      "natwidth=\r",
+      "natheight=\r",
       "hiresbb",
-      "pagebox=${1|mediabox,cropbox,bleedbox,trimbox,artbox|}",
-      "viewport=${1:llx lly urx ury}",
-      "trim=${1:llx lly urx ury}",
-      "angle=${1:degrees}",
-      "origin=",
+      "pagebox=${1|mediabox,cropbox,bleedbox,trimbox,artbox\r|}",
+      "viewport=${1:llx lly urx ury}\r",
+      "trim=${1:llx lly urx ury}\r",
+      "angle=${1:degrees}\r",
+      "origin=\r",
       "width=",
       "height=",
       "totalheight=",
       "keepaspectratio",
-      "scale=${1:factor}",
+      "scale=${1:factor}\r",
       "clip",
       "draft",
-      "type=${1:file type}",
-      "ext=${1:file extension}",
-      "read=${1:read-file extension}",
-      "command=",
-      "quiet",
-      "page=${1:page number}",
+      "type=${1:file type}\r",
+      "ext=${1:file extension}\r",
+      "read=${1:read-file extension}\r",
+      "command=\r",
+      "quiet\r",
+      "page=${1:page number}\r",
       "interpolate",
-      "decodearray={${1:color array}}"
+      "decodearray={${1:color array}}\r"
     ]
-  ]
+  },
+  "args": []
 }

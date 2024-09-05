@@ -1,281 +1,673 @@
 {
-  "includes": {
-    "tikz": [],
-    "etoolbox": []
-  },
-  "macros": {
-    "dice{}": {
-      "snippet": "dice{${1:number}}"
-    },
-    "dice[]{}": {
-      "snippet": "dice[${2:background,foreground}]{${1:number}}"
-    },
-    "bigdotdice": {},
-    "bigdotdice[]": {
-      "snippet": "bigdotdice[${1:background,foreground}]"
-    },
-    "textdice{}": {
-      "snippet": "textdice{${1:text}}"
-    },
-    "textdice[]{}": {
-      "snippet": "textdice[${2:background,foreground}]{${1:text}}"
-    },
-    "textdicebot{}": {
-      "snippet": "textdicebot{${1:text}}"
-    },
-    "textdicebot[]{}": {
-      "snippet": "textdicebot[${2:background,foreground}]{${1:text}}"
-    },
-    "layoutdice{}{}{}{}{}{}": {
-      "snippet": "layoutdice{${1:face1}}{${2:face2}}{${3:face3}}{${4:face4}}{${5:face5}}{${6:face6}}"
-    },
-    "tinydice{}": {
-      "snippet": "tinydice{${1:number}}"
-    },
-    "tinydice[]{}": {
-      "snippet": "tinydice[${2:background,foreground}]{${1:number}}"
-    },
-    "scriptsizedice{}": {
-      "snippet": "scriptsizedice{${1:number}}"
-    },
-    "scriptsizedice[]{}": {
-      "snippet": "scriptsizedice[${2:background,foreground}]{${1:number}}"
-    },
-    "footnotesizedice{}": {
-      "snippet": "footnotesizedice{${1:number}}"
-    },
-    "footnotesizedice[]{}": {
-      "snippet": "footnotesizedice[${2:background,foreground}]{${1:number}}"
-    },
-    "smalldice{}": {
-      "snippet": "smalldice{${1:number}}"
-    },
-    "smalldice[]{}": {
-      "snippet": "smalldice[${2:background,foreground}]{${1:number}}"
-    },
-    "normalsizedice{}": {
-      "snippet": "normalsizedice{${1:number}}"
-    },
-    "normalsizedice[]{}": {
-      "snippet": "normalsizedice[${2:background,foreground}]{${1:number}}"
-    },
-    "largedice{}": {
-      "snippet": "largedice{${1:number}}"
-    },
-    "largedice[]{}": {
-      "snippet": "largedice[${2:background,foreground}]{${1:number}}"
-    },
-    "Largedice{}": {
-      "snippet": "Largedice{${1:number}}"
-    },
-    "Largedice[]{}": {
-      "snippet": "Largedice[${2:background,foreground}]{${1:number}}"
-    },
-    "LARGEdice{}": {
-      "snippet": "LARGEdice{${1:number}}"
-    },
-    "LARGEdice[]{}": {
-      "snippet": "LARGEdice[${2:background,foreground}]{${1:number}}"
-    },
-    "hugedice{}": {
-      "snippet": "hugedice{${1:number}}"
-    },
-    "hugedice[]{}": {
-      "snippet": "hugedice[${2:background,foreground}]{${1:number}}"
-    },
-    "Hugedice{}": {
-      "snippet": "Hugedice{${1:number}}"
-    },
-    "Hugedice[]{}": {
-      "snippet": "Hugedice[${2:background,foreground}]{${1:number}}"
-    },
-    "tinybigdotdice": {},
-    "tinybigdotdice[]": {
-      "snippet": "tinybigdotdice[${1:background,foreground}]"
-    },
-    "scriptsizebigdotdice": {},
-    "scriptsizebigdotdice[]": {
-      "snippet": "scriptsizebigdotdice[${1:background,foreground}]"
-    },
-    "footnotesizebigdotdice": {},
-    "footnotesizebigdotdice[]": {
-      "snippet": "footnotesizebigdotdice[${1:background,foreground}]"
-    },
-    "smallbigdotdice": {},
-    "smallbigdotdice[]": {
-      "snippet": "smallbigdotdice[${1:background,foreground}]"
-    },
-    "normalsizebigdotdice": {},
-    "normalsizebigdotdice[]": {
-      "snippet": "normalsizebigdotdice[${1:background,foreground}]"
-    },
-    "largebigdotdice": {},
-    "largebigdotdice[]": {
-      "snippet": "largebigdotdice[${1:background,foreground}]"
-    },
-    "Largebigdotdice": {},
-    "Largebigdotdice[]": {
-      "snippet": "Largebigdotdice[${1:background,foreground}]"
-    },
-    "LARGEbigdotdice": {},
-    "LARGEbigdotdice[]": {
-      "snippet": "LARGEbigdotdice[${1:background,foreground}]"
-    },
-    "hugebigdotdice": {},
-    "hugebigdotdice[]": {
-      "snippet": "hugebigdotdice[${1:background,foreground}]"
-    },
-    "Hugebigdotdice": {},
-    "Hugebigdotdice[]": {
-      "snippet": "Hugebigdotdice[${1:background,foreground}]"
-    },
-    "tinytextdice{}": {
-      "snippet": "tinytextdice{${1:text}}"
-    },
-    "tinytextdice[]{}": {
-      "snippet": "tinytextdice[${2:background,foreground}]{${1:text}}"
-    },
-    "scriptsizetextdice{}": {
-      "snippet": "scriptsizetextdice{${1:text}}"
-    },
-    "scriptsizetextdice[]{}": {
-      "snippet": "scriptsizetextdice[${2:background,foreground}]{${1:text}}"
-    },
-    "footnotesizetextdice{}": {
-      "snippet": "footnotesizetextdice{${1:text}}"
-    },
-    "footnotesizetextdice[]{}": {
-      "snippet": "footnotesizetextdice[${2:background,foreground}]{${1:text}}"
-    },
-    "smalltextdice{}": {
-      "snippet": "smalltextdice{${1:text}}"
-    },
-    "smalltextdice[]{}": {
-      "snippet": "smalltextdice[${2:background,foreground}]{${1:text}}"
-    },
-    "normalsizetextdice{}": {
-      "snippet": "normalsizetextdice{${1:text}}"
-    },
-    "normalsizetextdice[]{}": {
-      "snippet": "normalsizetextdice[${2:background,foreground}]{${1:text}}"
-    },
-    "largetextdice{}": {
-      "snippet": "largetextdice{${1:text}}"
-    },
-    "largetextdice[]{}": {
-      "snippet": "largetextdice[${2:background,foreground}]{${1:text}}"
-    },
-    "Largetextdice{}": {
-      "snippet": "Largetextdice{${1:text}}"
-    },
-    "Largetextdice[]{}": {
-      "snippet": "Largetextdice[${2:background,foreground}]{${1:text}}"
-    },
-    "LARGEtextdice{}": {
-      "snippet": "LARGEtextdice{${1:text}}"
-    },
-    "LARGEtextdice[]{}": {
-      "snippet": "LARGEtextdice[${2:background,foreground}]{${1:text}}"
-    },
-    "hugetextdice{}": {
-      "snippet": "hugetextdice{${1:text}}"
-    },
-    "hugetextdice[]{}": {
-      "snippet": "hugetextdice[${2:background,foreground}]{${1:text}}"
-    },
-    "Hugetextdice{}": {
-      "snippet": "Hugetextdice{${1:text}}"
-    },
-    "Hugetextdice[]{}": {
-      "snippet": "Hugetextdice[${2:background,foreground}]{${1:text}}"
-    },
-    "tinytextdicebot{}": {
-      "snippet": "tinytextdicebot{${1:text}}"
-    },
-    "tinytextdicebot[]{}": {
-      "snippet": "tinytextdicebot[${2:background,foreground}]{${1:text}}"
-    },
-    "scriptsizetextdicebot{}": {
-      "snippet": "scriptsizetextdicebot{${1:text}}"
-    },
-    "scriptsizetextdicebot[]{}": {
-      "snippet": "scriptsizetextdicebot[${2:background,foreground}]{${1:text}}"
-    },
-    "footnotesizetextdicebot{}": {
-      "snippet": "footnotesizetextdicebot{${1:text}}"
-    },
-    "footnotesizetextdicebot[]{}": {
-      "snippet": "footnotesizetextdicebot[${2:background,foreground}]{${1:text}}"
-    },
-    "smalltextdicebot{}": {
-      "snippet": "smalltextdicebot{${1:text}}"
-    },
-    "smalltextdicebot[]{}": {
-      "snippet": "smalltextdicebot[${2:background,foreground}]{${1:text}}"
-    },
-    "normalsizetextdicebot{}": {
-      "snippet": "normalsizetextdicebot{${1:text}}"
-    },
-    "normalsizetextdicebot[]{}": {
-      "snippet": "normalsizetextdicebot[${2:background,foreground}]{${1:text}}"
-    },
-    "largetextdicebot{}": {
-      "snippet": "largetextdicebot{${1:text}}"
-    },
-    "largetextdicebot[]{}": {
-      "snippet": "largetextdicebot[${2:background,foreground}]{${1:text}}"
-    },
-    "Largetextdicebot{}": {
-      "snippet": "Largetextdicebot{${1:text}}"
-    },
-    "Largetextdicebot[]{}": {
-      "snippet": "Largetextdicebot[${2:background,foreground}]{${1:text}}"
-    },
-    "LARGEtextdicebot{}": {
-      "snippet": "LARGEtextdicebot{${1:text}}"
-    },
-    "LARGEtextdicebot[]{}": {
-      "snippet": "LARGEtextdicebot[${2:background,foreground}]{${1:text}}"
-    },
-    "hugetextdicebot{}": {
-      "snippet": "hugetextdicebot{${1:text}}"
-    },
-    "hugetextdicebot[]{}": {
-      "snippet": "hugetextdicebot[${2:background,foreground}]{${1:text}}"
-    },
-    "Hugetextdicebot{}": {
-      "snippet": "Hugetextdicebot{${1:text}}"
-    },
-    "Hugetextdicebot[]{}": {
-      "snippet": "Hugetextdicebot[${2:background,foreground}]{${1:text}}"
-    },
-    "setdicebaseline{}": {
-      "snippet": "setdicebaseline{${1:number}}"
-    },
-    "setdicefacesize{}": {
-      "snippet": "setdicefacesize{${1:number}}"
-    },
-    "customdicebaseline": {},
-    "customdicefacesize": {},
-    "customdicehalfway": {},
-    "customdicelower": {},
-    "customdiceupper": {},
-    "customdicedotsize": {},
-    "customdicebigdotsize": {},
-    "customdicecornerrounding": {},
-    "customdiceborderthickness": {},
-    "customdicetextscale": {},
-    "customdicefg": {},
-    "customdicebg": {},
-    "customdicecoldefault": {}
-  },
-  "envs": {
-    "customdiceenv": {},
-    "customdiceenv[]": {
-      "name": "customdiceenv",
-      "snippet": "[${1:background,foreground}]"
+  "deps": [
+    {
+      "name": "tikz"
+    },
+    {
+      "name": "etoolbox"
     }
+  ],
+  "macros": [
+    {
+      "name": "dice",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "dice",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:background,foreground%keyvals}]{${1:number}}"
+      }
+    },
+    {
+      "name": "bigdotdice"
+    },
+    {
+      "name": "bigdotdice",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:background,foreground%keyvals}]"
+      }
+    },
+    {
+      "name": "textdice",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "textdice",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:background,foreground%keyvals}]{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "textdicebot",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "textdicebot",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:background,foreground%keyvals}]{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "layoutdice",
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "{${1:face1}}{${2:face2}}{${3:face3}}{${4:face4}}{${5:face5}}{${6:face6}}"
+      }
+    },
+    {
+      "name": "tinydice",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "tinydice",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:background,foreground%keyvals}]{${1:number}}"
+      }
+    },
+    {
+      "name": "scriptsizedice",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "scriptsizedice",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:background,foreground%keyvals}]{${1:number}}"
+      }
+    },
+    {
+      "name": "footnotesizedice",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "footnotesizedice",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:background,foreground%keyvals}]{${1:number}}"
+      }
+    },
+    {
+      "name": "smalldice",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "smalldice",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:background,foreground%keyvals}]{${1:number}}"
+      }
+    },
+    {
+      "name": "normalsizedice",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "normalsizedice",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:background,foreground%keyvals}]{${1:number}}"
+      }
+    },
+    {
+      "name": "largedice",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "largedice",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:background,foreground%keyvals}]{${1:number}}"
+      }
+    },
+    {
+      "name": "Largedice",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "Largedice",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:background,foreground%keyvals}]{${1:number}}"
+      }
+    },
+    {
+      "name": "LARGEdice",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "LARGEdice",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:background,foreground%keyvals}]{${1:number}}"
+      }
+    },
+    {
+      "name": "hugedice",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "hugedice",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:background,foreground%keyvals}]{${1:number}}"
+      }
+    },
+    {
+      "name": "Hugedice",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "Hugedice",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:background,foreground%keyvals}]{${1:number}}"
+      }
+    },
+    {
+      "name": "tinybigdotdice"
+    },
+    {
+      "name": "tinybigdotdice",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:background,foreground%keyvals}]"
+      }
+    },
+    {
+      "name": "scriptsizebigdotdice"
+    },
+    {
+      "name": "scriptsizebigdotdice",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:background,foreground%keyvals}]"
+      }
+    },
+    {
+      "name": "footnotesizebigdotdice"
+    },
+    {
+      "name": "footnotesizebigdotdice",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:background,foreground%keyvals}]"
+      }
+    },
+    {
+      "name": "smallbigdotdice"
+    },
+    {
+      "name": "smallbigdotdice",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:background,foreground%keyvals}]"
+      }
+    },
+    {
+      "name": "normalsizebigdotdice"
+    },
+    {
+      "name": "normalsizebigdotdice",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:background,foreground%keyvals}]"
+      }
+    },
+    {
+      "name": "largebigdotdice"
+    },
+    {
+      "name": "largebigdotdice",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:background,foreground%keyvals}]"
+      }
+    },
+    {
+      "name": "Largebigdotdice"
+    },
+    {
+      "name": "Largebigdotdice",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:background,foreground%keyvals}]"
+      }
+    },
+    {
+      "name": "LARGEbigdotdice"
+    },
+    {
+      "name": "LARGEbigdotdice",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:background,foreground%keyvals}]"
+      }
+    },
+    {
+      "name": "hugebigdotdice"
+    },
+    {
+      "name": "hugebigdotdice",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:background,foreground%keyvals}]"
+      }
+    },
+    {
+      "name": "Hugebigdotdice"
+    },
+    {
+      "name": "Hugebigdotdice",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:background,foreground%keyvals}]"
+      }
+    },
+    {
+      "name": "tinytextdice",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "tinytextdice",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:background,foreground%keyvals}]{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "scriptsizetextdice",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "scriptsizetextdice",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:background,foreground%keyvals}]{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "footnotesizetextdice",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "footnotesizetextdice",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:background,foreground%keyvals}]{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "smalltextdice",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "smalltextdice",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:background,foreground%keyvals}]{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "normalsizetextdice",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "normalsizetextdice",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:background,foreground%keyvals}]{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "largetextdice",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "largetextdice",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:background,foreground%keyvals}]{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "Largetextdice",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "Largetextdice",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:background,foreground%keyvals}]{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "LARGEtextdice",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "LARGEtextdice",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:background,foreground%keyvals}]{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "hugetextdice",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "hugetextdice",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:background,foreground%keyvals}]{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "Hugetextdice",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "Hugetextdice",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:background,foreground%keyvals}]{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "tinytextdicebot",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "tinytextdicebot",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:background,foreground%keyvals}]{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "scriptsizetextdicebot",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "scriptsizetextdicebot",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:background,foreground%keyvals}]{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "footnotesizetextdicebot",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "footnotesizetextdicebot",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:background,foreground%keyvals}]{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "smalltextdicebot",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "smalltextdicebot",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:background,foreground%keyvals}]{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "normalsizetextdicebot",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "normalsizetextdicebot",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:background,foreground%keyvals}]{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "largetextdicebot",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "largetextdicebot",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:background,foreground%keyvals}]{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "Largetextdicebot",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "Largetextdicebot",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:background,foreground%keyvals}]{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "LARGEtextdicebot",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "LARGEtextdicebot",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:background,foreground%keyvals}]{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "hugetextdicebot",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "hugetextdicebot",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:background,foreground%keyvals}]{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "Hugetextdicebot",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "Hugetextdicebot",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:background,foreground%keyvals}]{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "setdicebaseline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "setdicefacesize",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "customdicebaseline",
+      "unusual": true
+    },
+    {
+      "name": "customdicefacesize",
+      "unusual": true
+    },
+    {
+      "name": "customdicehalfway",
+      "unusual": true
+    },
+    {
+      "name": "customdicelower",
+      "unusual": true
+    },
+    {
+      "name": "customdiceupper",
+      "unusual": true
+    },
+    {
+      "name": "customdicedotsize",
+      "unusual": true
+    },
+    {
+      "name": "customdicebigdotsize",
+      "unusual": true
+    },
+    {
+      "name": "customdicecornerrounding",
+      "unusual": true
+    },
+    {
+      "name": "customdiceborderthickness",
+      "unusual": true
+    },
+    {
+      "name": "customdicetextscale",
+      "unusual": true
+    },
+    {
+      "name": "customdicefg",
+      "unusual": true
+    },
+    {
+      "name": "customdicebg",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "customdiceenv",
+      "unusual": true
+    },
+    {
+      "name": "customdiceenv",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:background,foreground%keyvals}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\dice#c,\\bigdotdice#c,\\textdice#c,\\textdicebot#c,\\tinydice#c,\\scriptsizedice#c,\\footnotesizedice#c,\\smalldice#c,\\normalsizedice#c,\\largedice#c,\\Largedice#c,\\LARGEdice#c,\\hugedice#c,\\Hugedice#c,\\tinybigdotdice#c,\\scriptsizebigdotdice#c,\\footnotesizebigdotdice#c,\\smallbigdotdice#c,\\normalsizebigdotdice#c,\\largebigdotdice#c,\\Largebigdotdice#c,\\LARGEbigdotdice#c,\\hugebigdotdice#c,\\Hugebigdotdice#c,\\tinytextdice#c,\\scriptsizetextdice#c,\\footnotesizetextdice#c,\\smalltextdice#c,\\normalsizetextdice#c,\\largetextdice#c,\\Largetextdice#c,\\LARGEtextdice#c,\\hugetextdice#c,\\Hugetextdice#c,\\tinytextdicebot#c,\\scriptsizetextdicebot#c,\\footnotesizetextdicebot#c,\\smalltextdicebot#c,\\normalsizetextdicebot#c,\\largetextdicebot#c,\\Largetextdicebot#c,\\LARGEtextdicebot#c,\\hugetextdicebot#c,\\Hugetextdicebot#c,\\begin{customdiceenv}#c": [
+      "%color\r"
+    ]
   },
-  "options": [],
-  "keyvals": []
+  "args": []
 }

@@ -1,145 +1,225 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-xkey": []
-  },
-  "macros": {
-    "psArrowArc()()": {
-      "snippet": "psArrowArc(${1:x},${2:y})(${3:φ1},${4:φ2})"
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "psArrowArc[]()()": {
-      "snippet": "psArrowArc[${1:options}](${2:x},${3:y})(${4:φ1},${5:φ2})"
+    {
+      "name": "pst-xkey"
+    }
+  ],
+  "macros": [
+    {
+      "name": "psArrowArc",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "[${1:options%keyvals}](${2:x},${3:y})(${4:φ1},${5:φ2})"
+      }
     },
-    "psArrowArcn()()": {
-      "snippet": "psArrowArcn(${1:x},${2:y})(${3:φ1},${4:φ2})"
+    {
+      "name": "psArrowArcn",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "[${1:options%keyvals}](${2:x},${3:y})(${4:φ1},${5:φ2})"
+      }
     },
-    "psArrowArcn[]()()": {
-      "snippet": "psArrowArcn[${1:options}](${2:x},${3:y})(${4:φ1},${5:φ2})"
+    {
+      "name": "psArrowLine(x1,y1)(x2,y2)"
     },
-    "psArrowLine()()": {
-      "snippet": "psArrowLine(${1:x1},${2:y1})(${3:x2},${4:y2})"
+    {
+      "name": "psArrowLine",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "[${1:options%keyvals}](${2:x1},${3:y1})(${4:x2},${5:y2})"
+      }
     },
-    "psArrowLine[]()()": {
-      "snippet": "psArrowLine[${1:options}](${2:x1},${3:y1})(${4:x2},${5:y2})"
+    {
+      "name": "psBCirc(x,y)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:radius}}"
+      }
     },
-    "psBCirc(){}": {
-      "snippet": "psBCirc(${2:x},${3:y}){${1:radius}}"
+    {
+      "name": "psBCirc",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:options%keyvals}](${3:x},${4:y}){${1:radius}}"
+      }
     },
-    "psBCirc[](){}": {
-      "snippet": "psBCirc[${2:options}](${3:x},${4:y}){${1:radius}}"
+    {
+      "name": "psBText(x,y)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "psBText(){}": {
-      "snippet": "psBText(${2:x},${3:y}){${1:text}}"
+    {
+      "name": "psBText",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:options%keyvals}](${3:x},${4:y}){${1:text}}"
+      }
     },
-    "psBText[](){}": {
-      "snippet": "psBText[${2:options}](${3:x},${4:y}){${1:text}}"
+    {
+      "name": "psCArc",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "[${1:options%keyvals}](${2:x},${3:y})(${4:φ1},${5:φ2})"
+      }
     },
-    "psCArc()()": {
-      "snippet": "psCArc(${1:x},${2:y})(${3:φ1},${4:φ2})"
+    {
+      "name": "psCCirc(x,y)",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:radius}}{${2:color1}}{${3:color2}}"
+      }
     },
-    "psCArc[]()()": {
-      "snippet": "psCArc[${1:options}](${2:x},${3:y})(${4:φ1},${5:φ2})"
+    {
+      "name": "psCCirc",
+      "arg": {
+        "format": "[](){}{}{}",
+        "snippet": "[${4:options%keyvals}](${5:x},${6:y}){${1:radius}}{${2:color1}}{${3:color2}}"
+      }
     },
-    "psCCirc(){}{}{}": {
-      "snippet": "psCCirc(${4:x},${5:y}){${1:radius}}{${2:color}}{${3:color}}"
+    {
+      "name": "psCText(x,y)",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:color1}}{${2:color2}}{${3:text}}"
+      }
     },
-    "psCCirc[](){}{}{}": {
-      "snippet": "psCCirc[${4:options}](${5:x},${6:y}){${1:radius}}{${2:color}}{${3:color}}"
+    {
+      "name": "psCText",
+      "arg": {
+        "format": "[](){}{}{}",
+        "snippet": "[${4:options%keyvals}](${5:x},${6:y}){${1:color1}}{${2:color2}}{${3:text}}"
+      }
     },
-    "psCText(){}{}{}": {
-      "snippet": "psCText(${4:x},${5:y}){${1:color}}{${2:color}}{${3:text}}"
+    {
+      "name": "psGluonArc",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "[${1:options%keyvals}](${2:x},${3:y})(${4:φ1},${5:φ2})"
+      }
     },
-    "psCText[](){}{}{}": {
-      "snippet": "psCText[${4:options}](${5:x},${6:y}){${1:color}}{${2:color}}{${3:text}}"
+    {
+      "name": "psGluon(x1,y1)(x2,y2)"
     },
-    "psGluonArc()()": {
-      "snippet": "psGluonArc(${1:x},${2:y})(${3:φ1},${4:φ2})"
+    {
+      "name": "psGluon",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "[${1:options%keyvals}](${2:x1},${3:y1})(${4:x2},${5:y2})"
+      }
     },
-    "psGluonArc[]()()": {
-      "snippet": "psGluonArc[${1:options}](${2:x},${3:y})(${4:φ1},${5:φ2})"
+    {
+      "name": "psPhoton(x1,y1)(x2,y2)"
     },
-    "psGluon()()": {
-      "snippet": "psGluon(${1:x1},${2:y1})(${3:x2},${4:y2})"
+    {
+      "name": "psPhoton",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "[${1:options%keyvals}](${2:x1},${3:y1})(${4:x2},${5:y2})"
+      }
     },
-    "psGluon[]()()": {
-      "snippet": "psGluon[${1:options}](${2:x1},${3:y1})(${4:x2},${5:y2})"
+    {
+      "name": "psPhotonArc",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "[${1:options%keyvals}](${2:x},${3:y})(${4:φ1},${5:φ2})"
+      }
     },
-    "psPhoton()()": {
-      "snippet": "psPhoton(${1:x1},${2:y1})(${3:x2},${4:y2})"
+    {
+      "name": "psPText",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "[${2:mode}](${3:x},${4:y})(${5:φ}){${1:text}}"
+      }
     },
-    "psPhoton[]()()": {
-      "snippet": "psPhoton[${1:options}](${2:x1},${3:y1})(${4:x2},${5:y2})"
+    {
+      "name": "psText(x,y)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "psPhotonArc()()": {
-      "snippet": "psPhotonArc(${1:x},${2:y})(${3:φ1},${4:φ2})"
+    {
+      "name": "psText",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:mode}](${3:x},${4:y}){${1:text}}"
+      }
     },
-    "psPhotonArc[]()()": {
-      "snippet": "psPhotonArc[${1:options}](${2:x},${3:y})(${4:φ1},${5:φ2})"
+    {
+      "name": "psZigZag(x1,y1)(x2,y2)"
     },
-    "psPText()(){}": {
-      "snippet": "psPText(${2:x},${3:y})(${4:φ}){${1:text}}"
+    {
+      "name": "psZigZag",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "[${1:options%keyvals}](${2:x1},${3:y1})(${4:x2},${5:y2})"
+      }
     },
-    "psPText[]()(){}": {
-      "snippet": "psPText[${2:mode}](${3:x},${4:y})(${5:φ}){${1:text}}"
+    {
+      "name": "psLinAxis(x1,y1)(x2,y2)(num_decs,per_dec,hashsize,offset)"
     },
-    "psText(){}": {
-      "snippet": "psText(${2:x},${3:y}){${1:text}}"
+    {
+      "name": "psLogAxis(x1,y1)(x2,y2)(num_logs,hashsize,offset)"
     },
-    "psText[](){}": {
-      "snippet": "psText[${2:mode}](${3:x},${4:y}){${1:text}}"
+    {
+      "name": "psLongArrowArc",
+      "unusual": true,
+      "arg": {
+        "format": "[]()()",
+        "snippet": "[${1:options%keyvals}](${2:x},${3:y})(${4:φ1},${5:φ2})"
+      }
     },
-    "psZigZag()()": {
-      "snippet": "psZigZag(${1:x1},${2:y1})(${3:x2},${4:y2})"
+    {
+      "name": "LongArrow(x1,y1)(x2,y2)",
+      "unusual": true
     },
-    "psZigZag[]()()": {
-      "snippet": "psZigZag[${1:options}](${2:x1},${3:y1})(${4:x2},${5:y2})"
+    {
+      "name": "DashArrowLine(x1,y1)(x2,y2)",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:dashsize}}"
+      }
     },
-    "psLinAxis()()()": {
-      "snippet": "psLinAxis(${1:x1},${2:y1})(${3:x2},${4:y2})(${5:num_decs},${6:per_dec},${7:hashsize},${8:offset})"
+    {
+      "name": "psGCirc(x,y)",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:radius}}{${2:gray color spec}}"
+      }
     },
-    "psLogAxis()()()": {
-      "snippet": "psLogAxis(${1:x1},${2:y1})(${3:x2},${4:y2})(${5:num_logs},${6:hashsize},${7:offset})"
+    {
+      "name": "psGCirc",
+      "unusual": true,
+      "arg": {
+        "format": "[](){}{}",
+        "snippet": "[${3:options%keyvals}](${4:x},${5:y}){${1:radius}}{${2:gray colorspec}}"
+      }
     },
-    "axoxoff": {},
-    "axoyoff": {},
-    "axoxo": {},
-    "axoyo": {},
-    "psLongArrowArc()()": {
-      "snippet": "psLongArrowArc(${1:x},${2:y})(${3:φ1},${4:φ2})"
+    {
+      "name": "psGText(x,y)",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:gray colorspec}}{${2:text}}"
+      }
     },
-    "psLongArrowArc[]()()": {
-      "snippet": "psLongArrowArc[${1:options}](${2:x},${3:y})(${4:φ1},${5:φ2})"
-    },
-    "DashArrowArc()(){}": {
-      "snippet": "DashArrowArc(${2:x},${3:y})(${4:radius},${5:start-angle},${6:end-angle}){${1:dashsize}}"
-    },
-    "LongArrowArcn()()": {
-      "snippet": "LongArrowArcn(${1:x},${2:y})(${3:radius},${4:start-angle},${5:end-angle})"
-    },
-    "DashArrowArcn()(){}": {
-      "snippet": "DashArrowArcn(${2:x},${3:y})(${4:radius},${5:start-angle},${6:end-angle}){${1:dashsize}}"
-    },
-    "LongArrow()()": {
-      "snippet": "LongArrow(${1:x1},${2:y1})(${3:x2},${4:y2})"
-    },
-    "DashArrowLine()(){}": {
-      "snippet": "DashArrowLine(${2:x1},${3:y1})(${4:x2},${5:y2}){${1:dashsize}}"
-    },
-    "psGCirc(){}{}": {
-      "snippet": "psGCirc(${3:x},${4:y}){${1:radius}}{${2:gray color spec}}"
-    },
-    "psGCirc[](){}{}": {
-      "snippet": "psGCirc[${3:options}](${4:x},${5:y}){${1:radius}}{${2:gray colorspec}}"
-    },
-    "psGText(){}{}": {
-      "snippet": "psGText(${3:x},${4:y}){${1:gray colorspec}}{${2:text}}"
-    },
-    "psGText[](){}{}": {
-      "snippet": "psGText[${3:options}](${4:x},${5:y}){${1:gray colorspec}}{${2:text}}"
-    },
-    "PSTFeynLoaded": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "psGText",
+      "unusual": true,
+      "arg": {
+        "format": "[](){}{}",
+        "snippet": "[${3:options%keyvals}](${4:x},${5:y}){${1:gray colorspec}}{${2:text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

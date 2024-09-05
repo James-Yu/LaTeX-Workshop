@@ -1,109 +1,219 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "tikz": [],
-    "etoolbox": []
-  },
-  "macros": {
-    "fillA": {},
-    "fillB": {},
-    "fillC": {},
-    "fillAll": {},
-    "fillNotABC": {},
-    "fillOnlyA": {},
-    "fillOnlyB": {},
-    "fillOnlyC": {},
-    "fillNotA": {},
-    "fillNotB": {},
-    "fillNotC": {},
-    "fillNotAorB": {},
-    "fillNotAorNotB": {},
-    "fillANotB": {},
-    "fillBNotA": {},
-    "fillANotC": {},
-    "fillCNotA": {},
-    "fillBNotC": {},
-    "fillCNotB": {},
-    "fillACapB": {},
-    "fillBCapA": {},
-    "fillACapC": {},
-    "fillCCapA": {},
-    "fillBCapC": {},
-    "fillCCapB": {},
-    "fillACapBNotC": {},
-    "fillBCapANotC": {},
-    "fillACapCNotB": {},
-    "fillCCapANotB": {},
-    "fillBCapCNotA": {},
-    "fillCCapBNotA": {},
-    "fillACapBCapC": {},
-    "fillACapCCapB": {},
-    "fillBCapACapC": {},
-    "fillBCapCCapA": {},
-    "fillCCapACapB": {},
-    "fillCCapBCapA": {},
-    "setpostvennhook{}": {
-      "snippet": "setpostvennhook{${1:code}}"
+  "deps": [
+    {
+      "name": "xkeyval"
     },
-    "ifvennoldpgf": {},
-    "vennoldpgftrue": {},
-    "vennoldpgffalse": {},
-    "ifvennshowframe": {},
-    "vennshowframetrue": {},
-    "vennshowframefalse": {}
-  },
-  "envs": {
-    "venndiagram3sets": {},
-    "venndiagram3sets[]": {
-      "name": "venndiagram3sets",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "tikz"
     },
-    "venndiagram2sets": {},
-    "venndiagram2sets[]": {
-      "name": "venndiagram2sets",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "etoolbox"
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "fillA"
+    },
+    {
+      "name": "fillB"
+    },
+    {
+      "name": "fillC"
+    },
+    {
+      "name": "fillAll"
+    },
+    {
+      "name": "fillNotABC"
+    },
+    {
+      "name": "fillOnlyA"
+    },
+    {
+      "name": "fillOnlyB"
+    },
+    {
+      "name": "fillOnlyC"
+    },
+    {
+      "name": "fillNotA"
+    },
+    {
+      "name": "fillNotB"
+    },
+    {
+      "name": "fillNotC"
+    },
+    {
+      "name": "fillNotAorB"
+    },
+    {
+      "name": "fillNotAorNotB"
+    },
+    {
+      "name": "fillANotB"
+    },
+    {
+      "name": "fillBNotA"
+    },
+    {
+      "name": "fillANotC"
+    },
+    {
+      "name": "fillCNotA"
+    },
+    {
+      "name": "fillBNotC"
+    },
+    {
+      "name": "fillCNotB"
+    },
+    {
+      "name": "fillACapB"
+    },
+    {
+      "name": "fillBCapA",
+      "unusual": true
+    },
+    {
+      "name": "fillACapC"
+    },
+    {
+      "name": "fillCCapA",
+      "unusual": true
+    },
+    {
+      "name": "fillBCapC"
+    },
+    {
+      "name": "fillCCapB",
+      "unusual": true
+    },
+    {
+      "name": "fillACapBNotC"
+    },
+    {
+      "name": "fillBCapANotC",
+      "unusual": true
+    },
+    {
+      "name": "fillACapCNotB"
+    },
+    {
+      "name": "fillCCapANotB",
+      "unusual": true
+    },
+    {
+      "name": "fillBCapCNotA"
+    },
+    {
+      "name": "fillCCapBNotA",
+      "unusual": true
+    },
+    {
+      "name": "fillACapBCapC"
+    },
+    {
+      "name": "fillACapCCapB",
+      "unusual": true
+    },
+    {
+      "name": "fillBCapACapC",
+      "unusual": true
+    },
+    {
+      "name": "fillBCapCCapA",
+      "unusual": true
+    },
+    {
+      "name": "fillCCapACapB",
+      "unusual": true
+    },
+    {
+      "name": "fillCCapBCapA",
+      "unusual": true
+    },
+    {
+      "name": "setpostvennhook",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "ifvennoldpgf",
+      "unusual": true
+    },
+    {
+      "name": "vennoldpgftrue",
+      "unusual": true
+    },
+    {
+      "name": "vennoldpgffalse",
+      "unusual": true
+    },
+    {
+      "name": "ifvennshowframe",
+      "unusual": true
+    },
+    {
+      "name": "vennshowframetrue",
+      "unusual": true
+    },
+    {
+      "name": "vennshowframefalse",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "venndiagram3sets"
+    },
+    {
+      "name": "venndiagram3sets",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "venndiagram2sets"
+    },
+    {
+      "name": "venndiagram2sets",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\begin{venndiagram3sets},\\begin{venndiagram2sets}": [
       "shade=",
-      "labelA=${1:label text}",
-      "labelB=${1:label text}",
-      "labelOnlyA=${1:label text}",
-      "labelOnlyB=${1:label text}",
+      "labelA=${1:label text}\r",
+      "labelB=${1:label text}\r",
+      "labelOnlyA=${1:label text}\r",
+      "labelOnlyB=${1:label text}\r",
       "radius=",
       "hgap=",
       "vgap=",
       "overlap=",
       "showframe",
-      "tikzoptions={${1:TikZ options}}",
-      "labelC=${1:label text}",
-      "labelOnlyC=${1:label text}",
-      "labelOnlyAB=${1:label text}",
-      "labelOnlyAC=${1:label text}",
-      "labelOnlyBC=${1:label text}",
-      "labelABC=${1:label text}",
-      "labelNotABC=${1:label text}"
+      "tikzoptions={${1:TikZ options}}\r"
     ],
-    [
-      "shade=",
-      "labelA=${1:label text}",
-      "labelB=${1:label text}",
-      "labelOnlyA=${1:label text}",
-      "labelOnlyB=${1:label text}",
-      "radius=",
-      "hgap=",
-      "vgap=",
-      "overlap=",
-      "showframe",
-      "tikzoptions={${1:TikZ options}}",
-      "labelAB=${1:label text}",
-      "labelNotAB=${1:label text}"
+    "\\begin{venndiagram3sets}": [
+      "labelC=${1:label text}\r",
+      "labelOnlyC=${1:label text}\r",
+      "labelOnlyAB=${1:label text}\r",
+      "labelOnlyAC=${1:label text}\r",
+      "labelOnlyBC=${1:label text}\r",
+      "labelABC=${1:label text}\r",
+      "labelNotABC=${1:label text}\r"
+    ],
+    "\\begin{venndiagram2sets}": [
+      "labelAB=${1:label text}\r",
+      "labelNotAB=${1:label text}\r"
     ]
-  ]
+  },
+  "args": []
 }

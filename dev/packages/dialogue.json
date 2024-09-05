@@ -1,29 +1,63 @@
 {
-  "includes": {
-    "blkcntrl": [],
-    "moredefs": [],
-    "relsize": []
-  },
-  "macros": {
-    "direct{}": {
-      "snippet": "direct{${1:directions}}"
+  "deps": [
+    {
+      "name": "blkcntrl"
     },
-    "refer{}": {
-      "snippet": "refer{${1:speaker}}"
+    {
+      "name": "moredefs"
     },
-    "speak{}": {
-      "snippet": "speak{${1:speaker}}"
+    {
+      "name": "relsize"
+    }
+  ],
+  "macros": [
+    {
+      "name": "direct",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:directions%text}}"
+      }
     },
-    "ReferStyle": {},
-    "DirectStyle": {},
-    "DialogueLabel{}": {
-      "snippet": "DialogueLabel{${1:text}}"
+    {
+      "name": "refer",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:speaker}}"
+      }
     },
-    "PreDialogue": {}
-  },
-  "envs": {
-    "dialogue": {}
-  },
-  "options": [],
-  "keyvals": []
+    {
+      "name": "speak",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:speaker}}"
+      }
+    },
+    {
+      "name": "ReferStyle",
+      "unusual": true
+    },
+    {
+      "name": "DirectStyle",
+      "unusual": true
+    },
+    {
+      "name": "DialogueLabel",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "PreDialogue",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "dialogue"
+    }
+  ],
+  "keys": {},
+  "args": []
 }

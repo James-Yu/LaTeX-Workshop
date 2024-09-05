@@ -1,34 +1,61 @@
 {
-  "includes": {
-    "typearea": [],
-    "ragged2e": [],
-    "ifthen": [],
-    "keyval": [],
-    "lineno": [],
-    "hyphenat": [],
-    "titlesec": []
-  },
-  "macros": {
-    "CharsX": {},
-    "CharsI": {},
-    "zeichenzahl": {},
-    "zeilenzahl": {},
-    "ProcessOptionsWithKV{}": {
-      "snippet": "ProcessOptionsWithKV{${1:family}}"
+  "deps": [
+    {
+      "name": "typearea"
+    },
+    {
+      "name": "ragged2e"
+    },
+    {
+      "name": "ifthen"
+    },
+    {
+      "name": "keyval"
+    },
+    {
+      "name": "lineno"
+    },
+    {
+      "name": "hyphenat"
+    },
+    {
+      "name": "titlesec"
     }
-  },
-  "envs": {},
-  "options": [
-    "just",
-    "noindent",
-    "linenumbers",
-    "hyphen",
-    "parskip",
-    "chars=${1:integer}",
-    "lines=${1:integer}",
-    "baselinestretch",
-    "baselinestretch=${1:factor}",
-    "typewriter"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "CharsX",
+      "unusual": true
+    },
+    {
+      "name": "CharsI",
+      "unusual": true
+    },
+    {
+      "name": "zeichenzahl",
+      "unusual": true
+    },
+    {
+      "name": "zeilenzahl",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/stdpage#c": [
+      "just",
+      "noindent",
+      "linenumbers",
+      "hyphen",
+      "parskip",
+      "chars=${1:integer}\r",
+      "lines=${1:integer}\r",
+      "baselinestretch\r",
+      "baselinestretch=${1:factor}\r",
+      "typewriter"
+    ]
+  },
+  "args": [
+    "\\usepackage/stdpage#c"
+  ]
 }

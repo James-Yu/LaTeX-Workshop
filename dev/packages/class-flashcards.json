@@ -1,68 +1,162 @@
 {
-  "includes": {
-    "ifthen": [],
-    "geometry": []
-  },
-  "macros": {
-    "cardfrontstyle{}": {
-      "snippet": "cardfrontstyle{${1:style}}"
+  "deps": [
+    {
+      "name": "ifthen"
     },
-    "cardfrontstyle[]{}": {
-      "snippet": "cardfrontstyle[${2:font commands}]{${1:style}}"
-    },
-    "cardfrontfoot{}": {
-      "snippet": "cardfrontfoot{${1:text}}"
-    },
-    "cardbackstyle{}": {
-      "snippet": "cardbackstyle{${1:style}}"
-    },
-    "cardbackstyle[]{}": {
-      "snippet": "cardbackstyle[${2:font commands}]{${1:style}}"
-    },
-    "cardfrontheadstyle{}": {
-      "snippet": "cardfrontheadstyle{${1:style}}"
-    },
-    "cardfrontheadstyle[]{}": {
-      "snippet": "cardfrontheadstyle[${2:font commands}]{${1:style}}"
-    },
-    "cardfrontfootstyle{}": {
-      "snippet": "cardfrontfootstyle{${1:style}}"
-    },
-    "cardfrontfootstyle[]{}": {
-      "snippet": "cardfrontfootstyle[${2:font commands}]{${1:style}}"
-    },
-    "cardheight": {},
-    "cardwidth": {},
-    "topoffset": {},
-    "oddoffset": {},
-    "evenoffset": {},
-    "oddevenshift": {},
-    "cardmargin": {},
-    "cardinnerheight": {},
-    "cardinnerwidth": {},
-    "cardpapermode": {},
-    "cardpaper": {},
-    "cardrows": {},
-    "cardcolumns": {}
-  },
-  "envs": {
-    "flashcard{}": {
-      "name": "flashcard",
-      "snippet": "{${1:title}}"
-    },
-    "flashcard[]{}": {
-      "name": "flashcard",
-      "snippet": "[${2:heading}]{${1:title}}"
+    {
+      "name": "geometry"
     }
-  },
-  "options": [
-    "dvips",
-    "grid",
-    "frame",
-    "fronts",
-    "backs",
-    "avery5371",
-    "avery5388"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "cardfrontstyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:style%keyvals}}"
+      }
+    },
+    {
+      "name": "cardfrontstyle",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:font commands}]{${1:style%keyvals}}"
+      }
+    },
+    {
+      "name": "cardfrontfoot",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "cardbackstyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:style%keyvals}}"
+      }
+    },
+    {
+      "name": "cardbackstyle",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:font commands}]{${1:style%keyvals}}"
+      }
+    },
+    {
+      "name": "cardfrontheadstyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:style%keyvals}}"
+      }
+    },
+    {
+      "name": "cardfrontheadstyle",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:font commands}]{${1:style%keyvals}}"
+      }
+    },
+    {
+      "name": "cardfrontfootstyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:style%keyvals}}"
+      }
+    },
+    {
+      "name": "cardfrontfootstyle",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:font commands}]{${1:style%keyvals}}"
+      }
+    },
+    {
+      "name": "cardheight"
+    },
+    {
+      "name": "cardwidth"
+    },
+    {
+      "name": "topoffset"
+    },
+    {
+      "name": "oddoffset"
+    },
+    {
+      "name": "evenoffset"
+    },
+    {
+      "name": "oddevenshift"
+    },
+    {
+      "name": "cardmargin"
+    },
+    {
+      "name": "cardinnerheight"
+    },
+    {
+      "name": "cardinnerwidth"
+    },
+    {
+      "name": "cardpapermode",
+      "unusual": true
+    },
+    {
+      "name": "cardpaper",
+      "unusual": true
+    },
+    {
+      "name": "cardrows",
+      "unusual": true
+    },
+    {
+      "name": "cardcolumns",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "flashcard",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "flashcard",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:heading%text}]{${1:title}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\documentclass/flashcards#c": [
+      "dvips\r",
+      "grid\r",
+      "frame\r",
+      "fronts\r",
+      "backs\r",
+      "avery5371\r",
+      "avery5388\r"
+    ],
+    "\\cardfrontstyle#c": [
+      "empty\r",
+      "plain\r",
+      "headings\r"
+    ],
+    "\\cardbackstyle#c": [
+      "empty\r",
+      "plain\r"
+    ],
+    "\\cardfrontheadstyle#c,\\cardfrontfootstyle#c": [
+      "left\r",
+      "center\r",
+      "right\r"
+    ]
+  },
+  "args": [
+    "\\documentclass/flashcards#c"
+  ]
 }

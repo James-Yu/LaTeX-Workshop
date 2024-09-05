@@ -1,133 +1,199 @@
 {
-  "includes": {
-    "graphicx": [],
-    "eso-pic": [],
-    "verbatim": []
-  },
-  "macros": {
-    "embedEPS{}{}": {
-      "snippet": "embedEPS{${1:name}}{${2:path}}"
+  "deps": [
+    {
+      "name": "graphicx"
     },
-    "embedEPS[]{}{}": {
-      "snippet": "embedEPS[${3:options}]{${1:name}}{${2:path}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "eso-pic"
     },
-    "bboxOf{}": {
-      "snippet": "bboxOf{${1:name}}"
-    },
-    "llxOf{}": {
-      "snippet": "llxOf{${1:name}}"
-    },
-    "llyOf{}": {
-      "snippet": "llyOf{${1:name}}"
-    },
-    "urxOf{}": {
-      "snippet": "urxOf{${1:name}}"
-    },
-    "uryOf{}": {
-      "snippet": "uryOf{${1:name}}"
-    },
-    "heightOf{}": {
-      "snippet": "heightOf{${1:name}}"
-    },
-    "widthOf{}": {
-      "snippet": "widthOf{${1:name}}"
-    },
-    "csOf{}": {
-      "snippet": "csOf{${1:name}}"
-    },
-    "insertEPS{}": {
-      "snippet": "insertEPS{${1:name}}"
-    },
-    "insertEPS[]{}": {
-      "snippet": "insertEPS[${2:options}]{${1:name}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "previewOn": {},
-    "previewOff": {},
-    "ifpreview": {},
-    "previewtrue": {},
-    "previewfalse": {},
-    "AddToEmbeddedEPSs{}": {
-      "snippet": "AddToEmbeddedEPSs{${1:code}}"
-    },
-    "DVIPSONE": {},
-    "setSMask{}": {
-      "snippet": "setSMask{${1:options}}"
-    },
-    "setSMask[]{}": {
-      "snippet": "setSMask[${2:group}]{${1:options}}"
+    {
+      "name": "verbatim"
     }
-  },
-  "envs": {
-    "createImage{}{}": {
-      "name": "createImage",
-      "snippet": "{${1:bbox}}{${2:name}}"
-    },
-    "createImage[]{}{}": {
-      "name": "createImage",
-      "snippet": "[${3:options}]{${1:bbox}}{${2:name}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "verbatimwrite": {}
-  },
-  "options": [
-    "preview",
-    "dvipsone",
-    "dvips",
-    "showembeds",
-    "!showembeds",
-    "draft",
-    "!draft",
-    "final",
-    "shownonames",
-    "!shownonames"
   ],
-  "keyvals": [
-    [
-      "hiresbb",
-      "transparencyGroup"
+  "macros": [
+    {
+      "name": "bboxOf",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name%keyvals}}"
+      }
+    },
+    {
+      "name": "llxOf",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name%keyvals}}"
+      }
+    },
+    {
+      "name": "llyOf",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name%keyvals}}"
+      }
+    },
+    {
+      "name": "urxOf",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name%keyvals}}"
+      }
+    },
+    {
+      "name": "uryOf",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name%keyvals}}"
+      }
+    },
+    {
+      "name": "heightOf",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name%keyvals}}"
+      }
+    },
+    {
+      "name": "widthOf",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name%keyvals}}"
+      }
+    },
+    {
+      "name": "csOf",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name%keyvals}}"
+      }
+    },
+    {
+      "name": "insertEPS",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "insertEPS",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:name}}"
+      }
+    },
+    {
+      "name": "previewOn"
+    },
+    {
+      "name": "previewOff"
+    },
+    {
+      "name": "ifpreview",
+      "unusual": true
+    },
+    {
+      "name": "AddToEmbeddedEPSs",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "setSMask",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options}}"
+      }
+    },
+    {
+      "name": "setSMask",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:group}]{${1:options}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "createImage",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:bbox}}{${2:name}}"
+      }
+    },
+    {
+      "name": "createImage",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:bbox}}{${2:name}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/graphicxsp#c": [
+      "preview\r",
+      "dvipsone\r",
+      "dvips\r",
+      "showembeds\r",
+      "!showembeds\r",
+      "draft\r",
+      "!draft\r",
+      "final\r",
+      "shownonames\r",
+      "!shownonames\r"
     ],
-    [
-      "name=${1:name}",
-      "transparency={${1:specs}}",
-      "presp={${1:PS code}}",
-      "postsp={${1:PS code}}",
-      "alt={${1:alt text}}",
-      "bb=${1:llx lly urx ury}",
-      "bbllx=",
-      "bblly=",
-      "bburx=",
-      "bbury=",
-      "natwidth=",
-      "natheight=",
+    "\\embedEPS": [
+      "hiresbb\r",
+      "transparencyGroup\r"
+    ],
+    "\\bboxOf#c,\\llxOf#c,\\llyOf#c,\\urxOf#c,\\uryOf#c,\\heightOf#c,\\widthOf#c,\\csOf#c": [
+      "%EPSname\r"
+    ],
+    "\\begin{createImage}": [
+      "transparencyGroup\r"
+    ],
+    "\\insertEPS,\\includegraphics": [
+      "name=${1:name}\r",
+      "transparency={${1:specs}}\r",
+      "presp={${1:PS code}}\r",
+      "postsp={${1:PS code}}\r"
+    ],
+    "\\insertEPS": [
+      "alt={${1:alt text}}\r",
+      "bb=${1:llx lly urx ury}\r",
+      "bbllx=\r",
+      "bblly=\r",
+      "bburx=\r",
+      "bbury=\r",
+      "natwidth=\r",
+      "natheight=\r",
       "hiresbb",
-      "pagebox=${1|mediabox,cropbox,bleedbox,trimbox,artbox|}",
-      "viewport=${1:llx lly urx ury}",
-      "trim=${1:llx lly urx ury}",
-      "angle=${1:degrees}",
-      "origin=",
+      "pagebox=${1|mediabox,cropbox,bleedbox,trimbox,artbox\r|}",
+      "viewport=${1:llx lly urx ury}\r",
+      "trim=${1:llx lly urx ury}\r",
+      "angle=${1:degrees}\r",
+      "origin=\r",
       "width=",
       "height=",
       "totalheight=",
       "keepaspectratio",
-      "scale=${1:factor}",
+      "scale=${1:factor}\r",
       "clip",
       "draft",
-      "type=${1:file type}",
-      "ext=${1:file extension}",
-      "read=${1:read-file extension}",
-      "command=",
-      "quiet",
-      "page=${1:page number}",
+      "type=${1:file type}\r",
+      "ext=${1:file extension}\r",
+      "read=${1:read-file extension}\r",
+      "command=\r",
+      "quiet\r",
+      "page=${1:page number}\r",
       "interpolate",
-      "decodearray={${1:color array}}"
-    ],
-    [
-      "transparencyGroup"
+      "decodearray={${1:color array}}\r"
     ]
+  },
+  "args": [
+    "\\usepackage/graphicxsp#c"
   ]
 }

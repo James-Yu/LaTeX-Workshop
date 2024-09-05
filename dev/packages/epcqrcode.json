@@ -1,28 +1,36 @@
 {
-  "includes": {
-    "qrcode": [],
-    "xstring": [],
-    "calculator": []
-  },
-  "macros": {
-    "epcqr{}": {
-      "snippet": "epcqr{${1:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "qrcode"
+    },
+    {
+      "name": "xstring"
+    },
+    {
+      "name": "calculator"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "bic=${1:BIC}",
-      "name=${1:text}",
-      "iban=${1:IBAN}",
-      "amount=${1:number}",
-      "reason=${1:text}",
-      "ref=${1:text}",
-      "text=${1:text}",
-      "information=${1:text}"
+  ],
+  "macros": [
+    {
+      "name": "epcqr",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\epcqr": [
+      "bic=${1:BIC}\r",
+      "name=${1:text}\r",
+      "iban=${1:IBAN}\r",
+      "amount=${1:number}\r",
+      "reason=${1:text}\r",
+      "ref=${1:text}\r",
+      "text=${1:text}\r",
+      "information=${1:text}\r"
     ]
-  ]
+  },
+  "args": []
 }

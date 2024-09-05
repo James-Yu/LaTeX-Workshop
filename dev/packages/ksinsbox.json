@@ -1,37 +1,80 @@
 {
-  "includes": {},
-  "macros": {
-    "ksinsbox{}": {
-      "snippet": "ksinsbox{${1:content}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "ksinsbox",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content%text}}"
+      }
     },
-    "ksinsbox[]{}": {
-      "snippet": "ksinsbox[${2:pos}]{${1:content}}"
+    {
+      "name": "ksinsbox",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:pos%keyvals}]{${1:content%text}}"
+      }
     },
-    "ksinsbox[][]{}": {
-      "snippet": "ksinsbox[${2:pos}][${3:number}]{${1:content}}"
+    {
+      "name": "ksinsbox",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:pos%keyvals}][${3:number}]{${1:content%text}}"
+      }
     },
-    "InsertBoxL{}{}": {
-      "snippet": "InsertBoxL{${1:lines}}{${2:content}}"
+    {
+      "name": "InsertBoxL",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:lines}}{${2:content%text}}"
+      }
     },
-    "InsertBoxL{}{}[]": {
-      "snippet": "InsertBoxL{${1:lines}}{${2:content}}[${3:correction}]"
+    {
+      "name": "InsertBoxL",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:lines}}{${2:content%text}}[${3:correction}]"
+      }
     },
-    "InsertBoxR{}{}": {
-      "snippet": "InsertBoxR{${1:lines}}{${2:content}}"
+    {
+      "name": "InsertBoxR",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:lines}}{${2:content%text}}"
+      }
     },
-    "InsertBoxR{}{}[]": {
-      "snippet": "InsertBoxR{${1:lines}}{${2:content}}[${3:correction}]"
+    {
+      "name": "InsertBoxR",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:lines}}{${2:content%text}}[${3:correction}]"
+      }
     },
-    "InsertBoxC{}{}": {
-      "snippet": "InsertBoxC{${1:lines}}{${2:content}}"
+    {
+      "name": "InsertBoxC",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:lines}}{${2:content%text}}"
+      }
     },
-    "InsertBoxC{}{}[]": {
-      "snippet": "InsertBoxC{${1:lines}}{${2:content}}[${3:correction}]"
+    {
+      "name": "InsertBoxC",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:lines}}{${2:content%text}}[${3:correction}]"
+      }
     },
-    "MoveBelowBox": {},
-    "ParShape": {}
+    {
+      "name": "MoveBelowBox"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\ksinsbox": [
+      "l\r",
+      "c\r",
+      "r\r"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

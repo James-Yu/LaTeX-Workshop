@@ -1,109 +1,256 @@
 {
-  "includes": {
-    "xifthen": [],
-    "ragged2e": [],
-    "setspace": [],
-    "biditools": [],
-    "natbib": [],
-    "bibentry": [],
-    "optparams": []
-  },
-  "macros": {
-    "bidituftesidenotemarginpar{}": {
-      "snippet": "bidituftesidenotemarginpar{${1:text}}"
+  "deps": [
+    {
+      "name": "xifthen"
     },
-    "footnotelayout": {},
-    "gsetlength{}{}": {
-      "snippet": "gsetlength{${1:length cmd}}{${2:length}}"
+    {
+      "name": "ragged2e"
     },
-    "LTRbidituftesidenotemarginpar{}": {
-      "snippet": "LTRbidituftesidenotemarginpar{${1:text}}"
+    {
+      "name": "setspace"
     },
-    "LTRcite{}": {
-      "snippet": "LTRcite{${1:keylist}}"
+    {
+      "name": "biditools"
     },
-    "LTRmarginnote[]{}": {
-      "snippet": "LTRmarginnote[${2:offset}]{${1:text}}"
+    {
+      "name": "natbib"
     },
-    "LTRmarginnote{}": {
-      "snippet": "LTRmarginnote{${1:text}}"
+    {
+      "name": "bibentry"
     },
-    "LTRsidenote[][]{}": {
-      "snippet": "LTRsidenote[${2:number}][${3:offset}]{${1:text}}"
-    },
-    "LTRsidenote[]{}": {
-      "snippet": "LTRsidenote[${2:number}]{${1:text}}"
-    },
-    "LTRsidenote{}": {
-      "snippet": "LTRsidenote{${1:text}}"
-    },
-    "marginnote[]{}": {
-      "snippet": "marginnote[${2:offset}]{${1:text}}"
-    },
-    "marginnote{}": {
-      "snippet": "marginnote{${1:text}}"
-    },
-    "multfootsep": {},
-    "multiplefootnotemarker": {},
-    "RTLbidituftesidenotemarginpar{}": {
-      "snippet": "RTLbidituftesidenotemarginpar{${1:text}}"
-    },
-    "RTLcite{}": {
-      "snippet": "RTLcite{${1:keylist}}"
-    },
-    "RTLmarginnote[]{}": {
-      "snippet": "RTLmarginnote[${2:offset}]{${1:text}}"
-    },
-    "RTLmarginnote{}": {
-      "snippet": "RTLmarginnote{${1:text}}"
-    },
-    "RTLsidenote[][]{}": {
-      "snippet": "RTLsidenote[${2:number}][${3:offset}]{${1:text}}"
-    },
-    "RTLsidenote[]{}": {
-      "snippet": "RTLsidenote[${2:number}]{${1:text}}"
-    },
-    "RTLsidenote{}": {
-      "snippet": "RTLsidenote{${1:text}}"
-    },
-    "setcitationfont{}": {
-      "snippet": "setcitationfont{${1:font commands}}"
-    },
-    "setLTRcitationfont{}": {
-      "snippet": "setLTRcitationfont{${1:font commands}}"
-    },
-    "setLTRmarginnotefont{}": {
-      "snippet": "setLTRmarginnotefont{${1:font commands}}"
-    },
-    "setLTRsidenotefont{}": {
-      "snippet": "setLTRsidenotefont{${1:font commands}}"
-    },
-    "setmarginnotefont{}": {
-      "snippet": "setmarginnotefont{${1:font commands}}"
-    },
-    "setRTLcitationfont{}": {
-      "snippet": "setRTLcitationfont{${1:font commands}}"
-    },
-    "setRTLmarginnotefont{}": {
-      "snippet": "setRTLmarginnotefont{${1:font commands}}"
-    },
-    "setRTLsidenotefont{}": {
-      "snippet": "setRTLsidenotefont{${1:font commands}}"
-    },
-    "setsidenotefont{}": {
-      "snippet": "setsidenotefont{${1:font commands}}"
-    },
-    "sidenote[][]{}": {
-      "snippet": "sidenote[${2:number}][${3:offset}]{${1:text}}"
-    },
-    "sidenote[]{}": {
-      "snippet": "sidenote[${2:number}]{${1:text}}"
-    },
-    "sidenote{}": {
-      "snippet": "sidenote{${1:text}}"
+    {
+      "name": "optparams"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "bidituftesidenotemarginpar",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "footnotelayout",
+      "unusual": true
+    },
+    {
+      "name": "gsetlength",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:length cmd}}{${2:length}}"
+      }
+    },
+    {
+      "name": "LTRbidituftesidenotemarginpar",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "LTRcite",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keylist}}"
+      }
+    },
+    {
+      "name": "LTRmarginnote",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:offset%l}]{${1:text}}"
+      }
+    },
+    {
+      "name": "LTRmarginnote",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "LTRsidenote",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:number}][${3:offset%l}]{${1:text}}"
+      }
+    },
+    {
+      "name": "LTRsidenote",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:number}]{${1:text}}"
+      }
+    },
+    {
+      "name": "LTRsidenote",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "marginnote",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:offset%l}]{${1:text}}"
+      }
+    },
+    {
+      "name": "marginnote",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "multfootsep",
+      "unusual": true
+    },
+    {
+      "name": "multiplefootnotemarker",
+      "unusual": true
+    },
+    {
+      "name": "RTLbidituftesidenotemarginpar",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "RTLcite",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keylist}}"
+      }
+    },
+    {
+      "name": "RTLmarginnote",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:offset%l}]{${1:text}}"
+      }
+    },
+    {
+      "name": "RTLmarginnote",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "RTLsidenote",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:number}][${3:offset%l}]{${1:text}}"
+      }
+    },
+    {
+      "name": "RTLsidenote",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:number}]{${1:text}}"
+      }
+    },
+    {
+      "name": "RTLsidenote",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "setcitationfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font commands}}"
+      }
+    },
+    {
+      "name": "setLTRcitationfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font commands}}"
+      }
+    },
+    {
+      "name": "setLTRmarginnotefont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font commands}}"
+      }
+    },
+    {
+      "name": "setLTRsidenotefont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font commands}}"
+      }
+    },
+    {
+      "name": "setmarginnotefont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font commands}}"
+      }
+    },
+    {
+      "name": "setRTLcitationfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font commands}}"
+      }
+    },
+    {
+      "name": "setRTLmarginnotefont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font commands}}"
+      }
+    },
+    {
+      "name": "setRTLsidenotefont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font commands}}"
+      }
+    },
+    {
+      "name": "setsidenotefont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font commands}}"
+      }
+    },
+    {
+      "name": "sidenote",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:number}][${3:offset%l}]{${1:text}}"
+      }
+    },
+    {
+      "name": "sidenote",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:number}]{${1:text}}"
+      }
+    },
+    {
+      "name": "sidenote",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

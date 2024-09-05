@@ -1,19 +1,58 @@
 {
-  "includes": {
-    "tikz": [],
-    "tikzlibrarycalc": [],
-    "tikzlibrarypositioning": [],
-    "tikzlibraryshapes": []
-  },
-  "macros": {
-    "arg{}": {
-      "snippet": "arg{${1:i}}"
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "pgfaddtoshape{}{}": {
-      "snippet": "pgfaddtoshape{${1:name}}{${2:code}}"
+    {
+      "name": "tikzlibrarycalc"
+    },
+    {
+      "name": "tikzlibrarypositioning"
+    },
+    {
+      "name": "tikzlibraryshapes"
     }
+  ],
+  "macros": [
+    {
+      "name": "arg",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:i}}"
+      }
+    },
+    {
+      "name": "pgfaddtoshape",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:code}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\begin{tikzpicture}#c,\\tikz#c,\\tikzset#c": [
+      "memory graph\r"
+    ],
+    "\\node#c": [
+      "block\r",
+      "arity=${1:n}\r",
+      "block mark north east\r",
+      "block mark north east={${1:options}}\r",
+      "block mark north west\r",
+      "block mark north west={${1:options}}\r",
+      "block mark south east\r",
+      "block mark south east={${1:options}}\r",
+      "block mark south west\r",
+      "block mark south west={${1:options}}\r"
+    ],
+    "\\tikzset#c": [
+      "every block/.style={${1:options}}\r"
+    ],
+    "\\draw#c": [
+      "ref\r"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

@@ -1,19 +1,33 @@
 {
-  "includes": {
-    "setspace": []
-  },
-  "macros": {
-    "spacesetup{}": {
-      "snippet": "spacesetup{${1:options}}"
+  "deps": [
+    {
+      "name": "setspace"
     }
-  },
-  "envs": {},
-  "options": [
-    "byselectfont",
-    "doublespacing",
-    "keepfontsize",
-    "onehalfspacing",
-    "singlespacing"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "spacesetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\usepackage/setspaceenhanced#c,\\spacesetup"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/setspaceenhanced#c,\\spacesetup": [
+      "byselectfont",
+      "doublespacing\r",
+      "keepfontsize",
+      "onehalfspacing\r",
+      "singlespacing\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/setspaceenhanced#c,\\spacesetup"
+  ]
 }

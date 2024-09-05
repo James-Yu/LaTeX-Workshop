@@ -1,37 +1,46 @@
 {
-  "includes": {
-    "l3keys2e": [],
-    "jlreq-helpers": []
-  },
-  "macros": {
-    "jlreqtrimmarkssetup{}": {
-      "snippet": "jlreqtrimmarkssetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "l3keys2e"
+    },
+    {
+      "name": "jlreq-helpers"
     }
-  },
-  "envs": {},
-  "options": [
-    "platex",
-    "uplatex",
-    "lualatex",
-    "dvipdfmx",
-    "dvips",
-    "dviout",
-    "trimmarks_paper=${1:paper type}",
-    "trimmarks_paper={${1:width,height}}",
-    "trimmarks_paper=${1:paper type}+{${2:width,height}}",
-    "landscape",
-    "show",
-    "show={${1:trimmarks, banner, digital, and/or no}}",
-    "bleed_margin={${1:top=<length>,bottom=<length>,gutter=<length>,fore-edge=<length>}}"
   ],
-  "keyvals": [
-    [
-      "banner={${1:specs}}",
+  "macros": [
+    {
+      "name": "jlreqtrimmarkssetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/jlreq-trimmarks#c": [
+      "platex\r",
+      "uplatex\r",
+      "lualatex\r",
+      "dvipdfmx\r",
+      "dvips\r",
+      "dviout\r",
+      "trimmarks_paper=${1:paper type}\r",
+      "trimmarks_paper={${1:width,height}}\r",
+      "trimmarks_paper=${1:paper type}+{${2:width,height}}\r",
+      "landscape\r",
+      "show\r",
+      "show={${1:trimmarks, banner, digital, and/or no}}\r",
+      "bleed_margin={${1:top=<length>,bottom=<length>,gutter=<length>,fore-edge=<length>}}\r"
+    ],
+    "\\jlreqtrimmarkssetup#c": [
+      "banner={${1:specs}}\r",
       "trimmarks_width=",
       "color=",
-      "trimmarks_pattern={${1:options}}"
+      "trimmarks_pattern={${1:options}}\r"
     ]
+  },
+  "args": [
+    "\\usepackage/jlreq-trimmarks#c"
   ]
 }

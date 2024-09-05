@@ -1,35 +1,40 @@
 {
-  "includes": {},
-  "macros": {
-    "tikzfadingfrompicture": {},
-    "tikzfadingfrompicture[]": {
-      "snippet": "tikzfadingfrompicture[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [],
+  "macros": [
+    {
+      "name": "tikzfading",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "tikzfadingfrompicture"
     },
-    "endtikzfadingfrompicture": {},
-    "tikzfading[]": {
-      "snippet": "tikzfading[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    }
-  },
-  "envs": {
-    "tikzfadingfrompicture": {},
-    "tikzfadingfrompicture[]": {
+    {
       "name": "tikzfadingfrompicture",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
-      "name=${1:name}"
+  ],
+  "keys": {
+    "\\begin{tikzpicture}#c,\\tikz#c,\\begin{scope}#c,\\tikzset#c,\\scoped#c,\\path#c,\\draw#c,\\fill#c,\\filldraw#c,\\pattern#c,\\shade#c,\\shadedraw#c,\\clip#c,\\node#c,\\coordinate#c,\\nodepart#c,\\pic#c,\\matrix#c,\\calendar#c,\\chainin#c,\\arrow#c,\\arrowreversed#c": [
+      "path fading\r",
+      "path fading=${1:name}\r",
+      "fit fading",
+      "fading transform={${1:options}}\r",
+      "fading angle=${1:degrees}\r",
+      "scope fading=${1:name}\r"
     ],
-    [
-      "name=${1:name}",
+    "\\begin{tikzfadingfrompicture}#c,\\tikzfadingfrompicture#c": [
+      "name=${1:name}\r"
+    ],
+    "\\tikzfading#c": [
+      "name=${1:name}\r",
       "left color=",
       "right color=",
       "inner color=",
@@ -38,5 +43,6 @@
       "bottom color=",
       "middle color="
     ]
-  ]
+  },
+  "args": []
 }

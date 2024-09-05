@@ -1,50 +1,77 @@
 {
-  "includes": {
-    "calc": [
-      "calc"
-    ],
-    "pgf": [
-      "pgfmath"
-    ]
-  },
-  "macros": {
-    "adjcalcset{}": {
-      "snippet": "adjcalcset{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "calc",
+      "if": "calc"
     },
-    "adjsetlength{}{}": {
-      "snippet": "adjsetlength{${1:length macro}}{${2:length}}"
-    },
-    "adjaddtolength{}{}": {
-      "snippet": "adjaddtolength{${1:length macro}}{${2:length}}"
-    },
-    "adjsetcounter{}{}": {
-      "snippet": "adjsetcounter{${1:counter}}{${2:integer}}"
-    },
-    "adjaddtocounter{}{}": {
-      "snippet": "adjaddtocounter{${1:counter}}{${2:integer}}"
-    },
-    "adjsetlengthdefault{}{}": {
-      "snippet": "adjsetlengthdefault{${1:length macro}}{${2:length}}"
+    {
+      "name": "pgf",
+      "if": "pgfmath"
     }
-  },
-  "envs": {},
-  "options": [
-    "etex",
-    "calc",
-    "pgfmath",
-    "overwrite",
-    "defaultunit=${1:unit}",
-    "none"
   ],
-  "keyvals": [
-    [
-      "etex",
-      "calc",
-      "pgfmath",
-      "overwrite",
-      "defaultunit=${1:unit}"
+  "macros": [
+    {
+      "name": "adjcalcset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\adjcalcset,\\usepackage/adjcalc#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "adjsetlength",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:length macro}}{${2:length}}"
+      }
+    },
+    {
+      "name": "adjaddtolength",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:length macro}}{${2:length}}"
+      }
+    },
+    {
+      "name": "adjsetcounter",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:counter}}{${2:integer}}"
+      }
+    },
+    {
+      "name": "adjaddtocounter",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:counter}}{${2:integer}}"
+      }
+    },
+    {
+      "name": "adjsetlengthdefault",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:length macro}}{${2:length}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\adjcalcset,\\usepackage/adjcalc#c": [
+      "etex\r",
+      "calc\r",
+      "pgfmath\r",
+      "overwrite\r",
+      "defaultunit=${1:unit}\r"
+    ],
+    "\\usepackage/adjcalc#c": [
+      "none\r"
     ]
+  },
+  "args": [
+    "\\adjcalcset,\\usepackage/adjcalc#c",
+    "\\usepackage/adjcalc#c"
   ]
 }

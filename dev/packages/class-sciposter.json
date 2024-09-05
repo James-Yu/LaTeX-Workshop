@@ -1,190 +1,484 @@
 {
-  "includes": {
-    "ifthen": [],
-    "lettrine": [],
-    "graphics": [],
-    "color": [],
-    "shadow": [],
-    "a0size": [],
-    "times": [],
-    "boxedminipage": []
-  },
-  "macros": {
-    "institute{}": {
-      "snippet": "institute{${1:institute}}"
+  "deps": [
+    {
+      "name": "ifthen"
     },
-    "leftlogo{}": {
-      "snippet": "leftlogo{${1:imagefile}}"
+    {
+      "name": "lettrine"
     },
-    "leftlogo[]{}": {
-      "snippet": "leftlogo[${2:width}]{${1:imagefile}}"
+    {
+      "name": "graphics"
     },
-    "rightlogo{}": {
-      "snippet": "rightlogo{${1:imagefile}}"
+    {
+      "name": "color"
     },
-    "rightlogo[]{}": {
-      "snippet": "rightlogo[${2:width}]{${1:imagefile}}"
+    {
+      "name": "shadow"
     },
-    "noleftlogo": {},
-    "norightlogo": {},
-    "nologos": {},
-    "email{}": {
-      "snippet": "email{${1:email}}"
+    {
+      "name": "a0size"
     },
-    "titlesize": {},
-    "authorsize": {},
-    "instsize": {},
-    "VERYHuge": {},
-    "VeryHuge": {},
-    "veryHuge": {},
-    "conference{}": {
-      "snippet": "conference{${1:conference}}"
+    {
+      "name": "times"
     },
-    "footlogo": {},
-    "logowidth": {},
-    "LEFTSIDEfootlogo": {},
-    "setmargins": {},
-    "setmargins[]": {
-      "snippet": "setmargins[${1:length}]"
-    },
-    "PARstart{}{}": {
-      "snippet": "PARstart{${1:letter}}{${2:text}}"
-    },
-    "subfigure{}{}": {
-      "snippet": "subfigure{${1:text1}}{${2:text2}}"
-    },
-    "capstart": {},
-    "algorithmname": {},
-    "mastercapstartstyle{}": {
-      "snippet": "mastercapstartstyle{${1:text}}"
-    },
-    "figcapstartstyle{}": {
-      "snippet": "figcapstartstyle{${1:text}}"
-    },
-    "tablecapstartstyle{}": {
-      "snippet": "tablecapstartstyle{${1:text}}"
-    },
-    "algcapstartstyle{}": {
-      "snippet": "algcapstartstyle{${1:text}}"
-    },
-    "mastercapbodystyle": {},
-    "figcapbodystyle": {},
-    "tablecapbodystyle": {},
-    "algcapbodystyle": {},
-    "thealgorithm": {},
-    "papertype": {},
-    "fontpointsize": {},
-    "setpspagesize": {},
-    "orientation": {},
-    "sectionsize": {},
-    "subsectionsize": {},
-    "PlainBoxSection{}": {
-      "snippet": "PlainBoxSection{${1:title}}"
-    },
-    "PlainBoxSection[]{}": {
-      "snippet": "PlainBoxSection[${2:short title}]{${1:title}}"
-    },
-    "PlainSection{}": {
-      "snippet": "PlainSection{${1:title}}"
-    },
-    "PlainSection[]{}": {
-      "snippet": "PlainSection[${2:short title}]{${1:title}}"
-    },
-    "RuledSection{}": {
-      "snippet": "RuledSection{${1:title}}"
-    },
-    "RuledSection[]{}": {
-      "snippet": "RuledSection[${2:short title}]{${1:title}}"
-    },
-    "Section{}": {
-      "snippet": "Section{${1:title}}"
-    },
-    "Section[]{}": {
-      "snippet": "Section[${2:short title}]{${1:title}}"
-    },
-    "SubSection{}": {
-      "snippet": "SubSection{${1:title}}"
-    },
-    "SubSection[]{}": {
-      "snippet": "SubSection[${2:short title}]{${1:title}}"
-    },
-    "capbodystyle": {},
-    "capfirstskip": {},
-    "caplastskip": {},
-    "figbotskip": {},
-    "figtopskip": {},
-    "papermargin": {},
-    "parstartskip": {},
-    "printemail": {},
-    "printleftlogo": {},
-    "printrightlogo": {},
-    "printstyle": {},
-    "requestpointsize": {},
-    "sPlainBoxSection{}": {
-      "snippet": "sPlainBoxSection{${1:title}}"
-    },
-    "sPlainSection{}": {
-      "snippet": "sPlainSection{${1:title}}"
-    },
-    "sRuledSection{}": {
-      "snippet": "sRuledSection{${1:title}}"
-    },
-    "sSection{}": {
-      "snippet": "sSection{${1:title}}"
-    },
-    "sSubSection{}": {
-      "snippet": "sSubSection{${1:title}}"
-    },
-    "secboxwidth": {},
-    "secrulewidth": {},
-    "secskip": {},
-    "secstyle": {},
-    "setfooter": {},
-    "tempsize": {},
-    "theinstitute": {},
-    "thesubfig": {},
-    "titleskip": {},
-    "titlewidth": {}
-  },
-  "envs": {
-    "algorithm": {},
-    "algorithm[]": {
-      "name": "algorithm",
-      "snippet": "[${1:placement}]"
+    {
+      "name": "boxedminipage"
     }
-  },
-  "options": [
-    "largefonts",
-    "boxedsections",
-    "ruledsections",
-    "plainsections",
-    "plainboxedsections",
-    "a0",
-    "a1",
-    "a2",
-    "a3",
-    "ansiE",
-    "ansiD",
-    "ansiC",
-    "tabloid",
-    "landscape",
-    "portrait",
-    "draft",
-    "final",
-    "36pt",
-    "30pt",
-    "25pt",
-    "20pt",
-    "17pt",
-    "14pt",
-    "ra0",
-    "ra1",
-    "ra2",
-    "b0",
-    "b1",
-    "b2",
-    "b3",
-    "custom"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "institute",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:institute%text}}"
+      }
+    },
+    {
+      "name": "leftlogo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "leftlogo",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:width%plain}]{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "rightlogo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "rightlogo",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:width%plain}]{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "noleftlogo"
+    },
+    {
+      "name": "norightlogo"
+    },
+    {
+      "name": "nologos"
+    },
+    {
+      "name": "email",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:email%URL}}"
+      }
+    },
+    {
+      "name": "titlesize"
+    },
+    {
+      "name": "authorsize"
+    },
+    {
+      "name": "instsize"
+    },
+    {
+      "name": "VERYHuge"
+    },
+    {
+      "name": "VeryHuge"
+    },
+    {
+      "name": "veryHuge"
+    },
+    {
+      "name": "conference",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:conference%text}}"
+      }
+    },
+    {
+      "name": "footlogo",
+      "unusual": true
+    },
+    {
+      "name": "logowidth",
+      "unusual": true
+    },
+    {
+      "name": "LEFTSIDEfootlogo"
+    },
+    {
+      "name": "setmargins"
+    },
+    {
+      "name": "setmargins",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:length}]"
+      }
+    },
+    {
+      "name": "PARstart",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:letter}}{${2:text}}"
+      }
+    },
+    {
+      "name": "subfigure",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text1%text}}{${2:text2%text}}"
+      }
+    },
+    {
+      "name": "capstart",
+      "unusual": true
+    },
+    {
+      "name": "algorithmname",
+      "unusual": true
+    },
+    {
+      "name": "mastercapstartstyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "figcapstartstyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "tablecapstartstyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "algcapstartstyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "mastercapbodystyle",
+      "unusual": true
+    },
+    {
+      "name": "figcapbodystyle",
+      "unusual": true
+    },
+    {
+      "name": "tablecapbodystyle",
+      "unusual": true
+    },
+    {
+      "name": "algcapbodystyle",
+      "unusual": true
+    },
+    {
+      "name": "thealgorithm",
+      "unusual": true
+    },
+    {
+      "name": "papertype",
+      "unusual": true
+    },
+    {
+      "name": "fontpointsize",
+      "unusual": true
+    },
+    {
+      "name": "setpspagesize",
+      "unusual": true
+    },
+    {
+      "name": "orientation",
+      "unusual": true
+    },
+    {
+      "name": "sectionsize",
+      "unusual": true
+    },
+    {
+      "name": "subsectionsize",
+      "unusual": true
+    },
+    {
+      "name": "PlainBoxSection",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "PlainBoxSection",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short title}]{${1:title}}"
+      }
+    },
+    {
+      "name": "PlainSection",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "PlainSection",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short title}]{${1:title}}"
+      }
+    },
+    {
+      "name": "RuledSection",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "RuledSection",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short title}]{${1:title}}"
+      }
+    },
+    {
+      "name": "Section",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "Section",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short title}]{${1:title}}"
+      }
+    },
+    {
+      "name": "SubSection",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "SubSection",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short title}]{${1:title}}"
+      }
+    },
+    {
+      "name": "capbodystyle",
+      "unusual": true
+    },
+    {
+      "name": "capfirstskip",
+      "unusual": true
+    },
+    {
+      "name": "caplastskip",
+      "unusual": true
+    },
+    {
+      "name": "figbotskip",
+      "unusual": true
+    },
+    {
+      "name": "figtopskip",
+      "unusual": true
+    },
+    {
+      "name": "papermargin",
+      "unusual": true
+    },
+    {
+      "name": "parstartskip",
+      "unusual": true
+    },
+    {
+      "name": "printemail",
+      "unusual": true
+    },
+    {
+      "name": "printleftlogo",
+      "unusual": true
+    },
+    {
+      "name": "printrightlogo",
+      "unusual": true
+    },
+    {
+      "name": "printstyle",
+      "unusual": true
+    },
+    {
+      "name": "requestpointsize",
+      "unusual": true
+    },
+    {
+      "name": "sPlainBoxSection",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "sPlainSection",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "sRuledSection",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "sSection",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "sSubSection",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "secboxwidth",
+      "unusual": true
+    },
+    {
+      "name": "secrulewidth",
+      "unusual": true
+    },
+    {
+      "name": "secskip",
+      "unusual": true
+    },
+    {
+      "name": "secstyle",
+      "unusual": true
+    },
+    {
+      "name": "setfooter",
+      "unusual": true
+    },
+    {
+      "name": "tempsize",
+      "unusual": true
+    },
+    {
+      "name": "theinstitute",
+      "unusual": true
+    },
+    {
+      "name": "thesubfig",
+      "unusual": true
+    },
+    {
+      "name": "titleskip",
+      "unusual": true
+    },
+    {
+      "name": "titlewidth",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "algorithm"
+    },
+    {
+      "name": "algorithm",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:placement}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\documentclass/sciposter#c": [
+      "largefonts\r",
+      "boxedsections\r",
+      "ruledsections\r",
+      "plainsections\r",
+      "plainboxedsections\r",
+      "a0\r",
+      "a1\r",
+      "a2\r",
+      "a3\r",
+      "ansiE\r",
+      "ansiD\r",
+      "ansiC\r",
+      "tabloid\r",
+      "landscape\r",
+      "portrait\r",
+      "draft\r",
+      "final\r",
+      "36pt\r",
+      "30pt\r",
+      "25pt\r",
+      "20pt\r",
+      "17pt\r",
+      "14pt\r",
+      "ra0\r",
+      "ra1\r",
+      "ra2\r",
+      "b0\r",
+      "b1\r",
+      "b2\r",
+      "b3\r",
+      "custom\r"
+    ]
+  },
+  "args": [
+    "\\documentclass/sciposter#c"
+  ]
 }

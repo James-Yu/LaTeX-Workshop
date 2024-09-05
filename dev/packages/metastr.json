@@ -1,117 +1,283 @@
 {
-  "includes": {
-    "hyperref": [],
-    "hyperxmp": [],
-    "keyval": []
-  },
-  "macros": {
-    "metadef{}": {
-      "snippet": "metadef{${1:reg}}"
+  "deps": [
+    {
+      "name": "hyperref"
     },
-    "metaset{}{}": {
-      "snippet": "metaset{${1:reg}}{${2:def}}"
+    {
+      "name": "hyperxmp"
     },
-    "metaset[]{}{}": {
-      "snippet": "metaset[${3:var}]{${1:reg}}{${2:def}}"
-    },
-    "metasetlang{}": {
-      "snippet": "metasetlang{${1:ln-CN}}"
-    },
-    "metasetlang*{}": {
-      "snippet": "metasetlang*{${1:ln-CN}}"
-    },
-    "metaget[]{}{}": {
-      "snippet": "metaget[${3:var}]{${1:reg}}{${2:def}}"
-    },
-    "metaif[]{}{}{}": {
-      "snippet": "metaif[${4:}]{${1:reg}}{${2:true}}{${3:false}}"
-    },
-    "metaunset{}": {
-      "snippet": "metaunset{${1:reg}}"
-    },
-    "metaunset[]{}": {
-      "snippet": "metaunset[${2:var}]{${1:reg}}"
-    },
-    "metaappend{}{}": {
-      "snippet": "metaappend{${1:reg}}{${2:def}}"
-    },
-    "metaappend[]{}{}": {
-      "snippet": "metaappend[${3:var}]{${1:reg}}{${2:def}}"
-    },
-    "metaprepend{}{}": {
-      "snippet": "metaprepend{${1:reg}}{${2:def}}"
-    },
-    "metaprepend[]{}{}": {
-      "snippet": "metaprepend[${3:var}]{${1:reg}}{${2:def}}"
-    },
-    "metaaddsep{}{}{}": {
-      "snippet": "metaaddsep{${1:reg}}{${2:sep}}{${3:def}}"
-    },
-    "metaaddsep[]{}{}{}": {
-      "snippet": "metaaddsep[${4:var}]{${1:reg}}{${2:sep}}{${3:def}}"
-    },
-    "metapick[]{}": {
-      "snippet": "metapick[${2:var}]{${1:reg}}"
-    },
-    "metaifpick[]{}{}{}": {
-      "snippet": "metaifpick[${4:var}]{${1:reg}}{${2:true}}{${3:false}}"
-    },
-    "metacompose[]{}{}{}{}": {
-      "snippet": "metacompose[${5:var}]{${1:reg}}{${2:prefix}}{${3:postfix}}{${4:empty}}"
-    },
-    "metatitleline[]{}": {
-      "snippet": "metatitleline[${2:var}]{${1:reg}}"
-    },
-    "metatitlelinetwo[]{}[]{}": {
-      "snippet": "metatitlelinetwo[${3:var1}]{${1:reg1}}[${4:var2}]{${2:reg2}}"
-    },
-    "metawritepdfinfo": {},
-    "metawritepdfaux": {},
-    "metawritepdfpreamble": {},
-    "metawritepdfcontact": {},
-    "metawritepdfrights": {},
-    "metawritepdf": {},
-    "metacopyright{}": {
-      "snippet": "metacopyright{${1:preset}}"
-    },
-    "metalicense{}": {
-      "snippet": "metalicense{${1:preset}}"
-    },
-    "metalicensecc{}": {
-      "snippet": "metalicensecc{${1:license}}"
-    },
-    "metaterm": {},
-    "metatranslate[]{}": {
-      "snippet": "metatranslate[${2:ln}]{${1:term}}"
-    },
-    "metasetterm[]{}{}": {
-      "snippet": "metasetterm[${3:ln}]{${1:reg}}{${2:def}}"
-    },
-    "metasetup{}": {
-      "snippet": "metasetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "metacomma": {},
-    "metatilde": {}
-  },
-  "envs": {},
-  "options": [
-    "hyperref",
-    "hyperxmp",
-    "checkdef",
-    "cclogo",
-    "cclogocurr=${1|dollar,euro,yen|}",
-    "cclogoshape=${1|box,slim|}",
-    "xmppdfinfo",
-    "draft",
-    "titlematter",
-    "course",
-    "loadlang=${1|en,de,fr,es|}"
+    {
+      "name": "keyval"
+    }
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "metadef",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:reg}}"
+      }
+    },
+    {
+      "name": "metaset",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:reg}}{${2:def}}"
+      }
+    },
+    {
+      "name": "metaset",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:var}]{${1:reg}}{${2:def}}"
+      }
+    },
+    {
+      "name": "metasetlang",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ln-CN}}"
+      }
+    },
+    {
+      "name": "metasetlang*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ln-CN}}"
+      }
+    },
+    {
+      "name": "metaget",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:var}]{${1:reg}}{${2:def}}"
+      }
+    },
+    {
+      "name": "metaif",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:}]{${1:reg}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "metaunset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:reg}}"
+      }
+    },
+    {
+      "name": "metaunset",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:var}]{${1:reg}}"
+      }
+    },
+    {
+      "name": "metaappend",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:reg}}{${2:def}}"
+      }
+    },
+    {
+      "name": "metaappend",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:var}]{${1:reg}}{${2:def}}"
+      }
+    },
+    {
+      "name": "metaprepend",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:reg}}{${2:def}}"
+      }
+    },
+    {
+      "name": "metaprepend",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:var}]{${1:reg}}{${2:def}}"
+      }
+    },
+    {
+      "name": "metaaddsep",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:reg}}{${2:sep}}{${3:def}}"
+      }
+    },
+    {
+      "name": "metaaddsep",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:var}]{${1:reg}}{${2:sep}}{${3:def}}"
+      }
+    },
+    {
+      "name": "metapick",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:var}]{${1:reg}}"
+      }
+    },
+    {
+      "name": "metaifpick",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:var}]{${1:reg}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "metacompose",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "[${5:var}]{${1:reg}}{${2:prefix}}{${3:postfix}}{${4:empty}}"
+      }
+    },
+    {
+      "name": "metatitleline",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:var}]{${1:reg}}"
+      }
+    },
+    {
+      "name": "metatitlelinetwo",
+      "arg": {
+        "format": "[]{}[]{}",
+        "snippet": "[${3:var1}]{${1:reg1}}[${4:var2}]{${2:reg2}}"
+      }
+    },
+    {
+      "name": "metawritepdfinfo"
+    },
+    {
+      "name": "metawritepdfaux"
+    },
+    {
+      "name": "metawritepdfpreamble"
+    },
+    {
+      "name": "metawritepdfcontact"
+    },
+    {
+      "name": "metawritepdfrights"
+    },
+    {
+      "name": "metawritepdf"
+    },
+    {
+      "name": "metacopyright",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:preset%keyvals}}",
+        "keys": [
+          "\\metacopyright"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "metalicense",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:preset%keyvals}}",
+        "keys": [
+          "\\metalicense"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "metalicensecc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:license%keyvals}}",
+        "keys": [
+          "\\metalicensecc"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "metaterm"
+    },
+    {
+      "name": "metatranslate",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:ln}]{${1:term}}"
+      }
+    },
+    {
+      "name": "metasetterm",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:ln}]{${1:reg}}{${2:def}}"
+      }
+    },
+    {
+      "name": "metasetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}"
+      }
+    },
+    {
+      "name": "metacomma",
+      "unusual": true
+    },
+    {
+      "name": "metatilde",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/metastr#c": [
+      "hyperref",
+      "hyperxmp",
+      "checkdef",
+      "cclogo",
+      "cclogocurr=${1|dollar,euro,yen\r|}",
+      "cclogoshape=${1|box,slim\r|}",
+      "xmppdfinfo",
+      "draft",
+      "titlematter",
+      "course",
+      "loadlang=${1|en,de,fr,es\r|}"
+    ],
+    "\\metacopyright": [
+      "plain\r",
+      "parts\r",
+      "doc\r",
+      "doc-parts\r",
+      "reserved\r",
+      "publicdomain\r"
+    ],
+    "\\metalicense": [
+      "consent\r",
+      "consent-noncom\r",
+      "lppl\r"
+    ],
+    "\\metalicensecc": [
+      "by\r",
+      "by-sa\r",
+      "by-nd\r",
+      "by-nc\r",
+      "by-nc-sa\r",
+      "by-nc-nd\r",
+      "zero\r",
+      "pd\r"
+    ],
+    "\\metasetup#c": [
       "draft"
     ]
+  },
+  "args": [
+    "\\usepackage/metastr#c"
   ]
 }

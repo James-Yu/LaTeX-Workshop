@@ -1,47 +1,65 @@
 {
-  "includes": {
-    "projlib-logo": [],
-    "projlib-paper": [],
-    "tikz": [],
-    "tikzlibrarycalc": []
-  },
-  "macros": {
-    "TitlePage{}": {
-      "snippet": "TitlePage{${1:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "projlib-logo"
     },
-    "TitlePage[]{}": {
-      "snippet": "TitlePage[${2:options}]{${1:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "projlib-paper"
     },
-    "ProjLibTitlePage{}": {
-      "snippet": "ProjLibTitlePage{${1:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "tikz"
     },
-    "ProjLibTitlePage[]{}": {
-      "snippet": "ProjLibTitlePage[${2:options}]{${1:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "tikzlibrarycalc"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "logo=${1:graphics}",
-      "title=${1:text}",
-      "subtitle=${1:text}",
-      "author=${1:name}",
-      "date=${1:date}",
-      "title-page-name=${1:name}",
-      "license-page-name=${1:name}",
-      "info=${1:text}",
-      "license=${1:text}",
-      "style=${1:style}",
+  ],
+  "macros": [
+    {
+      "name": "TitlePage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "TitlePage",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options}]{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "ProjLibTitlePage",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "ProjLibTitlePage",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options}]{${1:keyvals}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\TitlePage,\\ProjLibTitlePage": [
+      "logo=${1:graphics}\r",
+      "title=${1:text}\r",
+      "subtitle=${1:text}\r",
+      "author=${1:name}\r",
+      "date=${1:date}\r",
+      "title-page-name=${1:name}\r",
+      "license-page-name=${1:name}\r",
+      "info=${1:text}\r",
+      "license=${1:text}\r",
+      "style=${1:style}\r",
       "color="
     ]
-  ]
+  },
+  "args": []
 }

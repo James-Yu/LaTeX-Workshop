@@ -1,44 +1,74 @@
 {
-  "includes": {
-    "ifxetex": [],
-    "ifluatex": [],
-    "xkeyval": [],
-    "fontenc": [],
-    "fontaxes": [],
-    "mweights": []
-  },
-  "macros": {
-    "notomono": {},
-    "notomonolgr": {},
-    "sufigures": {},
-    "textsu{}": {
-      "snippet": "textsu{${1:text}}"
+  "deps": [
+    {
+      "name": "ifxetex"
     },
-    "notomonofamily": {}
-  },
-  "envs": {},
-  "options": [
-    "scale=${1:factor}",
-    "scaled=${1:factor}",
-    "sfdefault",
-    "type1",
-    "lining",
-    "lf",
-    "tabular",
-    "tf",
-    "proportional",
-    "pf",
-    "oldstyle",
-    "osf",
-    "thin",
-    "extralight",
-    "light",
-    "regular",
-    "medium",
-    "semibold",
-    "extrabold",
-    "black",
-    "bold"
+    {
+      "name": "ifluatex"
+    },
+    {
+      "name": "xkeyval"
+    },
+    {
+      "name": "fontenc"
+    },
+    {
+      "name": "fontaxes"
+    },
+    {
+      "name": "mweights"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "notomono"
+    },
+    {
+      "name": "notomonolgr",
+      "unusual": true
+    },
+    {
+      "name": "sufigures"
+    },
+    {
+      "name": "textsu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "notomonofamily",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/noto-mono#c": [
+      "scale=${1:factor}\r",
+      "scaled=${1:factor}\r",
+      "sfdefault\r",
+      "type1\r",
+      "lining\r",
+      "lf\r",
+      "tabular\r",
+      "tf\r",
+      "proportional\r",
+      "pf\r",
+      "oldstyle\r",
+      "osf\r",
+      "thin\r",
+      "extralight\r",
+      "light\r",
+      "regular\r",
+      "medium\r",
+      "semibold\r",
+      "extrabold\r",
+      "black\r",
+      "bold\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/noto-mono#c"
+  ]
 }

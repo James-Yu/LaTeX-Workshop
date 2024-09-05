@@ -1,62 +1,92 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-plot": [],
-    "multido": [],
-    "xkeyval": []
-  },
-  "macros": {
-    "setpstgraph{}": {
-      "snippet": "setpstgraph{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "pstlabel{}{}": {
-      "snippet": "pstlabel{${1:x-label}}{${2:y-label}}"
+    {
+      "name": "pst-plot"
     },
-    "pstfileplot{}": {
-      "snippet": "pstfileplot{${1:file}}"
+    {
+      "name": "multido"
     },
-    "pstfileplot[]{}": {
-      "snippet": "pstfileplot[${2:pstricks options}]{${1:file}}"
+    {
+      "name": "xkeyval"
     }
-  },
-  "envs": {
-    "pstgraph(x0,y0)": {
-      "name": "pstgraph",
-      "snippet": "(${1:x0},${2:y0})"
+  ],
+  "macros": [
+    {
+      "name": "setpstgraph",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\begin{pstgraph},\\setpstgraph"
+        ],
+        "keyPos": 0
+      }
     },
-    "pstgraph[](x0,y0)": {
-      "name": "pstgraph",
-      "snippet": "[${1:options}](${2:x0},${3:y0})",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "pstlabel",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:x-label}}{${2:y-label}}"
+      }
+    },
+    {
+      "name": "pstfileplot",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "pstfileplot",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:pstricks options}]{${1:file}}"
+      }
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
-      "xmin=${1:number}",
-      "xmax=${1:number}",
-      "ymin=${1:number}",
-      "ymax=${1:number}",
-      "xgriddiv=${1:number}",
-      "ygriddiv=${1:number}",
-      "gridstyle=${1:style}",
+  ],
+  "envs": [
+    {
+      "name": "pstgraph",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:x0},${2:y0})"
+      }
+    },
+    {
+      "name": "pstgraph",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:options%keyvals}](${2:x0},${3:y0})"
+      }
+    }
+  ],
+  "keys": {
+    "\\begin{pstgraph},\\setpstgraph": [
+      "xmin=${1:number}\r",
+      "xmax=${1:number}\r",
+      "ymin=${1:number}\r",
+      "ymax=${1:number}\r",
+      "xgriddiv=${1:number}\r",
+      "ygriddiv=${1:number}\r",
+      "gridstyle=${1:style}\r",
       "gridcolor=",
       "gridwidth=",
-      "xticksize=${1:number}",
-      "yticksize=${1:number}",
-      "xtagsep=${1:number}",
-      "ytagsep=${1:number}",
-      "xtagformat=${1:format commands}",
-      "ytagformat=${1:format commands}",
-      "xlabel=${1:text}",
-      "ylabel=${1:text}",
-      "xlabelsep=${1:number}",
-      "ylabelsep=${1:number}",
+      "xticksize=${1:number}\r",
+      "yticksize=${1:number}\r",
+      "xtagsep=${1:number}\r",
+      "ytagsep=${1:number}\r",
+      "xtagformat=${1:format commands}\r",
+      "ytagformat=${1:format commands}\r",
+      "xlabel=${1:text}\r",
+      "ylabel=${1:text}\r",
+      "xlabelsep=${1:number}\r",
+      "ylabelsep=${1:number}\r",
       "framewidth=",
       "framecolor="
     ]
-  ]
+  },
+  "args": []
 }

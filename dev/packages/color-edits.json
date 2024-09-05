@@ -1,20 +1,36 @@
 {
-  "includes": {
-    "color": [],
-    "ifthen": []
-  },
-  "macros": {
-    "addauthor{}{}": {
-      "snippet": "addauthor{${1:author}}{${2:color}}"
+  "deps": [
+    {
+      "name": "color"
     },
-    "addauthor[]{}{}": {
-      "snippet": "addauthor[${3:author name}]{${1:author}}{${2:color}}"
+    {
+      "name": "ifthen"
     }
-  },
-  "envs": {},
-  "options": [
-    "suppress",
-    "showdeletions"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "addauthor",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:author}}{${2:color}}"
+      }
+    },
+    {
+      "name": "addauthor",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:author name}]{${1:author}}{${2:color}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/color-edits#c": [
+      "suppress\r",
+      "showdeletions\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/color-edits#c"
+  ]
 }

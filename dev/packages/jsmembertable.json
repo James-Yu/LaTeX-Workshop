@@ -1,67 +1,93 @@
 {
-  "includes": {
-    "ifthen": [],
-    "calc": [],
-    "array": [],
-    "longtable": [],
-    "hhline": [],
-    "datatool": []
-  },
-  "macros": {
-    "makemembertable{}": {
-      "snippet": "makemembertable{${1:number of blank rows}}"
+  "deps": [
+    {
+      "name": "ifthen"
     },
-    "makeprestable{}": {
-      "snippet": "makeprestable{${1:number of blank rows}}"
+    {
+      "name": "calc"
     },
-    "makeprestable[]{}": {
-      "snippet": "makeprestable[${2:number of sessions}]{${1:number of blank rows}}"
+    {
+      "name": "array"
     },
-    "makeprestable*{}": {
-      "snippet": "makeprestable*{${1:number of blank rows}}"
+    {
+      "name": "longtable"
     },
-    "makeprestable*[]{}": {
-      "snippet": "makeprestable*[${2:number of sessions}]{${1:number of blank rows}}"
+    {
+      "name": "hhline"
     },
-    "jsmnameheader": {},
-    "jsmidheader": {},
-    "jsemailheader": {},
-    "jsmsession": {},
-    "jsmsessionheader": {},
-    "jssigheader": {},
-    "themembers": {},
-    "themember": {},
-    "thetabrow": {},
-    "thesession": {},
-    "thesnum": {},
-    "iffixedseshead": {},
-    "fixedsesheadtrue": {},
-    "fixedsesheadfalse": {},
-    "sescolhead": {},
-    "getmembernr": {},
-    "addtabtoks{}": {
-      "snippet": "addtabtoks{${1:arg}}"
-    },
-    "resettabtoks": {},
-    "printtabtoks": {},
-    "sescolwidth": {},
-    "sescolwidthtwo": {},
-    "inittemplates": {},
-    "bodyrowone": {},
-    "bodyrowtwo": {},
-    "visumcell": {},
-    "headerpone": {},
-    "headerptwo": {},
-    "ltstartone": {},
-    "ltstarttwo": {},
-    "filedate": {},
-    "fileversion": {},
-    "filename": {}
-  },
-  "envs": {},
-  "options": [
-    "datafile=${1:.csv file}",
-    "datakeys={${1:key1,key2,...}}"
+    {
+      "name": "datatool"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "makemembertable",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number of blank rows}}"
+      }
+    },
+    {
+      "name": "makeprestable",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number of blank rows}}"
+      }
+    },
+    {
+      "name": "makeprestable",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:number of sessions}]{${1:number of blank rows}}"
+      }
+    },
+    {
+      "name": "makeprestable*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number of blank rows}}"
+      }
+    },
+    {
+      "name": "makeprestable*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:number of sessions}]{${1:number of blank rows}}"
+      }
+    },
+    {
+      "name": "jsmnameheader",
+      "unusual": true
+    },
+    {
+      "name": "jsmidheader",
+      "unusual": true
+    },
+    {
+      "name": "jsemailheader",
+      "unusual": true
+    },
+    {
+      "name": "jsmsession",
+      "unusual": true
+    },
+    {
+      "name": "jsmsessionheader",
+      "unusual": true
+    },
+    {
+      "name": "jssigheader",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/jsmembertable#c": [
+      "datafile=${1:.csv file}\r",
+      "datakeys={${1:key1,key2,...}}\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/jsmembertable#c"
+  ]
 }

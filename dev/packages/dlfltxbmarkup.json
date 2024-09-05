@@ -1,60 +1,114 @@
 {
-  "includes": {
-    "keyval": [],
-    "ragged2e": [],
-    "dlfltxbmarkupbookkeys": [
-      "loadsampleconfig"
-    ]
-  },
-  "macros": {
-    "markup{}": {
-      "snippet": "markup{${1:text}}"
+  "deps": [
+    {
+      "name": "keyval"
     },
-    "markup[]{}": {
-      "snippet": "markup[${2:options}]{${1:text}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "ragged2e"
     },
-    "felineKeyGenerator{}{}{}{}{}": {
-      "snippet": "felineKeyGenerator{${1:key}}{${2:description}}{${3:margin code}}{${4:index code}}{${5:text code}}"
-    },
-    "cs{}": {
-      "snippet": "cs{${1:text}}"
-    },
-    "css{}": {
-      "snippet": "css{${1:text}}"
-    },
-    "felineWriteInMargin{}": {
-      "snippet": "felineWriteInMargin{${1:text}}"
-    },
-    "ifNoMarginparAvail": {},
-    "NoMarginparAvailfalse": {},
-    "NoMarginparAvailtrue": {},
-    "felineMarginAdjustment": {},
-    "felineIndexCmd": {},
-    "itindex{}": {
-      "snippet": "itindex{${1:text}}"
-    },
-    "felineStandardKey": {},
-    "felineMarkupDescription": {}
-  },
-  "envs": {},
-  "options": [
-    "loadsampleconfig"
+    {
+      "name": "dlfltxbmarkupbookkeys",
+      "if": "loadsampleconfig"
+    }
   ],
-  "keyvals": [
-    [
-      "notxt",
-      "nowr",
-      "nomk",
-      "noidx",
-      "idxit",
-      "idxbf",
-      "idxn",
-      "addtospvrt=${1:number}",
-      "vaddtosp=${1:number}",
-      "forcesidepar",
-      "%felineKey"
+  "macros": [
+    {
+      "name": "markup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "markup",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "felineKeyGenerator",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:key%specialDef}}{${2:description}}{${3:margin code}}{${4:index code}}{${5:text code}}"
+      }
+    },
+    {
+      "name": "cs",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "css",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "felineWriteInMargin",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ifNoMarginparAvail",
+      "unusual": true
+    },
+    {
+      "name": "NoMarginparAvailfalse"
+    },
+    {
+      "name": "NoMarginparAvailtrue"
+    },
+    {
+      "name": "felineMarginAdjustment",
+      "unusual": true
+    },
+    {
+      "name": "felineIndexCmd",
+      "unusual": true
+    },
+    {
+      "name": "itindex",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "felineStandardKey",
+      "unusual": true
+    },
+    {
+      "name": "felineMarkupDescription",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/dlfltxbmarkup#c": [
+      "loadsampleconfig\r"
+    ],
+    "\\markup#c": [
+      "notxt\r",
+      "nowr\r",
+      "nomk\r",
+      "noidx\r",
+      "idxit\r",
+      "idxbf\r",
+      "idxn\r",
+      "addtospvrt=${1:number}\r",
+      "vaddtosp=${1:number}\r",
+      "forcesidepar\r",
+      "%felineKey\r"
     ]
+  },
+  "args": [
+    "\\usepackage/dlfltxbmarkup#c"
   ]
 }

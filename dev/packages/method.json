@@ -1,59 +1,139 @@
 {
-  "includes": {},
-  "macros": {
-    "head{}": {
-      "snippet": "head{${1:header}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "head",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:header%text}}"
+      }
     },
-    "para{}{}": {
-      "snippet": "para{${1:name}}{${2:description}}"
+    {
+      "name": "para",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:description%text}}"
+      }
     },
-    "precond{}": {
-      "snippet": "precond{${1:precondition}}"
+    {
+      "name": "precond",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:precondition%text}}"
+      }
     },
-    "descr{}": {
-      "snippet": "descr{${1:description}}"
+    {
+      "name": "descr",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:description%text}}"
+      }
     },
-    "postcond{}": {
-      "snippet": "postcond{${1:postcondition}}"
+    {
+      "name": "postcond",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:postcondition%text}}"
+      }
     },
-    "error{}": {
-      "snippet": "error{${1:exception}}"
+    {
+      "name": "error",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:exception%text}}"
+      }
     },
-    "return{}": {
-      "snippet": "return{${1:return value}}"
+    {
+      "name": "return",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:return value%text}}"
+      }
     },
-    "see{}": {
-      "snippet": "see{${1:where}}"
+    {
+      "name": "see",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:where%text}}"
+      }
     },
-    "headtabbed{}": {
-      "snippet": "headtabbed{${1:function name}}"
+    {
+      "name": "headtabbed",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:function name}}"
+      }
     },
-    "headpara{}": {
-      "snippet": "headpara{${1:parameter name}}"
+    {
+      "name": "headpara",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:parameter name}}"
+      }
     },
-    "init{}": {
-      "snippet": "init{${1:info}}"
+    {
+      "name": "init",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:info%text}}"
+      }
     },
-    "del{}": {
-      "snippet": "del{${1:info}}"
+    {
+      "name": "del",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:info%text}}"
+      }
     },
-    "textdel": {},
-    "textdescr": {},
-    "texterror": {},
-    "textinit": {},
-    "textpostcond": {},
-    "textprecond": {},
-    "textreturn": {},
-    "textsee": {}
-  },
-  "envs": {
-    "method": {},
-    "data": {}
-  },
-  "options": [
-    "german",
-    "english",
-    "french"
+    {
+      "name": "textdel",
+      "unusual": true
+    },
+    {
+      "name": "textdescr",
+      "unusual": true
+    },
+    {
+      "name": "texterror",
+      "unusual": true
+    },
+    {
+      "name": "textinit",
+      "unusual": true
+    },
+    {
+      "name": "textpostcond",
+      "unusual": true
+    },
+    {
+      "name": "textprecond",
+      "unusual": true
+    },
+    {
+      "name": "textreturn",
+      "unusual": true
+    },
+    {
+      "name": "textsee",
+      "unusual": true
+    }
   ],
-  "keyvals": []
+  "envs": [
+    {
+      "name": "method"
+    },
+    {
+      "name": "data"
+    }
+  ],
+  "keys": {
+    "\\usepackage/method#c": [
+      "german\r",
+      "english\r",
+      "french\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/method#c"
+  ]
 }

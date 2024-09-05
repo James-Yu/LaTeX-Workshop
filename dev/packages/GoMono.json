@@ -1,20 +1,40 @@
 {
-  "includes": {
-    "ifxetex": [],
-    "ifluatex": [],
-    "xkeyval": [],
-    "fontenc": [],
-    "mweights": []
-  },
-  "macros": {
-    "gomonofamily": {},
-    "gomonolgr": {}
-  },
-  "envs": {},
-  "options": [
-    "scaled=${1:factor}",
-    "type1",
-    "nomap"
+  "deps": [
+    {
+      "name": "ifxetex"
+    },
+    {
+      "name": "ifluatex"
+    },
+    {
+      "name": "xkeyval"
+    },
+    {
+      "name": "fontenc"
+    },
+    {
+      "name": "mweights"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "gomonofamily",
+      "unusual": true
+    },
+    {
+      "name": "gomonolgr",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/GoMono#c": [
+      "scaled=${1:factor}\r",
+      "type1\r",
+      "nomap\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/GoMono#c"
+  ]
 }

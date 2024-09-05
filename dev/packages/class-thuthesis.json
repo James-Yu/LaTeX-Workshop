@@ -1,323 +1,576 @@
 {
-  "includes": {
-    "iftex": [],
-    "kvdefinekeys": [],
-    "kvsetkeys": [],
-    "kvoptions": [],
-    "class-ctexbook": [],
-    "etoolbox": [],
-    "filehook": [],
-    "geometry": [],
-    "fancyhdr": [],
-    "titletoc": [],
-    "notoccite": [],
-    "amsmath": [],
-    "graphicx": [],
-    "subcaption": [],
-    "pdfpages": [],
-    "enumitem": [],
-    "environ": [],
-    "footmisc": [],
-    "xeCJKfntef": [],
-    "array": [],
-    "booktabs": [],
-    "url": [],
-    "natbib": [],
-    "unicode-math": [],
-    "bibunits": [
-      "degree=bachelor"
-    ],
-    "newtxmath": [
-      "math-font=newtx"
-    ],
-    "bm": [
-      "math-font=newtx"
-    ],
-    "newtxtext": [
-      "font=newtx"
-    ]
-  },
-  "macros": {
-    "thusetup{}": {
-      "snippet": "thusetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "iftex"
     },
-    "copyrightpage": {},
-    "copyrightpage[]": {
-      "snippet": "copyrightpage[${1:file=PDF file}]"
+    {
+      "name": "kvdefinekeys"
     },
-    "listoffigures*": {},
-    "listoftables*": {},
-    "listofequations": {},
-    "listofequations*": {},
-    "listofalgorithms*": {},
-    "equcaption{}": {
-      "snippet": "equcaption{${1:text}}"
+    {
+      "name": "kvsetkeys"
     },
-    "inlinecite{}": {
-      "snippet": "inlinecite{${1:keylist}}"
+    {
+      "name": "kvoptions"
     },
-    "statement": {},
-    "statement[]": {
-      "snippet": "statement[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "class-ctexbook"
     },
-    "record{}": {
-      "snippet": "record{${1:file=PDF file}}"
+    {
+      "name": "etoolbox"
     },
-    "spine": {},
-    "blacksquare": {
-      "detail": "⬛",
-      "documentation": "BLACK LARGE SQUARE"
+    {
+      "name": "filehook"
     },
-    "bm{}": {
-      "snippet": "bm{${1:text}}"
+    {
+      "name": "geometry"
     },
-    "checkmark": {
-      "detail": "✓",
-      "documentation": "CHECK MARK"
+    {
+      "name": "fancyhdr"
     },
-    "cls{}": {
-      "snippet": "cls{${1:class}}"
+    {
+      "name": "titletoc"
     },
-    "cs{}": {
-      "snippet": "cs{${1:csname}}"
+    {
+      "name": "notoccite"
     },
-    "env{}": {
-      "snippet": "env{${1:envname}}"
+    {
+      "name": "amsmath"
     },
-    "file{}": {
-      "snippet": "file{${1:filename}}"
+    {
+      "name": "graphicx"
     },
-    "pkg{}": {
-      "snippet": "pkg{${1:package}}"
+    {
+      "name": "subcaption"
     },
-    "square": {
-      "detail": "⬜",
-      "documentation": "WHITE LARGE SQUARE"
+    {
+      "name": "pdfpages"
     },
-    "CJKmove": {},
-    "CJKmovesymbol{}": {
-      "snippet": "CJKmovesymbol{${1:symbol}}"
+    {
+      "name": "enumitem"
     },
-    "CJKpunctsymbol{}": {
-      "snippet": "CJKpunctsymbol{${1:symbol}}"
+    {
+      "name": "environ"
     },
-    "CJKsymbol{}": {
-      "snippet": "CJKsymbol{${1:symbol}}"
+    {
+      "name": "footmisc"
     },
-    "listequationname": {},
-    "listoffiguresandtables": {},
-    "thuthesis": {},
-    "version": {},
-    "onlinecite{}": {
-      "snippet": "onlinecite{${1:keylist}}"
+    {
+      "name": "xeCJKfntef"
+    },
+    {
+      "name": "array"
+    },
+    {
+      "name": "booktabs"
+    },
+    {
+      "name": "url"
+    },
+    {
+      "name": "natbib"
+    },
+    {
+      "name": "unicode-math"
+    },
+    {
+      "name": "bibunits",
+      "if": "degree=bachelor"
+    },
+    {
+      "name": "newtxmath",
+      "if": "math-font=newtx"
+    },
+    {
+      "name": "bm",
+      "if": "math-font=newtx"
+    },
+    {
+      "name": "newtxtext",
+      "if": "font=newtx"
     }
-  },
-  "envs": {
-    "committee": {},
-    "committee[]": {
-      "name": "committee",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "abstract": {},
-    "abstract*": {},
-    "denotation": {},
-    "denotation[]": {
-      "name": "denotation",
-      "snippet": "[${1:width}]"
-    },
-    "axiom": {},
-    "axiom[]": {
-      "name": "axiom",
-      "snippet": "[${1:heading}]"
-    },
-    "theorem": {},
-    "theorem[]": {
-      "name": "theorem",
-      "snippet": "[${1:heading}]"
-    },
-    "definition": {},
-    "definition[]": {
-      "name": "definition",
-      "snippet": "[${1:heading}]"
-    },
-    "proposition": {},
-    "proposition[]": {
-      "name": "proposition",
-      "snippet": "[${1:heading}]"
-    },
-    "lemma": {},
-    "lemma[]": {
-      "name": "lemma",
-      "snippet": "[${1:heading}]"
-    },
-    "conjecture": {},
-    "conjecture[]": {
-      "name": "conjecture",
-      "snippet": "[${1:heading}]"
-    },
-    "proof": {},
-    "proof[]": {
-      "name": "proof",
-      "snippet": "[${1:heading}]"
-    },
-    "corollary": {},
-    "corollary[]": {
-      "name": "corollary",
-      "snippet": "[${1:heading}]"
-    },
-    "example": {},
-    "example[]": {
-      "name": "example",
-      "snippet": "[${1:heading}]"
-    },
-    "exercise": {},
-    "exercise[]": {
-      "name": "exercise",
-      "snippet": "[${1:heading}]"
-    },
-    "assumption": {},
-    "assumption[]": {
-      "name": "assumption",
-      "snippet": "[${1:heading}]"
-    },
-    "remark": {},
-    "remark[]": {
-      "name": "remark",
-      "snippet": "[${1:heading}]"
-    },
-    "problem": {},
-    "problem[]": {
-      "name": "problem",
-      "snippet": "[${1:heading}]"
-    },
-    "acknowledgements": {},
-    "survey": {},
-    "translation": {},
-    "resume": {},
-    "achievements": {},
-    "comments": {},
-    "resolution": {},
-    "acknowledgement": {},
-    "publications": {}
-  },
-  "options": [
-    "degree=${1|bachelor,master,doctor,postdoc|}",
-    "degree-type=${1|academic,professional|}",
-    "fontset=${1|auto,windows,mac,ubuntu,fandol,none|}",
-    "openright",
-    "openany",
-    "raggedbottom",
-    "GBK",
-    "UTF8",
-    "zhmap=${1|true,false,zhmCJK|}",
-    "zihao=${1|-4,5,false|}",
-    "heading",
-    "sub3section",
-    "sub4section",
-    "scheme=${1|chinese,plain|}",
-    "linespread=${1:number}",
-    "punct=${1|quanjiao,banjiao,kaiming,CCT,plain|}",
-    "space=${1|true,false,auto|}",
-    "autoindent=",
-    "a4paper",
-    "a5paper",
-    "b5paper",
-    "letterpaper",
-    "legalpaper",
-    "executivepaper",
-    "landscape",
-    "10pt",
-    "11pt",
-    "12pt",
-    "oneside",
-    "twoside",
-    "draft",
-    "final",
-    "titlepage",
-    "notitlepage",
-    "onecolumn",
-    "twocolumn",
-    "leqno",
-    "fleqn",
-    "openbib"
   ],
-  "keyvals": [
-    [
-      "thesis-type=${1|thesis,proposal|}",
-      "title={${1:论文中文题目}}",
-      "title*={${1:English thesis title}}",
-      "degree-category={${1:您要申请什么学位}}",
-      "degree-category*={${1:English degree name}}",
-      "department={${1:系名全称}}",
-      "discipline={${1:学科名称}}",
-      "discipline*={${1:English discipline name}}",
-      "professional-field={${1:专业领域}}",
-      "professional-field*={${1:English field name}}",
-      "author={${1:中文姓名}}",
-      "author*={${1:name in Pinyin}}",
-      "student-id={${1:id number}}",
-      "supervisor={${1:导师姓名, 教授}}",
-      "supervisor*={${1:Professor Supervisor Name}}",
-      "associate-supervisor={${1:副导师姓名, 副教授}}",
-      "associate-supervisor*={${1:Professor Assoc-Supervisor Name}}",
-      "co-supervisor={${1:联合导师姓名, 教授}}",
-      "co-supervisor*={${1:Professor Co-Supervisor Name}}",
-      "date={${1:YYYY-MM-DD}}",
-      "secret-year=${1:number}",
-      "secret-level={${1:秘密}}",
-      "clc={${1:分类号}}",
-      "udc={${1:udc}}",
-      "id={${1:id}}",
-      "discipline-level-1={${1:流动站（一级学科）名称}}",
-      "discipline-level-2={${1:专业（二级学科）名称}}",
-      "start-date={${1:YYYY-MM-DD}}",
-      "end-date={${1:YYYY-MM-DD}}",
-      "keywords={${1:关键词 1, 关键词 2}}",
-      "keywords*={${1:keyword1,keyword2,...}}",
-      "toc-chapter-style=${1|arial,times|}",
-      "figure-number-separator={${1:separator}}",
-      "table-number-separator={${1:separator}}",
-      "equation-number-separator={${1:separator}}",
-      "number-separator={${1:separator}}",
-      "math-style=${1|GB,ISO,TeX|}",
-      "uppercase-greek=${1|italic,upright|}",
-      "less-than-or-equal=${1|slanted,horizontal|}",
-      "integral=${1|upright,slanted|}",
+  "macros": [
+    {
+      "name": "thusetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\thusetup"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "copyrightpage"
+    },
+    {
+      "name": "copyrightpage",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:file=PDF file}]"
+      }
+    },
+    {
+      "name": "listoffigures*"
+    },
+    {
+      "name": "listoftables*"
+    },
+    {
+      "name": "listofequations"
+    },
+    {
+      "name": "listofequations*"
+    },
+    {
+      "name": "listofalgorithms*"
+    },
+    {
+      "name": "equcaption",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "inlinecite",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keylist}}"
+      }
+    },
+    {
+      "name": "statement"
+    },
+    {
+      "name": "statement",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "record",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file=PDF file}}"
+      }
+    },
+    {
+      "name": "spine"
+    },
+    {
+      "name": "blacksquare"
+    },
+    {
+      "name": "bm",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "checkmark",
+      "detail": "✓ (\"amsfonts\" command)",
+      "doc": "\\ballotcheck (arevmath), tick, check mark"
+    },
+    {
+      "name": "cls",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:class}}"
+      }
+    },
+    {
+      "name": "cs",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:csname}}"
+      }
+    },
+    {
+      "name": "env",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:envname}}"
+      }
+    },
+    {
+      "name": "file",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:filename%file}}"
+      }
+    },
+    {
+      "name": "pkg",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:package}}"
+      }
+    },
+    {
+      "name": "square"
+    },
+    {
+      "name": "CJKmove",
+      "unusual": true
+    },
+    {
+      "name": "CJKmovesymbol",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol}}"
+      }
+    },
+    {
+      "name": "CJKpunctsymbol",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol}}"
+      }
+    },
+    {
+      "name": "CJKsymbol",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol}}"
+      }
+    },
+    {
+      "name": "listequationname",
+      "unusual": true
+    },
+    {
+      "name": "listoffiguresandtables",
+      "unusual": true
+    },
+    {
+      "name": "thuthesis",
+      "unusual": true
+    },
+    {
+      "name": "version",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "committee"
+    },
+    {
+      "name": "committee",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "abstract"
+    },
+    {
+      "name": "abstract*"
+    },
+    {
+      "name": "denotation"
+    },
+    {
+      "name": "denotation",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:width}]"
+      }
+    },
+    {
+      "name": "axiom"
+    },
+    {
+      "name": "axiom",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "theorem"
+    },
+    {
+      "name": "theorem",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "definition"
+    },
+    {
+      "name": "definition",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "proposition"
+    },
+    {
+      "name": "proposition",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "lemma"
+    },
+    {
+      "name": "lemma",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "conjecture"
+    },
+    {
+      "name": "conjecture",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "proof"
+    },
+    {
+      "name": "proof",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "corollary"
+    },
+    {
+      "name": "corollary",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "example"
+    },
+    {
+      "name": "example",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "exercise"
+    },
+    {
+      "name": "exercise",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "assumption"
+    },
+    {
+      "name": "assumption",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "remark"
+    },
+    {
+      "name": "remark",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "problem"
+    },
+    {
+      "name": "problem",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "acknowledgements"
+    },
+    {
+      "name": "survey"
+    },
+    {
+      "name": "translation"
+    },
+    {
+      "name": "resume"
+    },
+    {
+      "name": "achievements"
+    },
+    {
+      "name": "comments"
+    },
+    {
+      "name": "comments",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${2:name={${1:name}}}]"
+      }
+    },
+    {
+      "name": "resolution"
+    }
+  ],
+  "keys": {
+    "\\documentclass/thuthesis#c": [
+      "degree=${1|bachelor,master,doctor,postdoc\r|}",
+      "degree-type=${1|academic,professional\r|}",
+      "fontset=${1|auto,windows,mac,ubuntu,fandol,none\r|}",
+      "openright",
+      "openany\r",
+      "raggedbottom",
+      "GBK\r",
+      "UTF8\r",
+      "zhmap=${1|true,false,zhmCJK\r|}",
+      "zihao=${1|-4,5,false\r|}",
+      "heading",
+      "sub3section\r",
+      "sub4section\r",
+      "scheme=${1|chinese,plain\r|}",
+      "linespread=${1:number}\r",
+      "punct=${1|quanjiao,banjiao,kaiming,CCT,plain\r|}",
+      "space=${1|true,false,auto\r|}",
+      "autoindent=\r",
+      "a4paper\r",
+      "a5paper\r",
+      "b5paper\r",
+      "letterpaper\r",
+      "legalpaper\r",
+      "executivepaper\r",
+      "landscape\r",
+      "10pt\r",
+      "11pt\r",
+      "12pt\r",
+      "oneside\r",
+      "twoside\r",
+      "draft\r",
+      "final\r",
+      "titlepage\r",
+      "notitlepage\r",
+      "onecolumn\r",
+      "twocolumn\r",
+      "leqno\r",
+      "fleqn\r",
+      "openbib\r"
+    ],
+    "\\thusetup": [
+      "thesis-type=${1|thesis,proposal\r|}",
+      "title={${1:论文中文题目}}\r",
+      "title*={${1:English thesis title}}\r",
+      "degree-category={${1:您要申请什么学位}}\r",
+      "degree-category*={${1:English degree name}}\r",
+      "department={${1:系名全称}}\r",
+      "discipline={${1:学科名称}}\r",
+      "discipline*={${1:English discipline name}}\r",
+      "professional-field={${1:专业领域}}\r",
+      "professional-field*={${1:English field name}}\r",
+      "author={${1:中文姓名}}\r",
+      "author*={${1:name in Pinyin}}\r",
+      "student-id={${1:id number}}\r",
+      "supervisor={${1:导师姓名, 教授}}\r",
+      "supervisor*={${1:Professor Supervisor Name}}\r",
+      "associate-supervisor={${1:副导师姓名, 副教授}}\r",
+      "associate-supervisor*={${1:Professor Assoc-Supervisor Name}}\r",
+      "co-supervisor={${1:联合导师姓名, 教授}}\r",
+      "co-supervisor*={${1:Professor Co-Supervisor Name}}\r",
+      "date={${1:YYYY-MM-DD}}\r",
+      "secret-year=${1:number}\r",
+      "secret-level={${1:秘密}}\r",
+      "clc={${1:分类号}}\r",
+      "udc={${1:udc}}\r",
+      "id={${1:id}}\r",
+      "discipline-level-1={${1:流动站（一级学科）名称}}\r",
+      "discipline-level-2={${1:专业（二级学科）名称}}\r",
+      "start-date={${1:YYYY-MM-DD}}\r",
+      "end-date={${1:YYYY-MM-DD}}\r",
+      "keywords={${1:关键词 1, 关键词 2}}\r",
+      "keywords*={${1:keyword1,keyword2,...}}\r",
+      "toc-chapter-style=${1|arial,times\r|}",
+      "figure-number-separator={${1:separator}}\r",
+      "table-number-separator={${1:separator}}\r",
+      "equation-number-separator={${1:separator}}\r",
+      "number-separator={${1:separator}}\r",
+      "math-style=${1|GB,ISO,TeX\r|}",
+      "uppercase-greek=${1|italic,upright\r|}",
+      "less-than-or-equal=${1|slanted,horizontal\r|}",
+      "integral=${1|upright,slanted\r|}",
       "integral-limits",
-      "partial=${1|upright,italic|}",
-      "math-ellipsis=${1|centered,lower,AMS|}",
-      "real-part=${1|roman,fraktur|}",
-      "math-font=${1|auto,stix,xits,libertinus,newcm,lm,newtx,none|}",
-      "eqn-paren-style=${1|full,half|}",
-      "cite-style=${1|super,inline,author-year|}",
-      "toc-depth=${1:integer}",
-      "spine-font={${1:font commands}}",
-      "spine-title={${1:书脊的标题}}",
-      "spine-author={${1:书脊的作者姓名}}",
+      "partial=${1|upright,italic\r|}",
+      "math-ellipsis=${1|centered,lower,AMS\r|}",
+      "real-part=${1|roman,fraktur\r|}",
+      "math-font=${1|auto,stix,xits,libertinus,newcm,lm,newtx,none\r|}",
+      "eqn-paren-style=${1|full,half\r|}",
+      "cite-style=${1|super,inline,author-year\r|}",
+      "toc-depth=${1:integer}\r",
+      "spine-font={${1:font commands}}\r",
+      "spine-title={${1:书脊的标题}}\r",
+      "spine-author={${1:书脊的作者姓名}}\r",
       "include-spine",
       "appendix-figure-in-lof",
-      "main-language=${1|chinese,english|}",
-      "language=${1|chinese,english|}",
-      "system=${1|auto,mac,unix,windows|}",
-      "font=${1|auto,times,termes,stix,xits,libertinus,newcm,lm,newtx,none|}",
-      "cjk-font=${1|auto,windows,windows-local,mac,mac-word,noto,fandol,none|}",
-      "windows-font-dir=${1:path}",
-      "output=${1|print,electronic|}",
-      "statement-page-style=${1|auto,empty,plain|}"
+      "main-language=${1|chinese,english\r|}",
+      "language=${1|chinese,english\r|}",
+      "system=${1|auto,mac,unix,windows\r|}",
+      "font=${1|auto,times,termes,stix,xits,libertinus,newcm,lm,newtx,none\r|}",
+      "cjk-font=${1|auto,windows,windows-local,mac,mac-word,noto,fandol,none\r|}",
+      "windows-font-dir=${1:path}\r",
+      "output=${1|print,electronic\r|}",
+      "statement-page-style=${1|auto,empty,plain\r|}"
     ],
-    [
-      "page-style=${1|auto,empty,plain|}",
-      "file=${1:PDF file}"
+    "\\begin{committee}": [
+      "name={${1:学位论文公开评阅人和答辩委员会名单}}\r",
+      "file=${1:file path}\r"
     ],
-    [
-      "name={${1:学位论文公开评阅人和答辩委员会名单}}",
-      "file=${1:file path}"
+    "\\bibliographystyle#c": [
+      "thuthesis-numeric\r",
+      "thuthesis-author-year\r",
+      "thuthesis-bachelor\r"
+    ],
+    "\\statement": [
+      "page-style=${1|auto,empty,plain\r|}",
+      "file=${1:PDF file}\r"
+    ],
+    "\\begin{enumerate}#c,\\begin{itemize}#c,\\begin{description}#c,\\begin{enumerate*}#c,\\begin{itemize*}#c,\\begin{description*}#c": [
+      "A\r",
+      "a\r",
+      "I\r",
+      "i\r",
+      "1\r"
     ]
+  },
+  "args": [
+    "\\documentclass/thuthesis#c"
   ]
 }

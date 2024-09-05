@@ -1,16 +1,30 @@
 {
-  "includes": {},
-  "macros": {
-    "opt{}{}": {
-      "snippet": "opt{${1:option}}{${2:content}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "opt",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:option}}{${2:content%text}}"
+      }
     },
-    "optv{}{}": {
-      "snippet": "optv{${1:option}}{${2:content}}"
+    {
+      "name": "optv",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:option}}{${2:content%text}}"
+      }
     },
-    "AskOption": {},
-    "UseOption": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "AskOption",
+      "unusual": true
+    },
+    {
+      "name": "UseOption",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

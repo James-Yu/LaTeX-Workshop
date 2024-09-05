@@ -1,344 +1,401 @@
 {
-  "includes": {
-    "keyval": []
-  },
-  "macros": {
-    "lstloadlanguages{}": {
-      "snippet": "lstloadlanguages{${1:lang1,${2:lang2},...}}"
-    },
-    "lstset{}": {
-      "snippet": "lstset{${1:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "lstinline": {
-      "snippet": "lstinline|${1:code}|"
-    },
-    "lstinline[]": {
-      "snippet": "lstinline[${1:options}]|${2:code}|",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "lstinline[]{}": {
-      "snippet": "lstinline[${2:options}]{${1:verbatimSymbol}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "lstinputlisting{}": {
-      "snippet": "lstinputlisting{${1:file}}"
-    },
-    "lstinputlisting[]{}": {
-      "snippet": "lstinputlisting[${2:options}]{${1:file}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "lstdefinestyle{}{}": {
-      "snippet": "lstdefinestyle{${1:style name}}{${2:keyvals}}",
-      "keyvalindex": 1,
-      "keyvalpos": 1
-    },
-    "thelstnumber": {},
-    "theHlstnumber": {},
-    "thelstlabel": {},
-    "lstlistoflistings": {},
-    "lstlistlistingname": {},
-    "lstlistingname": {},
-    "lstlistingnamestyle": {},
-    "thelstlisting": {},
-    "lstname": {},
-    "lstindexmacro{}": {
-      "snippet": "lstindexmacro{${1:arg}}"
-    },
-    "lstnewenvironment{}[][]{}{}": {
-      "snippet": "lstnewenvironment{${1:envname}}[${2:args}][${3:default}]{${4:begdef}}{${5:enddef}}"
-    },
-    "lstnewenvironment{}[]{}{}": {
-      "snippet": "lstnewenvironment{${1:envname}}[${2:args}]{${3:begdef}}{${4:enddef}}"
-    },
-    "lstnewenvironment{}{}{}": {
-      "snippet": "lstnewenvironment{${1:envname}}{${2:begdef}}{${3:enddef}}"
-    },
-    "lstdefinelanguage{}{}": {
-      "snippet": "lstdefinelanguage{${1:language name}}{${2:keyvals}}",
-      "keyvalindex": 1,
-      "keyvalpos": 1
-    },
-    "lstdefinelanguage{}{}[]": {
-      "snippet": "lstdefinelanguage{${1:language name}}{${2:keyvals}}[${3:required aspects}]",
-      "keyvalindex": 1,
-      "keyvalpos": 1
-    },
-    "lstdefinelanguage[]{}{}": {
-      "snippet": "lstdefinelanguage[${3:dialect}]{${1:language name}}{${2:keyvals}}",
-      "keyvalindex": 1,
-      "keyvalpos": 2
-    },
-    "lstdefinelanguage[]{}{}[]": {
-      "snippet": "lstdefinelanguage[${3:dialect}]{${1:language name}}{${2:keyvals}}[${4:required aspects}]",
-      "keyvalindex": 1,
-      "keyvalpos": 2
-    },
-    "lstdefinelanguage[]{}[]{}{}[]": {
-      "snippet": "lstdefinelanguage[${4:dialect}]{${1:language name}}[${5:base dialect}]{${2:base language}}{${3:keyvals}}[${6:required aspects}]",
-      "keyvalindex": 1,
-      "keyvalpos": 4
-    },
-    "lstalias{}{}": {
-      "snippet": "lstalias{${1:alias}}{${2:language}}"
-    },
-    "lstaspectfiles": {},
-    "lstlanguagefiles": {},
-    "lstloadaspects{}": {
-      "snippet": "lstloadaspects{${1:aspects}}"
-    },
-    "lststylefiles": {},
-    "theHlstlisting": {},
-    "lstlgrindeffile": {
-      "option": "lgrind"
-    },
-    "lstdefineformat{}{}": {
-      "snippet": "lstdefineformat{${1:name}}{${2:format}}",
-      "option": "formats"
-    },
-    "lstformatfiles": {
-      "option": "formats"
+  "deps": [
+    {
+      "name": "keyval"
     }
-  },
-  "envs": {
-    "lstlisting": {},
-    "lstlisting[]": {
-      "name": "lstlisting",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    }
-  },
-  "options": [
-    "draft",
-    "final",
-    "savemem",
-    "noaspects",
-    "lgrind",
-    "procnames",
-    "hyper",
-    "formats",
-    "0.21"
   ],
-  "keyvals": [
-    [
-      "inputpath=${1:path}",
-      "aboveskip=",
-      "belowskip=",
-      "lineskip=",
-      "boxpos=${1|b,c,t|}",
-      "print",
-      "showlines",
-      "emptylines=${1:number}",
-      "emptylines=*${1:number}",
-      "gobble=${1:number}",
-      "style=${1:style name}",
-      "language=${1:language}",
-      "language=[${1:dialect}]${2:language}",
-      "alsolanguage=${1:language}",
-      "alsolanguage=[${1:dialect}]${2:language}",
-      "defaultdialect=[${1:dialect}]${2:language}",
-      "printpod",
-      "usekeywordsintag",
-      "tagstyle=${1:style}",
-      "markfirstintag=${1:style}",
-      "makemacrouse",
-      "basicstyle=${1:style}",
-      "identifierstyle=${1:style}",
-      "commentstyle=${1:style}",
-      "stringstyle=${1:style}",
-      "keywordstyle=${1:style}",
-      "keywordstyle=*${1:style}",
-      "keywordstyle=[${1:number}]${2:style}",
-      "keywordstyle=[${1:number}]*${2:style}",
-      "ndkeywordstyle=${1:style}",
-      "classoffset=${1:number}",
-      "texcsstyle=${1:style}",
-      "texcsstyle=*${1:style}",
-      "texcsstyle=[${1:class number}]${2:style}",
-      "texcsstyle=*[${1:class number}]${2:style}",
-      "directivestyle=${1:style}",
-      "emph={${1:identifier list}}",
-      "emph=[${1:number}]{${2:identifier list}}",
-      "moreemph={${1:identifier list}}",
-      "moreemph=[${1:number}]{${2:identifier list}}",
-      "deleteemph={${1:identifier list}}",
-      "deleteemph=[${1:number}]{${2:identifier list}}",
-      "emphstyle={${1:style}}",
-      "emphstyle=[${1:number}]{${2:style}}",
-      "delim=[${1:type}][${2:style}]${3:delimiters}",
-      "delim=*[${1:type}][${2:style}]${3:delimiters}",
-      "delim=**[${1:type}][${2:style}]${3:delimiters}",
-      "moredelim=[${1:type}][${2:style}]${3:delimiters}",
-      "moredelim=*[${1:type}][${2:style}]${3:delimiters}",
-      "moredelim=**[${1:type}][${2:style}]${3:delimiters}",
-      "deletedelim=[${1:type}][${2:style}]${3:delimiters}",
-      "deletedelim=*[${1:type}][${2:style}]${3:delimiters}",
-      "deletedelim=**[${1:type}][${2:style}]${3:delimiters}",
-      "extendedchars",
-      "inputencoding=${1:encoding}",
-      "upquote",
-      "tabsize=${1:number}",
-      "showtabs",
-      "tab=${1:tokens}",
-      "showspaces",
-      "showstringspaces",
-      "formfeed=${1:tokens}",
-      "numbers=${1|none,left,right|}",
-      "stepnumber=${1:number}",
-      "numberfirstline",
-      "numberstyle=${1:style}",
-      "numbersep=",
-      "numberblanklines",
-      "firstnumber=${1:auto|last|<number>}",
-      "name=${1:name}",
-      "title=${1:title text}",
-      "caption={${1:caption text}}",
-      "caption={[${1:short}]${2:caption text}}",
-      "label=",
-      "nolol",
-      "numberbychapter",
-      "captionpos=${1:subset of tb}",
-      "abovecaptionskip=",
-      "belowcaptionskip=",
-      "linewidth=",
-      "xleftmargin=",
-      "xrightmargin=",
-      "resetmargins",
-      "breaklines",
-      "breakatwhitespace",
-      "prebreak=${1:tokens}",
-      "postbreak=${1:tokens}",
-      "breakindent=",
-      "breakautoindent",
-      "frame=${1:type}",
-      "frameround=",
-      "framesep=",
-      "rulesep=",
-      "framerule=",
-      "framexleftmargin=",
-      "framexrightmargin=",
-      "framextopmargin=",
-      "framexbottommargin=",
-      "backgroundcolor=",
-      "rulecolor=",
-      "fillcolor=",
-      "rulesepcolor=",
-      "frameshape={${1:top shape}}{${2:left shape}}{${3:right shape}}{${4:bottom shape}}",
-      "index={${1:identifiers}}",
-      "index=[${1:number}]{${2:identifiers}}",
-      "index=[${1:number}][${2:keyword classes}]{${3:identifiers}}",
-      "moreindex={${1:identifiers}}",
-      "moreindex=[${1:number}]{${2:identifiers}}",
-      "moreindex=[${1:number}][${2:keyword classes}]{${3:identifiers}}",
-      "deleteindex={${1:identifiers}}",
-      "deleteindex=[${1:number}]{${2:identifiers}}",
-      "deleteindex=[${1:number}][${2:keyword classes}]{${3:identifiers}}",
-      "indexstyle=${1:one-parameter macro}",
-      "indexstyle=[${1:number}]${2:one-parameter macro}",
-      "columns=${1:alignment}",
-      "columns=[${1:c|l|r}]${2:alignment}",
-      "flexiblecolumns",
-      "keepspaces",
-      "basewidth=",
-      "fontadjust",
-      "texcl",
-      "mathescape",
-      "escapechar=${1:character}",
-      "escapeinside=${1:<char1><char2>}",
-      "escapebegin=${1:tokens}",
-      "escapeend=${1:tokens}",
-      "fancyvrb",
-      "fvcmdparams=${1:<cmd1> <num1> ...}",
-      "morefvcmdparams=${1:<cmd1> <num1> ...}",
-      "literate={${1:replace}}{${2:replacement text}}{${3:length}}${4:...}",
-      "literate=*{${1:replace}}{${2:replacement text}}{${3:length}}${4:...}",
-      "rangebeginprefix=${1:prefix}",
-      "rangebeginsuffix=${1:suffix}",
-      "rangeendprefix=${1:prefix}",
-      "rangeendsuffix=${1:suffix}",
-      "rangeprefix=${1:prefix}",
-      "rangesuffix=${1:suffix}",
-      "includerangemarker",
-      "multicols=${1:number}",
-      "float",
-      "float=${1:subset of tbph}",
-      "float=*${1:subset of tbph}",
-      "floatplacement=${1:place specifiers}",
-      "firstline=${1:number}",
-      "lastline=${1:number}",
-      "linerange={${1:first1-last1,first2-last2,...}}",
-      "consecutivenumbers",
-      "keywordsprefix=${1:prefix}",
-      "keywords={${1:list of keywords}}",
-      "keywords=[${1:number}]{${2:list of keywords}}",
-      "morekeywords={${1:list of keywords}}",
-      "morekeywords=[${1:number}]{${2:list of keywords}}",
-      "deletekeywords={${1:list of keywords}}",
-      "deletekeywords=[${1:number}]{${2:list of keywords}}",
-      "ndkeywords={${1:list of keywords}}",
-      "moreendkeywords={${1:list of keywords}}",
-      "deleteendkeywords={${1:list of keywords}}",
-      "texcs={${1:list of csnames}}",
-      "texcs=[${1:class number}]{${2:list of csnames}}",
-      "moretexcs={${1:list of csnames}}",
-      "moretexcs=[${1:class number}]{${2:list of csnames}}",
-      "deletetexcs={${1:list of csnames}}",
-      "deletetexcs=[${1:class number}]{${2:list of csnames}}",
-      "directives={${1:list of compiler directives}}",
-      "moredirectives={${1:list of compiler directives}}",
-      "deletedirectives={${1:list of compiler directives}}",
-      "sensitive",
-      "alsoletter={${1:character sequence}}",
-      "alsodigit={${1:character sequence}}",
-      "alsoother={${1:character sequence}}",
-      "otherkeywords={${1:keywords}}",
-      "tag=${1:<char1><char2>}",
-      "string=${1:delimiter}",
-      "string=[${1:b|d|m|bd|s}]${2:delimiter}",
-      "morestring=${1:delimiter}",
-      "morestring=[${1:b|d|m|bd|s}]${2:delimiter}",
-      "deletestring=${1:delimiter}",
-      "deletestring=[${1:b|d|m|bd|s}]${2:delimiter}",
-      "comment=${1:delimiter(s)}",
-      "comment=[${1:type}]${2:delimiter(s)}",
-      "morecomment=${1:delimiter(s)}",
-      "morecomment=[${1:type}]${2:delimiter(s)}",
-      "deletecomment=${1:delimiter(s)}",
-      "deletecomment=[${1:type}]${2:delimiter(s)}",
-      "keywordcomment={${1:keywords}}",
-      "morekeywordcomment={${1:keywords}}",
-      "deletekeywordcomment={${1:keywords}}",
-      "keywordcommentsemicolon={${1:keywords}}{${2:keywords}}{${3:keywords}}",
-      "podcomment",
-      "procnamekeys={${1:keywords}}",
-      "moreprocnamekeys={${1:keywords}}",
-      "deleteprocnamekeys={${1:keywords}}",
-      "procnamestyle=${1:style}",
-      "indexprocnames",
-      "hyperref={${1:identifiers}}",
-      "morehyperref={${1:identifiers}}",
-      "deletehyperref={${1:identifiers}}",
-      "hyperanchor=${1:two-parameter macro}",
-      "hyperlink=${1:two-parameter macro}",
-      "lgrindef=${1:language}"
+  "macros": [
+    {
+      "name": "lstloadlanguages",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:lang1,lang2,...%keyvals}}"
+      }
+    },
+    {
+      "name": "lstset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "lstinline",
+      "arg": {
+        "format": "[]||",
+        "snippet": "[${1:options}]|${2:code}|"
+      }
+    },
+    {
+      "name": "lstinputlisting",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "lstinputlisting",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:file}}"
+      }
+    },
+    {
+      "name": "lstdefinestyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:style name}}{${2:keyvals}}"
+      }
+    },
+    {
+      "name": "thelstnumber",
+      "unusual": true
+    },
+    {
+      "name": "theHlstnumber",
+      "unusual": true
+    },
+    {
+      "name": "thelstlabel",
+      "unusual": true
+    },
+    {
+      "name": "lstlistoflistings"
+    },
+    {
+      "name": "lstlistlistingname",
+      "unusual": true
+    },
+    {
+      "name": "lstlistingname",
+      "unusual": true
+    },
+    {
+      "name": "lstlistingnamestyle",
+      "unusual": true
+    },
+    {
+      "name": "thelstlisting",
+      "unusual": true
+    },
+    {
+      "name": "lstname",
+      "unusual": true
+    },
+    {
+      "name": "lstindexmacro",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "lstnewenvironment",
+      "unusual": true,
+      "arg": {
+        "format": "{}[][]{}{}",
+        "snippet": "{${1:envname}}[${4:args}][${5:default}]{${2:begdef}}{${3:enddef}}"
+      }
+    },
+    {
+      "name": "lstnewenvironment",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}{}",
+        "snippet": "{${1:envname}}[${4:args}]{${2:begdef}}{${3:enddef}}"
+      }
+    },
+    {
+      "name": "lstnewenvironment",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:envname}}{${2:begdef}}{${3:enddef}}"
+      }
+    },
+    {
+      "name": "lstdefinelanguage",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:language name}}{${2:keyvals}}"
+      }
+    },
+    {
+      "name": "lstdefinelanguage",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:language name}}{${2:keyvals}}[${3:required aspects}]"
+      }
+    },
+    {
+      "name": "lstdefinelanguage",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:dialect}]{${1:language name}}{${2:keyvals}}"
+      }
+    },
+    {
+      "name": "lstdefinelanguage",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}[]",
+        "snippet": "[${3:dialect}]{${1:language name}}{${2:keyvals}}[${4:required aspects}]"
+      }
+    },
+    {
+      "name": "lstdefinelanguage",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]{}{}[]",
+        "snippet": "[${4:dialect}]{${1:language name}}[${5:base dialect}]{${2:base language}}{${3:keyvals}}[${6:required aspects}]"
+      }
+    },
+    {
+      "name": "lstalias",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:alias}}{${2:language}}"
+      }
+    },
+    {
+      "name": "lstaspectfiles",
+      "unusual": true
+    },
+    {
+      "name": "lstlanguagefiles",
+      "unusual": true
+    },
+    {
+      "name": "lstloadaspects",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:aspects}}"
+      }
+    },
+    {
+      "name": "lststylefiles",
+      "unusual": true
+    },
+    {
+      "name": "lstlgrindeffile",
+      "if": "lgrind"
+    },
+    {
+      "name": "lstdefineformat",
+      "if": "formats",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:format}}"
+      }
+    },
+    {
+      "name": "lstformatfiles",
+      "if": "formats",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "lstlisting"
+    },
+    {
+      "name": "lstlisting",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/listings#c": [
+      "draft",
+      "final",
+      "savemem",
+      "noaspects",
+      "lgrind",
+      "procnames",
+      "hyper",
+      "formats",
+      "0.21"
     ],
-    [
-      "procnamekeys={${1:keywords}}",
-      "moreprocnamekeys={${1:keywords}}",
-      "deleteprocnamekeys={${1:keywords}}",
-      "procnamestyle=${1:style}",
-      "indexprocnames",
-      "hyperref={${1:identifiers}}",
-      "morehyperref={${1:identifiers}}",
-      "deletehyperref={${1:identifiers}}",
-      "hyperanchor=${1:two-parameter macro}",
-      "hyperlink=${1:two-parameter macro}",
+    "\\lstloadlanguages#c": [
+      "ABAP",
+      "[R/2 4.3]ABAP",
+      "[R/2 5.0]ABAP",
+      "[R/3 3.1]ABAP",
+      "[R/3 4.6C]ABAP",
+      "[R/3 6.10]ABAP",
+      "ACM",
+      "ACSL",
+      "ACMscript",
+      "Ada",
+      "[2005]Ada",
+      "[83]Ada",
+      "[95]Ada",
+      "Algol",
+      "[60]Algol",
+      "[68]Algol",
+      "Ant",
+      "Assembler",
+      "[Motorola68k]Assembler",
+      "[x86masm]Assembler",
+      "Awk",
+      "[gnu]Awk",
+      "[POSIX]Awk",
+      "bash",
+      "Basic",
+      "[Visual]Basic",
+      "C",
+      "[ANSI]C",
+      "[Handel]C",
+      "[Objective]C",
+      "[Sharp]C",
+      "C++",
+      "[11]C++",
+      "[ANSI]C++",
+      "[GNU]C++",
+      "[ISO]C++",
+      "[Visual]C++",
+      "Caml",
+      "[light]Caml",
+      "[Objective]Caml",
+      "CIL",
+      "Clean",
+      "Cobol",
+      "[1974]Cobol",
+      "[1985]Cobol",
+      "[ibm]Cobol",
+      "Comal 80",
+      "command.com",
+      "[WinXP]command.com",
+      "Comsol",
+      "csh",
+      "Delphi",
+      "Eiffel",
+      "Elan",
+      "elisp",
+      "erlang",
+      "Euphoria",
+      "Fortran",
+      "[03]Fortran",
+      "[08]Fortran",
+      "[18]Fortran",
+      "[77]Fortran",
+      "[90]Fortran",
+      "[95]Fortran",
+      "GAP",
+      "GCL",
+      "Gnuplot",
+      "Go",
+      "hansl",
+      "Haskell",
+      "HTML",
+      "IDL",
+      "[CORBA]IDL",
+      "inform",
+      "Java",
+      "[AspectJ]Java",
+      "JVMIS",
+      "ksh",
+      "Lingo",
+      "Lisp",
+      "[Auto]Lisp",
+      "LLVM",
+      "Logo",
+      "Lua",
+      "[5.0]Lua",
+      "[5.1]Lua",
+      "[5.2]Lua",
+      "[5.3]Lua",
+      "make",
+      "[gnu]make",
+      "Mathematica",
+      "[1.0]Mathematica",
+      "[11.0]Mathematica",
+      "[3.0]Mathematica",
+      "[5.2]Mathematica",
+      "Matlab",
+      "[5.1]Matlab",
+      "Mercury",
+      "MetaPost",
+      "Miranda",
+      "Mizar",
+      "ML",
+      "Modula-2",
+      "MuPAD",
+      "NASTRAN",
+      "Oberon-2",
+      "OCL",
+      "[decorative]OCL",
+      "[OMG]OCL",
+      "Octave",
+      "OORexx",
+      "Oz",
+      "Pascal",
+      "[Borland6]Pascal",
+      "[Standard]Pascal",
+      "[XSC]Pascal",
+      "Perl",
+      "PHP",
+      "PL/I",
+      "Plasm",
+      "PostScript",
+      "POV",
+      "Prolog",
+      "Promela",
+      "PSTricks",
+      "Python",
+      "R",
+      "Reduce",
+      "Rexx",
+      "[VM/XA]Rexx",
+      "RSL",
+      "Ruby",
+      "S",
+      "[PLUS]S",
+      "SAS",
+      "Scala",
+      "[3.0]Scala",
+      "Scilab",
+      "sh",
+      "SHELXL",
+      "Simula",
+      "[67]Simula",
+      "[CII]Simula",
+      "[DEC]Simula",
+      "[IBM]Simula",
+      "SPARQL",
+      "SQL",
+      "Swift",
+      "tcl",
+      "[tk]tcl",
+      "TeX",
+      "[AlLaTeX]TeX",
+      "[common]TeX",
+      "[LaTeX]TeX",
+      "[plain]TeX",
+      "[primitive]TeX",
+      "VBScript",
+      "Verilog",
+      "VHDL",
+      "[AMS]VHDL",
+      "VRML",
+      "[97]VRML",
+      "XML",
+      "XSLT"
+    ],
+    "\\lstset,\\lstinline,\\begin{lstlisting},\\lstinputlisting,\\lstMakeShortInline,\\lstdefinelanguage,\\lstdefinestyle": [
       "lgrindef=${1:language}"
     ]
+  },
+  "args": [
+    "\\usepackage/listings#c"
   ]
 }

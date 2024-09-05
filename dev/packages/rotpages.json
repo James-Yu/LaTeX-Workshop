@@ -1,22 +1,48 @@
 {
-  "includes": {
-    "calc": [],
-    "graphics": [],
-    "ifthen": []
-  },
-  "macros": {
-    "rotboxpages": {},
-    "endrotboxpages": {},
-    "rotboxheight": {},
-    "rotboxwidth": {},
-    "rotboxAtRotationHook{}": {
-      "snippet": "rotboxAtRotationHook{${1:code}}"
+  "deps": [
+    {
+      "name": "calc"
     },
-    "rotboxAtShippingHook{}": {
-      "snippet": "rotboxAtShippingHook{${1:code}}"
+    {
+      "name": "graphics"
+    },
+    {
+      "name": "ifthen"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "rotboxpages"
+    },
+    {
+      "name": "endrotboxpages"
+    },
+    {
+      "name": "rotboxheight",
+      "unusual": true
+    },
+    {
+      "name": "rotboxwidth",
+      "unusual": true
+    },
+    {
+      "name": "rotboxAtRotationHook",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "rotboxAtShippingHook",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

@@ -1,247 +1,690 @@
 {
-  "includes": {
-    "luatex": [],
-    "ifluatex": [],
-    "xkeyval": [],
-    "fontspec": []
-  },
-  "macros": {
-    "EnlargedOne": {},
-    "EnlargedOneItalic": {},
-    "EnlargedTwo": {},
-    "EnlargedTwoItalic": {},
-    "EnlargedThree": {},
-    "EnlargedThreeItalic": {},
-    "EnlargedFour": {},
-    "EnlargedFourItalic": {},
-    "textcv{}{}": {
-      "snippet": "textcv{${1:variant}}{${2:text}}"
+  "deps": [
+    {
+      "name": "luatex"
     },
-    "textcv[]{}{}": {
-      "snippet": "textcv[${3:index}]{${1:variant}}{${2:text}}"
+    {
+      "name": "ifluatex"
     },
-    "jcv{}": {
-      "snippet": "jcv{${1:variant}}"
+    {
+      "name": "xkeyval"
     },
-    "jcv[]{}": {
-      "snippet": "jcv[${2:index}]{${1:variant}}"
-    },
-    "AltThornEth": {},
-    "textAltThornEth{}": {
-      "snippet": "textAltThornEth{${1:text}}"
-    },
-    "InsularLetterForms": {},
-    "textInsularLetterForms{}": {
-      "snippet": "textInsularLetterForms{${1:text}}"
-    },
-    "IPAAlternates": {},
-    "textIPAAlternates{}": {
-      "snippet": "textIPAAlternates{${1:text}}"
-    },
-    "HighOverline": {},
-    "textHighOverline{}": {
-      "snippet": "textHighOverline{${1:text}}"
-    },
-    "MediumHighOverline": {},
-    "textMediumHighOverline{}": {
-      "snippet": "textMediumHighOverline{${1:text}}"
-    },
-    "EnlargedMinuscules": {},
-    "textEnlargedMinuscules{}": {
-      "snippet": "textEnlargedMinuscules{${1:text}}"
-    },
-    "Underdotted": {},
-    "textUnderdotted{}": {
-      "snippet": "textUnderdotted{${1:text}}"
-    },
-    "ContextualLongS": {},
-    "textContextualLongS{}": {
-      "snippet": "textContextualLongS{${1:text}}"
-    },
-    "AlternateFigures": {},
-    "textAlternateFigures{}": {
-      "snippet": "textAlternateFigures{${1:text}}"
-    },
-    "EntitiesAndTags": {},
-    "textEntitiesAndTags{}": {
-      "snippet": "textEntitiesAndTags{${1:text}}"
-    },
-    "EarlyEnglishFuthorc": {},
-    "textEarlyEnglishFuthorc{}": {
-      "snippet": "textEarlyEnglishFuthorc{${1:text}}"
-    },
-    "ElderFuthark": {},
-    "textElderFuthark{}": {
-      "snippet": "textElderFuthark{${1:text}}"
-    },
-    "YoungerFuthark": {},
-    "textYoungerFuthark{}": {
-      "snippet": "textYoungerFuthark{${1:text}}"
-    },
-    "LongBranchToShortTwig": {},
-    "textLongBranchToShortTwig{}": {
-      "snippet": "textLongBranchToShortTwig{${1:text}}"
-    },
-    "ContextualRRotunda": {},
-    "textContextualRRotunda{}": {
-      "snippet": "textContextualRRotunda{${1:text}}"
-    },
-    "RareDigraphs": {},
-    "textRareDigraphs{}": {
-      "snippet": "textRareDigraphs{${1:text}}"
-    },
-    "OldStylePunctuation": {},
-    "textOldStylePunctuation{}": {
-      "snippet": "textOldStylePunctuation{${1:text}}"
-    },
-    "LatinToGothic": {},
-    "textLatinToGothic{}": {
-      "snippet": "textLatinToGothic{${1:text}}"
-    },
-    "LowDiacritics": {},
-    "textLowDiacritics{}": {
-      "snippet": "textLowDiacritics{${1:text}}"
-    },
-    "jcvA": {},
-    "jcva": {},
-    "jcvB": {},
-    "jcvb": {},
-    "jcvC": {},
-    "jcvc": {},
-    "jcvD": {},
-    "jcvd": {},
-    "jcvE": {},
-    "jcve": {},
-    "jcvF": {},
-    "jcvf": {},
-    "jcvG": {},
-    "jcvg": {},
-    "jcvH": {},
-    "jcvh": {},
-    "jcvI": {},
-    "jcvi": {},
-    "jcvJ": {},
-    "jcvj": {},
-    "jcvK": {},
-    "jcvk": {},
-    "jcvL": {},
-    "jcvl": {},
-    "jcvM": {},
-    "jcvm": {},
-    "jcvN": {},
-    "jcvn": {},
-    "jcvO": {},
-    "jcvo": {},
-    "jcvP": {},
-    "jcvp": {},
-    "jcvQ": {},
-    "jcvq": {},
-    "jcvR": {},
-    "jcvr": {},
-    "jcvS": {},
-    "jcvs": {},
-    "jcvT": {},
-    "jcvt": {},
-    "jcvU": {},
-    "jcvu": {},
-    "jcvV": {},
-    "jcvv": {},
-    "jcvW": {},
-    "jcvw": {},
-    "jcvX": {},
-    "jcvx": {},
-    "jcvY": {},
-    "jcvy": {},
-    "jcvZ": {},
-    "jcvz": {},
-    "jcvAogonek": {},
-    "jcvaogonek": {},
-    "jcvaa": {},
-    "jcvAE": {},
-    "jcvae": {},
-    "jcvAO": {},
-    "jcvao": {},
-    "jcvav": {},
-    "jcvdbar": {},
-    "jcvdcroat": {},
-    "jcvEogonek": {},
-    "jcvYogh": {},
-    "jcvlhighstroke": {},
-    "jcvoPolish": {},
-    "jcvthorncrossed": {},
-    "jcvspacingzigzag": {},
-    "jcvglottal": {},
-    "jcvTironianEt": {},
-    "jcvperiod": {},
-    "jcvmiddot": {},
-    "jcvcomma": {},
-    "jcvsemicolon": {},
-    "jcvpunctuselevatus": {},
-    "jcvexclam": {},
-    "jcvquestion": {},
-    "jcvASCIItilde": {},
-    "jcvasterisk": {},
-    "jcvslash": {},
-    "jcvrum": {},
-    "jcvcombiningzigzag": {},
-    "jcvspacingusabbrev": {},
-    "jcvetabbrev": {},
-    "jcvmacron": {},
-    "jcvcombiningopena": {},
-    "jcvcombininginsulard": {},
-    "jcvcombiningrrotunda": {},
-    "jcvcombiningdieresis": {},
-    "jcvcombiningoverline": {},
-    "jcvHcombiningdoublemacron": {},
-    "jcvEng": {},
-    "jcvbrevebelow": {},
-    "jcvcurrency": {},
-    "jcvlb": {},
-    "jcvsterling": {},
-    "jcvGermanpenny": {},
-    "jcvflorin": {},
-    "jcvounce": {},
-    "MainDef": {},
-    "MainRegDef": {},
-    "MainItalicDef": {},
-    "MainBoldDef": {},
-    "MainBoldItalicDef": {},
-    "ENLAOneSizeDef": {},
-    "ENLATwoSizeDef": {},
-    "ENLAThreeSizeDef": {},
-    "ENLAFourSizeDef": {},
-    "makemainfontcommand{}{}{}{}{}": {
-      "snippet": "makemainfontcommand{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
+    {
+      "name": "fontspec"
     }
-  },
-  "envs": {},
-  "options": [
-    "light",
-    "medium",
-    "semibold",
-    "condensed",
-    "semicondensed",
-    "semiexpanded",
-    "expanded",
-    "weightadjustment=${1:number}",
-    "widthadjustment=${1:number}",
-    "lining",
-    "tabular",
-    "proportional",
-    "oldstyle",
-    "MainFeatures={${1:font features}}",
-    "MainRegularFeatures={${1:font features}}",
-    "MainItalicFeatures={${1:font features}}",
-    "MainBoldFeatures={${1:font features}}",
-    "MainBoldItalicFeatures={${1:font features}}",
-    "MainRegularSizeFeatures={${1:font features}}",
-    "MainItalicSizeFeatures={${1:font features}}",
-    "MainBoldSizeFeatures={${1:font features}}",
-    "MainBoldItalicSizeFeatures={${1:font features}}",
-    "ENLAOneSizeFeatures={${1:font features}}",
-    "ENLATwoSizeFeatures={${1:font features}}",
-    "ENLAThreeSizeFeatures={${1:font features}}",
-    "ENLAFourSizeFeatures={${1:font features}}"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "EnlargedOne"
+    },
+    {
+      "name": "EnlargedOneItalic"
+    },
+    {
+      "name": "EnlargedTwo"
+    },
+    {
+      "name": "EnlargedTwoItalic"
+    },
+    {
+      "name": "EnlargedThree"
+    },
+    {
+      "name": "EnlargedThreeItalic"
+    },
+    {
+      "name": "EnlargedFour"
+    },
+    {
+      "name": "EnlargedFourItalic"
+    },
+    {
+      "name": "textcv",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:variant}}{${2:text}}"
+      }
+    },
+    {
+      "name": "textcv",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:index}]{${1:variant}}{${2:text}}"
+      }
+    },
+    {
+      "name": "jcv",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:variant}}"
+      }
+    },
+    {
+      "name": "jcv",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:index}]{${1:variant}}"
+      }
+    },
+    {
+      "name": "AltThornEth"
+    },
+    {
+      "name": "textAltThornEth",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "InsularLetterForms"
+    },
+    {
+      "name": "textInsularLetterForms",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "IPAAlternates"
+    },
+    {
+      "name": "textIPAAlternates",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "HighOverline"
+    },
+    {
+      "name": "textHighOverline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "MediumHighOverline"
+    },
+    {
+      "name": "textMediumHighOverline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "EnlargedMinuscules"
+    },
+    {
+      "name": "textEnlargedMinuscules",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "Underdotted"
+    },
+    {
+      "name": "textUnderdotted",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ContextualLongS"
+    },
+    {
+      "name": "textContextualLongS",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "AlternateFigures"
+    },
+    {
+      "name": "textAlternateFigures",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "EntitiesAndTags"
+    },
+    {
+      "name": "textEntitiesAndTags",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "EarlyEnglishFuthorc"
+    },
+    {
+      "name": "textEarlyEnglishFuthorc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ElderFuthark"
+    },
+    {
+      "name": "textElderFuthark",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "YoungerFuthark"
+    },
+    {
+      "name": "textYoungerFuthark",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "LongBranchToShortTwig"
+    },
+    {
+      "name": "textLongBranchToShortTwig",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ContextualRRotunda"
+    },
+    {
+      "name": "textContextualRRotunda",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "RareDigraphs"
+    },
+    {
+      "name": "textRareDigraphs",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "OldStylePunctuation"
+    },
+    {
+      "name": "textOldStylePunctuation",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "LatinToGothic"
+    },
+    {
+      "name": "textLatinToGothic",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "LowDiacritics"
+    },
+    {
+      "name": "textLowDiacritics",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "jcvA",
+      "unusual": true
+    },
+    {
+      "name": "jcva",
+      "unusual": true
+    },
+    {
+      "name": "jcvB",
+      "unusual": true
+    },
+    {
+      "name": "jcvb",
+      "unusual": true
+    },
+    {
+      "name": "jcvC",
+      "unusual": true
+    },
+    {
+      "name": "jcvc",
+      "unusual": true
+    },
+    {
+      "name": "jcvD",
+      "unusual": true
+    },
+    {
+      "name": "jcvd",
+      "unusual": true
+    },
+    {
+      "name": "jcvE",
+      "unusual": true
+    },
+    {
+      "name": "jcve",
+      "unusual": true
+    },
+    {
+      "name": "jcvF",
+      "unusual": true
+    },
+    {
+      "name": "jcvf",
+      "unusual": true
+    },
+    {
+      "name": "jcvG",
+      "unusual": true
+    },
+    {
+      "name": "jcvg",
+      "unusual": true
+    },
+    {
+      "name": "jcvH",
+      "unusual": true
+    },
+    {
+      "name": "jcvh",
+      "unusual": true
+    },
+    {
+      "name": "jcvI",
+      "unusual": true
+    },
+    {
+      "name": "jcvi",
+      "unusual": true
+    },
+    {
+      "name": "jcvJ",
+      "unusual": true
+    },
+    {
+      "name": "jcvj",
+      "unusual": true
+    },
+    {
+      "name": "jcvK",
+      "unusual": true
+    },
+    {
+      "name": "jcvk",
+      "unusual": true
+    },
+    {
+      "name": "jcvL",
+      "unusual": true
+    },
+    {
+      "name": "jcvl",
+      "unusual": true
+    },
+    {
+      "name": "jcvM",
+      "unusual": true
+    },
+    {
+      "name": "jcvm",
+      "unusual": true
+    },
+    {
+      "name": "jcvN",
+      "unusual": true
+    },
+    {
+      "name": "jcvn",
+      "unusual": true
+    },
+    {
+      "name": "jcvO",
+      "unusual": true
+    },
+    {
+      "name": "jcvo",
+      "unusual": true
+    },
+    {
+      "name": "jcvP",
+      "unusual": true
+    },
+    {
+      "name": "jcvp",
+      "unusual": true
+    },
+    {
+      "name": "jcvQ",
+      "unusual": true
+    },
+    {
+      "name": "jcvq",
+      "unusual": true
+    },
+    {
+      "name": "jcvR",
+      "unusual": true
+    },
+    {
+      "name": "jcvr",
+      "unusual": true
+    },
+    {
+      "name": "jcvS",
+      "unusual": true
+    },
+    {
+      "name": "jcvs",
+      "unusual": true
+    },
+    {
+      "name": "jcvT",
+      "unusual": true
+    },
+    {
+      "name": "jcvt",
+      "unusual": true
+    },
+    {
+      "name": "jcvU",
+      "unusual": true
+    },
+    {
+      "name": "jcvu",
+      "unusual": true
+    },
+    {
+      "name": "jcvV",
+      "unusual": true
+    },
+    {
+      "name": "jcvv",
+      "unusual": true
+    },
+    {
+      "name": "jcvW",
+      "unusual": true
+    },
+    {
+      "name": "jcvw",
+      "unusual": true
+    },
+    {
+      "name": "jcvX",
+      "unusual": true
+    },
+    {
+      "name": "jcvx",
+      "unusual": true
+    },
+    {
+      "name": "jcvY",
+      "unusual": true
+    },
+    {
+      "name": "jcvy",
+      "unusual": true
+    },
+    {
+      "name": "jcvZ",
+      "unusual": true
+    },
+    {
+      "name": "jcvz",
+      "unusual": true
+    },
+    {
+      "name": "jcvAogonek",
+      "unusual": true
+    },
+    {
+      "name": "jcvaogonek",
+      "unusual": true
+    },
+    {
+      "name": "jcvaa",
+      "unusual": true
+    },
+    {
+      "name": "jcvAE",
+      "unusual": true
+    },
+    {
+      "name": "jcvae",
+      "unusual": true
+    },
+    {
+      "name": "jcvAO",
+      "unusual": true
+    },
+    {
+      "name": "jcvao",
+      "unusual": true
+    },
+    {
+      "name": "jcvav",
+      "unusual": true
+    },
+    {
+      "name": "jcvdbar",
+      "unusual": true
+    },
+    {
+      "name": "jcvdcroat",
+      "unusual": true
+    },
+    {
+      "name": "jcvEogonek",
+      "unusual": true
+    },
+    {
+      "name": "jcvYogh",
+      "unusual": true
+    },
+    {
+      "name": "jcvlhighstroke",
+      "unusual": true
+    },
+    {
+      "name": "jcvoPolish",
+      "unusual": true
+    },
+    {
+      "name": "jcvthorncrossed",
+      "unusual": true
+    },
+    {
+      "name": "jcvspacingzigzag",
+      "unusual": true
+    },
+    {
+      "name": "jcvglottal",
+      "unusual": true
+    },
+    {
+      "name": "jcvTironianEt",
+      "unusual": true
+    },
+    {
+      "name": "jcvperiod",
+      "unusual": true
+    },
+    {
+      "name": "jcvmiddot",
+      "unusual": true
+    },
+    {
+      "name": "jcvcomma",
+      "unusual": true
+    },
+    {
+      "name": "jcvsemicolon",
+      "unusual": true
+    },
+    {
+      "name": "jcvpunctuselevatus",
+      "unusual": true
+    },
+    {
+      "name": "jcvexclam",
+      "unusual": true
+    },
+    {
+      "name": "jcvquestion",
+      "unusual": true
+    },
+    {
+      "name": "jcvASCIItilde",
+      "unusual": true
+    },
+    {
+      "name": "jcvasterisk",
+      "unusual": true
+    },
+    {
+      "name": "jcvslash",
+      "unusual": true
+    },
+    {
+      "name": "jcvrum",
+      "unusual": true
+    },
+    {
+      "name": "jcvcombiningzigzag",
+      "unusual": true
+    },
+    {
+      "name": "jcvspacingusabbrev",
+      "unusual": true
+    },
+    {
+      "name": "jcvetabbrev",
+      "unusual": true
+    },
+    {
+      "name": "jcvmacron",
+      "unusual": true
+    },
+    {
+      "name": "jcvcombiningopena",
+      "unusual": true
+    },
+    {
+      "name": "jcvcombininginsulard",
+      "unusual": true
+    },
+    {
+      "name": "jcvcombiningrrotunda",
+      "unusual": true
+    },
+    {
+      "name": "jcvcombiningdieresis",
+      "unusual": true
+    },
+    {
+      "name": "jcvcombiningoverline",
+      "unusual": true
+    },
+    {
+      "name": "jcvHcombiningdoublemacron",
+      "unusual": true
+    },
+    {
+      "name": "jcvEng",
+      "unusual": true
+    },
+    {
+      "name": "jcvbrevebelow",
+      "unusual": true
+    },
+    {
+      "name": "jcvcurrency",
+      "unusual": true
+    },
+    {
+      "name": "jcvlb",
+      "unusual": true
+    },
+    {
+      "name": "jcvsterling",
+      "unusual": true
+    },
+    {
+      "name": "jcvGermanpenny",
+      "unusual": true
+    },
+    {
+      "name": "jcvflorin",
+      "unusual": true
+    },
+    {
+      "name": "jcvounce",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/junicodevf#c": [
+      "light\r",
+      "medium\r",
+      "semibold\r",
+      "condensed\r",
+      "semicondensed\r",
+      "semiexpanded\r",
+      "expanded\r",
+      "weightadjustment=${1:number}\r",
+      "widthadjustment=${1:number}\r",
+      "lining\r",
+      "tabular\r",
+      "proportional\r",
+      "oldstyle\r",
+      "MainFeatures={${1:font features}}\r",
+      "MainRegularFeatures={${1:font features}}\r",
+      "MainItalicFeatures={${1:font features}}\r",
+      "MainBoldFeatures={${1:font features}}\r",
+      "MainBoldItalicFeatures={${1:font features}}\r",
+      "MainRegularSizeFeatures={${1:font features}}\r",
+      "MainItalicSizeFeatures={${1:font features}}\r",
+      "MainBoldSizeFeatures={${1:font features}}\r",
+      "MainBoldItalicSizeFeatures={${1:font features}}\r",
+      "ENLAOneSizeFeatures={${1:font features}}\r",
+      "ENLATwoSizeFeatures={${1:font features}}\r",
+      "ENLAThreeSizeFeatures={${1:font features}}\r",
+      "ENLAFourSizeFeatures={${1:font features}}\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/junicodevf#c"
+  ]
 }

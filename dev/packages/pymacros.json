@@ -1,73 +1,120 @@
 {
-  "includes": {},
-  "macros": {
-    "colonEq": {},
-    "pytag{}{}": {
-      "snippet": "pytag{${1:tag}}{${2:code}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "colonEq"
     },
-    "py{}": {
-      "snippet": "py{${1:tag}}"
+    {
+      "name": "pytag",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:tag}}{${2:code}}"
+      }
     },
-    "py*{}": {
-      "snippet": "py*{${1:tag}}"
+    {
+      "name": "py",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tag}}"
+      }
     },
-    "Py{}": {
-      "snippet": "Py{${1:tag}}"
+    {
+      "name": "py*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tag}}"
+      }
     },
-    "Py*{}": {
-      "snippet": "Py*{${1:tag}}"
+    {
+      "name": "Py",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tag}}"
+      }
     },
-    "Py*[]{}": {
-      "snippet": "Py*[${2:space}]{${1:tag}}"
+    {
+      "name": "Py*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tag}}"
+      }
     },
-    "Dmath{}": {
-      "snippet": "Dmath{${1:formula}}"
+    {
+      "name": "Py*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:space%l}]{${1:tag}}"
+      }
     },
-    "Dmath[]{}": {
-      "snippet": "Dmath[${2:options}]{${1:formula}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "Dmath",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:formula}}"
+      }
     },
-    "Dmath*{}": {
-      "snippet": "Dmath*{${1:formula}}"
+    {
+      "name": "Dmath",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:formula}}"
+      }
     },
-    "Dmath*[]{}": {
-      "snippet": "Dmath*[${2:options}]{${1:formula}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "Dmath*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:formula}}"
+      }
     },
-    "ttTag{}": {
-      "snippet": "ttTag{${1:tag}}"
+    {
+      "name": "Dmath*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:formula}}"
+      }
     },
-    "pglabel{}": {
-      "snippet": "pglabel{${1:label}}"
+    {
+      "name": "ttTag",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tag}}"
+      }
+    },
+    {
+      "name": "pglabel",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "style=${1:cmds}",
-      "number=${1:text}",
-      "labelprefix=${1:prefix}",
+  ],
+  "envs": [],
+  "keys": {
+    "\\Dmath,\\Dmath*": [
+      "style=${1:cmds}\r",
+      "number=${1:text}\r",
+      "labelprefix=${1:prefix}\r",
       "label=",
       "indentstep=",
-      "compact",
-      "compact=${1:number}",
+      "compact\r",
+      "compact=${1:number}\r",
       "spread=",
-      "frame",
+      "frame\r",
       "frame=",
       "framesep=",
-      "breakdepth=${1:number}",
-      "shiftnumber",
-      "holdnumber",
-      "density=",
-      "layout=",
+      "breakdepth=${1:number}\r",
+      "shiftnumber\r",
+      "holdnumber\r",
+      "density=\r",
+      "layout=\r",
       "shortskiplimit=",
       "background=",
       "color=",
-      "center",
-      "nocenter"
+      "center\r",
+      "nocenter\r"
     ]
-  ]
+  },
+  "args": []
 }

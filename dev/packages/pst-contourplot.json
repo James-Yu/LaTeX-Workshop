@@ -1,50 +1,62 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-xkey": []
-  },
-  "macros": {
-    "psContourPlot[]()()": {
-      "snippet": "psContourPlot[${1:options}](${2:x1},${3:y1})(${4:x2},${5:y2})",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "psReadData[]": {
-      "snippet": "psReadData[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "pst-xkey"
+    }
+  ],
+  "macros": [
+    {
+      "name": "psContourPlot",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "[${1:function=function}](${2:%<x1},${3:y1%>})(${4:%<x2},${5:y2%>})"
+      }
     },
-    "PSTCONTOURPLOTLoaded": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "a=${1:side length}",
-      "ChoicePoints=${1:n1 n2 ...}",
-      "FileName=${1:file name}",
+    {
+      "name": "psContourPlot",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "[${1:function=function,options}](${2:%<x1},${3:y1%>})(${4:%<x2},${5:y2%>})"
+      }
+    },
+    {
+      "name": "psReadData",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:FileName=file name}]"
+      }
+    },
+    {
+      "name": "psReadData",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:FileName=file name,options}]"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\psContourPlot#c,\\psReadData#c": [
+      "a=${1:side length}\r",
+      "ChoicePoints=${1:n1 n2 ...}\r",
+      "FileName=${1:file name}\r",
       "grid",
       "linecolor=",
       "linewidth=",
       "ReverseColors",
       "showpoints",
-      "unit=${1:number}",
-      "algebraic",
+      "unit=${1:number}\r"
+    ],
+    "\\psContourPlot#c": [
+      "algebraic\r",
       "Fill",
       "fillcolor=",
-      "function=${1:function}",
+      "function=${1:function}\r",
       "WriteData"
-    ],
-    [
-      "a=${1:side length}",
-      "ChoicePoints=${1:n1 n2 ...}",
-      "FileName=${1:file name}",
-      "grid",
-      "linecolor=",
-      "linewidth=",
-      "ReverseColors",
-      "showpoints",
-      "unit=${1:number}"
     ]
-  ]
+  },
+  "args": []
 }

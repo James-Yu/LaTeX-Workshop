@@ -1,47 +1,76 @@
 {
-  "includes": {
-    "qrcode": [],
-    "xcolor": [],
-    "marginnote": [],
-    "url": []
-  },
-  "macros": {
-    "hvqrset{}": {
-      "snippet": "hvqrset{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "qrcode"
     },
-    "hvqrurl{}": {
-      "snippet": "hvqrurl{${1:URL}}"
+    {
+      "name": "xcolor"
     },
-    "hvqrurl[]{}": {
-      "snippet": "hvqrurl[${2:options}]{${1:URL}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "marginnote"
     },
-    "hvqrurl*{}": {
-      "snippet": "hvqrurl*{${1:URL}}"
-    },
-    "hvqrurl*[]{}": {
-      "snippet": "hvqrurl*[${2:options}]{${1:URL}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "url"
     }
-  },
-  "envs": {},
-  "options": [
-    "nohyperref",
-    "forget"
   ],
-  "keyvals": [
-    [
-      "qrlink=${1|nolink,link|}",
+  "macros": [
+    {
+      "name": "hvqrset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\hvqrset,\\hvqrurl,\\hvqrurl*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "hvqrurl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:URL}}"
+      }
+    },
+    {
+      "name": "hvqrurl",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:URL}}"
+      }
+    },
+    {
+      "name": "hvqrurl*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:URL}}"
+      }
+    },
+    {
+      "name": "hvqrurl*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:URL}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/hvqrurl#c": [
+      "nohyperref\r",
+      "forget\r"
+    ],
+    "\\hvqrset,\\hvqrurl,\\hvqrurl*": [
+      "qrlink=${1|nolink,link\r|}",
       "qrcolor=",
       "qradjust=",
       "qrheight=",
-      "qrlevel=${1|L,M,Q,H|}",
-      "qrreverse",
-      "linktext=${1:text}"
+      "qrlevel=${1|L,M,Q,H\r|}",
+      "qrreverse\r",
+      "linktext=${1:text}\r"
     ]
+  },
+  "args": [
+    "\\usepackage/hvqrurl#c"
   ]
 }

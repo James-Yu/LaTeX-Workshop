@@ -1,31 +1,69 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "iftex": []
-  },
-  "macros": {
-    "VerifyCommand{}{}": {
-      "snippet": "VerifyCommand{${1:cmd}}{${2:md5 checksum}}"
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "VerifyCommand[]{}{}": {
-      "snippet": "VerifyCommand[${3:your package}]{${1:cmd}}{${2:md5 checksum}}"
-    },
-    "VerifyCommand[][]{}{}": {
-      "snippet": "VerifyCommand[${3:your package}][${4:other package}]{${1:cmd}}{${2:md5 checksum}}"
-    },
-    "VerifyEnvironment{}{}{}": {
-      "snippet": "VerifyEnvironment{${1:envname}}{${2:begin md5 checksum}}{${3:end md5 checksum}}"
-    },
-    "VerifyEnvironment[]{}{}{}": {
-      "snippet": "VerifyEnvironment[${4:your package}]{${1:envname}}{${2:begin md5 checksum}}{${3:end md5 checksum}}"
-    },
-    "VerifyEnvironment[][]{}{}{}": {
-      "snippet": "VerifyEnvironment[${4:your package}][${5:other package}]{${1:envname}}{${2:begin md5 checksum}}{${3:end md5 checksum}}"
+    {
+      "name": "iftex"
     }
-  },
-  "envs": {},
-  "options": [
-    "disable"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "VerifyCommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:md5 checksum}}"
+      }
+    },
+    {
+      "name": "VerifyCommand",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:your package}]{${1:cmd}}{${2:md5 checksum}}"
+      }
+    },
+    {
+      "name": "VerifyCommand",
+      "unusual": true,
+      "arg": {
+        "format": "[][]{}{}",
+        "snippet": "[${3:your package}][${4:other package}]{${1:cmd}}{${2:md5 checksum}}"
+      }
+    },
+    {
+      "name": "VerifyEnvironment",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:envname}}{${2:begin md5 checksum}}{${3:end md5 checksum}}"
+      }
+    },
+    {
+      "name": "VerifyEnvironment",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:your package}]{${1:envname}}{${2:begin md5 checksum}}{${3:end md5 checksum}}"
+      }
+    },
+    {
+      "name": "VerifyEnvironment",
+      "unusual": true,
+      "arg": {
+        "format": "[][]{}{}{}",
+        "snippet": "[${4:your package}][${5:other package}]{${1:envname}}{${2:begin md5 checksum}}{${3:end md5 checksum}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/verifycommand": [
+      "disable\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/verifycommand"
+  ]
 }

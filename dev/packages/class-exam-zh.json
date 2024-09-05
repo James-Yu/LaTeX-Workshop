@@ -1,158 +1,275 @@
 {
-  "includes": {
-    "filehook": [],
-    "class-ctexbook": [],
-    "etoolbox": [],
-    "geometry": [],
-    "fontspec": [],
-    "xeCJK": [],
-    "xeCJKfntef": [],
-    "fancyhdr": [],
-    "lastpage": [],
-    "amsmath": [],
-    "enumitem": [],
-    "varwidth": [],
-    "tikzpagenodes": [],
-    "tikzlibrarydecorations.markings": [],
-    "tikzlibrarydecorations.text": [],
-    "exam-zh-question": [],
-    "exam-zh-font": [],
-    "exam-zh-choices": [],
-    "exam-zh-symbols": [],
-    "exam-zh-chinese-english": [],
-    "exam-zh-textfigure": [],
-    "exam-zh-math": [],
-    "hyperref": [],
-    "pifont": []
-  },
-  "macros": {
-    "ExamPrintAnswerSet{}": {
-      "snippet": "ExamPrintAnswerSet{${1:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "filehook"
     },
-    "ExamPrintAnswerSet[]{}": {
-      "snippet": "ExamPrintAnswerSet[${2:cmd list}]{${1:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
+    {
+      "name": "class-ctexbook"
     },
-    "ExamPrintAnswer": {},
-    "examsetup{}": {
-      "snippet": "examsetup{${1:键值列表}}"
+    {
+      "name": "etoolbox"
     },
-    "information{}": {
-      "snippet": "information{${1:信息内容}}"
+    {
+      "name": "geometry"
     },
-    "information[]{}": {
-      "snippet": "information[${2:分隔符}]{${1:信息内容}}"
+    {
+      "name": "fontspec"
     },
-    "warning{}": {
-      "snippet": "warning{${1:警告}}"
+    {
+      "name": "xeCJK"
     },
-    "secret": {},
-    "secret[]": {
-      "snippet": "secret[${1:格式命令}]"
+    {
+      "name": "xeCJKfntef"
     },
-    "subject{}": {
-      "snippet": "subject{${1:科目}}"
+    {
+      "name": "fancyhdr"
     },
-    "subject[]{}": {
-      "snippet": "subject[${2:宽度}]{${1:科目}}"
+    {
+      "name": "lastpage"
     },
-    "draftpaper": {},
-    "draftpaper[]": {
-      "snippet": "draftpaper[${1:参数列表}]"
+    {
+      "name": "amsmath"
     },
-    "examsquare{}": {
-      "snippet": "examsquare{${1:方格个数}}"
+    {
+      "name": "enumitem"
     },
-    "examsquare[]{}": {
-      "snippet": "examsquare[${2:参数列表}]{${1:方格个数}}"
+    {
+      "name": "varwidth"
     },
-    "scoringbox": {},
-    "scoringbox*": {},
-    "examzholdsection{}": {
-      "snippet": "examzholdsection{${1:title}}"
+    {
+      "name": "tikzpagenodes"
+    },
+    {
+      "name": "tikzlibrarydecorations.markings"
+    },
+    {
+      "name": "tikzlibrarydecorations.text"
+    },
+    {
+      "name": "exam-zh-question"
+    },
+    {
+      "name": "exam-zh-font"
+    },
+    {
+      "name": "exam-zh-choices"
+    },
+    {
+      "name": "exam-zh-symbols"
+    },
+    {
+      "name": "exam-zh-chinese-english"
+    },
+    {
+      "name": "exam-zh-textfigure"
+    },
+    {
+      "name": "exam-zh-math"
+    },
+    {
+      "name": "hyperref"
+    },
+    {
+      "name": "pifont"
     }
-  },
-  "envs": {
-    "notice": {},
-    "notice[]": {
-      "name": "notice",
-      "snippet": "[${1:键值列表 1}]"
-    },
-    "notice[][]": {
-      "name": "notice",
-      "snippet": "[${1:键值列表 1}][${2:键值列表 2}]"
-    },
-    "step": {},
-    "method": {},
-    "case": {}
-  },
-  "options": [
-    "GBK",
-    "UTF8",
-    "zhmap=${1|true,false,zhmCJK|}",
-    "zihao=${1|-4,5,false|}",
-    "heading",
-    "sub3section",
-    "sub4section",
-    "scheme=${1|chinese,plain|}",
-    "linespread=${1:number}",
-    "fontset=${1|adobe,fandol,founder,mac,macnew,macold,ubuntu,windows,none|}",
-    "punct=${1|quanjiao,banjiao,kaiming,CCT,plain|}",
-    "space=${1|true,false,auto|}",
-    "autoindent=",
-    "a4paper",
-    "a5paper",
-    "b5paper",
-    "letterpaper",
-    "legalpaper",
-    "executivepaper",
-    "landscape",
-    "10pt",
-    "11pt",
-    "12pt",
-    "oneside",
-    "twoside",
-    "draft",
-    "final",
-    "titlepage",
-    "notitlepage",
-    "openright",
-    "openany",
-    "onecolumn",
-    "twocolumn",
-    "leqno",
-    "fleqn",
-    "openbib"
   ],
-  "keyvals": [
-    [
-      "notice={${1:键值列表}}",
-      "notice/label=${1:label}",
-      "notice/label-format=${1:format}",
+  "macros": [
+    {
+      "name": "ExamPrintAnswerSet",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "ExamPrintAnswerSet",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:cmd list}]{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "ExamPrintAnswer"
+    },
+    {
+      "name": "examsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:键值列表%keyvals}}",
+        "keys": [
+          "\\ExamPrintAnswerSet,\\examsetup"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "information",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:信息内容%text}}"
+      }
+    },
+    {
+      "name": "information",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:分隔符}]{${1:信息内容%text}}"
+      }
+    },
+    {
+      "name": "warning",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:警告%text}}"
+      }
+    },
+    {
+      "name": "secret"
+    },
+    {
+      "name": "secret",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:格式命令}]"
+      }
+    },
+    {
+      "name": "subject",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:科目%text}}"
+      }
+    },
+    {
+      "name": "subject",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:宽度}]{${1:科目%text}}"
+      }
+    },
+    {
+      "name": "draftpaper"
+    },
+    {
+      "name": "draftpaper",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:参数列表%keyvals}]"
+      }
+    },
+    {
+      "name": "examsquare",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:方格个数}}"
+      }
+    },
+    {
+      "name": "examsquare",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:参数列表%keyvals}]{${1:方格个数}}"
+      }
+    },
+    {
+      "name": "scoringbox"
+    },
+    {
+      "name": "scoringbox*"
+    }
+  ],
+  "envs": [
+    {
+      "name": "notice"
+    },
+    {
+      "name": "notice",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:键值列表 1%keyvals}]"
+      }
+    },
+    {
+      "name": "notice",
+      "arg": {
+        "format": "[][]",
+        "snippet": "[${1:键值列表 1%keyvals}][${2:键值列表 2}]"
+      }
+    },
+    {
+      "name": "step"
+    },
+    {
+      "name": "method"
+    },
+    {
+      "name": "case"
+    }
+  ],
+  "keys": {
+    "\\documentclass/exam-zh#c": [
+      "GBK\r",
+      "UTF8\r",
+      "zhmap=${1|true,false,zhmCJK\r|}",
+      "zihao=${1|-4,5,false\r|}",
+      "heading",
+      "sub3section\r",
+      "sub4section\r",
+      "scheme=${1|chinese,plain\r|}",
+      "linespread=${1:number}\r",
+      "fontset=${1|adobe,fandol,founder,mac,macnew,macold,ubuntu,windows,none\r|}",
+      "punct=${1|quanjiao,banjiao,kaiming,CCT,plain\r|}",
+      "space=${1|true,false,auto\r|}",
+      "autoindent=\r",
+      "a4paper\r",
+      "a5paper\r",
+      "b5paper\r",
+      "letterpaper\r",
+      "legalpaper\r",
+      "executivepaper\r",
+      "landscape\r",
+      "10pt\r",
+      "11pt\r",
+      "12pt\r",
+      "oneside\r",
+      "twoside\r",
+      "draft\r",
+      "final\r",
+      "titlepage\r",
+      "notitlepage\r",
+      "openright\r",
+      "openany\r",
+      "onecolumn\r",
+      "twocolumn\r",
+      "leqno\r",
+      "fleqn\r",
+      "openbib\r"
+    ],
+    "\\ExamPrintAnswerSet,\\examsetup": [
+      "notice={${1:键值列表}}\r",
+      "notice/label=${1:label}\r",
+      "notice/label-format=${1:format}\r",
       "notice/top-sep=",
       "notice/bottom-sep=",
-      "style={${1:键值列表}}",
-      "style/fullwidth-stop=${1|catcode,false|}",
-      "style/footnote-style=${1|plain,libertinus,libertinus*,libertinus-sans,pifont,pifont*,pifont-sans,pifont-sans*,xits,xits-sans,xits-sans*|}",
-      "style/student-version-suffix=${1:suffix}",
+      "style={${1:键值列表}}\r",
+      "style/fullwidth-stop=${1|catcode,false\r|}",
+      "style/footnote-style=${1|plain,libertinus,libertinus*,libertinus-sans,pifont,pifont*,pifont-sans,pifont-sans*,xits,xits-sans,xits-sans*\r|}",
+      "style/student-version-suffix=${1:suffix}\r",
       "style/student-version-cleanaux",
-      "page={${1:键值列表}}",
-      "page/size=${1:a3paper|a4paper}",
+      "page={${1:键值列表}}\r",
+      "page/size=${1:a3paper|a4paper}\r",
       "page/show-head",
-      "page/head-content=${1:页眉格式}",
+      "page/head-content=${1:页眉格式}\r",
       "page/show-foot",
-      "page/foot-type=${1|common,separate|}",
-      "page/foot-content=${1:页脚格式}",
+      "page/foot-type=${1|common,separate\r|}",
+      "page/foot-content=${1:页脚格式}\r",
       "page/show-columnline",
       "page/columnline-width=",
       "page/show-chapter",
-      "sealline={${1:键值列表}}",
+      "sealline={${1:键值列表}}\r",
       "sealline/show",
-      "sealline/scope=${1|firstpage,oddpage,everypage,first-and-last,mod-2,mod-3,mod-4,mod-6|}",
-      "sealline/type=${1|firstpage,oddpage,everypage,first-and-last,mod-2,mod-3,mod-4,mod-6|}",
+      "sealline/scope=${1|firstpage,oddpage,everypage,first-and-last,mod-2,mod-3,mod-4,mod-6\r|}",
+      "sealline/type=${1|firstpage,oddpage,everypage,first-and-last,mod-2,mod-3,mod-4,mod-6\r|}",
       "sealline/line-thickness=",
       "sealline/odd-line-thickness=",
       "sealline/even-line-thickness=",
@@ -162,42 +279,42 @@
       "sealline/line-yshift=",
       "sealline/odd-line-yshift=",
       "sealline/even-line-yshift=",
-      "sealline/line-type=${1|solid,dotted,densely-dotted,loosely-dotted,dashed,densely-dashed,loosely-dashed,dash-dot,densely-dash-dot,loosely-dash-dot,dash-dot-dot,densely-dash-dot-dot,loosely-dash-dot-dot|}",
-      "sealline/odd-line-type=${1|solid,dotted,densely-dotted,loosely-dotted,dashed,densely-dashed,loosely-dashed,dash-dot,densely-dash-dot,loosely-dash-dot,dash-dot-dot,densely-dash-dot-dot,loosely-dash-dot-dot|}",
-      "sealline/even-line-type=${1|solid,dotted,densely-dotted,loosely-dotted,dashed,densely-dashed,loosely-dashed,dash-dot,densely-dash-dot,loosely-dash-dot,dash-dot-dot,densely-dash-dot-dot,loosely-dash-dot-dot|}",
-      "sealline/text=${1:content}",
-      "sealline/odd-text=${1:content}",
-      "sealline/even-text=${1:content}",
+      "sealline/line-type=${1|solid,dotted,densely-dotted,loosely-dotted,dashed,densely-dashed,loosely-dashed,dash-dot,densely-dash-dot,loosely-dash-dot,dash-dot-dot,densely-dash-dot-dot,loosely-dash-dot-dot\r|}",
+      "sealline/odd-line-type=${1|solid,dotted,densely-dotted,loosely-dotted,dashed,densely-dashed,loosely-dashed,dash-dot,densely-dash-dot,loosely-dash-dot,dash-dot-dot,densely-dash-dot-dot,loosely-dash-dot-dot\r|}",
+      "sealline/even-line-type=${1|solid,dotted,densely-dotted,loosely-dotted,dashed,densely-dashed,loosely-dashed,dash-dot,densely-dash-dot,loosely-dash-dot,dash-dot-dot,densely-dash-dot-dot,loosely-dash-dot-dot\r|}",
+      "sealline/text=${1:content}\r",
+      "sealline/odd-text=${1:content}\r",
+      "sealline/even-text=${1:content}\r",
       "sealline/text-width=",
       "sealline/odd-text-width=",
       "sealline/even-text-width=",
-      "sealline/text-format=${1:font commands}",
-      "sealline/odd-text-format=${1:font commands}",
-      "sealline/even-text-format=${1:font commands}",
+      "sealline/text-format=${1:font commands}\r",
+      "sealline/odd-text-format=${1:font commands}\r",
+      "sealline/even-text-format=${1:font commands}\r",
       "sealline/text-xshift=",
       "sealline/odd-text-xshift=",
       "sealline/even-text-xshift=",
       "sealline/text-yshift=",
       "sealline/odd-text-yshift=",
       "sealline/even-text-yshift=",
-      "sealline/text-xscale=${1:float point}",
-      "sealline/odd-text-xscale=${1:float point}",
-      "sealline/even-text-xscale=${1:float point}",
-      "sealline/text-yscale=${1:float point}",
-      "sealline/odd-text-yscale=${1:float point}",
-      "sealline/even-text-yscale=${1:float point}",
+      "sealline/text-xscale=${1:float point}\r",
+      "sealline/odd-text-xscale=${1:float point}\r",
+      "sealline/even-text-xscale=${1:float point}\r",
+      "sealline/text-yscale=${1:float point}\r",
+      "sealline/odd-text-yscale=${1:float point}\r",
+      "sealline/even-text-yscale=${1:float point}\r",
       "sealline/text-direction-vertical",
       "sealline/odd-text-direction-vertical",
       "sealline/even-text-direction-vertical",
       "sealline/circle-show",
       "sealline/odd-circle-show",
       "sealline/even-circle-show",
-      "sealline/circle-start=${1:float point}",
-      "sealline/odd-circle-start=${1:float point}",
-      "sealline/even-circle-start=${1:float point}",
-      "sealline/circle-end=${1:float point}",
-      "sealline/odd-circle-end=${1:float point}",
-      "sealline/even-circle-end=${1:float point}",
+      "sealline/circle-start=${1:float point}\r",
+      "sealline/odd-circle-start=${1:float point}\r",
+      "sealline/even-circle-start=${1:float point}\r",
+      "sealline/circle-end=${1:float point}\r",
+      "sealline/odd-circle-end=${1:float point}\r",
+      "sealline/even-circle-end=${1:float point}\r",
       "sealline/circle-step=",
       "sealline/odd-circle-step=",
       "sealline/even-circle-step=",
@@ -207,36 +324,57 @@
       "sealline/circle-xshift=",
       "sealline/odd-circle-xshift=",
       "sealline/even-circle-xshift=",
-      "sealline/odd-info-content={${1:comma list}}",
-      "sealline/odd-info-separator=${1:separator}",
-      "sealline/odd-info-align=${1|left,center,right|}",
+      "sealline/odd-info-content={${1:comma list}}\r",
+      "sealline/odd-info-separator=${1:separator}\r",
+      "sealline/odd-info-align=${1|left,center,right\r|}",
       "sealline/odd-info-xshift=",
       "sealline/odd-info-yshift=",
-      "square={${1:键值列表}}",
+      "square={${1:键值列表}}\r",
       "square/x-length=",
       "square/y-length=",
       "square/baseline=",
       "square/linewidth=",
       "square/xshift=",
-      "title={${1:键值列表}}",
-      "title/title-format=${1:格式命令}",
-      "title/subject-format=${1:格式命令}",
+      "title={${1:键值列表}}\r",
+      "title/title-format=${1:格式命令}\r",
+      "title/subject-format=${1:格式命令}\r",
       "title/top-sep=",
       "title/bottom-sep=",
-      "list={${1:键值列表}}",
-      "list/step-name=${1:step 环境 label 名}",
-      "list/method-name=${1:method 环境 label 名}",
-      "list/case-name=${1:case 环境 label 名}",
-      "list/step-punct=${1:step 环境 label 后的标点}",
-      "list/method-punct=${1:method 环境 label 后的标点}",
-      "list/case-punct=${1:case 环境 label 后的标点}",
-      "draft={${1:键值列表}}",
+      "list={${1:键值列表}}\r",
+      "list/step-name=${1:step 环境 label 名}\r",
+      "list/method-name=${1:method 环境 label 名}\r",
+      "list/case-name=${1:case 环境 label 名}\r",
+      "list/step-punct=${1:step 环境 label 后的标点}\r",
+      "list/method-punct=${1:method 环境 label 后的标点}\r",
+      "list/case-punct=${1:case 环境 label 后的标点}\r",
+      "draft={${1:键值列表}}\r",
       "draft/watermark-size=",
       "draft/show-watermark",
-      "draft/show-draft=${1|auto,manual|}",
-      "scoringbox={${1:键值列表}}",
-      "scoringbox/type=${1|onecolumn,twocolumn,none|}",
-      "scoringbox/position=${1|left,right|}"
+      "draft/show-draft=${1|auto,manual\r|}",
+      "scoringbox={${1:键值列表}}\r",
+      "scoringbox/type=${1|onecolumn,twocolumn,none\r|}",
+      "scoringbox/position=${1|left,right\r|}"
+    ],
+    "\\begin{notice}": [
+      "label=${1:label}\r",
+      "label-format=${1:format}\r",
+      "top-sep=",
+      "bottom-sep="
+    ],
+    "\\draftpaper": [
+      "watermark-size=",
+      "show-watermark",
+      "show-draft=${1|auto,manual\r|}"
+    ],
+    "\\examsquare": [
+      "x-length=",
+      "y-length=",
+      "baseline=",
+      "linewidth=",
+      "xshift="
     ]
+  },
+  "args": [
+    "\\documentclass/exam-zh#c"
   ]
 }

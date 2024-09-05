@@ -1,128 +1,314 @@
 {
-  "includes": {
-    "ifthen": [],
-    "fmtcount": [],
-    "amsgen": [],
-    "ifxetex": []
-  },
-  "macros": {
-    "bibleverse{}": {
-      "snippet": "bibleverse{${1:book title}}"
+  "deps": [
+    {
+      "name": "ifthen"
     },
-    "bibleverse{}()": {
-      "snippet": "bibleverse{${1:book title}}(${2:chapter:verse})"
+    {
+      "name": "fmtcount"
     },
-    "BRvrsep": {},
-    "BRvsep": {},
-    "BRchsep": {},
-    "BRchvsep": {},
-    "BRperiod": {},
-    "biblerefstyle{}": {
-      "snippet": "biblerefstyle{${1:style name}}"
+    {
+      "name": "amsgen"
     },
-    "setbooktitle{}{}": {
-      "snippet": "setbooktitle{${1:name}}{${2:new title}}"
-    },
-    "setindexbooktitle{}{}": {
-      "snippet": "setindexbooktitle{${1:name}}{${2:title}}"
-    },
-    "addbiblebook{}{}": {
-      "snippet": "addbiblebook{${1:name}}{${2:title}}"
-    },
-    "brthreeabbrvname": {},
-    "newbiblerefstyle{}{}": {
-      "snippet": "newbiblerefstyle{${1:style name}}{${2:commands}}"
-    },
-    "ibibleverse{}": {
-      "snippet": "ibibleverse{${1:book title}}"
-    },
-    "ibibleverse{}()": {
-      "snippet": "ibibleverse{${1:book title}}(${2:chapter:verse})"
-    },
-    "ibibleverse[]{}()": {
-      "snippet": "ibibleverse[${2:format}]{${1:book title}}(${3:chapter:verse})"
-    },
-    "bvidxpgformat": {},
-    "ibiblechvs{}": {
-      "snippet": "ibiblechvs{${1:book title}}"
-    },
-    "ibiblechvs{}()": {
-      "snippet": "ibiblechvs{${1:book title}}(${2:chapter:verse})"
-    },
-    "ibiblechvs[]{}()": {
-      "snippet": "ibiblechvs[${2:format}]{${1:book title}}(${3:chapter:verse})"
-    },
-    "ibiblevs{}": {
-      "snippet": "ibiblevs{${1:book title}}"
-    },
-    "ibiblevs{}()": {
-      "snippet": "ibiblevs{${1:book title}}(${2:chapter:verse})"
-    },
-    "ibiblevs[]{}()": {
-      "snippet": "ibiblevs[${2:format}]{${1:book title}}(${3:chapter:verse})"
-    },
-    "ibible{}": {
-      "snippet": "ibible{${1:book title}}"
-    },
-    "ibible{}()": {
-      "snippet": "ibible{${1:book title}}(${2:chapter:verse})"
-    },
-    "ibible[]{}()": {
-      "snippet": "ibible[${2:format}]{${1:book title}}(${3:chapter:verse})"
-    },
-    "biblerefcategory{}": {
-      "snippet": "biblerefcategory{${1:category title}}"
-    },
-    "biblerefcategory[]{}": {
-      "snippet": "biblerefcategory[${2:sort key}]{${1:category title}}"
-    },
-    "biblerefindex": {},
-    "biblerefmap{}{}": {
-      "snippet": "biblerefmap{${1:label}}{${2:new sort key}}"
-    },
-    "brabbrvname": {},
-    "braltabbrvname": {},
-    "BRbkchsep": {},
-    "BRbooknumberstyle{}": {
-      "snippet": "BRbooknumberstyle{${1:text}}"
-    },
-    "BRbookof": {},
-    "BRbooktitlestyle{}": {
-      "snippet": "BRbooktitlestyle{${1:text}}"
-    },
-    "BRchapterstyle{}": {
-      "snippet": "BRchapterstyle{${1:text}}"
-    },
-    "BRepistlenumberstyle{}": {
-      "snippet": "BRepistlenumberstyle{${1:text}}"
-    },
-    "BRepistleof": {},
-    "BRepistleto": {},
-    "BRepistletothe": {},
-    "brfullname": {},
-    "BRgospel": {},
-    "BRotherchapterstyle{}": {
-      "snippet": "BRotherchapterstyle{${1:text}}"
-    },
-    "BRversestyle{}": {
-      "snippet": "BRversestyle{${1:text}}"
-    },
-    "BRversesuffixstyle{}": {
-      "snippet": "BRversesuffixstyle{${1:text}}"
+    {
+      "name": "ifxetex"
     }
-  },
-  "envs": {},
-  "options": [
-    "default",
-    "jerusalem",
-    "anglosaxon",
-    "JEH",
-    "MHRA",
-    "NTG",
-    "MLA",
-    "chicago",
-    "text",
-    "%biblerefstyle"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "bibleverse",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:book title}}"
+      }
+    },
+    {
+      "name": "bibleverse",
+      "arg": {
+        "format": "{}()",
+        "snippet": "{${1:book title}}(${2:chapter:verse})"
+      }
+    },
+    {
+      "name": "BRvrsep",
+      "unusual": true
+    },
+    {
+      "name": "BRvsep",
+      "unusual": true
+    },
+    {
+      "name": "BRchsep",
+      "unusual": true
+    },
+    {
+      "name": "BRchvsep",
+      "unusual": true
+    },
+    {
+      "name": "BRperiod",
+      "unusual": true
+    },
+    {
+      "name": "biblerefstyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:style name%keyvals}}"
+      }
+    },
+    {
+      "name": "setbooktitle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:new title}}"
+      }
+    },
+    {
+      "name": "setindexbooktitle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:title%plain}}"
+      }
+    },
+    {
+      "name": "addbiblebook",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:title%plain}}"
+      }
+    },
+    {
+      "name": "brthreeabbrvname"
+    },
+    {
+      "name": "newbiblerefstyle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:style name%specialDef}}{${2:commands}}"
+      }
+    },
+    {
+      "name": "ibibleverse",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:book title}}"
+      }
+    },
+    {
+      "name": "ibibleverse",
+      "arg": {
+        "format": "{}()",
+        "snippet": "{${1:book title}}(${2:chapter:verse})"
+      }
+    },
+    {
+      "name": "ibibleverse",
+      "arg": {
+        "format": "[]{}()",
+        "snippet": "[${2:format}]{${1:book title}}(${3:chapter:verse})"
+      }
+    },
+    {
+      "name": "bvidxpgformat",
+      "unusual": true
+    },
+    {
+      "name": "ibiblechvs",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:book title}}"
+      }
+    },
+    {
+      "name": "ibiblechvs",
+      "arg": {
+        "format": "{}()",
+        "snippet": "{${1:book title}}(${2:chapter:verse})"
+      }
+    },
+    {
+      "name": "ibiblechvs",
+      "arg": {
+        "format": "[]{}()",
+        "snippet": "[${2:format}]{${1:book title}}(${3:chapter:verse})"
+      }
+    },
+    {
+      "name": "ibiblevs",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:book title}}"
+      }
+    },
+    {
+      "name": "ibiblevs",
+      "arg": {
+        "format": "{}()",
+        "snippet": "{${1:book title}}(${2:chapter:verse})"
+      }
+    },
+    {
+      "name": "ibiblevs",
+      "arg": {
+        "format": "[]{}()",
+        "snippet": "[${2:format}]{${1:book title}}(${3:chapter:verse})"
+      }
+    },
+    {
+      "name": "ibible",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:book title}}"
+      }
+    },
+    {
+      "name": "ibible",
+      "arg": {
+        "format": "{}()",
+        "snippet": "{${1:book title}}(${2:chapter:verse})"
+      }
+    },
+    {
+      "name": "ibible",
+      "arg": {
+        "format": "[]{}()",
+        "snippet": "[${2:format}]{${1:book title}}(${3:chapter:verse})"
+      }
+    },
+    {
+      "name": "biblerefcategory",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:category title}}"
+      }
+    },
+    {
+      "name": "biblerefcategory",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:sort key}]{${1:category title}}"
+      }
+    },
+    {
+      "name": "biblerefindex",
+      "unusual": true
+    },
+    {
+      "name": "biblerefmap",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label}}{${2:new sort key}}"
+      }
+    },
+    {
+      "name": "brabbrvname",
+      "unusual": true
+    },
+    {
+      "name": "braltabbrvname",
+      "unusual": true
+    },
+    {
+      "name": "BRbkchsep",
+      "unusual": true
+    },
+    {
+      "name": "BRbooknumberstyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "BRbookof",
+      "unusual": true
+    },
+    {
+      "name": "BRbooktitlestyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "BRchapterstyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "BRepistlenumberstyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "BRepistleof",
+      "unusual": true
+    },
+    {
+      "name": "BRepistleto",
+      "unusual": true
+    },
+    {
+      "name": "BRepistletothe",
+      "unusual": true
+    },
+    {
+      "name": "brfullname",
+      "unusual": true
+    },
+    {
+      "name": "BRgospel",
+      "unusual": true
+    },
+    {
+      "name": "BRotherchapterstyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "BRversestyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "BRversesuffixstyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/bibleref#c,\\biblerefstyle": [
+      "default\r",
+      "jerusalem\r",
+      "anglosaxon\r",
+      "JEH\r",
+      "MHRA\r",
+      "NTG\r",
+      "MLA\r",
+      "chicago\r",
+      "text\r",
+      "%biblerefstyle\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/bibleref#c,\\biblerefstyle"
+  ]
 }

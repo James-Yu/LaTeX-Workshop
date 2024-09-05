@@ -1,57 +1,127 @@
 {
-  "includes": {
-    "annot_pro": [],
-    "xkeyval": [],
-    "calc": [],
-    "refcount": []
-  },
-  "macros": {
-    "initDDGame{}": {
-      "snippet": "initDDGame{${1:title}}"
+  "deps": [
+    {
+      "name": "annot_pro"
     },
-    "ddDimens{}": {
-      "snippet": "ddDimens{${1:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "xkeyval"
     },
-    "ddGameIcon{}": {
-      "snippet": "ddGameIcon{${1:icon name}}"
+    {
+      "name": "calc"
     },
-    "ddTargetOfIcon{}{}": {
-      "snippet": "ddTargetOfIcon{${1:icon name}}{${2:caption}}"
-    },
-    "ddTargetCaption{}": {
-      "snippet": "ddTargetCaption{${1:text}}"
-    },
-    "ddTargetFmt{}": {
-      "snippet": "ddTargetFmt{${1:format cmds}}"
-    },
-    "ddReset": {},
-    "ddReset[]": {
-      "snippet": "ddReset[${1:title}]"
-    },
-    "ddRightMsg": {},
-    "ddWrongMsg": {},
-    "ddDragOnlyOne": {},
-    "ddExternalMsg": {},
-    "ddBadAppMsg": {},
-    "ddBtnAppr": {},
-    "ddGameIconArgs": {},
-    "ddTrueName": {},
-    "theaebdadcnt": {},
-    "thisDDNAME": {},
-    "thisDDName{}": {
-      "snippet": "thisDDName{${1:arg}}"
+    {
+      "name": "refcount"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "initDDGame",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%plain}}"
+      }
+    },
+    {
+      "name": "ddDimens",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "ddGameIcon",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:icon name%specialDef}}"
+      }
+    },
+    {
+      "name": "ddTargetOfIcon",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:icon name%keyvals}}{${2:caption%text}}"
+      }
+    },
+    {
+      "name": "ddTargetCaption",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ddTargetFmt",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:format cmds}}"
+      }
+    },
+    {
+      "name": "ddReset"
+    },
+    {
+      "name": "ddReset",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:title%plain}]"
+      }
+    },
+    {
+      "name": "ddRightMsg"
+    },
+    {
+      "name": "ddWrongMsg"
+    },
+    {
+      "name": "ddDragOnlyOne"
+    },
+    {
+      "name": "ddExternalMsg"
+    },
+    {
+      "name": "ddBadAppMsg"
+    },
+    {
+      "name": "ddBtnAppr",
+      "unusual": true
+    },
+    {
+      "name": "ddGameIconArgs",
+      "unusual": true
+    },
+    {
+      "name": "ddTrueName",
+      "unusual": true
+    },
+    {
+      "name": "theaebdadcnt",
+      "unusual": true
+    },
+    {
+      "name": "thisDDNAME",
+      "unusual": true
+    },
+    {
+      "name": "thisDDName",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\ddDimens": [
       "iconwidth=",
       "iconheight=",
       "targetwidth=",
       "targetheight="
+    ],
+    "\\ddTargetOfIcon#c": [
+      "%ddgameicon\r"
     ]
-  ]
+  },
+  "args": []
 }

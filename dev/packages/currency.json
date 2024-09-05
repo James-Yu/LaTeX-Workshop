@@ -1,37 +1,116 @@
 {
-  "includes": {
-    "siunitx": [],
-    "pgfkeys": [],
-    "etoolbox": [],
-    "eurosym": []
+  "deps": [
+    {
+      "name": "siunitx"
+    },
+    {
+      "name": "pgfkeys"
+    },
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "eurosym"
+    }
+  ],
+  "macros": [
+    {
+      "name": "DefineCurrency",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:ISO}}{${2:maps%keyvals}}",
+        "keys": [
+          "\\DefineCurrency,\\CurrencySetup,\\CurrencySetupAppend"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "CurrencySetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:maps%keyvals}}",
+        "keys": [
+          "\\DefineCurrency,\\CurrencySetup,\\CurrencySetupAppend"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "CurrencySetupAppend",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:maps%keyvals}}",
+        "keys": [
+          "\\DefineCurrency,\\CurrencySetup,\\CurrencySetupAppend"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "currencyunit"
+    },
+    {
+      "name": "displayCurrency",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:ISO}}{${2:value}}"
+      }
+    },
+    {
+      "name": "displayCurrency",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:ISO}}[${3:options}]{${2:value}}"
+      }
+    },
+    {
+      "name": "displayCurrencySymbol",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ISO}}"
+      }
+    },
+    {
+      "name": "displayCurrencySymbol",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:ISO}}[${2:options}]"
+      }
+    },
+    {
+      "name": "SetPrecision",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\DefineCurrency,\\CurrencySetup,\\CurrencySetupAppend": [
+      "name={${1:name}}\r",
+      "plural={${1:plural}}\r",
+      "iso={${1:ISO}}\r",
+      "symbol={${1:symbol}}\r",
+      "pre-between={${1:tokens}}\r",
+      "post-between={${1:tokens}}\r",
+      "before={${1:tokens}}\r",
+      "before+={${1:tokens}}\r",
+      "before<={${1:tokens}}\r",
+      "font={${1:tokens}}\r",
+      "font+={${1:tokens}}\r",
+      "after={${1:tokens}}\r",
+      "after+={${1:tokens}}\r",
+      "after<={${1:tokens}}\r",
+      "prefix={${1:tokens}}\r",
+      "kind=${1|iso,plural,name,symbol\r|}",
+      "cents=${1|true,false,always\r|}",
+      "pre",
+      "number",
+      "base=${1:integer}\r"
+    ]
   },
-  "macros": {
-    "DefineCurrency{}{}": {
-      "snippet": "DefineCurrency{${1:ISO}}{${2:maps}}"
-    },
-    "CurrencySetup{}": {
-      "snippet": "CurrencySetup{${1:maps}}"
-    },
-    "CurrencySetupAppend{}": {
-      "snippet": "CurrencySetupAppend{${1:maps}}"
-    },
-    "currencyunit": {},
-    "displayCurrency{}{}": {
-      "snippet": "displayCurrency{${1:ISO}}{${2:value}}"
-    },
-    "displayCurrency{}[]{}": {
-      "snippet": "displayCurrency{${1:ISO}}[${2:options}]{${3:value}}"
-    },
-    "displayCurrencySymbol{}": {
-      "snippet": "displayCurrencySymbol{${1:ISO}}"
-    },
-    "displayCurrencySymbol{}[]": {
-      "snippet": "displayCurrencySymbol{${1:ISO}}[${2:options}]"
-    },
-    "SetPrecision": {},
-    "Unknown": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

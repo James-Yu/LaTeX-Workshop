@@ -1,51 +1,115 @@
 {
-  "includes": {
-    "fixmath": [],
-    "kvoptions": []
-  },
-  "macros": {
-    "mathbfit{}": {
-      "snippet": "mathbfit{${1:text}}"
+  "deps": [
+    {
+      "name": "fixmath"
     },
-    "mathsfbfit{}": {
-      "snippet": "mathsfbfit{${1:text}}"
-    },
-    "mathbold{}": {
-      "snippet": "mathbold{${1:text}}"
-    },
-    "mathboldsans{}": {
-      "snippet": "mathboldsans{${1:text}}"
-    },
-    "mathsfit{}": {
-      "snippet": "mathsfit{${1:text}}",
-      "option": "OMLmathsfit=true"
-    },
-    "mathsans{}": {
-      "snippet": "mathsans{${1:text}}",
-      "option": "OMLmathsfit=true"
-    },
-    "vectorsym{}": {
-      "snippet": "vectorsym{${1:symbol}}"
-    },
-    "matrixsym{}": {
-      "snippet": "matrixsym{${1:symbol}}"
-    },
-    "tensorsym{}": {
-      "snippet": "tensorsym{${1:symbol}}"
+    {
+      "name": "kvoptions"
     }
-  },
-  "envs": {},
-  "options": [
-    "rmdefault=${1:font family}",
-    "sfdefault=${1|cmbr,fav,hvm,iwona,jkpss,llcmss|}",
-    "scaled=${1:factor}",
-    "reuseMathAlphabets",
-    "OMLmathrm",
-    "OMLmathbf",
-    "OMLmathsf",
-    "OMLmathsfit",
-    "OMLmathtt",
-    "OMLmathsans"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "mathbfit",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathsfbfit",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbold",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathboldsans",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathsfit",
+      "if": "OMLmathsfit",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathsans",
+      "if": "OMLmathsfit",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathsfit",
+      "if": "OMLmathsfit=true",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathsans",
+      "if": "OMLmathsfit=true",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "vectorsym",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol}}"
+      }
+    },
+    {
+      "name": "matrixsym",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol}}"
+      }
+    },
+    {
+      "name": "tensorsym",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/isomath#c": [
+      "rmdefault=${1:font family}\r",
+      "sfdefault=${1|cmbr,fav,hvm,iwona,jkpss,llcmss\r|}",
+      "scaled=${1:factor}\r",
+      "reuseMathAlphabets",
+      "OMLmathrm",
+      "OMLmathbf",
+      "OMLmathsf",
+      "OMLmathsfit",
+      "OMLmathtt",
+      "OMLmathsans"
+    ]
+  },
+  "args": [
+    "\\usepackage/isomath#c"
+  ]
 }

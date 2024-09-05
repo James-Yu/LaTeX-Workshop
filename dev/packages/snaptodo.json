@@ -1,32 +1,46 @@
 {
-  "includes": {
-    "tikzpagenodes": []
-  },
-  "macros": {
-    "snaptodo{}": {
-      "snippet": "snaptodo{${1:text}}"
-    },
-    "snaptodo[]{}": {
-      "snippet": "snaptodo[${2:options}]{${1:text}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "snaptodoset{}": {
-      "snippet": "snaptodoset{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "tikzpagenodes"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "call chain/.style={${1:TikZ styles}}",
-      "margin block/.style={${1:TikZ styles}}",
+  ],
+  "macros": [
+    {
+      "name": "snaptodo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%todo}}"
+      }
+    },
+    {
+      "name": "snaptodo",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text%todo}}"
+      }
+    },
+    {
+      "name": "snaptodoset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\snaptodo,\\snaptodoset"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\snaptodo,\\snaptodoset": [
+      "call chain/.style={${1:TikZ styles}}\r",
+      "margin block/.style={${1:TikZ styles}}\r",
       "block sep=",
       "chain sep=",
       "chain bias=",
       "block rise="
     ]
-  ]
+  },
+  "args": []
 }

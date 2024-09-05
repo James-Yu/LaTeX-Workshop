@@ -1,135 +1,227 @@
 {
-  "includes": {
-    "pict2e": []
-  },
-  "macros": {
-    "bxGridLabelForm{}": {
-      "snippet": "bxGridLabelForm{${1:real}}"
-    },
-    "dashlines": {},
-    "dottedlines": {},
-    "drawlines": {},
-    "eepicdottedlines": {},
-    "epicbottomgridlabelsep": {},
-    "epicsidegridlabelsep": {},
-    "epictopgridlabelsep": {},
-    "flushjoin": {},
-    "noeepicdottedlines": {},
-    "spacewidth": {},
-    "multiputlist()(){}": {
-      "snippet": "multiputlist(${2:x},${3:y})(${4:Δx},${5:Δy}){${1:item1,${6:item2},...}}"
-    },
-    "multiputlist()()[]{}": {
-      "snippet": "multiputlist(${3:x},${4:y})(${5:Δx},${6:Δy})[${2:pos}]{${1:item1,${7:item2},...}}"
-    },
-    "matrixput()(){}(){}{}": {
-      "snippet": "matrixput(${4:x},${5:y})(${6:Δx1},${7:Δy1}){${1:n1}}(${8:Δx2},${9:Δy2}){${2:n2}}{${3:object}}"
-    },
-    "grid()()": {
-      "snippet": "grid(${1:width},${2:height})(${3:Δwidth},${4:Δheight})"
-    },
-    "grid()()[]": {
-      "snippet": "grid(${2:width},${3:height})(${4:Δwidth},${5:Δheight})[${1:x0,y0}]"
-    },
-    "dashlinestretch": {},
-    "drawlinestretch": {},
-    "jput(){}": {
-      "snippet": "jput(${2:x},${3:y}){${1:object}}"
-    },
-    "picsquare": {},
-    "putfile{}{}": {
-      "snippet": "putfile{${1:file}}{${2:object}}"
-    },
-    "dashjoin": {},
-    "dottedjoin": {},
-    "drawjoin": {},
-    "enddashjoin": {},
-    "enddottedjoin": {},
-    "enddrawjoin": {},
-    "line(){}": {
-      "snippet": "line(${2:x},${3:y}){${1:length}}"
-    },
-    "circle{}": {
-      "snippet": "circle{${1:diameter}}"
-    },
-    "circle*{}": {
-      "snippet": "circle*{${1:diameter}}"
-    },
-    "oval()": {
-      "snippet": "oval(${1:width},${2:height})"
-    },
-    "oval()[]": {
-      "snippet": "oval(${2:width},${3:height})[${1:portion}]"
-    },
-    "maxovaldiam": {},
-    "allinethickness{}": {
-      "snippet": "allinethickness{${1:dimen}}"
-    },
-    "Thicklines": {},
-    "ellipse{}{}": {
-      "snippet": "ellipse{${1:x diameter}}{${2:y diameter}}"
-    },
-    "ellipse*{}{}": {
-      "snippet": "ellipse*{${1:x diameter}}{${2:y diameter}}"
-    },
-    "arc{}{}{}": {
-      "snippet": "arc{${1:diameter}}{${2:start angle}}{${3:end angle}}"
+  "deps": [
+    {
+      "name": "pict2e"
     }
-  },
-  "envs": {
-    "dottedjoin{}": {
-      "name": "dottedjoin",
-      "snippet": "{${1:dotgap}}"
-    },
-    "dottedjoin[]{}": {
-      "name": "dottedjoin",
-      "snippet": "[${2:character}]{${1:dotgap}}"
-    },
-    "dashjoin{}": {
-      "name": "dashjoin",
-      "snippet": "{${1:dashlength}}"
-    },
-    "dashjoin{}[]": {
-      "name": "dashjoin",
-      "snippet": "{${1:dashlength}}[${2:dashgap}]"
-    },
-    "dashjoin[]{}": {
-      "name": "dashjoin",
-      "snippet": "[${2:stretch}]{${1:dashlength}}"
-    },
-    "dashjoin[]{}[]": {
-      "name": "dashjoin",
-      "snippet": "[${2:stretch}]{${1:dashlength}}[${3:dashgap}]"
-    },
-    "drawjoin": {},
-    "drawjoin[]": {
-      "name": "drawjoin",
-      "snippet": "[${1:stretch}]"
-    }
-  },
-  "options": [
-    "safe",
-    "nosafe",
-    "dvips",
-    "xdvi",
-    "dvipdf",
-    "dvipdfm",
-    "dvipdfmx",
-    "pdftex",
-    "luatex",
-    "xetex",
-    "dvipsone",
-    "dviwindo",
-    "oztex",
-    "textures",
-    "pctexps",
-    "pctex32",
-    "vtex",
-    "original",
-    "ltxarrows",
-    "pstarrows",
-    "debug",
-    "hide"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "bxGridLabelForm",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:real}}"
+      }
+    },
+    {
+      "name": "dashlines"
+    },
+    {
+      "name": "dottedlines"
+    },
+    {
+      "name": "drawlines"
+    },
+    {
+      "name": "eepicdottedlines",
+      "unusual": true
+    },
+    {
+      "name": "epicbottomgridlabelsep",
+      "unusual": true
+    },
+    {
+      "name": "epicsidegridlabelsep",
+      "unusual": true
+    },
+    {
+      "name": "epictopgridlabelsep",
+      "unusual": true
+    },
+    {
+      "name": "flushjoin"
+    },
+    {
+      "name": "noeepicdottedlines",
+      "unusual": true
+    },
+    {
+      "name": "spacewidth",
+      "unusual": true
+    },
+    {
+      "name": "dashlinestretch",
+      "unusual": true
+    },
+    {
+      "name": "drawlinestretch",
+      "unusual": true
+    },
+    {
+      "name": "jput(x,y)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:object}}"
+      }
+    },
+    {
+      "name": "picsquare"
+    },
+    {
+      "name": "putfile",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:file}}{${2:object}}"
+      }
+    },
+    {
+      "name": "line(x,y)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
+    },
+    {
+      "name": "circle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:diameter}}"
+      }
+    },
+    {
+      "name": "circle*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:diameter}}"
+      }
+    },
+    {
+      "name": "oval(width,height)"
+    },
+    {
+      "name": "oval(width,height)",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:portion}]"
+      }
+    },
+    {
+      "name": "maxovaldiam",
+      "unusual": true
+    },
+    {
+      "name": "allinethickness",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:dimen}}"
+      }
+    },
+    {
+      "name": "Thicklines"
+    },
+    {
+      "name": "ellipse",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:x diameter}}{${2:y diameter}}"
+      }
+    },
+    {
+      "name": "ellipse*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:x diameter}}{${2:y diameter}}"
+      }
+    },
+    {
+      "name": "arc",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:diameter}}{${2:start angle}}{${3:end angle}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "dottedjoin",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:dotgap}}"
+      }
+    },
+    {
+      "name": "dottedjoin",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:character}]{${1:dotgap}}"
+      }
+    },
+    {
+      "name": "dashjoin",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:dashlength}}"
+      }
+    },
+    {
+      "name": "dashjoin",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:dashlength}}[${2:dashgap}]"
+      }
+    },
+    {
+      "name": "dashjoin",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:stretch}]{${1:dashlength}}"
+      }
+    },
+    {
+      "name": "dashjoin",
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:stretch}]{${1:dashlength}}[${3:dashgap}]"
+      }
+    },
+    {
+      "name": "drawjoin"
+    },
+    {
+      "name": "drawjoin",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:stretch}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/bxeepic#c": [
+      "safe\r",
+      "nosafe\r",
+      "dvips\r",
+      "xdvi\r",
+      "dvipdf\r",
+      "dvipdfm\r",
+      "dvipdfmx\r",
+      "pdftex\r",
+      "luatex\r",
+      "xetex\r",
+      "dvipsone\r",
+      "dviwindo\r",
+      "oztex\r",
+      "textures\r",
+      "pctexps\r",
+      "pctex32\r",
+      "vtex\r",
+      "original\r",
+      "ltxarrows\r",
+      "pstarrows\r",
+      "debug\r",
+      "hide\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/bxeepic#c"
+  ]
 }

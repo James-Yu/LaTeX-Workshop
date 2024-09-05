@@ -1,84 +1,230 @@
 {
-  "includes": {
-    "inputenc": [],
-    "amsmath": [],
-    "amsthm": [],
-    "amssymb": [],
-    "mathtools": [],
-    "babel": [],
-    "braket": [],
-    "siunitx": [],
-    "xspace": [],
-    "dsfont": [],
-    "microtype": [],
-    "ragged2e": [],
-    "tikz": [],
-    "geometry": [],
-    "xstring": [],
-    "enumerate": [],
-    "environ": [],
-    "hyperref": [],
-    "tikzlibrarycalc": []
-  },
-  "macros": {
-    "bg{}": {
-      "snippet": "bg{${1:imagefile}}"
+  "deps": [
+    {
+      "name": "inputenc"
     },
-    "txt(){}": {
-      "snippet": "txt(${2:x},${3:y}){${1:text}}"
+    {
+      "name": "amsmath"
     },
-    "block(){}": {
-      "snippet": "block(${2:x},${3:y},${4:w}){${1:content}}"
+    {
+      "name": "amsthm"
     },
-    "block<>(){}": {
-      "snippet": "block<${2:}>(${3:x},${4:y},${5:w}){${1:content}}"
+    {
+      "name": "amssymb"
     },
-    "fig(){}": {
-      "snippet": "fig(${2:x},${3:y},${4:w}){${1:imagefile}}"
+    {
+      "name": "mathtools"
     },
-    "eq(){}": {
-      "snippet": "eq(${2:x},${3:y}){${1:formula}}"
+    {
+      "name": "babel"
     },
-    "institute{}": {
-      "snippet": "institute{${1:institute}}"
+    {
+      "name": "braket"
     },
-    "theheadline": {},
-    "theslide": {},
-    "theauthor": {},
-    "thetitle": {},
-    "thedate": {},
-    "theinstitute": {},
-    "rgb{}": {
-      "snippet": "rgb{${1:rgb}}"
+    {
+      "name": "siunitx"
     },
-    "captionsngerman": {},
-    "datengerman": {},
-    "extrasngerman": {},
-    "noextrasngerman": {},
-    "dq": {},
-    "ntosstrue": {},
-    "ntossfalse": {},
-    "prefacename": {},
-    "bibname": {},
-    "chaptername": {},
-    "enclname": {},
-    "ccname": {},
-    "headtoname": {},
-    "seename": {},
-    "alsoname": {},
-    "proofname": {},
-    "glossaryname": {},
-    "mdqon": {},
-    "mdqoff": {}
-  },
-  "envs": {
-    "slide{}": {
+    {
+      "name": "xspace"
+    },
+    {
+      "name": "dsfont"
+    },
+    {
+      "name": "microtype"
+    },
+    {
+      "name": "ragged2e"
+    },
+    {
+      "name": "tikz"
+    },
+    {
+      "name": "geometry"
+    },
+    {
+      "name": "xstring"
+    },
+    {
+      "name": "enumerate"
+    },
+    {
+      "name": "environ"
+    },
+    {
+      "name": "hyperref"
+    },
+    {
+      "name": "tikzlibrarycalc"
+    }
+  ],
+  "macros": [
+    {
+      "name": "bg",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "txt(x,y)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "block(x,y,w)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content%text}}"
+      }
+    },
+    {
+      "name": "block<>(x,y,w)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content%text}}"
+      }
+    },
+    {
+      "name": "fig(x,y,w)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "eq(x,y)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:formula}}"
+      }
+    },
+    {
+      "name": "institute",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:institute%text}}"
+      }
+    },
+    {
+      "name": "theheadline"
+    },
+    {
+      "name": "theslide"
+    },
+    {
+      "name": "theauthor"
+    },
+    {
+      "name": "thetitle"
+    },
+    {
+      "name": "thedate"
+    },
+    {
+      "name": "theinstitute"
+    },
+    {
+      "name": "rgb",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:rgb}}"
+      }
+    },
+    {
+      "name": "captionsngerman",
+      "unusual": true
+    },
+    {
+      "name": "datengerman",
+      "unusual": true
+    },
+    {
+      "name": "extrasngerman",
+      "unusual": true
+    },
+    {
+      "name": "noextrasngerman",
+      "unusual": true
+    },
+    {
+      "name": "dq"
+    },
+    {
+      "name": "ntosstrue",
+      "unusual": true
+    },
+    {
+      "name": "ntossfalse",
+      "unusual": true
+    },
+    {
+      "name": "prefacename",
+      "unusual": true
+    },
+    {
+      "name": "bibname",
+      "unusual": true
+    },
+    {
+      "name": "chaptername",
+      "unusual": true
+    },
+    {
+      "name": "enclname",
+      "unusual": true
+    },
+    {
+      "name": "ccname",
+      "unusual": true
+    },
+    {
+      "name": "headtoname",
+      "unusual": true
+    },
+    {
+      "name": "seename",
+      "unusual": true
+    },
+    {
+      "name": "alsoname",
+      "unusual": true
+    },
+    {
+      "name": "proofname",
+      "unusual": true
+    },
+    {
+      "name": "glossaryname",
+      "unusual": true
+    },
+    {
+      "name": "mdqon",
+      "unusual": true
+    },
+    {
+      "name": "mdqoff",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
       "name": "slide",
-      "snippet": "{${1:title}}"
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
     },
-    "style": {},
-    "rawslide": {}
-  },
-  "options": [],
-  "keyvals": []
+    {
+      "name": "style"
+    },
+    {
+      "name": "rawslide"
+    }
+  ],
+  "keys": {},
+  "args": []
 }

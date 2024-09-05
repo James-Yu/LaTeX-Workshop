@@ -1,23 +1,41 @@
 {
-  "includes": {
-    "class-grant": []
-  },
-  "macros": {
-    "draftstatus": {},
-    "whitepaperstatus": {},
-    "sectioncompactstatus": {},
-    "bibcompactstatus": {}
-  },
-  "envs": {},
-  "options": [
-    "isdraft",
-    "isnotdraft",
-    "iswhitepaper",
-    "isnotwhitepaper",
-    "issectioncompact",
-    "isnotsectioncompact",
-    "isbibcompact",
-    "isnotbibcompact"
+  "deps": [
+    {
+      "name": "class-grant"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "draftstatus",
+      "unusual": true
+    },
+    {
+      "name": "whitepaperstatus",
+      "unusual": true
+    },
+    {
+      "name": "sectioncompactstatus",
+      "unusual": true
+    },
+    {
+      "name": "bibcompactstatus",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\documentclass/grant-nih#c": [
+      "isdraft\r",
+      "isnotdraft\r",
+      "iswhitepaper\r",
+      "isnotwhitepaper\r",
+      "issectioncompact\r",
+      "isnotsectioncompact\r",
+      "isbibcompact\r",
+      "isnotbibcompact\r"
+    ]
+  },
+  "args": [
+    "\\documentclass/grant-nih#c"
+  ]
 }

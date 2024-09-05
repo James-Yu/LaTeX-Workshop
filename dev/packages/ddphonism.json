@@ -1,93 +1,131 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "pgfkeys": [],
-    "tikz": [],
-    "xstring": []
-  },
-  "macros": {
-    "dmatrix{}": {
-      "snippet": "dmatrix{${1:number list}}"
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "dmatrix[]{}": {
-      "snippet": "dmatrix[${2:options}]{${1:number list}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "pgfkeys"
     },
-    "ddiagram{}": {
-      "snippet": "ddiagram{${1:number list}}"
+    {
+      "name": "tikz"
     },
-    "ddiagram[]{}": {
-      "snippet": "ddiagram[${2:options}]{${1:number list}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "ddihedral{}": {
-      "snippet": "ddihedral{${1:number list}}"
-    },
-    "ddihedral[]{}": {
-      "snippet": "ddihedral[${2:options}]{${1:number list}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "darrows{}": {
-      "snippet": "darrows{${1:number list}}"
-    },
-    "darrows[]{}": {
-      "snippet": "darrows[${2:options}]{${1:number list}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "drow{}": {
-      "snippet": "drow{${1:number list}}"
-    },
-    "drow[]{}": {
-      "snippet": "drow[${2:options}]{${1:number list}}",
-      "keyvalindex": 4,
-      "keyvalpos": 0
+    {
+      "name": "xstring"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "sep=",
-      "vsep=",
-      "hsep=",
-      "lines",
-      "outside lines",
-      "inside lines",
-      "vlines",
-      "hlines",
-      "no tikz"
+  ],
+  "macros": [
+    {
+      "name": "dmatrix",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number list}}"
+      }
+    },
+    {
+      "name": "dmatrix",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:number list}}"
+      }
+    },
+    {
+      "name": "ddiagram",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number list}}"
+      }
+    },
+    {
+      "name": "ddiagram",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:number list}}"
+      }
+    },
+    {
+      "name": "ddihedral",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number list}}"
+      }
+    },
+    {
+      "name": "ddihedral",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:number list}}"
+      }
+    },
+    {
+      "name": "darrows",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number list}}"
+      }
+    },
+    {
+      "name": "darrows",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:number list}}"
+      }
+    },
+    {
+      "name": "drow",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number list}}"
+      }
+    },
+    {
+      "name": "drow",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:number list}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\dmatrix": [
+      "sep=\r",
+      "vsep=\r",
+      "hsep=\r",
+      "lines\r",
+      "outside lines\r",
+      "inside lines\r",
+      "vlines\r",
+      "hlines\r",
+      "no tikz\r"
     ],
-    [
-      "name=",
-      "up=",
-      "arrow shift=",
-      "no numbers",
-      "no arrow",
-      "xshift=",
-      "yshift=",
-      "no tikz"
+    "\\ddiagram": [
+      "name=\r",
+      "up=\r",
+      "arrow shift=\r",
+      "no numbers\r",
+      "no arrow\r",
+      "xshift=\r",
+      "yshift=\r",
+      "no tikz\r"
     ],
-    [
-      "t=",
-      "s=",
-      "c=",
-      "v=",
-      "no italics",
-      "new t=",
-      "new s=",
-      "new c=",
-      "new v=",
-      "no tikz"
+    "\\ddihedral": [
+      "t=\r",
+      "s=\r",
+      "c=\r",
+      "v=\r",
+      "no italics\r",
+      "new t=\r",
+      "new s=\r",
+      "new c=\r",
+      "new v=\r",
+      "no tikz\r"
     ],
-    [
-      "no tikz"
+    "\\darrows": [
+      "no tikz\r"
     ],
-    [
+    "\\drow": [
       "sep="
     ]
-  ]
+  },
+  "args": []
 }

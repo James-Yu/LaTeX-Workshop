@@ -1,185 +1,305 @@
 {
-  "includes": {
-    "iftex": [],
-    "kvoptions": [],
-    "color": [
+  "deps": [
+    {
+      "name": "iftex"
+    },
+    {
+      "name": "kvoptions"
+    },
+    {
+      "name": "color",
+      "if": "color"
+    },
+    {
+      "name": "color",
+      "if": "color=true"
+    },
+    {
+      "name": "color",
+      "if": "redefineblack"
+    },
+    {
+      "name": "color",
+      "if": "redefineblack=true"
+    },
+    {
+      "name": "color",
+      "if": "redefinetocmyk"
+    },
+    {
+      "name": "color",
+      "if": "redefinetocmyk=true"
+    },
+    {
+      "name": "color",
+      "if": "overprint"
+    },
+    {
+      "name": "color",
+      "if": "overprint=true"
+    }
+  ],
+  "macros": [
+    {
+      "name": "noBboxes"
+    },
+    {
+      "name": "OverprintXeTeXExtGState",
+      "unusual": true
+    },
+    {
+      "name": "SetOverprint"
+    },
+    {
+      "name": "SetKnockout"
+    },
+    {
+      "name": "textoverprint",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textknockout",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "SetPDFminorversion",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:version}}"
+      }
+    },
+    {
+      "name": "Vcorr"
+    },
+    {
+      "name": "vb"
+    },
+    {
+      "name": "vb",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:number}]"
+      }
+    },
+    {
+      "name": "NewOddPage"
+    },
+    {
+      "name": "NewOddPage",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:style}]"
+      }
+    },
+    {
+      "name": "NewOddPage*"
+    },
+    {
+      "name": "NewOddPage*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:style}]"
+      }
+    },
+    {
+      "name": "SetOddPageMessage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "NewEvenPage"
+    },
+    {
+      "name": "NewEvenPage",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:style}]"
+      }
+    },
+    {
+      "name": "NewEvenPage*"
+    },
+    {
+      "name": "NewEvenPage*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:style}]"
+      }
+    },
+    {
+      "name": "SetEvenPageMessage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "CropFlap"
+    },
+    {
+      "name": "CropSpine"
+    },
+    {
+      "name": "CropXSpine"
+    },
+    {
+      "name": "CropXtrim"
+    },
+    {
+      "name": "CropYtrim"
+    },
+    {
+      "name": "UserWidth"
+    },
+    {
+      "name": "UserLeftMargin"
+    },
+    {
+      "name": "UserRightMargin"
+    },
+    {
+      "name": "UserBotMargin"
+    },
+    {
+      "name": "UserTopMargin"
+    },
+    {
+      "name": "thePageNumber"
+    },
+    {
+      "name": "ifcaseZWdriver",
+      "unusual": true
+    },
+    {
+      "name": "ZWifdriver",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:driver}}{${2:code}}"
+      }
+    },
+    {
+      "name": "ZWsetkeys",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:family}}{${2:keyvals}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/zwpagelayout#c": [
+      "driver=${1|unknown,pdftex,xetex,dvips,other,dvipdfm,xdvipdfmx\r|}",
+      "AllowWidthHeightSwitching\r",
+      "papersize={${1:width,height}}\r",
+      "a0\r",
+      "a1\r",
+      "a2\r",
+      "a3\r",
+      "a4\r",
+      "a5\r",
+      "a6\r",
+      "a7\r",
+      "a8\r",
+      "a9\r",
+      "a10\r",
+      "b0\r",
+      "b1\r",
+      "b2\r",
+      "b3\r",
+      "b4\r",
+      "b5\r",
+      "b6\r",
+      "b7\r",
+      "b8\r",
+      "b9\r",
+      "b10\r",
+      "c0\r",
+      "c1\r",
+      "c2\r",
+      "c3\r",
+      "c4\r",
+      "c5\r",
+      "c6\r",
+      "c7\r",
+      "c8\r",
+      "c9\r",
+      "c10\r",
+      "executive\r",
+      "legal\r",
+      "letter\r",
+      "Portrait\r",
+      "Landscape\r",
+      "noBboxes\r",
+      "margins=",
+      "topmargin=",
+      "botmargin=",
+      "leftmargin=",
+      "rightmargin=",
+      "textwidth=",
+      "textheight=",
+      "headheight=",
+      "headsep=",
+      "footskip=",
+      "topskip=",
+      "strictheight",
+      "adjustfootskip",
+      "adjustheadsep",
+      "ReflectHorizontally\r",
+      "ReflectVertically\r",
+      "onlycropmarks",
+      "cropmarks",
+      "nocropmarks",
+      "croplength=",
+      "cropgap=",
+      "cropframe",
+      "nocropframe",
+      "cropstyle=${1|default,leaflet\r|}",
+      "croptitle=${1:text}\r",
+      "cropseparator=${1:macro}\r",
+      "pagenumberfirst",
+      "pagenumberlast",
+      "usepagenumbers",
+      "nopagenumbers",
+      "nobleedclip",
+      "spine=",
+      "xspine=",
+      "flap=",
+      "trim=",
+      "xtrim=",
+      "ytrim=",
+      "leafcount=${1:integer}\r",
+      "foldcorr=",
+      "fold=${1|2,3left,3right,Z,4\r|}",
       "color",
-      "color=true",
-      "redefineblack",
-      "redefineblack=true",
-      "redefinetocmyk",
-      "redefinetocmyk=true",
+      "colormodel=${1:model}\r",
+      "cropcolor=${1:color spec}\r",
+      "colors={{${1:name1:spec1}}${2:,...}}\r",
       "overprint",
-      "overprint=true"
+      "redefineblack",
+      "redefinetocmyk",
+      "title=${1:text}\r",
+      "author=${1:author}\r",
+      "subject=${1:subject}\r",
+      "keywords=${1:keywords}\r",
+      "nopdfinfo\r",
+      "pdfminorversion=${1:version}\r",
+      "pdfx\r",
+      "OutputCondition=\r",
+      "OutputConditionIdentifier=\r",
+      "ICCfile=${1:file name}\r"
     ]
   },
-  "macros": {
-    "noBboxes": {},
-    "OverprintXeTeXExtGState": {},
-    "SetOverprint": {},
-    "SetKnockout": {},
-    "textoverprint{}": {
-      "snippet": "textoverprint{${1:text}}"
-    },
-    "textknockout{}": {
-      "snippet": "textknockout{${1:text}}"
-    },
-    "SetPDFminorversion{}": {
-      "snippet": "SetPDFminorversion{${1:version}}"
-    },
-    "Vcorr": {},
-    "vb": {},
-    "vb[]": {
-      "snippet": "vb[${1:number}]"
-    },
-    "NewOddPage": {},
-    "NewOddPage[]": {
-      "snippet": "NewOddPage[${1:style}]"
-    },
-    "NewOddPage*": {},
-    "NewOddPage*[]": {
-      "snippet": "NewOddPage*[${1:style}]"
-    },
-    "SetOddPageMessage{}": {
-      "snippet": "SetOddPageMessage{${1:text}}"
-    },
-    "NewEvenPage": {},
-    "NewEvenPage[]": {
-      "snippet": "NewEvenPage[${1:style}]"
-    },
-    "NewEvenPage*": {},
-    "NewEvenPage*[]": {
-      "snippet": "NewEvenPage*[${1:style}]"
-    },
-    "SetEvenPageMessage{}": {
-      "snippet": "SetEvenPageMessage{${1:text}}"
-    },
-    "CropFlap": {},
-    "CropSpine": {},
-    "CropXSpine": {},
-    "CropXtrim": {},
-    "CropYtrim": {},
-    "UserWidth": {},
-    "UserLeftMargin": {},
-    "UserRightMargin": {},
-    "UserBotMargin": {},
-    "UserTopMargin": {},
-    "thePageNumber": {},
-    "ifcaseZWdriver": {},
-    "ZWifdriver{}{}": {
-      "snippet": "ZWifdriver{${1:driver}}{${2:code}}"
-    },
-    "ZWsetkeys{}{}": {
-      "snippet": "ZWsetkeys{${1:family}}{${2:keyvals}}"
-    },
-    "PDFbkslash": {},
-    "SetTeXingDate{}": {
-      "snippet": "SetTeXingDate{${1:date}}"
-    },
-    "TimeOfTeXing": {},
-    "ZWpercent": {}
-  },
-  "envs": {},
-  "options": [
-    "driver=${1|unknown,pdftex,xetex,dvips,other,dvipdfm,xdvipdfmx|}",
-    "AllowWidthHeightSwitching",
-    "papersize={${1:width,height}}",
-    "a0",
-    "a1",
-    "a2",
-    "a3",
-    "a4",
-    "a5",
-    "a6",
-    "a7",
-    "a8",
-    "a9",
-    "a10",
-    "b0",
-    "b1",
-    "b2",
-    "b3",
-    "b4",
-    "b5",
-    "b6",
-    "b7",
-    "b8",
-    "b9",
-    "b10",
-    "c0",
-    "c1",
-    "c2",
-    "c3",
-    "c4",
-    "c5",
-    "c6",
-    "c7",
-    "c8",
-    "c9",
-    "c10",
-    "executive",
-    "legal",
-    "letter",
-    "Portrait",
-    "Landscape",
-    "noBboxes",
-    "margins=",
-    "topmargin=",
-    "botmargin=",
-    "leftmargin=",
-    "rightmargin=",
-    "textwidth=",
-    "textheight=",
-    "headheight=",
-    "headsep=",
-    "footskip=",
-    "topskip=",
-    "strictheight",
-    "adjustfootskip",
-    "adjustheadsep",
-    "ReflectHorizontally",
-    "ReflectVertically",
-    "onlycropmarks",
-    "cropmarks",
-    "nocropmarks",
-    "croplength=",
-    "cropgap=",
-    "cropframe",
-    "nocropframe",
-    "cropstyle=${1|default,leaflet|}",
-    "croptitle=${1:text}",
-    "cropseparator=${1:macro}",
-    "pagenumberfirst",
-    "pagenumberlast",
-    "usepagenumbers",
-    "nopagenumbers",
-    "nobleedclip",
-    "spine=",
-    "xspine=",
-    "flap=",
-    "trim=",
-    "xtrim=",
-    "ytrim=",
-    "leafcount=${1:integer}",
-    "foldcorr=",
-    "fold=${1|2,3left,3right,Z,4|}",
-    "color",
-    "colormodel=${1:model}",
-    "cropcolor=${1:color spec}",
-    "colors={{${1:name1:spec1}}${2:,...}}",
-    "overprint",
-    "redefineblack",
-    "redefinetocmyk",
-    "title=${1:text}",
-    "author=${1:author}",
-    "subject=${1:subject}",
-    "keywords=${1:keywords}",
-    "nopdfinfo",
-    "pdfminorversion=${1:version}",
-    "pdfx",
-    "OutputCondition=",
-    "OutputConditionIdentifier=",
-    "ICCfile=${1:file name}"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/zwpagelayout#c"
+  ]
 }

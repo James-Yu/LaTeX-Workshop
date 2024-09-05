@@ -1,422 +1,969 @@
 {
-  "includes": {
-    "keyval": [],
-    "caption3": [],
-    "fr-subfig": [],
-    "fr-fancy": [
-      "fancyboxes=true",
-      "fancyboxes=yes"
-    ]
-  },
-  "macros": {
-    "floatsetup{}": {
-      "snippet": "floatsetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "floatsetup[]{}": {
-      "snippet": "floatsetup[${2:float type}]{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "thisfloatsetup{}": {
-      "snippet": "thisfloatsetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "floatbox{}{}{}": {
-      "snippet": "floatbox{${1:float type}}{${2:caption}}{${3:object}}"
-    },
-    "floatbox{}{}[]{}": {
-      "snippet": "floatbox{${1:float type}}{${2:caption}}[${3:width}]{${4:object}}"
-    },
-    "floatbox{}{}[][]{}": {
-      "snippet": "floatbox{${1:float type}}{${2:caption}}[${3:width}][${4:height}]{${5:object}}"
-    },
-    "floatbox{}{}[][][]{}": {
-      "snippet": "floatbox{${1:float type}}{${2:caption}}[${3:width}][${4:height}][${5:vert pos}]{${6:object}}"
-    },
-    "floatbox[]{}{}{}": {
-      "snippet": "floatbox[${4:preamble}]{${1:float type}}{${2:caption}}{${3:object}}"
-    },
-    "floatbox[]{}{}[]{}": {
-      "snippet": "floatbox[${4:preamble}]{${1:float type}}{${2:caption}}[${5:width}]{${3:object}}"
-    },
-    "floatbox[]{}{}[][]{}": {
-      "snippet": "floatbox[${4:preamble}]{${1:float type}}{${2:caption}}[${5:width}][${6:height}]{${3:object}}"
-    },
-    "floatbox[]{}{}[][][]{}": {
-      "snippet": "floatbox[${4:preamble}]{${1:float type}}{${2:caption}}[${5:width}][${6:height}][${7:vert pos}]{${3:object}}"
-    },
-    "capbeside": {},
-    "nocapbeside": {},
-    "captop": {},
-    "FBwidth": {},
-    "FBheight": {},
-    "newfloatcommand{}{}": {
-      "snippet": "newfloatcommand{${1:csname}}{${2:float type}}"
-    },
-    "newfloatcommand{}{}[]": {
-      "snippet": "newfloatcommand{${1:csname}}{${2:float type}}[${3:preamble}]"
-    },
-    "newfloatcommand{}{}[][]": {
-      "snippet": "newfloatcommand{${1:csname}}{${2:float type}}[${3:preamble}][${4:default width}]"
-    },
-    "renewfloatcommand{}{}": {
-      "snippet": "renewfloatcommand{${1:csname}}{${2:float type}}"
-    },
-    "renewfloatcommand{}{}[]": {
-      "snippet": "renewfloatcommand{${1:csname}}{${2:float type}}[${3:preamble}]"
-    },
-    "renewfloatcommand{}{}[][]": {
-      "snippet": "renewfloatcommand{${1:csname}}{${2:float type}}[${3:preamble}][${4:default width}]"
-    },
-    "ffigbox{}{}": {
-      "snippet": "ffigbox{${1:caption}}{${2:object}}"
-    },
-    "ffigbox[]{}{}": {
-      "snippet": "ffigbox[${3:width}]{${1:caption}}{${2:object}}"
-    },
-    "ffigbox[][]{}{}": {
-      "snippet": "ffigbox[${3:width}][${4:height}]{${1:caption}}{${2:object}}"
-    },
-    "ffigbox[][][]{}{}": {
-      "snippet": "ffigbox[${3:width}][${4:height}][${5:vert pos}]{${1:caption}}{${2:object}}"
-    },
-    "ttabbox{}{}": {
-      "snippet": "ttabbox{${1:caption}}{${2:object}}"
-    },
-    "ttabbox[]{}{}": {
-      "snippet": "ttabbox[${3:width}]{${1:caption}}{${2:object}}"
-    },
-    "ttabbox[][]{}{}": {
-      "snippet": "ttabbox[${3:width}][${4:height}]{${1:caption}}{${2:object}}"
-    },
-    "ttabbox[][][]{}{}": {
-      "snippet": "ttabbox[${3:width}][${4:height}][${5:vert pos}]{${1:caption}}{${2:object}}"
-    },
-    "fcapside{}{}": {
-      "snippet": "fcapside{${1:caption}}{${2:object}}"
-    },
-    "fcapside[]{}{}": {
-      "snippet": "fcapside[${3:width}]{${1:caption}}{${2:object}}"
-    },
-    "fcapside[][]{}{}": {
-      "snippet": "fcapside[${3:width}][${4:height}]{${1:caption}}{${2:object}}"
-    },
-    "fcapside[][][]{}{}": {
-      "snippet": "fcapside[${3:width}][${4:height}][${5:vert pos}]{${1:caption}}{${2:object}}"
-    },
-    "Xhsize": {},
-    "clearfloatsetup{}": {
-      "snippet": "clearfloatsetup{${1:float type}}"
-    },
-    "killfloatstyle": {},
-    "CenterFloatBoxes": {},
-    "TopFloatBoxes": {},
-    "BottomFloatBoxes": {},
-    "PlainFloatBoxes": {},
-    "buildFBBOX{}{}": {
-      "snippet": "buildFBBOX{${1:start code}}{${2:finish code}}"
-    },
-    "RawFloats": {},
-    "RawFloats[]": {
-      "snippet": "RawFloats[${1:type1,${2:type2},...}]"
-    },
-    "RawFloats[][]": {
-      "snippet": "RawFloats[${1:type}][${2:subtype1,${3:subtype2},...}]"
-    },
-    "RawCaption{}": {
-      "snippet": "RawCaption{${1:arg}}"
-    },
-    "floatfoot{}": {
-      "snippet": "floatfoot{${1:text}}"
-    },
-    "floatfoot*{}": {
-      "snippet": "floatfoot*{${1:text}}"
-    },
-    "FBaskip": {},
-    "FBbskip": {},
-    "DeclareFloatStyle{}{}": {
-      "snippet": "DeclareFloatStyle{${1:name}}{${2:options}}"
-    },
-    "DeclareFloatFont{}{}": {
-      "snippet": "DeclareFloatFont{${1:name}}{${2:code}}"
-    },
-    "DeclareFloatVCode{}{}": {
-      "snippet": "DeclareFloatVCode{${1:name}}{${2:code}}"
-    },
-    "DeclareColorBox{}{}": {
-      "snippet": "DeclareColorBox{${1:name}}{${2:code}}"
-    },
-    "DeclareCBoxCorners{}{}{}{}{}": {
-      "snippet": "DeclareCBoxCorners{${1:name}}{${2:llcorner}}{${3:lrcorner}}{${4:urcorner}}{${5:ulcorner}}"
-    },
-    "DeclareObjectSet{}{}": {
-      "snippet": "DeclareObjectSet{${1:name}}{${2:code}}"
-    },
-    "DeclareMarginSet{}{}": {
-      "snippet": "DeclareMarginSet{${1:name}}{${2:code}}"
-    },
-    "setfloatmargins{}{}": {
-      "snippet": "setfloatmargins{${1:left margin}}{${2:right margin}}"
-    },
-    "floatfacing{}{}": {
-      "snippet": "floatfacing{${1:odd page def}}{${2:even page def}}"
-    },
-    "floatfacing*{}{}": {
-      "snippet": "floatfacing*{${1:odd page def}}{${2:even page def}}"
-    },
-    "floatboxmargins": {},
-    "floatrowmargins": {},
-    "floatcapbesidemargins": {},
-    "DeclareFloatSeparators{}{}": {
-      "snippet": "DeclareFloatSeparators{${1:name}}{${2:code}}"
-    },
-    "DeclareFloatFootnoterule{}{}": {
-      "snippet": "DeclareFloatFootnoterule{${1:name}}{${2:code}}"
-    },
-    "DeclareNewFloatType{}{}": {
-      "snippet": "DeclareNewFloatType{${1:envname}}{${2:options}}",
-      "keyvalindex": 1,
-      "keyvalpos": 1
-    },
-    "newfloat{}{}{}": {
-      "snippet": "newfloat{${1:envname}}{${2:placement}}{${3:ext}}"
-    },
-    "newfloat{}{}{}[]": {
-      "snippet": "newfloat{${1:envname}}{${2:placement}}{${3:ext}}[${4:within}]"
-    },
-    "floatname{}{}": {
-      "snippet": "floatname{${1:float type}}{${2:name}}"
-    },
-    "floatplacement{}{}": {
-      "snippet": "floatplacement{${1:float type}}{${2:placement}}"
-    },
-    "listof{}{}": {
-      "snippet": "listof{${1:float type}}{${2:title}}"
-    },
-    "floatHpenalties": {},
-    "RestoreSpaces": {},
-    "RemoveSpaces": {},
-    "floatfont": {},
-    "captionskip": {},
-    "floatfootskip": {},
-    "captionlabel{}": {
-      "snippet": "captionlabel{${1:text}}"
-    },
-    "subcaptionlabel{}": {
-      "snippet": "subcaptionlabel{${1:text}}"
-    },
-    "newdimentocommand{}{}{}": {
-      "snippet": "newdimentocommand{${1:dimen macro}}{${2:cmd}}{${3:def}}"
-    },
-    "renewdimentocommand{}{}{}": {
-      "snippet": "renewdimentocommand{${1:dimen macro}}{${2:cmd}}{${3:def}}"
-    },
-    "newskiptocommand{}{}{}": {
-      "snippet": "newskiptocommand{${1:skip macro}}{${2:cmd}}{${3:def}}"
-    },
-    "renewskiptocommand{}{}{}": {
-      "snippet": "renewskiptocommand{${1:skip macro}}{${2:cmd}}{${3:def}}"
-    },
-    "newlengthtocommand{}{}{}": {
-      "snippet": "newlengthtocommand{${1:length macro}}{${2:cmd}}{${3:def}}"
-    },
-    "renewlengthtocommand{}{}{}": {
-      "snippet": "renewlengthtocommand{${1:length macro}}{${2:cmd}}{${3:def}}"
-    },
-    "DefaultCommonHeight": {},
-    "CommonHeight": {},
-    "CommonHeightRow{}": {
-      "snippet": "CommonHeightRow{${1:floatrow env}}"
-    },
-    "CommonHeightRow[]{}": {
-      "snippet": "CommonHeightRow[${2:height}]{${1:floatrow env}}"
-    },
-    "DeclareFNOpt{}{}": {
-      "snippet": "DeclareFNOpt{${1:name}}{${2:code}}"
-    },
-    "DeclareFNOpt*{}{}": {
-      "snippet": "DeclareFNOpt*{${1:name}}{${2:code}}"
-    },
-    "DeclareFROpt{}{}": {
-      "snippet": "DeclareFROpt{${1:name}}{${2:code}}"
-    },
-    "DeclareFROpt*{}{}": {
-      "snippet": "DeclareFROpt*{${1:name}}{${2:code}}"
-    },
-    "DeclareFtPos{}{}": {
-      "snippet": "DeclareFtPos{${1:name}}{${2:code}}"
-    },
-    "DeclareHtAdj{}{}": {
-      "snippet": "DeclareHtAdj{${1:name}}{${2:code}}"
-    },
-    "DeclareSCPos{}{}": {
-      "snippet": "DeclareSCPos{${1:name}}{${2:code}}"
-    },
-    "CADJfalse": {},
-    "CADJtrue": {},
-    "capbot": {},
-    "capsubrowsettings": {},
-    "captionfootfont": {},
-    "CAPTOP": {},
-    "FBafil": {},
-    "FBbfil": {},
-    "FBbuildfalse": {},
-    "FBbuildtrue": {},
-    "FBcheight": {},
-    "FBfheight": {},
-    "FBfootnoterule": {},
-    "FBifcapbeside": {},
-    "FBifCAPTOP": {},
-    "FBifcaptop": {},
-    "FBiffloatrow": {},
-    "FBleftmargin": {},
-    "FBoheight": {},
-    "FBrightmargin": {},
-    "FCleftmargin": {},
-    "FCrightmargin": {},
-    "FCwidth": {},
-    "filFCOhsize": {},
-    "floatcapbesidesep": {},
-    "floatobjectset": {},
-    "floatrowsep": {},
-    "floatstyle{}": {
-      "snippet": "floatstyle{${1:arg}}"
-    },
-    "FPOScnt": {},
-    "FRcolorboxdp": {},
-    "FRcolorboxht": {},
-    "FRcolorboxwd": {},
-    "FRifFBOX": {},
-    "FRleftmargin": {},
-    "frulemax": {},
-    "ifCADJ": {},
-    "ifFBbuild": {},
-    "ifOADJ": {},
-    "LTleft": {},
-    "LTright": {},
-    "mpfootnotemark": {},
-    "nofilFCOhsize": {},
-    "OADJfalse": {},
-    "OADJtrue": {},
-    "ProcessOptionsWithKV{}": {
-      "snippet": "ProcessOptionsWithKV{${1:arg}}"
-    },
-    "refsteponlycounter": {},
-    "restylefloat": {},
-    "subfloatrowsep": {},
-    "sXhsize": {},
-    "sZhsize": {},
-    "theFBcnt": {},
-    "theFRobj": {},
-    "theFRsobj": {},
-    "useFCwidth": {},
-    "Zhsize": {},
-    "FBifLTcapwidth": {},
-    "endlasthead": {},
-    "endprelastfoot": {},
-    "setLTcapwidth{}": {
-      "snippet": "setLTcapwidth{${1:float type}}"
-    },
-    "theFBLTpage": {}
-  },
-  "envs": {
-    "floatrow": {},
-    "floatrow[]": {
-      "name": "floatrow",
-      "snippet": "[${1:number of beside floats}]"
-    },
-    "subfloatrow": {},
-    "subfloatrow[]": {
-      "name": "subfloatrow",
-      "snippet": "[${1:number of beside floats}]"
-    },
-    "subfloatrow*": {},
-    "subfloatrow*[]": {
-      "name": "subfloatrow*",
-      "snippet": "[${1:number of beside floats}]"
+  "deps": [
+    {
+      "name": "keyval"
+    },
+    {
+      "name": "caption3"
+    },
+    {
+      "name": "fr-subfig"
+    },
+    {
+      "name": "fr-fancy",
+      "if": "fancyboxes=true"
+    },
+    {
+      "name": "fr-fancy",
+      "if": "fancyboxes=yes"
     }
-  },
-  "options": [
-    "style=${1|plain,plaintop,Plaintop,ruled,Ruled,boxed,Boxed,BOXED,shadowbox,Shadowbox,SHADOWBOX,doublebox,Doublebox,DOUBLEBOX,wshadowbox,Wshadowbox,WSHADOWBOX|}",
-    "font=${1|scriptsize,footnotesize,small,normalsize,large,Large,up,it,sl,sc,md,bf,rm,sf,tt|}",
-    "footfont=${1|scriptsize,footnotesize,small,normalsize,large,Large,up,it,sl,sc,md,bf,rm,sf,tt|}",
-    "capposition=${1|top,TOP,bottom,beside|}",
-    "capbesideposition=${1|left,right,inside,outside,top,bottom,center|}",
-    "capbesidewidth=",
-    "floatwidth=",
-    "capbesideframe=${1|yes,no|}",
-    "footposition=${1|default,caption,bottom|}",
-    "heightadjust=${1|all,caption,object,none,nocaption,noobject|}",
-    "valign=${1|t,c,b,s|}",
-    "facing=${1|yes,no|}",
-    "objectset=${1|justified,centering,raggedright,RaggedRight,raggedleft|}",
-    "margins=${1|centering,raggedright,raggedleft,hangleft,hangright,hanginside,hangoutside|}",
-    "floatrowsep=${1|columnsep,quad,qquad,hfil,hfill,none|}",
-    "capbesidesep=${1|columnsep,quad,qquad,hfil,hfill,none|}",
-    "precode=${1|none,thickrule,rule,lowrule,captionskip|}",
-    "rowprecode=${1|none,thickrule,rule,lowrule,captionskip|}",
-    "midcode=${1|none,thickrule,rule,lowrule,captionskip|}",
-    "postcode=${1|none,thickrule,rule,lowrule,captionskip|}",
-    "rowpostcode=${1|none,thickrule,rule,lowrule,captionskip|}",
-    "framestyle=${1|fbox,colorbox,FRcolorbox,corners,doublebox,shadowbox,wshadowbox|}",
-    "frameset={${1:code}}",
-    "framearound=${1|none,object,all,row|}",
-    "framefit",
-    "rowfill",
-    "colorframeset=",
-    "colorframecorners=",
-    "captionskip=",
-    "footskip=",
-    "footnoterule=${1|normal,limited,fullsize,none|}",
-    "doublefloataswide",
-    "floatHaslist",
-    "rawfloats"
   ],
-  "keyvals": [
-    [
-      "style=${1|plain,plaintop,Plaintop,ruled,Ruled,boxed,Boxed,BOXED,shadowbox,Shadowbox,SHADOWBOX,doublebox,Doublebox,DOUBLEBOX,wshadowbox,Wshadowbox,WSHADOWBOX|}",
-      "font=${1|scriptsize,footnotesize,small,normalsize,large,Large,up,it,sl,sc,md,bf,rm,sf,tt|}",
-      "footfont=${1|scriptsize,footnotesize,small,normalsize,large,Large,up,it,sl,sc,md,bf,rm,sf,tt|}",
-      "capposition=${1|top,TOP,bottom,beside|}",
-      "capbesideposition=${1|left,right,inside,outside,top,bottom,center|}",
+  "macros": [
+    {
+      "name": "floatsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}"
+      }
+    },
+    {
+      "name": "floatsetup",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:float type}]{${1:options%keyvals}}"
+      }
+    },
+    {
+      "name": "thisfloatsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}"
+      }
+    },
+    {
+      "name": "floatbox",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:float type}}{${2:caption%text}}{${3:object}}"
+      }
+    },
+    {
+      "name": "floatbox",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]{}",
+        "snippet": "{${1:float type}}{${2:caption%text}}[${4:width}]{${3:object}}"
+      }
+    },
+    {
+      "name": "floatbox",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[][]{}",
+        "snippet": "{${1:float type}}{${2:caption%text}}[${4:width}][${5:height}]{${3:object}}"
+      }
+    },
+    {
+      "name": "floatbox",
+      "arg": {
+        "format": "{}{}[][][]{}",
+        "snippet": "{${1:float type}}{${2:caption%text}}[${4:width}][${5:height}][${6:vert pos}]{${3:object}}"
+      }
+    },
+    {
+      "name": "floatbox",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:preamble}]{${1:float type}}{${2:caption%text}}{${3:object}}"
+      }
+    },
+    {
+      "name": "floatbox",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}[]{}",
+        "snippet": "[${4:preamble}]{${1:float type}}{${2:caption%text}}[${5:width}]{${3:object}}"
+      }
+    },
+    {
+      "name": "floatbox",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}[][]{}",
+        "snippet": "[${4:preamble}]{${1:float type}}{${2:caption%text}}[${5:width}][${6:height}]{${3:object}}"
+      }
+    },
+    {
+      "name": "floatbox",
+      "arg": {
+        "format": "[]{}{}[][][]{}",
+        "snippet": "[${4:preamble}]{${1:float type}}{${2:caption%text}}[${5:width}][${6:height}][${7:vert pos}]{${3:object}}"
+      }
+    },
+    {
+      "name": "capbeside",
+      "unusual": true
+    },
+    {
+      "name": "nocapbeside",
+      "unusual": true
+    },
+    {
+      "name": "captop",
+      "unusual": true
+    },
+    {
+      "name": "FBwidth"
+    },
+    {
+      "name": "FBheight"
+    },
+    {
+      "name": "newfloatcommand",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:csname}}{${2:float type}}"
+      }
+    },
+    {
+      "name": "newfloatcommand",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:csname}}{${2:float type}}[${3:preamble}]"
+      }
+    },
+    {
+      "name": "newfloatcommand",
+      "arg": {
+        "format": "{}{}[][]",
+        "snippet": "{${1:csname}}{${2:float type}}[${3:preamble}][${4:default width%l}]"
+      }
+    },
+    {
+      "name": "renewfloatcommand",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:csname}}{${2:float type}}"
+      }
+    },
+    {
+      "name": "renewfloatcommand",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:csname}}{${2:float type}}[${3:preamble}]"
+      }
+    },
+    {
+      "name": "renewfloatcommand",
+      "arg": {
+        "format": "{}{}[][]",
+        "snippet": "{${1:csname}}{${2:float type}}[${3:preamble}][${4:default width%l}]"
+      }
+    },
+    {
+      "name": "ffigbox",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:caption%text}}{${2:object}}"
+      }
+    },
+    {
+      "name": "ffigbox",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:width}]{${1:caption%text}}{${2:object}}"
+      }
+    },
+    {
+      "name": "ffigbox",
+      "unusual": true,
+      "arg": {
+        "format": "[][]{}{}",
+        "snippet": "[${3:width}][${4:height}]{${1:caption%text}}{${2:object}}"
+      }
+    },
+    {
+      "name": "ffigbox",
+      "arg": {
+        "format": "[][][]{}{}",
+        "snippet": "[${3:width}][${4:height}][${5:vert pos}]{${1:caption%text}}{${2:object}}"
+      }
+    },
+    {
+      "name": "ttabbox",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:caption%text}}{${2:object}}"
+      }
+    },
+    {
+      "name": "ttabbox",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:width}]{${1:caption%text}}{${2:object}}"
+      }
+    },
+    {
+      "name": "ttabbox",
+      "unusual": true,
+      "arg": {
+        "format": "[][]{}{}",
+        "snippet": "[${3:width}][${4:height}]{${1:caption%text}}{${2:object}}"
+      }
+    },
+    {
+      "name": "ttabbox",
+      "arg": {
+        "format": "[][][]{}{}",
+        "snippet": "[${3:width}][${4:height}][${5:vert pos}]{${1:caption%text}}{${2:object}}"
+      }
+    },
+    {
+      "name": "fcapside",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:caption%text}}{${2:object}}"
+      }
+    },
+    {
+      "name": "fcapside",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:width}]{${1:caption%text}}{${2:object}}"
+      }
+    },
+    {
+      "name": "fcapside",
+      "unusual": true,
+      "arg": {
+        "format": "[][]{}{}",
+        "snippet": "[${3:width}][${4:height}]{${1:caption%text}}{${2:object}}"
+      }
+    },
+    {
+      "name": "fcapside",
+      "arg": {
+        "format": "[][][]{}{}",
+        "snippet": "[${3:width}][${4:height}][${5:vert pos}]{${1:caption%text}}{${2:object}}"
+      }
+    },
+    {
+      "name": "Xhsize"
+    },
+    {
+      "name": "clearfloatsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:float type}}"
+      }
+    },
+    {
+      "name": "killfloatstyle"
+    },
+    {
+      "name": "CenterFloatBoxes"
+    },
+    {
+      "name": "TopFloatBoxes"
+    },
+    {
+      "name": "BottomFloatBoxes"
+    },
+    {
+      "name": "PlainFloatBoxes"
+    },
+    {
+      "name": "buildFBBOX",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:start code}}{${2:finish code}}"
+      }
+    },
+    {
+      "name": "RawFloats"
+    },
+    {
+      "name": "RawFloats",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:type1,type2,...}]"
+      }
+    },
+    {
+      "name": "RawFloats",
+      "arg": {
+        "format": "[][]",
+        "snippet": "[${1:type}][${2:subtype1,subtype2,...}]"
+      }
+    },
+    {
+      "name": "RawCaption",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:caption code}}"
+      }
+    },
+    {
+      "name": "floatfoot",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "floatfoot*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "FBaskip",
+      "unusual": true
+    },
+    {
+      "name": "FBbskip",
+      "unusual": true
+    },
+    {
+      "name": "DeclareFloatStyle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:options%keyvals}}"
+      }
+    },
+    {
+      "name": "DeclareFloatFont",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:code}}"
+      }
+    },
+    {
+      "name": "DeclareFloatVCode",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:code}}"
+      }
+    },
+    {
+      "name": "DeclareColorBox",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name%specialDef}}{${2:code}}"
+      }
+    },
+    {
+      "name": "DeclareCBoxCorners",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:name%specialDef}}{${2:llcorner}}{${3:lrcorner}}{${4:urcorner}}{${5:ulcorner}}"
+      }
+    },
+    {
+      "name": "DeclareObjectSet",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:code}}"
+      }
+    },
+    {
+      "name": "DeclareMarginSet",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:code}}"
+      }
+    },
+    {
+      "name": "setfloatmargins",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:left margin}}{${2:right margin}}"
+      }
+    },
+    {
+      "name": "floatfacing",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:odd page def}}{${2:even page def}}"
+      }
+    },
+    {
+      "name": "floatfacing*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:odd page def}}{${2:even page def}}"
+      }
+    },
+    {
+      "name": "floatboxmargins",
+      "unusual": true
+    },
+    {
+      "name": "floatrowmargins",
+      "unusual": true
+    },
+    {
+      "name": "floatcapbesidemargins",
+      "unusual": true
+    },
+    {
+      "name": "DeclareFloatSeparators",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:code}}"
+      }
+    },
+    {
+      "name": "DeclareFloatFootnoterule",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:code}}"
+      }
+    },
+    {
+      "name": "DeclareNewFloatType",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:envname}}{${2:options%keyvals}}",
+        "keys": [
+          "\\DeclareNewFloatType"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "newfloat",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:envname}}{${2:placement}}{${3:ext}}"
+      }
+    },
+    {
+      "name": "newfloat",
+      "arg": {
+        "format": "{}{}{}[]",
+        "snippet": "{${1:envname}}{${2:placement}}{${3:ext}}[${4:within}]"
+      }
+    },
+    {
+      "name": "floatname",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:float type}}{${2:name}}"
+      }
+    },
+    {
+      "name": "floatplacement",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:float type}}{${2:placement}}"
+      }
+    },
+    {
+      "name": "listof",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:float type}}{${2:title}}"
+      }
+    },
+    {
+      "name": "floatHpenalties",
+      "unusual": true
+    },
+    {
+      "name": "RestoreSpaces",
+      "unusual": true
+    },
+    {
+      "name": "RemoveSpaces",
+      "unusual": true
+    },
+    {
+      "name": "floatfont",
+      "unusual": true
+    },
+    {
+      "name": "captionskip",
+      "unusual": true
+    },
+    {
+      "name": "floatfootskip",
+      "unusual": true
+    },
+    {
+      "name": "captionlabel",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "subcaptionlabel",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "RawCaption",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "newdimentocommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:dimen macro}}{${2:cmd}}{${3:def}}"
+      }
+    },
+    {
+      "name": "renewdimentocommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:dimen macro}}{${2:cmd}}{${3:def}}"
+      }
+    },
+    {
+      "name": "newskiptocommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:skip macro}}{${2:cmd}}{${3:def}}"
+      }
+    },
+    {
+      "name": "renewskiptocommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:skip macro}}{${2:cmd}}{${3:def}}"
+      }
+    },
+    {
+      "name": "newlengthtocommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:length macro}}{${2:cmd}}{${3:def}}"
+      }
+    },
+    {
+      "name": "renewlengthtocommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:length macro}}{${2:cmd}}{${3:def}}"
+      }
+    },
+    {
+      "name": "DefaultCommonHeight",
+      "unusual": true
+    },
+    {
+      "name": "CommonHeight",
+      "unusual": true
+    },
+    {
+      "name": "CommonHeightRow",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:floatrow env}}"
+      }
+    },
+    {
+      "name": "CommonHeightRow",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:height}]{${1:floatrow env}}"
+      }
+    },
+    {
+      "name": "DeclareFNOpt",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:code}}"
+      }
+    },
+    {
+      "name": "DeclareFNOpt*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:code}}"
+      }
+    },
+    {
+      "name": "DeclareFROpt",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:code}}"
+      }
+    },
+    {
+      "name": "DeclareFROpt*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:code}}"
+      }
+    },
+    {
+      "name": "DeclareFtPos",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:code}}"
+      }
+    },
+    {
+      "name": "DeclareHtAdj",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:code}}"
+      }
+    },
+    {
+      "name": "DeclareSCPos",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:code}}"
+      }
+    },
+    {
+      "name": "CADJfalse",
+      "unusual": true
+    },
+    {
+      "name": "CADJtrue",
+      "unusual": true
+    },
+    {
+      "name": "capbot",
+      "unusual": true
+    },
+    {
+      "name": "capsubrowsettings",
+      "unusual": true
+    },
+    {
+      "name": "captionfootfont",
+      "unusual": true
+    },
+    {
+      "name": "CAPTOP",
+      "unusual": true
+    },
+    {
+      "name": "FBafil",
+      "unusual": true
+    },
+    {
+      "name": "FBbfil",
+      "unusual": true
+    },
+    {
+      "name": "FBbuildfalse",
+      "unusual": true
+    },
+    {
+      "name": "FBbuildtrue",
+      "unusual": true
+    },
+    {
+      "name": "FBcheight",
+      "unusual": true
+    },
+    {
+      "name": "FBfheight",
+      "unusual": true
+    },
+    {
+      "name": "FBfootnoterule",
+      "unusual": true
+    },
+    {
+      "name": "FBifcapbeside",
+      "unusual": true
+    },
+    {
+      "name": "FBifCAPTOP",
+      "unusual": true
+    },
+    {
+      "name": "FBifcaptop",
+      "unusual": true
+    },
+    {
+      "name": "FBiffloatrow",
+      "unusual": true
+    },
+    {
+      "name": "FBleftmargin",
+      "unusual": true
+    },
+    {
+      "name": "FBoheight",
+      "unusual": true
+    },
+    {
+      "name": "FBrightmargin",
+      "unusual": true
+    },
+    {
+      "name": "FCleftmargin",
+      "unusual": true
+    },
+    {
+      "name": "FCrightmargin",
+      "unusual": true
+    },
+    {
+      "name": "FCwidth",
+      "unusual": true
+    },
+    {
+      "name": "filFCOhsize",
+      "unusual": true
+    },
+    {
+      "name": "floatcapbesidesep",
+      "unusual": true
+    },
+    {
+      "name": "floatobjectset",
+      "unusual": true
+    },
+    {
+      "name": "floatrowsep",
+      "unusual": true
+    },
+    {
+      "name": "floatstyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "FPOScnt",
+      "unusual": true
+    },
+    {
+      "name": "FRcolorboxdp",
+      "unusual": true
+    },
+    {
+      "name": "FRcolorboxht",
+      "unusual": true
+    },
+    {
+      "name": "FRcolorboxwd",
+      "unusual": true
+    },
+    {
+      "name": "FRifFBOX",
+      "unusual": true
+    },
+    {
+      "name": "FRleftmargin",
+      "unusual": true
+    },
+    {
+      "name": "frulemax",
+      "unusual": true
+    },
+    {
+      "name": "ifCADJ",
+      "unusual": true
+    },
+    {
+      "name": "ifFBbuild",
+      "unusual": true
+    },
+    {
+      "name": "ifOADJ",
+      "unusual": true
+    },
+    {
+      "name": "LTleft",
+      "unusual": true
+    },
+    {
+      "name": "LTright",
+      "unusual": true
+    },
+    {
+      "name": "mpfootnotemark",
+      "unusual": true
+    },
+    {
+      "name": "nofilFCOhsize",
+      "unusual": true
+    },
+    {
+      "name": "nofilFCOhsize",
+      "unusual": true
+    },
+    {
+      "name": "OADJfalse",
+      "unusual": true
+    },
+    {
+      "name": "OADJtrue",
+      "unusual": true
+    },
+    {
+      "name": "ProcessOptionsWithKV",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "refsteponlycounter",
+      "unusual": true
+    },
+    {
+      "name": "restylefloat",
+      "unusual": true
+    },
+    {
+      "name": "subfloatrowsep",
+      "unusual": true
+    },
+    {
+      "name": "sXhsize",
+      "unusual": true
+    },
+    {
+      "name": "sZhsize",
+      "unusual": true
+    },
+    {
+      "name": "theFBcnt",
+      "unusual": true
+    },
+    {
+      "name": "theFRobj",
+      "unusual": true
+    },
+    {
+      "name": "theFRsobj",
+      "unusual": true
+    },
+    {
+      "name": "useFCwidth",
+      "unusual": true
+    },
+    {
+      "name": "Zhsize",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "floatrow"
+    },
+    {
+      "name": "floatrow",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:number of beside floats}]"
+      }
+    },
+    {
+      "name": "subfloatrow",
+      "unusual": true
+    },
+    {
+      "name": "subfloatrow",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:number of beside floats}]"
+      }
+    },
+    {
+      "name": "subfloatrow*",
+      "unusual": true
+    },
+    {
+      "name": "subfloatrow*",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:number of beside floats}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\floatsetup#c,\\thisfloatsetup#c,\\usepackage/floatrow#c,\\DeclareFloatStyle#c": [
+      "style=${1|plain,plaintop,Plaintop,ruled,Ruled,boxed,Boxed,BOXED,shadowbox,Shadowbox,SHADOWBOX,doublebox,Doublebox,DOUBLEBOX,wshadowbox,Wshadowbox,WSHADOWBOX\r|}",
+      "font=${1|scriptsize,footnotesize,small,normalsize,large,Large,up,it,sl,sc,md,bf,rm,sf,tt\r|}",
+      "footfont=${1|scriptsize,footnotesize,small,normalsize,large,Large,up,it,sl,sc,md,bf,rm,sf,tt\r|}",
+      "capposition=${1|top,TOP,bottom,beside\r|}",
+      "capbesideposition=${1|left,right,inside,outside,top,bottom,center\r|}",
       "capbesidewidth=",
       "floatwidth=",
-      "capbesideframe=${1|yes,no|}",
-      "footposition=${1|default,caption,bottom|}",
-      "heightadjust=${1|all,caption,object,none,nocaption,noobject|}",
-      "valign=${1|t,c,b,s|}",
-      "facing=${1|yes,no|}",
-      "objectset=${1|justified,centering,raggedright,RaggedRight,raggedleft|}",
-      "margins=${1|centering,raggedright,raggedleft,hangleft,hangright,hanginside,hangoutside|}",
-      "floatrowsep=${1|columnsep,quad,qquad,hfil,hfill,none|}",
-      "capbesidesep=${1|columnsep,quad,qquad,hfil,hfill,none|}",
-      "precode=${1|none,thickrule,rule,lowrule,captionskip|}",
-      "rowprecode=${1|none,thickrule,rule,lowrule,captionskip|}",
-      "midcode=${1|none,thickrule,rule,lowrule,captionskip|}",
-      "postcode=${1|none,thickrule,rule,lowrule,captionskip|}",
-      "rowpostcode=${1|none,thickrule,rule,lowrule,captionskip|}",
-      "framestyle=${1|fbox,colorbox,FRcolorbox,corners,doublebox,shadowbox,wshadowbox|}",
-      "frameset={${1:code}}",
-      "framearound=${1|none,object,all,row|}",
+      "capbesideframe=${1|yes,no\r|}",
+      "footposition=${1|default,caption,bottom\r|}",
+      "heightadjust=${1|all,caption,object,none,nocaption,noobject\r|}",
+      "valign=${1|t,c,b,s\r|}",
+      "facing=${1|yes,no\r|}",
+      "objectset=${1|justified,centering,raggedright,RaggedRight,raggedleft\r|}",
+      "margins=${1|centering,raggedright,raggedleft,hangleft,hangright,hanginside,hangoutside\r|}",
+      "floatrowsep=${1|columnsep,quad,qquad,hfil,hfill,none\r|}",
+      "capbesidesep=${1|columnsep,quad,qquad,hfil,hfill,none\r|}",
+      "precode=${1|none,thickrule,rule,lowrule,captionskip\r|}",
+      "rowprecode=${1|none,thickrule,rule,lowrule,captionskip\r|}",
+      "midcode=${1|none,thickrule,rule,lowrule,captionskip\r|}",
+      "postcode=${1|none,thickrule,rule,lowrule,captionskip\r|}",
+      "rowpostcode=${1|none,thickrule,rule,lowrule,captionskip\r|}",
+      "framestyle=${1|fbox,colorbox,FRcolorbox,corners,doublebox,shadowbox,wshadowbox\r|}",
+      "frameset={${1:code}}\r",
+      "framearound=${1|none,object,all,row\r|}",
       "framefit",
       "rowfill",
       "colorframeset=",
       "colorframecorners=",
       "captionskip=",
       "footskip=",
-      "footnoterule=${1|normal,limited,fullsize,none|}",
+      "footnoterule=${1|normal,limited,fullsize,none\r|}",
       "doublefloataswide",
       "floatHaslist"
     ],
-    [
-      "placement=${1:combination of t,b,h,p}",
-      "name=${1:name}",
-      "fileext=${1:ext}",
-      "within=${1:counter}",
-      "relatedcapstyle=${1|yes,no|}"
+    "\\usepackage/floatrow#c": [
+      "rawfloats\r"
+    ],
+    "\\DeclareNewFloatType": [
+      "placement=${1:combination of t,b,h,p}\r",
+      "name=${1:name}\r",
+      "fileext=${1:ext}\r",
+      "within=${1:counter}\r",
+      "relatedcapstyle=${1|yes,no\r|}"
     ]
+  },
+  "args": [
+    "\\floatsetup#c,\\thisfloatsetup#c,\\usepackage/floatrow#c,\\DeclareFloatStyle#c",
+    "\\usepackage/floatrow#c"
   ]
 }

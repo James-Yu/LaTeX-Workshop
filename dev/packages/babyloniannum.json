@@ -1,25 +1,52 @@
 {
-  "includes": {
-    "fontspec": [],
-    "xunicode": [],
-    "numname": []
-  },
-  "macros": {
-    "babyloniannum{}": {
-      "snippet": "babyloniannum{${1:number}}"
+  "deps": [
+    {
+      "name": "fontspec"
     },
-    "babylonian{}": {
-      "snippet": "babylonian{${1:counter}}"
+    {
+      "name": "xunicode"
     },
-    "babylonianfont": {},
-    "unicodedisp{}": {
-      "snippet": "unicodedisp{${1:unicode num}}"
-    },
-    "babylonianglyph{}": {
-      "snippet": "babylonianglyph{${1:number}}"
+    {
+      "name": "numname"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "babyloniannum",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "babylonian",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "babylonianfont",
+      "unusual": true
+    },
+    {
+      "name": "unicodedisp",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:unicode num}}"
+      }
+    },
+    {
+      "name": "babylonianglyph",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

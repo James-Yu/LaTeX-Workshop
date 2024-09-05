@@ -1,24 +1,40 @@
 {
-  "includes": {
-    "fontaxes": [],
-    "ifluatex": [],
-    "ifxetex": [],
-    "xkeyval": []
-  },
-  "macros": {
-    "lato": {},
-    "latofamily": {},
-    "flafamily": {}
-  },
-  "envs": {},
-  "options": [
-    "scaled=${1:factor}",
-    "default",
-    "defaultsans",
-    "oldstyle",
-    "tabular",
-    "proportional",
-    "type1"
+  "deps": [
+    {
+      "name": "fontaxes"
+    },
+    {
+      "name": "ifluatex"
+    },
+    {
+      "name": "ifxetex"
+    },
+    {
+      "name": "xkeyval"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "lato"
+    },
+    {
+      "name": "latofamily",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/lato#c": [
+      "scaled=${1:factor}\r",
+      "default\r",
+      "defaultsans\r",
+      "oldstyle\r",
+      "tabular\r",
+      "proportional\r",
+      "type1\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/lato#c"
+  ]
 }

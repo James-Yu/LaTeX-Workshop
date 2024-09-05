@@ -1,59 +1,88 @@
 {
-  "includes": {
-    "xcolor": [],
-    "kvoptions": []
-  },
-  "macros": {
-    "printcolorvalue{}": {
-      "snippet": "printcolorvalue{${1:color}}"
+  "deps": [
+    {
+      "name": "xcolor"
     },
-    "printcolorvalue[]{}": {
-      "snippet": "printcolorvalue[${2:model}]{${1:color}}"
-    },
-    "colorsample{}": {
-      "snippet": "colorsample{${1:color}}"
-    },
-    "colorsample[][][]{}[]": {
-      "snippet": "colorsample[${2:model}][${3:textcolor}][${4:box width}]{${1:color}}[${5:title}]"
-    },
-    "colorpalette{}": {
-      "snippet": "colorpalette{${1:color}}"
-    },
-    "colorpalette[]{}": {
-      "snippet": "colorpalette[${2:options}]{${1:color}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "kvoptions"
     }
-  },
-  "envs": {},
-  "options": [
-    "prefix=${1:prefix}"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "printcolorvalue",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "printcolorvalue",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:model}]{${1:color}}"
+      }
+    },
+    {
+      "name": "colorsample",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "colorsample",
+      "arg": {
+        "format": "[][][]{}[]",
+        "snippet": "[${2:model}][${3:textcolor%color}][${4:box width%l}]{${1:color}}[${5:title%text}]"
+      }
+    },
+    {
+      "name": "colorpalette",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "colorpalette",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:color}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/xcolor-material#c": [
+      "prefix=${1:prefix}\r"
+    ],
+    "\\colorpalette": [
       "width=",
       "height=",
-      "shape=${1:shape}",
+      "shape=${1:shape}\r",
       "title=",
       "title text color=",
       "init text color=",
       "altern text color=",
-      "variation font=",
-      "value font=",
-      "title font=",
+      "variation font=\r",
+      "value font=\r",
+      "title font=\r",
       "colorbox sep=",
       "first colorbox sep=",
       "title colorbox height=",
-      "primary palette=",
-      "secondary palette=",
-      "percent char=",
-      "primary variation=",
-      "primary toggle at=",
-      "secondary toggle at=",
-      "color model=",
-      "both",
-      "primary",
-      "basic"
+      "primary palette=\r",
+      "secondary palette=\r",
+      "percent char=\r",
+      "primary variation=\r",
+      "primary toggle at=\r",
+      "secondary toggle at=\r",
+      "color model=\r",
+      "both\r",
+      "primary\r",
+      "basic\r"
     ]
+  },
+  "args": [
+    "\\usepackage/xcolor-material#c"
   ]
 }

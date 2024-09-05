@@ -1,24 +1,34 @@
 {
-  "includes": {
-    "graphicx": [],
-    "etoolbox": []
-  },
-  "macros": {
-    "newpaxsetup{}": {
-      "snippet": "newpaxsetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "graphicx"
+    },
+    {
+      "name": "etoolbox"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "newpaxsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\newpaxsetup"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\newpaxsetup": [
       "usefileattributes",
-      "destsuffix=${1:suffix}",
+      "destsuffix=${1:suffix}\r",
       "addannots",
-      "dests=${1|used,all|}",
-      "paxextension=${1|pax,newpax|}"
+      "dests=${1|used,all\r|}",
+      "paxextension=${1|pax,newpax\r|}"
     ]
-  ]
+  },
+  "args": []
 }

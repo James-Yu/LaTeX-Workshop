@@ -1,20 +1,41 @@
 {
-  "includes": {
-    "ifxetex": [],
-    "ifluatex": [],
-    "xkeyval": [],
-    "fontenc": [],
-    "fontaxes": [],
-    "mweights": []
-  },
-  "macros": {
-    "bitter": {},
-    "Bitterfamily": {}
-  },
-  "envs": {},
-  "options": [
-    "scaled=${1:factor}",
-    "type1"
+  "deps": [
+    {
+      "name": "ifxetex"
+    },
+    {
+      "name": "ifluatex"
+    },
+    {
+      "name": "xkeyval"
+    },
+    {
+      "name": "fontenc"
+    },
+    {
+      "name": "fontaxes"
+    },
+    {
+      "name": "mweights"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "bitter"
+    },
+    {
+      "name": "Bitterfamily",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/bitter#c": [
+      "scaled=${1:factor}\r",
+      "type1\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/bitter#c"
+  ]
 }

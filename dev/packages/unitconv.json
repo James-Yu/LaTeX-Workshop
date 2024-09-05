@@ -1,41 +1,103 @@
 {
-  "includes": {
-    "iftex": [],
-    "luacode": []
-  },
-  "macros": {
-    "convTeXLength{}": {
-      "snippet": "convTeXLength{${1:TeX length}}"
+  "deps": [
+    {
+      "name": "iftex"
     },
-    "convTeXLength[]{}": {
-      "snippet": "convTeXLength[${2:unit}]{${1:TeX length}}"
-    },
-    "convTeXLength[][]{}": {
-      "snippet": "convTeXLength[${2:unit}][${3:digits}]{${1:TeX length}}"
-    },
-    "convTeXLength*{}": {
-      "snippet": "convTeXLength*{${1:TeX length}}"
-    },
-    "convTeXLength*[]{}": {
-      "snippet": "convTeXLength*[${2:unit}]{${1:TeX length}}"
-    },
-    "convTeXLength*[][]{}": {
-      "snippet": "convTeXLength*[${2:unit}][${3:digits}]{${1:TeX length}}"
-    },
-    "convLength[]{}[]": {
-      "snippet": "convLength[${2:unit1}]{${1:value}}[${3:unit2}]"
-    },
-    "convLength[][]{}[]": {
-      "snippet": "convLength[${2:unit1}][${3:digits}]{${1:value}}[${4:unit2}]"
-    },
-    "convLength*[]{}[]": {
-      "snippet": "convLength*[${2:unit1}]{${1:value}}[${3:unit2}]"
-    },
-    "convLength*[][]{}[]": {
-      "snippet": "convLength*[${2:unit1}][${3:digits}]{${1:value}}[${4:unit2}]"
+    {
+      "name": "luacode"
     }
+  ],
+  "macros": [
+    {
+      "name": "convTeXLength",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:TeX length}}"
+      }
+    },
+    {
+      "name": "convTeXLength",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:unit%keyvals}]{${1:TeX length}}"
+      }
+    },
+    {
+      "name": "convTeXLength",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:unit%keyvals}][${3:digits}]{${1:TeX length}}"
+      }
+    },
+    {
+      "name": "convTeXLength*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:TeX length}}"
+      }
+    },
+    {
+      "name": "convTeXLength*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:unit%keyvals}]{${1:TeX length}}"
+      }
+    },
+    {
+      "name": "convTeXLength*",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:unit%keyvals}][${3:digits}]{${1:TeX length}}"
+      }
+    },
+    {
+      "name": "convLength",
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:unit1%keyvals}]{${1:value}}[${3:unit2}]"
+      }
+    },
+    {
+      "name": "convLength",
+      "arg": {
+        "format": "[][]{}[]",
+        "snippet": "[${2:unit1%keyvals}][${3:digits}]{${1:value}}[${4:unit2}]"
+      }
+    },
+    {
+      "name": "convLength*",
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:unit1%keyvals}]{${1:value}}[${3:unit2}]"
+      }
+    },
+    {
+      "name": "convLength*",
+      "arg": {
+        "format": "[][]{}[]",
+        "snippet": "[${2:unit1%keyvals}][${3:digits}]{${1:value}}[${4:unit2}]"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\convTeXLength,\\convTeXLength*,\\convLength,\\convLength*": [
+      "bp\r",
+      "cc\r",
+      "cm\r",
+      "dd\r",
+      "em\r",
+      "ex\r",
+      "in\r",
+      "km\r",
+      "m\r",
+      "mm\r",
+      "mu\r",
+      "pc\r",
+      "pt\r",
+      "px\r",
+      "sp\r"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

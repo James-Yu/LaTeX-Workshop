@@ -1,30 +1,36 @@
 {
-  "includes": {
-    "filehook": [],
-    "pgfkeys": []
-  },
-  "macros": {
-    "pgffilehook{}": {
-      "snippet": "pgffilehook{${1:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "filehook"
+    },
+    {
+      "name": "pgfkeys"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "EveryFile",
-      "Files",
-      "File",
-      "Inputs",
-      "InputFile",
-      "Includes",
-      "IncludeFile",
-      "ClassFile",
-      "PackageFile",
-      "AtBegin={${1:code}}",
-      "AtEnd={${1:code}}"
+  ],
+  "macros": [
+    {
+      "name": "pgffilehook",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\pgffilehook": [
+      "EveryFile\r",
+      "Files\r",
+      "File\r",
+      "Inputs\r",
+      "InputFile\r",
+      "Includes\r",
+      "IncludeFile\r",
+      "ClassFile\r",
+      "PackageFile\r",
+      "AtBegin={${1:code}}\r",
+      "AtEnd={${1:code}}\r"
     ]
-  ]
+  },
+  "args": []
 }

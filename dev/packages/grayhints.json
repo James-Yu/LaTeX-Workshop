@@ -1,50 +1,85 @@
 {
-  "includes": {
-    "eforms": []
-  },
-  "macros": {
-    "BlurToBlack": {},
-    "CalcToGray": {},
-    "CommitSuccessEvent{}": {
-      "snippet": "CommitSuccessEvent{${1:actions}}"
-    },
-    "EnterCommitFailEvent{}": {
-      "snippet": "EnterCommitFailEvent{${1:actions}}"
-    },
-    "FmtToGray{}": {
-      "snippet": "FmtToGray{${1:text}}"
-    },
-    "FocusToBlack": {},
-    "KeyToGray": {},
-    "matchGray": {},
-    "normalGrayColors{}{}": {
-      "snippet": "normalGrayColors{${1:normalcolor}}{${2:graycolor}}"
-    },
-    "EnterCommitFailDef": {},
-    "FailStringDef": {},
-    "FormsRequirement": {},
-    "nocalcs": {},
-    "nodljsend": {}
-  },
-  "envs": {},
-  "options": [
-    "usehyforms",
-    "nocalcs",
-    "nodljs",
-    "dvipsone",
-    "dvips",
-    "textures",
-    "pdftex",
-    "luatex",
-    "dvipdfm",
-    "dvipdfmx",
-    "xetex",
-    "nodljs",
-    "debug",
-    "execJS",
-    "nopro",
-    "reqjs",
-    "!reqjs"
+  "deps": [
+    {
+      "name": "eforms"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "BlurToBlack"
+    },
+    {
+      "name": "CalcToGray"
+    },
+    {
+      "name": "CommitSuccessEvent",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:actions}}"
+      }
+    },
+    {
+      "name": "EnterCommitFailEvent",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:actions}}"
+      }
+    },
+    {
+      "name": "FmtToGray",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "FocusToBlack"
+    },
+    {
+      "name": "KeyToGray"
+    },
+    {
+      "name": "matchGray"
+    },
+    {
+      "name": "normalGrayColors",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:normalcolor}}{${2:graycolor}}"
+      }
+    },
+    {
+      "name": "EnterCommitFailDef",
+      "unusual": true
+    },
+    {
+      "name": "FailStringDef",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/grayhints#c": [
+      "usehyforms\r",
+      "nocalcs\r",
+      "nodljs\r",
+      "dvipsone\r",
+      "dvips\r",
+      "textures\r",
+      "pdftex\r",
+      "luatex\r",
+      "dvipdfm\r",
+      "dvipdfmx\r",
+      "xetex\r",
+      "nodljs\r",
+      "debug\r",
+      "execJS\r",
+      "nopro\r",
+      "reqjs\r",
+      "!reqjs\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/grayhints#c"
+  ]
 }

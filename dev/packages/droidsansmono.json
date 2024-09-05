@@ -1,20 +1,34 @@
 {
-  "includes": {
-    "ifluatex": [],
-    "ifxetex": [],
-    "xkeyval": []
-  },
-  "macros": {
-    "droidsansmono": {},
-    "droidsansmonofamily": {},
-    "fdmfamily": {}
-  },
-  "envs": {},
-  "options": [
-    "scale=${1:factor}",
-    "scaled=${1:factor}",
-    "defaultmono",
-    "type1"
+  "deps": [
+    {
+      "name": "ifluatex"
+    },
+    {
+      "name": "ifxetex"
+    },
+    {
+      "name": "xkeyval"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "droidsansmono"
+    },
+    {
+      "name": "droidsansmonofamily",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/droidsansmono#c": [
+      "scale=${1:factor}\r",
+      "scaled=${1:factor}\r",
+      "defaultmono\r",
+      "type1\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/droidsansmono#c"
+  ]
 }

@@ -1,53 +1,104 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "kvoptions": [],
-    "amsmath": [],
-    "mathtools": [],
-    "xstring": []
-  },
-  "macros": {
-    "paren()": {
-      "snippet": "paren(${1:expression in parenthesis})"
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "paren*()": {
-      "snippet": "paren*(${1:expression in parenthesis})"
+    {
+      "name": "kvoptions"
     },
-    "paren[]": {
-      "snippet": "paren[${1:expression in brackets}]"
+    {
+      "name": "amsmath"
     },
-    "paren*[]": {
-      "snippet": "paren*[${1:expression in brackets}]"
+    {
+      "name": "mathtools"
     },
-    "paren<>": {
-      "snippet": "paren<${1:expression in angle brackets}>"
-    },
-    "paren*<>": {
-      "snippet": "paren*<${1:expression in angle brackets}>"
-    },
-    "paren{}": {
-      "snippet": "paren{${1:expression in curly braces}}"
-    },
-    "paren*{}": {
-      "snippet": "paren*{${1:expression in curly braces}}"
-    },
-    "backtick": {},
-    "parenMakeBacktickActiveParen": {},
-    "parenMakeNormalBacktick": {},
-    "parenRegister{}{}{}{}{}": {
-      "snippet": "parenRegister{${1:name}}{${2:delim1}}{${3:delim2}}{${4:display delim1}}{${5:display delim2}}"
-    },
-    "parenRegsiterSimpleBraces{}": {
-      "snippet": "parenRegsiterSimpleBraces{${1:name}}"
-    },
-    "parenRegisterDefaults": {}
-  },
-  "envs": {},
-  "options": [
-    "backtick",
-    "nobacktick",
-    "registerdefaults",
-    "noregisterdefaults"
+    {
+      "name": "xstring"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "paren(expression in parenthesis)"
+    },
+    {
+      "name": "paren*(expression in parenthesis)"
+    },
+    {
+      "name": "paren",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:expression in brackets}]"
+      }
+    },
+    {
+      "name": "paren*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:expression in brackets}]"
+      }
+    },
+    {
+      "name": "paren<expression in angle brackets>"
+    },
+    {
+      "name": "paren*<expression in angle brackets>"
+    },
+    {
+      "name": "paren",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression in curly braces}}"
+      }
+    },
+    {
+      "name": "paren*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression in curly braces}}"
+      }
+    },
+    {
+      "name": "backtick"
+    },
+    {
+      "name": "parenMakeBacktickActiveParen",
+      "unusual": true
+    },
+    {
+      "name": "parenMakeNormalBacktick",
+      "unusual": true
+    },
+    {
+      "name": "parenRegister",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:name}}{${2:delim1%definition}}{${3:delim2%definition}}{${4:display delim1%definition}}{${5:display delim2%definition}}"
+      }
+    },
+    {
+      "name": "parenRegsiterSimpleBraces",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "parenRegisterDefaults",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/phfparen#c": [
+      "backtick",
+      "nobacktick",
+      "registerdefaults",
+      "noregisterdefaults"
+    ]
+  },
+  "args": [
+    "\\usepackage/phfparen#c"
+  ]
 }

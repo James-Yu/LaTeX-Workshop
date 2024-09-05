@@ -1,18 +1,32 @@
 {
-  "includes": {
-    "ltxcmds": [],
-    "intcalc": [],
-    "bigintcalc": []
-  },
-  "macros": {
-    "fibnum{}": {
-      "snippet": "fibnum{${1:index}}"
+  "deps": [
+    {
+      "name": "ltxcmds"
     },
-    "fibnumPreCalc{}": {
-      "snippet": "fibnumPreCalc{${1:index}}"
+    {
+      "name": "intcalc"
+    },
+    {
+      "name": "bigintcalc"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "fibnum",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:index}}"
+      }
+    },
+    {
+      "name": "fibnumPreCalc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:index}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

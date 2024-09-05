@@ -1,171 +1,363 @@
 {
-  "includes": {
-    "ifthen": [],
-    "iftex": [],
-    "class-jurabook": [],
-    "inputenc": [],
-    "fontenc": [],
-    "tgtermes": [],
-    "tgheros": [],
-    "tgcursor": [],
-    "eurosym": [],
-    "babel": [],
-    "indentfirst": [],
-    "geometry": [],
-    "ellipsis": [],
-    "csquotes": [],
-    "microtype": [],
-    "jurabib": [],
-    "varioref": [
-      "varioref"
+  "deps": [
+    {
+      "name": "ifthen"
+    },
+    {
+      "name": "iftex"
+    },
+    {
+      "name": "class-jurabook"
+    },
+    {
+      "name": "inputenc"
+    },
+    {
+      "name": "fontenc"
+    },
+    {
+      "name": "tgtermes"
+    },
+    {
+      "name": "tgheros"
+    },
+    {
+      "name": "tgcursor"
+    },
+    {
+      "name": "eurosym"
+    },
+    {
+      "name": "babel"
+    },
+    {
+      "name": "indentfirst"
+    },
+    {
+      "name": "geometry"
+    },
+    {
+      "name": "ellipsis"
+    },
+    {
+      "name": "csquotes"
+    },
+    {
+      "name": "microtype"
+    },
+    {
+      "name": "jurabib"
+    },
+    {
+      "name": "varioref",
+      "if": "varioref"
+    }
+  ],
+  "macros": [
+    {
+      "name": "author",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:Kurzautor}]{${1:Autor}}"
+      }
+    },
+    {
+      "name": "matrikelnummer",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Matrikelnummer}}"
+      }
+    },
+    {
+      "name": "prof",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Betreuer}}"
+      }
+    },
+    {
+      "name": "sectionafter",
+      "unusual": true
+    },
+    {
+      "name": "sectionbefore",
+      "unusual": true
+    },
+    {
+      "name": "semester",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:Fachsemester}]{${1:Semesterangabe}}"
+      }
+    },
+    {
+      "name": "semester",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Semesterangabe}}"
+      }
+    },
+    {
+      "name": "setpg",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Maße}}"
+      }
+    },
+    {
+      "name": "setpgfront",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Maße für Vorspann}}"
+      }
+    },
+    {
+      "name": "setpgmain",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Maße für Hauptteil}}"
+      }
+    },
+    {
+      "name": "setspaceafterchapter",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
+    },
+    {
+      "name": "setspaceaftersection",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
+    },
+    {
+      "name": "setspacebeforechapter",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
+    },
+    {
+      "name": "setspacebeforesection",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
+    },
+    {
+      "name": "DH"
+    },
+    {
+      "name": "dh"
+    },
+    {
+      "name": "dj"
+    },
+    {
+      "name": "DJ"
+    },
+    {
+      "name": "guillemetleft"
+    },
+    {
+      "name": "guillemetright"
+    },
+    {
+      "name": "guillemotleft",
+      "unusual": true
+    },
+    {
+      "name": "guillemotright",
+      "unusual": true
+    },
+    {
+      "name": "guilsinglleft"
+    },
+    {
+      "name": "guilsinglright"
+    },
+    {
+      "name": "Hwithstroke"
+    },
+    {
+      "name": "hwithstroke"
+    },
+    {
+      "name": "k",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "NG"
+    },
+    {
+      "name": "ng"
+    },
+    {
+      "name": "quotedblbase"
+    },
+    {
+      "name": "quotesinglbase"
+    },
+    {
+      "name": "textogonekcentered",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textquotedbl"
+    },
+    {
+      "name": "th"
+    },
+    {
+      "name": "TH"
+    },
+    {
+      "name": "captionsngerman"
+    },
+    {
+      "name": "datengerman"
+    },
+    {
+      "name": "extrasngerman"
+    },
+    {
+      "name": "noextrasngerman"
+    },
+    {
+      "name": "dq"
+    },
+    {
+      "name": "ntosstrue",
+      "unusual": true
+    },
+    {
+      "name": "ntossfalse",
+      "unusual": true
+    },
+    {
+      "name": "prefacename",
+      "unusual": true
+    },
+    {
+      "name": "bibname",
+      "unusual": true
+    },
+    {
+      "name": "chaptername",
+      "unusual": true
+    },
+    {
+      "name": "enclname",
+      "unusual": true
+    },
+    {
+      "name": "ccname",
+      "unusual": true
+    },
+    {
+      "name": "headtoname",
+      "unusual": true
+    },
+    {
+      "name": "seename",
+      "unusual": true
+    },
+    {
+      "name": "alsoname",
+      "unusual": true
+    },
+    {
+      "name": "proofname",
+      "unusual": true
+    },
+    {
+      "name": "glossaryname",
+      "unusual": true
+    },
+    {
+      "name": "mdqon",
+      "unusual": true
+    },
+    {
+      "name": "mdqoff",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\documentclass/hausarbeit-jura#c": [
+      "american\r",
+      "british\r",
+      "english\r",
+      "latin1\r",
+      "utf8\r",
+      "ansinew\r",
+      "applemac\r",
+      "centerpagenumber\r",
+      "texgyre\r",
+      "oldfonts\r",
+      "nosuperscriptedition\r",
+      "varioref\r",
+      "headline\r",
+      "headlinetitlepageleft\r",
+      "noautomatter\r",
+      "automatter\r",
+      "allowhyphens\r",
+      "indexpagenumbers\r",
+      "norunners\r",
+      "rnrefbold\r",
+      "oldfootnotes\r",
+      "fncontinued\r",
+      "showpagenumber\r",
+      "suppresswebdates\r",
+      "longfnrule\r",
+      "classiclayout\r",
+      "centeredpartsintoc\r",
+      "centeredlayout\r",
+      "screenmode\r",
+      "compact\r",
+      "decisionhints\r",
+      "overviewwithsec\r",
+      "seminar\r",
+      "chapterprefix\r",
+      "chaptersuffix\r",
+      "fixtocindent\r",
+      "maketime\r",
+      "ruwtitle\r",
+      "a4paper\r",
+      "a5paper\r",
+      "b5paper\r",
+      "letterpaper\r",
+      "legalpaper\r",
+      "executivepaper\r",
+      "landscape\r",
+      "10pt\r",
+      "11pt\r",
+      "12pt\r",
+      "oneside\r",
+      "twoside\r",
+      "draft\r",
+      "final\r",
+      "titlepage\r",
+      "openright\r",
+      "openany\r",
+      "onecolumn\r",
+      "twocolumn\r",
+      "leqno\r",
+      "fleqn\r",
+      "openbib\r"
     ]
   },
-  "macros": {
-    "author[]{}": {
-      "snippet": "author[${2:Kurzautor}]{${1:Autor}}"
-    },
-    "matrikelnummer{}": {
-      "snippet": "matrikelnummer{${1:Matrikelnummer}}"
-    },
-    "prof{}": {
-      "snippet": "prof{${1:Betreuer}}"
-    },
-    "sectionafter": {},
-    "sectionbefore": {},
-    "semester[]{}": {
-      "snippet": "semester[${2:Fachsemester}]{${1:Semesterangabe}}"
-    },
-    "semester{}": {
-      "snippet": "semester{${1:Semesterangabe}}"
-    },
-    "setpg{}": {
-      "snippet": "setpg{${1:Maße}}"
-    },
-    "setpgfront{}": {
-      "snippet": "setpgfront{${1:Maße für Vorspann}}"
-    },
-    "setpgmain{}": {
-      "snippet": "setpgmain{${1:Maße für Hauptteil}}"
-    },
-    "setspaceafterchapter{}": {
-      "snippet": "setspaceafterchapter{${1:length}}"
-    },
-    "setspaceaftersection{}": {
-      "snippet": "setspaceaftersection{${1:length}}"
-    },
-    "setspacebeforechapter{}": {
-      "snippet": "setspacebeforechapter{${1:length}}"
-    },
-    "setspacebeforesection{}": {
-      "snippet": "setspacebeforesection{${1:length}}"
-    },
-    "DH": {},
-    "dh": {},
-    "dj": {},
-    "DJ": {},
-    "guillemetleft": {},
-    "guillemetright": {},
-    "guillemotleft": {},
-    "guillemotright": {},
-    "guilsinglleft": {},
-    "guilsinglright": {},
-    "Hwithstroke": {},
-    "hwithstroke": {},
-    "k{}": {
-      "snippet": "k{${1:arg}}"
-    },
-    "NG": {},
-    "ng": {},
-    "quotedblbase": {},
-    "quotesinglbase": {},
-    "textogonekcentered{}": {
-      "snippet": "textogonekcentered{${1:arg}}"
-    },
-    "textquotedbl": {},
-    "th": {},
-    "TH": {},
-    "captionsngerman": {},
-    "datengerman": {},
-    "extrasngerman": {},
-    "noextrasngerman": {},
-    "dq": {},
-    "ntosstrue": {},
-    "ntossfalse": {},
-    "prefacename": {},
-    "bibname": {},
-    "chaptername": {},
-    "enclname": {},
-    "ccname": {},
-    "headtoname": {},
-    "seename": {},
-    "alsoname": {},
-    "proofname": {},
-    "glossaryname": {},
-    "mdqon": {},
-    "mdqoff": {}
-  },
-  "envs": {},
-  "options": [
-    "american",
-    "british",
-    "english",
-    "latin1",
-    "utf8",
-    "ansinew",
-    "applemac",
-    "centerpagenumber",
-    "texgyre",
-    "oldfonts",
-    "nosuperscriptedition",
-    "varioref",
-    "headline",
-    "headlinetitlepageleft",
-    "noautomatter",
-    "automatter",
-    "allowhyphens",
-    "indexpagenumbers",
-    "norunners",
-    "rnrefbold",
-    "oldfootnotes",
-    "fncontinued",
-    "showpagenumber",
-    "suppresswebdates",
-    "longfnrule",
-    "classiclayout",
-    "centeredpartsintoc",
-    "centeredlayout",
-    "screenmode",
-    "compact",
-    "decisionhints",
-    "overviewwithsec",
-    "seminar",
-    "chapterprefix",
-    "chaptersuffix",
-    "fixtocindent",
-    "maketime",
-    "ruwtitle",
-    "a4paper",
-    "a5paper",
-    "b5paper",
-    "letterpaper",
-    "legalpaper",
-    "executivepaper",
-    "landscape",
-    "10pt",
-    "11pt",
-    "12pt",
-    "oneside",
-    "twoside",
-    "draft",
-    "final",
-    "titlepage",
-    "openright",
-    "openany",
-    "onecolumn",
-    "twocolumn",
-    "leqno",
-    "fleqn",
-    "openbib"
-  ],
-  "keyvals": []
+  "args": [
+    "\\documentclass/hausarbeit-jura#c"
+  ]
 }

@@ -1,900 +1,2542 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "textpos": [],
-    "eso-pic": [],
-    "atbegshi": [],
-    "xstring": [],
-    "calc": [],
-    "fp-upn": [],
-    "numprint": [],
-    "tikz": [],
-    "tikzlibraryshadows": [],
-    "tabularx": [],
-    "environ": [],
-    "fancyhdr": [],
-    "datetime2": [],
-    "anyfontsize": [],
-    "ifxetex": [],
-    "ifluatex": [],
-    "zref-savepos": [],
-    "babel": [],
-    "fontenc": [],
-    "geometry": [],
-    "graphicx": [],
-    "datetime2-calc": []
-  },
-  "macros": {
-    "GeometriaFactura{}": {
-      "snippet": "GeometriaFactura{${1:geometría}}"
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "GeometriaReverso{}": {
-      "snippet": "GeometriaReverso{${1:geometría}}"
+    {
+      "name": "textpos"
     },
-    "GeometriaReporte{}": {
-      "snippet": "GeometriaReporte{${1:geometría}}"
+    {
+      "name": "eso-pic"
     },
-    "FondoFactura{}": {
-      "snippet": "FondoFactura{${1:imagefile}}"
+    {
+      "name": "atbegshi"
     },
-    "PosFecha{}{}": {
-      "snippet": "PosFecha{${1:pos. x}}{${2:pos. y}}"
+    {
+      "name": "xstring"
     },
-    "PosFecha*{}{}": {
-      "snippet": "PosFecha*{${1:pos. x}}{${2:pos. y}}"
+    {
+      "name": "calc"
     },
-    "PosFormalibre{}{}": {
-      "snippet": "PosFormalibre{${1:pos. x}}{${2:pos. y}}"
+    {
+      "name": "fp-upn"
     },
-    "PosFormalibre*{}{}": {
-      "snippet": "PosFormalibre*{${1:pos. x}}{${2:pos. y}}"
+    {
+      "name": "numprint"
     },
-    "PosDenominacion{}{}": {
-      "snippet": "PosDenominacion{${1:pos. x}}{${2:pos. y}}"
+    {
+      "name": "tikz"
     },
-    "PosDenominacion*{}{}": {
-      "snippet": "PosDenominacion*{${1:pos. x}}{${2:pos. y}}"
+    {
+      "name": "tikzlibraryshadows"
     },
-    "PosControl{}{}": {
-      "snippet": "PosControl{${1:pos. x}}{${2:pos. y}}"
+    {
+      "name": "tabularx"
     },
-    "PosControl*{}{}": {
-      "snippet": "PosControl*{${1:pos. x}}{${2:pos. y}}"
+    {
+      "name": "environ"
     },
-    "PosNotaFinal{}{}{}": {
-      "snippet": "PosNotaFinal{${1:pos. x-inicial}}{${2:pos. x-final}}{${3:pos. y}}"
+    {
+      "name": "fancyhdr"
     },
-    "PosNotaFinal*{}{}{}": {
-      "snippet": "PosNotaFinal*{${1:pos. x-inicial}}{${2:pos. x-final}}{${3:pos. y}}"
+    {
+      "name": "datetime2"
     },
-    "PosFirmas{}{}{}": {
-      "snippet": "PosFirmas{${1:pos. x-inicial}}{${2:pos. x-final}}{${3:pos. y}}"
+    {
+      "name": "anyfontsize"
     },
-    "SepVertical{}": {
-      "snippet": "SepVertical{${1:sep. vertical entre elementos}}"
+    {
+      "name": "ifxetex"
     },
-    "SepDatosResumen{}": {
-      "snippet": "SepDatosResumen{${1:sep. horizontal}}"
+    {
+      "name": "ifluatex"
     },
-    "SepEncabezado{}": {
-      "snippet": "SepEncabezado{${1:sep. interna texto}}"
+    {
+      "name": "zref-savepos"
     },
-    "SepNotaPrevia{}": {
-      "snippet": "SepNotaPrevia{${1:sep. interna texto}}"
+    {
+      "name": "babel"
     },
-    "SepDescripcion{}": {
-      "snippet": "SepDescripcion{${1:sep. interna texto}}"
+    {
+      "name": "fontenc"
     },
-    "SepNotaFinal{}": {
-      "snippet": "SepNotaFinal{${1:sep. interna texto}}"
+    {
+      "name": "geometry"
     },
-    "SepItemsExtra{}": {
-      "snippet": "SepItemsExtra{${1:sep. extra entre items}}"
+    {
+      "name": "graphicx"
     },
-    "SepFilas{}{}": {
-      "snippet": "SepFilas{${1:sep. en x}}{${2:sep. en y}}"
-    },
-    "LineaEncabezado{}{}{}": {
-      "snippet": "LineaEncabezado{${1:grosor}}{${2:curvatura esquinas}}{${3:tamaño sombra}}"
-    },
-    "LineaNotaPrevia{}{}{}": {
-      "snippet": "LineaNotaPrevia{${1:grosor}}{${2:curvatura esquinas}}{${3:tamaño sombra}}"
-    },
-    "LineaDescripcion{}{}{}": {
-      "snippet": "LineaDescripcion{${1:grosor}}{${2:curvatura esquinas}}{${3:tamaño sombra}}"
-    },
-    "LineaNotaFinal{}{}{}": {
-      "snippet": "LineaNotaFinal{${1:grosor}}{${2:curvatura esquinas}}{${3:tamaño sombra}}"
-    },
-    "LineaFirmas{}{}": {
-      "snippet": "LineaFirmas{${1:long. línea}}{${2:grosor}}"
-    },
-    "RazonSocial{}": {
-      "snippet": "RazonSocial{${1:texto}}"
-    },
-    "Nombre{}": {
-      "snippet": "Nombre{${1:texto}}"
-    },
-    "RIF{}": {
-      "snippet": "RIF{${1:texto}}"
-    },
-    "CI{}": {
-      "snippet": "CI{${1:texto}}"
-    },
-    "Contacto{}": {
-      "snippet": "Contacto{${1:texto}}"
-    },
-    "Direccion{}": {
-      "snippet": "Direccion{${1:texto}}"
-    },
-    "Telefono{}": {
-      "snippet": "Telefono{${1:texto}}"
-    },
-    "Email{}": {
-      "snippet": "Email{${1:texto}}"
-    },
-    "Conforme{}": {
-      "snippet": "Conforme{${1:texto}}"
-    },
-    "Emisor{}": {
-      "snippet": "Emisor{${1:texto}}"
-    },
-    "Proveedor{}": {
-      "snippet": "Proveedor{${1:texto}}"
-    },
-    "FirmaFactura{}": {
-      "snippet": "FirmaFactura{${1:inclusión de la imagen}}"
-    },
-    "FirmaFactura{}[]": {
-      "snippet": "FirmaFactura{${1:inclusión de la imagen}}[${2:corrimiento en x}]"
-    },
-    "FirmaFactura{}[][]": {
-      "snippet": "FirmaFactura{${1:inclusión de la imagen}}[${2:corrimiento en x}][${3:corrimiento en y}]"
-    },
-    "Moneda{}": {
-      "snippet": "Moneda{${1:código de la moneda utilizada}}"
-    },
-    "Divisa{}": {
-      "snippet": "Divisa{${1:código de la divisa utilizada}}"
-    },
-    "TasaCambio{}": {
-      "snippet": "TasaCambio{${1:tasa de cambio moneda/divisa}}"
-    },
-    "TextoTasaCambio": {},
-    "Num{}": {
-      "snippet": "Num{${1:núm}}"
-    },
-    "NumControl{}": {
-      "snippet": "NumControl{${1:núm}}"
-    },
-    "NumSerieControl{}": {
-      "snippet": "NumSerieControl{${1:núm}}"
-    },
-    "Denominacion{}": {
-      "snippet": "Denominacion{${1:texto}}"
-    },
-    "Fecha{}": {
-      "snippet": "Fecha{${1:fecha}}"
-    },
-    "Fecha*{}{}{}": {
-      "snippet": "Fecha*{${1:aaaa}}{${2:mm}}{${3:dd}}"
-    },
-    "FormatoFecha{}{}": {
-      "snippet": "FormatoFecha{${1:formato salida}}{${2:separador}}"
-    },
-    "FormatoFecha[]{}{}": {
-      "snippet": "FormatoFecha[${3:formato entrada}]{${1:formato salida}}{${2:separador}}"
-    },
-    "Credito{}": {
-      "snippet": "Credito{${1:días}}"
-    },
-    "Descuento{}": {
-      "snippet": "Descuento{${1:porcentaje}}"
-    },
-    "Descuento*{}": {
-      "snippet": "Descuento*{${1:monto}}"
-    },
-    "DescuentoG{}": {
-      "snippet": "DescuentoG{${1:porcentaje}}"
-    },
-    "DescuentoG*{}": {
-      "snippet": "DescuentoG*{${1:monto}}"
-    },
-    "DescuentoR{}": {
-      "snippet": "DescuentoR{${1:porcentaje}}"
-    },
-    "DescuentoR*{}": {
-      "snippet": "DescuentoR*{${1:monto}}"
-    },
-    "DescuentoA{}": {
-      "snippet": "DescuentoA{${1:porcentaje}}"
-    },
-    "DescuentoA*{}": {
-      "snippet": "DescuentoA*{${1:monto}}"
-    },
-    "DescuentoE{}": {
-      "snippet": "DescuentoE{${1:porcentaje}}"
-    },
-    "DescuentoE*{}": {
-      "snippet": "DescuentoE*{${1:monto}}"
-    },
-    "Membrete{}": {
-      "snippet": "Membrete{${1:texto en formato de párrafos}}"
-    },
-    "EncabezadoFactura{}": {
-      "snippet": "EncabezadoFactura{${1:texto en formato de párrafos}}"
-    },
-    "Resumen{}": {
-      "snippet": "Resumen{${1:texto}}"
-    },
-    "NotaPrevia{}": {
-      "snippet": "NotaPrevia{${1:texto}}"
-    },
-    "NotaPrevia*{}": {
-      "snippet": "NotaPrevia*{${1:texto}}"
-    },
-    "NotaPrevia**{}": {
-      "snippet": "NotaPrevia**{${1:texto}}"
-    },
-    "NotaInterna{}": {
-      "snippet": "NotaInterna{${1:texto}}"
-    },
-    "NotaInterna*{}": {
-      "snippet": "NotaInterna*{${1:texto}}"
-    },
-    "NotaInterna**{}": {
-      "snippet": "NotaInterna**{${1:texto}}"
-    },
-    "NotaExterna{}": {
-      "snippet": "NotaExterna{${1:texto}}"
-    },
-    "NotaExterna*{}": {
-      "snippet": "NotaExterna*{${1:texto}}"
-    },
-    "NotaExterna**{}": {
-      "snippet": "NotaExterna**{${1:texto}}"
-    },
-    "NotaFinal{}": {
-      "snippet": "NotaFinal{${1:texto}}"
-    },
-    "NotaFinal*{}": {
-      "snippet": "NotaFinal*{${1:texto}}"
-    },
-    "NotaFinal**{}": {
-      "snippet": "NotaFinal**{${1:texto}}"
-    },
-    "FondoReporte{}": {
-      "snippet": "FondoReporte{${1:nombre del archivo de la imagen}}"
-    },
-    "FondoReporte*{}": {
-      "snippet": "FondoReporte*{${1:nombre del archivo de la imagen}}"
-    },
-    "EncabezadoReporte{}": {
-      "snippet": "EncabezadoReporte{${1:texto en formato de párrafos}}"
-    },
-    "EstiloPagina{}": {
-      "snippet": "EstiloPagina{${1:estilo páginas restantes}}"
-    },
-    "EstiloPagina[]{}": {
-      "snippet": "EstiloPagina[${2:estilo primera página}]{${1:estilo páginas restantes}}"
-    },
-    "InicioReporte{}": {
-      "snippet": "InicioReporte{${1:longitud}}"
-    },
-    "FirmaReporte{}": {
-      "snippet": "FirmaReporte{${1:texto}}"
-    },
-    "FirmaReporte{}[][]": {
-      "snippet": "FirmaReporte{${1:texto}}[${2:pos. x}][${3:long. línea}]"
-    },
-    "FirmaReporte[]{}[][]": {
-      "snippet": "FirmaReporte[${2:inclusión la imagen}]{${1:texto}}[${3:pos. x}][${4:long. línea}]"
-    },
-    "FirmaReporte[][][]{}[][]": {
-      "snippet": "FirmaReporte[${2:inclusión la imagen}][${3:corr. en x}][${4:corr. en y}]{${1:texto}}[${5:pos. x}][${6:long. línea}]"
-    },
-    "TituloReporte{}": {
-      "snippet": "TituloReporte{${1:texto}}"
-    },
-    "TituloReporte*{}": {
-      "snippet": "TituloReporte*{${1:texto}}"
-    },
-    "InfoPagina{}": {
-      "snippet": "InfoPagina{${1:texto}}"
-    },
-    "NumNota{}": {
-      "snippet": "NumNota{${1:núm}}"
-    },
-    "FechaNota{}": {
-      "snippet": "FechaNota{${1:fecha}}"
-    },
-    "FechaNota*{}{}{}": {
-      "snippet": "FechaNota*{${1:aaaa}}{${2:mm}}{${3:dd}}"
-    },
-    "TextoNotaDeCredito": {},
-    "TextoNotaDeDebito": {},
-    "Cliente{}": {
-      "snippet": "Cliente{${1:archivo LaTeX}}"
-    },
-    "Item{}{}{}": {
-      "snippet": "Item{${1:cantidad}}{${2:descripción}}{${3:precio unitario}}"
-    },
-    "Item{}{}{}[]": {
-      "snippet": "Item{${1:cantidad}}{${2:descripción}}{${3:precio unitario}}[${4:descripción sólo para referencias}]"
-    },
-    "Item{}{}[]{}": {
-      "snippet": "Item{${1:cantidad}}{${2:descripción}}[${3:descripción para csv}]{${4:precio unitario}}"
-    },
-    "Item{}{}[]{}[]": {
-      "snippet": "Item{${1:cantidad}}{${2:descripción}}[${3:descripción para csv}]{${4:precio unitario}}[${5:descripción sólo para referencias}]"
-    },
-    "ItemR{}{}{}": {
-      "snippet": "ItemR{${1:cantidad}}{${2:descripción}}{${3:precio unitario}}"
-    },
-    "ItemR{}{}{}[]": {
-      "snippet": "ItemR{${1:cantidad}}{${2:descripción}}{${3:precio unitario}}[${4:descripción sólo para referencias}]"
-    },
-    "ItemR{}{}[]{}": {
-      "snippet": "ItemR{${1:cantidad}}{${2:descripción}}[${3:descripción para csv}]{${4:precio unitario}}"
-    },
-    "ItemR{}{}[]{}[]": {
-      "snippet": "ItemR{${1:cantidad}}{${2:descripción}}[${3:descripción para csv}]{${4:precio unitario}}[${5:descripción sólo para referencias}]"
-    },
-    "ItemA{}{}{}": {
-      "snippet": "ItemA{${1:cantidad}}{${2:descripción}}{${3:precio unitario}}"
-    },
-    "ItemA{}{}{}[]": {
-      "snippet": "ItemA{${1:cantidad}}{${2:descripción}}{${3:precio unitario}}[${4:descripción sólo para referencias}]"
-    },
-    "ItemA{}{}[]{}": {
-      "snippet": "ItemA{${1:cantidad}}{${2:descripción}}[${3:descripción para csv}]{${4:precio unitario}}"
-    },
-    "ItemA{}{}[]{}[]": {
-      "snippet": "ItemA{${1:cantidad}}{${2:descripción}}[${3:descripción para csv}]{${4:precio unitario}}[${5:descripción sólo para referencias}]"
-    },
-    "ItemE{}{}{}": {
-      "snippet": "ItemE{${1:cantidad}}{${2:descripción}}{${3:precio unitario}}"
-    },
-    "ItemE{}{}{}[]": {
-      "snippet": "ItemE{${1:cantidad}}{${2:descripción}}{${3:precio unitario}}[${4:descripción sólo para referencias}]"
-    },
-    "ItemE{}{}[]{}": {
-      "snippet": "ItemE{${1:cantidad}}{${2:descripción}}[${3:descripción para csv}]{${4:precio unitario}}"
-    },
-    "ItemE{}{}[]{}[]": {
-      "snippet": "ItemE{${1:cantidad}}{${2:descripción}}[${3:descripción para csv}]{${4:precio unitario}}[${5:descripción sólo para referencias}]"
-    },
-    "ItemX{}": {
-      "snippet": "ItemX{${1:descripción}}"
-    },
-    "ItemX{}[]": {
-      "snippet": "ItemX{${1:descripción}}[${2:descripción para csv}]"
-    },
-    "ItemX{}[][]": {
-      "snippet": "ItemX{${1:descripción}}[${2:descripción para csv}][${3:descripción sólo para referencias}]"
-    },
-    "Descripcion{}": {
-      "snippet": "Descripcion{${1:texto en formato de párrafos}}"
-    },
-    "LetraItems{}": {
-      "snippet": "LetraItems{${1:tipo de letra}}"
-    },
-    "LetraNumeros{}": {
-      "snippet": "LetraNumeros{${1:tipo de letra}}"
-    },
-    "LetraTipoIVA{}": {
-      "snippet": "LetraTipoIVA{${1:tipo de letra}}"
-    },
-    "LetraTitColumnas{}": {
-      "snippet": "LetraTitColumnas{${1:tipo de letra}}"
-    },
-    "LetraTitTotales{}": {
-      "snippet": "LetraTitTotales{${1:tipo de letra}}"
-    },
-    "LetraNumTotales{}": {
-      "snippet": "LetraNumTotales{${1:tipo de letra}}"
-    },
-    "LetraTitTotal{}": {
-      "snippet": "LetraTitTotal{${1:tipo de letra}}"
-    },
-    "LetraNumTotal{}": {
-      "snippet": "LetraNumTotal{${1:tipo de letra}}"
-    },
-    "LetraTitEnc{}": {
-      "snippet": "LetraTitEnc{${1:tipo de letra}}"
-    },
-    "LetraEncFactura{}": {
-      "snippet": "LetraEncFactura{${1:tipo de letra}}"
-    },
-    "LetraMembrete{}": {
-      "snippet": "LetraMembrete{${1:tipo de letra}}"
-    },
-    "LetraEncReporte{}": {
-      "snippet": "LetraEncReporte{${1:tipo de letra}}"
-    },
-    "LetraNotaPrevia{}": {
-      "snippet": "LetraNotaPrevia{${1:tipo de letra}}"
-    },
-    "LetraNotaInterna{}": {
-      "snippet": "LetraNotaInterna{${1:tipo de letra}}"
-    },
-    "LetraNotaExterna{}": {
-      "snippet": "LetraNotaExterna{${1:tipo de letra}}"
-    },
-    "LetraDescripcion{}": {
-      "snippet": "LetraDescripcion{${1:tipo de letra}}"
-    },
-    "LetraFirmas{}": {
-      "snippet": "LetraFirmas{${1:tipo de letra}}"
-    },
-    "LetraNotaFinal{}": {
-      "snippet": "LetraNotaFinal{${1:tipo de letra}}"
-    },
-    "LetraFormalibre{}": {
-      "snippet": "LetraFormalibre{${1:tipo de letra}}"
-    },
-    "LetraDenominacion{}": {
-      "snippet": "LetraDenominacion{${1:tipo de letra}}"
-    },
-    "LetraNumeracion{}": {
-      "snippet": "LetraNumeracion{${1:tipo de letra}}"
-    },
-    "LetraFecha{}": {
-      "snippet": "LetraFecha{${1:tipo de letra}}"
-    },
-    "LetraTitReporte{}": {
-      "snippet": "LetraTitReporte{${1:tipo de letra}}"
-    },
-    "LetraInfoPagina{}": {
-      "snippet": "LetraInfoPagina{${1:tipo de letra}}"
-    },
-    "LetraReverso{}": {
-      "snippet": "LetraReverso{${1:tipo de letra}}"
-    },
-    "LetraReporte{}": {
-      "snippet": "LetraReporte{${1:tipo de letra}}"
-    },
-    "itemref{}": {
-      "snippet": "itemref{${1:label}}"
-    },
-    "cantref{}": {
-      "snippet": "cantref{${1:label}}"
-    },
-    "descref{}": {
-      "snippet": "descref{${1:label}}"
-    },
-    "puref{}": {
-      "snippet": "puref{${1:label}}"
-    },
-    "subtref{}": {
-      "snippet": "subtref{${1:label}}"
-    },
-    "dctoref{}": {
-      "snippet": "dctoref{${1:label}}"
-    },
-    "ivaref{}": {
-      "snippet": "ivaref{${1:label}}"
-    },
-    "ptref{}": {
-      "snippet": "ptref{${1:label}}"
-    },
-    "ldescref{}": {
-      "snippet": "ldescref{${1:label}}"
-    },
-    "BIG": {},
-    "BIR": {},
-    "BIA": {},
-    "BIE": {},
-    "AlicuotaG": {},
-    "AlicuotaR": {},
-    "AlicuotaA": {},
-    "SubtG": {},
-    "SubtE": {},
-    "SubtR": {},
-    "SubtA": {},
-    "DescG": {},
-    "DescE": {},
-    "DescR": {},
-    "DescA": {},
-    "Total": {},
-    "TotalDivisa": {},
-    "FechaVencimiento": {},
-    "BeforeEndPreamble{}": {
-      "snippet": "BeforeEndPreamble{${1:código TeX}}"
-    },
-    "BeforeEndPreamble*{}": {
-      "snippet": "BeforeEndPreamble*{${1:código TeX}}"
-    },
-    "BeforeEndPreamble**{}": {
-      "snippet": "BeforeEndPreamble**{${1:código TeX}}"
-    },
-    "ifagrupatotales": {},
-    "agrupatotalestrue": {},
-    "agrupatotalesfalse": {},
-    "ifdescripcioncentrada": {},
-    "descripcioncentradatrue": {},
-    "descripcioncentradafalse": {},
-    "iffilascentradas": {},
-    "filascentradastrue": {},
-    "filascentradasfalse": {},
-    "ifconlineasha": {},
-    "conlineashatrue": {},
-    "conlineashafalse": {},
-    "ifconreporte": {},
-    "conreportetrue": {},
-    "conreportefalse": {},
-    "ifcotizacion": {},
-    "cotizaciontrue": {},
-    "cotizacionfalse": {},
-    "ifcsv": {},
-    "csvtrue": {},
-    "csvfalse": {},
-    "ifdcu": {},
-    "dcutrue": {},
-    "dcufalse": {},
-    "ifdescuentos": {},
-    "descuentostrue": {},
-    "descuentosfalse": {},
-    "ifdivisa": {},
-    "divisatrue": {},
-    "divisafalse": {},
-    "ifdosfirmas": {},
-    "dosfirmastrue": {},
-    "dosfirmasfalse": {},
-    "ifduc": {},
-    "ductrue": {},
-    "ducfalse": {},
-    "ifexpandecuadro": {},
-    "expandecuadrotrue": {},
-    "expandecuadrofalse": {},
-    "iffilas": {},
-    "filastrue": {},
-    "filasfalse": {},
-    "ifG": {},
-    "Gtrue": {},
-    "Gfalse": {},
-    "ifivadescripcion": {},
-    "ivadescripciontrue": {},
-    "ivadescripcionfalse": {},
-    "ifiva": {},
-    "ivatrue": {},
-    "ivafalse": {},
-    "iflinea": {},
-    "lineatrue": {},
-    "lineafalse": {},
-    "ifmonedaceldas": {},
-    "monedaceldastrue": {},
-    "monedaceldasfalse": {},
-    "ifmonedadespues": {},
-    "monedadespuestrue": {},
-    "monedadespuesfalse": {},
-    "ifnospanish": {},
-    "nospanishtrue": {},
-    "nospanishfalse": {},
-    "ifnotadecredito": {},
-    "notadecreditotrue": {},
-    "notadecreditofalse": {},
-    "ifnotadedebito": {},
-    "notadedebitotrue": {},
-    "notadedebitofalse": {},
-    "ifnumitem": {},
-    "numitemtrue": {},
-    "numitemfalse": {},
-    "ifprefactura": {},
-    "prefacturatrue": {},
-    "prefacturafalse": {},
-    "ifsincantidad": {},
-    "sincantidadtrue": {},
-    "sincantidadfalse": {},
-    "ifsindenominacion": {},
-    "sindenominaciontrue": {},
-    "sindenominacionfalse": {},
-    "ifsinencabezadofactura": {},
-    "sinencabezadofacturatrue": {},
-    "sinencabezadofacturafalse": {},
-    "ifsinencabezadoreporte": {},
-    "sinencabezadoreportetrue": {},
-    "sinencabezadoreportefalse": {},
-    "ifsinexpandir": {},
-    "sinexpandirtrue": {},
-    "sinexpandirfalse": {},
-    "ifsinfirmas": {},
-    "sinfirmastrue": {},
-    "sinfirmasfalse": {},
-    "ifsiniva": {},
-    "sinivatrue": {},
-    "sinivafalse": {},
-    "ifsinivaexpresado": {},
-    "sinivaexpresadotrue": {},
-    "sinivaexpresadofalse": {},
-    "ifsinlineahni": {},
-    "sinlineahnitrue": {},
-    "sinlineahnifalse": {},
-    "ifsinlineahtit": {},
-    "sinlineahtittrue": {},
-    "sinlineahtitfalse": {},
-    "ifsinlineahtot": {},
-    "sinlineahtottrue": {},
-    "sinlineahtotfalse": {},
-    "ifsinlineash": {},
-    "sinlineashtrue": {},
-    "sinlineashfalse": {},
-    "ifsinlineashe": {},
-    "sinlineashetrue": {},
-    "sinlineashefalse": {},
-    "ifsinlineashi": {},
-    "sinlineashitrue": {},
-    "sinlineashifalse": {},
-    "ifsinlineasv": {},
-    "sinlineasvtrue": {},
-    "sinlineasvfalse": {},
-    "ifsinlineasve": {},
-    "sinlineasvetrue": {},
-    "sinlineasvefalse": {},
-    "ifsinlineasvi": {},
-    "sinlineasvitrue": {},
-    "sinlineasvifalse": {},
-    "ifsinmarcasfactura": {},
-    "sinmarcasfacturatrue": {},
-    "sinmarcasfacturafalse": {},
-    "ifsinmonedatotales": {},
-    "sinmonedatotalestrue": {},
-    "sinmonedatotalesfalse": {},
-    "ifsinnumero": {},
-    "sinnumerotrue": {},
-    "sinnumerofalse": {},
-    "ifsinreverso": {},
-    "sinreversotrue": {},
-    "sinreversofalse": {},
-    "ifsintotales": {},
-    "sintotalestrue": {},
-    "sintotalesfalse": {},
-    "ifsoloreporte": {},
-    "soloreportetrue": {},
-    "soloreportefalse": {},
-    "ifsubtotal": {},
-    "subtotaltrue": {},
-    "subtotalfalse": {},
-    "iftodosiva": {},
-    "todosivatrue": {},
-    "todosivafalse": {},
-    "iftwoside": {},
-    "twosidetrue": {},
-    "twosidefalse": {},
-    "ifunafirma": {},
-    "unafirmatrue": {},
-    "unafirmafalse": {},
-    "ifvencimiento": {},
-    "vencimientotrue": {},
-    "vencimientofalse": {},
-    "AuxFecha": {},
-    "CLASSERROR{}": {
-      "snippet": "CLASSERROR{${1:text}}"
-    },
-    "CLASSINFO{}": {
-      "snippet": "CLASSINFO{${1:text}}"
-    },
-    "CLASSWARNING{}": {
-      "snippet": "CLASSWARNING{${1:text}}"
-    },
-    "csv": {},
-    "Dcto": {},
-    "DescX": {},
-    "DibujoFirma": {},
-    "DTMfdef{}": {
-      "snippet": "DTMfdef{${1:arg}}"
-    },
-    "DTMinformat": {},
-    "DTMs{}{}": {
-      "snippet": "DTMs{${1:arg1}}{${2:arg2}}"
-    },
-    "DTMsavedatex{}{}": {
-      "snippet": "DTMsavedatex{${1:arg1}}{${2:arg2}}"
-    },
-    "flechaCR": {},
-    "ItemG": {},
-    "PrecioS": {},
-    "PrecioT": {},
-    "PrecioU": {},
-    "SubtX": {},
-    "TextoFirma": {},
-    "theNumItem": {},
-    "tmprotect": {},
-    "Denom": {},
-    "EstiloPagReporte": {},
-    "LetraDenom": {},
-    "NotaFecha": {},
-    "NotaNum": {},
-    "PosDenom": {},
-    "captionsspanish": {},
-    "datespanish": {},
-    "extrasspanish": {},
-    "noextrasspanish": {},
-    "bibname": {},
-    "chaptername": {},
-    "enclname": {},
-    "ccname": {},
-    "headtoname": {},
-    "seename": {},
-    "alsoname": {},
-    "proofname": {},
-    "prefacename": {},
-    "glossaryname": {},
-    "spanishrefname": {},
-    "spanishabstractname": {},
-    "spanishbibname": {},
-    "spanishchaptername": {},
-    "spanishappendixname": {},
-    "spanishcontentsname": {},
-    "spanishlistfigurename": {},
-    "spanishlisttablename": {},
-    "spanishindexname": {},
-    "spanishfigurename": {},
-    "spanishtablename": {},
-    "spanishpartname": {},
-    "spanishenclname": {},
-    "spanishccname": {},
-    "spanishheadtoname": {},
-    "spanishpagename": {},
-    "spanishseename": {},
-    "spanishalsoname": {},
-    "spanishproofname": {},
-    "spanishprefacename": {},
-    "spanishglossaryname": {},
-    "spanishdashitems": {},
-    "spanishsignitems": {},
-    "spanishsymbitems": {},
-    "spanishindexchars{}{}{}": {
-      "snippet": "spanishindexchars{${1:encap}}{${2:open}}{${3:close}}"
-    },
-    "spanishscroman": {},
-    "spanishlcroman": {},
-    "spanishucroman": {},
-    "Today": {},
-    "spanishdate{}{}{}": {
-      "snippet": "spanishdate{${1:año}}{${2:mes}}{${3:día}}"
-    },
-    "spanishDate{}{}{}": {
-      "snippet": "spanishDate{${1:año}}{${2:mes}}{${3:día}}"
-    },
-    "spanishdatedel": {},
-    "spanishdatede": {},
-    "spanishreverseddate": {},
-    "spanishdatefirst{}": {
-      "snippet": "spanishdatefirst{${1:día-uno}}"
-    },
-    "spanishdeactivate{}": {
-      "snippet": "spanishdeactivate{${1:caracteres}}"
-    },
-    "decimalcomma": {},
-    "decimalpoint": {},
-    "spanishdecimal{}": {
-      "snippet": "spanishdecimal{${1:math}}"
-    },
-    "sptext{}": {
-      "snippet": "sptext{${1:text}}"
-    },
-    "spanishplainpercent": {},
-    "percentsign": {},
-    "lsc{}": {
-      "snippet": "lsc{${1:text}}"
-    },
-    "lquoti": {},
-    "rquoti": {},
-    "lquotii": {},
-    "rquotii": {},
-    "lquotiii": {},
-    "rquotiii": {},
-    "activatequoting": {},
-    "deactivatequoting": {},
-    "sen": {},
-    "tg": {},
-    "arcsen": {},
-    "arctg": {},
-    "accentedoperators": {},
-    "unaccentedoperators": {},
-    "spacedoperators": {},
-    "unspacedoperators": {},
-    "spanishoperators": {},
-    "dotlessi": {},
-    "selectspanish": {},
-    "spanishoptions": {},
-    "textspanish": {},
-    "notextspanish": {},
-    "mathspanish": {},
-    "shorthandsspanish": {},
-    "DH": {},
-    "dh": {},
-    "dj": {},
-    "DJ": {},
-    "guillemetleft": {},
-    "guillemetright": {},
-    "guillemotleft": {},
-    "guillemotright": {},
-    "guilsinglleft": {},
-    "guilsinglright": {},
-    "Hwithstroke": {},
-    "hwithstroke": {},
-    "k{}": {
-      "snippet": "k{${1:arg}}"
-    },
-    "NG": {},
-    "ng": {},
-    "quotedblbase": {},
-    "quotesinglbase": {},
-    "textogonekcentered{}": {
-      "snippet": "textogonekcentered{${1:arg}}"
-    },
-    "textquotedbl": {},
-    "th": {},
-    "TH": {}
-  },
-  "envs": {
-    "factura": {},
-    "reverso": {},
-    "reporte": {},
-    "quoting": {}
-  },
-  "options": [
-    "agrupatotales",
-    "agrupado",
-    "conlineasha",
-    "conreporte",
-    "cotizacion",
-    "csv",
-    "dcu",
-    "descripcioncentrada",
-    "centradesc",
-    "descuentos",
-    "divisa",
-    "dosfirmas",
-    "duc",
-    "expandecuadro",
-    "filas",
-    "filascentradas",
-    "centrado",
-    "G",
-    "iva",
-    "ivadescripcion",
-    "impdesc",
-    "linea",
-    "monedadespues",
-    "monedaceldas",
-    "nospanish",
-    "notadecredito",
-    "notadedebito",
-    "numitem",
-    "prefactura",
-    "sincantidad",
-    "sindenominacion",
-    "sindenom",
-    "sinencabezadofactura",
-    "sinencabezadoreporte",
-    "sinexpandir",
-    "sinfirmas",
-    "siniva",
-    "sinivaexpresado",
-    "sinlineahni",
-    "sinlineahtot",
-    "sinlineahtit",
-    "sinlineashe",
-    "sinlineashi",
-    "sinlineash",
-    "sinlineasve",
-    "sinlineasvi",
-    "sinlineasv",
-    "sinmarcasfactura",
-    "sinmarcas",
-    "sinmonedatotales",
-    "sinnumero",
-    "sinreverso",
-    "sintotales",
-    "soloreporte",
-    "subtotal",
-    "todosiva",
-    "twoside",
-    "unafirma",
-    "vencimiento"
+    {
+      "name": "datetime2-calc"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "GeometriaFactura",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:geometría%keyvals}}",
+        "keys": [
+          "\\GeometriaFactura,\\GeometriaReverso,\\GeometriaReporte"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "GeometriaReverso",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:geometría%keyvals}}",
+        "keys": [
+          "\\GeometriaFactura,\\GeometriaReverso,\\GeometriaReporte"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "GeometriaReporte",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:geometría%keyvals}}",
+        "keys": [
+          "\\GeometriaFactura,\\GeometriaReverso,\\GeometriaReporte"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "FondoFactura",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "PosFecha",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:pos. x}}{${2:pos. y}}"
+      }
+    },
+    {
+      "name": "PosFecha*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:pos. x}}{${2:pos. y}}"
+      }
+    },
+    {
+      "name": "PosFormalibre",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:pos. x}}{${2:pos. y}}"
+      }
+    },
+    {
+      "name": "PosFormalibre*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:pos. x}}{${2:pos. y}}"
+      }
+    },
+    {
+      "name": "PosDenominacion",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:pos. x}}{${2:pos. y}}"
+      }
+    },
+    {
+      "name": "PosDenominacion*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:pos. x}}{${2:pos. y}}"
+      }
+    },
+    {
+      "name": "PosControl",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:pos. x}}{${2:pos. y}}"
+      }
+    },
+    {
+      "name": "PosControl*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:pos. x}}{${2:pos. y}}"
+      }
+    },
+    {
+      "name": "PosNotaFinal",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:pos. x-inicial}}{${2:pos. x-final}}{${3:pos. y}}"
+      }
+    },
+    {
+      "name": "PosNotaFinal*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:pos. x-inicial}}{${2:pos. x-final}}{${3:pos. y}}"
+      }
+    },
+    {
+      "name": "PosFirmas",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:pos. x-inicial}}{${2:pos. x-final}}{${3:pos. y}}"
+      }
+    },
+    {
+      "name": "SepVertical",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:sep. vertical entre elementos}}"
+      }
+    },
+    {
+      "name": "SepDatosResumen",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:sep. horizontal}}"
+      }
+    },
+    {
+      "name": "SepEncabezado",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:sep. interna texto}}"
+      }
+    },
+    {
+      "name": "SepNotaPrevia",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:sep. interna texto}}"
+      }
+    },
+    {
+      "name": "SepDescripcion",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:sep. interna texto}}"
+      }
+    },
+    {
+      "name": "SepNotaFinal",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:sep. interna texto}}"
+      }
+    },
+    {
+      "name": "SepItemsExtra",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:sep. extra entre items}}"
+      }
+    },
+    {
+      "name": "SepFilas",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:sep. en x}}{${2:sep. en y}}"
+      }
+    },
+    {
+      "name": "LineaEncabezado",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:grosor}}{${2:curvatura esquinas}}{${3:tamaño sombra}}"
+      }
+    },
+    {
+      "name": "LineaNotaPrevia",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:grosor}}{${2:curvatura esquinas}}{${3:tamaño sombra}}"
+      }
+    },
+    {
+      "name": "LineaDescripcion",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:grosor}}{${2:curvatura esquinas}}{${3:tamaño sombra}}"
+      }
+    },
+    {
+      "name": "LineaNotaFinal",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:grosor}}{${2:curvatura esquinas}}{${3:tamaño sombra}}"
+      }
+    },
+    {
+      "name": "LineaFirmas",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:long. línea}}{${2:grosor}}"
+      }
+    },
+    {
+      "name": "RazonSocial",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:texto}}"
+      }
+    },
+    {
+      "name": "Nombre",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:texto}}"
+      }
+    },
+    {
+      "name": "RIF",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:texto}}"
+      }
+    },
+    {
+      "name": "CI",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:texto}}"
+      }
+    },
+    {
+      "name": "Contacto",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:texto}}"
+      }
+    },
+    {
+      "name": "Direccion",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:texto}}"
+      }
+    },
+    {
+      "name": "Telefono",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:texto}}"
+      }
+    },
+    {
+      "name": "Email",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:texto}}"
+      }
+    },
+    {
+      "name": "Conforme",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:texto}}"
+      }
+    },
+    {
+      "name": "Emisor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:texto}}"
+      }
+    },
+    {
+      "name": "Proveedor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:texto}}"
+      }
+    },
+    {
+      "name": "FirmaFactura",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:inclusión de la imagen}}"
+      }
+    },
+    {
+      "name": "FirmaFactura",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:inclusión de la imagen}}[${2:corrimiento en x}]"
+      }
+    },
+    {
+      "name": "FirmaFactura",
+      "arg": {
+        "format": "{}[][]",
+        "snippet": "{${1:inclusión de la imagen}}[${2:corrimiento en x}][${3:corrimiento en y}]"
+      }
+    },
+    {
+      "name": "Moneda",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:código de la moneda utilizada}}"
+      }
+    },
+    {
+      "name": "Divisa",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:código de la divisa utilizada}}"
+      }
+    },
+    {
+      "name": "TasaCambio",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tasa de cambio moneda/divisa}}"
+      }
+    },
+    {
+      "name": "TextoTasaCambio"
+    },
+    {
+      "name": "Num",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:núm}}"
+      }
+    },
+    {
+      "name": "NumControl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:núm}}"
+      }
+    },
+    {
+      "name": "NumSerieControl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:núm}}"
+      }
+    },
+    {
+      "name": "Denominacion",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:texto}}"
+      }
+    },
+    {
+      "name": "Fecha",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:fecha}}"
+      }
+    },
+    {
+      "name": "Fecha*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:aaaa}}{${2:mm}}{${3:dd}}"
+      }
+    },
+    {
+      "name": "FormatoFecha",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:formato salida}}{${2:separador}}"
+      }
+    },
+    {
+      "name": "FormatoFecha",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:formato entrada}]{${1:formato salida}}{${2:separador}}"
+      }
+    },
+    {
+      "name": "Credito",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:días}}"
+      }
+    },
+    {
+      "name": "Descuento",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:porcentaje}}"
+      }
+    },
+    {
+      "name": "Descuento*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:monto}}"
+      }
+    },
+    {
+      "name": "DescuentoG",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:porcentaje}}"
+      }
+    },
+    {
+      "name": "DescuentoG*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:monto}}"
+      }
+    },
+    {
+      "name": "DescuentoR",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:porcentaje}}"
+      }
+    },
+    {
+      "name": "DescuentoR*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:monto}}"
+      }
+    },
+    {
+      "name": "DescuentoA",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:porcentaje}}"
+      }
+    },
+    {
+      "name": "DescuentoA*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:monto}}"
+      }
+    },
+    {
+      "name": "DescuentoE",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:porcentaje}}"
+      }
+    },
+    {
+      "name": "DescuentoE*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:monto}}"
+      }
+    },
+    {
+      "name": "Membrete",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:texto en formato de párrafos}}"
+      }
+    },
+    {
+      "name": "EncabezadoFactura",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:texto en formato de párrafos}}"
+      }
+    },
+    {
+      "name": "Resumen",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:texto}}"
+      }
+    },
+    {
+      "name": "NotaPrevia",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:texto}}"
+      }
+    },
+    {
+      "name": "NotaPrevia*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:texto}}"
+      }
+    },
+    {
+      "name": "NotaPrevia**",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:texto}}"
+      }
+    },
+    {
+      "name": "NotaInterna",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:texto}}"
+      }
+    },
+    {
+      "name": "NotaInterna*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:texto}}"
+      }
+    },
+    {
+      "name": "NotaInterna**",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:texto}}"
+      }
+    },
+    {
+      "name": "NotaExterna",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:texto}}"
+      }
+    },
+    {
+      "name": "NotaExterna*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:texto}}"
+      }
+    },
+    {
+      "name": "NotaExterna**",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:texto}}"
+      }
+    },
+    {
+      "name": "NotaFinal",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:texto}}"
+      }
+    },
+    {
+      "name": "NotaFinal*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:texto}}"
+      }
+    },
+    {
+      "name": "NotaFinal**",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:texto}}"
+      }
+    },
+    {
+      "name": "FondoReporte",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:nombre del archivo de la imagen}}"
+      }
+    },
+    {
+      "name": "FondoReporte*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:nombre del archivo de la imagen}}"
+      }
+    },
+    {
+      "name": "EncabezadoReporte",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:texto en formato de párrafos}}"
+      }
+    },
+    {
+      "name": "EstiloPagina",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:estilo páginas restantes}}"
+      }
+    },
+    {
+      "name": "EstiloPagina",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:estilo primera página}]{${1:estilo páginas restantes}}"
+      }
+    },
+    {
+      "name": "InicioReporte",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:longitud}}"
+      }
+    },
+    {
+      "name": "FirmaReporte",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:texto}}"
+      }
+    },
+    {
+      "name": "FirmaReporte",
+      "arg": {
+        "format": "{}[][]",
+        "snippet": "{${1:texto}}[${2:pos. x}][${3:long. línea}]"
+      }
+    },
+    {
+      "name": "FirmaReporte",
+      "arg": {
+        "format": "[]{}[][]",
+        "snippet": "[${2:inclusión la imagen}]{${1:texto}}[${3:pos. x}][${4:long. línea}]"
+      }
+    },
+    {
+      "name": "FirmaReporte",
+      "arg": {
+        "format": "[][][]{}[][]",
+        "snippet": "[${2:inclusión la imagen}][${3:corr. en x}][${4:corr. en y}]{${1:texto}}[${5:pos. x}][${6:long. línea}]"
+      }
+    },
+    {
+      "name": "TituloReporte",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:texto}}"
+      }
+    },
+    {
+      "name": "TituloReporte*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:texto}}"
+      }
+    },
+    {
+      "name": "InfoPagina",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:texto}}"
+      }
+    },
+    {
+      "name": "NumNota",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:núm}}"
+      }
+    },
+    {
+      "name": "FechaNota",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:fecha}}"
+      }
+    },
+    {
+      "name": "FechaNota*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:aaaa}}{${2:mm}}{${3:dd}}"
+      }
+    },
+    {
+      "name": "TextoNotaDeCredito"
+    },
+    {
+      "name": "TextoNotaDeDebito"
+    },
+    {
+      "name": "Cliente",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:archivo LaTeX}}"
+      }
+    },
+    {
+      "name": "Item",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cantidad}}{${2:descripción}}{${3:precio unitario}}"
+      }
+    },
+    {
+      "name": "Item",
+      "arg": {
+        "format": "{}{}{}[]",
+        "snippet": "{${1:cantidad}}{${2:descripción}}{${3:precio unitario}}[${4:descripción sólo para referencias}]"
+      }
+    },
+    {
+      "name": "Item",
+      "arg": {
+        "format": "{}{}[]{}",
+        "snippet": "{${1:cantidad}}{${2:descripción}}[${4:descripción para csv}]{${3:precio unitario}}"
+      }
+    },
+    {
+      "name": "Item",
+      "arg": {
+        "format": "{}{}[]{}[]",
+        "snippet": "{${1:cantidad}}{${2:descripción}}[${4:descripción para csv}]{${3:precio unitario}}[${5:descripción sólo para referencias}]"
+      }
+    },
+    {
+      "name": "ItemR",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cantidad}}{${2:descripción}}{${3:precio unitario}}"
+      }
+    },
+    {
+      "name": "ItemR",
+      "arg": {
+        "format": "{}{}{}[]",
+        "snippet": "{${1:cantidad}}{${2:descripción}}{${3:precio unitario}}[${4:descripción sólo para referencias}]"
+      }
+    },
+    {
+      "name": "ItemR",
+      "arg": {
+        "format": "{}{}[]{}",
+        "snippet": "{${1:cantidad}}{${2:descripción}}[${4:descripción para csv}]{${3:precio unitario}}"
+      }
+    },
+    {
+      "name": "ItemR",
+      "arg": {
+        "format": "{}{}[]{}[]",
+        "snippet": "{${1:cantidad}}{${2:descripción}}[${4:descripción para csv}]{${3:precio unitario}}[${5:descripción sólo para referencias}]"
+      }
+    },
+    {
+      "name": "ItemA",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cantidad}}{${2:descripción}}{${3:precio unitario}}"
+      }
+    },
+    {
+      "name": "ItemA",
+      "arg": {
+        "format": "{}{}{}[]",
+        "snippet": "{${1:cantidad}}{${2:descripción}}{${3:precio unitario}}[${4:descripción sólo para referencias}]"
+      }
+    },
+    {
+      "name": "ItemA",
+      "arg": {
+        "format": "{}{}[]{}",
+        "snippet": "{${1:cantidad}}{${2:descripción}}[${4:descripción para csv}]{${3:precio unitario}}"
+      }
+    },
+    {
+      "name": "ItemA",
+      "arg": {
+        "format": "{}{}[]{}[]",
+        "snippet": "{${1:cantidad}}{${2:descripción}}[${4:descripción para csv}]{${3:precio unitario}}[${5:descripción sólo para referencias}]"
+      }
+    },
+    {
+      "name": "ItemE",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cantidad}}{${2:descripción}}{${3:precio unitario}}"
+      }
+    },
+    {
+      "name": "ItemE",
+      "arg": {
+        "format": "{}{}{}[]",
+        "snippet": "{${1:cantidad}}{${2:descripción}}{${3:precio unitario}}[${4:descripción sólo para referencias}]"
+      }
+    },
+    {
+      "name": "ItemE",
+      "arg": {
+        "format": "{}{}[]{}",
+        "snippet": "{${1:cantidad}}{${2:descripción}}[${4:descripción para csv}]{${3:precio unitario}}"
+      }
+    },
+    {
+      "name": "ItemE",
+      "arg": {
+        "format": "{}{}[]{}[]",
+        "snippet": "{${1:cantidad}}{${2:descripción}}[${4:descripción para csv}]{${3:precio unitario}}[${5:descripción sólo para referencias}]"
+      }
+    },
+    {
+      "name": "ItemX",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:descripción}}"
+      }
+    },
+    {
+      "name": "ItemX",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:descripción}}[${2:descripción para csv}]"
+      }
+    },
+    {
+      "name": "ItemX",
+      "arg": {
+        "format": "{}[][]",
+        "snippet": "{${1:descripción}}[${2:descripción para csv}][${3:descripción sólo para referencias}]"
+      }
+    },
+    {
+      "name": "Descripcion",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:texto en formato de párrafos}}"
+      }
+    },
+    {
+      "name": "LetraItems",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tipo de letra}}"
+      }
+    },
+    {
+      "name": "LetraNumeros",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tipo de letra}}"
+      }
+    },
+    {
+      "name": "LetraTipoIVA",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tipo de letra}}"
+      }
+    },
+    {
+      "name": "LetraTitColumnas",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tipo de letra}}"
+      }
+    },
+    {
+      "name": "LetraTitTotales",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tipo de letra}}"
+      }
+    },
+    {
+      "name": "LetraNumTotales",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tipo de letra}}"
+      }
+    },
+    {
+      "name": "LetraTitTotal",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tipo de letra}}"
+      }
+    },
+    {
+      "name": "LetraNumTotal",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tipo de letra}}"
+      }
+    },
+    {
+      "name": "LetraTitEnc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tipo de letra}}"
+      }
+    },
+    {
+      "name": "LetraEncFactura",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tipo de letra}}"
+      }
+    },
+    {
+      "name": "LetraMembrete",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tipo de letra}}"
+      }
+    },
+    {
+      "name": "LetraEncReporte",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tipo de letra}}"
+      }
+    },
+    {
+      "name": "LetraNotaPrevia",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tipo de letra}}"
+      }
+    },
+    {
+      "name": "LetraNotaInterna",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tipo de letra}}"
+      }
+    },
+    {
+      "name": "LetraNotaExterna",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tipo de letra}}"
+      }
+    },
+    {
+      "name": "LetraDescripcion",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tipo de letra}}"
+      }
+    },
+    {
+      "name": "LetraFirmas",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tipo de letra}}"
+      }
+    },
+    {
+      "name": "LetraNotaFinal",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tipo de letra}}"
+      }
+    },
+    {
+      "name": "LetraFormalibre",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tipo de letra}}"
+      }
+    },
+    {
+      "name": "LetraDenominacion",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tipo de letra}}"
+      }
+    },
+    {
+      "name": "LetraNumeracion",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tipo de letra}}"
+      }
+    },
+    {
+      "name": "LetraFecha",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tipo de letra}}"
+      }
+    },
+    {
+      "name": "LetraTitReporte",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tipo de letra}}"
+      }
+    },
+    {
+      "name": "LetraInfoPagina",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tipo de letra}}"
+      }
+    },
+    {
+      "name": "LetraReverso",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tipo de letra}}"
+      }
+    },
+    {
+      "name": "LetraReporte",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tipo de letra}}"
+      }
+    },
+    {
+      "name": "itemref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "cantref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "descref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "puref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "subtref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "dctoref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "ivaref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "ptref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "ldescref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "BIG"
+    },
+    {
+      "name": "BIR"
+    },
+    {
+      "name": "BIA"
+    },
+    {
+      "name": "BIE"
+    },
+    {
+      "name": "AlicuotaG"
+    },
+    {
+      "name": "AlicuotaR"
+    },
+    {
+      "name": "AlicuotaA"
+    },
+    {
+      "name": "SubtG"
+    },
+    {
+      "name": "SubtE"
+    },
+    {
+      "name": "SubtR"
+    },
+    {
+      "name": "SubtA"
+    },
+    {
+      "name": "DescG"
+    },
+    {
+      "name": "DescE"
+    },
+    {
+      "name": "DescR"
+    },
+    {
+      "name": "DescA"
+    },
+    {
+      "name": "Total"
+    },
+    {
+      "name": "TotalDivisa"
+    },
+    {
+      "name": "FechaVencimiento"
+    },
+    {
+      "name": "BeforeEndPreamble",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:código TeX}}"
+      }
+    },
+    {
+      "name": "BeforeEndPreamble*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:código TeX}}"
+      }
+    },
+    {
+      "name": "BeforeEndPreamble**",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:código TeX}}"
+      }
+    },
+    {
+      "name": "ifagrupatotales",
+      "unusual": true
+    },
+    {
+      "name": "agrupatotalestrue",
+      "unusual": true
+    },
+    {
+      "name": "agrupatotalesfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifdescripcioncentrada",
+      "unusual": true
+    },
+    {
+      "name": "descripcioncentradatrue",
+      "unusual": true
+    },
+    {
+      "name": "descripcioncentradafalse",
+      "unusual": true
+    },
+    {
+      "name": "iffilascentradas",
+      "unusual": true
+    },
+    {
+      "name": "filascentradastrue",
+      "unusual": true
+    },
+    {
+      "name": "filascentradasfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifconlineasha",
+      "unusual": true
+    },
+    {
+      "name": "conlineashatrue",
+      "unusual": true
+    },
+    {
+      "name": "conlineashafalse",
+      "unusual": true
+    },
+    {
+      "name": "ifconreporte",
+      "unusual": true
+    },
+    {
+      "name": "conreportetrue",
+      "unusual": true
+    },
+    {
+      "name": "conreportefalse",
+      "unusual": true
+    },
+    {
+      "name": "ifcotizacion",
+      "unusual": true
+    },
+    {
+      "name": "cotizaciontrue",
+      "unusual": true
+    },
+    {
+      "name": "cotizacionfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifcsv",
+      "unusual": true
+    },
+    {
+      "name": "csvtrue",
+      "unusual": true
+    },
+    {
+      "name": "csvfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifdcu",
+      "unusual": true
+    },
+    {
+      "name": "dcutrue",
+      "unusual": true
+    },
+    {
+      "name": "dcufalse",
+      "unusual": true
+    },
+    {
+      "name": "ifdescuentos",
+      "unusual": true
+    },
+    {
+      "name": "descuentostrue",
+      "unusual": true
+    },
+    {
+      "name": "descuentosfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifdivisa",
+      "unusual": true
+    },
+    {
+      "name": "divisatrue",
+      "unusual": true
+    },
+    {
+      "name": "divisafalse",
+      "unusual": true
+    },
+    {
+      "name": "ifdosfirmas",
+      "unusual": true
+    },
+    {
+      "name": "dosfirmastrue",
+      "unusual": true
+    },
+    {
+      "name": "dosfirmasfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifduc",
+      "unusual": true
+    },
+    {
+      "name": "ductrue",
+      "unusual": true
+    },
+    {
+      "name": "ducfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifexpandecuadro",
+      "unusual": true
+    },
+    {
+      "name": "expandecuadrotrue",
+      "unusual": true
+    },
+    {
+      "name": "expandecuadrofalse",
+      "unusual": true
+    },
+    {
+      "name": "iffilas",
+      "unusual": true
+    },
+    {
+      "name": "filastrue",
+      "unusual": true
+    },
+    {
+      "name": "filasfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifG",
+      "unusual": true
+    },
+    {
+      "name": "Gtrue",
+      "unusual": true
+    },
+    {
+      "name": "Gfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifivadescripcion",
+      "unusual": true
+    },
+    {
+      "name": "ivadescripciontrue",
+      "unusual": true
+    },
+    {
+      "name": "ivadescripcionfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifiva",
+      "unusual": true
+    },
+    {
+      "name": "ivatrue",
+      "unusual": true
+    },
+    {
+      "name": "ivafalse",
+      "unusual": true
+    },
+    {
+      "name": "iflinea",
+      "unusual": true
+    },
+    {
+      "name": "lineatrue",
+      "unusual": true
+    },
+    {
+      "name": "lineafalse",
+      "unusual": true
+    },
+    {
+      "name": "ifmonedaceldas",
+      "unusual": true
+    },
+    {
+      "name": "monedaceldastrue",
+      "unusual": true
+    },
+    {
+      "name": "monedaceldasfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifmonedadespues",
+      "unusual": true
+    },
+    {
+      "name": "monedadespuestrue",
+      "unusual": true
+    },
+    {
+      "name": "monedadespuesfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifnospanish",
+      "unusual": true
+    },
+    {
+      "name": "nospanishtrue",
+      "unusual": true
+    },
+    {
+      "name": "nospanishfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifnotadecredito",
+      "unusual": true
+    },
+    {
+      "name": "notadecreditotrue",
+      "unusual": true
+    },
+    {
+      "name": "notadecreditofalse",
+      "unusual": true
+    },
+    {
+      "name": "ifnotadedebito",
+      "unusual": true
+    },
+    {
+      "name": "notadedebitotrue",
+      "unusual": true
+    },
+    {
+      "name": "notadedebitofalse",
+      "unusual": true
+    },
+    {
+      "name": "ifnumitem",
+      "unusual": true
+    },
+    {
+      "name": "numitemtrue",
+      "unusual": true
+    },
+    {
+      "name": "numitemfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifprefactura",
+      "unusual": true
+    },
+    {
+      "name": "prefacturatrue",
+      "unusual": true
+    },
+    {
+      "name": "prefacturafalse",
+      "unusual": true
+    },
+    {
+      "name": "ifsincantidad",
+      "unusual": true
+    },
+    {
+      "name": "sincantidadtrue",
+      "unusual": true
+    },
+    {
+      "name": "sincantidadfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifsindenominacion",
+      "unusual": true
+    },
+    {
+      "name": "sindenominaciontrue",
+      "unusual": true
+    },
+    {
+      "name": "sindenominacionfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifsinencabezadofactura",
+      "unusual": true
+    },
+    {
+      "name": "sinencabezadofacturatrue",
+      "unusual": true
+    },
+    {
+      "name": "sinencabezadofacturafalse",
+      "unusual": true
+    },
+    {
+      "name": "ifsinencabezadoreporte",
+      "unusual": true
+    },
+    {
+      "name": "sinencabezadoreportetrue",
+      "unusual": true
+    },
+    {
+      "name": "sinencabezadoreportefalse",
+      "unusual": true
+    },
+    {
+      "name": "ifsinexpandir",
+      "unusual": true
+    },
+    {
+      "name": "sinexpandirtrue",
+      "unusual": true
+    },
+    {
+      "name": "sinexpandirfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifsinfirmas",
+      "unusual": true
+    },
+    {
+      "name": "sinfirmastrue",
+      "unusual": true
+    },
+    {
+      "name": "sinfirmasfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifsiniva",
+      "unusual": true
+    },
+    {
+      "name": "sinivatrue",
+      "unusual": true
+    },
+    {
+      "name": "sinivafalse",
+      "unusual": true
+    },
+    {
+      "name": "ifsinivaexpresado",
+      "unusual": true
+    },
+    {
+      "name": "sinivaexpresadotrue",
+      "unusual": true
+    },
+    {
+      "name": "sinivaexpresadofalse",
+      "unusual": true
+    },
+    {
+      "name": "ifsinlineahni",
+      "unusual": true
+    },
+    {
+      "name": "sinlineahnitrue",
+      "unusual": true
+    },
+    {
+      "name": "sinlineahnifalse",
+      "unusual": true
+    },
+    {
+      "name": "ifsinlineahtit",
+      "unusual": true
+    },
+    {
+      "name": "sinlineahtittrue",
+      "unusual": true
+    },
+    {
+      "name": "sinlineahtitfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifsinlineahtot",
+      "unusual": true
+    },
+    {
+      "name": "sinlineahtottrue",
+      "unusual": true
+    },
+    {
+      "name": "sinlineahtotfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifsinlineash",
+      "unusual": true
+    },
+    {
+      "name": "sinlineashtrue",
+      "unusual": true
+    },
+    {
+      "name": "sinlineashfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifsinlineashe",
+      "unusual": true
+    },
+    {
+      "name": "sinlineashetrue",
+      "unusual": true
+    },
+    {
+      "name": "sinlineashefalse",
+      "unusual": true
+    },
+    {
+      "name": "ifsinlineashi",
+      "unusual": true
+    },
+    {
+      "name": "sinlineashitrue",
+      "unusual": true
+    },
+    {
+      "name": "sinlineashifalse",
+      "unusual": true
+    },
+    {
+      "name": "ifsinlineasv",
+      "unusual": true
+    },
+    {
+      "name": "sinlineasvtrue",
+      "unusual": true
+    },
+    {
+      "name": "sinlineasvfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifsinlineasve",
+      "unusual": true
+    },
+    {
+      "name": "sinlineasvetrue",
+      "unusual": true
+    },
+    {
+      "name": "sinlineasvefalse",
+      "unusual": true
+    },
+    {
+      "name": "ifsinlineasvi",
+      "unusual": true
+    },
+    {
+      "name": "sinlineasvitrue",
+      "unusual": true
+    },
+    {
+      "name": "sinlineasvifalse",
+      "unusual": true
+    },
+    {
+      "name": "ifsinmarcasfactura",
+      "unusual": true
+    },
+    {
+      "name": "sinmarcasfacturatrue",
+      "unusual": true
+    },
+    {
+      "name": "sinmarcasfacturafalse",
+      "unusual": true
+    },
+    {
+      "name": "ifsinmonedatotales",
+      "unusual": true
+    },
+    {
+      "name": "sinmonedatotalestrue",
+      "unusual": true
+    },
+    {
+      "name": "sinmonedatotalesfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifsinnumero",
+      "unusual": true
+    },
+    {
+      "name": "sinnumerotrue",
+      "unusual": true
+    },
+    {
+      "name": "sinnumerofalse",
+      "unusual": true
+    },
+    {
+      "name": "ifsinreverso",
+      "unusual": true
+    },
+    {
+      "name": "sinreversotrue",
+      "unusual": true
+    },
+    {
+      "name": "sinreversofalse",
+      "unusual": true
+    },
+    {
+      "name": "ifsintotales",
+      "unusual": true
+    },
+    {
+      "name": "sintotalestrue",
+      "unusual": true
+    },
+    {
+      "name": "sintotalesfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifsoloreporte",
+      "unusual": true
+    },
+    {
+      "name": "soloreportetrue",
+      "unusual": true
+    },
+    {
+      "name": "soloreportefalse",
+      "unusual": true
+    },
+    {
+      "name": "ifsubtotal",
+      "unusual": true
+    },
+    {
+      "name": "subtotaltrue",
+      "unusual": true
+    },
+    {
+      "name": "subtotalfalse",
+      "unusual": true
+    },
+    {
+      "name": "iftodosiva",
+      "unusual": true
+    },
+    {
+      "name": "todosivatrue",
+      "unusual": true
+    },
+    {
+      "name": "todosivafalse",
+      "unusual": true
+    },
+    {
+      "name": "iftwoside",
+      "unusual": true
+    },
+    {
+      "name": "twosidetrue",
+      "unusual": true
+    },
+    {
+      "name": "twosidefalse",
+      "unusual": true
+    },
+    {
+      "name": "ifunafirma",
+      "unusual": true
+    },
+    {
+      "name": "unafirmatrue",
+      "unusual": true
+    },
+    {
+      "name": "unafirmafalse",
+      "unusual": true
+    },
+    {
+      "name": "ifvencimiento",
+      "unusual": true
+    },
+    {
+      "name": "vencimientotrue",
+      "unusual": true
+    },
+    {
+      "name": "vencimientofalse",
+      "unusual": true
+    },
+    {
+      "name": "AuxFecha",
+      "unusual": true
+    },
+    {
+      "name": "DibujoFirma",
+      "unusual": true
+    },
+    {
+      "name": "DTMfdef",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "DTMinformat",
+      "unusual": true
+    },
+    {
+      "name": "DTMs",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "DTMsavedatex",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "flechaCR",
+      "unusual": true
+    },
+    {
+      "name": "TextoFirma",
+      "unusual": true
+    },
+    {
+      "name": "theNumItem",
+      "unusual": true
+    },
+    {
+      "name": "captionsspanish",
+      "unusual": true
+    },
+    {
+      "name": "datespanish",
+      "unusual": true
+    },
+    {
+      "name": "extrasspanish",
+      "unusual": true
+    },
+    {
+      "name": "noextrasspanish",
+      "unusual": true
+    },
+    {
+      "name": "bibname",
+      "unusual": true
+    },
+    {
+      "name": "chaptername",
+      "unusual": true
+    },
+    {
+      "name": "enclname",
+      "unusual": true
+    },
+    {
+      "name": "ccname",
+      "unusual": true
+    },
+    {
+      "name": "headtoname",
+      "unusual": true
+    },
+    {
+      "name": "seename",
+      "unusual": true
+    },
+    {
+      "name": "alsoname",
+      "unusual": true
+    },
+    {
+      "name": "proofname",
+      "unusual": true
+    },
+    {
+      "name": "prefacename",
+      "unusual": true
+    },
+    {
+      "name": "glossaryname",
+      "unusual": true
+    },
+    {
+      "name": "spanishrefname",
+      "unusual": true
+    },
+    {
+      "name": "spanishabstractname",
+      "unusual": true
+    },
+    {
+      "name": "spanishbibname",
+      "unusual": true
+    },
+    {
+      "name": "spanishchaptername",
+      "unusual": true
+    },
+    {
+      "name": "spanishappendixname",
+      "unusual": true
+    },
+    {
+      "name": "spanishcontentsname",
+      "unusual": true
+    },
+    {
+      "name": "spanishlistfigurename",
+      "unusual": true
+    },
+    {
+      "name": "spanishlisttablename",
+      "unusual": true
+    },
+    {
+      "name": "spanishindexname",
+      "unusual": true
+    },
+    {
+      "name": "spanishfigurename",
+      "unusual": true
+    },
+    {
+      "name": "spanishtablename",
+      "unusual": true
+    },
+    {
+      "name": "spanishpartname",
+      "unusual": true
+    },
+    {
+      "name": "spanishenclname",
+      "unusual": true
+    },
+    {
+      "name": "spanishccname",
+      "unusual": true
+    },
+    {
+      "name": "spanishheadtoname",
+      "unusual": true
+    },
+    {
+      "name": "spanishpagename",
+      "unusual": true
+    },
+    {
+      "name": "spanishseename",
+      "unusual": true
+    },
+    {
+      "name": "spanishalsoname",
+      "unusual": true
+    },
+    {
+      "name": "spanishproofname",
+      "unusual": true
+    },
+    {
+      "name": "spanishprefacename",
+      "unusual": true
+    },
+    {
+      "name": "spanishglossaryname",
+      "unusual": true
+    },
+    {
+      "name": "spanishdashitems",
+      "unusual": true
+    },
+    {
+      "name": "spanishsignitems",
+      "unusual": true
+    },
+    {
+      "name": "spanishsymbitems",
+      "unusual": true
+    },
+    {
+      "name": "spanishindexchars",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:encap}}{${2:open}}{${3:close}}"
+      }
+    },
+    {
+      "name": "spanishscroman"
+    },
+    {
+      "name": "spanishlcroman"
+    },
+    {
+      "name": "spanishucroman"
+    },
+    {
+      "name": "Today"
+    },
+    {
+      "name": "spanishdate",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:año}}{${2:mes}}{${3:día}}"
+      }
+    },
+    {
+      "name": "spanishDate",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:año}}{${2:mes}}{${3:día}}"
+      }
+    },
+    {
+      "name": "spanishdatedel"
+    },
+    {
+      "name": "spanishdatede"
+    },
+    {
+      "name": "spanishreverseddate"
+    },
+    {
+      "name": "spanishdatefirst",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:día-uno}}"
+      }
+    },
+    {
+      "name": "spanishdeactivate",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:caracteres}}"
+      }
+    },
+    {
+      "name": "decimalcomma"
+    },
+    {
+      "name": "decimalpoint"
+    },
+    {
+      "name": "spanishdecimal",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:math%formula}}"
+      }
+    },
+    {
+      "name": "sptext",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "spanishplainpercent"
+    },
+    {
+      "name": "percentsign",
+      "unusual": true
+    },
+    {
+      "name": "lsc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "lquoti"
+    },
+    {
+      "name": "rquoti"
+    },
+    {
+      "name": "lquotii"
+    },
+    {
+      "name": "rquotii"
+    },
+    {
+      "name": "lquotiii"
+    },
+    {
+      "name": "rquotiii"
+    },
+    {
+      "name": "activatequoting"
+    },
+    {
+      "name": "deactivatequoting"
+    },
+    {
+      "name": "sen"
+    },
+    {
+      "name": "tg"
+    },
+    {
+      "name": "arcsen"
+    },
+    {
+      "name": "arctg"
+    },
+    {
+      "name": "accentedoperators"
+    },
+    {
+      "name": "unaccentedoperators"
+    },
+    {
+      "name": "spacedoperators"
+    },
+    {
+      "name": "unspacedoperators"
+    },
+    {
+      "name": "spanishoperators",
+      "unusual": true
+    },
+    {
+      "name": "dotlessi"
+    },
+    {
+      "name": "selectspanish"
+    },
+    {
+      "name": "spanishoptions",
+      "unusual": true
+    },
+    {
+      "name": "textspanish",
+      "unusual": true
+    },
+    {
+      "name": "notextspanish",
+      "unusual": true
+    },
+    {
+      "name": "mathspanish",
+      "unusual": true
+    },
+    {
+      "name": "shorthandsspanish",
+      "unusual": true
+    },
+    {
+      "name": "DH"
+    },
+    {
+      "name": "dh"
+    },
+    {
+      "name": "dj"
+    },
+    {
+      "name": "DJ"
+    },
+    {
+      "name": "guillemetleft"
+    },
+    {
+      "name": "guillemetright"
+    },
+    {
+      "name": "guillemotleft",
+      "unusual": true
+    },
+    {
+      "name": "guillemotright",
+      "unusual": true
+    },
+    {
+      "name": "guilsinglleft"
+    },
+    {
+      "name": "guilsinglright"
+    },
+    {
+      "name": "Hwithstroke"
+    },
+    {
+      "name": "hwithstroke"
+    },
+    {
+      "name": "k",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "NG"
+    },
+    {
+      "name": "ng"
+    },
+    {
+      "name": "quotedblbase"
+    },
+    {
+      "name": "quotesinglbase"
+    },
+    {
+      "name": "textogonekcentered",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textquotedbl"
+    },
+    {
+      "name": "th"
+    },
+    {
+      "name": "TH"
+    }
+  ],
+  "envs": [
+    {
+      "name": "factura"
+    },
+    {
+      "name": "reverso"
+    },
+    {
+      "name": "reporte"
+    },
+    {
+      "name": "quoting"
+    }
+  ],
+  "keys": {
+    "\\documentclass/factura#c": [
+      "agrupatotales\r",
+      "agrupado\r",
+      "conlineasha\r",
+      "conreporte\r",
+      "cotizacion\r",
+      "csv\r",
+      "dcu\r",
+      "descripcioncentrada\r",
+      "centradesc\r",
+      "descuentos\r",
+      "divisa\r",
+      "dosfirmas\r",
+      "duc\r",
+      "expandecuadro\r",
+      "filas\r",
+      "filascentradas\r",
+      "centrado\r",
+      "G\r",
+      "iva\r",
+      "ivadescripcion\r",
+      "impdesc\r",
+      "linea\r",
+      "monedadespues\r",
+      "monedaceldas\r",
+      "nospanish\r",
+      "notadecredito\r",
+      "notadedebito\r",
+      "numitem\r",
+      "prefactura\r",
+      "sincantidad\r",
+      "sindenominacion\r",
+      "sindenom\r",
+      "sinencabezadofactura\r",
+      "sinencabezadoreporte\r",
+      "sinexpandir\r",
+      "sinfirmas\r",
+      "siniva\r",
+      "sinivaexpresado\r",
+      "sinlineahni\r",
+      "sinlineahtot\r",
+      "sinlineahtit\r",
+      "sinlineashe\r",
+      "sinlineashi\r",
+      "sinlineash\r",
+      "sinlineasve\r",
+      "sinlineasvi\r",
+      "sinlineasv\r",
+      "sinmarcasfactura\r",
+      "sinmarcas\r",
+      "sinmonedatotales\r",
+      "sinnumero\r",
+      "sinreverso\r",
+      "sintotales\r",
+      "soloreporte\r",
+      "subtotal\r",
+      "todosiva\r",
+      "twoside\r",
+      "unafirma\r",
+      "vencimiento\r"
+    ],
+    "\\GeometriaFactura,\\GeometriaReverso,\\GeometriaReporte": [
+      "paper=${1|a0paper,a1paper,a2paper,a3paper,a4paper,a5paper,a6paper,b0paper,b1paper,b2paper,b3paper,b4paper,b5paper,b6paper,c0paper,c1paper,c2paper,c3paper,c4paper,c5paper,c6paper,b0j,b1j,b2j,b3j,b4j,b5j,b6j,ansiapaper,ansibpaper,ansicpaper,ansidpaper,ansiepaper,letterpaper,executivepaper,legalpaper\r|}",
+      "papername=${1|a0paper,a1paper,a2paper,a3paper,a4paper,a5paper,a6paper,b0paper,b1paper,b2paper,b3paper,b4paper,b5paper,b6paper,c0paper,c1paper,c2paper,c3paper,c4paper,c5paper,c6paper,b0j,b1j,b2j,b3j,b4j,b5j,b6j,ansiapaper,ansibpaper,ansicpaper,ansidpaper,ansiepaper,letterpaper,executivepaper,legalpaper\r|}",
+      "a0paper\r",
+      "a1paper\r",
+      "a2paper\r",
+      "a3paper\r",
+      "a4paper\r",
+      "a5paper\r",
+      "a6paper\r",
+      "b0paper\r",
+      "b1paper\r",
+      "b2paper\r",
+      "b3paper\r",
+      "b4paper\r",
+      "b5paper\r",
+      "b6paper\r",
+      "c0paper\r",
+      "c1paper\r",
+      "c2paper\r",
+      "c3paper\r",
+      "c4paper\r",
+      "c5paper\r",
+      "c6paper\r",
+      "b0j\r",
+      "b1j\r",
+      "b2j\r",
+      "b3j\r",
+      "b4j\r",
+      "b5j\r",
+      "b6j\r",
+      "ansiapaper\r",
+      "ansibpaper\r",
+      "ansicpaper\r",
+      "ansidpaper\r",
+      "ansiepaper\r",
+      "letterpaper\r",
+      "executivepaper\r",
+      "legalpaper\r",
+      "screen\r",
+      "paperwidth=",
+      "paperheight=",
+      "papersize=",
+      "papersize={${1:width},${2:height}}\r",
+      "landscape",
+      "portrait",
+      "layout=${1|a0paper,a1paper,a2paper,a3paper,a4paper,a5paper,a6paper,b0paper,b1paper,b2paper,b3paper,b4paper,b5paper,b6paper,c0paper,c1paper,c2paper,c3paper,c4paper,c5paper,c6paper,b0j,b1j,b2j,b3j,b4j,b5j,b6j,ansiapaper,ansibpaper,ansicpaper,ansidpaper,ansiepaper,letterpaper,executivepaper,legalpaper\r|}",
+      "layoutwidth=",
+      "layoutheight=",
+      "layoutsize=",
+      "layoutsize={${1:width},${2:height}}\r",
+      "layouthoffset=",
+      "layoutvoffset=",
+      "layoutoffset=",
+      "layoutoffset={${1:hoffset},${2:voffset}}\r",
+      "hscale=${1:scale}\r",
+      "vscale=${1:scale}\r",
+      "scale=${1:scale}\r",
+      "scale={${1:hscale},${2:vscale}}\r",
+      "width=",
+      "totalwidth=",
+      "height=",
+      "totalheight=",
+      "total=",
+      "total={${1:width},${2:height}}\r",
+      "textwidth=",
+      "textheight=",
+      "text=",
+      "body={${1:width},${2:height}}\r",
+      "lines=${1:integer}\r",
+      "includehead",
+      "includefoot",
+      "includeheadfoot",
+      "includemp",
+      "includeall",
+      "ignorehead",
+      "ignorefoot",
+      "ignoreheadfoot",
+      "ignoremp",
+      "ignoreall",
+      "heightrounded",
+      "hdivide={${1:left margin},${2:width},${3:right margin}}\r",
+      "vdivide={${1:top margin},${2:height},${3:bottom margin}}\r",
+      "divide={${1:left/top margin},${2:width/height},${3:right/bottom margin}}\r",
+      "left=",
+      "lmargin=",
+      "inner=",
+      "right=",
+      "rmargin=",
+      "outer=",
+      "top=",
+      "tmargin=",
+      "bottom=",
+      "bmargin=",
+      "hmargin=",
+      "hmargin={${1:left margin},${2:right margin}}\r",
+      "vmargin=",
+      "vmargin={${1:top margin},${2:bottom margin}}\r",
+      "margin=",
+      "margin={${1:left/top margin},${2:right/bottom margin}}\r",
+      "hmarginratio=${1:left}:${2:right}\r",
+      "vmarginratio=${1:top}:${2:bottom}\r",
+      "marginratio={${1:left}:${2:right},${3:top}:${4:bottom}}\r",
+      "marginratio=${1:left/top}:${2:right/bottom}\r",
+      "ratio={${1:left}:${2:right},${3:top}:${4:bottom}}\r",
+      "ratio=${1:left/top}:${2:right/bottom}\r",
+      "hcentering",
+      "vcentering",
+      "centering",
+      "twoside",
+      "asymmetric",
+      "bindingoffset=",
+      "headheight=",
+      "head=",
+      "headsep=",
+      "footskip=",
+      "foot=",
+      "nohead",
+      "nofoot",
+      "noheadfoot",
+      "footnotesep=",
+      "marginparwidth=",
+      "marginparsep=",
+      "nomarginpar",
+      "columnsep=",
+      "hoffset=",
+      "voffset=",
+      "offset=",
+      "offset={${1:hoffset},${2:voffset}}\r",
+      "twocolumn",
+      "onecolumn",
+      "twoside",
+      "reversemp",
+      "reversemarginpar",
+      "driver=${1|auto,none,dvips,dvipdfm,pdftex,luatex,xetex,vtex,dvipdfmx,xdvipdfmx\r|}",
+      "dvips\r",
+      "dvipdfm\r",
+      "pdftex\r",
+      "luatex\r",
+      "xetex\r",
+      "vtex\r",
+      "dvipdfmx\r",
+      "xdvipdfmx\r",
+      "verbose",
+      "reset",
+      "mag=${1:magnification}\r",
+      "truedimen",
+      "pass",
+      "showframe",
+      "showcrop"
+    ],
+    "\\pagestyle#c,\\thispagestyle#c": [
+      "soloarriba\r",
+      "soloabajo\r",
+      "solonumpag\r"
+    ]
+  },
+  "args": [
+    "\\documentclass/factura#c"
+  ]
 }

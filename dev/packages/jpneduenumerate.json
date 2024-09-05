@@ -1,170 +1,462 @@
 {
-  "includes": {
-    "enumitem": [],
-    "refcount": [],
-    "otf": [],
-    "luatexja-otf": [
-      "lua"
+  "deps": [
+    {
+      "name": "enumitem"
+    },
+    {
+      "name": "refcount"
+    },
+    {
+      "name": "otf"
+    },
+    {
+      "name": "luatexja-otf",
+      "if": "lua"
+    }
+  ],
+  "macros": [
+    {
+      "name": "parenref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "romanref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "parenromanref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "Romanref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "parenRomanref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "bracketref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "squareauto"
+    },
+    {
+      "name": "squareauto*"
+    },
+    {
+      "name": "squarekeep"
+    },
+    {
+      "name": "squarekeep*"
+    },
+    {
+      "name": "squarereset"
+    },
+    {
+      "name": "squareref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "thejpneduenumeratetextsquarecounter",
+      "unusual": true
+    },
+    {
+      "name": "squarenumber",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:integer}}"
+      }
+    },
+    {
+      "name": "squarenumber*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:integer}}"
+      }
+    },
+    {
+      "name": "squarenumberauto",
+      "unusual": true
+    },
+    {
+      "name": "squarenumberkeep",
+      "unusual": true
+    },
+    {
+      "name": "squarenumberreset",
+      "unusual": true
+    },
+    {
+      "name": "questionauto"
+    },
+    {
+      "name": "questionauto*"
+    },
+    {
+      "name": "questionkeep"
+    },
+    {
+      "name": "questionkeep*"
+    },
+    {
+      "name": "questionreset"
+    },
+    {
+      "name": "questionref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "thejpneduenumeratetextquestioncounter",
+      "unusual": true
+    },
+    {
+      "name": "questionnumber",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:integer}}"
+      }
+    },
+    {
+      "name": "questionnumber*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:integer}}"
+      }
+    },
+    {
+      "name": "questionnumberauto",
+      "unusual": true
+    },
+    {
+      "name": "questionnumberkeep",
+      "unusual": true
+    },
+    {
+      "name": "questionnumberreset",
+      "unusual": true
+    },
+    {
+      "name": "enumerateauto"
+    },
+    {
+      "name": "enumerateauto*"
+    },
+    {
+      "name": "enumeratekeep"
+    },
+    {
+      "name": "enumeratekeep*"
+    },
+    {
+      "name": "enumeratereset"
+    },
+    {
+      "name": "enumerateref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "thejpneduenumeratetextenumeratecounter",
+      "unusual": true
+    },
+    {
+      "name": "enumeratenumber",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:integer}}"
+      }
+    },
+    {
+      "name": "enumeratenumber*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:integer}}"
+      }
+    },
+    {
+      "name": "enumeratenumberauto",
+      "unusual": true
+    },
+    {
+      "name": "enumeratenumberkeep",
+      "unusual": true
+    },
+    {
+      "name": "enumeratenumberreset",
+      "unusual": true
+    },
+    {
+      "name": "subquestionauto"
+    },
+    {
+      "name": "subquestionauto*"
+    },
+    {
+      "name": "subquestionkeep"
+    },
+    {
+      "name": "subquestionkeep*"
+    },
+    {
+      "name": "subquestionreset"
+    },
+    {
+      "name": "subquestionref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "thejpneduenumeratetextsubquestioncounter",
+      "unusual": true
+    },
+    {
+      "name": "subquestionnumber",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:integer}}"
+      }
+    },
+    {
+      "name": "subquestionnumber*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:integer}}"
+      }
+    },
+    {
+      "name": "subquestionnumberauto",
+      "unusual": true
+    },
+    {
+      "name": "subquestionnumberkeep",
+      "unusual": true
+    },
+    {
+      "name": "subquestionnumberreset",
+      "unusual": true
+    },
+    {
+      "name": "caseauto"
+    },
+    {
+      "name": "caseauto*"
+    },
+    {
+      "name": "casekeep"
+    },
+    {
+      "name": "casekeep*"
+    },
+    {
+      "name": "casereset"
+    },
+    {
+      "name": "caseref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "thejpneduenumeratetextcasecounter",
+      "unusual": true
+    },
+    {
+      "name": "casenumber",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:integer}}"
+      }
+    },
+    {
+      "name": "casenumber*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:integer}}"
+      }
+    },
+    {
+      "name": "casenumberauto",
+      "unusual": true
+    },
+    {
+      "name": "casenumberkeep",
+      "unusual": true
+    },
+    {
+      "name": "casenumberreset",
+      "unusual": true
+    },
+    {
+      "name": "stepauto"
+    },
+    {
+      "name": "stepauto*"
+    },
+    {
+      "name": "stepkeep"
+    },
+    {
+      "name": "stepkeep*"
+    },
+    {
+      "name": "stepreset"
+    },
+    {
+      "name": "stepref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "thejpneduenumeratetextstepcounter",
+      "unusual": true
+    },
+    {
+      "name": "stepnumber",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:integer}}"
+      }
+    },
+    {
+      "name": "stepnumber*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:integer}}"
+      }
+    },
+    {
+      "name": "stepnumberauto",
+      "unusual": true
+    },
+    {
+      "name": "stepnumberkeep",
+      "unusual": true
+    },
+    {
+      "name": "stepnumberreset",
+      "unusual": true
+    },
+    {
+      "name": "equationreset"
+    },
+    {
+      "name": "question",
+      "detail": "?",
+      "doc": "Question mark"
+    },
+    {
+      "name": "question*"
+    },
+    {
+      "name": "subquestion"
+    },
+    {
+      "name": "subquestion*"
+    },
+    {
+      "name": "case"
+    },
+    {
+      "name": "case*"
+    },
+    {
+      "name": "step"
+    },
+    {
+      "name": "step*"
+    }
+  ],
+  "envs": [
+    {
+      "name": "itemize*"
+    },
+    {
+      "name": "enumerate*"
+    },
+    {
+      "name": "romanenumerate"
+    },
+    {
+      "name": "romanenumerate*"
+    },
+    {
+      "name": "Romanenumerate"
+    },
+    {
+      "name": "Romanenumerate*"
+    },
+    {
+      "name": "bracketenumerate"
+    },
+    {
+      "name": "bracketenumerate*"
+    },
+    {
+      "name": "caseenumerate"
+    },
+    {
+      "name": "caseenumerate*"
+    },
+    {
+      "name": "stepenumerate"
+    },
+    {
+      "name": "stepenumerate*"
+    }
+  ],
+  "keys": {
+    "\\usepackage/jpneduenumerate#c": [
+      "lua\r",
+      "casebracket\r",
+      "stepbracket\r"
     ]
   },
-  "macros": {
-    "parenref{}": {
-      "snippet": "parenref{${1:label}}"
-    },
-    "romanref{}": {
-      "snippet": "romanref{${1:label}}"
-    },
-    "parenromanref{}": {
-      "snippet": "parenromanref{${1:label}}"
-    },
-    "Romanref{}": {
-      "snippet": "Romanref{${1:label}}"
-    },
-    "parenRomanref{}": {
-      "snippet": "parenRomanref{${1:label}}"
-    },
-    "bracketref{}": {
-      "snippet": "bracketref{${1:label}}"
-    },
-    "squareauto": {},
-    "squareauto*": {},
-    "squarekeep": {},
-    "squarekeep*": {},
-    "squarereset": {},
-    "squareref{}": {
-      "snippet": "squareref{${1:label}}"
-    },
-    "thejpneduenumeratetextsquarecounter": {},
-    "squarenumber{}": {
-      "snippet": "squarenumber{${1:integer}}"
-    },
-    "squarenumber*{}": {
-      "snippet": "squarenumber*{${1:integer}}"
-    },
-    "squarenumberauto": {},
-    "squarenumberkeep": {},
-    "squarenumberreset": {},
-    "questionauto": {},
-    "questionauto*": {},
-    "questionkeep": {},
-    "questionkeep*": {},
-    "questionreset": {},
-    "questionref{}": {
-      "snippet": "questionref{${1:label}}"
-    },
-    "thejpneduenumeratetextquestioncounter": {},
-    "questionnumber{}": {
-      "snippet": "questionnumber{${1:integer}}"
-    },
-    "questionnumber*{}": {
-      "snippet": "questionnumber*{${1:integer}}"
-    },
-    "questionnumberauto": {},
-    "questionnumberkeep": {},
-    "questionnumberreset": {},
-    "enumerateauto": {},
-    "enumerateauto*": {},
-    "enumeratekeep": {},
-    "enumeratekeep*": {},
-    "enumeratereset": {},
-    "enumerateref{}": {
-      "snippet": "enumerateref{${1:label}}"
-    },
-    "thejpneduenumeratetextenumeratecounter": {},
-    "enumeratenumber{}": {
-      "snippet": "enumeratenumber{${1:integer}}"
-    },
-    "enumeratenumber*{}": {
-      "snippet": "enumeratenumber*{${1:integer}}"
-    },
-    "enumeratenumberauto": {},
-    "enumeratenumberkeep": {},
-    "enumeratenumberreset": {},
-    "subquestionauto": {},
-    "subquestionauto*": {},
-    "subquestionkeep": {},
-    "subquestionkeep*": {},
-    "subquestionreset": {},
-    "subquestionref{}": {
-      "snippet": "subquestionref{${1:label}}"
-    },
-    "thejpneduenumeratetextsubquestioncounter": {},
-    "subquestionnumber{}": {
-      "snippet": "subquestionnumber{${1:integer}}"
-    },
-    "subquestionnumber*{}": {
-      "snippet": "subquestionnumber*{${1:integer}}"
-    },
-    "subquestionnumberauto": {},
-    "subquestionnumberkeep": {},
-    "subquestionnumberreset": {},
-    "caseauto": {},
-    "caseauto*": {},
-    "casekeep": {},
-    "casekeep*": {},
-    "casereset": {},
-    "caseref{}": {
-      "snippet": "caseref{${1:label}}"
-    },
-    "thejpneduenumeratetextcasecounter": {},
-    "casenumber{}": {
-      "snippet": "casenumber{${1:integer}}"
-    },
-    "casenumber*{}": {
-      "snippet": "casenumber*{${1:integer}}"
-    },
-    "casenumberauto": {},
-    "casenumberkeep": {},
-    "casenumberreset": {},
-    "stepauto": {},
-    "stepauto*": {},
-    "stepkeep": {},
-    "stepkeep*": {},
-    "stepreset": {},
-    "stepref{}": {
-      "snippet": "stepref{${1:label}}"
-    },
-    "thejpneduenumeratetextstepcounter": {},
-    "stepnumber{}": {
-      "snippet": "stepnumber{${1:integer}}"
-    },
-    "stepnumber*{}": {
-      "snippet": "stepnumber*{${1:integer}}"
-    },
-    "stepnumberauto": {},
-    "stepnumberkeep": {},
-    "stepnumberreset": {},
-    "equationreset": {},
-    "question": {
-      "detail": "?",
-      "documentation": "QUESTION MARK"
-    },
-    "question*": {},
-    "subquestion": {},
-    "subquestion*": {},
-    "case": {},
-    "case*": {},
-    "step": {},
-    "step*": {}
-  },
-  "envs": {
-    "itemize*": {},
-    "enumerate*": {},
-    "romanenumerate": {},
-    "romanenumerate*": {},
-    "Romanenumerate": {},
-    "Romanenumerate*": {},
-    "bracketenumerate": {},
-    "bracketenumerate*": {},
-    "caseenumerate": {},
-    "caseenumerate*": {},
-    "stepenumerate": {},
-    "stepenumerate*": {}
-  },
-  "options": [
-    "lua",
-    "casebracket",
-    "stepbracket"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/jpneduenumerate#c"
+  ]
 }

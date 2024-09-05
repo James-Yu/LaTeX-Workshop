@@ -1,20 +1,35 @@
 {
-  "includes": {
-    "l3keys2e": []
-  },
-  "macros": {
-    "appxnote{}{}": {
-      "snippet": "appxnote{${1:title}}{${2:content}}"
-    },
-    "appxnote[]{}{}": {
-      "snippet": "appxnote[${3:frame options}]{${1:title}}{${2:content}}"
-    },
-    "printappxnotes": {},
-    "options": {}
-  },
-  "envs": {},
-  "options": [
-    "backposition=${1|top,bottom,title|}"
+  "deps": [
+    {
+      "name": "l3keys2e"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "appxnote",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:title}}{${2:content%text}}"
+      }
+    },
+    {
+      "name": "appxnote",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:frame options}]{${1:title}}{${2:content%text}}"
+      }
+    },
+    {
+      "name": "printappxnotes"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/beamerappendixnote#c": [
+      "backposition=${1|top,bottom,title\r|}"
+    ]
+  },
+  "args": [
+    "\\usepackage/beamerappendixnote#c"
+  ]
 }

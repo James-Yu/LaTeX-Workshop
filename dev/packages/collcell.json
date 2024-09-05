@@ -1,26 +1,42 @@
 {
-  "includes": {
-    "array": [],
-    "etoolbox": [],
-    "tabularx": [
-      "verb"
+  "deps": [
+    {
+      "name": "array"
+    },
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "tabularx",
+      "if": "verb"
+    }
+  ],
+  "macros": [
+    {
+      "name": "collectcell"
+    },
+    {
+      "name": "endcollectcell"
+    },
+    {
+      "name": "ccunskip",
+      "unusual": true
+    },
+    {
+      "name": "cci",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/collcell#c": [
+      "verb\r",
+      "noverb\r",
+      "robustcr\r",
+      "norobustcr\r"
     ]
   },
-  "macros": {
-    "collectcell": {},
-    "collectcell{}": {
-      "snippet": "collectcell{${1:cmd}}"
-    },
-    "endcollectcell": {},
-    "ccunskip": {},
-    "cci": {}
-  },
-  "envs": {},
-  "options": [
-    "verb",
-    "noverb",
-    "robustcr",
-    "norobustcr"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/collcell#c"
+  ]
 }

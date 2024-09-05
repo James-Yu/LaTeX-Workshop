@@ -1,35 +1,71 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "ltxdockit": []
-  },
-  "macros": {
-    "fielditem{}{}": {
-      "snippet": "fielditem{${1:field}}{${2:type}}"
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "listitem{}{}": {
-      "snippet": "listitem{${1:list}}{${2:type}}"
-    },
-    "typeitem{}": {
-      "snippet": "typeitem{${1:types}}"
-    },
-    "reqitem{}": {
-      "snippet": "reqitem{${1:types}}"
-    },
-    "optitem{}": {
-      "snippet": "optitem{${1:types}}"
-    },
-    "bibfield{}": {
-      "snippet": "bibfield{${1:field}}"
-    },
-    "bibtype{}": {
-      "snippet": "bibtype{${1:type}}"
+    {
+      "name": "ltxdockit"
     }
-  },
-  "envs": {
-    "fieldlist": {},
-    "typelist": {}
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "fielditem",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:field}}{${2:type}}"
+      }
+    },
+    {
+      "name": "listitem",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:list}}{${2:type}}"
+      }
+    },
+    {
+      "name": "typeitem",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:types}}"
+      }
+    },
+    {
+      "name": "reqitem",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:types}}"
+      }
+    },
+    {
+      "name": "optitem",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:types}}"
+      }
+    },
+    {
+      "name": "bibfield",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:field}}"
+      }
+    },
+    {
+      "name": "bibtype",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:type}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "fieldlist"
+    },
+    {
+      "name": "typelist"
+    }
+  ],
+  "keys": {},
+  "args": []
 }

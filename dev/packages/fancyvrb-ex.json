@@ -1,101 +1,139 @@
 {
-  "includes": {
-    "fancyvrb": [],
-    "xcolor": [],
-    "hbaw": [],
-    "pstricks": [
-      "pstricks"
-    ]
-  },
-  "macros": {
-    "showgrid": {}
-  },
-  "envs": {
-    "PCenterExample(x1,y1)(x2,y2)": {
-      "name": "PCenterExample",
-      "snippet": "(${1:x1},${2:y1})(${3:x2},${4:y2})"
+  "deps": [
+    {
+      "name": "fancyvrb"
     },
-    "PCenterExample[](x1,y1)(x2,y2)": {
-      "name": "PCenterExample",
-      "snippet": "[${1:options}](${2:x1},${3:y1})(${4:x2},${5:y2})"
+    {
+      "name": "xcolor"
     },
-    "PSideBySideExample(x1,y1)(x2,y2)": {
-      "name": "PSideBySideExample",
-      "snippet": "(${1:x1},${2:y1})(${3:x2},${4:y2})"
+    {
+      "name": "hbaw"
     },
-    "PSideBySideExample[](x1,y1)(x2,y2)": {
-      "name": "PSideBySideExample",
-      "snippet": "[${1:options}](${2:x1},${3:y1})(${4:x2},${5:y2})"
-    },
-    "Example": {},
-    "Example[]": {
-      "name": "Example",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "CenterExample": {},
-    "CenterExample[]": {
-      "name": "CenterExample",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "SideBySideExample": {},
-    "SideBySideExample[]": {
-      "name": "SideBySideExample",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "pstricks",
+      "if": "pstricks"
     }
-  },
-  "options": [
-    "pstricks",
-    "color"
   ],
-  "keyvals": [
-    [
-      "commentchar=${1:single char}",
-      "gobble=${1:integer}",
-      "formatcom=${1:commands}",
-      "formatcom*=${1:commands}",
-      "fontfamily=${1:family}",
-      "fontsize=${1:size macro}",
-      "fontshape=${1:shape}",
-      "fontseries=${1:series}",
-      "frame=${1|none,leftline,topline,bottomline,lines,single|}",
+  "macros": [
+    {
+      "name": "showgrid",
+      "if": "pstricks"
+    }
+  ],
+  "envs": [
+    {
+      "name": "PCenterExample",
+      "if": "pstricks",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x1},${2:y1})(${3:x2},${4:y2})"
+      }
+    },
+    {
+      "name": "PCenterExample",
+      "if": "pstricks",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "[${1:options%keyvals}](${2:x1},${3:y1})(${4:x2},${5:y2})"
+      }
+    },
+    {
+      "name": "PSideBySideExample",
+      "if": "pstricks",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x1},${2:y1})(${3:x2},${4:y2})"
+      }
+    },
+    {
+      "name": "PSideBySideExample",
+      "if": "pstricks",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "[${1:options%keyvals}](${2:x1},${3:y1})(${4:x2},${5:y2})"
+      }
+    },
+    {
+      "name": "Example"
+    },
+    {
+      "name": "Example",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "CenterExample"
+    },
+    {
+      "name": "CenterExample",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "SideBySideExample"
+    },
+    {
+      "name": "SideBySideExample",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/fancyvrb-ex#c": [
+      "pstricks\r",
+      "color\r"
+    ],
+    "\\begin{Example},\\begin{CenterExample},\\begin{SideBySideExample},\\begin{PCenterExample},\\begin{PSideBySideExample}": [
+      "commentchar=${1:single char}\r",
+      "gobble=${1:integer}\r",
+      "formatcom=${1:commands}\r",
+      "formatcom*=${1:commands}\r",
+      "fontfamily=${1:family}\r",
+      "fontsize=${1:size macro}\r",
+      "fontshape=${1:shape}\r",
+      "fontseries=${1:series}\r",
+      "frame=${1|none,leftline,topline,bottomline,lines,single\r|}",
       "framerule=",
       "framesep=",
-      "rulecolor=${1:color cmd}",
-      "fillcolor=${1:color cmd}",
-      "label=${1:label text}",
-      "labelposition=${1|none,topline,bottomline,all|}",
-      "numbers=${1|none,left,right|}",
+      "rulecolor=${1:color cmd}\r",
+      "fillcolor=${1:color cmd}\r",
+      "label=${1:label text}\r",
+      "labelposition=${1|none,topline,bottomline,all\r|}",
+      "numbers=${1|none,left,right\r|}",
       "numbersep=",
-      "firstnumber=${1:auto|last|<integer>}",
-      "stepnumber=${1:integer}",
+      "firstnumber=${1:auto|last|<integer>}\r",
+      "stepnumber=${1:integer}\r",
       "numberblanklines",
-      "firstline=${1:integer}",
-      "lastline=${1:integer}",
+      "firstline=${1:integer}\r",
+      "lastline=${1:integer}\r",
       "showspaces",
       "showtabs",
       "obeytabs",
-      "tabsize=${1:integer}",
-      "baselinestretch=${1:factor}",
-      "commandchars=${1:three chars}",
+      "tabsize=${1:integer}\r",
+      "baselinestretch=${1:factor}\r",
+      "commandchars=${1:three chars}\r",
       "xleftmargin=",
       "xrightmargin=",
       "resetmargins",
       "hfuzz=",
       "samepage",
-      "codes={${1:code}}",
-      "codes*={${1:code}}",
-      "defineactive={${1:code}}",
-      "defineactive*={${1:code}}",
+      "codes={${1:code}}\r",
+      "codes*={${1:code}}\r",
+      "defineactive={${1:code}}\r",
+      "defineactive*={${1:code}}\r",
       "reflabel=",
-      "fileext=${1:extension}",
+      "fileext=${1:extension}\r",
       "vspace=",
-      "listparameters={${1:code}}"
+      "listparameters={${1:code}}\r"
     ]
+  },
+  "args": [
+    "\\usepackage/fancyvrb-ex#c"
   ]
 }

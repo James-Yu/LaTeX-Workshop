@@ -1,81 +1,125 @@
 {
-  "includes": {
-    "graphicx": [],
-    "psfrag": [
-      "psfrag"
-    ]
-  },
-  "macros": {
-    "digraph{}{}": {
-      "snippet": "digraph{${1:name}}{${2:graph}}"
+  "deps": [
+    {
+      "name": "graphicx"
     },
-    "digraph[]{}{}": {
-      "snippet": "digraph[${3:options}]{${1:name}}{${2:graph}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "neatograph{}{}": {
-      "snippet": "neatograph{${1:name}}{${2:graph}}"
-    },
-    "neatograph[]{}{}": {
-      "snippet": "neatograph[${3:options}]{${1:name}}{${2:graph}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "inputdigraph{}{}{}": {
-      "snippet": "inputdigraph{${1:name}}{${2:graph}}{${3:type}}"
-    },
-    "inputdigraph[]{}{}{}": {
-      "snippet": "inputdigraph[${4:options}]{${1:name}}{${2:graph}}{${3:type}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "ifsinglefile": {},
-    "singlefiletrue": {},
-    "singlefilefalse": {},
-    "ifpsfrag": {},
-    "psfragtrue": {},
-    "psfragfalse": {}
-  },
-  "envs": {},
-  "options": [
-    "singlefile",
-    "psfrag",
-    "ps",
-    "pdf",
-    "tmpdir"
+    {
+      "name": "psfrag",
+      "if": "psfrag"
+    }
   ],
-  "keyvals": [
-    [
-      "alt={${1:alt text}}",
-      "bb=${1:llx lly urx ury}",
-      "bbllx=",
-      "bblly=",
-      "bburx=",
-      "bbury=",
-      "natwidth=",
-      "natheight=",
+  "macros": [
+    {
+      "name": "digraph",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:graph}}"
+      }
+    },
+    {
+      "name": "digraph",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:name}}{${2:graph}}"
+      }
+    },
+    {
+      "name": "neatograph",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:graph}}"
+      }
+    },
+    {
+      "name": "neatograph",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:name}}{${2:graph}}"
+      }
+    },
+    {
+      "name": "inputdigraph",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:graph}}{${3:type}}"
+      }
+    },
+    {
+      "name": "inputdigraph",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:options%keyvals}]{${1:name}}{${2:graph}}{${3:type}}"
+      }
+    },
+    {
+      "name": "ifsinglefile",
+      "unusual": true
+    },
+    {
+      "name": "singlefiletrue",
+      "unusual": true
+    },
+    {
+      "name": "singlefilefalse",
+      "unusual": true
+    },
+    {
+      "name": "ifpsfrag",
+      "unusual": true
+    },
+    {
+      "name": "psfragtrue",
+      "unusual": true
+    },
+    {
+      "name": "psfragfalse",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/graphviz#c": [
+      "singlefile\r",
+      "psfrag\r",
+      "ps\r",
+      "pdf\r",
+      "tmpdir\r"
+    ],
+    "\\digraph,\\neatograph,\\inputdigraph": [
+      "alt={${1:alt text}}\r",
+      "bb=${1:llx lly urx ury}\r",
+      "bbllx=\r",
+      "bblly=\r",
+      "bburx=\r",
+      "bbury=\r",
+      "natwidth=\r",
+      "natheight=\r",
       "hiresbb",
-      "pagebox=${1|mediabox,cropbox,bleedbox,trimbox,artbox|}",
-      "viewport=${1:llx lly urx ury}",
-      "trim=${1:llx lly urx ury}",
-      "angle=${1:degrees}",
-      "origin=",
+      "pagebox=${1|mediabox,cropbox,bleedbox,trimbox,artbox\r|}",
+      "viewport=${1:llx lly urx ury}\r",
+      "trim=${1:llx lly urx ury}\r",
+      "angle=${1:degrees}\r",
+      "origin=\r",
       "width=",
       "height=",
       "totalheight=",
       "keepaspectratio",
-      "scale=${1:factor}",
+      "scale=${1:factor}\r",
       "clip",
       "draft",
-      "type=${1:file type}",
-      "ext=${1:file extension}",
-      "read=${1:read-file extension}",
-      "command=",
-      "quiet",
-      "page=${1:page number}",
+      "type=${1:file type}\r",
+      "ext=${1:file extension}\r",
+      "read=${1:read-file extension}\r",
+      "command=\r",
+      "quiet\r",
+      "page=${1:page number}\r",
       "interpolate",
-      "decodearray={${1:color array}}"
+      "decodearray={${1:color array}}\r"
     ]
+  },
+  "args": [
+    "\\usepackage/graphviz#c"
   ]
 }

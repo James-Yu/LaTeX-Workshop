@@ -1,39 +1,61 @@
 {
-  "includes": {
-    "class-slides": []
-  },
-  "macros": {
-    "oddh{}": {
-      "snippet": "oddh{${1:header}}"
-    },
-    "oddf{}": {
-      "snippet": "oddf{${1:footer}}"
-    },
-    "evenh{}": {
-      "snippet": "evenh{${1:header}}"
-    },
-    "evenf{}": {
-      "snippet": "evenf{${1:footer}}"
+  "deps": [
+    {
+      "name": "class-slides"
     }
-  },
-  "envs": {},
-  "options": [
-    "a4paper",
-    "a5paper",
-    "b5paper",
-    "letterpaper",
-    "legalpaper",
-    "executivepaper",
-    "landscape",
-    "clock",
-    "draft",
-    "final",
-    "titlepage",
-    "notitlepage",
-    "onecolumn",
-    "twocolumn",
-    "leqno",
-    "fleqn"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "oddh",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:header%text}}"
+      }
+    },
+    {
+      "name": "oddf",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:footer%text}}"
+      }
+    },
+    {
+      "name": "evenh",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:header%text}}"
+      }
+    },
+    {
+      "name": "evenf",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:footer%text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\documentclass/sslides#c": [
+      "a4paper\r",
+      "a5paper\r",
+      "b5paper\r",
+      "letterpaper\r",
+      "legalpaper\r",
+      "executivepaper\r",
+      "landscape\r",
+      "clock\r",
+      "draft\r",
+      "final\r",
+      "titlepage\r",
+      "notitlepage\r",
+      "onecolumn\r",
+      "twocolumn\r",
+      "leqno\r",
+      "fleqn\r"
+    ]
+  },
+  "args": [
+    "\\documentclass/sslides#c"
+  ]
 }

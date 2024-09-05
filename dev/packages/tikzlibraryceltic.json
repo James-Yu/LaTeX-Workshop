@@ -1,29 +1,37 @@
 {
-  "includes": {},
-  "macros": {
-    "CelticDrawPath{}": {
-      "snippet": "CelticDrawPath{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [],
+  "macros": [
+    {
+      "name": "CelticDrawPath",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "max steps=${1:integer}",
-      "flip",
+  ],
+  "envs": [],
+  "keys": {
+    "\\CelticDrawPath#c": [
+      "max steps=${1:integer}\r",
+      "flip\r",
       "width=",
       "height=",
-      "size={${1:width,height}}",
-      "crossings={${1:x,y,type; ...}}",
-      "symmetric crossings={${1:x,y,type; ...}}",
-      "ignore crossings={${1:x,y,type; ...}}",
-      "ignore symmetric crossings={${1:x,y,type; ...}}",
-      "style={${1:TikZ keys}}",
-      "at=${1:coordinate}",
-      "inner clip=${1:integer}",
-      "outer clip=${1:integer}"
+      "size={${1:width,height}}\r",
+      "crossings={${1:x,y,type; ...}}\r",
+      "symmetric crossings={${1:x,y,type; ...}}\r",
+      "ignore crossings={${1:x,y,type; ...}}\r",
+      "ignore symmetric crossings={${1:x,y,type; ...}}\r",
+      "style={${1:TikZ keys}}\r",
+      "at=${1:coordinate}\r",
+      "inner clip=${1:integer}\r",
+      "outer clip=${1:integer}\r"
+    ],
+    "\\begin{tikzpicture}#c,\\tikz#c,\\begin{scope}#c,\\tikzset#c,\\scoped#c": [
+      "celtic surround/.style={${1:TikZ keys}}\r",
+      "celtic bar/.style={${1:TikZ keys}}\r",
+      "celtic path/.style={${1:TikZ keys}}\r",
+      "celtic path ${1:⟨n⟩}/.style={${2:TikZ keys}}\r"
     ]
-  ]
+  },
+  "args": []
 }

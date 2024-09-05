@@ -1,22 +1,44 @@
 {
-  "includes": {
-    "classicthesis": [],
-    "caption": [],
-    "soul": [],
-    "titlesec": []
-  },
-  "macros": {
-    "formatchapter{}": {
-      "snippet": "formatchapter{${1:text}}"
+  "deps": [
+    {
+      "name": "classicthesis"
     },
-    "allcapsspacing{}": {
-      "snippet": "allcapsspacing{${1:text}}"
+    {
+      "name": "caption"
     },
-    "lowsmallcapsspacing{}": {
-      "snippet": "lowsmallcapsspacing{${1:text}}"
+    {
+      "name": "soul"
+    },
+    {
+      "name": "titlesec"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "formatchapter",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "allcapsspacing",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "lowsmallcapsspacing",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

@@ -1,18 +1,47 @@
 {
-  "includes": {},
-  "macros": {
-    "setTabOrder{}": {
-      "snippet": "setTabOrder{${1:order type}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "setTabOrder",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:order type%keyvals}}"
+      }
     },
-    "setTabOrderByList": {},
-    "setTabOrderByNumber": {},
-    "setStructTabOrder{}": {
-      "snippet": "setStructTabOrder{${1:object list}}"
+    {
+      "name": "setTabOrderByList"
+    },
+    {
+      "name": "setTabOrderByNumber"
+    },
+    {
+      "name": "setStructTabOrder",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:object list}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [
-    "structure"
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/taborder#c": [
+      "structure\r"
+    ],
+    "\\setTabOrder#c": [
+      "c\r",
+      "C\r",
+      "r\r",
+      "R\r",
+      "s\r",
+      "S\r",
+      "w\r",
+      "W\r",
+      "a\r",
+      "A\r",
+      "unspecified\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/taborder#c"
+  ]
 }

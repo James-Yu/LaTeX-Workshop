@@ -1,17 +1,30 @@
 {
-  "includes": {
-    "xeCJK": []
-  },
-  "macros": {
-    "setCJKfallbackfamily{}": {
-      "snippet": "setCJKfallbackfamily{${1:family}}"
-    },
-    "unsetCJKfallbackfamily": {},
-    "CJKsymbol{}": {
-      "snippet": "CJKsymbol{${1:arg}}"
+  "deps": [
+    {
+      "name": "xeCJK"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "setCJKfallbackfamily",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:family}}"
+      }
+    },
+    {
+      "name": "unsetCJKfallbackfamily"
+    },
+    {
+      "name": "CJKsymbol",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

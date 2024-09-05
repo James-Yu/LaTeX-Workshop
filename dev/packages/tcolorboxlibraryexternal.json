@@ -1,94 +1,176 @@
 {
-  "includes": {
-    "incgraph": []
-  },
-  "macros": {
-    "tcbEXTERNALIZE": {},
-    "tcbifexternal{}{}": {
-      "snippet": "tcbifexternal{${1:true}}{${2:false}}"
-    },
-    "newtcbexternalizeenvironment{}{}{}{}{}": {
-      "snippet": "newtcbexternalizeenvironment{${1:newenv}}{${2:env}}{${3:options}}{${4:begdef}}{${5:enddef}}",
-      "keyvalindex": 0,
-      "keyvalpos": 2
-    },
-    "renewtcbexternalizeenvironment{}{}{}{}{}": {
-      "snippet": "renewtcbexternalizeenvironment{${1:newenv}}{${2:env}}{${3:options}}{${4:begdef}}{${5:enddef}}",
-      "keyvalindex": 0,
-      "keyvalpos": 2
-    },
-    "newtcbexternalizetcolorbox{}{}{}{}": {
-      "snippet": "newtcbexternalizetcolorbox{${1:newenv}}{${2:env}}{${3:options}}{${4:begin end options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 2
-    },
-    "renewtcbexternalizetcolorbox{}{}{}{}": {
-      "snippet": "renewtcbexternalizetcolorbox{${1:newenv}}{${2:env}}{${3:options}}{${4:begin end options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 2
-    },
-    "tcbiffileprocess{}{}{}{}{}{}": {
-      "snippet": "tcbiffileprocess{${1:condition}}{${2:source}}{${3:md5-file}}{${4:target}}{${5:true}}{${6:false}}"
+  "deps": [
+    {
+      "name": "incgraph"
     }
-  },
-  "envs": {
-    "tcbexternal{}": {
-      "name": "tcbexternal",
-      "snippet": "{${1:name}}"
+  ],
+  "macros": [
+    {
+      "name": "tcbEXTERNALIZE"
     },
-    "tcbexternal[]{}": {
-      "name": "tcbexternal",
-      "snippet": "[${2:options}]{${1:name}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "tcbifexternal",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:true}}{${2:false}}"
+      }
     },
-    "extcolorbox{}": {
-      "name": "extcolorbox",
-      "snippet": "{${1:name}}"
+    {
+      "name": "newtcbexternalizeenvironment",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:newenv%envname}}{${2:env}}{${3:options%keyvals}}{${4:begdef}}{${5:enddef}}",
+        "keys": [
+          "\\begin{tcbexternal},\\begin{extcolorbox},\\begin{extikzpicture},\\newtcbexternalizeenvironment,\\renewtcbexternalizeenvironment,\\newtcbexternalizetcolorbox,\\renewtcbexternalizetcolorbox"
+        ],
+        "keyPos": 2
+      }
     },
-    "extcolorbox[]{}[]": {
-      "name": "extcolorbox",
-      "snippet": "[${2:options}]{${1:name}}[${3:tcolorbox options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "renewtcbexternalizeenvironment",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:newenv%envname}}{${2:env}}{${3:options%keyvals}}{${4:begdef}}{${5:enddef}}",
+        "keys": [
+          "\\begin{tcbexternal},\\begin{extcolorbox},\\begin{extikzpicture},\\newtcbexternalizeenvironment,\\renewtcbexternalizeenvironment,\\newtcbexternalizetcolorbox,\\renewtcbexternalizetcolorbox"
+        ],
+        "keyPos": 2
+      }
     },
-    "extikzpicture{}": {
-      "name": "extikzpicture",
-      "snippet": "{${1:name}}"
+    {
+      "name": "newtcbexternalizetcolorbox",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:newenv%envname}}{${2:env}}{${3:options%keyvals}}{${4:begin end options}}",
+        "keys": [
+          "\\begin{tcbexternal},\\begin{extcolorbox},\\begin{extikzpicture},\\newtcbexternalizeenvironment,\\renewtcbexternalizeenvironment,\\newtcbexternalizetcolorbox,\\renewtcbexternalizetcolorbox"
+        ],
+        "keyPos": 2
+      }
     },
-    "extikzpicture[]{}[]": {
-      "name": "extikzpicture",
-      "snippet": "[${2:options}]{${1:name}}[${3:tikz options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "renewtcbexternalizetcolorbox",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:newenv%envname}}{${2:env}}{${3:options%keyvals}}{${4:begin end options}}",
+        "keys": [
+          "\\begin{tcbexternal},\\begin{extcolorbox},\\begin{extikzpicture},\\newtcbexternalizeenvironment,\\renewtcbexternalizeenvironment,\\newtcbexternalizetcolorbox,\\renewtcbexternalizetcolorbox"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "tcbiffileprocess",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "{${1:condition}}{${2:source}}{${3:md5-file}}{${4:target}}{${5:true}}{${6:false}}"
+      }
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
-      "runner=${1:file name}",
-      "prefix=${1:text}",
+  ],
+  "envs": [
+    {
+      "name": "tcbexternal",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "tcbexternal",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:name}}"
+      }
+    },
+    {
+      "name": "extcolorbox",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "extcolorbox",
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:options%keyvals}]{${1:name}}[${3:tcolorbox options}]"
+      }
+    },
+    {
+      "name": "extikzpicture",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "extikzpicture",
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:options%keyvals}]{${1:name}}[${3:tikz options}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\begin{tcbexternal},\\begin{extcolorbox},\\begin{extikzpicture},\\newtcbexternalizeenvironment,\\renewtcbexternalizeenvironment,\\newtcbexternalizetcolorbox,\\renewtcbexternalizetcolorbox": [
+      "runner=${1:file name}\r",
+      "prefix=${1:text}\r",
       "externalize",
       "force remake",
-      "!",
-      "-",
-      "name=${1:name}",
-      "safety=${1:length}",
-      "environment=${1:envname}",
+      "!\r",
+      "-\r",
+      "name=${1:name}\r",
+      "safety=${1:length}\r",
+      "environment=${1:envname}\r",
       "environment with percent",
-      "minipage",
+      "minipage\r",
       "minipage=",
-      "plain",
-      "compiler=${1:text}",
-      "runs=${1:number}",
+      "plain\r",
+      "compiler=${1:text}\r",
+      "runs=${1:number}\r",
       "input source on error",
-      "preclass={${1:code}}",
-      "PassOptionsToPackage={${1:options}}{${2:package}}",
-      "PassOptionsToClass={${1:options}}{${2:class}}",
-      "clear preclass",
-      "preamble={${1:code}}",
-      "preamble tcbset={${1:options}}",
-      "clear preamble"
+      "preclass={${1:code}}\r",
+      "PassOptionsToPackage={${1:options}}{${2:package}}\r",
+      "PassOptionsToClass={${1:options}}{${2:class}}\r",
+      "clear preclass\r",
+      "preamble={${1:code}}\r",
+      "preamble tcbset={${1:options}}\r",
+      "clear preamble\r"
+    ],
+    "\\tcbset": [
+      "external/runner=${1:file name}\r",
+      "external/prefix=${1:text}\r",
+      "external/externalize",
+      "external/force remake",
+      "external/!\r",
+      "external/-\r",
+      "external/name=${1:name}\r",
+      "external/safety=${1:length}\r",
+      "external/environment=${1:envname}\r",
+      "external/environment with percent",
+      "external/minipage\r",
+      "external/minipage=",
+      "external/plain\r",
+      "external/compiler=${1:text}\r",
+      "external/runs=${1:number}\r",
+      "external/input source on error",
+      "external/preclass={${1:code}}\r",
+      "external/PassOptionsToPackage={${1:options}}{${2:package}}\r",
+      "external/PassOptionsToClass={${1:options}}{${2:class}}\r",
+      "external/clear preclass\r",
+      "external/preamble={${1:code}}\r",
+      "external/preamble tcbset={${1:options}}\r",
+      "external/clear preamble\r"
+    ],
+    "\\tcbset,\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing": [
+      "externalize listing=${1:name}\r",
+      "externalize listing!=${1:name}\r"
+    ],
+    "\\tcbset,\\begin{dispExample*}": [
+      "externalize example=${1:name}\r",
+      "externalize example!=${1:name}\r"
     ]
-  ]
+  },
+  "args": []
 }

@@ -1,14 +1,31 @@
 {
-  "includes": {},
-  "macros": {
-    "mathversion{}": {
-      "snippet": "mathversion{${1:version}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "mathversion",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:version%keyvals}}"
+      }
     },
-    "textsb{}": {
-      "snippet": "textsb{${1:text}}"
+    {
+      "name": "textsb",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     }
+  ],
+  "envs": [],
+  "keys": {
+    "\\mathversion#c": [
+      "normal\r",
+      "bold\r",
+      "semibold\r",
+      "sans\r",
+      "sanssb\r",
+      "sansb\r"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

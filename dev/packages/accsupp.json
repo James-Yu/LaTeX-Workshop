@@ -1,49 +1,80 @@
 {
-  "includes": {
-    "pdfescape": [],
-    "iftex": [],
-    "kvoptions": []
-  },
-  "macros": {
-    "BeginAccSupp{}": {
-      "snippet": "BeginAccSupp{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "pdfescape"
     },
-    "AccSuppSetup{}": {
-      "snippet": "AccSuppSetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "iftex"
     },
-    "EndAccSupp{}": {
-      "snippet": "EndAccSupp{${1:options}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "ActualTextDriverDefault": {}
-  },
-  "envs": {},
-  "options": [
-    "pdftex",
-    "luatex",
-    "dvips",
-    "dvipdfm"
+    {
+      "name": "kvoptions"
+    }
   ],
-  "keyvals": [
-    [
-      "ActualText=${1:text}",
-      "Alt=${1:text}",
-      "E=${1:text}",
-      "Lang=${1:language}",
-      "method=${1|plain,escape,hex,pdfstringdef|}",
-      "unicode",
-      "space",
-      "spacefont=${1:font name}",
-      "spacechar=${1:slot}",
-      "pdfliteral=${1:keyword}"
+  "macros": [
+    {
+      "name": "BeginAccSupp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\BeginAccSupp,\\AccSuppSetup",
+          "\\BeginAccSupp,\\AccSuppSetup,\\EndAccSupp"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "AccSuppSetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\BeginAccSupp,\\AccSuppSetup",
+          "\\BeginAccSupp,\\AccSuppSetup,\\EndAccSupp"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "EndAccSupp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\BeginAccSupp,\\AccSuppSetup,\\EndAccSupp"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ActualTextDriverDefault",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/accsupp#c": [
+      "pdftex\r",
+      "luatex\r",
+      "dvips\r",
+      "dvipdfm\r"
     ],
-    [
-      "pdfliteral=${1:keyword}"
+    "\\BeginAccSupp,\\AccSuppSetup": [
+      "ActualText=${1:text}\r",
+      "Alt=${1:text}\r",
+      "E=${1:text}\r",
+      "Lang=${1:language}\r",
+      "method=${1|plain,escape,hex,pdfstringdef\r|}",
+      "unicode\r",
+      "space",
+      "spacefont=${1:font name}\r",
+      "spacechar=${1:slot}\r"
+    ],
+    "\\BeginAccSupp,\\AccSuppSetup,\\EndAccSupp": [
+      "pdfliteral=${1:keyword}\r"
     ]
+  },
+  "args": [
+    "\\usepackage/accsupp#c"
   ]
 }

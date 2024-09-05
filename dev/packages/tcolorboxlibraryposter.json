@@ -1,90 +1,135 @@
 {
-  "includes": {
-    "tcolorboxlibrarybreakable": [],
-    "tcolorboxlibrarymagazine": [],
-    "tcolorboxlibraryskins": [],
-    "tcolorboxlibraryfitting": []
-  },
-  "macros": {
-    "tcbposterwidth": {},
-    "tcbposterheight": {},
-    "tcbpostercolspacing": {},
-    "tcbposterrowspacing": {},
-    "tcbpostercolumns": {},
-    "tcbposterrows": {},
-    "tcbpostercolwidth": {},
-    "tcbposterrowheight": {},
-    "tcbposterset{}": {
-      "snippet": "tcbposterset{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "tcolorboxlibrarybreakable"
     },
-    "posterbox{}{}": {
-      "snippet": "posterbox{${1:placement}}{${2:box content}}"
+    {
+      "name": "tcolorboxlibrarymagazine"
     },
-    "posterbox[]{}{}": {
-      "snippet": "posterbox[${3:options}]{${1:placement}}{${2:box content}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "tcolorboxlibraryskins"
+    },
+    {
+      "name": "tcolorboxlibraryfitting"
     }
-  },
-  "envs": {
-    "tcbposter": {},
-    "tcbposter[]": {
+  ],
+  "macros": [
+    {
+      "name": "tcbposterwidth"
+    },
+    {
+      "name": "tcbposterheight"
+    },
+    {
+      "name": "tcbpostercolspacing"
+    },
+    {
+      "name": "tcbposterrowspacing"
+    },
+    {
+      "name": "tcbpostercolumns"
+    },
+    {
+      "name": "tcbposterrows"
+    },
+    {
+      "name": "tcbpostercolwidth"
+    },
+    {
+      "name": "tcbposterrowheight"
+    },
+    {
+      "name": "tcbposterset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\begin{tcbposter},\\tcbposterset"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "posterbox",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:placement}}{${2:box content%text}}"
+      }
+    },
+    {
+      "name": "posterbox",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:placement}}{${2:box content%text}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "tcbposter"
+    },
+    {
       "name": "tcbposter",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     },
-    "posterboxenv{}": {
+    {
       "name": "posterboxenv",
-      "snippet": "{${1:placement}}"
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:placement}}"
+      }
     },
-    "posterboxenv[]{}": {
+    {
       "name": "posterboxenv",
-      "snippet": "[${2:options}]{${1:placement}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:placement}}"
+      }
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
-      "poster={${1:poster options}}",
-      "coverage={${1:options}}",
-      "no coverage",
-      "boxes={${1:options}}",
+  ],
+  "keys": {
+    "\\begin{tcbposter},\\tcbposterset": [
+      "poster={${1:poster options}}\r",
+      "coverage={${1:options}}\r",
+      "no coverage\r",
+      "boxes={${1:options}}\r",
       "fontsize="
     ],
-    [
-      "posterset/poster={${1:poster options}}",
-      "posterset/coverage={${1:options}}",
-      "posterset/no coverage",
-      "posterset/boxes={${1:options}}",
+    "\\tcbset,\\posterbox,\\begin{posterboxenv}": [
+      "posterset/poster={${1:poster options}}\r",
+      "posterset/coverage={${1:options}}\r",
+      "posterset/no coverage\r",
+      "posterset/boxes={${1:options}}\r",
       "posterset/fontsize=",
-      "poster/columns=${1:number}",
-      "poster/rows=${1:number}",
+      "poster/columns=${1:number}\r",
+      "poster/rows=${1:number}\r",
       "poster/colspacing=",
       "poster/rowspacing=",
       "poster/showframe",
       "poster/width=",
       "poster/height=",
-      "poster/prefix=${1:name}",
-      "posterloc/name=${1:name}",
-      "posterloc/column=${1:number}",
-      "posterloc/column*=${1:number}",
-      "posterloc/span=${1:number}",
-      "posterloc/row=${1:number}",
-      "posterloc/rowspan=${1:number}",
-      "posterloc/fixed height",
-      "posterloc/below=${1:name}",
-      "posterloc/above=${1:name}",
-      "posterloc/at=${1:name}",
-      "posterloc/between=${1:name1} and ${2:name2}",
-      "posterloc/sequence=${1:sequence}",
+      "poster/prefix=${1:name}\r",
+      "posterloc/name=${1:name}\r",
+      "posterloc/column=${1:number}\r",
+      "posterloc/column*=${1:number}\r",
+      "posterloc/span=${1:number}\r",
+      "posterloc/row=${1:number}\r",
+      "posterloc/rowspan=${1:number}\r",
+      "posterloc/fixed height\r",
+      "posterloc/below=${1:name}\r",
+      "posterloc/above=${1:name}\r",
+      "posterloc/at=${1:name}\r",
+      "posterloc/between=${1:name1} and ${2:name2}\r",
+      "posterloc/sequence=${1:sequence}\r",
       "posterloc/xshift=",
-      "posterloc/yshift=",
-      "placeholder"
+      "posterloc/yshift="
+    ],
+    "\\tcbset,\\begin{tcolorbox},\\tcbsetforeverylayer,\\tcbox,\\newtcolorbox,\\renewtcolorbox,\\newtcbox,\\renewtcbox,\\tcolorboxenvironment,\\tcbsubtitle,\\tcbsidebyside,\\tcbsubskin,\\tcbincludegraphics,\\tcbincludepdf,\\begin{tcbraster},\\begin{tcbitemize},\\tcbitem,\\begin{tcboxedraster},\\begin{tcboxeditemize},\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\NewTcbTheorem,\\newtcbtheorem,\\RenewTcbTheorem,\\renewtcbtheorem,\\ProvideTcbTheorem,\\DeclareTcbTheorem,\\tcboxmath,\\tcbhighmath,\\usetcboxarray,\\consumetcboxarray,\\posterbox,\\begin{posterboxenv},\\tcboxfit,\\newtcboxfit,\\renewtcboxfit,\\DeclareTColorBox,\\NewTColorBox,\\RenewTColorBox,\\ProvideTColorBox,\\DeclareTotalTColorBox,\\NewTotalTColorBox,\\RenewTotalTColorBox,\\ProvideTotalTColorBox,\\DeclareTCBox,\\NewTCBox,\\RenewTCBox,\\ProvideTCBox,\\DeclareTotalTCBox,\\NewTotalTCBox,\\RenewTotalTCBox,\\ProvideTotalTCBox,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing,\\DeclareTCBoxFit,\\NewTCBoxFit,\\RenewTCBoxFit,\\ProvideTCBoxFit,\\DeclareTotalTCBoxFit,\\NewTotalTCBoxFit,\\RenewTotalTCBoxFit,\\ProvideTotalTCBoxFit,\\tcboxverb,\\begin{docCommand},\\begin{docCommand*},\\begin{docCommands},\\begin{docEnvironment},\\begin{docEnvironment*},\\begin{docEnvironments},\\begin{docKey},\\begin{docKey*},\\begin{docKeys},\\begin{docPathOperation},\\begin{docPathOperation*},\\begin{docPathOperations},\\docValue,\\docValue*,\\docAuxCommand,\\docAuxCommand*,\\docAuxEnvironment,\\docAuxEnvironment*,\\docAuxKey,\\docAuxKey*,\\docCounter,\\docCounter*,\\docLength,\\docLength*,\\docColor,\\docColor*,\\begin{dispExample*},\\begin{dispListing*},\\tcbdocmarginnote": [
+      "placeholder\r"
     ]
-  ]
+  },
+  "args": []
 }

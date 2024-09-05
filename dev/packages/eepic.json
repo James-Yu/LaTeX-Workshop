@@ -1,46 +1,111 @@
 {
-  "includes": {},
-  "macros": {
-    "line(){}": {
-      "snippet": "line(${2:x},${3:y}){${1:length}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "line(x,y)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
     },
-    "circle{}": {
-      "snippet": "circle{${1:diameter}}"
+    {
+      "name": "circle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:diameter}}"
+      }
     },
-    "circle*{}": {
-      "snippet": "circle*{${1:diameter}}"
+    {
+      "name": "circle*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:diameter}}"
+      }
     },
-    "oval()": {
-      "snippet": "oval(${1:width},${2:height})"
+    {
+      "name": "oval(width,height)"
     },
-    "oval()[]": {
-      "snippet": "oval(${2:width},${3:height})[${1:portion}]"
+    {
+      "name": "oval(width,height)",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:portion}]"
+      }
     },
-    "maxovaldiam": {},
-    "allinethickness{}": {
-      "snippet": "allinethickness{${1:dimen}}"
+    {
+      "name": "maxovaldiam",
+      "unusual": true
     },
-    "Thicklines": {},
-    "ellipse{}{}": {
-      "snippet": "ellipse{${1:x diameter}}{${2:y diameter}}"
+    {
+      "name": "allinethickness",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:dimen}}"
+      }
     },
-    "ellipse*{}{}": {
-      "snippet": "ellipse*{${1:x diameter}}{${2:y diameter}}"
+    {
+      "name": "Thicklines"
     },
-    "arc{}{}{}": {
-      "snippet": "arc{${1:diameter}}{${2:start angle}}{${3:end angle}}"
+    {
+      "name": "ellipse",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:x diameter}}{${2:y diameter}}"
+      }
     },
-    "filltype{}": {
-      "snippet": "filltype{${1:type}}"
+    {
+      "name": "ellipse*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:x diameter}}{${2:y diameter}}"
+      }
     },
-    "blacken": {},
-    "whiten": {},
-    "shade": {},
-    "texture{}": {
-      "snippet": "texture{${1:hex nums}}"
+    {
+      "name": "arc",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:diameter}}{${2:start angle}}{${3:end angle}}"
+      }
+    },
+    {
+      "name": "filltype",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:type%keyvals}}",
+        "keys": [
+          "\\filltype"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "blacken",
+      "unusual": true
+    },
+    {
+      "name": "whiten",
+      "unusual": true
+    },
+    {
+      "name": "shade",
+      "unusual": true
+    },
+    {
+      "name": "texture",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:hex nums}}"
+      }
     }
+  ],
+  "envs": [],
+  "keys": {
+    "\\filltype": [
+      "black\r",
+      "white\r",
+      "shade\r"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

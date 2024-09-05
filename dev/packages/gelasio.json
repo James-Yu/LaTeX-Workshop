@@ -1,34 +1,67 @@
 {
-  "includes": {
-    "ifxetex": [],
-    "ifluatex": [],
-    "xkeyval": [],
-    "fontenc": [],
-    "fontaxes": [],
-    "mweights": []
-  },
-  "macros": {
-    "gelasio": {},
-    "liningnums{}": {
-      "snippet": "liningnums{${1:text}}"
+  "deps": [
+    {
+      "name": "ifxetex"
     },
-    "sufigures": {},
-    "tabularnums{}": {
-      "snippet": "tabularnums{${1:text}}"
+    {
+      "name": "ifluatex"
     },
-    "textsu{}": {
-      "snippet": "textsu{${1:text}}"
+    {
+      "name": "xkeyval"
+    },
+    {
+      "name": "fontenc"
+    },
+    {
+      "name": "fontaxes"
+    },
+    {
+      "name": "mweights"
     }
-  },
-  "envs": {},
-  "options": [
-    "scale=${1:factor}",
-    "type1",
-    "lining",
-    "tabular",
-    "proportional",
-    "medium",
-    "semibold"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "gelasio",
+      "unusual": true
+    },
+    {
+      "name": "liningnums",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "sufigures"
+    },
+    {
+      "name": "tabularnums",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textsu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/gelasio#c": [
+      "scale=${1:factor}\r",
+      "type1\r",
+      "lining\r",
+      "tabular\r",
+      "proportional\r",
+      "medium\r",
+      "semibold\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/gelasio#c"
+  ]
 }

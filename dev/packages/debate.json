@@ -1,21 +1,41 @@
 {
-  "includes": {
-    "xcolor": [],
-    "tcolorbox": [],
-    "tcolorboxlibrarymost": [],
-    "xkeyval": []
-  },
-  "macros": {
-    "debate{}": {
-      "snippet": "debate{${1:text}}"
+  "deps": [
+    {
+      "name": "xcolor"
     },
-    "debate[]{}": {
-      "snippet": "debate[${2:author}]{${1:text}}"
+    {
+      "name": "tcolorbox"
+    },
+    {
+      "name": "tcolorboxlibrarymost"
+    },
+    {
+      "name": "xkeyval"
     }
-  },
-  "envs": {},
-  "options": [
-    "hide"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "debate",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "debate",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:author}]{${1:text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/debate#c": [
+      "hide\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/debate#c"
+  ]
 }

@@ -1,25 +1,57 @@
 {
-  "includes": {
-    "everyshi": [],
-    "keyval": []
-  },
-  "macros": {
-    "theTotPages": {},
-    "TotPerSheet": {},
-    "TotSheets": {},
-    "ifTotPagesToDvi": {},
-    "TotPagesToDvitrue": {},
-    "TotPagesToDvifalse": {},
-    "ifPagesPerSheet": {},
-    "PagesPerSheettrue": {},
-    "PagesPerSheetfalse": {}
-  },
-  "envs": {},
-  "options": [
-    "dvi",
-    "nodvi",
-    "pagespersheet=${1:integer}",
-    "nopagespersheet"
+  "deps": [
+    {
+      "name": "everyshi"
+    },
+    {
+      "name": "keyval"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "theTotPages"
+    },
+    {
+      "name": "TotPerSheet"
+    },
+    {
+      "name": "TotSheets"
+    },
+    {
+      "name": "ifTotPagesToDvi",
+      "unusual": true
+    },
+    {
+      "name": "TotPagesToDvitrue",
+      "unusual": true
+    },
+    {
+      "name": "TotPagesToDvifalse",
+      "unusual": true
+    },
+    {
+      "name": "ifPagesPerSheet",
+      "unusual": true
+    },
+    {
+      "name": "PagesPerSheettrue",
+      "unusual": true
+    },
+    {
+      "name": "PagesPerSheetfalse",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/totpages#c": [
+      "dvi\r",
+      "nodvi\r",
+      "pagespersheet=${1:integer}\r",
+      "nopagespersheet\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/totpages#c"
+  ]
 }

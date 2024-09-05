@@ -1,19 +1,33 @@
 {
-  "includes": {
-    "upmethodology-p-common": [],
-    "upmethodology-extension": []
-  },
-  "macros": {
-    "makebackcover": {},
-    "setbackcover{}": {
-      "snippet": "setbackcover{${1:layout name}}"
+  "deps": [
+    {
+      "name": "upmethodology-p-common"
+    },
+    {
+      "name": "upmethodology-extension"
     }
-  },
-  "envs": {},
-  "options": [
-    "french",
-    "francais",
-    "english"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "makebackcover"
+    },
+    {
+      "name": "setbackcover",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:layout name}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/upmethodology-backpage#c": [
+      "french\r",
+      "francais\r",
+      "english\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/upmethodology-backpage#c"
+  ]
 }

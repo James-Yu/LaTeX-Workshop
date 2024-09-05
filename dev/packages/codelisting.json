@@ -1,76 +1,173 @@
 {
-  "includes": {
-    "listings": [],
-    "scontents": []
-  },
-  "macros": {
-    "tscode{}": {
-      "snippet": "tscode{${1:st-name}}"
+  "deps": [
+    {
+      "name": "listings"
     },
-    "tscode[]{}": {
-      "snippet": "tscode[${2:code-keys}]{${1:st-name}}"
-    },
-    "tscode*{}": {
-      "snippet": "tscode*{${1:st-name}}"
-    },
-    "tscode*[]{}": {
-      "snippet": "tscode*[${2:code-keys}]{${1:st-name}}"
-    },
-    "tsdemo{}": {
-      "snippet": "tsdemo{${1:st-name}}"
-    },
-    "tsdemo[]{}": {
-      "snippet": "tsdemo[${2:code-keys}]{${1:st-name}}"
-    },
-    "tsdemo*{}": {
-      "snippet": "tsdemo*{${1:st-name}}"
-    },
-    "tsdemo*[]{}": {
-      "snippet": "tsdemo*[${2:code-keys}]{${1:st-name}}"
-    },
-    "tsresult{}": {
-      "snippet": "tsresult{${1:st-name}}"
-    },
-    "tsresult[]{}": {
-      "snippet": "tsresult[${2:code-keys}]{${1:st-name}}"
-    },
-    "tsresult*{}": {
-      "snippet": "tsresult*{${1:st-name}}"
-    },
-    "tsresult*[]{}": {
-      "snippet": "tsresult*[${2:code-keys}]{${1:st-name}}"
-    },
-    "setcodekeys{}": {
-      "snippet": "setcodekeys{${1:code-keys}}"
-    },
-    "PkgDescription{}": {
-      "snippet": "PkgDescription{${1:arg}}"
-    },
-    "PkgInfo{}{}": {
-      "snippet": "PkgInfo{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "scontents"
     }
-  },
-  "envs": {
-    "codestore": {},
-    "codestore[]": {
+  ],
+  "macros": [
+    {
+      "name": "tscode",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:st-name}}"
+      }
+    },
+    {
+      "name": "tscode",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:code-keys%keyvals}]{${1:st-name}}"
+      }
+    },
+    {
+      "name": "tscode*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:st-name}}"
+      }
+    },
+    {
+      "name": "tscode*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:code-keys%keyvals}]{${1:st-name}}"
+      }
+    },
+    {
+      "name": "tsdemo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:st-name}}"
+      }
+    },
+    {
+      "name": "tsdemo",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:code-keys%keyvals}]{${1:st-name}}"
+      }
+    },
+    {
+      "name": "tsdemo*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:st-name}}"
+      }
+    },
+    {
+      "name": "tsdemo*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:code-keys%keyvals}]{${1:st-name}}"
+      }
+    },
+    {
+      "name": "tsresult",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:st-name}}"
+      }
+    },
+    {
+      "name": "tsresult",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:code-keys%keyvals}]{${1:st-name}}"
+      }
+    },
+    {
+      "name": "tsresult*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:st-name}}"
+      }
+    },
+    {
+      "name": "tsresult*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:code-keys%keyvals}]{${1:st-name}}"
+      }
+    },
+    {
+      "name": "setcodekeys",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code-keys%keyvals}}",
+        "keys": [
+          "\\tscode,\\tscode*,\\tsdemo,\\tsdemo*,\\tsresult,\\tsresult*,\\setcodekeys"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "codestore"
+    },
+    {
       "name": "codestore",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
-      "${1:st-name}",
-      "st=${1:st-name}",
-      "store-at=${1:st-name}",
-      "store-env=${1:seq name}",
+  ],
+  "keys": {
+    "\\begin{codestore}#c": [
+      "${1:st-name}\r",
+      "st=${1:st-name}\r",
+      "store-at=${1:st-name}\r",
+      "store-env=${1:seq name}\r",
       "print-env",
-      "write-env=${1:file.ext}",
-      "write-out=${1:file.ext}",
+      "write-env=${1:file.ext}\r",
+      "write-out=${1:file.ext}\r",
       "overwrite",
       "force-eol"
+    ],
+    "\\tscode,\\tscode*,\\tsdemo,\\tsdemo*,\\tsresult,\\tsresult*,\\setcodekeys": [
+      "settexcs={${1:csname1,csname2,...}}\r",
+      "settexcs2={${1:csname1,csname2,...}}\r",
+      "settexcs3={${1:csname1,csname2,...}}\r",
+      "texcs={${1:csname1,csname2,...}}\r",
+      "texcs2={${1:csname1,csname2,...}}\r",
+      "texcs3={${1:csname1,csname2,...}}\r",
+      "texcsstyle=${1:font commands}\r",
+      "texcs2style=${1:font commands}\r",
+      "texcs3style=${1:font commands}\r",
+      "setkeywd={${1:keyword1,keyword2,...}}\r",
+      "setkeywd2={${1:keyword1,keyword2,...}}\r",
+      "setkeywd3={${1:keyword1,keyword2,...}}\r",
+      "keywd={${1:keyword1,keyword2,...}}\r",
+      "keywd2={${1:keyword1,keyword2,...}}\r",
+      "keywd3={${1:keyword1,keyword2,...}}\r",
+      "keywdstyle=${1:font commands}\r",
+      "keywd2style=${1:font commands}\r",
+      "keywd3style=${1:font commands}\r",
+      "setemph={${1:keyword1,keyword2,...}}\r",
+      "setemph2={${1:keyword1,keyword2,...}}\r",
+      "setemph3={${1:keyword1,keyword2,...}}\r",
+      "emph={${1:keyword1,keyword2,...}}\r",
+      "emph2={${1:keyword1,keyword2,...}}\r",
+      "emph3={${1:keyword1,keyword2,...}}\r",
+      "emphstyle=${1:font commands}\r",
+      "emph2style=${1:font commands}\r",
+      "emph3style=${1:font commands}\r",
+      "numbers=${1|none,left\r|}",
+      "numberstyle=${1:font commands}\r",
+      "stringstyle=${1:font commands}\r",
+      "commentstyle=${1:font commands}\r",
+      "bckgndcolor=${1:color commands}\r",
+      "rulecolor=${1:color commands}\r",
+      "codeprefix=${1:text}\r",
+      "resultprefix=${1:text}\r",
+      "parindent=",
+      "ruleht=${1:number}\r",
+      "basicstyle=${1:font commands}\r"
     ]
-  ]
+  },
+  "args": []
 }

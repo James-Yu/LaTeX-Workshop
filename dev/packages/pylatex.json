@@ -1,29 +1,49 @@
 {
-  "includes": {
-    "comment": [],
-    "listings": [],
-    "keyval": [],
-    "etoolbox": [],
-    "xcolor": [],
-    "pymacros": []
-  },
-  "macros": {
-    "pyverb{}": {
-      "snippet": "pyverb{${1:text}}"
+  "deps": [
+    {
+      "name": "comment"
     },
-    "PySetup{}": {
-      "snippet": "PySetup{${1:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "listings"
+    },
+    {
+      "name": "keyval"
+    },
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "xcolor"
+    },
+    {
+      "name": "pymacros"
     }
-  },
-  "envs": {
-    "python": {}
-  },
-  "options": [],
-  "keyvals": [
-    [
-      "action=${1|show,hide,verbatim|}"
+  ],
+  "macros": [
+    {
+      "name": "pyverb",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "PySetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "python"
+    }
+  ],
+  "keys": {
+    "\\PySetup": [
+      "action=${1|show,hide,verbatim\r|}"
     ]
-  ]
+  },
+  "args": []
 }

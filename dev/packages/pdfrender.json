@@ -1,36 +1,48 @@
 {
-  "includes": {
-    "iftex": [],
-    "infwarerr": [],
-    "ltxcmds": [],
-    "kvsetkeys": []
-  },
-  "macros": {
-    "pdfrender{}": {
-      "snippet": "pdfrender{${1:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "iftex"
     },
-    "textpdfrender{}{}": {
-      "snippet": "textpdfrender{${1:keyvals}}{${2:text}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "infwarerr"
+    },
+    {
+      "name": "ltxcmds"
+    },
+    {
+      "name": "kvsetkeys"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "TextRenderingMode=${1|0,1,2,3,4,5,6,7,Fill,Stroke,FillStroke,Invisible,FillClip,StrokeClip,FillStrokeClip,Clip|}",
-      "LineWidth=",
-      "LineCapStyle=${1|0,1,2,Butt,Round,ProjectingSquare|}",
-      "LineJoinStyle=${1|0,1,2,Miter,Round,Bevel|}",
-      "MiterLimit=${1:number}",
-      "Flatness=${1:number}",
-      "LineDashPattern=",
-      "RenderingIntent=${1|AbsoluteColorimetric,RelativeColorimetric,Saturation,Perceptual|}",
-      "FillColor=",
-      "StrokeColor="
+  ],
+  "macros": [
+    {
+      "name": "pdfrender",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "textpdfrender",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:keyvals}}{${2:text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\pdfrender,\\textpdfrender": [
+      "TextRenderingMode=${1|0,1,2,3,4,5,6,7,Fill,Stroke,FillStroke,Invisible,FillClip,StrokeClip,FillStrokeClip,Clip\r|}",
+      "LineWidth=\r",
+      "LineCapStyle=${1|0,1,2,Butt,Round,ProjectingSquare\r|}",
+      "LineJoinStyle=${1|0,1,2,Miter,Round,Bevel\r|}",
+      "MiterLimit=${1:number}\r",
+      "Flatness=${1:number}\r",
+      "LineDashPattern=\r",
+      "RenderingIntent=${1|AbsoluteColorimetric,RelativeColorimetric,Saturation,Perceptual\r|}",
+      "FillColor=\r",
+      "StrokeColor=\r"
     ]
-  ]
+  },
+  "args": []
 }

@@ -1,33 +1,65 @@
 {
-  "includes": {
-    "fontspec": [],
-    "newunicodechar": [],
-    "pdftexcmds": [],
-    "kvoptions": []
-  },
-  "macros": {
-    "sipafont": {},
-    "sipaalternatefont": {},
-    "sipachoosephoneticchar{}{}": {
-      "snippet": "sipachoosephoneticchar{${1:char1}}{${2:char2}}"
+  "deps": [
+    {
+      "name": "fontspec"
     },
-    "sipachoosealternatechar{}{}": {
-      "snippet": "sipachoosealternatechar{${1:char1}}{${2:char2}}"
+    {
+      "name": "newunicodechar"
     },
-    "sipasetup{}{}": {
-      "snippet": "sipasetup{${1:glyph}}{${2:char}}"
+    {
+      "name": "pdftexcmds"
     },
-    "sipaalternatesetup{}{}": {
-      "snippet": "sipaalternatesetup{${1:glyph}}{${2:char}}"
+    {
+      "name": "kvoptions"
     }
-  },
-  "envs": {},
-  "options": [
-    "fontname=${1:font name}",
-    "scfontname=${1:font name}",
-    "phoneticfontname=${1:font name}",
-    "alternatefontname=${1:font name}",
-    "noalternatescaling"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "sipafont"
+    },
+    {
+      "name": "sipaalternatefont"
+    },
+    {
+      "name": "sipachoosephoneticchar",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:char1}}{${2:char2}}"
+      }
+    },
+    {
+      "name": "sipachoosealternatechar",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:char1}}{${2:char2}}"
+      }
+    },
+    {
+      "name": "sipasetup",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:glyph}}{${2:char}}"
+      }
+    },
+    {
+      "name": "sipaalternatesetup",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:glyph}}{${2:char}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/stoneipa#c": [
+      "fontname=${1:font name}\r",
+      "scfontname=${1:font name}\r",
+      "phoneticfontname=${1:font name}\r",
+      "alternatefontname=${1:font name}\r",
+      "noalternatescaling"
+    ]
+  },
+  "args": [
+    "\\usepackage/stoneipa#c"
+  ]
 }

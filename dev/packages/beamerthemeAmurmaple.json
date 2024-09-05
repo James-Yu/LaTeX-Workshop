@@ -1,75 +1,166 @@
 {
-  "includes": {
-    "multicol": [],
-    "iftex": [],
-    "pgfpages": [],
-    "fontawesome5": [],
-    "luamesh": [],
-    "tcolorbox": [],
-    "tcolorboxlibraryskins": [],
-    "tikzlibrarybackgrounds": [],
-    "tikzlibraryquotes": [],
-    "tikzlibraryangles": [],
-    "tikzlibraryautomata": [],
-    "tikzlibrarycalc": []
-  },
-  "macros": {
-    "boxalert{}": {
-      "snippet": "boxalert{${1:text}}"
+  "deps": [
+    {
+      "name": "multicol"
     },
-    "boxalert<>{}": {
-      "snippet": "boxalert<${2:overlay specification}>{${1:text}}"
+    {
+      "name": "iftex"
     },
-    "collaboration{}": {
-      "snippet": "collaboration{${1:collaboration}}"
+    {
+      "name": "pgfpages"
     },
-    "framesection{}": {
-      "snippet": "framesection{${1:text}}"
+    {
+      "name": "fontawesome5"
     },
-    "mail{}": {
-      "snippet": "mail{${1:email}}"
+    {
+      "name": "luamesh"
     },
-    "sepframe": {},
-    "sepframe[]": {
-      "snippet": "sepframe[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "tcolorbox"
     },
-    "thanksframe[]{}": {
-      "snippet": "thanksframe[${2:graphic}]{${1:title}}"
+    {
+      "name": "tcolorboxlibraryskins"
     },
-    "thanksframe{}": {
-      "snippet": "thanksframe{${1:title}}"
+    {
+      "name": "tikzlibrarybackgrounds"
     },
-    "webpage{}": {
-      "snippet": "webpage{${1:URL}}"
+    {
+      "name": "tikzlibraryquotes"
     },
-    "pourc": {},
-    "theamurmapletoc": {},
-    "xj": {}
-  },
-  "envs": {
-    "information": {},
-    "information[]": {
+    {
+      "name": "tikzlibraryangles"
+    },
+    {
+      "name": "tikzlibraryautomata"
+    },
+    {
+      "name": "tikzlibrarycalc"
+    }
+  ],
+  "macros": [
+    {
+      "name": "boxalert",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "boxalert<overlay specification>",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "collaboration",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:collaboration%text}}"
+      }
+    },
+    {
+      "name": "framesection",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "mail",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:email%URL}}"
+      }
+    },
+    {
+      "name": "sepframe"
+    },
+    {
+      "name": "sepframe",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "thanksframe",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:graphic}]{${1:title}}"
+      }
+    },
+    {
+      "name": "thanksframe",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "webpage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:URL}}"
+      }
+    },
+    {
+      "name": "theamurmapletoc",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "information"
+    },
+    {
       "name": "information",
-      "snippet": "[${1:title}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:title%text}]"
+      }
     },
-    "quotation[]": {
+    {
       "name": "quotation",
-      "snippet": "[${1:author(${2:s})}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:author(${2:s})}]"
+      }
     },
-    "remark": {},
-    "remark[]": {
+    {
+      "name": "remark"
+    },
+    {
       "name": "remark",
-      "snippet": "[${1:title complement}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:title complement%text}]"
+      }
     },
-    "boxalertenv": {}
-  },
-  "options": [],
-  "keyvals": [
-    [
-      "title={${1:text}}",
-      "image={${1:graphics code}}"
+    {
+      "name": "boxalertenv",
+      "unusual": true
+    }
+  ],
+  "keys": {
+    "\\usetheme/Amurmaple#c": [
+      "nogauge\r",
+      "nomail\r",
+      "delaunay\r",
+      "amurmapleblue\r",
+      "amurmaplegreen\r",
+      "amurmapleblack\r",
+      "sidebarwidth=",
+      "sidebar\r",
+      "toplogo\r",
+      "leftframetitle\r",
+      "rule\r",
+      "rulecolor="
+    ],
+    "\\sepframe": [
+      "title={${1:text}}\r",
+      "image={${1:graphics code}}\r"
     ]
-  ]
+  },
+  "args": []
 }

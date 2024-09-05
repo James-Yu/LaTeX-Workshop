@@ -1,59 +1,51 @@
 {
-  "includes": {
-    "luatex": [],
-    "microtype": []
-  },
-  "macros": {
-    "lwcsetup{}": {
-      "snippet": "lwcsetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "luatex"
     },
-    "lwcenable": {},
-    "lwcdisable": {},
-    "lwcemergencystretch": {},
-    "lwcdisablecmd{}": {
-      "snippet": "lwcdisablecmd{${1:cmd}}"
+    {
+      "name": "microtype"
     }
-  },
-  "envs": {},
-  "options": [
-    "disable",
-    "enable",
-    "disablecmds={${1:\\macro1,\\macro2,...}}",
-    "emergencystretch=",
-    "widowpenalty=${1:integer}",
-    "orphanpenalty=${1:integer}",
-    "nobreak=${1|keep,split,warn|}",
-    "max-cost=${1:integer}",
-    "draft",
-    "showcosts",
-    "showcolours",
-    "draftoffset=",
-    "debug",
-    "default",
-    "strict",
-    "balanced",
-    "microtype"
   ],
-  "keyvals": [
-    [
-      "disable",
-      "enable",
-      "disablecmds={${1:\\macro1,\\macro2,...}}",
+  "macros": [
+    {
+      "name": "lwcsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\lwcsetup,\\usepackage/lua-widow-control#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\lwcsetup,\\usepackage/lua-widow-control#c": [
+      "disable\r",
+      "enable\r",
+      "disablecmds={${1:\\macro1,\\macro2,...}}\r",
       "emergencystretch=",
-      "widowpenalty=${1:integer}",
-      "orphanpenalty=${1:integer}",
-      "nobreak=${1|keep,split,warn|}",
-      "max-cost=${1:integer}",
-      "draft",
+      "widowpenalty=${1:integer}\r",
+      "orphanpenalty=${1:integer}\r",
+      "nobreak=${1|keep,split,warn\r|}",
+      "max-cost=${1:integer}\r",
+      "draft\r",
       "showcosts",
       "showcolours",
       "draftoffset=",
       "debug",
-      "default",
-      "strict",
-      "balanced"
+      "default\r",
+      "strict\r",
+      "balanced\r"
+    ],
+    "\\usepackage/lua-widow-control#c": [
+      "microtype"
     ]
+  },
+  "args": [
+    "\\lwcsetup,\\usepackage/lua-widow-control#c",
+    "\\usepackage/lua-widow-control#c"
   ]
 }

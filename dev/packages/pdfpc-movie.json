@@ -1,31 +1,43 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "hyperref": [],
-    "pgfkeys": []
-  },
-  "macros": {
-    "pdfpcmovie{}{}": {
-      "snippet": "pdfpcmovie{${1:poster material}}{${2:file}}"
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "pdfpcmovie[]{}{}": {
-      "snippet": "pdfpcmovie[${3:options}]{${1:poster material}}{${2:file}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "hyperref"
+    },
+    {
+      "name": "pgfkeys"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "pdfpcmovie",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:poster material}}{${2:file}}"
+      }
+    },
+    {
+      "name": "pdfpcmovie",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:poster material}}{${2:file}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\pdfpcmovie": [
       "width=",
       "height=",
       "depth=",
-      "autostart",
-      "loop",
-      "noprogress",
-      "start=${1:integer}",
-      "stop=${1:integer}"
+      "autostart\r",
+      "loop\r",
+      "noprogress\r",
+      "start=${1:integer}\r",
+      "stop=${1:integer}\r"
     ]
-  ]
+  },
+  "args": []
 }

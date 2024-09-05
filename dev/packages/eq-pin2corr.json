@@ -1,68 +1,194 @@
 {
-  "includes": {
-    "exerquiz": [],
-    "eq-save": []
-  },
-  "macros": {
-    "classPINVar{}": {
-      "snippet": "classPINVar{${1:class pin var}}"
+  "deps": [
+    {
+      "name": "exerquiz"
     },
-    "CorrBtnActionsJSSave": {},
-    "CorrBtnActionsPwdJS": {},
-    "declPINId{}{}": {
-      "snippet": "declPINId{${1:pin num}}{${2:hash string}}"
-    },
-    "declRePINId{}{}": {
-      "snippet": "declRePINId{${1:pin num}}{${2:hash string}}"
-    },
-    "eQzBtnActnsPIN": {},
-    "eQzBtnActnsSave": {},
-    "FreezeQuizfalse": {},
-    "FreezeQuiztrue": {},
-    "FreezeThisQuiz": {},
-    "FreezeThisQuizNot": {},
-    "hashPINId": {},
-    "hashRePINId": {},
-    "ifFreezeQuiz": {},
-    "ifPINSecurity": {},
-    "ifPINshowScore": {},
-    "makeEndQuizPIN": {},
-    "nMaxRetakes{}": {
-      "snippet": "nMaxRetakes{${1:qz name}}"
-    },
-    "numPINId": {},
-    "numRePINId": {},
-    "PINclassPV": {},
-    "PINgobii": {},
-    "PINgobiii": {},
-    "PINSecurityfalse": {},
-    "PINSecuritytrue": {},
-    "PINshowScorefalse": {},
-    "PINshowScoretrue": {},
-    "postSubmitQuizPIN": {},
-    "qzResetTally": {},
-    "qzResetTally[]": {
-      "snippet": "qzResetTally[${1:eforms params}]"
-    },
-    "qzTallyTotalDefaults": {},
-    "restorBeginQuiz": {},
-    "restoreCorrBtn": {},
-    "restoreEndQuiz": {},
-    "SaveAndSendMsg": {},
-    "setMaxRetakes{}{}": {
-      "snippet": "setMaxRetakes{${1:qz name}}{${2:num}}"
-    },
-    "showScoreOff": {},
-    "showScoreOn": {},
-    "useBeginQuizCnt": {},
-    "useBeginQuizPIN": {},
-    "usePINCorrBtn": {},
-    "useWarnEndQuiz": {}
-  },
-  "envs": {},
-  "options": [
-    "showscore",
-    "!showscore"
+    {
+      "name": "eq-save"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "classPINVar",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:class pin var}}"
+      }
+    },
+    {
+      "name": "CorrBtnActionsJSSave",
+      "unusual": true
+    },
+    {
+      "name": "CorrBtnActionsPwdJS",
+      "unusual": true
+    },
+    {
+      "name": "declPINId",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:pin num}}{${2:hash string}}"
+      }
+    },
+    {
+      "name": "declRePINId",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:pin num}}{${2:hash string}}"
+      }
+    },
+    {
+      "name": "eQzBtnActnsPIN",
+      "unusual": true
+    },
+    {
+      "name": "eQzBtnActnsSave",
+      "unusual": true
+    },
+    {
+      "name": "FreezeQuizfalse",
+      "unusual": true
+    },
+    {
+      "name": "FreezeQuiztrue",
+      "unusual": true
+    },
+    {
+      "name": "FreezeThisQuiz"
+    },
+    {
+      "name": "FreezeThisQuizNot"
+    },
+    {
+      "name": "hashPINId",
+      "unusual": true
+    },
+    {
+      "name": "hashRePINId",
+      "unusual": true
+    },
+    {
+      "name": "ifFreezeQuiz",
+      "unusual": true
+    },
+    {
+      "name": "ifPINSecurity",
+      "unusual": true
+    },
+    {
+      "name": "ifPINshowScore",
+      "unusual": true
+    },
+    {
+      "name": "makeEndQuizPIN",
+      "unusual": true
+    },
+    {
+      "name": "nMaxRetakes",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:qz name}}"
+      }
+    },
+    {
+      "name": "numPINId"
+    },
+    {
+      "name": "numRePINId"
+    },
+    {
+      "name": "PINclassPV",
+      "unusual": true
+    },
+    {
+      "name": "PINgobii",
+      "unusual": true
+    },
+    {
+      "name": "PINgobiii",
+      "unusual": true
+    },
+    {
+      "name": "PINSecurityfalse",
+      "unusual": true
+    },
+    {
+      "name": "PINSecuritytrue",
+      "unusual": true
+    },
+    {
+      "name": "PINshowScorefalse",
+      "unusual": true
+    },
+    {
+      "name": "PINshowScoretrue",
+      "unusual": true
+    },
+    {
+      "name": "postSubmitQuizPIN",
+      "unusual": true
+    },
+    {
+      "name": "qzResetTally"
+    },
+    {
+      "name": "qzResetTally",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:eforms params}]"
+      }
+    },
+    {
+      "name": "qzTallyTotalDefaults",
+      "unusual": true
+    },
+    {
+      "name": "restorBeginQuiz"
+    },
+    {
+      "name": "restoreCorrBtn"
+    },
+    {
+      "name": "restoreEndQuiz"
+    },
+    {
+      "name": "SaveAndSendMsg",
+      "unusual": true
+    },
+    {
+      "name": "setMaxRetakes",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:qz name}}{${2:num}}"
+      }
+    },
+    {
+      "name": "showScoreOff"
+    },
+    {
+      "name": "showScoreOn"
+    },
+    {
+      "name": "useBeginQuizCnt"
+    },
+    {
+      "name": "useBeginQuizPIN"
+    },
+    {
+      "name": "usePINCorrBtn"
+    },
+    {
+      "name": "useWarnEndQuiz"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/eq-pin2corr#c": [
+      "showscore\r",
+      "!showscore\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/eq-pin2corr#c"
+  ]
 }

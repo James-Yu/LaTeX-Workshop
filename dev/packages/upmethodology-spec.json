@@ -1,72 +1,148 @@
 {
-  "includes": {
-    "upmethodology-p-common": [],
-    "ulem": [],
-    "upmethodology-fmt": [],
-    "upmethodology-code": []
-  },
-  "macros": {
-    "speccons{}{}": {
-      "snippet": "speccons{${1:name}}{${2:prototype}}"
+  "deps": [
+    {
+      "name": "upmethodology-p-common"
     },
-    "speccons[]{}{}": {
-      "snippet": "speccons[${3:modifiers}]{${1:name}}{${2:prototype}}"
+    {
+      "name": "ulem"
     },
-    "specget{}{}": {
-      "snippet": "specget{${1:return type}}{${2:name}}"
+    {
+      "name": "upmethodology-fmt"
     },
-    "specget[]{}{}": {
-      "snippet": "specget[${3:modifiers}]{${1:return type}}{${2:name}}"
-    },
-    "specset{}{}": {
-      "snippet": "specset{${1:name}}{${2:prototype}}"
-    },
-    "specset[]{}{}": {
-      "snippet": "specset[${3:modifiers}]{${1:name}}{${2:prototype}}"
-    },
-    "specfunc{}{}{}": {
-      "snippet": "specfunc{${1:return type}}{${2:name}}{${3:prototype}}"
-    },
-    "specfunc[]{}{}{}": {
-      "snippet": "specfunc[${4:modifiers}]{${1:return type}}{${2:name}}{${3:prototype}}"
-    },
-    "specreturn{}": {
-      "snippet": "specreturn{${1:description}}"
-    },
-    "specglobalreturn{}": {
-      "snippet": "specglobalreturn{${1:description}}"
-    },
-    "specparam{}{}": {
-      "snippet": "specparam{${1:name}}{${2:description}}"
-    },
-    "specparam[]{}{}": {
-      "snippet": "specparam[${3:in|inout|out}]{${1:name}}{${2:description}}"
-    },
-    "specendhline": {},
-    "specstarthline": {}
-  },
-  "envs": {
-    "detailspec{}": {
-      "name": "detailspec",
-      "snippet": "{${1:title}}"
-    },
-    "detailspec[]{}": {
-      "name": "detailspec",
-      "snippet": "[${2:width}]{${1:title}}"
-    },
-    "detailspec*{}": {
-      "name": "detailspec*",
-      "snippet": "{${1:title}}"
-    },
-    "detailspec*[]{}": {
-      "name": "detailspec*",
-      "snippet": "[${2:width}]{${1:title}}"
+    {
+      "name": "upmethodology-code"
     }
-  },
-  "options": [
-    "french",
-    "francais",
-    "english"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "speccons",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:prototype}}"
+      }
+    },
+    {
+      "name": "speccons",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:modifiers}]{${1:name}}{${2:prototype}}"
+      }
+    },
+    {
+      "name": "specget",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:return type}}{${2:name}}"
+      }
+    },
+    {
+      "name": "specget",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:modifiers}]{${1:return type}}{${2:name}}"
+      }
+    },
+    {
+      "name": "specset",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:prototype}}"
+      }
+    },
+    {
+      "name": "specset",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:modifiers}]{${1:name}}{${2:prototype}}"
+      }
+    },
+    {
+      "name": "specfunc",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:return type}}{${2:name}}{${3:prototype}}"
+      }
+    },
+    {
+      "name": "specfunc",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:modifiers}]{${1:return type}}{${2:name}}{${3:prototype}}"
+      }
+    },
+    {
+      "name": "specreturn",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:description%text}}"
+      }
+    },
+    {
+      "name": "specglobalreturn",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:description%text}}"
+      }
+    },
+    {
+      "name": "specparam",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:description%text}}"
+      }
+    },
+    {
+      "name": "specparam",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:in|${4:inout}|out}]{${1:name}}{${2:description%text}}"
+      }
+    },
+    {
+      "name": "specendhline"
+    },
+    {
+      "name": "specstarthline"
+    }
+  ],
+  "envs": [
+    {
+      "name": "detailspec",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
+    },
+    {
+      "name": "detailspec",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:width}]{${1:title%text}}"
+      }
+    },
+    {
+      "name": "detailspec*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
+    },
+    {
+      "name": "detailspec*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:width}]{${1:title%text}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/upmethodology-spec#c": [
+      "french\r",
+      "francais\r",
+      "english\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/upmethodology-spec#c"
+  ]
 }

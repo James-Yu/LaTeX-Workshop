@@ -1,28 +1,41 @@
 {
-  "includes": {
-    "verbatim": []
-  },
-  "macros": {
-    "setOutputDir{}": {
-      "snippet": "setOutputDir{${1:directory}}"
-    },
-    "VerbatimCopy{}{}": {
-      "snippet": "VerbatimCopy{${1:input file}}{${2:output file}}"
-    },
-    "OldsetOutputDir{}": {
-      "snippet": "OldsetOutputDir{${1:directory}}"
-    },
-    "OldVerbatimCopy{}{}": {
-      "snippet": "OldVerbatimCopy{${1:input file}}{${2:output file}}"
-    },
-    "VCverbaction{}{}": {
-      "snippet": "VCverbaction{${1:arg1}}{${2:arg2}}"
+  "deps": [
+    {
+      "name": "verbatim"
     }
-  },
-  "envs": {},
-  "options": [
-    "compatibility",
-    "enquotefilenames"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "setOutputDir",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:directory%definition}}"
+      }
+    },
+    {
+      "name": "VerbatimCopy",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:input file%file}}{${2:output file%file}}"
+      }
+    },
+    {
+      "name": "VCverbaction",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/verbatimcopy#c": [
+      "compatibility\r",
+      "enquotefilenames\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/verbatimcopy#c"
+  ]
 }

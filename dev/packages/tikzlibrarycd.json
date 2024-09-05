@@ -1,238 +1,261 @@
 {
-  "includes": {
-    "tikzlibrarymatrix": [],
-    "tikzlibraryquotes": [],
-    "tikzlibraryarrows.meta": []
-  },
-  "macros": {
-    "arrow[]": {
-      "snippet": "arrow[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "tikzlibrarymatrix"
     },
-    "arrow[]{}{}": {
-      "snippet": "arrow[${3:options}]{${1:direction}}{${2:label}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "tikzlibraryquotes"
     },
-    "arrow[]{}[]{}": {
-      "snippet": "arrow[${3:options}]{${1:direction}}[${4:label options}]{${2:label}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "ar[]": {
-      "snippet": "ar[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "rar[]": {
-      "snippet": "rar[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "rar[]{}": {
-      "snippet": "rar[${2:options}]{${1:label}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "lar[]": {
-      "snippet": "lar[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "lar[]{}": {
-      "snippet": "lar[${2:options}]{${1:label}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "dar[]": {
-      "snippet": "dar[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "dar[]{}": {
-      "snippet": "dar[${2:options}]{${1:label}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "uar[]": {
-      "snippet": "uar[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "uar[]{}": {
-      "snippet": "uar[${2:options}]{${1:label}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "drar[]": {
-      "snippet": "drar[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "drar[]{}": {
-      "snippet": "drar[${2:options}]{${1:label}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "urar[]": {
-      "snippet": "urar[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "urar[]{}": {
-      "snippet": "urar[${2:options}]{${1:label}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "dlar[]": {
-      "snippet": "dlar[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "dlar[]{}": {
-      "snippet": "dlar[${2:options}]{${1:label}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "ular[]": {
-      "snippet": "ular[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "ular[]{}": {
-      "snippet": "ular[${2:options}]{${1:label}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "tikzcdset{}": {
-      "snippet": "tikzcdset{${1:options}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "tikzcd": {},
-    "endtikzcd": {},
-    "tikzcdmatrixname": {}
-  },
-  "envs": {
-    "tikzcd": {},
-    "tikzcd[]": {
-      "name": "tikzcd",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "tikzlibraryarrows.meta"
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
-      "to head",
-      "rightarrow",
-      "leftarrow",
-      "leftrightarrow",
-      "Rightarrow",
-      "Leftarrow",
-      "Leftrightarrow",
-      "maps to",
-      "mapsto",
-      "mapsfrom",
-      "Mapsto",
-      "Mapsfrom",
-      "hook",
-      "hook'",
-      "hookrightarrow",
-      "hookleftarrow",
-      "dashed",
-      "dashrightarrow",
-      "dashleftarrow",
-      "tail",
-      "rightarrowtail",
-      "leftarrowtail",
-      "squiggly",
-      "rightsquigarrow",
-      "leftsquigarrow",
-      "leftrightsquigarrow",
-      "two heads",
-      "twoheadrightarrow",
-      "twoheadleftarrow",
-      "no head",
-      "no tail",
-      "dash",
-      "equal",
-      "harpoon",
-      "harpoon'",
-      "rightharpoonup",
-      "rightharpoondown",
-      "leftharpoonup",
-      "leftharpoondown",
-      "shorten=",
-      "crossing over",
-      "crossing over clearance=",
-      "marking",
-      "description",
-      "%color",
-      "color=",
-      "in=${1:degrees}",
-      "out=${1:degrees}",
-      "font=${1:font commands}",
-      "line width=",
-      "from=",
-      "to=",
-      "phantom",
+  ],
+  "macros": [
+    {
+      "name": "arrow",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options}]"
+      }
+    },
+    {
+      "name": "arrow",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options}]{${1:direction}}{${2:label}}"
+      }
+    },
+    {
+      "name": "arrow",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]{}",
+        "snippet": "[${3:options}]{${1:direction}}[${4:label options}]{${2:label}}"
+      }
+    },
+    {
+      "name": "ar",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options}]"
+      }
+    },
+    {
+      "name": "rar",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options}]"
+      }
+    },
+    {
+      "name": "rar",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options}]{${1:label}}"
+      }
+    },
+    {
+      "name": "lar",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options}]"
+      }
+    },
+    {
+      "name": "lar",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options}]{${1:label}}"
+      }
+    },
+    {
+      "name": "dar",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options}]"
+      }
+    },
+    {
+      "name": "dar",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options}]{${1:label}}"
+      }
+    },
+    {
+      "name": "uar",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options}]"
+      }
+    },
+    {
+      "name": "uar",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options}]{${1:label}}"
+      }
+    },
+    {
+      "name": "drar",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options}]"
+      }
+    },
+    {
+      "name": "drar",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options}]{${1:label}}"
+      }
+    },
+    {
+      "name": "urar",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options}]"
+      }
+    },
+    {
+      "name": "urar",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options}]{${1:label}}"
+      }
+    },
+    {
+      "name": "dlar",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options}]"
+      }
+    },
+    {
+      "name": "dlar",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options}]{${1:label}}"
+      }
+    },
+    {
+      "name": "ular",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options}]"
+      }
+    },
+    {
+      "name": "ular",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options}]{${1:label}}"
+      }
+    },
+    {
+      "name": "tikzcdset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}"
+      }
+    },
+    {
+      "name": "tikzcdmatrixname",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "tikzcd"
+    },
+    {
+      "name": "tikzcd",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\arrow#c,\\ar#c,\\rar#c,\\lar#c,\\dar#c,\\uar#c,\\drar#c,\\urar#c,\\dlar#c,\\ular#c": [
+      "from=\r",
+      "to=\r",
+      "phantom\r",
       "shift left=",
       "shift right=",
-      "shift={${1:coordinate}}",
+      "shift={${1:coordinate}}\r",
       "xshift=",
       "yshift=",
-      "start anchor=${1:anchor}",
-      "start anchor={[${1:coord transforms}]${2:anchor}}",
-      "end anchor=${1:anchor}",
-      "end anchor={[${1:coord transforms}]${2:anchor}}",
-      "bend left",
-      "bend left=${1:degrees}",
-      "bend right",
-      "bend right=${1:degrees}",
-      "near start",
-      "near end",
-      "very near start",
-      "very near end",
-      "above",
-      "below",
-      "left",
-      "right",
-      "swap",
-      "to path={${1:path spec}}"
+      "start anchor=${1:anchor}\r",
+      "start anchor={[${1:coord transforms}]${2:anchor}}\r",
+      "end anchor=${1:anchor}\r",
+      "end anchor={[${1:coord transforms}]${2:anchor}}\r",
+      "bend left\r",
+      "bend left=${1:degrees}\r",
+      "bend right\r",
+      "bend right=${1:degrees}\r",
+      "near start\r",
+      "near end\r",
+      "very near start\r",
+      "very near end\r",
+      "above\r",
+      "below\r",
+      "left\r",
+      "right\r",
+      "swap\r",
+      "to path={${1:path spec}}\r"
     ],
-    [
-      "every diagram",
-      "diagrams={${1:options}}",
-      "every matrix",
-      "every cell",
-      "cells={${1:options}}",
+    "\\tikzcdset#c,\\begin{tikzcd}#c": [
+      "every diagram\r",
+      "diagrams={${1:options}}\r",
+      "every matrix\r",
+      "every cell\r",
+      "cells={${1:options}}\r",
       "row sep=",
       "column sep=",
       "sep=",
-      "cramped",
+      "cramped\r",
       "math mode",
       "background color=",
-      "every arrow",
-      "arrows={${1:options}}",
-      "arrow style=${1|Latin Modern,math font,tikz|}",
-      "every label",
-      "labels={${1:options}}",
+      "every arrow\r",
+      "arrows={${1:options}}\r",
+      "arrow style=${1|Latin Modern,math font,tikz\r|}",
+      "every label\r",
+      "labels={${1:options}}\r",
       "center yshift=",
-      "ampersand replacement=${1:macro}",
+      "ampersand replacement=${1:macro}\r"
+    ],
+    "\\arrow#c,\\ar#c,\\rar#c,\\lar#c,\\dar#c,\\uar#c,\\drar#c,\\urar#c,\\dlar#c,\\ular#c,\\tikzcdset#c,\\begin{tikzcd}#c": [
       "shorten=",
-      "crossing over",
+      "crossing over\r",
       "crossing over clearance=",
-      "marking",
-      "description",
-      "%color",
+      "marking\r",
+      "description\r",
+      "%color\r",
       "color=",
-      "in=${1:degrees}",
-      "out=${1:degrees}",
-      "font=${1:font commands}",
+      "in=${1:degrees}\r",
+      "out=${1:degrees}\r",
+      "font=${1:font commands}\r",
       "line width="
     ]
-  ]
+  },
+  "args": []
 }

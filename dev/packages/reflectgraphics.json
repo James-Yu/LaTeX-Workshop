@@ -1,34 +1,52 @@
 {
-  "includes": {
-    "kvoptions": [],
-    "keyval": [],
-    "graphicx": [],
-    "calc": [],
-    "tikz": [],
-    "tikzlibraryfadings": []
-  },
-  "macros": {
-    "reflectgraphics{}": {
-      "snippet": "reflectgraphics{${1:imagefile}}"
+  "deps": [
+    {
+      "name": "kvoptions"
     },
-    "reflectgraphics[]{}": {
-      "snippet": "reflectgraphics[${2:options}]{${1:imagefile}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "keyval"
+    },
+    {
+      "name": "graphicx"
+    },
+    {
+      "name": "calc"
+    },
+    {
+      "name": "tikz"
+    },
+    {
+      "name": "tikzlibraryfadings"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "reflectgraphics",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "reflectgraphics",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:imagefile}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\reflectgraphics": [
       "width=",
       "height=",
-      "scale=${1:factor}",
-      "angle=${1:degrees}",
-      "trim=${1:<left> <bot> <up> <right>}",
+      "scale=${1:factor}\r",
+      "angle=${1:degrees}\r",
+      "trim=${1:<left> <bot> <up> <right>}\r",
       "distance=",
-      "length=${1:percent}",
-      "opacity=${1:percent}"
+      "length=${1:percent}\r",
+      "opacity=${1:percent}\r"
     ]
-  ]
+  },
+  "args": []
 }

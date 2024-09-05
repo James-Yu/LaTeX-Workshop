@@ -1,150 +1,311 @@
 {
-  "includes": {
-    "luacode": [],
-    "luakeys": [],
-    "penlight": [],
-    "etoolbox": []
-  },
-  "macros": {
-    "MakeluastringCommands{}": {
-      "snippet": "MakeluastringCommands{${1:spec}}"
+  "deps": [
+    {
+      "name": "luacode"
     },
-    "MakeluastringCommands[]{}": {
-      "snippet": "MakeluastringCommands[${2:def}]{${1:spec}}"
+    {
+      "name": "luakeys"
     },
-    "splittocomma{}{}": {
-      "snippet": "splittocomma{${1:text}}{${2:text to split on}}"
+    {
+      "name": "penlight"
     },
-    "splittocomma[]{}{}": {
-      "snippet": "splittocomma[${3:expansion level}]{${1:text}}{${2:text to split on}}"
-    },
-    "splittoitems{}{}": {
-      "snippet": "splittoitems{${1:text}}{${2:text to split on}}"
-    },
-    "splittoitems[]{}{}": {
-      "snippet": "splittoitems[${3:expansion level}]{${1:text}}{${2:text to split on}}"
-    },
-    "luastringT{}": {
-      "snippet": "luastringT{${1:string}}"
-    },
-    "luastringF{}": {
-      "snippet": "luastringF{${1:string}}"
-    },
-    "ifluax{}{}": {
-      "snippet": "ifluax{${1:Lua expr}}{${2:true}}"
-    },
-    "ifluax{}{}[]": {
-      "snippet": "ifluax{${1:Lua expr}}{${2:true}}[${3:false}]"
-    },
-    "ifluaxv{}{}": {
-      "snippet": "ifluaxv{${1:Lua expr}}{${2:true}}"
-    },
-    "ifluaxv{}{}[]": {
-      "snippet": "ifluaxv{${1:Lua expr}}{${2:true}}[${3:false}]"
-    },
-    "tblnew{}": {
-      "snippet": "tblnew{${1:name}}"
-    },
-    "tblchg{}": {
-      "snippet": "tblchg{${1:name}}"
-    },
-    "tblfrkv{}{}": {
-      "snippet": "tblfrkv{${1:name}}{${2:key-val string}}"
-    },
-    "tblfrkv{}{}[]": {
-      "snippet": "tblfrkv{${1:name}}{${2:key-val string}}[${3:luakeys opts}]"
-    },
-    "tblfrkvN{}{}": {
-      "snippet": "tblfrkvN{${1:name}}{${2:key-val string}}"
-    },
-    "tblfrkvN{}{}[]": {
-      "snippet": "tblfrkvN{${1:name}}{${2:key-val string}}[${3:luakeys opts}]"
-    },
-    "tblfrkvCD{}{}": {
-      "snippet": "tblfrkvCD{${1:name}}{${2:key-val string}}"
-    },
-    "tblfrkvCD{}{}[]": {
-      "snippet": "tblfrkvCD{${1:name}}{${2:key-val string}}[${3:luakeys opts}]"
-    },
-    "tblfrkvNCD{}{}": {
-      "snippet": "tblfrkvNCD{${1:name}}{${2:key-val string}}"
-    },
-    "tblfrkvNCD{}{}[]": {
-      "snippet": "tblfrkvNCD{${1:name}}{${2:key-val string}}[${3:luakeys opts}]"
-    },
-    "tblfrcsv{}{}": {
-      "snippet": "tblfrcsv{${1:name}}{${2:key-val string}}"
-    },
-    "tblfrcsv{}{}[]": {
-      "snippet": "tblfrcsv{${1:name}}{${2:key-val string}}[${3:luakeys opts}]"
-    },
-    "tblset{}{}": {
-      "snippet": "tblset{${1:index}}{${2:value}}"
-    },
-    "tblget{}": {
-      "snippet": "tblget{${1:index}}"
-    },
-    "tbldef{}{}": {
-      "snippet": "tbldef{${1:index}}{${2:csname}}"
-    },
-    "tbldefall{}{}": {
-      "snippet": "tbldefall{${1:table}}{${2:csname}}"
-    },
-    "tblgdef{}{}": {
-      "snippet": "tblgdef{${1:index}}{${2:csname}}"
-    },
-    "tbldefxy{}{}": {
-      "snippet": "tbldefxy{${1:index}}{${2:csname}}"
-    },
-    "tblif{}{}": {
-      "snippet": "tblif{${1:index}}{${2:true}}"
-    },
-    "tblif{}{}[]": {
-      "snippet": "tblif{${1:index}}{${2:true}}[${3:false}]"
-    },
-    "tblifv{}{}": {
-      "snippet": "tblifv{${1:index}}{${2:true}}"
-    },
-    "tblifv{}{}[]": {
-      "snippet": "tblifv{${1:index}}{${2:true}}[${3:false}]"
-    },
-    "tblkvundefcheck": {},
-    "tblfrcsvN{}{}": {
-      "snippet": "tblfrcsvN{${1:name}}{${2:csv}}"
-    },
-    "tblapp{}{}": {
-      "snippet": "tblapp{${1:name}}{${2:value}}"
-    },
-    "tblcon{}{}": {
-      "snippet": "tblcon{${1:name}}{${2:csv}}"
-    },
-    "tbladd{}{}": {
-      "snippet": "tbladd{${1:index}}{${2:value}}"
-    },
-    "tbladdN{}{}": {
-      "snippet": "tbladdN{${1:index}}{${2:value}}"
-    },
-    "tblprt{}": {
-      "snippet": "tblprt{${1:name}}"
-    },
-    "writePDFmetadata": {},
-    "writePDFmetadatakv{}": {
-      "snippet": "writePDFmetadatakv{${1:arg}}"
-    },
-    "writePDFmetadatakv*{}": {
-      "snippet": "writePDFmetadatakv*{${1:arg}}"
-    },
-    "tbladdo{}{}{}": {
-      "snippet": "tbladdo{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "tbladdNo{}{}{}": {
-      "snippet": "tbladdNo{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    {
+      "name": "etoolbox"
     }
-  },
-  "envs": {},
-  "options": [
-    "globals",
-    "pl"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "MakeluastringCommands",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:spec}}"
+      }
+    },
+    {
+      "name": "MakeluastringCommands",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:def}]{${1:spec}}"
+      }
+    },
+    {
+      "name": "splittocomma",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text%plain}}{${2:text to split on}}"
+      }
+    },
+    {
+      "name": "splittocomma",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:expansion level}]{${1:text%plain}}{${2:text to split on}}"
+      }
+    },
+    {
+      "name": "splittoitems",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text%plain}}{${2:text to split on}}"
+      }
+    },
+    {
+      "name": "splittoitems",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:expansion level}]{${1:text%plain}}{${2:text to split on}}"
+      }
+    },
+    {
+      "name": "luastringT",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:string}}"
+      }
+    },
+    {
+      "name": "luastringF",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:string}}"
+      }
+    },
+    {
+      "name": "ifluax",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:Lua expr%definition}}{${2:true}}"
+      }
+    },
+    {
+      "name": "ifluax",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:Lua expr%definition}}{${2:true}}[${3:false}]"
+      }
+    },
+    {
+      "name": "ifluaxv",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:Lua expr%definition}}{${2:true}}"
+      }
+    },
+    {
+      "name": "ifluaxv",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:Lua expr%definition}}{${2:true}}[${3:false}]"
+      }
+    },
+    {
+      "name": "tblnew",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "tblchg",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "tblfrkv",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:key-val string}}"
+      }
+    },
+    {
+      "name": "tblfrkv",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:name}}{${2:key-val string}}[${3:luakeys opts}]"
+      }
+    },
+    {
+      "name": "tblfrkvN",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:key-val string}}"
+      }
+    },
+    {
+      "name": "tblfrkvN",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:name}}{${2:key-val string}}[${3:luakeys opts}]"
+      }
+    },
+    {
+      "name": "tblfrkvCD",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:key-val string}}"
+      }
+    },
+    {
+      "name": "tblfrkvCD",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:name}}{${2:key-val string}}[${3:luakeys opts}]"
+      }
+    },
+    {
+      "name": "tblfrkvNCD",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:key-val string}}"
+      }
+    },
+    {
+      "name": "tblfrkvNCD",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:name}}{${2:key-val string}}[${3:luakeys opts}]"
+      }
+    },
+    {
+      "name": "tblfrcsv",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:key-val string}}"
+      }
+    },
+    {
+      "name": "tblfrcsv",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:name}}{${2:key-val string}}[${3:luakeys opts}]"
+      }
+    },
+    {
+      "name": "tblset",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:index}}{${2:value}}"
+      }
+    },
+    {
+      "name": "tblget",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:index}}"
+      }
+    },
+    {
+      "name": "tbldef",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:index}}{${2:csname}}"
+      }
+    },
+    {
+      "name": "tbldefall",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:table}}{${2:csname}}"
+      }
+    },
+    {
+      "name": "tblgdef",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:index}}{${2:csname}}"
+      }
+    },
+    {
+      "name": "tbldefxy",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:index}}{${2:csname}}"
+      }
+    },
+    {
+      "name": "tblif",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:index}}{${2:true}}"
+      }
+    },
+    {
+      "name": "tblif",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:index}}{${2:true}}[${3:false}]"
+      }
+    },
+    {
+      "name": "tblifv",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:index}}{${2:true}}"
+      }
+    },
+    {
+      "name": "tblifv",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:index}}{${2:true}}[${3:false}]"
+      }
+    },
+    {
+      "name": "tblkvundefcheck"
+    },
+    {
+      "name": "tblfrcsvN",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:csv}}"
+      }
+    },
+    {
+      "name": "tblapp",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:value}}"
+      }
+    },
+    {
+      "name": "tblcon",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:csv}}"
+      }
+    },
+    {
+      "name": "tbladd",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:index}}{${2:value}}"
+      }
+    },
+    {
+      "name": "tbladdN",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:index}}{${2:value}}"
+      }
+    },
+    {
+      "name": "tblprt",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/penlightplus#c": [
+      "globals\r",
+      "pl\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/penlightplus#c"
+  ]
 }

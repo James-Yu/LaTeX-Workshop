@@ -1,425 +1,1050 @@
 {
-  "includes": {
-    "datatool": [],
-    "etoolbox": [],
-    "xkeyval": [],
-    "mfirstuc": [],
-    "xfor": [],
-    "multicol": [],
-    "textcase": [],
-    "afterpage": []
-  },
-  "macros": {
-    "loadgidx{}{}": {
-      "snippet": "loadgidx{${1:file}}{${2:title}}"
+  "deps": [
+    {
+      "name": "datatool"
     },
-    "loadgidx[]{}{}": {
-      "snippet": "loadgidx[${3:options}]{${1:file}}{${2:title}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "etoolbox"
     },
-    "newgidx{}{}": {
-      "snippet": "newgidx{${1:db}}{${2:title}}"
+    {
+      "name": "xkeyval"
     },
-    "newgidx[]{}{}": {
-      "snippet": "newgidx[${3:options}]{${1:db}}{${2:title}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "mfirstuc"
     },
-    "DTLgidxCounter": {},
-    "DTLgidxAddLocationType{}": {
-      "snippet": "DTLgidxAddLocationType{${1:cmd}}"
+    {
+      "name": "xfor"
     },
-    "DTLgidxSetCompositor{}": {
-      "snippet": "DTLgidxSetCompositor{${1:symbol}}"
+    {
+      "name": "multicol"
     },
-    "newterm{}": {
-      "snippet": "newterm{${1:name}}"
+    {
+      "name": "textcase"
     },
-    "newterm[]{}": {
-      "snippet": "newterm[${2:options}]{${1:name}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "DTLgidxSetDefaultDB{}": {
-      "snippet": "DTLgidxSetDefaultDB{${1:label}}"
-    },
-    "DTLgidxParen{}": {
-      "snippet": "DTLgidxParen{${1:text}}"
-    },
-    "DTLgidxPlace{}{}": {
-      "snippet": "DTLgidxPlace{${1:country/county}}{${2:city/town}}"
-    },
-    "DTLgidxSubject{}{}": {
-      "snippet": "DTLgidxSubject{${1:subject}}{${2:text}}"
-    },
-    "DTLgidxName{}{}": {
-      "snippet": "DTLgidxName{${1:forename}}{${2:surname}}"
-    },
-    "DTLgidxRank{}{}": {
-      "snippet": "DTLgidxRank{${1:title}}{${2:forename/initials}}"
-    },
-    "DTLgidxNameNum{}": {
-      "snippet": "DTLgidxNameNum{${1:number}}"
-    },
-    "DTLgidxMac{}": {
-      "snippet": "DTLgidxMac{${1:text}}"
-    },
-    "DTLgidxSaint{}": {
-      "snippet": "DTLgidxSaint{${1:text}}"
-    },
-    "DTLgidxParticle{}": {
-      "snippet": "DTLgidxParticle{${1:text}}"
-    },
-    "DTLgidxOffice{}{}": {
-      "snippet": "DTLgidxOffice{${1:office}}{${2:name}}"
-    },
-    "newtermlabelhook": {},
-    "DTLgidxNoFormat{}": {
-      "snippet": "DTLgidxNoFormat{${1:text}}"
-    },
-    "DTLgidxGobble{}": {
-      "snippet": "DTLgidxGobble{${1:text}}"
-    },
-    "DTLgidxIgnore": {},
-    "DTLgidxStripBackslash{}": {
-      "snippet": "DTLgidxStripBackslash{${1:cmd}}"
-    },
-    "useentry{}{}": {
-      "snippet": "useentry{${1:label}}{${2:field}}"
-    },
-    "Useentry{}{}": {
-      "snippet": "Useentry{${1:label}}{${2:field}}"
-    },
-    "USEentry{}{}": {
-      "snippet": "USEentry{${1:label}}{${2:field}}"
-    },
-    "useentrynl{}{}": {
-      "snippet": "useentrynl{${1:label}}{${2:field}}"
-    },
-    "Useentrynl{}{}": {
-      "snippet": "Useentrynl{${1:label}}{${2:field}}"
-    },
-    "USEentrynl{}{}": {
-      "snippet": "USEentrynl{${1:label}}{${2:field}}"
-    },
-    "glslink{}{}": {
-      "snippet": "glslink{${1:label}}{${2:text}}"
-    },
-    "glsdispentry{}{}": {
-      "snippet": "glsdispentry{${1:label}}{${2:field}}"
-    },
-    "Glsdispentry{}{}": {
-      "snippet": "Glsdispentry{${1:label}}{${2:field}}"
-    },
-    "DTLgidxFetchEntry{}{}{}": {
-      "snippet": "DTLgidxFetchEntry{${1:cmd}}{${2:label}}{${3:field}}"
-    },
-    "glsadd{}": {
-      "snippet": "glsadd{${1:label}}"
-    },
-    "glsaddall{}": {
-      "snippet": "glsaddall{${1:db}}"
-    },
-    "gls{}": {
-      "snippet": "gls{${1:label}}"
-    },
-    "glspl{}": {
-      "snippet": "glspl{${1:label}}"
-    },
-    "glsnl{}": {
-      "snippet": "glsnl{${1:label}}"
-    },
-    "glsplnl{}": {
-      "snippet": "glsplnl{${1:label}}"
-    },
-    "Gls{}": {
-      "snippet": "Gls{${1:label}}"
-    },
-    "Glspl{}": {
-      "snippet": "Glspl{${1:label}}"
-    },
-    "Glsnl{}": {
-      "snippet": "Glsnl{${1:label}}"
-    },
-    "Glsplnl{}": {
-      "snippet": "Glsplnl{${1:label}}"
-    },
-    "glssym{}": {
-      "snippet": "glssym{${1:label}}"
-    },
-    "Glssym{}": {
-      "snippet": "Glssym{${1:label}}"
-    },
-    "newtermaddfield{}{}{}": {
-      "snippet": "newtermaddfield{${1:field name}}{${2:key name}}{${3:default value}}"
-    },
-    "newtermaddfield[]{}{}{}": {
-      "snippet": "newtermaddfield[${4:db list}]{${1:field name}}{${2:key name}}{${3:default value}}"
-    },
-    "field{}": {
-      "snippet": "field{${1:key}}"
-    },
-    "newacro{}{}": {
-      "snippet": "newacro{${1:short}}{${2:long}}"
-    },
-    "newacro[]{}{}": {
-      "snippet": "newacro[${3:options}]{${1:short}}{${2:long}}"
-    },
-    "acronymfont": {},
-    "DTLgidxAcrStyle{}{}": {
-      "snippet": "DTLgidxAcrStyle{${1:long}}{${2:short}}"
-    },
-    "acr{}": {
-      "snippet": "acr{${1:label}}"
-    },
-    "acrpl{}": {
-      "snippet": "acrpl{${1:label}}"
-    },
-    "Acr{}": {
-      "snippet": "Acr{${1:label}}"
-    },
-    "Acrpl{}": {
-      "snippet": "Acrpl{${1:label}}"
-    },
-    "glsreset{}": {
-      "snippet": "glsreset{${1:label}}"
-    },
-    "glsunset{}": {
-      "snippet": "glsunset{${1:label}}"
-    },
-    "glsresetall{}": {
-      "snippet": "glsresetall{${1:db}}"
-    },
-    "glsunsetall{}": {
-      "snippet": "glsunsetall{${1:db}}"
-    },
-    "iftermexists{}{}{}": {
-      "snippet": "iftermexists{${1:label}}{${2:true case}}{${3:false case}}"
-    },
-    "ifentryused{}{}{}": {
-      "snippet": "ifentryused{${1:label}}{${2:true case}}{${3:false case}}"
-    },
-    "printterms": {},
-    "printterms[]": {
-      "snippet": "printterms[${1:options}]",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "DTLgidxChildSep": {},
-    "DTLgidxPostChild": {},
-    "DTLgidxCategoryNameFont": {},
-    "DTLgidxCategorySep": {},
-    "DTLgidxSubCategorySep": {},
-    "DTLgidxDictPostItem": {},
-    "datagidxdictindent": {},
-    "DTLgidxCurrentdb": {},
-    "datagidxbalancefalse": {},
-    "datagidxbalancetrue": {},
-    "datagidxchildend": {},
-    "datagidxchilditem": {},
-    "datagidxchildstart": {},
-    "datagidxconvertchars": {},
-    "datagidxcurrentgroup": {},
-    "datagidxdb{}": {
-      "snippet": "datagidxdb{${1:entry}}"
-    },
-    "datagidxdescwidth": {},
-    "datagidxdictparshape": {},
-    "datagidxdoseealso{}": {
-      "snippet": "datagidxdoseealso{${1:arg}}"
-    },
-    "datagidxend": {},
-    "datagidxextendedtoascii": {},
-    "datagidxgroupheader": {},
-    "datagidxgroupsep": {},
-    "datagidxhighoptfilename{}": {
-      "snippet": "datagidxhighoptfilename{${1:filename}}"
-    },
-    "datagidxindent": {},
-    "datagidxitem": {},
-    "datagidxlastlabel": {},
-    "datagidxlink{}{}": {
-      "snippet": "datagidxlink{${1:arg1}}{${2:arg2}}"
-    },
-    "datagidxlocalign": {},
-    "datagidxlocationwidth": {},
-    "datagidxnamewidth": {},
-    "datagidxprevgroup": {},
-    "datagidxseealsoend": {},
-    "datagidxseealsostart": {},
-    "datagidxsetstyle{}": {
-      "snippet": "datagidxsetstyle{${1:style}}"
-    },
-    "datagidxshowgroupsfalse": {},
-    "datagidxshowgroupstrue": {},
-    "datagidxshowifdraft{}": {
-      "snippet": "datagidxshowifdraft{${1:arg}}"
-    },
-    "datagidxstart": {},
-    "datagidxstripaccents": {},
-    "datagidxsymalign": {},
-    "datagidxsymbolwidth": {},
-    "datagidxtarget{}": {
-      "snippet": "datagidxtarget{${1:arg}}"
-    },
-    "datagidxtermkeys": {},
-    "datagidxwordifygreek": {},
-    "dtldofirstlocation": {},
-    "dtldolocationlist": {},
-    "DTLgidxChildCountLabel": {},
-    "DTLgidxChildren": {},
-    "DTLgidxChildrenSeeAlso": {},
-    "DTLgidxChildStyle{}": {
-      "snippet": "DTLgidxChildStyle{${1:text}}"
-    },
-    "DTLgidxDictHead": {},
-    "DTLgidxDisableHyper": {},
-    "DTLgidxDoSeeOrLocation": {},
-    "DTLgidxEnableHyper": {},
-    "DTLgidxForeachEntry{}": {
-      "snippet": "DTLgidxForeachEntry{${1:body}}"
-    },
-    "DTLgidxFormatAcr{}{}{}": {
-      "snippet": "DTLgidxFormatAcr{${1:label}}{${2:long}}{${3:short}}"
-    },
-    "DTLgidxFormatAcrUC{}{}{}": {
-      "snippet": "DTLgidxFormatAcrUC{${1:label}}{${2:long}}{${3:short}}"
-    },
-    "DTLgidxFormatDesc{}": {
-      "snippet": "DTLgidxFormatDesc{${1:text}}"
-    },
-    "DTLgidxFormatSee{}{}": {
-      "snippet": "DTLgidxFormatSee{${1:tag}}{${2:label list}}"
-    },
-    "DTLgidxFormatSeeAlso{}{}": {
-      "snippet": "DTLgidxFormatSeeAlso{${1:tag}}{${2:label list}}"
-    },
-    "DTLgidxGroupHeaderTitle{}": {
-      "snippet": "DTLgidxGroupHeaderTitle{${1:text}}"
-    },
-    "DTLgidxLocation": {},
-    "DTLgidxLocationF{}{}": {
-      "snippet": "DTLgidxLocationF{${1:loc1}}{${2:loc2}}"
-    },
-    "DTLgidxLocationFF{}{}": {
-      "snippet": "DTLgidxLocationFF{${1:loc1}}{${2:loc2}}"
-    },
-    "DTLgidxLocationSep": {},
-    "DTLgidxNameCase{}": {
-      "snippet": "DTLgidxNameCase{${1:text}}"
-    },
-    "DTLgidxNameFont{}": {
-      "snippet": "DTLgidxNameFont{${1:text}}"
-    },
-    "DTLgidxNoHeading": {},
-    "DTLgidxPostChildName": {},
-    "DTLgidxPostDescription": {},
-    "DTLgidxPostName": {},
-    "DTLgidxPreLocation": {},
-    "DTLgidxSee": {},
-    "DTLgidxSeeAlso": {},
-    "DTLgidxSeeList{}": {
-      "snippet": "DTLgidxSeeList{${1:label list}}"
-    },
-    "DTLgidxSeeTagFont{}": {
-      "snippet": "DTLgidxSeeTagFont{${1:text}}"
-    },
-    "DTLgidxSetColumns{}": {
-      "snippet": "DTLgidxSetColumns{${1:integer}}"
-    },
-    "DTLgidxSymbolDescLeft": {},
-    "DTLgidxSymbolDescRight": {},
-    "DTLgidxSymbolDescription": {},
-    "DTLgidxSymDescSep": {},
-    "DTLidxFormatSeeItem{}": {
-      "snippet": "DTLidxFormatSeeItem{${1:label}}"
-    },
-    "DTLidxSeeLastSep": {},
-    "DTLidxSeeSep": {},
-    "ifdatagidxbalance": {},
-    "ifdatagidxshowgroups": {},
-    "ifnewtermfield{}{}{}": {
-      "snippet": "ifnewtermfield{${1:name}}{${2:true}}{${3:false}}"
-    },
-    "newtermfield{}": {
-      "snippet": "newtermfield{${1:name}}"
-    },
-    "postnewtermhook": {},
-    "printtermsrestoreonecolumn": {},
-    "printtermsstartpar": {},
-    "seealsoname": {},
-    "seename": {},
-    "theDTLgidxChildCount": {},
-    "theHDTLgidxChildCount": {}
-  },
-  "envs": {},
-  "options": [
-    "utf8",
-    "optimize=${1|off,low,high|}",
-    "columns=${1:integer}",
-    "child=${1|named,noname|}",
-    "namecase=${1|nochange,uc,lc,firstuc,capitalise|}",
-    "namefont=${1:font cmd}",
-    "postname=${1:text}",
-    "postdesc=${1|dot,none|}",
-    "prelocation=${1|none,enspace,space,dotfill,hfill|}",
-    "location=${1|hide,list,first|}",
-    "see=${1|comma,brackets,dot,space,nosep,semicolon,location|}",
-    "symboldesc=${1|symbol,desc,(symbol) desc,desc (symbol),symbol desc,desc symbol|}",
-    "compositor=${1:symbol}",
-    "draft",
-    "final",
-    "verbose",
-    "nowarn"
+    {
+      "name": "afterpage"
+    }
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "loadgidx",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:file}}{${2:title%text}}"
+      }
+    },
+    {
+      "name": "loadgidx",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:file}}{${2:title%text}}"
+      }
+    },
+    {
+      "name": "newgidx",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:db%specialDef}}{${2:title%text}}"
+      }
+    },
+    {
+      "name": "newgidx",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:db%specialDef}}{${2:title%text}}"
+      }
+    },
+    {
+      "name": "DTLgidxCounter",
+      "unusual": true
+    },
+    {
+      "name": "DTLgidxAddLocationType",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cmd}}"
+      }
+    },
+    {
+      "name": "DTLgidxSetCompositor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol}}"
+      }
+    },
+    {
+      "name": "newterm",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "newterm",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:name}}"
+      }
+    },
+    {
+      "name": "DTLgidxSetDefaultDB",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label%plain}}"
+      }
+    },
+    {
+      "name": "DTLgidxParen",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "DTLgidxPlace",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:country/county}}{${2:city/town}}"
+      }
+    },
+    {
+      "name": "DTLgidxSubject",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:subject}}{${2:text}}"
+      }
+    },
+    {
+      "name": "DTLgidxName",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:forename}}{${2:surname}}"
+      }
+    },
+    {
+      "name": "DTLgidxRank",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:title%plain}}{${2:forename/initials}}"
+      }
+    },
+    {
+      "name": "DTLgidxNameNum",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "DTLgidxMac",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "DTLgidxSaint",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "DTLgidxParticle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "DTLgidxOffice",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:office}}{${2:name}}"
+      }
+    },
+    {
+      "name": "newtermlabelhook",
+      "unusual": true
+    },
+    {
+      "name": "DTLgidxNoFormat",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "DTLgidxGobble",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "DTLgidxIgnore"
+    },
+    {
+      "name": "DTLgidxStripBackslash",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cmd}}"
+      }
+    },
+    {
+      "name": "useentry",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label%plain}}{${2:field}}"
+      }
+    },
+    {
+      "name": "Useentry",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label%plain}}{${2:field}}"
+      }
+    },
+    {
+      "name": "USEentry",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label%plain}}{${2:field}}"
+      }
+    },
+    {
+      "name": "useentrynl",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label%plain}}{${2:field}}"
+      }
+    },
+    {
+      "name": "Useentrynl",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label%plain}}{${2:field}}"
+      }
+    },
+    {
+      "name": "USEentrynl",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label%plain}}{${2:field}}"
+      }
+    },
+    {
+      "name": "glslink",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label%plain}}{${2:text}}"
+      }
+    },
+    {
+      "name": "glsdispentry",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label%plain}}{${2:field}}"
+      }
+    },
+    {
+      "name": "Glsdispentry",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label%plain}}{${2:field}}"
+      }
+    },
+    {
+      "name": "DTLgidxFetchEntry",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:label%plain}}{${3:field}}"
+      }
+    },
+    {
+      "name": "glsadd",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label%plain}}"
+      }
+    },
+    {
+      "name": "glsaddall",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:db%special}}"
+      }
+    },
+    {
+      "name": "gls",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label%plain}}"
+      }
+    },
+    {
+      "name": "glspl",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label%plain}}"
+      }
+    },
+    {
+      "name": "glsnl",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label%plain}}"
+      }
+    },
+    {
+      "name": "glsplnl",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label%plain}}"
+      }
+    },
+    {
+      "name": "Gls",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label%plain}}"
+      }
+    },
+    {
+      "name": "Glspl",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label%plain}}"
+      }
+    },
+    {
+      "name": "Glsnl",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label%plain}}"
+      }
+    },
+    {
+      "name": "Glsplnl",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label%plain}}"
+      }
+    },
+    {
+      "name": "glssym",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label%plain}}"
+      }
+    },
+    {
+      "name": "Glssym",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label%plain}}"
+      }
+    },
+    {
+      "name": "newtermaddfield",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:field name}}{${2:key name}}{${3:default value}}"
+      }
+    },
+    {
+      "name": "newtermaddfield",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:db list}]{${1:field name}}{${2:key name}}{${3:default value}}"
+      }
+    },
+    {
+      "name": "field",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:key%plain}}"
+      }
+    },
+    {
+      "name": "newacro",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:short}}{${2:long}}"
+      }
+    },
+    {
+      "name": "newacro",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:short}}{${2:long}}"
+      }
+    },
+    {
+      "name": "acronymfont",
+      "unusual": true
+    },
+    {
+      "name": "DTLgidxAcrStyle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:long}}{${2:short}}"
+      }
+    },
+    {
+      "name": "acr",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label%plain}}"
+      }
+    },
+    {
+      "name": "acrpl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label%plain}}"
+      }
+    },
+    {
+      "name": "Acr",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label%plain}}"
+      }
+    },
+    {
+      "name": "Acrpl",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label%plain}}"
+      }
+    },
+    {
+      "name": "glsreset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label%plain}}"
+      }
+    },
+    {
+      "name": "glsunset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label%plain}}"
+      }
+    },
+    {
+      "name": "glsresetall",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:db%special}}"
+      }
+    },
+    {
+      "name": "glsunsetall",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:db%special}}"
+      }
+    },
+    {
+      "name": "iftermexists",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:label%plain}}{${2:true case}}{${3:false case}}"
+      }
+    },
+    {
+      "name": "ifentryused",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:label%plain}}{${2:true case}}{${3:false case}}"
+      }
+    },
+    {
+      "name": "printterms"
+    },
+    {
+      "name": "printterms",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "DTLgidxChildSep",
+      "unusual": true
+    },
+    {
+      "name": "DTLgidxPostChild",
+      "unusual": true
+    },
+    {
+      "name": "DTLgidxCategoryNameFont",
+      "unusual": true
+    },
+    {
+      "name": "DTLgidxCategorySep",
+      "unusual": true
+    },
+    {
+      "name": "DTLgidxSubCategorySep",
+      "unusual": true
+    },
+    {
+      "name": "DTLgidxDictPostItem",
+      "unusual": true
+    },
+    {
+      "name": "datagidxdictindent",
+      "unusual": true
+    },
+    {
+      "name": "DTLgidxCurrentdb"
+    },
+    {
+      "name": "datagidxbalancefalse",
+      "unusual": true
+    },
+    {
+      "name": "datagidxbalancetrue",
+      "unusual": true
+    },
+    {
+      "name": "datagidxchildend",
+      "unusual": true
+    },
+    {
+      "name": "datagidxchilditem",
+      "unusual": true
+    },
+    {
+      "name": "datagidxchildstart",
+      "unusual": true
+    },
+    {
+      "name": "datagidxconvertchars",
+      "unusual": true
+    },
+    {
+      "name": "datagidxcurrentgroup",
+      "unusual": true
+    },
+    {
+      "name": "datagidxdb",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:entry}}"
+      }
+    },
+    {
+      "name": "datagidxdescwidth",
+      "unusual": true
+    },
+    {
+      "name": "datagidxdictparshape",
+      "unusual": true
+    },
+    {
+      "name": "datagidxdoseealso",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "datagidxend",
+      "unusual": true
+    },
+    {
+      "name": "datagidxextendedtoascii",
+      "unusual": true
+    },
+    {
+      "name": "datagidxgroupheader",
+      "unusual": true
+    },
+    {
+      "name": "datagidxgroupsep",
+      "unusual": true
+    },
+    {
+      "name": "datagidxhighoptfilename",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:filename%file}}"
+      }
+    },
+    {
+      "name": "datagidxindent",
+      "unusual": true
+    },
+    {
+      "name": "datagidxitem",
+      "unusual": true
+    },
+    {
+      "name": "datagidxlastlabel",
+      "unusual": true
+    },
+    {
+      "name": "datagidxlink",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "datagidxlocalign",
+      "unusual": true
+    },
+    {
+      "name": "datagidxlocationwidth",
+      "unusual": true
+    },
+    {
+      "name": "datagidxnamewidth",
+      "unusual": true
+    },
+    {
+      "name": "datagidxprevgroup",
+      "unusual": true
+    },
+    {
+      "name": "datagidxseealsoend",
+      "unusual": true
+    },
+    {
+      "name": "datagidxseealsostart",
+      "unusual": true
+    },
+    {
+      "name": "datagidxsetstyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:style}}"
+      }
+    },
+    {
+      "name": "datagidxshowgroupsfalse",
+      "unusual": true
+    },
+    {
+      "name": "datagidxshowgroupstrue",
+      "unusual": true
+    },
+    {
+      "name": "datagidxshowifdraft",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "datagidxstart",
+      "unusual": true
+    },
+    {
+      "name": "datagidxstripaccents",
+      "unusual": true
+    },
+    {
+      "name": "datagidxsymalign",
+      "unusual": true
+    },
+    {
+      "name": "datagidxsymbolwidth",
+      "unusual": true
+    },
+    {
+      "name": "datagidxtarget",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "datagidxtermkeys",
+      "unusual": true
+    },
+    {
+      "name": "datagidxwordifygreek",
+      "unusual": true
+    },
+    {
+      "name": "dtldofirstlocation",
+      "unusual": true
+    },
+    {
+      "name": "dtldolocationlist",
+      "unusual": true
+    },
+    {
+      "name": "DTLgidxChildCountLabel",
+      "unusual": true
+    },
+    {
+      "name": "DTLgidxChildren",
+      "unusual": true
+    },
+    {
+      "name": "DTLgidxChildrenSeeAlso",
+      "unusual": true
+    },
+    {
+      "name": "DTLgidxChildStyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "DTLgidxDictHead",
+      "unusual": true
+    },
+    {
+      "name": "DTLgidxDisableHyper",
+      "unusual": true
+    },
+    {
+      "name": "DTLgidxDoSeeOrLocation",
+      "unusual": true
+    },
+    {
+      "name": "DTLgidxEnableHyper",
+      "unusual": true
+    },
+    {
+      "name": "DTLgidxForeachEntry",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:body}}"
+      }
+    },
+    {
+      "name": "DTLgidxFormatAcr",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:label}}{${2:long}}{${3:short}}"
+      }
+    },
+    {
+      "name": "DTLgidxFormatAcrUC",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:label}}{${2:long}}{${3:short}}"
+      }
+    },
+    {
+      "name": "DTLgidxFormatDesc",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "DTLgidxFormatSee",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:tag}}{${2:label list}}"
+      }
+    },
+    {
+      "name": "DTLgidxFormatSeeAlso",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:tag}}{${2:label list}}"
+      }
+    },
+    {
+      "name": "DTLgidxGroupHeaderTitle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "DTLgidxLocation",
+      "unusual": true
+    },
+    {
+      "name": "DTLgidxLocationF",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:loc1}}{${2:loc2}}"
+      }
+    },
+    {
+      "name": "DTLgidxLocationFF",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:loc1}}{${2:loc2}}"
+      }
+    },
+    {
+      "name": "DTLgidxLocationSep",
+      "unusual": true
+    },
+    {
+      "name": "DTLgidxNameCase",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "DTLgidxNameFont",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "DTLgidxNoHeading",
+      "unusual": true
+    },
+    {
+      "name": "DTLgidxPostChildName",
+      "unusual": true
+    },
+    {
+      "name": "DTLgidxPostDescription",
+      "unusual": true
+    },
+    {
+      "name": "DTLgidxPostName",
+      "unusual": true
+    },
+    {
+      "name": "DTLgidxPreLocation",
+      "unusual": true
+    },
+    {
+      "name": "DTLgidxSee",
+      "unusual": true
+    },
+    {
+      "name": "DTLgidxSeeAlso",
+      "unusual": true
+    },
+    {
+      "name": "DTLgidxSeeList",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label list}}"
+      }
+    },
+    {
+      "name": "DTLgidxSeeTagFont",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "DTLgidxSetColumns",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:integer}}"
+      }
+    },
+    {
+      "name": "DTLgidxSymbolDescLeft",
+      "unusual": true
+    },
+    {
+      "name": "DTLgidxSymbolDescRight",
+      "unusual": true
+    },
+    {
+      "name": "DTLgidxSymbolDescription",
+      "unusual": true
+    },
+    {
+      "name": "DTLgidxSymDescSep",
+      "unusual": true
+    },
+    {
+      "name": "DTLidxFormatSeeItem",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "DTLidxSeeLastSep",
+      "unusual": true
+    },
+    {
+      "name": "DTLidxSeeSep",
+      "unusual": true
+    },
+    {
+      "name": "ifdatagidxbalance",
+      "unusual": true
+    },
+    {
+      "name": "ifdatagidxshowgroups",
+      "unusual": true
+    },
+    {
+      "name": "ifnewtermfield",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "newtermfield",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "postnewtermhook",
+      "unusual": true
+    },
+    {
+      "name": "printtermsrestoreonecolumn",
+      "unusual": true
+    },
+    {
+      "name": "printtermsstartpar",
+      "unusual": true
+    },
+    {
+      "name": "seealsoname",
+      "unusual": true
+    },
+    {
+      "name": "seename",
+      "unusual": true
+    },
+    {
+      "name": "theDTLgidxChildCount",
+      "unusual": true
+    },
+    {
+      "name": "theHDTLgidxChildCount",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/datagidx#c": [
+      "utf8",
+      "optimize=${1|off,low,high\r|}",
+      "columns=${1:integer}\r",
+      "child=${1|named,noname\r|}",
+      "namecase=${1|nochange,uc,lc,firstuc,capitalise\r|}",
+      "namefont=${1:font cmd}\r",
+      "postname=${1:text}\r",
+      "postdesc=${1|dot,none\r|}",
+      "prelocation=${1|none,enspace,space,dotfill,hfill\r|}",
+      "location=${1|hide,list,first\r|}",
+      "see=${1|comma,brackets,dot,space,nosep,semicolon,location\r|}",
+      "symboldesc=${1|symbol,desc,(symbol) desc,desc (symbol),symbol desc,desc symbol\r|}",
+      "compositor=${1:symbol}\r",
+      "draft\r",
+      "final\r",
+      "verbose",
+      "nowarn"
+    ],
+    "\\loadgidx,\\newgidx": [
       "showgroups",
-      "style=${1|index,indexalign,align,gloss,dict|}",
-      "sort={${1:sort cmd}}",
+      "style=${1|index,indexalign,align,gloss,dict\r|}",
+      "sort={${1:sort cmd}}\r",
       "balance",
-      "heading=${1:text}",
-      "postheading=${1:text}"
+      "heading=${1:text}\r",
+      "postheading=${1:text}\r"
     ],
-    [
-      "database=${1:database name}",
-      "label=${1:label}",
-      "sort=${1:sort key}",
-      "parent=${1:parent entry}",
-      "text=${1:text}",
-      "description=${1:text}",
-      "plural=${1:plural form}",
-      "symbol=${1:symbol}",
-      "short=${1:short form}",
-      "long=${1:long form}",
-      "shortplural=${1:short plural form}",
-      "longplural=${1:long plural form}",
-      "see=${1:label}",
-      "seealso=${1:label}"
+    "\\newterm#c,\\newacro#c": [
+      "database=${1:database name}\r",
+      "label=${1:label}\r",
+      "sort=${1:sort key}\r",
+      "parent=${1:parent entry}\r",
+      "text=${1:text}\r",
+      "description=${1:text}\r",
+      "plural=${1:plural form}\r",
+      "symbol=${1:symbol}\r",
+      "short=${1:short form}\r",
+      "long=${1:long form}\r",
+      "shortplural=${1:short plural form}\r",
+      "longplural=${1:long plural form}\r",
+      "see=${1:label}\r",
+      "seealso=${1:label}\r"
     ],
-    [
-      "database=${1:database name}",
-      "postdesc=${1|dot,none|}",
-      "prelocation=${1|none,enspace,space,dotfill,hfill|}",
-      "location=${1|hide,list,first|}",
-      "symboldesc=${1|symbol,desc,(symbol) desc,desc (symbol),symbol desc,desc symbol|}",
-      "columns=${1:integer}",
-      "namecase=${1|nochange,uc,lc,firstuc,capitalise|}",
-      "namefont=${1:font cmd}",
-      "postname=${1:text}",
-      "see=${1|comma,brackets,dot,space,nosep,semicolon,location|}",
-      "child=${1|named,noname|}",
+    "\\printterms": [
+      "database=${1:database name}\r",
+      "postdesc=${1|dot,none\r|}",
+      "prelocation=${1|none,enspace,space,dotfill,hfill\r|}",
+      "location=${1|hide,list,first\r|}",
+      "symboldesc=${1|symbol,desc,(symbol) desc,desc (symbol),symbol desc,desc symbol\r|}",
+      "columns=${1:integer}\r",
+      "namecase=${1|nochange,uc,lc,firstuc,capitalise\r|}",
+      "namefont=${1:font cmd}\r",
+      "postname=${1:text}\r",
+      "see=${1|comma,brackets,dot,space,nosep,semicolon,location\r|}",
+      "child=${1|named,noname\r|}",
       "showgroups",
-      "style=${1|index,indexalign,align,gloss,dict|}",
+      "style=${1|index,indexalign,align,gloss,dict\r|}",
       "symbolwidth=",
       "locationwidth=",
       "childsort",
-      "heading=${1:text}",
-      "postheading=${1:text}",
-      "sort={${1:sort cmd}}",
+      "heading=${1:text}\r",
+      "postheading=${1:text}\r",
+      "sort={${1:sort cmd}}\r",
       "balance",
-      "condition={${1:condition}}"
+      "condition={${1:condition}}\r"
     ]
+  },
+  "args": [
+    "\\usepackage/datagidx#c"
   ]
 }

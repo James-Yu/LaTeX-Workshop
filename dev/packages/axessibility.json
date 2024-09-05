@@ -1,42 +1,83 @@
 {
-  "includes": {
-    "amsmath": [],
-    "amssymb": [],
-    "xstring": [],
-    "tagpdf": [],
-    "accsupp": [
-      "accsupp"
+  "deps": [
+    {
+      "name": "amsmath"
+    },
+    {
+      "name": "amssymb"
+    },
+    {
+      "name": "xstring"
+    },
+    {
+      "name": "tagpdf"
+    },
+    {
+      "name": "accsupp",
+      "if": "accsupp"
+    }
+  ],
+  "macros": [
+    {
+      "name": "iftagpdfopt",
+      "unusual": true
+    },
+    {
+      "name": "tagpdfopttrue",
+      "unusual": true
+    },
+    {
+      "name": "tagpdfoptfalse",
+      "unusual": true
+    },
+    {
+      "name": "doreplacement",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:true or false}}"
+      }
+    },
+    {
+      "name": "auxiliaryspace",
+      "unusual": true
+    },
+    {
+      "name": "wrap",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "wrapml",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "wrapmlstar",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "wrapmlalt",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/axessibility#c": [
+      "accsupp\r",
+      "tagpdf\r"
     ]
   },
-  "macros": {
-    "iftagpdfopt": {},
-    "tagpdfopttrue": {},
-    "tagpdfoptfalse": {},
-    "doreplacement{}": {
-      "snippet": "doreplacement{${1:true or false}}"
-    },
-    "auxiliaryspace": {},
-    "wrap{}": {
-      "snippet": "wrap{${1:arg}}"
-    },
-    "wrapml{}": {
-      "snippet": "wrapml{${1:arg}}"
-    },
-    "wrapmlstar{}": {
-      "snippet": "wrapmlstar{${1:arg}}"
-    },
-    "wrapmlalt{}": {
-      "snippet": "wrapmlalt{${1:arg}}"
-    }
-  },
-  "envs": {
-    "tempenv": {
-      "option": "accsupp"
-    }
-  },
-  "options": [
-    "accsupp",
-    "tagpdf"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/axessibility#c"
+  ]
 }

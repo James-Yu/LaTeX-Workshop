@@ -1,27 +1,52 @@
 {
-  "includes": {
-    "xcolor": [],
-    "ifthen": [],
-    "tikz": [],
-    "tikzlibrarymath": [],
-    "pgfplots": []
-  },
-  "macros": {
-    "drawScheme{}": {
-      "snippet": "drawScheme{${1:scheme}}"
+  "deps": [
+    {
+      "name": "xcolor"
     },
-    "drawSchemeC{}": {
-      "snippet": "drawSchemeC{${1:scheme}}"
+    {
+      "name": "ifthen"
     },
-    "drawSchemeC[]{}": {
-      "snippet": "drawSchemeC[${2:width}]{${1:scheme}}"
+    {
+      "name": "tikz"
     },
-    "theColorNum": {}
-  },
-  "envs": {},
-  "options": [
-    "Tol",
-    "OkabeIto"
+    {
+      "name": "tikzlibrarymath"
+    },
+    {
+      "name": "pgfplots"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "drawScheme",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:scheme}}"
+      }
+    },
+    {
+      "name": "drawSchemeC",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:scheme}}"
+      }
+    },
+    {
+      "name": "drawSchemeC",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:width}]{${1:scheme}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/colorblind#c": [
+      "Tol\r",
+      "OkabeIto\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/colorblind#c"
+  ]
 }

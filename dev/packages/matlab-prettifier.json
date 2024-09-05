@@ -1,23 +1,69 @@
 {
-  "includes": {
-    "xcolor": [],
-    "listings": []
-  },
-  "macros": {
-    "mlplaceholder{}": {
-      "snippet": "mlplaceholder{${1:content}}"
+  "deps": [
+    {
+      "name": "xcolor"
     },
-    "mlttfamily": {},
-    "mleditorphstyle": {},
-    "mlbwphstyle": {},
-    "mlpyglikephstyle": {}
-  },
-  "envs": {},
-  "options": [
-    "framed",
-    "numbered",
-    "draft",
-    "final"
+    {
+      "name": "listings"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "mlplaceholder",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content}}"
+      }
+    },
+    {
+      "name": "mlttfamily"
+    },
+    {
+      "name": "mleditorphstyle",
+      "unusual": true
+    },
+    {
+      "name": "mlbwphstyle",
+      "unusual": true
+    },
+    {
+      "name": "mlpyglikephstyle",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/matlab-prettifier#c": [
+      "framed\r",
+      "numbered\r",
+      "draft\r",
+      "final\r"
+    ],
+    "\\lstset,\\lstinline,\\begin{lstlisting},\\lstinputlisting,\\lstMakeShortInline": [
+      "style=Matlab-editor\r",
+      "style=Matlab-bw\r",
+      "style=Matlab-Pyglike\r",
+      "mlkeywordstyle=${1:style}\r",
+      "mllastelementstyle=${1:style}\r",
+      "mloverride",
+      "mlstringstyle=${1:style}\r",
+      "mlcommentstyle=${1:style}\r",
+      "mlsectiontitlestyle=${1:style}\r",
+      "mlshowsectionrules",
+      "mlsectionrulethickness=${1:number}\r",
+      "mlsectionrulecolor=",
+      "mlsyscomstyle=${1:style}\r",
+      "mlsharedvars=${1:list of variables}\r",
+      "mlmoresharedvars=${1:list of variables}\r",
+      "mldeletesharedvars=${1:list of variables}\r",
+      "mlsharedvarstyle=${1:style}\r",
+      "mlunquotedstringdelim={${1:opening delim}}{${2:closing delim}}\r",
+      "mlplaceholderstyle=${1:style}\r",
+      "mlscaleinline",
+      "mlonlyheader"
+    ]
+  },
+  "args": [
+    "\\usepackage/matlab-prettifier#c"
+  ]
 }

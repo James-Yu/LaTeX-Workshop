@@ -1,82 +1,134 @@
 {
-  "includes": {},
-  "macros": {
-    "setbeamersize{}": {
-      "snippet": "setbeamersize{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [],
+  "macros": [
+    {
+      "name": "setbeamersize",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\setbeamersize"
+        ],
+        "keyPos": 0
+      }
     },
-    "insertpagenumber": {},
-    "column{}": {
-      "snippet": "column{${1:column width}}"
+    {
+      "name": "insertpagenumber",
+      "unusual": true
     },
-    "column[]{}": {
-      "snippet": "column[${2:placement}]{${1:column width}}"
+    {
+      "name": "column",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:column width%l}}"
+      }
     },
-    "column<>[]{}": {
-      "snippet": "column<${3:overlay specification}>[${2:placement}]{${1:column width}}"
+    {
+      "name": "column",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:placement%keyvals}]{${1:column width%l}}"
+      }
     },
-    "insertfootnotetext": {},
-    "insertfootnotemark": {},
-    "footnote<>{}": {
-      "snippet": "footnote<${2:overlay specification}>{${1:text}}"
+    {
+      "name": "column<overlay specification>",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:placement%keyvals}]{${1:column width%l}}"
+      }
     },
-    "footnote<>[]{}": {
-      "snippet": "footnote<${3:overlay specification}>[${2:options}]{${1:text}}",
-      "keyvalindex": 1,
-      "keyvalpos": 1
+    {
+      "name": "insertfootnotetext",
+      "unusual": true
+    },
+    {
+      "name": "insertfootnotemark",
+      "unusual": true
+    },
+    {
+      "name": "footnote<overlay specification>",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "footnote<overlay specification>",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
     }
-  },
-  "envs": {
-    "columns": {},
-    "columns[]": {
+  ],
+  "envs": [
+    {
+      "name": "columns"
+    },
+    {
       "name": "columns",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 2,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     },
-    "columns<>[]": {
+    {
       "name": "columns",
-      "snippet": "<${2:overlay specification}>[${1:options}]",
-      "keyvalindex": 2,
-      "keyvalpos": 1
+      "arg": {
+        "format": "<>[]",
+        "snippet": "<${2:overlay specification}>[${1:options%keyvals}]"
+      }
     },
-    "column{}": {
+    {
       "name": "column",
-      "snippet": "{${1:column width}}"
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:column width%l}}"
+      }
     },
-    "column[]{}": {
+    {
       "name": "column",
-      "snippet": "[${2:placement}]{${1:column width}}"
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:placement%keyvals}]{${1:column width%l}}"
+      }
     },
-    "column<>[]{}": {
+    {
       "name": "column",
-      "snippet": "<${3:overlay specification}>[${2:placement}]{${1:column width}}"
+      "arg": {
+        "format": "<>[]{}",
+        "snippet": "<${3:overlay specification}>[${2:placement%keyvals}]{${1:column width%l}}"
+      }
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "keys": {
+    "\\setbeamersize": [
       "text margin left=",
       "text margin right=",
       "sidebar width left=",
       "sidebar width right=",
       "description width=",
-      "description width of=${1:text}",
+      "description width of=${1:text}\r",
       "mini frame size=",
       "mini frame offset="
     ],
-    [
-      "${1:number}",
-      "frame"
-    ],
-    [
+    "\\begin{columns}": [
       "b",
       "c",
       "onlytextwidth",
       "t",
       "T",
       "totalwidth="
+    ],
+    "\\begin{column},\\column": [
+      "t\r",
+      "T\r",
+      "c\r",
+      "b\r"
+    ],
+    "\\footnote#c": [
+      "${1:number}\r",
+      "frame\r"
     ]
-  ]
+  },
+  "args": []
 }

@@ -1,137 +1,278 @@
 {
-  "includes": {
-    "tikz": [],
-    "pgffor": [],
-    "xintexpr": [],
-    "simplekv": [],
-    "listofitems": [],
-    "tikzlibrarycalc": [],
-    "tikzlibrarydecorations": [],
-    "tikzlibrarydecorations.pathmorphing": []
-  },
-  "macros": {
-    "DefinirPoint{}{}": {
-      "snippet": "DefinirPoint{${1:noeud}}{${2:coordonnées}}"
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "DefinirPoint{}{}<>": {
-      "snippet": "DefinirPoint{${1:noeud}}{${2:coordonnées}}<${3:label}>"
+    {
+      "name": "pgffor"
     },
-    "DefinirPoint[]{}{}": {
-      "snippet": "DefinirPoint[${3:clés}]{${1:noeud}}{${2:coordonnées}}"
+    {
+      "name": "xintexpr"
     },
-    "DefinirPoint[]{}{}<>": {
-      "snippet": "DefinirPoint[${3:clés}]{${1:noeud}}{${2:coordonnées}}<${4:label}>"
+    {
+      "name": "simplekv"
     },
-    "DefinirPoint*{}{}": {
-      "snippet": "DefinirPoint*{${1:noeud}}{${2:coordonnées}}"
+    {
+      "name": "listofitems"
     },
-    "DefinirPoint*{}{}<>": {
-      "snippet": "DefinirPoint*{${1:noeud}}{${2:coordonnées}}<${3:label}>"
+    {
+      "name": "tikzlibrarycalc"
     },
-    "DefinirPoint*[]{}{}": {
-      "snippet": "DefinirPoint*[${3:clés}]{${1:noeud}}{${2:coordonnées}}"
+    {
+      "name": "tikzlibrarydecorations"
     },
-    "DefinirPoint*[]{}{}<>": {
-      "snippet": "DefinirPoint*[${3:clés}]{${1:noeud}}{${2:coordonnées}}<${4:label}>"
+    {
+      "name": "tikzlibrarydecorations.pathmorphing"
+    }
+  ],
+  "macros": [
+    {
+      "name": "DefinirPoint",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:noeud}}{${2:coordonnées}}"
+      }
     },
-    "DefinirPoints{}": {
-      "snippet": "DefinirPoints{${1:liste}}"
+    {
+      "name": "DefinirPoint",
+      "arg": {
+        "format": "{}{}<>",
+        "snippet": "{${1:noeud}}{${2:coordonnées}}<${3:label}>"
+      }
     },
-    "DefinirPoints[]{}": {
-      "snippet": "DefinirPoints[${2:clés}]{${1:liste}}"
+    {
+      "name": "DefinirPoint",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:clés%keyvals}]{${1:noeud}}{${2:coordonnées}}"
+      }
     },
-    "DefinirPoints*{}": {
-      "snippet": "DefinirPoints*{${1:liste}}"
+    {
+      "name": "DefinirPoint",
+      "arg": {
+        "format": "[]{}{}<>",
+        "snippet": "[${3:clés%keyvals}]{${1:noeud}}{${2:coordonnées}}<${4:label}>"
+      }
     },
-    "DefinirPoints*[]{}": {
-      "snippet": "DefinirPoints*[${2:clés}]{${1:liste}}"
+    {
+      "name": "DefinirPoint*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:noeud}}{${2:coordonnées}}"
+      }
     },
-    "MarquerPoint{}": {
-      "snippet": "MarquerPoint{${1:point}}"
+    {
+      "name": "DefinirPoint*",
+      "arg": {
+        "format": "{}{}<>",
+        "snippet": "{${1:noeud}}{${2:coordonnées}}<${3:label}>"
+      }
     },
-    "MarquerPoint[]{}": {
-      "snippet": "MarquerPoint[${2:clés}]{${1:point}}"
+    {
+      "name": "DefinirPoint*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:clés%keyvals}]{${1:noeud}}{${2:coordonnées}}"
+      }
     },
-    "MarquerPoints{}": {
-      "snippet": "MarquerPoints{${1:liste}}"
+    {
+      "name": "DefinirPoint*",
+      "arg": {
+        "format": "[]{}{}<>",
+        "snippet": "[${3:clés%keyvals}]{${1:noeud}}{${2:coordonnées}}<${4:label}>"
+      }
     },
-    "MarquerPoints[]{}": {
-      "snippet": "MarquerPoints[${2:clés}]{${1:liste}}"
+    {
+      "name": "DefinirPoints",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:liste}}"
+      }
     },
-    "ImagePoint{}": {
-      "snippet": "ImagePoint{${1:formule}}"
+    {
+      "name": "DefinirPoints",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:clés%keyvals}]{${1:liste}}"
+      }
     },
-    "ImagePoint{}<>": {
-      "snippet": "ImagePoint{${1:formule}}<${2:label}>"
+    {
+      "name": "DefinirPoints*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:liste}}"
+      }
     },
-    "ImagePoint[]{}": {
-      "snippet": "ImagePoint[${2:clés}]{${1:formule}}"
+    {
+      "name": "DefinirPoints*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:clés%keyvals}]{${1:liste}}"
+      }
     },
-    "ImagePoint[]{}<>": {
-      "snippet": "ImagePoint[${2:clés}]{${1:formule}}<${3:label}>"
+    {
+      "name": "MarquerPoint",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:point}}"
+      }
     },
-    "ImagePoint*{}": {
-      "snippet": "ImagePoint*{${1:formule}}"
+    {
+      "name": "MarquerPoint",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:clés%keyvals}]{${1:point}}"
+      }
     },
-    "ImagePoint*{}<>": {
-      "snippet": "ImagePoint*{${1:formule}}<${2:label}>"
+    {
+      "name": "MarquerPoints",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:liste}}"
+      }
     },
-    "ImagePoint*[]{}": {
-      "snippet": "ImagePoint*[${2:clés}]{${1:formule}}"
+    {
+      "name": "MarquerPoints",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:clés%keyvals}]{${1:liste}}"
+      }
     },
-    "ImagePoint*[]{}<>": {
-      "snippet": "ImagePoint*[${2:clés}]{${1:formule}}<${3:label}>"
+    {
+      "name": "ImagePoint",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:formule}}"
+      }
     },
-    "ImagesPoints{}": {
-      "snippet": "ImagesPoints{${1:formule1 § formule2 § ...}}"
+    {
+      "name": "ImagePoint",
+      "arg": {
+        "format": "{}<>",
+        "snippet": "{${1:formule}}<${2:label}>"
+      }
     },
-    "ImagesPoints[]{}": {
-      "snippet": "ImagesPoints[${2:clés}]{${1:formule1 § formule2 § ...}}"
+    {
+      "name": "ImagePoint",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:clés%keyvals}]{${1:formule}}"
+      }
     },
-    "ImagesPoints*{}": {
-      "snippet": "ImagesPoints*{${1:formule1 § formule2 § ...}}"
+    {
+      "name": "ImagePoint",
+      "arg": {
+        "format": "[]{}<>",
+        "snippet": "[${2:clés%keyvals}]{${1:formule}}<${3:label}>"
+      }
     },
-    "ImagesPoints*[]{}": {
-      "snippet": "ImagesPoints*[${2:clés}]{${1:formule1 § formule2 § ...}}"
+    {
+      "name": "ImagePoint*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:formule}}"
+      }
     },
-    "TracerSegments{}": {
-      "snippet": "TracerSegments{${1:ptA/ptB ptC/ptD ...}}"
+    {
+      "name": "ImagePoint*",
+      "arg": {
+        "format": "{}<>",
+        "snippet": "{${1:formule}}<${2:label}>"
+      }
     },
-    "TracerSegments<>{}": {
-      "snippet": "TracerSegments<${2:options TikZ}>{${1:ptA/ptB ptC/ptD ...}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "ImagePoint*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:clés%keyvals}]{${1:formule}}"
+      }
     },
-    "TracerSegments[]{}": {
-      "snippet": "TracerSegments[${2:clés}]{${1:ptA/ptB ptC/ptD ...}}"
+    {
+      "name": "ImagePoint*",
+      "arg": {
+        "format": "[]{}<>",
+        "snippet": "[${2:clés%keyvals}]{${1:formule}}<${3:label}>"
+      }
     },
-    "TracerSegments[]<>{}": {
-      "snippet": "TracerSegments[${2:clés}]<${3:options TikZ}>{${1:ptA/ptB ptC/ptD ...}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
+    {
+      "name": "ImagesPoints",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:formule1 § formule2 § ...}}"
+      }
     },
-    "TransfPosTikzDD{}": {
-      "snippet": "TransfPosTikzDD{${1:arg}}"
+    {
+      "name": "ImagesPoints",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:clés%keyvals}]{${1:formule1 § formule2 § ...}}"
+      }
     },
-    "TwoDimLabel": {},
-    "TwoDimDecalLabel": {},
-    "TwoDimStylePt": {},
-    "TwoDimtaillePt": {},
-    "TwoDimCoul": {},
-    "TwoDimFonte": {},
-    "TracSegCap": {},
-    "TracSegJoin": {},
-    "TracSegCoul": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "Cap=${1:type}",
-      "Join=${1:type}",
-      "Couleurs=${1:liste de couleurs}",
+    {
+      "name": "ImagesPoints*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:formule1 § formule2 § ...}}"
+      }
+    },
+    {
+      "name": "ImagesPoints*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:clés%keyvals}]{${1:formule1 § formule2 § ...}}"
+      }
+    },
+    {
+      "name": "TracerSegments",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ptA/ptB ptC/ptD ...}}"
+      }
+    },
+    {
+      "name": "TracerSegments<options TikZ>",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ptA/ptB ptC/ptD ...}}"
+      }
+    },
+    {
+      "name": "TracerSegments",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:clés%keyvals}]{${1:ptA/ptB ptC/ptD ...}}"
+      }
+    },
+    {
+      "name": "TracerSegments",
+      "arg": {
+        "format": "[]<>{}",
+        "snippet": "[${2:clés%keyvals}]<${3:options TikZ}>{${1:ptA/ptB ptC/ptD ...}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\draw#c": [
+      "mainlevee\r",
+      "mainlevee=${1:segment len} et ${2:amplitude}\r"
+    ],
+    "\\DefinirPoint,\\DefinirPoint*,\\DefinirPoints,\\DefinirPoints*,\\MarquerPoint,\\MarquerPoints,\\ImagePoint,\\ImagePoint*,\\ImagesPoints,\\ImagesPoints*": [
+      "PosLabel=${1:position}\r",
+      "TaillePolice=${1:font commands}\r",
+      "DecalLabel=",
+      "StyleMarque=${1|x,o,+\r|}",
+      "Math",
+      "TailleMarque=",
+      "Couleur="
+    ],
+    "\\TracerSegments": [
+      "Cap=${1:type}\r",
+      "Join=${1:type}\r",
+      "Couleurs=${1:liste de couleurs}\r",
       "Cycle",
       "Suite"
     ]
-  ]
+  },
+  "args": []
 }

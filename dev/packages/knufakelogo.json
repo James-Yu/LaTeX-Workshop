@@ -1,94 +1,128 @@
 {
-  "includes": {
-    "tikz": [],
-    "tikzlibrarycalc": [],
-    "tikzlibraryintersections": [],
-    "tikzlibrarydecorations.text": []
-  },
-  "macros": {
-    "KNUfakelogo{}": {
-      "snippet": "KNUfakelogo{${1:scale}}"
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "KNUfakelogo[]{}": {
-      "snippet": "KNUfakelogo[${2:options}]{${1:scale}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "tikzlibrarycalc"
     },
-    "KNUfakelogo*[]{}()()": {
-      "snippet": "KNUfakelogo*[${2:options}]{${1:scale}}(${3:SW coor})(${4:NE coor})"
+    {
+      "name": "tikzlibraryintersections"
     },
-    "KNUfakelogoBlue{}": {
-      "snippet": "KNUfakelogoBlue{${1:scale}}"
+    {
+      "name": "tikzlibrarydecorations.text"
+    }
+  ],
+  "macros": [
+    {
+      "name": "KNUfakelogo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:scale}}"
+      }
     },
-    "KNUfakelogoBlue[]{}": {
-      "snippet": "KNUfakelogoBlue[${2:options}]{${1:scale}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "KNUfakelogo",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options}]{${1:scale}}"
+      }
     },
-    "KNUfakelogoBlue*[]{}()()": {
-      "snippet": "KNUfakelogoBlue*[${2:options}]{${1:scale}}(${3:SW coor})(${4:NE coor})"
+    {
+      "name": "KNUfakelogo*",
+      "arg": {
+        "format": "[]{}()()",
+        "snippet": "[${2:options}]{${1:scale}}(${3:%<SW coor%>})(${4:%<NE coor%>})"
+      }
     },
-    "KNUfakelogoGreen{}": {
-      "snippet": "KNUfakelogoGreen{${1:scale}}"
+    {
+      "name": "KNUfakelogoBlue",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:scale}}"
+      }
     },
-    "KNUfakelogoGreen[]{}": {
-      "snippet": "KNUfakelogoGreen[${2:options}]{${1:scale}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "KNUfakelogoBlue",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options}]{${1:scale}}"
+      }
     },
-    "KNUfakelogoGreen*[]{}()()": {
-      "snippet": "KNUfakelogoGreen*[${2:options}]{${1:scale}}(${3:SW coor})(${4:NE coor})"
+    {
+      "name": "KNUfakelogoBlue*",
+      "arg": {
+        "format": "[]{}()()",
+        "snippet": "[${2:options}]{${1:scale}}(${3:%<SW coor%>})(${4:%<NE coor%>})"
+      }
     },
-    "KNUfakelogoBlack{}": {
-      "snippet": "KNUfakelogoBlack{${1:scale}}"
+    {
+      "name": "KNUfakelogoGreen",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:scale}}"
+      }
     },
-    "KNUfakelogoBlack[]{}": {
-      "snippet": "KNUfakelogoBlack[${2:options}]{${1:scale}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "KNUfakelogoGreen",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options}]{${1:scale}}"
+      }
     },
-    "KNUfakelogoBlack*[]{}()()": {
-      "snippet": "KNUfakelogoBlack*[${2:options}]{${1:scale}}(${3:SW coor})(${4:NE coor})"
+    {
+      "name": "KNUfakelogoGreen*",
+      "arg": {
+        "format": "[]{}()()",
+        "snippet": "[${2:options}]{${1:scale}}(${3:%<SW coor%>})(${4:%<NE coor%>})"
+      }
     },
-    "KNUfakelogoColor{}{}{}": {
-      "snippet": "KNUfakelogoColor{${1:scale}}{${2:inner circ colour}}{${3:outer ring colour}}"
+    {
+      "name": "KNUfakelogoBlack",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:scale}}"
+      }
     },
-    "KNUfakelogoColor[]{}{}[][]{}": {
-      "snippet": "KNUfakelogoColor[${4:options}]{${1:scale}}{${2:inner circ colour}}[${5:inner text colour}][${6:outer text colour}]{${3:outer ring colour}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "KNUfakelogoBlack",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options}]{${1:scale}}"
+      }
     },
-    "KNUfakelogoColor*[]{}{}[][]()()": {
-      "snippet": "KNUfakelogoColor*[${3:options}]{${1:scale}}{${2:bg and inner colour}}[${4:inner text  colour}][${5:outer text/ring colour}](${6:SW coordinate})(${7:NE coordinate})"
+    {
+      "name": "KNUfakelogoBlack*",
+      "arg": {
+        "format": "[]{}()()",
+        "snippet": "[${2:options}]{${1:scale}}(${3:%<SW coor%>})(${4:%<NE coor%>})"
+      }
     },
-    "KBOX": {},
-    "KCIRCLE": {},
-    "KFILL": {},
-    "KNU": {},
-    "KNUdef": {},
-    "KNUeng": {},
-    "KNUengfont": {},
-    "KNUko": {},
-    "KNUkor": {},
-    "KNUkorfont": {},
-    "KNUkorsize": {},
-    "KNUmainfont": {},
-    "KNUmainsize": {},
-    "KNUyearfont": {},
-    "KROOF": {},
-    "KTEXT": {},
-    "KWHITE": {}
-  },
-  "envs": {
-    "KNUfakeLogoBlackENV": {},
-    "KNUfakeLogoBlueENV": {},
-    "KNUfakeLogoColorENV": {},
-    "KNUfakeLogoENV": {},
-    "KNUfakeLogoGreenENV": {}
-  },
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "KNUfakelogoColor",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:scale}}{${2:inner circ colour}}{${3:outer ring colour}}"
+      }
+    },
+    {
+      "name": "KNUfakelogoColor",
+      "arg": {
+        "format": "[]{}{}[][]{}",
+        "snippet": "[${4:options}]{${1:scale}}{${2:inner circ colour}}[${5:inner text colour}][${6:outer text colour}]{${3:outer ring colour}}"
+      }
+    },
+    {
+      "name": "KNUfakelogoColor*",
+      "arg": {
+        "format": "[]{}{}[][]()()",
+        "snippet": "[${3:options}]{${1:scale}}{${2:bg and inner colour}}[${4:inner text  colour}][${5:outer text/ring colour}](${6:%<SW coordinate%>})(${7:%<NE coordinate%>})"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\KNUfakelogo#c,\\KNUfakelogoBlue#c,\\KNUfakelogoGreen#c,\\KNUfakelogoBlack#c,\\KNUfakelogoColor#c": [
       "x=${1:<dimen> or <coord>}",
       "y=${1:<dimen> or <coord>}",
       "z=${1:<dimen> or <coord>}",
@@ -147,7 +181,7 @@
       "densely dash dot",
       "loosely dash dot",
       "dash dot dot",
-      "densely dash dot dot",
+      "densely dash dot dot ",
       "loosely dash dot dot",
       "double",
       "double=",
@@ -213,10 +247,10 @@
       "opacity=${1:value}",
       "transparent",
       "ultra nearly transparent",
-      "very nearly transparent",
+      "very nearly transparent ",
       "nearly transparent",
       "semitransparent",
-      "nearly opaque",
+      "nearly opaque ",
       "very nearly opaque",
       "ultra nearly opaque",
       "opaque",
@@ -240,5 +274,6 @@
       "reset cm",
       "transform canvas={${1:options}}"
     ]
-  ]
+  },
+  "args": []
 }

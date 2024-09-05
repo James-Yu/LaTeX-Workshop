@@ -1,166 +1,407 @@
 {
-  "includes": {
-    "fontenc": [],
-    "mweights": [],
-    "xstring": [],
-    "ifthen": [],
-    "scalefnt": [],
-    "etoolbox": [],
-    "xkeyval": [],
-    "fontaxes": []
-  },
-  "macros": {
-    "black{}": {
-      "snippet": "black{${1:text}}"
+  "deps": [
+    {
+      "name": "fontenc"
     },
-    "blackfont": {},
-    "bold{}": {
-      "snippet": "bold{${1:text}}"
+    {
+      "name": "mweights"
     },
-    "boldfont": {},
-    "defigures": {},
-    "denfigures": {},
-    "denstyle": {},
-    "extrabold{}": {
-      "snippet": "extrabold{${1:text}}"
+    {
+      "name": "xstring"
     },
-    "extraboldfont": {},
-    "extralight{}": {
-      "snippet": "extralight{${1:text}}"
+    {
+      "name": "ifthen"
     },
-    "extralightfont": {},
-    "hairline{}": {
-      "snippet": "hairline{${1:text}}"
+    {
+      "name": "scalefnt"
     },
-    "hairlinefont": {},
-    "inffigures": {},
-    "infigures": {},
-    "infstyle": {},
-    "lfstyle": {},
-    "light{}": {
-      "snippet": "light{${1:text}}"
+    {
+      "name": "etoolbox"
     },
-    "lightfont": {},
-    "mediumfont": {},
-    "nufigures": {},
-    "numfigures": {},
-    "numstyle": {},
-    "onehalf": {},
-    "onequarter": {},
-    "osfstyle": {},
-    "regularfont": {},
-    "semibold{}": {
-      "snippet": "semibold{${1:text}}"
+    {
+      "name": "xkeyval"
     },
-    "semiboldfont": {},
-    "sufigures": {},
-    "supfigures": {},
-    "supstyle": {},
-    "textde{}": {
-      "snippet": "textde{${1:text}}"
-    },
-    "textden{}": {
-      "snippet": "textden{${1:text}}"
-    },
-    "textdenominators{}": {
-      "snippet": "textdenominators{${1:text}}"
-    },
-    "textfrac[]{}{}": {
-      "snippet": "textfrac[${3:whole part}]{${1:numerator}}{${2:denominator}}"
-    },
-    "textfrac{}{}": {
-      "snippet": "textfrac{${1:numerator}}{${2:denominator}}"
-    },
-    "textin{}": {
-      "snippet": "textin{${1:text}}"
-    },
-    "textinf{}": {
-      "snippet": "textinf{${1:text}}"
-    },
-    "textinferior{}": {
-      "snippet": "textinferior{${1:text}}"
-    },
-    "textlf{}": {
-      "snippet": "textlf{${1:text}}"
-    },
-    "textnum{}": {
-      "snippet": "textnum{${1:text}}"
-    },
-    "textnumerators{}": {
-      "snippet": "textnumerators{${1:text}}"
-    },
-    "textosf{}": {
-      "snippet": "textosf{${1:text}}"
-    },
-    "textsu{}": {
-      "snippet": "textsu{${1:text}}"
-    },
-    "textsup{}": {
-      "snippet": "textsup{${1:text}}"
-    },
-    "textsuperior{}": {
-      "snippet": "textsuperior{${1:text}}"
-    },
-    "texttlf{}": {
-      "snippet": "texttlf{${1:text}}"
-    },
-    "texttosf{}": {
-      "snippet": "texttosf{${1:text}}"
-    },
-    "thin{}": {
-      "snippet": "thin{${1:text}}"
-    },
-    "thinfont": {},
-    "threequarters": {},
-    "tlfstyle": {},
-    "tosfstyle": {},
-    "DH": {},
-    "dh": {},
-    "dj": {},
-    "DJ": {},
-    "guillemetleft": {},
-    "guillemetright": {},
-    "guillemotleft": {},
-    "guillemotright": {},
-    "guilsinglleft": {},
-    "guilsinglright": {},
-    "Hwithstroke": {},
-    "hwithstroke": {},
-    "k{}": {
-      "snippet": "k{${1:arg}}"
-    },
-    "NG": {},
-    "ng": {},
-    "quotedblbase": {},
-    "quotesinglbase": {},
-    "textogonekcentered{}": {
-      "snippet": "textogonekcentered{${1:arg}}"
-    },
-    "textquotedbl": {},
-    "th": {},
-    "TH": {}
-  },
-  "envs": {},
-  "options": [
-    "scale=${1:factor}",
-    "lining",
-    "oldstyle",
-    "tabular",
-    "proportional",
-    "scosf",
-    "mainfont",
-    "black",
-    "extrabold",
-    "bold",
-    "semibold",
-    "medium",
-    "regular",
-    "light",
-    "extralight",
-    "thin",
-    "hairline",
-    "foresolidus=",
-    "aftsolidus="
+    {
+      "name": "fontaxes"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "black",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "blackfont"
+    },
+    {
+      "name": "bold",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "boldfont"
+    },
+    {
+      "name": "defigures",
+      "unusual": true
+    },
+    {
+      "name": "denfigures"
+    },
+    {
+      "name": "denstyle",
+      "unusual": true
+    },
+    {
+      "name": "extrabold",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "extraboldfont"
+    },
+    {
+      "name": "extralight",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "extralightfont"
+    },
+    {
+      "name": "hairline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "hairlinefont"
+    },
+    {
+      "name": "inffigures"
+    },
+    {
+      "name": "infigures",
+      "unusual": true
+    },
+    {
+      "name": "infstyle",
+      "unusual": true
+    },
+    {
+      "name": "lfstyle"
+    },
+    {
+      "name": "light",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "lightfont"
+    },
+    {
+      "name": "mediumfont"
+    },
+    {
+      "name": "nufigures",
+      "unusual": true
+    },
+    {
+      "name": "numfigures"
+    },
+    {
+      "name": "numstyle",
+      "unusual": true
+    },
+    {
+      "name": "onehalf"
+    },
+    {
+      "name": "onequarter"
+    },
+    {
+      "name": "osfstyle"
+    },
+    {
+      "name": "regularfont"
+    },
+    {
+      "name": "semibold",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "semiboldfont"
+    },
+    {
+      "name": "sufigures",
+      "unusual": true
+    },
+    {
+      "name": "supfigures"
+    },
+    {
+      "name": "supstyle",
+      "unusual": true
+    },
+    {
+      "name": "textde",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textden",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textdenominators",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textfrac",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:whole part}]{${1:numerator}}{${2:denominator}}"
+      }
+    },
+    {
+      "name": "textfrac",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:numerator}}{${2:denominator}}"
+      }
+    },
+    {
+      "name": "textin",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textinf",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textinferior",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textlf",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textnum",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textnumerators",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textosf",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textsu",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textsup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textsuperior",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "texttlf",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "texttosf",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "thin",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "thinfont"
+    },
+    {
+      "name": "threequarters"
+    },
+    {
+      "name": "tlfstyle"
+    },
+    {
+      "name": "tosfstyle"
+    },
+    {
+      "name": "DH"
+    },
+    {
+      "name": "dh"
+    },
+    {
+      "name": "dj"
+    },
+    {
+      "name": "DJ"
+    },
+    {
+      "name": "guillemetleft"
+    },
+    {
+      "name": "guillemetright"
+    },
+    {
+      "name": "guillemotleft",
+      "unusual": true
+    },
+    {
+      "name": "guillemotright",
+      "unusual": true
+    },
+    {
+      "name": "guilsinglleft"
+    },
+    {
+      "name": "guilsinglright"
+    },
+    {
+      "name": "Hwithstroke"
+    },
+    {
+      "name": "hwithstroke"
+    },
+    {
+      "name": "k",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "NG"
+    },
+    {
+      "name": "ng"
+    },
+    {
+      "name": "quotedblbase"
+    },
+    {
+      "name": "quotesinglbase"
+    },
+    {
+      "name": "textogonekcentered",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textquotedbl"
+    },
+    {
+      "name": "th"
+    },
+    {
+      "name": "TH"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/ysabeau#c": [
+      "scale=${1:factor}\r",
+      "lining\r",
+      "oldstyle\r",
+      "tabular\r",
+      "proportional\r",
+      "scosf\r",
+      "mainfont\r",
+      "black\r",
+      "extrabold\r",
+      "bold\r",
+      "semibold\r",
+      "medium\r",
+      "regular\r",
+      "light\r",
+      "extralight\r",
+      "thin\r",
+      "hairline\r",
+      "foresolidus=\r",
+      "aftsolidus=\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/ysabeau#c"
+  ]
 }

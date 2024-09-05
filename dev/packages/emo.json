@@ -1,32 +1,95 @@
 {
-  "includes": {
-    "inputenc": [],
-    "iftex": [],
-    "graphicx": [],
-    "xcolor": [],
-    "xspace": [
-      "extra"
+  "deps": [
+    {
+      "name": "inputenc"
+    },
+    {
+      "name": "iftex"
+    },
+    {
+      "name": "graphicx"
+    },
+    {
+      "name": "xcolor"
+    },
+    {
+      "name": "xspace",
+      "if": "extra"
+    },
+    {
+      "name": "index",
+      "if": "index"
+    }
+  ],
+  "macros": [
+    {
+      "name": "lingchi",
+      "if": "extra"
+    },
+    {
+      "name": "YHWH",
+      "if": "extra"
+    },
+    {
+      "name": "emo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:emoji-name%keyvals}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/emo#c": [
+      "extra\r",
+      "index\r",
+      "debug\r"
     ],
-    "index": [
-      "index"
+    "\\emo#c": [
+      "keycap-one\r",
+      "biohazard\r",
+      "balance-scale\r",
+      "check-mark-button\r",
+      "check-mark\r",
+      "cross-mark\r",
+      "plus\r",
+      "eu\r",
+      "japanese-bargain-button\r",
+      "foggy\r",
+      "globe-africa-europe\r",
+      "party-popper\r",
+      "classical-building\r",
+      "desert-island\r",
+      "stadium\r",
+      "rainbow-flag\r",
+      "label\r",
+      "baby-chick\r",
+      "eye\r",
+      "busts\r",
+      "collision\r",
+      "currency-exchange\r",
+      "floppy-disk\r",
+      "chart-increasing\r",
+      "triangular-ruler\r",
+      "pager\r",
+      "loupe-left\r",
+      "detective\r",
+      "wastebasket\r",
+      "enraged-face\r",
+      "stop-sign\r",
+      "robot\r",
+      "handshake\r",
+      "person-facepalming\r",
+      "zany-face\r",
+      "exploding-head\r",
+      "pleading-face\r",
+      "parrot\r",
+      "judge\r",
+      "roll-of-paper\r",
+      "receipt\r"
     ]
   },
-  "macros": {
-    "lingchi": {
-      "option": "extra"
-    },
-    "YHWH": {
-      "option": "extra"
-    },
-    "emo{}": {
-      "snippet": "emo{${1:emoji-name}}"
-    }
-  },
-  "envs": {},
-  "options": [
-    "extra",
-    "index",
-    "debug"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/emo#c"
+  ]
 }

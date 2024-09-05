@@ -1,23 +1,108 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "siunitx": []
-  },
-  "macros": {
-    "psCalculate{}": {
-      "snippet": "psCalculate{${1:expr}}"
+  "deps": [
+    {
+      "name": "xkeyval"
     },
-    "psCalculate[]{}": {
-      "snippet": "psCalculate[${2:siunitx options}]{${1:expr}}"
-    },
-    "pscalculate{}": {
-      "snippet": "pscalculate{${1:expr}}"
+    {
+      "name": "siunitx"
     }
-  },
-  "envs": {},
-  "options": [
-    "useComma",
-    "roundDigit=${1:number}"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "psCalculate",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expr%definition}}"
+      }
+    },
+    {
+      "name": "psCalculate",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:siunitx options%keyvals}]{${1:expr%definition}}"
+      }
+    },
+    {
+      "name": "pscalculate",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expr%definition}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/pst-calculate#c": [
+      "useComma\r",
+      "roundDigit=${1:number}\r"
+    ],
+    "\\psCalculate#c": [
+      "color=",
+      "mode=${1|match,math,text\r|}",
+      "number-color=",
+      "number-mode=${1|match,math,text\r|}",
+      "propagate-math-font",
+      "reset-math-version",
+      "reset-text-family",
+      "reset-text-series",
+      "reset-text-shape",
+      "text-family-to-math",
+      "text-font-command=${1:commands}\r",
+      "text-series-to-math",
+      "unit-color=",
+      "unit-mode=${1|match,math,text\r|}",
+      "evaluate-expression",
+      "expression=${1:expression}\r",
+      "input-close-uncertainty=${1:symbols}\r",
+      "input-comparators=${1:symbols}\r",
+      "input-decimal-markers=${1:symbols}\r",
+      "input-digits=${1:symbols}\r",
+      "input-exponent-markers=${1:symbols}\r",
+      "input-ignore=${1:symbols}\r",
+      "input-open-uncertainty=${1:symbols}\r",
+      "input-signs=${1:symbols}\r",
+      "input-uncertainty-signs=${1:symbols}\r",
+      "parse-numbers",
+      "retain-explicit-decimal-marker",
+      "retain-explicit-plus",
+      "retain-zero-uncertainty",
+      "drop-exponent",
+      "drop-uncertainty",
+      "drop-zero-decimal",
+      "exponent-mode=${1|input,fixed,engineering,scientific\r|}",
+      "fixed-exponent=${1:integer}\r",
+      "minimum-integer-digits=${1:integer}\r",
+      "minimum-decimal-digits=${1:integer}\r",
+      "round-half=${1|up,even\r|}",
+      "round-minimum=${1:number}\r",
+      "round-mode=${1|none,figures,places,uncertainty\r|}",
+      "round-pad",
+      "round-precision=${1:integer}\r",
+      "bracket-ambiguous-numbers",
+      "bracket-negative-numbers",
+      "exponent-base=${1:value}\r",
+      "exponent-product=${1:symbol}\r",
+      "group-digits=${1|none,decimal,integer\r|}",
+      "group-minimum-digits=${1:integer}\r",
+      "group-separator=${1:separator}\r",
+      "negative-color=",
+      "output-close-uncertainty=${1:symbol}\r",
+      "output-decimal-marker=${1:symbol}\r",
+      "output-exponent-marker=${1:symbol}\r",
+      "output-open-uncertainty=${1:symbol}\r",
+      "print-implicit-plus",
+      "print-unity-mantissa",
+      "print-zero-exponent",
+      "print-zero-integer",
+      "separate-uncertainty",
+      "tight-spacing",
+      "uncertainty-mode=${1|separate,compact,compact-marker,full\r|}",
+      "uncertainty-separator=${1:separator}\r",
+      "locale=${1|DE,UK,US,ZA,FR\r|}"
+    ]
+  },
+  "args": [
+    "\\usepackage/pst-calculate#c"
+  ]
 }

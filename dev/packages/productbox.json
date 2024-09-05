@@ -1,100 +1,152 @@
 {
-  "includes": {
-    "keyval": [],
-    "tikz": [],
-    "tikzlibrarycalc": [],
-    "tikzlibraryfadings": []
-  },
-  "macros": {
-    "ProductBoxSet{}": {
-      "snippet": "ProductBoxSet{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "keyval"
     },
-    "ProductBoxThreeDStartHook": {},
-    "ProductBoxThreeDEndHook": {}
-  },
-  "envs": {
-    "ProductBox": {},
-    "ProductBox[]": {
+    {
+      "name": "tikz"
+    },
+    {
+      "name": "tikzlibrarycalc"
+    },
+    {
+      "name": "tikzlibraryfadings"
+    }
+  ],
+  "macros": [
+    {
+      "name": "ProductBoxSet",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\begin{ProductBox},\\ProductBoxSet"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ProductBoxThreeDStartHook",
+      "unusual": true
+    },
+    {
+      "name": "ProductBoxThreeDEndHook",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "ProductBox"
+    },
+    {
       "name": "ProductBox",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     },
-    "FrontFace": {},
-    "FrontFace[]": {
+    {
+      "name": "FrontFace"
+    },
+    {
       "name": "FrontFace",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     },
-    "BackFace": {},
-    "BackFace[]": {
+    {
+      "name": "BackFace"
+    },
+    {
       "name": "BackFace",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     },
-    "LeftFace": {},
-    "LeftFace[]": {
+    {
+      "name": "LeftFace"
+    },
+    {
       "name": "LeftFace",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     },
-    "RightFace": {},
-    "RightFace[]": {
+    {
+      "name": "RightFace"
+    },
+    {
       "name": "RightFace",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     },
-    "TopFace": {},
-    "TopFace[]": {
+    {
+      "name": "TopFace"
+    },
+    {
       "name": "TopFace",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     },
-    "BottomFace": {},
-    "BottomFace[]": {
+    {
+      "name": "BottomFace"
+    },
+    {
       "name": "BottomFace",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     },
-    "Front": {},
-    "Back": {},
-    "Left": {},
-    "Right": {},
-    "Top": {},
-    "Bottom": {}
-  },
-  "options": [],
-  "keyvals": [
-    [
-      "style=${1:box style}",
-      "3D",
-      "3d",
-      "threeD",
+    {
+      "name": "Front"
+    },
+    {
+      "name": "Back"
+    },
+    {
+      "name": "Left"
+    },
+    {
+      "name": "Right"
+    },
+    {
+      "name": "Top"
+    },
+    {
+      "name": "Bottom"
+    }
+  ],
+  "keys": {
+    "\\begin{ProductBox},\\ProductBoxSet": [
+      "style=${1:box style}\r",
+      "3D\r",
+      "3d\r",
+      "threeD\r",
       "shadow",
       "mirror",
       "flare",
       "flareDiameter=",
-      "fold",
+      "fold\r",
       "earSize=",
       "foldLine=",
-      "foldOpacity=${1:factor}",
-      "front",
-      "back",
-      "left",
-      "right",
-      "top",
-      "bottom",
-      "empty",
-      "scale=${1:factor}",
-      "view=${1:view number}",
+      "foldOpacity=${1:factor}\r",
+      "front\r",
+      "back\r",
+      "left\r",
+      "right\r",
+      "top\r",
+      "bottom\r",
+      "empty\r",
+      "scale=${1:factor}\r",
+      "view=${1:view number}\r",
       "edgeColor=",
       "faceSep=",
       "width=",
@@ -103,7 +155,7 @@
       "clean",
       "clip"
     ],
-    [
+    "\\begin{FrontFace},\\begin{BackFace},\\begin{LeftFace},\\begin{RightFace},\\begin{TopFace},\\begin{BottomFace}": [
       "color=",
       "top color=",
       "bottom color=",
@@ -113,5 +165,6 @@
       "inner color=",
       "outer color="
     ]
-  ]
+  },
+  "args": []
 }

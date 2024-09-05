@@ -1,903 +1,1863 @@
 {
-  "includes": {
-    "l3keys2e": [],
-    "amstext": [],
-    "chemformula": [],
-    "chemgreek": [],
-    "elements": [],
-    "mathtools": [],
-    "chemnum": [],
-    "siunitx": [],
-    "relsize": [],
-    "bm": [],
-    "etoolbox": [],
-    "translations": [],
-    "tikz": [],
-    "tikzlibrarycalc": [],
-    "tikzlibrarydecorations.pathmorphing": [],
-    "xfrac": []
-  },
-  "macros": {
-    "chemsetup{}": {
-      "snippet": "chemsetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "l3keys2e"
     },
-    "chemsetup[]{}": {
-      "snippet": "chemsetup[${2:module}]{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
+    {
+      "name": "amstext"
     },
-    "pH": {},
-    "pOH": {},
-    "Ka": {},
-    "Kb": {},
-    "Kw": {},
-    "pKa": {},
-    "pKa[]": {
-      "snippet": "pKa[${1:number}]"
+    {
+      "name": "chemformula"
     },
-    "pKb": {},
-    "pKb[]": {
-      "snippet": "pKb[${1:number}]"
+    {
+      "name": "chemgreek"
     },
-    "p{}": {
-      "snippet": "p{${1:anything}}"
+    {
+      "name": "elements"
     },
-    "NewChemEqConstant{}{}{}": {
-      "snippet": "NewChemEqConstant{${1:cmd}}{${2:name}}{${3:subscript}}"
+    {
+      "name": "mathtools"
     },
-    "RenewChemEqConstant{}{}{}": {
-      "snippet": "RenewChemEqConstant{${1:cmd}}{${2:name}}{${3:default appearance}}"
+    {
+      "name": "chemnum"
     },
-    "DeclareChemEqConstant{}{}{}": {
-      "snippet": "DeclareChemEqConstant{${1:cmd}}{${2:name}}{${3:default appearance}}"
+    {
+      "name": "siunitx"
     },
-    "ProvideChemEqConstant{}{}{}": {
-      "snippet": "ProvideChemEqConstant{${1:cmd}}{${2:name}}{${3:default appearance}}"
+    {
+      "name": "relsize"
     },
-    "fplus": {},
-    "fminus": {},
-    "scrp": {},
-    "scrm": {},
-    "fscrp": {},
-    "fscrm": {},
-    "fsscrp": {},
-    "fsscrm": {},
-    "pch": {},
-    "pch[]": {
-      "snippet": "pch[${1:number}]"
+    {
+      "name": "bm"
     },
-    "mch": {},
-    "mch[]": {
-      "snippet": "mch[${1:number}]"
+    {
+      "name": "etoolbox"
     },
-    "fpch": {},
-    "fpch[]": {
-      "snippet": "fpch[${1:number}]"
+    {
+      "name": "translations"
     },
-    "fmch": {},
-    "fmch[]": {
-      "snippet": "fmch[${1:number}]"
+    {
+      "name": "tikz"
     },
-    "delp": {},
-    "delm": {},
-    "fdelp": {},
-    "fdelm": {},
-    "NewChemCharge{}{}": {
-      "snippet": "NewChemCharge{${1:cmd}}{${2:charge symbol}}"
+    {
+      "name": "tikzlibrarycalc"
     },
-    "RenewChemCharge{}{}": {
-      "snippet": "RenewChemCharge{${1:cmd}}{${2:charge symbol}}"
+    {
+      "name": "tikzlibrarydecorations.pathmorphing"
     },
-    "DeclareChemCharge{}{}": {
-      "snippet": "DeclareChemCharge{${1:cmd}}{${2:charge symbol}}"
-    },
-    "ProvideChemCharge{}{}": {
-      "snippet": "ProvideChemCharge{${1:cmd}}{${2:charge symbol}}"
-    },
-    "NewChemPartialCharge{}{}": {
-      "snippet": "NewChemPartialCharge{${1:cmd}}{${2:charge symbol}}"
-    },
-    "RenewChemPartialCharge{}{}": {
-      "snippet": "RenewChemPartialCharge{${1:cmd}}{${2:charge symbol}}"
-    },
-    "DeclareChemPartialCharge{}{}": {
-      "snippet": "DeclareChemPartialCharge{${1:cmd}}{${2:charge symbol}}"
-    },
-    "ProvideChemPartialCharge{}{}": {
-      "snippet": "ProvideChemPartialCharge{${1:cmd}}{${2:charge symbol}}"
-    },
-    "iupac{}": {
-      "snippet": "iupac{${1:IUPAC name}}"
-    },
-    "chemprime": {},
-    "nonbreakinghyphen": {},
-    "hydrogen": {},
-    "H": {
-      "detail": "𝐻",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL H"
-    },
-    "oxygen": {},
-    "O": {
-      "detail": "𝑂",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL O"
-    },
-    "nitrogen": {},
-    "N": {
-      "detail": "𝑁",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL N"
-    },
-    "sulfur": {},
-    "Sf": {},
-    "phosphorus": {},
-    "P": {
-      "detail": "𝑃",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL P"
-    },
-    "cip{}": {
-      "snippet": "cip{${1:conformation}}"
-    },
-    "rectus": {},
-    "R": {
-      "detail": "𝑅",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL R"
-    },
-    "sinister": {},
-    "S": {
-      "detail": "𝑆",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL S"
-    },
-    "dexter": {},
-    "D": {
-      "detail": "𝐷",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL D"
-    },
-    "laevus": {},
-    "L": {
-      "detail": "𝐿",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL L"
-    },
-    "cis": {},
-    "trans": {},
-    "fac": {},
-    "mer": {},
-    "sin": {},
-    "ter": {},
-    "zusammen": {},
-    "Z": {
-      "detail": "𝑍",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL Z"
-    },
-    "entgegen": {},
-    "E": {
-      "detail": "𝐸",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL E"
-    },
-    "syn": {},
-    "anti": {},
-    "tert": {},
-    "ortho": {},
-    "meta": {},
-    "para": {},
-    "Rconf": {},
-    "Rconf[]": {
-      "snippet": "Rconf[${1:letter}]"
-    },
-    "Sconf": {},
-    "Sconf[]": {
-      "snippet": "Sconf[${1:letter}]"
-    },
-    "bridge{}": {
-      "snippet": "bridge{${1:number}}"
-    },
-    "hapto{}": {
-      "snippet": "hapto{${1:number}}"
-    },
-    "dento{}": {
-      "snippet": "dento{${1:number}}"
-    },
-    "latin{}": {
-      "snippet": "latin{${1:phrase}}"
-    },
-    "latin[]{}": {
-      "snippet": "latin[${2:options}]{${1:phrase}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "insitu": {},
-    "invacuo": {},
-    "abinitio": {},
-    "NewChemIUPAC{}{}": {
-      "snippet": "NewChemIUPAC{${1:cmd}}{${2:declaration}}"
-    },
-    "ProvideChemIUPAC{}{}": {
-      "snippet": "ProvideChemIUPAC{${1:cmd}}{${2:declaration}}"
-    },
-    "RenewChemIUPAC{}{}": {
-      "snippet": "RenewChemIUPAC{${1:cmd}}{${2:declaration}}"
-    },
-    "DeclareChemIUPAC{}{}": {
-      "snippet": "DeclareChemIUPAC{${1:cmd}}{${2:declaration}}"
-    },
-    "LetChemIUPAC{}{}": {
-      "snippet": "LetChemIUPAC{${1:cmd1}}{${2:cmd2}}"
-    },
-    "NewChemIUPACShorthand{}{}": {
-      "snippet": "NewChemIUPACShorthand{${1:shorthand token}}{${2:cs}}"
-    },
-    "RenewChemIUPACShorthand{}{}": {
-      "snippet": "RenewChemIUPACShorthand{${1:shorthand token}}{${2:cs}}"
-    },
-    "DeclareChemIUPACShorthand{}{}": {
-      "snippet": "DeclareChemIUPACShorthand{${1:shorthand token}}{${2:cs}}"
-    },
-    "ProvideChemIUPACShorthand{}{}": {
-      "snippet": "ProvideChemIUPACShorthand{${1:shorthand token}}{${2:cs}}"
-    },
-    "RemoveChemIUPACShorthand{}{}": {
-      "snippet": "RemoveChemIUPACShorthand{${1:shorthand token}}{${2:cs}}"
-    },
-    "NewChemLatin{}{}": {
-      "snippet": "NewChemLatin{${1:cmd}}{${2:phrase}}"
-    },
-    "DeclareChemLatin{}{}": {
-      "snippet": "DeclareChemLatin{${1:cmd}}{${2:phrase}}"
-    },
-    "RenewChemLatin{}{}": {
-      "snippet": "RenewChemLatin{${1:cmd}}{${2:phrase}}"
-    },
-    "ProvideChemLatin{}{}": {
-      "snippet": "ProvideChemLatin{${1:cmd}}{${2:phrase}}"
-    },
-    "el": {},
-    "prt": {},
-    "ntr": {},
-    "Hyd": {},
-    "Oxo": {},
-    "water": {},
-    "El": {},
-    "Nuc": {},
-    "ba": {},
-    "NewChemParticle{}{}": {
-      "snippet": "NewChemParticle{${1:cmd}}{${2:formula}}"
-    },
-    "RenewChemParticle{}{}": {
-      "snippet": "RenewChemParticle{${1:cmd}}{${2:formula}}"
-    },
-    "DeclareChemParticle{}{}": {
-      "snippet": "DeclareChemParticle{${1:cmd}}{${2:formula}}"
-    },
-    "ProvideChemParticle{}{}": {
-      "snippet": "ProvideChemParticle{${1:cmd}}{${2:formula}}"
-    },
-    "NewChemNucleophile{}{}": {
-      "snippet": "NewChemNucleophile{${1:cmd}}{${2:formula}}"
-    },
-    "RenewChemNucleophile{}{}": {
-      "snippet": "RenewChemNucleophile{${1:cmd}}{${2:formula}}"
-    },
-    "DeclareChemNucleophile{}{}": {
-      "snippet": "DeclareChemNucleophile{${1:cmd}}{${2:formula}}"
-    },
-    "ProvideChemNucleophile{}{}": {
-      "snippet": "ProvideChemNucleophile{${1:cmd}}{${2:formula}}"
-    },
-    "sld": {},
-    "lqd": {},
-    "gas": {},
-    "aq": {},
-    "phase{}": {
-      "snippet": "phase{${1:phase}}"
-    },
-    "NewChemPhase{}{}": {
-      "snippet": "NewChemPhase{${1:cmd}}{${2:symbol}}"
-    },
-    "DeclareChemPhase{}{}": {
-      "snippet": "DeclareChemPhase{${1:cmd}}{${2:symbol}}"
-    },
-    "RenewChemPhase{}{}": {
-      "snippet": "RenewChemPhase{${1:cmd}}{${2:symbol}}"
-    },
-    "ProvideChemPhase{}{}": {
-      "snippet": "ProvideChemPhase{${1:cmd}}{${2:symbol}}"
-    },
-    "transitionstatesymbol": {},
-    "standardstate": {},
-    "changestate": {},
-    "isotope{}": {
-      "snippet": "isotope{${1:isotope}}"
-    },
-    "isotope*{}": {
-      "snippet": "isotope*{${1:isotope}}"
-    },
-    "mech": {},
-    "mech[]": {
-      "snippet": "mech[${1:type}]"
-    },
-    "newman{}": {
-      "snippet": "newman{${1:part-list}}"
-    },
-    "newman[]{}": {
-      "snippet": "newman[${2:options}]{${1:part-list}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "newman[](){}": {
-      "snippet": "newman[${2:options}](${3:angle}){${1:part-list}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "orbital{}": {
-      "snippet": "orbital{${1:type}}"
-    },
-    "orbital[]{}": {
-      "snippet": "orbital[${2:options}]{${1:type}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "copolymer": {},
-    "statistical": {},
-    "random": {},
-    "alternating": {},
-    "periodic": {},
-    "block": {},
-    "graft": {},
-    "blend": {},
-    "comb": {},
-    "complex": {},
-    "cyclic": {},
-    "branch": {},
-    "network": {},
-    "ipnetwork": {},
-    "sipnetwork": {},
-    "star": {
-      "detail": "⋆",
-      "documentation": "small s filled, low"
-    },
-    "makepolymerdelims{}{}{}": {
-      "snippet": "makepolymerdelims{${1:height}}{${2:opening node}}{${3:closing node}}"
-    },
-    "makepolymerdelims[]{}{}[]{}": {
-      "snippet": "makepolymerdelims[${4:options}]{${1:height}}{${2:opening node}}[${5:depth}]{${3:closing node}}",
-      "keyvalindex": 4,
-      "keyvalpos": 0
-    },
-    "AddRxnDesc{}": {
-      "snippet": "AddRxnDesc{${1:description}}"
-    },
-    "listofreactions": {},
-    "NewChemReaction{}{}": {
-      "snippet": "NewChemReaction{${1:envname}}{${2:math envname}}"
-    },
-    "NewChemReaction{}[]{}": {
-      "snippet": "NewChemReaction{${1:envname}}[${2:args}]{${3:math envname}}"
-    },
-    "RenewChemReaction{}{}": {
-      "snippet": "RenewChemReaction{${1:envname}}{${2:math envname}}"
-    },
-    "RenewChemReaction{}[]{}": {
-      "snippet": "RenewChemReaction{${1:envname}}[${2:args}]{${3:math envname}}"
-    },
-    "DeclareChemReaction{}{}": {
-      "snippet": "DeclareChemReaction{${1:envname}}{${2:math envname}}"
-    },
-    "DeclareChemReaction{}[]{}": {
-      "snippet": "DeclareChemReaction{${1:envname}}[${2:args}]{${3:math envname}}"
-    },
-    "ProvideChemReaction{}{}": {
-      "snippet": "ProvideChemReaction{${1:envname}}{${2:math envname}}"
-    },
-    "ProvideChemReaction{}[]{}": {
-      "snippet": "ProvideChemReaction{${1:envname}}[${2:args}]{${3:math envname}}"
-    },
-    "reactionlistname": {},
-    "DeclareChemReactant{}{}": {
-      "snippet": "DeclareChemReactant{${1:ID}}{${2:properties}}"
-    },
-    "reactant{}": {
-      "snippet": "reactant{${1:ID}}"
-    },
-    "reactant[]{}": {
-      "snippet": "reactant[${2:data and units}]{${1:ID}}"
-    },
-    "reactantplain{}": {
-      "snippet": "reactantplain{${1:ID}}"
-    },
-    "submainreactantplain{}{}": {
-      "snippet": "submainreactantplain{${1:main ID}}{${2:sub ID}}"
-    },
-    "Reactant{}": {
-      "snippet": "Reactant{${1:ID}}"
-    },
-    "Reactant[]{}": {
-      "snippet": "Reactant[${2:data and units}]{${1:ID}}"
-    },
-    "Reactantplain{}": {
-      "snippet": "Reactantplain{${1:ID}}"
-    },
-    "Submainreactantplain{}{}": {
-      "snippet": "Submainreactantplain{${1:main ID}}{${2:sub ID}}"
-    },
-    "solvent{}": {
-      "snippet": "solvent{${1:ID}}"
-    },
-    "solvent[]{}": {
-      "snippet": "solvent[${2:data and units}]{${1:ID}}"
-    },
-    "solventplain{}": {
-      "snippet": "solventplain{${1:ID}}"
-    },
-    "Solventplain{}": {
-      "snippet": "Solventplain{${1:ID}}"
-    },
-    "Solvent{}": {
-      "snippet": "Solvent{${1:ID}}"
-    },
-    "Solvent[]{}": {
-      "snippet": "Solvent[${2:data and units}]{${1:ID}}"
-    },
-    "printreactants": {},
-    "printreactants*": {},
-    "reactants{}": {
-      "snippet": "reactants{${1:ID}}"
-    },
-    "reactantl{}": {
-      "snippet": "reactantl{${1:ID}}"
-    },
-    "solvents{}": {
-      "snippet": "solvents{${1:ID}}"
-    },
-    "solventl{}": {
-      "snippet": "solventl{${1:ID}}"
-    },
-    "ox{}": {
-      "snippet": "ox{${1:number,atom}}"
-    },
-    "ox[]{}": {
-      "snippet": "ox[${2:options}]{${1:number,atom}}",
-      "keyvalindex": 5,
-      "keyvalpos": 0
-    },
-    "ox*{}": {
-      "snippet": "ox*{${1:number,atom}}"
-    },
-    "ox*[]{}": {
-      "snippet": "ox*[${2:options}]{${1:number,atom}}",
-      "keyvalindex": 5,
-      "keyvalpos": 0
-    },
-    "OX{}": {
-      "snippet": "OX{${1:name,atom}}"
-    },
-    "redox(){}": {
-      "snippet": "redox(${2:name1},${3:name2}){${1:text}}"
-    },
-    "redox()[]{}": {
-      "snippet": "redox(${3:name1},${4:name2})[${2:TikZ-options}]{${1:text}}"
-    },
-    "redox()[][]{}": {
-      "snippet": "redox(${4:name1},${5:name2})[${2:TikZ-options}][${3:vertical-factor}]{${1:text}}"
-    },
-    "listschemename": {},
-    "schemename": {},
-    "listofschemes": {},
-    "NMR{}()[]": {
-      "snippet": "NMR{${1:isotope,element}}(${3:frequency})[${2:solvent}]"
-    },
-    "NMR{}()": {
-      "snippet": "NMR{${1:isotope,element}}(${2:frequency})"
-    },
-    "NMR{}": {
-      "snippet": "NMR{${1:isotope,element}}"
-    },
-    "NMR{}[]": {
-      "snippet": "NMR{${1:isotope,element}}[${2:solvent}]"
-    },
-    "NMR()[]": {
-      "snippet": "NMR(${2:frequency})[${1:solvent}]"
-    },
-    "NMR()": {
-      "snippet": "NMR(${1:frequency})"
-    },
-    "NMR": {},
-    "NMR*{}()[]": {
-      "snippet": "NMR*{${1:isotope,element}}(${3:frequency})[${2:solvent}]"
-    },
-    "NMR*{}()": {
-      "snippet": "NMR*{${1:isotope,element}}(${2:frequency})"
-    },
-    "NMR*{}": {
-      "snippet": "NMR*{${1:isotope,element}}"
-    },
-    "NMR*{}[]": {
-      "snippet": "NMR*{${1:isotope,element}}[${2:solvent}]"
-    },
-    "NMR*()[]": {
-      "snippet": "NMR*(${2:frequency})[${1:solvent}]"
-    },
-    "NMR*()": {
-      "snippet": "NMR*(${1:frequency})"
-    },
-    "NMR*": {},
-    "data{}": {
-      "snippet": "data{${1:type}}"
-    },
-    "data{}[]": {
-      "snippet": "data{${1:type}}[${2:specification}]"
-    },
-    "data*{}": {
-      "snippet": "data*{${1:type}}"
-    },
-    "data*{}[]": {
-      "snippet": "data*{${1:type}}[${2:specification}]"
-    },
-    "J()[]{}": {
-      "snippet": "J(${3:bonds;nuclei})[${2:unit}]{${1:num-list}}"
-    },
-    "J(){}": {
-      "snippet": "J(${2:bonds;nuclei}){${1:num-list}}"
-    },
-    "J[]{}": {
-      "snippet": "J[${2:unit}]{${1:num-list}}"
-    },
-    "J{}": {
-      "snippet": "J{${1:num-list}}"
-    },
-    "": {},
-    "pos{}": {
-      "snippet": "pos{${1:number}}"
-    },
-    "val{}": {
-      "snippet": "val{${1:num1--num2}}"
-    },
-    "NewChemNMR{}{}": {
-      "snippet": "NewChemNMR{${1:cmd}}{${2:isotope,atom}}"
-    },
-    "DeclareChemNMR{}{}": {
-      "snippet": "DeclareChemNMR{${1:cmd}}{${2:isotope,atom}}"
-    },
-    "RenewChemNMR{}{}": {
-      "snippet": "RenewChemNMR{${1:cmd}}{${2:isotope,atom}}"
-    },
-    "ProvideChemNMR{}{}": {
-      "snippet": "ProvideChemNMR{${1:cmd}}{${2:isotope,atom}}"
-    },
-    "state{}": {
-      "snippet": "state{${1:symbol}}"
-    },
-    "state[]{}": {
-      "snippet": "state[${2:options}]{${1:symbol}}",
-      "keyvalindex": 6,
-      "keyvalpos": 0
-    },
-    "enthalpy[](){}": {
-      "snippet": "enthalpy[${2:options}](${3:subscript}){${1:value}}",
-      "keyvalindex": 7,
-      "keyvalpos": 0
-    },
-    "enthalpy[]{}": {
-      "snippet": "enthalpy[${2:options}]{${1:value}}",
-      "keyvalindex": 7,
-      "keyvalpos": 0
-    },
-    "enthalpy(){}": {
-      "snippet": "enthalpy(${2:subscript}){${1:value}}"
-    },
-    "enthalpy{}": {
-      "snippet": "enthalpy{${1:value}}"
-    },
-    "enthalpy*[](){}": {
-      "snippet": "enthalpy*[${2:options}](${3:subscript}){${1:value}}",
-      "keyvalindex": 7,
-      "keyvalpos": 0
-    },
-    "enthalpy*[]{}": {
-      "snippet": "enthalpy*[${2:options}]{${1:value}}",
-      "keyvalindex": 7,
-      "keyvalpos": 0
-    },
-    "enthalpy*(){}": {
-      "snippet": "enthalpy*(${2:subscript}){${1:value}}"
-    },
-    "enthalpy*{}": {
-      "snippet": "enthalpy*{${1:value}}"
-    },
-    "entropy[](){}": {
-      "snippet": "entropy[${2:options}](${3:subscript}){${1:value}}",
-      "keyvalindex": 7,
-      "keyvalpos": 0
-    },
-    "entropy[]{}": {
-      "snippet": "entropy[${2:options}]{${1:value}}",
-      "keyvalindex": 7,
-      "keyvalpos": 0
-    },
-    "entropy(){}": {
-      "snippet": "entropy(${2:subscript}){${1:value}}"
-    },
-    "entropy{}": {
-      "snippet": "entropy{${1:value}}"
-    },
-    "entropy*[](){}": {
-      "snippet": "entropy*[${2:options}](${3:subscript}){${1:value}}",
-      "keyvalindex": 7,
-      "keyvalpos": 0
-    },
-    "entropy*[]{}": {
-      "snippet": "entropy*[${2:options}]{${1:value}}",
-      "keyvalindex": 7,
-      "keyvalpos": 0
-    },
-    "entropy*(){}": {
-      "snippet": "entropy*(${2:subscript}){${1:value}}"
-    },
-    "entropy*{}": {
-      "snippet": "entropy*{${1:value}}"
-    },
-    "gibbs[](){}": {
-      "snippet": "gibbs[${2:options}](${3:subscript}){${1:value}}",
-      "keyvalindex": 7,
-      "keyvalpos": 0
-    },
-    "gibbs[]{}": {
-      "snippet": "gibbs[${2:options}]{${1:value}}",
-      "keyvalindex": 7,
-      "keyvalpos": 0
-    },
-    "gibbs(){}": {
-      "snippet": "gibbs(${2:subscript}){${1:value}}"
-    },
-    "gibbs{}": {
-      "snippet": "gibbs{${1:value}}"
-    },
-    "gibbs*[](){}": {
-      "snippet": "gibbs*[${2:options}](${3:subscript}){${1:value}}",
-      "keyvalindex": 7,
-      "keyvalpos": 0
-    },
-    "gibbs*[]{}": {
-      "snippet": "gibbs*[${2:options}]{${1:value}}",
-      "keyvalindex": 7,
-      "keyvalpos": 0
-    },
-    "gibbs*(){}": {
-      "snippet": "gibbs*(${2:subscript}){${1:value}}"
-    },
-    "gibbs*{}": {
-      "snippet": "gibbs*{${1:value}}"
-    },
-    "NewChemState{}{}": {
-      "snippet": "NewChemState{${1:cmd}}{${2:options}}",
-      "keyvalindex": 7,
-      "keyvalpos": 1
-    },
-    "RenewChemState{}{}": {
-      "snippet": "RenewChemState{${1:cmd}}{${2:options}}",
-      "keyvalindex": 7,
-      "keyvalpos": 1
-    },
-    "DeclareChemState{}{}": {
-      "snippet": "DeclareChemState{${1:cmd}}{${2:options}}",
-      "keyvalindex": 7,
-      "keyvalpos": 1
-    },
-    "ProvideChemState{}{}": {
-      "snippet": "ProvideChemState{${1:cmd}}{${2:options}}",
-      "keyvalindex": 7,
-      "keyvalpos": 1
-    },
-    "atmosphere": {},
-    "atm": {},
-    "calory": {},
-    "cal": {},
-    "cmc": {},
-    "molar": {},
-    "moLar": {},
-    "Molar": {},
-    "MolMass": {},
-    "normal": {},
-    "torr": {},
-    "angstrom": {},
-    "atomicmassunit": {},
-    "bar": {
-      "detail": " ̄",
-      "documentation": "macron"
-    },
-    "elementarycharge": {},
-    "mmHg": {},
-    "NewChemMacroset{}{}{}": {
-      "snippet": "NewChemMacroset{${1:name}}{${2:arg spec}}{${3:internal command call}}"
-    },
-    "NewChemMacroset*{}{}{}": {
-      "snippet": "NewChemMacroset*{${1:name}}{${2:arg spec}}{${3:internal command call}}"
-    },
-    "ChemCleverefSupport{}{}{}": {
-      "snippet": "ChemCleverefSupport{${1:counter}}{${2:singular}}{${3:plural}}"
-    },
-    "ChemCleverefSupport{}{}[]{}[]": {
-      "snippet": "ChemCleverefSupport{${1:counter}}{${2:singular}}[${3:uppercase singular}]{${4:plural}}[${5:uppercase plural}]"
-    },
-    "ChemFancyrefSupport{}{}": {
-      "snippet": "ChemFancyrefSupport{${1:prefix}}{${2:name}}"
-    },
-    "ChemFancyrefSupport{}{}[]": {
-      "snippet": "ChemFancyrefSupport{${1:prefix}}{${2:name}}[${3:uppercase name}]"
-    },
-    "DeclareChemTranslation{}{}{}": {
-      "snippet": "DeclareChemTranslation{${1:key}}{${2:language}}{${3:translation}}"
-    },
-    "DeclareChemTranslations{}{}": {
-      "snippet": "DeclareChemTranslations{${1:key}}{${2:language=translation,...}}"
-    },
-    "AddChemTranslation{}{}{}": {
-      "snippet": "AddChemTranslation{${1:language}}{${2:key}}{${3:translation}}"
-    },
-    "AddChemTranslations{}{}": {
-      "snippet": "AddChemTranslations{${1:language}}{${2:key=translation,...}}"
-    },
-    "ChemTranslate{}": {
-      "snippet": "ChemTranslate{${1:translation key}}"
-    },
-    "chemfrac{}{}": {
-      "snippet": "chemfrac{${1:numerator}}{${2:denominator}}"
-    },
-    "chemfrac[]{}{}": {
-      "snippet": "chemfrac[${3:type}]{${1:numerator}}{${2:denominator}}"
-    },
-    "ChemStyle{}": {
-      "snippet": "ChemStyle{${1:name}}"
-    },
-    "ChemStyle{}[]": {
-      "snippet": "ChemStyle{${1:name}}[${2:version description}]"
-    },
-    "ChemStyle*{}": {
-      "snippet": "ChemStyle*{${1:name}}"
-    },
-    "ChemStyle*{}[]": {
-      "snippet": "ChemStyle*{${1:name}}[${2:version description}]"
-    },
-    "usechemstyle{}": {
-      "snippet": "usechemstyle{${1:list of styles}}"
+    {
+      "name": "xfrac"
     }
-  },
-  "envs": {
-    "reaction": {},
-    "reaction*": {},
-    "reactions": {},
-    "reactions*": {},
-    "scheme": {},
-    "experimental": {}
-  },
-  "options": [
-    "minimal",
-    "modules={${1:list of modules}}"
   ],
-  "keyvals": [
-    [
-      "p-style=${1|italics,slanted,upright|}",
-      "K-acid={${1:text}}",
-      "K-base={${1:text}}",
-      "K-water={${1:text}}",
-      "eq-constant={${1:text}}",
-      "circled=${1|formal,all,none|}",
-      "circletype=${1|chem,math|}",
-      "partial-format={${1:LaTeX code}}",
-      "hyphen-pre-space",
-      "hyphen-post-space",
-      "break-space",
-      "iupac=${1|auto,restricted,strict|}",
-      "iupac-format={${1:definition}}",
-      "cip-kern=",
-      "cip-outer-format={${1:format}}",
-      "cip-inner-format={${1:format}}",
-      "cip-number-format={${1:format}}",
-      "bridge-number=${1|sub,super|}",
-      "coord-use-hyphen",
-      "latin-format={${1:definition}}",
-      "elpair=${1|dots,dash,false|}",
-      "space=",
-      "pos=${1|side,sub|}",
-      "formula=${1|chemformula,mhchem,chemist,chemfig|}",
-      "format={${1:format}}",
-      "greek={${1:mapping}}",
-      "side-connect={${1:input}}",
-      "angle=${1:degrees}",
-      "scale=${1:factor}",
-      "ring={${1:TikZ options}}",
-      "atoms={${1:TikZ options}}",
-      "back-atoms={${1:TikZ options}}",
-      "phase=${1|+,-|}",
-      "color=",
-      "half",
-      "overlay",
-      "opacity=${1:number}",
-      "delimiters={${1:<left><right>}}",
-      "subscript=",
-      "superscript=",
-      "tag-open={${1:left delim}}",
-      "tag-close={${1:right delim}}",
-      "before-tag={${1:format}}",
-      "own-counter",
-      "autoref-name={${1:name}}",
-      "list-name=",
-      "list-entry={${1:prefix}}",
-      "list-heading-cmd={${1:code}}",
-      "mass-unit=${1:unit}",
-      "volume-unit=${1:unit}",
-      "fraction-unit=${1:unit}",
-      "amount-unit=${1:unit}",
-      "equiv-unit=${1:unit}",
-      "concentration-unit=${1:unit}",
-      "purity-unit=${1:unit}",
-      "initiate",
-      "switch",
-      "reactant-output-style=${1|name-main-other,main-name-other,main-other-name|}",
-      "solvent-output-style=${1|main-name,name-main|}",
-      "main=${1|default,amount,equiv|}",
-      "equivalents",
-      "acronym-support=${1|acro,glossaries,none|}",
-      "printreactants-style=${1|xltabular,longtable,none|}",
-      "parse",
-      "roman",
-      "explicit-sign",
-      "decimal-marker=${1|comma,point|}",
-      "align=${1|center,right|}",
-      "text-frac=${1:cmd}",
-      "super-frac=${1:cmd}",
-      "dist=",
-      "sep=",
-      "float-method=${1|KOMA,memoir,tocbasic,newfloat,floatrow,float,traditional|}",
-      "unit=${1:unit}",
-      "nucleus={${1:num},${2:atom}}",
-      "connector={${1:code}}",
-      "method={${1:code}}",
-      "nmr-base-format={${1:commands}}",
-      "pos-number=${1|side,sub,super|}",
-      "coupling-symbol={${1:code}}",
-      "coupling-unit=${1:unit}",
-      "coupling-pos=${1|side,sub|}",
-      "coupling-nuclei-pre={${1:code}}",
-      "coupling-nuclei-post={${1:code}}",
-      "coupling-bonds-pre={${1:code}}",
-      "coupling-bonds-post={${1:code}}",
-      "coupling-pos-cs={${1:cmd}}",
-      "atom-number-cs={${1:cmd}}",
-      "atom-number-space=",
-      "delta={${1:tokens}}",
-      "list",
-      "list-setup={${1:setup}}",
-      "use-equal",
-      "language=${1|auto,${1:language}|}"
+  "macros": [
+    {
+      "name": "chemsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}"
+      }
+    },
+    {
+      "name": "chemsetup",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:module}]{${1:options%keyvals}}"
+      }
+    },
+    {
+      "name": "pH"
+    },
+    {
+      "name": "pOH"
+    },
+    {
+      "name": "Ka"
+    },
+    {
+      "name": "Kb"
+    },
+    {
+      "name": "Kw"
+    },
+    {
+      "name": "pKa"
+    },
+    {
+      "name": "pKa",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:number}]"
+      }
+    },
+    {
+      "name": "pKb"
+    },
+    {
+      "name": "pKb",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:number}]"
+      }
+    },
+    {
+      "name": "p",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:anything}}"
+      }
+    },
+    {
+      "name": "NewChemEqConstant",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:name}}{${3:subscript}}"
+      }
+    },
+    {
+      "name": "RenewChemEqConstant",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:name}}{${3:default appearance}}"
+      }
+    },
+    {
+      "name": "DeclareChemEqConstant",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:name}}{${3:default appearance}}"
+      }
+    },
+    {
+      "name": "ProvideChemEqConstant",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:cmd}}{${2:name}}{${3:default appearance}}"
+      }
+    },
+    {
+      "name": "fplus"
+    },
+    {
+      "name": "fminus"
+    },
+    {
+      "name": "scrp"
+    },
+    {
+      "name": "scrm"
+    },
+    {
+      "name": "fscrp"
+    },
+    {
+      "name": "fscrm"
+    },
+    {
+      "name": "fsscrp"
+    },
+    {
+      "name": "fsscrm"
+    },
+    {
+      "name": "pch",
+      "unusual": true
+    },
+    {
+      "name": "pch",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:number}]"
+      }
+    },
+    {
+      "name": "mch",
+      "unusual": true
+    },
+    {
+      "name": "mch",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:number}]"
+      }
+    },
+    {
+      "name": "fpch",
+      "unusual": true
+    },
+    {
+      "name": "fpch",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:number}]"
+      }
+    },
+    {
+      "name": "fmch",
+      "unusual": true
+    },
+    {
+      "name": "fmch",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:number}]"
+      }
+    },
+    {
+      "name": "delp"
+    },
+    {
+      "name": "delm"
+    },
+    {
+      "name": "fdelp"
+    },
+    {
+      "name": "fdelm"
+    },
+    {
+      "name": "NewChemCharge",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:charge symbol}}"
+      }
+    },
+    {
+      "name": "RenewChemCharge",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:charge symbol}}"
+      }
+    },
+    {
+      "name": "DeclareChemCharge",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:charge symbol}}"
+      }
+    },
+    {
+      "name": "ProvideChemCharge",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:charge symbol}}"
+      }
+    },
+    {
+      "name": "NewChemPartialCharge",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:charge symbol}}"
+      }
+    },
+    {
+      "name": "RenewChemPartialCharge",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:charge symbol}}"
+      }
+    },
+    {
+      "name": "DeclareChemPartialCharge",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:charge symbol}}"
+      }
+    },
+    {
+      "name": "ProvideChemPartialCharge",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:charge symbol}}"
+      }
+    },
+    {
+      "name": "iupac",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:IUPAC name}}"
+      }
+    },
+    {
+      "name": "chemprime",
+      "unusual": true
+    },
+    {
+      "name": "nonbreakinghyphen",
+      "unusual": true
+    },
+    {
+      "name": "hydrogen"
+    },
+    {
+      "name": "H"
+    },
+    {
+      "name": "oxygen"
+    },
+    {
+      "name": "O"
+    },
+    {
+      "name": "nitrogen"
+    },
+    {
+      "name": "N"
+    },
+    {
+      "name": "sulfur"
+    },
+    {
+      "name": "Sf"
+    },
+    {
+      "name": "phosphorus"
+    },
+    {
+      "name": "P"
+    },
+    {
+      "name": "cip",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:conformation}}"
+      }
+    },
+    {
+      "name": "rectus"
+    },
+    {
+      "name": "R"
+    },
+    {
+      "name": "sinister"
+    },
+    {
+      "name": "S"
+    },
+    {
+      "name": "dexter"
+    },
+    {
+      "name": "D"
+    },
+    {
+      "name": "laevus"
+    },
+    {
+      "name": "L"
+    },
+    {
+      "name": "cis"
+    },
+    {
+      "name": "trans"
+    },
+    {
+      "name": "fac"
+    },
+    {
+      "name": "mer"
+    },
+    {
+      "name": "sin"
+    },
+    {
+      "name": "ter"
+    },
+    {
+      "name": "zusammen"
+    },
+    {
+      "name": "Z"
+    },
+    {
+      "name": "entgegen"
+    },
+    {
+      "name": "E"
+    },
+    {
+      "name": "syn"
+    },
+    {
+      "name": "anti"
+    },
+    {
+      "name": "tert"
+    },
+    {
+      "name": "ortho"
+    },
+    {
+      "name": "meta"
+    },
+    {
+      "name": "para"
+    },
+    {
+      "name": "Rconf"
+    },
+    {
+      "name": "Rconf",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:letter}]"
+      }
+    },
+    {
+      "name": "Sconf"
+    },
+    {
+      "name": "Sconf",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:letter}]"
+      }
+    },
+    {
+      "name": "bridge",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "hapto",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "dento",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "latin",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:phrase}}"
+      }
+    },
+    {
+      "name": "latin",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:phrase}}"
+      }
+    },
+    {
+      "name": "insitu"
+    },
+    {
+      "name": "invacuo"
+    },
+    {
+      "name": "abinitio"
+    },
+    {
+      "name": "NewChemIUPAC",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:declaration}}"
+      }
+    },
+    {
+      "name": "ProvideChemIUPAC",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:declaration}}"
+      }
+    },
+    {
+      "name": "RenewChemIUPAC",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:declaration}}"
+      }
+    },
+    {
+      "name": "DeclareChemIUPAC",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:declaration}}"
+      }
+    },
+    {
+      "name": "LetChemIUPAC",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd1%cmd}}{${2:cmd2}}"
+      }
+    },
+    {
+      "name": "NewChemIUPACShorthand",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:shorthand token}}{${2:cs}}"
+      }
+    },
+    {
+      "name": "RenewChemIUPACShorthand",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:shorthand token}}{${2:cs}}"
+      }
+    },
+    {
+      "name": "DeclareChemIUPACShorthand",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:shorthand token}}{${2:cs}}"
+      }
+    },
+    {
+      "name": "ProvideChemIUPACShorthand",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:shorthand token}}{${2:cs}}"
+      }
+    },
+    {
+      "name": "RemoveChemIUPACShorthand",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:shorthand token}}{${2:cs}}"
+      }
+    },
+    {
+      "name": "NewChemLatin",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:phrase}}"
+      }
+    },
+    {
+      "name": "DeclareChemLatin",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:phrase}}"
+      }
+    },
+    {
+      "name": "RenewChemLatin",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:phrase}}"
+      }
+    },
+    {
+      "name": "ProvideChemLatin",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:phrase}}"
+      }
+    },
+    {
+      "name": "el"
+    },
+    {
+      "name": "prt"
+    },
+    {
+      "name": "ntr"
+    },
+    {
+      "name": "Hyd"
+    },
+    {
+      "name": "Oxo"
+    },
+    {
+      "name": "water"
+    },
+    {
+      "name": "El"
+    },
+    {
+      "name": "Nuc"
+    },
+    {
+      "name": "ba"
+    },
+    {
+      "name": "NewChemParticle",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:formula%plain}}"
+      }
+    },
+    {
+      "name": "RenewChemParticle",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:formula%plain}}"
+      }
+    },
+    {
+      "name": "DeclareChemParticle",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:formula%plain}}"
+      }
+    },
+    {
+      "name": "ProvideChemParticle",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:formula%plain}}"
+      }
+    },
+    {
+      "name": "NewChemNucleophile",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:formula%plain}}"
+      }
+    },
+    {
+      "name": "RenewChemNucleophile",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:formula%plain}}"
+      }
+    },
+    {
+      "name": "DeclareChemNucleophile",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:formula%plain}}"
+      }
+    },
+    {
+      "name": "ProvideChemNucleophile",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:formula%plain}}"
+      }
+    },
+    {
+      "name": "sld"
+    },
+    {
+      "name": "lqd"
+    },
+    {
+      "name": "gas"
+    },
+    {
+      "name": "aq"
+    },
+    {
+      "name": "phase",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:phase}}"
+      }
+    },
+    {
+      "name": "NewChemPhase",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:symbol}}"
+      }
+    },
+    {
+      "name": "DeclareChemPhase",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:symbol}}"
+      }
+    },
+    {
+      "name": "RenewChemPhase",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:symbol}}"
+      }
+    },
+    {
+      "name": "ProvideChemPhase",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:symbol}}"
+      }
+    },
+    {
+      "name": "transitionstatesymbol"
+    },
+    {
+      "name": "standardstate"
+    },
+    {
+      "name": "changestate"
+    },
+    {
+      "name": "isotope",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:isotope}}"
+      }
+    },
+    {
+      "name": "isotope*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:isotope}}"
+      }
+    },
+    {
+      "name": "mech"
+    },
+    {
+      "name": "mech",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:type%keyvals}]"
+      }
+    },
+    {
+      "name": "newman",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:part-list}}"
+      }
+    },
+    {
+      "name": "newman",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:part-list}}"
+      }
+    },
+    {
+      "name": "newman",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:options%keyvals}](${3:angle}){${1:part-list}}"
+      }
+    },
+    {
+      "name": "orbital",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:type}}"
+      }
+    },
+    {
+      "name": "orbital",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:type}}"
+      }
+    },
+    {
+      "name": "copolymer"
+    },
+    {
+      "name": "statistical"
+    },
+    {
+      "name": "random"
+    },
+    {
+      "name": "alternating"
+    },
+    {
+      "name": "periodic"
+    },
+    {
+      "name": "block"
+    },
+    {
+      "name": "graft"
+    },
+    {
+      "name": "blend"
+    },
+    {
+      "name": "comb"
+    },
+    {
+      "name": "complex"
+    },
+    {
+      "name": "cyclic"
+    },
+    {
+      "name": "branch"
+    },
+    {
+      "name": "network"
+    },
+    {
+      "name": "ipnetwork"
+    },
+    {
+      "name": "sipnetwork"
+    },
+    {
+      "name": "star",
+      "detail": "⋆",
+      "doc": "Small star, filled, low"
+    },
+    {
+      "name": "makepolymerdelims",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:height}}{${2:opening node}}{${3:closing node}}"
+      }
+    },
+    {
+      "name": "makepolymerdelims",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}[]{}",
+        "snippet": "[${4:options%keyvals}]{${1:height}}{${2:opening node}}[${5:depth}]{${3:closing node}}"
+      }
+    },
+    {
+      "name": "AddRxnDesc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:description}}"
+      }
+    },
+    {
+      "name": "listofreactions"
+    },
+    {
+      "name": "NewChemReaction",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:envname}}{${2:math envname}}"
+      }
+    },
+    {
+      "name": "NewChemReaction",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:envname}}[${3:args}]{${2:math envname}}"
+      }
+    },
+    {
+      "name": "RenewChemReaction",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:envname}}{${2:math envname}}"
+      }
+    },
+    {
+      "name": "RenewChemReaction",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:envname}}[${3:args}]{${2:math envname}}"
+      }
+    },
+    {
+      "name": "DeclareChemReaction",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:envname}}{${2:math envname}}"
+      }
+    },
+    {
+      "name": "DeclareChemReaction",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:envname}}[${3:args}]{${2:math envname}}"
+      }
+    },
+    {
+      "name": "ProvideChemReaction",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:envname}}{${2:math envname}}"
+      }
+    },
+    {
+      "name": "ProvideChemReaction",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:envname}}[${3:args}]{${2:math envname}}"
+      }
+    },
+    {
+      "name": "reactionlistname",
+      "unusual": true
+    },
+    {
+      "name": "DeclareChemReactant",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:ID}}{${2:properties%keyvals}}",
+        "keys": [
+          "\\DeclareChemReactant"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "reactant",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ID}}"
+      }
+    },
+    {
+      "name": "reactant",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:data and units%keyvals}]{${1:ID}}"
+      }
+    },
+    {
+      "name": "reactantplain",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ID}}"
+      }
+    },
+    {
+      "name": "submainreactantplain",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:main ID}}{${2:sub ID}}"
+      }
+    },
+    {
+      "name": "Reactant",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ID}}"
+      }
+    },
+    {
+      "name": "Reactant",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:data and units%keyvals}]{${1:ID}}"
+      }
+    },
+    {
+      "name": "Reactantplain",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ID}}"
+      }
+    },
+    {
+      "name": "Submainreactantplain",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:main ID}}{${2:sub ID}}"
+      }
+    },
+    {
+      "name": "solvent",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ID}}"
+      }
+    },
+    {
+      "name": "solvent",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:data and units%keyvals}]{${1:ID}}"
+      }
+    },
+    {
+      "name": "solventplain",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ID}}"
+      }
+    },
+    {
+      "name": "Solventplain",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ID}}"
+      }
+    },
+    {
+      "name": "Solvent",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ID}}"
+      }
+    },
+    {
+      "name": "Solvent",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:data and units%keyvals}]{${1:ID}}"
+      }
+    },
+    {
+      "name": "printreactants"
+    },
+    {
+      "name": "printreactants*"
+    },
+    {
+      "name": "reactants",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ID}}"
+      }
+    },
+    {
+      "name": "reactantl",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ID}}"
+      }
+    },
+    {
+      "name": "solvents",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ID}}"
+      }
+    },
+    {
+      "name": "solventl",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ID}}"
+      }
+    },
+    {
+      "name": "ox",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number,atom}}"
+      }
+    },
+    {
+      "name": "ox",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options}]{${1:number,atom}}"
+      }
+    },
+    {
+      "name": "ox*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number,atom}}"
+      }
+    },
+    {
+      "name": "ox*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options}]{${1:number,atom}}"
+      }
+    },
+    {
+      "name": "OX",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name,atom}}"
+      }
+    },
+    {
+      "name": "listschemename",
+      "unusual": true
+    },
+    {
+      "name": "schemename",
+      "unusual": true
+    },
+    {
+      "name": "listofschemes"
+    },
+    {
+      "name": "NMR",
+      "arg": {
+        "format": "{}()[]",
+        "snippet": "{${1:isotope,element}}(${3:%<frequency%>},${4:%<freq. unit%>})[${2:solvent}]"
+      }
+    },
+    {
+      "name": "NMR",
+      "arg": {
+        "format": "{}()[]",
+        "snippet": "{${1:isotope,element}}(${3:%<frequency%>})[${2:solvent}]"
+      }
+    },
+    {
+      "name": "NMR",
+      "arg": {
+        "format": "{}()",
+        "snippet": "{${1:isotope,element}}(${2:%<frequency%>},${3:%<freq. unit%>})"
+      }
+    },
+    {
+      "name": "NMR",
+      "arg": {
+        "format": "{}()",
+        "snippet": "{${1:isotope,element}}(${2:%<frequency%>})"
+      }
+    },
+    {
+      "name": "NMR",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:isotope,element}}"
+      }
+    },
+    {
+      "name": "NMR",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:isotope,element}}[${2:solvent}]"
+      }
+    },
+    {
+      "name": "NMR"
+    },
+    {
+      "name": "NMR*",
+      "arg": {
+        "format": "{}()[]",
+        "snippet": "{${1:isotope,element}}(${3:%<frequency%>},${4:%<freq. unit%>})[${2:solvent}]"
+      }
+    },
+    {
+      "name": "NMR*",
+      "arg": {
+        "format": "{}()[]",
+        "snippet": "{${1:isotope,element}}(${3:%<frequency%>})[${2:solvent}]"
+      }
+    },
+    {
+      "name": "NMR*",
+      "arg": {
+        "format": "{}()",
+        "snippet": "{${1:isotope,element}}(${2:%<frequency%>},${3:%<freq. unit%>})"
+      }
+    },
+    {
+      "name": "NMR*",
+      "arg": {
+        "format": "{}()",
+        "snippet": "{${1:isotope,element}}(${2:%<frequency%>})"
+      }
+    },
+    {
+      "name": "NMR*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:isotope,element}}"
+      }
+    },
+    {
+      "name": "NMR*",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:isotope,element}}[${2:solvent}]"
+      }
+    },
+    {
+      "name": "NMR*"
+    },
+    {
+      "name": "data",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:type}}"
+      }
+    },
+    {
+      "name": "data",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:type}}[${2:specification}]"
+      }
+    },
+    {
+      "name": "data*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:type}}"
+      }
+    },
+    {
+      "name": "data*",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:type}}[${2:specification}]"
+      }
+    },
+    {
+      "name": "NMR",
+      "arg": {
+        "format": "{}()[]",
+        "snippet": "{${1:isotope,element[${2:coupling cores}]}}(${4:%<frequency%>},${5:%<freq. unit%>})[${3:solvent}]"
+      }
+    },
+    {
+      "name": "J",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:unit}]{${1:num-list}}"
+      }
+    },
+    {
+      "name": "J",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:num-list}}"
+      }
+    },
+    {
+      "name": ""
+    },
+    {
+      "name": "pos",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "val",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "val",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:num1--num2}}"
+      }
+    },
+    {
+      "name": "NewChemNMR",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:isotope,atom}}"
+      }
+    },
+    {
+      "name": "DeclareChemNMR",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:isotope,atom}}"
+      }
+    },
+    {
+      "name": "RenewChemNMR",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:isotope,atom}}"
+      }
+    },
+    {
+      "name": "ProvideChemNMR",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:isotope,atom}}"
+      }
+    },
+    {
+      "name": "state",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol}}"
+      }
+    },
+    {
+      "name": "state",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:symbol}}"
+      }
+    },
+    {
+      "name": "enthalpy",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:options%keyvals}](${3:subscript}){${1:value}}"
+      }
+    },
+    {
+      "name": "enthalpy",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:value}}"
+      }
+    },
+    {
+      "name": "enthalpy(subscript)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:value}}"
+      }
+    },
+    {
+      "name": "enthalpy",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:value}}"
+      }
+    },
+    {
+      "name": "enthalpy*",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:options%keyvals}](${3:subscript}){${1:value}}"
+      }
+    },
+    {
+      "name": "enthalpy*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:value}}"
+      }
+    },
+    {
+      "name": "enthalpy*(subscript)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:value}}"
+      }
+    },
+    {
+      "name": "enthalpy*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:value}}"
+      }
+    },
+    {
+      "name": "entropy",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:options%keyvals}](${3:subscript}){${1:value}}"
+      }
+    },
+    {
+      "name": "entropy",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:value}}"
+      }
+    },
+    {
+      "name": "entropy(subscript)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:value}}"
+      }
+    },
+    {
+      "name": "entropy",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:value}}"
+      }
+    },
+    {
+      "name": "entropy*",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:options%keyvals}](${3:subscript}){${1:value}}"
+      }
+    },
+    {
+      "name": "entropy*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:value}}"
+      }
+    },
+    {
+      "name": "entropy*(subscript)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:value}}"
+      }
+    },
+    {
+      "name": "entropy*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:value}}"
+      }
+    },
+    {
+      "name": "gibbs",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:options%keyvals}](${3:subscript}){${1:value}}"
+      }
+    },
+    {
+      "name": "gibbs",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:value}}"
+      }
+    },
+    {
+      "name": "gibbs(subscript)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:value}}"
+      }
+    },
+    {
+      "name": "gibbs",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:value}}"
+      }
+    },
+    {
+      "name": "gibbs*",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:options%keyvals}](${3:subscript}){${1:value}}"
+      }
+    },
+    {
+      "name": "gibbs*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:value}}"
+      }
+    },
+    {
+      "name": "gibbs*(subscript)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:value}}"
+      }
+    },
+    {
+      "name": "gibbs*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:value}}"
+      }
+    },
+    {
+      "name": "NewChemState",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:options%keyvals}}",
+        "keys": [
+          "\\state,\\enthalpy,\\enthalpy*,\\entropy,\\entropy*,\\gibbs,\\gibbs*,\\NewChemState,\\RenewChemState,\\DeclareChemState,\\ProvideChemState",
+          "\\enthalpy,\\enthalpy*,\\entropy,\\entropy*,\\gibbs,\\gibbs*,\\NewChemState,\\RenewChemState,\\DeclareChemState,\\ProvideChemState"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "RenewChemState",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:options%keyvals}}",
+        "keys": [
+          "\\state,\\enthalpy,\\enthalpy*,\\entropy,\\entropy*,\\gibbs,\\gibbs*,\\NewChemState,\\RenewChemState,\\DeclareChemState,\\ProvideChemState",
+          "\\enthalpy,\\enthalpy*,\\entropy,\\entropy*,\\gibbs,\\gibbs*,\\NewChemState,\\RenewChemState,\\DeclareChemState,\\ProvideChemState"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "DeclareChemState",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:options%keyvals}}",
+        "keys": [
+          "\\state,\\enthalpy,\\enthalpy*,\\entropy,\\entropy*,\\gibbs,\\gibbs*,\\NewChemState,\\RenewChemState,\\DeclareChemState,\\ProvideChemState",
+          "\\enthalpy,\\enthalpy*,\\entropy,\\entropy*,\\gibbs,\\gibbs*,\\NewChemState,\\RenewChemState,\\DeclareChemState,\\ProvideChemState"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "ProvideChemState",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:options%keyvals}}",
+        "keys": [
+          "\\state,\\enthalpy,\\enthalpy*,\\entropy,\\entropy*,\\gibbs,\\gibbs*,\\NewChemState,\\RenewChemState,\\DeclareChemState,\\ProvideChemState",
+          "\\enthalpy,\\enthalpy*,\\entropy,\\entropy*,\\gibbs,\\gibbs*,\\NewChemState,\\RenewChemState,\\DeclareChemState,\\ProvideChemState"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "atmosphere"
+    },
+    {
+      "name": "atm"
+    },
+    {
+      "name": "calory"
+    },
+    {
+      "name": "cal"
+    },
+    {
+      "name": "cmc"
+    },
+    {
+      "name": "molar"
+    },
+    {
+      "name": "moLar"
+    },
+    {
+      "name": "Molar"
+    },
+    {
+      "name": "MolMass"
+    },
+    {
+      "name": "normal"
+    },
+    {
+      "name": "torr"
+    },
+    {
+      "name": "angstrom"
+    },
+    {
+      "name": "atomicmassunit"
+    },
+    {
+      "name": "bar",
+      "detail": " ̄",
+      "doc": "Macron"
+    },
+    {
+      "name": "elementarycharge"
+    },
+    {
+      "name": "mmHg"
+    },
+    {
+      "name": "NewChemMacroset",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:arg spec}}{${3:internal command call}}"
+      }
+    },
+    {
+      "name": "NewChemMacroset*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:arg spec}}{${3:internal command call}}"
+      }
+    },
+    {
+      "name": "ChemCleverefSupport",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:counter}}{${2:singular}}{${3:plural}}"
+      }
+    },
+    {
+      "name": "ChemCleverefSupport",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]{}[]",
+        "snippet": "{${1:counter}}{${2:singular}}[${4:uppercase singular}]{${3:plural}}[${5:uppercase plural}]"
+      }
+    },
+    {
+      "name": "ChemFancyrefSupport",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:prefix}}{${2:name}}"
+      }
+    },
+    {
+      "name": "ChemFancyrefSupport",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:prefix}}{${2:name}}[${3:uppercase name}]"
+      }
+    },
+    {
+      "name": "DeclareChemTranslation",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:key%plain}}{${2:language}}{${3:translation}}"
+      }
+    },
+    {
+      "name": "DeclareChemTranslations",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:key%plain}}{${2:language=translation,...}}"
+      }
+    },
+    {
+      "name": "AddChemTranslation",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:language}}{${2:key%plain}}{${3:translation}}"
+      }
+    },
+    {
+      "name": "AddChemTranslations",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:language}}{${2:key=translation,...}}"
+      }
+    },
+    {
+      "name": "ChemTranslate",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:translation key}}"
+      }
+    },
+    {
+      "name": "chemfrac",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:numerator}}{${2:denominator}}"
+      }
+    },
+    {
+      "name": "chemfrac",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:type%keyvals}]{${1:numerator}}{${2:denominator}}"
+      }
+    },
+    {
+      "name": "ChemStyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "ChemStyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:name}}[${2:version description%text}]"
+      }
+    },
+    {
+      "name": "ChemStyle*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "ChemStyle*",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:name}}[${2:version description%text}]"
+      }
+    },
+    {
+      "name": "usechemstyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:list of styles}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "reaction"
+    },
+    {
+      "name": "reaction*"
+    },
+    {
+      "name": "reactions"
+    },
+    {
+      "name": "reactions*"
+    },
+    {
+      "name": "scheme"
+    },
+    {
+      "name": "experimental"
+    }
+  ],
+  "keys": {
+    "\\usepackage/chemmacros#c": [
+      "minimal",
+      "modules={${1:list of modules}}"
     ],
-    [
+    "\\chemsetup#c": [
+      "language=${2|auto,${1:language}|}"
+    ],
+    "\\latin#c": [
       "format={${1:format}}"
     ],
-    [
+    "\\mech": [
+      "1",
+      "2",
+      "se",
+      "1e",
+      "2e",
+      "ar",
+      "e",
+      "e1",
+      "e2",
+      "cb"
+    ],
+    "\\newman#c,\\chemsetup#c": [
       "angle=${1:degrees}",
       "scale=${1:factor}",
       "ring={${1:TikZ options}}",
       "atoms={${1:TikZ options}}",
       "back-atoms={${1:TikZ options}}"
     ],
-    [
+    "\\orbital#c": [
       "scale=${1:factor}",
-      "angle=${1:degrees}",
+      "angle=${1:degrees}"
+    ],
+    "\\orbital#c,\\chemsetup#c": [
       "phase=${1|+,-|}",
       "color=",
       "half",
       "overlay",
       "opacity=${1:number}"
     ],
-    [
+    "\\makepolymerdelims#c,\\chemsetup#c": [
       "delimiters={${1:<left><right>}}",
       "subscript=",
       "superscript="
     ],
-    [
+    "\\DeclareChemReactant": [
+      "name=${1:name}",
+      "short=${1:abbreviation}",
+      "bookmark=${1:text}",
+      "upper-name=${1:uppercase name}",
+      "upper-bookmark=${1:uppercase text}"
+    ],
+    "\\reactant,\\reactant+,\\Reactant,\\solvent,\\Solvent": [
+      "mass=${1:number}",
+      "volume=${1:number}",
+      "fraction=${1:number}",
+      "amount=${1:number}",
+      "equiv=${1:number}",
+      "purity=${1:number}",
+      "concentration=${1:number}",
+      "solvent=${1:number}"
+    ],
+    "\\chemsetup#c,\\reactant,\\Reactant,\\solvent,\\Solvent": [
+      "mass-unit=${1:unit}",
+      "volume-unit=${1:unit}",
+      "fraction-unit=${1:unit}",
+      "amount-unit=${1:unit}",
+      "equiv-unit=${1:unit}",
+      "concentration-unit=${1:unit}",
+      "purity-unit=${1:unit}"
+    ],
+    "\\ox#c,\\ox*#c": [
       "format={${1:code}}",
       "pos=${1|top,super,side|}",
-      "side-connect={${1:code}}",
+      "side-connect={${1:code}}"
+    ],
+    "\\ox#c,\\ox*#c,\\chemsetup#c": [
       "parse",
       "roman",
       "explicit-sign",
@@ -906,7 +1866,7 @@
       "text-frac=${1:cmd}",
       "super-frac=${1:cmd}"
     ],
-    [
+    "\\state,\\enthalpy,\\enthalpy*,\\entropy,\\entropy*,\\gibbs,\\gibbs*,\\NewChemState,\\RenewChemState,\\DeclareChemState,\\ProvideChemState": [
       "pre={${1:text}}",
       "post={${1:text}}",
       "superscript-left={${1:text}}",
@@ -916,18 +1876,17 @@
       "subscript-right={${1:text}}",
       "subscript={${1:text}}"
     ],
-    [
-      "pre={${1:text}}",
-      "post={${1:text}}",
-      "superscript-left={${1:text}}",
-      "superscript-right={${1:text}}",
-      "superscript={${1:text}}",
-      "subscript-left={${1:text}}",
-      "subscript-right={${1:text}}",
-      "subscript={${1:text}}",
+    "\\enthalpy,\\enthalpy*,\\entropy,\\entropy*,\\gibbs,\\gibbs*,\\NewChemState,\\RenewChemState,\\DeclareChemState,\\ProvideChemState": [
       "subscript-pos=${1|left,right|}",
       "symbol=",
       "unit="
+    ],
+    "\\chemfrac": [
+      "text",
+      "superscript"
     ]
+  },
+  "args": [
+    "\\usepackage/chemmacros#c"
   ]
 }

@@ -5,7 +5,7 @@ import * as assert from 'assert'
 import { glob } from 'glob'
 import { lw } from '../../src/lw'
 import * as test from './utils'
-import { EnvSnippetType, Environment, Macro, Package } from '../../src/types'
+import { EnvSnippetType, EnvObsolete, MacroObsolete, PackageObsolete } from '../../src/types'
 import { isTriggerSuggestNeeded } from '../../src/completion/completer/macro'
 
 function assertKeys(keys: string[], expected: string[] = [], message: string): void {
@@ -39,7 +39,7 @@ suite('Intellisense test suite', () => {
 
     test.run('check default environment .json completion file', () => {
         const file = `${lw.extensionRoot}/data/environments.json`
-        const envs = JSON.parse(fs.readFileSync(file, {encoding: 'utf8'})) as {[key: string]: Environment}
+        const envs = JSON.parse(fs.readFileSync(file, {encoding: 'utf8'})) as {[key: string]: EnvObsolete}
         assert.ok(Object.keys(envs).length > 0)
         Object.values(envs).forEach(env => {
             assertKeys(
@@ -52,7 +52,7 @@ suite('Intellisense test suite', () => {
 
     test.run('check default commands .json completion file', () => {
         const file = `${lw.extensionRoot}/data/commands.json`
-        const cmds = JSON.parse(fs.readFileSync(file, {encoding: 'utf8'})) as {[key: string]: Macro}
+        const cmds = JSON.parse(fs.readFileSync(file, {encoding: 'utf8'})) as {[key: string]: MacroObsolete}
         assert.ok(Object.keys(cmds).length > 0)
         Object.values(cmds).forEach(cmd => {
             assertKeys(
@@ -85,7 +85,7 @@ suite('Intellisense test suite', () => {
     test.run('check package .json completion file', () => {
         const files = glob.sync('data/packages/*.json', {cwd: lw.extensionRoot})
         files.forEach(file => {
-            const pkg = JSON.parse(fs.readFileSync(path.join(lw.extensionRoot, file), {encoding: 'utf8'})) as Package
+            const pkg = JSON.parse(fs.readFileSync(path.join(lw.extensionRoot, file), {encoding: 'utf8'})) as PackageObsolete
             Object.values(pkg.macros).forEach(cmd => {
                 assertKeys(
                     Object.keys(cmd),

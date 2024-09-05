@@ -1,83 +1,133 @@
 {
-  "includes": {
-    "chemstr": [],
-    "aliphat": [],
-    "carom": []
-  },
-  "macros": {
-    "leftPolymer{}{}": {
-      "snippet": "leftPolymer{${1:delimiter}}{${2:leftsubs}}"
+  "deps": [
+    {
+      "name": "chemstr"
     },
-    "leftpolymer{}": {
-      "snippet": "leftpolymer{${1:leftsubs}}"
+    {
+      "name": "aliphat"
     },
-    "leftSqrpolymer{}": {
-      "snippet": "leftSqrpolymer{${1:leftsubs}}"
+    {
+      "name": "carom"
+    }
+  ],
+  "macros": [
+    {
+      "name": "leftPolymer",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:delimiter%formula}}{${2:leftsubs}}"
+      }
     },
-    "leftsqrpolymer{}": {
-      "snippet": "leftsqrpolymer{${1:leftsubs}}"
+    {
+      "name": "leftpolymer",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:leftsubs}}"
+      }
     },
-    "lsqrdelimiter{}": {
-      "snippet": "lsqrdelimiter{${1:arg1}}"
+    {
+      "name": "leftSqrpolymer",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:leftsubs}}"
+      }
     },
-    "mpolymer{}{}": {
-      "snippet": "mpolymer{${1:polymer unit}}{${2:subscript}}"
+    {
+      "name": "leftsqrpolymer",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:leftsubs}}"
+      }
     },
-    "polyethylene[]{}{}": {
-      "snippet": "polyethylene[${3:auxlist}]{${1:centatmlist}}{${2:subslist}}"
+    {
+      "name": "lsqrdelimiter",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
     },
-    "polyethylene{}{}": {
-      "snippet": "polyethylene{${1:centatmlist}}{${2:subslist}}"
+    {
+      "name": "mpolymer",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:polymer unit}}{${2:subscript%formula}}"
+      }
     },
-    "polystyrene[]{}{}{}": {
-      "snippet": "polystyrene[${4:auxlist}]{${1:centatmlist}}{${2:subslist}}{${3:phsubslist}}"
+    {
+      "name": "polyethylene",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:auxlist}]{${1:centatmlist}}{${2:subslist}}"
+      }
     },
-    "polystyrene{}{}{}": {
-      "snippet": "polystyrene{${1:centatmlist}}{${2:subslist}}{${3:phsubslist}}"
+    {
+      "name": "polyethylene",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:centatmlist}}{${2:subslist}}"
+      }
     },
-    "rightPolymer{}{}{}": {
-      "snippet": "rightPolymer{${1:delimiter}}{${2:rightsubs}}{${3:subscript}}"
+    {
+      "name": "polystyrene",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:auxlist}]{${1:centatmlist}}{${2:subslist}}{${3:phsubslist}}"
+      }
     },
-    "rightpolymer{}{}": {
-      "snippet": "rightpolymer{${1:rightsubs}}{${2:subscript}}"
+    {
+      "name": "polystyrene",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:centatmlist}}{${2:subslist}}{${3:phsubslist}}"
+      }
     },
-    "rightSqrpolymer{}{}": {
-      "snippet": "rightSqrpolymer{${1:rightsubs}}{${2:subscript}}"
+    {
+      "name": "rightPolymer",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:delimiter%formula}}{${2:rightsubs}}{${3:subscript%formula}}"
+      }
     },
-    "rightsqrpolymer{}{}": {
-      "snippet": "rightsqrpolymer{${1:rightsubs}}{${2:subscript}}"
+    {
+      "name": "rightpolymer",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:rightsubs}}{${2:subscript%formula}}"
+      }
     },
-    "sbond": {},
-    "Sqrpolymer{}{}": {
-      "snippet": "Sqrpolymer{${1:polymer unit}}{${2:subscript}}"
+    {
+      "name": "rightSqrpolymer",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:rightsubs}}{${2:subscript%formula}}"
+      }
     },
-    "sqrpolymer{}{}": {
-      "snippet": "sqrpolymer{${1:polymer unit}}{${2:subscript}}"
+    {
+      "name": "rightsqrpolymer",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:rightsubs}}{${2:subscript%formula}}"
+      }
     },
-    "EastPbond": {},
-    "leftpmdelim": {},
-    "leftPMdelim{}": {
-      "snippet": "leftPMdelim{${1:arg1}}"
+    {
+      "name": "sbond"
     },
-    "leftsqrPolymer{}{}": {
-      "snippet": "leftsqrPolymer{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "Sqrpolymer",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:polymer unit}}{${2:subscript%formula}}"
+      }
     },
-    "numrepeated": {},
-    "rightpmdelim{}": {
-      "snippet": "rightpmdelim{${1:arg1}}"
-    },
-    "rightPMdelim{}{}": {
-      "snippet": "rightPMdelim{${1:arg1}}{${2:arg2}}"
-    },
-    "rightsqrPolymer{}{}{}": {
-      "snippet": "rightsqrPolymer{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "rsqrdelimiter{}": {
-      "snippet": "rsqrdelimiter{${1:arg1}}"
-    },
-    "WestPbond": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "sqrpolymer",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:polymer unit}}{${2:subscript%formula}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

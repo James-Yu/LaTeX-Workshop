@@ -1,93 +1,137 @@
 {
-  "includes": {
-    "ifthen": [],
-    "iftex": [],
-    "ifdraft": [],
-    "calc": [],
-    "pdfbase": [],
-    "graphics": [],
-    "zref-abspage": [],
-    "ocgbase": []
-  },
-  "macros": {
-    "animategraphics{}{}{}{}": {
-      "snippet": "animategraphics{${1:frame rate}}{${2:file basename}}{${3:first}}{${4:last}}"
+  "deps": [
+    {
+      "name": "ifthen"
     },
-    "animategraphics[]{}{}{}{}": {
-      "snippet": "animategraphics[${5:options}]{${1:frame rate}}{${2:file basename}}{${3:first}}{${4:last}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "iftex"
     },
-    "newframe": {},
-    "newframe[]": {
-      "snippet": "newframe[${1:frame rate}]"
+    {
+      "name": "ifdraft"
     },
-    "newframe*": {},
-    "newframe*[]": {
-      "snippet": "newframe*[${1:frame rate}]"
+    {
+      "name": "calc"
     },
-    "multiframe{}{}{}": {
-      "snippet": "multiframe{${1:number of frames}}{${2:variables}}{${3:content}}"
+    {
+      "name": "pdfbase"
     },
-    "multiframebreak": {}
-  },
-  "envs": {
-    "animateinline{}": {
-      "name": "animateinline",
-      "snippet": "{${1:frame rate}}"
+    {
+      "name": "graphics"
     },
-    "animateinline[]{}": {
-      "name": "animateinline",
-      "snippet": "[${2:options}]{${1:frame rate}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "zref-abspage"
+    },
+    {
+      "name": "ocgbase"
     }
-  },
-  "options": [
-    "dvipdfmx",
-    "xetex",
-    "dvisvgm",
-    "export",
-    "autoplay",
-    "autopause",
-    "autoresume",
-    "loop",
-    "palindrome",
-    "draft",
-    "final",
-    "controls",
-    "controls=${1|all,true,on,none,false,off|}",
-    "controlsaligned=${2|left,left+${1:<indent>},center,right,right+${2:<indent>}|}",
-    "width=",
-    "height=",
-    "totalheight=",
-    "keepaspectratio",
-    "scale=${1:factor}",
-    "bb=${1:llx lly urx ury}",
-    "viewport=${1:llx lly urx ury}",
-    "trim=${1:left bottom right top}",
-    "clip",
-    "hiresbb",
-    "interpolate",
-    "pagebox=${1|mediabox,cropbox,bleedbox,trimbox,artbox|}",
-    "buttonsize=",
-    "buttonbg=${1:color array}",
-    "buttonfg=${1:color array}",
-    "buttonalpha=${1:opacity}",
-    "step",
-    "nomouse",
-    "type=${1:file ext}",
-    "method=${1|icon,widget,ocg|}",
-    "poster",
-    "poster=${1|first,last,none,${1:number}|}",
-    "alttext=${1|none,${1:alt description}|}"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "animategraphics",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:frame rate}}{${2:file basename}}{${3:first}}{${4:last}}"
+      }
+    },
+    {
+      "name": "animategraphics",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "[${5:options%keyvals}]{${1:frame rate}}{${2:file basename}}{${3:first}}{${4:last}}"
+      }
+    },
+    {
+      "name": "newframe"
+    },
+    {
+      "name": "newframe",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:frame rate}]"
+      }
+    },
+    {
+      "name": "newframe*"
+    },
+    {
+      "name": "newframe*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:frame rate}]"
+      }
+    },
+    {
+      "name": "multiframe",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:number of frames}}{${2:variables}}{${3:content%definition}}"
+      }
+    },
+    {
+      "name": "multiframebreak"
+    }
+  ],
+  "envs": [
+    {
+      "name": "animateinline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:frame rate}}"
+      }
+    },
+    {
+      "name": "animateinline",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:frame rate}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/animate#c": [
+      "dvipdfmx",
+      "xetex",
+      "dvisvgm",
+      "export",
+      "autoplay",
+      "autopause",
+      "autoresume",
+      "loop",
+      "palindrome",
+      "draft",
+      "final",
+      "controls",
+      "controls=${1|all,true,on,none,false,off|}",
+      "controlsaligned=${3|left,left+${1:<indent>},center,right,right+${2:<indent>}|}",
+      "width=",
+      "height=",
+      "totalheight=",
+      "keepaspectratio",
+      "scale=${1:factor}",
+      "bb=${1:llx lly urx ury}",
+      "viewport=${1:llx lly urx ury}",
+      "trim=${1:left bottom right top}",
+      "clip",
+      "hiresbb",
+      "interpolate",
+      "pagebox=${1|mediabox,cropbox,bleedbox,trimbox,artbox|}",
+      "buttonsize=",
+      "buttonbg=${1:color array}",
+      "buttonfg=${1:color array}",
+      "buttonalpha=${1:opacity}",
+      "step",
+      "nomouse",
+      "type=${1:file ext}",
+      "method=${1|icon,widget,ocg|}",
+      "poster",
+      "poster=${2|first,last,none,${1:number}|}",
+      "alttext=${2|none,${1:alt description}|}"
+    ],
+    "\\animategraphics#c,\\begin{animateinline}#c": [
       "label=${1:label}",
       "type=${1:file ext}",
       "poster",
-      "poster=${1|first,last,none,${1:number}|}",
+      "poster=${2|first,last,none,${1:number}|}",
       "every=${1:number}",
       "autopause",
       "autoplay",
@@ -108,7 +152,7 @@
       "interpolate",
       "pagebox=${1|mediabox,cropbox,bleedbox,trimbox,artbox|}",
       "controls=${1|all,true,on,none,false,off|}",
-      "controlsaligned=${2|left,left+${1:<indent>},center,right,right+${2:<indent>}|}",
+      "controlsaligned=${3|left,left+${1:<indent>},center,right,right+${2:<indent>}|}",
       "buttonsize=",
       "buttonbg=${1:color array}",
       "buttonfg=${1:color array}",
@@ -118,10 +162,13 @@
       "nomouse",
       "method=${1|icon,widget,ocg|}",
       "measure",
-      "alttext=${1|none,${1:alt description}|}",
+      "alttext=${2|none,${1:alt description}|}",
       "begin={${1:begin code}}",
       "end={${1:end code}}",
       "timeline=${1:file}"
     ]
+  },
+  "args": [
+    "\\usepackage/animate#c"
   ]
 }

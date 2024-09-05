@@ -1,167 +1,372 @@
 {
-  "includes": {
-    "xy": [],
-    "ifpdf": []
-  },
-  "macros": {
-    "bra{}": {
-      "snippet": "bra{${1:arg}}",
-      "option": "braket"
+  "deps": [
+    {
+      "name": "xy"
     },
-    "ket{}": {
-      "snippet": "ket{${1:arg}}",
-      "option": "braket"
-    },
-    "ip{}{}": {
-      "snippet": "ip{${1:arg1}}{${2:arg2}}",
-      "option": "qm"
-    },
-    "melem{}{}{}": {
-      "snippet": "melem{${1:arg1}}{${2:arg2}}{${3:arg3}}",
-      "option": "qm"
-    },
-    "expval{}": {
-      "snippet": "expval{${1:arg}}",
-      "option": "qm"
-    },
-    "op{}{}": {
-      "snippet": "op{${1:arg1}}{${2:arg2}}",
-      "option": "qm"
-    },
-    "Qcircuit {}": {
-      "snippet": "Qcircuit {${1:matrix}}"
-    },
-    "Qcircuit{}": {
-      "snippet": "Qcircuit{${1:formula}}"
-    },
-    "barrier[]{}": {
-      "snippet": "barrier[${2:length}]{${1:integer}}"
-    },
-    "barrier{}": {
-      "snippet": "barrier{${1:integer}}"
-    },
-    "cctrl{}": {
-      "snippet": "cctrl{${1:integer}}"
-    },
-    "cctrlo{}": {
-      "snippet": "cctrlo{${1:integer}}"
-    },
-    "cds{}{}": {
-      "snippet": "cds{${1:integer}}{${2:label}}"
-    },
-    "cghost{}": {
-      "snippet": "cghost{${1:arg}}"
-    },
-    "control": {},
-    "controlo": {},
-    "ctrl{}": {
-      "snippet": "ctrl{${1:integer}}"
-    },
-    "ctrlo{}": {
-      "snippet": "ctrlo{${1:integer}}"
-    },
-    "cw": {},
-    "cw[]": {
-      "snippet": "cw[${1:integer}]"
-    },
-    "cwa": {},
-    "cwa[]": {
-      "snippet": "cwa[${1:integer}]"
-    },
-    "cwx": {},
-    "cwx[]": {
-      "snippet": "cwx[${1:integer}]"
-    },
-    "dstick{}": {
-      "snippet": "dstick{${1:label}}"
-    },
-    "gate{}": {
-      "snippet": "gate{${1:label}}"
-    },
-    "gategroup{}{}{}{}{}{}": {
-      "snippet": "gategroup{${1:row1}}{${2:col1}}{${3:row2}}{${4:col2}}{${5:length}}{${6:hl-type}}"
-    },
-    "ghost{}": {
-      "snippet": "ghost{${1:arg}}"
-    },
-    "inputgroup{}{}{}{}": {
-      "snippet": "inputgroup{${1:row1}}{${2:row2}}{${3:length}}{${4:label}}"
-    },
-    "inputgrouph{}{}{}{}{}": {
-      "snippet": "inputgrouph{${1:row1}}{${2:row2}}{${3:length1}}{${4:label}}{${5:length2}}"
-    },
-    "inputgroupv{}{}{}{}{}": {
-      "snippet": "inputgroupv{${1:row1}}{${2:row2}}{${3:length1}}{${4:length2}}{${5:label}}"
-    },
-    "link{}{}": {
-      "snippet": "link{${1:integer1}}{${2:integer2}}"
-    },
-    "lstick{}": {
-      "snippet": "lstick{${1:label}}"
-    },
-    "measure{}": {
-      "snippet": "measure{${1:label}}"
-    },
-    "measureD{}": {
-      "snippet": "measureD{${1:label}}"
-    },
-    "measuretab{}": {
-      "snippet": "measuretab{${1:label}}"
-    },
-    "meter": {},
-    "meterB{}": {
-      "snippet": "meterB{${1:label}}"
-    },
-    "metersymb": {},
-    "multigate{}{}": {
-      "snippet": "multigate{${1:integer}}{${2:label}}"
-    },
-    "multimeasure{}{}": {
-      "snippet": "multimeasure{${1:integer}}{${2:label}}"
-    },
-    "multimeasureD{}{}": {
-      "snippet": "multimeasureD{${1:integer}}{${2:label}}"
-    },
-    "nghost{}": {
-      "snippet": "nghost{${1:arg}}"
-    },
-    "pureghost{}": {
-      "snippet": "pureghost{${1:arg}}"
-    },
-    "push{}": {
-      "snippet": "push{${1:label}}"
-    },
-    "qswap": {},
-    "qw": {},
-    "qw[]": {
-      "snippet": "qw[${1:integer}]"
-    },
-    "qwa": {},
-    "qwa[]": {
-      "snippet": "qwa[${1:integer}]"
-    },
-    "qwx": {},
-    "qwx[]": {
-      "snippet": "qwx[${1:integer}]"
-    },
-    "rstick{}": {
-      "snippet": "rstick{${1:label}}"
-    },
-    "sgate{}{}": {
-      "snippet": "sgate{${1:label}}{${2:integer}}"
-    },
-    "smeterB{}{}": {
-      "snippet": "smeterB{${1:label}}{${2:integer}}"
-    },
-    "targ": {},
-    "ustick{}": {
-      "snippet": "ustick{${1:label}}"
+    {
+      "name": "ifpdf"
     }
-  },
-  "envs": {},
-  "options": [
-    "braket",
-    "qm"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "bra",
+      "if": "braket",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg%formula}}"
+      }
+    },
+    {
+      "name": "ket",
+      "if": "braket",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg%formula}}"
+      }
+    },
+    {
+      "name": "ip",
+      "if": "qm",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1%formula}}{${2:arg2%formula}}"
+      }
+    },
+    {
+      "name": "melem",
+      "if": "qm",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1%formula}}{${2:arg2%formula}}{${3:arg3%formula}}"
+      }
+    },
+    {
+      "name": "expval",
+      "if": "qm",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg%formula}}"
+      }
+    },
+    {
+      "name": "op",
+      "if": "qm",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1%formula}}{${2:arg2%formula}}"
+      }
+    },
+    {
+      "name": "Qcircuit ",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:matrix}}"
+      }
+    },
+    {
+      "name": "barrier",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:length}]{${1:integer}}"
+      }
+    },
+    {
+      "name": "barrier",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:integer}}"
+      }
+    },
+    {
+      "name": "cctrl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:integer}}"
+      }
+    },
+    {
+      "name": "cctrlo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:integer}}"
+      }
+    },
+    {
+      "name": "cds",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:integer}}{${2:label}}"
+      }
+    },
+    {
+      "name": "cghost",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "control"
+    },
+    {
+      "name": "controlo"
+    },
+    {
+      "name": "ctrl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:integer}}"
+      }
+    },
+    {
+      "name": "ctrlo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:integer}}"
+      }
+    },
+    {
+      "name": "cw"
+    },
+    {
+      "name": "cw",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:integer}]"
+      }
+    },
+    {
+      "name": "cwa"
+    },
+    {
+      "name": "cwa",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:integer}]"
+      }
+    },
+    {
+      "name": "cwx"
+    },
+    {
+      "name": "cwx",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:integer}]"
+      }
+    },
+    {
+      "name": "dstick",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "gate",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "gategroup",
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "{${1:row1}}{${2:col1}}{${3:row2}}{${4:col2}}{${5:length}}{${6:hl-type}}"
+      }
+    },
+    {
+      "name": "ghost",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "inputgroup",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:row1}}{${2:row2}}{${3:length}}{${4:label}}"
+      }
+    },
+    {
+      "name": "inputgrouph",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:row1}}{${2:row2}}{${3:length1}}{${4:label}}{${5:length2}}"
+      }
+    },
+    {
+      "name": "inputgroupv",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:row1}}{${2:row2}}{${3:length1}}{${4:length2}}{${5:label}}"
+      }
+    },
+    {
+      "name": "link",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:integer1}}{${2:integer2}}"
+      }
+    },
+    {
+      "name": "lstick",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "measure",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "measureD",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "measuretab",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "meter"
+    },
+    {
+      "name": "meterB",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "metersymb"
+    },
+    {
+      "name": "multigate",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:integer}}{${2:label}}"
+      }
+    },
+    {
+      "name": "multimeasure",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:integer}}{${2:label}}"
+      }
+    },
+    {
+      "name": "multimeasureD",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:integer}}{${2:label}}"
+      }
+    },
+    {
+      "name": "nghost",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "pureghost",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "push",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "qswap"
+    },
+    {
+      "name": "qw"
+    },
+    {
+      "name": "qw",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:integer}]"
+      }
+    },
+    {
+      "name": "qwa"
+    },
+    {
+      "name": "qwa",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:integer}]"
+      }
+    },
+    {
+      "name": "qwx"
+    },
+    {
+      "name": "qwx",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:integer}]"
+      }
+    },
+    {
+      "name": "rstick",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "sgate",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label}}{${2:integer}}"
+      }
+    },
+    {
+      "name": "smeterB",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label}}{${2:integer}}"
+      }
+    },
+    {
+      "name": "targ"
+    },
+    {
+      "name": "ustick",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/qcircuit#c": [
+      "braket\r",
+      "qm\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/qcircuit#c"
+  ]
 }

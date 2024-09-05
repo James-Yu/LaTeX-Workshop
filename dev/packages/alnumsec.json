@@ -1,96 +1,235 @@
 {
-  "includes": {
-    "ifthen": []
-  },
-  "macros": {
-    "alnumsecstyle{}": {
-      "snippet": "alnumsecstyle{${1:specifiers}}"
-    },
-    "alnumsectionlevels{}{}": {
-      "snippet": "alnumsectionlevels{${1:level}}{${2:list of section csnames}}"
-    },
-    "otherseparators{}": {
-      "snippet": "otherseparators{${1:level}}"
-    },
-    "surroundRoman{}{}": {
-      "snippet": "surroundRoman{${1:before}}{${2:after}}"
-    },
-    "surroundRoman[]{}{}": {
-      "snippet": "surroundRoman[${3:before2}]{${1:before1}}{${2:after1}}"
-    },
-    "surroundRoman[][]{}{}": {
-      "snippet": "surroundRoman[${3:before2}][${4:after2}]{${1:before1}}{${2:after1}}"
-    },
-    "surroundroman{}{}": {
-      "snippet": "surroundroman{${1:before}}{${2:after}}"
-    },
-    "surroundroman[]{}{}": {
-      "snippet": "surroundroman[${3:before2}]{${1:before1}}{${2:after1}}"
-    },
-    "surroundroman[][]{}{}": {
-      "snippet": "surroundroman[${3:before2}][${4:after2}]{${1:before1}}{${2:after1}}"
-    },
-    "surroundarabic{}{}": {
-      "snippet": "surroundarabic{${1:before}}{${2:after}}"
-    },
-    "surroundarabic[]{}{}": {
-      "snippet": "surroundarabic[${3:before2}]{${1:before1}}{${2:after1}}"
-    },
-    "surroundarabic[][]{}{}": {
-      "snippet": "surroundarabic[${3:before2}][${4:after2}]{${1:before1}}{${2:after1}}"
-    },
-    "surroundLetter{}{}": {
-      "snippet": "surroundLetter{${1:before}}{${2:after}}"
-    },
-    "surroundLetter[]{}{}": {
-      "snippet": "surroundLetter[${3:before2}]{${1:before1}}{${2:after1}}"
-    },
-    "surroundLetter[][]{}{}": {
-      "snippet": "surroundLetter[${3:before2}][${4:after2}]{${1:before1}}{${2:after1}}"
-    },
-    "surroundletter{}{}": {
-      "snippet": "surroundletter{${1:before}}{${2:after}}"
-    },
-    "surroundletter[]{}{}": {
-      "snippet": "surroundletter[${3:before2}]{${1:before1}}{${2:after1}}"
-    },
-    "surroundletter[][]{}{}": {
-      "snippet": "surroundletter[${3:before2}][${4:after2}]{${1:before1}}{${2:after1}}"
-    },
-    "surroundgreek{}{}": {
-      "snippet": "surroundgreek{${1:before}}{${2:after}}"
-    },
-    "surroundgreek[]{}{}": {
-      "snippet": "surroundgreek[${3:before2}]{${1:before1}}{${2:after1}}"
-    },
-    "surroundgreek[][]{}{}": {
-      "snippet": "surroundgreek[${3:before2}][${4:after2}]{${1:before1}}{${2:after1}}"
-    },
-    "surrounddoubleletter{}{}": {
-      "snippet": "surrounddoubleletter{${1:before}}{${2:after}}"
-    },
-    "surrounddoubleletter[]{}{}": {
-      "snippet": "surrounddoubleletter[${3:before2}]{${1:before1}}{${2:after1}}"
-    },
-    "surrounddoubleletter[][]{}{}": {
-      "snippet": "surrounddoubleletter[${3:before2}][${4:after2}]{${1:before1}}{${2:after1}}"
-    },
-    "surrounddoublegreek{}{}": {
-      "snippet": "surrounddoublegreek{${1:before}}{${2:after}}"
-    },
-    "surrounddoublegreek[]{}{}": {
-      "snippet": "surrounddoublegreek[${3:before2}]{${1:before1}}{${2:after1}}"
-    },
-    "surrounddoublegreek[][]{}{}": {
-      "snippet": "surrounddoublegreek[${3:before2}][${4:after2}]{${1:before1}}{${2:after1}}"
-    },
-    "ifusepreviouslevels": {},
-    "usepreviouslevelstrue": {},
-    "usepreviouslevelsfalse": {}
-  },
-  "envs": {},
-  "options": [
-    "usehighlevels"
+  "deps": [
+    {
+      "name": "ifthen"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "alnumsecstyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:specifiers}}"
+      }
+    },
+    {
+      "name": "alnumsectionlevels",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:level}}{${2:list of section csnames}}"
+      }
+    },
+    {
+      "name": "otherseparators",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:level}}"
+      }
+    },
+    {
+      "name": "surroundRoman",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:before}}{${2:after}}"
+      }
+    },
+    {
+      "name": "surroundRoman",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:before2}]{${1:before1}}{${2:after1}}"
+      }
+    },
+    {
+      "name": "surroundRoman",
+      "unusual": true,
+      "arg": {
+        "format": "[][]{}{}",
+        "snippet": "[${3:before2}][${4:after2}]{${1:before1}}{${2:after1}}"
+      }
+    },
+    {
+      "name": "surroundroman",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:before}}{${2:after}}"
+      }
+    },
+    {
+      "name": "surroundroman",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:before2}]{${1:before1}}{${2:after1}}"
+      }
+    },
+    {
+      "name": "surroundroman",
+      "unusual": true,
+      "arg": {
+        "format": "[][]{}{}",
+        "snippet": "[${3:before2}][${4:after2}]{${1:before1}}{${2:after1}}"
+      }
+    },
+    {
+      "name": "surroundarabic",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:before}}{${2:after}}"
+      }
+    },
+    {
+      "name": "surroundarabic",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:before2}]{${1:before1}}{${2:after1}}"
+      }
+    },
+    {
+      "name": "surroundarabic",
+      "unusual": true,
+      "arg": {
+        "format": "[][]{}{}",
+        "snippet": "[${3:before2}][${4:after2}]{${1:before1}}{${2:after1}}"
+      }
+    },
+    {
+      "name": "surroundLetter",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:before}}{${2:after}}"
+      }
+    },
+    {
+      "name": "surroundLetter",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:before2}]{${1:before1}}{${2:after1}}"
+      }
+    },
+    {
+      "name": "surroundLetter",
+      "unusual": true,
+      "arg": {
+        "format": "[][]{}{}",
+        "snippet": "[${3:before2}][${4:after2}]{${1:before1}}{${2:after1}}"
+      }
+    },
+    {
+      "name": "surroundletter",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:before}}{${2:after}}"
+      }
+    },
+    {
+      "name": "surroundletter",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:before2}]{${1:before1}}{${2:after1}}"
+      }
+    },
+    {
+      "name": "surroundletter",
+      "unusual": true,
+      "arg": {
+        "format": "[][]{}{}",
+        "snippet": "[${3:before2}][${4:after2}]{${1:before1}}{${2:after1}}"
+      }
+    },
+    {
+      "name": "surroundgreek",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:before}}{${2:after}}"
+      }
+    },
+    {
+      "name": "surroundgreek",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:before2}]{${1:before1}}{${2:after1}}"
+      }
+    },
+    {
+      "name": "surroundgreek",
+      "unusual": true,
+      "arg": {
+        "format": "[][]{}{}",
+        "snippet": "[${3:before2}][${4:after2}]{${1:before1}}{${2:after1}}"
+      }
+    },
+    {
+      "name": "surrounddoubleletter",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:before}}{${2:after}}"
+      }
+    },
+    {
+      "name": "surrounddoubleletter",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:before2}]{${1:before1}}{${2:after1}}"
+      }
+    },
+    {
+      "name": "surrounddoubleletter",
+      "unusual": true,
+      "arg": {
+        "format": "[][]{}{}",
+        "snippet": "[${3:before2}][${4:after2}]{${1:before1}}{${2:after1}}"
+      }
+    },
+    {
+      "name": "surrounddoublegreek",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:before}}{${2:after}}"
+      }
+    },
+    {
+      "name": "surrounddoublegreek",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:before2}]{${1:before1}}{${2:after1}}"
+      }
+    },
+    {
+      "name": "surrounddoublegreek",
+      "unusual": true,
+      "arg": {
+        "format": "[][]{}{}",
+        "snippet": "[${3:before2}][${4:after2}]{${1:before1}}{${2:after1}}"
+      }
+    },
+    {
+      "name": "ifusepreviouslevels",
+      "unusual": true
+    },
+    {
+      "name": "usepreviouslevelstrue",
+      "unusual": true
+    },
+    {
+      "name": "usepreviouslevelsfalse",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/alnumsec#c": [
+      "usehighlevels\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/alnumsec#c"
+  ]
 }

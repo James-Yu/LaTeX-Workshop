@@ -1,49 +1,98 @@
 {
-  "includes": {
-    "keyval": [],
-    "pict2e": [],
-    "calc": [],
-    "array": [],
-    "fp": []
-  },
-  "macros": {
-    "diagbox{}{}": {
-      "snippet": "diagbox{${1:left}}{${2:right}}"
+  "deps": [
+    {
+      "name": "keyval"
     },
-    "diagbox[]{}{}": {
-      "snippet": "diagbox[${3:options}]{${1:left}}{${2:right}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "pict2e"
     },
-    "diagbox{}{}{}": {
-      "snippet": "diagbox{${1:left}}{${2:middle}}{${3:right}}"
+    {
+      "name": "calc"
     },
-    "backslashbox{}{}": {
-      "snippet": "backslashbox{${1:left}}{${2:right}}"
+    {
+      "name": "array"
     },
-    "backslashbox[]{}{}": {
-      "snippet": "backslashbox[${3:width}]{${1:left}}{${2:right}}"
-    },
-    "backslashbox[][]{}{}": {
-      "snippet": "backslashbox[${3:width}][${4:trim}]{${1:left}}{${2:right}}"
-    },
-    "slashbox{}{}": {
-      "snippet": "slashbox{${1:left}}{${2:right}}"
-    },
-    "slashbox[]{}{}": {
-      "snippet": "slashbox[${3:width}]{${1:left}}{${2:right}}"
-    },
-    "slashbox[][]{}{}": {
-      "snippet": "slashbox[${3:width}][${4:trim}]{${1:left}}{${2:right}}"
+    {
+      "name": "fp"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "diagbox",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:left%text}}{${2:right%text}}"
+      }
+    },
+    {
+      "name": "diagbox",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:left%text}}{${2:right%text}}"
+      }
+    },
+    {
+      "name": "diagbox",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:left%text}}{${2:middle%text}}{${3:right%text}}"
+      }
+    },
+    {
+      "name": "backslashbox",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:left%text}}{${2:right%text}}"
+      }
+    },
+    {
+      "name": "backslashbox",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:width}]{${1:left%text}}{${2:right%text}}"
+      }
+    },
+    {
+      "name": "backslashbox",
+      "unusual": true,
+      "arg": {
+        "format": "[][]{}{}",
+        "snippet": "[${3:width}][${4:trim%keyvals}]{${1:left%text}}{${2:right%text}}"
+      }
+    },
+    {
+      "name": "slashbox",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:left%text}}{${2:right%text}}"
+      }
+    },
+    {
+      "name": "slashbox",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:width}]{${1:left%text}}{${2:right%text}}"
+      }
+    },
+    {
+      "name": "slashbox",
+      "unusual": true,
+      "arg": {
+        "format": "[][]{}{}",
+        "snippet": "[${3:width}][${4:trim%keyvals}]{${1:left%text}}{${2:right%text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\diagbox": [
       "width=",
       "height=",
-      "dir=${1|NW,NE,SW,SE|}",
+      "dir=${1|NW,NE,SW,SE\r|}",
       "innerwidth=",
       "innerleftsep=",
       "innerrightsep=",
@@ -51,10 +100,17 @@
       "outerrightsep=",
       "leftsep=",
       "rightsep=",
-      "trim=${1|l,r,lr,rl|}",
-      "font=${1:font commands}",
+      "trim=${1|l,r,lr,rl\r|}",
+      "font=${1:font commands}\r",
       "linewidth=",
       "linecolor="
+    ],
+    "\\backslashbox,\\slashbox": [
+      "l\r",
+      "r\r",
+      "lr\r",
+      "rl\r"
     ]
-  ]
+  },
+  "args": []
 }

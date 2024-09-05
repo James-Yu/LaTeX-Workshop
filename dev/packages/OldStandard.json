@@ -1,39 +1,80 @@
 {
-  "includes": {
-    "ifxetex": [],
-    "ifluatex": [],
-    "xkeyval": [],
-    "fontenc": []
-  },
-  "macros": {
-    "textinf{}": {
-      "snippet": "textinf{${1:text}}"
+  "deps": [
+    {
+      "name": "ifxetex"
     },
-    "infigures": {},
-    "textsu{}": {
-      "snippet": "textsu{${1:text}}"
+    {
+      "name": "ifluatex"
     },
-    "sufigures": {},
-    "liningnums{}": {
-      "snippet": "liningnums{${1:text}}"
+    {
+      "name": "xkeyval"
     },
-    "tabularnums{}": {
-      "snippet": "tabularnums{${1:text}}"
-    },
-    "proportionalnums{}": {
-      "snippet": "proportionalnums{${1:text}}"
-    },
-    "oldstandard": {},
-    "oldstandardlgr": {}
-  },
-  "envs": {},
-  "options": [
-    "scaled=${1:factor}",
-    "type1",
-    "lining",
-    "oldstyle",
-    "tabular",
-    "proportional"
+    {
+      "name": "fontenc"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "textinf",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "infigures"
+    },
+    {
+      "name": "textsu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "sufigures"
+    },
+    {
+      "name": "liningnums",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "tabularnums",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "proportionalnums",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "oldstandard"
+    },
+    {
+      "name": "oldstandardlgr",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/OldStandard#c": [
+      "scaled=${1:factor}\r",
+      "type1\r",
+      "lining\r",
+      "oldstyle\r",
+      "tabular\r",
+      "proportional\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/OldStandard#c"
+  ]
 }

@@ -1,17 +1,23 @@
 {
-  "includes": {
-    "color": [],
-    "rgb": []
-  },
-  "macros": {
-    "mainheadingtext{}{}": {
-      "snippet": "mainheadingtext{${1:text}}{${2:formatting}}"
+  "deps": [
+    {
+      "name": "color"
     },
-    "thmname": {},
-    "thmnote": {},
-    "thmnumber": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "rgb"
+    }
+  ],
+  "macros": [
+    {
+      "name": "mainheadingtext",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:formatting}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

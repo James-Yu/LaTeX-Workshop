@@ -3,7 +3,7 @@ import * as fs from 'fs'
 import * as path from 'path'
 import type * as Ast from '@unified-latex/unified-latex-types'
 import { lw } from '../../lw'
-import type { CompletionProvider, FileCache, Package } from '../../types'
+import type { CompletionProvider, FileCache, PackageObsolete } from '../../types'
 import { argContentToStr } from '../../utils/parser'
 import { replaceArgumentPlaceholders } from '../../utils/utils'
 
@@ -45,7 +45,7 @@ function load(packageName: string) {
     }
 
     try {
-        const packageData = JSON.parse(fs.readFileSync(filePath).toString()) as Package
+        const packageData = JSON.parse(fs.readFileSync(filePath).toString()) as PackageObsolete
         populatePackageData(packageData)
 
         setDeps(packageName, packageData.includes)
@@ -84,7 +84,7 @@ function resolvePackageFile(packageName: string): string | undefined {
     return
 }
 
-function populatePackageData(packageData: Package) {
+function populatePackageData(packageData: PackageObsolete) {
     Object.entries(packageData.macros).forEach(([key, cmd]) => {
         cmd.macro = key
         cmd.snippet = cmd.snippet || key

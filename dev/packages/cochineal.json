@@ -1,139 +1,334 @@
 {
-  "includes": {
-    "fontenc": [],
-    "iftex": [],
-    "xkeyval": [],
-    "etoolbox": [],
-    "ifthen": [],
-    "xstring": [],
-    "scalefnt": [],
-    "mweights": [],
-    "fontaxes": []
-  },
-  "macros": {
-    "circledtxt": {},
-    "cochLF": {},
-    "cochOsF": {},
-    "cochTLF": {},
-    "cochTOsF": {},
-    "defigures": {},
-    "destyle": {},
-    "infigures": {},
-    "lfstyle": {},
-    "liningnums{}": {
-      "snippet": "liningnums{${1:text}}"
+  "deps": [
+    {
+      "name": "fontenc"
     },
-    "nufigures": {},
-    "nustyle": {},
-    "osfstyle": {},
-    "proportionalnums{}": {
-      "snippet": "proportionalnums{${1:text}}"
+    {
+      "name": "iftex"
     },
-    "Qnoswash": {},
-    "Qswash": {},
-    "sufigures": {},
-    "sustyle": {},
-    "swshape": {},
-    "tabularnums{}": {
-      "snippet": "tabularnums{${1:text}}"
+    {
+      "name": "xkeyval"
     },
-    "textde{}": {
-      "snippet": "textde{${1:text}}"
+    {
+      "name": "etoolbox"
     },
-    "textdenominators{}": {
-      "snippet": "textdenominators{${1:text}}"
+    {
+      "name": "ifthen"
     },
-    "textfrac[]{}{}": {
-      "snippet": "textfrac[${3:whole part}]{${1:numerator}}{${2:denominator}}"
+    {
+      "name": "xstring"
     },
-    "textfrac{}{}": {
-      "snippet": "textfrac{${1:numerator}}{${2:denominator}}"
+    {
+      "name": "scalefnt"
     },
-    "textinf{}": {
-      "snippet": "textinf{${1:text}}"
+    {
+      "name": "mweights"
     },
-    "textinferior{}": {
-      "snippet": "textinferior{${1:text}}"
-    },
-    "textlf{}": {
-      "snippet": "textlf{${1:text}}"
-    },
-    "textnu{}": {
-      "snippet": "textnu{${1:text}}"
-    },
-    "textosf{}": {
-      "snippet": "textosf{${1:text}}"
-    },
-    "textsu{}": {
-      "snippet": "textsu{${1:text}}"
-    },
-    "textsuperior{}": {
-      "snippet": "textsuperior{${1:text}}"
-    },
-    "texttlf{}": {
-      "snippet": "texttlf{${1:text}}"
-    },
-    "texttosf{}": {
-      "snippet": "texttosf{${1:text}}"
-    },
-    "tlfstyle": {},
-    "tosfstyle": {},
-    "useosf": {},
-    "useproportional": {},
-    "DH": {},
-    "NG": {},
-    "dj": {},
-    "ng": {},
-    "k{}": {
-      "snippet": "k{${1:arg}}"
-    },
-    "guillemotleft": {},
-    "guillemotright": {},
-    "guilsinglleft": {},
-    "guilsinglright": {},
-    "quotedblbase": {},
-    "quotesinglbase": {},
-    "textquotedbl": {},
-    "DJ": {},
-    "th": {},
-    "TH": {},
-    "dh": {},
-    "Hwithstroke": {},
-    "hwithstroke": {},
-    "textogonekcentered{}": {
-      "snippet": "textogonekcentered{${1:arg}}"
-    },
-    "guillemetleft": {},
-    "guillemetright": {}
-  },
-  "envs": {},
-  "options": [
-    "type1",
-    "defaultfeatures={${1:fontspec options}}",
-    "lining",
-    "lf",
-    "oldstyle",
-    "osf",
-    "tabular",
-    "t",
-    "proportional",
-    "p",
-    "scale=${1:factor}",
-    "scaled=${1:factor}",
-    "altQ",
-    "altJ",
-    "oldSS",
-    "theoremfont",
-    "otfmath",
-    "thmtabular",
-    "thmlining",
-    "swashQ",
-    "sups",
-    "scosf",
-    "bold",
-    "regular",
-    "foresolidus=",
-    "aftsolidus="
+    {
+      "name": "fontaxes"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "circledtxt",
+      "unusual": true
+    },
+    {
+      "name": "cochLF",
+      "unusual": true
+    },
+    {
+      "name": "cochOsF",
+      "unusual": true
+    },
+    {
+      "name": "cochTLF",
+      "unusual": true
+    },
+    {
+      "name": "cochTOsF",
+      "unusual": true
+    },
+    {
+      "name": "defigures"
+    },
+    {
+      "name": "destyle",
+      "unusual": true
+    },
+    {
+      "name": "infigures"
+    },
+    {
+      "name": "lfstyle"
+    },
+    {
+      "name": "liningnums",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "nufigures",
+      "unusual": true
+    },
+    {
+      "name": "nustyle",
+      "unusual": true
+    },
+    {
+      "name": "osfstyle"
+    },
+    {
+      "name": "proportionalnums",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "Qnoswash",
+      "unusual": true
+    },
+    {
+      "name": "Qswash"
+    },
+    {
+      "name": "sufigures"
+    },
+    {
+      "name": "sustyle",
+      "unusual": true
+    },
+    {
+      "name": "swshape"
+    },
+    {
+      "name": "tabularnums",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textde",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textdenominators",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textfrac",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:whole part}]{${1:numerator}}{${2:denominator}}"
+      }
+    },
+    {
+      "name": "textfrac",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:numerator}}{${2:denominator}}"
+      }
+    },
+    {
+      "name": "textinf",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textinferior",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textlf",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textnu",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textosf",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textsu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textsuperior",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "texttlf",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "texttosf",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "tlfstyle"
+    },
+    {
+      "name": "tosfstyle"
+    },
+    {
+      "name": "useosf",
+      "unusual": true
+    },
+    {
+      "name": "useproportional",
+      "unusual": true
+    },
+    {
+      "name": "DH"
+    },
+    {
+      "name": "NG"
+    },
+    {
+      "name": "dj"
+    },
+    {
+      "name": "ng"
+    },
+    {
+      "name": "k",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "guillemotleft",
+      "unusual": true
+    },
+    {
+      "name": "guillemotright",
+      "unusual": true
+    },
+    {
+      "name": "guilsinglleft"
+    },
+    {
+      "name": "guilsinglright"
+    },
+    {
+      "name": "quotedblbase"
+    },
+    {
+      "name": "quotesinglbase"
+    },
+    {
+      "name": "textquotedbl"
+    },
+    {
+      "name": "DJ"
+    },
+    {
+      "name": "th"
+    },
+    {
+      "name": "TH"
+    },
+    {
+      "name": "dh"
+    },
+    {
+      "name": "Hwithstroke",
+      "unusual": true
+    },
+    {
+      "name": "hwithstroke",
+      "unusual": true
+    },
+    {
+      "name": "textogonekcentered",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "guillemetleft"
+    },
+    {
+      "name": "guillemetright"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/cochineal#c": [
+      "type1",
+      "defaultfeatures={${1:fontspec options}}\r",
+      "lining",
+      "lf",
+      "oldstyle",
+      "osf",
+      "tabular",
+      "t",
+      "proportional",
+      "p",
+      "scale=${1:factor}\r",
+      "scaled=${1:factor}\r",
+      "altQ\r",
+      "altJ\r",
+      "oldSS\r",
+      "theoremfont\r",
+      "otfmath\r",
+      "thmtabular\r",
+      "thmlining\r",
+      "swashQ\r",
+      "sups\r",
+      "scosf\r",
+      "bold\r",
+      "regular\r",
+      "foresolidus=",
+      "aftsolidus="
+    ]
+  },
+  "args": [
+    "\\usepackage/cochineal#c"
+  ]
 }

@@ -1,54 +1,135 @@
 {
-  "includes": {
-    "luatex": [],
-    "ctablestack": []
-  },
-  "macros": {
-    "CatcodeTableIniTeX": {},
-    "CatcodeTableString": {},
-    "CatcodeTableLaTeX": {},
-    "CatcodeTableLaTeXAtLetter": {},
-    "CatcodeTableOther": {},
-    "CatcodeTableExpl": {},
-    "SetCatcodeRange{}{}{}": {
-      "snippet": "SetCatcodeRange{${1:start}}{${2:end}}{${3:catcode}}"
+  "deps": [
+    {
+      "name": "luatex"
     },
-    "EndCatcodeRegime": {},
-    "PushCatcodeTableNumStack": {},
-    "PopCatcodeTableNumStack": {},
-    "newluatexcatcodetable{}": {
-      "snippet": "newluatexcatcodetable{${1:catcodetable}}"
+    {
+      "name": "ctablestack"
+    }
+  ],
+  "macros": [
+    {
+      "name": "CatcodeTableIniTeX",
+      "unusual": true
     },
-    "setcatcodetable": {},
-    "setluatexcatcodetable": {},
-    "RequireLuaModule{}": {
-      "snippet": "RequireLuaModule{${1:file}}"
+    {
+      "name": "CatcodeTableString",
+      "unusual": true
     },
-    "RequireLuaModule{}[]": {
-      "snippet": "RequireLuaModule{${1:file}}[${2:info}]"
+    {
+      "name": "CatcodeTableLaTeX",
+      "unusual": true
     },
-    "newluatexattribute{}": {
-      "snippet": "newluatexattribute{${1:attribute}}"
+    {
+      "name": "CatcodeTableLaTeXAtLetter",
+      "unusual": true
     },
-    "setluatexattribute{}{}": {
-      "snippet": "setluatexattribute{${1:attribute}}{${2:value}}"
+    {
+      "name": "CatcodeTableOther",
+      "unusual": true
     },
-    "unsetluatexattribute{}": {
-      "snippet": "unsetluatexattribute{${1:attribute}}"
+    {
+      "name": "CatcodeTableExpl",
+      "unusual": true
     },
-    "luatexattributedef{}": {
-      "snippet": "luatexattributedef{${1:cmd}}"
+    {
+      "name": "SetCatcodeRange",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:start}}{${2:end}}{${3:catcode}}"
+      }
     },
-    "luatexluaescapestring{}": {
-      "snippet": "luatexluaescapestring{${1:TeX code}}"
+    {
+      "name": "EndCatcodeRegime",
+      "unusual": true
     },
-    "luatexlatelua{}": {
-      "snippet": "luatexlatelua{${1:lua code}}"
+    {
+      "name": "PushCatcodeTableNumStack",
+      "unusual": true
     },
-    "luatexscantextokens": {},
-    "emuatcatcode": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "PopCatcodeTableNumStack",
+      "unusual": true
+    },
+    {
+      "name": "newluatexcatcodetable",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:catcodetable%cmd}}"
+      }
+    },
+    {
+      "name": "setcatcodetable",
+      "unusual": true
+    },
+    {
+      "name": "setluatexcatcodetable",
+      "unusual": true
+    },
+    {
+      "name": "RequireLuaModule",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "RequireLuaModule",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:file}}[${2:info}]"
+      }
+    },
+    {
+      "name": "newluatexattribute",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:attribute}}"
+      }
+    },
+    {
+      "name": "setluatexattribute",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:attribute}}{${2:value}}"
+      }
+    },
+    {
+      "name": "unsetluatexattribute",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:attribute}}"
+      }
+    },
+    {
+      "name": "luatexluaescapestring",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:TeX code}}"
+      }
+    },
+    {
+      "name": "luatexlatelua",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:lua code}}"
+      }
+    },
+    {
+      "name": "luatexscantextokens",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

@@ -1,21 +1,39 @@
 {
-  "includes": {
-    "ifxetex": [],
-    "ifluatex": [],
-    "xkeyval": [],
-    "mweights": [],
-    "fontenc": [],
-    "fontaxes": []
-  },
-  "macros": {
-    "libmono": {}
-  },
-  "envs": {},
-  "options": [
-    "type1",
-    "nofontspec",
-    "ttscaled=${1:factor}",
-    "scaled=${1:factor}"
+  "deps": [
+    {
+      "name": "ifxetex"
+    },
+    {
+      "name": "ifluatex"
+    },
+    {
+      "name": "xkeyval"
+    },
+    {
+      "name": "mweights"
+    },
+    {
+      "name": "fontenc"
+    },
+    {
+      "name": "fontaxes"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "libmono"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/libertineMono#c": [
+      "type1",
+      "nofontspec",
+      "ttscaled=${1:factor}\r",
+      "scaled=${1:factor}\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/libertineMono#c"
+  ]
 }

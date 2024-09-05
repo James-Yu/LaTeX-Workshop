@@ -1,81 +1,135 @@
 {
-  "includes": {
-    "relsize": []
-  },
-  "macros": {
-    "ProjLibSetDatetimeInputFormat{}": {
-      "snippet": "ProjLibSetDatetimeInputFormat{${1:type}}"
-    },
-    "ProjLibtoday": {},
-    "ProjLibtoday[]": {
-      "snippet": "ProjLibtoday[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "ProjLibToday": {},
-    "ProjLibToday[]": {
-      "snippet": "ProjLibToday[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "Thedate{}": {
-      "snippet": "Thedate{${1:date}}"
-    },
-    "Thedate[]{}": {
-      "snippet": "Thedate[${2:options}]{${1:date}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "TheDate{}": {
-      "snippet": "TheDate{${1:date}}"
-    },
-    "TheDate[]{}": {
-      "snippet": "TheDate[${2:options}]{${1:date}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "ProjLibdate{}": {
-      "snippet": "ProjLibdate{${1:date}}"
-    },
-    "ProjLibdate[]{}": {
-      "snippet": "ProjLibdate[${2:options}]{${1:date}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "ProjLibDate{}": {
-      "snippet": "ProjLibDate{${1:date}}"
-    },
-    "ProjLibDate[]{}": {
-      "snippet": "ProjLibDate[${2:options}]{${1:date}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "relsize"
     }
-  },
-  "envs": {},
-  "options": [
-    "plain",
-    "year-month-day",
-    "month-day-year",
-    "day-month-year",
-    "year-month",
-    "month-day",
-    "month-year",
-    "day-month"
   ],
-  "keyvals": [
-    [
-      "year-month-day=",
-      "month-day-year=",
-      "day-month-year=",
-      "year-month=",
-      "month-day=",
-      "month-year=",
-      "day-month=",
-      "only-year-month=",
-      "only-month-day=",
-      "only-year=",
-      "only-month=",
-      "only-day="
+  "macros": [
+    {
+      "name": "ProjLibSetDatetimeInputFormat",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:type%keyvals}}",
+        "keys": [
+          "\\ProjLibSetDatetimeInputFormat"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ProjLibtoday"
+    },
+    {
+      "name": "ProjLibtoday",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "ProjLibToday"
+    },
+    {
+      "name": "ProjLibToday",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "Thedate",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:date}}"
+      }
+    },
+    {
+      "name": "Thedate",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:date}}"
+      }
+    },
+    {
+      "name": "TheDate",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:date}}"
+      }
+    },
+    {
+      "name": "TheDate",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:date}}"
+      }
+    },
+    {
+      "name": "ProjLibdate",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:date}}"
+      }
+    },
+    {
+      "name": "ProjLibdate",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:date}}"
+      }
+    },
+    {
+      "name": "ProjLibDate",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:date}}"
+      }
+    },
+    {
+      "name": "ProjLibDate",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:date}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/projlib-datetime#c": [
+      "plain\r",
+      "year-month-day\r",
+      "month-day-year\r",
+      "day-month-year\r",
+      "year-month\r",
+      "month-day\r",
+      "month-year\r",
+      "day-month\r"
+    ],
+    "\\ProjLibSetDatetimeInputFormat": [
+      "year-month-day\r",
+      "month-day-year\r",
+      "day-month-year\r"
+    ],
+    "\\ProjLibtoday,\\ProjLibToday,\\Thedate,\\TheDate,\\ProjLibdate,\\ProjLibDate": [
+      "year-month-day=\r",
+      "month-day-year=\r",
+      "day-month-year=\r",
+      "year-month=\r",
+      "month-day=\r",
+      "month-year=\r",
+      "day-month=\r",
+      "only-year-month=\r",
+      "only-month-day=\r",
+      "only-year=\r",
+      "only-month=\r",
+      "only-day=\r"
     ]
+  },
+  "args": [
+    "\\usepackage/projlib-datetime#c"
   ]
 }

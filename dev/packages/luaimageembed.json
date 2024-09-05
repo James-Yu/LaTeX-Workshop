@@ -1,73 +1,93 @@
 {
-  "includes": {
-    "luacode": []
-  },
-  "macros": {
-    "includegraphicsembedded{}": {
-      "snippet": "includegraphicsembedded{${1:base64-encoded image}}"
-    },
-    "includegraphicsembedded[]{}": {
-      "snippet": "includegraphicsembedded[${2:options}]{${1:base64-encoded image}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "pgfdeclareimageembedded{}{}": {
-      "snippet": "pgfdeclareimageembedded{${1:image name}}{${2:base64-encoded image}}"
-    },
-    "pgfdeclareimageembedded[]{}{}": {
-      "snippet": "pgfdeclareimageembedded[${3:options}]{${1:image name}}{${2:base64-encoded image}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "pgfimageembedded{}": {
-      "snippet": "pgfimageembedded{${1:base64-encoded image}}"
-    },
-    "pgfimageembedded[]{}": {
-      "snippet": "pgfimageembedded[${2:options}]{${1:base64-encoded image}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "luacode"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "alt={${1:alt text}}",
-      "bb=${1:llx lly urx ury}",
-      "bbllx=",
-      "bblly=",
-      "bburx=",
-      "bbury=",
-      "natwidth=",
-      "natheight=",
+  ],
+  "macros": [
+    {
+      "name": "includegraphicsembedded",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:base64-encoded image}}"
+      }
+    },
+    {
+      "name": "includegraphicsembedded",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:base64-encoded image}}"
+      }
+    },
+    {
+      "name": "pgfdeclareimageembedded",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:image name}}{${2:base64-encoded image}}"
+      }
+    },
+    {
+      "name": "pgfdeclareimageembedded",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:image name}}{${2:base64-encoded image}}"
+      }
+    },
+    {
+      "name": "pgfimageembedded",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:base64-encoded image}}"
+      }
+    },
+    {
+      "name": "pgfimageembedded",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:base64-encoded image}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\includegraphicsembedded": [
+      "alt={${1:alt text}}\r",
+      "bb=${1:llx lly urx ury}\r",
+      "bbllx=\r",
+      "bblly=\r",
+      "bburx=\r",
+      "bbury=\r",
+      "natwidth=\r",
+      "natheight=\r",
       "hiresbb",
-      "pagebox=${1|mediabox,cropbox,bleedbox,trimbox,artbox|}",
-      "viewport=${1:llx lly urx ury}",
-      "trim=${1:llx lly urx ury}",
-      "angle=${1:degrees}",
-      "origin=",
+      "pagebox=${1|mediabox,cropbox,bleedbox,trimbox,artbox\r|}",
+      "viewport=${1:llx lly urx ury}\r",
+      "trim=${1:llx lly urx ury}\r",
+      "angle=${1:degrees}\r",
+      "origin=\r",
       "width=",
       "height=",
       "totalheight=",
       "keepaspectratio",
-      "scale=${1:factor}",
+      "scale=${1:factor}\r",
       "clip",
       "draft",
-      "type=${1:file type}",
-      "ext=${1:file extension}",
-      "read=${1:read-file extension}",
-      "command=",
-      "quiet",
-      "page=${1:page number}",
+      "type=${1:file type}\r",
+      "ext=${1:file extension}\r",
+      "read=${1:read-file extension}\r",
+      "command=\r",
+      "quiet\r",
+      "page=${1:page number}\r",
       "interpolate",
-      "decodearray={${1:color array}}"
+      "decodearray={${1:color array}}\r"
     ],
-    [
+    "\\pgfdeclareimageembedded,\\pgfimageembedded": [
       "height=",
       "width=",
-      "page=${1:page number}",
+      "page=${1:page number}\r",
       "interpolate",
-      "mask=${1:mask name}"
+      "mask=${1:mask name}\r"
     ]
-  ]
+  },
+  "args": []
 }

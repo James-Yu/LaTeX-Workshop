@@ -1,33 +1,66 @@
 {
-  "includes": {
-    "color": [],
-    "fancyvrb": [],
-    "ifthen": []
-  },
-  "macros": {
-    "usestyle{}": {
-      "snippet": "usestyle{${1:pygments style}}"
+  "deps": [
+    {
+      "name": "color"
     },
-    "pygment{}{}": {
-      "snippet": "pygment{${1:language}}{${2:code}}"
+    {
+      "name": "fancyvrb"
     },
-    "includecode{}": {
-      "snippet": "includecode{${1:file}}"
-    },
-    "includecode[]{}": {
-      "snippet": "includecode[${2:language}]{${1:file}}"
-    },
-    "proglang": {},
-    "lexercommand{}": {
-      "snippet": "lexercommand{${1:arg}}"
+    {
+      "name": "ifthen"
     }
-  },
-  "envs": {
-    "pygmented{}": {
+  ],
+  "macros": [
+    {
+      "name": "usestyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pygments style}}"
+      }
+    },
+    {
+      "name": "pygment",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:language}}{${2:code%definition}}"
+      }
+    },
+    {
+      "name": "includecode",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "includecode",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:language}]{${1:file}}"
+      }
+    },
+    {
+      "name": "proglang",
+      "unusual": true
+    },
+    {
+      "name": "lexercommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    }
+  ],
+  "envs": [
+    {
       "name": "pygmented",
-      "snippet": "{${1:language}}"
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "keys": {},
+  "args": []
 }

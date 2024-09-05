@@ -1,103 +1,247 @@
 {
-  "includes": {},
-  "macros": {
-    "accolade{}{}": {
-      "snippet": "accolade{${1:arg}}{${2:sub}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "|"
     },
-    "affligne": {},
-    "affpage": {},
-    "dico{}{}{}": {
-      "snippet": "dico{${1:Y}}{${2:translation}}{${3:comments}}"
+    {
+      "name": "accolade",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg}}{${2:sub}}"
+      }
     },
-    "DicoIndex{}{}{}{}{}{}{}": {
-      "snippet": "DicoIndex{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}{${7:arg7}}"
+    {
+      "name": "affligne"
     },
-    "EcritTraduction": {},
-    "EcritTraductionEnColonne": {},
-    "EcritTraductionEnLigne": {},
-    "eg": {},
-    "EXEMPLE": {},
-    "Montitre{}": {
-      "snippet": "Montitre{${1:text}}"
+    {
+      "name": "affpage"
     },
-    "numligne{}": {
-      "snippet": "numligne{${1:value}}"
+    {
+      "name": "dico",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:Y}}{${2:translation%text}}{${3:comments%text}}"
+      }
     },
-    "numpage{}": {
-      "snippet": "numpage{${1:value}}"
+    {
+      "name": "DicoIndex",
+      "arg": {
+        "format": "{}{}{}{}{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}{${7:arg7}}"
+      }
     },
-    "pile{}": {
-      "snippet": "pile{${1:text}}"
+    {
+      "name": "EcritTraduction"
     },
-    "SourceTexte": {},
-    "traduction": {},
-    "zero": {},
-    "*": {
-      "detail": "*",
-      "documentation": "(high) ASTERISK, star"
+    {
+      "name": "EcritTraductionEnColonne"
     },
-    "afficheReference{}{}{}{}": {
-      "snippet": "afficheReference{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    {
+      "name": "EcritTraductionEnLigne"
     },
-    "BeginCreateVBox": {},
-    "boiteA": {},
-    "boiteB": {},
-    "DemiLigneA": {},
-    "DemiLigneB": {},
-    "diconame": {},
-    "eat": {},
-    "EdiTexte": {},
-    "EndCreateVBox": {},
-    "EstRectoVerso{}": {
-      "snippet": "EstRectoVerso{${1:arg}}"
+    {
+      "name": "eg"
     },
-    "FixeReference{}{}{}{}": {
-      "snippet": "FixeReference{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    {
+      "name": "EXEMPLE"
     },
-    "GetPrems": {},
-    "HauteurLigne": {},
-    "ifRectoVerso": {},
-    "laligne": {},
-    "lapage": {},
-    "mangetout": {},
-    "numeroligne": {},
-    "numeropage": {},
-    "prems": {},
-    "recto": {},
-    "RectoVersofalse": {},
-    "RectoVersotrue": {},
-    "References": {},
-    "rien": {},
-    "setPageAndLine{}{}": {
-      "snippet": "setPageAndLine{${1:page}}{${2:line}}"
+    {
+      "name": "Montitre",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "texteg{}": {
-      "snippet": "texteg{${1:text}}"
+    {
+      "name": "numligne",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:value}}"
+      }
     },
-    "theexemple": {},
-    "tmpdim": {},
-    "totoA": {},
-    "totoB": {},
-    "verso": {},
-    "echange{}{}{}": {
-      "snippet": "echange{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    {
+      "name": "numpage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:value}}"
+      }
     },
-    "echangeaux{}{}": {
-      "snippet": "echangeaux{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "pile",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "SourceTexte"
+    },
+    {
+      "name": "traduction"
+    },
+    {
+      "name": "zero"
+    },
+    {
+      "name": "*",
+      "unusual": true
+    },
+    {
+      "name": "afficheReference",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+      }
+    },
+    {
+      "name": "BeginCreateVBox",
+      "unusual": true
+    },
+    {
+      "name": "boiteA",
+      "unusual": true
+    },
+    {
+      "name": "boiteB",
+      "unusual": true
+    },
+    {
+      "name": "DemiLigneA",
+      "unusual": true
+    },
+    {
+      "name": "DemiLigneB",
+      "unusual": true
+    },
+    {
+      "name": "diconame",
+      "unusual": true
+    },
+    {
+      "name": "EdiTexte",
+      "unusual": true
+    },
+    {
+      "name": "EndCreateVBox",
+      "unusual": true
+    },
+    {
+      "name": "EstRectoVerso",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "FixeReference",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+      }
+    },
+    {
+      "name": "HauteurLigne",
+      "unusual": true
+    },
+    {
+      "name": "ifRectoVerso",
+      "unusual": true
+    },
+    {
+      "name": "laligne",
+      "unusual": true
+    },
+    {
+      "name": "lapage",
+      "unusual": true
+    },
+    {
+      "name": "numeroligne",
+      "unusual": true
+    },
+    {
+      "name": "numeropage",
+      "unusual": true
+    },
+    {
+      "name": "recto",
+      "unusual": true
+    },
+    {
+      "name": "RectoVersofalse",
+      "unusual": true
+    },
+    {
+      "name": "RectoVersotrue",
+      "unusual": true
+    },
+    {
+      "name": "References",
+      "unusual": true
+    },
+    {
+      "name": "rien",
+      "unusual": true
+    },
+    {
+      "name": "setPageAndLine",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:page}}{${2:line}}"
+      }
+    },
+    {
+      "name": "texteg",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "theexemple",
+      "unusual": true
+    },
+    {
+      "name": "verso",
+      "unusual": true
+    },
+    {
+      "name": "echange",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
     }
-  },
-  "envs": {
-    "exemple{}{}{}{}": {
+  ],
+  "envs": [
+    {
       "name": "exemple",
-      "snippet": "{${1:name}}{${2:pagenum or recto/verso}}{${3:linenums}}{${4:references}}"
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:name}}{${2:pagenum or recto/verso}}{${3:linenums}}{${4:references}}"
+      }
     },
-    "gramrule": {},
-    "possib": {},
-    "translit{}{}{}{}": {
+    {
+      "name": "gramrule"
+    },
+    {
+      "name": "possib"
+    },
+    {
       "name": "translit",
-      "snippet": "{${1:name}}{${2:pagenum or recto/verso}}{${3:linenums}}{${4:references}}"
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:name}}{${2:pagenum or recto/verso}}{${3:linenums}}{${4:references}}"
+      }
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "keys": {},
+  "args": []
 }

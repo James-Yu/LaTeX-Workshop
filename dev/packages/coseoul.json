@@ -1,30 +1,64 @@
 {
-  "includes": {
-    "ifthen": []
-  },
-  "macros": {
-    "levelup{}": {
-      "snippet": "levelup{${1:title}}"
+  "deps": [
+    {
+      "name": "ifthen"
+    }
+  ],
+  "macros": [
+    {
+      "name": "levelup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
     },
-    "leveldown{}": {
-      "snippet": "leveldown{${1:title}}"
+    {
+      "name": "leveldown",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
     },
-    "levelstay{}": {
-      "snippet": "levelstay{${1:title}}"
+    {
+      "name": "levelstay",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
     },
-    "levelmultiup{}{}": {
-      "snippet": "levelmultiup{${1:title}}{${2:levels}}"
+    {
+      "name": "levelmultiup",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:title}}{${2:levels}}"
+      }
     },
-    "chex": {},
-    "findnewlevel{}": {
-      "snippet": "findnewlevel{${1:levels}}"
+    {
+      "name": "chex",
+      "unusual": true
     },
-    "levelchange{}{}": {
-      "snippet": "levelchange{${1:title}}{${2:levels}}"
+    {
+      "name": "findnewlevel",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:levels}}"
+      }
     },
-    "thecurrentlevel": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "levelchange",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:title}}{${2:levels}}"
+      }
+    },
+    {
+      "name": "thecurrentlevel",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

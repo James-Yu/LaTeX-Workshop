@@ -1,64 +1,112 @@
 {
-  "includes": {
-    "class-amsbook": []
-  },
-  "macros": {
-    "indexintro": {},
-    "indexfont": {},
-    "xcbtitlefont": {},
-    "xcbdigits": {},
-    "longxcbtoprule": {},
-    "shortxcbendrule": {},
-    "xqed{}": {
-      "snippet": "xqed{${1:symbol}}"
-    },
-    "setmathstrut": {},
-    "inclusionfont": {},
-    "inclusionindent": {},
-    "bibintro": {}
-  },
-  "envs": {
-    "framedthm{}": {
-      "name": "framedthm",
-      "snippet": "{${1:theorem-type}}"
-    },
-    "inclusion{}": {
-      "name": "inclusion",
-      "snippet": "{${1:heading}}"
-    },
-    "inchapterbibliography{}": {
-      "name": "inchapterbibliography",
-      "snippet": "{${1:widestlabel}}"
+  "deps": [
+    {
+      "name": "class-amsbook"
     }
-  },
-  "options": [
-    "multixcb",
-    "10pt",
-    "11pt",
-    "12pt",
-    "8pt",
-    "9pt",
-    "a4paper",
-    "centertags",
-    "draft",
-    "final",
-    "fleqn",
-    "landscape",
-    "leqno",
-    "letterpaper",
-    "openright",
-    "openany",
-    "noamsfonts",
-    "nomath",
-    "notitlepage",
-    "onecolumn",
-    "oneside",
-    "portrait",
-    "reqno",
-    "tbtags",
-    "titlepage",
-    "twocolumn",
-    "twoside"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "indexintro",
+      "unusual": true
+    },
+    {
+      "name": "indexfont",
+      "unusual": true
+    },
+    {
+      "name": "xcbtitlefont",
+      "unusual": true
+    },
+    {
+      "name": "xcbdigits",
+      "unusual": true
+    },
+    {
+      "name": "longxcbtoprule",
+      "unusual": true
+    },
+    {
+      "name": "shortxcbendrule"
+    },
+    {
+      "name": "xqed",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol%formula}}"
+      }
+    },
+    {
+      "name": "setmathstrut",
+      "unusual": true
+    },
+    {
+      "name": "inclusionfont",
+      "unusual": true
+    },
+    {
+      "name": "inclusionindent",
+      "unusual": true
+    },
+    {
+      "name": "bibintro",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "framedthm",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:theorem-type}}"
+      }
+    },
+    {
+      "name": "inclusion",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:heading%text}}"
+      }
+    },
+    {
+      "name": "inchapterbibliography",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:widestlabel}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\documentclass/amstext-l#c": [
+      "multixcb\r",
+      "10pt\r",
+      "11pt\r",
+      "12pt\r",
+      "8pt\r",
+      "9pt\r",
+      "a4paper\r",
+      "centertags\r",
+      "draft\r",
+      "final\r",
+      "fleqn\r",
+      "landscape\r",
+      "leqno\r",
+      "letterpaper\r",
+      "openright\r",
+      "openany\r",
+      "noamsfonts\r",
+      "nomath\r",
+      "notitlepage\r",
+      "onecolumn\r",
+      "oneside\r",
+      "portrait\r",
+      "reqno\r",
+      "tbtags\r",
+      "titlepage\r",
+      "twocolumn\r",
+      "twoside\r"
+    ]
+  },
+  "args": [
+    "\\documentclass/amstext-l#c"
+  ]
 }

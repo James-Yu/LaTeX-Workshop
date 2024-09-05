@@ -1,304 +1,601 @@
 {
-  "includes": {
-    "luaotfload": []
-  },
-  "macros": {
-    "ttgreybolda": {},
-    "ttgreyboldb": {},
-    "ttrotatebold": {},
-    "ttdownbold": {},
-    "ttrightbold": {},
-    "ttoverprintbolda": {},
-    "ttoverprintboldb": {},
-    "ttoverprintboldc": {},
-    "ttgreynormala": {},
-    "ttgreynormalb": {},
-    "ttrotatenormal": {},
-    "ttrightnormal": {},
-    "ttdownnormal": {},
-    "ttoverprintnormal": {},
-    "ttbasefont": {},
-    "ttfontsize": {},
-    "cmuntt": {},
-    "cmunttid": {},
-    "myfont": {},
-    "myfonts": {},
-    "mybfont": {},
-    "mybfonts": {},
-    "xUnicodeMathSymbol{}{}{}{}": {
-      "snippet": "xUnicodeMathSymbol{${1:char number}}{${2:cmd}}{${3:type}}{${4:description}}"
+  "deps": [
+    {
+      "name": "luaotfload"
+    }
+  ],
+  "macros": [
+    {
+      "name": "ttgreybolda"
     },
-    "xxUnicodeMathSymbol{}{}{}": {
-      "snippet": "xxUnicodeMathSymbol{${1:char number}}{${2:cmd}}{${3:definition}}"
+    {
+      "name": "ttgreyboldb"
     },
-    "mathexclam": {},
-    "mathoctothorpe": {},
-    "mathpercent": {},
-    "mathampersand": {},
-    "lparen": {
+    {
+      "name": "ttrotatebold"
+    },
+    {
+      "name": "ttdownbold"
+    },
+    {
+      "name": "ttrightbold"
+    },
+    {
+      "name": "ttoverprintbolda"
+    },
+    {
+      "name": "ttoverprintboldb"
+    },
+    {
+      "name": "ttoverprintboldc"
+    },
+    {
+      "name": "ttgreynormala"
+    },
+    {
+      "name": "ttgreynormalb"
+    },
+    {
+      "name": "ttrotatenormal"
+    },
+    {
+      "name": "ttrightnormal"
+    },
+    {
+      "name": "ttdownnormal"
+    },
+    {
+      "name": "ttoverprintnormal"
+    },
+    {
+      "name": "ttbasefont"
+    },
+    {
+      "name": "ttfontsize"
+    },
+    {
+      "name": "cmuntt",
+      "unusual": true
+    },
+    {
+      "name": "cmunttid",
+      "unusual": true
+    },
+    {
+      "name": "xUnicodeMathSymbol",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:char number}}{${2:cmd}}{${3:type}}{${4:description}}"
+      }
+    },
+    {
+      "name": "xxUnicodeMathSymbol",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:char number}}{${2:cmd}}{${3:definition}}"
+      }
+    },
+    {
+      "name": "mathexclam"
+    },
+    {
+      "name": "mathoctothorpe"
+    },
+    {
+      "name": "mathpercent"
+    },
+    {
+      "name": "mathampersand"
+    },
+    {
+      "name": "lparen",
       "detail": "(",
-      "documentation": "LEFT PARENTHESIS"
+      "doc": "Left parenthesis"
     },
-    "rparen": {
+    {
+      "name": "rparen",
       "detail": ")",
-      "documentation": "RIGHT PARENTHESIS"
+      "doc": "Right parenthesis"
     },
-    "mathplus": {},
-    "mathcomma": {},
-    "mathperiod": {},
-    "mathslash": {
+    {
+      "name": "mathplus"
+    },
+    {
+      "name": "mathcomma"
+    },
+    {
+      "name": "mathperiod"
+    },
+    {
+      "name": "mathslash",
       "detail": "/",
-      "documentation": "SOLIDUS"
+      "doc": "\\slash, solidus"
     },
-    "mathcolon": {
+    {
+      "name": "mathcolon",
       "detail": ":",
-      "documentation": "COLON (not ratio)"
+      "doc": "\\colon (literal), colon (not ratio)"
     },
-    "mathsemicolon": {},
-    "less": {
+    {
+      "name": "mathsemicolon"
+    },
+    {
+      "name": "less",
       "detail": "<",
-      "documentation": "LESS-THAN SIGN r:"
+      "doc": "Less-than sign r:"
     },
-    "equal": {
+    {
+      "name": "equal",
       "detail": "=",
-      "documentation": "EQUALS SIGN r:"
+      "doc": "Equals sign r:"
     },
-    "greater": {
+    {
+      "name": "greater",
       "detail": ">",
-      "documentation": "GREATER-THAN SIGN r:"
+      "doc": "Greater-than sign r:"
     },
-    "mathquestion": {},
-    "mathatsign": {},
-    "mathyen": {},
-    "matheth": {
-      "detail": "ð",
-      "documentation": "eth"
+    {
+      "name": "mathquestion"
     },
-    "overbar": {
+    {
+      "name": "mathatsign"
+    },
+    {
+      "name": "mathyen"
+    },
+    {
+      "name": "matheth",
+      "detail": "ð (\"amssymb arevmath\" command)",
+      "doc": "Eth"
+    },
+    {
+      "name": "overbar",
       "detail": " ̅",
-      "documentation": "overbar embellishment"
+      "doc": "Overbar embellishment"
     },
-    "ovhook": {
+    {
+      "name": "ovhook",
       "detail": " ̉",
-      "documentation": "COMBINING HOOK ABOVE"
+      "doc": "Combining hook above"
     },
-    "ocirc": {
-      "detail": " ̊",
-      "documentation": "ring"
+    {
+      "name": "ocirc",
+      "detail": " ̊ (\"amssymb\" command)",
+      "doc": "\\ring (yhmath), ring"
     },
-    "ocommatopright": {
+    {
+      "name": "ocommatopright",
       "detail": " ̕",
-      "documentation": "COMBINING COMMA ABOVE RIGHT"
+      "doc": "Combining comma above right"
     },
-    "droang": {
+    {
+      "name": "droang",
       "detail": " ̚",
-      "documentation": "left angle above (non-spacing)"
+      "doc": "Left angle above (non-spacing)"
     },
-    "wideutilde": {
-      "detail": " ̰",
-      "documentation": "under tilde accent (multiple characters and non-spacing)"
+    {
+      "name": "wideutilde",
+      "detail": " ̰ (\"undertilde\" command)",
+      "doc": "Under tilde accent (multiple characters and non-spacing)"
     },
-    "mathunderbar": {},
-    "underleftrightarrow": {},
-    "mupAlpha": {},
-    "mupBeta": {},
-    "mupGamma": {},
-    "mupDelta": {},
-    "mupEpsilon": {},
-    "mupZeta": {},
-    "mupEta": {},
-    "mupTheta": {},
-    "mupIota": {},
-    "mupKappa": {},
-    "mupLambda": {},
-    "mupMu": {},
-    "mupNu": {},
-    "mupXi": {},
-    "mupOmicron": {},
-    "mupPi": {},
-    "mupRho": {},
-    "mupSigma": {},
-    "mupTau": {},
-    "mupUpsilon": {},
-    "mupPhi": {},
-    "mupChi": {},
-    "mupPsi": {},
-    "mupOmega": {},
-    "mupalpha": {},
-    "mupbeta": {},
-    "mupgamma": {},
-    "mupdelta": {},
-    "mupepsilon": {},
-    "mupzeta": {},
-    "mupeta": {},
-    "muptheta": {},
-    "mupiota": {},
-    "mupkappa": {},
-    "muplambda": {},
-    "mupmu": {},
-    "mupnu": {},
-    "mupxi": {},
-    "mupomicron": {},
-    "muppi": {},
-    "muprho": {},
-    "mupvarsigma": {},
-    "mupsigma": {},
-    "muptau": {},
-    "mupupsilon": {},
-    "mupvarphi": {},
-    "mupchi": {},
-    "muppsi": {},
-    "mupomega": {},
-    "mupvartheta": {},
-    "upoldKoppa": {
-      "detail": "Ϙ",
-      "documentation": "GREEK LETTER ARCHAIC KOPPA"
+    {
+      "name": "mathunderbar"
     },
-    "upoldkoppa": {
-      "detail": "ϙ",
-      "documentation": "GREEK SMALL LETTER ARCHAIC KOPPA"
+    {
+      "name": "underleftrightarrow"
     },
-    "upStigma": {
-      "detail": "Ϛ",
-      "documentation": "capital stigma"
+    {
+      "name": "mupAlpha",
+      "unusual": true
     },
-    "upstigma": {
-      "detail": "ϛ",
-      "documentation": "GREEK SMALL LETTER STIGMA"
+    {
+      "name": "mupBeta",
+      "unusual": true
     },
-    "upDigamma": {
-      "detail": "Ϝ",
-      "documentation": "capital digamma"
+    {
+      "name": "mupGamma",
+      "unusual": true
     },
-    "updigamma": {
-      "detail": "ϝ",
-      "documentation": "GREEK SMALL LETTER DIGAMMA"
+    {
+      "name": "mupDelta",
+      "unusual": true
     },
-    "upkoppa": {
-      "detail": "ϟ",
-      "documentation": "GREEK SMALL LETTER KOPPA"
+    {
+      "name": "mupEpsilon",
+      "unusual": true
     },
-    "upSampi": {
-      "detail": "Ϡ",
-      "documentation": "capital sampi"
+    {
+      "name": "mupZeta",
+      "unusual": true
     },
-    "upsampi": {
-      "detail": "ϡ",
-      "documentation": "GREEK SMALL LETTER SAMPI"
+    {
+      "name": "mupEta",
+      "unusual": true
     },
-    "mupvarepsilon": {},
-    "Alpha": {},
-    "Beta": {},
-    "Epsilon": {},
-    "Zeta": {},
-    "Eta": {},
-    "Iota": {},
-    "Kappa": {},
-    "Mu": {},
-    "Nu": {},
-    "Omicron": {},
-    "Rho": {},
-    "Tau": {},
-    "Chi": {},
-    "omicron": {},
-    "oldKoppa": {},
-    "oldkoppa": {},
-    "Stigma": {
-      "detail": "Ϛ",
-      "documentation": "capital stigma"
+    {
+      "name": "mupTheta",
+      "unusual": true
     },
-    "stigma": {
-      "detail": "ϛ",
-      "documentation": "GREEK SMALL LETTER STIGMA"
+    {
+      "name": "mupIota",
+      "unusual": true
     },
-    "Digamma": {
-      "detail": "Ϝ",
-      "documentation": "capital digamma"
+    {
+      "name": "mupKappa",
+      "unusual": true
     },
-    "digamma": {
-      "detail": "ϝ",
-      "documentation": "GREEK SMALL LETTER DIGAMMA"
+    {
+      "name": "mupLambda",
+      "unusual": true
     },
-    "koppa": {
-      "detail": "ϟ",
-      "documentation": "GREEK SMALL LETTER KOPPA"
+    {
+      "name": "mupMu",
+      "unusual": true
     },
-    "Sampi": {
-      "detail": "Ϡ",
-      "documentation": "capital sampi"
+    {
+      "name": "mupNu",
+      "unusual": true
     },
-    "sampi": {
-      "detail": "ϡ",
-      "documentation": "GREEK SMALL LETTER SAMPI"
+    {
+      "name": "mupXi",
+      "unusual": true
     },
-    "smblkcircle": {
+    {
+      "name": "mupOmicron",
+      "unusual": true
+    },
+    {
+      "name": "mupPi",
+      "unusual": true
+    },
+    {
+      "name": "mupRho",
+      "unusual": true
+    },
+    {
+      "name": "mupSigma",
+      "unusual": true
+    },
+    {
+      "name": "mupTau",
+      "unusual": true
+    },
+    {
+      "name": "mupUpsilon",
+      "unusual": true
+    },
+    {
+      "name": "mupPhi",
+      "unusual": true
+    },
+    {
+      "name": "mupChi",
+      "unusual": true
+    },
+    {
+      "name": "mupPsi",
+      "unusual": true
+    },
+    {
+      "name": "mupOmega",
+      "unusual": true
+    },
+    {
+      "name": "mupalpha",
+      "unusual": true
+    },
+    {
+      "name": "mupbeta",
+      "unusual": true
+    },
+    {
+      "name": "mupgamma",
+      "unusual": true
+    },
+    {
+      "name": "mupdelta",
+      "unusual": true
+    },
+    {
+      "name": "mupepsilon",
+      "unusual": true
+    },
+    {
+      "name": "mupzeta",
+      "unusual": true
+    },
+    {
+      "name": "mupeta",
+      "unusual": true
+    },
+    {
+      "name": "muptheta",
+      "unusual": true
+    },
+    {
+      "name": "mupiota",
+      "unusual": true
+    },
+    {
+      "name": "mupkappa",
+      "unusual": true
+    },
+    {
+      "name": "muplambda",
+      "unusual": true
+    },
+    {
+      "name": "mupmu",
+      "unusual": true
+    },
+    {
+      "name": "mupnu",
+      "unusual": true
+    },
+    {
+      "name": "mupxi",
+      "unusual": true
+    },
+    {
+      "name": "mupomicron",
+      "unusual": true
+    },
+    {
+      "name": "muppi",
+      "unusual": true
+    },
+    {
+      "name": "muprho",
+      "unusual": true
+    },
+    {
+      "name": "mupvarsigma",
+      "unusual": true
+    },
+    {
+      "name": "mupsigma",
+      "unusual": true
+    },
+    {
+      "name": "muptau",
+      "unusual": true
+    },
+    {
+      "name": "mupupsilon",
+      "unusual": true
+    },
+    {
+      "name": "mupvarphi",
+      "unusual": true
+    },
+    {
+      "name": "mupchi",
+      "unusual": true
+    },
+    {
+      "name": "muppsi",
+      "unusual": true
+    },
+    {
+      "name": "mupomega",
+      "unusual": true
+    },
+    {
+      "name": "mupvartheta",
+      "unusual": true
+    },
+    {
+      "name": "upoldKoppa",
+      "unusual": true,
+      "detail": "Ϙ (\"arevmath\" command)",
+      "doc": "\\koppa (wrisym), t \\qoppa (lgr), greek letter archaic koppa"
+    },
+    {
+      "name": "upoldkoppa",
+      "unusual": true,
+      "detail": "ϙ (\"arevmath\" command)",
+      "doc": "\\koppa (wrisym), t \\qoppa (lgr), greek small letter archaic koppa"
+    },
+    {
+      "name": "upStigma",
+      "unusual": true,
+      "detail": "Ϛ (\"arevmath wrisym\" command)",
+      "doc": "Capital stigma"
+    },
+    {
+      "name": "upstigma",
+      "unusual": true,
+      "detail": "ϛ (\"arevmath wrisym\" command)",
+      "doc": "Greek small letter stigma"
+    },
+    {
+      "name": "upDigamma",
+      "unusual": true,
+      "detail": "Ϝ (\"wrisym\" command)",
+      "doc": "Capital digamma"
+    },
+    {
+      "name": "updigamma",
+      "unusual": true,
+      "detail": "ϝ (\"amssymb arevmath wrisym\" command)",
+      "doc": "Greek small letter digamma"
+    },
+    {
+      "name": "upkoppa",
+      "unusual": true,
+      "detail": "ϟ (\"arevmath\" command)",
+      "doc": "Greek small letter koppa"
+    },
+    {
+      "name": "upSampi",
+      "unusual": true,
+      "detail": "Ϡ (\"arevmath wrisym\" command)",
+      "doc": "Capital sampi"
+    },
+    {
+      "name": "upsampi",
+      "unusual": true,
+      "detail": "ϡ (\"arevmath\" command)",
+      "doc": "\\sampi (wrisym), greek small letter sampi"
+    },
+    {
+      "name": "mupvarepsilon",
+      "unusual": true
+    },
+    {
+      "name": "Alpha"
+    },
+    {
+      "name": "Beta"
+    },
+    {
+      "name": "Epsilon"
+    },
+    {
+      "name": "Zeta"
+    },
+    {
+      "name": "Eta"
+    },
+    {
+      "name": "Iota"
+    },
+    {
+      "name": "Kappa"
+    },
+    {
+      "name": "Mu"
+    },
+    {
+      "name": "Nu"
+    },
+    {
+      "name": "Omicron"
+    },
+    {
+      "name": "Rho"
+    },
+    {
+      "name": "Tau"
+    },
+    {
+      "name": "Chi"
+    },
+    {
+      "name": "omicron"
+    },
+    {
+      "name": "oldKoppa"
+    },
+    {
+      "name": "oldkoppa"
+    },
+    {
+      "name": "Stigma"
+    },
+    {
+      "name": "stigma"
+    },
+    {
+      "name": "Digamma"
+    },
+    {
+      "name": "digamma"
+    },
+    {
+      "name": "koppa"
+    },
+    {
+      "name": "Sampi"
+    },
+    {
+      "name": "sampi"
+    },
+    {
+      "name": "smblkcircle",
       "detail": "•",
-      "documentation": "BULLET (small, filled)"
+      "doc": "Bullet (small, filled)"
     },
-    "unicodeellipsis": {
+    {
+      "name": "unicodeellipsis",
       "detail": "…",
-      "documentation": "ellipsis (horizontal)"
+      "doc": "Ellipsis (horizontal)"
     },
-    "tieconcat": {
-      "detail": "⁀",
-      "documentation": "CHARACTER TIE, z notation sequence concatenation"
+    {
+      "name": "tieconcat",
+      "detail": "⁀ (\"oz\" command)",
+      "doc": "Character tie, sequence concatenation"
     },
-    "fracslash": {
+    {
+      "name": "fracslash",
       "detail": "⁄",
-      "documentation": "FRACTION SLASH"
+      "doc": "/, fraction slash"
     },
-    "euro": {
+    {
+      "name": "euro",
       "detail": "€",
-      "documentation": "EURO SIGN"
+      "doc": "Euro sign"
     },
-    "BbbC": {
-      "detail": "ℂ",
-      "documentation": "open face C"
+    {
+      "name": "BbbC",
+      "detail": "ℂ (\"mathbb\" command)",
+      "doc": "\\mathds{c} (dsfont), open face c"
     },
-    "BbbR": {
-      "detail": "ℝ",
-      "documentation": "open face R"
+    {
+      "name": "BbbR",
+      "detail": "ℝ (\"mathbb\" command)",
+      "doc": "\\mathds{r} (dsfont), open face r"
     },
-    "mho": {
-      "detail": "℧",
-      "documentation": "conductance"
+    {
+      "name": "mho",
+      "detail": "℧ (\"amsfonts arevmath\" command)",
+      "doc": "\\mho (wrisym), t \\agemo (wasysym), conductance"
     },
-    "increment": {
+    {
+      "name": "increment",
       "detail": "∆",
-      "documentation": "laplacian (Delta; nabla square)"
+      "doc": "\\mathrm{\\delta}, laplacian (delta; nabla square)"
     },
-    "minus": {
+    {
+      "name": "minus",
       "detail": "−",
-      "documentation": "MINUS SIGN"
+      "doc": "Minus sign"
     },
-    "blanksymbol": {},
-    "mathvisiblespace": {},
-    "mdlgwhtcircle": {
-      "detail": "○",
-      "documentation": "medium large circle"
+    {
+      "name": "blanksymbol"
     },
-    "smwhtcircle": {
+    {
+      "name": "mathvisiblespace"
+    },
+    {
+      "name": "mdlgwhtcircle",
+      "detail": "○ (\"wasysym\" command)",
+      "doc": "Medium large circle"
+    },
+    {
+      "name": "smwhtcircle",
       "detail": "◦",
-      "documentation": "WHITE BULLET"
+      "doc": "White bullet"
     },
-    "female": {
-      "detail": "♀",
-      "documentation": "venus, female"
+    {
+      "name": "female",
+      "detail": "♀ (\"wasysym\" command)",
+      "doc": "\\venus (mathabx), \\girl (mathabx), venus, female"
     },
-    "eighthnote": {
-      "detail": "♪",
-      "documentation": "EIGHTH NOTE"
+    {
+      "name": "eighthnote",
+      "detail": "♪ (\"arevmath\" command)",
+      "doc": "Eighth note"
     },
-    "neuter": {
+    {
+      "name": "neuter",
       "detail": "⚲",
-      "documentation": "NEUTER"
-    },
-    "oldhrule": {},
-    "ttgreyone": {},
-    "ttgreytwo": {},
-    "ttdownshifttwo": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+      "doc": "Neuter"
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

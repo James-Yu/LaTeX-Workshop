@@ -1,98 +1,120 @@
 {
-  "includes": {
-    "pdftexcmds": [],
-    "atveryend": []
-  },
-  "macros": {
-    "tikzexternalize": {},
-    "tikzexternalize[]": {
-      "snippet": "tikzexternalize[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "pdftexcmds"
     },
-    "tikzexternalrealjob": {},
-    "tikzexternalcheckshellescape": {},
-    "tikzsetexternalprefix{}": {
-      "snippet": "tikzsetexternalprefix{${1:prefix}}"
-    },
-    "tikzsetnextfilename{}": {
-      "snippet": "tikzsetnextfilename{${1:file name}}"
-    },
-    "tikzsetfigurename{}": {
-      "snippet": "tikzsetfigurename{${1:name}}"
-    },
-    "tikzappendtofigurename{}": {
-      "snippet": "tikzappendtofigurename{${1:suffix}}"
-    },
-    "tikzpicturedependsonfile{}": {
-      "snippet": "tikzpicturedependsonfile{${1:file name}}"
-    },
-    "tikzexternalimgextension": {},
-    "tikzexternalfiledependsonfile{}{}": {
-      "snippet": "tikzexternalfiledependsonfile{${1:external graphics}}{${2:file name}}"
-    },
-    "tikzexternaldisable": {},
-    "tikzexternalenable": {},
-    "tikzifexternalizing{}{}": {
-      "snippet": "tikzifexternalizing{${1:true code}}{${2:false code}}"
-    },
-    "tikzifexternalizingnext{}{}": {
-      "snippet": "tikzifexternalizingnext{${1:true code}}{${2:false code}}"
-    },
-    "iftikzexternalremakenext": {},
-    "tikzexternalremakenexttrue": {},
-    "tikzexternalremakenextfalse": {},
-    "iftikzexternalexportnext": {},
-    "tikzexternalexportnexttrue": {},
-    "tikzexternalexportnextfalse": {},
-    "tikzifexternalizingcurrent{}{}": {
-      "snippet": "tikzifexternalizingcurrent{${1:true code}}{${2:false code}}"
-    },
-    "tikzifexternaljobnamematches{}{}{}": {
-      "snippet": "tikzifexternaljobnamematches{${1:jobname}}{${2:true code}}{${3:false code}}"
-    },
-    "tikzifexternalizehasbeencalled{}{}": {
-      "snippet": "tikzifexternalizehasbeencalled{${1:true code}}{${2:false code}}"
-    },
-    "tikzexternallocked": {},
-    "tikzexternalgetnextfilename{}": {
-      "snippet": "tikzexternalgetnextfilename{${1:macro}}"
-    },
-    "tikzexternalgetcurrentfilename{}": {
-      "snippet": "tikzexternalgetcurrentfilename{${1:macro}}"
-    },
-    "tikzexternaldepext": {},
-    "tikzexternalmakefiledefaultdeprule": {},
-    "tikzexternalifwritesmakefile{}{}": {
-      "snippet": "tikzexternalifwritesmakefile{${1:true code}}{${2:false code}}"
-    },
-    "tikzexternalwritetomakefile{}": {
-      "snippet": "tikzexternalwritetomakefile{${1:code}}"
+    {
+      "name": "atveryend"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "system call={${1:template}}",
-      "shell escape={${1:command-line arg}}",
+  ],
+  "macros": [
+    {
+      "name": "tikzexternalize"
+    },
+    {
+      "name": "tikzexternalize",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "tikzexternalrealjob"
+    },
+    {
+      "name": "tikzexternalcheckshellescape",
+      "unusual": true
+    },
+    {
+      "name": "tikzsetexternalprefix",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:prefix}}"
+      }
+    },
+    {
+      "name": "tikzsetnextfilename",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file name%file}}"
+      }
+    },
+    {
+      "name": "tikzsetfigurename",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "tikzappendtofigurename",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:suffix}}"
+      }
+    },
+    {
+      "name": "tikzpicturedependsonfile",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file name%file}}"
+      }
+    },
+    {
+      "name": "tikzexternalimgextension",
+      "unusual": true
+    },
+    {
+      "name": "tikzexternalfiledependsonfile",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:external graphics}}{${2:file name%file}}"
+      }
+    },
+    {
+      "name": "tikzexternaldisable"
+    },
+    {
+      "name": "tikzexternalenable"
+    },
+    {
+      "name": "tikzifexternalizing",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:true code}}{${2:false code}}"
+      }
+    },
+    {
+      "name": "tikzifexternalizingnext",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:true code}}{${2:false code}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\tikzexternalize#c": [
+      "system call={${1:template}}\r",
+      "shell escape={${1:command-line arg}}\r",
       "aux in dpth",
-      "prefix=${1:file name prefix}",
-      "figure name=${1:name}",
-      "disable dependency files",
+      "prefix=${1:file name prefix}\r",
+      "figure name=${1:name}\r",
+      "disable dependency files\r",
       "force remake",
       "remake next",
       "export next",
       "export",
-      "up to date check=imple,md5,diff",
+      "up to date check=imple,md5,diff\r",
       "figure list",
-      "mode=${1|only graphics,no graphics,only pictures,graphics if exists,list only,list and make|}",
+      "mode=${1|only graphics,no graphics,only pictures,graphics if exists,list only,list and make\r|}",
       "verbose IO",
       "verbose optimize",
       "verbose",
       "optimize",
-      "optimize command away={${1:command}}{${2:arg count}}",
-      "only named"
+      "optimize command away={${1:command}}{${2:arg count}}\r",
+      "only named\r"
     ]
-  ]
+  },
+  "args": []
 }

@@ -1,31 +1,24 @@
 {
-  "includes": {
-    "xkeyval": []
-  },
-  "macros": {},
-  "envs": {
-    "etaremune": {},
-    "etaremune[]": {
-      "name": "etaremune",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "xkeyval"
     }
-  },
-  "options": [
-    "topsep=",
-    "partopsep=",
-    "itemsep=",
-    "parsep=",
-    "leftmargin=",
-    "rightmargin=",
-    "listparindent=",
-    "itemindent=",
-    "labelwidth=",
-    "labelsep="
   ],
-  "keyvals": [
-    [
+  "macros": [],
+  "envs": [
+    {
+      "name": "etaremune"
+    },
+    {
+      "name": "etaremune",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\begin{etaremune},\\usepackage/etaremune#c": [
       "topsep=",
       "partopsep=",
       "itemsep=",
@@ -35,8 +28,13 @@
       "listparindent=",
       "itemindent=",
       "labelwidth=",
-      "labelsep=",
-      "start=${1:integer}"
+      "labelsep="
+    ],
+    "\\begin{etaremune}": [
+      "start=${1:integer}\r"
     ]
+  },
+  "args": [
+    "\\begin{etaremune},\\usepackage/etaremune#c"
   ]
 }

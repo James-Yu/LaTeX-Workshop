@@ -1,47 +1,87 @@
 {
-  "includes": {},
-  "macros": {
-    "Int": {},
-    "Sum{}": {
-      "snippet": "Sum{${1:above,below}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "Int"
     },
-    "SUM{}": {
-      "snippet": "SUM{${1:below}}"
+    {
+      "name": "Sum",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:above,below}}"
+      }
     },
-    "DerTot{}{}": {
-      "snippet": "DerTot{${1:func}}{${2:var}}"
+    {
+      "name": "SUM",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:below}}"
+      }
     },
-    "DerPar{}{}": {
-      "snippet": "DerPar{${1:func}}{${2:var}}"
+    {
+      "name": "DerTot",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:func}}{${2:var}}"
+      }
     },
-    "DerNorm{}": {
-      "snippet": "DerNorm{${1:arg}}"
+    {
+      "name": "DerPar",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:func}}{${2:var}}"
+      }
     },
-    "TendsTo": {},
-    "TendsTo[]": {
-      "snippet": "TendsTo[${1:sub}]"
+    {
+      "name": "DerNorm",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
     },
-    "Grad": {},
-    "Div": {},
-    "Rot": {},
-    "ProdVett": {},
-    "UnderDot{}": {
-      "snippet": "UnderDot{${1:arg}}"
+    {
+      "name": "TendsTo"
     },
-    "FileName": {},
-    "docdate": {},
-    "filedate": {},
-    "filedescr": {},
-    "fileversion": {}
-  },
-  "envs": {},
-  "options": [
-    "ThreeSubscrSum",
-    "TwoSubscrSum",
-    "ProdVettWedge",
-    "ProdVettTimes",
-    "VectOpStr",
-    "VectOpSymb"
+    {
+      "name": "TendsTo",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:sub}]"
+      }
+    },
+    {
+      "name": "Grad"
+    },
+    {
+      "name": "Div"
+    },
+    {
+      "name": "Rot"
+    },
+    {
+      "name": "ProdVett"
+    },
+    {
+      "name": "UnderDot",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    }
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/mathcmd#c": [
+      "ThreeSubscrSum\r",
+      "TwoSubscrSum\r",
+      "ProdVettWedge\r",
+      "ProdVettTimes\r",
+      "VectOpStr\r",
+      "VectOpSymb\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/mathcmd#c"
+  ]
 }

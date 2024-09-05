@@ -1,22 +1,38 @@
 {
-  "includes": {},
-  "macros": {
-    "collectsep{}": {
-      "snippet": "collectsep{${1:separator}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "collectsep",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:separator}}"
+      }
     },
-    "collectsep[]{}": {
-      "snippet": "collectsep[${2:punctuation}]{${1:separator}}"
+    {
+      "name": "collectsep",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:punctuation}]{${1:separator}}"
+      }
     },
-    "nocollect{}": {
-      "snippet": "nocollect{${1:key}}"
+    {
+      "name": "nocollect",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:key}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [
-    "nosep",
-    "parsep",
-    "bulletsep",
-    "punctsep"
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/collref#c": [
+      "nosep\r",
+      "parsep\r",
+      "bulletsep\r",
+      "punctsep\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/collref#c"
+  ]
 }

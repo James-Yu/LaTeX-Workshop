@@ -3,7 +3,7 @@ import * as fs from 'fs'
 import type * as Ast from '@unified-latex/unified-latex-types'
 import { lw } from '../../lw'
 import { EnvSnippetType } from '../../types'
-import type { CompletionArgs, CompletionItem, CompletionProvider, Environment, FileCache } from '../../types'
+import type { CompletionArgs, CompletionItem, CompletionProvider, EnvObsolete, FileCache } from '../../types'
 import { CmdEnvSuggestion, splitSignatureString, filterNonLetterSuggestions, filterArgumentHint } from './completerutils'
 
 const logger = lw.log('Intelli', 'Environment')
@@ -21,7 +21,7 @@ const data = {
     defaultEnvsAsName: [] as CmdEnvSuggestion[],
     defaultEnvsAsMacro: [] as CmdEnvSuggestion[],
     defaultEnvsForBegin: [] as CmdEnvSuggestion[],
-    packageEnvs: new Map<string, Environment[]>(),
+    packageEnvs: new Map<string, EnvObsolete[]>(),
     packageEnvsAsName: new Map<string, CmdEnvSuggestion[]>(),
     packageEnvsAsMacro: new Map<string, CmdEnvSuggestion[]>(),
     packageEnvsForBegin: new Map<string, CmdEnvSuggestion[]>()
@@ -31,7 +31,7 @@ lw.onConfigChange('intellisense.package.exclude', initialize)
 initialize()
 function initialize() {
     const excludeDefault = (vscode.workspace.getConfiguration('latex-workshop').get('intellisense.package.exclude') as string[]).includes('lw-default')
-    const envs = excludeDefault ? {} : JSON.parse(fs.readFileSync(`${lw.extensionRoot}/data/environments.json`, {encoding: 'utf8'})) as {[key: string]: Environment}
+    const envs = excludeDefault ? {} : JSON.parse(fs.readFileSync(`${lw.extensionRoot}/data/environments.json`, {encoding: 'utf8'})) as {[key: string]: EnvObsolete}
     Object.entries(envs).forEach(([key, env]) => {
         env.name = env.name || key
         env.snippet = env.snippet || ''
@@ -49,7 +49,7 @@ function initialize() {
     return data
 }
 
-function isEnv(obj: any): obj is Environment {
+function isEnv(obj: any): obj is EnvObsolete {
     return (typeof obj.name === 'string')
 }
 
@@ -257,8 +257,8 @@ function getEnvFromPkg(packageName: string, type: EnvSnippetType): CmdEnvSuggest
     return newEntry
 }
 
-function setPackageEnvs(packageName: string, envs: {[key: string]: Environment}) {
-    const environments: Environment[] = []
+function setPackageEnvs(packageName: string, envs: {[key: string]: EnvObsolete}) {
+    const environments: EnvObsolete[] = []
     Object.entries(envs).forEach(([key, env]) => {
         env.package = packageName
         if (isEnv(env)) {
@@ -272,7 +272,7 @@ function setPackageEnvs(packageName: string, envs: {[key: string]: Environment})
     data.packageEnvs.set(packageName, environments)
 }
 
-function entryEnvToCompletion(itemKey: string, item: Environment, type: EnvSnippetType): CmdEnvSuggestion {
+function entryEnvToCompletion(itemKey: string, item: EnvObsolete, type: EnvSnippetType): CmdEnvSuggestion {
     const label = item.detail ? item.detail : item.name
     const suggestion = new CmdEnvSuggestion(
         item.name,

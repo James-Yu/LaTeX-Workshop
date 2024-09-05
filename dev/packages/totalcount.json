@@ -1,126 +1,171 @@
 {
-  "includes": {
-    "xspace": [
-      "xspace"
+  "deps": [
+    {
+      "name": "xspace",
+      "if": "xspace"
+    }
+  ],
+  "macros": [
+    {
+      "name": "totalenumis",
+      "if": "enumi"
+    },
+    {
+      "name": "iftotalenumis",
+      "if": "enumi"
+    },
+    {
+      "name": "totalenumiis",
+      "if": "enumii"
+    },
+    {
+      "name": "iftotalenumiis",
+      "if": "enumii"
+    },
+    {
+      "name": "totalenumiiis",
+      "if": "enumiii"
+    },
+    {
+      "name": "iftotalenumiiis",
+      "if": "enumiii"
+    },
+    {
+      "name": "totalenumivs",
+      "if": "enumiv"
+    },
+    {
+      "name": "iftotalenumivs",
+      "if": "enumiv"
+    },
+    {
+      "name": "totalequations",
+      "if": "equation"
+    },
+    {
+      "name": "iftotalequations",
+      "if": "equation"
+    },
+    {
+      "name": "totalfigures",
+      "if": "figure"
+    },
+    {
+      "name": "iftotalfigures",
+      "if": "figure"
+    },
+    {
+      "name": "totalfootnotes",
+      "if": "footnote"
+    },
+    {
+      "name": "iftotalfootnotes",
+      "if": "footnote"
+    },
+    {
+      "name": "totalmpfns",
+      "if": "mpfn"
+    },
+    {
+      "name": "iftotalmpfns",
+      "if": "mpfn"
+    },
+    {
+      "name": "totalmpfootnotes",
+      "if": "mpfootnote"
+    },
+    {
+      "name": "iftotalmpfootnotes",
+      "if": "mpfootnote"
+    },
+    {
+      "name": "totalparagraphs",
+      "if": "paragraph"
+    },
+    {
+      "name": "iftotalparagraphs",
+      "if": "paragraph"
+    },
+    {
+      "name": "totalparts",
+      "if": "part"
+    },
+    {
+      "name": "iftotalparts",
+      "if": "part"
+    },
+    {
+      "name": "totalsections",
+      "if": "section"
+    },
+    {
+      "name": "iftotalsections",
+      "if": "section"
+    },
+    {
+      "name": "totalsubparagraphs",
+      "if": "subparagraph"
+    },
+    {
+      "name": "iftotalsubparagraphs",
+      "if": "subparagraph"
+    },
+    {
+      "name": "totalsubsections",
+      "if": "subsection"
+    },
+    {
+      "name": "iftotalsubsections",
+      "if": "subsection"
+    },
+    {
+      "name": "totalsubsubsections",
+      "if": "subsubsection"
+    },
+    {
+      "name": "iftotalsubsubsections",
+      "if": "subsubsection"
+    },
+    {
+      "name": "totaltables",
+      "if": "table"
+    },
+    {
+      "name": "iftotaltables",
+      "if": "table"
+    },
+    {
+      "name": "totalchapters",
+      "if": "chapter"
+    },
+    {
+      "name": "iftotalchapters",
+      "if": "chapter"
+    },
+    {
+      "name": "totalpages",
+      "if": "page"
+    },
+    {
+      "name": "iftotalpages",
+      "if": "page"
+    },
+    {
+      "name": "DeclareTotalCounter",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/totalcount#c": [
+      "${1:counter}\r",
+      "xspace\r"
     ]
   },
-  "macros": {
-    "totalenumis": {
-      "option": "enumi"
-    },
-    "iftotalenumis": {
-      "option": "enumi"
-    },
-    "totalenumiis": {
-      "option": "enumii"
-    },
-    "iftotalenumiis": {
-      "option": "enumii"
-    },
-    "totalenumiiis": {
-      "option": "enumiii"
-    },
-    "iftotalenumiiis": {
-      "option": "enumiii"
-    },
-    "totalenumivs": {
-      "option": "enumiv"
-    },
-    "iftotalenumivs": {
-      "option": "enumiv"
-    },
-    "totalequations": {
-      "option": "equation"
-    },
-    "iftotalequations": {
-      "option": "equation"
-    },
-    "totalfigures": {
-      "option": "figure"
-    },
-    "iftotalfigures": {
-      "option": "figure"
-    },
-    "totalfootnotes": {
-      "option": "footnote"
-    },
-    "iftotalfootnotes": {
-      "option": "footnote"
-    },
-    "totalmpfns": {
-      "option": "mpfn"
-    },
-    "iftotalmpfns": {
-      "option": "mpfn"
-    },
-    "totalmpfootnotes": {
-      "option": "mpfootnote"
-    },
-    "iftotalmpfootnotes": {
-      "option": "mpfootnote"
-    },
-    "totalparagraphs": {
-      "option": "paragraph"
-    },
-    "iftotalparagraphs": {
-      "option": "paragraph"
-    },
-    "totalparts": {
-      "option": "part"
-    },
-    "iftotalparts": {
-      "option": "part"
-    },
-    "totalsections": {
-      "option": "section"
-    },
-    "iftotalsections": {
-      "option": "section"
-    },
-    "totalsubparagraphs": {
-      "option": "subparagraph"
-    },
-    "iftotalsubparagraphs": {
-      "option": "subparagraph"
-    },
-    "totalsubsections": {
-      "option": "subsection"
-    },
-    "iftotalsubsections": {
-      "option": "subsection"
-    },
-    "totalsubsubsections": {
-      "option": "subsubsection"
-    },
-    "iftotalsubsubsections": {
-      "option": "subsubsection"
-    },
-    "totaltables": {
-      "option": "table"
-    },
-    "iftotaltables": {
-      "option": "table"
-    },
-    "totalchapters": {
-      "option": "chapter"
-    },
-    "iftotalchapters": {
-      "option": "chapter"
-    },
-    "totalpages": {
-      "option": "page"
-    },
-    "iftotalpages": {
-      "option": "page"
-    },
-    "DeclareTotalCounter{}": {
-      "snippet": "DeclareTotalCounter{${1:counter}}"
-    }
-  },
-  "envs": {},
-  "options": [
-    "${1:counter}",
-    "xspace"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/totalcount#c"
+  ]
 }

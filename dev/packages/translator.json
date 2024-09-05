@@ -1,77 +1,164 @@
 {
-  "includes": {
-    "keyval": []
-  },
-  "macros": {
-    "newtranslation{}{}": {
-      "snippet": "newtranslation{${1:key}}{${2:translation}}"
+  "deps": [
+    {
+      "name": "keyval"
+    }
+  ],
+  "macros": [
+    {
+      "name": "newtranslation",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:key%plain}}{${2:translation}}"
+      }
     },
-    "newtranslation[]{}{}": {
-      "snippet": "newtranslation[${3:options}]{${1:key}}{${2:translation}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "newtranslation",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:key%plain}}{${2:translation}}"
+      }
     },
-    "renewtranslation{}{}": {
-      "snippet": "renewtranslation{${1:key}}{${2:translation}}"
+    {
+      "name": "renewtranslation",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:key%plain}}{${2:translation}}"
+      }
     },
-    "renewtranslation[]{}{}": {
-      "snippet": "renewtranslation[${3:options}]{${1:key}}{${2:translation}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "renewtranslation",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:key%plain}}{${2:translation}}"
+      }
     },
-    "providetranslation{}{}": {
-      "snippet": "providetranslation{${1:key}}{${2:translation}}"
+    {
+      "name": "providetranslation",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:key%plain}}{${2:translation}}"
+      }
     },
-    "providetranslation[]{}{}": {
-      "snippet": "providetranslation[${3:options}]{${1:key}}{${2:translation}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "providetranslation",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:key%plain}}{${2:translation}}"
+      }
     },
-    "deftranslation{}{}": {
-      "snippet": "deftranslation{${1:key}}{${2:translation}}"
+    {
+      "name": "deftranslation",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:key%plain}}{${2:translation}}"
+      }
     },
-    "deftranslation[]{}{}": {
-      "snippet": "deftranslation[${3:options}]{${1:key}}{${2:translation}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "deftranslation",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:key%plain}}{${2:translation}}"
+      }
     },
-    "ProvidesDictionary{}{}": {
-      "snippet": "ProvidesDictionary{${1:kind}}{${2:language}}"
+    {
+      "name": "ProvidesDictionary",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:kind}}{${2:language}}"
+      }
     },
-    "ProvidesDictionary{}{}[]": {
-      "snippet": "ProvidesDictionary{${1:kind}}{${2:language}}[${3:version}]"
+    {
+      "name": "ProvidesDictionary",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:kind}}{${2:language}}[${3:version}]"
+      }
     },
-    "usedictionary{}": {
-      "snippet": "usedictionary{${1:kind}}"
+    {
+      "name": "usedictionary",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:kind}}"
+      }
     },
-    "uselanguage{}": {
-      "snippet": "uselanguage{${1:lang1,${2:lang2},...}}"
+    {
+      "name": "uselanguage",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:lang1,lang2,...}}"
+      }
     },
-    "translate{}": {
-      "snippet": "translate{${1:key}}"
+    {
+      "name": "translate",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:key%plain}}"
+      }
     },
-    "translate[]{}": {
-      "snippet": "translate[${2:options}]{${1:key}}"
+    {
+      "name": "translate",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:key%plain}}"
+      }
     },
-    "translatelet{}{}": {
-      "snippet": "translatelet{${1:macro}}{${2:key}}"
+    {
+      "name": "translatelet",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:macro%cmd}}{${2:key%plain}}"
+      }
     },
-    "translatelet[]{}{}": {
-      "snippet": "translatelet[${3:options}]{${1:macro}}{${2:key}}"
+    {
+      "name": "translatelet",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:macro%cmd}}{${2:key%plain}}"
+      }
     },
-    "languagepath{}": {
-      "snippet": "languagepath{${1:path}}"
+    {
+      "name": "languagepath",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:path}}"
+      }
     },
-    "languagealias{}{}": {
-      "snippet": "languagealias{${1:name}}{${2:language list}}"
+    {
+      "name": "languagealias",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:language list}}"
+      }
     },
-    "languagename": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "to=${1:language}"
+    {
+      "name": "languagename",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\newtranslation,\\renewtranslation,\\providetranslation,\\deftranslation,\\translate,\\translatelet": [
+      "to=${1:language}\r"
     ]
-  ]
+  },
+  "args": []
 }

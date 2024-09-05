@@ -1,22 +1,35 @@
 {
-  "includes": {
-    "fontenc": [],
-    "ifthen": [],
-    "fix-cm": [
-      "fix-cm"
+  "deps": [
+    {
+      "name": "fontenc"
+    },
+    {
+      "name": "ifthen"
+    },
+    {
+      "name": "fix-cm",
+      "if": "fix-cm"
+    }
+  ],
+  "macros": [
+    {
+      "name": "newstylenums",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/hfoldsty#c": [
+      "oldstylett\r",
+      "newstylett\r",
+      "origtt\r",
+      "fix-cm\r"
     ]
   },
-  "macros": {
-    "newstylenums{}": {
-      "snippet": "newstylenums{${1:text}}"
-    }
-  },
-  "envs": {},
-  "options": [
-    "oldstylett",
-    "newstylett",
-    "origtt",
-    "fix-cm"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/hfoldsty#c"
+  ]
 }

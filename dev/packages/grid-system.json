@@ -1,38 +1,65 @@
 {
-  "includes": {
-    "calc": [],
-    "environ": [],
-    "forloop": [],
-    "ifthen": [],
-    "xkeyval": []
-  },
-  "macros": {},
-  "envs": {
-    "Row": {},
-    "Row[]": {
-      "name": "Row",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "calc"
     },
-    "Cell": {},
-    "row{}{}": {
-      "name": "row",
-      "snippet": "{${1:num of cols}}{${2:num of cells}}"
+    {
+      "name": "environ"
     },
-    "row[]{}{}": {
-      "name": "row",
-      "snippet": "[${3:options}]{${1:num of cols}}{${2:num of cells}}"
+    {
+      "name": "forloop"
     },
-    "cell{}": {
-      "name": "cell",
-      "snippet": "{${1:num of cols}}"
+    {
+      "name": "ifthen"
+    },
+    {
+      "name": "xkeyval"
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [],
+  "envs": [
+    {
+      "name": "Row"
+    },
+    {
+      "name": "Row",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "Cell"
+    },
+    {
+      "name": "row",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:num of cols}}{${2:num of cells}}"
+      }
+    },
+    {
+      "name": "row",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:num of cols}}{${2:num of cells}}"
+      }
+    },
+    {
+      "name": "cell",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:num of cols}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\begin{Row},\\begin{row}": [
       "cellsep="
     ]
-  ]
+  },
+  "args": []
 }

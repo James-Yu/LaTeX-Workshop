@@ -1,59 +1,136 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-xkey": [],
-    "pst-node": []
-  },
-  "macros": {
-    "psProtractor{}()": {
-      "snippet": "psProtractor{${1:angle}}(${2:x},${3:y})"
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "psProtractor[]{}()": {
-      "snippet": "psProtractor[${2:options}]{${1:angle}}(${3:x},${4:y})"
+    {
+      "name": "pst-xkey"
     },
-    "ProLineCol": {},
-    "ProFillCol": {},
-    "psPencil{}()": {
-      "snippet": "psPencil{${1:angle}}(${2:x},${3:y})"
+    {
+      "name": "pst-node"
+    }
+  ],
+  "macros": [
+    {
+      "name": "psProtractor",
+      "arg": {
+        "format": "{}()",
+        "snippet": "{${1:angle}}(${2:x},${3:y})"
+      }
     },
-    "psPencil[]{}()": {
-      "snippet": "psPencil[${2:options}]{${1:angle}}(${3:x},${4:y})"
+    {
+      "name": "psProtractor",
+      "arg": {
+        "format": "[]{}()",
+        "snippet": "[${2:options%keyvals}]{${1:angle}}(${3:x},${4:y})"
+      }
     },
-    "pencilColA": {},
-    "pencilColB": {},
-    "psRuler{}()": {
-      "snippet": "psRuler{${1:angle}}(${2:x},${3:y})"
+    {
+      "name": "ProLineCol",
+      "unusual": true
     },
-    "psRuler[]{}()": {
-      "snippet": "psRuler[${2:options}]{${1:angle}}(${3:x},${4:y})"
+    {
+      "name": "ProFillCol",
+      "unusual": true
     },
-    "RulerFillCol": {},
-    "psCompass{}()": {
-      "snippet": "psCompass{${1:radius}}(${2:x},${3:y})"
+    {
+      "name": "psPencil",
+      "arg": {
+        "format": "{}()",
+        "snippet": "{${1:angle}}(${2:x},${3:y})"
+      }
     },
-    "psCompass[]{}()": {
-      "snippet": "psCompass[${2:options}]{${1:radius}}(${3:x},${4:y})"
+    {
+      "name": "psPencil",
+      "arg": {
+        "format": "[]{}()",
+        "snippet": "[${2:options%keyvals}]{${1:angle}}(${3:x},${4:y})"
+      }
     },
-    "PoCFillCol": {},
-    "PoCMineCol": {},
-    "psDistAB()(){}": {
-      "snippet": "psDistAB(${2:A})(${3:B}){${1:name}}"
+    {
+      "name": "pencilColA",
+      "unusual": true
     },
-    "psAngleAB()(){}": {
-      "snippet": "psAngleAB(${2:A})(${3:B}){${1:name}}"
+    {
+      "name": "pencilColB",
+      "unusual": true
     },
-    "psAngleAOB()()(){}": {
-      "snippet": "psAngleAOB(${2:A})(${3:O})(${4:B}){${1:name}}"
+    {
+      "name": "psRuler",
+      "arg": {
+        "format": "{}()",
+        "snippet": "{${1:angle}}(${2:x},${3:y})"
+      }
     },
-    "psParallels()()()": {
-      "snippet": "psParallels(${1:A})(${2:B})(${3:C})"
+    {
+      "name": "psRuler",
+      "arg": {
+        "format": "[]{}()",
+        "snippet": "[${2:options%keyvals}]{${1:angle}}(${3:x},${4:y})"
+      }
     },
-    "psParallels[]()()()": {
-      "snippet": "psParallels[${1:options}](${2:A})(${3:B})(${4:C})"
+    {
+      "name": "RulerFillCol",
+      "unusual": true
     },
-    "PSTgeometrictoolsLoaded": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "psCompass",
+      "arg": {
+        "format": "{}()",
+        "snippet": "{${1:radius}}(${2:x},${3:y})"
+      }
+    },
+    {
+      "name": "psCompass",
+      "arg": {
+        "format": "[]{}()",
+        "snippet": "[${2:options%keyvals}]{${1:radius}}(${3:x},${4:y})"
+      }
+    },
+    {
+      "name": "PoCFillCol",
+      "unusual": true
+    },
+    {
+      "name": "PoCMineCol",
+      "unusual": true
+    },
+    {
+      "name": "psDistAB(A)(B)",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "psAngleAB(A)(B)",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "psAngleAOB(A)(O)(B)",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "psParallels(A)(B)(C)"
+    },
+    {
+      "name": "psParallels",
+      "arg": {
+        "format": "[]()()()",
+        "snippet": "[${1:options%keyvals}](${2:A})(${3:B})(${4:C})"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

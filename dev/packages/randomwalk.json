@@ -1,26 +1,32 @@
 {
-  "includes": {
-    "pgfcore": [],
-    "lcg": []
-  },
-  "macros": {
-    "RandomWalk{}": {
-      "snippet": "RandomWalk{${1:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "pgfcore"
+    },
+    {
+      "name": "lcg"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "number=${1:integer}",
+  ],
+  "macros": [
+    {
+      "name": "RandomWalk",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\RandomWalk": [
+      "number=${1:integer}\r",
       "length=",
-      "angles={${1:ang1,ang2,...}}",
-      "degree",
-      "degrees",
-      "angles-relative",
+      "angles={${1:ang1,ang2,...}}\r",
+      "degree\r",
+      "degrees\r",
+      "angles-relative\r",
       "revert-random"
     ]
-  ]
+  },
+  "args": []
 }

@@ -1,63 +1,142 @@
 {
-  "includes": {
-    "xstring": []
-  },
-  "macros": {
-    "systeme{}": {
-      "snippet": "systeme{${1:eq1,${2:eq2},...}}"
+  "deps": [
+    {
+      "name": "xstring"
+    }
+  ],
+  "macros": [
+    {
+      "name": "systeme",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:eq1,eq2,...%formula}}"
+      }
     },
-    "systeme[]{}": {
-      "snippet": "systeme[${2:alignment_chars}]{${1:eq1,${3:eq2},...}}"
+    {
+      "name": "systeme",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:alignment_chars%formula}]{${1:eq1,eq2,...%formula}}"
+      }
     },
-    "syslineskipcoeff{}": {
-      "snippet": "syslineskipcoeff{${1:value}}"
+    {
+      "name": "syslineskipcoeff",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:value}}"
+      }
     },
-    "sysdelim{}{}": {
-      "snippet": "sysdelim{${1:delim1}}{${2:delim2}}"
+    {
+      "name": "sysdelim",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:delim1%formula}}{${2:delim2%formula}}"
+      }
     },
-    "sysequivsign{}{}": {
-      "snippet": "sysequivsign{${1:sign}}{${2:substitution}}"
+    {
+      "name": "sysequivsign",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:sign%formula}}{${2:substitution%formula}}"
+      }
     },
-    "sysaddeqsign{}": {
-      "snippet": "sysaddeqsign{${1:sign}}"
+    {
+      "name": "sysaddeqsign",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:sign%formula}}"
+      }
     },
-    "sysremoveeqsign{}": {
-      "snippet": "sysremoveeqsign{${1:sign}}"
+    {
+      "name": "sysremoveeqsign",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:sign%formula}}"
+      }
     },
-    "syseqsep{}": {
-      "snippet": "syseqsep{${1:character}}"
+    {
+      "name": "syseqsep",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:character%formula}}"
+      }
     },
-    "sysalign{}": {
-      "snippet": "sysalign{${1:l|c|r,l|c|r}}"
+    {
+      "name": "sysalign",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:l|${2:c}|${3:r,l}|${4:c}|r}}"
+      }
     },
-    "syssignspace{}": {
-      "snippet": "syssignspace{${1:dimen}}"
+    {
+      "name": "syssignspace",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:dimen%l}}"
+      }
     },
-    "syseqspace{}": {
-      "snippet": "syseqspace{${1:dimen}}"
+    {
+      "name": "syseqspace",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:dimen%l}}"
+      }
     },
-    "sysextracolsign{}": {
-      "snippet": "sysextracolsign{${1:sign}}"
+    {
+      "name": "sysextracolsign",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:sign%formula}}"
+      }
     },
-    "syscodeextracol{}{}": {
-      "snippet": "syscodeextracol{${1:start code}}{${2:end code}}"
+    {
+      "name": "syscodeextracol",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:start code}}{${2:end code}}"
+      }
     },
-    "sysautonum{}": {
-      "snippet": "sysautonum{${1:expression}}"
+    {
+      "name": "sysautonum",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression%formula}}"
+      }
     },
-    "sysautonum*{}": {
-      "snippet": "sysautonum*{${1:expression}}"
+    {
+      "name": "sysautonum*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression%formula}}"
+      }
     },
-    "SYSeqnum": {},
-    "sysreseteqnum": {},
-    "sysnosubstitute": {},
-    "SYSunder": {},
-    "SYSstyfile": {},
-    "SYSname": {},
-    "SYSver": {},
-    "SYSdate": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "SYSeqnum",
+      "unusual": true
+    },
+    {
+      "name": "sysreseteqnum",
+      "unusual": true
+    },
+    {
+      "name": "sysnosubstitute",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

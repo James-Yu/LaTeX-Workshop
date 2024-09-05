@@ -1,27 +1,46 @@
 {
-  "includes": {
-    "amstext": [],
-    "spbmark": [
-      "spbmark"
+  "deps": [
+    {
+      "name": "amstext"
+    },
+    {
+      "name": "spbmark",
+      "if": "spbmark"
+    }
+  ],
+  "macros": [
+    {
+      "name": "SetAltSubscriptCommand",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:command}}"
+      }
+    },
+    {
+      "name": "SetAltSuperscriptCommand",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:command}}"
+      }
+    },
+    {
+      "name": "SetAltSubSupCommands",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:command}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/altsubsup#c": [
+      "subscript\r",
+      "superscript\r",
+      "both\r",
+      "spbmark\r"
     ]
   },
-  "macros": {
-    "SetAltSubscriptCommand{}": {
-      "snippet": "SetAltSubscriptCommand{${1:command}}"
-    },
-    "SetAltSuperscriptCommand{}": {
-      "snippet": "SetAltSuperscriptCommand{${1:command}}"
-    },
-    "SetAltSubSupCommands{}": {
-      "snippet": "SetAltSubSupCommands{${1:command}}"
-    }
-  },
-  "envs": {},
-  "options": [
-    "subscript",
-    "superscript",
-    "both",
-    "spbmark"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/altsubsup#c"
+  ]
 }

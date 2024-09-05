@@ -1,121 +1,345 @@
 {
-  "includes": {
-    "adjustbox": [],
-    "xcolor": [],
-    "colortbl": [],
-    "fontawesome": [],
-    "tikz": [],
-    "longtable": [],
-    "tikzlibrarymatrix": [],
-    "tikzlibrarypositioning": [],
-    "tikzlibraryfit": [],
-    "tikzlibrarycalc": [],
-    "tikzlibraryshapes": [],
-    "tikzlibrarybackgrounds": [],
-    "tikzlibrarymath": [],
-    "tikzlibrarytrees": [],
-    "tikzlibrarydecorations.markings": [],
-    "tikzlibrarydecorations": [],
-    "tikzlibrarydecorations.pathmorphing": [],
-    "translations": [],
-    "xspace": [],
-    "ifthen": []
-  },
-  "macros": {
-    "setcolor{}{}": {
-      "snippet": "setcolor{${1:name}}{${2:hex color code}}"
+  "deps": [
+    {
+      "name": "adjustbox"
     },
-    "dropdown{}": {
-      "snippet": "dropdown{${1:text}}"
+    {
+      "name": "xcolor"
     },
-    "intbox{}": {
-      "snippet": "intbox{${1:text}}"
+    {
+      "name": "colortbl"
     },
-    "intbox[]{}": {
-      "snippet": "intbox[${2:options}]{${1:text}}"
+    {
+      "name": "fontawesome"
     },
-    "stringbox{}": {
-      "snippet": "stringbox{${1:text}}"
+    {
+      "name": "tikz"
     },
-    "stringbox[]{}": {
-      "snippet": "stringbox[${2:options}]{${1:text}}"
+    {
+      "name": "longtable"
     },
-    "boolbox{}": {
-      "snippet": "boolbox{${1:text}}"
+    {
+      "name": "tikzlibrarymatrix"
     },
-    "boolbox[]{}": {
-      "snippet": "boolbox[${2:options}]{${1:text}}"
+    {
+      "name": "tikzlibrarypositioning"
     },
-    "bild{}": {
-      "snippet": "bild{${1:content}}"
+    {
+      "name": "tikzlibraryfit"
     },
-    "bild[]{}": {
-      "snippet": "bild[${2:scale}]{${1:content}}"
+    {
+      "name": "tikzlibrarycalc"
     },
-    "emptyled": {},
-    "fullled": {},
-    "X": {
-      "detail": "𝑋",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL X"
+    {
+      "name": "tikzlibraryshapes"
     },
-    "wenndann{}{}{}": {
-      "snippet": "wenndann{${1:text}}{${2:then node code}}{${3:node name}}"
+    {
+      "name": "tikzlibrarybackgrounds"
     },
-    "wenndann[]{}{}{}": {
-      "snippet": "wenndann[${4:options}]{${1:text}}{${2:then node code}}{${3:node name}}"
+    {
+      "name": "tikzlibrarymath"
     },
-    "wenndannsonst{}{}{}{}": {
-      "snippet": "wenndannsonst{${1:text}}{${2:then node code}}{${3:else node code}}{${4:node name}}"
+    {
+      "name": "tikzlibrarytrees"
     },
-    "wenndannsonst[]{}{}{}{}": {
-      "snippet": "wenndannsonst[${5:options}]{${1:text}}{${2:then node code}}{${3:else node code}}{${4:node name}}"
+    {
+      "name": "tikzlibrarydecorations.markings"
     },
-    "schleife{}{}{}{}": {
-      "snippet": "schleife{${1:text}}{${2:then node code}}{${3:else node code}}{${4:node name}}"
+    {
+      "name": "tikzlibrarydecorations"
     },
-    "schleife[]{}{}{}{}": {
-      "snippet": "schleife[${5:options}]{${1:text}}{${2:then node code}}{${3:else node code}}{${4:node name}}"
+    {
+      "name": "tikzlibrarydecorations.pathmorphing"
     },
-    "ifthenblocks{}{}{}": {
-      "snippet": "ifthenblocks{${1:text}}{${2:then node code}}{${3:node name}}"
+    {
+      "name": "translations"
     },
-    "ifthenblocks[]{}{}{}": {
-      "snippet": "ifthenblocks[${4:options}]{${1:text}}{${2:then node code}}{${3:node name}}"
+    {
+      "name": "xspace"
     },
-    "ifthenelseblocks{}{}{}{}": {
-      "snippet": "ifthenelseblocks{${1:text}}{${2:then node code}}{${3:else node code}}{${4:node name}}"
-    },
-    "ifthenelseblocks[]{}{}{}{}": {
-      "snippet": "ifthenelseblocks[${5:options}]{${1:text}}{${2:then node code}}{${3:else node code}}{${4:node name}}"
-    },
-    "loopblocks{}{}{}{}": {
-      "snippet": "loopblocks{${1:text}}{${2:then node code}}{${3:else node code}}{${4:node name}}"
-    },
-    "loopblocks[]{}{}{}{}": {
-      "snippet": "loopblocks[${5:options}]{${1:text}}{${2:then node code}}{${3:else node code}}{${4:node name}}"
-    },
-    "einruecken{}": {
-      "snippet": "einruecken{${1:nodes}}"
-    },
-    "moveindent{}": {
-      "snippet": "moveindent{${1:nodes}}"
-    },
-    "usb": {},
-    "farbe{}": {
-      "snippet": "farbe{${1:color}}"
-    },
-    "setupquotes": {},
-    "myspace": {},
-    "myshift": {},
-    "blockhspace": {},
-    "blockhspaceoben": {},
-    "blockhspaceunten": {},
-    "blockvspace": {},
-    "dreieckseite": {}
-  },
-  "envs": {},
-  "options": [
-    "print"
+    {
+      "name": "ifthen"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "setcolor",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name%specialDef}}{${2:hex color code}}"
+      }
+    },
+    {
+      "name": "dropdown",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "intbox",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "intbox",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "stringbox",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "stringbox",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "boolbox",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "boolbox",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "bild",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content}}"
+      }
+    },
+    {
+      "name": "bild",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:scale}]{${1:content}}"
+      }
+    },
+    {
+      "name": "emptyled"
+    },
+    {
+      "name": "fullled"
+    },
+    {
+      "name": "X"
+    },
+    {
+      "name": "0"
+    },
+    {
+      "name": "wenndann",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:text}}{${2:then node code}}{${3:node name}}"
+      }
+    },
+    {
+      "name": "wenndann",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:options%keyvals}]{${1:text}}{${2:then node code}}{${3:node name}}"
+      }
+    },
+    {
+      "name": "wenndannsonst",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:text}}{${2:then node code}}{${3:else node code}}{${4:node name}}"
+      }
+    },
+    {
+      "name": "wenndannsonst",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "[${5:options%keyvals}]{${1:text}}{${2:then node code}}{${3:else node code}}{${4:node name}}"
+      }
+    },
+    {
+      "name": "schleife",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:text}}{${2:then node code}}{${3:else node code}}{${4:node name}}"
+      }
+    },
+    {
+      "name": "schleife",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "[${5:options%keyvals}]{${1:text}}{${2:then node code}}{${3:else node code}}{${4:node name}}"
+      }
+    },
+    {
+      "name": "ifthenblocks",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:text}}{${2:then node code}}{${3:node name}}"
+      }
+    },
+    {
+      "name": "ifthenblocks",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:options%keyvals}]{${1:text}}{${2:then node code}}{${3:node name}}"
+      }
+    },
+    {
+      "name": "ifthenelseblocks",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:text}}{${2:then node code}}{${3:else node code}}{${4:node name}}"
+      }
+    },
+    {
+      "name": "ifthenelseblocks",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "[${5:options%keyvals}]{${1:text}}{${2:then node code}}{${3:else node code}}{${4:node name}}"
+      }
+    },
+    {
+      "name": "loopblocks",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:text}}{${2:then node code}}{${3:else node code}}{${4:node name}}"
+      }
+    },
+    {
+      "name": "loopblocks",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "[${5:options%keyvals}]{${1:text}}{${2:then node code}}{${3:else node code}}{${4:node name}}"
+      }
+    },
+    {
+      "name": "einruecken",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:nodes}}"
+      }
+    },
+    {
+      "name": "moveindent",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:nodes}}"
+      }
+    },
+    {
+      "name": "usb"
+    },
+    {
+      "name": "farbe",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "setupquotes",
+      "unusual": true
+    },
+    {
+      "name": "myspace",
+      "unusual": true
+    },
+    {
+      "name": "myshift",
+      "unusual": true
+    },
+    {
+      "name": "blockhspace",
+      "unusual": true
+    },
+    {
+      "name": "blockhspaceoben",
+      "unusual": true
+    },
+    {
+      "name": "blockhspaceunten",
+      "unusual": true
+    },
+    {
+      "name": "blockvspace",
+      "unusual": true
+    },
+    {
+      "name": "dreieckseite",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/tikzcodeblocks#c": [
+      "print"
+    ],
+    "\\begin{tikzpicture}#c": [
+      "codeblocks\r",
+      "openroberta\r",
+      "eckig\r",
+      "nocolor\r",
+      "umgebung\r"
+    ],
+    "\\begin{tikzpicture}#c,\\node#c,\\intbox#c,\\stringbox#c,\\boolbox#c,\\wenndann#c,\\wenndannsonst#c,\\schleife#c,\\ifthenblocks#c,\\ifthenelseblocks#c,\\loopblocks#c": [
+      "grundlage\r",
+      "eingabe\r",
+      "schleife\r",
+      "logik\r",
+      "musik\r",
+      "led\r",
+      "platzhalter\r",
+      "mathe\r",
+      "funk\r",
+      "motor\r",
+      "zeichenkette\r",
+      "spiel\r",
+      "bild\r",
+      "pins\r",
+      "konsole\r",
+      "steuerung\r",
+      "bluetooth\r",
+      "start\r",
+      "aktion\r",
+      "sensor\r",
+      "kontrolle\r",
+      "liste\r",
+      "farbe\r",
+      "bild\r",
+      "variablen\r",
+      "funktion\r",
+      "nachricht\r",
+      "unter={${1:node}}{${2:x-factor}}{${3:y-factor}}\r",
+      "under={${1:node}}{${2:x-factor}}{${3:y-factor}}\r",
+      "robertashape\r",
+      "puzzleteil\r",
+      "keinezacken\r",
+      "pinlow\r",
+      "pinhigh\r",
+      "nopins\r",
+      "square\r",
+      "puzzlepiece\r",
+      "boden\r",
+      "floor\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/tikzcodeblocks#c"
+  ]
 }

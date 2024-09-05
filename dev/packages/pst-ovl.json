@@ -1,23 +1,46 @@
 {
-  "includes": {
-    "pstricks": []
-  },
-  "macros": {
-    "AltOverlayMode": {},
-    "thepsoverlaybox": {},
-    "psoverlaybox": {},
-    "endpsoverlaybox": {},
-    "psoverlay{}": {
-      "snippet": "psoverlay{${1:number}}"
+  "deps": [
+    {
+      "name": "pstricks"
+    }
+  ],
+  "macros": [
+    {
+      "name": "AltOverlayMode",
+      "unusual": true
     },
-    "psputoverlaybox{}": {
-      "snippet": "psputoverlaybox{${1:number}}"
+    {
+      "name": "thepsoverlaybox",
+      "unusual": true
     },
-    "PSTovlloaded": {}
-  },
-  "envs": {
-    "psoverlaybox": {}
-  },
-  "options": [],
-  "keyvals": []
+    {
+      "name": "psoverlaybox",
+      "unusual": true
+    },
+    {
+      "name": "endpsoverlaybox",
+      "unusual": true
+    },
+    {
+      "name": "psoverlay",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "psputoverlaybox",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "psoverlaybox"
+    }
+  ],
+  "keys": {},
+  "args": []
 }

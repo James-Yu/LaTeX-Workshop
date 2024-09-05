@@ -1,21 +1,34 @@
 {
-  "includes": {
-    "aeb_pro": [],
-    "xkeyval": []
-  },
-  "macros": {
-    "setStampPath{}": {
-      "snippet": "setStampPath{${1:path}}"
+  "deps": [
+    {
+      "name": "aeb_pro"
     },
-    "makeStamps{{}{}": {
-      "snippet": "makeStamps{{${1:name=name1,${3:page=page1}}{${2:name=name2},page=page2}...}}"
+    {
+      "name": "xkeyval"
+    }
+  ],
+  "macros": [
+    {
+      "name": "setStampPath",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:path%definition}}"
+      }
     },
-    "definePath{}{}": {
-      "snippet": "definePath{${1:cmd}}{${2:path}}"
+    {
+      "name": "definePath",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:path%definition}}"
+      }
     },
-    "predocassemJS": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "predocassemJS",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

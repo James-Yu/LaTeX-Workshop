@@ -1,72 +1,145 @@
 {
-  "includes": {
-    "fontspec": [],
-    "etoolbox": [],
-    "polyglossia": [],
-    "CharisSIL": []
-  },
-  "macros": {
-    "banglatext{}": {
-      "snippet": "banglatext{${1:bangla text}}"
+  "deps": [
+    {
+      "name": "fontspec"
     },
-    "banglabold{}": {
-      "snippet": "banglabold{${1:bangla text}}"
+    {
+      "name": "etoolbox"
     },
-    "banglaitalic{}": {
-      "snippet": "banglaitalic{${1:bangla text}}"
+    {
+      "name": "polyglossia"
     },
-    "banglatranslit{}": {
-      "snippet": "banglatranslit{${1:bangla text}}"
-    },
-    "banglaipa{}": {
-      "snippet": "banglaipa{${1:bangla text}}"
-    },
-    "banglapage": {},
-    "banglasection": {},
-    "banglaenumerate": {},
-    "banglaequation": {},
-    "banglatable": {},
-    "banglafigure": {},
-    "banglaallcounters": {},
-    "bengalinum{}": {
-      "snippet": "bengalinum{${1:counter}}"
-    },
-    "bengalialpha{}": {
-      "snippet": "bengalialpha{${1:counter}}"
-    },
-    "banglaipafont": {},
-    "bdnhbold": {},
-    "bdnhitalic": {},
-    "bdnhtext": {},
-    "bdnhtranslitfont": {},
-    "doindictrans": {},
-    "fooA": {},
-    "indictrans{}": {
-      "snippet": "indictrans{${1:text}}"
-    },
-    "translitfont{}": {
-      "snippet": "translitfont{${1:text}}"
-    },
-    "xgenerateTransliteration": {},
-    "xxgenerateTransliteration": {},
-    "xxxgenerateTransliteration{}": {
-      "snippet": "xxxgenerateTransliteration{${1:arg}}"
-    },
-    "zzrow{}{}": {
-      "snippet": "zzrow{${1:arg1}}{${2:arg2}}"
-    },
-    "zztable{}": {
-      "snippet": "zztable{${1:arg}}"
+    {
+      "name": "CharisSIL"
     }
-  },
-  "envs": {
-    "isoindictranse": {}
-  },
-  "options": [
-    "kalpurush",
-    "shimanto",
-    "notosansbengali",
-    "notoserifbengali"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "banglatext",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bangla text}}"
+      }
+    },
+    {
+      "name": "banglabold",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bangla text}}"
+      }
+    },
+    {
+      "name": "banglaitalic",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bangla text}}"
+      }
+    },
+    {
+      "name": "banglatranslit",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bangla text}}"
+      }
+    },
+    {
+      "name": "banglaipa",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bangla text}}"
+      }
+    },
+    {
+      "name": "banglapage"
+    },
+    {
+      "name": "banglasection"
+    },
+    {
+      "name": "banglaenumerate"
+    },
+    {
+      "name": "banglaequation"
+    },
+    {
+      "name": "banglatable"
+    },
+    {
+      "name": "banglafigure"
+    },
+    {
+      "name": "banglaallcounters"
+    },
+    {
+      "name": "bengalinum",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "bengalialpha",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "banglaipafont",
+      "unusual": true
+    },
+    {
+      "name": "bdnhbold",
+      "unusual": true
+    },
+    {
+      "name": "bdnhitalic",
+      "unusual": true
+    },
+    {
+      "name": "bdnhtext",
+      "unusual": true
+    },
+    {
+      "name": "bdnhtranslitfont",
+      "unusual": true
+    },
+    {
+      "name": "doindictrans",
+      "unusual": true
+    },
+    {
+      "name": "indictrans",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "translitfont",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "isoindictranse",
+      "unusual": true
+    }
+  ],
+  "keys": {
+    "\\usepackage/bangla#c": [
+      "kalpurush\r",
+      "shimanto\r",
+      "notosansbengali\r",
+      "notoserifbengali\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/bangla#c"
+  ]
 }

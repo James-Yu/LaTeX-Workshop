@@ -1,54 +1,113 @@
 {
-  "includes": {
-    "amstext": [],
-    "upgreek": [
-      "upgreek"
+  "deps": [
+    {
+      "name": "amstext"
+    },
+    {
+      "name": "upgreek",
+      "if": "upgreek"
+    }
+  ],
+  "macros": [
+    {
+      "name": "engrec",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "EnGrec",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "Alpha",
+      "unusual": true
+    },
+    {
+      "name": "Beta",
+      "unusual": true
+    },
+    {
+      "name": "Epsilon",
+      "unusual": true
+    },
+    {
+      "name": "Zeta",
+      "unusual": true
+    },
+    {
+      "name": "Eta",
+      "unusual": true
+    },
+    {
+      "name": "Iota",
+      "unusual": true
+    },
+    {
+      "name": "Kappa",
+      "unusual": true
+    },
+    {
+      "name": "Mu",
+      "unusual": true
+    },
+    {
+      "name": "Nu",
+      "unusual": true
+    },
+    {
+      "name": "Omicron",
+      "unusual": true
+    },
+    {
+      "name": "Rho",
+      "unusual": true
+    },
+    {
+      "name": "Tau",
+      "unusual": true
+    },
+    {
+      "name": "Chi",
+      "unusual": true
+    },
+    {
+      "name": "omicron",
+      "unusual": true
+    },
+    {
+      "name": "upomicron",
+      "unusual": true,
+      "detail": "ο",
+      "doc": "Small omicron, greek"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/engrec#c": [
+      "upright\r",
+      "sloped\r",
+      "upgreek\r",
+      "slgreek\r",
+      "varepsilon\r",
+      "epsilon\r",
+      "vartheta\r",
+      "theta\r",
+      "varpi\r",
+      "pi\r",
+      "varrho\r",
+      "rho\r",
+      "varsigma\r",
+      "sigma\r",
+      "varphi\r",
+      "phi\r"
     ]
   },
-  "macros": {
-    "engrec{}": {
-      "snippet": "engrec{${1:counter}}"
-    },
-    "EnGrec{}": {
-      "snippet": "EnGrec{${1:counter}}"
-    },
-    "Alpha": {},
-    "Beta": {},
-    "Epsilon": {},
-    "Zeta": {},
-    "Eta": {},
-    "Iota": {},
-    "Kappa": {},
-    "Mu": {},
-    "Nu": {},
-    "Omicron": {},
-    "Rho": {},
-    "Tau": {},
-    "Chi": {},
-    "omicron": {},
-    "upomicron": {
-      "detail": "ο",
-      "documentation": "small omicron, greek"
-    }
-  },
-  "envs": {},
-  "options": [
-    "upright",
-    "sloped",
-    "upgreek",
-    "slgreek",
-    "varepsilon",
-    "epsilon",
-    "vartheta",
-    "theta",
-    "varpi",
-    "pi",
-    "varrho",
-    "rho",
-    "varsigma",
-    "sigma",
-    "varphi",
-    "phi"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/engrec#c"
+  ]
 }

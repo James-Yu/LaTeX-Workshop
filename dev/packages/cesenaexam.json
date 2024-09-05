@@ -1,74 +1,128 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "graphicx": [],
-    "tikz": [],
-    "circuitikz": [],
-    "tikzlibraryintersections": [],
-    "tikzlibrarypositioning": [],
-    "tikzlibraryfit": [],
-    "tikzlibrarycalc": [],
-    "tikzlibrarythrough": [],
-    "tikzlibrarybabel": [],
-    "tikzlibrarydecorations.pathmorphing": [],
-    "tikzlibrarybackgrounds": [],
-    "titlesec": []
-  },
-  "macros": {
-    "examsection{}{}": {
-      "snippet": "examsection{${1:title}}{${2:italic text}}"
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "examsection*{}{}": {
-      "snippet": "examsection*{${1:title}}{${2:italic text}}"
+    {
+      "name": "graphicx"
     },
-    "boxempty": {},
-    "boxcheck": {},
-    "examparts{}": {
-      "snippet": "examparts{${1:content}}"
+    {
+      "name": "tikz"
     },
-    "maketitle{}{}{}{}{}": {
-      "snippet": "maketitle{${1:surname}}{${2:name}}{${3:id}}{${4:signature}}{${5:N}}"
+    {
+      "name": "circuitikz"
     },
-    "maketitle[]{}{}{}{}{}": {
-      "snippet": "maketitle[${6:options}]{${1:surname}}{${2:name}}{${3:id}}{${4:signature}}{${5:N}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "tikzlibraryintersections"
     },
-    "maketitle*{}{}{}{}{}": {
-      "snippet": "maketitle*{${1:surname}}{${2:name}}{${3:id}}{${4:signature}}{${5:N}}"
+    {
+      "name": "tikzlibrarypositioning"
     },
-    "maketitle*[]{}{}{}{}{}": {
-      "snippet": "maketitle*[${6:options}]{${1:surname}}{${2:name}}{${3:id}}{${4:signature}}{${5:N}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "tikzlibraryfit"
     },
-    "examtwoblocks{}{}{}{}": {
-      "snippet": "examtwoblocks{${1:length1}}{${2:length2}}{${3:block1}}{${4:block2}}"
+    {
+      "name": "tikzlibrarycalc"
     },
-    "examtwoblockstop{}{}{}{}": {
-      "snippet": "examtwoblockstop{${1:length1}}{${2:length2}}{${3:block1}}{${4:block2}}"
+    {
+      "name": "tikzlibrarythrough"
     },
-    "examoneblocktop{}{}": {
-      "snippet": "examoneblocktop{${1:length}}{${2:block}}"
+    {
+      "name": "tikzlibrarybabel"
     },
-    "sectionfont": {},
-    "boxlen": {},
-    "cesenaexamversion": {},
-    "lastboxlen": {},
-    "minheighttypebox": {}
-  },
-  "envs": {},
-  "options": [
-    "boxed"
+    {
+      "name": "tikzlibrarydecorations.pathmorphing"
+    },
+    {
+      "name": "tikzlibrarybackgrounds"
+    },
+    {
+      "name": "titlesec"
+    }
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "examsection",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:title}}{${2:italic text%text}}"
+      }
+    },
+    {
+      "name": "examsection*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:title}}{${2:italic text%text}}"
+      }
+    },
+    {
+      "name": "boxempty"
+    },
+    {
+      "name": "boxcheck"
+    },
+    {
+      "name": "examparts",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content%text}}"
+      }
+    },
+    {
+      "name": "maketitle",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:surname}}{${2:name}}{${3:id}}{${4:signature}}{${5:N}}"
+      }
+    },
+    {
+      "name": "maketitle",
+      "arg": {
+        "format": "[]{}{}{}{}{}",
+        "snippet": "[${6:options%keyvals}]{${1:surname}}{${2:name}}{${3:id}}{${4:signature}}{${5:N}}"
+      }
+    },
+    {
+      "name": "examtwoblocks",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:length1%l}}{${2:length2%l}}{${3:block1%text}}{${4:block2%text}}"
+      }
+    },
+    {
+      "name": "examtwoblockstop",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:length1%l}}{${2:length2%l}}{${3:block1%text}}{${4:block2%text}}"
+      }
+    },
+    {
+      "name": "examoneblocktop",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:length}}{${2:block%text}}"
+      }
+    },
+    {
+      "name": "sectionfont",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/cesenaexam#c": [
+      "boxed\r"
+    ],
+    "\\maketitle,\\maketitle*": [
       "textboxheight=",
       "whiteboxheight=",
-      "textboxone={${1:content}}",
-      "textboxtwo={${1:content}}",
-      "textboxthree={${1:content}}",
-      "textboxfour={${1:content}}"
+      "textboxone={${1:content}}\r",
+      "textboxtwo={${1:content}}\r",
+      "textboxthree={${1:content}}\r",
+      "textboxfour={${1:content}}\r"
     ]
+  },
+  "args": [
+    "\\usepackage/cesenaexam#c"
   ]
 }

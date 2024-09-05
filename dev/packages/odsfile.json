@@ -1,62 +1,107 @@
 {
-  "includes": {
-    "luacode": [],
-    "xkeyval": []
-  },
-  "macros": {
-    "includespread": {},
-    "includespread[]": {
-      "snippet": "includespread[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "luacode"
     },
-    "includespread*": {},
-    "includespread*[]": {
-      "snippet": "includespread*[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "tabletemplate{}{}": {
-      "snippet": "tabletemplate{${1:name}}{${2:code}}"
-    },
-    "AddString{}{}": {
-      "snippet": "AddString{${1:text}}{${2:position}}"
-    },
-    "AddNumber{}{}": {
-      "snippet": "AddNumber{${1:number}}{${2:position}}"
-    },
-    "loadodsfile{}": {
-      "snippet": "loadodsfile{${1:file}}"
-    },
-    "loadodsfile[]{}": {
-      "snippet": "loadodsfile[${2:options}]{${1:file}}"
-    },
-    "savespreadsheet": {},
-    "OdsNl": {},
-    "OdsLastNl": {}
-  },
-  "envs": {
-    "AddRow": {},
-    "AddRow[]": {
-      "name": "AddRow",
-      "snippet": "[${1:row number}]"
+    {
+      "name": "xkeyval"
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
-      "file=${1:file name}",
-      "sheet=${1:sheet name}",
-      "range=${1:cell1:cell2}",
-      "columns=${1|head,top,{${1:list of headings}}|}",
-      "columnbreak=${1:command}",
-      "rowseparator=${1|tableline,hline,newline,${1:command}|}",
-      "template=${2|${1:template name},{${2:code}}|}",
-      "coltypes=${1:coltypes}",
-      "rowtemplate=${2|${1:template name},{${2:code}}|}",
-      "celltemplate=${2|${1:template name},{${2:code}}|}",
-      "multicoltemplate=${2|${1:template name},{${2:code}}|}",
+  ],
+  "macros": [
+    {
+      "name": "includespread"
+    },
+    {
+      "name": "includespread",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "includespread*"
+    },
+    {
+      "name": "includespread*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "tabletemplate",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:code}}"
+      }
+    },
+    {
+      "name": "AddString",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:position}}"
+      }
+    },
+    {
+      "name": "AddNumber",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:number}}{${2:position}}"
+      }
+    },
+    {
+      "name": "loadodsfile",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "loadodsfile",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:file}}"
+      }
+    },
+    {
+      "name": "savespreadsheet"
+    },
+    {
+      "name": "OdsNl",
+      "unusual": true
+    },
+    {
+      "name": "OdsLastNl",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "AddRow"
+    },
+    {
+      "name": "AddRow",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:row number}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\includespread#c,\\includespread*#c,\\loadodsfile#c": [
+      "file=${1:file name}\r",
+      "sheet=${1:sheet name}\r",
+      "range=${1:cell1:cell2}\r",
+      "columns=${2|head,top,{${1:list of headings}}\r|}",
+      "columnbreak=${1:command}\r",
+      "rowseparator=${2|tableline,hline,newline,${1:command}\r|}",
+      "template=${3|${1:template name},{${2:code}}\r|}",
+      "coltypes=${1:coltypes}\r",
+      "rowtemplate=${3|${1:template name},{${2:code}}\r|}",
+      "celltemplate=${3|${1:template name},{${2:code}}\r|}",
+      "multicoltemplate=${3|${1:template name},{${2:code}}\r|}",
       "escape"
     ]
-  ]
+  },
+  "args": []
 }

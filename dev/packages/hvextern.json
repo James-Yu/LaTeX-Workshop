@@ -1,120 +1,195 @@
 {
-  "includes": {
-    "shellesc": [],
-    "xkeyval": [],
-    "graphicx": [],
-    "comment": [],
-    "fancyvrb": [],
-    "tikz": [],
-    "listings": [],
-    "ifplatform": [],
-    "iftex": [],
-    "ifoddpage": [],
-    "filemod": [],
-    "tcolorbox": [],
-    "tcolorboxlibraryskins": [],
-    "tcolorboxlibrarybreakable": []
-  },
-  "macros": {
-    "runExtCmd{}{}": {
-      "snippet": "runExtCmd{${1:command with arguments}}{${2:filename}}"
+  "deps": [
+    {
+      "name": "shellesc"
     },
-    "runExtCmd[]{}{}": {
-      "snippet": "runExtCmd[${3:options}]{${1:command with arguments}}{${2:filename}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "xkeyval"
     },
-    "hvExternSetKeys{}": {
-      "snippet": "hvExternSetKeys{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "graphicx"
     },
-    "defMarkerType{}{}{}{}{}": {
-      "snippet": "defMarkerType{${1:name}}{${2:start-main}}{${3:stop-main}}{${4:start-preamble}}{${5:stop-preamble}}"
+    {
+      "name": "comment"
     },
-    "ResetKeys": {},
-    "PreambleVerbatim{}": {
-      "snippet": "PreambleVerbatim{${1:file}}"
+    {
+      "name": "fancyvrb"
     },
-    "PreambleVerbatim[]{}": {
-      "snippet": "PreambleVerbatim[${2:options}]{${1:file}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "tikz"
     },
-    "BodyVerbatim{}": {
-      "snippet": "BodyVerbatim{${1:file}}"
+    {
+      "name": "listings"
     },
-    "BodyVerbatim[]{}": {
-      "snippet": "BodyVerbatim[${2:options}]{${1:file}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "ifplatform"
     },
-    "PreambleListing{}": {
-      "snippet": "PreambleListing{${1:file}}"
+    {
+      "name": "iftex"
     },
-    "PreambleListing[]{}": {
-      "snippet": "PreambleListing[${2:options}]{${1:file}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
+    {
+      "name": "ifoddpage"
     },
-    "BodyListing{}": {
-      "snippet": "BodyListing{${1:file}}"
+    {
+      "name": "filemod"
     },
-    "BodyListing[]{}": {
-      "snippet": "BodyListing[${2:options}]{${1:file}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
+    {
+      "name": "tcolorbox"
     },
-    "hvExternLineWidth": {},
-    "perCent": {},
-    "DoubleperCent": {},
-    "NumChar": {},
-    "DoubleNumChar": {},
-    "hvExternFilename": {},
-    "hvexternFileversion": {},
-    "BeginPSTcode": {},
-    "EndPSTcode": {}
-  },
-  "envs": {
-    "externalDocument{}": {
-      "name": "externalDocument",
-      "snippet": "{${1:filename}}"
+    {
+      "name": "tcolorboxlibraryskins"
     },
-    "externalDocument[]{}": {
-      "name": "externalDocument",
-      "snippet": "[${2:options}]{${1:filename}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "WriteVerb": {},
-    "createPNGfromPSTricks": {}
-  },
-  "options": [
-    "checkCode"
+    {
+      "name": "tcolorboxlibrarybreakable"
+    }
   ],
-  "keyvals": [
-    [
-      "progpath=${1:path}",
-      "runsequence={${1:command sequence}}",
-      "runs=${1:integer}",
-      "runsAfter=${1:integer}",
-      "grfOptions={${1:\\includegraphics options}}",
-      "lstOptions={${1:listings options}}",
-      "textOptions={${1:fancyvrb options}}",
+  "macros": [
+    {
+      "name": "runExtCmd",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:command with arguments%definition}}{${2:filename%file}}"
+      }
+    },
+    {
+      "name": "runExtCmd",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:command with arguments%definition}}{${2:filename%file}}"
+      }
+    },
+    {
+      "name": "hvExternSetKeys",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\begin{externalDocument},\\runExtCmd,\\hvExternSetKeys"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "defMarkerType",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:name}}{${2:start-main}}{${3:stop-main}}{${4:start-preamble}}{${5:stop-preamble}}"
+      }
+    },
+    {
+      "name": "ResetKeys"
+    },
+    {
+      "name": "PreambleVerbatim",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "PreambleVerbatim",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:file}}"
+      }
+    },
+    {
+      "name": "BodyVerbatim",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "BodyVerbatim",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:file}}"
+      }
+    },
+    {
+      "name": "PreambleListing",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "PreambleListing",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:file}}"
+      }
+    },
+    {
+      "name": "BodyListing",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "BodyListing",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:file}}"
+      }
+    },
+    {
+      "name": "hvExternLineWidth",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "externalDocument",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:filename%file}}"
+      }
+    },
+    {
+      "name": "externalDocument",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:filename%file}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/hvextern#c": [
+      "checkCode\r"
+    ],
+    "\\begin{externalDocument},\\runExtCmd,\\hvExternSetKeys": [
+      "progpath=${1:path}\r",
+      "runsequence={${1:command sequence}}\r",
+      "runs=${1:integer}\r",
+      "runsAfter=${1:integer}\r",
+      "grfOptions={${1:\\includegraphics options}}\r",
+      "lstOptions={${1:listings options}}\r",
+      "textOptions={${1:fancyvrb options}}\r",
       "BGpreamble=",
       "BGbody=",
       "BOpreamble=",
       "BObody=",
-      "docType=${1|latex,mp,tex,py,pl,lua,java,context,sh,R|}",
-      "caption={${1:text}}",
+      "docType=${1|latex,mp,tex,py,pl,lua,java,context,sh,R\r|}",
+      "caption={${1:text}}\r",
       "label=",
-      "pages={${1:page numbers}}",
+      "pages={${1:page numbers}}\r",
       "pagesep=",
-      "cropmargin=${1:length in pt}",
+      "cropmargin=${1:length in pt}\r",
       "mpwidth=",
       "mpsep=",
-      "mpvalign=${1|t,c,b|}",
-      "ext=${1:file ext}",
+      "mpvalign=${1|t,c,b\r|}",
+      "ext=${1:file ext}\r",
       "redirect",
       "usefancyvrb",
       "showFilename",
@@ -126,147 +201,147 @@
       "tcbox",
       "biber",
       "xindex",
-      "xindexOptions={${1:xindex options}}",
+      "xindexOptions={${1:xindex options}}\r",
       "includegraphic",
       "showoutput",
       "inline",
       "frame",
       "framesep=",
       "float",
-      "floatsetting=${1:placement}",
-      "cleanup={${1:ext1,ext2,...}}",
+      "floatsetting=${1:placement}\r",
+      "cleanup={${1:ext1,ext2,...}}\r",
       "moveToExampleDir",
-      "align=${1:alignment commands}",
-      "ExampleDir=${1:name}",
+      "align=${1:alignment commands}\r",
+      "ExampleDir=${1:name}\r",
       "eps",
       "verbose",
-      "compiler=${1|mpost,tex,latex,luatex,python3,perl,lua,java,xetex,pdflatex,lualatex,xelatex,context,sh,texlua,Rscript|}",
+      "compiler=${1|mpost,tex,latex,luatex,python3,perl,lua,java,xetex,pdflatex,lualatex,xelatex,context,sh,texlua,Rscript\r|}",
       "aboveskip=",
       "belowpreambleskip=",
       "belowbodyskip=",
       "belowskip=",
-      "mposttex=${1|tex,latex|}",
+      "mposttex=${1|tex,latex\r|}",
       "shellesc"
     ],
-    [
-      "commentchar=${1:single char}",
-      "gobble=${1:integer}",
-      "formatcom=${1:commands}",
-      "formatcom*=${1:commands}",
-      "fontfamily=${1:family}",
-      "fontsize=${1:size macro}",
-      "fontshape=${1:shape}",
-      "fontseries=${1:series}",
-      "frame=${1|none,leftline,topline,bottomline,lines,single|}",
+    "\\PreambleVerbatim,\\BodyVerbatim": [
+      "commentchar=${1:single char}\r",
+      "gobble=${1:integer}\r",
+      "formatcom=${1:commands}\r",
+      "formatcom*=${1:commands}\r",
+      "fontfamily=${1:family}\r",
+      "fontsize=${1:size macro}\r",
+      "fontshape=${1:shape}\r",
+      "fontseries=${1:series}\r",
+      "frame=${1|none,leftline,topline,bottomline,lines,single\r|}",
       "framerule=",
       "framesep=",
-      "rulecolor=${1:color cmd}",
-      "fillcolor=${1:color cmd}",
-      "label=${1:label text}",
-      "labelposition=${1|none,topline,bottomline,all|}",
-      "numbers=${1|none,left,right|}",
+      "rulecolor=${1:color cmd}\r",
+      "fillcolor=${1:color cmd}\r",
+      "label=${1:label text}\r",
+      "labelposition=${1|none,topline,bottomline,all\r|}",
+      "numbers=${1|none,left,right\r|}",
       "numbersep=",
-      "firstnumber=${1:auto|last|<integer>}",
-      "stepnumber=${1:integer}",
+      "firstnumber=${1:auto|last|<integer>}\r",
+      "stepnumber=${1:integer}\r",
       "numberblanklines",
-      "firstline=${1:integer}",
-      "lastline=${1:integer}",
+      "firstline=${1:integer}\r",
+      "lastline=${1:integer}\r",
       "showspaces",
       "showtabs",
       "obeytabs",
-      "tabsize=${1:integer}",
-      "baselinestretch=${1:factor}",
-      "commandchars=${1:three chars}",
+      "tabsize=${1:integer}\r",
+      "baselinestretch=${1:factor}\r",
+      "commandchars=${1:three chars}\r",
       "xleftmargin=",
       "xrightmargin=",
       "resetmargins",
       "hfuzz=",
       "samepage",
-      "codes={${1:code}}",
-      "codes*={${1:code}}",
-      "defineactive={${1:code}}",
-      "defineactive*={${1:code}}",
+      "codes={${1:code}}\r",
+      "codes*={${1:code}}\r",
+      "defineactive={${1:code}}\r",
+      "defineactive*={${1:code}}\r",
       "reflabel=",
-      "fileext=${1:extension}",
+      "fileext=${1:extension}\r",
       "vspace=",
-      "listparameters={${1:code}}"
+      "listparameters={${1:code}}\r"
     ],
-    [
-      "inputpath=${1:path}",
+    "\\PreambleListing,\\BodyListing": [
+      "inputpath=${1:path}\r",
       "aboveskip=",
       "belowskip=",
       "lineskip=",
-      "boxpos=${1|b,c,t|}",
+      "boxpos=${1|b,c,t\r|}",
       "print",
       "showlines",
-      "emptylines=${1:number}",
-      "emptylines=*${1:number}",
-      "gobble=${1:number}",
-      "style=${1:style name}",
-      "language=${1:language}",
-      "language=[${1:dialect}]${2:language}",
-      "alsolanguage=${1:language}",
-      "alsolanguage=[${1:dialect}]${2:language}",
-      "defaultdialect=[${1:dialect}]${2:language}",
+      "emptylines=${1:number}\r",
+      "emptylines=*${1:number}\r",
+      "gobble=${1:number}\r",
+      "style=${1:style name}\r",
+      "language=${1:language}\r",
+      "language=[${1:dialect}]${2:language}\r",
+      "alsolanguage=${1:language}\r",
+      "alsolanguage=[${1:dialect}]${2:language}\r",
+      "defaultdialect=[${1:dialect}]${2:language}\r",
       "printpod",
       "usekeywordsintag",
-      "tagstyle=${1:style}",
-      "markfirstintag=${1:style}",
+      "tagstyle=${1:style}\r",
+      "markfirstintag=${1:style}\r",
       "makemacrouse",
-      "basicstyle=${1:style}",
-      "identifierstyle=${1:style}",
-      "commentstyle=${1:style}",
-      "stringstyle=${1:style}",
-      "keywordstyle=${1:style}",
-      "keywordstyle=[${1:number}]${2:style}",
-      "keywordstyle=[${1:number}]*${2:style}",
-      "ndkeywordstyle=${1:style}",
-      "classoffset=${1:number}",
-      "texcsstyle=${1:style}",
-      "texcsstyle=[${1:class number}]${2:style}",
-      "texcsstyle=*[${1:class number}]${2:style}",
-      "directivestyle=${1:style}",
-      "emph={${1:identifier list}}",
-      "emph=[${1:number}]{${2:identifier list}}",
-      "moreemph={${1:identifier list}}",
-      "moreemph=[${1:number}]{${2:identifier list}}",
-      "deleteemph={${1:identifier list}}",
-      "deleteemph=[${1:number}]{${2:identifier list}}",
-      "emphstyle={${1:style}}",
-      "emphstyle=[${1:number}]{${2:style}}",
-      "delim=[${1:type}][${2:style}]${3:delimiters}",
-      "delim=*[${1:type}][${2:style}]${3:delimiters}",
-      "delim=**[${1:type}][${2:style}]${3:delimiters}",
-      "moredelim=[${1:type}][${2:style}]${3:delimiters}",
-      "moredelim=*[${1:type}][${2:style}]${3:delimiters}",
-      "moredelim=**[${1:type}][${2:style}]${3:delimiters}",
-      "deletedelim=[${1:type}][${2:style}]${3:delimiters}",
-      "deletedelim=*[${1:type}][${2:style}]${3:delimiters}",
-      "deletedelim=**[${1:type}][${2:style}]${3:delimiters}",
+      "basicstyle=${1:style}\r",
+      "identifierstyle=${1:style}\r",
+      "commentstyle=${1:style}\r",
+      "stringstyle=${1:style}\r",
+      "keywordstyle=${1:style}\r",
+      "keywordstyle=[${1:number}]${2:style}\r",
+      "keywordstyle=[${1:number}]*${2:style}\r",
+      "ndkeywordstyle=${1:style}\r",
+      "classoffset=${1:number}\r",
+      "texcsstyle=${1:style}\r",
+      "texcsstyle=[${1:class number}]${2:style}\r",
+      "texcsstyle=*[${1:class number}]${2:style}\r",
+      "directivestyle=${1:style}\r",
+      "emph={${1:identifier list}}\r",
+      "emph=[${1:number}]{${2:identifier list}}\r",
+      "moreemph={${1:identifier list}}\r",
+      "moreemph=[${1:number}]{${2:identifier list}}\r",
+      "deleteemph={${1:identifier list}}\r",
+      "deleteemph=[${1:number}]{${2:identifier list}}\r",
+      "emphstyle={${1:style}}\r",
+      "emphstyle=[${1:number}]{${2:style}}\r",
+      "delim=[${1:type}][${2:style}]${3:delimiters}\r",
+      "delim=*[${1:type}][${2:style}]${3:delimiters}\r",
+      "delim=**[${1:type}][${2:style}]${3:delimiters}\r",
+      "moredelim=[${1:type}][${2:style}]${3:delimiters}\r",
+      "moredelim=*[${1:type}][${2:style}]${3:delimiters}\r",
+      "moredelim=**[${1:type}][${2:style}]${3:delimiters}\r",
+      "deletedelim=[${1:type}][${2:style}]${3:delimiters}\r",
+      "deletedelim=*[${1:type}][${2:style}]${3:delimiters}\r",
+      "deletedelim=**[${1:type}][${2:style}]${3:delimiters}\r",
       "extendedchars",
-      "inputencoding=${1:encoding}",
+      "inputencoding=${1:encoding}\r",
       "upquote",
-      "tabsize=${1:number}",
+      "tabsize=${1:number}\r",
       "showtabs",
-      "tab=${1:tokens}",
+      "tab=${1:tokens}\r",
       "showspaces",
       "showstringspaces",
-      "formfeed=${1:tokens}",
-      "numbers=${1|none,left,right|}",
-      "stepnumber=${1:number}",
+      "formfeed=${1:tokens}\r",
+      "numbers=${1|none,left,right\r|}",
+      "stepnumber=${1:number}\r",
       "numberfirstline",
-      "numberstyle=${1:style}",
+      "numberstyle=${1:style}\r",
       "numbersep=",
       "numberblanklines",
-      "firstnumber=${1:auto|last|<number>}",
-      "name=${1:name}",
-      "title=${1:title text}",
-      "caption={${1:caption text}}",
-      "caption={[${1:short}]${2:caption text}}",
+      "firstnumber=${1:auto|last|<number>}\r",
+      "name=${1:name}\r",
+      "title=${1:title text}\r",
+      "caption={${1:caption text}}\r",
+      "caption={[${1:short}]${2:caption text}}\r",
       "label=",
       "nolol",
       "numberbychapter",
-      "captionpos=${1:subset of tb}",
+      "captionpos=${1:subset of tb}\r",
       "abovecaptionskip=",
       "belowcaptionskip=",
       "linewidth=",
@@ -275,12 +350,12 @@
       "resetmargins",
       "breaklines",
       "breakatwhitespace",
-      "prebreak=${1:tokens}",
-      "postbreak=${1:tokens}",
+      "prebreak=${1:tokens}\r",
+      "postbreak=${1:tokens}\r",
       "breakindent=",
       "breakautoindent",
-      "frame=${1:type}",
-      "frameround=",
+      "frame=${1:type}\r",
+      "frameround=\r",
       "framesep=",
       "rulesep=",
       "framerule=",
@@ -292,93 +367,96 @@
       "rulecolor=",
       "fillcolor=",
       "rulesepcolor=",
-      "frameshape={${1:top shape}}{${2:left shape}}{${3:right shape}}{${4:bottom shape}}",
-      "index={${1:identifiers}}",
-      "index=[${1:number}]{${2:identifiers}}",
-      "index=[${1:number}][${2:keyword classes}]{${3:identifiers}}",
-      "moreindex={${1:identifiers}}",
-      "moreindex=[${1:number}]{${2:identifiers}}",
-      "moreindex=[${1:number}][${2:keyword classes}]{${3:identifiers}}",
-      "deleteindex={${1:identifiers}}",
-      "deleteindex=[${1:number}]{${2:identifiers}}",
-      "deleteindex=[${1:number}][${2:keyword classes}]{${3:identifiers}}",
-      "indexstyle=${1:one-parameter macro}",
-      "indexstyle=[${1:number}]${2:one-parameter macro}",
-      "columns=${1:alignment}",
-      "columns=[${1:c|l|r}]${2:alignment}",
+      "frameshape={${1:top shape}}{${2:left shape}}{${3:right shape}}{${4:bottom shape}}\r",
+      "index={${1:identifiers}}\r",
+      "index=[${1:number}]{${2:identifiers}}\r",
+      "index=[${1:number}][${2:keyword classes}]{${3:identifiers}}\r",
+      "moreindex={${1:identifiers}}\r",
+      "moreindex=[${1:number}]{${2:identifiers}}\r",
+      "moreindex=[${1:number}][${2:keyword classes}]{${3:identifiers}}\r",
+      "deleteindex={${1:identifiers}}\r",
+      "deleteindex=[${1:number}]{${2:identifiers}}\r",
+      "deleteindex=[${1:number}][${2:keyword classes}]{${3:identifiers}}\r",
+      "indexstyle=${1:one-parameter macro}\r",
+      "indexstyle=[${1:number}]${2:one-parameter macro}\r",
+      "columns=${1:alignment}\r",
+      "columns=[${1:c|l|r}]${2:alignment}\r",
       "flexiblecolumns",
       "keepspaces",
       "basewidth=",
       "fontadjust",
       "texcl",
       "mathescape",
-      "escapechar=${1:character}",
-      "escapeinside=${1:<char1><char2>}",
-      "escapebegin=${1:tokens}",
-      "escapeend=${1:tokens}",
+      "escapechar=${1:character}\r",
+      "escapeinside=${1:<char1><char2>}\r",
+      "escapebegin=${1:tokens}\r",
+      "escapeend=${1:tokens}\r",
       "fancyvrb",
-      "fvcmdparams=${1:<cmd1> <num1> ...}",
-      "morefvcmdparams=${1:<cmd1> <num1> ...}",
-      "literate={${1:replace}}{${2:replacement text}}{${3:length}}${4:...}",
-      "literate=*{${1:replace}}{${2:replacement text}}{${3:length}}${4:...}",
-      "rangebeginprefix=${1:prefix}",
-      "rangebeginsuffix=${1:suffix}",
-      "rangeendprefix=${1:prefix}",
-      "rangeendsuffix=${1:suffix}",
-      "rangeprefix=${1:prefix}",
-      "rangesuffix=${1:suffix}",
+      "fvcmdparams=${1:<cmd1> <num1> ...}\r",
+      "morefvcmdparams=${1:<cmd1> <num1> ...}\r",
+      "literate={${1:replace}}{${2:replacement text}}{${3:length}}${4:...}\r",
+      "literate=*{${1:replace}}{${2:replacement text}}{${3:length}}${4:...}\r",
+      "rangebeginprefix=${1:prefix}\r",
+      "rangebeginsuffix=${1:suffix}\r",
+      "rangeendprefix=${1:prefix}\r",
+      "rangeendsuffix=${1:suffix}\r",
+      "rangeprefix=${1:prefix}\r",
+      "rangesuffix=${1:suffix}\r",
       "includerangemarker",
-      "multicols=${1:number}",
-      "float",
-      "float=${1:subset of tbph}",
-      "float=*${1:subset of tbph}",
-      "floatplacement=${1:place specifiers}",
-      "firstline=${1:number}",
-      "lastline=${1:number}",
-      "linerange={${1:first1-last1,first2-last2,...}}",
+      "multicols=${1:number}\r",
+      "float\r",
+      "float=${1:subset of tbph}\r",
+      "float=*${1:subset of tbph}\r",
+      "floatplacement=${1:place specifiers}\r",
+      "firstline=${1:number}\r",
+      "lastline=${1:number}\r",
+      "linerange={${1:first1-last1,first2-last2,...}}\r",
       "consecutivenumbers",
-      "keywordsprefix=${1:prefix}",
-      "keywords={${1:list of keywords}}",
-      "keywords=[${1:number}]{${2:list of keywords}}",
-      "morekeywords={${1:list of keywords}}",
-      "morekeywords=[${1:number}]{${2:list of keywords}}",
-      "deletekeywords={${1:list of keywords}}",
-      "deletekeywords=[${1:number}]{${2:list of keywords}}",
-      "ndkeywords={${1:list of keywords}}",
-      "moreendkeywords={${1:list of keywords}}",
-      "deleteendkeywords={${1:list of keywords}}",
-      "texcs={${1:list of csnames}}",
-      "texcs=[${1:class number}]{${2:list of csnames}}",
-      "moretexcs={${1:list of csnames}}",
-      "moretexcs=[${1:class number}]{${2:list of csnames}}",
-      "deletetxcs={${1:list of csnames}}",
-      "deletetxcs=[${1:class number}]{${2:list of csnames}}",
-      "directives={${1:list of compiler directives}}",
-      "moredirectives={${1:list of compiler directives}}",
-      "deletedirectives={${1:list of compiler directives}}",
+      "keywordsprefix=${1:prefix}\r",
+      "keywords={${1:list of keywords}}\r",
+      "keywords=[${1:number}]{${2:list of keywords}}\r",
+      "morekeywords={${1:list of keywords}}\r",
+      "morekeywords=[${1:number}]{${2:list of keywords}}\r",
+      "deletekeywords={${1:list of keywords}}\r",
+      "deletekeywords=[${1:number}]{${2:list of keywords}}\r",
+      "ndkeywords={${1:list of keywords}}\r",
+      "moreendkeywords={${1:list of keywords}}\r",
+      "deleteendkeywords={${1:list of keywords}}\r",
+      "texcs={${1:list of csnames}}\r",
+      "texcs=[${1:class number}]{${2:list of csnames}}\r",
+      "moretexcs={${1:list of csnames}}\r",
+      "moretexcs=[${1:class number}]{${2:list of csnames}}\r",
+      "deletetxcs={${1:list of csnames}}\r",
+      "deletetxcs=[${1:class number}]{${2:list of csnames}}\r",
+      "directives={${1:list of compiler directives}}\r",
+      "moredirectives={${1:list of compiler directives}}\r",
+      "deletedirectives={${1:list of compiler directives}}\r",
       "sensitive",
-      "alsoletter={${1:character sequence}}",
-      "alsodigit={${1:character sequence}}",
-      "alsoother={${1:character sequence}}",
-      "otherkeywords={${1:keywords}}",
-      "tag=${1:<char1><char2>}",
-      "string=${1:delimiter}",
-      "string=[${1:b|d|m|bd|s}]${2:delimiter}",
-      "morestring=${1:delimiter}",
-      "morestring=[${1:b|d|m|bd|s}]${2:delimiter}",
-      "deletestring=${1:delimiter}",
-      "deletestring=[${1:b|d|m|bd|s}]${2:delimiter}",
-      "comment=${1:delimiter(s)}",
-      "comment=[${1:type}]${2:delimiter(s)}",
-      "morecomment=${1:delimiter(s)}",
-      "morecomment=[${1:type}]${2:delimiter(s)}",
-      "deletecomment=${1:delimiter(s)}",
-      "deletecomment=[${1:type}]${2:delimiter(s)}",
-      "keywordcomment={${1:keywords}}",
-      "morekeywordcomment={${1:keywords}}",
-      "deletekeywordcomment={${1:keywords}}",
-      "keywordcommentsemicolon={${1:keywords}}{${2:keywords}}{${3:keywords}}",
+      "alsoletter={${1:character sequence}}\r",
+      "alsodigit={${1:character sequence}}\r",
+      "alsoother={${1:character sequence}}\r",
+      "otherkeywords={${1:keywords}}\r",
+      "tag=${1:<char1><char2>}\r",
+      "string=${1:delimiter}\r",
+      "string=[${1:b|d|m|bd|s}]${2:delimiter}\r",
+      "morestring=${1:delimiter}\r",
+      "morestring=[${1:b|d|m|bd|s}]${2:delimiter}\r",
+      "deletestring=${1:delimiter}\r",
+      "deletestring=[${1:b|d|m|bd|s}]${2:delimiter}\r",
+      "comment=${1:delimiter(s)}\r",
+      "comment=[${1:type}]${2:delimiter(s)}\r",
+      "morecomment=${1:delimiter(s)}\r",
+      "morecomment=[${1:type}]${2:delimiter(s)}\r",
+      "deletecomment=${1:delimiter(s)}\r",
+      "deletecomment=[${1:type}]${2:delimiter(s)}\r",
+      "keywordcomment={${1:keywords}}\r",
+      "morekeywordcomment={${1:keywords}}\r",
+      "deletekeywordcomment={${1:keywords}}\r",
+      "keywordcommentsemicolon={${1:keywords}}{${2:keywords}}{${3:keywords}}\r",
       "podcomment"
     ]
+  },
+  "args": [
+    "\\usepackage/hvextern#c"
   ]
 }

@@ -1,23 +1,46 @@
 {
-  "includes": {
-    "ifthen": [],
-    "fp": []
-  },
-  "macros": {
-    "storeRGBofWavelength{}{}{}{}": {
-      "snippet": "storeRGBofWavelength{${1:r-val-cmd}}{${2:g-val-cmd}}{${3:b-val-cmd}}{${4:wavelength}}"
+  "deps": [
+    {
+      "name": "ifthen"
     },
-    "setUnitsE{}": {
-      "snippet": "setUnitsE{${1:number}}"
-    },
-    "setMinVisibleWavelength{}": {
-      "snippet": "setMinVisibleWavelength{${1:arg}}"
-    },
-    "setMaxVisibleWavelength{}": {
-      "snippet": "setMaxVisibleWavelength{${1:arg}}"
+    {
+      "name": "fp"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "storeRGBofWavelength",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:r-val-cmd%cmd}}{${2:g-val-cmd%cmd}}{${3:b-val-cmd%cmd}}{${4:wavelength}}"
+      }
+    },
+    {
+      "name": "setUnitsE",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "setMinVisibleWavelength",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "setMaxVisibleWavelength",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

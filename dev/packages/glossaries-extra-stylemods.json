@@ -1,275 +1,692 @@
 {
-  "includes": {
-    "glossary-inline": [
-      "all",
-      "inline"
-    ],
-    "glossary-list": [
-      "all",
-      "list"
-    ],
-    "glossary-tree": [
-      "all",
-      "tree"
-    ],
-    "glossary-mcols": [
-      "all",
-      "mcols"
-    ],
-    "glossary-long": [
-      "all",
-      "long"
-    ],
-    "glossary-longragged": [
-      "all",
-      "longragged"
-    ],
-    "glossary-longbooktabs": [
-      "all",
-      "longbooktabs"
-    ],
-    "glossary-super": [
-      "all",
-      "super"
-    ],
-    "glossary-superragged": [
-      "all",
-      "superragged"
-    ],
-    "glossary-bookindex": [
-      "all",
-      "bookindex"
-    ],
-    "glossary-longextra": [
-      "all",
-      "longextra"
-    ],
-    "glossary-topic": [
-      "all",
-      "topic"
-    ],
-    "glossary-table": [
-      "all",
-      "table"
+  "deps": [
+    {
+      "name": "glossary-inline",
+      "if": "all"
+    },
+    {
+      "name": "glossary-list",
+      "if": "all"
+    },
+    {
+      "name": "glossary-tree",
+      "if": "all"
+    },
+    {
+      "name": "glossary-mcols",
+      "if": "all"
+    },
+    {
+      "name": "glossary-long",
+      "if": "all"
+    },
+    {
+      "name": "glossary-longragged",
+      "if": "all"
+    },
+    {
+      "name": "glossary-longbooktabs",
+      "if": "all"
+    },
+    {
+      "name": "glossary-super",
+      "if": "all"
+    },
+    {
+      "name": "glossary-superragged",
+      "if": "all"
+    },
+    {
+      "name": "glossary-bookindex",
+      "if": "all"
+    },
+    {
+      "name": "glossary-longextra",
+      "if": "all"
+    },
+    {
+      "name": "glossary-topic",
+      "if": "all"
+    },
+    {
+      "name": "glossary-table",
+      "if": "all"
+    },
+    {
+      "name": "glossary-inline",
+      "if": "inline"
+    },
+    {
+      "name": "glossary-list",
+      "if": "list"
+    },
+    {
+      "name": "glossary-tree",
+      "if": "tree"
+    },
+    {
+      "name": "glossary-mcols",
+      "if": "mcols"
+    },
+    {
+      "name": "glossary-long",
+      "if": "long"
+    },
+    {
+      "name": "glossary-longragged",
+      "if": "longragged"
+    },
+    {
+      "name": "glossary-longbooktabs",
+      "if": "longbooktabs"
+    },
+    {
+      "name": "glossary-super",
+      "if": "super"
+    },
+    {
+      "name": "glossary-superragged",
+      "if": "superragged"
+    },
+    {
+      "name": "glossary-bookindex",
+      "if": "bookindex"
+    },
+    {
+      "name": "glossary-longextra",
+      "if": "longextra"
+    },
+    {
+      "name": "glossary-topic",
+      "if": "topic"
+    },
+    {
+      "name": "glossary-table",
+      "if": "table"
+    }
+  ],
+  "macros": [
+    {
+      "name": "glsxtrprelocation",
+      "unusual": true
+    },
+    {
+      "name": "glslistprelocation",
+      "unusual": true
+    },
+    {
+      "name": "glslistchildprelocation",
+      "unusual": true
+    },
+    {
+      "name": "glslistdesc",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "glslistitem",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "glsaltlistitem",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "glslistgroupheaderitem",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:group-label}}{${2:header code}}"
+      }
+    },
+    {
+      "name": "glslistgroupafterheader",
+      "unusual": true
+    },
+    {
+      "name": "glslistchildpostlocation",
+      "unusual": true
+    },
+    {
+      "name": "glslistgroupskip",
+      "unusual": true
+    },
+    {
+      "name": "glstreedefaultnamefmt",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "glstreegroupskip",
+      "unusual": true
+    },
+    {
+      "name": "glstreegroupheaderskip",
+      "unusual": true
+    },
+    {
+      "name": "glstreePreHeader",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label}}{${2:title%text}}"
+      }
+    },
+    {
+      "name": "glsalttreepredesc",
+      "unusual": true
+    },
+    {
+      "name": "glsalttreechildpredesc",
+      "unusual": true
+    },
+    {
+      "name": "glstreeprelocation",
+      "unusual": true
+    },
+    {
+      "name": "glstreechildprelocation",
+      "unusual": true
+    },
+    {
+      "name": "glstreenonamedesc",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "glstreenonamesymbol",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "glstreenonamechilddesc",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "glstreedesc",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "glstreesymbol",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "glstreechilddesc",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "glstreenonameDescLoc",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label}}{${2:location}}"
+      }
+    },
+    {
+      "name": "glstreenonameChildDescLoc",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label}}{${2:location}}"
+      }
+    },
+    {
+      "name": "glstreechildsymbol",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "glstreeDescLoc",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label}}{${2:location}}"
+      }
+    },
+    {
+      "name": "glstreeChildDescLoc",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label}}{${2:location}}"
+      }
+    },
+    {
+      "name": "glstreeNoDescSymbolPreLocation",
+      "unusual": true
+    },
+    {
+      "name": "glstreesubgroupitem",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:prev-group-level}}{${2:level}}{${3:parent-label}}{${4:group-label}}{${5:group-title}}"
+      }
+    },
+    {
+      "name": "gglssetwidest",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "gglssetwidest",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:level}]{${1:name}}"
+      }
+    },
+    {
+      "name": "eglssetwidest",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "eglssetwidest",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:level}]{${1:name}}"
+      }
+    },
+    {
+      "name": "xglssetwidest",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "xglssetwidest",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:level}]{${1:name}}"
+      }
+    },
+    {
+      "name": "glsupdatewidest",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "glsupdatewidest",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:level}]{${1:name}}"
+      }
+    },
+    {
+      "name": "gglsupdatewidest",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "gglsupdatewidest",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:level}]{${1:name}}"
+      }
+    },
+    {
+      "name": "eglsupdatewidest",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "eglsupdatewidest",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:level}]{${1:name}}"
+      }
+    },
+    {
+      "name": "xglsupdatewidest",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "xglsupdatewidest",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:level}]{${1:name}}"
+      }
+    },
+    {
+      "name": "glsgetwidestname",
+      "unusual": true
+    },
+    {
+      "name": "glsgetwidestsubname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:level}}"
+      }
+    },
+    {
+      "name": "glsFindWidestTopLevelName",
+      "unusual": true
+    },
+    {
+      "name": "glsFindWidestTopLevelName",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:glossary list}]"
+      }
+    },
+    {
+      "name": "glsFindWidestUsedTopLevelName",
+      "unusual": true
+    },
+    {
+      "name": "glsFindWidestUsedTopLevelName",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:glossary list}]"
+      }
+    },
+    {
+      "name": "glsFindWidestUsedAnyName",
+      "unusual": true
+    },
+    {
+      "name": "glsFindWidestUsedAnyName",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:glossary list}]"
+      }
+    },
+    {
+      "name": "glsFindWidestAnyName",
+      "unusual": true
+    },
+    {
+      "name": "glsFindWidestAnyName",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:glossary list}]"
+      }
+    },
+    {
+      "name": "glsFindWidestUsedLevelTwo",
+      "unusual": true
+    },
+    {
+      "name": "glsFindWidestUsedLevelTwo",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:glossary list}]"
+      }
+    },
+    {
+      "name": "glsFindWidestLevelTwo",
+      "unusual": true
+    },
+    {
+      "name": "glsFindWidestLevelTwo",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:glossary list}]"
+      }
+    },
+    {
+      "name": "glsFindWidestUsedAnyNameSymbol",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:register%cmd}}"
+      }
+    },
+    {
+      "name": "glsFindWidestUsedAnyNameSymbol",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:glossary list}]{${1:register%cmd}}"
+      }
+    },
+    {
+      "name": "glsFindWidestAnyNameSymbol",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:register%cmd}}"
+      }
+    },
+    {
+      "name": "glsFindWidestAnyNameSymbol",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:glossary list}]{${1:register%cmd}}"
+      }
+    },
+    {
+      "name": "glsFindWidestUsedAnyNameSymbolLocation",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:sym register%cmd}}{${2:loc register}}"
+      }
+    },
+    {
+      "name": "glsFindWidestUsedAnyNameSymbolLocation",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:glossary list}]{${1:sym register%cmd}}{${2:loc register}}"
+      }
+    },
+    {
+      "name": "glsFindWidestAnyNameSymbolLocation",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:sym register%cmd}}{${2:loc register}}"
+      }
+    },
+    {
+      "name": "glsFindWidestAnyNameSymbolLocation",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:glossary list}]{${1:sym register%cmd}}{${2:loc register}}"
+      }
+    },
+    {
+      "name": "glsFindWidestUsedAnyNameLocation",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:register%cmd}}"
+      }
+    },
+    {
+      "name": "glsFindWidestUsedAnyNameLocation",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:glossary list}]{${1:register%cmd}}"
+      }
+    },
+    {
+      "name": "glsFindWidestAnyNameLocation",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:register%cmd}}"
+      }
+    },
+    {
+      "name": "glsFindWidestAnyNameLocation",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:glossary list}]{${1:register%cmd}}"
+      }
+    },
+    {
+      "name": "glsxtralttreeSymbolDescLocation",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label}}{${2:number list}}"
+      }
+    },
+    {
+      "name": "glsxtralttreeSubSymbolDescLocation",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label}}{${2:number list}}"
+      }
+    },
+    {
+      "name": "glsxtralttreeInit",
+      "unusual": true
+    },
+    {
+      "name": "glsxtrAltTreeIndent",
+      "unusual": true
+    },
+    {
+      "name": "glsxtrAltTreePar",
+      "unusual": true
+    },
+    {
+      "name": "glsxtrAltTreeSetHangIndent",
+      "unusual": true
+    },
+    {
+      "name": "glsxtrAltTreeSetSubHangIndent",
+      "unusual": true
+    },
+    {
+      "name": "glsxtrComputeTreeIndent",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "glsxtrComputeTreeSubIndent",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:level}}{${2:label}}{${3:register%cmd}}"
+      }
+    },
+    {
+      "name": "glsxtrtreechildpredesc",
+      "unusual": true
+    },
+    {
+      "name": "glsxtrtreepredesc",
+      "unusual": true
+    },
+    {
+      "name": "glsxtrtreetopindent",
+      "unusual": true
+    },
+    {
+      "name": "glsindexingsetting",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:prev-group-level}}{${2:level}}{${3:parent-label}}{${4:group-label}}{${5:group-title}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/glossaries-extra-stylemods#c": [
+      "all\r",
+      "inline\r",
+      "list\r",
+      "tree\r",
+      "mcols\r",
+      "long\r",
+      "longragged\r",
+      "longbooktabs\r",
+      "super\r",
+      "superragged\r",
+      "bookindex\r",
+      "longextra\r",
+      "topic\r",
+      "table\r"
     ]
   },
-  "macros": {
-    "glsxtrprelocation": {},
-    "glslistprelocation": {},
-    "glslistchildprelocation": {},
-    "glslistdesc{}": {
-      "snippet": "glslistdesc{${1:label}}"
-    },
-    "glslistitem{}": {
-      "snippet": "glslistitem{${1:label}}"
-    },
-    "glsaltlistitem{}": {
-      "snippet": "glsaltlistitem{${1:label}}"
-    },
-    "glslistgroupheaderitem{}{}": {
-      "snippet": "glslistgroupheaderitem{${1:group-label}}{${2:header code}}"
-    },
-    "glslistgroupafterheader": {},
-    "glslistchildpostlocation": {},
-    "glslistgroupskip": {},
-    "glstreedefaultnamefmt{}": {
-      "snippet": "glstreedefaultnamefmt{${1:text}}"
-    },
-    "glstreegroupskip": {},
-    "glstreegroupheaderskip": {},
-    "glstreePreHeader{}{}": {
-      "snippet": "glstreePreHeader{${1:label}}{${2:title}}"
-    },
-    "glsalttreepredesc": {},
-    "glsalttreechildpredesc": {},
-    "glstreeprelocation": {},
-    "glstreechildprelocation": {},
-    "glstreenonamedesc{}": {
-      "snippet": "glstreenonamedesc{${1:label}}"
-    },
-    "glstreenonamesymbol{}": {
-      "snippet": "glstreenonamesymbol{${1:label}}"
-    },
-    "glstreenonamechilddesc{}": {
-      "snippet": "glstreenonamechilddesc{${1:label}}"
-    },
-    "glstreedesc{}": {
-      "snippet": "glstreedesc{${1:label}}"
-    },
-    "glstreesymbol{}": {
-      "snippet": "glstreesymbol{${1:label}}"
-    },
-    "glstreechilddesc{}": {
-      "snippet": "glstreechilddesc{${1:label}}"
-    },
-    "glstreenonameDescLoc{}{}": {
-      "snippet": "glstreenonameDescLoc{${1:label}}{${2:location}}"
-    },
-    "glstreenonameChildDescLoc{}{}": {
-      "snippet": "glstreenonameChildDescLoc{${1:label}}{${2:location}}"
-    },
-    "glstreechildsymbol{}": {
-      "snippet": "glstreechildsymbol{${1:label}}"
-    },
-    "glstreeDescLoc{}{}": {
-      "snippet": "glstreeDescLoc{${1:label}}{${2:location}}"
-    },
-    "glstreeChildDescLoc{}{}": {
-      "snippet": "glstreeChildDescLoc{${1:label}}{${2:location}}"
-    },
-    "glstreeNoDescSymbolPreLocation": {},
-    "glstreesubgroupitem{}{}{}{}{}": {
-      "snippet": "glstreesubgroupitem{${1:prev-group-level}}{${2:level}}{${3:parent-label}}{${4:group-label}}{${5:group-title}}"
-    },
-    "gglssetwidest{}": {
-      "snippet": "gglssetwidest{${1:name}}"
-    },
-    "gglssetwidest[]{}": {
-      "snippet": "gglssetwidest[${2:level}]{${1:name}}"
-    },
-    "eglssetwidest{}": {
-      "snippet": "eglssetwidest{${1:name}}"
-    },
-    "eglssetwidest[]{}": {
-      "snippet": "eglssetwidest[${2:level}]{${1:name}}"
-    },
-    "xglssetwidest{}": {
-      "snippet": "xglssetwidest{${1:name}}"
-    },
-    "xglssetwidest[]{}": {
-      "snippet": "xglssetwidest[${2:level}]{${1:name}}"
-    },
-    "glsupdatewidest{}": {
-      "snippet": "glsupdatewidest{${1:name}}"
-    },
-    "glsupdatewidest[]{}": {
-      "snippet": "glsupdatewidest[${2:level}]{${1:name}}"
-    },
-    "gglsupdatewidest{}": {
-      "snippet": "gglsupdatewidest{${1:name}}"
-    },
-    "gglsupdatewidest[]{}": {
-      "snippet": "gglsupdatewidest[${2:level}]{${1:name}}"
-    },
-    "eglsupdatewidest{}": {
-      "snippet": "eglsupdatewidest{${1:name}}"
-    },
-    "eglsupdatewidest[]{}": {
-      "snippet": "eglsupdatewidest[${2:level}]{${1:name}}"
-    },
-    "xglsupdatewidest{}": {
-      "snippet": "xglsupdatewidest{${1:name}}"
-    },
-    "xglsupdatewidest[]{}": {
-      "snippet": "xglsupdatewidest[${2:level}]{${1:name}}"
-    },
-    "glsgetwidestname": {},
-    "glsgetwidestsubname{}": {
-      "snippet": "glsgetwidestsubname{${1:level}}"
-    },
-    "glsFindWidestTopLevelName": {},
-    "glsFindWidestTopLevelName[]": {
-      "snippet": "glsFindWidestTopLevelName[${1:glossary list}]"
-    },
-    "glsFindWidestUsedTopLevelName": {},
-    "glsFindWidestUsedTopLevelName[]": {
-      "snippet": "glsFindWidestUsedTopLevelName[${1:glossary list}]"
-    },
-    "glsFindWidestUsedAnyName": {},
-    "glsFindWidestUsedAnyName[]": {
-      "snippet": "glsFindWidestUsedAnyName[${1:glossary list}]"
-    },
-    "glsFindWidestAnyName": {},
-    "glsFindWidestAnyName[]": {
-      "snippet": "glsFindWidestAnyName[${1:glossary list}]"
-    },
-    "glsFindWidestUsedLevelTwo": {},
-    "glsFindWidestUsedLevelTwo[]": {
-      "snippet": "glsFindWidestUsedLevelTwo[${1:glossary list}]"
-    },
-    "glsFindWidestLevelTwo": {},
-    "glsFindWidestLevelTwo[]": {
-      "snippet": "glsFindWidestLevelTwo[${1:glossary list}]"
-    },
-    "glsFindWidestUsedAnyNameSymbol{}": {
-      "snippet": "glsFindWidestUsedAnyNameSymbol{${1:register}}"
-    },
-    "glsFindWidestUsedAnyNameSymbol[]{}": {
-      "snippet": "glsFindWidestUsedAnyNameSymbol[${2:glossary list}]{${1:register}}"
-    },
-    "glsFindWidestAnyNameSymbol{}": {
-      "snippet": "glsFindWidestAnyNameSymbol{${1:register}}"
-    },
-    "glsFindWidestAnyNameSymbol[]{}": {
-      "snippet": "glsFindWidestAnyNameSymbol[${2:glossary list}]{${1:register}}"
-    },
-    "glsFindWidestUsedAnyNameSymbolLocation{}{}": {
-      "snippet": "glsFindWidestUsedAnyNameSymbolLocation{${1:sym register}}{${2:loc register}}"
-    },
-    "glsFindWidestUsedAnyNameSymbolLocation[]{}{}": {
-      "snippet": "glsFindWidestUsedAnyNameSymbolLocation[${3:glossary list}]{${1:sym register}}{${2:loc register}}"
-    },
-    "glsFindWidestAnyNameSymbolLocation{}{}": {
-      "snippet": "glsFindWidestAnyNameSymbolLocation{${1:sym register}}{${2:loc register}}"
-    },
-    "glsFindWidestAnyNameSymbolLocation[]{}{}": {
-      "snippet": "glsFindWidestAnyNameSymbolLocation[${3:glossary list}]{${1:sym register}}{${2:loc register}}"
-    },
-    "glsFindWidestUsedAnyNameLocation{}": {
-      "snippet": "glsFindWidestUsedAnyNameLocation{${1:register}}"
-    },
-    "glsFindWidestUsedAnyNameLocation[]{}": {
-      "snippet": "glsFindWidestUsedAnyNameLocation[${2:glossary list}]{${1:register}}"
-    },
-    "glsFindWidestAnyNameLocation{}": {
-      "snippet": "glsFindWidestAnyNameLocation{${1:register}}"
-    },
-    "glsFindWidestAnyNameLocation[]{}": {
-      "snippet": "glsFindWidestAnyNameLocation[${2:glossary list}]{${1:register}}"
-    },
-    "glsxtralttreeSymbolDescLocation{}{}": {
-      "snippet": "glsxtralttreeSymbolDescLocation{${1:label}}{${2:number list}}"
-    },
-    "glsxtralttreeSubSymbolDescLocation{}{}": {
-      "snippet": "glsxtralttreeSubSymbolDescLocation{${1:label}}{${2:number list}}"
-    },
-    "glsxtralttreeInit": {},
-    "glsxtrAltTreeIndent": {},
-    "glsxtrAltTreePar": {},
-    "glsxtrAltTreeSetHangIndent": {},
-    "glsxtrAltTreeSetSubHangIndent": {},
-    "glsxtrComputeTreeIndent{}": {
-      "snippet": "glsxtrComputeTreeIndent{${1:label}}"
-    },
-    "glsxtrComputeTreeSubIndent{}{}{}": {
-      "snippet": "glsxtrComputeTreeSubIndent{${1:level}}{${2:label}}{${3:register}}"
-    },
-    "glsxtrtreechildpredesc": {},
-    "glsxtrtreepredesc": {},
-    "glsxtrtreetopindent": {},
-    "glsindexingsetting{}{}{}{}{}": {
-      "snippet": "glsindexingsetting{${1:prev-group-level}}{${2:level}}{${3:parent-label}}{${4:group-label}}{${5:group-title}}"
-    },
-    "glsalttreesubgroupheader{}{}{}{}{}{}": {
-      "snippet": "glsalttreesubgroupheader{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}"
-    }
-  },
-  "envs": {},
-  "options": [
-    "all",
-    "inline",
-    "list",
-    "tree",
-    "mcols",
-    "long",
-    "longragged",
-    "longbooktabs",
-    "super",
-    "superragged",
-    "bookindex",
-    "longextra",
-    "topic",
-    "table"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/glossaries-extra-stylemods#c"
+  ]
 }

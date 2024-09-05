@@ -1,23 +1,52 @@
 {
-  "includes": {
-    "actcodes": []
-  },
-  "macros": {
-    "asciidq": {},
-    "asciidqtd": {},
-    "enldq": {},
-    "enrdq": {},
-    "endqtd{}": {
-      "snippet": "endqtd{${1:arg}}"
-    },
-    "dqtd{}": {
-      "snippet": "dqtd{${1:arg}}"
-    },
-    "dedqtd{}": {
-      "snippet": "dedqtd{${1:arg}}"
+  "deps": [
+    {
+      "name": "actcodes"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "asciidq",
+      "unusual": true
+    },
+    {
+      "name": "asciidqtd",
+      "unusual": true
+    },
+    {
+      "name": "enldq",
+      "unusual": true
+    },
+    {
+      "name": "enrdq",
+      "unusual": true
+    },
+    {
+      "name": "endqtd",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "dqtd",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "dedqtd",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

@@ -1,25 +1,41 @@
 {
-  "includes": {
-    "fontaxes": [],
-    "ifluatex": [],
-    "ifxetex": [],
-    "xkeyval": []
-  },
-  "macros": {
-    "cantarell": {},
-    "cantarellfamily": {},
-    "fcafamily": {}
-  },
-  "envs": {},
-  "options": [
-    "scaled=${1:factor}",
-    "default",
-    "defaultsans",
-    "lining",
-    "oldstyle",
-    "tabular",
-    "proportional",
-    "type1"
+  "deps": [
+    {
+      "name": "fontaxes"
+    },
+    {
+      "name": "ifluatex"
+    },
+    {
+      "name": "ifxetex"
+    },
+    {
+      "name": "xkeyval"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "cantarell"
+    },
+    {
+      "name": "cantarellfamily",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/cantarell#c": [
+      "scaled=${1:factor}\r",
+      "default\r",
+      "defaultsans\r",
+      "lining\r",
+      "oldstyle\r",
+      "tabular\r",
+      "proportional\r",
+      "type1\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/cantarell#c"
+  ]
 }

@@ -1,61 +1,100 @@
 {
-  "includes": {
-    "CJKutf8": []
-  },
-  "macros": {
-    "xpinyin{}{}": {
-      "snippet": "xpinyin{${1:character}}{${2:pinyin}}"
-    },
-    "xpinyin[]{}{}": {
-      "snippet": "xpinyin[${3:options}]{${1:character}}{${2:pinyin}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "xpinyin*{}": {
-      "snippet": "xpinyin*{${1:text}}"
-    },
-    "xpinyin*[]{}": {
-      "snippet": "xpinyin*[${2:options}]{${1:text}}"
-    },
-    "pinyin{}": {
-      "snippet": "pinyin{${1:pinyin}}"
-    },
-    "pinyin[]{}": {
-      "snippet": "pinyin[${2:options}]{${1:pinyin}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "setpinyin{}{}": {
-      "snippet": "setpinyin{${1:characters}}{${2:pinyin}}"
-    },
-    "xpinyinsetup{}": {
-      "snippet": "xpinyinsetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "disablepinyin": {},
-    "enablepinyin": {}
-  },
-  "envs": {
-    "pinyinscope": {},
-    "pinyinscope[]": {
-      "name": "pinyinscope",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "CJKutf8"
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
-      "ratio=${1:number}",
+  ],
+  "macros": [
+    {
+      "name": "xpinyin",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:character}}{${2:pinyin}}"
+      }
+    },
+    {
+      "name": "xpinyin",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:character}}{${2:pinyin}}"
+      }
+    },
+    {
+      "name": "xpinyin*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "xpinyin*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "pinyin",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pinyin}}"
+      }
+    },
+    {
+      "name": "pinyin",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:pinyin}}"
+      }
+    },
+    {
+      "name": "setpinyin",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:characters}}{${2:pinyin}}"
+      }
+    },
+    {
+      "name": "xpinyinsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\begin{pinyinscope},\\xpinyin,\\pinyin,\\xpinyinsetup"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "disablepinyin"
+    },
+    {
+      "name": "enablepinyin"
+    }
+  ],
+  "envs": [
+    {
+      "name": "pinyinscope"
+    },
+    {
+      "name": "pinyinscope",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\begin{pinyinscope},\\xpinyin,\\pinyin,\\xpinyinsetup": [
+      "ratio=${1:number}\r",
       "vsep=",
       "hsep=",
-      "pysep=${1:glue}",
-      "font=${1:font}",
-      "format=${1:format}",
-      "multiple=${1:format}",
+      "pysep=${1:glue}\r",
+      "font=${1:font}\r",
+      "format=${1:format}\r",
+      "multiple=${1:format}\r",
       "footnote"
     ]
-  ]
+  },
+  "args": []
 }

@@ -1,115 +1,276 @@
 {
-  "includes": {
-    "ctex": [],
-    "tabularx": [],
-    "ifthen": [],
-    "xcolor": [],
-    "graphicx": [],
-    "caption": [],
-    "geometry": [],
-    "fancyhdr": [],
-    "etoolbox": [],
-    "amsmath": [],
-    "amssymb": [],
-    "unicode-math": [],
-    "pifont": [],
-    "bbding": [],
-    "romannum": [],
-    "enumitem": []
-  },
-  "macros": {
-    "abs{}": {
-      "snippet": "abs{${1:arg}}"
+  "deps": [
+    {
+      "name": "ctex"
     },
-    "build{}{}": {
-      "snippet": "build{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "tabularx"
     },
-    "choicelengtha": {},
-    "choicelengthb": {},
-    "choicelengthc": {},
-    "choicelengthd": {},
-    "choicelengthe": {},
-    "example": {},
-    "example[]": {
-      "snippet": "example[${1:score}]"
+    {
+      "name": "ifthen"
     },
-    "exercise": {},
-    "exercise[]": {
-      "snippet": "exercise[${1:score}]"
+    {
+      "name": "xcolor"
     },
-    "filedate": {},
-    "fileversion": {},
-    "fivechoices{}{}{}{}{}": {
-      "snippet": "fivechoices{${1:opt1}}{${2:opt2}}{${3:opt3}}{${4:opt4}}{${5:opt5}}"
+    {
+      "name": "graphicx"
     },
-    "fourchoices{}{}{}{}": {
-      "snippet": "fourchoices{${1:opt1}}{${2:opt2}}{${3:opt3}}{${4:opt4}}"
+    {
+      "name": "caption"
     },
-    "group{}{}": {
-      "snippet": "group{${1:题组}}{${2:题组的描述}}"
+    {
+      "name": "geometry"
     },
-    "gt": {},
-    "hint": {},
-    "key{}": {
-      "snippet": "key{${1:key}}"
+    {
+      "name": "fancyhdr"
     },
-    "keylength": {},
-    "lt": {},
-    "maxlength": {},
-    "method": {},
-    "methodonly": {},
-    "myvertspace": {},
-    "notice{}": {
-      "snippet": "notice{${1:text}}"
+    {
+      "name": "etoolbox"
     },
-    "question": {
-      "detail": "?",
-      "documentation": "QUESTION MARK"
+    {
+      "name": "amsmath"
     },
-    "question[]": {
-      "snippet": "question[${1:score}]"
+    {
+      "name": "amssymb"
     },
-    "score{}{}": {
-      "snippet": "score{${1:step}}{${2:total}}"
+    {
+      "name": "unicode-math"
     },
-    "sixchoices{}{}{}{}{}{}": {
-      "snippet": "sixchoices{${1:opt1}}{${2:opt2}}{${3:opt3}}{${4:opt4}}{${5:opt5}}{${6:opt6}}"
+    {
+      "name": "pifont"
     },
-    "subquestion": {},
-    "subtitle{}": {
-      "snippet": "subtitle{${1:text}}"
+    {
+      "name": "bbding"
     },
-    "theExample": {},
-    "theExercise": {},
-    "theGroup": {},
-    "theMethod": {},
-    "theQuestion": {},
-    "threechoices{}{}{}": {
-      "snippet": "threechoices{${1:opt1}}{${2:opt2}}{${3:opt3}}"
+    {
+      "name": "romannum"
+    },
+    {
+      "name": "enumitem"
     }
-  },
-  "envs": {
-    "groups": {},
-    "questions": {},
-    "questions[]": {
-      "name": "questions",
-      "snippet": "[${1:可选参数}]"
-    },
-    "solution{}": {
-      "name": "solution",
-      "snippet": "{${1:vspace}}"
-    },
-    "subquestions": {}
-  },
-  "options": [
-    "answers",
-    "adobe",
-    "ubuntu",
-    "mac",
-    "windows",
-    "fandol",
-    "twocolumn",
-    "list"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "abs",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "build",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "choicelengtha",
+      "unusual": true
+    },
+    {
+      "name": "choicelengthb",
+      "unusual": true
+    },
+    {
+      "name": "choicelengthc",
+      "unusual": true
+    },
+    {
+      "name": "choicelengthd",
+      "unusual": true
+    },
+    {
+      "name": "choicelengthe",
+      "unusual": true
+    },
+    {
+      "name": "example"
+    },
+    {
+      "name": "example",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:score}]"
+      }
+    },
+    {
+      "name": "exercise"
+    },
+    {
+      "name": "exercise",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:score}]"
+      }
+    },
+    {
+      "name": "fivechoices",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:opt1}}{${2:opt2}}{${3:opt3}}{${4:opt4}}{${5:opt5}}"
+      }
+    },
+    {
+      "name": "fourchoices",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:opt1}}{${2:opt2}}{${3:opt3}}{${4:opt4}}"
+      }
+    },
+    {
+      "name": "group",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:题组%text}}{${2:题组的描述%text}}"
+      }
+    },
+    {
+      "name": "gt"
+    },
+    {
+      "name": "hint"
+    },
+    {
+      "name": "key",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:key%text}}"
+      }
+    },
+    {
+      "name": "keylength",
+      "unusual": true
+    },
+    {
+      "name": "lt"
+    },
+    {
+      "name": "maxlength",
+      "unusual": true
+    },
+    {
+      "name": "method"
+    },
+    {
+      "name": "methodonly"
+    },
+    {
+      "name": "myvertspace",
+      "unusual": true
+    },
+    {
+      "name": "notice",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "question",
+      "detail": "?",
+      "doc": "Question mark"
+    },
+    {
+      "name": "question",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:score}]"
+      },
+      "detail": "?",
+      "doc": "Question mark"
+    },
+    {
+      "name": "score",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:step}}{${2:total}}"
+      }
+    },
+    {
+      "name": "sixchoices",
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "{${1:opt1}}{${2:opt2}}{${3:opt3}}{${4:opt4}}{${5:opt5}}{${6:opt6}}"
+      }
+    },
+    {
+      "name": "subquestion"
+    },
+    {
+      "name": "subtitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "theExample",
+      "unusual": true
+    },
+    {
+      "name": "theExercise",
+      "unusual": true
+    },
+    {
+      "name": "theGroup",
+      "unusual": true
+    },
+    {
+      "name": "theMethod",
+      "unusual": true
+    },
+    {
+      "name": "theQuestion",
+      "unusual": true
+    },
+    {
+      "name": "threechoices",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:opt1}}{${2:opt2}}{${3:opt3}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "groups"
+    },
+    {
+      "name": "questions"
+    },
+    {
+      "name": "questions",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:可选参数}]"
+      }
+    },
+    {
+      "name": "solution",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:vspace}}"
+      }
+    },
+    {
+      "name": "subquestions"
+    }
+  ],
+  "keys": {
+    "\\documentclass/BHCexam#c": [
+      "answers\r",
+      "adobe\r",
+      "ubuntu\r",
+      "mac\r",
+      "windows\r",
+      "fandol\r",
+      "twocolumn\r",
+      "list\r"
+    ]
+  },
+  "args": [
+    "\\documentclass/BHCexam#c"
+  ]
 }

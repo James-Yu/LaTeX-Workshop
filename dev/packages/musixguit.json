@@ -1,411 +1,946 @@
 {
-  "includes": {
-    "setspace": [],
-    "musixtex": []
-  },
-  "macros": {
-    "chord{}{}": {
-      "snippet": "chord{${1:note}}{${2:text}}"
-    },
-    "B": {
-      "detail": "𝐵",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL B"
-    },
-    "K": {
-      "detail": "𝐾",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL K"
-    },
-    "T": {
-      "detail": "𝑇",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL T"
-    },
-    "lage{}{}": {
-      "snippet": "lage{${1:num}}{${2:pitch}}"
-    },
-    "lage[]{}{}": {
-      "snippet": "lage[${3:internotes}]{${1:num}}{${2:pitch}}"
-    },
-    "finger{}{}": {
-      "snippet": "finger{${1:finger}}{${2:pitch}}"
-    },
-    "Finger{}{}": {
-      "snippet": "Finger{${1:finger}}{${2:pos}}"
-    },
-    "barree{}{}{}{}": {
-      "snippet": "barree{${1:pitch}}{${2:internotes}}{${3:noteskips}}{${4:lage}}"
-    },
-    "saite{}{}": {
-      "snippet": "saite{${1:pitch}}{${2:symbol}}"
-    },
-    "strike": {},
-    "strk": {},
-    "pickd": {},
-    "pickd[]": {
-      "snippet": "pickd[${1:pitch}]"
-    },
-    "picku": {},
-    "picku[]": {
-      "snippet": "picku[${1:pitch}]"
-    },
-    "tpickd": {},
-    "tpicku": {},
-    "release": {},
-    "release[]": {
-      "snippet": "release[${1:pitch}]"
-    },
-    "laen": {},
-    "len": {},
-    "lena": {},
-    "lenb": {},
-    "teil{}": {
-      "snippet": "teil{${1:arg}}"
-    },
-    "thebarree": {},
-    "thebarreee": {},
-    "thelaenge": {},
-    "thelage": {},
-    "drumclef": {},
-    "dcqu{}": {
-      "snippet": "dcqu{${1:pitch}}"
-    },
-    "dcql{}": {
-      "snippet": "dcql{${1:pitch}}"
-    },
-    "dcqb{}{}": {
-      "snippet": "dcqb{${1:n}}{${2:pitch}}"
-    },
-    "dczq{}": {
-      "snippet": "dczq{${1:pitch}}"
-    },
-    "dccu{}": {
-      "snippet": "dccu{${1:pitch}}"
-    },
-    "dcccu{}": {
-      "snippet": "dcccu{${1:pitch}}"
-    },
-    "dccl{}": {
-      "snippet": "dccl{${1:pitch}}"
-    },
-    "dcccl{}": {
-      "snippet": "dcccl{${1:pitch}}"
-    },
-    "dhqu{}": {
-      "snippet": "dhqu{${1:pitch}}"
-    },
-    "dhql{}": {
-      "snippet": "dhql{${1:pitch}}"
-    },
-    "dhqb{}{}": {
-      "snippet": "dhqb{${1:n}}{${2:pitch}}"
-    },
-    "dhzq{}": {
-      "snippet": "dhzq{${1:pitch}}"
-    },
-    "dhcu{}": {
-      "snippet": "dhcu{${1:pitch}}"
-    },
-    "dhccu{}": {
-      "snippet": "dhccu{${1:pitch}}"
-    },
-    "dhcl{}": {
-      "snippet": "dhcl{${1:pitch}}"
-    },
-    "dhccl{}": {
-      "snippet": "dhccl{${1:pitch}}"
-    },
-    "doqu{}": {
-      "snippet": "doqu{${1:pitch}}"
-    },
-    "doql{}": {
-      "snippet": "doql{${1:pitch}}"
-    },
-    "doqb{}{}": {
-      "snippet": "doqb{${1:n}}{${2:pitch}}"
-    },
-    "dozq{}": {
-      "snippet": "dozq{${1:pitch}}"
-    },
-    "docu{}": {
-      "snippet": "docu{${1:pitch}}"
-    },
-    "doccu{}": {
-      "snippet": "doccu{${1:pitch}}"
-    },
-    "docl{}": {
-      "snippet": "docl{${1:pitch}}"
-    },
-    "doccl{}": {
-      "snippet": "doccl{${1:pitch}}"
-    },
-    "xqu{}": {
-      "snippet": "xqu{${1:pitch}}"
-    },
-    "xql{}": {
-      "snippet": "xql{${1:pitch}}"
-    },
-    "xqb{}{}": {
-      "snippet": "xqb{${1:n}}{${2:pitch}}"
-    },
-    "xzq{}": {
-      "snippet": "xzq{${1:pitch}}"
-    },
-    "xcu{}": {
-      "snippet": "xcu{${1:pitch}}"
-    },
-    "xccu{}": {
-      "snippet": "xccu{${1:pitch}}"
-    },
-    "xcl{}": {
-      "snippet": "xcl{${1:pitch}}"
-    },
-    "xccl{}": {
-      "snippet": "xccl{${1:pitch}}"
-    },
-    "oxqu{}": {
-      "snippet": "oxqu{${1:pitch}}"
-    },
-    "oxql{}": {
-      "snippet": "oxql{${1:pitch}}"
-    },
-    "oxqb{}{}": {
-      "snippet": "oxqb{${1:n}}{${2:pitch}}"
-    },
-    "oxzq{}": {
-      "snippet": "oxzq{${1:pitch}}"
-    },
-    "oxcu{}": {
-      "snippet": "oxcu{${1:pitch}}"
-    },
-    "oxccu{}": {
-      "snippet": "oxccu{${1:pitch}}"
-    },
-    "oxcl{}": {
-      "snippet": "oxcl{${1:pitch}}"
-    },
-    "oxccl{}": {
-      "snippet": "oxccl{${1:pitch}}"
-    },
-    "roqu{}": {
-      "snippet": "roqu{${1:pitch}}"
-    },
-    "roql{}": {
-      "snippet": "roql{${1:pitch}}"
-    },
-    "roqb{}{}": {
-      "snippet": "roqb{${1:n}}{${2:pitch}}"
-    },
-    "rozq{}": {
-      "snippet": "rozq{${1:pitch}}"
-    },
-    "rocu{}": {
-      "snippet": "rocu{${1:pitch}}"
-    },
-    "roccu{}": {
-      "snippet": "roccu{${1:pitch}}"
-    },
-    "rocl{}": {
-      "snippet": "rocl{${1:pitch}}"
-    },
-    "roccl{}": {
-      "snippet": "roccl{${1:pitch}}"
-    },
-    "tgqu{}": {
-      "snippet": "tgqu{${1:pitch}}"
-    },
-    "tgql{}": {
-      "snippet": "tgql{${1:pitch}}"
-    },
-    "tgqb{}{}": {
-      "snippet": "tgqb{${1:n}}{${2:pitch}}"
-    },
-    "tgzq{}": {
-      "snippet": "tgzq{${1:pitch}}"
-    },
-    "tgcu{}": {
-      "snippet": "tgcu{${1:pitch}}"
-    },
-    "tgccu{}": {
-      "snippet": "tgccu{${1:pitch}}"
-    },
-    "tgcl{}": {
-      "snippet": "tgcl{${1:pitch}}"
-    },
-    "tgccl{}": {
-      "snippet": "tgccl{${1:pitch}}"
-    },
-    "kqu{}": {
-      "snippet": "kqu{${1:pitch}}"
-    },
-    "kql{}": {
-      "snippet": "kql{${1:pitch}}"
-    },
-    "kqb{}{}": {
-      "snippet": "kqb{${1:n}}{${2:pitch}}"
-    },
-    "kzq{}": {
-      "snippet": "kzq{${1:pitch}}"
-    },
-    "kcu{}": {
-      "snippet": "kcu{${1:pitch}}"
-    },
-    "kccu{}": {
-      "snippet": "kccu{${1:pitch}}"
-    },
-    "kcl{}": {
-      "snippet": "kcl{${1:pitch}}"
-    },
-    "kccl{}": {
-      "snippet": "kccl{${1:pitch}}"
-    },
-    "dnq{}": {
-      "snippet": "dnq{${1:pitch}}"
-    },
-    "dznq{}": {
-      "snippet": "dznq{${1:pitch}}"
-    },
-    "dqu{}": {
-      "snippet": "dqu{${1:pitch}}"
-    },
-    "dqup{}": {
-      "snippet": "dqup{${1:pitch}}"
-    },
-    "dqupp{}": {
-      "snippet": "dqupp{${1:pitch}}"
-    },
-    "dql{}": {
-      "snippet": "dql{${1:pitch}}"
-    },
-    "dqlp{}": {
-      "snippet": "dqlp{${1:pitch}}"
-    },
-    "dqlpp{}": {
-      "snippet": "dqlpp{${1:pitch}}"
-    },
-    "dqb{}{}": {
-      "snippet": "dqb{${1:n}}{${2:pitch}}"
-    },
-    "dzq{}": {
-      "snippet": "dzq{${1:pitch}}"
-    },
-    "dzqp{}": {
-      "snippet": "dzqp{${1:pitch}}"
-    },
-    "dzqpp{}": {
-      "snippet": "dzqpp{${1:pitch}}"
-    },
-    "dcu{}": {
-      "snippet": "dcu{${1:pitch}}"
-    },
-    "dccccu{}": {
-      "snippet": "dccccu{${1:pitch}}"
-    },
-    "dcl{}": {
-      "snippet": "dcl{${1:pitch}}"
-    },
-    "dccccl{}": {
-      "snippet": "dccccl{${1:pitch}}"
-    },
-    "dcup{}": {
-      "snippet": "dcup{${1:pitch}}"
-    },
-    "dcupp{}": {
-      "snippet": "dcupp{${1:pitch}}"
-    },
-    "dclp{}": {
-      "snippet": "dclp{${1:pitch}}"
-    },
-    "dclpp{}": {
-      "snippet": "dclpp{${1:pitch}}"
-    },
-    "ynq{}": {
-      "snippet": "ynq{${1:pitch}}"
-    },
-    "yznq{}": {
-      "snippet": "yznq{${1:pitch}}"
-    },
-    "zynq{}": {
-      "snippet": "zynq{${1:pitch}}"
-    },
-    "yqu{}": {
-      "snippet": "yqu{${1:pitch}}"
-    },
-    "yqup{}": {
-      "snippet": "yqup{${1:pitch}}"
-    },
-    "yqupp{}": {
-      "snippet": "yqupp{${1:pitch}}"
-    },
-    "yql{}": {
-      "snippet": "yql{${1:pitch}}"
-    },
-    "yqlp{}": {
-      "snippet": "yqlp{${1:pitch}}"
-    },
-    "yqlpp{}": {
-      "snippet": "yqlpp{${1:pitch}}"
-    },
-    "yqb{}{}": {
-      "snippet": "yqb{${1:n}}{${2:pitch}}"
-    },
-    "yzq{}": {
-      "snippet": "yzq{${1:pitch}}"
-    },
-    "yzqp{}": {
-      "snippet": "yzqp{${1:pitch}}"
-    },
-    "yzqpp{}": {
-      "snippet": "yzqpp{${1:pitch}}"
-    },
-    "ycu{}": {
-      "snippet": "ycu{${1:pitch}}"
-    },
-    "yccu{}": {
-      "snippet": "yccu{${1:pitch}}"
-    },
-    "ycccu{}": {
-      "snippet": "ycccu{${1:pitch}}"
-    },
-    "yccccu{}": {
-      "snippet": "yccccu{${1:pitch}}"
-    },
-    "ycl{}": {
-      "snippet": "ycl{${1:pitch}}"
-    },
-    "yccl{}": {
-      "snippet": "yccl{${1:pitch}}"
-    },
-    "ycccl{}": {
-      "snippet": "ycccl{${1:pitch}}"
-    },
-    "yccccl{}": {
-      "snippet": "yccccl{${1:pitch}}"
-    },
-    "ycup{}": {
-      "snippet": "ycup{${1:pitch}}"
-    },
-    "ycupp{}": {
-      "snippet": "ycupp{${1:pitch}}"
-    },
-    "yclp{}": {
-      "snippet": "yclp{${1:pitch}}"
-    },
-    "yclpp{}": {
-      "snippet": "yclpp{${1:pitch}}"
-    },
-    "raiseguitar{}": {
-      "snippet": "raiseguitar{${1:n}}"
-    },
-    "guitar": {},
-    "gbarre{}": {
-      "snippet": "gbarre{${1:b}}"
-    },
-    "gdot{}{}": {
-      "snippet": "gdot{${1:s}}{${2:b}}"
+  "deps": [
+    {
+      "name": "setspace"
+    },
+    {
+      "name": "musixtex"
     }
-  },
-  "envs": {
-    "song": {}
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "chord",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:note}}{${2:text}}"
+      }
+    },
+    {
+      "name": "B"
+    },
+    {
+      "name": "K"
+    },
+    {
+      "name": "T"
+    },
+    {
+      "name": "lage",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:num}}{${2:pitch}}"
+      }
+    },
+    {
+      "name": "lage",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:internotes}]{${1:num}}{${2:pitch}}"
+      }
+    },
+    {
+      "name": "finger",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:finger}}{${2:pitch}}"
+      }
+    },
+    {
+      "name": "Finger",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:finger}}{${2:pos}}"
+      }
+    },
+    {
+      "name": "barree",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:pitch}}{${2:internotes}}{${3:noteskips}}{${4:lage}}"
+      }
+    },
+    {
+      "name": "saite",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:pitch}}{${2:symbol}}"
+      }
+    },
+    {
+      "name": "strike"
+    },
+    {
+      "name": "strk"
+    },
+    {
+      "name": "pickd"
+    },
+    {
+      "name": "pickd",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:pitch}]"
+      }
+    },
+    {
+      "name": "picku"
+    },
+    {
+      "name": "picku",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:pitch}]"
+      }
+    },
+    {
+      "name": "tpickd"
+    },
+    {
+      "name": "tpicku"
+    },
+    {
+      "name": "release"
+    },
+    {
+      "name": "release",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:pitch}]"
+      }
+    },
+    {
+      "name": "teil",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "drumclef"
+    },
+    {
+      "name": "dcqu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "dcql",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "dcqb",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:n}}{${2:pitch}}"
+      }
+    },
+    {
+      "name": "dczq",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "dccu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "dcccu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "dccl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "dcccl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "dhqu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "dhql",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "dhqb",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:n}}{${2:pitch}}"
+      }
+    },
+    {
+      "name": "dhzq",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "dhcu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "dhccu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "dhcl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "dhccl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "doqu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "doql",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "doqb",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:n}}{${2:pitch}}"
+      }
+    },
+    {
+      "name": "dozq",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "docu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "doccu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "docl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "doccl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "xqu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "xql",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "xqb",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:n}}{${2:pitch}}"
+      }
+    },
+    {
+      "name": "xzq",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "xcu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "xccu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "xcl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "xccl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "oxqu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "oxql",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "oxqb",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:n}}{${2:pitch}}"
+      }
+    },
+    {
+      "name": "oxzq",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "oxcu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "oxccu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "oxcl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "oxccl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "roqu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "roql",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "roqb",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:n}}{${2:pitch}}"
+      }
+    },
+    {
+      "name": "rozq",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "rocu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "roccu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "rocl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "roccl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "tgqu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "tgql",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "tgqb",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:n}}{${2:pitch}}"
+      }
+    },
+    {
+      "name": "tgzq",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "tgcu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "tgccu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "tgcl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "tgccl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "kqu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "kql",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "kqb",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:n}}{${2:pitch}}"
+      }
+    },
+    {
+      "name": "kzq",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "kcu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "kccu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "kcl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "kccl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "dnq",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "dznq",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "dqu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "dqup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "dqupp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "dql",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "dqlp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "dqlpp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "dqb",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:n}}{${2:pitch}}"
+      }
+    },
+    {
+      "name": "dzq",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "dzqp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "dzqpp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "dcu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "dccu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "dcccu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "dccccu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "dcl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "dccl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "dcccl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "dccccl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "dcup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "dcupp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "dclp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "dclpp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "ynq",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "yznq",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "zynq",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "yqu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "yqup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "yqupp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "yql",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "yqlp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "yqlpp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "yqb",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:n}}{${2:pitch}}"
+      }
+    },
+    {
+      "name": "yzq",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "yzqp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "yzqpp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "ycu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "yccu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "ycccu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "yccccu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "ycl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "yccl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "ycccl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "yccccl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "ycup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "ycupp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "yclp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "yclpp",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pitch}}"
+      }
+    },
+    {
+      "name": "raiseguitar",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:n}}"
+      }
+    },
+    {
+      "name": "guitar",
+      "unusual": true
+    },
+    {
+      "name": "gbarre",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:b}}"
+      }
+    },
+    {
+      "name": "gdot",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:s}}{${2:b}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "song"
+    }
+  ],
+  "keys": {},
+  "args": []
 }

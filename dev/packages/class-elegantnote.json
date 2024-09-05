@@ -1,180 +1,398 @@
 {
-  "includes": {
-    "kvoptions": [],
-    "etoolbox": [],
-    "calc": [],
-    "amsmath": [],
-    "amsthm": [],
-    "iftex": [],
-    "newtxtext": [],
-    "helvet": [],
-    "ctex": [],
-    "biblatex": [],
-    "appendix": [],
-    "indentfirst": [],
-    "anyfontsize": [],
-    "graphicx": [],
-    "booktabs": [],
-    "xcolor": [],
-    "hyperref": [],
-    "xpatch": [],
-    "hologo": [],
-    "silence": [],
-    "caption": [],
-    "enumitem": [],
-    "footmisc": [],
-    "titlesec": [],
-    "geometry": [],
-    "extsizes": [],
-    "fancyhdr": [],
-    "tikz": [],
-    "tikzlibraryshadows": [],
-    "listings": [],
-    "lstautogobble": [],
-    "mtpro2": [
-      "math=mtpro2",
-      "mtpro2"
+  "deps": [
+    {
+      "name": "kvoptions"
+    },
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "calc"
+    },
+    {
+      "name": "amsmath"
+    },
+    {
+      "name": "amsthm"
+    },
+    {
+      "name": "iftex"
+    },
+    {
+      "name": "newtxtext"
+    },
+    {
+      "name": "helvet"
+    },
+    {
+      "name": "ctex"
+    },
+    {
+      "name": "biblatex"
+    },
+    {
+      "name": "appendix"
+    },
+    {
+      "name": "indentfirst"
+    },
+    {
+      "name": "anyfontsize"
+    },
+    {
+      "name": "graphicx"
+    },
+    {
+      "name": "booktabs"
+    },
+    {
+      "name": "xcolor"
+    },
+    {
+      "name": "hyperref"
+    },
+    {
+      "name": "xpatch"
+    },
+    {
+      "name": "hologo"
+    },
+    {
+      "name": "silence"
+    },
+    {
+      "name": "caption"
+    },
+    {
+      "name": "enumitem"
+    },
+    {
+      "name": "footmisc"
+    },
+    {
+      "name": "titlesec"
+    },
+    {
+      "name": "geometry"
+    },
+    {
+      "name": "extsizes"
+    },
+    {
+      "name": "fancyhdr"
+    },
+    {
+      "name": "tikz"
+    },
+    {
+      "name": "tikzlibraryshadows"
+    },
+    {
+      "name": "listings"
+    },
+    {
+      "name": "lstautogobble"
+    },
+    {
+      "name": "mtpro2",
+      "if": "math=mtpro2"
+    },
+    {
+      "name": "mtpro2",
+      "if": "mtpro2"
+    },
+    {
+      "name": "newtxmath",
+      "if": "math=newtx"
+    },
+    {
+      "name": "esint",
+      "if": "math=newtx"
+    },
+    {
+      "name": "newtxmath",
+      "if": "newtx"
+    },
+    {
+      "name": "esint",
+      "if": "newtx"
+    }
+  ],
+  "macros": [
+    {
+      "name": "prodop",
+      "if": "math=newtx",
+      "unusual": true
+    },
+    {
+      "name": "sumop",
+      "if": "math=newtx",
+      "unusual": true
+    },
+    {
+      "name": "prodop",
+      "if": "newtx",
+      "unusual": true
+    },
+    {
+      "name": "sumop",
+      "if": "newtx",
+      "unusual": true
+    },
+    {
+      "name": "institute",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:institute%text}}"
+      }
+    },
+    {
+      "name": "keywords",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keywords%text}}"
+      }
+    },
+    {
+      "name": "version",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:version}}"
+      }
+    },
+    {
+      "name": "cfs",
+      "unusual": true
+    },
+    {
+      "name": "citshape",
+      "unusual": true
+    },
+    {
+      "name": "cnormal",
+      "unusual": true
+    },
+    {
+      "name": "ebibname",
+      "unusual": true
+    },
+    {
+      "name": "eitemi",
+      "unusual": true
+    },
+    {
+      "name": "eitemii",
+      "unusual": true
+    },
+    {
+      "name": "eitemiii",
+      "unusual": true
+    },
+    {
+      "name": "ekv",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "IfEmpty",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "ifempty",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "updatetext",
+      "unusual": true
+    },
+    {
+      "name": "versiontext",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "theorem"
+    },
+    {
+      "name": "theorem",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "lemma"
+    },
+    {
+      "name": "lemma",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "proposition"
+    },
+    {
+      "name": "proposition",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "corollary"
+    },
+    {
+      "name": "corollary",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "definition"
+    },
+    {
+      "name": "definition",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "conjecture"
+    },
+    {
+      "name": "conjecture",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "example"
+    },
+    {
+      "name": "example",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "remark"
+    },
+    {
+      "name": "remark",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "note"
+    },
+    {
+      "name": "note",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "case"
+    },
+    {
+      "name": "case",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "enumerate*"
+    },
+    {
+      "name": "enumerate*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "itemize*"
+    },
+    {
+      "name": "itemize*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "description*"
+    },
+    {
+      "name": "description*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\documentclass/elegantnote#c": [
+      "color=${1|green,cyan,blue,sakura,black,brown\r|}",
+      "device=${1|pc,pad,kindle,normal,screen\r|}",
+      "lang=${1|cn,en\r|}",
+      "mode=${1|geye,hazy,sepia\r|}",
+      "chinesefont=${1|ctexfont,founder,nofont\r|}",
+      "citestyle=${1:style}\r",
+      "bibstyle=${1:style}\r",
+      "bibend=${1|biber,bibtex\r|}",
+      "fontsize=${1|8pt,9pt,10pt,11pt,12pt,14pt,17pt,20pt\r|}",
+      "math=${1|newtx,mtpro2,cm\r|}",
+      "a4paper\r",
+      "a5paper\r",
+      "b5paper\r",
+      "letterpaper\r",
+      "legalpaper\r",
+      "executivepaper\r",
+      "landscape\r",
+      "oneside\r",
+      "twoside\r",
+      "draft\r",
+      "final\r",
+      "titlepage\r",
+      "notitlepage\r",
+      "onecolumn\r",
+      "twocolumn\r",
+      "leqno\r",
+      "fleqn\r",
+      "openbib\r"
     ],
-    "newtxmath": [
-      "math=newtx",
-      "newtx"
-    ],
-    "esint": [
-      "math=newtx",
-      "newtx"
+    "\\begin{enumerate}#c,\\begin{itemize}#c,\\begin{description}#c,\\begin{enumerate*}#c,\\begin{itemize*}#c,\\begin{description*}#c": [
+      "A\r",
+      "a\r",
+      "I\r",
+      "i\r",
+      "1\r"
     ]
   },
-  "macros": {
-    "prodop": {
-      "option": "newtx"
-    },
-    "sumop": {
-      "option": "newtx"
-    },
-    "institute{}": {
-      "snippet": "institute{${1:institute}}"
-    },
-    "keywords{}": {
-      "snippet": "keywords{${1:keywords}}"
-    },
-    "version{}": {
-      "snippet": "version{${1:version}}"
-    },
-    "cfs": {},
-    "citshape": {},
-    "cnormal": {},
-    "ebibname": {},
-    "eitemi": {},
-    "eitemii": {},
-    "eitemiii": {},
-    "ekv{}": {
-      "snippet": "ekv{${1:keyvals}}"
-    },
-    "IfEmpty{}": {
-      "snippet": "IfEmpty{${1:arg}}"
-    },
-    "ifempty{}": {
-      "snippet": "ifempty{${1:arg}}"
-    },
-    "updatetext": {},
-    "versiontext": {}
-  },
-  "envs": {
-    "theorem": {},
-    "theorem[]": {
-      "name": "theorem",
-      "snippet": "[${1:heading}]"
-    },
-    "lemma": {},
-    "lemma[]": {
-      "name": "lemma",
-      "snippet": "[${1:heading}]"
-    },
-    "proposition": {},
-    "proposition[]": {
-      "name": "proposition",
-      "snippet": "[${1:heading}]"
-    },
-    "corollary": {},
-    "corollary[]": {
-      "name": "corollary",
-      "snippet": "[${1:heading}]"
-    },
-    "definition": {},
-    "definition[]": {
-      "name": "definition",
-      "snippet": "[${1:heading}]"
-    },
-    "conjecture": {},
-    "conjecture[]": {
-      "name": "conjecture",
-      "snippet": "[${1:heading}]"
-    },
-    "example": {},
-    "example[]": {
-      "name": "example",
-      "snippet": "[${1:heading}]"
-    },
-    "remark": {},
-    "remark[]": {
-      "name": "remark",
-      "snippet": "[${1:heading}]"
-    },
-    "note": {},
-    "note[]": {
-      "name": "note",
-      "snippet": "[${1:heading}]"
-    },
-    "case": {},
-    "case[]": {
-      "name": "case",
-      "snippet": "[${1:heading}]"
-    },
-    "enumerate*": {},
-    "enumerate*[]": {
-      "name": "enumerate*",
-      "snippet": "[${1:options}]"
-    },
-    "itemize*": {},
-    "itemize*[]": {
-      "name": "itemize*",
-      "snippet": "[${1:options}]"
-    },
-    "description*": {},
-    "description*[]": {
-      "name": "description*",
-      "snippet": "[${1:options}]"
-    }
-  },
-  "options": [
-    "color=${1|green,cyan,blue,sakura,black,brown|}",
-    "device=${1|pc,pad,kindle,normal,screen|}",
-    "lang=${1|cn,en|}",
-    "mode=${1|geye,hazy,sepia|}",
-    "chinesefont=${1|ctexfont,founder,nofont|}",
-    "citestyle=${1:style}",
-    "bibstyle=${1:style}",
-    "bibend=${1|biber,bibtex|}",
-    "fontsize=${1|8pt,9pt,10pt,11pt,12pt,14pt,17pt,20pt|}",
-    "math=${1|newtx,mtpro2,cm|}",
-    "a4paper",
-    "a5paper",
-    "b5paper",
-    "letterpaper",
-    "legalpaper",
-    "executivepaper",
-    "landscape",
-    "oneside",
-    "twoside",
-    "draft",
-    "final",
-    "titlepage",
-    "notitlepage",
-    "onecolumn",
-    "twocolumn",
-    "leqno",
-    "fleqn",
-    "openbib"
-  ],
-  "keyvals": []
+  "args": [
+    "\\documentclass/elegantnote#c"
+  ]
 }

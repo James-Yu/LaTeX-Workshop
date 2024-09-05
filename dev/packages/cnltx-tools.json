@@ -1,64 +1,161 @@
 {
-  "includes": {
-    "cnltx-base": [],
-    "accsupp": [],
-    "cnltx-translations": []
-  },
-  "macros": {
-    "cnltxacronym{}{}": {
-      "snippet": "cnltxacronym{${1:string}}{${2:acronym}}"
+  "deps": [
+    {
+      "name": "cnltx-base"
     },
-    "newabbr{}{}": {
-      "snippet": "newabbr{${1:cmd}}{${2:definition}}"
+    {
+      "name": "accsupp"
     },
-    "newabbr*{}{}": {
-      "snippet": "newabbr*{${1:cmd}}{${2:definition}}"
-    },
-    "renewabbr{}{}": {
-      "snippet": "renewabbr{${1:cmd}}{${2:definition}}"
-    },
-    "renewabbr*{}{}": {
-      "snippet": "renewabbr*{${1:cmd}}{${2:definition}}"
-    },
-    "defabbr{}{}": {
-      "snippet": "defabbr{${1:cmd}}{${2:definition}}"
-    },
-    "defabbr*{}{}": {
-      "snippet": "defabbr*{${1:cmd}}{${2:definition}}"
-    },
-    "cnltxlatin{}": {
-      "snippet": "cnltxlatin{${1:abbreviation}}"
-    },
-    "ie": {},
-    "eg": {},
-    "cf": {},
-    "etc": {},
-    "vs": {},
-    "zB": {},
-    "ZB": {},
-    "usw": {},
-    "usf": {},
-    "uswusf": {},
-    "bzw": {},
-    "dsh": {},
-    "Dsh": {},
-    "vgl": {},
-    "Vgl": {},
-    "cnltxtimeformat{}": {
-      "snippet": "cnltxtimeformat{${1:abbreviation}}"
-    },
-    "PM": {},
-    "AM": {},
-    "BC": {},
-    "AD": {},
-    "nohyperpage{}": {
-      "snippet": "nohyperpage{${1:arg}}"
-    },
-    "texorpdfstring{}{}": {
-      "snippet": "texorpdfstring{${1:TEXstring}}{${2:PDFstring}}"
+    {
+      "name": "cnltx-translations"
     }
+  ],
+  "macros": [
+    {
+      "name": "cnltxacronym",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:string}}{${2:acronym}}"
+      }
+    },
+    {
+      "name": "newabbr",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "newabbr*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "renewabbr",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "renewabbr*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "defabbr",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "defabbr*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "cnltxlatin",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:abbreviation}}"
+      }
+    },
+    {
+      "name": "ie"
+    },
+    {
+      "name": "eg"
+    },
+    {
+      "name": "cf"
+    },
+    {
+      "name": "etc"
+    },
+    {
+      "name": "vs"
+    },
+    {
+      "name": "zB"
+    },
+    {
+      "name": "ZB"
+    },
+    {
+      "name": "usw"
+    },
+    {
+      "name": "usf"
+    },
+    {
+      "name": "uswusf"
+    },
+    {
+      "name": "bzw"
+    },
+    {
+      "name": "dsh"
+    },
+    {
+      "name": "Dsh"
+    },
+    {
+      "name": "vgl"
+    },
+    {
+      "name": "Vgl"
+    },
+    {
+      "name": "cnltxtimeformat",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:abbreviation}}"
+      }
+    },
+    {
+      "name": "PM"
+    },
+    {
+      "name": "AM"
+    },
+    {
+      "name": "BC"
+    },
+    {
+      "name": "AD"
+    },
+    {
+      "name": "nohyperpage",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "texorpdfstring",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:TEXstring}}{${2:PDFstring}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\setcnltx#c": [
+      "acronym-format={${1:definition}}\r",
+      "name-format={${1:formatting cmds}}\r",
+      "last-name-format={${1:formatting cmds}}\r",
+      "first-name-format={${1:formatting cmds}}\r"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

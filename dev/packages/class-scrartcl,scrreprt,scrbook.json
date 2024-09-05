@@ -1,308 +1,781 @@
 {
-  "includes": {
-    "scrpage2": []
-  },
-  "macros": {
-    "addchap[]{}": {
-      "snippet": "addchap[${2:short title}]{${1:title}}"
-    },
-    "addchap{}": {
-      "snippet": "addchap{${1:title}}"
-    },
-    "addchap*{}": {
-      "snippet": "addchap*{${1:title}}"
-    },
-    "addpart[]{}": {
-      "snippet": "addpart[${2:short title}]{${1:title}}"
-    },
-    "addpart{}": {
-      "snippet": "addpart{${1:title}}"
-    },
-    "addpart*{}": {
-      "snippet": "addpart*{${1:title}}"
-    },
-    "addsec[]{}": {
-      "snippet": "addsec[${2:short title}]{${1:title}}"
-    },
-    "addsec{}": {
-      "snippet": "addsec{${1:title}}"
-    },
-    "addsec*{}": {
-      "snippet": "addsec*{${1:title}}"
-    },
-    "addtokomafont{}{}": {
-      "snippet": "addtokomafont{${1:name}}{${2:cmd}}"
-    },
-    "areaset[]{}{}": {
-      "snippet": "areaset[${3:bcor}]{${1:width}}{${2:height}}"
-    },
-    "areaset{}{}": {
-      "snippet": "areaset{${1:width}}{${2:height}}"
-    },
-    "captionabove[]{}": {
-      "snippet": "captionabove[${2:entry}]{${1:text}}"
-    },
-    "captionabove{}": {
-      "snippet": "captionabove{${1:text}}"
-    },
-    "captionbelow[]{}": {
-      "snippet": "captionbelow[${2:entry}]{${1:text}}"
-    },
-    "captionbelow{}": {
-      "snippet": "captionbelow{${1:text}}"
-    },
-    "chapappifchapterprefix{}": {
-      "snippet": "chapappifchapterprefix{${1:text}}"
-    },
-    "dedication{}": {
-      "snippet": "dedication{${1:text}}"
-    },
-    "deffootnote{}{}{}": {
-      "snippet": "deffootnote{${1:indent}}{${2:parindent}}{${3:definition}}"
-    },
-    "deffootnotemark{}": {
-      "snippet": "deffootnotemark{${1:definition}}"
-    },
-    "deffootnote[]{}{}{}": {
-      "snippet": "deffootnote[${4:width}]{${1:indent}}{${2:parindent}}{${3:definition}}"
-    },
-    "dictumauthorformat{}": {
-      "snippet": "dictumauthorformat{${1:cmd}}"
-    },
-    "dictum[]{}": {
-      "snippet": "dictum[${2:author}]{${1:text}}"
-    },
-    "dictum{}": {
-      "snippet": "dictum{${1:text}}"
-    },
-    "enlargethispage": {},
-    "extratitle{}": {
-      "snippet": "extratitle{${1:shorttitle}}"
-    },
-    "ifpdfoutput{}{}": {
-      "snippet": "ifpdfoutput{${1:then}}{${2:else}}"
-    },
-    "ifthispageodd{}{}": {
-      "snippet": "ifthispageodd{${1:true}}{${2:false}}"
-    },
-    "lowertitleback{}": {
-      "snippet": "lowertitleback{${1:text}}"
-    },
-    "maketitle[]": {
-      "snippet": "maketitle[${1:pagenumber}]"
-    },
-    "marginline{}": {
-      "snippet": "marginline{${1:text}}"
-    },
-    "markboth": {},
-    "markleft": {},
-    "markright": {},
-    "minisec{}": {
-      "snippet": "minisec{${1:title}}"
-    },
-    "othersectionlevelsformat{}": {
-      "snippet": "othersectionlevelsformat{${1:level}}"
-    },
-    "publishers{}": {
-      "snippet": "publishers{${1:text}}"
-    },
-    "setbibpreamble{}": {
-      "snippet": "setbibpreamble{${1:text}}"
-    },
-    "setcapindent{}": {
-      "snippet": "setcapindent{${1:indent}}"
-    },
-    "setcapindent*{}": {
-      "snippet": "setcapindent*{${1:indent}}"
-    },
-    "setcapmargin{}": {
-      "snippet": "setcapmargin{${1:indent}}"
-    },
-    "setcapmargin*{}": {
-      "snippet": "setcapmargin*{${1:indent}}"
-    },
-    "setcapmargin[]{}": {
-      "snippet": "setcapmargin[${2:left}]{${1:indent}}"
-    },
-    "setcapmargin*[]{}": {
-      "snippet": "setcapmargin*[${2:middle}]{${1:indent}}"
-    },
-    "setcapwidth[]{}": {
-      "snippet": "setcapwidth[${2:align}]{${1:width}}"
-    },
-    "setcapwidth{}": {
-      "snippet": "setcapwidth{${1:width}}"
-    },
-    "setchapterpreamble[]{}": {
-      "snippet": "setchapterpreamble[${2:pos}]{${1:text}}"
-    },
-    "setchapterpreamble[][]{}": {
-      "snippet": "setchapterpreamble[${2:pos}][${3:width}]{${1:text}}"
-    },
-    "setchapterpreamble{}": {
-      "snippet": "setchapterpreamble{${1:text}}"
-    },
-    "SetDIVList{}": {
-      "snippet": "SetDIVList{${1:list}}"
-    },
-    "setindexpreamble{}": {
-      "snippet": "setindexpreamble{${1:text}}"
-    },
-    "setkomafont{}{}": {
-      "snippet": "setkomafont{${1:name}}{${2:cmd}}"
-    },
-    "setpartpreamble[]{}": {
-      "snippet": "setpartpreamble[${2:pos}]{${1:text}}"
-    },
-    "setpartpreamble[][]{}": {
-      "snippet": "setpartpreamble[${2:pos}][${3:width}]{${1:text}}"
-    },
-    "setpartpreamble{}": {
-      "snippet": "setpartpreamble{${1:text}}"
-    },
-    "subject{}": {
-      "snippet": "subject{${1:text}}"
-    },
-    "subtitle{}": {
-      "snippet": "subtitle{${1:text}}"
-    },
-    "textsubscript{}": {
-      "snippet": "textsubscript{${1:text}}"
-    },
-    "textsuperscript{}": {
-      "snippet": "textsuperscript{${1:text}}"
-    },
-    "titlehead{}": {
-      "snippet": "titlehead{${1:head}}"
-    },
-    "typearea[]{}": {
-      "snippet": "typearea[${2:bcor}]{${1:div}}"
-    },
-    "typearea{}": {
-      "snippet": "typearea{${1:div}}"
-    },
-    "uppertitleback{}": {
-      "snippet": "uppertitleback{${1:text}}"
-    },
-    "usekomafont{}": {
-      "snippet": "usekomafont{${1:name}}"
-    },
-    "appendixmore": {},
-    "autodot": {},
-    "backmatter": {},
-    "capfont": {},
-    "caplabelfont": {},
-    "captionformat": {},
-    "chapapp": {},
-    "chapterformat": {},
-    "chaptermarkformat": {},
-    "chapterpagestyle": {},
-    "contentsname": {},
-    "descfont": {},
-    "dictumwidth": {},
-    "figureformat": {},
-    "frontmatter": {},
-    "indexpagestyle": {},
-    "listfigurename": {},
-    "listtablename": {},
-    "mainmatter": {},
-    "partformat": {},
-    "partpagestyle": {},
-    "raggeddictum": {},
-    "raggeddictumauthor": {},
-    "raggeddictumtext": {},
-    "raggedsection": {},
-    "sectfont": {},
-    "sectionmarkformat": {},
-    "setcaphanging": {},
-    "subsectionmarkformat": {},
-    "tableformat": {},
-    "titlepagestyle": {},
-    "pdfoutput": {},
-    "pdfpageheight": {},
-    "pdfpagewidth": {},
-    "KOMAScript{}": {
-      "snippet": "KOMAScript{${1:}}"
-    },
-    "cleardoublepageusingstyle{}": {
-      "snippet": "cleardoublepageusingstyle{${1:pagestyle}}"
-    },
-    "cleardoubleemptypage": {},
-    "cleardoubleplainpage": {},
-    "cleardoublestandardpage": {},
-    "cleardoubleoddusingstyle{}": {
-      "snippet": "cleardoubleoddusingstyle{${1:pagestyle}}"
-    },
-    "cleardoubleoddemptypage": {},
-    "cleardoubleoddpage": {},
-    "cleardoubleoddplainpage": {},
-    "cleardoubleoddstandardpage": {},
-    "cleardoubleevenusingstyle{}": {
-      "snippet": "cleardoubleevenusingstyle{${1:pagestyle}}"
-    },
-    "cleardoubleevenemptypage": {},
-    "cleardoubleevenpage": {},
-    "cleardoubleevenplainpage": {},
-    "cleardoubleevenstandardpage": {},
-    "defpagestyle{}{}{}": {
-      "snippet": "defpagestyle{${1:pagestyle}}{${2:header}}{${3:footer}}"
-    },
-    "newpagestyle{}{}{}": {
-      "snippet": "newpagestyle{${1:pagestyle}}{${2:header}}{${3:footer}}"
-    },
-    "renewpagestyle{}{}{}": {
-      "snippet": "renewpagestyle{${1:pagestyle}}{${2:header}}{${3:footer}}"
-    },
-    "providepagestyle{}{}{}": {
-      "snippet": "providepagestyle{${1:pagestyle}}{${2:header}}{${3:footer}}"
+  "deps": [
+    {
+      "name": "scrpage2"
     }
-  },
-  "envs": {
-    "addmargin{}": {
-      "name": "addmargin",
-      "snippet": "{${1:indent}}"
+  ],
+  "macros": [
+    {
+      "name": "addchap",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short title}]{${1:title}}"
+      }
     },
-    "addmargin*{}": {
-      "name": "addmargin*",
-      "snippet": "{${1:indent}}"
+    {
+      "name": "addchap",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
     },
-    "addmargin[]{}": {
-      "name": "addmargin",
-      "snippet": "[${2:leftindent}]{${1:indent}}"
+    {
+      "name": "addchap*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
     },
-    "addmargin*[]{}": {
-      "name": "addmargin*",
-      "snippet": "[${2:middleindent}]{${1:indent}}"
+    {
+      "name": "addpart",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short title}]{${1:title}}"
+      }
     },
-    "captionbeside[]{}": {
-      "name": "captionbeside",
-      "snippet": "[${2:short}]{${1:title}}"
+    {
+      "name": "addpart",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
     },
-    "captionbeside[]{}[]": {
-      "name": "captionbeside",
-      "snippet": "[${2:short}]{${1:title}}[${3:pos}]"
+    {
+      "name": "addpart*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
     },
-    "captionbeside[]{}[][]": {
-      "name": "captionbeside",
-      "snippet": "[${2:short}]{${1:title}}[${3:pos}][${4:width}]"
+    {
+      "name": "addsec",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short title}]{${1:title}}"
+      }
     },
-    "captionbeside{}": {
-      "name": "captionbeside",
-      "snippet": "{${1:title}}"
+    {
+      "name": "addsec",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
     },
-    "captionbeside{}[]": {
-      "name": "captionbeside",
-      "snippet": "{${1:title}}[${2:pos}]"
+    {
+      "name": "addsec*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
     },
-    "captionbeside{}[][]": {
-      "name": "captionbeside",
-      "snippet": "{${1:title}}[${2:pos}][${3:width}]"
+    {
+      "name": "addtokomafont",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:cmd}}"
+      }
     },
-    "captionbeside{}[][][]": {
-      "name": "captionbeside",
-      "snippet": "{${1:title}}[${2:pos}][${3:width}][${4:offset}]"
+    {
+      "name": "areaset",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:bcor}]{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "areaset",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "captionabove",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:entry}]{${1:text}}"
+      }
+    },
+    {
+      "name": "captionabove",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "captionbelow",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:entry}]{${1:text}}"
+      }
+    },
+    {
+      "name": "captionbelow",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "chapappifchapterprefix",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "dedication",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "deffootnote",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:indent}}{${2:parindent}}{${3:definition}}"
+      }
+    },
+    {
+      "name": "deffootnotemark",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:definition}}"
+      }
+    },
+    {
+      "name": "deffootnote",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:width}]{${1:indent}}{${2:parindent}}{${3:definition}}"
+      }
+    },
+    {
+      "name": "dictumauthorformat",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cmd}}"
+      }
+    },
+    {
+      "name": "dictum",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:author}]{${1:text}}"
+      }
+    },
+    {
+      "name": "dictum",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "enlargethispage"
+    },
+    {
+      "name": "extratitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:shorttitle}}"
+      }
+    },
+    {
+      "name": "ifpdfoutput",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:then}}{${2:else}}"
+      }
+    },
+    {
+      "name": "ifthispageodd",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "lowertitleback",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "maketitle",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:pagenumber}]"
+      }
+    },
+    {
+      "name": "marginline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "markboth",
+      "unusual": true
+    },
+    {
+      "name": "markleft",
+      "unusual": true
+    },
+    {
+      "name": "markright",
+      "unusual": true
+    },
+    {
+      "name": "minisec",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "othersectionlevelsformat",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:level}}"
+      }
+    },
+    {
+      "name": "publishers",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "setbibpreamble",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "setcapindent",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:indent}}"
+      }
+    },
+    {
+      "name": "setcapindent*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:indent}}"
+      }
+    },
+    {
+      "name": "setcapmargin",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:indent}}"
+      }
+    },
+    {
+      "name": "setcapmargin*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:indent}}"
+      }
+    },
+    {
+      "name": "setcapmargin",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:left}]{${1:indent}}"
+      }
+    },
+    {
+      "name": "setcapmargin*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:middle}]{${1:indent}}"
+      }
+    },
+    {
+      "name": "setcapwidth",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:align}]{${1:width}}"
+      }
+    },
+    {
+      "name": "setcapwidth",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:width}}"
+      }
+    },
+    {
+      "name": "setchapterpreamble",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:pos}]{${1:text}}"
+      }
+    },
+    {
+      "name": "setchapterpreamble",
+      "unusual": true,
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:pos}][${3:width}]{${1:text}}"
+      }
+    },
+    {
+      "name": "setchapterpreamble",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "SetDIVList",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:list}}"
+      }
+    },
+    {
+      "name": "setindexpreamble",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "setkomafont",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "setpartpreamble",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:pos}]{${1:text}}"
+      }
+    },
+    {
+      "name": "setpartpreamble",
+      "unusual": true,
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:pos}][${3:width}]{${1:text}}"
+      }
+    },
+    {
+      "name": "setpartpreamble",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "subject",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "subtitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textsubscript",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textsuperscript",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "titlehead",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:head}}"
+      }
+    },
+    {
+      "name": "typearea",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:bcor}]{${1:div}}"
+      }
+    },
+    {
+      "name": "typearea",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:div}}"
+      }
+    },
+    {
+      "name": "uppertitleback",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "usekomafont",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "appendixmore"
+    },
+    {
+      "name": "autodot"
+    },
+    {
+      "name": "backmatter"
+    },
+    {
+      "name": "capfont",
+      "unusual": true
+    },
+    {
+      "name": "caplabelfont",
+      "unusual": true
+    },
+    {
+      "name": "captionformat",
+      "unusual": true
+    },
+    {
+      "name": "chapapp",
+      "unusual": true
+    },
+    {
+      "name": "chapterformat",
+      "unusual": true
+    },
+    {
+      "name": "chaptermarkformat",
+      "unusual": true
+    },
+    {
+      "name": "chapterpagestyle",
+      "unusual": true
+    },
+    {
+      "name": "contentsname",
+      "unusual": true
+    },
+    {
+      "name": "descfont",
+      "unusual": true
+    },
+    {
+      "name": "dictumwidth",
+      "unusual": true
+    },
+    {
+      "name": "figureformat",
+      "unusual": true
+    },
+    {
+      "name": "frontmatter"
+    },
+    {
+      "name": "indexpagestyle",
+      "unusual": true
+    },
+    {
+      "name": "listfigurename",
+      "unusual": true
+    },
+    {
+      "name": "listtablename",
+      "unusual": true
+    },
+    {
+      "name": "mainmatter"
+    },
+    {
+      "name": "partformat",
+      "unusual": true
+    },
+    {
+      "name": "partpagestyle",
+      "unusual": true
+    },
+    {
+      "name": "raggeddictum",
+      "unusual": true
+    },
+    {
+      "name": "raggeddictumauthor",
+      "unusual": true
+    },
+    {
+      "name": "raggeddictumtext",
+      "unusual": true
+    },
+    {
+      "name": "raggedsection",
+      "unusual": true
+    },
+    {
+      "name": "sectfont",
+      "unusual": true
+    },
+    {
+      "name": "sectionmarkformat",
+      "unusual": true
+    },
+    {
+      "name": "setcaphanging",
+      "unusual": true
+    },
+    {
+      "name": "subsectionmarkformat",
+      "unusual": true
+    },
+    {
+      "name": "tableformat",
+      "unusual": true
+    },
+    {
+      "name": "titlepagestyle",
+      "unusual": true
+    },
+    {
+      "name": "pdfoutput",
+      "unusual": true
+    },
+    {
+      "name": "pdfpageheight",
+      "unusual": true
+    },
+    {
+      "name": "pdfpagewidth",
+      "unusual": true
+    },
+    {
+      "name": "KOMAScript",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:}}"
+      }
+    },
+    {
+      "name": "cleardoublepageusingstyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pagestyle%special}}"
+      }
+    },
+    {
+      "name": "cleardoubleemptypage"
+    },
+    {
+      "name": "cleardoubleplainpage"
+    },
+    {
+      "name": "cleardoublestandardpage"
+    },
+    {
+      "name": "cleardoubleoddusingstyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pagestyle%special}}"
+      }
+    },
+    {
+      "name": "cleardoubleoddemptypage"
+    },
+    {
+      "name": "cleardoubleoddpage"
+    },
+    {
+      "name": "cleardoubleoddplainpage"
+    },
+    {
+      "name": "cleardoubleoddstandardpage"
+    },
+    {
+      "name": "cleardoubleevenusingstyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pagestyle%special}}"
+      }
+    },
+    {
+      "name": "cleardoubleevenemptypage"
+    },
+    {
+      "name": "cleardoubleevenpage"
+    },
+    {
+      "name": "cleardoubleevenplainpage"
+    },
+    {
+      "name": "cleardoubleevenstandardpage"
+    },
+    {
+      "name": "defpagestyle",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:pagestyle%specialDef}}{${2:header}}{${3:footer}}"
+      }
+    },
+    {
+      "name": "newpagestyle",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:pagestyle%specialDef}}{${2:header}}{${3:footer}}"
+      }
+    },
+    {
+      "name": "renewpagestyle",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:pagestyle%specialDef}}{${2:header}}{${3:footer}}"
+      }
+    },
+    {
+      "name": "providepagestyle",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:pagestyle%specialDef}}{${2:header}}{${3:footer}}"
+      }
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "envs": [
+    {
+      "name": "addmargin",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:indent}}"
+      }
+    },
+    {
+      "name": "addmargin*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:indent}}"
+      }
+    },
+    {
+      "name": "addmargin",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:leftindent}]{${1:indent}}"
+      }
+    },
+    {
+      "name": "addmargin*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:middleindent}]{${1:indent}}"
+      }
+    },
+    {
+      "name": "captionbeside",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short}]{${1:title}}"
+      }
+    },
+    {
+      "name": "captionbeside",
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:short}]{${1:title}}[${3:pos}]"
+      }
+    },
+    {
+      "name": "captionbeside",
+      "arg": {
+        "format": "[]{}[][]",
+        "snippet": "[${2:short}]{${1:title}}[${3:pos}][${4:width}]"
+      }
+    },
+    {
+      "name": "captionbeside",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "captionbeside",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:title}}[${2:pos}]"
+      }
+    },
+    {
+      "name": "captionbeside",
+      "arg": {
+        "format": "{}[][]",
+        "snippet": "{${1:title}}[${2:pos}][${3:width}]"
+      }
+    },
+    {
+      "name": "captionbeside",
+      "arg": {
+        "format": "{}[][][]",
+        "snippet": "{${1:title}}[${2:pos}][${3:width}][${4:offset}]"
+      }
+    }
+  ],
+  "keys": {},
+  "args": []
 }

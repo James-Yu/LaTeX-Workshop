@@ -1,51 +1,69 @@
 {
-  "includes": {
-    "tikz": [],
-    "simplekv": [],
-    "xstring": []
-  },
-  "macros": {
-    "SutomCouleurs": {},
-    "SutomRounded": {},
-    "SutomUnit": {},
-    "SutomFonte": {},
-    "SutomFonteColor": {},
-    "SutomStyle": {},
-    "SutomWidth": {},
-    "SutomBorder": {}
-  },
-  "envs": {
-    "WordleGrid{}": {
-      "name": "WordleGrid",
-      "snippet": "{${1:word}}"
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "WordleGrid[]{}": {
-      "name": "WordleGrid",
-      "snippet": "[${2:keyvals}]{${1:word}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "simplekv"
     },
-    "GrilleSutom{}": {
-      "name": "GrilleSutom",
-      "snippet": "{${1:mot}}"
-    },
-    "GrilleSutom[]{}": {
-      "name": "GrilleSutom",
-      "snippet": "[${2:clés}]{${1:mot}}"
+    {
+      "name": "xstring"
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
-      "Colors={${1:back,misplaced,good}}",
-      "Rounded=${1:number}",
-      "Unit=${1:number}",
-      "Font=${1:font commands}",
+  ],
+  "macros": [],
+  "envs": [
+    {
+      "name": "WordleGrid",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:word%text}}"
+      }
+    },
+    {
+      "name": "WordleGrid",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:keyvals}]{${1:word%text}}"
+      }
+    },
+    {
+      "name": "GrilleSutom",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:mot%text}}"
+      }
+    },
+    {
+      "name": "GrilleSutom",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:clés%keyvals}]{${1:mot%text}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\begin{WordleGrid}": [
+      "Colors={${1:back,misplaced,good}}\r",
+      "Rounded=${1:number}\r",
+      "Unit=${1:number}\r",
+      "Font=${1:font commands}\r",
       "ColorLetters=",
       "BorderColor=",
       "Letters",
-      "Style=",
-      "Thickness=${1:number}"
+      "Style=\r",
+      "Thickness=${1:number}\r"
+    ],
+    "\\begin{GrilleSutom}": [
+      "Couleurs={${1:fond,mal placée,bien placée}}\r",
+      "Arrondi=${1:nombre}\r",
+      "Unite=${1:nombre}\r",
+      "Police=${1:font commands}\r",
+      "CouleurLettres=",
+      "CouleurBordure=",
+      "Lettres",
+      "Style=\r",
+      "Epaisseur=${1:number}\r"
     ]
-  ]
+  },
+  "args": []
 }

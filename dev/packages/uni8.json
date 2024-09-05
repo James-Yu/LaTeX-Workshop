@@ -1,44 +1,90 @@
 {
-  "includes": {
-    "inputenc": [],
-    "lmodern": [],
-    "babel": [],
-    "soulutf8": [],
-    "mathptmx": [
-      "font=times",
-      "font=tg",
-      "font=old-times",
-      "font=oldtimes"
-    ],
-    "tgtermes": [
-      "font=times",
-      "font=tg"
-    ],
-    "tgheros": [
-      "font=times",
-      "font=tg"
-    ],
-    "tgcursor": [
-      "font=times",
-      "font=tg"
-    ],
-    "fontspec": [
-      "fontspec",
-      "fontspec=yes"
+  "deps": [
+    {
+      "name": "inputenc"
+    },
+    {
+      "name": "lmodern"
+    },
+    {
+      "name": "babel"
+    },
+    {
+      "name": "soulutf8"
+    },
+    {
+      "name": "mathptmx",
+      "if": "font=times"
+    },
+    {
+      "name": "tgtermes",
+      "if": "font=times"
+    },
+    {
+      "name": "tgheros",
+      "if": "font=times"
+    },
+    {
+      "name": "tgcursor",
+      "if": "font=times"
+    },
+    {
+      "name": "mathptmx",
+      "if": "font=tg"
+    },
+    {
+      "name": "tgtermes",
+      "if": "font=tg"
+    },
+    {
+      "name": "tgheros",
+      "if": "font=tg"
+    },
+    {
+      "name": "tgcursor",
+      "if": "font=tg"
+    },
+    {
+      "name": "mathptmx",
+      "if": "font=old-times"
+    },
+    {
+      "name": "mathptmx",
+      "if": "font=oldtimes"
+    },
+    {
+      "name": "fontspec",
+      "if": "fontspec"
+    },
+    {
+      "name": "fontspec",
+      "if": "fontspec=yes"
+    }
+  ],
+  "macros": [
+    {
+      "name": "UnivFixPaperSize",
+      "unusual": true
+    },
+    {
+      "name": "uline",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/uni8#c": [
+      "fontspec\r",
+      "fontspec=${1|yes,no\r|}",
+      "inputenc=${1|utf8,utf8x,latin1,latin2\r|}",
+      "font=${1|cm,times,old-times\r|}"
     ]
   },
-  "macros": {
-    "UnivFixPaperSize": {},
-    "uline{}": {
-      "snippet": "uline{${1:text}}"
-    }
-  },
-  "envs": {},
-  "options": [
-    "fontspec",
-    "fontspec=${1|yes,no|}",
-    "inputenc=${1|utf8,utf8x,latin1,latin2|}",
-    "font=${1|cm,times,old-times|}"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/uni8#c"
+  ]
 }

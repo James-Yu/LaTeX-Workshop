@@ -1,60 +1,76 @@
 {
-  "includes": {
-    "l3keys2e": [],
-    "class-ctexbeamer": [],
-    "xeCJKfntef": [],
-    "tikz": []
-  },
-  "macros": {
-    "CJKhl{}{}": {
-      "snippet": "CJKhl{${1:color}}{${2:text}}"
+  "deps": [
+    {
+      "name": "l3keys2e"
+    },
+    {
+      "name": "class-ctexbeamer"
+    },
+    {
+      "name": "xeCJKfntef"
+    },
+    {
+      "name": "tikz"
     }
-  },
-  "envs": {},
-  "options": [
-    "titlegraphic=${1:imagefile}",
-    "framelogo=${1:imagefile}",
-    "GBK",
-    "UTF8",
-    "zhmap=${1|true,false,zhmCJK|}",
-    "zihao=${1|-4,5,false|}",
-    "heading",
-    "scheme=${1|chinese,plain|}",
-    "linespread=${1:number}",
-    "fontset=${1|adobe,fandol,founder,mac,macnew,macold,ubuntu,windows,none|}",
-    "punct=${1|quanjiao,banjiao,kaiming,CCT,plain|}",
-    "space=${1|true,false,auto|}",
-    "autoindent=",
-    "usepdftitle",
-    "envcountsect",
-    "notheorems",
-    "noamsthm",
-    "compress",
-    "t",
-    "c",
-    "leqno",
-    "fleqn",
-    "handout",
-    "trans",
-    "ignorenonframetext",
-    "noamssymb",
-    "bigger",
-    "smaller",
-    "8pt",
-    "9pt",
-    "10pt",
-    "11pt",
-    "12pt",
-    "14pt",
-    "17pt",
-    "20pt",
-    "draft",
-    "onlytextwidth",
-    "pgf={${1:pgf options}}",
-    "hyperref={${1:hyperref options}}",
-    "color={${1:color options}}",
-    "xcolor={${1:xcolor options}}",
-    "aspectratio=${1|2013,1610,169,149,141,54,43,32,${1:xxxx}|}"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "CJKhl",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:color}}{${2:text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\documentclass/bitbeamer#c": [
+      "titlegraphic=${1:imagefile}\r",
+      "framelogo=${1:imagefile}\r",
+      "GBK\r",
+      "UTF8\r",
+      "zhmap=${1|true,false,zhmCJK\r|}",
+      "zihao=${1|-4,5,false\r|}",
+      "heading",
+      "scheme=${1|chinese,plain\r|}",
+      "linespread=${1:number}\r",
+      "fontset=${1|adobe,fandol,founder,mac,macnew,macold,ubuntu,windows,none\r|}",
+      "punct=${1|quanjiao,banjiao,kaiming,CCT,plain\r|}",
+      "space=${1|true,false,auto\r|}",
+      "autoindent=\r",
+      "usepdftitle",
+      "envcountsect\r",
+      "notheorems\r",
+      "noamsthm\r",
+      "compress\r",
+      "t\r",
+      "c\r",
+      "leqno\r",
+      "fleqn\r",
+      "handout\r",
+      "trans\r",
+      "ignorenonframetext\r",
+      "noamssymb\r",
+      "bigger\r",
+      "smaller\r",
+      "8pt\r",
+      "9pt\r",
+      "10pt\r",
+      "11pt\r",
+      "12pt\r",
+      "14pt\r",
+      "17pt\r",
+      "20pt\r",
+      "draft\r",
+      "onlytextwidth\r",
+      "pgf={${1:pgf options}}\r",
+      "hyperref={${1:hyperref options}}\r",
+      "color={${1:color options}}\r",
+      "xcolor={${1:xcolor options}}\r",
+      "aspectratio=${2|2013,1610,169,149,141,54,43,32,${1:xxxx}\r|}"
+    ]
+  },
+  "args": [
+    "\\documentclass/bitbeamer#c"
+  ]
 }

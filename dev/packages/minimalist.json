@@ -1,59 +1,101 @@
 {
-  "includes": {
-    "amsmath": [],
-    "lineno": [],
-    "projlib-paper": [],
-    "projlib-language": [],
-    "minimalist-plain": []
-  },
-  "macros": {
-    "desculine": {
-      "option": "classical=true"
+  "deps": [
+    {
+      "name": "amsmath"
     },
-    "seculine": {
-      "option": "classical=true"
+    {
+      "name": "lineno"
     },
-    "simpleqedsymbol": {
-      "option": "classical=true"
+    {
+      "name": "projlib-paper"
     },
-    "subseculine": {
-      "option": "classical=true"
+    {
+      "name": "projlib-language"
+    },
+    {
+      "name": "minimalist-plain"
     }
-  },
-  "envs": {},
-  "options": [
-    "draft",
-    "fast",
-    "title in boldface",
-    "title in scshape",
-    "title in sffamily",
-    "use sffamily",
-    "use scshape",
-    "classical",
-    "flow",
-    "stream",
-    "runin",
-    "nothms",
-    "nothmnum",
-    "thmnum",
-    "thmnum=${1:counter}",
-    "theorem style=${1:style}",
-    "complex name",
-    "simple name",
-    "no preset names",
-    "regionalref",
-    "originalref",
-    "colored proof",
-    "Chinese",
-    "TChinese",
-    "English",
-    "German",
-    "Italian",
-    "Portuguese",
-    "Brazilian",
-    "Spanish",
-    "Japanese",
-    "Russian"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "desculine",
+      "if": "classical",
+      "unusual": true
+    },
+    {
+      "name": "seculine",
+      "if": "classical",
+      "unusual": true
+    },
+    {
+      "name": "simpleqedsymbol",
+      "if": "classical",
+      "unusual": true
+    },
+    {
+      "name": "subseculine",
+      "if": "classical",
+      "unusual": true
+    },
+    {
+      "name": "desculine",
+      "if": "classical=true",
+      "unusual": true
+    },
+    {
+      "name": "seculine",
+      "if": "classical=true",
+      "unusual": true
+    },
+    {
+      "name": "simpleqedsymbol",
+      "if": "classical=true",
+      "unusual": true
+    },
+    {
+      "name": "subseculine",
+      "if": "classical=true",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/minimalist#c": [
+      "draft",
+      "fast",
+      "title in boldface",
+      "title in scshape",
+      "title in sffamily",
+      "use sffamily\r",
+      "use scshape\r",
+      "classical",
+      "flow",
+      "stream",
+      "runin",
+      "nothms",
+      "nothmnum",
+      "thmnum\r",
+      "thmnum=${1:counter}\r",
+      "theorem style=${1:style}\r",
+      "complex name",
+      "simple name",
+      "no preset names",
+      "regionalref",
+      "originalref",
+      "colored proof\r",
+      "Chinese\r",
+      "TChinese\r",
+      "English\r",
+      "German\r",
+      "Italian\r",
+      "Portuguese\r",
+      "Brazilian\r",
+      "Spanish\r",
+      "Japanese\r",
+      "Russian\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/minimalist#c"
+  ]
 }

@@ -1,69 +1,123 @@
 {
-  "includes": {
-    "graphics": [],
-    "subfigure": [
-      "subfigure"
-    ],
-    "float": [
-      "AllowH"
+  "deps": [
+    {
+      "name": "graphics"
+    },
+    {
+      "name": "subfigure",
+      "if": "subfigure"
+    },
+    {
+      "name": "float",
+      "if": "AllowH"
+    }
+  ],
+  "macros": [
+    {
+      "name": "graphfile",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "graphfile",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:imagefile}}[${2:subcaption%text}]"
+      }
+    },
+    {
+      "name": "graphfile",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:width}]{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "graphfile",
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:width}]{${1:imagefile}}[${3:subcaption%text}]"
+      }
+    },
+    {
+      "name": "graphfile*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "graphfile*",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:imagefile}}[${2:subcaption%text}]"
+      }
+    },
+    {
+      "name": "graphfile*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:height}]{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "graphfile*",
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:height}]{${1:imagefile}}[${3:subcaption%text}]"
+      }
+    },
+    {
+      "name": "FigureDefaultPlacement",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:placement}}"
+      }
+    },
+    {
+      "name": "thesubfigure",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "Figure",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:caption%text}}"
+      }
+    },
+    {
+      "name": "Figure",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:caption%text}}[${2:label}]"
+      }
+    },
+    {
+      "name": "Figure",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:placement}]{${1:caption%text}}"
+      }
+    },
+    {
+      "name": "Figure",
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:placement}]{${1:caption%text}}[${3:label}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/graphfig#c": [
+      "subfigure\r",
+      "AllowH\r"
     ]
   },
-  "macros": {
-    "graphfile{}": {
-      "snippet": "graphfile{${1:imagefile}}"
-    },
-    "graphfile{}[]": {
-      "snippet": "graphfile{${1:imagefile}}[${2:subcaption}]"
-    },
-    "graphfile[]{}": {
-      "snippet": "graphfile[${2:width}]{${1:imagefile}}"
-    },
-    "graphfile[]{}[]": {
-      "snippet": "graphfile[${2:width}]{${1:imagefile}}[${3:subcaption}]"
-    },
-    "graphfile*{}": {
-      "snippet": "graphfile*{${1:imagefile}}"
-    },
-    "graphfile*{}[]": {
-      "snippet": "graphfile*{${1:imagefile}}[${2:subcaption}]"
-    },
-    "graphfile*[]{}": {
-      "snippet": "graphfile*[${2:height}]{${1:imagefile}}"
-    },
-    "graphfile*[]{}[]": {
-      "snippet": "graphfile*[${2:height}]{${1:imagefile}}[${3:subcaption}]"
-    },
-    "FigureDefaultPlacement{}": {
-      "snippet": "FigureDefaultPlacement{${1:placement}}"
-    },
-    "thesubfigure": {},
-    "docdate": {},
-    "FileName": {},
-    "filedate": {},
-    "filedescr": {},
-    "fileversion": {}
-  },
-  "envs": {
-    "Figure{}": {
-      "name": "Figure",
-      "snippet": "{${1:caption}}"
-    },
-    "Figure{}[]": {
-      "name": "Figure",
-      "snippet": "{${1:caption}}[${2:label}]"
-    },
-    "Figure[]{}": {
-      "name": "Figure",
-      "snippet": "[${2:placement}]{${1:caption}}"
-    },
-    "Figure[]{}[]": {
-      "name": "Figure",
-      "snippet": "[${2:placement}]{${1:caption}}[${3:label}]"
-    }
-  },
-  "options": [
-    "subfigure",
-    "AllowH"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/graphfig#c"
+  ]
 }

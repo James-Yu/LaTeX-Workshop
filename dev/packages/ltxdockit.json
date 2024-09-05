@@ -1,254 +1,496 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "listings": [],
-    "color": [],
-    "xspace": [],
-    "ifpdf": [],
-    "hyperref": []
-  },
-  "macros": {
-    "marglistwidth": {},
-    "marglistsep": {},
-    "marglistfont": {},
-    "margnotefont": {},
-    "optionlistfont": {},
-    "ltxsyntaxfont": {},
-    "ltxsyntaxlabelfont": {},
-    "changelogfont": {},
-    "changeloglabelfont": {},
-    "verbatimfont": {},
-    "displayverbfont": {},
-    "defaultcolor": {},
-    "spotcolor": {},
-    "cs{}": {
-      "snippet": "cs{${1:csname}}"
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "cmd{}": {
-      "snippet": "cmd{${1:csname}}"
+    {
+      "name": "listings"
     },
-    "env{}": {
-      "snippet": "env{${1:envname}}"
+    {
+      "name": "color"
     },
-    "len{}": {
-      "snippet": "len{${1:length}}"
+    {
+      "name": "xspace"
     },
-    "cnt{}": {
-      "snippet": "cnt{${1:counter}}"
+    {
+      "name": "ifpdf"
     },
-    "prm{}": {
-      "snippet": "prm{${1:arg}}"
-    },
-    "mprm{}": {
-      "snippet": "mprm{${1:arg}}"
-    },
-    "oprm{}": {
-      "snippet": "oprm{${1:arg}}"
-    },
-    "opt{}": {
-      "snippet": "opt{${1:arg}}"
-    },
-    "kvopt{}{}": {
-      "snippet": "kvopt{${1:key}}{${2:value}}"
-    },
-    "file{}": {
-      "snippet": "file{${1:filename}}"
-    },
-    "sty{}": {
-      "snippet": "sty{${1:arg}}"
-    },
-    "bin{}": {
-      "snippet": "bin{${1:arg}}"
-    },
-    "acr{}": {
-      "snippet": "acr{${1:arg}}"
-    },
-    "keyval": {},
-    "refs{}{}{}": {
-      "snippet": "refs{${1:sing name}}{${2:plural name}}{${3:label}}"
-    },
-    "secref{}": {
-      "snippet": "secref{${1:label}}"
-    },
-    "Secref{}": {
-      "snippet": "Secref{${1:label}}"
-    },
-    "apxref{}": {
-      "snippet": "apxref{${1:label}}"
-    },
-    "Apxref{}": {
-      "snippet": "Apxref{${1:label}}"
-    },
-    "tabref{}": {
-      "snippet": "tabref{${1:label}}"
-    },
-    "Tabref{}": {
-      "snippet": "Tabref{${1:label}}"
-    },
-    "csitem{}": {
-      "snippet": "csitem{${1:csname}}"
-    },
-    "cmditem{}": {
-      "snippet": "cmditem{${1:csname}}"
-    },
-    "cmditem{}[]": {
-      "snippet": "cmditem{${1:csname}}[${2:options}]"
-    },
-    "cmditem{}[]{}": {
-      "snippet": "cmditem{${1:csname}}[${2:options}]{${3:arg}}"
-    },
-    "envitem{}": {
-      "snippet": "envitem{${1:envname}}"
-    },
-    "lenitem{}": {
-      "snippet": "lenitem{${1:length}}"
-    },
-    "boolitem{}": {
-      "snippet": "boolitem{${1:key}}"
-    },
-    "boolitem[]{}": {
-      "snippet": "boolitem[${2:true or false}]{${1:key}}"
-    },
-    "cntitem{}": {
-      "snippet": "cntitem{${1:counter}}"
-    },
-    "optitem{}": {
-      "snippet": "optitem{${1:option}}"
-    },
-    "varitem{}": {
-      "snippet": "varitem{${1:variable}}"
-    },
-    "valitem{}": {
-      "snippet": "valitem{${1:value}}"
-    },
-    "choitem{}{}": {
-      "snippet": "choitem{${1:key}}{${2:values}}"
-    },
-    "choitem[]{}{}": {
-      "snippet": "choitem[${3:opt}]{${1:key}}{${2:values}}"
-    },
-    "intitem{}": {
-      "snippet": "intitem{${1:key}}"
-    },
-    "intitem[]{}": {
-      "snippet": "intitem[${2:integer}]{${1:key}}"
-    },
-    "legitem{}": {
-      "snippet": "legitem{${1:arg}}"
-    },
-    "see{}": {
-      "snippet": "see{${1:label}}"
-    },
-    "lstenvsep": {}
-  },
-  "envs": {
-    "marglist": {},
-    "keymarglist": {},
-    "ltxsyntax": {},
-    "optionlist": {},
-    "optionlist*": {},
-    "valuelist": {},
-    "valuelist[]": {
-      "name": "valuelist",
-      "snippet": "[${1:opt}]"
-    },
-    "valuelist*": {},
-    "argumentlist{}": {
-      "name": "argumentlist",
-      "snippet": "{${1:arg}}"
-    },
-    "changelog": {},
-    "release{}{}": {
-      "name": "release",
-      "snippet": "{${1:version}}{${2:date}}"
-    },
-    "ltxcode": {},
-    "ltxcode[]": {
-      "name": "ltxcode",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "ltxexample": {},
-    "ltxexample[]": {
-      "name": "ltxexample",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "hyperref"
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
-      "inputpath=${1:path}",
+  ],
+  "macros": [
+    {
+      "name": "marglistwidth",
+      "unusual": true
+    },
+    {
+      "name": "marglistsep",
+      "unusual": true
+    },
+    {
+      "name": "marglistfont",
+      "unusual": true
+    },
+    {
+      "name": "margnotefont",
+      "unusual": true
+    },
+    {
+      "name": "optionlistfont",
+      "unusual": true
+    },
+    {
+      "name": "ltxsyntaxfont",
+      "unusual": true
+    },
+    {
+      "name": "ltxsyntaxlabelfont",
+      "unusual": true
+    },
+    {
+      "name": "changelogfont",
+      "unusual": true
+    },
+    {
+      "name": "changeloglabelfont",
+      "unusual": true
+    },
+    {
+      "name": "verbatimfont",
+      "unusual": true
+    },
+    {
+      "name": "displayverbfont",
+      "unusual": true
+    },
+    {
+      "name": "defaultcolor",
+      "unusual": true
+    },
+    {
+      "name": "spotcolor",
+      "unusual": true
+    },
+    {
+      "name": "cs",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:csname}}"
+      }
+    },
+    {
+      "name": "cmd",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:csname}}"
+      }
+    },
+    {
+      "name": "env",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:envname}}"
+      }
+    },
+    {
+      "name": "len",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
+    },
+    {
+      "name": "cnt",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "prm",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "mprm",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "oprm",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "opt",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "kvopt",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:key%plain}}{${2:value}}"
+      }
+    },
+    {
+      "name": "file",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:filename}}"
+      }
+    },
+    {
+      "name": "sty",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "bin",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "acr",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "keyval"
+    },
+    {
+      "name": "refs",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:sing name}}{${2:plural name}}{${3:label}}"
+      }
+    },
+    {
+      "name": "secref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "Secref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "apxref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "Apxref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "tabref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "Tabref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "csitem",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:csname}}"
+      }
+    },
+    {
+      "name": "cmditem",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:csname}}"
+      }
+    },
+    {
+      "name": "cmditem",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:csname}}[${2:options}]"
+      }
+    },
+    {
+      "name": "cmditem",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:csname}}[${3:options}]{${2:arg}}"
+      }
+    },
+    {
+      "name": "envitem",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:envname}}"
+      }
+    },
+    {
+      "name": "lenitem",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
+    },
+    {
+      "name": "boolitem",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:key%plain}}"
+      }
+    },
+    {
+      "name": "boolitem",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:true or false}]{${1:key%plain}}"
+      }
+    },
+    {
+      "name": "cntitem",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "optitem",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:option}}"
+      }
+    },
+    {
+      "name": "varitem",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:variable}}"
+      }
+    },
+    {
+      "name": "valitem",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:value}}"
+      }
+    },
+    {
+      "name": "choitem",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:key%plain}}{${2:values}}"
+      }
+    },
+    {
+      "name": "choitem",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:opt}]{${1:key%plain}}{${2:values}}"
+      }
+    },
+    {
+      "name": "intitem",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:key%plain}}"
+      }
+    },
+    {
+      "name": "intitem",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:integer}]{${1:key%plain}}"
+      }
+    },
+    {
+      "name": "legitem",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "see",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "lstenvsep",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "marglist"
+    },
+    {
+      "name": "keymarglist"
+    },
+    {
+      "name": "ltxsyntax"
+    },
+    {
+      "name": "optionlist"
+    },
+    {
+      "name": "optionlist*"
+    },
+    {
+      "name": "valuelist"
+    },
+    {
+      "name": "valuelist",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:opt}]"
+      }
+    },
+    {
+      "name": "valuelist*"
+    },
+    {
+      "name": "argumentlist",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "changelog"
+    },
+    {
+      "name": "release",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:version}}{${2:date}}"
+      }
+    },
+    {
+      "name": "ltxcode"
+    },
+    {
+      "name": "ltxcode",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "ltxexample"
+    },
+    {
+      "name": "ltxexample",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\begin{ltxcode},\\begin{ltxexample}": [
+      "inputpath=${1:path}\r",
       "aboveskip=",
       "belowskip=",
       "lineskip=",
-      "boxpos=${1|b,c,t|}",
+      "boxpos=${1|b,c,t\r|}",
       "print",
       "showlines",
-      "emptylines=${1:number}",
-      "emptylines=*${1:number}",
-      "gobble=${1:number}",
-      "style=${1:style name}",
-      "language=${1:language}",
-      "language=[${1:dialect}]${2:language}",
-      "alsolanguage=${1:language}",
-      "alsolanguage=[${1:dialect}]${2:language}",
-      "defaultdialect=[${1:dialect}]${2:language}",
+      "emptylines=${1:number}\r",
+      "emptylines=*${1:number}\r",
+      "gobble=${1:number}\r",
+      "style=${1:style name}\r",
+      "language=${1:language}\r",
+      "language=[${1:dialect}]${2:language}\r",
+      "alsolanguage=${1:language}\r",
+      "alsolanguage=[${1:dialect}]${2:language}\r",
+      "defaultdialect=[${1:dialect}]${2:language}\r",
       "printpod",
       "usekeywordsintag",
-      "tagstyle=${1:style}",
-      "markfirstintag=${1:style}",
+      "tagstyle=${1:style}\r",
+      "markfirstintag=${1:style}\r",
       "makemacrouse",
-      "basicstyle=${1:style}",
-      "identifierstyle=${1:style}",
-      "commentstyle=${1:style}",
-      "stringstyle=${1:style}",
-      "keywordstyle=${1:style}",
-      "keywordstyle=[${1:number}]${2:style}",
-      "keywordstyle=[${1:number}]*${2:style}",
-      "ndkeywordstyle=${1:style}",
-      "classoffset=${1:number}",
-      "texcsstyle=${1:style}",
-      "texcsstyle=[${1:class number}]${2:style}",
-      "texcsstyle=*[${1:class number}]${2:style}",
-      "directivestyle=${1:style}",
-      "emph={${1:identifier list}}",
-      "emph=[${1:number}]{${2:identifier list}}",
-      "moreemph={${1:identifier list}}",
-      "moreemph=[${1:number}]{${2:identifier list}}",
-      "deleteemph={${1:identifier list}}",
-      "deleteemph=[${1:number}]{${2:identifier list}}",
-      "emphstyle={${1:style}}",
-      "emphstyle=[${1:number}]{${2:style}}",
-      "delim=",
-      "moredelim=",
-      "deletedelim=",
+      "basicstyle=${1:style}\r",
+      "identifierstyle=${1:style}\r",
+      "commentstyle=${1:style}\r",
+      "stringstyle=${1:style}\r",
+      "keywordstyle=${1:style}\r",
+      "keywordstyle=[${1:number}]${2:style}\r",
+      "keywordstyle=[${1:number}]*${2:style}\r",
+      "ndkeywordstyle=${1:style}\r",
+      "classoffset=${1:number}\r",
+      "texcsstyle=${1:style}\r",
+      "texcsstyle=[${1:class number}]${2:style}\r",
+      "texcsstyle=*[${1:class number}]${2:style}\r",
+      "directivestyle=${1:style}\r",
+      "emph={${1:identifier list}}\r",
+      "emph=[${1:number}]{${2:identifier list}}\r",
+      "moreemph={${1:identifier list}}\r",
+      "moreemph=[${1:number}]{${2:identifier list}}\r",
+      "deleteemph={${1:identifier list}}\r",
+      "deleteemph=[${1:number}]{${2:identifier list}}\r",
+      "emphstyle={${1:style}}\r",
+      "emphstyle=[${1:number}]{${2:style}}\r",
+      "delim=\r",
+      "moredelim=\r",
+      "deletedelim=\r",
       "extendedchars",
-      "inputencoding=${1:encoding}",
+      "inputencoding=${1:encoding}\r",
       "upquote",
-      "tabsize=${1:number}",
+      "tabsize=${1:number}\r",
       "showtabs",
-      "tab=${1:tokens}",
+      "tab=${1:tokens}\r",
       "showspaces",
       "showstringspaces",
-      "formfeed=${1:tokens}",
-      "numbers=${1|none,left,right|}",
-      "stepnumber=${1:number}",
+      "formfeed=${1:tokens}\r",
+      "numbers=${1|none,left,right\r|}",
+      "stepnumber=${1:number}\r",
       "numberfirstline",
-      "numberstyle=${1:style}",
+      "numberstyle=${1:style}\r",
       "numbersep=",
       "numberblanklines",
-      "firstnumber=",
-      "name=${1:name}",
-      "title=${1:title text}",
-      "caption={${1:caption text}}",
-      "caption={[${1:short}]${2:caption text}}",
+      "firstnumber=\r",
+      "name=${1:name}\r",
+      "title=${1:title text}\r",
+      "caption={${1:caption text}}\r",
+      "caption={[${1:short}]${2:caption text}}\r",
       "label=",
       "nolol",
       "numberbychapter",
-      "captionpos=${1:subset of tb}",
+      "captionpos=${1:subset of tb}\r",
       "abovecaptionskip=",
       "belowcaptionskip=",
       "linewidth=",
@@ -257,12 +499,12 @@
       "resetmargins",
       "breaklines",
       "breakatwhitespace",
-      "prebreak=${1:tokens}",
-      "postbreak=${1:tokens}",
+      "prebreak=${1:tokens}\r",
+      "postbreak=${1:tokens}\r",
       "breakindent=",
       "breakautoindent",
-      "frame=",
-      "frameround=",
+      "frame=\r",
+      "frameround=\r",
       "framesep=",
       "rulesep=",
       "framerule=",
@@ -274,75 +516,76 @@
       "rulecolor=",
       "fillcolor=",
       "rulesepcolor=",
-      "frameshape={${1:top shape}}{${2:left shape}}{${3:right shape}}{${4:bottom shape}}",
-      "index=",
-      "moreindex=",
-      "deleteindex=",
-      "indexstyle=",
-      "columns=",
+      "frameshape={${1:top shape}}{${2:left shape}}{${3:right shape}}{${4:bottom shape}}\r",
+      "index=\r",
+      "moreindex=\r",
+      "deleteindex=\r",
+      "indexstyle=\r",
+      "columns=\r",
       "flexiblecolumns",
       "keepspaces",
       "basewidth=",
       "fontadjust",
       "texcl",
       "mathescape",
-      "escapechar=${1:character}",
-      "escapeinside=",
-      "escapebegin=${1:tokens}",
-      "escapeend=${1:tokens}",
+      "escapechar=${1:character}\r",
+      "escapeinside=\r",
+      "escapebegin=${1:tokens}\r",
+      "escapeend=${1:tokens}\r",
       "fancyvrb",
-      "fvcmdparams=",
-      "morefvcmdparams=",
-      "literate=",
-      "rangebeginprefix=",
-      "rangebeginsuffix=",
-      "rangeendprefix=",
-      "rangeendsuffix=",
-      "rangeprefix=",
-      "rangesuffix=",
+      "fvcmdparams=\r",
+      "morefvcmdparams=\r",
+      "literate=\r",
+      "rangebeginprefix=\r",
+      "rangebeginsuffix=\r",
+      "rangeendprefix=\r",
+      "rangeendsuffix=\r",
+      "rangeprefix=\r",
+      "rangesuffix=\r",
       "includerangemarker",
-      "multicols=${1:number}",
-      "float",
-      "float=${1:subset of tbph}",
-      "float=*${1:subset of tbph}",
-      "floatplacement=",
-      "firstline=${1:number}",
-      "lastline=${1:number}",
-      "linerange={${1:first1-last1,first2-last2,...}}",
+      "multicols=${1:number}\r",
+      "float\r",
+      "float=${1:subset of tbph}\r",
+      "float=*${1:subset of tbph}\r",
+      "floatplacement=\r",
+      "firstline=${1:number}\r",
+      "lastline=${1:number}\r",
+      "linerange={${1:first1-last1,first2-last2,...}}\r",
       "consecutivenumbers",
-      "keywordsprefix=${1:prefix}",
-      "keywords={${1:list of keywords}}",
-      "keywords=[${1:number}]{${2:list of keywords}}",
-      "morekeywords={${1:list of keywords}}",
-      "morekeywords=[${1:number}]{${2:list of keywords}}",
-      "deletekeywords={${1:list of keywords}}",
-      "deletekeywords=[${1:number}]{${2:list of keywords}}",
-      "ndkeywords={${1:list of keywords}}",
-      "moreendkeywords={${1:list of keywords}}",
-      "deleteendkeywords={${1:list of keywords}}",
-      "texcs=",
-      "moretexcs=",
-      "deletetxcs=",
-      "directives=",
-      "moredirectives=",
-      "deletedirectives=",
+      "keywordsprefix=${1:prefix}\r",
+      "keywords={${1:list of keywords}}\r",
+      "keywords=[${1:number}]{${2:list of keywords}}\r",
+      "morekeywords={${1:list of keywords}}\r",
+      "morekeywords=[${1:number}]{${2:list of keywords}}\r",
+      "deletekeywords={${1:list of keywords}}\r",
+      "deletekeywords=[${1:number}]{${2:list of keywords}}\r",
+      "ndkeywords={${1:list of keywords}}\r",
+      "moreendkeywords={${1:list of keywords}}\r",
+      "deleteendkeywords={${1:list of keywords}}\r",
+      "texcs=\r",
+      "moretexcs=\r",
+      "deletetxcs=\r",
+      "directives=\r",
+      "moredirectives=\r",
+      "deletedirectives=\r",
       "sensitive",
-      "alsoletter={${1:character sequence}}",
-      "alsodigit={${1:character sequence}}",
-      "alsoother={${1:character sequence}}",
-      "otherkeywords={${1:keywords}}",
-      "tag=",
-      "string=",
-      "morestring=",
-      "deletestring=",
-      "comment=",
-      "morecomment=",
-      "deletecomment=",
-      "keywordcomment={${1:keywords}}",
-      "morekeywordcomment={${1:keywords}}",
-      "deletekeywordcomment={${1:keywords}}",
-      "keywordcommentsemicolon={${1:keywords}}{${2:keywords}}{${3:keywords}}",
+      "alsoletter={${1:character sequence}}\r",
+      "alsodigit={${1:character sequence}}\r",
+      "alsoother={${1:character sequence}}\r",
+      "otherkeywords={${1:keywords}}\r",
+      "tag=\r",
+      "string=\r",
+      "morestring=\r",
+      "deletestring=\r",
+      "comment=\r",
+      "morecomment=\r",
+      "deletecomment=\r",
+      "keywordcomment={${1:keywords}}\r",
+      "morekeywordcomment={${1:keywords}}\r",
+      "deletekeywordcomment={${1:keywords}}\r",
+      "keywordcommentsemicolon={${1:keywords}}{${2:keywords}}{${3:keywords}}\r",
       "podcomment"
     ]
-  ]
+  },
+  "args": []
 }

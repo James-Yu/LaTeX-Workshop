@@ -1,27 +1,56 @@
 {
-  "includes": {
-    "biblatex": [],
-    "totcount": [],
-    "xpatch": [],
-    "datenumber": [],
-    "fp": []
-  },
-  "macros": {
-    "highlightname{}{}{}{}": {
-      "snippet": "highlightname{${1:family}}{${2:given}}{${3:prefix}}{${4:suffix}}"
+  "deps": [
+    {
+      "name": "biblatex"
     },
-    "NewValue": {},
-    "mkbibdown{}": {
-      "snippet": "mkbibdown{${1:number}}"
+    {
+      "name": "totcount"
     },
-    "addpar": {}
-  },
-  "envs": {},
-  "options": [
-    "verbose-committee",
-    "verbose-education",
-    "verbose-teaching",
-    "verbose-lists"
+    {
+      "name": "xpatch"
+    },
+    {
+      "name": "datenumber"
+    },
+    {
+      "name": "fp"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "highlightname",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:family}}{${2:given}}{${3:prefix}}{${4:suffix}}"
+      }
+    },
+    {
+      "name": "NewValue",
+      "unusual": true
+    },
+    {
+      "name": "mkbibdown",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "addpar",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/biblatex-cv#c": [
+      "verbose-committee\r",
+      "verbose-education\r",
+      "verbose-teaching\r",
+      "verbose-lists\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/biblatex-cv#c"
+  ]
 }

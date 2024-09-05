@@ -1,96 +1,263 @@
 {
-  "includes": {},
-  "macros": {
-    "AppendToTokenList": {},
-    "bidics{}": {
-      "snippet": "bidics{${1:csname}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "AppendToTokenList",
+      "unusual": true
     },
-    "breaklooprepeat": {},
-    "bystep{}": {
-      "snippet": "bystep{${1:integer}}"
+    {
+      "name": "bidics",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:csname}}"
+      }
     },
-    "currentposxwidth": {},
-    "currentposyheight": {},
-    "DefNewDummy{}": {
-      "snippet": "DefNewDummy{${1:csname}}"
+    {
+      "name": "breaklooprepeat",
+      "unusual": true
     },
-    "doloopbody": {},
-    "downtovalue{}": {
-      "snippet": "downtovalue{${1:integer}}"
+    {
+      "name": "bystep",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:integer}}"
+      }
     },
-    "EmptyTokenList": {},
-    "endlooprepeat": {},
-    "eqnewif{}{}": {
-      "snippet": "eqnewif{${1:\\newconditional1}}{${2:\\newconditional2}}"
+    {
+      "name": "currentposxwidth",
+      "unusual": true
     },
-    "noteqnewif{}{}": {
-      "snippet": "noteqnewif{${1:\\newconditional1}}{${2:\\newconditional2}}"
+    {
+      "name": "currentposyheight",
+      "unusual": true
     },
-    "forvariable{}": {
-      "snippet": "forvariable{${1:var}}"
+    {
+      "name": "DefNewDummy",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:csname}}"
+      }
     },
-    "fromvalue{}": {
-      "snippet": "fromvalue{${1:integer}}"
+    {
+      "name": "doloopbody",
+      "unusual": true
     },
-    "GlobalSetatBoolean{}{}": {
-      "snippet": "GlobalSetatBoolean{${1:at-boolean}}{${2:true|false}}"
+    {
+      "name": "downtovalue",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:integer}}"
+      }
     },
-    "GlobalSetBoolean{}{}": {
-      "snippet": "GlobalSetBoolean{${1:boolean}}{${2:true|false}}"
+    {
+      "name": "EmptyTokenList",
+      "unusual": true
     },
-    "iflatin{}{}": {
-      "snippet": "iflatin{${1:true}}{${2:false}}"
+    {
+      "name": "endlooprepeat",
+      "unusual": true
     },
-    "ifLtoR{}{}": {
-      "snippet": "ifLtoR{${1:true}}{${2:false}}"
+    {
+      "name": "eqnewif",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:\\newconditional1%cmd}}{${2:\\newconditional2%cmd}}"
+      }
     },
-    "ifLtoRhboxconstruct{}{}": {
-      "snippet": "ifLtoRhboxconstruct{${1:true}}{${2:false}}"
+    {
+      "name": "noteqnewif",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:\\newconditional1%cmd}}{${2:\\newconditional2%cmd}}"
+      }
     },
-    "ifLtoRtable{}{}": {
-      "snippet": "ifLtoRtable{${1:true}}{${2:false}}"
+    {
+      "name": "forvariable",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:var}}"
+      }
     },
-    "ifnonlatin{}{}": {
-      "snippet": "ifnonlatin{${1:true}}{${2:false}}"
+    {
+      "name": "fromvalue",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:integer}}"
+      }
     },
-    "ifRtoL{}{}": {
-      "snippet": "ifRtoL{${1:true}}{${2:false}}"
+    {
+      "name": "GlobalSetatBoolean",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:at-boolean}}{${2:true|false}}"
+      }
     },
-    "ifRtoLhboxconstruct{}{}": {
-      "snippet": "ifRtoLhboxconstruct{${1:true}}{${2:false}}"
+    {
+      "name": "GlobalSetBoolean",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:boolean}}{${2:true|false}}"
+      }
     },
-    "ifRtoLtable{}{}": {
-      "snippet": "ifRtoLtable{${1:true}}{${2:false}}"
+    {
+      "name": "iflatin",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:true}}{${2:false}}"
+      }
     },
-    "NewTokenList": {},
-    "PrependToTokenList": {},
-    "SetatBoolean{}{}": {
-      "snippet": "SetatBoolean{${1:at-boolean}}{${2:true|false}}"
+    {
+      "name": "ifLtoR",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:true}}{${2:false}}"
+      }
     },
-    "setbaselineskip{}": {
-      "snippet": "setbaselineskip{${1:length}}"
+    {
+      "name": "ifLtoRhboxconstruct",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:true}}{${2:false}}"
+      }
     },
-    "SetBoolean{}{}": {
-      "snippet": "SetBoolean{${1:boolean}}{${2:true|false}}"
+    {
+      "name": "ifLtoRtable",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:true}}{${2:false}}"
+      }
     },
-    "TheTokenList": {},
-    "tovalue{}": {
-      "snippet": "tovalue{${1:integer}}"
+    {
+      "name": "ifnonlatin",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:true}}{${2:false}}"
+      }
     },
-    "untilcondition{}": {
-      "snippet": "untilcondition{${1:condition}}"
+    {
+      "name": "ifRtoL",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:true}}{${2:false}}"
+      }
     },
-    "whilecondition{}": {
-      "snippet": "whilecondition{${1:condition}}"
+    {
+      "name": "ifRtoLhboxconstruct",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:true}}{${2:false}}"
+      }
     },
-    "WriteEndXPostoaux": {},
-    "WriteEndXYPostoaux": {},
-    "WriteEndYPostoaux": {},
-    "WriteStartXPostoaux": {},
-    "WriteStartXYPostoaux": {},
-    "WriteStartYPostoaux": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "ifRtoLtable",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "NewTokenList",
+      "unusual": true
+    },
+    {
+      "name": "PrependToTokenList",
+      "unusual": true
+    },
+    {
+      "name": "SetatBoolean",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:at-boolean}}{${2:true|false}}"
+      }
+    },
+    {
+      "name": "setbaselineskip",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
+    },
+    {
+      "name": "SetBoolean",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:boolean}}{${2:true|false}}"
+      }
+    },
+    {
+      "name": "TheTokenList",
+      "unusual": true
+    },
+    {
+      "name": "tovalue",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:integer}}"
+      }
+    },
+    {
+      "name": "untilcondition",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:condition}}"
+      }
+    },
+    {
+      "name": "whilecondition",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:condition}}"
+      }
+    },
+    {
+      "name": "WriteEndXPostoaux",
+      "unusual": true
+    },
+    {
+      "name": "WriteEndXYPostoaux",
+      "unusual": true
+    },
+    {
+      "name": "WriteEndYPostoaux",
+      "unusual": true
+    },
+    {
+      "name": "WriteStartXPostoaux",
+      "unusual": true
+    },
+    {
+      "name": "WriteStartXYPostoaux",
+      "unusual": true
+    },
+    {
+      "name": "WriteStartYPostoaux",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

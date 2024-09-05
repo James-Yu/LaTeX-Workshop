@@ -1,115 +1,241 @@
 {
-  "includes": {
-    "amsmath": [],
-    "ifthen": [],
-    "siunitx": []
-  },
-  "macros": {
-    "nm": {
-      "option": "sicmds"
+  "deps": [
+    {
+      "name": "amsmath"
     },
-    "um": {
-      "option": "sicmds"
+    {
+      "name": "ifthen"
     },
-    "mm": {
-      "option": "sicmds"
-    },
-    "cm": {
-      "option": "sicmds"
-    },
-    "micron": {
-      "option": "sicmds"
-    },
-    "ns": {
-      "option": "sicmds"
-    },
-    "ps": {
-      "option": "sicmds"
-    },
-    "fs": {
-      "option": "sicmds"
-    },
-    "as": {
-      "option": "sicmds"
-    },
-    "mHz": {
-      "option": "sicmds"
-    },
-    "Hz": {
-      "option": "sicmds"
-    },
-    "kHz": {
-      "option": "sicmds"
-    },
-    "MHz": {
-      "option": "sicmds"
-    },
-    "GHz": {
-      "option": "sicmds"
-    },
-    "THz": {
-      "option": "sicmds"
-    },
-    "mrad": {
-      "option": "sicmds"
-    },
-    "fermi": {
-      "option": "sicmds"
-    },
-    "gauss": {},
-    "invcmsq": {},
-    "invcmsqpersecond": {},
-    "invcmsqpersec": {},
-    "invbarn": {},
-    "millibarn": {},
-    "microbarn": {},
-    "nanobarn": {},
-    "invnanobarn": {},
-    "invnb": {},
-    "picobarn": {},
-    "invpicobarn": {},
-    "invpb": {},
-    "femtobarn": {},
-    "invfemtobarn": {},
-    "invfb": {},
-    "attobarn": {},
-    "invattobarn": {},
-    "invab": {},
-    "zeptobarn": {},
-    "invzeptobarn": {},
-    "invzb": {},
-    "yoctobarn": {},
-    "invyoctobarn": {},
-    "invyb": {},
-    "eV": {},
-    "eVc": {},
-    "eVcsq": {},
-    "meV": {},
-    "keV": {},
-    "MeV": {},
-    "GeV": {},
-    "TeV": {},
-    "meVc": {},
-    "keVc": {},
-    "MeVc": {},
-    "GeVc": {},
-    "TeVc": {},
-    "meVcsq": {},
-    "keVcsq": {},
-    "MeVcsq": {},
-    "GeVcsq": {},
-    "TeVcsq": {},
-    "electronvolt": {},
-    "electronvoltc": {},
-    "electronvoltcsq": {},
-    "filedate": {},
-    "fileversion": {}
-  },
-  "envs": {},
-  "options": [
-    "sicmds",
-    "noprefixcmds",
-    "freestanding"
+    {
+      "name": "siunitx"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "nm",
+      "if": "sicmds"
+    },
+    {
+      "name": "um",
+      "if": "sicmds"
+    },
+    {
+      "name": "mm",
+      "if": "sicmds"
+    },
+    {
+      "name": "cm",
+      "if": "sicmds"
+    },
+    {
+      "name": "micron",
+      "if": "sicmds"
+    },
+    {
+      "name": "ns",
+      "if": "sicmds"
+    },
+    {
+      "name": "ps",
+      "if": "sicmds"
+    },
+    {
+      "name": "fs",
+      "if": "sicmds"
+    },
+    {
+      "name": "as",
+      "if": "sicmds"
+    },
+    {
+      "name": "mHz",
+      "if": "sicmds"
+    },
+    {
+      "name": "Hz",
+      "if": "sicmds"
+    },
+    {
+      "name": "kHz",
+      "if": "sicmds"
+    },
+    {
+      "name": "MHz",
+      "if": "sicmds"
+    },
+    {
+      "name": "GHz",
+      "if": "sicmds"
+    },
+    {
+      "name": "THz",
+      "if": "sicmds"
+    },
+    {
+      "name": "mrad",
+      "if": "sicmds"
+    },
+    {
+      "name": "fermi",
+      "if": "sicmds"
+    },
+    {
+      "name": "gauss"
+    },
+    {
+      "name": "invcmsq"
+    },
+    {
+      "name": "invcmsqpersecond"
+    },
+    {
+      "name": "invcmsqpersec"
+    },
+    {
+      "name": "invbarn"
+    },
+    {
+      "name": "millibarn"
+    },
+    {
+      "name": "microbarn"
+    },
+    {
+      "name": "nanobarn"
+    },
+    {
+      "name": "invnanobarn"
+    },
+    {
+      "name": "invnb",
+      "unusual": true
+    },
+    {
+      "name": "picobarn"
+    },
+    {
+      "name": "invpicobarn"
+    },
+    {
+      "name": "invpb",
+      "unusual": true
+    },
+    {
+      "name": "femtobarn"
+    },
+    {
+      "name": "invfemtobarn"
+    },
+    {
+      "name": "invfb",
+      "unusual": true
+    },
+    {
+      "name": "attobarn"
+    },
+    {
+      "name": "invattobarn"
+    },
+    {
+      "name": "invab",
+      "unusual": true
+    },
+    {
+      "name": "zeptobarn"
+    },
+    {
+      "name": "invzeptobarn"
+    },
+    {
+      "name": "invzb",
+      "unusual": true
+    },
+    {
+      "name": "yoctobarn"
+    },
+    {
+      "name": "invyoctobarn"
+    },
+    {
+      "name": "invyb",
+      "unusual": true
+    },
+    {
+      "name": "eV"
+    },
+    {
+      "name": "eVc"
+    },
+    {
+      "name": "eVcsq"
+    },
+    {
+      "name": "meV"
+    },
+    {
+      "name": "keV"
+    },
+    {
+      "name": "MeV"
+    },
+    {
+      "name": "GeV"
+    },
+    {
+      "name": "TeV"
+    },
+    {
+      "name": "meVc"
+    },
+    {
+      "name": "keVc"
+    },
+    {
+      "name": "MeVc"
+    },
+    {
+      "name": "GeVc"
+    },
+    {
+      "name": "TeVc"
+    },
+    {
+      "name": "meVcsq"
+    },
+    {
+      "name": "keVcsq"
+    },
+    {
+      "name": "MeVcsq"
+    },
+    {
+      "name": "GeVcsq"
+    },
+    {
+      "name": "TeVcsq"
+    },
+    {
+      "name": "electronvolt",
+      "unusual": true
+    },
+    {
+      "name": "electronvoltc",
+      "unusual": true
+    },
+    {
+      "name": "electronvoltcsq",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/hepunits#c": [
+      "sicmds\r",
+      "noprefixcmds\r",
+      "freestanding\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/hepunits#c"
+  ]
 }

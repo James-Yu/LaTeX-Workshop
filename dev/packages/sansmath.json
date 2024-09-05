@@ -1,34 +1,84 @@
 {
-  "includes": {},
-  "macros": {
-    "sansmath": {},
-    "unsansmath": {},
-    "mathsfsl{}": {
-      "snippet": "mathsfsl{${1:text}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "sansmath"
     },
-    "sfsl": {},
-    "mathsfbf{}": {
-      "snippet": "mathsfbf{${1:text}}"
+    {
+      "name": "unsansmath"
     },
-    "sfbf": {},
-    "matheug{}": {
-      "snippet": "matheug{${1:arg}}",
-      "option": "EULERGREEK"
+    {
+      "name": "mathsfsl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
     },
-    "sansmathencoding": {},
-    "EulGreek": {},
-    "EuUCGreek": {},
-    "NonEulGreek": {},
-    "EulGreekList": {},
-    "sfMathSwitch": {}
-  },
-  "envs": {
-    "sansmath": {}
-  },
-  "options": [
-    "T1",
-    "EULERGREEK",
-    "eulergreek"
+    {
+      "name": "mathsfbf",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "matheug",
+      "if": "eulergreek",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "matheug",
+      "if": "EULERGREEK",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "sansmathencoding",
+      "unusual": true
+    },
+    {
+      "name": "EulGreek",
+      "unusual": true
+    },
+    {
+      "name": "EuUCGreek",
+      "unusual": true
+    },
+    {
+      "name": "NonEulGreek",
+      "unusual": true
+    },
+    {
+      "name": "EulGreekList",
+      "unusual": true
+    },
+    {
+      "name": "NonEulGreek",
+      "unusual": true
+    },
+    {
+      "name": "sfMathSwitch",
+      "unusual": true
+    }
   ],
-  "keyvals": []
+  "envs": [
+    {
+      "name": "sansmath"
+    }
+  ],
+  "keys": {
+    "\\usepackage/sansmath#c": [
+      "T1\r",
+      "EULERGREEK\r",
+      "eulergreek\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/sansmath#c"
+  ]
 }

@@ -1,61 +1,113 @@
 {
-  "includes": {
-    "xintbinhex": [],
-    "xintcore": []
-  },
-  "macros": {
-    "thebnumexpr": {},
-    "bnumexpr": {},
-    "bnumeval{}": {
-      "snippet": "bnumeval{${1:integer-expr list}}"
+  "deps": [
+    {
+      "name": "xintbinhex"
     },
-    "evaltohex{}": {
-      "snippet": "evaltohex{${1:hex-expr list}}"
-    },
-    "bnumsetup{}": {
-      "snippet": "bnumsetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "bnumexprsetup{}": {
-      "snippet": "bnumexprsetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "bnumhextodec{}": {
-      "snippet": "bnumhextodec{${1:hex integer}}"
-    },
-    "bnumprintone": {},
-    "bnumprintonetohex": {},
-    "bnumprintonesep": {},
-    "bnumdefinfix{}{}{}{}": {
-      "snippet": "bnumdefinfix{${1:operator}}{${2:macro}}{${3:L-prec}}{${4:R-prec}}"
-    },
-    "bnumdefpostfix{}{}{}": {
-      "snippet": "bnumdefpostfix{${1:operator}}{${2:macro}}{${3:L-prec}}"
-    },
-    "BNErestorecatcodes": {},
-    "bnumexpro": {},
-    "bnebareeval{}": {
-      "snippet": "bnebareeval{${1:expr}}"
-    },
-    "XINTfstop": {}
-  },
-  "envs": {},
-  "options": [
-    "custom"
+    {
+      "name": "xintcore"
+    }
   ],
-  "keyvals": [
-    [
-      "add=${1:macro}",
-      "sub=${1:macro}",
-      "mul=${1:macro}",
-      "divround=${1:macro}",
-      "div=${1:macro}",
-      "mod=${1:macro}",
-      "pow=${1:macro}",
-      "fac=${1:macro}",
-      "opp=${1:macro}"
+  "macros": [
+    {
+      "name": "bnumeval",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:integer-expr list}}"
+      }
+    },
+    {
+      "name": "evaltohex",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:hex-expr list}}"
+      }
+    },
+    {
+      "name": "bnumsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\bnumsetup,\\bnumexprsetup"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "bnumhextodec",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:hex integer}}"
+      }
+    },
+    {
+      "name": "bnumprintone",
+      "unusual": true
+    },
+    {
+      "name": "bnumprintonetohex",
+      "unusual": true
+    },
+    {
+      "name": "bnumprintonesep",
+      "unusual": true
+    },
+    {
+      "name": "bnumdefinfix",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:operator}}{${2:macro}}{${3:L-prec}}{${4:R-prec}}"
+      }
+    },
+    {
+      "name": "bnumdefpostfix",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:operator}}{${2:macro}}{${3:L-prec}}"
+      }
+    },
+    {
+      "name": "BNErestorecatcodes",
+      "unusual": true
+    },
+    {
+      "name": "bnumexpro",
+      "unusual": true
+    },
+    {
+      "name": "bnebareeval",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expr}}"
+      }
+    },
+    {
+      "name": "XINTfstop",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/bnumexpr#c": [
+      "custom\r"
+    ],
+    "\\bnumsetup,\\bnumexprsetup": [
+      "add=${1:macro}\r",
+      "sub=${1:macro}\r",
+      "mul=${1:macro}\r",
+      "divround=${1:macro}\r",
+      "div=${1:macro}\r",
+      "mod=${1:macro}\r",
+      "pow=${1:macro}\r",
+      "fac=${1:macro}\r",
+      "opp=${1:macro}\r"
     ]
+  },
+  "args": [
+    "\\usepackage/bnumexpr#c"
   ]
 }

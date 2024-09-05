@@ -1,912 +1,1670 @@
 {
-  "includes": {
-    "ifpdf": [],
-    "ifxetex": [],
-    "xkeyval": [],
-    "insdljs": [],
-    "forms16be": [],
-    "aeb-comment": [],
-    "calc": [],
-    "eso-pic": [],
-    "web": [],
-    "eforms": [],
-    "exerquiz": [
-      "exerquiz"
-    ],
-    "dljslib": [
-      "dljslib"
-    ],
-    "eq2db": [
-      "eq2db"
-    ],
-    "aebxmp": [
-      "aebxmp"
-    ],
-    "graphicxsp": [
-      "graphicxsp"
-    ],
-    "pifont": []
-  },
-  "macros": {
-    "autolabelNum{}": {
-      "snippet": "autolabelNum{${1:num}}",
-      "option": "linktoattachments"
+  "deps": [
+    {
+      "name": "ifpdf"
     },
-    "autolabelNum[]{}": {
-      "snippet": "autolabelNum[${2:label}]{${1:num}}",
-      "option": "linktoattachments"
+    {
+      "name": "ifxetex"
     },
-    "autolabelNum*{}{}": {
-      "snippet": "autolabelNum*{${1:num}}{${2:description}}",
-      "option": "linktoattachments"
+    {
+      "name": "xkeyval"
     },
-    "autolabelNum*[]{}{}": {
-      "snippet": "autolabelNum*[${3:label}]{${1:num}}{${2:description}}",
-      "option": "linktoattachments"
+    {
+      "name": "insdljs"
     },
-    "labelName{}{}": {
-      "snippet": "labelName{${1:label}}{${2:description}}",
-      "option": "linktoattachments"
+    {
+      "name": "forms16be"
     },
-    "ahyperref{}{}": {
-      "snippet": "ahyperref{${1:target-label}}{${2:text}}",
-      "option": "linktoattachments"
+    {
+      "name": "aeb-comment"
     },
-    "ahyperref[]{}{}": {
-      "snippet": "ahyperref[${3:options}]{${1:target-label}}{${2:text}}",
-      "option": "linktoattachments",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "calc"
     },
-    "ahyperlink{}{}": {
-      "snippet": "ahyperlink{${1:target-label}}{${2:text}}",
-      "option": "linktoattachments"
+    {
+      "name": "eso-pic"
     },
-    "ahyperlink[]{}{}": {
-      "snippet": "ahyperlink[${3:options}]{${1:target-label}}{${2:text}}",
-      "option": "linktoattachments",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "web"
     },
-    "ahyperextract{}{}": {
-      "snippet": "ahyperextract{${1:target-label}}{${2:text}}",
-      "option": "linktoattachments"
+    {
+      "name": "eforms"
     },
-    "ahyperextract[]{}{}": {
-      "snippet": "ahyperextract[${3:options}]{${1:target-label}}{${2:text}}",
-      "option": "linktoattachments",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "exerquiz",
+      "if": "exerquiz"
     },
-    "ahypercolor": {
-      "option": "linktoattachments"
+    {
+      "name": "dljslib",
+      "if": "dljslib"
     },
-    "attachmentNamesEnv": {
-      "option": "linktoattachments"
+    {
+      "name": "eq2db",
+      "if": "eq2db"
     },
-    "getdscrptCont": {
-      "option": "linktoattachments"
+    {
+      "name": "aebxmp",
+      "if": "aebxmp"
     },
-    "getdscrptStrCont{}": {
-      "snippet": "getdscrptStrCont{${1:arg}}",
-      "option": "linktoattachments"
+    {
+      "name": "graphicxsp",
+      "if": "graphicxsp"
     },
-    "HandleDblQuotesfalse": {
-      "option": "linktoattachments"
-    },
-    "HandleDblQuotestrue": {
-      "option": "linktoattachments"
-    },
-    "ifHandleDblQuotes": {
-      "option": "linktoattachments"
-    },
-    "resetahyperDefaults": {
-      "option": "linktoattachments"
-    },
-    "setahyperDefaults{}": {
-      "snippet": "setahyperDefaults{${1:arg}}",
-      "option": "linktoattachments"
-    },
-    "targetDictionary": {
-      "option": "linktoattachments"
-    },
-    "btnAnime{}{}{}": {
-      "snippet": "btnAnime{${1:keyvals}}{${2:width}}{${3:height}}",
-      "option": "btnanime",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "placeAnimeCtrlBtnFaces{}{}": {
-      "snippet": "placeAnimeCtrlBtnFaces{${1:appr-icons.pdf}}{${2:list-of-animes}}",
-      "option": "ocganime"
-    },
-    "placeAnimeCtrlBtnFaces[]{}{}": {
-      "snippet": "placeAnimeCtrlBtnFaces[${3:path}]{${1:appr-icons.pdf}}{${2:list-of-animes}}",
-      "option": "ocganime"
-    },
-    "btnanimebtnsep": {
-      "option": "ocganime"
-    },
-    "btnanimerowsep": {
-      "option": "ocganime"
-    },
-    "btnAnimePresets{}": {
-      "snippet": "btnAnimePresets{${1:eforms params}}",
-      "option": "ocganime"
-    },
-    "btnAnimeCtrlPresets{}": {
-      "snippet": "btnAnimeCtrlPresets{${1:eforms params}}",
-      "option": "ocganime"
-    },
-    "animeSetup{}": {
-      "snippet": "animeSetup{${1:keyvals}}",
-      "option": "ocganime"
-    },
-    "insertCtrlButtons": {
-      "option": "ocganime"
-    },
-    "insertCtrlButtons[]": {
-      "snippet": "insertCtrlButtons[${1:position}]",
-      "option": "ocganime"
-    },
-    "ctrlButtonsWrapper{}": {
-      "snippet": "ctrlButtonsWrapper{${1:code}}",
-      "option": "ocganime"
-    },
-    "btnAnimeCtrlW": {
-      "option": "ocganime"
-    },
-    "btnAnimeCtrlH": {
-      "option": "ocganime"
-    },
-    "btnAnimeGoToFirst": {
-      "option": "ocganime"
-    },
-    "btnAnimeStepBack": {
-      "option": "ocganime"
-    },
-    "btnAnimePlayBack": {
-      "option": "ocganime"
-    },
-    "btnAnimePause": {
-      "option": "ocganime"
-    },
-    "btnAnimePlayForward": {
-      "option": "ocganime"
-    },
-    "btnAnimeStepForward": {
-      "option": "ocganime"
-    },
-    "btnAnimeGoToLast": {
-      "option": "ocganime"
-    },
-    "btnAnimePlus": {
-      "option": "ocganime"
-    },
-    "btnAnimeMinus": {
-      "option": "ocganime"
-    },
-    "btnAnimeFirstAction": {
-      "option": "ocganime"
-    },
-    "btnAnimeSBAction": {
-      "option": "ocganime"
-    },
-    "btnAnimePBAction": {
-      "option": "ocganime"
-    },
-    "btnAnimePauseAction": {
-      "option": "ocganime"
-    },
-    "btnAnimePFAction": {
-      "option": "ocganime"
-    },
-    "btnAnimeSFAction": {
-      "option": "ocganime"
-    },
-    "btnAnimeLastAction": {
-      "option": "ocganime"
-    },
-    "btnAnimePlusAction": {
-      "option": "ocganime"
-    },
-    "btnAnimeMinusAction": {
-      "option": "ocganime"
-    },
-    "widthFirstRow": {
-      "option": "ocganime"
-    },
-    "setspaceBtwnPMBtns{}": {
-      "snippet": "setspaceBtwnPMBtns{${1:space cmd}}",
-      "option": "ocganime"
-    },
-    "addSpaceBtwnPMBtns": {
-      "option": "ocganime"
-    },
-    "aepnumWidgetsFirstRow{}{}": {
-      "snippet": "aepnumWidgetsFirstRow{${1:arg1}}{${2:arg2}}",
-      "option": "ocganime"
-    },
-    "animeBtnBaseName": {
-      "option": "ocganime"
-    },
-    "animeBtnFieldName": {
-      "option": "ocganime"
-    },
-    "animeBtnSpeed": {
-      "option": "ocganime"
-    },
-    "animeSetupPresets": {
-      "option": "ocganime"
-    },
-    "btnAnimeSkini": {
-      "option": "ocganime"
-    },
-    "btnAnimeSkinii": {
-      "option": "ocganime"
-    },
-    "btnAnimeSkiniii": {
-      "option": "ocganime"
-    },
-    "btnAnimeSkiniv": {
-      "option": "ocganime"
-    },
-    "nFrames": {
-      "option": "ocganime"
-    },
-    "numWidgetsFirstRow": {
-      "option": "ocganime"
-    },
-    "numWidgetsFirstRowV": {
-      "option": "ocganime"
-    },
-    "numWidgetsFirstRowVI": {
-      "option": "ocganime"
-    },
-    "vspacectrlsep": {
-      "option": "ocganime"
-    },
-    "xBld{}": {
-      "snippet": "xBld{${1:layer-name}}",
-      "option": "ocganime"
-    },
-    "xBld[]{}": {
-      "snippet": "xBld[${2:options}]{${1:layer-name}}",
-      "option": "ocganime",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "eBld": {
-      "option": "ocganime"
-    },
-    "DeclareAnime{}{}{}": {
-      "snippet": "DeclareAnime{${1:basename}}{${2:speed}}{${3:nframes}}",
-      "option": "ocganime"
-    },
-    "animeBld": {
-      "option": "ocganime"
-    },
-    "animeBld[]": {
-      "snippet": "animeBld[${1:options}]",
-      "option": "ocganime"
-    },
-    "backAnimeBtn{}{}": {
-      "snippet": "backAnimeBtn{${1:width}}{${2:height}}",
-      "option": "ocganime"
-    },
-    "backAnimeBtn[]{}{}": {
-      "snippet": "backAnimeBtn[${3:eforms params}]{${1:width}}{${2:height}}",
-      "option": "ocganime"
-    },
-    "clearAnimeBtn{}{}": {
-      "snippet": "clearAnimeBtn{${1:width}}{${2:height}}",
-      "option": "ocganime"
-    },
-    "clearAnimeBtn[]{}{}": {
-      "snippet": "clearAnimeBtn[${3:eforms params}]{${1:width}}{${2:height}}",
-      "option": "ocganime"
-    },
-    "forwardAnimeBtn{}{}": {
-      "snippet": "forwardAnimeBtn{${1:width}}{${2:height}}",
-      "option": "ocganime"
-    },
-    "forwardAnimeBtn[]{}{}": {
-      "snippet": "forwardAnimeBtn[${3:eforms params}]{${1:width}}{${2:height}}",
-      "option": "ocganime"
-    },
-    "defineRC{}{}": {
-      "snippet": "defineRC{${1:layer-name}}{${2:message}}",
-      "option": "ocganime"
-    },
-    "insertRC{}": {
-      "snippet": "insertRC{${1:layer-name}}",
-      "option": "ocganime"
-    },
-    "definePR{}{}": {
-      "snippet": "definePR{${1:layer-name}}{${2:message}}",
-      "option": "ocganime"
-    },
-    "insertPR{}": {
-      "snippet": "insertPR{${1:layer-name}}",
-      "option": "ocganime"
-    },
-    "animBaseName": {
-      "option": "ocganime"
-    },
-    "animSpeed": {
-      "option": "ocganime"
-    },
-    "addJStexHelpEnter{}": {
-      "snippet": "addJStexHelpEnter{${1:JS code}}",
-      "option": "ocganime"
-    },
-    "addJStexHelpExit{}": {
-      "snippet": "addJStexHelpExit{${1:JS code}}",
-      "option": "ocganime"
-    },
-    "texHelp{}{}": {
-      "snippet": "texHelp{${1:layer-name}}{${2:text}}"
-    },
-    "texHelp*{}{}": {
-      "snippet": "texHelp*{${1:layer-name}}{${2:text}}",
-      "option": "ocganime"
-    },
-    "resetaddJStexHelp": {
-      "option": "ocganime"
-    },
-    "proofRollovers": {
-      "option": "ocganime"
-    },
-    "turnProofingOn": {
-      "option": "ocganime"
-    },
-    "turnProofingOff": {
-      "option": "ocganime"
-    },
-    "animBldName": {
-      "option": "ocganime"
-    },
-    "animeName{}": {
-      "snippet": "animeName{${1:arg}}",
-      "option": "ocganime"
-    },
-    "iftexhelptoggleOff": {
-      "option": "ocganime"
-    },
-    "texHelpIndicator{}": {
-      "snippet": "texHelpIndicator{${1:arg}}",
-      "option": "ocganime"
-    },
-    "texHelpIndicatorColor": {
-      "option": "ocganime"
-    },
-    "texhelptoggleOfffalse": {
-      "option": "ocganime"
-    },
-    "texhelptoggleOfftrue": {
-      "option": "ocganime"
-    },
-    "theocSeq": {
-      "option": "ocganime"
-    },
-    "DeclareInitView{}": {
-      "snippet": "DeclareInitView{${1:keyvals}}",
-      "keyvalindex": 4,
-      "keyvalpos": 0
-    },
-    "additionalOpenAction{}": {
-      "snippet": "additionalOpenAction{${1:action}}"
-    },
-    "requiredVersionMsg{}": {
-      "snippet": "requiredVersionMsg{${1:message}}"
-    },
-    "alternateDocumentURL{}": {
-      "snippet": "alternateDocumentURL{${1:URL}}"
-    },
-    "requiredVersionMsgRedirect{}": {
-      "snippet": "requiredVersionMsgRedirect{${1:message}}"
-    },
-    "afterRequirementPassedJS{}": {
-      "snippet": "afterRequirementPassedJS{${1:JS code}}"
-    },
-    "requiresVersion{}": {
-      "snippet": "requiresVersion{${1:version-number}}"
-    },
-    "requiresVersion[]{}": {
-      "snippet": "requiresVersion[${2:warnonly}]{${1:version-number}}"
-    },
-    "atPage{}": {
-      "snippet": "atPage{${1:label}}"
-    },
-    "canceleveryPageOpen": {},
-    "canceleveryPageClose": {},
-    "setDefaultFS{}": {
-      "snippet": "setDefaultFS{${1:keyvals}}"
-    },
-    "setPageTransition{}": {
-      "snippet": "setPageTransition{${1:keyvals}}",
-      "keyvalindex": 5,
-      "keyvalpos": 0
-    },
-    "setPageTransitionAt{}{}": {
-      "snippet": "setPageTransitionAt{${1:page-ranges}}{${2:keyvals}}",
-      "keyvalindex": 5,
-      "keyvalpos": 1
-    },
-    "addtoOptAttachments{}": {
-      "snippet": "addtoOptAttachments{${1:list-of-files}}"
-    },
-    "prjinput{}": {
-      "snippet": "prjinput{${1:file}}"
-    },
-    "prjinclude{}": {
-      "snippet": "prjinclude{${1:file}}"
-    },
-    "prjInputUser{}": {
-      "snippet": "prjInputUser{${1:file}}"
-    },
-    "prjIncludeUser{}": {
-      "snippet": "prjIncludeUser{${1:file}}"
-    },
-    "sigInfo{}": {
-      "snippet": "sigInfo{${1:info}}"
-    },
-    "signatureSign": {},
-    "certifyInvisibleSign": {},
-    "signatureSetSeedValue()": {
-      "snippet": "signatureSetSeedValue(${1:oSeedValue})"
-    },
-    "declareImageAndPlacement{}": {
-      "snippet": "declareImageAndPlacement{${1:keyvals}}",
-      "keyvalindex": 6,
-      "keyvalpos": 0
-    },
-    "declareMultiImages{{}{}": {
-      "snippet": "declareMultiImages{{${1:keyvals1}}{${2:keyvals2}...}}"
-    },
-    "insertPreDocAssembly": {},
-    "placeImage{}{}{}": {
-      "snippet": "placeImage{${1:name}}{${2:width}}{${3:height}}"
-    },
-    "placeImage[]{}{}{}": {
-      "snippet": "placeImage[${4:eforms params}]{${1:name}}{${2:width}}{${3:height}}"
-    },
-    "embedMultiPageImages{}": {
-      "snippet": "embedMultiPageImages{${1:keyvals}}",
-      "keyvalindex": 7,
-      "keyvalpos": 0
-    },
-    "makePDFPackage{}": {
-      "snippet": "makePDFPackage{${1:keyvals}}",
-      "keyvalindex": 8,
-      "keyvalpos": 0
-    },
-    "chngDocObjectTo{}{}": {
-      "snippet": "chngDocObjectTo{${1:cmd}}{${2:name}}"
-    },
-    "docSaveAs": {},
-    "addWatermarkFromText": {},
-    "aebAlternateDocumentURL": {},
-    "aebPageAction[]{}{}": {
-      "snippet": "aebPageAction[${3:opt}]{${1:arg1}}{${2:arg2}}"
-    },
-    "aebPageAction{}{}": {
-      "snippet": "aebPageAction{${1:arg1}}{${2:arg2}}"
-    },
-    "aebpFAP": {},
-    "aebpopentoksP": {},
-    "ahrefexafter": {},
-    "attachFile": {},
-    "browseForDoc": {},
-    "createTemplate": {},
-    "DeclareJSHelper{}{}": {
-      "snippet": "DeclareJSHelper{${1:arg1}}{${2:arg2}}"
-    },
-    "earlyAttachForPkgs": {},
-    "extractPages": {},
-    "getcNameFromFileName{}": {
-      "snippet": "getcNameFromFileName{${1:arg}}"
-    },
-    "iconNameI{}": {
-      "snippet": "iconNameI{${1:arg}}"
-    },
-    "ifisPDFPackage": {},
-    "importAndSetImages": {},
-    "isPDFPackagefalse": {},
-    "isPDFPackagetrue": {},
-    "jsstrdotsp": {},
-    "jsstrsps": {},
-    "mailDoc": {},
-    "makePDFPortfolio{}": {
-      "snippet": "makePDFPortfolio{${1:arg}}"
-    },
-    "placeImageToBtn{}": {
-      "snippet": "placeImageToBtn{${1:arg}}"
-    },
-    "pubAddToDocOpen": {},
-    "requiredVersionNumber": {},
-    "requiredVersionResult{}{}{}": {
-      "snippet": "requiredVersionResult{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "retnAbsPathAs()": {
-      "snippet": "retnAbsPathAs(${1:arg})"
-    },
-    "setLayoutMag{}": {
-      "snippet": "setLayoutMag{${1:arg}}"
-    },
-    "setUIOptions{}": {
-      "snippet": "setUIOptions{${1:arg}}"
-    },
-    "setWindowOptions{}": {
-      "snippet": "setWindowOptions{${1:arg}}"
-    },
-    "theDocObject": {},
-    "ifoptattachments": {},
-    "optattachmentstrue": {},
-    "optattachmentsfalse": {},
-    "ifoptattachmentsTaken": {},
-    "optattachmentsTakentrue": {},
-    "optattachmentsTakenfalse": {},
-    "pdfHelp{}{}{}": {
-      "snippet": "pdfHelp{${1:fieldname}}{${2:message}}{${3:text}}"
-    },
-    "pdfHelp*{}{}": {
-      "snippet": "pdfHelp*{${1:message}}{${2:text}}"
-    },
-    "pdfPrintHelp{}{}{}": {
-      "snippet": "pdfPrintHelp{${1:fieldname}}{${2:message}}{${3:text}}"
-    },
-    "pdfPrintHelp*{}{}": {
-      "snippet": "pdfPrintHelp*{${1:message}}{${2:text}}"
-    },
-    "texPrintHelp{}{}": {
-      "snippet": "texPrintHelp{${1:layer-name}}{${2:text}}"
-    },
-    "rollormargstring{}{}": {
-      "snippet": "rollormargstring{${1:roll-string}}{${2:margin-string}}"
-    },
-    "pdfPHProof{}{}{}": {
-      "snippet": "pdfPHProof{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "texPHProof{}{}": {
-      "snippet": "texPHProof{${1:arg1}}{${2:arg2}}"
-    },
-    "aebsavehelp": {},
-    "ExecuteOptionsXSAVE{}": {
-      "snippet": "ExecuteOptionsXSAVE{${1:options}}"
-    },
-    "inputAttachmentRelatedFiles": {},
-    "inputBtnAnimeCode": {},
-    "inputCommonAnimeCode": {},
-    "inputOcgAnimeCode": {},
-    "pathToBtnCtrlIcons": {},
-    "pdfHelpCnt": {},
-    "pdfHelpi{}{}{}": {
-      "snippet": "pdfHelpi{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "pdfHelpIndicator{}": {
-      "snippet": "pdfHelpIndicator{${1:arg}}"
-    },
-    "pdfHelpIndicatorColor": {},
-    "pdfPrintHelpi{}{}{}": {
-      "snippet": "pdfPrintHelpi{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "DeclareDocInfo{}": {
-      "snippet": "DeclareDocInfo{${1:keyvals}}",
-      "keyvalindex": 9,
-      "keyvalpos": 0
-    },
-    "DeclarePageLayout{}": {
-      "snippet": "DeclarePageLayout{${1:keyvals}}",
-      "keyvalindex": 10,
-      "keyvalpos": 0
-    },
-    "universityLayout{}": {
-      "snippet": "universityLayout{${1:keyvals}}",
-      "keyvalindex": 11,
-      "keyvalpos": 0
-    },
-    "titleLayout{}": {
-      "snippet": "titleLayout{${1:keyvals}}",
-      "keyvalindex": 11,
-      "keyvalpos": 0
-    },
-    "authorLayout{}": {
-      "snippet": "authorLayout{${1:keyvals}}",
-      "keyvalindex": 11,
-      "keyvalpos": 0
-    },
-    "topTitlePageProportion{}": {
-      "snippet": "topTitlePageProportion{${1:factor}}"
-    },
-    "DesignTitlePageTrailer{}": {
-      "snippet": "DesignTitlePageTrailer{${1:keyvals}}",
-      "keyvalindex": 12,
-      "keyvalpos": 0
-    },
-    "selectTocDings{}": {
-      "snippet": "selectTocDings{${1:keyvals}}",
-      "keyvalindex": 13,
-      "keyvalpos": 0
-    },
-    "selectColors{}": {
-      "snippet": "selectColors{${1:keyvals}}",
-      "keyvalindex": 14,
-      "keyvalpos": 0
-    },
-    "noSectionNumbers": {},
-    "tocLayout{}": {
-      "snippet": "tocLayout{${1:keyvals}}",
-      "keyvalindex": 15,
-      "keyvalpos": 0
-    },
-    "sectionLayout{}": {
-      "snippet": "sectionLayout{${1:keyvals}}",
-      "keyvalindex": 15,
-      "keyvalpos": 0
-    },
-    "subsectionLayout{}": {
-      "snippet": "subsectionLayout{${1:keyvals}}",
-      "keyvalindex": 15,
-      "keyvalpos": 0
-    },
-    "subsubsectionLayout{}": {
-      "snippet": "subsubsectionLayout{${1:keyvals}}",
-      "keyvalindex": 15,
-      "keyvalpos": 0
-    },
-    "shadowhoffset{}": {
-      "snippet": "shadowhoffset{${1:length}}"
-    },
-    "shadowvoffset{}": {
-      "snippet": "shadowvoffset{${1:length}}"
-    },
-    "customSecHead{}": {
-      "snippet": "customSecHead{${1:TeX code}}"
-    },
-    "customSubsecHead{}": {
-      "snippet": "customSubsecHead{${1:TeX code}}"
-    },
-    "customSubsubsecHead{}": {
-      "snippet": "customSubsubsecHead{${1:TeX code}}"
-    },
-    "preparedLabel{}": {
-      "snippet": "preparedLabel{${1:text}}"
-    },
-    "prepared{}": {
-      "snippet": "prepared{${1:date}}"
-    },
-    "talkdate{}": {
-      "snippet": "talkdate{${1:date}}"
-    },
-    "webtalkdate": {},
-    "talkdateLabel{}": {
-      "snippet": "talkdateLabel{${1:text}}"
-    },
-    "talksite{}": {
-      "snippet": "talksite{${1:site}}"
-    },
-    "customUniversity{}": {
-      "snippet": "customUniversity{${1:TeX code}}"
-    },
-    "customTitle{}": {
-      "snippet": "customTitle{${1:TeX code}}"
-    },
-    "customAuthor{}": {
-      "snippet": "customAuthor{${1:TeX code}}"
-    },
-    "customToc{}": {
-      "snippet": "customToc{${1:TeX code}}"
-    },
-    "halignuniversity": {},
-    "haligntitle": {},
-    "halignauthor": {},
-    "halignsection": {},
-    "halignsubsection": {},
-    "halignsubsubsection": {},
-    "haligntoc": {},
-    "subsubDefaultDing{}": {
-      "snippet": "subsubDefaultDing{${1:symbol}}"
-    },
-    "sectionTitle": {},
-    "sectionAuthor": {},
-    "sectionUniversity": {},
-    "sectionToc": {},
-    "ifShadow": {},
-    "Shadowtrue": {},
-    "Shadowfalse": {},
-    "useSectionNumbers": {},
-    "dDingToc{}": {
-      "snippet": "dDingToc{${1:symbol}}"
-    },
-    "ddDingToc{}": {
-      "snippet": "ddDingToc{${1:symbol}}"
-    },
-    "dddDingToc{}": {
-      "snippet": "dddDingToc{${1:symbol}}"
-    },
-    "dDingTocColor{}": {
-      "snippet": "dDingTocColor{${1:color}}"
-    },
-    "ddDingTocColor{}": {
-      "snippet": "ddDingTocColor{${1:color}}"
-    },
-    "dddDingTocColor{}": {
-      "snippet": "dddDingTocColor{${1:color}}"
+    {
+      "name": "pifont"
     }
-  },
-  "envs": {
-    "attachmentNames": {
-      "option": "linktoattachments"
-    },
-    "rollover": {
-      "option": "ocganime"
-    },
-    "printRollover": {
-      "option": "ocganime"
-    },
-    "ocgAnime{}": {
-      "name": "ocgAnime",
-      "snippet": "{${1:keyvals}}",
-      "option": "ocganime",
-      "keyvalindex": 16,
-      "keyvalpos": 0
-    },
-    "willClose": {},
-    "willSave": {},
-    "didSave": {},
-    "willPrint": {},
-    "didPrint": {},
-    "addJSToPageOpen": {},
-    "addJSToPageClose": {},
-    "addJSToPageOpenAt{}": {
-      "name": "addJSToPageOpenAt",
-      "snippet": "{${1:page-ranges}}"
-    },
-    "addJSToPageCloseAt{}": {
-      "name": "addJSToPageCloseAt",
-      "snippet": "{${1:page-ranges}}"
-    },
-    "everyPageOpen": {},
-    "everyPageClose": {},
-    "docassembly": {}
-  },
-  "options": [
-    "driver=${1|dvipsone,dvips,pdftex,dvipdfm,textures,dvipdfmx,xetex|}",
-    "useacrobat",
-    "nopro",
-    "web={${1:web options}}",
-    "exerquiz={${1:exerquiz options}}",
-    "dljslib={${1:dljslib options}}",
-    "eforms={${1:eforms options}}",
-    "insdljs={${1:insdljs options}}",
-    "eq2db={${1:eq2db options}}",
-    "aebxmp={${1:aebxmp options}}",
-    "graphicxsp={${1:graphicxsp options}}",
-    "hyperref={${1:hyperref options}}",
-    "gopro",
-    "attachsource={${1:ext1,ext2,...}}",
-    "attachments={${1:path1,path2,...}}",
-    "optattachments",
-    "!optattachments",
-    "linktoattachments",
-    "childof=${1:path}",
-    "btnanime",
-    "uselayers",
-    "ocganime"
   ],
-  "keyvals": [
-    [
-      "goto=${1|p2c,c2p,c2c|}",
-      "page=${1:number}",
-      "view=${1:view}",
-      "dest=${1:destination}",
-      "open=${1|usepref,new,existing|}",
-      "border=${1|visible,invisible|}",
-      "highlight=${1|none,invert,outline,insert|}",
-      "bordercolor=${1:r g b}",
-      "linestyle=${1|solid,dashed,underlined|}",
-      "linewidth=${1|thin,medium,thick|}",
-      "preset=${1:command}"
+  "macros": [
+    {
+      "name": "autolabelNum",
+      "if": "linktoattachments",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:num}}"
+      }
+    },
+    {
+      "name": "autolabelNum",
+      "if": "linktoattachments",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:label}]{${1:num}}"
+      }
+    },
+    {
+      "name": "autolabelNum*",
+      "if": "linktoattachments",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:num}}{${2:description%text}}"
+      }
+    },
+    {
+      "name": "autolabelNum*",
+      "if": "linktoattachments",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:label}]{${1:num}}{${2:description%text}}"
+      }
+    },
+    {
+      "name": "labelName",
+      "if": "linktoattachments",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label%specialDef}}{${2:description%text}}"
+      }
+    },
+    {
+      "name": "ahyperref",
+      "if": "linktoattachments",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:target-label}}{${2:text%plain}}"
+      }
+    },
+    {
+      "name": "ahyperref",
+      "if": "linktoattachments",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:target-label}}{${2:text%plain}}"
+      }
+    },
+    {
+      "name": "ahyperlink",
+      "if": "linktoattachments",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:target-label}}{${2:text%plain}}"
+      }
+    },
+    {
+      "name": "ahyperlink",
+      "if": "linktoattachments",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:target-label}}{${2:text%plain}}"
+      }
+    },
+    {
+      "name": "ahyperextract",
+      "if": "linktoattachments",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:target-label}}{${2:text%plain}}"
+      }
+    },
+    {
+      "name": "ahyperextract",
+      "if": "linktoattachments",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:target-label}}{${2:text%plain}}"
+      }
+    },
+    {
+      "name": "btnAnime",
+      "if": "btnanime",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:keyvals}}{${2:width}}{${3:height}}"
+      }
+    },
+    {
+      "name": "placeAnimeCtrlBtnFaces",
+      "if": "btnanime",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:appr-icons.pdf}}{${2:list-of-animes}}"
+      }
+    },
+    {
+      "name": "placeAnimeCtrlBtnFaces",
+      "if": "btnanime",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:path}]{${1:appr-icons.pdf}}{${2:list-of-animes}}"
+      }
+    },
+    {
+      "name": "btnanimebtnsep",
+      "if": "btnanime",
+      "unusual": true
+    },
+    {
+      "name": "btnanimerowsep",
+      "if": "btnanime",
+      "unusual": true
+    },
+    {
+      "name": "btnAnimePresets",
+      "if": "btnanime",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:eforms params}}"
+      }
+    },
+    {
+      "name": "btnAnimeCtrlPresets",
+      "if": "btnanime",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:eforms params}}"
+      }
+    },
+    {
+      "name": "animeSetup",
+      "if": "btnanime",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "insertCtrlButtons",
+      "if": "btnanime"
+    },
+    {
+      "name": "insertCtrlButtons",
+      "if": "btnanime",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:position}]"
+      }
+    },
+    {
+      "name": "ctrlButtonsWrapper",
+      "if": "btnanime",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "btnAnimeCtrlW",
+      "if": "btnanime",
+      "unusual": true
+    },
+    {
+      "name": "btnAnimeCtrlH",
+      "if": "btnanime",
+      "unusual": true
+    },
+    {
+      "name": "btnAnimeGoToFirst",
+      "if": "btnanime"
+    },
+    {
+      "name": "btnAnimeStepBack",
+      "if": "btnanime"
+    },
+    {
+      "name": "btnAnimePlayBack",
+      "if": "btnanime"
+    },
+    {
+      "name": "btnAnimePause",
+      "if": "btnanime"
+    },
+    {
+      "name": "btnAnimePlayForward",
+      "if": "btnanime"
+    },
+    {
+      "name": "btnAnimeStepForward",
+      "if": "btnanime"
+    },
+    {
+      "name": "btnAnimeGoToLast",
+      "if": "btnanime"
+    },
+    {
+      "name": "btnAnimePlus",
+      "if": "btnanime"
+    },
+    {
+      "name": "btnAnimeMinus",
+      "if": "btnanime"
+    },
+    {
+      "name": "btnAnimeFirstAction",
+      "if": "btnanime"
+    },
+    {
+      "name": "btnAnimeSBAction",
+      "if": "btnanime"
+    },
+    {
+      "name": "btnAnimePBAction",
+      "if": "btnanime"
+    },
+    {
+      "name": "btnAnimePauseAction",
+      "if": "btnanime"
+    },
+    {
+      "name": "btnAnimePFAction",
+      "if": "btnanime"
+    },
+    {
+      "name": "btnAnimeSFAction",
+      "if": "btnanime"
+    },
+    {
+      "name": "btnAnimeLastAction",
+      "if": "btnanime"
+    },
+    {
+      "name": "btnAnimePlusAction",
+      "if": "btnanime"
+    },
+    {
+      "name": "btnAnimeMinusAction",
+      "if": "btnanime"
+    },
+    {
+      "name": "widthFirstRow",
+      "if": "btnanime",
+      "unusual": true
+    },
+    {
+      "name": "setspaceBtwnPMBtns",
+      "if": "btnanime",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:space cmd}}"
+      }
+    },
+    {
+      "name": "xBld",
+      "if": "uselayers",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:layer-name}}"
+      }
+    },
+    {
+      "name": "xBld",
+      "if": "uselayers",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:layer-name}}"
+      }
+    },
+    {
+      "name": "eBld",
+      "if": "uselayers"
+    },
+    {
+      "name": "DeclareAnime",
+      "if": "uselayers",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:basename}}{${2:speed}}{${3:nframes}}"
+      }
+    },
+    {
+      "name": "animeBld",
+      "if": "uselayers"
+    },
+    {
+      "name": "animeBld",
+      "if": "uselayers",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "backAnimeBtn",
+      "if": "uselayers",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "backAnimeBtn",
+      "if": "uselayers",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:eforms params}]{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "clearAnimeBtn",
+      "if": "uselayers",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "clearAnimeBtn",
+      "if": "uselayers",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:eforms params}]{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "forwardAnimeBtn",
+      "if": "uselayers",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "forwardAnimeBtn",
+      "if": "uselayers",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:eforms params}]{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "defineRC",
+      "if": "uselayers",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:layer-name}}{${2:message%text}}"
+      }
+    },
+    {
+      "name": "insertRC",
+      "if": "uselayers",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:layer-name}}"
+      }
+    },
+    {
+      "name": "definePR",
+      "if": "uselayers",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:layer-name}}{${2:message%text}}"
+      }
+    },
+    {
+      "name": "insertPR",
+      "if": "uselayers",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:layer-name}}"
+      }
+    },
+    {
+      "name": "nFrames",
+      "if": "uselayers",
+      "unusual": true
+    },
+    {
+      "name": "animBaseName",
+      "if": "uselayers",
+      "unusual": true
+    },
+    {
+      "name": "animSpeed",
+      "if": "uselayers",
+      "unusual": true
+    },
+    {
+      "name": "addJStexHelpEnter",
+      "if": "uselayers",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:JS code%definition}}"
+      }
+    },
+    {
+      "name": "addJStexHelpExit",
+      "if": "uselayers",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:JS code%definition}}"
+      }
+    },
+    {
+      "name": "texHelp",
+      "if": "uselayers",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:layer-name}}{${2:text}}"
+      }
+    },
+    {
+      "name": "texHelp*",
+      "if": "uselayers",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:layer-name}}{${2:text}}"
+      }
+    },
+    {
+      "name": "resetaddJStexHelp",
+      "if": "uselayers"
+    },
+    {
+      "name": "proofRollovers",
+      "if": "uselayers"
+    },
+    {
+      "name": "turnProofingOn",
+      "if": "uselayers"
+    },
+    {
+      "name": "turnProofingOff",
+      "if": "uselayers"
+    },
+    {
+      "name": "placeAnimeCtrlBtnFaces",
+      "if": "ocganime",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:appr-icons.pdf}}{${2:list-of-animes}}"
+      }
+    },
+    {
+      "name": "placeAnimeCtrlBtnFaces",
+      "if": "ocganime",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:path}]{${1:appr-icons.pdf}}{${2:list-of-animes}}"
+      }
+    },
+    {
+      "name": "btnanimebtnsep",
+      "if": "ocganime",
+      "unusual": true
+    },
+    {
+      "name": "btnanimerowsep",
+      "if": "ocganime",
+      "unusual": true
+    },
+    {
+      "name": "btnAnimePresets",
+      "if": "ocganime",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:eforms params}}"
+      }
+    },
+    {
+      "name": "btnAnimeCtrlPresets",
+      "if": "ocganime",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:eforms params}}"
+      }
+    },
+    {
+      "name": "animeSetup",
+      "if": "ocganime",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "insertCtrlButtons",
+      "if": "ocganime"
+    },
+    {
+      "name": "insertCtrlButtons",
+      "if": "ocganime",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:position}]"
+      }
+    },
+    {
+      "name": "ctrlButtonsWrapper",
+      "if": "ocganime",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "btnAnimeCtrlW",
+      "if": "ocganime",
+      "unusual": true
+    },
+    {
+      "name": "btnAnimeCtrlH",
+      "if": "ocganime",
+      "unusual": true
+    },
+    {
+      "name": "btnAnimeGoToFirst",
+      "if": "ocganime"
+    },
+    {
+      "name": "btnAnimeStepBack",
+      "if": "ocganime"
+    },
+    {
+      "name": "btnAnimePlayBack",
+      "if": "ocganime"
+    },
+    {
+      "name": "btnAnimePause",
+      "if": "ocganime"
+    },
+    {
+      "name": "btnAnimePlayForward",
+      "if": "ocganime"
+    },
+    {
+      "name": "btnAnimeStepForward",
+      "if": "ocganime"
+    },
+    {
+      "name": "btnAnimeGoToLast",
+      "if": "ocganime"
+    },
+    {
+      "name": "btnAnimePlus",
+      "if": "ocganime"
+    },
+    {
+      "name": "btnAnimeMinus",
+      "if": "ocganime"
+    },
+    {
+      "name": "btnAnimeFirstAction",
+      "if": "ocganime"
+    },
+    {
+      "name": "btnAnimeSBAction",
+      "if": "ocganime"
+    },
+    {
+      "name": "btnAnimePBAction",
+      "if": "ocganime"
+    },
+    {
+      "name": "btnAnimePauseAction",
+      "if": "ocganime"
+    },
+    {
+      "name": "btnAnimePFAction",
+      "if": "ocganime"
+    },
+    {
+      "name": "btnAnimeSFAction",
+      "if": "ocganime"
+    },
+    {
+      "name": "btnAnimeLastAction",
+      "if": "ocganime"
+    },
+    {
+      "name": "btnAnimePlusAction",
+      "if": "ocganime"
+    },
+    {
+      "name": "btnAnimeMinusAction",
+      "if": "ocganime"
+    },
+    {
+      "name": "widthFirstRow",
+      "if": "ocganime",
+      "unusual": true
+    },
+    {
+      "name": "setspaceBtwnPMBtns",
+      "if": "ocganime",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:space cmd}}"
+      }
+    },
+    {
+      "name": "xBld",
+      "if": "ocganime",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:layer-name}}"
+      }
+    },
+    {
+      "name": "xBld",
+      "if": "ocganime",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:layer-name}}"
+      }
+    },
+    {
+      "name": "eBld",
+      "if": "ocganime"
+    },
+    {
+      "name": "DeclareAnime",
+      "if": "ocganime",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:basename}}{${2:speed}}{${3:nframes}}"
+      }
+    },
+    {
+      "name": "animeBld",
+      "if": "ocganime"
+    },
+    {
+      "name": "animeBld",
+      "if": "ocganime",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "backAnimeBtn",
+      "if": "ocganime",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "backAnimeBtn",
+      "if": "ocganime",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:eforms params}]{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "clearAnimeBtn",
+      "if": "ocganime",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "clearAnimeBtn",
+      "if": "ocganime",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:eforms params}]{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "forwardAnimeBtn",
+      "if": "ocganime",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "forwardAnimeBtn",
+      "if": "ocganime",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:eforms params}]{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "defineRC",
+      "if": "ocganime",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:layer-name}}{${2:message%text}}"
+      }
+    },
+    {
+      "name": "insertRC",
+      "if": "ocganime",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:layer-name}}"
+      }
+    },
+    {
+      "name": "definePR",
+      "if": "ocganime",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:layer-name}}{${2:message%text}}"
+      }
+    },
+    {
+      "name": "insertPR",
+      "if": "ocganime",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:layer-name}}"
+      }
+    },
+    {
+      "name": "nFrames",
+      "if": "ocganime",
+      "unusual": true
+    },
+    {
+      "name": "animBaseName",
+      "if": "ocganime",
+      "unusual": true
+    },
+    {
+      "name": "animSpeed",
+      "if": "ocganime",
+      "unusual": true
+    },
+    {
+      "name": "addJStexHelpEnter",
+      "if": "ocganime",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:JS code%definition}}"
+      }
+    },
+    {
+      "name": "addJStexHelpExit",
+      "if": "ocganime",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:JS code%definition}}"
+      }
+    },
+    {
+      "name": "texHelp",
+      "if": "ocganime",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:layer-name}}{${2:text}}"
+      }
+    },
+    {
+      "name": "texHelp*",
+      "if": "ocganime",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:layer-name}}{${2:text}}"
+      }
+    },
+    {
+      "name": "resetaddJStexHelp",
+      "if": "ocganime"
+    },
+    {
+      "name": "proofRollovers",
+      "if": "ocganime"
+    },
+    {
+      "name": "turnProofingOn",
+      "if": "ocganime"
+    },
+    {
+      "name": "turnProofingOff",
+      "if": "ocganime"
+    },
+    {
+      "name": "DeclareInitView",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "additionalOpenAction",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:action}}"
+      }
+    },
+    {
+      "name": "requiredVersionMsg",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:message%text}}"
+      }
+    },
+    {
+      "name": "alternateDocumentURL",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:URL}}"
+      }
+    },
+    {
+      "name": "requiredVersionMsgRedirect",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:message%text}}"
+      }
+    },
+    {
+      "name": "afterRequirementPassedJS",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:JS code%definition}}"
+      }
+    },
+    {
+      "name": "requiresVersion",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:version-number}}"
+      }
+    },
+    {
+      "name": "requiresVersion",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:warnonly}]{${1:version-number}}"
+      }
+    },
+    {
+      "name": "atPage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "canceleveryPageOpen"
+    },
+    {
+      "name": "canceleveryPageClose"
+    },
+    {
+      "name": "setDefaultFS",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "setPageTransition",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "setPageTransitionAt",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:page-ranges}}{${2:keyvals}}"
+      }
+    },
+    {
+      "name": "addtoOptAttachments",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:list-of-files%file}}"
+      }
+    },
+    {
+      "name": "prjinput",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "prjinclude",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "prjInputUser",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "prjIncludeUser",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "sigInfo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:info}}"
+      }
+    },
+    {
+      "name": "signatureSign"
+    },
+    {
+      "name": "certifyInvisibleSign"
+    },
+    {
+      "name": "signatureSetSeedValue(oSeedValue)"
+    },
+    {
+      "name": "declareImageAndPlacement",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "insertPreDocAssembly"
+    },
+    {
+      "name": "placeImage",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:width}}{${3:height}}"
+      }
+    },
+    {
+      "name": "placeImage",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:eforms params}]{${1:name}}{${2:width}}{${3:height}}"
+      }
+    },
+    {
+      "name": "embedMultiPageImages",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "makePDFPackage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "chngDocObjectTo",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:name}}"
+      }
+    },
+    {
+      "name": "docSaveAs"
+    },
+    {
+      "name": "ifoptattachments",
+      "unusual": true
+    },
+    {
+      "name": "ifoptattachmentsTaken",
+      "unusual": true
+    },
+    {
+      "name": "pdfHelp",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:fieldname}}{${2:message%text}}{${3:text}}"
+      }
+    },
+    {
+      "name": "pdfHelp*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:message%text}}{${2:text}}"
+      }
+    },
+    {
+      "name": "pdfPrintHelp",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:fieldname}}{${2:message%text}}{${3:text}}"
+      }
+    },
+    {
+      "name": "pdfPrintHelp*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:message%text}}{${2:text}}"
+      }
+    },
+    {
+      "name": "texHelp",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:layer-name}}{${2:text}}"
+      }
+    },
+    {
+      "name": "texPrintHelp",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:layer-name}}{${2:text}}"
+      }
+    },
+    {
+      "name": "rollormargstring",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:roll-string}}{${2:margin-string}}"
+      }
+    },
+    {
+      "name": "pdfPHProof",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "texPHProof",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "DeclareDocInfo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "DeclarePageLayout",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "universityLayout",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "titleLayout",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "authorLayout",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "topTitlePageProportion",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:factor}}"
+      }
+    },
+    {
+      "name": "DesignTitlePageTrailer",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "selectTocDings",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "selectColors",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "noSectionNumbers"
+    },
+    {
+      "name": "tocLayout",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "sectionLayout",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "subsectionLayout",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "subsubsectionLayout",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "shadowhoffset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
+    },
+    {
+      "name": "shadowvoffset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
+    },
+    {
+      "name": "customSecHead",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:TeX code}}"
+      }
+    },
+    {
+      "name": "customSubsecHead",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:TeX code}}"
+      }
+    },
+    {
+      "name": "customSubsubsecHead",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:TeX code}}"
+      }
+    },
+    {
+      "name": "preparedLabel",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "prepared",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:date}}"
+      }
+    },
+    {
+      "name": "talkdate",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:date}}"
+      }
+    },
+    {
+      "name": "webtalkdate",
+      "unusual": true
+    },
+    {
+      "name": "talkdateLabel",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "talksite",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:site}}"
+      }
+    },
+    {
+      "name": "customUniversity",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:TeX code}}"
+      }
+    },
+    {
+      "name": "customTitle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:TeX code}}"
+      }
+    },
+    {
+      "name": "customAuthor",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:TeX code}}"
+      }
+    },
+    {
+      "name": "customToc",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:TeX code}}"
+      }
+    },
+    {
+      "name": "halignuniversity",
+      "unusual": true
+    },
+    {
+      "name": "haligntitle",
+      "unusual": true
+    },
+    {
+      "name": "halignauthor",
+      "unusual": true
+    },
+    {
+      "name": "halignsection",
+      "unusual": true
+    },
+    {
+      "name": "halignsubsection",
+      "unusual": true
+    },
+    {
+      "name": "halignsubsubsection",
+      "unusual": true
+    },
+    {
+      "name": "haligntoc",
+      "unusual": true
+    },
+    {
+      "name": "subsubDefaultDing",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol}}"
+      }
+    },
+    {
+      "name": "sectionTitle",
+      "unusual": true
+    },
+    {
+      "name": "sectionAuthor",
+      "unusual": true
+    },
+    {
+      "name": "sectionUniversity",
+      "unusual": true
+    },
+    {
+      "name": "sectionToc",
+      "unusual": true
+    },
+    {
+      "name": "ifShadow",
+      "unusual": true
+    },
+    {
+      "name": "Shadowtrue",
+      "unusual": true
+    },
+    {
+      "name": "Shadowfalse",
+      "unusual": true
+    },
+    {
+      "name": "useSectionNumbers",
+      "unusual": true
+    },
+    {
+      "name": "dDingToc",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol}}"
+      }
+    },
+    {
+      "name": "ddDingToc",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol}}"
+      }
+    },
+    {
+      "name": "dddDingToc",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol}}"
+      }
+    },
+    {
+      "name": "dDingTocColor",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "ddDingTocColor",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "dddDingTocColor",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "attachmentNames",
+      "if": "linktoattachments"
+    },
+    {
+      "name": "rollover",
+      "if": "uselayers"
+    },
+    {
+      "name": "printRollover",
+      "if": "uselayers"
+    },
+    {
+      "name": "ocgAnime",
+      "if": "ocganime",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "rollover",
+      "if": "ocganime"
+    },
+    {
+      "name": "printRollover",
+      "if": "ocganime"
+    },
+    {
+      "name": "willClose"
+    },
+    {
+      "name": "willSave"
+    },
+    {
+      "name": "didSave"
+    },
+    {
+      "name": "willPrint"
+    },
+    {
+      "name": "didPrint"
+    },
+    {
+      "name": "addJSToPageOpen"
+    },
+    {
+      "name": "addJSToPageClose"
+    },
+    {
+      "name": "addJSToPageOpenAt",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:page-ranges}}"
+      }
+    },
+    {
+      "name": "addJSToPageCloseAt",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:page-ranges}}"
+      }
+    },
+    {
+      "name": "everyPageOpen"
+    },
+    {
+      "name": "everyPageClose"
+    },
+    {
+      "name": "docassembly"
+    }
+  ],
+  "keys": {
+    "\\usepackage/aeb_pro#c": [
+      "driver=${1|dvipsone,dvips,pdftex,dvipdfm,textures,dvipdfmx,xetex\r|}",
+      "useacrobat\r",
+      "nopro\r",
+      "web={${1:web options}}\r",
+      "exerquiz={${1:exerquiz options}}\r",
+      "dljslib={${1:dljslib options}}\r",
+      "eforms={${1:eforms options}}\r",
+      "insdljs={${1:insdljs options}}\r",
+      "eq2db={${1:eq2db options}}\r",
+      "aebxmp={${1:aebxmp options}}\r",
+      "graphicxsp={${1:graphicxsp options}}\r",
+      "hyperref={${1:hyperref options}}\r",
+      "gopro\r",
+      "attachsource={${1:ext1,ext2,...}}\r",
+      "attachments={${1:path1,path2,...}}\r",
+      "optattachments\r",
+      "!optattachments\r",
+      "linktoattachments\r",
+      "childof=${1:path}\r",
+      "btnanime\r",
+      "uselayers\r",
+      "ocganime\r"
     ],
-    [
-      "goto=${1|p2c,c2p,c2c|}",
-      "page=${1:number}",
-      "view=${1:view}",
-      "dest=${1:destination}",
-      "open=${1|usepref,new,existing|}",
-      "border=${1|visible,invisible|}",
-      "highlight=${1|none,invert,outline,insert|}",
-      "bordercolor=${1:r g b}",
-      "linestyle=${1|solid,dashed,underlined|}",
-      "linewidth=${1|thin,medium,thick|}",
-      "preset=${1:command}",
-      "launch=${1|save,view,viewnosave|}"
+    "\\ahyperref,\\ahyperlink,\\ahyperextract": [
+      "goto=${1|p2c,c2p,c2c\r|}",
+      "page=${1:number}\r",
+      "view=${1:view}\r",
+      "dest=${1:destination}\r",
+      "open=${1|usepref,new,existing\r|}",
+      "border=${1|visible,invisible\r|}",
+      "highlight=${1|none,invert,outline,insert\r|}",
+      "bordercolor=${1:r g b}\r",
+      "linestyle=${1|solid,dashed,underlined\r|}",
+      "linewidth=${1|thin,medium,thick\r|}",
+      "preset=${1:command}\r"
     ],
-    [
-      "fieldName=${1:basename}",
-      "iconName=${1:basename}",
-      "nFrames=${1:integer}",
-      "type=${1|loop,palindrome,stopatboundary|}",
-      "poster=${1|first,last,none|}",
-      "speed=${1:milliseconds}",
+    "\\ahyperextract": [
+      "launch=${1|save,view,viewnosave\r|}"
+    ],
+    "\\btnAnime,\\animeSetup": [
+      "fieldName=${1:basename}\r",
+      "iconName=${1:basename}\r",
+      "nFrames=${1:integer}\r",
+      "type=${1|loop,palindrome,stopatboundary\r|}",
+      "poster=${1|first,last,none\r|}",
+      "speed=${1:milliseconds}\r",
       "autorun",
       "autopause",
-      "autoplayevent=${1|pageopen,pagevisible|}",
-      "autopauseevent=${1|pageclose,pageinvisible|}",
+      "autoplayevent=${1|pageopen,pagevisible\r|}",
+      "autopauseevent=${1|pageclose,pageinvisible\r|}",
       "ctrlwidth=",
       "ctrlheight=",
-      "ctrlbdrycolor=${1:r g b}",
-      "ctrlbdrywidth=${1|thin,medium,thick|}",
-      "controls=${1|none,skin1,skin2,skin3,skin4,skin5,skin6|}",
-      "nospeedcontrol",
-      "usetworows"
+      "ctrlbdrycolor=${1:r g b}\r",
+      "ctrlbdrywidth=${1|thin,medium,thick\r|}",
+      "controls=${1|none,skin1,skin2,skin3,skin4,skin5,skin6\r|}",
+      "nospeedcontrol\r",
+      "usetworows\r"
     ],
-    [
-      "true",
-      "false",
+    "\\xBld,\\animeBld": [
+      "true\r",
+      "false\r",
       "print"
     ],
-    [
-      "layoutmag={${1:keyvals}}",
-      "windowoptions={${1:keyvals}}",
-      "uioptions={${1:keyvals}}"
+    "\\begin{ocgAnime},\\animeSetup": [
+      "ocgAnimeName=${1:basename}\r",
+      "fieldName=${1:basename}\r",
+      "nFrames=${1:integer}\r",
+      "type=${1|loop,palindrome,stopatboundary\r|}",
+      "poster=${1|first,last,none\r|}",
+      "speed=${1:milliseconds}\r",
+      "autorun",
+      "autopause",
+      "autoplayevent=${1|pageopen,pagevisible\r|}",
+      "autopauseevent=${1|pageclose,pageinvisible\r|}",
+      "ctrlwidth=",
+      "ctrlheight=",
+      "ctrlbdrycolor=${1:r g b}\r",
+      "ctrlbdrywidth=${1|thin,medium,thick\r|}",
+      "controls=${1|none,skin1,skin2,skin3,skin4,skin5,skin6\r|}",
+      "nospeedcontrol\r",
+      "usetworows\r"
     ],
-    [
-      "Trans=${1|NoTransition,UncoverLeft,UncoverRight,UncoverDown,UncoverUp,UncoverLeftDown,UncoverLeftUp,UncoverRightDown,UncoverRightUp,CoverLeft,CoverRight,CoverDown,CoverUp,CoverLeftDown,CoverLeftUp,CoverRightDown,CoverRightUp,PushLeft,PushRight,PushDown,PushUp,PushLeftDown,PushLeftUp,PushRightDown,PushRightUp,FlyInRight,FlyInLeft,FlyInDown,FlyInUp,FlyOutRight,FlyOutLeft,FlyOutDown,FlyOutUp,FlyIn,FlyOut,Blend,Fade,Random,Dissolve,GlitterRight,GlitterDown,GlitterRightDown,BoxIn,BoxOut,BlindsHorizontal,BlindsVertical,SplitHorizontalIn,SplitHorizontalOut,SplitVerticalIn,SplitVerticalOut,WipeLeft,WipeRight,WipeDown,WipeUp,WipeLeftDown,WipeLeftUp,WipeRightDown,WipeRightUp,Replace,ZoomInDown,ZoomInLeft,ZoomInLeftDown,ZoomInLeftUp,ZoomInRight,ZoomInRightDown,ZoomInRightUp,ZoomInUp,ZoomOutDown,ZoomOutLeft,ZoomOutLeftDown,ZoomOutLeftUp,ZoomOutRight,ZoomOutRightDown,ZoomOutRightUp,ZoomOutUp,CombHorizontal,CombVertical|}",
-      "TransDur=${1:seconds}",
-      "Speed=${1|Slow,Medium,Fast|}",
-      "PageDur=${1:seconds}"
+    "\\DeclareInitView": [
+      "layoutmag={${1:keyvals}}\r",
+      "windowoptions={${1:keyvals}}\r",
+      "uioptions={${1:keyvals}}\r"
     ],
-    [
-      "name=${1:name}",
-      "path=${1:file path}",
-      "page=${1:pages}",
-      "placement={${1:button1,button2,...}}"
+    "": [
+      "Trans=${1|NoTransition,UncoverLeft,UncoverRight,UncoverDown,UncoverUp,UncoverLeftDown,UncoverLeftUp,UncoverRightDown,UncoverRightUp,CoverLeft,CoverRight,CoverDown,CoverUp,CoverLeftDown,CoverLeftUp,CoverRightDown,CoverRightUp,PushLeft,PushRight,PushDown,PushUp,PushLeftDown,PushLeftUp,PushRightDown,PushRightUp,FlyInRight,FlyInLeft,FlyInDown,FlyInUp,FlyOutRight,FlyOutLeft,FlyOutDown,FlyOutUp,FlyIn,FlyOut,Blend,Fade,Random,Dissolve,GlitterRight,GlitterDown,GlitterRightDown,BoxIn,BoxOut,BlindsHorizontal,BlindsVertical,SplitHorizontalIn,SplitHorizontalOut,SplitVerticalIn,SplitVerticalOut,WipeLeft,WipeRight,WipeDown,WipeUp,WipeLeftDown,WipeLeftUp,WipeRightDown,WipeRightUp,Replace,ZoomInDown,ZoomInLeft,ZoomInLeftDown,ZoomInLeftUp,ZoomInRight,ZoomInRightDown,ZoomInRightUp,ZoomInUp,ZoomOutDown,ZoomOutLeft,ZoomOutLeftDown,ZoomOutLeftUp,ZoomOutRight,ZoomOutRightDown,ZoomOutRightUp,ZoomOutUp,CombHorizontal,CombVertical\r|}",
+      "bgColor=${1:JS color}\r",
+      "timeDelay=${1:seconds}\r",
+      "useTimer",
+      "loop",
+      "cursor=${1|hidden,delay,visible\r|}",
+      "escape",
+      "clickAdv",
+      "fullscreen",
+      "usePageTiming"
     ],
-    [
-      "path=${1:file path}",
-      "name=${1:base name}",
-      "placement={${1:button1,button2,...}}",
-      "firstpage=${1:page number}",
-      "lastpage=${1:page number}"
+    "\\setPageTransition,\\setPageTransitionAt": [
+      "Trans=${1|NoTransition,UncoverLeft,UncoverRight,UncoverDown,UncoverUp,UncoverLeftDown,UncoverLeftUp,UncoverRightDown,UncoverRightUp,CoverLeft,CoverRight,CoverDown,CoverUp,CoverLeftDown,CoverLeftUp,CoverRightDown,CoverRightUp,PushLeft,PushRight,PushDown,PushUp,PushLeftDown,PushLeftUp,PushRightDown,PushRightUp,FlyInRight,FlyInLeft,FlyInDown,FlyInUp,FlyOutRight,FlyOutLeft,FlyOutDown,FlyOutUp,FlyIn,FlyOut,Blend,Fade,Random,Dissolve,GlitterRight,GlitterDown,GlitterRightDown,BoxIn,BoxOut,BlindsHorizontal,BlindsVertical,SplitHorizontalIn,SplitHorizontalOut,SplitVerticalIn,SplitVerticalOut,WipeLeft,WipeRight,WipeDown,WipeUp,WipeLeftDown,WipeLeftUp,WipeRightDown,WipeRightUp,Replace,ZoomInDown,ZoomInLeft,ZoomInLeftDown,ZoomInLeftUp,ZoomInRight,ZoomInRightDown,ZoomInRightUp,ZoomInUp,ZoomOutDown,ZoomOutLeft,ZoomOutLeftDown,ZoomOutLeftUp,ZoomOutRight,ZoomOutRightDown,ZoomOutRightUp,ZoomOutUp,CombHorizontal,CombVertical\r|}",
+      "TransDur=${1:seconds}\r",
+      "Speed=${1|Slow,Medium,Fast\r|}",
+      "PageDur=${1:seconds}\r"
     ],
-    [
-      "initview=${1:label}",
-      "viewmode=${1|details,tile,hidden|}"
+    "\\declareImageAndPlacement": [
+      "name=${1:name}\r",
+      "path=${1:file path}\r",
+      "page=${1:pages}\r",
+      "placement={${1:button1,button2,...}}\r"
     ],
-    [
-      "title={${1:text}}",
-      "author={${1:name}}",
-      "university={${1:university}}",
-      "email=${1:email}",
-      "talksite={${1:site}}",
-      "talkdate=${1:date}",
-      "talkdateLabel={${1:text}}",
-      "version=${1:version}",
-      "versionLabel={${1:text}}",
-      "subject={${1:subject}}",
-      "keywords={${1:word1,word2,...}}",
-      "copyrightyears={${1:years}}",
-      "prepared=${1:date}",
-      "preparedLabel={${1:text}}",
-      "Title={${1:text}}",
-      "authors={${1:name1}}{${2:name2}}${3:...}",
-      "Subject={${1:subject}}",
-      "Keywords={${1:word1,word2,...}}",
-      "lang=${1:language}",
-      "copyrightStatus=${1|True,False|}",
-      "copyrightNotice={${1:text}}",
-      "copyrightInfoURL=${1:URL}",
-      "authortitle={${1:text}}",
-      "descriptionwriter={${1:text}}",
-      "customProperties={name=${1:name1},value=${2:value1}}${3:{name=name2,value=value2}...}"
+    "\\embedMultiPageImages": [
+      "path=${1:file path}\r",
+      "name=${1:base name}\r",
+      "placement={${1:button1,button2,...}}\r",
+      "firstpage=${1:page number}\r",
+      "lastpage=${1:page number}\r"
     ],
-    [
-      "design=${1|designi,designii,designiii,designiv,designv,designvi,designvii,designviii,designix|}",
-      "screensizeOf=${1|designi,designii,designiii,designiv,designv,designvi,designvii,designviii,designix|}",
-      "screensize={${1:height}}{${2:width}}",
-      "margins={${1:left}}{${2:right}}{${3:top}}{${4:bottom}}",
+    "\\makePDFPackage": [
+      "initview=${1:label}\r",
+      "viewmode=${1|details,tile,hidden\r|}"
+    ],
+    "\\DeclareDocInfo": [
+      "title={${1:text}}\r",
+      "author={${1:name}}\r",
+      "university={${1:university}}\r",
+      "email=${1:email}\r",
+      "talksite={${1:site}}\r",
+      "talkdate=${1:date}\r",
+      "talkdateLabel={${1:text}}\r",
+      "version=${1:version}\r",
+      "versionLabel={${1:text}}\r",
+      "subject={${1:subject}}\r",
+      "keywords={${1:word1,word2,...}}\r",
+      "copyrightyears={${1:years}}\r",
+      "prepared=${1:date}\r",
+      "preparedLabel={${1:text}}\r",
+      "Title={${1:text}}\r",
+      "authors={${1:name1}}{${2:name2}}${3:...}\r",
+      "Subject={${1:subject}}\r",
+      "Keywords={${1:word1,word2,...}}\r",
+      "lang=${1:language}\r",
+      "copyrightStatus=${1|True,False\r|}",
+      "copyrightNotice={${1:text}}\r",
+      "copyrightInfoURL=${1:URL}\r",
+      "authortitle={${1:text}}\r",
+      "descriptionwriter={${1:text}}\r",
+      "customProperties={name=${1:name1},value=${2:value1}}${3:{name=name2,value=value2}...}\r"
+    ],
+    "\\DeclarePageLayout": [
+      "design=${1|designi,designii,designiii,designiv,designv,designvi,designvii,designviii,designix\r|}",
+      "screensizeOf=${1|designi,designii,designiii,designiv,designv,designvi,designvii,designviii,designix\r|}",
+      "screensize={${1:height}}{${2:width}}\r",
+      "margins={${1:left}}{${2:right}}{${3:top}}{${4:bottom}}\r",
       "headheight=",
       "topmargin=",
       "additionalheadsep=",
@@ -918,48 +1676,48 @@
       "panelwidth=",
       "panelsep="
     ],
-    [
-      "fontfamily=${1|rmfamily,sffamily,ttfamily|}",
-      "fontseries=${1|bfseries,mdseries|}",
-      "fontshape=${1|upshape,itshape,scshape,slshape|}",
-      "fontsize=${1|tiny,scriptsize,footnotesize,small,normalsize,large,Large,LARGE,huge,Huge|}",
-      "halign=${1|l,c,r|}",
+    "\\universityLayout,\\titleLayout,\\authorLayout": [
+      "fontfamily=${1|rmfamily,sffamily,ttfamily\r|}",
+      "fontseries=${1|bfseries,mdseries\r|}",
+      "fontshape=${1|upshape,itshape,scshape,slshape\r|}",
+      "fontsize=${1|tiny,scriptsize,footnotesize,small,normalsize,large,Large,LARGE,huge,Huge\r|}",
+      "halign=${1|l,c,r\r|}",
       "color=",
-      "special=${1|shadow,framebox,colorbox,fcolorbox,frameboxfit,colorboxfit,fcolorboxfit,custom,default|}",
+      "special=${1|shadow,framebox,colorbox,fcolorbox,frameboxfit,colorboxfit,fcolorboxfit,custom,default\r|}",
       "framecolor=",
       "bgcolor=",
       "shadowcolor=",
       "beforeskip=",
       "afterskip=",
-      "usefont={${1:encoding}}{${2:family}}{${3:series}}{${4:shape}}{${5:size}}",
-      "hproportion=${1:factor}",
-      "xhalign=${1|l,c,r|}"
+      "usefont={${1:encoding}}{${2:family}}{${3:series}}{${4:shape}}{${5:size}}\r",
+      "hproportion=${1:factor}\r",
+      "xhalign=${1|l,c,r\r|}"
     ],
-    [
-      "ul=${1:text}",
-      "ur=${1:text}",
-      "ll=${1:text}",
-      "lr=${1:text}",
+    "\\DesignTitlePageTrailer": [
+      "ul=${1:text}\r",
+      "ur=${1:text}\r",
+      "ll=${1:text}\r",
+      "lr=${1:text}\r",
       "textColor=",
       "bgColor=",
       "borderColor=",
       "fboxsep=",
       "fboxrule=",
-      "graphic=${1:imagefile}",
-      "namedgraphic=${1:name}",
+      "graphic=${1:imagefile}\r",
+      "namedgraphic=${1:name}\r",
       "raise=",
-      "fontSize=${1:fontsize cmd}",
-      "formatting=${1:font commands}"
+      "fontSize=${1:fontsize cmd}\r",
+      "formatting=${1:font commands}\r"
     ],
-    [
-      "dDing=${1:symbol}",
-      "ddDing=${1:symbol}",
-      "dddDing=${1:symbol}",
+    "\\selectTocDings": [
+      "dDing=${1:symbol}\r",
+      "ddDing=${1:symbol}\r",
+      "dddDing=${1:symbol}\r",
       "dDingColor=",
       "ddDingColor=",
       "dddDingColor="
     ],
-    [
+    "\\selectColors": [
       "universityColor=",
       "titleColor=",
       "textBgColor=",
@@ -968,42 +1726,26 @@
       "linkColor=",
       "fileColor="
     ],
-    [
-      "fontfamily=${1|rmfamily,sffamily,ttfamily|}",
-      "fontseries=${1|bfseries,mdseries|}",
-      "fontshape=${1|upshape,itshape,scshape,slshape|}",
-      "fontsize=${1|tiny,scriptsize,footnotesize,small,normalsize,large,Large,LARGE,huge,Huge|}",
-      "halign=${1|l,c,r|}",
-      "ding=${1:symbol}",
+    "\\tocLayout,\\sectionLayout,\\subsectionLayout,\\subsubsectionLayout": [
+      "fontfamily=${1|rmfamily,sffamily,ttfamily\r|}",
+      "fontseries=${1|bfseries,mdseries\r|}",
+      "fontshape=${1|upshape,itshape,scshape,slshape\r|}",
+      "fontsize=${1|tiny,scriptsize,footnotesize,small,normalsize,large,Large,LARGE,huge,Huge\r|}",
+      "halign=${1|l,c,r\r|}",
+      "ding=${1:symbol}\r",
       "color=",
-      "special=${1|shadow,framebox,colorbox,fcolorbox,frameboxfit,colorboxfit,fcolorboxfit,custom,default|}",
+      "special=${1|shadow,framebox,colorbox,fcolorbox,frameboxfit,colorboxfit,fcolorboxfit,custom,default\r|}",
       "framecolor=",
       "bgcolor=",
       "shadowcolor=",
       "beforeskip=",
       "afterskip=",
-      "usefont={${1:encoding}}{${2:family}}{${3:series}}{${4:shape}}{${5:size}}",
+      "usefont={${1:encoding}}{${2:family}}{${3:series}}{${4:shape}}{${5:size}}\r",
       "numdingcolor=",
-      "reset=${1|font,all|}"
-    ],
-    [
-      "ocgAnimeName=${1:basename}",
-      "fieldName=${1:basename}",
-      "nFrames=${1:integer}",
-      "type=${1|loop,palindrome,stopatboundary|}",
-      "poster=${1|first,last,none|}",
-      "speed=${1:milliseconds}",
-      "autorun",
-      "autopause",
-      "autoplayevent=${1|pageopen,pagevisible|}",
-      "autopauseevent=${1|pageclose,pageinvisible|}",
-      "ctrlwidth=",
-      "ctrlheight=",
-      "ctrlbdrycolor=${1:r g b}",
-      "ctrlbdrywidth=${1|thin,medium,thick|}",
-      "controls=${1|none,skin1,skin2,skin3,skin4,skin5,skin6|}",
-      "nospeedcontrol",
-      "usetworows"
+      "reset=${1|font,all\r|}"
     ]
+  },
+  "args": [
+    "\\usepackage/aeb_pro#c"
   ]
 }

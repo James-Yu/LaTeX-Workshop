@@ -1,134 +1,480 @@
 {
-  "includes": {
-    "fvextra": [],
-    "csquotes": [],
-    "booktabs": [],
-    "selnolig": [],
-    "lua-widow-control": [],
-    "microtype": [],
-    "siunitx": [
+  "deps": [
+    {
+      "name": "fvextra"
+    },
+    {
+      "name": "csquotes"
+    },
+    {
+      "name": "booktabs"
+    },
+    {
+      "name": "selnolig"
+    },
+    {
+      "name": "lua-widow-control"
+    },
+    {
+      "name": "microtype"
+    },
+    {
+      "name": "siunitx",
+      "if": "siunitx"
+    },
+    {
+      "name": "siunitx",
+      "if": "siunitx=true"
+    },
+    {
+      "name": "minted",
+      "if": "minted"
+    },
+    {
+      "name": "minted",
+      "if": "minted=true"
+    },
+    {
+      "name": "listings",
+      "if": "listings"
+    },
+    {
+      "name": "listings",
+      "if": "listings=true"
+    },
+    {
+      "name": "biblatex",
+      "if": "biblatex"
+    },
+    {
+      "name": "ragged2e",
+      "if": "biblatex"
+    },
+    {
+      "name": "sidenotesplus",
+      "if": "biblatex"
+    },
+    {
+      "name": "biblatex",
+      "if": "biblatex=true"
+    },
+    {
+      "name": "ragged2e",
+      "if": "biblatex=true"
+    },
+    {
+      "name": "sidenotesplus",
+      "if": "biblatex=true"
+    },
+    {
+      "name": "biblatex",
+      "if": "biblatex=numeric"
+    },
+    {
+      "name": "ragged2e",
+      "if": "biblatex=numeric"
+    },
+    {
+      "name": "sidenotesplus",
+      "if": "biblatex=numeric"
+    },
+    {
+      "name": "biblatex",
+      "if": "biblatex=alphabetic"
+    },
+    {
+      "name": "software-biblatex",
+      "if": "biblatex=alphabetic"
+    },
+    {
+      "name": "cleveref",
+      "if": "cleveref"
+    },
+    {
+      "name": "cleveref",
+      "if": "cleveref=true"
+    },
+    {
+      "name": "siunitx",
+      "if": "all"
+    },
+    {
+      "name": "minted",
+      "if": "all"
+    },
+    {
+      "name": "biblatex",
+      "if": "all"
+    },
+    {
+      "name": "cleveref",
+      "if": "all"
+    },
+    {
+      "name": "siunitx",
+      "if": "all=true"
+    },
+    {
+      "name": "minted",
+      "if": "all=true"
+    },
+    {
+      "name": "biblatex",
+      "if": "all=true"
+    },
+    {
+      "name": "cleveref",
+      "if": "all=true"
+    }
+  ],
+  "macros": [
+    {
+      "name": "maycite",
+      "if": "biblatex",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:prenote}][${3:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "maycite",
+      "if": "biblatex",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "maycite",
+      "if": "biblatex",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "margincite",
+      "if": "biblatex",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:prenote}][${3:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "margincite",
+      "if": "biblatex",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "margincite",
+      "if": "biblatex",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "margincites",
+      "if": "biblatex",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:bibid}}{${2:bibid}}"
+      }
+    },
+    {
+      "name": "margincites(post)",
+      "if": "biblatex",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:bibid}}{${2:bibid}}"
+      }
+    },
+    {
+      "name": "margincites(pre)(post)",
+      "if": "biblatex",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:bibid}}{${2:bibid}}"
+      }
+    },
+    {
+      "name": "margincites(pre)(post)",
+      "if": "biblatex",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]{}",
+        "snippet": "[${3:post}]{${1:bibid}}[${4:post}]{${2:bibid}}"
+      }
+    },
+    {
+      "name": "margincites",
+      "if": "biblatex",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]{}",
+        "snippet": "[${3:post}]{${1:bibid}}[${4:post}]{${2:bibid}}"
+      }
+    },
+    {
+      "name": "margincites",
+      "if": "biblatex",
+      "unusual": true,
+      "arg": {
+        "format": "[][]{}[][]{}",
+        "snippet": "[${3:pre}][${4:post}]{${1:bibid}}[${5:pre}][${6:post}]{${2:bibid}}"
+      }
+    },
+    {
+      "name": "margincites(pre)(post)",
+      "if": "biblatex",
+      "arg": {
+        "format": "[][]{}[][]{}",
+        "snippet": "[${3:pre}][${4:post}]{${1:bibid}}[${5:pre}][${6:post}]{${2:bibid}}"
+      }
+    },
+    {
+      "name": "maycite",
+      "if": "biblatex=true",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:prenote}][${3:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "maycite",
+      "if": "biblatex=true",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "maycite",
+      "if": "biblatex=true",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "margincite",
+      "if": "biblatex=true",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:prenote}][${3:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "margincite",
+      "if": "biblatex=true",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "margincite",
+      "if": "biblatex=true",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "margincites",
+      "if": "biblatex=true",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:bibid}}{${2:bibid}}"
+      }
+    },
+    {
+      "name": "margincites(post)",
+      "if": "biblatex=true",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:bibid}}{${2:bibid}}"
+      }
+    },
+    {
+      "name": "margincites(pre)(post)",
+      "if": "biblatex=true",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:bibid}}{${2:bibid}}"
+      }
+    },
+    {
+      "name": "margincites(pre)(post)",
+      "if": "biblatex=true",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]{}",
+        "snippet": "[${3:post}]{${1:bibid}}[${4:post}]{${2:bibid}}"
+      }
+    },
+    {
+      "name": "margincites",
+      "if": "biblatex=true",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]{}",
+        "snippet": "[${3:post}]{${1:bibid}}[${4:post}]{${2:bibid}}"
+      }
+    },
+    {
+      "name": "margincites",
+      "if": "biblatex=true",
+      "unusual": true,
+      "arg": {
+        "format": "[][]{}[][]{}",
+        "snippet": "[${3:pre}][${4:post}]{${1:bibid}}[${5:pre}][${6:post}]{${2:bibid}}"
+      }
+    },
+    {
+      "name": "margincites(pre)(post)",
+      "if": "biblatex=true",
+      "arg": {
+        "format": "[][]{}[][]{}",
+        "snippet": "[${3:pre}][${4:post}]{${1:bibid}}[${5:pre}][${6:post}]{${2:bibid}}"
+      }
+    },
+    {
+      "name": "maycite",
+      "if": "biblatex=numeric",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:prenote}][${3:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "maycite",
+      "if": "biblatex=numeric",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "maycite",
+      "if": "biblatex=numeric",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "margincite",
+      "if": "biblatex=numeric",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:prenote}][${3:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "margincite",
+      "if": "biblatex=numeric",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "margincite",
+      "if": "biblatex=numeric",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "margincites",
+      "if": "biblatex=numeric",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:bibid}}{${2:bibid}}"
+      }
+    },
+    {
+      "name": "margincites(post)",
+      "if": "biblatex=numeric",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:bibid}}{${2:bibid}}"
+      }
+    },
+    {
+      "name": "margincites(pre)(post)",
+      "if": "biblatex=numeric",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:bibid}}{${2:bibid}}"
+      }
+    },
+    {
+      "name": "margincites(pre)(post)",
+      "if": "biblatex=numeric",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]{}",
+        "snippet": "[${3:post}]{${1:bibid}}[${4:post}]{${2:bibid}}"
+      }
+    },
+    {
+      "name": "margincites",
+      "if": "biblatex=numeric",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]{}",
+        "snippet": "[${3:post}]{${1:bibid}}[${4:post}]{${2:bibid}}"
+      }
+    },
+    {
+      "name": "margincites",
+      "if": "biblatex=numeric",
+      "unusual": true,
+      "arg": {
+        "format": "[][]{}[][]{}",
+        "snippet": "[${3:pre}][${4:post}]{${1:bibid}}[${5:pre}][${6:post}]{${2:bibid}}"
+      }
+    },
+    {
+      "name": "margincites(pre)(post)",
+      "if": "biblatex=numeric",
+      "arg": {
+        "format": "[][]{}[][]{}",
+        "snippet": "[${3:pre}][${4:post}]{${1:bibid}}[${5:pre}][${6:post}]{${2:bibid}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/se2packages#c": [
+      "csquotes",
+      "nocsquotes\r",
+      "booktabs",
+      "nobooktabs\r",
       "siunitx",
-      "siunitx=true",
-      "all",
-      "all=true"
-    ],
-    "minted": [
       "minted",
-      "minted=true",
-      "all",
-      "all=true"
-    ],
-    "listings": [
       "listings",
-      "listings=true"
-    ],
-    "biblatex": [
-      "biblatex",
-      "biblatex=true",
-      "biblatex=numeric",
-      "biblatex=alphabetic",
-      "all",
-      "all=true"
-    ],
-    "ragged2e": [
-      "biblatex",
-      "biblatex=true",
-      "biblatex=numeric"
-    ],
-    "sidenotesplus": [
-      "biblatex",
-      "biblatex=true",
-      "biblatex=numeric"
-    ],
-    "software-biblatex": [
-      "biblatex=alphabetic"
-    ],
-    "cleveref": [
+      "biblatex=${1|true,false,alphabetic,numeric\r|}",
+      "selnolig",
+      "noselnolig\r",
+      "widowcontrol",
+      "nowidowcontrol\r",
+      "microtype",
+      "nomicrotype\r",
       "cleveref",
-      "cleveref=true",
-      "all",
-      "all=true"
+      "all"
     ]
   },
-  "macros": {
-    "makebibmarginnote{}": {
-      "snippet": "makebibmarginnote{${1:arg}}",
-      "option": "biblatex=numeric"
-    },
-    "maycite[][]{}": {
-      "snippet": "maycite[${2:prenote}][${3:postnote}]{${1:bibid}}",
-      "option": "biblatex=numeric"
-    },
-    "maycite[]{}": {
-      "snippet": "maycite[${2:postnote}]{${1:bibid}}",
-      "option": "biblatex=numeric"
-    },
-    "maycite{}": {
-      "snippet": "maycite{${1:bibid}}",
-      "option": "biblatex=numeric"
-    },
-    "margincite[][]{}": {
-      "snippet": "margincite[${2:prenote}][${3:postnote}]{${1:bibid}}",
-      "option": "biblatex=numeric"
-    },
-    "margincite[]{}": {
-      "snippet": "margincite[${2:postnote}]{${1:bibid}}",
-      "option": "biblatex=numeric"
-    },
-    "margincite{}": {
-      "snippet": "margincite{${1:bibid}}",
-      "option": "biblatex=numeric"
-    },
-    "margincites{}{}": {
-      "snippet": "margincites{${1:bibid}}{${2:bibid}}",
-      "option": "biblatex=numeric"
-    },
-    "margincites(){}{}": {
-      "snippet": "margincites(${3:post}){${1:bibid}}{${2:bibid}}",
-      "option": "biblatex=numeric"
-    },
-    "margincites()(){}{}": {
-      "snippet": "margincites(${3:pre})(${4:post}){${1:bibid}}{${2:bibid}}",
-      "option": "biblatex=numeric"
-    },
-    "margincites()()[]{}[]{}": {
-      "snippet": "margincites(${5:pre})(${6:post})[${3:post}]{${1:bibid}}[${4:post}]{${2:bibid}}",
-      "option": "biblatex=numeric"
-    },
-    "margincites[]{}[]{}": {
-      "snippet": "margincites[${3:post}]{${1:bibid}}[${4:post}]{${2:bibid}}",
-      "option": "biblatex=numeric"
-    },
-    "margincites[][]{}[][]{}": {
-      "snippet": "margincites[${3:pre}][${4:post}]{${1:bibid}}[${5:pre}][${6:post}]{${2:bibid}}",
-      "option": "biblatex=numeric"
-    },
-    "margincites()()[][]{}[][]{}": {
-      "snippet": "margincites(${7:pre})(${8:post})[${3:pre}][${4:post}]{${1:bibid}}[${5:pre}][${6:post}]{${2:bibid}}",
-      "option": "biblatex=numeric"
-    },
-    "bibliofont": {
-      "option": "biblatex=numeric"
-    }
-  },
-  "envs": {},
-  "options": [
-    "csquotes",
-    "nocsquotes",
-    "booktabs",
-    "nobooktabs",
-    "siunitx",
-    "minted",
-    "listings",
-    "biblatex=${1|true,false,alphabetic,numeric|}",
-    "selnolig",
-    "noselnolig",
-    "widowcontrol",
-    "nowidowcontrol",
-    "microtype",
-    "nomicrotype",
-    "cleveref",
-    "all"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/se2packages#c"
+  ]
 }

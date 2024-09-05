@@ -1,58 +1,84 @@
 {
-  "includes": {
-    "graphicx": []
-  },
-  "macros": {
-    "paste{}{}": {
-      "snippet": "paste{${1:fragment number}}{${2:imagefile}}",
-      "option": "defpaste"
-    },
-    "sendout{}": {
-      "snippet": "sendout{${1:code}}"
-    },
-    "sendout[]{}": {
-      "snippet": "sendout[${2:label}]{${1:code}}"
-    },
-    "xxx": {}
-  },
-  "envs": {},
-  "options": [
-    "write",
-    "writepages",
-    "include",
-    "defpaste",
-    "unknownkeysallowed",
-    "draft",
-    "final",
-    "hiresbb",
-    "demo",
-    "setpagesize",
-    "nosetpagesize",
-    "dvips",
-    "xdvi",
-    "dvipdf",
-    "dvipdfm",
-    "dvipdfmx",
-    "xetex",
-    "pdftex",
-    "luatex",
-    "dvisvgm",
-    "dvipsone",
-    "dviwindo",
-    "emtex",
-    "dviwin",
-    "oztex",
-    "textures",
-    "pctexps",
-    "pctexwin",
-    "pctexhp",
-    "pctex32",
-    "truetex",
-    "tcidvi",
-    "vtex",
-    "debugshow",
-    "hiderotate",
-    "hidescale"
+  "deps": [
+    {
+      "name": "graphicx"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "paste",
+      "if": "defpaste",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:fragment number}}{${2:imagefile}}"
+      }
+    },
+    {
+      "name": "sendout",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "sendout",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:label}]{${1:code}}"
+      }
+    },
+    {
+      "name": "xxx",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/grfpaste#c": [
+      "write\r",
+      "writepages\r",
+      "include\r",
+      "defpaste\r",
+      "unknownkeysallowed\r",
+      "draft\r",
+      "final\r",
+      "hiresbb\r",
+      "demo\r",
+      "setpagesize\r",
+      "nosetpagesize\r",
+      "dvips\r",
+      "xdvi\r",
+      "dvipdf\r",
+      "dvipdfm\r",
+      "dvipdfmx\r",
+      "xetex\r",
+      "pdftex\r",
+      "luatex\r",
+      "dvisvgm\r",
+      "dvipsone\r",
+      "dviwindo\r",
+      "emtex\r",
+      "dviwin\r",
+      "oztex\r",
+      "textures\r",
+      "pctexps\r",
+      "pctexwin\r",
+      "pctexhp\r",
+      "pctex32\r",
+      "truetex\r",
+      "tcidvi\r",
+      "vtex\r",
+      "debugshow\r",
+      "hiderotate\r",
+      "hidescale\r"
+    ],
+    "\\includegraphics": [
+      "num=${1:fragment number}\r",
+      "ref=${1:fragment label}\r",
+      "natdepth="
+    ]
+  },
+  "args": [
+    "\\usepackage/grfpaste#c"
+  ]
 }

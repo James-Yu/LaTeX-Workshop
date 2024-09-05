@@ -1,38 +1,92 @@
 {
-  "includes": {
-    "ifthen": []
-  },
-  "macros": {
-    "mailfields{}": {
-      "snippet": "mailfields{${1:name1,${2:name2},...}}"
+  "deps": [
+    {
+      "name": "ifthen"
+    }
+  ],
+  "macros": [
+    {
+      "name": "mailfields",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name1,name2,...}}"
+      }
     },
-    "mailrepeat{}": {
-      "snippet": "mailrepeat{${1:text}}"
+    {
+      "name": "mailrepeat",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "field{}": {
-      "snippet": "field{${1:name}}"
+    {
+      "name": "field",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
     },
-    "numberoffields": {},
-    "numberofentries": {},
-    "entrynumber": {},
-    "mailentry{}": {
-      "snippet": "mailentry{${1:value1,${2:value2},...}}"
+    {
+      "name": "numberoffields"
     },
-    "mailnewdata": {},
-    "MAILMcurrtag": {},
-    "MAILMtok": {},
-    "theMAILMcount": {},
-    "theMAILMentry": {},
-    "MAILMrepetition": {},
-    "MAILMsetnumfields{}{}": {
-      "snippet": "MAILMsetnumfields{${1:tag}}{${2:number}}"
+    {
+      "name": "numberofentries"
     },
-    "MAILMsetnumentries{}{}": {
-      "snippet": "MAILMsetnumentries{${1:tag}}{${2:number}}"
+    {
+      "name": "entrynumber"
     },
-    "MAILMaux": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "mailentry",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:value1,value2,...}}"
+      }
+    },
+    {
+      "name": "mailnewdata"
+    },
+    {
+      "name": "MAILMcurrtag",
+      "unusual": true
+    },
+    {
+      "name": "MAILMtok",
+      "unusual": true
+    },
+    {
+      "name": "theMAILMcount",
+      "unusual": true
+    },
+    {
+      "name": "theMAILMentry",
+      "unusual": true
+    },
+    {
+      "name": "MAILMrepetition",
+      "unusual": true
+    },
+    {
+      "name": "MAILMsetnumfields",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:tag}}{${2:number}}"
+      }
+    },
+    {
+      "name": "MAILMsetnumentries",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:tag}}{${2:number}}"
+      }
+    },
+    {
+      "name": "MAILMaux",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

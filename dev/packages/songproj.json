@@ -1,39 +1,77 @@
 {
-  "includes": {
-    "verse": []
-  },
-  "macros": {
-    "longest{}": {
-      "snippet": "longest{${1:song line}}"
-    },
-    "numbercouplets": {},
-    "inputsong{}{}": {
-      "snippet": "inputsong{${1:file}}{${2:stanzas per slide}}"
-    },
-    "inputsong{}{}[]": {
-      "snippet": "inputsong{${1:file}}{${2:stanzas per slide}}[${3:couplet list}]"
-    },
-    "inputsong*{}{}": {
-      "snippet": "inputsong*{${1:file}}{${2:stanzas per slide}}"
-    },
-    "inputsong*{}{}[]": {
-      "snippet": "inputsong*{${1:file}}{${2:stanzas per slide}}[${3:couplet list}]"
+  "deps": [
+    {
+      "name": "verse"
     }
-  },
-  "envs": {
-    "song{}": {
-      "name": "song",
-      "snippet": "{${1:stanzas per slide}}"
+  ],
+  "macros": [
+    {
+      "name": "longest",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:song line}}"
+      }
     },
-    "song{}[]": {
-      "name": "song",
-      "snippet": "{${1:stanzas per slide}}[${2:couplet list}]"
+    {
+      "name": "numbercouplets"
     },
-    "intro": {},
-    "refrain": {},
-    "couplet": {},
-    "final": {}
-  },
-  "options": [],
-  "keyvals": []
+    {
+      "name": "inputsong",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:file}}{${2:stanzas per slide}}"
+      }
+    },
+    {
+      "name": "inputsong",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:file}}{${2:stanzas per slide}}[${3:couplet list}]"
+      }
+    },
+    {
+      "name": "inputsong*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:file}}{${2:stanzas per slide}}"
+      }
+    },
+    {
+      "name": "inputsong*",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:file}}{${2:stanzas per slide}}[${3:couplet list}]"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "song",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:stanzas per slide}}"
+      }
+    },
+    {
+      "name": "song",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:stanzas per slide}}[${2:couplet list}]"
+      }
+    },
+    {
+      "name": "intro"
+    },
+    {
+      "name": "refrain"
+    },
+    {
+      "name": "couplet"
+    },
+    {
+      "name": "final"
+    }
+  ],
+  "keys": {},
+  "args": []
 }

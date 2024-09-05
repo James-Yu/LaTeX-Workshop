@@ -1,38 +1,75 @@
 {
-  "includes": {},
-  "macros": {
-    "cbinput{}": {
-      "snippet": "cbinput{${1:file}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "cbinput",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
     },
-    "sectionbib{}{}": {
-      "snippet": "sectionbib{${1:section cmd}}{${2:section name}}"
+    {
+      "name": "sectionbib",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:section cmd}}{${2:section name}}"
+      }
     },
-    "CitationPrefix{}": {
-      "snippet": "CitationPrefix{${1:prefix code}}"
+    {
+      "name": "CitationPrefix",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:prefix code}}"
+      }
     },
-    "FinalBibTitles": {},
-    "FinalBibPrefix": {},
-    "StartFinalBibs": {},
-    "CBMainSectioning": {},
-    "citeform{}": {
-      "snippet": "citeform{${1:arg}}"
+    {
+      "name": "FinalBibTitles",
+      "unusual": true
     },
-    "citepunct": {},
-    "bibname": {},
-    "bibcite{}": {
-      "snippet": "bibcite{${1:arg}}"
+    {
+      "name": "FinalBibPrefix",
+      "unusual": true
     },
-    "bibsection": {}
-  },
-  "envs": {
-    "cbunit": {}
-  },
-  "options": [
-    "sectionbib",
-    "draft",
-    "rootbib",
-    "duplicate",
-    "gather"
+    {
+      "name": "StartFinalBibs",
+      "unusual": true
+    },
+    {
+      "name": "CBMainSectioning",
+      "unusual": true
+    },
+    {
+      "name": "citeform",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "citepunct",
+      "unusual": true
+    },
+    {
+      "name": "bibname",
+      "unusual": true
+    }
   ],
-  "keyvals": []
+  "envs": [
+    {
+      "name": "cbunit"
+    }
+  ],
+  "keys": {
+    "\\usepackage/chapterbib#c": [
+      "sectionbib\r",
+      "draft\r",
+      "rootbib\r",
+      "duplicate\r",
+      "gather\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/chapterbib#c"
+  ]
 }

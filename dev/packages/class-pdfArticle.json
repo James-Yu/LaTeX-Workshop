@@ -1,189 +1,309 @@
 {
-  "includes": {
-    "class-extarticle": [],
-    "kvoptions": [],
-    "fontspec": [],
-    "graphicx": [],
-    "graphbox": [],
-    "xcolor": [],
-    "fifo-stack": [],
-    "geometry": [],
-    "fancyvrb": [],
-    "fvextra": [],
-    "ulem": [],
-    "contour": [],
-    "shadowtext": [],
-    "enumitem": [],
-    "alphalph": [],
-    "pbox": [],
-    "varwidth": [],
-    "overpic": [],
-    "wrapfig": [],
-    "array": [],
-    "dcolumn": [],
-    "tabto": [],
-    "changepage": [],
-    "ragged2e": [],
-    "setspace": [],
-    "amsmath": [],
-    "unicode-math": [],
-    "adjustbox": [],
-    "hyperref": [],
-    "minted": [
-      "extra",
-      "extra=true"
-    ],
-    "tcolorbox": [
-      "extra",
-      "extra=true"
-    ],
-    "tcolorboxlibrarymany": [
-      "extra",
-      "extra=true"
-    ],
-    "tcolorboxlibraryvignette": [
-      "extra",
-      "extra=true"
-    ],
-    "tcolorboxlibraryminted": [
-      "extra",
-      "extra=true"
-    ],
-    "tcolorboxlibrarymagazine": [
-      "extra",
-      "extra=true"
-    ],
-    "tcolorboxlibraryposter": [
-      "extra",
-      "extra=true"
-    ],
-    "tcolorboxlibraryexternal": [
-      "extra",
-      "extra=true"
-    ]
-  },
-  "macros": {
-    "forceNewPageGeometry{}": {
-      "snippet": "forceNewPageGeometry{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "class-extarticle"
     },
-    "hl{}": {
-      "snippet": "hl{${1:text}}"
+    {
+      "name": "kvoptions"
     },
-    "hl[]{}": {
-      "snippet": "hl[${2:color}]{${1:text}}"
+    {
+      "name": "fontspec"
     },
-    "st{}": {
-      "snippet": "st{${1:text}}"
+    {
+      "name": "graphicx"
     },
-    "st[]{}": {
-      "snippet": "st[${2:color}]{${1:text}}"
+    {
+      "name": "graphbox"
     },
-    "ul{}": {
-      "snippet": "ul{${1:text}}"
+    {
+      "name": "xcolor"
     },
-    "ul[]{}": {
-      "snippet": "ul[${2:color}]{${1:text}}"
+    {
+      "name": "fifo-stack"
     },
-    "namedLabel{}{}": {
-      "snippet": "namedLabel{${1:label}}{${2:name}}"
+    {
+      "name": "geometry"
     },
-    "DoNotLoadEpstopdf": {},
-    "oldref{}": {
-      "snippet": "oldref{${1:key}}"
+    {
+      "name": "fancyvrb"
+    },
+    {
+      "name": "fvextra"
+    },
+    {
+      "name": "ulem"
+    },
+    {
+      "name": "contour"
+    },
+    {
+      "name": "shadowtext"
+    },
+    {
+      "name": "enumitem"
+    },
+    {
+      "name": "alphalph"
+    },
+    {
+      "name": "pbox"
+    },
+    {
+      "name": "varwidth"
+    },
+    {
+      "name": "overpic"
+    },
+    {
+      "name": "wrapfig"
+    },
+    {
+      "name": "array"
+    },
+    {
+      "name": "dcolumn"
+    },
+    {
+      "name": "tabto"
+    },
+    {
+      "name": "changepage"
+    },
+    {
+      "name": "ragged2e"
+    },
+    {
+      "name": "setspace"
+    },
+    {
+      "name": "amsmath"
+    },
+    {
+      "name": "unicode-math"
+    },
+    {
+      "name": "adjustbox"
+    },
+    {
+      "name": "hyperref"
+    },
+    {
+      "name": "minted",
+      "if": "extra"
+    },
+    {
+      "name": "tcolorbox",
+      "if": "extra"
+    },
+    {
+      "name": "tcolorboxlibrarymany",
+      "if": "extra"
+    },
+    {
+      "name": "tcolorboxlibraryvignette",
+      "if": "extra"
+    },
+    {
+      "name": "tcolorboxlibraryminted",
+      "if": "extra"
+    },
+    {
+      "name": "tcolorboxlibrarymagazine",
+      "if": "extra"
+    },
+    {
+      "name": "tcolorboxlibraryposter",
+      "if": "extra"
+    },
+    {
+      "name": "tcolorboxlibraryexternal",
+      "if": "extra"
+    },
+    {
+      "name": "minted",
+      "if": "extra=true"
+    },
+    {
+      "name": "tcolorbox",
+      "if": "extra=true"
+    },
+    {
+      "name": "tcolorboxlibrarymany",
+      "if": "extra=true"
+    },
+    {
+      "name": "tcolorboxlibraryvignette",
+      "if": "extra=true"
+    },
+    {
+      "name": "tcolorboxlibraryminted",
+      "if": "extra=true"
+    },
+    {
+      "name": "tcolorboxlibrarymagazine",
+      "if": "extra=true"
+    },
+    {
+      "name": "tcolorboxlibraryposter",
+      "if": "extra=true"
+    },
+    {
+      "name": "tcolorboxlibraryexternal",
+      "if": "extra=true"
     }
-  },
-  "envs": {},
-  "options": [
-    "fontSize=",
-    "mainFontFeat={${1:fontspec features}}",
-    "mainFont=${1:font name}",
-    "sansFontFeat={${1:fontspec features}}",
-    "sansFont=${1:font name}",
-    "monoFontFeat={${1:fontspec features}}",
-    "monoFont=${1:font name}",
-    "paperSize=${1|a0paper,a1paper,a2paper,a3paper,a4paper,a5paper,a6paper,b0paper,b1paper,b2paper,b3paper,b4paper,b5paper,b6paper,c0paper,c1paper,c2paper,c3paper,c4paper,c5paper,c6paper,b0j,b1j,b2j,b3j,b4j,b5j,b6j,ansiapaper,ansibpaper,ansicpaper,ansidpaper,ansiepaper,letterpaper,executivepaper,legalpaper|}",
-    "paperMode=${1|portrait,landscape|}",
-    "tmargin=",
-    "bmargin=",
-    "lmargin=",
-    "rmargin=",
-    "twoside",
-    "imgResolution=${1:ppi}",
-    "extra"
   ],
-  "keyvals": [
-    [
-      "paper=${1|a0paper,a1paper,a2paper,a3paper,a4paper,a5paper,a6paper,b0paper,b1paper,b2paper,b3paper,b4paper,b5paper,b6paper,c0paper,c1paper,c2paper,c3paper,c4paper,c5paper,c6paper,b0j,b1j,b2j,b3j,b4j,b5j,b6j,ansiapaper,ansibpaper,ansicpaper,ansidpaper,ansiepaper,letterpaper,executivepaper,legalpaper|}",
-      "papername=${1|a0paper,a1paper,a2paper,a3paper,a4paper,a5paper,a6paper,b0paper,b1paper,b2paper,b3paper,b4paper,b5paper,b6paper,c0paper,c1paper,c2paper,c3paper,c4paper,c5paper,c6paper,b0j,b1j,b2j,b3j,b4j,b5j,b6j,ansiapaper,ansibpaper,ansicpaper,ansidpaper,ansiepaper,letterpaper,executivepaper,legalpaper|}",
-      "a0paper",
-      "a1paper",
-      "a2paper",
-      "a3paper",
-      "a4paper",
-      "a5paper",
-      "a6paper",
-      "b0paper",
-      "b1paper",
-      "b2paper",
-      "b3paper",
-      "b4paper",
-      "b5paper",
-      "b6paper",
-      "c0paper",
-      "c1paper",
-      "c2paper",
-      "c3paper",
-      "c4paper",
-      "c5paper",
-      "c6paper",
-      "b0j",
-      "b1j",
-      "b2j",
-      "b3j",
-      "b4j",
-      "b5j",
-      "b6j",
-      "ansiapaper",
-      "ansibpaper",
-      "ansicpaper",
-      "ansidpaper",
-      "ansiepaper",
-      "letterpaper",
-      "executivepaper",
-      "legalpaper",
-      "screen",
+  "macros": [
+    {
+      "name": "forceNewPageGeometry",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\forceNewPageGeometry"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "hl",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "hl",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:color}]{${1:text}}"
+      }
+    },
+    {
+      "name": "st",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "st",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:color}]{${1:text}}"
+      }
+    },
+    {
+      "name": "ul",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ul",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:color}]{${1:text}}"
+      }
+    },
+    {
+      "name": "namedLabel",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label}}{${2:name}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\documentclass/pdfArticle#c": [
+      "fontSize=",
+      "mainFontFeat={${1:fontspec features}}\r",
+      "mainFont=${1:font name}\r",
+      "sansFontFeat={${1:fontspec features}}\r",
+      "sansFont=${1:font name}\r",
+      "monoFontFeat={${1:fontspec features}}\r",
+      "monoFont=${1:font name}\r",
+      "paperSize=${1|a0paper,a1paper,a2paper,a3paper,a4paper,a5paper,a6paper,b0paper,b1paper,b2paper,b3paper,b4paper,b5paper,b6paper,c0paper,c1paper,c2paper,c3paper,c4paper,c5paper,c6paper,b0j,b1j,b2j,b3j,b4j,b5j,b6j,ansiapaper,ansibpaper,ansicpaper,ansidpaper,ansiepaper,letterpaper,executivepaper,legalpaper\r|}",
+      "paperMode=${1|portrait,landscape\r|}",
+      "tmargin=",
+      "bmargin=",
+      "lmargin=",
+      "rmargin=",
+      "twoside",
+      "imgResolution=${1:ppi}\r",
+      "extra"
+    ],
+    "\\forceNewPageGeometry": [
+      "paper=${1|a0paper,a1paper,a2paper,a3paper,a4paper,a5paper,a6paper,b0paper,b1paper,b2paper,b3paper,b4paper,b5paper,b6paper,c0paper,c1paper,c2paper,c3paper,c4paper,c5paper,c6paper,b0j,b1j,b2j,b3j,b4j,b5j,b6j,ansiapaper,ansibpaper,ansicpaper,ansidpaper,ansiepaper,letterpaper,executivepaper,legalpaper\r|}",
+      "papername=${1|a0paper,a1paper,a2paper,a3paper,a4paper,a5paper,a6paper,b0paper,b1paper,b2paper,b3paper,b4paper,b5paper,b6paper,c0paper,c1paper,c2paper,c3paper,c4paper,c5paper,c6paper,b0j,b1j,b2j,b3j,b4j,b5j,b6j,ansiapaper,ansibpaper,ansicpaper,ansidpaper,ansiepaper,letterpaper,executivepaper,legalpaper\r|}",
+      "a0paper\r",
+      "a1paper\r",
+      "a2paper\r",
+      "a3paper\r",
+      "a4paper\r",
+      "a5paper\r",
+      "a6paper\r",
+      "b0paper\r",
+      "b1paper\r",
+      "b2paper\r",
+      "b3paper\r",
+      "b4paper\r",
+      "b5paper\r",
+      "b6paper\r",
+      "c0paper\r",
+      "c1paper\r",
+      "c2paper\r",
+      "c3paper\r",
+      "c4paper\r",
+      "c5paper\r",
+      "c6paper\r",
+      "b0j\r",
+      "b1j\r",
+      "b2j\r",
+      "b3j\r",
+      "b4j\r",
+      "b5j\r",
+      "b6j\r",
+      "ansiapaper\r",
+      "ansibpaper\r",
+      "ansicpaper\r",
+      "ansidpaper\r",
+      "ansiepaper\r",
+      "letterpaper\r",
+      "executivepaper\r",
+      "legalpaper\r",
+      "screen\r",
       "paperwidth=",
       "paperheight=",
       "papersize=",
-      "papersize={${1:width},${2:height}}",
+      "papersize={${1:width},${2:height}}\r",
       "landscape",
       "portrait",
-      "layout=${1|a0paper,a1paper,a2paper,a3paper,a4paper,a5paper,a6paper,b0paper,b1paper,b2paper,b3paper,b4paper,b5paper,b6paper,c0paper,c1paper,c2paper,c3paper,c4paper,c5paper,c6paper,b0j,b1j,b2j,b3j,b4j,b5j,b6j,ansiapaper,ansibpaper,ansicpaper,ansidpaper,ansiepaper,letterpaper,executivepaper,legalpaper|}",
+      "layout=${1|a0paper,a1paper,a2paper,a3paper,a4paper,a5paper,a6paper,b0paper,b1paper,b2paper,b3paper,b4paper,b5paper,b6paper,c0paper,c1paper,c2paper,c3paper,c4paper,c5paper,c6paper,b0j,b1j,b2j,b3j,b4j,b5j,b6j,ansiapaper,ansibpaper,ansicpaper,ansidpaper,ansiepaper,letterpaper,executivepaper,legalpaper\r|}",
       "layoutwidth=",
       "layoutheight=",
       "layoutsize=",
-      "layoutsize={${1:width},${2:height}}",
+      "layoutsize={${1:width},${2:height}}\r",
       "layouthoffset=",
       "layoutvoffset=",
       "layoutoffset=",
-      "layoutoffset={${1:hoffset},${2:voffset}}",
-      "hscale=${1:scale}",
-      "vscale=${1:scale}",
-      "scale=${1:scale}",
-      "scale={${1:hscale},${2:vscale}}",
+      "layoutoffset={${1:hoffset},${2:voffset}}\r",
+      "hscale=${1:scale}\r",
+      "vscale=${1:scale}\r",
+      "scale=${1:scale}\r",
+      "scale={${1:hscale},${2:vscale}}\r",
       "width=",
       "totalwidth=",
       "height=",
       "totalheight=",
       "total=",
-      "total={${1:width},${2:height}}",
+      "total={${1:width},${2:height}}\r",
       "textwidth=",
       "textheight=",
       "text=",
-      "body={${1:width},${2:height}}",
-      "lines=${1:integer}",
+      "body={${1:width},${2:height}}\r",
+      "lines=${1:integer}\r",
       "includehead",
       "includefoot",
       "includeheadfoot",
@@ -195,9 +315,9 @@
       "ignoremp",
       "ignoreall",
       "heightrounded",
-      "hdivide={${1:left margin},${2:width},${3:right margin}}",
-      "vdivide={${1:top margin},${2:height},${3:bottom margin}}",
-      "divide={${1:left/top margin},${2:width/height},${3:right/bottom margin}}",
+      "hdivide={${1:left margin},${2:width},${3:right margin}}\r",
+      "vdivide={${1:top margin},${2:height},${3:bottom margin}}\r",
+      "divide={${1:left/top margin},${2:width/height},${3:right/bottom margin}}\r",
       "left=",
       "lmargin=",
       "inner=",
@@ -209,17 +329,17 @@
       "bottom=",
       "bmargin=",
       "hmargin=",
-      "hmargin={${1:left margin},${2:right margin}}",
+      "hmargin={${1:left margin},${2:right margin}}\r",
       "vmargin=",
-      "vmargin={${1:top margin},${2:bottom margin}}",
+      "vmargin={${1:top margin},${2:bottom margin}}\r",
       "margin=",
-      "margin={${1:left/top margin},${2:right/bottom margin}}",
-      "hmarginratio=${1:left}:${2:right}",
-      "vmarginratio=${1:top}:${2:bottom}",
-      "marginratio={${1:left}:${2:right},${3:top}:${4:bottom}}",
-      "marginratio=${1:left/top}:${2:right/bottom}",
-      "ratio={${1:left}:${2:right},${3:top}:${4:bottom}}",
-      "ratio=${1:left/top}:${2:right/bottom}",
+      "margin={${1:left/top margin},${2:right/bottom margin}}\r",
+      "hmarginratio=${1:left}:${2:right}\r",
+      "vmarginratio=${1:top}:${2:bottom}\r",
+      "marginratio={${1:left}:${2:right},${3:top}:${4:bottom}}\r",
+      "marginratio=${1:left/top}:${2:right/bottom}\r",
+      "ratio={${1:left}:${2:right},${3:top}:${4:bottom}}\r",
+      "ratio=${1:left/top}:${2:right/bottom}\r",
       "hcentering",
       "vcentering",
       "centering",
@@ -242,12 +362,15 @@
       "hoffset=",
       "voffset=",
       "offset=",
-      "offset={${1:hoffset},${2:voffset}}",
+      "offset={${1:hoffset},${2:voffset}}\r",
       "twocolumn",
       "onecolumn",
       "twoside",
       "reversemp",
       "reversemarginpar"
     ]
+  },
+  "args": [
+    "\\documentclass/pdfArticle#c"
   ]
 }

@@ -1,37 +1,77 @@
 {
-  "includes": {
-    "etex": [],
-    "etoolbox": [],
-    "ltxcmds": [],
-    "catchfile": []
-  },
-  "macros": {
-    "CatchFileBetweenTags{}{}{}": {
-      "snippet": "CatchFileBetweenTags{${1:csname}}{${2:file}}{${3:tag}}"
+  "deps": [
+    {
+      "name": "etex"
     },
-    "CatchFileBetweenTags*{}{}{}": {
-      "snippet": "CatchFileBetweenTags*{${1:csname}}{${2:file}}{${3:tag}}"
+    {
+      "name": "etoolbox"
     },
-    "ExecuteMetaData{}": {
-      "snippet": "ExecuteMetaData{${1:tag}}"
+    {
+      "name": "ltxcmds"
     },
-    "ExecuteMetaData[]{}": {
-      "snippet": "ExecuteMetaData[${2:file}]{${1:tag}}"
-    },
-    "ExecuteMetaData*{}": {
-      "snippet": "ExecuteMetaData*{${1:tag}}"
-    },
-    "ExecuteMetaData*[]{}": {
-      "snippet": "ExecuteMetaData*[${2:file}]{${1:tag}}"
-    },
-    "CatchFileBetweenDelims{}{}{}{}": {
-      "snippet": "CatchFileBetweenDelims{${1:csname}}{${2:file}}{${3:start delim}}{${4:stop delim}}"
-    },
-    "CatchFileBetweenDelims{}{}{}{}[]": {
-      "snippet": "CatchFileBetweenDelims{${1:csname}}{${2:file}}{${3:start delim}}{${4:stop delim}}[${5:setup}]"
+    {
+      "name": "catchfile"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "CatchFileBetweenTags",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:csname}}{${2:file}}{${3:tag}}"
+      }
+    },
+    {
+      "name": "CatchFileBetweenTags*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:csname}}{${2:file}}{${3:tag}}"
+      }
+    },
+    {
+      "name": "ExecuteMetaData",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tag}}"
+      }
+    },
+    {
+      "name": "ExecuteMetaData",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:file}]{${1:tag}}"
+      }
+    },
+    {
+      "name": "ExecuteMetaData*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tag}}"
+      }
+    },
+    {
+      "name": "ExecuteMetaData*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:file}]{${1:tag}}"
+      }
+    },
+    {
+      "name": "CatchFileBetweenDelims",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:csname}}{${2:file}}{${3:start delim}}{${4:stop delim}}"
+      }
+    },
+    {
+      "name": "CatchFileBetweenDelims",
+      "arg": {
+        "format": "{}{}{}{}[]",
+        "snippet": "{${1:csname}}{${2:file}}{${3:start delim}}{${4:stop delim}}[${5:setup}]"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

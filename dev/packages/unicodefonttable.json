@@ -1,65 +1,95 @@
 {
-  "includes": {
-    "xcolor": [],
-    "l3keys2e": [],
-    "longtable": [],
-    "booktabs": [],
-    "caption": [],
-    "fontspec": []
-  },
-  "macros": {
-    "displayfonttable{}{}": {
-      "snippet": "displayfonttable{${1:font name}}{${2:font features}}"
+  "deps": [
+    {
+      "name": "xcolor"
     },
-    "displayfonttable[]{}{}": {
-      "snippet": "displayfonttable[${3:options}]{${1:font name}}{${2:font features}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "l3keys2e"
     },
-    "displayfonttable*{}{}": {
-      "snippet": "displayfonttable*{${1:font name}}{${2:font features}}"
+    {
+      "name": "longtable"
     },
-    "displayfonttable*[]{}{}": {
-      "snippet": "displayfonttable*[${3:options}]{${1:font name}}{${2:font features}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "booktabs"
     },
-    "fonttablesetup{}": {
-      "snippet": "fonttablesetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "caption"
     },
-    "fonttableglyphcount": {},
-    "unicodefonttabledate": {},
-    "unicodefonttableversion": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "fontspec"
+    }
+  ],
+  "macros": [
+    {
+      "name": "displayfonttable",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:font name}}{${2:font features}}"
+      }
+    },
+    {
+      "name": "displayfonttable",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:font name}}{${2:font features}}"
+      }
+    },
+    {
+      "name": "displayfonttable*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:font name}}{${2:font features}}"
+      }
+    },
+    {
+      "name": "displayfonttable*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:font name}}{${2:font features}}"
+      }
+    },
+    {
+      "name": "fonttablesetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\displayfonttable,\\displayfonttable*,\\fonttablesetup"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "fonttableglyphcount"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\displayfonttable,\\displayfonttable*,\\fonttablesetup": [
       "header",
       "noheader",
-      "title-format=${1:code}",
-      "title-format-cont=${1:code}",
-      "display-block=${1|titles,rules,none|}",
-      "hex-digits=${1|block,foot,head,head+foot,none|}",
-      "hex-digits-font=${1:font commands}",
-      "hex-digits-row-format=${1:code}",
+      "title-format=${1:code}\r",
+      "title-format-cont=${1:code}\r",
+      "display-block=${1|titles,rules,none\r|}",
+      "hex-digits=${1|block,foot,head,head+foot,none\r|}",
+      "hex-digits-font=${1:font commands}\r",
+      "hex-digits-row-format=${1:code}\r",
       "color=",
       "statistics",
       "nostatistics",
-      "statistics-font=${1:font commands}",
-      "statistics-format=${1:code}",
+      "statistics-font=${1:font commands}\r",
+      "statistics-format=${1:code}\r",
       "glyph-width=",
-      "missing-glyph=${1:code}",
-      "missing-glyph-font=${1:font commands}",
+      "missing-glyph=${1:code}\r",
+      "missing-glyph-font=${1:font commands}\r",
       "missing-glyph-color=",
-      "compare-with=${1:font name}",
+      "compare-with=${1:font name}\r",
       "compare-color=",
       "compare-bgcolor=",
-      "statistics-compare-format=${1:code}",
-      "range-start=${1:slot}",
-      "range-end=${1:slot}"
+      "statistics-compare-format=${1:code}\r",
+      "range-start=${1:slot}\r",
+      "range-end=${1:slot}\r"
     ]
-  ]
+  },
+  "args": []
 }

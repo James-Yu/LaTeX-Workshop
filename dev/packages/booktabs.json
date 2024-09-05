@@ -1,47 +1,119 @@
 {
-  "includes": {},
-  "macros": {
-    "toprule": {},
-    "toprule[]": {
-      "snippet": "toprule[${1:line width}]"
+  "deps": [],
+  "macros": [
+    {
+      "name": "toprule"
     },
-    "midrule": {},
-    "midrule[]": {
-      "snippet": "midrule[${1:line width}]"
+    {
+      "name": "toprule",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:line width%l}]"
+      }
     },
-    "bottomrule": {},
-    "bottomrule[]": {
-      "snippet": "bottomrule[${1:line width}]"
+    {
+      "name": "midrule"
     },
-    "cmidrule{}": {
-      "snippet": "cmidrule{${1:a-b}}"
+    {
+      "name": "midrule",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:line width%l}]"
+      }
     },
-    "cmidrule(){}": {
-      "snippet": "cmidrule(${2:trim}){${1:a-b}}"
+    {
+      "name": "bottomrule"
     },
-    "cmidrule[](){}": {
-      "snippet": "cmidrule[${2:line width}](${3:trim}){${1:a-b}}"
+    {
+      "name": "bottomrule",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:line width%l}]"
+      }
     },
-    "morecmidrules": {},
-    "specialrule{}{}{}": {
-      "snippet": "specialrule{${1:line width}}{${2:above space}}{${3:below space}}"
+    {
+      "name": "cmidrule",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:a-b}}"
+      }
     },
-    "addlinespace": {},
-    "addlinespace[]": {
-      "snippet": "addlinespace[${1:vspace}]"
+    {
+      "name": "cmidrule(trim)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:a-b}}"
+      }
     },
-    "heavyrulewidth": {},
-    "lightrulewidth": {},
-    "cmidrulewidth": {},
-    "belowrulesep": {},
-    "belowbottomsep": {},
-    "aboverulesep": {},
-    "abovetopsep": {},
-    "cmidrulesep": {},
-    "cmidrulekern": {},
-    "defaultaddspace": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "cmidrule",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:line width%l}](${3:trim}){${1:a-b}}"
+      }
+    },
+    {
+      "name": "morecmidrules"
+    },
+    {
+      "name": "specialrule",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:line width%l}}{${2:above space}}{${3:below space}}"
+      }
+    },
+    {
+      "name": "addlinespace"
+    },
+    {
+      "name": "addlinespace",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:vspace}]"
+      }
+    },
+    {
+      "name": "heavyrulewidth",
+      "unusual": true
+    },
+    {
+      "name": "lightrulewidth",
+      "unusual": true
+    },
+    {
+      "name": "cmidrulewidth",
+      "unusual": true
+    },
+    {
+      "name": "belowrulesep",
+      "unusual": true
+    },
+    {
+      "name": "belowbottomsep",
+      "unusual": true
+    },
+    {
+      "name": "aboverulesep",
+      "unusual": true
+    },
+    {
+      "name": "abovetopsep",
+      "unusual": true
+    },
+    {
+      "name": "cmidrulesep",
+      "unusual": true
+    },
+    {
+      "name": "cmidrulekern",
+      "unusual": true
+    },
+    {
+      "name": "defaultaddspace",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

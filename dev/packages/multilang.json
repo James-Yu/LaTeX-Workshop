@@ -1,49 +1,72 @@
 {
-  "includes": {
-    "environ": [],
-    "etoolbox": [],
-    "pgfkeys": [],
-    "pgfopts": []
-  },
-  "macros": {
-    "NewMultilangCmd{}{}": {
-      "snippet": "NewMultilangCmd{${1:command}}{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
+  "deps": [
+    {
+      "name": "environ"
     },
-    "NewMultilangEnv{}{}": {
-      "snippet": "NewMultilangEnv{${1:envname}}{${2:options}}",
-      "keyvalindex": 1,
-      "keyvalpos": 1
+    {
+      "name": "etoolbox"
     },
-    "NewMultilangType{}{}": {
-      "snippet": "NewMultilangType{${1:type name}}{${2:format}}"
+    {
+      "name": "pgfkeys"
     },
-    "NewMultilangType[]{}{}": {
-      "snippet": "NewMultilangType[${3:arg count}]{${1:type name}}{${2:format}}"
+    {
+      "name": "pgfopts"
     }
-  },
-  "envs": {},
-  "options": [
-    "languages={${1:lang1,lang2,...}}"
   ],
-  "keyvals": [
-    [
-      "command=${1:command}",
-      "margs={${1:arg1,arg2,...}}",
-      "oargs={${1:arg1,arg2,...}}",
+  "macros": [
+    {
+      "name": "NewMultilangCmd",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:command}}{${2:options%keyvals}}"
+      }
+    },
+    {
+      "name": "NewMultilangEnv",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:envname}}{${2:options%keyvals}}"
+      }
+    },
+    {
+      "name": "NewMultilangType",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:type name}}{${2:format%definition}}"
+      }
+    },
+    {
+      "name": "NewMultilangType",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:arg count}]{${1:type name}}{${2:format%definition}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/multilang#c": [
+      "languages={${1:lang1,lang2,...}}\r"
+    ],
+    "\\NewMultilangCmd#c": [
+      "command=${1:command}\r",
+      "margs={${1:arg1,arg2,...}}\r",
+      "oargs={${1:arg1,arg2,...}}\r",
       "starred",
       "disablable",
-      "defaults={${1:arg1=val1,arg2=val2,...}}",
-      "alias/${1:name}={${2:arg1,arg2,...}}"
+      "defaults={${1:arg1=val1,arg2=val2,...}}\r",
+      "alias/${1:name}={${2:arg1,arg2,...}}\r"
     ],
-    [
-      "environment=${1:environment}",
-      "margs={${1:arg1,arg2,...}}",
-      "oargs={${1:arg1,arg2,...}}",
+    "\\NewMultilangEnv#c": [
+      "environment=${1:environment}\r",
+      "margs={${1:arg1,arg2,...}}\r",
+      "oargs={${1:arg1,arg2,...}}\r",
       "disablable",
-      "defaults={${1:arg1=val1,arg2=val2,...}}",
-      "alias/${1:name}={${2:arg1,arg2,...}}"
+      "defaults={${1:arg1=val1,arg2=val2,...}}\r",
+      "alias/${1:name}={${2:arg1,arg2,...}}\r"
     ]
+  },
+  "args": [
+    "\\usepackage/multilang#c"
   ]
 }

@@ -1,78 +1,147 @@
 {
-  "includes": {
-    "catchfile": [],
-    "xcolor": [],
-    "ninecolors": [],
-    "varwidth": [],
-    "iftex": []
-  },
-  "macros": {
-    "CodeHigh{}": {
-      "snippet": "CodeHigh{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "catchfile"
     },
-    "dochighinput{}": {
-      "snippet": "dochighinput{${1:file}}"
+    {
+      "name": "xcolor"
     },
-    "dochighinput[]{}": {
-      "snippet": "dochighinput[${2:options}]{${1:file}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "ninecolors"
     },
-    "fakeverb{}": {
-      "snippet": "fakeverb{${1:verbatim content}}"
+    {
+      "name": "varwidth"
     },
-    "NewCodeHighEnv{}{}": {
-      "snippet": "NewCodeHighEnv{${1:envname}}{${2:options}}"
-    },
-    "NewCodeHighInput{}{}": {
-      "snippet": "NewCodeHighInput{${1:command}}{${2:options}}"
-    },
-    "AddCodeHighRule{}{}{}": {
-      "snippet": "AddCodeHighRule{${1:type}}{${2:name}}{${3:regex}}"
-    },
-    "AddCodeHighRule[]{}{}{}": {
-      "snippet": "AddCodeHighRule[${4:language}]{${1:type}}{${2:name}}{${3:regex}}"
-    },
-    "SetCodeHighStyle{}{}": {
-      "snippet": "SetCodeHighStyle{${1:type}}{${2:color}}"
-    },
-    "SetCodeHighStyle[]{}{}": {
-      "snippet": "SetCodeHighStyle[${3:theme}]{${1:type}}{${2:color}}"
-    },
-    "GetCodeHighStyle{}": {
-      "snippet": "GetCodeHighStyle{${1:type}}"
-    },
-    "GetCodeHighStyle[]{}": {
-      "snippet": "GetCodeHighStyle[${2:theme}]{${1:type}}"
-    },
-    "SetCodeHighTracing{}": {
-      "snippet": "SetCodeHighTracing{${1:options}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "iftex"
     }
-  },
-  "envs": {
-    "codehigh": {},
-    "codehigh[]": {
+  ],
+  "macros": [
+    {
+      "name": "CodeHigh",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\begin{codehigh},\\begin{demohigh},\\CodeHigh,\\dochighinput"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "dochighinput",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "dochighinput",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:file}}"
+      }
+    },
+    {
+      "name": "fakeverb",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:verbatim content%definition}}"
+      }
+    },
+    {
+      "name": "NewCodeHighEnv",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:envname}}{${2:options%keyvals}}"
+      }
+    },
+    {
+      "name": "NewCodeHighInput",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:command}}{${2:options%keyvals}}"
+      }
+    },
+    {
+      "name": "AddCodeHighRule",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:type}}{${2:name}}{${3:regex%definition}}"
+      }
+    },
+    {
+      "name": "AddCodeHighRule",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:language}]{${1:type}}{${2:name}}{${3:regex%definition}}"
+      }
+    },
+    {
+      "name": "SetCodeHighStyle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:type}}{${2:color}}"
+      }
+    },
+    {
+      "name": "SetCodeHighStyle",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:theme}]{${1:type}}{${2:color}}"
+      }
+    },
+    {
+      "name": "GetCodeHighStyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:type}}"
+      }
+    },
+    {
+      "name": "GetCodeHighStyle",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:theme}]{${1:type}}"
+      }
+    },
+    {
+      "name": "SetCodeHighTracing",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\SetCodeHighTracing"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "codehigh"
+    },
+    {
       "name": "codehigh",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     },
-    "demohigh": {},
-    "demohigh[]": {
+    {
+      "name": "demohigh"
+    },
+    {
       "name": "demohigh",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
-      "language=${1|latex,latex/latex2,latex/latex3,latex/math,latex/table|}",
+  ],
+  "keys": {
+    "\\begin{codehigh},\\begin{demohigh},\\CodeHigh,\\dochighinput": [
+      "language=${1|latex,latex/latex2,latex/latex3,latex/math,latex/table\r|}",
       "style/main=",
       "style/code=",
       "style/demo=",
@@ -80,17 +149,18 @@
       "lite",
       "long",
       "demo",
-      "theme=${1:theme}"
+      "theme=${1:theme}\r"
     ],
-    [
-      "+code",
-      "-code",
-      "+demo",
-      "-demo",
-      "+parser",
-      "-parser",
-      "all",
-      "none"
+    "\\SetCodeHighTracing": [
+      "+code\r",
+      "-code\r",
+      "+demo\r",
+      "-demo\r",
+      "+parser\r",
+      "-parser\r",
+      "all\r",
+      "none\r"
     ]
-  ]
+  },
+  "args": []
 }

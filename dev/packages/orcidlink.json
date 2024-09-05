@@ -1,28 +1,58 @@
 {
-  "includes": {
-    "hyperref": [],
-    "tikz": [],
-    "tikzlibrarysvg.path": []
-  },
-  "macros": {
-    "orcidlink{}": {
-      "snippet": "orcidlink{${1:orcid}}"
+  "deps": [
+    {
+      "name": "hyperref"
     },
-    "orcidlogo": {},
-    "orcidlinkf{}": {
-      "snippet": "orcidlinkf{${1:orcid}}"
+    {
+      "name": "tikz"
     },
-    "orcidlinkc{}": {
-      "snippet": "orcidlinkc{${1:orcid}}"
-    },
-    "orcidlinki{}{}": {
-      "snippet": "orcidlinki{${1:name}}{${2:orcid}}"
-    },
-    "orcidlinkX{}{}{}": {
-      "snippet": "orcidlinkX{${1:before}}{${2:orcid}}{${3:after}}"
+    {
+      "name": "tikzlibrarysvg.path"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "orcidlink",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:orcid%URL}}"
+      }
+    },
+    {
+      "name": "orcidlogo",
+      "unusual": true
+    },
+    {
+      "name": "orcidlinkf",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:orcid%URL}}"
+      }
+    },
+    {
+      "name": "orcidlinkc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:orcid%URL}}"
+      }
+    },
+    {
+      "name": "orcidlinki",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:orcid%URL}}"
+      }
+    },
+    {
+      "name": "orcidlinkX",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:before}}{${2:orcid%URL}}{${3:after}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

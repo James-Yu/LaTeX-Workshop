@@ -1,31 +1,51 @@
 {
-  "includes": {
-    "mweights": [],
-    "xkeyval": []
-  },
-  "macros": {
-    "monott{}": {
-      "snippet": "monott{${1:text}}"
+  "deps": [
+    {
+      "name": "mweights"
     },
-    "proptt{}": {
-      "snippet": "proptt{${1:text}}"
-    },
-    "lctt{}": {
-      "snippet": "lctt{${1:text}}"
+    {
+      "name": "xkeyval"
     }
-  },
-  "envs": {},
-  "options": [
-    "light",
-    "l",
-    "lightcondensed",
-    "lc",
-    "med",
-    "m",
-    "proportional",
-    "p",
-    "scale=${1:factor}",
-    "scaled=${1:factor}"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "monott",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "proptt",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "lctt",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/zlmtt#c": [
+      "light\r",
+      "l\r",
+      "lightcondensed\r",
+      "lc\r",
+      "med\r",
+      "m\r",
+      "proportional\r",
+      "p\r",
+      "scale=${1:factor}\r",
+      "scaled=${1:factor}\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/zlmtt#c"
+  ]
 }

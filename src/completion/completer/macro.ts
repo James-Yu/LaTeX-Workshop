@@ -3,7 +3,7 @@ import * as fs from 'fs'
 import type * as Ast from '@unified-latex/unified-latex-types'
 import { lw } from '../../lw'
 import { EnvSnippetType } from '../../types'
-import type { CompletionArgs, CompletionItem, CompletionProvider, FileCache, Macro, Package } from '../../types'
+import type { CompletionArgs, CompletionItem, CompletionProvider, FileCache, MacroObsolete, PackageObsolete } from '../../types'
 import { environment } from './environment'
 
 import { CmdEnvSuggestion, splitSignatureString, filterNonLetterSuggestions, filterArgumentHint } from './completerutils'
@@ -34,8 +34,8 @@ lw.onConfigChange(['intellisense.command.user', 'intellisense.package.exclude'],
 initialize()
 function initialize() {
     const excludeDefault = (vscode.workspace.getConfiguration('latex-workshop').get('intellisense.package.exclude') as string[]).includes('lw-default')
-    const cmds = excludeDefault ? {} : JSON.parse(fs.readFileSync(`${lw.extensionRoot}/data/commands.json`, {encoding: 'utf8'})) as {[key: string]: Macro}
-    const maths = excludeDefault ? {} : (JSON.parse(fs.readFileSync(`${lw.extensionRoot}/data/packages/tex.json`, {encoding: 'utf8'})) as Package).macros
+    const cmds = excludeDefault ? {} : JSON.parse(fs.readFileSync(`${lw.extensionRoot}/data/commands.json`, {encoding: 'utf8'})) as {[key: string]: MacroObsolete}
+    const maths = excludeDefault ? {} : (JSON.parse(fs.readFileSync(`${lw.extensionRoot}/data/packages/tex.json`, {encoding: 'utf8'})) as PackageObsolete).macros
     Object.assign(maths, cmds)
     Object.entries(maths).forEach(([key, cmd]) => {
         cmd.macro = key
@@ -71,7 +71,7 @@ export function isTriggerSuggestNeeded(name: string): boolean {
     return reg.test(name)
 }
 
-function isCmdWithSnippet(obj: any): obj is Macro {
+function isCmdWithSnippet(obj: any): obj is MacroObsolete {
     return (typeof obj.macro === 'string') && (typeof obj.snippet === 'string')
 }
 
@@ -395,7 +395,7 @@ function parseContent(content: string, filePath: string): CmdEnvSuggestion[] {
     return cmds
 }
 
-function entryCmdToCompletion(itemKey: string, item: Macro): CmdEnvSuggestion {
+function entryCmdToCompletion(itemKey: string, item: MacroObsolete): CmdEnvSuggestion {
     item.macro = item.macro || itemKey
     const backslash = item.macro.startsWith(' ') ? '' : '\\'
     const suggestion = new CmdEnvSuggestion(
@@ -435,7 +435,7 @@ function entryCmdToCompletion(itemKey: string, item: Macro): CmdEnvSuggestion {
     return suggestion
 }
 
-function setPackageCmds(packageName: string, cmds: {[key: string]: Macro}) {
+function setPackageCmds(packageName: string, cmds: {[key: string]: MacroObsolete}) {
     const macros: CmdEnvSuggestion[] = []
     Object.entries(cmds).forEach(([key, cmd]) => {
         cmd.package = packageName

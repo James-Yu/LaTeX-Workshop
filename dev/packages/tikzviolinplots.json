@@ -1,88 +1,106 @@
 {
-  "includes": {
-    "pgfplots": [],
-    "pgfplotstable": [],
-    "ifthen": [],
-    "stringstrings": [],
-    "pgfkeys": []
-  },
-  "macros": {
-    "violinsetoptions{}": {
-      "snippet": "violinsetoptions{${1:pgfplots options}}"
+  "deps": [
+    {
+      "name": "pgfplots"
     },
-    "violinsetoptions[]{}": {
-      "snippet": "violinsetoptions[${2:package-specific options}]{${1:pgfplots options}}"
+    {
+      "name": "pgfplotstable"
     },
-    "violinplot{}": {
-      "snippet": "violinplot{${1:filename}}"
+    {
+      "name": "ifthen"
     },
-    "violinplot[]{}": {
-      "snippet": "violinplot[${2:options}]{${1:filename}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "stringstrings"
     },
-    "violinplotwholefile{}": {
-      "snippet": "violinplotwholefile{${1:filename}}"
-    },
-    "violinplotwholefile[]{}": {
-      "snippet": "violinplotwholefile[${2:options}]{${1:filename}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "pgfkeys"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "col sep=${1|space,tab,comma,colon,semicolon,braces,ampersand|}",
-      "index=${1:column name}",
-      "kernel=${1|gaussian,logistic,parabolic,uniform,triangular|}",
-      "bandwidth=${1:number}",
-      "samples=${1:integer}",
-      "relative position=${1:integer}",
-      "color=",
-      "label={${1:text}}",
-      "invert",
-      "average mark=${1:mark}",
-      "dataset mark=${1:mark}",
-      "average size=",
-      "dataset size=",
-      "average color=",
-      "dataset color=",
-      "average opacity=${1:factor}",
-      "dataset opacity=${1:factor}",
-      "average fill=",
-      "dataset fill=",
-      "average fill opacity=${1:factor}",
-      "dataset fill opacity=${1:factor}"
+  ],
+  "macros": [
+    {
+      "name": "violinsetoptions",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pgfplots options}}"
+      }
+    },
+    {
+      "name": "violinsetoptions",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:package-specific options%keyvals}]{${1:pgfplots options}}"
+      }
+    },
+    {
+      "name": "violinplot",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:filename%file}}"
+      }
+    },
+    {
+      "name": "violinplot",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:filename%file}}"
+      }
+    },
+    {
+      "name": "violinplotwholefile",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:filename%file}}"
+      }
+    },
+    {
+      "name": "violinplotwholefile",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:filename%file}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\violinsetoptions": [
+      "scaled\r",
+      "data points\r",
+      "averages\r",
+      "no mirror\r",
+      "reverse axis\r"
     ],
-    [
-      "col sep=${1|space,tab,comma,colon,semicolon,braces,ampersand|}",
-      "index=${1:column name}",
-      "kernel=${1|gaussian,logistic,parabolic,uniform,triangular|}",
-      "bandwidth=${1:number}",
-      "samples=${1:integer}",
-      "relative position=${1:integer}",
+    "\\violinplot,\\violinplotwholefile": [
+      "col sep=${1|space,tab,comma,colon,semicolon,braces,ampersand\r|}",
+      "index=${1:column name}\r",
+      "kernel=${1|gaussian,logistic,parabolic,uniform,triangular\r|}",
+      "bandwidth=${1:number}\r",
+      "samples=${1:integer}\r",
+      "relative position=${1:integer}\r",
       "color=",
-      "label={${1:text}}",
+      "label={${1:text}}\r",
       "invert",
-      "average mark=${1:mark}",
-      "dataset mark=${1:mark}",
+      "average mark=${1:mark}\r",
+      "dataset mark=${1:mark}\r",
       "average size=",
       "dataset size=",
       "average color=",
       "dataset color=",
-      "average opacity=${1:factor}",
-      "dataset opacity=${1:factor}",
+      "average opacity=${1:factor}\r",
+      "dataset opacity=${1:factor}\r",
       "average fill=",
       "dataset fill=",
-      "average fill opacity=${1:factor}",
-      "dataset fill opacity=${1:factor}",
+      "average fill opacity=${1:factor}\r",
+      "dataset fill opacity=${1:factor}\r"
+    ],
+    "\\violinplotwholefile": [
       "primary color=",
       "secondary color=",
-      "indexes={${1:index1,index2,...}}",
-      "spacing=${1:number}",
-      "labels={${1:label1,label2,...}}"
+      "indexes={${1:index1,index2,...}}\r",
+      "spacing=${1:number}\r",
+      "labels={${1:label1,label2,...}}\r"
     ]
-  ]
+  },
+  "args": []
 }

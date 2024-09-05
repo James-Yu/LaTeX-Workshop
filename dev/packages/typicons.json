@@ -1,348 +1,1031 @@
 {
-  "includes": {
-    "fontspec": []
-  },
-  "macros": {
-    "TI": {},
-    "ticon{}": {
-      "snippet": "ticon{${1:icon}}"
+  "deps": [
+    {
+      "name": "fontspec"
+    }
+  ],
+  "macros": [
+    {
+      "name": "TI",
+      "unusual": true
     },
-    "tiAdjustBrightness": {},
-    "tiAdjustContrast": {},
-    "tiAnchorOutline": {},
-    "tiAnchor": {},
-    "tiArchive": {},
-    "tiArrowBackOutline": {},
-    "tiArrowBack": {},
-    "tiArrowDownOutline": {},
-    "tiArrowDownThick": {},
-    "tiArrowDown": {},
-    "tiArrowForwardOutline": {},
-    "tiArrowForward": {},
-    "tiArrowLeftOutline": {},
-    "tiArrowLeftThick": {},
-    "tiArrowLeft": {},
-    "tiArrowLoopOutline": {},
-    "tiArrowLoop": {},
-    "tiArrowMaximiseOutline": {},
-    "tiArrowMaximise": {},
-    "tiArrowMinimiseOutline": {},
-    "tiArrowMinimise": {},
-    "tiArrowMoveOutline": {},
-    "tiArrowMove": {},
-    "tiArrowRepeatOutline": {},
-    "tiArrowRepeat": {},
-    "tiArrowRightOutline": {},
-    "tiArrowRightThick": {},
-    "tiArrowRight": {},
-    "tiArrowShuffle": {},
-    "tiArrowSortedDown": {},
-    "tiArrowSortedUp": {},
-    "tiArrowSyncOutline": {},
-    "tiArrowSync": {},
-    "tiArrowUnsorted": {},
-    "tiArrowUpOutline": {},
-    "tiArrowUpThick": {},
-    "tiArrowUp": {},
-    "tiAt": {},
-    "tiAttachmentOutline": {},
-    "tiAttachment": {},
-    "tiBackspaceOutline": {},
-    "tiBackspace": {},
-    "tiBatteryCharge": {},
-    "tiBatteryFull": {},
-    "tiBatteryHigh": {},
-    "tiBatteryLow": {},
-    "tiBatteryMid": {},
-    "tiBeaker": {},
-    "tiBeer": {},
-    "tiBell": {},
-    "tiBook": {},
-    "tiBookmark": {},
-    "tiBriefcase": {},
-    "tiBrush": {},
-    "tiBusinessCard": {},
-    "tiCalculator": {},
-    "tiCalendarOutline": {},
-    "tiCalendar": {},
-    "tiCameraOutline": {},
-    "tiCamera": {},
-    "tiCancelOutline": {},
-    "tiCancel": {},
-    "tiChartAreaOutline": {},
-    "tiChartArea": {},
-    "tiChartBarOutline": {},
-    "tiChartBar": {},
-    "tiChartLineOutline": {},
-    "tiChartLine": {},
-    "tiChartPieOutline": {},
-    "tiChartPie": {},
-    "tiChevronLeftOutline": {},
-    "tiChevronLeft": {},
-    "tiChevronRightOutline": {},
-    "tiChevronRight": {},
-    "tiClipboard": {},
-    "tiCloudStorage": {},
-    "tiCloudStorageOutline": {},
-    "tiCodeOutline": {},
-    "tiCode": {},
-    "tiCoffee": {},
-    "tiCogOutline": {},
-    "tiCog": {},
-    "tiCompass": {},
-    "tiContacts": {},
-    "tiCreditCard": {},
-    "tiDatabase": {},
-    "tiDeleteOutline": {},
-    "tiDelete": {},
-    "tiDeviceDesktop": {},
-    "tiDeviceLaptop": {},
-    "tiDevicePhone": {},
-    "tiDeviceTablet": {},
-    "tiDirections": {},
-    "tiDivideOutline": {},
-    "tiDivide": {},
-    "tiDocumentAdd": {},
-    "tiDocumentDelete": {},
-    "tiDocumentText": {},
-    "tiDocument": {},
-    "tiDownloadOutline": {},
-    "tiDownload": {},
-    "tiDropbox": {},
-    "tiEdit": {},
-    "tiEjectOutline": {},
-    "tiEject": {},
-    "tiEqualsOutline": {},
-    "tiEquals": {},
-    "tiExportOutline": {},
-    "tiExport": {},
-    "tiEyeOutline": {},
-    "tiEye": {},
-    "tiFeather": {},
-    "tiFilm": {},
-    "tiFilter": {},
-    "tiFlagOutline": {},
-    "tiFlag": {},
-    "tiFlashOutline": {},
-    "tiFlash": {},
-    "tiFlowChildren": {},
-    "tiFlowMerge": {},
-    "tiFlowParallel": {},
-    "tiFlowSwitch": {},
-    "tiFolderAdd": {},
-    "tiFolderDelete": {},
-    "tiFolderOpen": {},
-    "tiFolder": {},
-    "tiGift": {},
-    "tiGlobeOutline": {},
-    "tiGlobe": {},
-    "tiGroupOutline": {},
-    "tiGroup": {},
-    "tiHeadphones": {},
-    "tiHeartFullOutline": {},
-    "tiHeartHalfOutline": {},
-    "tiHeartOutline": {},
-    "tiHeart": {},
-    "tiHomeOutline": {},
-    "tiHome": {},
-    "tiImageOutline": {},
-    "tiImage": {},
-    "tiInfinityOutline": {},
-    "tiInfinity": {},
-    "tiInfoLargeOutline": {},
-    "tiInfoLarge": {},
-    "tiInfoOutline": {},
-    "tiInfo": {},
-    "tiInputCheckedOutline": {},
-    "tiInputChecked": {},
-    "tiKeyOutline": {},
-    "tiKey": {},
-    "tiKeyboard": {},
-    "tiLeaf": {},
-    "tiLightbulb": {},
-    "tiLinkOutline": {},
-    "tiLink": {},
-    "tiLocationArrowOutline": {},
-    "tiLocationArrow": {},
-    "tiLocationOutline": {},
-    "tiLocation": {},
-    "tiLockClosedOutline": {},
-    "tiLockClosed": {},
-    "tiLockOpenOutline": {},
-    "tiLockOpen": {},
-    "tiMail": {},
-    "tiMap": {},
-    "tiMediaEjectOutline": {},
-    "tiMediaEject": {},
-    "tiMediaFastForwardOutline": {},
-    "tiMediaFastForward": {},
-    "tiMediaPauseOutline": {},
-    "tiMediaPause": {},
-    "tiMediaPlayOutline": {},
-    "tiMediaPlayReverseOutline": {},
-    "tiMediaPlayReverse": {},
-    "tiMediaPlay": {},
-    "tiMediaRecordOutline": {},
-    "tiMediaRecord": {},
-    "tiMediaRewindOutline": {},
-    "tiMediaRewind": {},
-    "tiMediaStopOutline": {},
-    "tiMediaStop": {},
-    "tiMessageTyping": {},
-    "tiMessage": {},
-    "tiMessages": {},
-    "tiMicrophoneOutline": {},
-    "tiMicrophone": {},
-    "tiMinusOutline": {},
-    "tiMinus": {},
-    "tiMortarBoard": {},
-    "tiNews": {},
-    "tiNotesOutline": {},
-    "tiNotes": {},
-    "tiPen": {},
-    "tiPencil": {},
-    "tiPhoneOutline": {},
-    "tiPhone": {},
-    "tiPiOutline": {},
-    "tiPi": {},
-    "tiPinOutline": {},
-    "tiPin": {},
-    "tiPipette": {},
-    "tiPlaneOutline": {},
-    "tiPlane": {},
-    "tiPlug": {},
-    "tiPlusOutline": {},
-    "tiPlus": {},
-    "tiPointOfInterestOutline": {},
-    "tiPointOfInterest": {},
-    "tiPowerOutline": {},
-    "tiPower": {},
-    "tiPrinter": {},
-    "tiPuzzleOutline": {},
-    "tiPuzzle": {},
-    "tiRadarOutline": {},
-    "tiRadar": {},
-    "tiRefreshOutline": {},
-    "tiRefresh": {},
-    "tiRssOutline": {},
-    "tiRss": {},
-    "tiScissorsOutline": {},
-    "tiScissors": {},
-    "tiShoppingBag": {},
-    "tiShoppingCart": {},
-    "tiSocialAtCircular": {},
-    "tiSocialDribbbleCircular": {},
-    "tiSocialDribbble": {},
-    "tiSocialFacebookCircular": {},
-    "tiSocialFacebook": {},
-    "tiSocialFlickrCircular": {},
-    "tiSocialFlickr": {},
-    "tiSocialGithubCircular": {},
-    "tiSocialGithub": {},
-    "tiSocialGooglePlusCircular": {},
-    "tiSocialGooglePlus": {},
-    "tiSocialInstagramCircular": {},
-    "tiSocialInstagram": {},
-    "tiSocialLastFmCircular": {},
-    "tiSocialLastFm": {},
-    "tiSocialLinkedinCircular": {},
-    "tiSocialLinkedin": {},
-    "tiSocialPinterestCircular": {},
-    "tiSocialPinterest": {},
-    "tiSocialSkypeOutline": {},
-    "tiSocialSkype": {},
-    "tiSocialTumblerCircular": {},
-    "tiSocialTumbler": {},
-    "tiSocialTwitterCircular": {},
-    "tiSocialTwitter": {},
-    "tiSocialVimeoCircular": {},
-    "tiSocialVimeo": {},
-    "tiSocialYoutubeCircular": {},
-    "tiSocialYoutube": {},
-    "tiSortAlphabeticallyOutline": {},
-    "tiSortAlphabetically": {},
-    "tiSortNumericallyOutline": {},
-    "tiSortNumerically": {},
-    "tiSpannerOutline": {},
-    "tiSpanner": {},
-    "tiSpiral": {},
-    "tiStarFullOutline": {},
-    "tiStarHalfOutline": {},
-    "tiStarHalf": {},
-    "tiStarOutline": {},
-    "tiStar": {},
-    "tiStarburstOutline": {},
-    "tiStarburst": {},
-    "tiStopwatch": {},
-    "tiSupport": {},
-    "tiTabsOutline": {},
-    "tiTag": {},
-    "tiTags": {},
-    "tiThLargeOutline": {},
-    "tiThLarge": {},
-    "tiThListOutline": {},
-    "tiThList": {},
-    "tiThMenuOutline": {},
-    "tiThMenu": {},
-    "tiThSmallOutline": {},
-    "tiThSmall": {},
-    "tiThermometer": {},
-    "tiThumbsDown": {},
-    "tiThumbsOk": {},
-    "tiThumbsUp": {},
-    "tiTickOutline": {},
-    "tiTick": {},
-    "tiTicket": {},
-    "tiTime": {},
-    "tiTimesOutline": {},
-    "tiTimes": {},
-    "tiTrash": {},
-    "tiTree": {},
-    "tiUploadOutline": {},
-    "tiUpload": {},
-    "tiUserAddOutline": {},
-    "tiUserAdd": {},
-    "tiUserDeleteOutline": {},
-    "tiUserDelete": {},
-    "tiUserOutline": {},
-    "tiUser": {},
-    "tiVendorAndroid": {},
-    "tiVendorApple": {},
-    "tiVendorMicrosoft": {},
-    "tiVideoOutline": {},
-    "tiVideo": {},
-    "tiVolumeDown": {},
-    "tiVolumeMute": {},
-    "tiVolumeUp": {},
-    "tiVolume": {},
-    "tiWarningOutline": {},
-    "tiWarning": {},
-    "tiWatch": {},
-    "tiWavesOutline": {},
-    "tiWaves": {},
-    "tiWeatherCloudy": {},
-    "tiWeatherDownpour": {},
-    "tiWeatherNight": {},
-    "tiWeatherPartlySunny": {},
-    "tiWeatherShower": {},
-    "tiWeatherSnow": {},
-    "tiWeatherStormy": {},
-    "tiWeatherSunny": {},
-    "tiWeatherWindyCloudy": {},
-    "tiWeatherWindy": {},
-    "tiWiFiOutline": {},
-    "tiWiFi": {},
-    "tiWine": {},
-    "tiWorldOutline": {},
-    "tiWorld": {},
-    "tiZoomInOutline": {},
-    "tiZoomIn": {},
-    "tiZoomOutOutline": {},
-    "tiZoomOut": {},
-    "tiZoomOutline": {},
-    "tiZoom": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "ticon",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:icon}}"
+      }
+    },
+    {
+      "name": "tiAdjustBrightness"
+    },
+    {
+      "name": "tiAdjustContrast"
+    },
+    {
+      "name": "tiAnchorOutline"
+    },
+    {
+      "name": "tiAnchor"
+    },
+    {
+      "name": "tiArchive"
+    },
+    {
+      "name": "tiArrowBackOutline"
+    },
+    {
+      "name": "tiArrowBack"
+    },
+    {
+      "name": "tiArrowDownOutline"
+    },
+    {
+      "name": "tiArrowDownThick"
+    },
+    {
+      "name": "tiArrowDown"
+    },
+    {
+      "name": "tiArrowForwardOutline"
+    },
+    {
+      "name": "tiArrowForward"
+    },
+    {
+      "name": "tiArrowLeftOutline"
+    },
+    {
+      "name": "tiArrowLeftThick"
+    },
+    {
+      "name": "tiArrowLeft"
+    },
+    {
+      "name": "tiArrowLoopOutline"
+    },
+    {
+      "name": "tiArrowLoop"
+    },
+    {
+      "name": "tiArrowMaximiseOutline"
+    },
+    {
+      "name": "tiArrowMaximise"
+    },
+    {
+      "name": "tiArrowMinimiseOutline"
+    },
+    {
+      "name": "tiArrowMinimise"
+    },
+    {
+      "name": "tiArrowMoveOutline"
+    },
+    {
+      "name": "tiArrowMove"
+    },
+    {
+      "name": "tiArrowRepeatOutline"
+    },
+    {
+      "name": "tiArrowRepeat"
+    },
+    {
+      "name": "tiArrowRightOutline"
+    },
+    {
+      "name": "tiArrowRightThick"
+    },
+    {
+      "name": "tiArrowRight"
+    },
+    {
+      "name": "tiArrowShuffle"
+    },
+    {
+      "name": "tiArrowSortedDown"
+    },
+    {
+      "name": "tiArrowSortedUp"
+    },
+    {
+      "name": "tiArrowSyncOutline"
+    },
+    {
+      "name": "tiArrowSync"
+    },
+    {
+      "name": "tiArrowUnsorted"
+    },
+    {
+      "name": "tiArrowUpOutline"
+    },
+    {
+      "name": "tiArrowUpThick"
+    },
+    {
+      "name": "tiArrowUp"
+    },
+    {
+      "name": "tiAt"
+    },
+    {
+      "name": "tiAttachmentOutline"
+    },
+    {
+      "name": "tiAttachment"
+    },
+    {
+      "name": "tiBackspaceOutline"
+    },
+    {
+      "name": "tiBackspace"
+    },
+    {
+      "name": "tiBatteryCharge"
+    },
+    {
+      "name": "tiBatteryFull"
+    },
+    {
+      "name": "tiBatteryHigh"
+    },
+    {
+      "name": "tiBatteryLow"
+    },
+    {
+      "name": "tiBatteryMid"
+    },
+    {
+      "name": "tiBeaker"
+    },
+    {
+      "name": "tiBeer"
+    },
+    {
+      "name": "tiBell"
+    },
+    {
+      "name": "tiBook"
+    },
+    {
+      "name": "tiBookmark"
+    },
+    {
+      "name": "tiBriefcase"
+    },
+    {
+      "name": "tiBrush"
+    },
+    {
+      "name": "tiBusinessCard"
+    },
+    {
+      "name": "tiCalculator"
+    },
+    {
+      "name": "tiCalendarOutline"
+    },
+    {
+      "name": "tiCalendar"
+    },
+    {
+      "name": "tiCameraOutline"
+    },
+    {
+      "name": "tiCamera"
+    },
+    {
+      "name": "tiCancelOutline"
+    },
+    {
+      "name": "tiCancel"
+    },
+    {
+      "name": "tiChartAreaOutline"
+    },
+    {
+      "name": "tiChartArea"
+    },
+    {
+      "name": "tiChartBarOutline"
+    },
+    {
+      "name": "tiChartBar"
+    },
+    {
+      "name": "tiChartLineOutline"
+    },
+    {
+      "name": "tiChartLine"
+    },
+    {
+      "name": "tiChartPieOutline"
+    },
+    {
+      "name": "tiChartPie"
+    },
+    {
+      "name": "tiChevronLeftOutline"
+    },
+    {
+      "name": "tiChevronLeft"
+    },
+    {
+      "name": "tiChevronRightOutline"
+    },
+    {
+      "name": "tiChevronRight"
+    },
+    {
+      "name": "tiClipboard"
+    },
+    {
+      "name": "tiCloudStorage"
+    },
+    {
+      "name": "tiCloudStorageOutline"
+    },
+    {
+      "name": "tiCodeOutline"
+    },
+    {
+      "name": "tiCode"
+    },
+    {
+      "name": "tiCoffee"
+    },
+    {
+      "name": "tiCogOutline"
+    },
+    {
+      "name": "tiCog"
+    },
+    {
+      "name": "tiCompass"
+    },
+    {
+      "name": "tiContacts"
+    },
+    {
+      "name": "tiCreditCard"
+    },
+    {
+      "name": "tiCss3"
+    },
+    {
+      "name": "tiDatabase"
+    },
+    {
+      "name": "tiDeleteOutline"
+    },
+    {
+      "name": "tiDelete"
+    },
+    {
+      "name": "tiDeviceDesktop"
+    },
+    {
+      "name": "tiDeviceLaptop"
+    },
+    {
+      "name": "tiDevicePhone"
+    },
+    {
+      "name": "tiDeviceTablet"
+    },
+    {
+      "name": "tiDirections"
+    },
+    {
+      "name": "tiDivideOutline"
+    },
+    {
+      "name": "tiDivide"
+    },
+    {
+      "name": "tiDocumentAdd"
+    },
+    {
+      "name": "tiDocumentDelete"
+    },
+    {
+      "name": "tiDocumentText"
+    },
+    {
+      "name": "tiDocument"
+    },
+    {
+      "name": "tiDownloadOutline"
+    },
+    {
+      "name": "tiDownload"
+    },
+    {
+      "name": "tiDropbox"
+    },
+    {
+      "name": "tiEdit"
+    },
+    {
+      "name": "tiEjectOutline"
+    },
+    {
+      "name": "tiEject"
+    },
+    {
+      "name": "tiEqualsOutline"
+    },
+    {
+      "name": "tiEquals"
+    },
+    {
+      "name": "tiExportOutline"
+    },
+    {
+      "name": "tiExport"
+    },
+    {
+      "name": "tiEyeOutline"
+    },
+    {
+      "name": "tiEye"
+    },
+    {
+      "name": "tiFeather"
+    },
+    {
+      "name": "tiFilm"
+    },
+    {
+      "name": "tiFilter"
+    },
+    {
+      "name": "tiFlagOutline"
+    },
+    {
+      "name": "tiFlag"
+    },
+    {
+      "name": "tiFlashOutline"
+    },
+    {
+      "name": "tiFlash"
+    },
+    {
+      "name": "tiFlowChildren"
+    },
+    {
+      "name": "tiFlowMerge"
+    },
+    {
+      "name": "tiFlowParallel"
+    },
+    {
+      "name": "tiFlowSwitch"
+    },
+    {
+      "name": "tiFolderAdd"
+    },
+    {
+      "name": "tiFolderDelete"
+    },
+    {
+      "name": "tiFolderOpen"
+    },
+    {
+      "name": "tiFolder"
+    },
+    {
+      "name": "tiGift"
+    },
+    {
+      "name": "tiGlobeOutline"
+    },
+    {
+      "name": "tiGlobe"
+    },
+    {
+      "name": "tiGroupOutline"
+    },
+    {
+      "name": "tiGroup"
+    },
+    {
+      "name": "tiHeadphones"
+    },
+    {
+      "name": "tiHeartFullOutline"
+    },
+    {
+      "name": "tiHeartHalfOutline"
+    },
+    {
+      "name": "tiHeartOutline"
+    },
+    {
+      "name": "tiHeart"
+    },
+    {
+      "name": "tiHomeOutline"
+    },
+    {
+      "name": "tiHome"
+    },
+    {
+      "name": "tiHtml5"
+    },
+    {
+      "name": "tiImageOutline"
+    },
+    {
+      "name": "tiImage"
+    },
+    {
+      "name": "tiInfinityOutline"
+    },
+    {
+      "name": "tiInfinity"
+    },
+    {
+      "name": "tiInfoLargeOutline"
+    },
+    {
+      "name": "tiInfoLarge"
+    },
+    {
+      "name": "tiInfoOutline"
+    },
+    {
+      "name": "tiInfo"
+    },
+    {
+      "name": "tiInputCheckedOutline"
+    },
+    {
+      "name": "tiInputChecked"
+    },
+    {
+      "name": "tiKeyOutline"
+    },
+    {
+      "name": "tiKey"
+    },
+    {
+      "name": "tiKeyboard"
+    },
+    {
+      "name": "tiLeaf"
+    },
+    {
+      "name": "tiLightbulb"
+    },
+    {
+      "name": "tiLinkOutline"
+    },
+    {
+      "name": "tiLink"
+    },
+    {
+      "name": "tiLocationArrowOutline"
+    },
+    {
+      "name": "tiLocationArrow"
+    },
+    {
+      "name": "tiLocationOutline"
+    },
+    {
+      "name": "tiLocation"
+    },
+    {
+      "name": "tiLockClosedOutline"
+    },
+    {
+      "name": "tiLockClosed"
+    },
+    {
+      "name": "tiLockOpenOutline"
+    },
+    {
+      "name": "tiLockOpen"
+    },
+    {
+      "name": "tiMail"
+    },
+    {
+      "name": "tiMap"
+    },
+    {
+      "name": "tiMediaEjectOutline"
+    },
+    {
+      "name": "tiMediaEject"
+    },
+    {
+      "name": "tiMediaFastForwardOutline"
+    },
+    {
+      "name": "tiMediaFastForward"
+    },
+    {
+      "name": "tiMediaPauseOutline"
+    },
+    {
+      "name": "tiMediaPause"
+    },
+    {
+      "name": "tiMediaPlayOutline"
+    },
+    {
+      "name": "tiMediaPlayReverseOutline"
+    },
+    {
+      "name": "tiMediaPlayReverse"
+    },
+    {
+      "name": "tiMediaPlay"
+    },
+    {
+      "name": "tiMediaRecordOutline"
+    },
+    {
+      "name": "tiMediaRecord"
+    },
+    {
+      "name": "tiMediaRewindOutline"
+    },
+    {
+      "name": "tiMediaRewind"
+    },
+    {
+      "name": "tiMediaStopOutline"
+    },
+    {
+      "name": "tiMediaStop"
+    },
+    {
+      "name": "tiMessageTyping"
+    },
+    {
+      "name": "tiMessage"
+    },
+    {
+      "name": "tiMessages"
+    },
+    {
+      "name": "tiMicrophoneOutline"
+    },
+    {
+      "name": "tiMicrophone"
+    },
+    {
+      "name": "tiMinusOutline"
+    },
+    {
+      "name": "tiMinus"
+    },
+    {
+      "name": "tiMortarBoard"
+    },
+    {
+      "name": "tiNews"
+    },
+    {
+      "name": "tiNotesOutline"
+    },
+    {
+      "name": "tiNotes"
+    },
+    {
+      "name": "tiPen"
+    },
+    {
+      "name": "tiPencil"
+    },
+    {
+      "name": "tiPhoneOutline"
+    },
+    {
+      "name": "tiPhone"
+    },
+    {
+      "name": "tiPiOutline"
+    },
+    {
+      "name": "tiPi"
+    },
+    {
+      "name": "tiPinOutline"
+    },
+    {
+      "name": "tiPin"
+    },
+    {
+      "name": "tiPipette"
+    },
+    {
+      "name": "tiPlaneOutline"
+    },
+    {
+      "name": "tiPlane"
+    },
+    {
+      "name": "tiPlug"
+    },
+    {
+      "name": "tiPlusOutline"
+    },
+    {
+      "name": "tiPlus"
+    },
+    {
+      "name": "tiPointOfInterestOutline"
+    },
+    {
+      "name": "tiPointOfInterest"
+    },
+    {
+      "name": "tiPowerOutline"
+    },
+    {
+      "name": "tiPower"
+    },
+    {
+      "name": "tiPrinter"
+    },
+    {
+      "name": "tiPuzzleOutline"
+    },
+    {
+      "name": "tiPuzzle"
+    },
+    {
+      "name": "tiRadarOutline"
+    },
+    {
+      "name": "tiRadar"
+    },
+    {
+      "name": "tiRefreshOutline"
+    },
+    {
+      "name": "tiRefresh"
+    },
+    {
+      "name": "tiRssOutline"
+    },
+    {
+      "name": "tiRss"
+    },
+    {
+      "name": "tiScissorsOutline"
+    },
+    {
+      "name": "tiScissors"
+    },
+    {
+      "name": "tiShoppingBag"
+    },
+    {
+      "name": "tiShoppingCart"
+    },
+    {
+      "name": "tiSocialAtCircular"
+    },
+    {
+      "name": "tiSocialDribbbleCircular"
+    },
+    {
+      "name": "tiSocialDribbble"
+    },
+    {
+      "name": "tiSocialFacebookCircular"
+    },
+    {
+      "name": "tiSocialFacebook"
+    },
+    {
+      "name": "tiSocialFlickrCircular"
+    },
+    {
+      "name": "tiSocialFlickr"
+    },
+    {
+      "name": "tiSocialGithubCircular"
+    },
+    {
+      "name": "tiSocialGithub"
+    },
+    {
+      "name": "tiSocialGooglePlusCircular"
+    },
+    {
+      "name": "tiSocialGooglePlus"
+    },
+    {
+      "name": "tiSocialInstagramCircular"
+    },
+    {
+      "name": "tiSocialInstagram"
+    },
+    {
+      "name": "tiSocialLastFmCircular"
+    },
+    {
+      "name": "tiSocialLastFm"
+    },
+    {
+      "name": "tiSocialLinkedinCircular"
+    },
+    {
+      "name": "tiSocialLinkedin"
+    },
+    {
+      "name": "tiSocialPinterestCircular"
+    },
+    {
+      "name": "tiSocialPinterest"
+    },
+    {
+      "name": "tiSocialSkypeOutline"
+    },
+    {
+      "name": "tiSocialSkype"
+    },
+    {
+      "name": "tiSocialTumblerCircular"
+    },
+    {
+      "name": "tiSocialTumbler"
+    },
+    {
+      "name": "tiSocialTwitterCircular"
+    },
+    {
+      "name": "tiSocialTwitter"
+    },
+    {
+      "name": "tiSocialVimeoCircular"
+    },
+    {
+      "name": "tiSocialVimeo"
+    },
+    {
+      "name": "tiSocialYoutubeCircular"
+    },
+    {
+      "name": "tiSocialYoutube"
+    },
+    {
+      "name": "tiSortAlphabeticallyOutline"
+    },
+    {
+      "name": "tiSortAlphabetically"
+    },
+    {
+      "name": "tiSortNumericallyOutline"
+    },
+    {
+      "name": "tiSortNumerically"
+    },
+    {
+      "name": "tiSpannerOutline"
+    },
+    {
+      "name": "tiSpanner"
+    },
+    {
+      "name": "tiSpiral"
+    },
+    {
+      "name": "tiStarFullOutline"
+    },
+    {
+      "name": "tiStarHalfOutline"
+    },
+    {
+      "name": "tiStarHalf"
+    },
+    {
+      "name": "tiStarOutline"
+    },
+    {
+      "name": "tiStar"
+    },
+    {
+      "name": "tiStarburstOutline"
+    },
+    {
+      "name": "tiStarburst"
+    },
+    {
+      "name": "tiStopwatch"
+    },
+    {
+      "name": "tiSupport"
+    },
+    {
+      "name": "tiTabsOutline"
+    },
+    {
+      "name": "tiTag"
+    },
+    {
+      "name": "tiTags"
+    },
+    {
+      "name": "tiThLargeOutline"
+    },
+    {
+      "name": "tiThLarge"
+    },
+    {
+      "name": "tiThListOutline"
+    },
+    {
+      "name": "tiThList"
+    },
+    {
+      "name": "tiThMenuOutline"
+    },
+    {
+      "name": "tiThMenu"
+    },
+    {
+      "name": "tiThSmallOutline"
+    },
+    {
+      "name": "tiThSmall"
+    },
+    {
+      "name": "tiThermometer"
+    },
+    {
+      "name": "tiThumbsDown"
+    },
+    {
+      "name": "tiThumbsOk"
+    },
+    {
+      "name": "tiThumbsUp"
+    },
+    {
+      "name": "tiTickOutline"
+    },
+    {
+      "name": "tiTick"
+    },
+    {
+      "name": "tiTicket"
+    },
+    {
+      "name": "tiTime"
+    },
+    {
+      "name": "tiTimesOutline"
+    },
+    {
+      "name": "tiTimes"
+    },
+    {
+      "name": "tiTrash"
+    },
+    {
+      "name": "tiTree"
+    },
+    {
+      "name": "tiUploadOutline"
+    },
+    {
+      "name": "tiUpload"
+    },
+    {
+      "name": "tiUserAddOutline"
+    },
+    {
+      "name": "tiUserAdd"
+    },
+    {
+      "name": "tiUserDeleteOutline"
+    },
+    {
+      "name": "tiUserDelete"
+    },
+    {
+      "name": "tiUserOutline"
+    },
+    {
+      "name": "tiUser"
+    },
+    {
+      "name": "tiVendorAndroid"
+    },
+    {
+      "name": "tiVendorApple"
+    },
+    {
+      "name": "tiVendorMicrosoft"
+    },
+    {
+      "name": "tiVideoOutline"
+    },
+    {
+      "name": "tiVideo"
+    },
+    {
+      "name": "tiVolumeDown"
+    },
+    {
+      "name": "tiVolumeMute"
+    },
+    {
+      "name": "tiVolumeUp"
+    },
+    {
+      "name": "tiVolume"
+    },
+    {
+      "name": "tiWarningOutline"
+    },
+    {
+      "name": "tiWarning"
+    },
+    {
+      "name": "tiWatch"
+    },
+    {
+      "name": "tiWavesOutline"
+    },
+    {
+      "name": "tiWaves"
+    },
+    {
+      "name": "tiWeatherCloudy"
+    },
+    {
+      "name": "tiWeatherDownpour"
+    },
+    {
+      "name": "tiWeatherNight"
+    },
+    {
+      "name": "tiWeatherPartlySunny"
+    },
+    {
+      "name": "tiWeatherShower"
+    },
+    {
+      "name": "tiWeatherSnow"
+    },
+    {
+      "name": "tiWeatherStormy"
+    },
+    {
+      "name": "tiWeatherSunny"
+    },
+    {
+      "name": "tiWeatherWindyCloudy"
+    },
+    {
+      "name": "tiWeatherWindy"
+    },
+    {
+      "name": "tiWiFiOutline"
+    },
+    {
+      "name": "tiWiFi"
+    },
+    {
+      "name": "tiWine"
+    },
+    {
+      "name": "tiWorldOutline"
+    },
+    {
+      "name": "tiWorld"
+    },
+    {
+      "name": "tiZoomInOutline"
+    },
+    {
+      "name": "tiZoomIn"
+    },
+    {
+      "name": "tiZoomOutOutline"
+    },
+    {
+      "name": "tiZoomOut"
+    },
+    {
+      "name": "tiZoomOutline"
+    },
+    {
+      "name": "tiZoom"
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

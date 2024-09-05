@@ -1,27 +1,50 @@
 {
-  "includes": {
-    "luatexja": []
-  },
-  "macros": {
-    "ltjenableadjust": {},
-    "ltjenableadjust[]": {
-      "snippet": "ltjenableadjust[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "luatexja"
+    }
+  ],
+  "macros": [
+    {
+      "name": "ltjenableadjust"
     },
-    "ltjdisableadjust": {},
-    "ltjghostbeforejachar": {},
-    "ltjghostafterjachar": {},
-    "ltjghostjachar": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "lineend=${1|false,true,extended|}",
+    {
+      "name": "ltjenableadjust",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "ltjdisableadjust"
+    },
+    {
+      "name": "ltjghostbeforejachar"
+    },
+    {
+      "name": "ltjghostafterjachar"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\ltjenableadjust": [
+      "lineend=${1|false,true,extended\r|}",
       "priority",
       "profile",
       "linestep"
+    ],
+    "\\ltjsetparameter,\\ltjglobalsetparameter": [
+      "stretch_priority={${1:keyval list}}\r",
+      "shrink_priority={${1:keyval list}}\r",
+      "linestep_factor=${1:real}\r",
+      "profile_hgap_factor=${1:real}\r"
+    ],
+    "\\ltjgetparameter": [
+      "stretch_priority\r",
+      "shrink_priority\r",
+      "linestep_factor\r",
+      "profile_hgap_factor\r"
     ]
-  ]
+  },
+  "args": []
 }

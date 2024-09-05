@@ -1,122 +1,249 @@
 {
-  "includes": {
-    "pgf": [],
-    "pgffor": [],
-    "graphicx": [],
-    "bookmark": []
-  },
-  "macros": {
-    "incgraph{}": {
-      "snippet": "incgraph{${1:imagefile}}"
+  "deps": [
+    {
+      "name": "pgf"
     },
-    "incgraph[]{}": {
-      "snippet": "incgraph[${2:options}]{${1:imagefile}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "pgffor"
     },
-    "incgraph[][]{}": {
-      "snippet": "incgraph[${2:options}][${3:graphics options}]{${1:imagefile}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "graphicx"
     },
-    "incmultigraph{}{}": {
-      "snippet": "incmultigraph{${1:file name pattern}}{${2:list}}"
-    },
-    "incmultigraph[]{}{}": {
-      "snippet": "incmultigraph[${3:options}]{${1:file name pattern}}{${2:list}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "incmultigraph[][]{}{}": {
-      "snippet": "incmultigraph[${3:options}][${4:graphics options}]{${1:file name pattern}}{${2:list}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "n": {
-      "detail": "𝑛",
-      "documentation": "MATHEMATICAL ITALIC SMALL N"
-    },
-    "ni": {
-      "detail": "∋",
-      "documentation": "con variant"
-    },
-    "nn": {},
-    "nt": {},
-    "igrset{}": {
-      "snippet": "igrset{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "igrGetPageSize": {},
-    "igrPageWidth": {},
-    "igrPageHeight": {},
-    "igrSetPageSize{}{}": {
-      "snippet": "igrSetPageSize{${1:width}}{${2:height}}"
-    },
-    "igrGetLastPage{}": {
-      "snippet": "igrGetLastPage{${1:file}}"
-    },
-    "igrLastPage": {},
-    "igfpage{}": {
-      "snippet": "igfpage{${1:text}}"
-    },
-    "igrcenter{}": {
-      "snippet": "igrcenter{${1:text}}"
-    },
-    "igrcenterfit{}{}{}": {
-      "snippet": "igrcenterfit{${1:width}}{${2:height}}{${3:text}}"
-    },
-    "igrtargetset{}": {
-      "snippet": "igrtargetset{${1:hyperref anchor}}"
-    },
-    "theigrpage": {},
-    "igrpagestyle": {},
-    "igrmatchvalue": {},
-    "igfboxset{}": {
-      "snippet": "igfboxset{${1:text}}"
-    },
-    "igrboxcenter": {},
-    "igrboxtikz": {},
-    "igrboxtikzpage": {},
-    "igrboxtikzcenter": {},
-    "igrbox": {},
-    "igrAutoTarget": {},
-    "igrBoxWidth": {},
-    "igrBoxHeight": {},
-    "igrBoxht": {},
-    "igrBoxdp": {},
-    "igrsetmatchvalue{}{}": {
-      "snippet": "igrsetmatchvalue{${1:key}}{${2:value}}"
-    },
-    "igrsetmatches{}": {
-      "snippet": "igrsetmatches{${1:list}}"
-    },
-    "igrifmatch{}{}{}": {
-      "snippet": "igrifmatch{${1:key}}{${2:then}}{${3:else}}"
-    },
-    "igrmakezerofill{}{}": {
-      "snippet": "igrmakezerofill{${1:macro}}{${2:digits}}"
+    {
+      "name": "bookmark"
     }
-  },
-  "envs": {
-    "inctext": {},
-    "inctext[]": {
-      "name": "inctext",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    }
-  },
-  "options": [
-    "pgf",
-    "nopgf",
-    "graphicx",
-    "nographicx",
-    "bookmark",
-    "nobookmark"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "incgraph",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "incgraph",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "incgraph",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:options%keyvals}][${3:graphics options}]{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "incmultigraph",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:file name pattern}}{${2:list}}"
+      }
+    },
+    {
+      "name": "incmultigraph",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:file name pattern}}{${2:list}}"
+      }
+    },
+    {
+      "name": "incmultigraph",
+      "arg": {
+        "format": "[][]{}{}",
+        "snippet": "[${3:options%keyvals}][${4:graphics options}]{${1:file name pattern}}{${2:list}}"
+      }
+    },
+    {
+      "name": "n",
+      "unusual": true
+    },
+    {
+      "name": "ni",
+      "unusual": true,
+      "detail": "∋",
+      "doc": "\\owns, contains, variant"
+    },
+    {
+      "name": "nn",
+      "unusual": true
+    },
+    {
+      "name": "nt",
+      "unusual": true
+    },
+    {
+      "name": "igrset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\incgraph,\\incmultigraph,\\begin{inctext},\\igrset"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "igrGetPageSize"
+    },
+    {
+      "name": "igrPageWidth"
+    },
+    {
+      "name": "igrPageHeight"
+    },
+    {
+      "name": "igrSetPageSize",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "igrGetLastPage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "igrLastPage"
+    },
+    {
+      "name": "igfpage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "igrcenter",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "igrcenterfit",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:width}}{${2:height}}{${3:text}}"
+      }
+    },
+    {
+      "name": "igrtargetset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:hyperref anchor}}"
+      }
+    },
+    {
+      "name": "theigrpage"
+    },
+    {
+      "name": "igrpagestyle",
+      "unusual": true
+    },
+    {
+      "name": "igrmatchvalue",
+      "unusual": true
+    },
+    {
+      "name": "igfboxset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "igrboxcenter"
+    },
+    {
+      "name": "igrboxtikz"
+    },
+    {
+      "name": "igrboxtikzpage"
+    },
+    {
+      "name": "igrboxtikzcenter"
+    },
+    {
+      "name": "igrbox",
+      "unusual": true
+    },
+    {
+      "name": "igrAutoTarget",
+      "unusual": true
+    },
+    {
+      "name": "igrBoxWidth",
+      "unusual": true
+    },
+    {
+      "name": "igrBoxHeight",
+      "unusual": true
+    },
+    {
+      "name": "igrBoxht",
+      "unusual": true
+    },
+    {
+      "name": "igrBoxdp",
+      "unusual": true
+    },
+    {
+      "name": "igrsetmatchvalue",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:key%plain}}{${2:value}}"
+      }
+    },
+    {
+      "name": "igrsetmatches",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:list}}"
+      }
+    },
+    {
+      "name": "igrifmatch",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:key%plain}}{${2:then}}{${3:else}}"
+      }
+    },
+    {
+      "name": "igrmakezerofill",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:macro}}{${2:digits}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "inctext"
+    },
+    {
+      "name": "inctext",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/incgraph#c": [
+      "pgf",
+      "nopgf",
+      "graphicx",
+      "nographicx",
+      "bookmark",
+      "nobookmark"
+    ],
+    "\\incgraph,\\incmultigraph,\\begin{inctext},\\igrset": [
       "currentpaper",
       "documentpaper",
       "graphicspaper",
@@ -221,5 +348,8 @@
       "pagestyle=${1:page style}",
       "zerofill=${1:digits}"
     ]
+  },
+  "args": [
+    "\\usepackage/incgraph#c"
   ]
 }

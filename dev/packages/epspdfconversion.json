@@ -1,53 +1,81 @@
 {
-  "includes": {
-    "epstopdf-base": [],
-    "graphics": [],
-    "kvoptions": []
-  },
-  "macros": {
-    "epspdfconversionsetup{}": {
-      "snippet": "epspdfconversionsetup{${1:options}}"
+  "deps": [
+    {
+      "name": "epstopdf-base"
     },
-    "epspdfconversioncmdline{}": {
-      "snippet": "epspdfconversioncmdline{${1:command}}"
+    {
+      "name": "graphics"
     },
-    "CheckOutdir": {},
-    "MinorVersion": {}
-  },
-  "envs": {},
-  "options": [
-    "cmd=${1:command}",
-    "gray",
-    "GRAY",
-    "grey",
-    "GREY",
-    "nogrey",
-    "nogray",
-    "target=${1|default,printer,prepress,screen,ebook|}",
-    "default",
-    "printer",
-    "prepress",
-    "screen",
-    "ebook",
-    "pdfversion=${1|default,1.2,1.3,1.4|}",
-    "bbox",
-    "pdftopdf",
-    "pstopdf",
-    "pdftops",
-    "nopdftops",
-    "hires",
-    "no-hires",
-    "custom={${1:GhostScript options}}",
-    "psoptions={${1:pdftops options}}",
-    "pagenumber=${1:number}",
-    "simple",
-    "help",
-    "update",
-    "verbose",
-    "prefersuffix",
-    "suffix=${1:suffix}",
-    "outdir=${1:directory}",
-    "prepend"
+    {
+      "name": "kvoptions"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "epspdfconversionsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\usepackage/epspdfconversion#c,\\epspdfconversionsetup"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "epspdfconversioncmdline",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:command}}"
+      }
+    },
+    {
+      "name": "CheckOutdir",
+      "unusual": true
+    },
+    {
+      "name": "MinorVersion",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/epspdfconversion#c,\\epspdfconversionsetup": [
+      "cmd=${1:command}\r",
+      "gray\r",
+      "GRAY\r",
+      "grey\r",
+      "GREY\r",
+      "nogrey\r",
+      "nogray\r",
+      "target=${1|default,printer,prepress,screen,ebook\r|}",
+      "default\r",
+      "printer\r",
+      "prepress\r",
+      "screen\r",
+      "ebook\r",
+      "pdfversion=${1|default,1.2,1.3,1.4\r|}",
+      "bbox",
+      "pdftopdf",
+      "pstopdf",
+      "pdftops\r",
+      "nopdftops\r",
+      "hires\r",
+      "no-hires\r",
+      "custom={${1:GhostScript options}}\r",
+      "psoptions={${1:pdftops options}}\r",
+      "pagenumber=${1:number}\r",
+      "simple\r",
+      "help\r",
+      "update",
+      "verbose",
+      "prefersuffix",
+      "suffix=${1:suffix}\r",
+      "outdir=${1:directory}\r",
+      "prepend"
+    ]
+  },
+  "args": [
+    "\\usepackage/epspdfconversion#c,\\epspdfconversionsetup"
+  ]
 }

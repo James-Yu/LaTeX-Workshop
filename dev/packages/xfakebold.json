@@ -1,19 +1,37 @@
 {
-  "includes": {
-    "iftex": [],
-    "pdfrender": [],
-    "xkeyval": []
-  },
-  "macros": {
-    "setBold": {},
-    "setBold[]": {
-      "snippet": "setBold[${1:number}]"
+  "deps": [
+    {
+      "name": "iftex"
     },
-    "unsetBold": {}
-  },
-  "envs": {},
-  "options": [
-    "bold=${1:number}"
+    {
+      "name": "pdfrender"
+    },
+    {
+      "name": "xkeyval"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "setBold"
+    },
+    {
+      "name": "setBold",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:number}]"
+      }
+    },
+    {
+      "name": "unsetBold"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/xfakebold#c": [
+      "bold=${1:number}\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/xfakebold#c"
+  ]
 }

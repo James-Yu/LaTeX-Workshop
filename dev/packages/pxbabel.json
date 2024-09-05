@@ -1,203 +1,494 @@
 {
-  "includes": {
-    "pxbase": [],
-    "ifptex": [],
-    "babel": [],
-    "ifuptex": []
-  },
-  "macros": {
-    "cjklanguagename{}": {
-      "snippet": "cjklanguagename{${1:lang-id}}"
+  "deps": [
+    {
+      "name": "pxbase"
     },
-    "UTFJ{}": {
-      "snippet": "UTFJ{${1:hex number}}"
+    {
+      "name": "ifptex"
     },
-    "pxUTFJ{}": {
-      "snippet": "pxUTFJ{${1:hex number}}"
+    {
+      "name": "babel"
     },
-    "pxInNonJaLanguage": {},
-    "pxDeclareCJKEncoding{}{}": {
-      "snippet": "pxDeclareCJKEncoding{${1:h-encoding}}{${2:v-encoding}}"
-    },
-    "pxDeclareCJKEncoding*{}{}": {
-      "snippet": "pxDeclareCJKEncoding*{${1:h-encoding}}{${2:v-encoding}}"
-    },
-    "pxDeclareBasicCJKEncoding{}{}": {
-      "snippet": "pxDeclareBasicCJKEncoding{${1:h-encoding}}{${2:v-encoding}}"
-    },
-    "pxDeclareBasicCJKEncoding*{}{}": {
-      "snippet": "pxDeclareBasicCJKEncoding*{${1:h-encoding}}{${2:v-encoding}}"
-    },
-    "pxDeclareBasicCJKFamily{}{}{}{}{}": {
-      "snippet": "pxDeclareBasicCJKFamily{${1:encoding}}{${2:mc-m}}{${3:gt-m}}{${4:mc-bx}}{${5:gt-bx}}"
-    },
-    "pxDeclareBasicCJKFamily*{}{}{}{}{}": {
-      "snippet": "pxDeclareBasicCJKFamily*{${1:encoding}}{${2:mc-m}}{${3:gt-m}}{${4:mc-bx}}{${5:gt-bx}}"
-    },
-    "pxDeclareExtraCJKFamily{}{}{}{}": {
-      "snippet": "pxDeclareExtraCJKFamily{${1:encoding}}{${2:family}}{${3:font-m}}{${4:font-bx}}"
-    },
-    "pxDeclareExtraCJKFamily*{}{}{}{}": {
-      "snippet": "pxDeclareExtraCJKFamily*{${1:encoding}}{${2:family}}{${3:font-m}}{${4:font-bx}}"
-    },
-    "pxDeclareBasicCJKFallback{}{}{}": {
-      "snippet": "pxDeclareBasicCJKFallback{${1:encoding}}{${2:family}}{${3:series}}"
-    },
-    "pxDeclareBasicCJKShape{}{}{}{}": {
-      "snippet": "pxDeclareBasicCJKShape{${1:encoding}}{${2:family}}{${3:series}}{${4:font}}"
-    },
-    "pxDeclareCJKShape{}{}{}{}{}": {
-      "snippet": "pxDeclareCJKShape{${1:encoding}}{${2:family}}{${3:series}}{${4:shape}}{${5:font}}"
-    },
-    "pxDefineFontSubst{}{}": {
-      "snippet": "pxDefineFontSubst{${1:sym}}{${2:text}}"
-    },
-    "pxFontSubst{}": {
-      "snippet": "pxFontSubst{${1:spec}}"
-    },
-    "pxDeclareSimpleShape{}{}{}{}{}": {
-      "snippet": "pxDeclareSimpleShape{${1:encoding}}{${2:family}}{${3:series}}{${4:shape}}{${5:font}}"
-    },
-    "pxDeclareExtraCJKShapeBF{}{}{}{}{}{}": {
-      "snippet": "pxDeclareExtraCJKShapeBF{${1:encoding}}{${2:shape}}{${3:mc-m}}{${4:gt-m}}{${5:mc-bx}}{${6:gt-bx}}"
-    },
-    "pxForceFontDeclaration": {},
-    "pxDeclareKanjiFamily{}{}": {
-      "snippet": "pxDeclareKanjiFamily{${1:encoding}}{${2:family}}"
-    },
-    "pxDeclareFontShape{}{}{}{}{}": {
-      "snippet": "pxDeclareFontShape{${1:encoding}}{${2:family}}{${3:series}}{${4:shape}}{${5:spec}}"
-    },
-    "pxUndeclareFontShape{}{}{}{}": {
-      "snippet": "pxUndeclareFontShape{${1:encoding}}{${2:family}}{${3:series}}{${4:shape}}"
-    },
-    "pxDeclareEncodingDispatcher{}{}": {
-      "snippet": "pxDeclareEncodingDispatcher{${1:encoding}}{${2:text}}"
-    },
-    "pxDispatchEncodings{}": {
-      "snippet": "pxDispatchEncodings{${1:enc1,${2:enc2},...}}"
-    },
-    "pxIsEncodingDispatched{}": {
-      "snippet": "pxIsEncodingDispatched{${1:encoding}}"
-    },
-    "pxBothEncodingsFromName{}{}{}": {
-      "snippet": "pxBothEncodingsFromName{${1:\\CSyoko}}{${2:\\CState}}{${3:encoding}}"
-    },
-    "pxEncodingFromName{}": {
-      "snippet": "pxEncodingFromName{${1:encoding}}"
-    },
-    "pxTateEncodingFromName{}": {
-      "snippet": "pxTateEncodingFromName{${1:encoding}}"
-    },
-    "pxSetEncodingName{}{}{}": {
-      "snippet": "pxSetEncodingName{${1:encoding}}{${2:h-encoding}}{${3:v-encoding}}"
-    },
-    "pxDeclareCJKEncodingNE{}": {
-      "snippet": "pxDeclareCJKEncodingNE{${1:encoding}}"
-    },
-    "pxDeclareCJKEncodingNE*{}": {
-      "snippet": "pxDeclareCJKEncodingNE*{${1:encoding}}"
-    },
-    "pxDeclareExtraCJKFamilyNE{}{}{}{}{}{}": {
-      "snippet": "pxDeclareExtraCJKFamilyNE{${1:encoding}}{${2:family}}{${3:h-m}}{${4:h-bx}}{${5:v-m}}{${6:v-bx}}"
-    },
-    "pxDeclareExtraCJKFamilyNE*{}{}{}{}{}{}": {
-      "snippet": "pxDeclareExtraCJKFamilyNE*{${1:encoding}}{${2:family}}{${3:h-m}}{${4:h-bx}}{${5:v-m}}{${6:v-bx}}"
-    },
-    "pxDeclareBasicCJKShapeNE{}{}{}{}{}": {
-      "snippet": "pxDeclareBasicCJKShapeNE{${1:encoding}}{${2:family}}{${3:series}}{${4:h-font}}{${5:v-font}}"
-    },
-    "pxDeclareBasicCJKShapeNE*{}{}{}{}{}": {
-      "snippet": "pxDeclareBasicCJKShapeNE*{${1:encoding}}{${2:family}}{${3:series}}{${4:h-font}}{${5:v-font}}"
-    },
-    "pxDeclareCJKShapeNE{}{}{}{}{}{}": {
-      "snippet": "pxDeclareCJKShapeNE{${1:encoding}}{${2:family}}{${3:series}}{${4:shape}}{${5:h-font}}{${6:v-font}}"
-    },
-    "pxDeclareJSFEncoding{}{}{}": {
-      "snippet": "pxDeclareJSFEncoding{${1:h-encoding}}{${2:v-encoding}}{${3:sfid,...}}"
-    },
-    "DeclareJSFFamily{}{}{}": {
-      "snippet": "DeclareJSFFamily{${1:encoding}}{${2:family}}{${3:body}}"
-    },
-    "DeclareJSFFamily{}{}[]{}": {
-      "snippet": "DeclareJSFFamily{${1:encoding}}{${2:family}}[${3:sfid,...}]{${4:body}}"
-    },
-    "AppendToJSFFamily{}{}{}": {
-      "snippet": "AppendToJSFFamily{${1:encoding}}{${2:family}}{${3:body}}"
-    },
-    "AppendToJSFFamily{}{}[]{}": {
-      "snippet": "AppendToJSFFamily{${1:encoding}}{${2:family}}[${3:sfid,...}]{${4:body}}"
-    },
-    "JSFBasicShapeSet{}{}": {
-      "snippet": "JSFBasicShapeSet{${1:font-m-n}}{${2:font-bx-n}}"
-    },
-    "JSFBasicShapeSet*{}{}": {
-      "snippet": "JSFBasicShapeSet*{${1:font-m-n}}{${2:font-bx-n}}"
-    },
-    "JSFFallback{}": {
-      "snippet": "JSFFallback{${1:series}}"
-    },
-    "JSFBasicShape{}{}": {
-      "snippet": "JSFBasicShape{${1:series}}{${2:font-n}}"
-    },
-    "JSFBasicShape*{}{}": {
-      "snippet": "JSFBasicShape*{${1:series}}{${2:font-n}}"
-    },
-    "JSFShape{}{}{}": {
-      "snippet": "JSFShape{${1:series}}{${2:shape}}{${3:font}}"
-    },
-    "JSFShape*{}{}{}": {
-      "snippet": "JSFShape*{${1:series}}{${2:shape}}{${3:font}}"
-    },
-    "JSFShapeRaw{}{}{}": {
-      "snippet": "JSFShapeRaw{${1:series}}{${2:shape}}{${3:spec}}"
-    },
-    "pxStdYEnc": {},
-    "pxStdTEnc": {},
-    "selectjaencoding{}": {
-      "snippet": "selectjaencoding{${1:encoding}}"
-    },
-    "normaljaencoding": {},
-    "standardjaencoding": {},
-    "pxBDHookEncSwitchOTF": {},
-    "pxEncSwitchOTF": {},
-    "captionsenglish": {},
-    "dateenglish": {},
-    "extrasenglish": {},
-    "noextrasenglish": {},
-    "englishhyphenmins": {},
-    "britishhyphenmins": {},
-    "americanhyphenmins": {},
-    "prefacename": {},
-    "bibname": {},
-    "chaptername": {},
-    "enclname": {},
-    "ccname": {},
-    "headtoname": {},
-    "seename": {},
-    "alsoname": {},
-    "proofname": {},
-    "glossaryname": {}
-  },
-  "envs": {},
-  "options": [
-    "japanese",
-    "korean",
-    "schinese",
-    "tchinese",
-    "${1:lang-id}=${2:lang-name}",
-    "${1:lang-id}=+${2:lang-name}",
-    "${1:lang-id}",
-    "+${1:lang-id}",
-    "main=${1:lang-name}",
-    "caption=${1|main,default,switch,auto|}",
-    "noswitchcaption",
-    "switchcaption",
-    "switchfont",
-    "noswitchfont",
-    "stdjaencoding",
-    "nostdjaencoding",
-    "deluxemulti"
+    {
+      "name": "ifuptex"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "cjklanguagename",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:lang-id}}"
+      }
+    },
+    {
+      "name": "UTFJ",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:hex number}}"
+      }
+    },
+    {
+      "name": "pxDeclareCJKEncoding",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:h-encoding}}{${2:v-encoding}}"
+      }
+    },
+    {
+      "name": "pxDeclareCJKEncoding*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:h-encoding}}{${2:v-encoding}}"
+      }
+    },
+    {
+      "name": "pxDeclareBasicCJKFamily",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:encoding}}{${2:mc-m}}{${3:gt-m}}{${4:mc-bx}}{${5:gt-bx}}"
+      }
+    },
+    {
+      "name": "pxDeclareBasicCJKFamily*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:encoding}}{${2:mc-m}}{${3:gt-m}}{${4:mc-bx}}{${5:gt-bx}}"
+      }
+    },
+    {
+      "name": "pxDeclareExtraCJKFamily",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:encoding}}{${2:family}}{${3:font-m}}{${4:font-bx}}"
+      }
+    },
+    {
+      "name": "pxDeclareExtraCJKFamily*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:encoding}}{${2:family}}{${3:font-m}}{${4:font-bx}}"
+      }
+    },
+    {
+      "name": "pxDeclareBasicCJKFallback",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:encoding}}{${2:family}}{${3:series}}"
+      }
+    },
+    {
+      "name": "pxDeclareBasicCJKShape",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:encoding}}{${2:family}}{${3:series}}{${4:font}}"
+      }
+    },
+    {
+      "name": "pxDeclareCJKShape",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:encoding}}{${2:family}}{${3:series}}{${4:shape}}{${5:font}}"
+      }
+    },
+    {
+      "name": "pxDefineFontSubst",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:sym}}{${2:text}}"
+      }
+    },
+    {
+      "name": "pxFontSubst",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:spec}}"
+      }
+    },
+    {
+      "name": "pxDeclareExtraCJKShapeBF",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "{${1:encoding}}{${2:shape}}{${3:mc-m}}{${4:gt-m}}{${5:mc-bx}}{${6:gt-bx}}"
+      }
+    },
+    {
+      "name": "pxForceFontDeclaration",
+      "unusual": true
+    },
+    {
+      "name": "pxDeclareKanjiFamily",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:encoding}}{${2:family}}"
+      }
+    },
+    {
+      "name": "pxDeclareFontShape",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:encoding}}{${2:family}}{${3:series}}{${4:shape}}{${5:spec}}"
+      }
+    },
+    {
+      "name": "pxUndeclareFontShape",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:encoding}}{${2:family}}{${3:series}}{${4:shape}}"
+      }
+    },
+    {
+      "name": "pxDeclareEncodingDispatcher",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:encoding}}{${2:text}}"
+      }
+    },
+    {
+      "name": "pxDispatchEncodings",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:enc1,enc2,...}}"
+      }
+    },
+    {
+      "name": "pxIsEncodingDispatched",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:encoding}}"
+      }
+    },
+    {
+      "name": "pxBothEncodingsFromName",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:\\CSyoko}}{${2:\\CState}}{${3:encoding}}"
+      }
+    },
+    {
+      "name": "pxEncodingFromName",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:encoding}}"
+      }
+    },
+    {
+      "name": "pxTateEncodingFromName",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:encoding}}"
+      }
+    },
+    {
+      "name": "pxSetEncodingName",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:encoding}}{${2:h-encoding}}{${3:v-encoding}}"
+      }
+    },
+    {
+      "name": "pxDeclareCJKEncodingNE",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:encoding}}"
+      }
+    },
+    {
+      "name": "pxDeclareCJKEncodingNE*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:encoding}}"
+      }
+    },
+    {
+      "name": "pxDeclareExtraCJKFamilyNE",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "{${1:encoding}}{${2:family}}{${3:h-m}}{${4:h-bx}}{${5:v-m}}{${6:v-bx}}"
+      }
+    },
+    {
+      "name": "pxDeclareExtraCJKFamilyNE*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "{${1:encoding}}{${2:family}}{${3:h-m}}{${4:h-bx}}{${5:v-m}}{${6:v-bx}}"
+      }
+    },
+    {
+      "name": "pxDeclareBasicCJKShapeNE",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:encoding}}{${2:family}}{${3:series}}{${4:h-font}}{${5:v-font}}"
+      }
+    },
+    {
+      "name": "pxDeclareBasicCJKShapeNE*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:encoding}}{${2:family}}{${3:series}}{${4:h-font}}{${5:v-font}}"
+      }
+    },
+    {
+      "name": "pxDeclareCJKShapeNE",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "{${1:encoding}}{${2:family}}{${3:series}}{${4:shape}}{${5:h-font}}{${6:v-font}}"
+      }
+    },
+    {
+      "name": "pxDeclareJSFEncoding",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:h-encoding}}{${2:v-encoding}}{${3:sfid,...}}"
+      }
+    },
+    {
+      "name": "DeclareJSFFamily",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:encoding}}{${2:family}}{${3:body}}"
+      }
+    },
+    {
+      "name": "DeclareJSFFamily",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]{}",
+        "snippet": "{${1:encoding}}{${2:family}}[${4:sfid,...}]{${3:body}}"
+      }
+    },
+    {
+      "name": "AppendToJSFFamily",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:encoding}}{${2:family}}{${3:body}}"
+      }
+    },
+    {
+      "name": "AppendToJSFFamily",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]{}",
+        "snippet": "{${1:encoding}}{${2:family}}[${4:sfid,...}]{${3:body}}"
+      }
+    },
+    {
+      "name": "JSFBasicShapeSet",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:font-m-n}}{${2:font-bx-n}}"
+      }
+    },
+    {
+      "name": "JSFBasicShapeSet*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:font-m-n}}{${2:font-bx-n}}"
+      }
+    },
+    {
+      "name": "JSFFallback",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:series}}"
+      }
+    },
+    {
+      "name": "JSFBasicShape",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:series}}{${2:font-n}}"
+      }
+    },
+    {
+      "name": "JSFBasicShape*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:series}}{${2:font-n}}"
+      }
+    },
+    {
+      "name": "JSFShape",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:series}}{${2:shape}}{${3:font}}"
+      }
+    },
+    {
+      "name": "JSFShape*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:series}}{${2:shape}}{${3:font}}"
+      }
+    },
+    {
+      "name": "JSFShapeRaw",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:series}}{${2:shape}}{${3:spec}}"
+      }
+    },
+    {
+      "name": "pxStdYEnc",
+      "unusual": true
+    },
+    {
+      "name": "pxStdTEnc",
+      "unusual": true
+    },
+    {
+      "name": "selectjaencoding",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:encoding}}"
+      }
+    },
+    {
+      "name": "normaljaencoding"
+    },
+    {
+      "name": "standardjaencoding"
+    },
+    {
+      "name": "pxBDHookEncSwitchOTF",
+      "unusual": true
+    },
+    {
+      "name": "pxEncSwitchOTF",
+      "unusual": true
+    },
+    {
+      "name": "captionsenglish",
+      "unusual": true
+    },
+    {
+      "name": "dateenglish",
+      "unusual": true
+    },
+    {
+      "name": "extrasenglish",
+      "unusual": true
+    },
+    {
+      "name": "noextrasenglish",
+      "unusual": true
+    },
+    {
+      "name": "englishhyphenmins",
+      "unusual": true
+    },
+    {
+      "name": "britishhyphenmins",
+      "unusual": true
+    },
+    {
+      "name": "americanhyphenmins",
+      "unusual": true
+    },
+    {
+      "name": "prefacename",
+      "unusual": true
+    },
+    {
+      "name": "bibname",
+      "unusual": true
+    },
+    {
+      "name": "chaptername",
+      "unusual": true
+    },
+    {
+      "name": "enclname",
+      "unusual": true
+    },
+    {
+      "name": "ccname",
+      "unusual": true
+    },
+    {
+      "name": "headtoname",
+      "unusual": true
+    },
+    {
+      "name": "seename",
+      "unusual": true
+    },
+    {
+      "name": "alsoname",
+      "unusual": true
+    },
+    {
+      "name": "proofname",
+      "unusual": true
+    },
+    {
+      "name": "glossaryname",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/pxbabel#c": [
+      "japanese\r",
+      "korean\r",
+      "schinese\r",
+      "tchinese\r",
+      "${1:lang-id}=${2:lang-name}\r",
+      "${1:lang-id}=+${2:lang-name}\r",
+      "${1:lang-id}\r",
+      "+${1:lang-id}\r",
+      "main=${1:lang-name}\r",
+      "caption=${1|main,default,switch,auto\r|}",
+      "noswitchcaption\r",
+      "switchcaption\r",
+      "switchfont\r",
+      "noswitchfont\r",
+      "stdjaencoding\r",
+      "nostdjaencoding\r",
+      "deluxemulti"
+    ]
+  },
+  "args": [
+    "\\usepackage/pxbabel#c"
+  ]
 }

@@ -1,716 +1,1315 @@
 {
-  "includes": {
-    "keyval": []
-  },
-  "macros": {
-    "newref{}{}": {
-      "snippet": "newref{${1:type}}{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "partkey": {},
-    "chapkey": {},
-    "seckey": {},
-    "eqkey": {},
-    "figkey": {},
-    "tabkey": {},
-    "fnkey": {},
-    "partlabel{}": {
-      "snippet": "partlabel{${1:label}}"
-    },
-    "chaplabel{}": {
-      "snippet": "chaplabel{${1:label}}"
-    },
-    "seclabel{}": {
-      "snippet": "seclabel{${1:label}}"
-    },
-    "eqlabel{}": {
-      "snippet": "eqlabel{${1:label}}"
-    },
-    "figlabel{}": {
-      "snippet": "figlabel{${1:label}}"
-    },
-    "tablabel{}": {
-      "snippet": "tablabel{${1:label}}"
-    },
-    "fnlabel{}": {
-      "snippet": "fnlabel{${1:label}}"
-    },
-    "partref{}": {
-      "snippet": "partref{${1:label}}"
-    },
-    "partref[]{}": {
-      "snippet": "partref[${2:options}]{${1:label}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "partref*{}": {
-      "snippet": "partref*{${1:label}}"
-    },
-    "partref*[]{}": {
-      "snippet": "partref*[${2:options}]{${1:label}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "Partref{}": {
-      "snippet": "Partref{${1:label}}"
-    },
-    "Partref[]{}": {
-      "snippet": "Partref[${2:options}]{${1:label}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "Partref*{}": {
-      "snippet": "Partref*{${1:label}}"
-    },
-    "Partref*[]{}": {
-      "snippet": "Partref*[${2:options}]{${1:label}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "chapref{}": {
-      "snippet": "chapref{${1:label}}"
-    },
-    "chapref[]{}": {
-      "snippet": "chapref[${2:options}]{${1:label}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "chapref*{}": {
-      "snippet": "chapref*{${1:label}}"
-    },
-    "chapref*[]{}": {
-      "snippet": "chapref*[${2:options}]{${1:label}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "Chapref{}": {
-      "snippet": "Chapref{${1:label}}"
-    },
-    "Chapref[]{}": {
-      "snippet": "Chapref[${2:options}]{${1:label}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "Chapref*{}": {
-      "snippet": "Chapref*{${1:label}}"
-    },
-    "Chapref*[]{}": {
-      "snippet": "Chapref*[${2:options}]{${1:label}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "secref{}": {
-      "snippet": "secref{${1:label}}"
-    },
-    "secref[]{}": {
-      "snippet": "secref[${2:options}]{${1:label}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "secref*{}": {
-      "snippet": "secref*{${1:label}}"
-    },
-    "secref*[]{}": {
-      "snippet": "secref*[${2:options}]{${1:label}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "Secref{}": {
-      "snippet": "Secref{${1:label}}"
-    },
-    "Secref[]{}": {
-      "snippet": "Secref[${2:options}]{${1:label}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "Secref*{}": {
-      "snippet": "Secref*{${1:label}}"
-    },
-    "Secref*[]{}": {
-      "snippet": "Secref*[${2:options}]{${1:label}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "eqref{}": {
-      "snippet": "eqref{${1:label}}"
-    },
-    "eqref[]{}": {
-      "snippet": "eqref[${2:options}]{${1:label}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "eqref*{}": {
-      "snippet": "eqref*{${1:label}}"
-    },
-    "eqref*[]{}": {
-      "snippet": "eqref*[${2:options}]{${1:label}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "Eqref{}": {
-      "snippet": "Eqref{${1:label}}"
-    },
-    "Eqref[]{}": {
-      "snippet": "Eqref[${2:options}]{${1:label}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "Eqref*{}": {
-      "snippet": "Eqref*{${1:label}}"
-    },
-    "Eqref*[]{}": {
-      "snippet": "Eqref*[${2:options}]{${1:label}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "figref{}": {
-      "snippet": "figref{${1:label}}"
-    },
-    "figref[]{}": {
-      "snippet": "figref[${2:options}]{${1:label}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "figref*{}": {
-      "snippet": "figref*{${1:label}}"
-    },
-    "figref*[]{}": {
-      "snippet": "figref*[${2:options}]{${1:label}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "Figref{}": {
-      "snippet": "Figref{${1:label}}"
-    },
-    "Figref[]{}": {
-      "snippet": "Figref[${2:options}]{${1:label}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "Figref*{}": {
-      "snippet": "Figref*{${1:label}}"
-    },
-    "Figref*[]{}": {
-      "snippet": "Figref*[${2:options}]{${1:label}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "tabref{}": {
-      "snippet": "tabref{${1:label}}"
-    },
-    "tabref[]{}": {
-      "snippet": "tabref[${2:options}]{${1:label}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "tabref*{}": {
-      "snippet": "tabref*{${1:label}}"
-    },
-    "tabref*[]{}": {
-      "snippet": "tabref*[${2:options}]{${1:label}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "Tabref{}": {
-      "snippet": "Tabref{${1:label}}"
-    },
-    "Tabref[]{}": {
-      "snippet": "Tabref[${2:options}]{${1:label}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "Tabref*{}": {
-      "snippet": "Tabref*{${1:label}}"
-    },
-    "Tabref*[]{}": {
-      "snippet": "Tabref*[${2:options}]{${1:label}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "fnref{}": {
-      "snippet": "fnref{${1:label}}"
-    },
-    "fnref[]{}": {
-      "snippet": "fnref[${2:options}]{${1:label}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "fnref*{}": {
-      "snippet": "fnref*{${1:label}}"
-    },
-    "fnref*[]{}": {
-      "snippet": "fnref*[${2:options}]{${1:label}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "Fnref{}": {
-      "snippet": "Fnref{${1:label}}"
-    },
-    "Fnref[]{}": {
-      "snippet": "Fnref[${2:options}]{${1:label}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "Fnref*{}": {
-      "snippet": "Fnref*{${1:label}}"
-    },
-    "Fnref*[]{}": {
-      "snippet": "Fnref*[${2:options}]{${1:label}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "partrangeref{}{}": {
-      "snippet": "partrangeref{${1:label1}}{${2:label2}}"
-    },
-    "partrangeref[]{}{}": {
-      "snippet": "partrangeref[${3:options}]{${1:label1}}{${2:label2}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "partrangeref*{}{}": {
-      "snippet": "partrangeref*{${1:label1}}{${2:label2}}"
-    },
-    "partrangeref*[]{}{}": {
-      "snippet": "partrangeref*[${3:options}]{${1:label1}}{${2:label2}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "Partrangeref{}{}": {
-      "snippet": "Partrangeref{${1:label1}}{${2:label2}}"
-    },
-    "Partrangeref[]{}{}": {
-      "snippet": "Partrangeref[${3:options}]{${1:label1}}{${2:label2}}",
-      "keyvalindex": 4,
-      "keyvalpos": 0
-    },
-    "Partrangeref*{}{}": {
-      "snippet": "Partrangeref*{${1:label1}}{${2:label2}}"
-    },
-    "Partrangeref*[]{}{}": {
-      "snippet": "Partrangeref*[${3:options}]{${1:label1}}{${2:label2}}",
-      "keyvalindex": 4,
-      "keyvalpos": 0
-    },
-    "chaprangeref{}{}": {
-      "snippet": "chaprangeref{${1:label1}}{${2:label2}}"
-    },
-    "chaprangeref[]{}{}": {
-      "snippet": "chaprangeref[${3:options}]{${1:label1}}{${2:label2}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "chaprangeref*{}{}": {
-      "snippet": "chaprangeref*{${1:label1}}{${2:label2}}"
-    },
-    "chaprangeref*[]{}{}": {
-      "snippet": "chaprangeref*[${3:options}]{${1:label1}}{${2:label2}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "Chaprangeref{}{}": {
-      "snippet": "Chaprangeref{${1:label1}}{${2:label2}}"
-    },
-    "Chaprangeref[]{}{}": {
-      "snippet": "Chaprangeref[${3:options}]{${1:label1}}{${2:label2}}",
-      "keyvalindex": 4,
-      "keyvalpos": 0
-    },
-    "Chaprangeref*{}{}": {
-      "snippet": "Chaprangeref*{${1:label1}}{${2:label2}}"
-    },
-    "Chaprangeref*[]{}{}": {
-      "snippet": "Chaprangeref*[${3:options}]{${1:label1}}{${2:label2}}",
-      "keyvalindex": 4,
-      "keyvalpos": 0
-    },
-    "secrangeref{}{}": {
-      "snippet": "secrangeref{${1:label1}}{${2:label2}}"
-    },
-    "secrangeref[]{}{}": {
-      "snippet": "secrangeref[${3:options}]{${1:label1}}{${2:label2}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "secrangeref*{}{}": {
-      "snippet": "secrangeref*{${1:label1}}{${2:label2}}"
-    },
-    "secrangeref*[]{}{}": {
-      "snippet": "secrangeref*[${3:options}]{${1:label1}}{${2:label2}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "Secrangeref{}{}": {
-      "snippet": "Secrangeref{${1:label1}}{${2:label2}}"
-    },
-    "Secrangeref[]{}{}": {
-      "snippet": "Secrangeref[${3:options}]{${1:label1}}{${2:label2}}",
-      "keyvalindex": 4,
-      "keyvalpos": 0
-    },
-    "Secrangeref*{}{}": {
-      "snippet": "Secrangeref*{${1:label1}}{${2:label2}}"
-    },
-    "Secrangeref*[]{}{}": {
-      "snippet": "Secrangeref*[${3:options}]{${1:label1}}{${2:label2}}",
-      "keyvalindex": 4,
-      "keyvalpos": 0
-    },
-    "eqrangeref{}{}": {
-      "snippet": "eqrangeref{${1:label1}}{${2:label2}}"
-    },
-    "eqrangeref[]{}{}": {
-      "snippet": "eqrangeref[${3:options}]{${1:label1}}{${2:label2}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "eqrangeref*{}{}": {
-      "snippet": "eqrangeref*{${1:label1}}{${2:label2}}"
-    },
-    "eqrangeref*[]{}{}": {
-      "snippet": "eqrangeref*[${3:options}]{${1:label1}}{${2:label2}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "Eqrangeref{}{}": {
-      "snippet": "Eqrangeref{${1:label1}}{${2:label2}}"
-    },
-    "Eqrangeref[]{}{}": {
-      "snippet": "Eqrangeref[${3:options}]{${1:label1}}{${2:label2}}",
-      "keyvalindex": 4,
-      "keyvalpos": 0
-    },
-    "Eqrangeref*{}{}": {
-      "snippet": "Eqrangeref*{${1:label1}}{${2:label2}}"
-    },
-    "Eqrangeref*[]{}{}": {
-      "snippet": "Eqrangeref*[${3:options}]{${1:label1}}{${2:label2}}",
-      "keyvalindex": 4,
-      "keyvalpos": 0
-    },
-    "figrangeref{}{}": {
-      "snippet": "figrangeref{${1:label1}}{${2:label2}}"
-    },
-    "figrangeref[]{}{}": {
-      "snippet": "figrangeref[${3:options}]{${1:label1}}{${2:label2}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "figrangeref*{}{}": {
-      "snippet": "figrangeref*{${1:label1}}{${2:label2}}"
-    },
-    "figrangeref*[]{}{}": {
-      "snippet": "figrangeref*[${3:options}]{${1:label1}}{${2:label2}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "Figrangeref{}{}": {
-      "snippet": "Figrangeref{${1:label1}}{${2:label2}}"
-    },
-    "Figrangeref[]{}{}": {
-      "snippet": "Figrangeref[${3:options}]{${1:label1}}{${2:label2}}",
-      "keyvalindex": 4,
-      "keyvalpos": 0
-    },
-    "Figrangeref*{}{}": {
-      "snippet": "Figrangeref*{${1:label1}}{${2:label2}}"
-    },
-    "Figrangeref*[]{}{}": {
-      "snippet": "Figrangeref*[${3:options}]{${1:label1}}{${2:label2}}",
-      "keyvalindex": 4,
-      "keyvalpos": 0
-    },
-    "tabrangeref{}{}": {
-      "snippet": "tabrangeref{${1:label1}}{${2:label2}}"
-    },
-    "tabrangeref[]{}{}": {
-      "snippet": "tabrangeref[${3:options}]{${1:label1}}{${2:label2}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "tabrangeref*{}{}": {
-      "snippet": "tabrangeref*{${1:label1}}{${2:label2}}"
-    },
-    "tabrangeref*[]{}{}": {
-      "snippet": "tabrangeref*[${3:options}]{${1:label1}}{${2:label2}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "Tabrangeref{}{}": {
-      "snippet": "Tabrangeref{${1:label1}}{${2:label2}}"
-    },
-    "Tabrangeref[]{}{}": {
-      "snippet": "Tabrangeref[${3:options}]{${1:label1}}{${2:label2}}",
-      "keyvalindex": 4,
-      "keyvalpos": 0
-    },
-    "Tabrangeref*{}{}": {
-      "snippet": "Tabrangeref*{${1:label1}}{${2:label2}}"
-    },
-    "Tabrangeref*[]{}{}": {
-      "snippet": "Tabrangeref*[${3:options}]{${1:label1}}{${2:label2}}",
-      "keyvalindex": 4,
-      "keyvalpos": 0
-    },
-    "fnrangeref{}{}": {
-      "snippet": "fnrangeref{${1:label1}}{${2:label2}}"
-    },
-    "fnrangeref[]{}{}": {
-      "snippet": "fnrangeref[${3:options}]{${1:label1}}{${2:label2}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "fnrangeref*{}{}": {
-      "snippet": "fnrangeref*{${1:label1}}{${2:label2}}"
-    },
-    "fnrangeref*[]{}{}": {
-      "snippet": "fnrangeref*[${3:options}]{${1:label1}}{${2:label2}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "Fnrangeref{}{}": {
-      "snippet": "Fnrangeref{${1:label1}}{${2:label2}}"
-    },
-    "Fnrangeref[]{}{}": {
-      "snippet": "Fnrangeref[${3:options}]{${1:label1}}{${2:label2}}",
-      "keyvalindex": 4,
-      "keyvalpos": 0
-    },
-    "Fnrangeref*{}{}": {
-      "snippet": "Fnrangeref*{${1:label1}}{${2:label2}}"
-    },
-    "Fnrangeref*[]{}{}": {
-      "snippet": "Fnrangeref*[${3:options}]{${1:label1}}{${2:label2}}",
-      "keyvalindex": 4,
-      "keyvalpos": 0
-    },
-    "partpageref{}": {
-      "snippet": "partpageref{${1:label}}"
-    },
-    "partpageref[]{}": {
-      "snippet": "partpageref[${2:options}]{${1:label}}",
-      "keyvalindex": 5,
-      "keyvalpos": 0
-    },
-    "chappageref{}": {
-      "snippet": "chappageref{${1:label}}"
-    },
-    "chappageref[]{}": {
-      "snippet": "chappageref[${2:options}]{${1:label}}",
-      "keyvalindex": 5,
-      "keyvalpos": 0
-    },
-    "secpageref{}": {
-      "snippet": "secpageref{${1:label}}"
-    },
-    "secpageref[]{}": {
-      "snippet": "secpageref[${2:options}]{${1:label}}",
-      "keyvalindex": 5,
-      "keyvalpos": 0
-    },
-    "eqpageref{}": {
-      "snippet": "eqpageref{${1:label}}"
-    },
-    "eqpageref[]{}": {
-      "snippet": "eqpageref[${2:options}]{${1:label}}",
-      "keyvalindex": 5,
-      "keyvalpos": 0
-    },
-    "figpageref{}": {
-      "snippet": "figpageref{${1:label}}"
-    },
-    "figpageref[]{}": {
-      "snippet": "figpageref[${2:options}]{${1:label}}",
-      "keyvalindex": 5,
-      "keyvalpos": 0
-    },
-    "tabpageref{}": {
-      "snippet": "tabpageref{${1:label}}"
-    },
-    "tabpageref[]{}": {
-      "snippet": "tabpageref[${2:options}]{${1:label}}",
-      "keyvalindex": 5,
-      "keyvalpos": 0
-    },
-    "fnpageref{}": {
-      "snippet": "fnpageref{${1:label}}"
-    },
-    "fnpageref[]{}": {
-      "snippet": "fnpageref[${2:options}]{${1:label}}",
-      "keyvalindex": 5,
-      "keyvalpos": 0
-    },
-    "DeclareLangOpt{}{}": {
-      "snippet": "DeclareLangOpt{${1:language}}{${2:definition}}"
-    },
-    "RSaddto{}{}": {
-      "snippet": "RSaddto{${1:code}}{${2:langcmd}}"
-    },
-    "RSukenglish": {},
-    "RSenglish": {},
-    "RSafrikaans": {},
-    "RSdanish": {},
-    "RSfrench": {},
-    "RSgerman": {},
-    "RSitalian": {},
-    "RSnorwegian": {},
-    "RSportuguese": {},
-    "RSbrazilian": {},
-    "RSswedish": {},
-    "RSrngtxt": {},
-    "RSlsttwotxt": {},
-    "RSlsttxt": {},
-    "RSparttxt": {},
-    "RSpartstxt": {},
-    "RSParttxt": {},
-    "RSPartstxt": {},
-    "RSappendixname": {},
-    "RSappendicesname": {},
-    "RSAppendixname": {},
-    "RSAppendicesname": {},
-    "RSchaptername": {},
-    "RSchaptersname": {},
-    "RSChaptername": {},
-    "RSChaptersname": {},
-    "RSsectxt": {},
-    "RSsecstxt": {},
-    "RSSectxt": {},
-    "RSSecstxt": {},
-    "RSeqtxt": {},
-    "RSeqstxt": {},
-    "RSEqtxt": {},
-    "RSEqstxt": {},
-    "RSfigtxt": {},
-    "RSfigstxt": {},
-    "RSFigtxt": {},
-    "RSFigstxt": {},
-    "RStabtxt": {},
-    "RStabstxt": {},
-    "RSTabtxt": {},
-    "RSTabstxt": {},
-    "RSfootntxt": {},
-    "RSfootnstxt": {},
-    "RSFootntxt": {},
-    "RSFootnstxt": {},
-    "chpname{}": {
-      "snippet": "chpname{${1:arg}}"
-    },
-    "RSeqrefform{}": {
-      "snippet": "RSeqrefform{${1:label}}"
-    },
-    "RSeqref{}": {
-      "snippet": "RSeqref{${1:label}}"
-    },
-    "AMSeqref{}": {
-      "snippet": "AMSeqref{${1:label}}"
-    },
-    "RSfnmark{}": {
-      "snippet": "RSfnmark{${1:label}}"
-    },
-    "ifRSstar": {},
-    "RSstartrue": {},
-    "RSstarfalse": {},
-    "ifRSnameon": {},
-    "RSnameontrue": {},
-    "RSnameonfalse": {},
-    "ifRScapname": {},
-    "RScapnametrue": {},
-    "RScapnamefalse": {},
-    "ifRSplural": {},
-    "RSpluraltrue": {},
-    "RSpluralfalse": {},
-    "ifRSlsttwo": {},
-    "RSlsttwotrue": {},
-    "RSlsttwofalse": {},
-    "RefstyleFileDate": {},
-    "RefstyleFileVersion": {}
-  },
-  "envs": {},
-  "options": [
-    "nokeyprefix",
-    "noconfig",
-    "english",
-    "USenglish",
-    "american",
-    "canadian",
-    "UKenglish",
-    "british",
-    "afrikaans",
-    "danish",
-    "french",
-    "german",
-    "ngerman",
-    "austrian",
-    "naustrian",
-    "italian",
-    "norwegian",
-    "nynorsk",
-    "bokmal",
-    "norsk",
-    "portuges",
-    "portuguese",
-    "brazilian",
-    "brazil",
-    "swedish"
+  "deps": [
+    {
+      "name": "keyval"
+    }
   ],
-  "keyvals": [
-    [
-      "key=${1:type}",
+  "macros": [
+    {
+      "name": "newref",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:type}}{${2:options%keyvals}}",
+        "keys": [
+          "\\newref"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "partkey"
+    },
+    {
+      "name": "chapkey"
+    },
+    {
+      "name": "seckey"
+    },
+    {
+      "name": "eqkey"
+    },
+    {
+      "name": "figkey"
+    },
+    {
+      "name": "tabkey"
+    },
+    {
+      "name": "fnkey"
+    },
+    {
+      "name": "partlabel",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "chaplabel",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "seclabel",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "eqlabel",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "figlabel",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "tablabel",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "fnlabel",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "partref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "partref",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:label}}"
+      }
+    },
+    {
+      "name": "partref*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "partref*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:label}}"
+      }
+    },
+    {
+      "name": "Partref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "Partref",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:label}}"
+      }
+    },
+    {
+      "name": "Partref*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "Partref*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:label}}"
+      }
+    },
+    {
+      "name": "chapref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "chapref",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:label}}"
+      }
+    },
+    {
+      "name": "chapref*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "chapref*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:label}}"
+      }
+    },
+    {
+      "name": "Chapref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "Chapref",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:label}}"
+      }
+    },
+    {
+      "name": "Chapref*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "Chapref*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:label}}"
+      }
+    },
+    {
+      "name": "secref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "secref",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:label}}"
+      }
+    },
+    {
+      "name": "secref*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "secref*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:label}}"
+      }
+    },
+    {
+      "name": "Secref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "Secref",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:label}}"
+      }
+    },
+    {
+      "name": "Secref*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "Secref*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:label}}"
+      }
+    },
+    {
+      "name": "eqref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "eqref",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:label}}"
+      }
+    },
+    {
+      "name": "eqref*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "eqref*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:label}}"
+      }
+    },
+    {
+      "name": "Eqref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "Eqref",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:label}}"
+      }
+    },
+    {
+      "name": "Eqref*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "Eqref*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:label}}"
+      }
+    },
+    {
+      "name": "figref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "figref",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:label}}"
+      }
+    },
+    {
+      "name": "figref*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "figref*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:label}}"
+      }
+    },
+    {
+      "name": "Figref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "Figref",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:label}}"
+      }
+    },
+    {
+      "name": "Figref*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "Figref*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:label}}"
+      }
+    },
+    {
+      "name": "tabref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "tabref",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:label}}"
+      }
+    },
+    {
+      "name": "tabref*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "tabref*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:label}}"
+      }
+    },
+    {
+      "name": "Tabref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "Tabref",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:label}}"
+      }
+    },
+    {
+      "name": "Tabref*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "Tabref*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:label}}"
+      }
+    },
+    {
+      "name": "fnref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "fnref",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:label}}"
+      }
+    },
+    {
+      "name": "fnref*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "fnref*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:label}}"
+      }
+    },
+    {
+      "name": "Fnref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "Fnref",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:label}}"
+      }
+    },
+    {
+      "name": "Fnref*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "Fnref*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:label}}"
+      }
+    },
+    {
+      "name": "partrangeref",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "partrangeref",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "partrangeref*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "partrangeref*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "Partrangeref",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "Partrangeref",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "Partrangeref*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "Partrangeref*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "chaprangeref",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "chaprangeref",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "chaprangeref*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "chaprangeref*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "Chaprangeref",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "Chaprangeref",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "Chaprangeref*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "Chaprangeref*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "secrangeref",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "secrangeref",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "secrangeref*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "secrangeref*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "Secrangeref",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "Secrangeref",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "Secrangeref*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "Secrangeref*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "eqrangeref",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "eqrangeref",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "eqrangeref*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "eqrangeref*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "Eqrangeref",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "Eqrangeref",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "Eqrangeref*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "Eqrangeref*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "figrangeref",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "figrangeref",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "figrangeref*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "figrangeref*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "Figrangeref",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "Figrangeref",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "Figrangeref*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "Figrangeref*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "tabrangeref",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "tabrangeref",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "tabrangeref*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "tabrangeref*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "Tabrangeref",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "Tabrangeref",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "Tabrangeref*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "Tabrangeref*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "fnrangeref",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "fnrangeref",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "fnrangeref*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "fnrangeref*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "Fnrangeref",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "Fnrangeref",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "Fnrangeref*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "Fnrangeref*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "partpageref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "partpageref",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:label}}"
+      }
+    },
+    {
+      "name": "chappageref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "chappageref",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:label}}"
+      }
+    },
+    {
+      "name": "secpageref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "secpageref",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:label}}"
+      }
+    },
+    {
+      "name": "eqpageref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "eqpageref",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:label}}"
+      }
+    },
+    {
+      "name": "figpageref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "figpageref",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:label}}"
+      }
+    },
+    {
+      "name": "tabpageref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "tabpageref",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:label}}"
+      }
+    },
+    {
+      "name": "fnpageref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "fnpageref",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:label}}"
+      }
+    },
+    {
+      "name": "DeclareLangOpt",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:language}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "RSaddto",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:code}}{${2:langcmd}}"
+      }
+    },
+    {
+      "name": "RSukenglish",
+      "unusual": true
+    },
+    {
+      "name": "RSenglish",
+      "unusual": true
+    },
+    {
+      "name": "RSafrikaans",
+      "unusual": true
+    },
+    {
+      "name": "RSdanish",
+      "unusual": true
+    },
+    {
+      "name": "RSfrench",
+      "unusual": true
+    },
+    {
+      "name": "RSgerman",
+      "unusual": true
+    },
+    {
+      "name": "RSitalian",
+      "unusual": true
+    },
+    {
+      "name": "RSnorwegian",
+      "unusual": true
+    },
+    {
+      "name": "RSportuguese",
+      "unusual": true
+    },
+    {
+      "name": "RSbrazilian",
+      "unusual": true
+    },
+    {
+      "name": "RSswedish",
+      "unusual": true
+    },
+    {
+      "name": "RSrngtxt",
+      "unusual": true
+    },
+    {
+      "name": "RSlsttwotxt",
+      "unusual": true
+    },
+    {
+      "name": "RSlsttxt",
+      "unusual": true
+    },
+    {
+      "name": "RSparttxt",
+      "unusual": true
+    },
+    {
+      "name": "RSpartstxt",
+      "unusual": true
+    },
+    {
+      "name": "RSParttxt",
+      "unusual": true
+    },
+    {
+      "name": "RSPartstxt",
+      "unusual": true
+    },
+    {
+      "name": "RSappendixname",
+      "unusual": true
+    },
+    {
+      "name": "RSappendicesname",
+      "unusual": true
+    },
+    {
+      "name": "RSAppendixname",
+      "unusual": true
+    },
+    {
+      "name": "RSAppendicesname",
+      "unusual": true
+    },
+    {
+      "name": "RSchaptername",
+      "unusual": true
+    },
+    {
+      "name": "RSchaptersname",
+      "unusual": true
+    },
+    {
+      "name": "RSChaptername",
+      "unusual": true
+    },
+    {
+      "name": "RSChaptersname",
+      "unusual": true
+    },
+    {
+      "name": "RSsectxt",
+      "unusual": true
+    },
+    {
+      "name": "RSsecstxt",
+      "unusual": true
+    },
+    {
+      "name": "RSSectxt",
+      "unusual": true
+    },
+    {
+      "name": "RSSecstxt",
+      "unusual": true
+    },
+    {
+      "name": "RSeqtxt",
+      "unusual": true
+    },
+    {
+      "name": "RSeqstxt",
+      "unusual": true
+    },
+    {
+      "name": "RSEqtxt",
+      "unusual": true
+    },
+    {
+      "name": "RSEqstxt",
+      "unusual": true
+    },
+    {
+      "name": "RSfigtxt",
+      "unusual": true
+    },
+    {
+      "name": "RSfigstxt",
+      "unusual": true
+    },
+    {
+      "name": "RSFigtxt",
+      "unusual": true
+    },
+    {
+      "name": "RSFigstxt",
+      "unusual": true
+    },
+    {
+      "name": "RStabtxt",
+      "unusual": true
+    },
+    {
+      "name": "RStabstxt",
+      "unusual": true
+    },
+    {
+      "name": "RSTabtxt",
+      "unusual": true
+    },
+    {
+      "name": "RSTabstxt",
+      "unusual": true
+    },
+    {
+      "name": "RSfootntxt",
+      "unusual": true
+    },
+    {
+      "name": "RSfootnstxt",
+      "unusual": true
+    },
+    {
+      "name": "RSFootntxt",
+      "unusual": true
+    },
+    {
+      "name": "RSFootnstxt",
+      "unusual": true
+    },
+    {
+      "name": "chpname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "RSeqrefform",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "RSeqref",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "RSfnmark",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "ifRSstar",
+      "unusual": true
+    },
+    {
+      "name": "ifRSnameon",
+      "unusual": true
+    },
+    {
+      "name": "ifRScapname",
+      "unusual": true
+    },
+    {
+      "name": "ifRSplural",
+      "unusual": true
+    },
+    {
+      "name": "ifRSlsttwo",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/refstyle#c": [
+      "nokeyprefix\r",
+      "noconfig\r",
+      "english\r",
+      "USenglish\r",
+      "american\r",
+      "canadian\r",
+      "UKenglish\r",
+      "british\r",
+      "afrikaans\r",
+      "danish\r",
+      "french\r",
+      "german\r",
+      "ngerman\r",
+      "austrian\r",
+      "naustrian\r",
+      "italian\r",
+      "norwegian\r",
+      "nynorsk\r",
+      "bokmal\r",
+      "norsk\r",
+      "portuges\r",
+      "portuguese\r",
+      "brazilian\r",
+      "brazil\r",
+      "swedish\r"
+    ],
+    "\\newref": [
+      "key=${1:type}\r",
       "s",
-      "vref=${1|true,false,far|}",
-      "xr=${1:xr key}",
-      "name={${1:text}}",
-      "names={${1:text}}",
-      "Name={${1:text}}",
-      "Names={${1:text}}",
-      "lsttwotxt={${1:text}}",
-      "lsttxt={${1:text}}",
-      "rngtxt={${1:text}}",
-      "refcmd=${1:refcmd}"
+      "vref=${1|true,false,far\r|}",
+      "xr=${1:xr key}\r",
+      "name={${1:text}}\r",
+      "names={${1:text}}\r",
+      "Name={${1:text}}\r",
+      "Names={${1:text}}\r",
+      "lsttwotxt={${1:text}}\r",
+      "lsttxt={${1:text}}\r",
+      "rngtxt={${1:text}}\r",
+      "refcmd=${1:refcmd}\r"
     ],
-    [
-      "key=${1:type}",
+    "\\partref,\\partref*,\\chapref,\\chapref*,\\secref,\\secref*,\\eqref,\\eqref*,\\figref,\\figref*,\\tabref,\\tabref*,\\fnref,\\fnref*": [
+      "key=${1:type}\r",
       "s",
-      "vref=${1|true,false,far|}",
-      "xr=${1:xr key}",
-      "name={${1:text}}",
-      "names={${1:text}}",
-      "lsttwotxt={${1:text}}",
-      "lsttxt={${1:text}}",
-      "refcmd=${1:refcmd}"
+      "vref=${1|true,false,far\r|}",
+      "xr=${1:xr key}\r",
+      "name={${1:text}}\r",
+      "names={${1:text}}\r",
+      "lsttwotxt={${1:text}}\r",
+      "lsttxt={${1:text}}\r",
+      "refcmd=${1:refcmd}\r"
     ],
-    [
-      "key=${1:type}",
+    "\\Partref,\\Partref*,\\Chapref,\\Chapref*,\\Secref,\\Secref*,\\Eqref,\\Eqref*,\\Figref,\\Figref*,\\Tabref,\\Tabref*,\\Fnref,\\Fnref*": [
+      "key=${1:type}\r",
       "s",
-      "vref=${1|true,false,far|}",
-      "xr=${1:xr key}",
-      "Name={${1:text}}",
-      "Names={${1:text}}",
-      "lsttwotxt={${1:text}}",
-      "lsttxt={${1:text}}",
-      "refcmd=${1:refcmd}"
+      "vref=${1|true,false,far\r|}",
+      "xr=${1:xr key}\r",
+      "Name={${1:text}}\r",
+      "Names={${1:text}}\r",
+      "lsttwotxt={${1:text}}\r",
+      "lsttxt={${1:text}}\r",
+      "refcmd=${1:refcmd}\r"
     ],
-    [
-      "key=${1:type}",
-      "vref=${1|true,false,far|}",
-      "xr=${1:xr key}",
-      "names={${1:text}}",
-      "rngtxt={${1:text}}",
-      "refcmd=${1:refcmd}"
+    "\\partrangeref,\\partrangeref*,\\chaprangeref,\\chaprangeref*,\\secrangeref,\\secrangeref*,\\eqrangeref,\\eqrangeref*,\\figrangeref,\\figrangeref*,\\tabrangeref,\\tabrangeref*,\\fnrangeref,\\fnrangeref*": [
+      "key=${1:type}\r",
+      "vref=${1|true,false,far\r|}",
+      "xr=${1:xr key}\r",
+      "names={${1:text}}\r",
+      "rngtxt={${1:text}}\r",
+      "refcmd=${1:refcmd}\r"
     ],
-    [
-      "key=${1:type}",
-      "vref=${1|true,false,far|}",
-      "xr=${1:xr key}",
-      "Names={${1:text}}",
-      "rngtxt={${1:text}}",
-      "refcmd=${1:refcmd}"
+    "\\Partrangeref,\\Partrangeref*,\\Chaprangeref,\\Chaprangeref*,\\Secrangeref,\\Secrangeref*,\\Eqrangeref,\\Eqrangeref*,\\Figrangeref,\\Figrangeref*,\\Tabrangeref,\\Tabrangeref*,\\Fnrangeref,\\Fnrangeref*": [
+      "key=${1:type}\r",
+      "vref=${1|true,false,far\r|}",
+      "xr=${1:xr key}\r",
+      "Names={${1:text}}\r",
+      "rngtxt={${1:text}}\r",
+      "refcmd=${1:refcmd}\r"
     ],
-    [
-      "key=${1:type}",
-      "vref=${1|true,false,far|}",
-      "xr=${1:xr key}",
-      "refcmd=${1:refcmd}"
+    "\\partpageref,\\chappageref,\\secpageref,\\eqpageref,\\figpageref,\\tabpageref,\\fnpageref": [
+      "key=${1:type}\r",
+      "vref=${1|true,false,far\r|}",
+      "xr=${1:xr key}\r",
+      "refcmd=${1:refcmd}\r"
     ]
+  },
+  "args": [
+    "\\usepackage/refstyle#c"
   ]
 }

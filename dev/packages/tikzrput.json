@@ -1,27 +1,55 @@
 {
-  "includes": {
-    "tikz": [],
-    "iftex": []
-  },
-  "macros": {
-    "rput(){}": {
-      "snippet": "rput(${2:x},${3:y}){${1:object}}"
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "rput[](){}": {
-      "snippet": "rput[${2:refpoint}](${3:x},${4:y}){${1:object}}"
+    {
+      "name": "iftex"
+    }
+  ],
+  "macros": [
+    {
+      "name": "rput(x,y)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:object%text}}"
+      }
     },
-    "rput{}(){}": {
-      "snippet": "rput{${1:angle}}(${3:x},${4:y}){${2:object}}"
+    {
+      "name": "rput",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:refpoint}](${3:x},${4:y}){${1:object%text}}"
+      }
     },
-    "rput[]{}(){}": {
-      "snippet": "rput[${3:refpoint}]{${1:angle}}(${4:x},${5:y}){${2:object}}"
+    {
+      "name": "rput",
+      "arg": {
+        "format": "{}(){}",
+        "snippet": "{${1:angle}}(${3:x},${4:y}){${2:object%text}}"
+      }
     },
-    "tikzrputPtVirCode": {},
-    "tikzrputAtCode": {},
-    "tikzrputTwoPtCode": {},
-    "mybox": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "rput",
+      "arg": {
+        "format": "[]{}(){}",
+        "snippet": "[${3:refpoint}]{${1:angle}}(${4:x},${5:y}){${2:object%text}}"
+      }
+    },
+    {
+      "name": "tikzrputPtVirCode",
+      "unusual": true
+    },
+    {
+      "name": "tikzrputAtCode",
+      "unusual": true
+    },
+    {
+      "name": "tikzrputTwoPtCode",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

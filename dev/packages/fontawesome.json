@@ -1,738 +1,2932 @@
 {
-  "includes": {},
-  "macros": {
-    "faicon{}": {
-      "snippet": "faicon{${1:name}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "faicon",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name%keyvals}}",
+        "keys": [
+          "\\faicon"
+        ],
+        "keyPos": 0
+      }
     },
-    "faBattery[]": {
-      "snippet": "faBattery[${1:0/1/2/3/4}]"
+    {
+      "name": "faBattery",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:0/1/2/3/4}]"
+      }
     },
-    "faHourglass[]": {
-      "snippet": "faHourglass[${1:1/2/3}]"
+    {
+      "name": "faHourglass",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:1/2/3}]"
+      }
     },
-    "faCss": {},
-    "faHtml": {},
-    "faAdjust": {},
-    "faAdn": {},
-    "faAlignCenter": {},
-    "faAlignJustify": {},
-    "faAlignLeft": {},
-    "faAlignRight": {},
-    "faAmazon": {},
-    "faAmbulance": {},
-    "faAmericanSignLanguageInterpreting": {},
-    "faAnchor": {},
-    "faAndroid": {},
-    "faAngellist": {},
-    "faAngleDoubleDown": {},
-    "faAngleDoubleLeft": {},
-    "faAngleDoubleRight": {},
-    "faAngleDoubleUp": {},
-    "faAngleDown": {},
-    "faAngleLeft": {},
-    "faAngleRight": {},
-    "faAngleUp": {},
-    "faApple": {},
-    "faArchive": {},
-    "faAreaChart": {},
-    "faArrowCircleDown": {},
-    "faArrowCircleLeft": {},
-    "faArrowCircleODown": {},
-    "faArrowCircleOLeft": {},
-    "faArrowCircleORight": {},
-    "faArrowCircleOUp": {},
-    "faArrowCircleRight": {},
-    "faArrowCircleUp": {},
-    "faArrowDown": {},
-    "faArrowLeft": {},
-    "faArrowRight": {},
-    "faArrowUp": {},
-    "faArrows": {},
-    "faArrowsAlt": {},
-    "faArrowsH": {},
-    "faArrowsV": {},
-    "faAslInterpreting": {},
-    "faAssistiveListeningSystems": {},
-    "faAsterisk": {},
-    "faAt": {},
-    "faAudioDescription": {},
-    "faAutomobile": {},
-    "faBackward": {},
-    "faBalanceScale": {},
-    "faBan": {},
-    "faBank": {},
-    "faBarChart": {},
-    "faBarChartO": {},
-    "faBarcode": {},
-    "faBars": {},
-    "faBatteryEmpty": {},
-    "faBatteryFull": {},
-    "faBatteryHalf": {},
-    "faBatteryQuarter": {},
-    "faBatteryThreeQuarters": {},
-    "faBed": {},
-    "faBeer": {},
-    "faBehance": {},
-    "faBehanceSquare": {},
-    "faBell": {},
-    "faBellO": {},
-    "faBellSlash": {},
-    "faBellSlashO": {},
-    "faBicycle": {},
-    "faBinoculars": {},
-    "faBirthdayCake": {},
-    "faBitbucket": {},
-    "faBitbucketSquare": {},
-    "faBitcoin": {},
-    "faBlackTie": {},
-    "faBlind": {},
-    "faBluetooth": {},
-    "faBluetoothB": {},
-    "faBold": {},
-    "faBolt": {},
-    "faBomb": {},
-    "faBook": {},
-    "faBookmark": {},
-    "faBookmarkO": {},
-    "faBraille": {},
-    "faBriefcase": {},
-    "faBtc": {},
-    "faBug": {},
-    "faBuilding": {},
-    "faBuildingO": {},
-    "faBullhorn": {},
-    "faBullseye": {},
-    "faBus": {},
-    "faBuysellads": {},
-    "faCab": {},
-    "faCalculator": {},
-    "faCalendar": {},
-    "faCalendarCheckO": {},
-    "faCalendarMinusO": {},
-    "faCalendarO": {},
-    "faCalendarPlusO": {},
-    "faCalendarTimesO": {},
-    "faCamera": {},
-    "faCameraRetro": {},
-    "faCar": {},
-    "faCaretDown": {},
-    "faCaretLeft": {},
-    "faCaretRight": {},
-    "faCaretSquareODown": {},
-    "faCaretSquareOLeft": {},
-    "faCaretSquareORight": {},
-    "faCaretSquareOUp": {},
-    "faCaretUp": {},
-    "faCartArrowDown": {},
-    "faCartPlus": {},
-    "faCc": {},
-    "faCcAmex": {},
-    "faCcDinersClub": {},
-    "faCcDiscover": {},
-    "faCcJcb": {},
-    "faCcMastercard": {},
-    "faCcPaypal": {},
-    "faCcStripe": {},
-    "faCcVisa": {},
-    "faCertificate": {},
-    "faChain": {},
-    "faChainBroken": {},
-    "faCheck": {},
-    "faCheckCircle": {},
-    "faCheckCircleO": {},
-    "faCheckSquare": {},
-    "faCheckSquareO": {},
-    "faChevronCircleDown": {},
-    "faChevronCircleLeft": {},
-    "faChevronCircleRight": {},
-    "faChevronCircleUp": {},
-    "faChevronDown": {},
-    "faChevronLeft": {},
-    "faChevronRight": {},
-    "faChevronUp": {},
-    "faChild": {},
-    "faChrome": {},
-    "faCircle": {},
-    "faCircleO": {},
-    "faCircleONotch": {},
-    "faCircleThin": {},
-    "faClipboard": {},
-    "faClockO": {},
-    "faClone": {},
-    "faClose": {},
-    "faCloud": {},
-    "faCloudDownload": {},
-    "faCloudUpload": {},
-    "faCny": {},
-    "faCode": {},
-    "faCodeFork": {},
-    "faCodepen": {},
-    "faCodiepie": {},
-    "faCoffee": {},
-    "faCog": {},
-    "faCogs": {},
-    "faColumns": {},
-    "faComment": {},
-    "faCommentO": {},
-    "faCommenting": {},
-    "faCommentingO": {},
-    "faComments": {},
-    "faCommentsO": {},
-    "faCompass": {},
-    "faCompress": {},
-    "faConnectdevelop": {},
-    "faContao": {},
-    "faCopy": {},
-    "faCopyright": {},
-    "faCreativeCommons": {},
-    "faCreditCard": {},
-    "faCreditCardAlt": {},
-    "faCrop": {},
-    "faCrosshairs": {},
-    "faCube": {},
-    "faCubes": {},
-    "faCut": {},
-    "faCutlery": {},
-    "faDashboard": {},
-    "faDashcube": {},
-    "faDatabase": {},
-    "faDeaf": {},
-    "faDeafness": {},
-    "faDedent": {},
-    "faDelicious": {},
-    "faDesktop": {},
-    "faDeviantart": {},
-    "faDiamond": {},
-    "faDigg": {},
-    "faDollar": {},
-    "faDotCircleO": {},
-    "faDownload": {},
-    "faDribbble": {},
-    "faDropbox": {},
-    "faDrupal": {},
-    "faEdge": {},
-    "faEdit": {},
-    "faEject": {},
-    "faEllipsisH": {},
-    "faEllipsisV": {},
-    "faEmpire": {},
-    "faEnvelope": {},
-    "faEnvelopeO": {},
-    "faEnvelopeSquare": {},
-    "faEnvira": {},
-    "faEraser": {},
-    "faEur": {},
-    "faEuro": {},
-    "faExchange": {},
-    "faExclamation": {},
-    "faExclamationCircle": {},
-    "faExclamationTriangle": {},
-    "faExpand": {},
-    "faExpeditedssl": {},
-    "faExternalLink": {},
-    "faExternalLinkSquare": {},
-    "faEye": {},
-    "faEyeSlash": {},
-    "faEyedropper": {},
-    "faFa": {},
-    "faFacebook": {},
-    "faFacebookF": {},
-    "faFacebookOfficial": {},
-    "faFacebookSquare": {},
-    "faFastBackward": {},
-    "faFastForward": {},
-    "faFax": {},
-    "faFeed": {},
-    "faFemale": {},
-    "faFighterJet": {},
-    "faFile": {},
-    "faFileArchiveO": {},
-    "faFileAudioO": {},
-    "faFileCodeO": {},
-    "faFileExcelO": {},
-    "faFileImageO": {},
-    "faFileMovieO": {},
-    "faFileO": {},
-    "faFilePdfO": {},
-    "faFilePhotoO": {},
-    "faFilePictureO": {},
-    "faFilePowerpointO": {},
-    "faFileSoundO": {},
-    "faFileText": {},
-    "faFileTextO": {},
-    "faFileVideoO": {},
-    "faFileWordO": {},
-    "faFileZipO": {},
-    "faFilesO": {},
-    "faFilm": {},
-    "faFilter": {},
-    "faFire": {},
-    "faFireExtinguisher": {},
-    "faFirefox": {},
-    "faFirstOrder": {},
-    "faFlag": {},
-    "faFlagCheckered": {},
-    "faFlagO": {},
-    "faFlash": {},
-    "faFlask": {},
-    "faFlickr": {},
-    "faFloppyO": {},
-    "faFolder": {},
-    "faFolderO": {},
-    "faFolderOpen": {},
-    "faFolderOpenO": {},
-    "faFont": {},
-    "faFontAwesome": {},
-    "faFonticons": {},
-    "faFortAwesome": {},
-    "faForumbee": {},
-    "faForward": {},
-    "faFoursquare": {},
-    "faFrownO": {},
-    "faFutbolO": {},
-    "faGamepad": {},
-    "faGavel": {},
-    "faGbp": {},
-    "faGe": {},
-    "faGear": {},
-    "faGears": {},
-    "faGenderless": {},
-    "faGetPocket": {},
-    "faGg": {},
-    "faGgCircle": {},
-    "faGift": {},
-    "faGit": {},
-    "faGitSquare": {},
-    "faGithub": {},
-    "faGithubAlt": {},
-    "faGithubSquare": {},
-    "faGitlab": {},
-    "faGittip": {},
-    "faGlass": {},
-    "faGlide": {},
-    "faGlideG": {},
-    "faGlobe": {},
-    "faGoogle": {},
-    "faGooglePlus": {},
-    "faGooglePlusCircle": {},
-    "faGooglePlusOfficial": {},
-    "faGooglePlusSquare": {},
-    "faGoogleWallet": {},
-    "faGraduationCap": {},
-    "faGratipay": {},
-    "faGroup": {},
-    "faHSquare": {},
-    "faHackerNews": {},
-    "faHandGrabO": {},
-    "faHandLizardO": {},
-    "faHandODown": {},
-    "faHandOLeft": {},
-    "faHandORight": {},
-    "faHandOUp": {},
-    "faHandPaperO": {},
-    "faHandPeaceO": {},
-    "faHandPointerO": {},
-    "faHandRockO": {},
-    "faHandScissorsO": {},
-    "faHandSpockO": {},
-    "faHandStopO": {},
-    "faHardOfHearing": {},
-    "faHashtag": {},
-    "faHddO": {},
-    "faHeader": {},
-    "faHeadphones": {},
-    "faHeart": {},
-    "faHeartO": {},
-    "faHeartbeat": {},
-    "faHistory": {},
-    "faHome": {},
-    "faHospitalO": {},
-    "faHotel": {},
-    "faHourglass": {},
-    "faHourglassEnd": {},
-    "faHourglassHalf": {},
-    "faHourglassO": {},
-    "faHourglassStart": {},
-    "faHouzz": {},
-    "faICursor": {},
-    "faIls": {},
-    "faImage": {},
-    "faInbox": {},
-    "faIndent": {},
-    "faIndustry": {},
-    "faInfo": {},
-    "faInfoCircle": {},
-    "faInr": {},
-    "faInstagram": {},
-    "faInstitution": {},
-    "faInternetExplorer": {},
-    "faIntersex": {},
-    "faIoxhost": {},
-    "faItalic": {},
-    "faJoomla": {},
-    "faJpy": {},
-    "faJsfiddle": {},
-    "faKey": {},
-    "faKeyboardO": {},
-    "faKrw": {},
-    "faLanguage": {},
-    "faLaptop": {},
-    "faLastfm": {},
-    "faLastfmSquare": {},
-    "faLeaf": {},
-    "faLeanpub": {},
-    "faLegal": {},
-    "faLemonO": {},
-    "faLevelDown": {},
-    "faLevelUp": {},
-    "faLifeBouy": {},
-    "faLifeBuoy": {},
-    "faLifeRing": {},
-    "faLifeSaver": {},
-    "faLightbulbO": {},
-    "faLineChart": {},
-    "faLink": {},
-    "faLinkedin": {},
-    "faLinkedinSquare": {},
-    "faLinux": {},
-    "faList": {},
-    "faListAlt": {},
-    "faListOl": {},
-    "faListUl": {},
-    "faLocationArrow": {},
-    "faLock": {},
-    "faLongArrowDown": {},
-    "faLongArrowLeft": {},
-    "faLongArrowRight": {},
-    "faLongArrowUp": {},
-    "faLowVision": {},
-    "faMagic": {},
-    "faMagnet": {},
-    "faMailForward": {},
-    "faMailReply": {},
-    "faMailReplyAll": {},
-    "faMale": {},
-    "faMap": {},
-    "faMapMarker": {},
-    "faMapO": {},
-    "faMapPin": {},
-    "faMapSigns": {},
-    "faMars": {},
-    "faMarsDouble": {},
-    "faMarsStroke": {},
-    "faMarsStrokeH": {},
-    "faMarsStrokeV": {},
-    "faMaxcdn": {},
-    "faMeanpath": {},
-    "faMedium": {},
-    "faMedkit": {},
-    "faMehO": {},
-    "faMercury": {},
-    "faMicrophone": {},
-    "faMicrophoneSlash": {},
-    "faMinus": {},
-    "faMinusCircle": {},
-    "faMinusSquare": {},
-    "faMinusSquareO": {},
-    "faMixcloud": {},
-    "faMobile": {},
-    "faMobilePhone": {},
-    "faModx": {},
-    "faMoney": {},
-    "faMoonO": {},
-    "faMortarBoard": {},
-    "faMotorcycle": {},
-    "faMousePointer": {},
-    "faMusic": {},
-    "faNavicon": {},
-    "faNeuter": {},
-    "faNewspaperO": {},
-    "faObjectGroup": {},
-    "faObjectUngroup": {},
-    "faOdnoklassniki": {},
-    "faOdnoklassnikiSquare": {},
-    "faOpencart": {},
-    "faOpenid": {},
-    "faOpera": {},
-    "faOptinMonster": {},
-    "faOutdent": {},
-    "faPagelines": {},
-    "faPaintBrush": {},
-    "faPaperPlane": {},
-    "faPaperPlaneO": {},
-    "faPaperclip": {},
-    "faParagraph": {},
-    "faPaste": {},
-    "faPause": {},
-    "faPauseCircle": {},
-    "faPauseCircleO": {},
-    "faPaw": {},
-    "faPaypal": {},
-    "faPencil": {},
-    "faPencilSquare": {},
-    "faPencilSquareO": {},
-    "faPercent": {},
-    "faPhone": {},
-    "faPhoneSquare": {},
-    "faPhoto": {},
-    "faPictureO": {},
-    "faPieChart": {},
-    "faPiedPiper": {},
-    "faPiedPiperAlt": {},
-    "faPiedPiperPp": {},
-    "faPinterest": {},
-    "faPinterestP": {},
-    "faPinterestSquare": {},
-    "faPlane": {},
-    "faPlay": {},
-    "faPlayCircle": {},
-    "faPlayCircleO": {},
-    "faPlug": {},
-    "faPlus": {},
-    "faPlusCircle": {},
-    "faPlusSquare": {},
-    "faPlusSquareO": {},
-    "faPowerOff": {},
-    "faPrint": {},
-    "faProductHunt": {},
-    "faPuzzlePiece": {},
-    "faQq": {},
-    "faQrcode": {},
-    "faQuestion": {},
-    "faQuestionCircle": {},
-    "faQuestionCircleO": {},
-    "faQuoteLeft": {},
-    "faQuoteRight": {},
-    "faRa": {},
-    "faRandom": {},
-    "faRebel": {},
-    "faRecycle": {},
-    "faReddit": {},
-    "faRedditAlien": {},
-    "faRedditSquare": {},
-    "faRefresh": {},
-    "faRegistered": {},
-    "faRemove": {},
-    "faRenren": {},
-    "faReorder": {},
-    "faRepeat": {},
-    "faReply": {},
-    "faReplyAll": {},
-    "faResistance": {},
-    "faRetweet": {},
-    "faRmb": {},
-    "faRoad": {},
-    "faRocket": {},
-    "faRotateLeft": {},
-    "faRotateRight": {},
-    "faRouble": {},
-    "faRss": {},
-    "faRssSquare": {},
-    "faRub": {},
-    "faRuble": {},
-    "faRupee": {},
-    "faSafari": {},
-    "faSave": {},
-    "faScissors": {},
-    "faScribd": {},
-    "faSearch": {},
-    "faSearchMinus": {},
-    "faSearchPlus": {},
-    "faSellsy": {},
-    "faSend": {},
-    "faSendO": {},
-    "faServer": {},
-    "faShare": {},
-    "faShareAlt": {},
-    "faShareAltSquare": {},
-    "faShareSquare": {},
-    "faShareSquareO": {},
-    "faShekel": {},
-    "faSheqel": {},
-    "faShield": {},
-    "faShip": {},
-    "faShirtsinbulk": {},
-    "faShoppingBag": {},
-    "faShoppingBasket": {},
-    "faShoppingCart": {},
-    "faSignIn": {},
-    "faSignLanguage": {},
-    "faSignOut": {},
-    "faSignal": {},
-    "faSigning": {},
-    "faSimplybuilt": {},
-    "faSitemap": {},
-    "faSkyatlas": {},
-    "faSkype": {},
-    "faSlack": {},
-    "faSliders": {},
-    "faSlideshare": {},
-    "faSmileO": {},
-    "faSnapchat": {},
-    "faSnapchatGhost": {},
-    "faSnapchatSquare": {},
-    "faSoccerBallO": {},
-    "faSort": {},
-    "faSortAlphaAsc": {},
-    "faSortAlphaDesc": {},
-    "faSortAmountAsc": {},
-    "faSortAmountDesc": {},
-    "faSortAsc": {},
-    "faSortDesc": {},
-    "faSortDown": {},
-    "faSortNumericAsc": {},
-    "faSortNumericDesc": {},
-    "faSortUp": {},
-    "faSoundcloud": {},
-    "faSpaceShuttle": {},
-    "faSpinner": {},
-    "faSpoon": {},
-    "faSpotify": {},
-    "faSquare": {},
-    "faSquareO": {},
-    "faStackExchange": {},
-    "faStackOverflow": {},
-    "faStar": {},
-    "faStarHalf": {},
-    "faStarHalfEmpty": {},
-    "faStarHalfFull": {},
-    "faStarHalfO": {},
-    "faStarO": {},
-    "faSteam": {},
-    "faSteamSquare": {},
-    "faStepBackward": {},
-    "faStepForward": {},
-    "faStethoscope": {},
-    "faStickyNote": {},
-    "faStickyNoteO": {},
-    "faStop": {},
-    "faStopCircle": {},
-    "faStopCircleO": {},
-    "faStreetView": {},
-    "faStrikethrough": {},
-    "faStumbleupon": {},
-    "faStumbleuponCircle": {},
-    "faSubscript": {},
-    "faSubway": {},
-    "faSuitcase": {},
-    "faSunO": {},
-    "faSuperscript": {},
-    "faSupport": {},
-    "faTable": {},
-    "faTablet": {},
-    "faTachometer": {},
-    "faTag": {},
-    "faTags": {},
-    "faTasks": {},
-    "faTaxi": {},
-    "faTelevision": {},
-    "faTencentWeibo": {},
-    "faTerminal": {},
-    "faTextHeight": {},
-    "faTextWidth": {},
-    "faTh": {},
-    "faThLarge": {},
-    "faThList": {},
-    "faThemeisle": {},
-    "faThumbTack": {},
-    "faThumbsDown": {},
-    "faThumbsODown": {},
-    "faThumbsOUp": {},
-    "faThumbsUp": {},
-    "faTicket": {},
-    "faTimes": {},
-    "faTimesCircle": {},
-    "faTimesCircleO": {},
-    "faTint": {},
-    "faToggleDown": {},
-    "faToggleLeft": {},
-    "faToggleOff": {},
-    "faToggleOn": {},
-    "faToggleRight": {},
-    "faToggleUp": {},
-    "faTrademark": {},
-    "faTrain": {},
-    "faTransgender": {},
-    "faTransgenderAlt": {},
-    "faTrash": {},
-    "faTrashO": {},
-    "faTree": {},
-    "faTrello": {},
-    "faTripadvisor": {},
-    "faTrophy": {},
-    "faTruck": {},
-    "faTry": {},
-    "faTty": {},
-    "faTumblr": {},
-    "faTumblrSquare": {},
-    "faTurkishLira": {},
-    "faTv": {},
-    "faTwitch": {},
-    "faTwitter": {},
-    "faTwitterSquare": {},
-    "faUmbrella": {},
-    "faUnderline": {},
-    "faUndo": {},
-    "faUniversalAccess": {},
-    "faUniversity": {},
-    "faUnlink": {},
-    "faUnlock": {},
-    "faUnlockAlt": {},
-    "faUnsorted": {},
-    "faUpload": {},
-    "faUsb": {},
-    "faUsd": {},
-    "faUser": {},
-    "faUserMd": {},
-    "faUserPlus": {},
-    "faUserSecret": {},
-    "faUserTimes": {},
-    "faUsers": {},
-    "faVenus": {},
-    "faVenusDouble": {},
-    "faVenusMars": {},
-    "faViacoin": {},
-    "faViadeo": {},
-    "faViadeoSquare": {},
-    "faVideoCamera": {},
-    "faVimeo": {},
-    "faVimeoSquare": {},
-    "faVine": {},
-    "faVk": {},
-    "faVolumeControlPhone": {},
-    "faVolumeDown": {},
-    "faVolumeOff": {},
-    "faVolumeUp": {},
-    "faWarning": {},
-    "faWechat": {},
-    "faWeibo": {},
-    "faWeixin": {},
-    "faWhatsapp": {},
-    "faWheelchair": {},
-    "faWheelchairAlt": {},
-    "faWifi": {},
-    "faWikipediaW": {},
-    "faWindows": {},
-    "faWon": {},
-    "faWordpress": {},
-    "faWpbeginner": {},
-    "faWpforms": {},
-    "faWrench": {},
-    "faXing": {},
-    "faXingSquare": {},
-    "faYCombinator": {},
-    "faYCombinatorSquare": {},
-    "faYahoo": {},
-    "faYc": {},
-    "faYcSquare": {},
-    "faYelp": {},
-    "faYen": {},
-    "faYoast": {},
-    "faYoutube": {},
-    "faYoutubePlay": {},
-    "faYoutubeSquare": {}
+    {
+      "name": "fa500Px"
+    },
+    {
+      "name": "faCss3"
+    },
+    {
+      "name": "faHtml5"
+    },
+    {
+      "name": "faAdjust"
+    },
+    {
+      "name": "faAdn"
+    },
+    {
+      "name": "faAlignCenter"
+    },
+    {
+      "name": "faAlignJustify"
+    },
+    {
+      "name": "faAlignLeft"
+    },
+    {
+      "name": "faAlignRight"
+    },
+    {
+      "name": "faAmazon"
+    },
+    {
+      "name": "faAmbulance"
+    },
+    {
+      "name": "faAmericanSignLanguageInterpreting"
+    },
+    {
+      "name": "faAnchor"
+    },
+    {
+      "name": "faAndroid"
+    },
+    {
+      "name": "faAngellist"
+    },
+    {
+      "name": "faAngleDoubleDown"
+    },
+    {
+      "name": "faAngleDoubleLeft"
+    },
+    {
+      "name": "faAngleDoubleRight"
+    },
+    {
+      "name": "faAngleDoubleUp"
+    },
+    {
+      "name": "faAngleDown"
+    },
+    {
+      "name": "faAngleLeft"
+    },
+    {
+      "name": "faAngleRight"
+    },
+    {
+      "name": "faAngleUp"
+    },
+    {
+      "name": "faApple"
+    },
+    {
+      "name": "faArchive"
+    },
+    {
+      "name": "faAreaChart"
+    },
+    {
+      "name": "faArrowCircleDown"
+    },
+    {
+      "name": "faArrowCircleLeft"
+    },
+    {
+      "name": "faArrowCircleODown"
+    },
+    {
+      "name": "faArrowCircleOLeft"
+    },
+    {
+      "name": "faArrowCircleORight"
+    },
+    {
+      "name": "faArrowCircleOUp"
+    },
+    {
+      "name": "faArrowCircleRight"
+    },
+    {
+      "name": "faArrowCircleUp"
+    },
+    {
+      "name": "faArrowDown"
+    },
+    {
+      "name": "faArrowLeft"
+    },
+    {
+      "name": "faArrowRight"
+    },
+    {
+      "name": "faArrowUp"
+    },
+    {
+      "name": "faArrows"
+    },
+    {
+      "name": "faArrowsAlt"
+    },
+    {
+      "name": "faArrowsH"
+    },
+    {
+      "name": "faArrowsV"
+    },
+    {
+      "name": "faAslInterpreting"
+    },
+    {
+      "name": "faAssistiveListeningSystems"
+    },
+    {
+      "name": "faAsterisk"
+    },
+    {
+      "name": "faAt"
+    },
+    {
+      "name": "faAudioDescription"
+    },
+    {
+      "name": "faAutomobile"
+    },
+    {
+      "name": "faBackward"
+    },
+    {
+      "name": "faBalanceScale"
+    },
+    {
+      "name": "faBan"
+    },
+    {
+      "name": "faBank"
+    },
+    {
+      "name": "faBarChart"
+    },
+    {
+      "name": "faBarChartO"
+    },
+    {
+      "name": "faBarcode"
+    },
+    {
+      "name": "faBars"
+    },
+    {
+      "name": "faBatteryEmpty"
+    },
+    {
+      "name": "faBatteryFull"
+    },
+    {
+      "name": "faBatteryHalf"
+    },
+    {
+      "name": "faBatteryQuarter"
+    },
+    {
+      "name": "faBatteryThreeQuarters"
+    },
+    {
+      "name": "faBed"
+    },
+    {
+      "name": "faBeer"
+    },
+    {
+      "name": "faBehance"
+    },
+    {
+      "name": "faBehanceSquare"
+    },
+    {
+      "name": "faBell"
+    },
+    {
+      "name": "faBellO"
+    },
+    {
+      "name": "faBellSlash"
+    },
+    {
+      "name": "faBellSlashO"
+    },
+    {
+      "name": "faBicycle"
+    },
+    {
+      "name": "faBinoculars"
+    },
+    {
+      "name": "faBirthdayCake"
+    },
+    {
+      "name": "faBitbucket"
+    },
+    {
+      "name": "faBitbucketSquare"
+    },
+    {
+      "name": "faBitcoin"
+    },
+    {
+      "name": "faBlackTie"
+    },
+    {
+      "name": "faBlind"
+    },
+    {
+      "name": "faBluetooth"
+    },
+    {
+      "name": "faBluetoothB"
+    },
+    {
+      "name": "faBold"
+    },
+    {
+      "name": "faBolt"
+    },
+    {
+      "name": "faBomb"
+    },
+    {
+      "name": "faBook"
+    },
+    {
+      "name": "faBookmark"
+    },
+    {
+      "name": "faBookmarkO"
+    },
+    {
+      "name": "faBraille"
+    },
+    {
+      "name": "faBriefcase"
+    },
+    {
+      "name": "faBtc"
+    },
+    {
+      "name": "faBug"
+    },
+    {
+      "name": "faBuilding"
+    },
+    {
+      "name": "faBuildingO"
+    },
+    {
+      "name": "faBullhorn"
+    },
+    {
+      "name": "faBullseye"
+    },
+    {
+      "name": "faBus"
+    },
+    {
+      "name": "faBuysellads"
+    },
+    {
+      "name": "faCab"
+    },
+    {
+      "name": "faCalculator"
+    },
+    {
+      "name": "faCalendar"
+    },
+    {
+      "name": "faCalendarCheckO"
+    },
+    {
+      "name": "faCalendarMinusO"
+    },
+    {
+      "name": "faCalendarO"
+    },
+    {
+      "name": "faCalendarPlusO"
+    },
+    {
+      "name": "faCalendarTimesO"
+    },
+    {
+      "name": "faCamera"
+    },
+    {
+      "name": "faCameraRetro"
+    },
+    {
+      "name": "faCar"
+    },
+    {
+      "name": "faCaretDown"
+    },
+    {
+      "name": "faCaretLeft"
+    },
+    {
+      "name": "faCaretRight"
+    },
+    {
+      "name": "faCaretSquareODown"
+    },
+    {
+      "name": "faCaretSquareOLeft"
+    },
+    {
+      "name": "faCaretSquareORight"
+    },
+    {
+      "name": "faCaretSquareOUp"
+    },
+    {
+      "name": "faCaretUp"
+    },
+    {
+      "name": "faCartArrowDown"
+    },
+    {
+      "name": "faCartPlus"
+    },
+    {
+      "name": "faCc"
+    },
+    {
+      "name": "faCcAmex"
+    },
+    {
+      "name": "faCcDinersClub"
+    },
+    {
+      "name": "faCcDiscover"
+    },
+    {
+      "name": "faCcJcb"
+    },
+    {
+      "name": "faCcMastercard"
+    },
+    {
+      "name": "faCcPaypal"
+    },
+    {
+      "name": "faCcStripe"
+    },
+    {
+      "name": "faCcVisa"
+    },
+    {
+      "name": "faCertificate"
+    },
+    {
+      "name": "faChain"
+    },
+    {
+      "name": "faChainBroken"
+    },
+    {
+      "name": "faCheck"
+    },
+    {
+      "name": "faCheckCircle"
+    },
+    {
+      "name": "faCheckCircleO"
+    },
+    {
+      "name": "faCheckSquare"
+    },
+    {
+      "name": "faCheckSquareO"
+    },
+    {
+      "name": "faChevronCircleDown"
+    },
+    {
+      "name": "faChevronCircleLeft"
+    },
+    {
+      "name": "faChevronCircleRight"
+    },
+    {
+      "name": "faChevronCircleUp"
+    },
+    {
+      "name": "faChevronDown"
+    },
+    {
+      "name": "faChevronLeft"
+    },
+    {
+      "name": "faChevronRight"
+    },
+    {
+      "name": "faChevronUp"
+    },
+    {
+      "name": "faChild"
+    },
+    {
+      "name": "faChrome"
+    },
+    {
+      "name": "faCircle"
+    },
+    {
+      "name": "faCircleO"
+    },
+    {
+      "name": "faCircleONotch"
+    },
+    {
+      "name": "faCircleThin"
+    },
+    {
+      "name": "faClipboard"
+    },
+    {
+      "name": "faClockO"
+    },
+    {
+      "name": "faClone"
+    },
+    {
+      "name": "faClose"
+    },
+    {
+      "name": "faCloud"
+    },
+    {
+      "name": "faCloudDownload"
+    },
+    {
+      "name": "faCloudUpload"
+    },
+    {
+      "name": "faCny"
+    },
+    {
+      "name": "faCode"
+    },
+    {
+      "name": "faCodeFork"
+    },
+    {
+      "name": "faCodepen"
+    },
+    {
+      "name": "faCodiepie"
+    },
+    {
+      "name": "faCoffee"
+    },
+    {
+      "name": "faCog"
+    },
+    {
+      "name": "faCogs"
+    },
+    {
+      "name": "faColumns"
+    },
+    {
+      "name": "faComment"
+    },
+    {
+      "name": "faCommentO"
+    },
+    {
+      "name": "faCommenting"
+    },
+    {
+      "name": "faCommentingO"
+    },
+    {
+      "name": "faComments"
+    },
+    {
+      "name": "faCommentsO"
+    },
+    {
+      "name": "faCompass"
+    },
+    {
+      "name": "faCompress"
+    },
+    {
+      "name": "faConnectdevelop"
+    },
+    {
+      "name": "faContao"
+    },
+    {
+      "name": "faCopy"
+    },
+    {
+      "name": "faCopyright"
+    },
+    {
+      "name": "faCreativeCommons"
+    },
+    {
+      "name": "faCreditCard"
+    },
+    {
+      "name": "faCreditCardAlt"
+    },
+    {
+      "name": "faCrop"
+    },
+    {
+      "name": "faCrosshairs"
+    },
+    {
+      "name": "faCube"
+    },
+    {
+      "name": "faCubes"
+    },
+    {
+      "name": "faCut"
+    },
+    {
+      "name": "faCutlery"
+    },
+    {
+      "name": "faDashboard"
+    },
+    {
+      "name": "faDashcube"
+    },
+    {
+      "name": "faDatabase"
+    },
+    {
+      "name": "faDeaf"
+    },
+    {
+      "name": "faDeafness"
+    },
+    {
+      "name": "faDedent"
+    },
+    {
+      "name": "faDelicious"
+    },
+    {
+      "name": "faDesktop"
+    },
+    {
+      "name": "faDeviantart"
+    },
+    {
+      "name": "faDiamond"
+    },
+    {
+      "name": "faDigg"
+    },
+    {
+      "name": "faDollar"
+    },
+    {
+      "name": "faDotCircleO"
+    },
+    {
+      "name": "faDownload"
+    },
+    {
+      "name": "faDribbble"
+    },
+    {
+      "name": "faDropbox"
+    },
+    {
+      "name": "faDrupal"
+    },
+    {
+      "name": "faEdge"
+    },
+    {
+      "name": "faEdit"
+    },
+    {
+      "name": "faEject"
+    },
+    {
+      "name": "faEllipsisH"
+    },
+    {
+      "name": "faEllipsisV"
+    },
+    {
+      "name": "faEmpire"
+    },
+    {
+      "name": "faEnvelope"
+    },
+    {
+      "name": "faEnvelopeO"
+    },
+    {
+      "name": "faEnvelopeSquare"
+    },
+    {
+      "name": "faEnvira"
+    },
+    {
+      "name": "faEraser"
+    },
+    {
+      "name": "faEur"
+    },
+    {
+      "name": "faEuro"
+    },
+    {
+      "name": "faExchange"
+    },
+    {
+      "name": "faExclamation"
+    },
+    {
+      "name": "faExclamationCircle"
+    },
+    {
+      "name": "faExclamationTriangle"
+    },
+    {
+      "name": "faExpand"
+    },
+    {
+      "name": "faExpeditedssl"
+    },
+    {
+      "name": "faExternalLink"
+    },
+    {
+      "name": "faExternalLinkSquare"
+    },
+    {
+      "name": "faEye"
+    },
+    {
+      "name": "faEyeSlash"
+    },
+    {
+      "name": "faEyedropper"
+    },
+    {
+      "name": "faFa"
+    },
+    {
+      "name": "faFacebook"
+    },
+    {
+      "name": "faFacebookF"
+    },
+    {
+      "name": "faFacebookOfficial"
+    },
+    {
+      "name": "faFacebookSquare"
+    },
+    {
+      "name": "faFastBackward"
+    },
+    {
+      "name": "faFastForward"
+    },
+    {
+      "name": "faFax"
+    },
+    {
+      "name": "faFeed"
+    },
+    {
+      "name": "faFemale"
+    },
+    {
+      "name": "faFighterJet"
+    },
+    {
+      "name": "faFile"
+    },
+    {
+      "name": "faFileArchiveO"
+    },
+    {
+      "name": "faFileAudioO"
+    },
+    {
+      "name": "faFileCodeO"
+    },
+    {
+      "name": "faFileExcelO"
+    },
+    {
+      "name": "faFileImageO"
+    },
+    {
+      "name": "faFileMovieO"
+    },
+    {
+      "name": "faFileO"
+    },
+    {
+      "name": "faFilePdfO"
+    },
+    {
+      "name": "faFilePhotoO"
+    },
+    {
+      "name": "faFilePictureO"
+    },
+    {
+      "name": "faFilePowerpointO"
+    },
+    {
+      "name": "faFileSoundO"
+    },
+    {
+      "name": "faFileText"
+    },
+    {
+      "name": "faFileTextO"
+    },
+    {
+      "name": "faFileVideoO"
+    },
+    {
+      "name": "faFileWordO"
+    },
+    {
+      "name": "faFileZipO"
+    },
+    {
+      "name": "faFilesO"
+    },
+    {
+      "name": "faFilm"
+    },
+    {
+      "name": "faFilter"
+    },
+    {
+      "name": "faFire"
+    },
+    {
+      "name": "faFireExtinguisher"
+    },
+    {
+      "name": "faFirefox"
+    },
+    {
+      "name": "faFirstOrder"
+    },
+    {
+      "name": "faFlag"
+    },
+    {
+      "name": "faFlagCheckered"
+    },
+    {
+      "name": "faFlagO"
+    },
+    {
+      "name": "faFlash"
+    },
+    {
+      "name": "faFlask"
+    },
+    {
+      "name": "faFlickr"
+    },
+    {
+      "name": "faFloppyO"
+    },
+    {
+      "name": "faFolder"
+    },
+    {
+      "name": "faFolderO"
+    },
+    {
+      "name": "faFolderOpen"
+    },
+    {
+      "name": "faFolderOpenO"
+    },
+    {
+      "name": "faFont"
+    },
+    {
+      "name": "faFontAwesome"
+    },
+    {
+      "name": "faFonticons"
+    },
+    {
+      "name": "faFortAwesome"
+    },
+    {
+      "name": "faForumbee"
+    },
+    {
+      "name": "faForward"
+    },
+    {
+      "name": "faFoursquare"
+    },
+    {
+      "name": "faFrownO"
+    },
+    {
+      "name": "faFutbolO"
+    },
+    {
+      "name": "faGamepad"
+    },
+    {
+      "name": "faGavel"
+    },
+    {
+      "name": "faGbp"
+    },
+    {
+      "name": "faGe"
+    },
+    {
+      "name": "faGear"
+    },
+    {
+      "name": "faGears"
+    },
+    {
+      "name": "faGenderless"
+    },
+    {
+      "name": "faGetPocket"
+    },
+    {
+      "name": "faGg"
+    },
+    {
+      "name": "faGgCircle"
+    },
+    {
+      "name": "faGift"
+    },
+    {
+      "name": "faGit"
+    },
+    {
+      "name": "faGitSquare"
+    },
+    {
+      "name": "faGithub"
+    },
+    {
+      "name": "faGithubAlt"
+    },
+    {
+      "name": "faGithubSquare"
+    },
+    {
+      "name": "faGitlab"
+    },
+    {
+      "name": "faGittip"
+    },
+    {
+      "name": "faGlass"
+    },
+    {
+      "name": "faGlide"
+    },
+    {
+      "name": "faGlideG"
+    },
+    {
+      "name": "faGlobe"
+    },
+    {
+      "name": "faGoogle"
+    },
+    {
+      "name": "faGooglePlus"
+    },
+    {
+      "name": "faGooglePlusCircle"
+    },
+    {
+      "name": "faGooglePlusOfficial"
+    },
+    {
+      "name": "faGooglePlusSquare"
+    },
+    {
+      "name": "faGoogleWallet"
+    },
+    {
+      "name": "faGraduationCap"
+    },
+    {
+      "name": "faGratipay"
+    },
+    {
+      "name": "faGroup"
+    },
+    {
+      "name": "faHSquare"
+    },
+    {
+      "name": "faHackerNews"
+    },
+    {
+      "name": "faHandGrabO"
+    },
+    {
+      "name": "faHandLizardO"
+    },
+    {
+      "name": "faHandODown"
+    },
+    {
+      "name": "faHandOLeft"
+    },
+    {
+      "name": "faHandORight"
+    },
+    {
+      "name": "faHandOUp"
+    },
+    {
+      "name": "faHandPaperO"
+    },
+    {
+      "name": "faHandPeaceO"
+    },
+    {
+      "name": "faHandPointerO"
+    },
+    {
+      "name": "faHandRockO"
+    },
+    {
+      "name": "faHandScissorsO"
+    },
+    {
+      "name": "faHandSpockO"
+    },
+    {
+      "name": "faHandStopO"
+    },
+    {
+      "name": "faHardOfHearing"
+    },
+    {
+      "name": "faHashtag"
+    },
+    {
+      "name": "faHddO"
+    },
+    {
+      "name": "faHeader"
+    },
+    {
+      "name": "faHeadphones"
+    },
+    {
+      "name": "faHeart"
+    },
+    {
+      "name": "faHeartO"
+    },
+    {
+      "name": "faHeartbeat"
+    },
+    {
+      "name": "faHistory"
+    },
+    {
+      "name": "faHome"
+    },
+    {
+      "name": "faHospitalO"
+    },
+    {
+      "name": "faHotel"
+    },
+    {
+      "name": "faHourglass"
+    },
+    {
+      "name": "faHourglassEnd"
+    },
+    {
+      "name": "faHourglassHalf"
+    },
+    {
+      "name": "faHourglassO"
+    },
+    {
+      "name": "faHourglassStart"
+    },
+    {
+      "name": "faHouzz"
+    },
+    {
+      "name": "faICursor"
+    },
+    {
+      "name": "faIls"
+    },
+    {
+      "name": "faImage"
+    },
+    {
+      "name": "faInbox"
+    },
+    {
+      "name": "faIndent"
+    },
+    {
+      "name": "faIndustry"
+    },
+    {
+      "name": "faInfo"
+    },
+    {
+      "name": "faInfoCircle"
+    },
+    {
+      "name": "faInr"
+    },
+    {
+      "name": "faInstagram"
+    },
+    {
+      "name": "faInstitution"
+    },
+    {
+      "name": "faInternetExplorer"
+    },
+    {
+      "name": "faIntersex"
+    },
+    {
+      "name": "faIoxhost"
+    },
+    {
+      "name": "faItalic"
+    },
+    {
+      "name": "faJoomla"
+    },
+    {
+      "name": "faJpy"
+    },
+    {
+      "name": "faJsfiddle"
+    },
+    {
+      "name": "faKey"
+    },
+    {
+      "name": "faKeyboardO"
+    },
+    {
+      "name": "faKrw"
+    },
+    {
+      "name": "faLanguage"
+    },
+    {
+      "name": "faLaptop"
+    },
+    {
+      "name": "faLastfm"
+    },
+    {
+      "name": "faLastfmSquare"
+    },
+    {
+      "name": "faLeaf"
+    },
+    {
+      "name": "faLeanpub"
+    },
+    {
+      "name": "faLegal"
+    },
+    {
+      "name": "faLemonO"
+    },
+    {
+      "name": "faLevelDown"
+    },
+    {
+      "name": "faLevelUp"
+    },
+    {
+      "name": "faLifeBouy"
+    },
+    {
+      "name": "faLifeBuoy"
+    },
+    {
+      "name": "faLifeRing"
+    },
+    {
+      "name": "faLifeSaver"
+    },
+    {
+      "name": "faLightbulbO"
+    },
+    {
+      "name": "faLineChart"
+    },
+    {
+      "name": "faLink"
+    },
+    {
+      "name": "faLinkedin"
+    },
+    {
+      "name": "faLinkedinSquare"
+    },
+    {
+      "name": "faLinux"
+    },
+    {
+      "name": "faList"
+    },
+    {
+      "name": "faListAlt"
+    },
+    {
+      "name": "faListOl"
+    },
+    {
+      "name": "faListUl"
+    },
+    {
+      "name": "faLocationArrow"
+    },
+    {
+      "name": "faLock"
+    },
+    {
+      "name": "faLongArrowDown"
+    },
+    {
+      "name": "faLongArrowLeft"
+    },
+    {
+      "name": "faLongArrowRight"
+    },
+    {
+      "name": "faLongArrowUp"
+    },
+    {
+      "name": "faLowVision"
+    },
+    {
+      "name": "faMagic"
+    },
+    {
+      "name": "faMagnet"
+    },
+    {
+      "name": "faMailForward"
+    },
+    {
+      "name": "faMailReply"
+    },
+    {
+      "name": "faMailReplyAll"
+    },
+    {
+      "name": "faMale"
+    },
+    {
+      "name": "faMap"
+    },
+    {
+      "name": "faMapMarker"
+    },
+    {
+      "name": "faMapO"
+    },
+    {
+      "name": "faMapPin"
+    },
+    {
+      "name": "faMapSigns"
+    },
+    {
+      "name": "faMars"
+    },
+    {
+      "name": "faMarsDouble"
+    },
+    {
+      "name": "faMarsStroke"
+    },
+    {
+      "name": "faMarsStrokeH"
+    },
+    {
+      "name": "faMarsStrokeV"
+    },
+    {
+      "name": "faMaxcdn"
+    },
+    {
+      "name": "faMeanpath"
+    },
+    {
+      "name": "faMedium"
+    },
+    {
+      "name": "faMedkit"
+    },
+    {
+      "name": "faMehO"
+    },
+    {
+      "name": "faMercury"
+    },
+    {
+      "name": "faMicrophone"
+    },
+    {
+      "name": "faMicrophoneSlash"
+    },
+    {
+      "name": "faMinus"
+    },
+    {
+      "name": "faMinusCircle"
+    },
+    {
+      "name": "faMinusSquare"
+    },
+    {
+      "name": "faMinusSquareO"
+    },
+    {
+      "name": "faMixcloud"
+    },
+    {
+      "name": "faMobile"
+    },
+    {
+      "name": "faMobilePhone"
+    },
+    {
+      "name": "faModx"
+    },
+    {
+      "name": "faMoney"
+    },
+    {
+      "name": "faMoonO"
+    },
+    {
+      "name": "faMortarBoard"
+    },
+    {
+      "name": "faMotorcycle"
+    },
+    {
+      "name": "faMousePointer"
+    },
+    {
+      "name": "faMusic"
+    },
+    {
+      "name": "faNavicon"
+    },
+    {
+      "name": "faNeuter"
+    },
+    {
+      "name": "faNewspaperO"
+    },
+    {
+      "name": "faObjectGroup"
+    },
+    {
+      "name": "faObjectUngroup"
+    },
+    {
+      "name": "faOdnoklassniki"
+    },
+    {
+      "name": "faOdnoklassnikiSquare"
+    },
+    {
+      "name": "faOpencart"
+    },
+    {
+      "name": "faOpenid"
+    },
+    {
+      "name": "faOpera"
+    },
+    {
+      "name": "faOptinMonster"
+    },
+    {
+      "name": "faOutdent"
+    },
+    {
+      "name": "faPagelines"
+    },
+    {
+      "name": "faPaintBrush"
+    },
+    {
+      "name": "faPaperPlane"
+    },
+    {
+      "name": "faPaperPlaneO"
+    },
+    {
+      "name": "faPaperclip"
+    },
+    {
+      "name": "faParagraph"
+    },
+    {
+      "name": "faPaste"
+    },
+    {
+      "name": "faPause"
+    },
+    {
+      "name": "faPauseCircle"
+    },
+    {
+      "name": "faPauseCircleO"
+    },
+    {
+      "name": "faPaw"
+    },
+    {
+      "name": "faPaypal"
+    },
+    {
+      "name": "faPencil"
+    },
+    {
+      "name": "faPencilSquare"
+    },
+    {
+      "name": "faPencilSquareO"
+    },
+    {
+      "name": "faPercent"
+    },
+    {
+      "name": "faPhone"
+    },
+    {
+      "name": "faPhoneSquare"
+    },
+    {
+      "name": "faPhoto"
+    },
+    {
+      "name": "faPictureO"
+    },
+    {
+      "name": "faPieChart"
+    },
+    {
+      "name": "faPiedPiper"
+    },
+    {
+      "name": "faPiedPiperAlt"
+    },
+    {
+      "name": "faPiedPiperPp"
+    },
+    {
+      "name": "faPinterest"
+    },
+    {
+      "name": "faPinterestP"
+    },
+    {
+      "name": "faPinterestSquare"
+    },
+    {
+      "name": "faPlane"
+    },
+    {
+      "name": "faPlay"
+    },
+    {
+      "name": "faPlayCircle"
+    },
+    {
+      "name": "faPlayCircleO"
+    },
+    {
+      "name": "faPlug"
+    },
+    {
+      "name": "faPlus"
+    },
+    {
+      "name": "faPlusCircle"
+    },
+    {
+      "name": "faPlusSquare"
+    },
+    {
+      "name": "faPlusSquareO"
+    },
+    {
+      "name": "faPowerOff"
+    },
+    {
+      "name": "faPrint"
+    },
+    {
+      "name": "faProductHunt"
+    },
+    {
+      "name": "faPuzzlePiece"
+    },
+    {
+      "name": "faQq"
+    },
+    {
+      "name": "faQrcode"
+    },
+    {
+      "name": "faQuestion"
+    },
+    {
+      "name": "faQuestionCircle"
+    },
+    {
+      "name": "faQuestionCircleO"
+    },
+    {
+      "name": "faQuoteLeft"
+    },
+    {
+      "name": "faQuoteRight"
+    },
+    {
+      "name": "faRa"
+    },
+    {
+      "name": "faRandom"
+    },
+    {
+      "name": "faRebel"
+    },
+    {
+      "name": "faRecycle"
+    },
+    {
+      "name": "faReddit"
+    },
+    {
+      "name": "faRedditAlien"
+    },
+    {
+      "name": "faRedditSquare"
+    },
+    {
+      "name": "faRefresh"
+    },
+    {
+      "name": "faRegistered"
+    },
+    {
+      "name": "faRemove"
+    },
+    {
+      "name": "faRenren"
+    },
+    {
+      "name": "faReorder"
+    },
+    {
+      "name": "faRepeat"
+    },
+    {
+      "name": "faReply"
+    },
+    {
+      "name": "faReplyAll"
+    },
+    {
+      "name": "faResistance"
+    },
+    {
+      "name": "faRetweet"
+    },
+    {
+      "name": "faRmb"
+    },
+    {
+      "name": "faRoad"
+    },
+    {
+      "name": "faRocket"
+    },
+    {
+      "name": "faRotateLeft"
+    },
+    {
+      "name": "faRotateRight"
+    },
+    {
+      "name": "faRouble"
+    },
+    {
+      "name": "faRss"
+    },
+    {
+      "name": "faRssSquare"
+    },
+    {
+      "name": "faRub"
+    },
+    {
+      "name": "faRuble"
+    },
+    {
+      "name": "faRupee"
+    },
+    {
+      "name": "faSafari"
+    },
+    {
+      "name": "faSave"
+    },
+    {
+      "name": "faScissors"
+    },
+    {
+      "name": "faScribd"
+    },
+    {
+      "name": "faSearch"
+    },
+    {
+      "name": "faSearchMinus"
+    },
+    {
+      "name": "faSearchPlus"
+    },
+    {
+      "name": "faSellsy"
+    },
+    {
+      "name": "faSend"
+    },
+    {
+      "name": "faSendO"
+    },
+    {
+      "name": "faServer"
+    },
+    {
+      "name": "faShare"
+    },
+    {
+      "name": "faShareAlt"
+    },
+    {
+      "name": "faShareAltSquare"
+    },
+    {
+      "name": "faShareSquare"
+    },
+    {
+      "name": "faShareSquareO"
+    },
+    {
+      "name": "faShekel"
+    },
+    {
+      "name": "faSheqel"
+    },
+    {
+      "name": "faShield"
+    },
+    {
+      "name": "faShip"
+    },
+    {
+      "name": "faShirtsinbulk"
+    },
+    {
+      "name": "faShoppingBag"
+    },
+    {
+      "name": "faShoppingBasket"
+    },
+    {
+      "name": "faShoppingCart"
+    },
+    {
+      "name": "faSignIn"
+    },
+    {
+      "name": "faSignLanguage"
+    },
+    {
+      "name": "faSignOut"
+    },
+    {
+      "name": "faSignal"
+    },
+    {
+      "name": "faSigning"
+    },
+    {
+      "name": "faSimplybuilt"
+    },
+    {
+      "name": "faSitemap"
+    },
+    {
+      "name": "faSkyatlas"
+    },
+    {
+      "name": "faSkype"
+    },
+    {
+      "name": "faSlack"
+    },
+    {
+      "name": "faSliders"
+    },
+    {
+      "name": "faSlideshare"
+    },
+    {
+      "name": "faSmileO"
+    },
+    {
+      "name": "faSnapchat"
+    },
+    {
+      "name": "faSnapchatGhost"
+    },
+    {
+      "name": "faSnapchatSquare"
+    },
+    {
+      "name": "faSoccerBallO"
+    },
+    {
+      "name": "faSort"
+    },
+    {
+      "name": "faSortAlphaAsc"
+    },
+    {
+      "name": "faSortAlphaDesc"
+    },
+    {
+      "name": "faSortAmountAsc"
+    },
+    {
+      "name": "faSortAmountDesc"
+    },
+    {
+      "name": "faSortAsc"
+    },
+    {
+      "name": "faSortDesc"
+    },
+    {
+      "name": "faSortDown"
+    },
+    {
+      "name": "faSortNumericAsc"
+    },
+    {
+      "name": "faSortNumericDesc"
+    },
+    {
+      "name": "faSortUp"
+    },
+    {
+      "name": "faSoundcloud"
+    },
+    {
+      "name": "faSpaceShuttle"
+    },
+    {
+      "name": "faSpinner"
+    },
+    {
+      "name": "faSpoon"
+    },
+    {
+      "name": "faSpotify"
+    },
+    {
+      "name": "faSquare"
+    },
+    {
+      "name": "faSquareO"
+    },
+    {
+      "name": "faStackExchange"
+    },
+    {
+      "name": "faStackOverflow"
+    },
+    {
+      "name": "faStar"
+    },
+    {
+      "name": "faStarHalf"
+    },
+    {
+      "name": "faStarHalfEmpty"
+    },
+    {
+      "name": "faStarHalfFull"
+    },
+    {
+      "name": "faStarHalfO"
+    },
+    {
+      "name": "faStarO"
+    },
+    {
+      "name": "faSteam"
+    },
+    {
+      "name": "faSteamSquare"
+    },
+    {
+      "name": "faStepBackward"
+    },
+    {
+      "name": "faStepForward"
+    },
+    {
+      "name": "faStethoscope"
+    },
+    {
+      "name": "faStickyNote"
+    },
+    {
+      "name": "faStickyNoteO"
+    },
+    {
+      "name": "faStop"
+    },
+    {
+      "name": "faStopCircle"
+    },
+    {
+      "name": "faStopCircleO"
+    },
+    {
+      "name": "faStreetView"
+    },
+    {
+      "name": "faStrikethrough"
+    },
+    {
+      "name": "faStumbleupon"
+    },
+    {
+      "name": "faStumbleuponCircle"
+    },
+    {
+      "name": "faSubscript"
+    },
+    {
+      "name": "faSubway"
+    },
+    {
+      "name": "faSuitcase"
+    },
+    {
+      "name": "faSunO"
+    },
+    {
+      "name": "faSuperscript"
+    },
+    {
+      "name": "faSupport"
+    },
+    {
+      "name": "faTable"
+    },
+    {
+      "name": "faTablet"
+    },
+    {
+      "name": "faTachometer"
+    },
+    {
+      "name": "faTag"
+    },
+    {
+      "name": "faTags"
+    },
+    {
+      "name": "faTasks"
+    },
+    {
+      "name": "faTaxi"
+    },
+    {
+      "name": "faTelevision"
+    },
+    {
+      "name": "faTencentWeibo"
+    },
+    {
+      "name": "faTerminal"
+    },
+    {
+      "name": "faTextHeight"
+    },
+    {
+      "name": "faTextWidth"
+    },
+    {
+      "name": "faTh"
+    },
+    {
+      "name": "faThLarge"
+    },
+    {
+      "name": "faThList"
+    },
+    {
+      "name": "faThemeisle"
+    },
+    {
+      "name": "faThumbTack"
+    },
+    {
+      "name": "faThumbsDown"
+    },
+    {
+      "name": "faThumbsODown"
+    },
+    {
+      "name": "faThumbsOUp"
+    },
+    {
+      "name": "faThumbsUp"
+    },
+    {
+      "name": "faTicket"
+    },
+    {
+      "name": "faTimes"
+    },
+    {
+      "name": "faTimesCircle"
+    },
+    {
+      "name": "faTimesCircleO"
+    },
+    {
+      "name": "faTint"
+    },
+    {
+      "name": "faToggleDown"
+    },
+    {
+      "name": "faToggleLeft"
+    },
+    {
+      "name": "faToggleOff"
+    },
+    {
+      "name": "faToggleOn"
+    },
+    {
+      "name": "faToggleRight"
+    },
+    {
+      "name": "faToggleUp"
+    },
+    {
+      "name": "faTrademark"
+    },
+    {
+      "name": "faTrain"
+    },
+    {
+      "name": "faTransgender"
+    },
+    {
+      "name": "faTransgenderAlt"
+    },
+    {
+      "name": "faTrash"
+    },
+    {
+      "name": "faTrashO"
+    },
+    {
+      "name": "faTree"
+    },
+    {
+      "name": "faTrello"
+    },
+    {
+      "name": "faTripadvisor"
+    },
+    {
+      "name": "faTrophy"
+    },
+    {
+      "name": "faTruck"
+    },
+    {
+      "name": "faTry"
+    },
+    {
+      "name": "faTty"
+    },
+    {
+      "name": "faTumblr"
+    },
+    {
+      "name": "faTumblrSquare"
+    },
+    {
+      "name": "faTurkishLira"
+    },
+    {
+      "name": "faTv"
+    },
+    {
+      "name": "faTwitch"
+    },
+    {
+      "name": "faTwitter"
+    },
+    {
+      "name": "faTwitterSquare"
+    },
+    {
+      "name": "faUmbrella"
+    },
+    {
+      "name": "faUnderline"
+    },
+    {
+      "name": "faUndo"
+    },
+    {
+      "name": "faUniversalAccess"
+    },
+    {
+      "name": "faUniversity"
+    },
+    {
+      "name": "faUnlink"
+    },
+    {
+      "name": "faUnlock"
+    },
+    {
+      "name": "faUnlockAlt"
+    },
+    {
+      "name": "faUnsorted"
+    },
+    {
+      "name": "faUpload"
+    },
+    {
+      "name": "faUsb"
+    },
+    {
+      "name": "faUsd"
+    },
+    {
+      "name": "faUser"
+    },
+    {
+      "name": "faUserMd"
+    },
+    {
+      "name": "faUserPlus"
+    },
+    {
+      "name": "faUserSecret"
+    },
+    {
+      "name": "faUserTimes"
+    },
+    {
+      "name": "faUsers"
+    },
+    {
+      "name": "faVenus"
+    },
+    {
+      "name": "faVenusDouble"
+    },
+    {
+      "name": "faVenusMars"
+    },
+    {
+      "name": "faViacoin"
+    },
+    {
+      "name": "faViadeo"
+    },
+    {
+      "name": "faViadeoSquare"
+    },
+    {
+      "name": "faVideoCamera"
+    },
+    {
+      "name": "faVimeo"
+    },
+    {
+      "name": "faVimeoSquare"
+    },
+    {
+      "name": "faVine"
+    },
+    {
+      "name": "faVk"
+    },
+    {
+      "name": "faVolumeControlPhone"
+    },
+    {
+      "name": "faVolumeDown"
+    },
+    {
+      "name": "faVolumeOff"
+    },
+    {
+      "name": "faVolumeUp"
+    },
+    {
+      "name": "faWarning"
+    },
+    {
+      "name": "faWechat"
+    },
+    {
+      "name": "faWeibo"
+    },
+    {
+      "name": "faWeixin"
+    },
+    {
+      "name": "faWhatsapp"
+    },
+    {
+      "name": "faWheelchair"
+    },
+    {
+      "name": "faWheelchairAlt"
+    },
+    {
+      "name": "faWifi"
+    },
+    {
+      "name": "faWikipediaW"
+    },
+    {
+      "name": "faWindows"
+    },
+    {
+      "name": "faWon"
+    },
+    {
+      "name": "faWordpress"
+    },
+    {
+      "name": "faWpbeginner"
+    },
+    {
+      "name": "faWpforms"
+    },
+    {
+      "name": "faWrench"
+    },
+    {
+      "name": "faXing"
+    },
+    {
+      "name": "faXingSquare"
+    },
+    {
+      "name": "faYCombinator"
+    },
+    {
+      "name": "faYCombinatorSquare"
+    },
+    {
+      "name": "faYahoo"
+    },
+    {
+      "name": "faYc"
+    },
+    {
+      "name": "faYcSquare"
+    },
+    {
+      "name": "faYelp"
+    },
+    {
+      "name": "faYen"
+    },
+    {
+      "name": "faYoast"
+    },
+    {
+      "name": "faYoutube"
+    },
+    {
+      "name": "faYoutubePlay"
+    },
+    {
+      "name": "faYoutubeSquare"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\faicon": [
+      "500px",
+      "adjust",
+      "adn",
+      "align-center",
+      "align-justify",
+      "align-left",
+      "align-right",
+      "amazon",
+      "ambulance",
+      "american-sign-language-interpreting",
+      "anchor",
+      "android",
+      "angellist",
+      "angle-double-down",
+      "angle-double-left",
+      "angle-double-right",
+      "angle-double-up",
+      "angle-down",
+      "angle-left",
+      "angle-right",
+      "angle-up",
+      "apple",
+      "archive",
+      "area-chart",
+      "arrow-circle-down",
+      "arrow-circle-left",
+      "arrow-circle-o-down",
+      "arrow-circle-o-left",
+      "arrow-circle-o-right",
+      "arrow-circle-o-up",
+      "arrow-circle-right",
+      "arrow-circle-up",
+      "arrow-down",
+      "arrow-left",
+      "arrow-right",
+      "arrow-up",
+      "arrows",
+      "arrows-alt",
+      "arrows-h",
+      "arrows-v",
+      "asl-interpreting",
+      "assistive-listening-systems",
+      "asterisk",
+      "at",
+      "audio-description",
+      "automobile",
+      "backward",
+      "balance-scale",
+      "ban",
+      "bank",
+      "bar-chart",
+      "bar-chart-o",
+      "barcode",
+      "bars",
+      "battery-0",
+      "battery-1",
+      "battery-2",
+      "battery-3",
+      "battery-4",
+      "battery-empty",
+      "battery-full",
+      "battery-half",
+      "battery-quarter",
+      "battery-three-quarters",
+      "bed",
+      "beer",
+      "behance",
+      "behance-square",
+      "bell",
+      "bell-o",
+      "bell-slash",
+      "bell-slash-o",
+      "bicycle",
+      "binoculars",
+      "birthday-cake",
+      "bitbucket",
+      "bitbucket-square",
+      "bitcoin",
+      "black-tie",
+      "blind",
+      "bluetooth",
+      "bluetooth-b",
+      "bold",
+      "bolt",
+      "bomb",
+      "book",
+      "bookmark",
+      "bookmark-o",
+      "braille",
+      "briefcase",
+      "btc",
+      "bug",
+      "building",
+      "building-o",
+      "bullhorn",
+      "bullseye",
+      "bus",
+      "buysellads",
+      "cab",
+      "calculator",
+      "calendar",
+      "calendar-check-o",
+      "calendar-minus-o",
+      "calendar-o",
+      "calendar-plus-o",
+      "calendar-times-o",
+      "camera",
+      "camera-retro",
+      "car",
+      "caret-down",
+      "caret-left",
+      "caret-right",
+      "caret-square-o-down",
+      "caret-square-o-left",
+      "caret-square-o-right",
+      "caret-square-o-up",
+      "caret-up",
+      "cart-arrow-down",
+      "cart-plus",
+      "cc",
+      "cc-amex",
+      "cc-diners-club",
+      "cc-discover",
+      "cc-jcb",
+      "cc-mastercard",
+      "cc-paypal",
+      "cc-stripe",
+      "cc-visa",
+      "certificate",
+      "chain",
+      "chain-broken",
+      "check",
+      "check-circle",
+      "check-circle-o",
+      "check-square",
+      "check-square-o",
+      "chevron-circle-down",
+      "chevron-circle-left",
+      "chevron-circle-right",
+      "chevron-circle-up",
+      "chevron-down",
+      "chevron-left",
+      "chevron-right",
+      "chevron-up",
+      "child",
+      "chrome",
+      "circle",
+      "circle-o",
+      "circle-o-notch",
+      "circle-thin",
+      "clipboard",
+      "clock-o",
+      "clone",
+      "close",
+      "cloud",
+      "cloud-download",
+      "cloud-upload",
+      "cny",
+      "code",
+      "code-fork",
+      "codepen",
+      "codiepie",
+      "coffee",
+      "cog",
+      "cogs",
+      "columns",
+      "comment",
+      "comment-o",
+      "commenting",
+      "commenting-o",
+      "comments",
+      "comments-o",
+      "compass",
+      "compress",
+      "connectdevelop",
+      "contao",
+      "copy",
+      "copyright",
+      "creative-commons",
+      "credit-card",
+      "credit-card-alt",
+      "crop",
+      "crosshairs",
+      "css3",
+      "cube",
+      "cubes",
+      "cut",
+      "cutlery",
+      "dashboard",
+      "dashcube",
+      "database",
+      "deaf",
+      "deafness",
+      "dedent",
+      "delicious",
+      "desktop",
+      "deviantart",
+      "diamond",
+      "digg",
+      "dollar",
+      "dot-circle-o",
+      "download",
+      "dribbble",
+      "dropbox",
+      "drupal",
+      "edge",
+      "edit",
+      "eject",
+      "ellipsis-h",
+      "ellipsis-v",
+      "empire",
+      "envelope",
+      "envelope-o",
+      "envelope-square",
+      "envira",
+      "eraser",
+      "eur",
+      "euro",
+      "exchange",
+      "exclamation",
+      "exclamation-circle",
+      "exclamation-triangle",
+      "expand",
+      "expeditedssl",
+      "external-link",
+      "external-link-square",
+      "eye",
+      "eye-slash",
+      "eyedropper",
+      "fa",
+      "facebook",
+      "facebook-f",
+      "facebook-official",
+      "facebook-square",
+      "fast-backward",
+      "fast-forward",
+      "fax",
+      "feed",
+      "female",
+      "fighter-jet",
+      "file",
+      "file-archive-o",
+      "file-audio-o",
+      "file-code-o",
+      "file-excel-o",
+      "file-image-o",
+      "file-movie-o",
+      "file-o",
+      "file-pdf-o",
+      "file-photo-o",
+      "file-picture-o",
+      "file-powerpoint-o",
+      "file-sound-o",
+      "file-text",
+      "file-text-o",
+      "file-video-o",
+      "file-word-o",
+      "file-zip-o",
+      "files-o",
+      "film",
+      "filter",
+      "fire",
+      "fire-extinguisher",
+      "firefox",
+      "first-order",
+      "flag",
+      "flag-checkered",
+      "flag-o",
+      "flash",
+      "flask",
+      "flickr",
+      "floppy-o",
+      "folder",
+      "folder-o",
+      "folder-open",
+      "folder-open-o",
+      "font",
+      "font-awesome",
+      "fonticons",
+      "fort-awesome",
+      "forumbee",
+      "forward",
+      "foursquare",
+      "frown-o",
+      "futbol-o",
+      "gamepad",
+      "gavel",
+      "gbp",
+      "ge",
+      "gear",
+      "gears",
+      "genderless",
+      "get-pocket",
+      "gg",
+      "gg-circle",
+      "gift",
+      "git",
+      "git-square",
+      "github",
+      "github-alt",
+      "github-square",
+      "gitlab",
+      "gittip",
+      "glass",
+      "glide",
+      "glide-g",
+      "globe",
+      "google",
+      "google-plus",
+      "google-plus-circle",
+      "google-plus-official",
+      "google-plus-square",
+      "google-wallet",
+      "graduation-cap",
+      "gratipay",
+      "group",
+      "h-square",
+      "hacker-news",
+      "hand-grab-o",
+      "hand-lizard-o",
+      "hand-o-down",
+      "hand-o-left",
+      "hand-o-right",
+      "hand-o-up",
+      "hand-paper-o",
+      "hand-peace-o",
+      "hand-pointer-o",
+      "hand-rock-o",
+      "hand-scissors-o",
+      "hand-spock-o",
+      "hand-stop-o",
+      "hard-of-hearing",
+      "hashtag",
+      "hdd-o",
+      "header",
+      "headphones",
+      "heart",
+      "heart-o",
+      "heartbeat",
+      "history",
+      "home",
+      "hospital-o",
+      "hotel",
+      "hourglass",
+      "hourglass-1",
+      "hourglass-2",
+      "hourglass-3",
+      "hourglass-end",
+      "hourglass-half",
+      "hourglass-o",
+      "hourglass-start",
+      "houzz",
+      "html5",
+      "i-cursor",
+      "ils",
+      "image",
+      "inbox",
+      "indent",
+      "industry",
+      "info",
+      "info-circle",
+      "inr",
+      "instagram",
+      "institution",
+      "internet-explorer",
+      "intersex",
+      "ioxhost",
+      "italic",
+      "joomla",
+      "jpy",
+      "jsfiddle",
+      "key",
+      "keyboard-o",
+      "krw",
+      "language",
+      "laptop",
+      "lastfm",
+      "lastfm-square",
+      "leaf",
+      "leanpub",
+      "legal",
+      "lemon-o",
+      "level-down",
+      "level-up",
+      "life-bouy",
+      "life-buoy",
+      "life-ring",
+      "life-saver",
+      "lightbulb-o",
+      "line-chart",
+      "link",
+      "linkedin",
+      "linkedin-square",
+      "linux",
+      "list",
+      "list-alt",
+      "list-ol",
+      "list-ul",
+      "location-arrow",
+      "lock",
+      "long-arrow-down",
+      "long-arrow-left",
+      "long-arrow-right",
+      "long-arrow-up",
+      "low-vision",
+      "magic",
+      "magnet",
+      "mail-forward",
+      "mail-reply",
+      "mail-reply-all",
+      "male",
+      "map",
+      "map-marker",
+      "map-o",
+      "map-pin",
+      "map-signs",
+      "mars",
+      "mars-double",
+      "mars-stroke",
+      "mars-stroke-h",
+      "mars-stroke-v",
+      "maxcdn",
+      "meanpath",
+      "medium",
+      "medkit",
+      "meh-o",
+      "mercury",
+      "microphone",
+      "microphone-slash",
+      "minus",
+      "minus-circle",
+      "minus-square",
+      "minus-square-o",
+      "mixcloud",
+      "mobile",
+      "mobile-phone",
+      "modx",
+      "money",
+      "moon-o",
+      "mortar-board",
+      "motorcycle",
+      "mouse-pointer",
+      "music",
+      "navicon",
+      "neuter",
+      "newspaper-o",
+      "object-group",
+      "object-ungroup",
+      "odnoklassniki",
+      "odnoklassniki-square",
+      "opencart",
+      "openid",
+      "opera",
+      "optin-monster",
+      "outdent",
+      "pagelines",
+      "paint-brush",
+      "paper-plane",
+      "paper-plane-o",
+      "paperclip",
+      "paragraph",
+      "paste",
+      "pause",
+      "pause-circle",
+      "pause-circle-o",
+      "paw",
+      "paypal",
+      "pencil",
+      "pencil-square",
+      "pencil-square-o",
+      "percent",
+      "phone",
+      "phone-square",
+      "photo",
+      "picture-o",
+      "pie-chart",
+      "pied-piper",
+      "pied-piper-alt",
+      "pied-piper-pp",
+      "pinterest",
+      "pinterest-p",
+      "pinterest-square",
+      "plane",
+      "play",
+      "play-circle",
+      "play-circle-o",
+      "plug",
+      "plus",
+      "plus-circle",
+      "plus-square",
+      "plus-square-o",
+      "power-off",
+      "print",
+      "product-hunt",
+      "puzzle-piece",
+      "qq",
+      "qrcode",
+      "question",
+      "question-circle",
+      "question-circle-o",
+      "quote-left",
+      "quote-right",
+      "ra",
+      "random",
+      "rebel",
+      "recycle",
+      "reddit",
+      "reddit-alien",
+      "reddit-square",
+      "refresh",
+      "registered",
+      "remove",
+      "renren",
+      "reorder",
+      "repeat",
+      "reply",
+      "reply-all",
+      "resistance",
+      "retweet",
+      "rmb",
+      "road",
+      "rocket",
+      "rotate-left",
+      "rotate-right",
+      "rouble",
+      "rss",
+      "rss-square",
+      "rub",
+      "ruble",
+      "rupee",
+      "safari",
+      "save",
+      "scissors",
+      "scribd",
+      "search",
+      "search-minus",
+      "search-plus",
+      "sellsy",
+      "send",
+      "send-o",
+      "server",
+      "share",
+      "share-alt",
+      "share-alt-square",
+      "share-square",
+      "share-square-o",
+      "shekel",
+      "sheqel",
+      "shield",
+      "ship",
+      "shirtsinbulk",
+      "shopping-bag",
+      "shopping-basket",
+      "shopping-cart",
+      "sign-in",
+      "sign-language",
+      "sign-out",
+      "signal",
+      "signing",
+      "simplybuilt",
+      "sitemap",
+      "skyatlas",
+      "skype",
+      "slack",
+      "sliders",
+      "slideshare",
+      "smile-o",
+      "snapchat",
+      "snapchat-ghost",
+      "snapchat-square",
+      "soccer-ball-o",
+      "sort",
+      "sort-alpha-asc",
+      "sort-alpha-desc",
+      "sort-amount-asc",
+      "sort-amount-desc",
+      "sort-asc",
+      "sort-desc",
+      "sort-down",
+      "sort-numeric-asc",
+      "sort-numeric-desc",
+      "sort-up",
+      "soundcloud",
+      "space-shuttle",
+      "spinner",
+      "spoon",
+      "spotify",
+      "square",
+      "square-o",
+      "stack-exchange",
+      "stack-overflow",
+      "star",
+      "star-half",
+      "star-half-empty",
+      "star-half-full",
+      "star-half-o",
+      "star-o",
+      "steam",
+      "steam-square",
+      "step-backward",
+      "step-forward",
+      "stethoscope",
+      "sticky-note",
+      "sticky-note-o",
+      "stop",
+      "stop-circle",
+      "stop-circle-o",
+      "street-view",
+      "strikethrough",
+      "stumbleupon",
+      "stumbleupon-circle",
+      "subscript",
+      "subway",
+      "suitcase",
+      "sun-o",
+      "superscript",
+      "support",
+      "table",
+      "tablet",
+      "tachometer",
+      "tag",
+      "tags",
+      "tasks",
+      "taxi",
+      "television",
+      "tencent-weibo",
+      "terminal",
+      "text-height",
+      "text-width",
+      "th",
+      "th-large",
+      "th-list",
+      "themeisle",
+      "thumb-tack",
+      "thumbs-down",
+      "thumbs-o-down",
+      "thumbs-o-up",
+      "thumbs-up",
+      "ticket",
+      "times",
+      "times-circle",
+      "times-circle-o",
+      "tint",
+      "toggle-down",
+      "toggle-left",
+      "toggle-off",
+      "toggle-on",
+      "toggle-right",
+      "toggle-up",
+      "trademark",
+      "train",
+      "transgender",
+      "transgender-alt",
+      "trash",
+      "trash-o",
+      "tree",
+      "trello",
+      "tripadvisor",
+      "trophy",
+      "truck",
+      "try",
+      "tty",
+      "tumblr",
+      "tumblr-square",
+      "turkish-lira",
+      "tv",
+      "twitch",
+      "twitter",
+      "twitter-square",
+      "umbrella",
+      "underline",
+      "undo",
+      "universal-access",
+      "university",
+      "unlink",
+      "unlock",
+      "unlock-alt",
+      "unsorted",
+      "upload",
+      "usb",
+      "usd",
+      "user",
+      "user-md",
+      "user-plus",
+      "user-secret",
+      "user-times",
+      "users",
+      "venus",
+      "venus-double",
+      "venus-mars",
+      "viacoin",
+      "viadeo",
+      "viadeo-square",
+      "video-camera",
+      "vimeo",
+      "vimeo-square",
+      "vine",
+      "vk",
+      "volume-control-phone",
+      "volume-down",
+      "volume-off",
+      "volume-up",
+      "warning",
+      "wechat",
+      "weibo",
+      "weixin",
+      "whatsapp",
+      "wheelchair",
+      "wheelchair-alt",
+      "wifi",
+      "wikipedia-w",
+      "windows",
+      "won",
+      "wordpress",
+      "wpbeginner",
+      "wpforms",
+      "wrench",
+      "xing",
+      "xing-square",
+      "y-combinator",
+      "y-combinator-square",
+      "yahoo",
+      "yc",
+      "yc-square",
+      "yelp",
+      "yen",
+      "yoast",
+      "youtube",
+      "youtube-play",
+      "youtube-square"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

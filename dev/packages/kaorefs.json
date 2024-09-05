@@ -1,436 +1,845 @@
 {
-  "includes": {
-    "amsthm": [],
-    "varioref": [],
-    "hyperref": [],
-    "cleveref": [],
-    "backref": [
-      "backref",
-      "backref=section",
-      "backref=slide",
-      "backref=page",
-      "pagebackref",
-      "pagebackref=true"
-    ],
-    "color": [
+  "deps": [
+    {
+      "name": "amsthm"
+    },
+    {
+      "name": "varioref"
+    },
+    {
+      "name": "hyperref"
+    },
+    {
+      "name": "cleveref"
+    },
+    {
+      "name": "backref",
+      "if": "backref"
+    },
+    {
+      "name": "backref",
+      "if": "backref=section"
+    },
+    {
+      "name": "backref",
+      "if": "backref=slide"
+    },
+    {
+      "name": "backref",
+      "if": "backref=page"
+    },
+    {
+      "name": "backref",
+      "if": "pagebackref"
+    },
+    {
+      "name": "backref",
+      "if": "pagebackref=true"
+    },
+    {
+      "name": "color",
+      "if": "colorlinks"
+    },
+    {
+      "name": "color",
+      "if": "colorlinks=true"
+    }
+  ],
+  "macros": [
+    {
+      "name": "chapternameshort",
+      "unusual": true
+    },
+    {
+      "name": "sectionname",
+      "unusual": true
+    },
+    {
+      "name": "sectionnameshort",
+      "unusual": true
+    },
+    {
+      "name": "subsectionname",
+      "unusual": true
+    },
+    {
+      "name": "subsectionnameplural",
+      "unusual": true
+    },
+    {
+      "name": "subsectionnameshort",
+      "unusual": true
+    },
+    {
+      "name": "figurenameshort",
+      "unusual": true
+    },
+    {
+      "name": "tablenameshort",
+      "unusual": true
+    },
+    {
+      "name": "eqname",
+      "unusual": true
+    },
+    {
+      "name": "eqnameshort",
+      "unusual": true
+    },
+    {
+      "name": "defname",
+      "unusual": true
+    },
+    {
+      "name": "assumname",
+      "unusual": true
+    },
+    {
+      "name": "thmname",
+      "unusual": true
+    },
+    {
+      "name": "propname",
+      "unusual": true
+    },
+    {
+      "name": "lemmaname",
+      "unusual": true
+    },
+    {
+      "name": "remarkname",
+      "unusual": true
+    },
+    {
+      "name": "examplename",
+      "unusual": true
+    },
+    {
+      "name": "exercisename",
+      "unusual": true
+    },
+    {
+      "name": "labpage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pagelabel%specialDef}}"
+      }
+    },
+    {
+      "name": "labpart",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:partlabel%specialDef}}"
+      }
+    },
+    {
+      "name": "labch",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:chlabel%specialDef}}"
+      }
+    },
+    {
+      "name": "labsec",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:seclabel%specialDef}}"
+      }
+    },
+    {
+      "name": "labsubsec",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:subseclabel%specialDef}}"
+      }
+    },
+    {
+      "name": "labfig",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:figlabel%specialDef}}"
+      }
+    },
+    {
+      "name": "labtab",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tablabel%specialDef}}"
+      }
+    },
+    {
+      "name": "labeq",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:eqlabel%specialDef}}"
+      }
+    },
+    {
+      "name": "labdef",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:deflabel%specialDef}}"
+      }
+    },
+    {
+      "name": "labassum",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:assumlabel%specialDef}}"
+      }
+    },
+    {
+      "name": "labthm",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:thmlabel%specialDef}}"
+      }
+    },
+    {
+      "name": "labprop",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:proplabel%specialDef}}"
+      }
+    },
+    {
+      "name": "lablemma",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:lemmalabel%specialDef}}"
+      }
+    },
+    {
+      "name": "labremark",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:remarklabel%specialDef}}"
+      }
+    },
+    {
+      "name": "labexample",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:examplelabel%specialDef}}"
+      }
+    },
+    {
+      "name": "labexercise",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:exerciselabel%specialDef}}"
+      }
+    },
+    {
+      "name": "refpage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pagelabel%keyvals}}"
+      }
+    },
+    {
+      "name": "vrefpage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:pagelabel%keyvals}}"
+      }
+    },
+    {
+      "name": "arefpart",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:partlabel%keyvals}}"
+      }
+    },
+    {
+      "name": "avrefpart",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:partlabel%keyvals}}"
+      }
+    },
+    {
+      "name": "refpart",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:partlabel%keyvals}}"
+      }
+    },
+    {
+      "name": "vrefpart",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:partlabel%keyvals}}"
+      }
+    },
+    {
+      "name": "nrefpart",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:partlabel%keyvals}}"
+      }
+    },
+    {
+      "name": "frefpart",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:partlabel%keyvals}}"
+      }
+    },
+    {
+      "name": "refchshort",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:chlabel%keyvals}}"
+      }
+    },
+    {
+      "name": "refch",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:chlabel%keyvals}}"
+      }
+    },
+    {
+      "name": "vrefch",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:chlabel%keyvals}}"
+      }
+    },
+    {
+      "name": "nrefch",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:chlabel%keyvals}}"
+      }
+    },
+    {
+      "name": "frefch",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:chlabel%keyvals}}"
+      }
+    },
+    {
+      "name": "refsecshort",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:seclabel%keyvals}}"
+      }
+    },
+    {
+      "name": "refsec",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:seclabel%keyvals}}"
+      }
+    },
+    {
+      "name": "vrefsec",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:seclabel%keyvals}}"
+      }
+    },
+    {
+      "name": "nrefsec",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:seclabel%keyvals}}"
+      }
+    },
+    {
+      "name": "frefsec",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:seclabel%keyvals}}"
+      }
+    },
+    {
+      "name": "refsubsecshort",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:subseclabel%keyvals}}"
+      }
+    },
+    {
+      "name": "refsubsec",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:subseclabel%keyvals}}"
+      }
+    },
+    {
+      "name": "vrefsubsec",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:subseclabel%keyvals}}"
+      }
+    },
+    {
+      "name": "nrefsubsec",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:subseclabel%keyvals}}"
+      }
+    },
+    {
+      "name": "frefsubsec",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:subseclabel%keyvals}}"
+      }
+    },
+    {
+      "name": "reffigshort",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:figlabel%keyvals}}"
+      }
+    },
+    {
+      "name": "reffig",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:figlabel%keyvals}}"
+      }
+    },
+    {
+      "name": "vreffig",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:figlabel%keyvals}}"
+      }
+    },
+    {
+      "name": "reftab",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tablabel%keyvals}}"
+      }
+    },
+    {
+      "name": "vreftab",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tablabel%keyvals}}"
+      }
+    },
+    {
+      "name": "refeqshort",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:eqlabel%keyvals}}"
+      }
+    },
+    {
+      "name": "refeq",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:eqlabel%keyvals}}"
+      }
+    },
+    {
+      "name": "vrefeq",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:eqlabel%keyvals}}"
+      }
+    },
+    {
+      "name": "refdef",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:deflabel%keyvals}}"
+      }
+    },
+    {
+      "name": "vrefdef",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:deflabel%keyvals}}"
+      }
+    },
+    {
+      "name": "refassum",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:assumlabel%keyvals}}"
+      }
+    },
+    {
+      "name": "vrefassum",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:assumlabel%keyvals}}"
+      }
+    },
+    {
+      "name": "refthm",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:thmlabel%keyvals}}"
+      }
+    },
+    {
+      "name": "vrefthm",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:thmlabel%keyvals}}"
+      }
+    },
+    {
+      "name": "refprop",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:proplabel%keyvals}}"
+      }
+    },
+    {
+      "name": "vrefprop",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:proplabel%keyvals}}"
+      }
+    },
+    {
+      "name": "reflemma",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:lemmalabel%keyvals}}"
+      }
+    },
+    {
+      "name": "vreflemma",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:lemmalabel%keyvals}}"
+      }
+    },
+    {
+      "name": "refremark",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:remarklabel%keyvals}}"
+      }
+    },
+    {
+      "name": "vrefremark",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:remarklabel%keyvals}}"
+      }
+    },
+    {
+      "name": "refexample",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:examplelabel%keyvals}}"
+      }
+    },
+    {
+      "name": "vrefexample",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:examplelabel%keyvals}}"
+      }
+    },
+    {
+      "name": "refexercise",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:exerciselabel%keyvals}}"
+      }
+    },
+    {
+      "name": "vrefexercise",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:exerciselabel%keyvals}}"
+      }
+    },
+    {
+      "name": "HyperDestRename",
+      "if": "destlabel",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:destination}}{${2:newname}}"
+      }
+    },
+    {
+      "name": "HyperDestRename",
+      "if": "destlabel=true",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:destination}}{${2:newname}}"
+      }
+    },
+    {
+      "name": "hyperindexformat",
+      "if": "hyperindex",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "hyperindexformat",
+      "if": "hyperindex=true",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/kaorefs#c": [
+      "afrikaans\r",
+      "american\r",
+      "arabic\r",
+      "austrian\r",
+      "naustrian\r",
+      "basque\r",
+      "bahasam\r",
+      "brazil\r",
+      "breton\r",
+      "bulgarian\r",
+      "catalan\r",
+      "croatian\r",
+      "czech\r",
+      "danish\r",
+      "dutch\r",
+      "english\r",
+      "esperanto\r",
+      "finnish\r",
+      "french\r",
+      "galician\r",
+      "german\r",
+      "ngerman\r",
+      "greek\r",
+      "icelandic\r",
+      "italian\r",
+      "japanese\r",
+      "magyar\r",
+      "norsk\r",
+      "nynorsk\r",
+      "polish\r",
+      "portuges\r",
+      "romanian\r",
+      "russian\r",
+      "slovak\r",
+      "slovene\r",
+      "spanish\r",
+      "swedish\r",
+      "turkish\r",
+      "ukrainian\r",
+      "francais\r",
+      "germanb\r",
+      "draft\r",
+      "final\r",
+      "space\r",
+      "nospace\r",
+      "addtopdfcreator=${1:text}\r",
+      "allbordercolors=",
+      "allcolors=",
+      "anchorcolor=",
+      "backref=${1|section,slide,page,none,false\r|}",
+      "baseurl=${1:URL}\r",
+      "bookmarks",
+      "bookmarksdepth\r",
+      "bookmarksdepth=${1:number}\r",
+      "bookmarksnumbered",
+      "bookmarksopen",
+      "bookmarksopenlevel=${1:level}\r",
+      "bookmarkstype=\r",
+      "breaklinks",
+      "citebordercolor=",
+      "citecolor=",
+      "CJKbookmarks",
       "colorlinks",
-      "colorlinks=true"
+      "customdriver=${1:file}\r",
+      "debug",
+      "destlabel",
+      "draft",
+      "driverfallback=${1:driver}\r",
+      "dvipdfm\r",
+      "dvipdfmx\r",
+      "dvipdfmx-outline-open",
+      "dvips\r",
+      "dvipsone\r",
+      "dviwindo\r",
+      "encap=${1:character}\r",
+      "extension=${1:file ext}\r",
+      "filebordercolor=",
+      "filecolor=",
+      "final",
+      "frenchlinks",
+      "hidelinks\r",
+      "hyperfigures",
+      "hyperfootnotes",
+      "hyperindex",
+      "hypertex\r",
+      "hypertexnames",
+      "implicit",
+      "linkbordercolor=",
+      "linkcolor=",
+      "linkfileprefix=${1:prefix}\r",
+      "linktoc=${1|section,page,all,none\r|}",
+      "linktocpage",
+      "luatex\r",
+      "menubordercolor=",
+      "menucolor=",
+      "nativepdf\r",
+      "naturalnames",
+      "nesting",
+      "next-anchor=${1:anchor name}\r",
+      "ocgcolorlinks",
+      "pageanchor",
+      "pagebackref",
+      "pdfa",
+      "pdfauthor=${1:author}\r",
+      "pdfborder=\r",
+      "pdfborderstyle=\r",
+      "pdfcenterwindow",
+      "pdfcreationdate=${1:date}\r",
+      "pdfcreator=${1:creator}\r",
+      "pdfdirection=${1|L2R,R2L\r|}",
+      "pdfdisplaydoctitle",
+      "pdfduplex\r",
+      "pdfencoding=${1|pdfdoc,unicode,auto\r|}",
+      "pdfescapeform",
+      "pdffitwindow",
+      "pdfhighlight=${1|/I,/N,/O,/P\r|}",
+      "pdfinfo={${1:info keys}}\r",
+      "pdfkeywords={${1:keyword list}}\r",
+      "pdflang=${1:lang id}\r",
+      "pdflinkmargin=",
+      "pdfmark\r",
+      "pdfmenubar",
+      "pdfmoddate=${1:date}\r",
+      "pdfnewwindow",
+      "pdfnonfullscreenpagemode\r",
+      "pdfnumcopies=${1:integer}\r",
+      "pdfpageduration=\r",
+      "pdfpagelabels",
+      "pdfpagelayout=${1|SinglePage,OneColumn,TwoColumnLeft,TwoColumnRight,TwoPageLeft,TwoPageRight\r|}",
+      "pdfpagemode=${1|FullScreen,UseNone,UseOutlines,UseOC,UseAttachments,UseThumbs\r|}",
+      "pdfpagescrop=\r",
+      "pdfpagetransition=${1|Split,Blinds,Box,Wipe,Dissolve,Glitter,R,Fly,Push,Cover,Uncover,Fade\r|}",
+      "pdfpicktraybypdfsize",
+      "pdfprintarea=${1|Mediabox,CropBox,BleedBox,TrimBox,ArtBox\r|}",
+      "pdfprintclip=${1|Mediabox,CropBox,BleedBox,TrimBox,ArtBox\r|}",
+      "pdfprintpagerange=\r",
+      "pdfprintscaling=${1|None,AppDefault\r|}",
+      "pdfproducer=${1:producer}\r",
+      "pdfremotestartview=${1|XYZ,Fit,FitH,FitV,FitR,FitB,FitBH,FitBV\r|}",
+      "pdfstartpage=${1:page number}\r",
+      "pdfstartview=${1|XYZ,Fit,FitH,FitV,FitR,FitB,FitBH,FitBV\r|}",
+      "pdfsubject=${1:subject}\r",
+      "pdftex\r",
+      "pdftitle=${1:title}\r",
+      "pdftoolbar",
+      "pdftrapped=${1|True,False,Unknown\r|}",
+      "pdfusetitle\r",
+      "pdfversion=${1:version}\r",
+      "pdfview=${1|XYZ,Fit,FitH,FitV,FitR,FitB,FitBH,FitBV\r|}",
+      "pdfviewarea=${1|Mediabox,CropBox,BleedBox,TrimBox,ArtBox\r|}",
+      "pdfviewclip=${1|Mediabox,CropBox,BleedBox,TrimBox,ArtBox\r|}",
+      "pdfwindowui",
+      "plainpages",
+      "ps2pdf\r",
+      "psdextra",
+      "raiselinks",
+      "runbordercolor=",
+      "runcolor=",
+      "setpagesize",
+      "tex4ht\r",
+      "textures\r",
+      "unicode",
+      "urlbordercolor=",
+      "urlcolor=",
+      "verbose",
+      "vtex\r",
+      "vtexpdfmark\r",
+      "xetex\r",
+      "poorman\r",
+      "sort\r",
+      "compress\r",
+      "sort&compress\r",
+      "nosort\r",
+      "capitalise\r",
+      "capitalize\r",
+      "nameinlink\r",
+      "noabbrev\r",
+      "english\r",
+      "german\r",
+      "ngerman\r",
+      "dutch\r",
+      "french\r",
+      "spanish\r",
+      "italian\r",
+      "russian\r",
+      "ukrainian\r",
+      "norsk\r",
+      "danish\r",
+      "esperanto\r",
+      "swedish\r",
+      "brazilian\r",
+      "catalan\r"
+    ],
+    "\\refpage#c,\\vrefpage#c": [
+      "%kaopagelabel\r"
+    ],
+    "\\arefpart#c,\\avrefpart#c,\\refpart#c,\\vrefpart#c,\\nrefpart#c,\\frefpart#c": [
+      "%kaopartlabel\r"
+    ],
+    "\\refchshort#c,\\refch#c,\\vrefch#c,\\nrefch#c,\\frefch#c": [
+      "%kaochapterlabel\r"
+    ],
+    "\\refsecshort#c,\\refsec#c,\\vrefsec#c,\\nrefsec#c,\\frefsec#c": [
+      "%kaosectionlabel\r"
+    ],
+    "\\refsubsecshort#c,\\refsubsec#c,\\vrefsubsec#c,\\nrefsubsec#c,\\frefsubsec#c": [
+      "%kaosubsectionlabel\r"
+    ],
+    "\\reffigshort#c,\\reffig#c,\\vreffig#c": [
+      "%kaofigurelabel\r"
+    ],
+    "\\reftab#c,\\vreftab#c": [
+      "%kaotablelabel\r"
+    ],
+    "\\refeqshort#c,\\refeq#c,\\vrefeq#c": [
+      "%kaoequationlabel\r"
+    ],
+    "\\refdef#c,\\vrefdef#c": [
+      "%kaodefinitionlabel\r"
+    ],
+    "\\refassum#c,\\vrefassum#c": [
+      "%kaoassumptionlabel\r"
+    ],
+    "\\refthm#c,\\vrefthem#c": [
+      "%kaotheoremlabel\r"
+    ],
+    "\\refprop#c,\\vrefprop#c": [
+      "%kaopropositionlabel\r"
+    ],
+    "\\reflemma#c,\\vreflemma#c": [
+      "%kaolemmalabel\r"
+    ],
+    "\\refremark#c,\\vrefremark#c": [
+      "%kaoremarklabel\r"
+    ],
+    "\\refexample#c,\\vrefexample#c": [
+      "%kaoexamplelabel\r"
+    ],
+    "\\refexercise#c,\\vrefexercise#c": [
+      "%kaoexerciselabel\r"
     ]
   },
-  "macros": {
-    "chapternameshort": {},
-    "sectionname": {},
-    "sectionnameshort": {},
-    "subsectionname": {},
-    "subsectionnameplural": {},
-    "subsectionnameshort": {},
-    "figurenameshort": {},
-    "tablenameshort": {},
-    "eqname": {},
-    "eqnameshort": {},
-    "defname": {},
-    "assumname": {},
-    "thmname": {},
-    "propname": {},
-    "lemmaname": {},
-    "remarkname": {},
-    "examplename": {},
-    "exercisename": {},
-    "labpage{}": {
-      "snippet": "labpage{${1:pagelabel}}"
-    },
-    "labpart{}": {
-      "snippet": "labpart{${1:partlabel}}"
-    },
-    "labch{}": {
-      "snippet": "labch{${1:chlabel}}"
-    },
-    "labsec{}": {
-      "snippet": "labsec{${1:seclabel}}"
-    },
-    "labsubsec{}": {
-      "snippet": "labsubsec{${1:subseclabel}}"
-    },
-    "labfig{}": {
-      "snippet": "labfig{${1:figlabel}}"
-    },
-    "labtab{}": {
-      "snippet": "labtab{${1:tablabel}}"
-    },
-    "labeq{}": {
-      "snippet": "labeq{${1:eqlabel}}"
-    },
-    "labdef{}": {
-      "snippet": "labdef{${1:deflabel}}"
-    },
-    "labassum{}": {
-      "snippet": "labassum{${1:assumlabel}}"
-    },
-    "labthm{}": {
-      "snippet": "labthm{${1:thmlabel}}"
-    },
-    "labprop{}": {
-      "snippet": "labprop{${1:proplabel}}"
-    },
-    "lablemma{}": {
-      "snippet": "lablemma{${1:lemmalabel}}"
-    },
-    "labremark{}": {
-      "snippet": "labremark{${1:remarklabel}}"
-    },
-    "labexample{}": {
-      "snippet": "labexample{${1:examplelabel}}"
-    },
-    "labexercise{}": {
-      "snippet": "labexercise{${1:exerciselabel}}"
-    },
-    "refpage{}": {
-      "snippet": "refpage{${1:pagelabel}}"
-    },
-    "vrefpage{}": {
-      "snippet": "vrefpage{${1:pagelabel}}"
-    },
-    "arefpart{}": {
-      "snippet": "arefpart{${1:partlabel}}"
-    },
-    "avrefpart{}": {
-      "snippet": "avrefpart{${1:partlabel}}"
-    },
-    "refpart{}": {
-      "snippet": "refpart{${1:partlabel}}"
-    },
-    "vrefpart{}": {
-      "snippet": "vrefpart{${1:partlabel}}"
-    },
-    "nrefpart{}": {
-      "snippet": "nrefpart{${1:partlabel}}"
-    },
-    "frefpart{}": {
-      "snippet": "frefpart{${1:partlabel}}"
-    },
-    "refchshort{}": {
-      "snippet": "refchshort{${1:chlabel}}"
-    },
-    "refch{}": {
-      "snippet": "refch{${1:chlabel}}"
-    },
-    "vrefch{}": {
-      "snippet": "vrefch{${1:chlabel}}"
-    },
-    "nrefch{}": {
-      "snippet": "nrefch{${1:chlabel}}"
-    },
-    "frefch{}": {
-      "snippet": "frefch{${1:chlabel}}"
-    },
-    "refsecshort{}": {
-      "snippet": "refsecshort{${1:seclabel}}"
-    },
-    "refsec{}": {
-      "snippet": "refsec{${1:seclabel}}"
-    },
-    "vrefsec{}": {
-      "snippet": "vrefsec{${1:seclabel}}"
-    },
-    "nrefsec{}": {
-      "snippet": "nrefsec{${1:seclabel}}"
-    },
-    "frefsec{}": {
-      "snippet": "frefsec{${1:seclabel}}"
-    },
-    "refsubsecshort{}": {
-      "snippet": "refsubsecshort{${1:subseclabel}}"
-    },
-    "refsubsec{}": {
-      "snippet": "refsubsec{${1:subseclabel}}"
-    },
-    "vrefsubsec{}": {
-      "snippet": "vrefsubsec{${1:subseclabel}}"
-    },
-    "nrefsubsec{}": {
-      "snippet": "nrefsubsec{${1:subseclabel}}"
-    },
-    "frefsubsec{}": {
-      "snippet": "frefsubsec{${1:subseclabel}}"
-    },
-    "reffigshort{}": {
-      "snippet": "reffigshort{${1:figlabel}}"
-    },
-    "reffig{}": {
-      "snippet": "reffig{${1:figlabel}}"
-    },
-    "vreffig{}": {
-      "snippet": "vreffig{${1:figlabel}}"
-    },
-    "reftab{}": {
-      "snippet": "reftab{${1:tablabel}}"
-    },
-    "vreftab{}": {
-      "snippet": "vreftab{${1:tablabel}}"
-    },
-    "refeqshort{}": {
-      "snippet": "refeqshort{${1:eqlabel}}"
-    },
-    "refeq{}": {
-      "snippet": "refeq{${1:eqlabel}}"
-    },
-    "vrefeq{}": {
-      "snippet": "vrefeq{${1:eqlabel}}"
-    },
-    "refdef{}": {
-      "snippet": "refdef{${1:deflabel}}"
-    },
-    "vrefdef{}": {
-      "snippet": "vrefdef{${1:deflabel}}"
-    },
-    "refassum{}": {
-      "snippet": "refassum{${1:assumlabel}}"
-    },
-    "vrefassum{}": {
-      "snippet": "vrefassum{${1:assumlabel}}"
-    },
-    "refthm{}": {
-      "snippet": "refthm{${1:thmlabel}}"
-    },
-    "vrefthm{}": {
-      "snippet": "vrefthm{${1:thmlabel}}"
-    },
-    "refprop{}": {
-      "snippet": "refprop{${1:proplabel}}"
-    },
-    "vrefprop{}": {
-      "snippet": "vrefprop{${1:proplabel}}"
-    },
-    "reflemma{}": {
-      "snippet": "reflemma{${1:lemmalabel}}"
-    },
-    "vreflemma{}": {
-      "snippet": "vreflemma{${1:lemmalabel}}"
-    },
-    "refremark{}": {
-      "snippet": "refremark{${1:remarklabel}}"
-    },
-    "vrefremark{}": {
-      "snippet": "vrefremark{${1:remarklabel}}"
-    },
-    "refexample{}": {
-      "snippet": "refexample{${1:examplelabel}}"
-    },
-    "vrefexample{}": {
-      "snippet": "vrefexample{${1:examplelabel}}"
-    },
-    "refexercise{}": {
-      "snippet": "refexercise{${1:exerciselabel}}"
-    },
-    "vrefexercise{}": {
-      "snippet": "vrefexercise{${1:exerciselabel}}"
-    },
-    "oldvpageref{}": {
-      "snippet": "oldvpageref{${1:label}}"
-    },
-    "HyperDestRename{}{}": {
-      "snippet": "HyperDestRename{${1:destination}}{${2:newname}}",
-      "option": "destlabel=true"
-    },
-    "hyperindexformat{}{}": {
-      "snippet": "hyperindexformat{${1:arg1}}{${2:arg2}}",
-      "option": "hyperindex=true"
-    }
-  },
-  "envs": {},
-  "options": [
-    "afrikaans",
-    "american",
-    "arabic",
-    "austrian",
-    "naustrian",
-    "basque",
-    "bahasam",
-    "brazil",
-    "breton",
-    "bulgarian",
-    "catalan",
-    "croatian",
-    "czech",
-    "danish",
-    "dutch",
-    "english",
-    "esperanto",
-    "finnish",
-    "french",
-    "galician",
-    "german",
-    "ngerman",
-    "greek",
-    "icelandic",
-    "italian",
-    "japanese",
-    "magyar",
-    "norsk",
-    "nynorsk",
-    "polish",
-    "portuges",
-    "romanian",
-    "russian",
-    "slovak",
-    "slovene",
-    "spanish",
-    "swedish",
-    "turkish",
-    "ukrainian",
-    "francais",
-    "germanb",
-    "draft",
-    "final",
-    "space",
-    "nospace",
-    "addtopdfcreator=${1:text}",
-    "allbordercolors=",
-    "allcolors=",
-    "anchorcolor=",
-    "backref=${1|section,slide,page,none,false|}",
-    "baseurl=${1:URL}",
-    "bookmarks",
-    "bookmarksdepth",
-    "bookmarksdepth=${1:number}",
-    "bookmarksnumbered",
-    "bookmarksopen",
-    "bookmarksopenlevel=${1:level}",
-    "bookmarkstype=",
-    "breaklinks",
-    "citebordercolor=",
-    "citecolor=",
-    "CJKbookmarks",
-    "colorlinks",
-    "customdriver=${1:file}",
-    "debug",
-    "destlabel",
-    "draft",
-    "driverfallback=${1:driver}",
-    "dvipdfm",
-    "dvipdfmx",
-    "dvipdfmx-outline-open",
-    "dvips",
-    "dvipsone",
-    "dviwindo",
-    "encap=${1:character}",
-    "extension=${1:file ext}",
-    "filebordercolor=",
-    "filecolor=",
-    "final",
-    "frenchlinks",
-    "hidelinks",
-    "hyperfigures",
-    "hyperfootnotes",
-    "hyperindex",
-    "hypertex",
-    "hypertexnames",
-    "implicit",
-    "linkbordercolor=",
-    "linkcolor=",
-    "linkfileprefix=${1:prefix}",
-    "linktoc=${1|section,page,all,none|}",
-    "linktocpage",
-    "luatex",
-    "menubordercolor=",
-    "menucolor=",
-    "nativepdf",
-    "naturalnames",
-    "nesting",
-    "next-anchor=${1:anchor name}",
-    "ocgcolorlinks",
-    "pageanchor",
-    "pagebackref",
-    "pdfa",
-    "pdfauthor=${1:author}",
-    "pdfborder=",
-    "pdfborderstyle=",
-    "pdfcenterwindow",
-    "pdfcreationdate=${1:date}",
-    "pdfcreator=${1:creator}",
-    "pdfdirection=${1|L2R,R2L|}",
-    "pdfdisplaydoctitle",
-    "pdfduplex",
-    "pdfencoding=${1|pdfdoc,unicode,auto|}",
-    "pdfescapeform",
-    "pdffitwindow",
-    "pdfhighlight=${1|/I,/N,/O,/P|}",
-    "pdfinfo={${1:info keys}}",
-    "pdfkeywords={${1:keyword list}}",
-    "pdflang=${1:lang id}",
-    "pdflinkmargin=",
-    "pdfmark",
-    "pdfmenubar",
-    "pdfmoddate=${1:date}",
-    "pdfnewwindow",
-    "pdfnonfullscreenpagemode",
-    "pdfnumcopies=${1:integer}",
-    "pdfpageduration=",
-    "pdfpagelabels",
-    "pdfpagelayout=${1|SinglePage,OneColumn,TwoColumnLeft,TwoColumnRight,TwoPageLeft,TwoPageRight|}",
-    "pdfpagemode=${1|FullScreen,UseNone,UseOutlines,UseOC,UseAttachments,UseThumbs|}",
-    "pdfpagescrop=",
-    "pdfpagetransition=${1|Split,Blinds,Box,Wipe,Dissolve,Glitter,R,Fly,Push,Cover,Uncover,Fade|}",
-    "pdfpicktraybypdfsize",
-    "pdfprintarea=${1|Mediabox,CropBox,BleedBox,TrimBox,ArtBox|}",
-    "pdfprintclip=${1|Mediabox,CropBox,BleedBox,TrimBox,ArtBox|}",
-    "pdfprintpagerange=",
-    "pdfprintscaling=${1|None,AppDefault|}",
-    "pdfproducer=${1:producer}",
-    "pdfremotestartview=${1|XYZ,Fit,FitH,FitV,FitR,FitB,FitBH,FitBV|}",
-    "pdfstartpage=${1:page number}",
-    "pdfstartview=${1|XYZ,Fit,FitH,FitV,FitR,FitB,FitBH,FitBV|}",
-    "pdfsubject=${1:subject}",
-    "pdftex",
-    "pdftitle=${1:title}",
-    "pdftoolbar",
-    "pdftrapped=${1|True,False,Unknown|}",
-    "pdfusetitle",
-    "pdfversion=${1:version}",
-    "pdfview=${1|XYZ,Fit,FitH,FitV,FitR,FitB,FitBH,FitBV|}",
-    "pdfviewarea=${1|Mediabox,CropBox,BleedBox,TrimBox,ArtBox|}",
-    "pdfviewclip=${1|Mediabox,CropBox,BleedBox,TrimBox,ArtBox|}",
-    "pdfwindowui",
-    "plainpages",
-    "ps2pdf",
-    "psdextra",
-    "raiselinks",
-    "runbordercolor=",
-    "runcolor=",
-    "setpagesize",
-    "tex4ht",
-    "textures",
-    "unicode",
-    "urlbordercolor=",
-    "urlcolor=",
-    "verbose",
-    "vtex",
-    "vtexpdfmark",
-    "xetex",
-    "poorman",
-    "sort",
-    "compress",
-    "sort&compress",
-    "nosort",
-    "capitalise",
-    "capitalize",
-    "nameinlink",
-    "noabbrev",
-    "english",
-    "german",
-    "ngerman",
-    "dutch",
-    "french",
-    "spanish",
-    "italian",
-    "russian",
-    "ukrainian",
-    "norsk",
-    "danish",
-    "esperanto",
-    "swedish",
-    "brazilian",
-    "catalan"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/kaorefs#c"
+  ]
 }

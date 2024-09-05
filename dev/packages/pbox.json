@@ -1,31 +1,64 @@
 {
-  "includes": {
-    "calc": []
-  },
-  "macros": {
-    "pbox{}{}": {
-      "snippet": "pbox{${1:width}}{${2:contents}}"
-    },
-    "pbox[]{}{}": {
-      "snippet": "pbox[${3:position}]{${1:width}}{${2:contents}}"
-    },
-    "pbox[][]{}{}": {
-      "snippet": "pbox[${3:position}][${4:height}]{${1:width}}{${2:contents}}"
-    },
-    "pbox[][][]{}{}": {
-      "snippet": "pbox[${3:position}][${4:height}][${5:inner-pos}]{${1:width}}{${2:contents}}"
-    },
-    "settominwidth{}{}": {
-      "snippet": "settominwidth{${1:cmd}}{${2:text}}"
-    },
-    "settominwidth[]{}{}": {
-      "snippet": "settominwidth[${3:max-width}]{${1:cmd}}{${2:text}}"
-    },
-    "widthofpbox{}": {
-      "snippet": "widthofpbox{${1:text}}"
+  "deps": [
+    {
+      "name": "calc"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "pbox",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:width}}{${2:contents%text}}"
+      }
+    },
+    {
+      "name": "pbox",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:position}]{${1:width}}{${2:contents%text}}"
+      }
+    },
+    {
+      "name": "pbox",
+      "arg": {
+        "format": "[][]{}{}",
+        "snippet": "[${3:position}][${4:height}]{${1:width}}{${2:contents%text}}"
+      }
+    },
+    {
+      "name": "pbox",
+      "arg": {
+        "format": "[][][]{}{}",
+        "snippet": "[${3:position}][${4:height}][${5:inner-pos}]{${1:width}}{${2:contents%text}}"
+      }
+    },
+    {
+      "name": "settominwidth",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:text}}"
+      }
+    },
+    {
+      "name": "settominwidth",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:max-width}]{${1:cmd}}{${2:text}}"
+      }
+    },
+    {
+      "name": "widthofpbox",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

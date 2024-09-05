@@ -1,37 +1,69 @@
 {
-  "includes": {
-    "ifxetex": [],
-    "ifluatex": [],
-    "xkeyval": [],
-    "fontenc": [],
-    "fontaxes": [],
-    "mweights": []
-  },
-  "macros": {
-    "librefranklin": {},
-    "sufigures": {},
-    "textsu{}": {
-      "snippet": "textsu{${1:text}}"
+  "deps": [
+    {
+      "name": "ifxetex"
     },
-    "textsuperior{}": {
-      "snippet": "textsuperior{${1:text}}"
+    {
+      "name": "ifluatex"
     },
-    "librefranklinfamily": {}
-  },
-  "envs": {},
-  "options": [
-    "scale=${1:factor}",
-    "scaled=${1:factor}",
-    "type1",
-    "semibold",
-    "extrabold",
-    "black",
-    "bold",
-    "medium",
-    "regular",
-    "light",
-    "extralight",
-    "thin"
+    {
+      "name": "xkeyval"
+    },
+    {
+      "name": "fontenc"
+    },
+    {
+      "name": "fontaxes"
+    },
+    {
+      "name": "mweights"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "librefranklin"
+    },
+    {
+      "name": "sufigures"
+    },
+    {
+      "name": "textsu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textsuperior",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "librefranklinfamily",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/librefranklin#c": [
+      "scale=${1:factor}\r",
+      "scaled=${1:factor}\r",
+      "type1\r",
+      "semibold\r",
+      "extrabold\r",
+      "black\r",
+      "bold\r",
+      "medium\r",
+      "regular\r",
+      "light\r",
+      "extralight\r",
+      "thin\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/librefranklin#c"
+  ]
 }

@@ -1,46 +1,126 @@
 {
-  "includes": {
-    "ifxetex": [],
-    "pifont": [],
-    "fontspec": [],
-    "xunicode": [],
-    "xltxtra": [],
-    "metalogo": [],
-    "xkeyval": [],
-    "polyglossia": []
-  },
-  "macros": {
-    "titlepageframe": {},
-    "highlight{}": {
-      "snippet": "highlight{${1:text}}"
+  "deps": [
+    {
+      "name": "ifxetex"
     },
-    "highlightbf{}": {
-      "snippet": "highlightbf{${1:text}}"
+    {
+      "name": "pifont"
     },
-    "setsubject{}": {
-      "snippet": "setsubject{${1:subject}}"
+    {
+      "name": "fontspec"
     },
-    "headerheight": {},
-    "ateneo{}": {
-      "snippet": "ateneo{${1:institute}}"
+    {
+      "name": "xunicode"
     },
-    "insertateneo": {},
-    "rel{}": {
-      "snippet": "rel{${1:supervisor}}"
+    {
+      "name": "xltxtra"
     },
-    "options": {},
-    "optiond": {},
-    "optiont": {},
-    "optionc": {}
-  },
-  "envs": {
-    "tframe{}": {
+    {
+      "name": "metalogo"
+    },
+    {
+      "name": "xkeyval"
+    },
+    {
+      "name": "polyglossia"
+    }
+  ],
+  "macros": [
+    {
+      "name": "titlepageframe"
+    },
+    {
+      "name": "highlight",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "highlightbf",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "setsubject",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:subject%text}}"
+      }
+    },
+    {
+      "name": "headerheight",
+      "unusual": true
+    },
+    {
+      "name": "ateneo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:institute%text}}"
+      }
+    },
+    {
+      "name": "insertateneo",
+      "unusual": true
+    },
+    {
+      "name": "rel",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:supervisor}}"
+      }
+    },
+    {
+      "name": "options",
+      "unusual": true
+    },
+    {
+      "name": "optiond",
+      "unusual": true
+    },
+    {
+      "name": "optiont",
+      "unusual": true
+    },
+    {
+      "name": "optionc",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
       "name": "tframe",
-      "snippet": "{${1:title}}"
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
     },
-    "adv": {},
-    "disadv": {}
+    {
+      "name": "adv"
+    },
+    {
+      "name": "disadv"
+    }
+  ],
+  "keys": {
+    "\\usetheme/TorinoTh#c": [
+      "language=${1:language}\r",
+      "titlepagelogo=${1:imagefile}\r",
+      "bullet=${1|square,diamond,triangle,circle\r|}",
+      "pageofpages=${1:text}\r",
+      "titleline",
+      "color=",
+      "secondcandidate",
+      "secondsupervisor",
+      "secondlogo",
+      "thirdlogo",
+      "assistantsupervisor",
+      "secondassistantsupervisor",
+      "notshowauthor\r",
+      "coding=${1|utf8x,utf8,latin1\r|}"
+    ]
   },
-  "options": [],
-  "keyvals": []
+  "args": []
 }

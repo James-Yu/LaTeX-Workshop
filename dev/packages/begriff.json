@@ -1,31 +1,72 @@
 {
-  "includes": {},
-  "macros": {
-    "BGassert": {},
-    "BGcontent": {},
-    "BGnot": {},
-    "BGquant{}": {
-      "snippet": "BGquant{${1:variable_name}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "BGassert"
     },
-    "BGconditional{}{}": {
-      "snippet": "BGconditional{${1:antecedent}}{${2:consequent}}"
+    {
+      "name": "BGcontent"
     },
-    "BGterm{}": {
-      "snippet": "BGterm{${1:expression}}"
+    {
+      "name": "BGnot"
     },
-    "BGstem{}": {
-      "snippet": "BGstem{${1:expression}}"
+    {
+      "name": "BGquant",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:variable_name}}"
+      }
     },
-    "BGbracket{}": {
-      "snippet": "BGbracket{${1:expression}}"
+    {
+      "name": "BGconditional",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:antecedent}}{${2:consequent}}"
+      }
     },
-    "BGthickness": {},
-    "BGbeforelen": {},
-    "BGafterlen": {},
-    "BGspace": {},
-    "BGlinewidth": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "BGterm",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "BGstem",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "BGbracket",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "BGthickness",
+      "unusual": true
+    },
+    {
+      "name": "BGbeforelen",
+      "unusual": true
+    },
+    {
+      "name": "BGafterlen",
+      "unusual": true
+    },
+    {
+      "name": "BGspace",
+      "unusual": true
+    },
+    {
+      "name": "BGlinewidth",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

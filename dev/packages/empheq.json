@@ -1,209 +1,587 @@
 {
-  "includes": {
-    "mathtools": []
-  },
-  "macros": {
-    "empheqset{}": {
-      "snippet": "empheqset{${1:markup instructions}}"
-    },
-    "empheqlbrace": {},
-    "empheqrbrace": {},
-    "empheqbiglbrace": {},
-    "empheqbigrbrace": {},
-    "empheqlbrack": {},
-    "empheqrbrack": {},
-    "empheqbiglbrack": {},
-    "empheqbigrbrack": {},
-    "empheqlangle": {},
-    "empheqrangle": {},
-    "empheqbiglangle": {},
-    "empheqbigrangle": {},
-    "empheqlparen": {},
-    "empheqrparen": {},
-    "empheqbiglparen": {},
-    "empheqbigrparen": {},
-    "empheqlvert": {},
-    "empheqrvert": {},
-    "empheqbiglvert": {},
-    "empheqbigrvert": {},
-    "empheqlVert": {},
-    "empheqrVert": {},
-    "empheqbiglVert": {},
-    "empheqbigrVert": {},
-    "empheqlfloor": {},
-    "empheqrfloor": {},
-    "empheqbiglfloor": {},
-    "empheqbigrfloor": {},
-    "empheqlceil": {},
-    "empheqrceil": {},
-    "empheqbiglceil": {},
-    "empheqbigrceil": {},
-    "shadowbox*{}": {
-      "snippet": "shadowbox*{${1:arg}}"
-    },
-    "mintagvsep": {},
-    "DeclareLeftDelimiter{}": {
-      "snippet": "DeclareLeftDelimiter{${1:delimiter}}"
-    },
-    "DeclareLeftDelimiter[]{}": {
-      "snippet": "DeclareLeftDelimiter[${2:space adjustment}]{${1:delimiter}}"
-    },
-    "DeclareRightDelimiter{}": {
-      "snippet": "DeclareRightDelimiter{${1:delimiter}}"
-    },
-    "DeclareRightDelimiter[]{}": {
-      "snippet": "DeclareRightDelimiter[${2:space adjustment}]{${1:delimiter}}"
-    },
-    "EmphEqdelimitershortfall": {},
-    "EmphEqdelimiterfactor": {},
-    "EmphEqdisplayheight": {},
-    "EmphEqdisplaydepth": {},
-    "EmphEqMainEnv": {},
-    "endEmphEqMainEnv": {}
-  },
-  "envs": {
-    "empheq{}": {
-      "name": "empheq",
-      "snippet": "{${1:AMS env name}}"
-    },
-    "empheq[]{}": {
-      "name": "empheq",
-      "snippet": "[${2:markup instructions}]{${1:AMS env name}}"
-    },
-    "MTmultlined": {
-      "option": "oldmultline"
-    },
-    "MTmultlined[][]": {
-      "name": "MTmultlined",
-      "snippet": "[${1:pos}][${2:width}]",
-      "option": "oldmultline"
-    },
-    "align[]": {
-      "name": "align",
-      "snippet": "[${1:markup instructions}]",
-      "option": "overload2"
-    },
-    "align*[]": {
-      "name": "align*",
-      "snippet": "[${1:markup instructions}]",
-      "option": "overload2"
-    },
-    "alignat{}[]": {
-      "name": "alignat",
-      "snippet": "{${1:ncols}}[${2:markup instructions}]",
-      "option": "overload2"
-    },
-    "alignat*{}[]": {
-      "name": "alignat*",
-      "snippet": "{${1:ncols}}[${2:markup instructions}]",
-      "option": "overload2"
-    },
-    "equation[]": {
-      "name": "equation",
-      "snippet": "[${1:markup instructions}]",
-      "option": "overload2"
-    },
-    "equation*[]": {
-      "name": "equation*",
-      "snippet": "[${1:markup instructions}]",
-      "option": "overload2"
-    },
-    "flalign[]": {
-      "name": "flalign",
-      "snippet": "[${1:markup instructions}]",
-      "option": "overload2"
-    },
-    "flalign*[]": {
-      "name": "flalign*",
-      "snippet": "[${1:markup instructions}]",
-      "option": "overload2"
-    },
-    "gather[]": {
-      "name": "gather",
-      "snippet": "[${1:markup instructions}]",
-      "option": "overload2"
-    },
-    "gather*[]": {
-      "name": "gather*",
-      "snippet": "[${1:markup instructions}]",
-      "option": "overload2"
-    },
-    "multline[]": {
-      "name": "multline",
-      "snippet": "[${1:markup instructions}]",
-      "option": "overload2"
-    },
-    "multline*[]": {
-      "name": "multline*",
-      "snippet": "[${1:markup instructions}]",
-      "option": "overload2"
-    },
-    "AmSalign": {
-      "option": "overload2"
-    },
-    "AmSalign*": {
-      "option": "overload2"
-    },
-    "AmSalignat{}": {
-      "name": "AmSalignat",
-      "snippet": "{${1:ncols}}",
-      "option": "overload2"
-    },
-    "AmSalignat*{}": {
-      "name": "AmSalignat*",
-      "snippet": "{${1:ncols}}",
-      "option": "overload2"
-    },
-    "AmSequation": {
-      "option": "overload2"
-    },
-    "AmSequation*": {
-      "option": "overload2"
-    },
-    "AmSflalign": {
-      "option": "overload2"
-    },
-    "AmSflalign*": {
-      "option": "overload2"
-    },
-    "AmSgather": {
-      "option": "overload2"
-    },
-    "AmSgather*": {
-      "option": "overload2"
-    },
-    "AmSmultline": {
-      "option": "overload2"
-    },
-    "AmSmultline*": {
-      "option": "overload2"
+  "deps": [
+    {
+      "name": "mathtools"
     }
-  },
-  "options": [
-    "overload",
-    "overload2",
-    "oldmultline",
-    "newmultline",
-    "ntheorem",
-    "fixamsmath",
-    "donotfixamsmathbugs",
-    "allowspaces",
-    "disallowspaces",
-    "intlimits",
-    "nointlimits",
-    "sumlimits",
-    "nosumlimits",
-    "namelimits",
-    "nonamelimits",
-    "leqno",
-    "reqno",
-    "centertags",
-    "tbtags",
-    "cmex10",
-    "fleqn",
-    "alignedleftspaceyes",
-    "alignedleftspaceno",
-    "alignedleftspaceyesifneg"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "empheqset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:markup instructions%keyvals}}",
+        "keys": [
+          "\\begin{empheq},\\empheqset"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "empheqlbrace"
+    },
+    {
+      "name": "empheqrbrace"
+    },
+    {
+      "name": "empheqbiglbrace"
+    },
+    {
+      "name": "empheqbigrbrace"
+    },
+    {
+      "name": "empheqlbrack"
+    },
+    {
+      "name": "empheqrbrack"
+    },
+    {
+      "name": "empheqbiglbrack"
+    },
+    {
+      "name": "empheqbigrbrack"
+    },
+    {
+      "name": "empheqlangle"
+    },
+    {
+      "name": "empheqrangle"
+    },
+    {
+      "name": "empheqbiglangle"
+    },
+    {
+      "name": "empheqbigrangle"
+    },
+    {
+      "name": "empheqlparen"
+    },
+    {
+      "name": "empheqrparen"
+    },
+    {
+      "name": "empheqbiglparen"
+    },
+    {
+      "name": "empheqbigrparen"
+    },
+    {
+      "name": "empheqlvert"
+    },
+    {
+      "name": "empheqrvert"
+    },
+    {
+      "name": "empheqbiglvert"
+    },
+    {
+      "name": "empheqbigrvert"
+    },
+    {
+      "name": "empheqlVert"
+    },
+    {
+      "name": "empheqrVert"
+    },
+    {
+      "name": "empheqbiglVert"
+    },
+    {
+      "name": "empheqbigrVert"
+    },
+    {
+      "name": "empheqlfloor"
+    },
+    {
+      "name": "empheqrfloor"
+    },
+    {
+      "name": "empheqbiglfloor"
+    },
+    {
+      "name": "empheqbigrfloor"
+    },
+    {
+      "name": "empheqlceil"
+    },
+    {
+      "name": "empheqrceil"
+    },
+    {
+      "name": "empheqbiglceil"
+    },
+    {
+      "name": "empheqbigrceil"
+    },
+    {
+      "name": "shadowbox*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "mintagvsep",
+      "unusual": true
+    },
+    {
+      "name": "DeclareLeftDelimiter",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:delimiter}}"
+      }
+    },
+    {
+      "name": "DeclareLeftDelimiter",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:space adjustment}]{${1:delimiter}}"
+      }
+    },
+    {
+      "name": "DeclareRightDelimiter",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:delimiter}}"
+      }
+    },
+    {
+      "name": "DeclareRightDelimiter",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:space adjustment}]{${1:delimiter}}"
+      }
+    },
+    {
+      "name": "EmphEqdelimitershortfall",
+      "unusual": true
+    },
+    {
+      "name": "EmphEqdelimiterfactor",
+      "unusual": true
+    },
+    {
+      "name": "EmphEqdisplayheight",
+      "unusual": true
+    },
+    {
+      "name": "EmphEqdisplaydepth",
+      "unusual": true
+    },
+    {
+      "name": "EmphEqMainEnv",
+      "unusual": true
+    },
+    {
+      "name": "endEmphEqMainEnv",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "empheq",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:AMS env name}}"
+      }
+    },
+    {
+      "name": "empheq",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:markup instructions%keyvals}]{${1:AMS env name}}"
+      }
+    },
+    {
+      "name": "MTmultlined",
+      "if": "oldmultline"
+    },
+    {
+      "name": "MTmultlined",
+      "if": "oldmultline",
+      "arg": {
+        "format": "[][]",
+        "snippet": "[${1:pos}][${2:width}]"
+      }
+    },
+    {
+      "name": "align",
+      "if": "overload",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:markup instructions%keyvals}]"
+      }
+    },
+    {
+      "name": "align*",
+      "if": "overload",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:markup instructions%keyvals}]"
+      }
+    },
+    {
+      "name": "alignat",
+      "if": "overload",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:ncols}}[${2:markup instructions%keyvals}]"
+      }
+    },
+    {
+      "name": "alignat*",
+      "if": "overload",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:ncols}}[${2:markup instructions%keyvals}]"
+      }
+    },
+    {
+      "name": "equation",
+      "if": "overload",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:markup instructions%keyvals}]"
+      }
+    },
+    {
+      "name": "equation*",
+      "if": "overload",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:markup instructions%keyvals}]"
+      }
+    },
+    {
+      "name": "flalign",
+      "if": "overload",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:markup instructions%keyvals}]"
+      }
+    },
+    {
+      "name": "flalign*",
+      "if": "overload",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:markup instructions%keyvals}]"
+      }
+    },
+    {
+      "name": "gather",
+      "if": "overload",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:markup instructions%keyvals}]"
+      }
+    },
+    {
+      "name": "gather*",
+      "if": "overload",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:markup instructions%keyvals}]"
+      }
+    },
+    {
+      "name": "multline",
+      "if": "overload",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:markup instructions%keyvals}]"
+      }
+    },
+    {
+      "name": "multline*",
+      "if": "overload",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:markup instructions%keyvals}]"
+      }
+    },
+    {
+      "name": "AmSalign",
+      "if": "overload",
+      "unusual": true
+    },
+    {
+      "name": "AmSalign*",
+      "if": "overload",
+      "unusual": true
+    },
+    {
+      "name": "AmSalignat",
+      "if": "overload",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ncols}}"
+      }
+    },
+    {
+      "name": "AmSalignat*",
+      "if": "overload",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ncols}}"
+      }
+    },
+    {
+      "name": "AmSequation",
+      "if": "overload",
+      "unusual": true
+    },
+    {
+      "name": "AmSequation*",
+      "if": "overload",
+      "unusual": true
+    },
+    {
+      "name": "AmSflalign",
+      "if": "overload",
+      "unusual": true
+    },
+    {
+      "name": "AmSflalign*",
+      "if": "overload",
+      "unusual": true
+    },
+    {
+      "name": "AmSgather",
+      "if": "overload",
+      "unusual": true
+    },
+    {
+      "name": "AmSgather*",
+      "if": "overload",
+      "unusual": true
+    },
+    {
+      "name": "AmSmultline",
+      "if": "overload",
+      "unusual": true
+    },
+    {
+      "name": "AmSmultline*",
+      "if": "overload",
+      "unusual": true
+    },
+    {
+      "name": "align",
+      "if": "overload2",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:markup instructions%keyvals}]"
+      }
+    },
+    {
+      "name": "align*",
+      "if": "overload2",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:markup instructions%keyvals}]"
+      }
+    },
+    {
+      "name": "alignat",
+      "if": "overload2",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:ncols}}[${2:markup instructions%keyvals}]"
+      }
+    },
+    {
+      "name": "alignat*",
+      "if": "overload2",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:ncols}}[${2:markup instructions%keyvals}]"
+      }
+    },
+    {
+      "name": "equation",
+      "if": "overload2",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:markup instructions%keyvals}]"
+      }
+    },
+    {
+      "name": "equation*",
+      "if": "overload2",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:markup instructions%keyvals}]"
+      }
+    },
+    {
+      "name": "flalign",
+      "if": "overload2",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:markup instructions%keyvals}]"
+      }
+    },
+    {
+      "name": "flalign*",
+      "if": "overload2",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:markup instructions%keyvals}]"
+      }
+    },
+    {
+      "name": "gather",
+      "if": "overload2",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:markup instructions%keyvals}]"
+      }
+    },
+    {
+      "name": "gather*",
+      "if": "overload2",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:markup instructions%keyvals}]"
+      }
+    },
+    {
+      "name": "multline",
+      "if": "overload2",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:markup instructions%keyvals}]"
+      }
+    },
+    {
+      "name": "multline*",
+      "if": "overload2",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:markup instructions%keyvals}]"
+      }
+    },
+    {
+      "name": "AmSalign",
+      "if": "overload2",
+      "unusual": true
+    },
+    {
+      "name": "AmSalign*",
+      "if": "overload2",
+      "unusual": true
+    },
+    {
+      "name": "AmSalignat",
+      "if": "overload2",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ncols}}"
+      }
+    },
+    {
+      "name": "AmSalignat*",
+      "if": "overload2",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ncols}}"
+      }
+    },
+    {
+      "name": "AmSequation",
+      "if": "overload2",
+      "unusual": true
+    },
+    {
+      "name": "AmSequation*",
+      "if": "overload2",
+      "unusual": true
+    },
+    {
+      "name": "AmSflalign",
+      "if": "overload2",
+      "unusual": true
+    },
+    {
+      "name": "AmSflalign*",
+      "if": "overload2",
+      "unusual": true
+    },
+    {
+      "name": "AmSgather",
+      "if": "overload2",
+      "unusual": true
+    },
+    {
+      "name": "AmSgather*",
+      "if": "overload2",
+      "unusual": true
+    },
+    {
+      "name": "AmSmultline",
+      "if": "overload2",
+      "unusual": true
+    },
+    {
+      "name": "AmSmultline*",
+      "if": "overload2",
+      "unusual": true
+    }
+  ],
+  "keys": {
+    "\\usepackage/empheq#c": [
+      "overload",
+      "overload2",
+      "oldmultline",
+      "newmultline",
+      "ntheorem",
+      "fixamsmath",
+      "donotfixamsmathbugs",
+      "allowspaces",
+      "disallowspaces",
+      "intlimits",
+      "nointlimits",
+      "sumlimits",
+      "nosumlimits",
+      "namelimits",
+      "nonamelimits",
+      "leqno",
+      "reqno",
+      "centertags",
+      "tbtags",
+      "cmex10",
+      "fleqn",
+      "alignedleftspaceyes",
+      "alignedleftspaceno",
+      "alignedleftspaceyesifneg"
+    ],
+    "\\begin{empheq},\\empheqset": [
+      "box=${1:box cmd}",
+      "innerbox=${1:box cmd}",
+      "left=${1:math}",
+      "right=${1:math}",
+      "outerbox=${1:box cmd}",
+      "marginbox=${1:box cmd}"
+    ],
+    "\\begin{align},\\begin{align*},\\begin{alignat}{ncols},\\begin{alignat*}{ncols},\\begin{equation},\\begin{equation*},\\begin{flalign},\\begin{flalign*},\\begin{gather},\\begin{gather*},\\begin{multline},\\begin{multline*}": [
+      "box=${1:box cmd}",
+      "innerbox=${1:box cmd}",
+      "left=${1:math}",
+      "right=${1:math}",
+      "outerbox=${1:box cmd}",
+      "marginbox=${1:box cmd}"
+    ]
+  },
+  "args": [
+    "\\usepackage/empheq#c"
+  ]
 }

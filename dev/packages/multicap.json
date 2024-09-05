@@ -1,29 +1,63 @@
 {
-  "includes": {
-    "ifthen": []
-  },
-  "macros": {
-    "mfcaption{}": {
-      "snippet": "mfcaption{${1:text}}"
-    },
-    "mfcaption[]{}": {
-      "snippet": "mfcaption[${2:short text}]{${1:text}}"
-    },
-    "mtcaption{}": {
-      "snippet": "mtcaption{${1:text}}"
-    },
-    "mtcaption[]{}": {
-      "snippet": "mtcaption[${2:short text}]{${1:text}}"
-    },
-    "themcapsize": {},
-    "themcapskip": {},
-    "abvmcapskip": {},
-    "blwmcapskip": {}
-  },
-  "envs": {},
-  "options": [
-    "Sans",
-    "normal"
+  "deps": [
+    {
+      "name": "ifthen"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "mfcaption",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "mfcaption",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short text%text}]{${1:text}}"
+      }
+    },
+    {
+      "name": "mtcaption",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "mtcaption",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short text%text}]{${1:text}}"
+      }
+    },
+    {
+      "name": "themcapsize",
+      "unusual": true
+    },
+    {
+      "name": "themcapskip",
+      "unusual": true
+    },
+    {
+      "name": "abvmcapskip",
+      "unusual": true
+    },
+    {
+      "name": "blwmcapskip",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/multicap#c": [
+      "Sans\r",
+      "normal\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/multicap#c"
+  ]
 }

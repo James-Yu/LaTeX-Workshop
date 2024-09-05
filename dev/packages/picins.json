@@ -1,129 +1,276 @@
 {
-  "includes": {},
-  "macros": {
-    "parpic{}": {
-      "snippet": "parpic{${1:graphics}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "parpic",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:graphics}}"
+      }
     },
-    "parpic(){}": {
-      "snippet": "parpic(${2:width},${3:height}){${1:graphics}}"
+    {
+      "name": "parpic(width,height)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:graphics}}"
+      }
     },
-    "parpic()[]{}": {
-      "snippet": "parpic(${3:width},${4:height})[${2:opts}]{${1:graphics}}"
+    {
+      "name": "parpic(width,height)",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:opts}]{${1:graphics}}"
+      }
     },
-    "parpic()[][]{}": {
-      "snippet": "parpic(${4:width},${5:height})[${2:opts}][${3:pos}]{${1:graphics}}"
+    {
+      "name": "parpic(width,height)",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:opts}][${3:pos}]{${1:graphics}}"
+      }
     },
-    "parpic()(){}": {
-      "snippet": "parpic(${2:width},${3:height})(${4:xoffset},${5:yoffset}){${1:graphics}}"
+    {
+      "name": "parpic(width,height)(xoffset,yoffset)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:graphics}}"
+      }
     },
-    "parpic()()[]{}": {
-      "snippet": "parpic(${3:width},${4:height})(${5:xoffset},${6:yoffset})[${2:opts}]{${1:graphics}}"
+    {
+      "name": "parpic(width,height)(xoffset,yoffset)",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:opts}]{${1:graphics}}"
+      }
     },
-    "parpic()()[][]{}": {
-      "snippet": "parpic(${4:width},${5:height})(${6:xoffset},${7:yoffset})[${2:opts}][${3:pos}]{${1:graphics}}"
+    {
+      "name": "parpic(width,height)(xoffset,yoffset)",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:opts}][${3:pos}]{${1:graphics}}"
+      }
     },
-    "hpic{}": {
-      "snippet": "hpic{${1:graphics}}"
+    {
+      "name": "hpic",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:graphics}}"
+      }
     },
-    "hpic(){}": {
-      "snippet": "hpic(${2:width},${3:height}){${1:graphics}}"
+    {
+      "name": "hpic(width,height)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:graphics}}"
+      }
     },
-    "hpic()[]{}": {
-      "snippet": "hpic(${3:width},${4:height})[${2:opts}]{${1:graphics}}"
+    {
+      "name": "hpic(width,height)",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:opts}]{${1:graphics}}"
+      }
     },
-    "hpic()[][]{}": {
-      "snippet": "hpic(${4:width},${5:height})[${2:opts}][${3:pos}]{${1:graphics}}"
+    {
+      "name": "hpic(width,height)",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:opts}][${3:pos}]{${1:graphics}}"
+      }
     },
-    "hpic()(){}": {
-      "snippet": "hpic(${2:width},${3:height})(${4:xoffset},${5:yoffset}){${1:graphics}}"
+    {
+      "name": "hpic(width,height)(xoffset,yoffset)",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:graphics}}"
+      }
     },
-    "hpic()()[]{}": {
-      "snippet": "hpic(${3:width},${4:height})(${5:xoffset},${6:yoffset})[${2:opts}]{${1:graphics}}"
+    {
+      "name": "hpic(width,height)(xoffset,yoffset)",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:opts}]{${1:graphics}}"
+      }
     },
-    "hpic()()[][]{}": {
-      "snippet": "hpic(${4:width},${5:height})(${6:xoffset},${7:yoffset})[${2:opts}][${3:pos}]{${1:graphics}}"
+    {
+      "name": "hpic(width,height)(xoffset,yoffset)",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:opts}][${3:pos}]{${1:graphics}}"
+      }
     },
-    "picskip{}": {
-      "snippet": "picskip{${1:n}}"
+    {
+      "name": "picskip",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:n}}"
+      }
     },
-    "pichskip{}": {
-      "snippet": "pichskip{${1:length}}"
+    {
+      "name": "pichskip",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
     },
-    "shadowthickness{}": {
-      "snippet": "shadowthickness{${1:length}}"
+    {
+      "name": "shadowthickness",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
     },
-    "dashlength{}": {
-      "snippet": "dashlength{${1:length}}"
+    {
+      "name": "dashlength",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
     },
-    "boxlength{}": {
-      "snippet": "boxlength{${1:length}}"
+    {
+      "name": "boxlength",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:length}}"
+      }
     },
-    "piccaption{}": {
-      "snippet": "piccaption{${1:text}}"
+    {
+      "name": "piccaption",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "piccaption[]{}": {
-      "snippet": "piccaption[${2:short text}]{${1:text}}"
+    {
+      "name": "piccaption",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short text}]{${1:text}}"
+      }
     },
-    "newcaption{}": {
-      "snippet": "newcaption{${1:text}}"
+    {
+      "name": "newcaption",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "newcaption[]{}": {
-      "snippet": "newcaption[${2:short text}]{${1:text}}"
+    {
+      "name": "newcaption",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short text}]{${1:text}}"
+      }
     },
-    "piccaptionoutside": {},
-    "piccaptioninside": {},
-    "piccaptionside": {},
-    "piccaptiontopside": {},
-    "picchangemode": {},
-    "nopicchangemode": {},
-    "ptoti": {},
-    "ptotii": {},
-    "iparpic": {},
-    "iiparpic": {},
-    "iiiparpic": {},
-    "ivparpic": {},
-    "ihpic": {},
-    "iihpic": {},
-    "iiihpic": {},
-    "ivhpic": {},
-    "Rahmen(){}": {
-      "snippet": "Rahmen(${2:x},${3:y}){${1:arg}}"
+    {
+      "name": "piccaptionoutside"
     },
-    "Schatten(){}": {
-      "snippet": "Schatten(${2:x},${3:y}){${1:arg}}"
+    {
+      "name": "piccaptioninside"
     },
-    "Oval(){}": {
-      "snippet": "Oval(${2:x},${3:y}){${1:arg}}"
+    {
+      "name": "piccaptionside"
     },
-    "Strich(){}": {
-      "snippet": "Strich(${2:x},${3:y}){${1:arg}}"
+    {
+      "name": "piccaptiontopside"
     },
-    "Kasten(){}": {
-      "snippet": "Kasten(${2:x},${3:y}){${1:arg}}"
+    {
+      "name": "picchangemode"
+    },
+    {
+      "name": "nopicchangemode"
+    },
+    {
+      "name": "ptoti",
+      "unusual": true
+    },
+    {
+      "name": "ptotii",
+      "unusual": true
+    },
+    {
+      "name": "Rahmen(x,y)",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "Schatten(x,y)",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "Oval(x,y)",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "Strich(x,y)",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "Kasten(x,y)",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
     }
-  },
-  "envs": {
-    "frameenv": {},
-    "frameenv[]": {
+  ],
+  "envs": [
+    {
+      "name": "frameenv"
+    },
+    {
       "name": "frameenv",
-      "snippet": "[${1:width}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:width}]"
+      }
     },
-    "dashenv": {},
-    "dashenv[]": {
+    {
+      "name": "dashenv"
+    },
+    {
       "name": "dashenv",
-      "snippet": "[${1:width}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:width}]"
+      }
     },
-    "ovalenv": {},
-    "ovalenv[]": {
+    {
+      "name": "ovalenv"
+    },
+    {
       "name": "ovalenv",
-      "snippet": "[${1:width}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:width}]"
+      }
     },
-    "shadowenv": {},
-    "shadowenv[]": {
+    {
+      "name": "shadowenv"
+    },
+    {
       "name": "shadowenv",
-      "snippet": "[${1:width}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:width}]"
+      }
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "keys": {},
+  "args": []
 }

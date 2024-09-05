@@ -1,20 +1,39 @@
 {
-  "includes": {
-    "ifxetex": [],
-    "ifluatex": [],
-    "xkeyval": [],
-    "fontenc": [],
-    "fontaxes": []
-  },
-  "macros": {
-    "arimo": {},
-    "arimofamily": {}
-  },
-  "envs": {},
-  "options": [
-    "scaled=${1:factor}",
-    "sfdefault",
-    "type1"
+  "deps": [
+    {
+      "name": "ifxetex"
+    },
+    {
+      "name": "ifluatex"
+    },
+    {
+      "name": "xkeyval"
+    },
+    {
+      "name": "fontenc"
+    },
+    {
+      "name": "fontaxes"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "arimo"
+    },
+    {
+      "name": "arimofamily",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/arimo#c": [
+      "scaled=${1:factor}\r",
+      "sfdefault\r",
+      "type1\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/arimo#c"
+  ]
 }

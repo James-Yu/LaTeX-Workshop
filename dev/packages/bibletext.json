@@ -1,25 +1,35 @@
 {
-  "includes": {
-    "pgfkeys": [],
-    "pdftexcmds": []
-  },
-  "macros": {
-    "bibletext{}": {
-      "snippet": "bibletext{${1:reference}}"
+  "deps": [
+    {
+      "name": "pgfkeys"
     },
-    "bibletext[]{}": {
-      "snippet": "bibletext[${2:options}]{${1:reference}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "pdftexcmds"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "bibletext",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:reference}}"
+      }
+    },
+    {
+      "name": "bibletext",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:reference}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\bibletext": [
       "ref",
       "omitrepeatedchapter",
       "omitchapter"
     ]
-  ]
+  },
+  "args": []
 }

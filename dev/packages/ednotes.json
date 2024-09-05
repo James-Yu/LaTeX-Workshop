@@ -1,218 +1,537 @@
 {
-  "includes": {
-    "manyfoot": [],
-    "lineno": [],
-    "mfparptc": [
-      "edmacpara"
+  "deps": [
+    {
+      "name": "manyfoot"
+    },
+    {
+      "name": "lineno"
+    },
+    {
+      "name": "mfparptc",
+      "if": "edmacpara"
+    },
+    {
+      "name": "edcntwd0",
+      "if": "countoccurrences"
+    },
+    {
+      "name": "perpage",
+      "if": "perpage"
+    },
+    {
+      "name": "ednmath0",
+      "if": "mathnotes"
+    },
+    {
+      "name": "vplref",
+      "if": "addpageno"
+    },
+    {
+      "name": "ednmath0",
+      "if": "mathrefs"
+    },
+    {
+      "name": "edtable",
+      "if": "edtable"
+    },
+    {
+      "name": "edtable",
+      "if": "longtable"
+    },
+    {
+      "name": "longtable",
+      "if": "longtable"
+    },
+    {
+      "name": "ltabptch",
+      "if": "longtable"
+    },
+    {
+      "name": "edtable",
+      "if": "nolongtablepatch"
+    },
+    {
+      "name": "longtable",
+      "if": "nolongtablepatch"
+    }
+  ],
+  "macros": [
+    {
+      "name": "FootnotetextB",
+      "if": "Bpara",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:marker}}{${2:text}}"
+      }
+    },
+    {
+      "name": "footinsB",
+      "if": "Bpara",
+      "unusual": true
+    },
+    {
+      "name": "Bnote",
+      "if": "Bpara",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:lemma%text}}{${2:note%text}}"
+      }
+    },
+    {
+      "name": "Bnotelabel",
+      "if": "Bpara",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "FootnotetextB",
+      "if": "Bplain",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:marker}}{${2:text}}"
+      }
+    },
+    {
+      "name": "footinsB",
+      "if": "Bplain",
+      "unusual": true
+    },
+    {
+      "name": "Bnote",
+      "if": "Bplain",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:lemma%text}}{${2:note%text}}"
+      }
+    },
+    {
+      "name": "Bnotelabel",
+      "if": "Bplain",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "FootnotetextC",
+      "if": "Cpara",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:marker}}{${2:text}}"
+      }
+    },
+    {
+      "name": "footinsC",
+      "if": "Cpara",
+      "unusual": true
+    },
+    {
+      "name": "Cnote",
+      "if": "Cpara",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:lemma%text}}{${2:note%text}}"
+      }
+    },
+    {
+      "name": "Cnotelabel",
+      "if": "Cpara",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "FootnotetextC",
+      "if": "Cplain",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:marker}}{${2:text}}"
+      }
+    },
+    {
+      "name": "footinsC",
+      "if": "Cplain",
+      "unusual": true
+    },
+    {
+      "name": "Cnote",
+      "if": "Cplain",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:lemma%text}}{${2:note%text}}"
+      }
+    },
+    {
+      "name": "Cnotelabel",
+      "if": "Cplain",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "FootnotetextD",
+      "if": "Dpara",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:marker}}{${2:text}}"
+      }
+    },
+    {
+      "name": "footinsD",
+      "if": "Dpara",
+      "unusual": true
+    },
+    {
+      "name": "Dnote",
+      "if": "Dpara",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:lemma%text}}{${2:note%text}}"
+      }
+    },
+    {
+      "name": "Dnotelabel",
+      "if": "Dpara",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "FootnotetextD",
+      "if": "Dplain",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:marker}}{${2:text}}"
+      }
+    },
+    {
+      "name": "footinsD",
+      "if": "Dplain",
+      "unusual": true
+    },
+    {
+      "name": "Dnote",
+      "if": "Dplain",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:lemma%text}}{${2:note%text}}"
+      }
+    },
+    {
+      "name": "Dnotelabel",
+      "if": "Dplain",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "FootnotetextE",
+      "if": "Epara",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:marker}}{${2:text}}"
+      }
+    },
+    {
+      "name": "footinsE",
+      "if": "Epara",
+      "unusual": true
+    },
+    {
+      "name": "Enote",
+      "if": "Epara",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:lemma%text}}{${2:note%text}}"
+      }
+    },
+    {
+      "name": "Enotelabel",
+      "if": "Epara",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "FootnotetextE",
+      "if": "Eplain",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:marker}}{${2:text}}"
+      }
+    },
+    {
+      "name": "footinsE",
+      "if": "Eplain",
+      "unusual": true
+    },
+    {
+      "name": "Enote",
+      "if": "Eplain",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:lemma%text}}{${2:note%text}}"
+      }
+    },
+    {
+      "name": "Enotelabel",
+      "if": "Eplain",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "FootnotetextA",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:marker}}{${2:text}}"
+      }
+    },
+    {
+      "name": "footinsA",
+      "unusual": true
+    },
+    {
+      "name": "Anote",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:lemma%text}}{${2:note%text}}"
+      }
+    },
+    {
+      "name": "Anotelabel",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "donote",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label}}{${2:note%text}}"
+      }
+    },
+    {
+      "name": "pause",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label%specialDef}}"
+      }
+    },
+    {
+      "name": "pause",
+      "arg": {
+        "format": "{}<>",
+        "snippet": "{${1:label}}<${2:ellipsis}>"
+      }
+    },
+    {
+      "name": "resume",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label%keyvals}}"
+      }
+    },
+    {
+      "name": "textsymmdots"
+    },
+    {
+      "name": "lemmaellipsis"
+    },
+    {
+      "name": "notinnote",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code%text}}"
+      }
+    },
+    {
+      "name": "addlemmaexpands",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "IfLemmaTag",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:in lemma tag%text}}{${2:in main text%text}}"
+      }
+    },
+    {
+      "name": "nopunct",
+      "unusual": true
+    },
+    {
+      "name": "linesfmt",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "showlemmaexpands"
+    },
+    {
+      "name": "sameline",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "differentlines",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text1}}{${2:text2}}"
+      }
+    },
+    {
+      "name": "pageandline",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text1}}{${2:text2}}"
+      }
+    },
+    {
+      "name": "repeatref",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "lemmafmt",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "notefmt",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "PrecedeLevelWith",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:level}}{${2:code%text}}"
+      }
+    },
+    {
+      "name": "IfTypesetting",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:for typesetting%text}}{${2:for expanding%text}}"
+      }
+    },
+    {
+      "name": "RobustTestOpt"
+    },
+    {
+      "name": "NewEdnotesCommand",
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "{${1:cmd}}[${3:args}][${4:default}]{${2:def}}"
+      }
+    },
+    {
+      "name": "NewEdnotesCommand",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:args}]{${2:def}}"
+      }
+    },
+    {
+      "name": "NewEdnotesCommand",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:def}}"
+      }
+    },
+    {
+      "name": "NewEdnotesCommand*",
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "{${1:cmd}}[${3:args}][${4:default}]{${2:def}}"
+      }
+    },
+    {
+      "name": "NewEdnotesCommand*",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:cmd}}[${3:args}]{${2:def}}"
+      }
+    },
+    {
+      "name": "NewEdnotesCommand*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:cmd}}{${2:def}}"
+      }
+    },
+    {
+      "name": "warningpagebreak",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/ednotes#c": [
+      "Aplain\r",
+      "Bpara\r",
+      "Bplain\r",
+      "Cpara\r",
+      "Cplain\r",
+      "Dpara\r",
+      "Dplain\r",
+      "Epara\r",
+      "Eplain\r",
+      "edmacpara\r",
+      "countoccurrences\r",
+      "para*\r",
+      "perpage\r",
+      "mathnotes\r",
+      "addpageno\r",
+      "edtable\r",
+      "longtable\r",
+      "nolongtablepatch\r",
+      "left\r",
+      "right\r",
+      "switch\r",
+      "switch*\r",
+      "columnwise\r",
+      "pagewise\r",
+      "running\r",
+      "modulo\r",
+      "modulo*\r",
+      "mathlines\r"
     ],
-    "edcntwd0": [
-      "countoccurrences"
-    ],
-    "perpage": [
-      "perpage"
-    ],
-    "ednmath0": [
-      "mathnotes",
-      "mathrefs"
-    ],
-    "vplref": [
-      "addpageno"
-    ],
-    "edtable": [
-      "edtable",
-      "longtable",
-      "nolongtablepatch"
-    ],
-    "longtable": [
-      "longtable",
-      "nolongtablepatch"
-    ],
-    "ltabptch": [
-      "longtable"
+    "\\resume#c": [
+      "%pauselabel\r"
     ]
   },
-  "macros": {
-    "FootnotetextB{}{}": {
-      "snippet": "FootnotetextB{${1:marker}}{${2:text}}",
-      "option": "Bplain"
-    },
-    "footinsB": {
-      "option": "Bplain"
-    },
-    "Bnote{}{}": {
-      "snippet": "Bnote{${1:lemma}}{${2:note}}",
-      "option": "Bplain"
-    },
-    "Bnotelabel{}": {
-      "snippet": "Bnotelabel{${1:label}}",
-      "option": "Bplain"
-    },
-    "FootnotetextC{}{}": {
-      "snippet": "FootnotetextC{${1:marker}}{${2:text}}",
-      "option": "Cplain"
-    },
-    "footinsC": {
-      "option": "Cplain"
-    },
-    "Cnote{}{}": {
-      "snippet": "Cnote{${1:lemma}}{${2:note}}",
-      "option": "Cplain"
-    },
-    "Cnotelabel{}": {
-      "snippet": "Cnotelabel{${1:label}}",
-      "option": "Cplain"
-    },
-    "FootnotetextD{}{}": {
-      "snippet": "FootnotetextD{${1:marker}}{${2:text}}",
-      "option": "Dplain"
-    },
-    "footinsD": {
-      "option": "Dplain"
-    },
-    "Dnote{}{}": {
-      "snippet": "Dnote{${1:lemma}}{${2:note}}",
-      "option": "Dplain"
-    },
-    "Dnotelabel{}": {
-      "snippet": "Dnotelabel{${1:label}}",
-      "option": "Dplain"
-    },
-    "FootnotetextE{}{}": {
-      "snippet": "FootnotetextE{${1:marker}}{${2:text}}",
-      "option": "Eplain"
-    },
-    "footinsE": {
-      "option": "Eplain"
-    },
-    "Enote{}{}": {
-      "snippet": "Enote{${1:lemma}}{${2:note}}",
-      "option": "Eplain"
-    },
-    "Enotelabel{}": {
-      "snippet": "Enotelabel{${1:label}}",
-      "option": "Eplain"
-    },
-    "FootnotetextA{}{}": {
-      "snippet": "FootnotetextA{${1:marker}}{${2:text}}"
-    },
-    "footinsA": {},
-    "Anote{}{}": {
-      "snippet": "Anote{${1:lemma}}{${2:note}}"
-    },
-    "Anotelabel{}": {
-      "snippet": "Anotelabel{${1:label}}"
-    },
-    "donote{}{}": {
-      "snippet": "donote{${1:label}}{${2:note}}"
-    },
-    "<": {
-      "detail": "<",
-      "documentation": "LESS-THAN SIGN r:"
-    },
-    ">": {
-      "detail": ">",
-      "documentation": "GREATER-THAN SIGN r:"
-    },
-    "pause{}": {
-      "snippet": "pause{${1:label}}"
-    },
-    "pause{}<>": {
-      "snippet": "pause{${1:label}}<${2:ellipsis}>"
-    },
-    "resume{}": {
-      "snippet": "resume{${1:label}}"
-    },
-    "textsymmdots": {},
-    "lemmaellipsis": {},
-    "notinnote{}": {
-      "snippet": "notinnote{${1:code}}"
-    },
-    "addlemmaexpands{}": {
-      "snippet": "addlemmaexpands{${1:code}}"
-    },
-    "IfLemmaTag{}{}": {
-      "snippet": "IfLemmaTag{${1:in lemma tag}}{${2:in main text}}"
-    },
-    "nopunct": {},
-    "linesfmt{}": {
-      "snippet": "linesfmt{${1:text}}"
-    },
-    "showlemmaexpands": {},
-    "sameline{}": {
-      "snippet": "sameline{${1:text}}"
-    },
-    "differentlines{}{}": {
-      "snippet": "differentlines{${1:text1}}{${2:text2}}"
-    },
-    "pageandline{}{}": {
-      "snippet": "pageandline{${1:text1}}{${2:text2}}"
-    },
-    "repeatref{}": {
-      "snippet": "repeatref{${1:text}}"
-    },
-    "lemmafmt{}": {
-      "snippet": "lemmafmt{${1:text}}"
-    },
-    "notefmt{}": {
-      "snippet": "notefmt{${1:text}}"
-    },
-    "PrecedeLevelWith{}{}": {
-      "snippet": "PrecedeLevelWith{${1:level}}{${2:code}}"
-    },
-    "IfTypesetting{}{}": {
-      "snippet": "IfTypesetting{${1:for typesetting}}{${2:for expanding}}"
-    },
-    "RobustTestOpt": {},
-    "NewEdnotesCommand{}[][]{}": {
-      "snippet": "NewEdnotesCommand{${1:cmd}}[${2:args}][${3:default}]{${4:def}}"
-    },
-    "NewEdnotesCommand{}[]{}": {
-      "snippet": "NewEdnotesCommand{${1:cmd}}[${2:args}]{${3:def}}"
-    },
-    "NewEdnotesCommand{}{}": {
-      "snippet": "NewEdnotesCommand{${1:cmd}}{${2:def}}"
-    },
-    "NewEdnotesCommand*{}[][]{}": {
-      "snippet": "NewEdnotesCommand*{${1:cmd}}[${2:args}][${3:default}]{${4:def}}"
-    },
-    "NewEdnotesCommand*{}[]{}": {
-      "snippet": "NewEdnotesCommand*{${1:cmd}}[${2:args}]{${3:def}}"
-    },
-    "NewEdnotesCommand*{}{}": {
-      "snippet": "NewEdnotesCommand*{${1:cmd}}{${2:def}}"
-    },
-    "warningpagebreak": {}
-  },
-  "envs": {},
-  "options": [
-    "Aplain",
-    "Bpara",
-    "Bplain",
-    "Cpara",
-    "Cplain",
-    "Dpara",
-    "Dplain",
-    "Epara",
-    "Eplain",
-    "edmacpara",
-    "countoccurrences",
-    "para*",
-    "perpage",
-    "mathnotes",
-    "addpageno",
-    "edtable",
-    "longtable",
-    "nolongtablepatch",
-    "left",
-    "right",
-    "switch",
-    "switch*",
-    "columnwise",
-    "pagewise",
-    "running",
-    "modulo",
-    "modulo*",
-    "mathlines"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/ednotes#c"
+  ]
 }

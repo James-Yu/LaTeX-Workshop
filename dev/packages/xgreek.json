@@ -1,69 +1,137 @@
 {
-  "includes": {
-    "xelistings": [
-      "listings"
+  "deps": [
+    {
+      "name": "xelistings",
+      "if": "listings"
+    }
+  ],
+  "macros": [
+    {
+      "name": "prefacename",
+      "unusual": true
+    },
+    {
+      "name": "bibname",
+      "unusual": true
+    },
+    {
+      "name": "chaptername",
+      "unusual": true
+    },
+    {
+      "name": "enclname",
+      "unusual": true
+    },
+    {
+      "name": "ccname",
+      "unusual": true
+    },
+    {
+      "name": "headtoname",
+      "unusual": true
+    },
+    {
+      "name": "seename",
+      "unusual": true
+    },
+    {
+      "name": "alsoname",
+      "unusual": true
+    },
+    {
+      "name": "proofname",
+      "unusual": true
+    },
+    {
+      "name": "glossaryname",
+      "unusual": true
+    },
+    {
+      "name": "anwtonos"
+    },
+    {
+      "name": "katwtonos"
+    },
+    {
+      "name": "koppa"
+    },
+    {
+      "name": "sampi"
+    },
+    {
+      "name": "Digamma"
+    },
+    {
+      "name": "ddigamma"
+    },
+    {
+      "name": "anoteleia"
+    },
+    {
+      "name": "euro",
+      "detail": "€",
+      "doc": "Euro sign"
+    },
+    {
+      "name": "permill"
+    },
+    {
+      "name": "stigma"
+    },
+    {
+      "name": "greeknumeral",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "Greeknumeral",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "atticnum",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "setlanguage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language%keyvals}}"
+      }
+    },
+    {
+      "name": "grtoday"
+    },
+    {
+      "name": "Grtoday"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/xgreek#c": [
+      "monogreek\r",
+      "polygreek\r",
+      "ancientgreek\r",
+      "stigma\r",
+      "noindentfirst\r",
+      "nonumeralsign\r",
+      "listings\r"
+    ],
+    "\\setlanguage#c": [
+      "monogreek\r",
+      "polygreek\r",
+      "ancientgreek\r",
+      "american\r"
     ]
   },
-  "macros": {
-    "prefacename": {},
-    "bibname": {},
-    "chaptername": {},
-    "enclname": {},
-    "ccname": {},
-    "headtoname": {},
-    "seename": {},
-    "alsoname": {},
-    "proofname": {},
-    "glossaryname": {},
-    "anwtonos": {},
-    "katwtonos": {},
-    "koppa": {
-      "detail": "ϟ",
-      "documentation": "GREEK SMALL LETTER KOPPA"
-    },
-    "sampi": {
-      "detail": "ϡ",
-      "documentation": "GREEK SMALL LETTER SAMPI"
-    },
-    "Digamma": {
-      "detail": "Ϝ",
-      "documentation": "capital digamma"
-    },
-    "ddigamma": {},
-    "anoteleia": {},
-    "euro": {
-      "detail": "€",
-      "documentation": "EURO SIGN"
-    },
-    "permill": {},
-    "stigma": {
-      "detail": "ϛ",
-      "documentation": "GREEK SMALL LETTER STIGMA"
-    },
-    "greeknumeral{}": {
-      "snippet": "greeknumeral{${1:number}}"
-    },
-    "Greeknumeral{}": {
-      "snippet": "Greeknumeral{${1:number}}"
-    },
-    "atticnum{}": {
-      "snippet": "atticnum{${1:number}}"
-    },
-    "setlanguage{}": {
-      "snippet": "setlanguage{${1:language}}"
-    },
-    "grtoday": {},
-    "Grtoday": {}
-  },
-  "envs": {},
-  "options": [
-    "monogreek",
-    "polygreek",
-    "ancientgreek",
-    "stigma",
-    "noindentfirst",
-    "nonumeralsign",
-    "listings"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/xgreek#c"
+  ]
 }

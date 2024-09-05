@@ -1,23 +1,40 @@
 {
-  "includes": {
-    "ocg-p": []
-  },
-  "macros": {
-    "switchocg{}{}": {
-      "snippet": "switchocg{${1:ocg1 ocg2 ...}}{${2:display}}"
+  "deps": [
+    {
+      "name": "ocg-p"
+    }
+  ],
+  "macros": [
+    {
+      "name": "switchocg",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:ocg1 ocg2 ...}}{${2:display}}"
+      }
     },
-    "showocg{}{}": {
-      "snippet": "showocg{${1:ocg1 ocg2 ...}}{${2:display}}"
+    {
+      "name": "showocg",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:ocg1 ocg2 ...}}{${2:display}}"
+      }
     },
-    "hideocg{}{}": {
-      "snippet": "hideocg{${1:ocg1 ocg2 ...}}{${2:display}}"
+    {
+      "name": "hideocg",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:ocg1 ocg2 ...}}{${2:display}}"
+      }
     },
-    "actionsocg{}{}{}{}": {
-      "snippet": "actionsocg{${1:switchocg1 ...}}{${2:showocg1 ...}}{${3:hideocg1 ...}}{${4:display}}"
-    },
-    "ocgxversion": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "actionsocg",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:switchocg1 ...}}{${2:showocg1 ...}}{${3:hideocg1 ...}}{${4:display}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

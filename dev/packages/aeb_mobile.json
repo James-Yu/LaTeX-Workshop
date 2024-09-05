@@ -1,45 +1,100 @@
 {
-  "includes": {
-    "web": [],
-    "eforms": []
-  },
-  "macros": {
-    "scalefiguresOn": {},
-    "scalefiguresOff": {},
-    "mobPrint{}": {
-      "snippet": "mobPrint{${1:text}}"
+  "deps": [
+    {
+      "name": "web"
     },
-    "mobPrintTip": {},
-    "mobToggleCols{}": {
-      "snippet": "mobToggleCols{${1:text}}"
-    },
-    "mobToggleColsTip": {},
-    "mobFormPresets{}": {
-      "snippet": "mobFormPresets{${1:commands}}"
-    },
-    "ifsmartphone": {},
-    "smartphonetrue": {},
-    "smartphonefalse": {},
-    "ifmobscalefigures": {},
-    "mobscalefigurestrue": {},
-    "mobscalefiguresfalse": {},
-    "generateEvenPage": {},
-    "mobPrintIt": {},
-    "mobPrintIt[]": {
-      "snippet": "mobPrintIt[${1:opt}]"
-    },
-    "mobTwoCols": {},
-    "mobTwoCols[]": {
-      "snippet": "mobTwoCols[${1:opt}]"
+    {
+      "name": "eforms"
     }
-  },
-  "envs": {},
-  "options": [
-    "smartphone",
-    "nomaketitle",
-    "useforms",
-    "scalefigures",
-    "!scalefigures"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "scalefiguresOn"
+    },
+    {
+      "name": "scalefiguresOff"
+    },
+    {
+      "name": "mobPrint",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "mobPrintTip",
+      "unusual": true
+    },
+    {
+      "name": "mobToggleCols",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "mobToggleColsTip",
+      "unusual": true
+    },
+    {
+      "name": "mobFormPresets",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:commands}}"
+      }
+    },
+    {
+      "name": "ifsmartphone",
+      "unusual": true
+    },
+    {
+      "name": "smartphonetrue",
+      "unusual": true
+    },
+    {
+      "name": "smartphonefalse",
+      "unusual": true
+    },
+    {
+      "name": "generateEvenPage",
+      "unusual": true
+    },
+    {
+      "name": "mobPrintIt",
+      "unusual": true
+    },
+    {
+      "name": "mobPrintIt",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:opt}]"
+      }
+    },
+    {
+      "name": "mobTwoCols",
+      "unusual": true
+    },
+    {
+      "name": "mobTwoCols",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:opt}]"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/aeb_mobile#c": [
+      "smartphone\r",
+      "nomaketitle\r",
+      "useforms\r",
+      "scalefigures\r",
+      "!scalefigures\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/aeb_mobile#c"
+  ]
 }

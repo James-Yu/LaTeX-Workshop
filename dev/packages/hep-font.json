@@ -1,68 +1,166 @@
 {
-  "includes": {
-    "kvoptions": [],
-    "ifluatex": [],
-    "ifxetex": [],
-    "fontenc": [],
-    "pdftexcmds": [],
-    "fix-cm": [],
-    "microtype": [],
-    "cfr-lm": [],
-    "slantsc": [],
-    "inputenc": [],
-    "xpatch": [
-      "oldstyle",
-      "oldstyle=true"
-    ],
-    "units": [
-      "oldstyle",
-      "oldstyle=true"
+  "deps": [
+    {
+      "name": "kvoptions"
+    },
+    {
+      "name": "ifluatex"
+    },
+    {
+      "name": "ifxetex"
+    },
+    {
+      "name": "fontenc"
+    },
+    {
+      "name": "pdftexcmds"
+    },
+    {
+      "name": "fix-cm"
+    },
+    {
+      "name": "microtype"
+    },
+    {
+      "name": "cfr-lm"
+    },
+    {
+      "name": "slantsc"
+    },
+    {
+      "name": "inputenc"
+    },
+    {
+      "name": "xpatch"
+    },
+    {
+      "name": "units",
+      "if": "oldstyle"
+    },
+    {
+      "name": "xpatch",
+      "if": "oldstyle"
+    },
+    {
+      "name": "units",
+      "if": "oldstyle=true"
+    },
+    {
+      "name": "xpatch",
+      "if": "oldstyle=true"
+    }
+  ],
+  "macros": [
+    {
+      "name": "ifxetexorluatex",
+      "unusual": true
+    },
+    {
+      "name": "textui",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "codestyle",
+      "unusual": true
+    },
+    {
+      "name": "code",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "DH"
+    },
+    {
+      "name": "NG"
+    },
+    {
+      "name": "dj"
+    },
+    {
+      "name": "ng"
+    },
+    {
+      "name": "k",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "guillemotleft",
+      "unusual": true
+    },
+    {
+      "name": "guillemotright",
+      "unusual": true
+    },
+    {
+      "name": "guilsinglleft"
+    },
+    {
+      "name": "guilsinglright"
+    },
+    {
+      "name": "quotedblbase"
+    },
+    {
+      "name": "quotesinglbase"
+    },
+    {
+      "name": "textquotedbl"
+    },
+    {
+      "name": "DJ"
+    },
+    {
+      "name": "th"
+    },
+    {
+      "name": "TH"
+    },
+    {
+      "name": "dh"
+    },
+    {
+      "name": "Hwithstroke",
+      "unusual": true
+    },
+    {
+      "name": "hwithstroke",
+      "unusual": true
+    },
+    {
+      "name": "textogonekcentered",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "guillemetleft"
+    },
+    {
+      "name": "guillemetright"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/hep-font#c": [
+      "size=${1|8pt,9pt,10pt,11pt,12pt,14pt,17pt,20pt,default\r|}",
+      "sans\r",
+      "serif\r",
+      "oldstyle\r",
+      "lining\r"
     ]
   },
-  "macros": {
-    "ifxetexorluatex": {},
-    "xetexorluatextrue": {},
-    "xetexorluatexfalse": {},
-    "textui{}": {
-      "snippet": "textui{${1:text}}"
-    },
-    "codestyle": {},
-    "code{}": {
-      "snippet": "code{${1:text}}"
-    },
-    "DH": {},
-    "NG": {},
-    "dj": {},
-    "ng": {},
-    "k{}": {
-      "snippet": "k{${1:arg}}"
-    },
-    "guillemotleft": {},
-    "guillemotright": {},
-    "guilsinglleft": {},
-    "guilsinglright": {},
-    "quotedblbase": {},
-    "quotesinglbase": {},
-    "textquotedbl": {},
-    "DJ": {},
-    "th": {},
-    "TH": {},
-    "dh": {},
-    "Hwithstroke": {},
-    "hwithstroke": {},
-    "textogonekcentered{}": {
-      "snippet": "textogonekcentered{${1:arg}}"
-    },
-    "guillemetleft": {},
-    "guillemetright": {}
-  },
-  "envs": {},
-  "options": [
-    "size=${1|8pt,9pt,10pt,11pt,12pt,14pt,17pt,20pt,default|}",
-    "sans",
-    "serif",
-    "oldstyle",
-    "lining"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/hep-font#c"
+  ]
 }

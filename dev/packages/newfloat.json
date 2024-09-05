@@ -1,52 +1,80 @@
 {
-  "includes": {
-    "keyval": []
-  },
-  "macros": {
-    "newfloatsetup{}": {
-      "snippet": "newfloatsetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "DeclareFloatingEnvironment{}": {
-      "snippet": "DeclareFloatingEnvironment{${1:envname}}"
-    },
-    "DeclareFloatingEnvironment[]{}": {
-      "snippet": "DeclareFloatingEnvironment[${2:options}]{${1:envname}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "SetupFloatingEnvironment{}{}": {
-      "snippet": "SetupFloatingEnvironment{${1:envname}}{${2:options}}",
-      "keyvalindex": 1,
-      "keyvalpos": 1
-    },
-    "ForEachFloatingEnvironment{}": {
-      "snippet": "ForEachFloatingEnvironment{${1:code}}"
-    },
-    "PrepareListOf{}{}": {
-      "snippet": "PrepareListOf{${1:envname}}{${2:code}}"
+  "deps": [
+    {
+      "name": "keyval"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "within=${1:<counter> or none}",
+  ],
+  "macros": [
+    {
+      "name": "newfloatsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\newfloatsetup"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DeclareFloatingEnvironment",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:envname}}"
+      }
+    },
+    {
+      "name": "DeclareFloatingEnvironment",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:envname}}"
+      }
+    },
+    {
+      "name": "SetupFloatingEnvironment",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:envname}}{${2:options%keyvals}}",
+        "keys": [
+          "\\DeclareFloatingEnvironment,\\SetupFloatingEnvironment"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "ForEachFloatingEnvironment",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "PrepareListOf",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:envname}}{${2:code}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\newfloatsetup": [
+      "within=${1:<counter> or none}\r",
       "chapterlistsgap="
     ],
-    [
-      "fileext=${1:file extension}",
-      "listname=${1:list name}",
-      "name=${1:name}",
-      "autorefname=${1:name}",
-      "legendname=${1:name}",
-      "placement=${1:combination of htbp}",
-      "within=${1:<counter> or none}",
-      "chapterlistsgaps=${1|on,off|}",
-      "without",
+    "\\DeclareFloatingEnvironment,\\SetupFloatingEnvironment": [
+      "fileext=${1:file extension}\r",
+      "listname=${1:list name}\r",
+      "name=${1:name}\r",
+      "autorefname=${1:name}\r",
+      "legendname=${1:name}\r",
+      "placement=${1:combination of htbp}\r",
+      "within=${1:<counter> or none}\r",
+      "chapterlistsgaps=${1|on,off\r|}",
+      "without\r",
       "planb",
-      "planb-fileext=${1:file extension}"
+      "planb-fileext=${1:file extension}\r"
     ]
-  ]
+  },
+  "args": []
 }

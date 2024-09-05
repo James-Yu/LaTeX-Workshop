@@ -1,166 +1,415 @@
 {
-  "includes": {
-    "fontspec": [],
-    "geometry": [],
-    "titlesec": [],
-    "graphicx": [],
-    "titling": [],
-    "alltt": [],
-    "paracol": [],
-    "framed": [],
-    "makecell": [],
-    "xtab": [],
-    "tocloft": [],
-    "xcolor": [],
-    "pgfornament": [],
-    "enumitem": [],
-    "pgf": [],
-    "pgfopts": [],
-    "bilingualpages": [],
-    "changepage": []
-  },
-  "macros": {
-    "versicle": {},
-    "response": {},
-    "cross": {},
-    "scross": {},
-    "gl": {},
-    "gr": {},
-    "blankline": {},
-    "deleteline": {},
-    "tab": {},
-    "spacer": {},
-    "instruct{}": {
-      "snippet": "instruct{${1:instructions}}"
+  "deps": [
+    {
+      "name": "fontspec"
     },
-    "instructsmall{}": {
-      "snippet": "instructsmall{${1:instructions}}"
+    {
+      "name": "geometry"
     },
-    "bibleref{}": {
-      "snippet": "bibleref{${1:reference}}"
+    {
+      "name": "titlesec"
     },
-    "bibleverse{}{}": {
-      "snippet": "bibleverse{${1:text}}{${2:reference}}"
+    {
+      "name": "graphicx"
     },
-    "monarch{}": {
-      "snippet": "monarch{${1:name}}"
+    {
+      "name": "titling"
     },
-    "boxaround{}": {
-      "snippet": "boxaround{${1:text}}"
+    {
+      "name": "alltt"
     },
-    "priest{}": {
-      "snippet": "priest{${1:text}}"
+    {
+      "name": "paracol"
     },
-    "deacon{}": {
-      "snippet": "deacon{${1:text}}"
+    {
+      "name": "framed"
     },
-    "subdeacon{}": {
-      "snippet": "subdeacon{${1:text}}"
+    {
+      "name": "makecell"
     },
-    "officiant{}": {
-      "snippet": "officiant{${1:text}}"
+    {
+      "name": "xtab"
     },
-    "lector{}": {
-      "snippet": "lector{${1:text}}"
+    {
+      "name": "tocloft"
     },
-    "epistoler{}": {
-      "snippet": "epistoler{${1:text}}"
+    {
+      "name": "xcolor"
     },
-    "people{}": {
-      "snippet": "people{${1:text}}"
+    {
+      "name": "pgfornament"
     },
-    "servers{}": {
-      "snippet": "servers{${1:text}}"
+    {
+      "name": "enumitem"
     },
-    "contd{}": {
-      "snippet": "contd{${1:text}}"
+    {
+      "name": "pgf"
     },
-    "pretre{}": {
-      "snippet": "pretre{${1:text}}"
+    {
+      "name": "pgfopts"
     },
-    "diacre{}": {
-      "snippet": "diacre{${1:text}}"
+    {
+      "name": "bilingualpages"
     },
-    "peuple{}": {
-      "snippet": "peuple{${1:text}}"
-    },
-    "servants{}": {
-      "snippet": "servants{${1:text}}"
-    },
-    "V{}": {
-      "snippet": "V{${1:versicle}}"
-    },
-    "R{}": {
-      "snippet": "R{${1:response}}"
-    },
-    "rlong{}": {
-      "snippet": "rlong{${1:text}}"
-    },
-    "VR{}{}": {
-      "snippet": "VR{${1:versicle}}{${2:response}}"
-    },
-    "psalmverse{}{}": {
-      "snippet": "psalmverse{${1:text1}}{${2:text2}}"
-    },
-    "continued": {},
-    "sabon{}": {
-      "snippet": "sabon{${1:text}}"
-    },
-    "betweenLilyPondSystem{}": {
-      "snippet": "betweenLilyPondSystem{${1:arg}}"
-    },
-    "boxit{}": {
-      "snippet": "boxit{${1:arg}}"
-    },
-    "crossfont": {},
-    "header{}": {
-      "snippet": "header{${1:text}}"
-    },
-    "hist{}": {
-      "snippet": "hist{${1:text}}"
-    },
-    "makesectionline{}{}": {
-      "snippet": "makesectionline{${1:color}}{${2:number}}"
-    },
-    "munepsfig[]{}{}": {
-      "snippet": "munepsfig[${3:options}]{${1:imagefile}}{${2:rule thickness}}"
-    },
-    "munepsfig{}{}": {
-      "snippet": "munepsfig{${1:imagefile}}{${2:rule thickness}}"
-    },
-    "sectionline": {},
-    "smallcapsheader{}": {
-      "snippet": "smallcapsheader{${1:text}}"
-    },
-    "textjuni{}": {
-      "snippet": "textjuni{${1:text}}"
-    },
-    "textuni{}": {
-      "snippet": "textuni{${1:text}}"
-    },
-    "versiclefont": {}
-  },
-  "envs": {
-    "responses": {},
-    "vresponses": {},
-    "vresponsesdouble": {},
-    "vresponsesdouble[]": {
-      "name": "vresponsesdouble",
-      "snippet": "[${1:width factor}]"
-    },
-    "prayer": {},
-    "twocolprayer": {},
-    "threecolprayer": {},
-    "responsesex": {},
-    "vresponsesex": {},
-    "vresponsesdoubleex": {},
-    "vresponsesdoubleex[]": {
-      "name": "vresponsesdoubleex",
-      "snippet": "[${1:width factor}]"
+    {
+      "name": "changepage"
     }
-  },
-  "options": [
-    "sabon"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "versicle"
+    },
+    {
+      "name": "response"
+    },
+    {
+      "name": "cross"
+    },
+    {
+      "name": "scross"
+    },
+    {
+      "name": "gl"
+    },
+    {
+      "name": "gr"
+    },
+    {
+      "name": "blankline"
+    },
+    {
+      "name": "deleteline"
+    },
+    {
+      "name": "tab"
+    },
+    {
+      "name": "spacer"
+    },
+    {
+      "name": "instruct",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:instructions%text}}"
+      }
+    },
+    {
+      "name": "instructsmall",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:instructions%text}}"
+      }
+    },
+    {
+      "name": "bibleref",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:reference}}"
+      }
+    },
+    {
+      "name": "bibleverse",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:reference}}"
+      }
+    },
+    {
+      "name": "monarch",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "boxaround",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "priest",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "deacon",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "subdeacon",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "officiant",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "lector",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "epistoler",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "people",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "servers",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "contd",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "pretre",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "diacre",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "peuple",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "servants",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "V",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:versicle%text}}"
+      }
+    },
+    {
+      "name": "R",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:response%text}}"
+      }
+    },
+    {
+      "name": "rlong",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "VR",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:versicle%text}}{${2:response%text}}"
+      }
+    },
+    {
+      "name": "psalmverse",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text1%text}}{${2:text2%text}}"
+      }
+    },
+    {
+      "name": "continued"
+    },
+    {
+      "name": "sabon",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "betweenLilyPondSystem",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "boxit",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "crossfont",
+      "unusual": true
+    },
+    {
+      "name": "header",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "hist",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "makesectionline",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:color}}{${2:number}}"
+      }
+    },
+    {
+      "name": "munepsfig",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options}]{${1:imagefile}}{${2:rule thickness}}"
+      }
+    },
+    {
+      "name": "munepsfig",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:imagefile}}{${2:rule thickness}}"
+      }
+    },
+    {
+      "name": "sectionline",
+      "unusual": true
+    },
+    {
+      "name": "smallcapsheader",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textjuni",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textuni",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "versiclefont",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "responses"
+    },
+    {
+      "name": "vresponses"
+    },
+    {
+      "name": "vresponsesdouble"
+    },
+    {
+      "name": "vresponsesdouble",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:width factor}]"
+      }
+    },
+    {
+      "name": "prayer"
+    },
+    {
+      "name": "twocolprayer"
+    },
+    {
+      "name": "threecolprayer"
+    },
+    {
+      "name": "responsesex"
+    },
+    {
+      "name": "vresponsesex"
+    },
+    {
+      "name": "vresponsesdoubleex"
+    },
+    {
+      "name": "vresponsesdoubleex",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:width factor}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/book-of-common-prayer#c": [
+      "sabon\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/book-of-common-prayer#c"
+  ]
 }

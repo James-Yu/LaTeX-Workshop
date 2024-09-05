@@ -1,20 +1,33 @@
 {
-  "includes": {
-    "l3keys2e": [],
-    "pgfpages": [],
-    "translator": []
-  },
-  "macros": {
-    "notesbox": {}
-  },
-  "envs": {},
-  "options": [
-    "slide-frame",
-    "note-frame",
-    "lines=${1:integer}",
-    "graph",
-    "rule=",
-    "beamer-notes"
+  "deps": [
+    {
+      "name": "l3keys2e"
+    },
+    {
+      "name": "pgfpages"
+    },
+    {
+      "name": "translator"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "notesbox",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/handoutWithNotes#c": [
+      "slide-frame",
+      "note-frame",
+      "lines=${1:integer}\r",
+      "graph",
+      "rule=",
+      "beamer-notes"
+    ]
+  },
+  "args": [
+    "\\usepackage/handoutWithNotes#c"
+  ]
 }

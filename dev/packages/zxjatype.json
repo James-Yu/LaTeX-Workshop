@@ -1,131 +1,298 @@
 {
-  "includes": {
-    "ifxetex": [],
-    "xeCJK": []
-  },
-  "macros": {
-    "bxDebug{}": {
-      "snippet": "bxDebug{${1:text}}"
+  "deps": [
+    {
+      "name": "ifxetex"
     },
-    "zxJaFamilyFontHook": {},
-    "zxJaFamilyName": {},
-    "inhibitglue": {},
-    "setjamainfont{}": {
-      "snippet": "setjamainfont{${1:font name}}"
-    },
-    "setjamainfont{}[]": {
-      "snippet": "setjamainfont{${1:font name}}[${2:font features}]"
-    },
-    "setjamainfont[]{}": {
-      "snippet": "setjamainfont[${2:font features}]{${1:font name}}"
-    },
-    "setjasansfont{}": {
-      "snippet": "setjasansfont{${1:font name}}"
-    },
-    "setjasansfont{}[]": {
-      "snippet": "setjasansfont{${1:font name}}[${2:font features}]"
-    },
-    "setjasansfont[]{}": {
-      "snippet": "setjasansfont[${2:font features}]{${1:font name}}"
-    },
-    "setjamonofont{}": {
-      "snippet": "setjamonofont{${1:font name}}"
-    },
-    "setjamonofont{}[]": {
-      "snippet": "setjamonofont{${1:font name}}[${2:font features}]"
-    },
-    "setjamonofont[]{}": {
-      "snippet": "setjamonofont[${2:font features}]{${1:font name}}"
-    },
-    "setjafamilyfont{}{}": {
-      "snippet": "setjafamilyfont{${1:family}}{${2:font name}}"
-    },
-    "setjafamilyfont{}{}[]": {
-      "snippet": "setjafamilyfont{${1:family}}{${2:font name}}[${3:font features}]"
-    },
-    "setjafamilyfont{}[]{}": {
-      "snippet": "setjafamilyfont{${1:family}}[${2:font features}]{${3:font name}}"
-    },
-    "jafamily{}": {
-      "snippet": "jafamily{${1:family}}"
-    },
-    "zxjapanesestyle": {},
-    "zxusejapaneseparameters": {},
-    "zxuseoriginalparameters": {},
-    "setjafontscale{}": {
-      "snippet": "setjafontscale{${1:factor}}"
-    },
-    "jafamilyinverbatim": {},
-    "nojafamilyinverbatim": {},
-    ">": {
-      "detail": ">",
-      "documentation": "GREATER-THAN SIGN r:"
-    },
-    "<": {
-      "detail": "<",
-      "documentation": "LESS-THAN SIGN r:"
-    },
-    "textrawja{}": {
-      "snippet": "textrawja{${1:text}}"
-    },
-    "textrawen{}": {
-      "snippet": "textrawen{${1:text}}"
+    {
+      "name": "xeCJK"
     }
-  },
-  "envs": {
-    "rawjatext": {},
-    "rawentext": {}
-  },
-  "options": [
-    "default",
-    "nodefault",
-    "CJKchecksingle",
-    "noCJKchecksingle",
-    "LocalConfig=${1|true,false,${1:name}|}",
-    "xeCJKactive",
-    "CJKspace",
-    "CJKmath",
-    "CJKglue=${1:glue}",
-    "CJKecglue=${1:glue}",
-    "xCJKecglue=${1:glue}",
-    "CheckSingle",
-    "WindowPenalty=${1:integer}",
-    "PlainEquation",
-    "NewLineCS={${1:commands}}",
-    "NewLineCS+={${1:commands}}",
-    "NewLineCS-={${1:commands}}",
-    "EnvCS={${1:commands}}",
-    "EnvCS+={${1:commands}}",
-    "EnvCS-={${1:commands}}",
-    "InlineEnv={${1:env1,env2,...}}",
-    "InlineEnv+={${1:env1,env2,...}}",
-    "InlineEnv-={${1:env1,env2,...}}",
-    "AutoFallback",
-    "AutoFakeBold=${1:true,false,or <number>}",
-    "AutoFakeSlant=${1:true,false,or <number>}",
-    "EmboldenFactor=${1:factor}",
-    "SlantFactor=${1:factor}",
-    "PunctStyle=${1|quanjiao,banjiao,kaiming,hangmobanjiao,CCT,plain|}",
-    "PunctFamily=${1:false or <family>}",
-    "KaiMingPunct={${1:punctuation}}",
-    "KaiMingPunct+={${1:punctuation}}",
-    "KaiMingPunct-={${1:punctuation}}",
-    "LongPunct={${1:punctuation}}",
-    "LongPunct+={${1:punctuation}}",
-    "LongPunct-={${1:punctuation}}",
-    "MiddlePunct={${1:punctuation}}",
-    "MiddlePunct+={${1:punctuation}}",
-    "MiddlePunct-={${1:punctuation}}",
-    "PunctWidth=",
-    "PunctBoundWidth=",
-    "AllowBreakBetweenPuncts",
-    "RubberPunctSkip=${1|true,false,plus,minus|}",
-    "CheckFullRight",
-    "NoBreakCS={${1:commands}}",
-    "NoBreakCS+={${1:commands}}",
-    "NoBreakCS-={${1:commands}}",
-    "Verb=${1|true,false,env,env+|}",
-    "LoadFandol"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "zxJaFamilyFontHook",
+      "unusual": true
+    },
+    {
+      "name": "zxJaFamilyName",
+      "unusual": true
+    },
+    {
+      "name": "inhibitglue"
+    },
+    {
+      "name": "setjamainfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font name}}"
+      }
+    },
+    {
+      "name": "setjamainfont",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:font name}}[${2:font features}]"
+      }
+    },
+    {
+      "name": "setjamainfont",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:font features%keyvals}]{${1:font name}}"
+      }
+    },
+    {
+      "name": "setjasansfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font name}}"
+      }
+    },
+    {
+      "name": "setjasansfont",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:font name}}[${2:font features}]"
+      }
+    },
+    {
+      "name": "setjasansfont",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:font features%keyvals}]{${1:font name}}"
+      }
+    },
+    {
+      "name": "setjamonofont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font name}}"
+      }
+    },
+    {
+      "name": "setjamonofont",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:font name}}[${2:font features}]"
+      }
+    },
+    {
+      "name": "setjamonofont",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:font features%keyvals}]{${1:font name}}"
+      }
+    },
+    {
+      "name": "setjafamilyfont",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:family}}{${2:font name}}"
+      }
+    },
+    {
+      "name": "setjafamilyfont",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:family}}{${2:font name}}[${3:font features}]"
+      }
+    },
+    {
+      "name": "setjafamilyfont",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:family}}[${3:font features%keyvals}]{${2:font name}}"
+      }
+    },
+    {
+      "name": "jafamily",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:family}}"
+      }
+    },
+    {
+      "name": "zxjapanesestyle"
+    },
+    {
+      "name": "zxusejapaneseparameters"
+    },
+    {
+      "name": "zxuseoriginalparameters"
+    },
+    {
+      "name": "setjafontscale",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:factor}}"
+      }
+    },
+    {
+      "name": "jafamilyinverbatim",
+      "unusual": true
+    },
+    {
+      "name": "nojafamilyinverbatim",
+      "unusual": true
+    },
+    {
+      "name": ">"
+    },
+    {
+      "name": "<"
+    },
+    {
+      "name": "textrawja",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "textrawen",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "rawjatext"
+    },
+    {
+      "name": "rawentext"
+    }
+  ],
+  "keys": {
+    "\\usepackage/zxjatype#c": [
+      "default\r",
+      "nodefault\r",
+      "CJKchecksingle\r",
+      "noCJKchecksingle\r",
+      "LocalConfig=${2|true,false,${1:name}\r|}",
+      "xeCJKactive",
+      "CJKspace",
+      "CJKmath",
+      "CJKglue=${1:glue}\r",
+      "CJKecglue=${1:glue}\r",
+      "xCJKecglue=${1:glue}\r",
+      "CheckSingle",
+      "WindowPenalty=${1:integer}\r",
+      "PlainEquation",
+      "NewLineCS={${1:commands}}\r",
+      "NewLineCS+={${1:commands}}\r",
+      "NewLineCS-={${1:commands}}\r",
+      "EnvCS={${1:commands}}\r",
+      "EnvCS+={${1:commands}}\r",
+      "EnvCS-={${1:commands}}\r",
+      "InlineEnv={${1:env1,env2,...}}\r",
+      "InlineEnv+={${1:env1,env2,...}}\r",
+      "InlineEnv-={${1:env1,env2,...}}\r",
+      "AutoFallback",
+      "AutoFakeBold=${1:true,false,or <number>}\r",
+      "AutoFakeSlant=${1:true,false,or <number>}\r",
+      "EmboldenFactor=${1:factor}\r",
+      "SlantFactor=${1:factor}\r",
+      "PunctStyle=${1|quanjiao,banjiao,kaiming,hangmobanjiao,CCT,plain\r|}",
+      "PunctFamily=${1:false or <family>}\r",
+      "KaiMingPunct={${1:punctuation}}\r",
+      "KaiMingPunct+={${1:punctuation}}\r",
+      "KaiMingPunct-={${1:punctuation}}\r",
+      "LongPunct={${1:punctuation}}\r",
+      "LongPunct+={${1:punctuation}}\r",
+      "LongPunct-={${1:punctuation}}\r",
+      "MiddlePunct={${1:punctuation}}\r",
+      "MiddlePunct+={${1:punctuation}}\r",
+      "MiddlePunct-={${1:punctuation}}\r",
+      "PunctWidth=",
+      "PunctBoundWidth=",
+      "AllowBreakBetweenPuncts",
+      "RubberPunctSkip=${1|true,false,plus,minus\r|}",
+      "CheckFullRight",
+      "NoBreakCS={${1:commands}}\r",
+      "NoBreakCS+={${1:commands}}\r",
+      "NoBreakCS-={${1:commands}}\r",
+      "Verb=${1|true,false,env,env+\r|}",
+      "LoadFandol"
+    ],
+    "\\setjamainfont,\\setjasansfont,\\setjamonofont,\\setjafamilyfont": [
+      "Alternate=${1:feature}\r",
+      "Annotation=\r",
+      "AutoFakeBold\r",
+      "AutoFakeBold=${1:number}\r",
+      "AutoFakeSlant\r",
+      "AutoFakeSlant=${1:number}\r",
+      "BoldFeatures={${1:features}}\r",
+      "BoldFont=${1:font name}\r",
+      "BoldItalicFeatures={${1:features}}\r",
+      "BoldItalicFont=${1:font name}\r",
+      "BoldSlantedFeatures={${1:features}}\r",
+      "BoldSlantedFont=${1:font name}\r",
+      "BoldSwashFeatures={${1:features}}\r",
+      "BoldSwashFont=${1:font name}\r",
+      "CJKShape=${1|Traditional,Simplified,JIS1978,JIS1983,JIS1990,Expert,NLC\r|}",
+      "CharacterVariant={${1:glyph num list}:${2:variety num}}\r",
+      "CharacterWidth=${1|Proportional,Full,Half,Thurd,Quarter,AlternateProportional,AlternateHalf,ResetAll\r|}",
+      "Color=",
+      "Colour=",
+      "Contextuals=${1|Swash,Alternate,WordInitial,WordFinal,LineFinal,Inner,ResetAll\r|}",
+      "Diacritics=${1|MarkToBase,MarkToMark,AboveBase,BelowBase,ResetAll\r|}",
+      "Extension=${1:extension}\r",
+      "FakeBold=${1:number}\r",
+      "FakeSlant=${1:number}\r",
+      "FakeStretch=${1:number}\r",
+      "FallBack\r",
+      "FallBack=${1:font name}\r",
+      "Font=${1:font name}\r",
+      "FontFace={${1:series}}{${2:shape}}{${3:font name}}\r",
+      "Fractions=${1|On,Off,Reset,Alternate,ResetAll\r|}",
+      "HyphenChar=${1:character}\r",
+      "IgnoreFontspecFile\r",
+      "ItalicFeatures={${1:features}}\r",
+      "ItalicFont=${1:font name}\r",
+      "Kerning=${1|On,Off,Reset,Uppercase,ResetAll\r|}",
+      "Language=${1:language}\r",
+      "LetterSpace=${1:number}\r",
+      "Letters=${1|SmallCaps,PetiteCaps,UppercaseSmallCaps,UppercasePetiteCaps,Unicase,ResetAll\r|}",
+      "Ligatures=${1|Required,Common,Contextual,Rare,Discretionary,Historic,TeX\r|}",
+      "LocalForms=${1|On,Off,Reset\r|}",
+      "Mapping=${1|fullwidth-stop,full-stop,han-trad,han-simp\r|}",
+      "NFSSFamily=${1:font family}\r",
+      "Numbers=${1|Uppercase,UppercaseOff,Lowercase,LowercaseOff,Lining,LiningOff,OldStyle,OldStyleOff,Proportional,ProportionalOff,Monospaced,MonospacedOff,SlashedZero,SlashedZeroOff,Arabic,ArabicOff,ResetAll\r|}",
+      "OpticalSize=${1:size}\r",
+      "Ornament=\r",
+      "Path=${1:file path}\r",
+      "PunctuationSpace=${1:number}\r",
+      "RawFeature=${1:feature tag}\r",
+      "Scale=${1:number}\r",
+      "ScaleAgain=${1:number}\r",
+      "Script=${1:name}\r",
+      "Size=${1:number}\r",
+      "SizeFeatures={${1:features}}\r",
+      "SlantedFeatures={${1:features}}\r",
+      "SlantedFont=${1:font name}\r",
+      "SmallCapsFeatures={${1:features}}\r",
+      "SmallCapsFont=${1:font name}\r",
+      "Style=${1|Alternate,Italic,Ruby,Swash,Cursive,Historic,Titling,HorizontalKana,VerticalKana,ResetAll\r|}",
+      "StylisticAlternates=${1:feature}\r",
+      "StylisticSet=${1:set number}\r",
+      "SwashFeatures={${1:features}}\r",
+      "SwashFont=${1:font name}\r",
+      "UprightFeatures={${1:features}}\r",
+      "UprightFont=${1:font name}\r",
+      "Variant=${1:integer}\r",
+      "Vertical=${1|RotatedGlyphs,AlternatesForRotation,Alternates,KanaAlternates,Kerning,AlternateMetrics,HalfMetrics,ProportionalMetrics,ResetAll\r|}",
+      "VerticalPosition=${1|Superior,Inferior,Numerator,Denominator,ScientificInferior,Ordinal,ResetAll\r|}",
+      "WordSpace=${1:number}\r",
+      "Mapping=${1:xetex-only feature}\r",
+      "Renderer=${1:renderer}\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/zxjatype#c"
+  ]
 }

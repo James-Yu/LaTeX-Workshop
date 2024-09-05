@@ -1,46 +1,98 @@
 {
-  "includes": {
-    "ifxetex": [],
-    "ifluatex": [],
-    "xkeyval": [],
-    "fontaxes": [],
-    "fontenc": [],
-    "mweights": []
-  },
-  "macros": {
-    "liningnums{}": {
-      "snippet": "liningnums{${1:text}}"
+  "deps": [
+    {
+      "name": "ifxetex"
     },
-    "sufigures": {},
-    "textsu{}": {
-      "snippet": "textsu{${1:text}}"
+    {
+      "name": "ifluatex"
     },
-    "infigures": {},
-    "textin{}": {
-      "snippet": "textin{${1:text}}"
+    {
+      "name": "xkeyval"
     },
-    "swashshape": {},
-    "textsw{}": {
-      "snippet": "textsw{${1:text}}"
+    {
+      "name": "fontaxes"
     },
-    "ornaments": {},
-    "ornament{}": {
-      "snippet": "ornament{${1:char slot}}"
+    {
+      "name": "fontenc"
     },
-    "textornaments{}": {
-      "snippet": "textornaments{${1:number}}"
-    },
-    "garamondlibrelgr": {}
-  },
-  "envs": {},
-  "options": [
-    "scale=${1:factor}",
-    "scaled=${1:factor}",
-    "type1",
-    "oldstyle",
-    "osf",
-    "lining",
-    "lf"
+    {
+      "name": "mweights"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "liningnums",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "sufigures"
+    },
+    {
+      "name": "textsu",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "infigures"
+    },
+    {
+      "name": "textin",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "swashshape"
+    },
+    {
+      "name": "textsw",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ornaments"
+    },
+    {
+      "name": "ornament",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:char slot}}"
+      }
+    },
+    {
+      "name": "textornaments",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "garamondlibrelgr",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/garamondlibre#c": [
+      "scale=${1:factor}\r",
+      "scaled=${1:factor}\r",
+      "type1\r",
+      "oldstyle\r",
+      "osf\r",
+      "lining\r",
+      "lf\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/garamondlibre#c"
+  ]
 }

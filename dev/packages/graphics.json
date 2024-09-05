@@ -1,84 +1,139 @@
 {
-  "includes": {
-    "trig": []
-  },
-  "macros": {
-    "DeclareGraphicsExtensions{}": {
-      "snippet": "DeclareGraphicsExtensions{${1:ext-list}}"
-    },
-    "DeclareGraphicsRule{}{}{}{}": {
-      "snippet": "DeclareGraphicsRule{${1:ext}}{${2:type}}{${3:read-file}}{${4:command}}"
-    },
-    "graphicspath{}": {
-      "snippet": "graphicspath{${1:dir-list}}"
-    },
-    "includegraphics[][]{}": {
-      "snippet": "includegraphics[${2:llx,${4:lly}][${3:urx},ury}]{${1:imagefile}}"
-    },
-    "includegraphics*{}": {
-      "snippet": "includegraphics*{${1:imagefile}}"
-    },
-    "includegraphics*[]{}": {
-      "snippet": "includegraphics*[${2:llx,lly}]{${1:imagefile}}"
-    },
-    "includegraphics*[][]{}": {
-      "snippet": "includegraphics*[${2:llx,${4:lly}][${3:urx},ury}]{${1:imagefile}}"
-    },
-    "reflectbox{}": {
-      "snippet": "reflectbox{${1:text}}"
-    },
-    "resizebox{}{}{}": {
-      "snippet": "resizebox{${1:h-length}}{${2:v-length}}{${3:text}}"
-    },
-    "resizebox*{}{}{}": {
-      "snippet": "resizebox*{${1:h-length}}{${2:v-length}}{${3:text}}"
-    },
-    "rotatebox{}{}": {
-      "snippet": "rotatebox{${1:angle}}{${2:text}}"
-    },
-    "scalebox{}{}": {
-      "snippet": "scalebox{${1:h-scale}}{${2:text}}"
-    },
-    "scalebox{}[]{}": {
-      "snippet": "scalebox{${1:h-scale}}[${2:v-scale}]{${3:text}}"
-    },
-    "GDebug{}": {
-      "snippet": "GDebug{${1:text}}"
+  "deps": [
+    {
+      "name": "trig"
     }
-  },
-  "envs": {},
-  "options": [
-    "draft",
-    "final",
-    "hiresbb",
-    "demo",
-    "setpagesize",
-    "nosetpagesize",
-    "dvips",
-    "xdvi",
-    "dvipdf",
-    "dvipdfm",
-    "dvipdfmx",
-    "xetex",
-    "pdftex",
-    "luatex",
-    "dvisvgm",
-    "dvipsone",
-    "dviwindo",
-    "emtex",
-    "dviwin",
-    "oztex",
-    "textures",
-    "pctexps",
-    "pctexwin",
-    "pctexhp",
-    "pctex32",
-    "truetex",
-    "tcidvi",
-    "vtex",
-    "debugshow",
-    "hiderotate",
-    "hidescale"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "DeclareGraphicsExtensions",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ext-list}}"
+      }
+    },
+    {
+      "name": "DeclareGraphicsRule",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:ext}}{${2:type}}{${3:read-file}}{${4:command%plain}}"
+      }
+    },
+    {
+      "name": "graphicspath",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:dir-list%definition}}"
+      }
+    },
+    {
+      "name": "includegraphics",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:llx,lly}][${3:urx,ury}]{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "includegraphics*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "includegraphics*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:llx,lly}]{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "includegraphics*",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:llx,lly}][${3:urx,ury}]{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "reflectbox",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "resizebox",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:h-length%l}}{${2:v-length%l}}{${3:text}}"
+      }
+    },
+    {
+      "name": "resizebox*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:h-length%l}}{${2:v-length%l}}{${3:text}}"
+      }
+    },
+    {
+      "name": "rotatebox",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:angle}}{${2:text}}"
+      }
+    },
+    {
+      "name": "scalebox",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:h-scale}}{${2:text}}"
+      }
+    },
+    {
+      "name": "scalebox",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:h-scale}}[${3:v-scale}]{${2:text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/graphics#c": [
+      "draft\r",
+      "final\r",
+      "hiresbb\r",
+      "demo\r",
+      "setpagesize\r",
+      "nosetpagesize\r",
+      "dvips\r",
+      "xdvi\r",
+      "dvipdf\r",
+      "dvipdfm\r",
+      "dvipdfmx\r",
+      "xetex\r",
+      "pdftex\r",
+      "luatex\r",
+      "dvisvgm\r",
+      "dvipsone\r",
+      "dviwindo\r",
+      "emtex\r",
+      "dviwin\r",
+      "oztex\r",
+      "textures\r",
+      "pctexps\r",
+      "pctexwin\r",
+      "pctexhp\r",
+      "pctex32\r",
+      "truetex\r",
+      "tcidvi\r",
+      "vtex\r",
+      "debugshow\r",
+      "hiderotate\r",
+      "hidescale\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/graphics#c"
+  ]
 }

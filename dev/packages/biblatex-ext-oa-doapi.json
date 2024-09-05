@@ -1,25 +1,47 @@
 {
-  "includes": {
-    "etoolbox": []
-  },
-  "macros": {
-    "SetDOIAPIMail{}": {
-      "snippet": "SetDOIAPIMail{${1:email}}"
-    },
-    "SetDOIAPICacheExpiration{}": {
-      "snippet": "SetDOIAPICacheExpiration{${1:days}}"
-    },
-    "IsOpenaccess{}{}{}": {
-      "snippet": "IsOpenaccess{${1:DOI}}{${2:true}}{${3:false}}"
-    },
-    "GetOpenaccessURLWrapped{}": {
-      "snippet": "GetOpenaccessURLWrapped{${1:DOI}}"
-    },
-    "OpenaccessURLisDOI{}{}{}": {
-      "snippet": "OpenaccessURLisDOI{${1:DOI}}{${2:true}}{${3:false}}"
+  "deps": [
+    {
+      "name": "etoolbox"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "SetDOIAPIMail",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:email%URL}}"
+      }
+    },
+    {
+      "name": "SetDOIAPICacheExpiration",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:days}}"
+      }
+    },
+    {
+      "name": "IsOpenaccess",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:DOI}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "GetOpenaccessURLWrapped",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:DOI}}"
+      }
+    },
+    {
+      "name": "OpenaccessURLisDOI",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:DOI}}{${2:true}}{${3:false}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

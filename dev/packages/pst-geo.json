@@ -1,110 +1,280 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-node": [],
-    "pst-xkey": []
-  },
-  "macros": {
-    "WorldMap": {},
-    "WorldMap[]": {
-      "snippet": "WorldMap[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "WorldMapII": {},
-    "WorldMapII[]": {
-      "snippet": "WorldMapII[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "pst-node"
     },
-    "WorldMapThreeD": {},
-    "WorldMapThreeD[]": {
-      "snippet": "WorldMapThreeD[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "pst-xkey"
+    }
+  ],
+  "macros": [
+    {
+      "name": "WorldMap"
     },
-    "WorldMapThreeDII": {},
-    "WorldMapThreeDII[]": {
-      "snippet": "WorldMapThreeDII[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "WorldMap",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     },
-    "psNodeLabelStyle": {},
-    "TypeProjection": {},
-    "pnodeMap(){}": {
-      "snippet": "pnodeMap(${2:longitude},${3:latitude}){${1:name}}"
+    {
+      "name": "WorldMapII"
     },
-    "mapput(){}": {
-      "snippet": "mapput(${2:longitude},${3:latitude}){${1:label}}"
+    {
+      "name": "WorldMapII",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     },
-    "mapput()[]{}[]": {
-      "snippet": "mapput(${4:longitude},${5:latitude})[${2:node name}]{${1:label}}[${3:country}]"
+    {
+      "name": "WorldMapThreeD"
     },
-    "mapput[](){}": {
-      "snippet": "mapput[${2:angle}](${3:longitude},${4:latitude}){${1:label}}"
+    {
+      "name": "WorldMapThreeD",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     },
-    "mapput[]()[]{}[]": {
-      "snippet": "mapput[${2:angle}](${5:longitude},${6:latitude})[${3:node name}]{${1:label}}[${4:country}]"
+    {
+      "name": "WorldMapThreeDII"
     },
-    "psmeridiencolor": {},
-    "psmapcolor": {},
-    "psparallelcolor": {},
-    "psislandcolor": {},
-    "pscoastcolor": {},
-    "psoceancolor": {},
-    "psrivercolor": {},
-    "pswfraczoncolor": {},
-    "pswmaglincolor": {},
-    "psridgecolor": {},
-    "pstransfrmcolor": {},
-    "pstrenchcolor": {},
-    "psgridmapcolor": {},
-    "pscirclecolor": {},
-    "psmeridienwidth": {},
-    "psparallelwidth": {},
-    "pscirclewidth": {},
-    "psgridmapwidth": {},
-    "psborderwidth": {},
-    "pscoastwidth": {},
-    "pswfraczonwidth": {},
-    "pswmaglinwidth": {},
-    "psridgewidth": {},
-    "pnodeMapIIID(){}": {
-      "snippet": "pnodeMapIIID(${2:longitude},${3:latitude}){${1:name}}"
+    {
+      "name": "WorldMapThreeDII",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     },
-    "mapputIIID(){}": {
-      "snippet": "mapputIIID(${2:longitude},${3:latitude}){${1:label}}"
+    {
+      "name": "psNodeLabelStyle",
+      "unusual": true
     },
-    "mapputIIID()[]{}[]": {
-      "snippet": "mapputIIID(${4:longitude},${5:latitude})[${2:node name}]{${1:label}}[${3:country}]"
+    {
+      "name": "TypeProjection",
+      "unusual": true
     },
-    "mapputIIID[](){}": {
-      "snippet": "mapputIIID[${2:angle}](${3:longitude},${4:latitude}){${1:label}}"
+    {
+      "name": "pnodeMap(longitude,latitude)",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
     },
-    "mapputIIID[]()[]{}[]": {
-      "snippet": "mapputIIID[${2:angle}](${5:longitude},${6:latitude})[${3:node name}]{${1:label}}[${4:country}]"
+    {
+      "name": "mapput(longitude,latitude)",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
     },
-    "psmeridien{}": {
-      "snippet": "psmeridien{${1:longitude}}"
+    {
+      "name": "mapput(longitude,latitude)",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:node name}]{${1:label}}[${3:country}]"
+      }
     },
-    "psparallel{}": {
-      "snippet": "psparallel{${1:latitude}}"
+    {
+      "name": "mapput",
+      "unusual": true,
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:angle}](${3:longitude},${4:latitude}){${1:label}}"
+      }
     },
-    "psGlobeTellure(){}": {
-      "snippet": "psGlobeTellure(${2:longitude},${3:latitude}){${1:name}}"
+    {
+      "name": "mapput",
+      "unusual": true,
+      "arg": {
+        "format": "[]()[]{}[]",
+        "snippet": "[${2:angle}](${5:longitude},${6:latitude})[${3:node name}]{${1:label}}[${4:country}]"
+      }
     },
-    "psGlobeTellure[](){}": {
-      "snippet": "psGlobeTellure[${2:options}](${3:longitude},${4:latitude}){${1:name}}"
+    {
+      "name": "psmeridiencolor",
+      "unusual": true
     },
-    "psepicenter(){}": {
-      "snippet": "psepicenter(${2:longitude},${3:latitude}){${1:label}}"
+    {
+      "name": "psmapcolor",
+      "unusual": true
     },
-    "PSTGeoLoaded": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "psparallelcolor",
+      "unusual": true
+    },
+    {
+      "name": "psislandcolor",
+      "unusual": true
+    },
+    {
+      "name": "pscoastcolor",
+      "unusual": true
+    },
+    {
+      "name": "psoceancolor",
+      "unusual": true
+    },
+    {
+      "name": "psrivercolor",
+      "unusual": true
+    },
+    {
+      "name": "pswfraczoncolor",
+      "unusual": true
+    },
+    {
+      "name": "pswmaglincolor",
+      "unusual": true
+    },
+    {
+      "name": "psridgecolor",
+      "unusual": true
+    },
+    {
+      "name": "pstransfrmcolor",
+      "unusual": true
+    },
+    {
+      "name": "pstrenchcolor",
+      "unusual": true
+    },
+    {
+      "name": "psgridmapcolor",
+      "unusual": true
+    },
+    {
+      "name": "pscirclecolor",
+      "unusual": true
+    },
+    {
+      "name": "psmeridienwidth",
+      "unusual": true
+    },
+    {
+      "name": "psparallelwidth",
+      "unusual": true
+    },
+    {
+      "name": "pscirclewidth",
+      "unusual": true
+    },
+    {
+      "name": "psgridmapwidth",
+      "unusual": true
+    },
+    {
+      "name": "psborderwidth",
+      "unusual": true
+    },
+    {
+      "name": "pscoastwidth",
+      "unusual": true
+    },
+    {
+      "name": "pswfraczonwidth",
+      "unusual": true
+    },
+    {
+      "name": "pswmaglinwidth",
+      "unusual": true
+    },
+    {
+      "name": "psridgewidth",
+      "unusual": true
+    },
+    {
+      "name": "pnodeMapIIID(longitude,latitude)",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "mapputIIID(longitude,latitude)",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "mapputIIID(longitude,latitude)",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:node name}]{${1:label}}[${3:country}]"
+      }
+    },
+    {
+      "name": "mapputIIID",
+      "unusual": true,
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:angle}](${3:longitude},${4:latitude}){${1:label}}"
+      }
+    },
+    {
+      "name": "mapputIIID",
+      "unusual": true,
+      "arg": {
+        "format": "[]()[]{}[]",
+        "snippet": "[${2:angle}](${5:longitude},${6:latitude})[${3:node name}]{${1:label}}[${4:country}]"
+      }
+    },
+    {
+      "name": "psmeridien",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:longitude}}"
+      }
+    },
+    {
+      "name": "psparallel",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:latitude}}"
+      }
+    },
+    {
+      "name": "psGlobeTellure(longitude,latitude)",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "psGlobeTellure",
+      "unusual": true,
+      "arg": {
+        "format": "[](){}",
+        "snippet": "[${2:options%keyvals}](${3:longitude},${4:latitude}){${1:name}}"
+      }
+    },
+    {
+      "name": "psepicenter(longitude,latitude)",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\WorldMap#c,\\WorldMapII#c": [
       "Africa",
       "all",
       "Asia",
@@ -114,25 +284,25 @@
       "cities",
       "Europe",
       "Fill",
-      "increment=${1:degrees}",
+      "increment=${1:degrees}\r",
       "LakeFillColor=",
-      "level=${1:level}",
-      "limiteL=${1:longitude in degrees}",
+      "level=${1:level}\r",
+      "limiteL=${1:longitude in degrees}\r",
       "linewidth=",
       "maillage",
       "MapFillColor=",
       "Mexico",
       "Northamerica",
-      "path=${1:path}",
+      "path=${1:path}\r",
       "RiverFillColor=",
       "rivers",
       "SeaFillColor=",
       "Southamerica",
-      "specialData=",
-      "type=${1|1,2,3,4,5,6,7,8|}",
+      "specialData=\r",
+      "type=${1|1,2,3,4,5,6,7,8\r|}",
       "USA"
     ],
-    [
+    "\\WorldMapThreeD#c,\\WorldMapThreeDII#c": [
       "Africa",
       "all",
       "Asia",
@@ -145,59 +315,59 @@
       "capitals",
       "circlecolor=",
       "circles",
-      "circlesep=${1:number}",
+      "circlesep=${1:number}\r",
       "circlewidth=",
       "cities",
       "coastcolor=",
       "coasts",
       "coastwidth=",
-      "Day=${1:day}",
+      "Day=${1:day}\r",
       "daynight",
-      "Decran=${1:distance}",
-      "Dobs=${1:distance}",
+      "Decran=${1:distance}\r",
+      "Dobs=${1:distance}\r",
       "Europe",
-      "fillstyle=${1:style}",
+      "fillstyle=${1:style}\r",
       "France",
       "Germany",
       "gridmap",
       "gridmapcolor=",
-      "gridmapdiv=${1:number}",
+      "gridmapdiv=${1:number}\r",
       "gridmapwidth=",
-      "hour=${1:hour}",
-      "increment=${1:degrees}",
+      "hour=${1:hour}\r",
+      "increment=${1:degrees}\r",
       "islandcolor=",
       "islands",
       "lakes",
-      "latitude0=${1:degrees}",
-      "latitudeParallel=${1:degrees}",
-      "level=${1|1,2|}",
+      "latitude0=${1:degrees}\r",
+      "latitudeParallel=${1:degrees}\r",
+      "level=${1|1,2\r|}",
       "linewidth=",
-      "longitude0=${1:degrees}",
-      "longitudeMeridien=${1:degrees}",
+      "longitude0=${1:degrees}\r",
+      "longitudeMeridien=${1:degrees}\r",
       "maillage",
       "mapcolor=",
       "MapFillColor=",
       "Mexico",
-      "Month=${1:month}",
+      "Month=${1:month}\r",
       "Northamerica",
       "oceancolor=",
-      "opacity=${1:factor}",
+      "opacity=${1:factor}\r",
       "parallelcolor=",
       "parallelwidth=",
-      "path=${1:path}",
-      "PHI=${1:longitude in degrees}",
-      "Radius=${1:radius}",
+      "path=${1:path}\r",
+      "PHI=${1:longitude in degrees}\r",
+      "Radius=${1:radius}\r",
       "ridge",
       "ridgecolor=",
       "ridgewidth=",
       "rivercolor=",
       "rivers",
-      "RotX=${1:degrees}",
-      "RotY=${1:degrees}",
-      "RotZ=${1:degrees}",
+      "RotX=${1:degrees}\r",
+      "RotY=${1:degrees}\r",
+      "RotZ=${1:degrees}\r",
       "Southamerica",
-      "specialData=",
-      "THETA=${1:latitude in degrees}",
+      "specialData=\r",
+      "THETA=${1:latitude in degrees}\r",
       "transfrmcolor=",
       "trenchcolor=",
       "USA",
@@ -208,7 +378,8 @@
       "wmaglin",
       "wmaglincolor=",
       "wmaglinwidth=",
-      "Year=${1:year}"
+      "Year=${1:year}\r"
     ]
-  ]
+  },
+  "args": []
 }

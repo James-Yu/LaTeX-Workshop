@@ -1,17 +1,22 @@
 {
-  "includes": {
-    "pstricks": []
-  },
-  "macros": {
-    "psBigArrow()()": {
-      "snippet": "psBigArrow(${1:x1},${2:y1})(${3:x2},${4:y2})"
+  "deps": [
+    {
+      "name": "pstricks"
+    }
+  ],
+  "macros": [
+    {
+      "name": "psBigArrow(x1,y1)(x2,y2)"
     },
-    "psBigArrow[]()()": {
-      "snippet": "psBigArrow[${1:options}](${2:x1},${3:y1})(${4:x2},${5:y2})"
-    },
-    "PSTarrowLoaded": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "psBigArrow",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "[${1:options%keyvals}](${2:x1},${3:y1})(${4:x2},${5:y2})"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

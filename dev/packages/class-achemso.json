@@ -1,135 +1,322 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "geometry": [],
-    "caption": [],
-    "float": [],
-    "graphicx": [],
-    "setspace": [],
-    "url": [],
-    "natbib": [],
-    "mciteplus": [],
-    "natmove": [],
-    "xcolor": [
-      "journal=orlef7"
+  "deps": [
+    {
+      "name": "xkeyval"
+    },
+    {
+      "name": "geometry"
+    },
+    {
+      "name": "caption"
+    },
+    {
+      "name": "float"
+    },
+    {
+      "name": "graphicx"
+    },
+    {
+      "name": "setspace"
+    },
+    {
+      "name": "url"
+    },
+    {
+      "name": "natbib"
+    },
+    {
+      "name": "mciteplus"
+    },
+    {
+      "name": "natmove"
+    },
+    {
+      "name": "xcolor",
+      "if": "journal=orlef7"
+    }
+  ],
+  "macros": [
+    {
+      "name": "affiliation",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:affiliation}}"
+      }
+    },
+    {
+      "name": "affiliation",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short affiliation}]{${1:affiliation}}"
+      }
+    },
+    {
+      "name": "alsoaffiliation",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:affiliation}}"
+      }
+    },
+    {
+      "name": "alsoaffiliation",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short affiliation}]{${1:affiliation}}"
+      }
+    },
+    {
+      "name": "altaffiliation",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:affiliation}}"
+      }
+    },
+    {
+      "name": "email",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:email%URL}}"
+      }
+    },
+    {
+      "name": "fax",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:fax number}}"
+      }
+    },
+    {
+      "name": "phone",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:phone number}}"
+      }
+    },
+    {
+      "name": "title",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short title%text}]{${1:text}}"
+      }
+    },
+    {
+      "name": "SectionNumbersOff"
+    },
+    {
+      "name": "SectionNumbersOn"
+    },
+    {
+      "name": "SectionsOff"
+    },
+    {
+      "name": "SectionsOn"
+    },
+    {
+      "name": "AbstractOff"
+    },
+    {
+      "name": "AbstractOn"
+    },
+    {
+      "name": "latin",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "bibnote",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "bibnotemark",
+      "unusual": true
+    },
+    {
+      "name": "bibnotetext",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "abbreviations",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:abbreviations}}"
+      }
+    },
+    {
+      "name": "acknowledgementname",
+      "unusual": true
+    },
+    {
+      "name": "acksize",
+      "unusual": true
+    },
+    {
+      "name": "affilfont",
+      "unusual": true
+    },
+    {
+      "name": "affilsize",
+      "unusual": true
+    },
+    {
+      "name": "authorfont",
+      "unusual": true
+    },
+    {
+      "name": "authorsize",
+      "unusual": true
+    },
+    {
+      "name": "capsize",
+      "unusual": true
+    },
+    {
+      "name": "chartname",
+      "unusual": true
+    },
+    {
+      "name": "emailfont",
+      "unusual": true
+    },
+    {
+      "name": "emailsize",
+      "unusual": true
+    },
+    {
+      "name": "graphname",
+      "unusual": true
+    },
+    {
+      "name": "keywords",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keywords}}"
+      }
+    },
+    {
+      "name": "printbibnotes",
+      "unusual": true
+    },
+    {
+      "name": "refsize",
+      "unusual": true
+    },
+    {
+      "name": "schemename",
+      "unusual": true
+    },
+    {
+      "name": "suppinfoname",
+      "unusual": true
+    },
+    {
+      "name": "suppsize",
+      "unusual": true
+    },
+    {
+      "name": "thebibnote",
+      "unusual": true
+    },
+    {
+      "name": "thechart",
+      "unusual": true
+    },
+    {
+      "name": "thegraph",
+      "unusual": true
+    },
+    {
+      "name": "thescheme",
+      "unusual": true
+    },
+    {
+      "name": "titlefont",
+      "unusual": true
+    },
+    {
+      "name": "titlesize",
+      "unusual": true
+    },
+    {
+      "name": "tocentryname",
+      "unusual": true
+    },
+    {
+      "name": "tocsize",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "scheme"
+    },
+    {
+      "name": "scheme",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:placement}]"
+      }
+    },
+    {
+      "name": "chart"
+    },
+    {
+      "name": "chart",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:placement}]"
+      }
+    },
+    {
+      "name": "graph"
+    },
+    {
+      "name": "graph",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:placement}]"
+      }
+    },
+    {
+      "name": "acknowledgement"
+    },
+    {
+      "name": "suppinfo"
+    },
+    {
+      "name": "tocentry"
+    }
+  ],
+  "keys": {
+    "\\documentclass/achemso#c": [
+      "abbreviations",
+      "articletitle",
+      "biblabel=${1|plain,brackets,period,fullstop\r|}",
+      "biochem",
+      "biochemistry",
+      "chaptertitle",
+      "doi",
+      "email",
+      "etalmode=${1|firstonly,truncate\r|}",
+      "hyperref",
+      "journal=${1|aaembp,aaemcq,aamick,aanmf6,aapmcd,aastgj,abmcb8,abseba,acbcct,accacs,achre4,acncdm,acsccc,acscii,acsodf,aeacb3,aeacc4,aeecco,aelccp,aesccq,aewcaa,afsthl,aidcbc,amacgu,amachv,amclct,amlccd,amlcef,amrcda,anaccx,ancac3,ancham,aoiab5,apcach,apchd5,appccd,asbcd6,ascecg,ascefj,bcches,bichaw,bomaf6,cgdefu,chreay,cmatex,crtoec,enfuem,esthag,estlcu,iecred,inoraj,jaaucr,jacsat,jafcau,jceaax,jceda8,jcisd8,jctcce,jmcmar,jnprdf,joceah,jpcafh,jpcbfk,jpccck,jpclcd,jprobs,langd5,mamobx,mpohbp,nalefd,oprdfk,orgnd7,orlef7\r|}",
+      "keywords",
+      "layout=${1|traditional,twocolumn\r|}",
+      "manuscript=${1|article,note,communication,review,letter,perspective\r|}",
+      "maxauthors=${1:number}\r",
+      "super",
+      "usetitle"
     ]
   },
-  "macros": {
-    "affiliation{}": {
-      "snippet": "affiliation{${1:affiliation}}"
-    },
-    "affiliation[]{}": {
-      "snippet": "affiliation[${2:short affiliation}]{${1:affiliation}}"
-    },
-    "alsoaffiliation{}": {
-      "snippet": "alsoaffiliation{${1:affiliation}}"
-    },
-    "alsoaffiliation[]{}": {
-      "snippet": "alsoaffiliation[${2:short affiliation}]{${1:affiliation}}"
-    },
-    "altaffiliation{}": {
-      "snippet": "altaffiliation{${1:affiliation}}"
-    },
-    "email{}": {
-      "snippet": "email{${1:email}}"
-    },
-    "fax{}": {
-      "snippet": "fax{${1:fax number}}"
-    },
-    "phone{}": {
-      "snippet": "phone{${1:phone number}}"
-    },
-    "title[]{}": {
-      "snippet": "title[${2:short title}]{${1:text}}"
-    },
-    "SectionNumbersOff": {},
-    "SectionNumbersOn": {},
-    "SectionsOff": {},
-    "SectionsOn": {},
-    "AbstractOff": {},
-    "AbstractOn": {},
-    "latin{}": {
-      "snippet": "latin{${1:text}}"
-    },
-    "bibnote{}": {
-      "snippet": "bibnote{${1:text}}"
-    },
-    "bibnotemark": {},
-    "bibnotetext{}": {
-      "snippet": "bibnotetext{${1:text}}"
-    },
-    "abbreviations{}": {
-      "snippet": "abbreviations{${1:abbreviations}}"
-    },
-    "acknowledgementname": {},
-    "acksize": {},
-    "affilfont": {},
-    "affilsize": {},
-    "authorfont": {},
-    "authorsize": {},
-    "capsize": {},
-    "chartname": {},
-    "emailfont": {},
-    "emailsize": {},
-    "graphname": {},
-    "keywords{}": {
-      "snippet": "keywords{${1:keywords}}"
-    },
-    "printbibnotes": {},
-    "refsize": {},
-    "schemename": {},
-    "suppinfoname": {},
-    "suppsize": {},
-    "thebibnote": {},
-    "thechart": {},
-    "thegraph": {},
-    "thescheme": {},
-    "titlefont": {},
-    "titlesize": {},
-    "tocentryname": {},
-    "tocsize": {},
-    "plainref{}": {
-      "snippet": "plainref{${1:label}}"
-    }
-  },
-  "envs": {
-    "scheme": {},
-    "scheme[]": {
-      "name": "scheme",
-      "snippet": "[${1:placement}]"
-    },
-    "chart": {},
-    "chart[]": {
-      "name": "chart",
-      "snippet": "[${1:placement}]"
-    },
-    "graph": {},
-    "graph[]": {
-      "name": "graph",
-      "snippet": "[${1:placement}]"
-    },
-    "acknowledgement": {},
-    "suppinfo": {},
-    "tocentry": {}
-  },
-  "options": [
-    "abbreviations",
-    "articletitle",
-    "biblabel=${1|plain,brackets,period,fullstop|}",
-    "biochem",
-    "biochemistry",
-    "chaptertitle",
-    "doi",
-    "email",
-    "etalmode=${1|firstonly,truncate|}",
-    "hyperref",
-    "journal=${1|aaembp,aaemcq,aamick,aanmf6,aapmcd,aastgj,abmcb8,abseba,acbcct,accacs,achre4,acncdm,acsccc,acscii,acsodf,aeacb3,aeacc4,aeecco,aelccp,aesccq,aewcaa,afsthl,aidcbc,amacgu,amachv,amclct,amlccd,amlcef,amrcda,anaccx,ancac3,ancham,aoiab5,apcach,apchd5,appccd,asbcd6,ascecg,ascefj,bcches,bichaw,bomaf6,cgdefu,chreay,cmatex,crtoec,enfuem,esthag,estlcu,iecred,inoraj,jaaucr,jacsat,jafcau,jceaax,jceda8,jcisd8,jctcce,jmcmar,jnprdf,joceah,jpcafh,jpcbfk,jpccck,jpclcd,jprobs,langd5,mamobx,mpohbp,nalefd,oprdfk,orgnd7,orlef7|}",
-    "keywords",
-    "layout=${1|traditional,twocolumn|}",
-    "manuscript=${1|article,note,communication,review,letter,perspective|}",
-    "maxauthors=${1:number}",
-    "super",
-    "usetitle"
-  ],
-  "keyvals": []
+  "args": [
+    "\\documentclass/achemso#c"
+  ]
 }

@@ -1,19 +1,35 @@
 {
-  "includes": {
-    "ifthen": [],
-    "ifxetex": [],
-    "ifpdf": [],
-    "xstring": []
-  },
-  "macros": {
-    "RequireFile{}": {
-      "snippet": "RequireFile{${1:file}}"
+  "deps": [
+    {
+      "name": "ifthen"
+    },
+    {
+      "name": "ifxetex"
+    },
+    {
+      "name": "ifpdf"
+    },
+    {
+      "name": "xstring"
     }
-  },
-  "envs": {},
-  "options": [
-    "debug",
-    "extension=${1:file ext}"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "RequireFile",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\RequirePackage/texdepends#c,\\usepackage/texdepends#c": [
+      "debug",
+      "extension=${1:file ext}\r"
+    ]
+  },
+  "args": [
+    "\\RequirePackage/texdepends#c,\\usepackage/texdepends#c"
+  ]
 }

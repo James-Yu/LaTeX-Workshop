@@ -1,35 +1,88 @@
 {
-  "includes": {},
-  "macros": {
-    "pgfdeclarelindenmayersystem{}{}": {
-      "snippet": "pgfdeclarelindenmayersystem{${1:name}}{${2:specification}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "pgfdeclarelindenmayersystem",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:specification}}"
+      }
     },
-    "symbol{}{}": {
-      "snippet": "symbol{${1:name}}{${2:code}}"
+    {
+      "name": "symbol",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:code}}"
+      }
     },
-    "pgflsystemcurrentstep": {},
-    "pgflsystemcurrentleftangle": {},
-    "pgflsystemcurrentrightangle": {},
-    "pgflsystemrandomizestep": {},
-    "pgflsystemrandomizeleftangle": {},
-    "pgflsystemrandomizerightangle": {},
-    "pgflsystemdrawforward": {},
-    "pgflsystemmoveforward": {},
-    "pgflsystemturnleft": {},
-    "pgflsystemturnright": {},
-    "pgflsystemsavestate": {},
-    "pgflsystemrestorestate": {},
-    "pgflsystemstep": {},
-    "pgflsystemrandomizesteppercent": {},
-    "pgflsystemrandomizeanglepercent": {},
-    "rule{}": {
-      "snippet": "rule{${1:head -> body}}"
+    {
+      "name": "pgflsystemcurrentstep"
     },
-    "pgflindenmayersystem{}{}{}": {
-      "snippet": "pgflindenmayersystem{${1:name}}{${2:axiom}}{${3:order}}"
+    {
+      "name": "pgflsystemcurrentleftangle"
+    },
+    {
+      "name": "pgflsystemcurrentrightangle"
+    },
+    {
+      "name": "pgflsystemrandomizestep"
+    },
+    {
+      "name": "pgflsystemrandomizeleftangle"
+    },
+    {
+      "name": "pgflsystemrandomizerightangle"
+    },
+    {
+      "name": "pgflsystemdrawforward"
+    },
+    {
+      "name": "pgflsystemmoveforward"
+    },
+    {
+      "name": "pgflsystemturnleft"
+    },
+    {
+      "name": "pgflsystemturnright"
+    },
+    {
+      "name": "pgflsystemsavestate"
+    },
+    {
+      "name": "pgflsystemrestorestate"
+    },
+    {
+      "name": "pgflsystemstep",
+      "unusual": true
+    },
+    {
+      "name": "pgflsystemrandomizesteppercent",
+      "unusual": true
+    },
+    {
+      "name": "pgflsystemrandomizeanglepercent",
+      "unusual": true
+    },
+    {
+      "name": "rule",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:head -> body}}"
+      }
+    },
+    {
+      "name": "pgflindenmayersystem",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:axiom}}{${3:order}}"
+      }
     }
+  ],
+  "envs": [],
+  "keys": {
+    "\\begin{tikzpicture}#c,\\tikz#c,\\begin{scope}#c,\\tikzset#c,\\scoped#c,\\path#c,\\draw#c,\\fill#c,\\filldraw#c,\\pattern#c,\\shade#c,\\shadedraw#c,\\clip#c": [
+      "lindenmayer system={${1:keys}}\r"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

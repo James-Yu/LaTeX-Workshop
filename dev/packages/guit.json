@@ -1,197 +1,368 @@
 {
-  "includes": {
-    "graphics": [],
-    "url": [],
-    "xcolor": [],
-    "xkeyval": []
-  },
-  "macros": {
-    "GuIT": {},
-    "GuIT[]": {
-      "snippet": "GuIT[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "graphics"
     },
-    "guit": {},
-    "guit[]": {
-      "snippet": "guit[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "url"
     },
-    "GuIT*": {},
-    "GuIT*[]": {
-      "snippet": "GuIT*[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "xcolor"
     },
-    "guit*": {},
-    "guit*[]": {
-      "snippet": "guit*[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "Ars": {},
-    "Arsob": {},
-    "ars": {},
-    "tecnica": {},
-    "arsta": {},
-    "arstb": {},
-    "arstv": {},
-    "arsto": {},
-    "Arsto": {},
-    "GuITcolor{}": {
-      "snippet": "GuITcolor{${1:c,${2:m},${3:y},k}}"
-    },
-    "GuITcolor[]{}": {
-      "snippet": "GuITcolor[${2:model}]{${1:color spec}}"
-    },
-    "guitcolor{}": {
-      "snippet": "guitcolor{${1:c,${2:m},${3:y},k}}"
-    },
-    "guitcolor[]{}": {
-      "snippet": "guitcolor[${2:model}]{${1:color spec}}"
-    },
-    "GuITcolor*{}": {
-      "snippet": "GuITcolor*{${1:c,${2:m},${3:y},k}}"
-    },
-    "GuITcolor*[]{}": {
-      "snippet": "GuITcolor*[${2:model}]{${1:color spec}}"
-    },
-    "guitcolor*{}": {
-      "snippet": "guitcolor*{${1:c,${2:m},${3:y},k}}"
-    },
-    "guitcolor*[]{}": {
-      "snippet": "guitcolor*[${2:model}]{${1:color spec}}"
-    },
-    "GuITtext": {},
-    "GuITtext[]": {
-      "snippet": "GuITtext[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "guittext": {},
-    "guittext[]": {
-      "snippet": "guittext[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "GuITtextEn": {},
-    "GuITtextEn[]": {
-      "snippet": "GuITtextEn[${1:options}]"
-    },
-    "guittexten": {},
-    "guittexten[]": {
-      "snippet": "guittexten[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "GuITurl": {},
-    "GuITurl[]": {
-      "snippet": "GuITurl[${1:options}]",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "guiturl": {},
-    "guiturl[]": {
-      "snippet": "guiturl[${1:options}]",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "GuITforum": {},
-    "GuITforum[]": {
-      "snippet": "GuITforum[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "guitforum": {},
-    "guitforum[]": {
-      "snippet": "guitforum[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "GuITmeeting": {},
-    "GuITmeeting[]": {
-      "snippet": "GuITmeeting[${1:options}]",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "guitmeeting": {},
-    "guitmeeting[]": {
-      "snippet": "guitmeeting[${1:options}]",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "GuITmeeting*": {},
-    "GuITmeeting*[]": {
-      "snippet": "GuITmeeting*[${1:options}]",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "guitmeeting*": {},
-    "guitmeeting*[]": {
-      "snippet": "guitmeeting*[${1:options}]",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "setupGuIT[]": {
-      "snippet": "setupGuIT[${1:options}]",
-      "keyvalindex": 4,
-      "keyvalpos": 0
-    },
-    "setupguit[]": {
-      "snippet": "setupguit[${1:options}]",
-      "keyvalindex": 4,
-      "keyvalpos": 0
-    },
-    "DeclareGuITLogoCommand{}{}{}{}{}": {
-      "snippet": "DeclareGuITLogoCommand{${1:family}}{${2:u-hor}}{${3:u-vert}}{${4:i-hor}}{${5:t-hor}}"
-    },
-    "DeclareGuITLogoCommand{}[]{}{}{}{}": {
-      "snippet": "DeclareGuITLogoCommand{${1:family}}[${2:series}]{${3:u-hor}}{${4:u-vert}}{${5:i-hor}}{${6:t-hor}}"
-    },
-    "AliasGuITLogoCommand{}{}{}{}": {
-      "snippet": "AliasGuITLogoCommand{${1:family1}}{${2:series1}}{${3:family2}}{${4:series2}}"
+    {
+      "name": "xkeyval"
     }
-  },
-  "envs": {},
-  "options": [
-    "color",
-    "nocolor",
-    "link"
   ],
-  "keyvals": [
-    [
-      "color=${1|yes,no,true,false|}",
-      "link=${1|yes,no,true,false|}",
-      "family=${1:family}",
-      "series=${1:series}",
-      "url=${1:URL}"
+  "macros": [
+    {
+      "name": "GuIT"
+    },
+    {
+      "name": "GuIT",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "guit",
+      "unusual": true
+    },
+    {
+      "name": "guit",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "GuIT*"
+    },
+    {
+      "name": "GuIT*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "guit*",
+      "unusual": true
+    },
+    {
+      "name": "guit*",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "Ars"
+    },
+    {
+      "name": "Arsob"
+    },
+    {
+      "name": "ars"
+    },
+    {
+      "name": "tecnica"
+    },
+    {
+      "name": "arsta"
+    },
+    {
+      "name": "arstb"
+    },
+    {
+      "name": "arstv"
+    },
+    {
+      "name": "arsto"
+    },
+    {
+      "name": "Arsto"
+    },
+    {
+      "name": "GuITcolor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:c,m,y,k}}"
+      }
+    },
+    {
+      "name": "GuITcolor",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:model}]{${1:color spec}}"
+      }
+    },
+    {
+      "name": "guitcolor",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:c,m,y,k}}"
+      }
+    },
+    {
+      "name": "guitcolor",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:model}]{${1:color spec}}"
+      }
+    },
+    {
+      "name": "GuITcolor*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:c,m,y,k}}"
+      }
+    },
+    {
+      "name": "GuITcolor*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:model}]{${1:color spec}}"
+      }
+    },
+    {
+      "name": "guitcolor*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:c,m,y,k}}"
+      }
+    },
+    {
+      "name": "guitcolor*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:model}]{${1:color spec}}"
+      }
+    },
+    {
+      "name": "GuITtext"
+    },
+    {
+      "name": "GuITtext",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "guittext",
+      "unusual": true
+    },
+    {
+      "name": "guittext",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "GuITtextEn"
+    },
+    {
+      "name": "GuITtextEn",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "guittexten",
+      "unusual": true
+    },
+    {
+      "name": "guittexten",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "GuITurl"
+    },
+    {
+      "name": "GuITurl",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "guiturl",
+      "unusual": true
+    },
+    {
+      "name": "guiturl",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "GuITforum"
+    },
+    {
+      "name": "GuITforum",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "guitforum",
+      "unusual": true
+    },
+    {
+      "name": "guitforum",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "GuITmeeting"
+    },
+    {
+      "name": "GuITmeeting",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "guitmeeting",
+      "unusual": true
+    },
+    {
+      "name": "guitmeeting",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "GuITmeeting*"
+    },
+    {
+      "name": "GuITmeeting*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "guitmeeting*",
+      "unusual": true
+    },
+    {
+      "name": "guitmeeting*",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "setupGuIT",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "setupguit",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "DeclareGuITLogoCommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:family}}{${2:u-hor}}{${3:u-vert}}{${4:i-hor}}{${5:t-hor}}"
+      }
+    },
+    {
+      "name": "DeclareGuITLogoCommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}{}{}{}",
+        "snippet": "{${1:family}}[${6:series}]{${2:u-hor}}{${3:u-vert}}{${4:i-hor}}{${5:t-hor}}"
+      }
+    },
+    {
+      "name": "AliasGuITLogoCommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:family1}}{${2:series1}}{${3:family2}}{${4:series2}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/guit#c": [
+      "color\r",
+      "nocolor\r",
+      "link\r"
     ],
-    [
-      "link=${1|yes,no,true,false|}",
-      "url=${1:URL}"
+    "\\GuIT,\\GuIT*,\\guit,\\guit*": [
+      "color=${1|yes,no,true,false\r|}",
+      "link=${1|yes,no,true,false\r|}",
+      "family=${1:family}\r",
+      "series=${1:series}\r",
+      "url=${1:URL}\r"
     ],
-    [
-      "link=${1|yes,no,true,false|}",
-      "url=${1:URL}",
-      "document=${1:path}"
+    "\\GuITtext,\\guittext,\\GuITtextEN,\\guittexten": [
+      "link=${1|yes,no,true,false\r|}",
+      "url=${1:URL}\r"
     ],
-    [
-      "color=${1|yes,no,true,false|}",
-      "link=${1|yes,no,true,false|}",
-      "url=${1:URL}",
-      "year=${1:year}",
-      "style=${1|display,inline|}"
+    "\\GuITurl,\\guiturl": [
+      "link=${1|yes,no,true,false\r|}",
+      "url=${1:URL}\r",
+      "document=${1:path}\r"
     ],
-    [
-      "color=${1|yes,no,true,false|}",
-      "link=${1|yes,no,true,false|}",
-      "family=${1:family}",
-      "series=${1:series}",
-      "url=${1:URL}",
-      "document=${1:path}",
-      "year=${1:year}",
-      "style=${1|display,inline|}"
+    "\\GuITforum,\\guitforum": [
+      "link=${1|yes,no,true,false\r|}",
+      "url=${1:URL}\r"
+    ],
+    "\\GuITmeeting,\\GuITmeeting*,\\guitmeeting,\\guitmeeting*": [
+      "color=${1|yes,no,true,false\r|}",
+      "link=${1|yes,no,true,false\r|}",
+      "url=${1:URL}\r",
+      "year=${1:year}\r",
+      "style=${1|display,inline\r|}"
+    ],
+    "\\setupGuIT,\\setupguit": [
+      "color=${1|yes,no,true,false\r|}",
+      "link=${1|yes,no,true,false\r|}",
+      "family=${1:family}\r",
+      "series=${1:series}\r",
+      "url=${1:URL}\r",
+      "document=${1:path}\r",
+      "year=${1:year}\r",
+      "style=${1|display,inline\r|}"
     ]
+  },
+  "args": [
+    "\\usepackage/guit#c"
   ]
 }

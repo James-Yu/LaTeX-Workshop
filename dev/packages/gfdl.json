@@ -1,28 +1,60 @@
 {
-  "includes": {
-    "float": [],
-    "expkv-def": [],
-    "expkv-opt": [],
-    "csquotes": [],
-    "hyperref": [],
-    "hyperxmp": []
-  },
-  "macros": {
-    "gfdlcopyrightdescription{}": {
-      "snippet": "gfdlcopyrightdescription{${1:project-description}}"
+  "deps": [
+    {
+      "name": "float"
     },
-    "gfdlcopyrightableyears{}": {
-      "snippet": "gfdlcopyrightableyears{${1:copyrightable-years}}"
+    {
+      "name": "expkv-def"
     },
-    "gfdlcopyrightholders{}": {
-      "snippet": "gfdlcopyrightholders{${1:copyright-holders}}"
+    {
+      "name": "expkv-opt"
     },
-    "printgfdlnotice": {},
-    "printgfdltext": {}
-  },
-  "envs": {},
-  "options": [
-    "manual"
+    {
+      "name": "csquotes"
+    },
+    {
+      "name": "hyperref"
+    },
+    {
+      "name": "hyperxmp"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "gfdlcopyrightdescription",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:project-description%text}}"
+      }
+    },
+    {
+      "name": "gfdlcopyrightableyears",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:copyrightable-years}}"
+      }
+    },
+    {
+      "name": "gfdlcopyrightholders",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:copyright-holders}}"
+      }
+    },
+    {
+      "name": "printgfdlnotice"
+    },
+    {
+      "name": "printgfdltext"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/gfdl#c": [
+      "manual\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/gfdl#c"
+  ]
 }

@@ -1,15 +1,26 @@
 {
-  "includes": {
-    "luatex": [],
-    "pgfpages": [],
-    "ifluatex": []
-  },
-  "macros": {
-    "pgfpagespoint{}{}": {
-      "snippet": "pgfpagespoint{${1:width}}{${2:height}}"
+  "deps": [
+    {
+      "name": "luatex"
+    },
+    {
+      "name": "pgfpages"
+    },
+    {
+      "name": "ifluatex"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "pgfpagespoint",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:width}}{${2:height}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

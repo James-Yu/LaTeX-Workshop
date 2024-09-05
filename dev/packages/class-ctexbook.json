@@ -1,54 +1,72 @@
 {
-  "includes": {
-    "ctex": [],
-    "class-book": []
-  },
-  "macros": {
-    "partmark{}": {
-      "snippet": "partmark{${1:code}}"
+  "deps": [
+    {
+      "name": "ctex"
     },
-    "CTEXnumberline{}": {
-      "snippet": "CTEXnumberline{${1:number}}"
+    {
+      "name": "class-book"
     }
-  },
-  "envs": {},
-  "options": [
-    "GBK",
-    "UTF8",
-    "zhmap=${1|true,false,zhmCJK|}",
-    "zihao=${1|-4,5,false|}",
-    "heading",
-    "sub3section",
-    "sub4section",
-    "scheme=${1|chinese,plain|}",
-    "linespread=${1:number}",
-    "fontset=${1|adobe,fandol,founder,mac,macnew,macold,ubuntu,windows,none|}",
-    "punct=${1|quanjiao,banjiao,kaiming,CCT,plain|}",
-    "space=${1|true,false,auto|}",
-    "autoindent=",
-    "a4paper",
-    "a5paper",
-    "b5paper",
-    "letterpaper",
-    "legalpaper",
-    "executivepaper",
-    "landscape",
-    "10pt",
-    "11pt",
-    "12pt",
-    "oneside",
-    "twoside",
-    "draft",
-    "final",
-    "titlepage",
-    "notitlepage",
-    "openright",
-    "openany",
-    "onecolumn",
-    "twocolumn",
-    "leqno",
-    "fleqn",
-    "openbib"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "partmark",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "CTEXnumberline",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\documentclass/ctexbook#c": [
+      "GBK\r",
+      "UTF8\r",
+      "zhmap=${1|true,false,zhmCJK\r|}",
+      "zihao=${1|-4,5,false\r|}",
+      "heading",
+      "sub3section\r",
+      "sub4section\r",
+      "scheme=${1|chinese,plain\r|}",
+      "linespread=${1:number}\r",
+      "fontset=${1|adobe,fandol,founder,mac,macnew,macold,ubuntu,windows,none\r|}",
+      "punct=${1|quanjiao,banjiao,kaiming,CCT,plain\r|}",
+      "space=${1|true,false,auto\r|}",
+      "autoindent=\r",
+      "a4paper\r",
+      "a5paper\r",
+      "b5paper\r",
+      "letterpaper\r",
+      "legalpaper\r",
+      "executivepaper\r",
+      "landscape\r",
+      "10pt\r",
+      "11pt\r",
+      "12pt\r",
+      "oneside\r",
+      "twoside\r",
+      "draft\r",
+      "final\r",
+      "titlepage\r",
+      "notitlepage\r",
+      "openright\r",
+      "openany\r",
+      "onecolumn\r",
+      "twocolumn\r",
+      "leqno\r",
+      "fleqn\r",
+      "openbib\r"
+    ]
+  },
+  "args": [
+    "\\documentclass/ctexbook#c"
+  ]
 }

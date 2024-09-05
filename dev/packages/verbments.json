@@ -1,54 +1,79 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "fancyvrb": [],
-    "framed": [],
-    "xcolor": [],
-    "calc": []
-  },
-  "macros": {
-    "plset{}": {
-      "snippet": "plset{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "xkeyval"
     },
-    "listofpyglistings": {},
-    "listofpyglistingsname{}": {
-      "snippet": "listofpyglistingsname{${1:name}}"
+    {
+      "name": "fancyvrb"
+    },
+    {
+      "name": "framed"
+    },
+    {
+      "name": "xcolor"
+    },
+    {
+      "name": "calc"
     }
-  },
-  "envs": {
-    "pyglist": {},
-    "pyglist[]": {
+  ],
+  "macros": [
+    {
+      "name": "plset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\begin{pyglist},\\plset"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "listofpyglistings"
+    },
+    {
+      "name": "listofpyglistingsname",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name%text}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "pyglist"
+    },
+    {
       "name": "pyglist",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "keys": {
+    "\\begin{pyglist},\\plset": [
       "abovecaptionskip=",
       "belowcaptionskip=",
       "bgcolor=",
-      "caption={${1:text}}",
+      "caption={${1:text}}\r",
       "captionbgcolor=",
-      "captionfont=${1:font commands}",
-      "encoding=${1:encoding}",
-      "fontsize=",
-      "fvset={${1:fancyvrb options}}",
-      "gobble=${1:integer}",
-      "language=${1:language}",
+      "captionfont=${1:font commands}\r",
+      "encoding=${1:encoding}\r",
+      "fontsize=\r",
+      "fvset={${1:fancyvrb options}}\r",
+      "gobble=${1:integer}\r",
+      "language=${1:language}\r",
       "label=",
-      "listingname=${1:name}",
-      "listingnamefont=${1:font commands}",
+      "listingname=${1:name}\r",
+      "listingnamefont=${1:font commands}\r",
       "mathescape",
-      "numbers=${1|none,left,right|}",
+      "numbers=${1|none,left,right\r|}",
       "numbersep=",
       "showspaces",
-      "style=${1:Pygments style}",
+      "style=${1:Pygments style}\r",
       "texcl"
     ]
-  ]
+  },
+  "args": []
 }

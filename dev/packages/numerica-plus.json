@@ -1,226 +1,616 @@
 {
-  "includes": {
-    "numerica": []
-  },
-  "macros": {
-    "iter{}": {
-      "snippet": "iter{${1:expression}}"
-    },
-    "iter[]{}": {
-      "snippet": "iter[${2:settings}]{${1:expression}}"
-    },
-    "iter{}[]": {
-      "snippet": "iter{${1:expression}}[${2:vv-list}]"
-    },
-    "iter[]{}[]": {
-      "snippet": "iter[${2:settings}]{${1:expression}}[${3:vv-list}]"
-    },
-    "iter{}[][]": {
-      "snippet": "iter{${1:expression}}[${2:vv-list}][${3:num format}]"
-    },
-    "iter[]{}[][]": {
-      "snippet": "iter[${2:settings}]{${1:expression}}[${3:vv-list}][${4:num format}]"
-    },
-    "iter*{}": {
-      "snippet": "iter*{${1:expression}}"
-    },
-    "iter*[]{}": {
-      "snippet": "iter*[${2:settings}]{${1:expression}}"
-    },
-    "iter*{}[]": {
-      "snippet": "iter*{${1:expression}}[${2:vv-list}]"
-    },
-    "iter*[]{}[]": {
-      "snippet": "iter*[${2:settings}]{${1:expression}}[${3:vv-list}]"
-    },
-    "iter*{}[][]": {
-      "snippet": "iter*{${1:expression}}[${2:vv-list}][${3:num format}]"
-    },
-    "iter*[]{}[][]": {
-      "snippet": "iter*[${2:settings}]{${1:expression}}[${3:vv-list}][${4:num format}]"
-    },
-    "nmcIterate{}": {
-      "snippet": "nmcIterate{${1:expression}}"
-    },
-    "nmcIterate[]{}": {
-      "snippet": "nmcIterate[${2:settings}]{${1:expression}}"
-    },
-    "nmcIterate{}[]v": {
-      "snippet": "nmcIterate{${1:expression}}[${2:vv-list}]v"
-    },
-    "nmcIterate[]{}[]": {
-      "snippet": "nmcIterate[${2:settings}]{${1:expression}}[${3:vv-list}]"
-    },
-    "nmcIterate{}[][]": {
-      "snippet": "nmcIterate{${1:expression}}[${2:vv-list}][${3:num format}]"
-    },
-    "nmcIterate[]{}[][]": {
-      "snippet": "nmcIterate[${2:settings}]{${1:expression}}[${3:vv-list}][${4:num format}]"
-    },
-    "nmcIterate*{}": {
-      "snippet": "nmcIterate*{${1:expression}}"
-    },
-    "nmcIterate*[]{}": {
-      "snippet": "nmcIterate*[${2:settings}]{${1:expression}}"
-    },
-    "nmcIterate*{}[]": {
-      "snippet": "nmcIterate*{${1:expression}}[${2:vv-list}]"
-    },
-    "nmcIterate*[]{}[]": {
-      "snippet": "nmcIterate*[${2:settings}]{${1:expression}}[${3:vv-list}]"
-    },
-    "nmcIterate*{}[][]": {
-      "snippet": "nmcIterate*{${1:expression}}[${2:vv-list}][${3:num format}]"
-    },
-    "nmcIterate*[]{}[][]": {
-      "snippet": "nmcIterate*[${2:settings}]{${1:expression}}[${3:vv-list}][${4:num format}]"
-    },
-    "solve{}": {
-      "snippet": "solve{${1:expression}}"
-    },
-    "solve[]{}": {
-      "snippet": "solve[${2:settings}]{${1:expression}}"
-    },
-    "solve{}[]": {
-      "snippet": "solve{${1:expression}}[${2:vv-list}]"
-    },
-    "solve[]{}[]": {
-      "snippet": "solve[${2:settings}]{${1:expression}}[${3:vv-list}]"
-    },
-    "solve{}[][]": {
-      "snippet": "solve{${1:expression}}[${2:vv-list}][${3:num format}]"
-    },
-    "solve[]{}[][]": {
-      "snippet": "solve[${2:settings}]{${1:expression}}[${3:vv-list}][${4:num format}]"
-    },
-    "solve*{}": {
-      "snippet": "solve*{${1:expression}}"
-    },
-    "solve*[]{}": {
-      "snippet": "solve*[${2:settings}]{${1:expression}}"
-    },
-    "solve*{}[]": {
-      "snippet": "solve*{${1:expression}}[${2:vv-list}]"
-    },
-    "solve*[]{}[]": {
-      "snippet": "solve*[${2:settings}]{${1:expression}}[${3:vv-list}]"
-    },
-    "solve*{}[][]": {
-      "snippet": "solve*{${1:expression}}[${2:vv-list}][${3:num format}]"
-    },
-    "solve*[]{}[][]": {
-      "snippet": "solve*[${2:settings}]{${1:expression}}[${3:vv-list}][${4:num format}]"
-    },
-    "nmcSolve{}": {
-      "snippet": "nmcSolve{${1:expression}}"
-    },
-    "nmcSolve[]{}": {
-      "snippet": "nmcSolve[${2:settings}]{${1:expression}}"
-    },
-    "nmcSolve{}[]": {
-      "snippet": "nmcSolve{${1:expression}}[${2:vv-list}]"
-    },
-    "nmcSolve[]{}[]": {
-      "snippet": "nmcSolve[${2:settings}]{${1:expression}}[${3:vv-list}]"
-    },
-    "nmcSolve{}[][]": {
-      "snippet": "nmcSolve{${1:expression}}[${2:vv-list}][${3:num format}]"
-    },
-    "nmcSolve[]{}[][]": {
-      "snippet": "nmcSolve[${2:settings}]{${1:expression}}[${3:vv-list}][${4:num format}]"
-    },
-    "nmcSolve*{}": {
-      "snippet": "nmcSolve*{${1:expression}}"
-    },
-    "nmcSolve*[]{}": {
-      "snippet": "nmcSolve*[${2:settings}]{${1:expression}}"
-    },
-    "nmcSolve*{}[]": {
-      "snippet": "nmcSolve*{${1:expression}}[${2:vv-list}]"
-    },
-    "nmcSolve*[]{}[]": {
-      "snippet": "nmcSolve*[${2:settings}]{${1:expression}}[${3:vv-list}]"
-    },
-    "nmcSolve*{}[][]": {
-      "snippet": "nmcSolve*{${1:expression}}[${2:vv-list}][${3:num format}]"
-    },
-    "nmcSolve*[]{}[][]": {
-      "snippet": "nmcSolve*[${2:settings}]{${1:expression}}[${3:vv-list}][${4:num format}]"
-    },
-    "recur{}": {
-      "snippet": "recur{${1:expression}}"
-    },
-    "recur[]{}": {
-      "snippet": "recur[${2:settings}]{${1:expression}}"
-    },
-    "recur{}[]": {
-      "snippet": "recur{${1:expression}}[${2:vv-list}]"
-    },
-    "recur[]{}[]": {
-      "snippet": "recur[${2:settings}]{${1:expression}}[${3:vv-list}]"
-    },
-    "recur{}[][]": {
-      "snippet": "recur{${1:expression}}[${2:vv-list}][${3:num format}]"
-    },
-    "recur[]{}[][]": {
-      "snippet": "recur[${2:settings}]{${1:expression}}[${3:vv-list}][${4:num format}]"
-    },
-    "recur*{}": {
-      "snippet": "recur*{${1:expression}}"
-    },
-    "recur*[]{}": {
-      "snippet": "recur*[${2:settings}]{${1:expression}}"
-    },
-    "recur*{}[]": {
-      "snippet": "recur*{${1:expression}}[${2:vv-list}]"
-    },
-    "recur*[]{}[]": {
-      "snippet": "recur*[${2:settings}]{${1:expression}}[${3:vv-list}]"
-    },
-    "recur*{}[][]": {
-      "snippet": "recur*{${1:expression}}[${2:vv-list}][${3:num format}]"
-    },
-    "recur*[]{}[][]": {
-      "snippet": "recur*[${2:settings}]{${1:expression}}[${3:vv-list}][${4:num format}]"
-    },
-    "nmcRecur{}": {
-      "snippet": "nmcRecur{${1:expression}}"
-    },
-    "nmcRecur[]{}": {
-      "snippet": "nmcRecur[${2:settings}]{${1:expression}}"
-    },
-    "nmcRecur{}[]": {
-      "snippet": "nmcRecur{${1:expression}}[${2:vv-list}]"
-    },
-    "nmcRecur[]{}[]": {
-      "snippet": "nmcRecur[${2:settings}]{${1:expression}}[${3:vv-list}]"
-    },
-    "nmcRecur{}[][]": {
-      "snippet": "nmcRecur{${1:expression}}[${2:vv-list}][${3:num format}]"
-    },
-    "nmcRecur[]{}[][]": {
-      "snippet": "nmcRecur[${2:settings}]{${1:expression}}[${3:vv-list}][${4:num format}]"
-    },
-    "nmcRecur*{}": {
-      "snippet": "nmcRecur*{${1:expression}}"
-    },
-    "nmcRecur*[]{}": {
-      "snippet": "nmcRecur*[${2:settings}]{${1:expression}}"
-    },
-    "nmcRecur*{}[]": {
-      "snippet": "nmcRecur*{${1:expression}}[${2:vv-list}]"
-    },
-    "nmcRecur*[]{}[]": {
-      "snippet": "nmcRecur*[${2:settings}]{${1:expression}}[${3:vv-list}]"
-    },
-    "nmcRecur*{}[][]": {
-      "snippet": "nmcRecur*{${1:expression}}[${2:vv-list}][${3:num format}]"
-    },
-    "nmcRecur*[]{}[][]": {
-      "snippet": "nmcRecur*[${2:settings}]{${1:expression}}[${3:vv-list}][${4:num format}]"
+  "deps": [
+    {
+      "name": "numerica"
     }
+  ],
+  "macros": [
+    {
+      "name": "iter",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "iter",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:settings%keyvals}]{${1:expression}}"
+      }
+    },
+    {
+      "name": "iter",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:expression}}[${2:vv-list%formula}]"
+      }
+    },
+    {
+      "name": "iter",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:settings%keyvals}]{${1:expression}}[${3:vv-list%formula}]"
+      }
+    },
+    {
+      "name": "iter",
+      "unusual": true,
+      "arg": {
+        "format": "{}[][]",
+        "snippet": "{${1:expression}}[${2:vv-list%formula}][${3:num format}]"
+      }
+    },
+    {
+      "name": "iter",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[][]",
+        "snippet": "[${2:settings%keyvals}]{${1:expression}}[${3:vv-list%formula}][${4:num format}]"
+      }
+    },
+    {
+      "name": "iter*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "iter*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:settings%keyvals}]{${1:expression}}"
+      }
+    },
+    {
+      "name": "iter*",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:expression}}[${2:vv-list%formula}]"
+      }
+    },
+    {
+      "name": "iter*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:settings%keyvals}]{${1:expression}}[${3:vv-list%formula}]"
+      }
+    },
+    {
+      "name": "iter*",
+      "unusual": true,
+      "arg": {
+        "format": "{}[][]",
+        "snippet": "{${1:expression}}[${2:vv-list%formula}][${3:num format}]"
+      }
+    },
+    {
+      "name": "iter*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[][]",
+        "snippet": "[${2:settings%keyvals}]{${1:expression}}[${3:vv-list%formula}][${4:num format}]"
+      }
+    },
+    {
+      "name": "nmcIterate",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "nmcIterate",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:settings%keyvals}]{${1:expression}}"
+      }
+    },
+    {
+      "name": "nmcIterate",
+      "arg": {
+        "format": "{}[]v",
+        "snippet": "{${1:expression}}[${2:vv-list%formula}]v"
+      }
+    },
+    {
+      "name": "nmcIterate",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:settings%keyvals}]{${1:expression}}[${3:vv-list%formula}]"
+      }
+    },
+    {
+      "name": "nmcIterate",
+      "unusual": true,
+      "arg": {
+        "format": "{}[][]",
+        "snippet": "{${1:expression}}[${2:vv-list%formula}][${3:num format}]"
+      }
+    },
+    {
+      "name": "nmcIterate",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[][]",
+        "snippet": "[${2:settings%keyvals}]{${1:expression}}[${3:vv-list%formula}][${4:num format}]"
+      }
+    },
+    {
+      "name": "nmcIterate*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "nmcIterate*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:settings%keyvals}]{${1:expression}}"
+      }
+    },
+    {
+      "name": "nmcIterate*",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:expression}}[${2:vv-list%formula}]"
+      }
+    },
+    {
+      "name": "nmcIterate*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:settings%keyvals}]{${1:expression}}[${3:vv-list%formula}]"
+      }
+    },
+    {
+      "name": "nmcIterate*",
+      "unusual": true,
+      "arg": {
+        "format": "{}[][]",
+        "snippet": "{${1:expression}}[${2:vv-list%formula}][${3:num format}]"
+      }
+    },
+    {
+      "name": "nmcIterate*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[][]",
+        "snippet": "[${2:settings%keyvals}]{${1:expression}}[${3:vv-list%formula}][${4:num format}]"
+      }
+    },
+    {
+      "name": "solve",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "solve",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:settings%keyvals}]{${1:expression}}"
+      }
+    },
+    {
+      "name": "solve",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:expression}}[${2:vv-list%formula}]"
+      }
+    },
+    {
+      "name": "solve",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:settings%keyvals}]{${1:expression}}[${3:vv-list%formula}]"
+      }
+    },
+    {
+      "name": "solve",
+      "unusual": true,
+      "arg": {
+        "format": "{}[][]",
+        "snippet": "{${1:expression}}[${2:vv-list%formula}][${3:num format}]"
+      }
+    },
+    {
+      "name": "solve",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[][]",
+        "snippet": "[${2:settings%keyvals}]{${1:expression}}[${3:vv-list%formula}][${4:num format}]"
+      }
+    },
+    {
+      "name": "solve*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "solve*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:settings%keyvals}]{${1:expression}}"
+      }
+    },
+    {
+      "name": "solve*",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:expression}}[${2:vv-list%formula}]"
+      }
+    },
+    {
+      "name": "solve*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:settings%keyvals}]{${1:expression}}[${3:vv-list%formula}]"
+      }
+    },
+    {
+      "name": "solve*",
+      "unusual": true,
+      "arg": {
+        "format": "{}[][]",
+        "snippet": "{${1:expression}}[${2:vv-list%formula}][${3:num format}]"
+      }
+    },
+    {
+      "name": "solve*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[][]",
+        "snippet": "[${2:settings%keyvals}]{${1:expression}}[${3:vv-list%formula}][${4:num format}]"
+      }
+    },
+    {
+      "name": "nmcSolve",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "nmcSolve",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:settings%keyvals}]{${1:expression}}"
+      }
+    },
+    {
+      "name": "nmcSolve",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:expression}}[${2:vv-list%formula}]"
+      }
+    },
+    {
+      "name": "nmcSolve",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:settings%keyvals}]{${1:expression}}[${3:vv-list%formula}]"
+      }
+    },
+    {
+      "name": "nmcSolve",
+      "unusual": true,
+      "arg": {
+        "format": "{}[][]",
+        "snippet": "{${1:expression}}[${2:vv-list%formula}][${3:num format}]"
+      }
+    },
+    {
+      "name": "nmcSolve",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[][]",
+        "snippet": "[${2:settings%keyvals}]{${1:expression}}[${3:vv-list%formula}][${4:num format}]"
+      }
+    },
+    {
+      "name": "nmcSolve*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "nmcSolve*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:settings%keyvals}]{${1:expression}}"
+      }
+    },
+    {
+      "name": "nmcSolve*",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:expression}}[${2:vv-list%formula}]"
+      }
+    },
+    {
+      "name": "nmcSolve*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:settings%keyvals}]{${1:expression}}[${3:vv-list%formula}]"
+      }
+    },
+    {
+      "name": "nmcSolve*",
+      "unusual": true,
+      "arg": {
+        "format": "{}[][]",
+        "snippet": "{${1:expression}}[${2:vv-list%formula}][${3:num format}]"
+      }
+    },
+    {
+      "name": "nmcSolve*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[][]",
+        "snippet": "[${2:settings%keyvals}]{${1:expression}}[${3:vv-list%formula}][${4:num format}]"
+      }
+    },
+    {
+      "name": "recur",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "recur",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:settings%keyvals}]{${1:expression}}"
+      }
+    },
+    {
+      "name": "recur",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:expression}}[${2:vv-list%formula}]"
+      }
+    },
+    {
+      "name": "recur",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:settings%keyvals}]{${1:expression}}[${3:vv-list%formula}]"
+      }
+    },
+    {
+      "name": "recur",
+      "unusual": true,
+      "arg": {
+        "format": "{}[][]",
+        "snippet": "{${1:expression}}[${2:vv-list%formula}][${3:num format}]"
+      }
+    },
+    {
+      "name": "recur",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[][]",
+        "snippet": "[${2:settings%keyvals}]{${1:expression}}[${3:vv-list%formula}][${4:num format}]"
+      }
+    },
+    {
+      "name": "recur*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "recur*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:settings%keyvals}]{${1:expression}}"
+      }
+    },
+    {
+      "name": "recur*",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:expression}}[${2:vv-list%formula}]"
+      }
+    },
+    {
+      "name": "recur*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:settings%keyvals}]{${1:expression}}[${3:vv-list%formula}]"
+      }
+    },
+    {
+      "name": "recur*",
+      "unusual": true,
+      "arg": {
+        "format": "{}[][]",
+        "snippet": "{${1:expression}}[${2:vv-list%formula}][${3:num format}]"
+      }
+    },
+    {
+      "name": "recur*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[][]",
+        "snippet": "[${2:settings%keyvals}]{${1:expression}}[${3:vv-list%formula}][${4:num format}]"
+      }
+    },
+    {
+      "name": "nmcRecur",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "nmcRecur",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:settings%keyvals}]{${1:expression}}"
+      }
+    },
+    {
+      "name": "nmcRecur",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:expression}}[${2:vv-list%formula}]"
+      }
+    },
+    {
+      "name": "nmcRecur",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:settings%keyvals}]{${1:expression}}[${3:vv-list%formula}]"
+      }
+    },
+    {
+      "name": "nmcRecur",
+      "unusual": true,
+      "arg": {
+        "format": "{}[][]",
+        "snippet": "{${1:expression}}[${2:vv-list%formula}][${3:num format}]"
+      }
+    },
+    {
+      "name": "nmcRecur",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[][]",
+        "snippet": "[${2:settings%keyvals}]{${1:expression}}[${3:vv-list%formula}][${4:num format}]"
+      }
+    },
+    {
+      "name": "nmcRecur*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression}}"
+      }
+    },
+    {
+      "name": "nmcRecur*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:settings%keyvals}]{${1:expression}}"
+      }
+    },
+    {
+      "name": "nmcRecur*",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:expression}}[${2:vv-list%formula}]"
+      }
+    },
+    {
+      "name": "nmcRecur*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:settings%keyvals}]{${1:expression}}[${3:vv-list%formula}]"
+      }
+    },
+    {
+      "name": "nmcRecur*",
+      "unusual": true,
+      "arg": {
+        "format": "{}[][]",
+        "snippet": "{${1:expression}}[${2:vv-list%formula}][${3:num format}]"
+      }
+    },
+    {
+      "name": "nmcRecur*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[][]",
+        "snippet": "[${2:settings%keyvals}]{${1:expression}}[${3:vv-list%formula}][${4:num format}]"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\iter,\\iter*,\\nmcIterate,\\nmcIterate*,\\solve,\\solve*,\\nmcSolve,\\nmcSolve*,\\recur,\\recur*,\\nmcRecur,\\nmcRecur*": [
+      "dbg=${1|0,1,2,3,5,7,11\r|}",
+      "view\r",
+      "^=${1:char}\r",
+      "xx=${1|0,1\r|}",
+      "ff=${1:char}\r",
+      "1s2=${1|0,1\r|}",
+      "/min=${1:integer}\r",
+      "/max=${1:integer}\r",
+      "vv@=${1|0,1\r|}",
+      "vvmode=${1|0,1\r|}",
+      "o=${1|0,1\r|}",
+      "log=${1:number}\r",
+      "S+=${1:integer}\r",
+      "S?=${1:integer}\r",
+      "P+=${1:integer}\r",
+      "P?=${1:integer}\r",
+      "f=${1|0,1\r|}",
+      "p=${1:punctuation}\r",
+      "pp=${1:punctuation}\r",
+      "env=${1:envname}\r",
+      "arg=${1:arg}\r",
+      "eq=${1:symbol}\r",
+      "vv=${1:spec}\r",
+      "sep=${1:separator}\r",
+      "\\}=${1:<space><r-delim>}\r"
+    ],
+    "\\iter,\\iter*,\\nmcIterate,\\nmcIterate*": [
+      "var=${1:variable name}\r",
+      "+=${1:integer}\r",
+      "max=${1:integer}\r",
+      "do=${1:integer}\r",
+      "see=${1:integer}\r"
+    ],
+    "\\solve,\\solve*,\\nmcSolve,\\nmcSolve*": [
+      "var=${1:variable name}\r",
+      "dvar=${1:real number}\r",
+      "+=${1:integer}\r",
+      "max=${1:integer}\r"
+    ],
+    "\\recur,\\recur*,\\nmcRecur,\\nmcRecur*": [
+      "do=${1:integer}\r",
+      "see1=${1:integer}\r",
+      "see2=${1:integer}\r",
+      "...\r"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

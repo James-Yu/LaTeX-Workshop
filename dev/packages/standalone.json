@@ -1,60 +1,128 @@
 {
-  "includes": {
-    "adjustbox": [],
-    "currfile": [],
-    "filemod-expmin": [],
-    "gincltex": [],
-    "ifluatex": [],
-    "ifpdf": [],
-    "ifxetex": [],
-    "shellesc": [],
-    "trimclip": [],
-    "varwidth": [],
-    "xkeyval": []
-  },
-  "macros": {
-    "includestandalone{}": {
-      "snippet": "includestandalone{${1:file}}"
+  "deps": [
+    {
+      "name": "adjustbox"
     },
-    "includestandalone[]{}": {
-      "snippet": "includestandalone[${2:options}]{${1:file}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "currfile"
     },
-    "standaloneconfig{}": {
-      "snippet": "standaloneconfig{${1:options}}"
+    {
+      "name": "filemod-expmin"
     },
-    "standaloneignore": {},
-    "ifstandalone": {},
-    "standalonetrue": {},
-    "standalonefalse": {},
-    "ifstandalonebeamer": {},
-    "standalonebeamertrue": {},
-    "standalonebeamerfalse": {},
-    "IfStandalone{}{}": {
-      "snippet": "IfStandalone{${1:code for standalone}}{${2:code for main document}}"
+    {
+      "name": "gincltex"
     },
-    "onlyifstandalone{}": {
-      "snippet": "onlyifstandalone{${1:code}}"
+    {
+      "name": "ifluatex"
+    },
+    {
+      "name": "ifpdf"
+    },
+    {
+      "name": "ifxetex"
+    },
+    {
+      "name": "shellesc"
+    },
+    {
+      "name": "trimclip"
+    },
+    {
+      "name": "varwidth"
+    },
+    {
+      "name": "xkeyval"
     }
-  },
-  "envs": {
-    "standalone": {}
-  },
-  "options": [
-    "subpreambles",
-    "sort",
-    "print",
-    "comments",
-    "nocomments",
-    "obeyclassoptions",
-    "group",
-    "mode=${1|tex,image,image|tex,build,buildmissing,buildnew|}",
-    "extension=${1:extension}",
-    "build={${1:build options}}"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "includestandalone",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "includestandalone",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:file}}"
+      }
+    },
+    {
+      "name": "standaloneconfig",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}"
+      }
+    },
+    {
+      "name": "standaloneignore",
+      "unusual": true
+    },
+    {
+      "name": "ifstandalone",
+      "unusual": true
+    },
+    {
+      "name": "standalonetrue",
+      "unusual": true
+    },
+    {
+      "name": "standalonefalse",
+      "unusual": true
+    },
+    {
+      "name": "ifstandalonebeamer",
+      "unusual": true
+    },
+    {
+      "name": "standalonebeamertrue",
+      "unusual": true
+    },
+    {
+      "name": "standalonebeamerfalse",
+      "unusual": true
+    },
+    {
+      "name": "IfStandalone",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:code for standalone}}{${2:code for main document}}"
+      }
+    },
+    {
+      "name": "onlyifstandalone",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "standalone",
+      "unusual": true
+    }
+  ],
+  "keys": {
+    "\\usepackage/standalone": [
+      "subpreambles",
+      "sort",
+      "print",
+      "comments",
+      "nocomments",
+      "obeyclassoptions"
+    ],
+    "\\usepackage/standalone,\\standaloneconfig,\\includestandalone": [
+      "group",
+      "mode=${1|tex,image,image|tex,build,buildmissing,buildnew|}",
+      "extension=${1:extension}",
+      "build={${1:build options}}"
+    ],
+    "\\includestandalone": [
       "alt={${1:alt text}}",
       "bb=${1:llx lly urx ury}",
       "bbllx=",
@@ -85,5 +153,9 @@
       "interpolate",
       "decodearray={${1:color array}}"
     ]
+  },
+  "args": [
+    "\\usepackage/standalone",
+    "\\usepackage/standalone,\\standaloneconfig,\\includestandalone"
   ]
 }

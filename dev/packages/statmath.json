@@ -1,136 +1,364 @@
 {
-  "includes": {
-    "amsmath": [],
-    "bbm": [],
-    "bm": []
-  },
-  "macros": {
-    "abcbf{}": {
-      "snippet": "abcbf{${1:text}}"
+  "deps": [
+    {
+      "name": "amsmath"
     },
-    "greekbf{}": {
-      "snippet": "greekbf{${1:text}}"
+    {
+      "name": "bbm"
     },
-    "bfA": {},
-    "bfB": {},
-    "bfC": {},
-    "bfD": {},
-    "bfE": {},
-    "bfF": {},
-    "bfG": {},
-    "bfH": {},
-    "bfI": {},
-    "bfJ": {},
-    "bfK": {},
-    "bfL": {},
-    "bfM": {},
-    "bfN": {},
-    "bfO": {},
-    "bfP": {},
-    "bfQ": {},
-    "bfR": {},
-    "bfS": {},
-    "bfT": {},
-    "bfU": {},
-    "bfV": {},
-    "bfW": {},
-    "bfX": {},
-    "bfY": {},
-    "bfZ": {},
-    "bfa": {},
-    "bfb": {},
-    "bfc": {},
-    "bfd": {},
-    "bfe": {},
-    "bff": {},
-    "bfg": {},
-    "bfh": {},
-    "bfi": {},
-    "bfj": {},
-    "bfk": {},
-    "bfl": {},
-    "bfm": {},
-    "bfn": {},
-    "bfo": {},
-    "bfp": {},
-    "bfq": {},
-    "bfr": {},
-    "bfs": {},
-    "bft": {},
-    "bfu": {},
-    "bfv": {},
-    "bfw": {},
-    "bfx": {},
-    "bfy": {},
-    "bfz": {},
-    "bfalpha": {},
-    "bfbeta": {},
-    "bfdelta": {},
-    "bfepsilon": {},
-    "bfvarepsilon": {},
-    "bfzeta": {},
-    "bfeta": {},
-    "bftheta": {},
-    "bfvartheta": {},
-    "bfgamma": {},
-    "bfkappa": {},
-    "bflambda": {},
-    "bfmu": {},
-    "bfnu": {},
-    "bfxi": {},
-    "bfpi": {},
-    "bfvarpi": {},
-    "bfrho": {},
-    "bfvarrho": {},
-    "bfsigma": {},
-    "bfvarsigma": {},
-    "bftau": {},
-    "bfupsilon": {},
-    "bfphi": {},
-    "bfvarphi": {},
-    "bfchi": {},
-    "bfpsi": {},
-    "bfomega": {},
-    "bfiota": {},
-    "bfGamma": {},
-    "bfDelta": {},
-    "bfTheta": {},
-    "bfLambda": {},
-    "bfXi": {},
-    "bfPi": {},
-    "bfSigma": {},
-    "bfUpsilon": {},
-    "bfPhi": {},
-    "bfPsi": {},
-    "bfOmega": {},
-    "bfzero": {},
-    "cov": {},
-    "E": {
-      "detail": "𝐸",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL E"
-    },
-    "V": {
-      "detail": "𝑉",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL V"
-    },
-    "inas": {},
-    "inprob": {},
-    "indist": {},
-    "plim": {},
-    "tr": {},
-    "vc": {},
-    "vcs": {},
-    "vch": {},
-    "diag": {},
-    "argmin": {},
-    "argmax": {}
-  },
-  "envs": {},
-  "options": [
-    "abcbm",
-    "greekbm",
-    "abcbf",
-    "greekbs"
+    {
+      "name": "bm"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "abcbf",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "greekbf",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "bfA"
+    },
+    {
+      "name": "bfB"
+    },
+    {
+      "name": "bfC"
+    },
+    {
+      "name": "bfD"
+    },
+    {
+      "name": "bfE"
+    },
+    {
+      "name": "bfF"
+    },
+    {
+      "name": "bfG"
+    },
+    {
+      "name": "bfH"
+    },
+    {
+      "name": "bfI"
+    },
+    {
+      "name": "bfJ"
+    },
+    {
+      "name": "bfK"
+    },
+    {
+      "name": "bfL"
+    },
+    {
+      "name": "bfM"
+    },
+    {
+      "name": "bfN"
+    },
+    {
+      "name": "bfO"
+    },
+    {
+      "name": "bfP"
+    },
+    {
+      "name": "bfQ"
+    },
+    {
+      "name": "bfR"
+    },
+    {
+      "name": "bfS"
+    },
+    {
+      "name": "bfT"
+    },
+    {
+      "name": "bfU"
+    },
+    {
+      "name": "bfV"
+    },
+    {
+      "name": "bfW"
+    },
+    {
+      "name": "bfX"
+    },
+    {
+      "name": "bfY"
+    },
+    {
+      "name": "bfZ"
+    },
+    {
+      "name": "bfa"
+    },
+    {
+      "name": "bfb"
+    },
+    {
+      "name": "bfc"
+    },
+    {
+      "name": "bfd"
+    },
+    {
+      "name": "bfe"
+    },
+    {
+      "name": "bff"
+    },
+    {
+      "name": "bfg"
+    },
+    {
+      "name": "bfh"
+    },
+    {
+      "name": "bfi"
+    },
+    {
+      "name": "bfj"
+    },
+    {
+      "name": "bfk"
+    },
+    {
+      "name": "bfl"
+    },
+    {
+      "name": "bfm"
+    },
+    {
+      "name": "bfn"
+    },
+    {
+      "name": "bfo"
+    },
+    {
+      "name": "bfp"
+    },
+    {
+      "name": "bfq"
+    },
+    {
+      "name": "bfr"
+    },
+    {
+      "name": "bfs"
+    },
+    {
+      "name": "bft"
+    },
+    {
+      "name": "bfu"
+    },
+    {
+      "name": "bfv"
+    },
+    {
+      "name": "bfw"
+    },
+    {
+      "name": "bfx"
+    },
+    {
+      "name": "bfy"
+    },
+    {
+      "name": "bfz"
+    },
+    {
+      "name": "bfalpha"
+    },
+    {
+      "name": "bfbeta"
+    },
+    {
+      "name": "bfdelta"
+    },
+    {
+      "name": "bfepsilon"
+    },
+    {
+      "name": "bfvarepsilon"
+    },
+    {
+      "name": "bfzeta"
+    },
+    {
+      "name": "bfeta"
+    },
+    {
+      "name": "bftheta"
+    },
+    {
+      "name": "bfvartheta"
+    },
+    {
+      "name": "bfgamma"
+    },
+    {
+      "name": "bfkappa"
+    },
+    {
+      "name": "bflambda"
+    },
+    {
+      "name": "bfmu"
+    },
+    {
+      "name": "bfnu"
+    },
+    {
+      "name": "bfxi"
+    },
+    {
+      "name": "bfpi"
+    },
+    {
+      "name": "bfvarpi"
+    },
+    {
+      "name": "bfrho"
+    },
+    {
+      "name": "bfvarrho"
+    },
+    {
+      "name": "bfsigma"
+    },
+    {
+      "name": "bfvarsigma"
+    },
+    {
+      "name": "bftau"
+    },
+    {
+      "name": "bfupsilon"
+    },
+    {
+      "name": "bfphi"
+    },
+    {
+      "name": "bfvarphi"
+    },
+    {
+      "name": "bfchi"
+    },
+    {
+      "name": "bfpsi"
+    },
+    {
+      "name": "bfomega"
+    },
+    {
+      "name": "bfiota"
+    },
+    {
+      "name": "bfGamma"
+    },
+    {
+      "name": "bfDelta"
+    },
+    {
+      "name": "bfTheta"
+    },
+    {
+      "name": "bfLambda"
+    },
+    {
+      "name": "bfXi"
+    },
+    {
+      "name": "bfPi"
+    },
+    {
+      "name": "bfSigma"
+    },
+    {
+      "name": "bfUpsilon"
+    },
+    {
+      "name": "bfPhi"
+    },
+    {
+      "name": "bfPsi"
+    },
+    {
+      "name": "bfOmega"
+    },
+    {
+      "name": "bfzero"
+    },
+    {
+      "name": "cov"
+    },
+    {
+      "name": "E"
+    },
+    {
+      "name": "V"
+    },
+    {
+      "name": "inas"
+    },
+    {
+      "name": "inprob"
+    },
+    {
+      "name": "indist"
+    },
+    {
+      "name": "plim"
+    },
+    {
+      "name": "tr"
+    },
+    {
+      "name": "vc"
+    },
+    {
+      "name": "vcs"
+    },
+    {
+      "name": "vch"
+    },
+    {
+      "name": "diag"
+    },
+    {
+      "name": "argmin"
+    },
+    {
+      "name": "argmax"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/statmath#c": [
+      "abcbm\r",
+      "greekbm\r",
+      "abcbf\r",
+      "greekbs\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/statmath#c"
+  ]
 }

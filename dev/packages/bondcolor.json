@@ -1,146 +1,140 @@
 {
-  "includes": {
-    "chemstr": [],
-    "hetarom": [],
-    "hetaromh": [],
-    "methylen": []
-  },
-  "macros": {
-    "adddbcolor{}{}": {
-      "snippet": "adddbcolor{${1:suffix}}{${2:skelbcolor}}"
+  "deps": [
+    {
+      "name": "chemstr"
     },
-    "addskbcolor{}{}": {
-      "snippet": "addskbcolor{${1:suffix}}{${2:skelbcolor}}"
+    {
+      "name": "hetarom"
     },
-    "black": {},
-    "blackx{}": {
-      "snippet": "blackx{${1:content}}"
+    {
+      "name": "hetaromh"
     },
-    "blue": {},
-    "bluex{}": {
-      "snippet": "bluex{${1:content}}"
+    {
+      "name": "methylen"
+    }
+  ],
+  "macros": [
+    {
+      "name": "adddbcolor",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:suffix}}{${2:skelbcolor}}"
+      }
     },
-    "cyan": {},
-    "cyanx{}": {
-      "snippet": "cyanx{${1:content}}"
+    {
+      "name": "addskbcolor",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:suffix}}{${2:skelbcolor}}"
+      }
     },
-    "green": {},
-    "greenx{}": {
-      "snippet": "greenx{${1:content}}"
+    {
+      "name": "black"
     },
-    "magenta": {},
-    "magentax{}": {
-      "snippet": "magentax{${1:content}}"
+    {
+      "name": "blackx",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content}}"
+      }
     },
-    "red": {},
-    "redx{}": {
-      "snippet": "redx{${1:content}}"
+    {
+      "name": "blue"
     },
-    "replaceSKbond()(){}{}": {
-      "snippet": "replaceSKbond(${3:xstart},${4:ystart})(${5:xslope},${6:yslope}){${1:bdlength}}{${2:skelbcolor}}"
+    {
+      "name": "bluex",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content}}"
+      }
     },
-    "replaceSKbond[]()(){}{}": {
-      "snippet": "replaceSKbond[${3:thickness}](${4:xstart},${5:ystart})(${6:xslope},${7:yslope}){${1:bdlength}}{${2:skelbcolor}}"
+    {
+      "name": "cyan"
     },
-    "thinLineWidth": {},
-    "white": {},
-    "whitex{}": {
-      "snippet": "whitex{${1:content}}"
+    {
+      "name": "cyanx",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content}}"
+      }
     },
-    "xymcolor{}{}": {
-      "snippet": "xymcolor{${1:color}}{${2:content}}"
+    {
+      "name": "green"
     },
-    "yellow": {},
-    "yellowx{}": {
-      "snippet": "yellowx{${1:content}}"
+    {
+      "name": "greenx",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content}}"
+      }
     },
-    "addhbonda": {},
-    "addhbondb": {},
-    "addhbondc": {},
-    "addhbondd": {},
-    "addhbonde": {},
-    "addhbondf": {},
-    "addhibonda": {},
-    "addhibondb": {},
-    "addhibondc": {},
-    "addhibondd": {},
-    "addhibonde": {},
-    "addhibondf": {},
-    "addvbonda": {},
-    "addvbondb": {},
-    "addvbondc": {},
-    "addvbondd": {},
-    "addvbonde": {},
-    "addvbondf": {},
-    "addvhbonda": {},
-    "addvhbondb": {},
-    "addvhbondc": {},
-    "addvhbondd": {},
-    "addvhbonde": {},
-    "addvhibonda": {},
-    "addvhibondb": {},
-    "addvhibondc": {},
-    "addvhibondd": {},
-    "addvhibonde": {},
-    "addvibonda": {},
-    "addvibondb": {},
-    "addvibondc": {},
-    "addvibondd": {},
-    "addvibonde": {},
-    "addvibondf": {},
-    "addvvbonda": {},
-    "addvvbondb": {},
-    "addvvbondc": {},
-    "addvvbondd": {},
-    "addvvbonde": {},
-    "addvvibonda": {},
-    "addvvibondb": {},
-    "addvvibondc": {},
-    "addvvibondd": {},
-    "addvvibonde": {},
-    "colorBLswfalse": {},
-    "colorBLswtrue": {},
-    "ifcolorBLsw": {},
-    "LeftAtomBond": {},
-    "MethyleneBondA": {},
-    "MethyleneBonda": {},
-    "MethyleneBondB": {},
-    "MethyleneBondb": {},
-    "MethyleneBondC": {},
-    "MethyleneBondc": {},
-    "MethyleneBondD": {},
-    "MethyleneBondd": {},
-    "MethyleneBondE": {},
-    "MethyleneBonde": {},
-    "MethyleneBondF": {},
-    "MethyleneBondf": {},
-    "MethyleneBondG": {},
-    "MethyleneBondg": {},
-    "MethyleneBondH": {},
-    "MethyleneBondh": {},
-    "MethyleneBondI": {},
-    "MethyleneBondi": {},
-    "MethyleneiBondA": {},
-    "MethyleneiBonda": {},
-    "MethyleneiBondB": {},
-    "MethyleneiBondb": {},
-    "MethyleneiBondC": {},
-    "MethyleneiBondc": {},
-    "MethyleneiBondD": {},
-    "MethyleneiBondd": {},
-    "MethyleneiBondE": {},
-    "MethyleneiBonde": {},
-    "MethyleneiBondF": {},
-    "MethyleneiBondf": {},
-    "MethyleneiBondG": {},
-    "MethyleneiBondg": {},
-    "MethyleneiBondH": {},
-    "MethyleneiBondh": {},
-    "MethyleneiBondI": {},
-    "MethyleneiBondi": {},
-    "RightAtomBond": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "magenta"
+    },
+    {
+      "name": "magentax",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content}}"
+      }
+    },
+    {
+      "name": "red"
+    },
+    {
+      "name": "redx",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content}}"
+      }
+    },
+    {
+      "name": "replaceSKbond(xstart,ystart)(xslope,yslope)",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:bdlength}}{${2:skelbcolor}}"
+      }
+    },
+    {
+      "name": "replaceSKbond",
+      "arg": {
+        "format": "[]()(){}{}",
+        "snippet": "[${3:thickness}](${4:xstart},${5:ystart})(${6:xslope},${7:yslope}){${1:bdlength}}{${2:skelbcolor}}"
+      }
+    },
+    {
+      "name": "thinLineWidth",
+      "unusual": true
+    },
+    {
+      "name": "white"
+    },
+    {
+      "name": "whitex",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content}}"
+      }
+    },
+    {
+      "name": "xymcolor",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:color}}{${2:content}}"
+      }
+    },
+    {
+      "name": "yellow"
+    },
+    {
+      "name": "yellowx",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

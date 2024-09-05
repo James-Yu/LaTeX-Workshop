@@ -1,36 +1,68 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "indentfirst": [],
-    "class-memoir": []
-  },
-  "macros": {
-    "degree{}": {
-      "snippet": "degree{${1:degree}}"
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "degreemo{}": {
-      "snippet": "degreemo{${1:month}}"
+    {
+      "name": "indentfirst"
     },
-    "degreeyr{}": {
-      "snippet": "degreeyr{${1:year}}"
-    },
-    "preheadskip": {},
-    "postheadskip": {}
-  },
-  "envs": {
-    "acknowledgments": {},
-    "dedication": {}
-  },
-  "options": [
-    "thesis",
-    "dissertation",
-    "10pt",
-    "11pt",
-    "12pt",
-    "final",
-    "draft",
-    "indentfirsttrue",
-    "indentfirstfalse"
+    {
+      "name": "class-memoir"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "degree",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:degree%text}}"
+      }
+    },
+    {
+      "name": "degreemo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:month}}"
+      }
+    },
+    {
+      "name": "degreeyr",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:year}}"
+      }
+    },
+    {
+      "name": "preheadskip",
+      "unusual": true
+    },
+    {
+      "name": "postheadskip",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "acknowledgments"
+    },
+    {
+      "name": "dedication"
+    }
+  ],
+  "keys": {
+    "\\documentclass/mugsthesis#c": [
+      "thesis\r",
+      "dissertation\r",
+      "10pt\r",
+      "11pt\r",
+      "12pt\r",
+      "final\r",
+      "draft\r",
+      "indentfirsttrue\r",
+      "indentfirstfalse\r"
+    ]
+  },
+  "args": [
+    "\\documentclass/mugsthesis#c"
+  ]
 }

@@ -1,121 +1,250 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "ifpdf": [],
-    "ifxetex": [],
-    "eforms": []
-  },
-  "macros": {
-    "rtpara{}{}": {
-      "snippet": "rtpara{${1:name}}{${2:richtext paragraph}}"
+  "deps": [
+    {
+      "name": "xkeyval"
     },
-    "rtpara[]{}{}": {
-      "snippet": "rtpara[${3:options}]{${1:name}}{${2:richtext paragraph}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "ifpdf"
     },
-    "span{}{}": {
-      "snippet": "span{${1:options}}{${2:richtext string}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "ifxetex"
     },
-    "useRV{}": {
-      "snippet": "useRV{${1:name}}"
-    },
-    "useV{}": {
-      "snippet": "useV{${1:name}}"
-    },
-    "sub{}": {
-      "snippet": "sub{${1:text}}"
-    },
-    "sup{}": {
-      "snippet": "sup{${1:text}}"
-    },
-    "spc": {},
-    "br": {},
-    "RV{}": {
-      "snippet": "RV{${1:rich value}}"
-    },
-    "DS{}": {
-      "snippet": "DS{${1:default style}}"
-    },
-    "useDefaultDS": {},
-    "setDefaultStyle{}{}": {
-      "snippet": "setDefaultStyle{${1:name}}{${2:options}}",
-      "keyvalindex": 1,
-      "keyvalpos": 1
-    },
-    "useDS{}": {
-      "snippet": "useDS{${1:name}}"
-    },
-    "setRVVContent{}{{}{}": {
-      "snippet": "setRVVContent{${1:name}}{{${2:name1}}{${3:name2}...}}"
-    },
-    "useRVContent{}": {
-      "snippet": "useRVContent{${1:name}}"
-    },
-    "useVContent{}": {
-      "snippet": "useVContent{${1:name}}"
-    },
-    "displayRV{}": {
-      "snippet": "displayRV{${1:name}}"
-    },
-    "displayV{}": {
-      "snippet": "displayV{${1:name}}"
-    },
-    "contName": {},
-    "displayRtParaName": {},
-    "makePDFSp": {},
-    "makeTeXSp": {},
-    "makeTeXSpPrnt": {},
-    "resetRtFontKeys": {},
-    "rtpdfSPDef": {},
-    "rtpdfSPDefPrnt": {},
-    "rvorvstring{}{}": {
-      "snippet": "rvorvstring{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "eforms"
     }
-  },
-  "envs": {
-    "displayRtPara{}": {
+  ],
+  "macros": [
+    {
+      "name": "rtpara",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name%specialDef}}{${2:richtext paragraph%text}}"
+      }
+    },
+    {
+      "name": "rtpara",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:name%specialDef}}{${2:richtext paragraph%text}}"
+      }
+    },
+    {
+      "name": "span",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:options%keyvals}}{${2:richtext string%text}}",
+        "keys": [
+          "\\rtpara,\\span,\\setDefaultStyle"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "useRV",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name%keyvals}}",
+        "keys": [
+          "\\useRV,\\useV,\\displayRV,\\displayV"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "useV",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name%keyvals}}",
+        "keys": [
+          "\\useRV,\\useV,\\displayRV,\\displayV"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "sub",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "sup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "spc"
+    },
+    {
+      "name": "br"
+    },
+    {
+      "name": "RV",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:rich value}}"
+      }
+    },
+    {
+      "name": "DS",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:default style}}"
+      }
+    },
+    {
+      "name": "useDefaultDS"
+    },
+    {
+      "name": "setDefaultStyle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name%specialDef}}{${2:options%keyvals}}",
+        "keys": [
+          "\\rtpara,\\span,\\setDefaultStyle"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "useDS",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name%keyvals}}",
+        "keys": [
+          "\\useDS"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "useRVContent",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name%keyvals}}",
+        "keys": [
+          "\\useRVContent,\\useVContent"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "useVContent",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name%keyvals}}",
+        "keys": [
+          "\\useRVContent,\\useVContent"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "displayRV",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name%keyvals}}"
+      }
+    },
+    {
+      "name": "displayV",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name%keyvals}}"
+      }
+    },
+    {
+      "name": "contName",
+      "unusual": true
+    },
+    {
+      "name": "displayRtParaName",
+      "unusual": true
+    },
+    {
+      "name": "makePDFSp",
+      "unusual": true
+    },
+    {
+      "name": "makeTeXSp",
+      "unusual": true
+    },
+    {
+      "name": "makeTeXSpPrnt",
+      "unusual": true
+    },
+    {
+      "name": "resetRtFontKeys",
+      "unusual": true
+    },
+    {
+      "name": "rtpdfSPDef",
+      "unusual": true
+    },
+    {
+      "name": "rtpdfSPDefPrnt",
+      "unusual": true
+    },
+    {
+      "name": "rvorvstring",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    }
+  ],
+  "envs": [
+    {
       "name": "displayRtPara",
-      "snippet": "{${1:name}}"
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
     },
-    "displayRtPara*{}": {
+    {
       "name": "displayRtPara*",
-      "snippet": "{${1:name}}"
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
-      "font=${1:font name}",
-      "size=${1:number}",
-      "raise=${1:number}",
-      "ulstyle=${1|none,ul,2ul,wul,2wul|}",
-      "style={${1:bold, italic, and/or strikeit}}",
-      "color=${1:rrggbb}",
-      "url={${1:URL}}",
-      "raw=${1:CSS2 markup}",
-      "halign=${1|left,center,right,justify|}",
-      "valign=${1|top,middle,bottom|}",
-      "margleft=${1:number}",
-      "margright=${1:number}",
-      "indent=${1|none,first,hanging|}",
-      "indentby=${1:number}",
-      "margtop=${1:number}",
-      "margbottom=${1:number}",
-      "linespacing=${1|single,oneandhalf,double,exact|}",
-      "lineheight=${1:number}"
+  ],
+  "keys": {
+    "\\useRV,\\useV,\\displayRV,\\displayV": [
+      "%rtpara\r"
     ],
-    [
-      "font=${1:font name}",
-      "size=${1:number}",
-      "raise=${1:number}",
-      "ulstyle=${1|none,ul,2ul,wul,2wul|}",
-      "style={${1:bold, italic, and/or strikeit}}",
-      "color=${1:rrggbb}",
-      "url={${1:URL}}",
-      "raw=${1:CSS2 markup}"
+    "\\useDS": [
+      "%rtdefaultstyle\r"
+    ],
+    "\\useRVContent,\\useVContent": [
+      "%rvvcontent\r"
+    ],
+    "\\rtpara,\\span,\\setDefaultStyle": [
+      "font=${1:font name}\r",
+      "size=${1:number}\r",
+      "raise=${1:number}\r",
+      "ulstyle=${1|none,ul,2ul,wul,2wul\r|}",
+      "style={${1:bold, italic, and/or strikeit}}\r",
+      "color=${1:rrggbb}\r",
+      "url={${1:URL}}\r",
+      "raw=${1:CSS2 markup}\r"
+    ],
+    "\\rtpara": [
+      "halign=${1|left,center,right,justify\r|}",
+      "valign=${1|top,middle,bottom\r|}",
+      "margleft=${1:number}\r",
+      "margright=${1:number}\r",
+      "indent=${1|none,first,hanging\r|}",
+      "indentby=${1:number}\r",
+      "margtop=${1:number}\r",
+      "margbottom=${1:number}\r",
+      "linespacing=${1|single,oneandhalf,double,exact\r|}",
+      "lineheight=${1:number}\r"
     ]
-  ]
+  },
+  "args": []
 }

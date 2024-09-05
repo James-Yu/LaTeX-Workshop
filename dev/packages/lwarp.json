@@ -1,429 +1,1171 @@
 {
-  "includes": {
-    "iftex": [],
-    "ifpdf": [],
-    "ifptex": [],
-    "etoolbox": [],
-    "verifycommand": [],
-    "xpatch": [],
-    "ifplatform": [],
-    "letltxmacro": [],
-    "fontenc": [],
-    "inputenc": [],
-    "newunicodechar": [],
-    "upquote": [],
-    "kvoptions": [],
-    "comment": [],
-    "calc": [],
-    "xstring": [],
-    "environ": [],
-    "geometry": [],
-    "gettitlestring": [],
-    "everyhook": [],
-    "xifthen": [],
-    "verbatim": [],
-    "refcount": [],
-    "newfloat": [],
-    "printlen": [],
-    "capt-of": [],
-    "cleveref": [],
-    "array": []
-  },
-  "macros": {
-    "lwarpsetup{}": {
-      "snippet": "lwarpsetup{${1:options}}"
-    },
-    "HTMLFirstPageTop{}": {
-      "snippet": "HTMLFirstPageTop{${1:contents}}"
-    },
-    "HTMLFirstPageBottom{}": {
-      "snippet": "HTMLFirstPageBottom{${1:contents}}"
-    },
-    "linkhomename": {},
-    "linkpreviousname": {},
-    "linknextname": {},
-    "theSideTOCDepth": {},
-    "sidetocname": {},
-    "theFileDepth": {},
-    "FilenameLimit": {},
-    "theFootnoteDepth": {},
-    "IndexPageSeparator": {},
-    "IndexRangeSeparator": {},
-    "CSSFilename{}": {
-      "snippet": "CSSFilename{${1:filename.css}}"
-    },
-    "MathJaxFilename{}": {
-      "snippet": "MathJaxFilename{${1:filename}}"
-    },
-    "HTMLLanguage{}": {
-      "snippet": "HTMLLanguage{${1:language tag}}"
-    },
-    "HTMLTitle{}": {
-      "snippet": "HTMLTitle{${1:title}}"
-    },
-    "HTMLTitleBeforeSection": {},
-    "HTMLTitleAfterSection": {},
-    "HTMLAuthor{}": {
-      "snippet": "HTMLAuthor{${1:author}}"
-    },
-    "HTMLDescription{}": {
-      "snippet": "HTMLDescription{${1:description}}"
-    },
-    "HTMLKeywords{}": {
-      "snippet": "HTMLKeywords{${1:keywords}}"
-    },
-    "HTMLMeta{}{}": {
-      "snippet": "HTMLMeta{${1:name}}{${2:contents}}"
-    },
-    "HTMLAddMeta{}{}": {
-      "snippet": "HTMLAddMeta{${1:name}}{${2:contents}}"
-    },
-    "HTMLPageTop{}": {
-      "snippet": "HTMLPageTop{${1:contents}}"
-    },
-    "HTMLPageBottom{}": {
-      "snippet": "HTMLPageBottom{${1:contents}}"
-    },
-    "LinkHome": {},
-    "LinkPrevious": {},
-    "LinkNext": {},
-    "ImageAltText": {},
-    "ThisAltText{}": {
-      "snippet": "ThisAltText{${1:text}}"
-    },
-    "MathImageAltText": {},
-    "PackageDiagramAltText": {},
-    "AltTextOpen": {},
-    "AltTextClose": {},
-    "HTMLnewcolumntype{}{}": {
-      "snippet": "HTMLnewcolumntype{${1:name}}{${2:definition}}"
-    },
-    "HTMLnewcolumntype{}[]{}": {
-      "snippet": "HTMLnewcolumntype{${1:name}}[${2:args}]{${3:definition}}"
+  "deps": [
+    {
+      "name": "iftex"
     },
-    "HTMLnewcolumntype{}[][]{}": {
-      "snippet": "HTMLnewcolumntype{${1:name}}[${2:args}][${3:default}]{${4:definition}}"
+    {
+      "name": "ifpdf"
     },
-    "warpprintonly{}": {
-      "snippet": "warpprintonly{${1:contents}}"
+    {
+      "name": "ifptex"
     },
-    "warpHTMLonly{}": {
-      "snippet": "warpHTMLonly{${1:contents}}"
+    {
+      "name": "etoolbox"
     },
-    "InlineClass{}{}": {
-      "snippet": "InlineClass{${1:css class}}{${2:text}}"
+    {
+      "name": "verifycommand"
     },
-    "InlineClass[]{}{}": {
-      "snippet": "InlineClass[${3:web css style}]{${1:css class}}{${2:text}}"
+    {
+      "name": "xpatch"
     },
-    "InlineClass(){}{}": {
-      "snippet": "InlineClass(${3:wp css style}){${1:css class}}{${2:text}}"
+    {
+      "name": "ifplatform"
     },
-    "InlineClass()[]{}{}": {
-      "snippet": "InlineClass(${4:wp css style})[${3:web css style}]{${1:css class}}{${2:text}}"
+    {
+      "name": "letltxmacro"
     },
-    "marginparBlock{}": {
-      "snippet": "marginparBlock{${1:right}}"
+    {
+      "name": "fontenc"
     },
-    "marginparBlock[]{}": {
-      "snippet": "marginparBlock[${2:left}]{${1:right}}"
+    {
+      "name": "inputenc"
     },
-    "UseMinipageWidths": {},
-    "IgnoreMinipageWidths": {},
-    "fboxBlock{}": {
-      "snippet": "fboxBlock{${1:text}}"
+    {
+      "name": "newunicodechar"
     },
-    "FilenameSimplify{}": {
-      "snippet": "FilenameSimplify{${1:text}}"
+    {
+      "name": "upquote"
     },
-    "FilenameSimplify*{}": {
-      "snippet": "FilenameSimplify*{${1:text}}"
+    {
+      "name": "kvoptions"
     },
-    "FilenameNullify{}": {
-      "snippet": "FilenameNullify{${1:macros}}"
+    {
+      "name": "comment"
     },
-    "ForceHTMLPage": {},
-    "ForceHTMLTOC": {},
-    "AddSubtitlePublished": {},
-    "arrayrulecolor[]{}": {
-      "snippet": "arrayrulecolor[${2:model}]{${1:color}}"
+    {
+      "name": "calc"
     },
-    "arrayrulecolor{}": {
-      "snippet": "arrayrulecolor{${1:color}}"
+    {
+      "name": "xstring"
     },
-    "arrayrulecolornexttoken[]{}": {
-      "snippet": "arrayrulecolornexttoken[${2:model}]{${1:color}}"
+    {
+      "name": "environ"
     },
-    "arrayrulecolornexttoken{}": {
-      "snippet": "arrayrulecolornexttoken{${1:color}}"
+    {
+      "name": "geometry"
     },
-    "attribution{}": {
-      "snippet": "attribution{${1:text}}"
+    {
+      "name": "gettitlestring"
     },
-    "BaseJobname": {},
-    "BlockClassSingle{}{}": {
-      "snippet": "BlockClassSingle{${1:css class}}{${2:text}}"
+    {
+      "name": "everyhook"
     },
-    "CaptionSeparator": {},
-    "cdashline": {},
-    "csNewCommandCopycs{}{}": {
-      "snippet": "csNewCommandCopycs{${1:dest csname}}{${2:source csname}}"
+    {
+      "name": "xifthen"
     },
-    "CustomizeMathJax{}": {
-      "snippet": "CustomizeMathJax{${1:macros}}"
+    {
+      "name": "verbatim"
     },
-    "defaddtocounter{}{}": {
-      "snippet": "defaddtocounter{${1:name}}{${2:value}}"
+    {
+      "name": "refcount"
     },
-    "displaymathnormal": {},
-    "displaymathother": {},
-    "doublerulesepcolor[]{}": {
-      "snippet": "doublerulesepcolor[${2:model}]{${1:color}}"
+    {
+      "name": "newfloat"
     },
-    "doublerulesepcolor{}": {
-      "snippet": "doublerulesepcolor{${1:color}}"
+    {
+      "name": "printlen"
     },
-    "doublerulesepcolornexttoken[]{}": {
-      "snippet": "doublerulesepcolornexttoken[${2:model}]{${1:color}}"
+    {
+      "name": "capt-of"
     },
-    "doublerulesepcolornexttoken{}": {
-      "snippet": "doublerulesepcolornexttoken{${1:color}}"
+    {
+      "name": "cleveref"
     },
-    "firsthdashline": {},
-    "footnotename": {},
-    "fup{}": {
-      "snippet": "fup{${1:text}}"
-    },
-    "hdashline": {},
-    "HomeHTMLFilename": {},
-    "HTMLentity{}": {
-      "snippet": "HTMLentity{${1:tag}}"
-    },
-    "HTMLFilename": {},
-    "HTMLunicode{}": {
-      "snippet": "HTMLunicode{${1:arg1}}"
-    },
-    "hyperindexformat{}{}": {
-      "snippet": "hyperindexformat{${1:arg1}}{${2:arg2}}"
-    },
-    "hyperindexref{}": {
-      "snippet": "hyperindexref{${1:arg}}"
-    },
-    "hypertoc{}{}{}{}": {
-      "snippet": "hypertoc{${1:depth}}{${2:type}}{${3:name}}{${4:page}}"
-    },
-    "hypertocfloat{}{}{}{}{}": {
-      "snippet": "hypertocfloat{${1:depth}}{${2:type}}{${3:ext of parent}}{${4:caption}}{${5:page}}"
-    },
-    "inlinemathnormal": {},
-    "inlinemathother": {},
-    "lasthdashline": {},
-    "lasthdashline[]": {
-      "snippet": "lasthdashline[${1:optarg1}]"
-    },
-    "LateximageFontScale": {},
-    "LateximageFontSizeName": {},
-    "ldelim": {},
-    "LWRabsorbnumber{}": {
-      "snippet": "LWRabsorbnumber{${1:arg}}"
-    },
-    "LWRabsorboption{}": {
-      "snippet": "LWRabsorboption{${1:arg}}"
-    },
-    "LWRabsorbquotenumber": {},
-    "LWRabsorbtwooptions[]{}": {
-      "snippet": "LWRabsorbtwooptions[${2:opt}]{${1:arg}}"
-    },
-    "LWRabsorbtwooptions{}": {
-      "snippet": "LWRabsorbtwooptions{${1:arg}}"
-    },
-    "LWRamp": {},
-    "LWRdollar": {},
-    "LWRfootnote": {},
-    "LWRframebox{}": {
-      "snippet": "LWRframebox{${1:content}}"
-    },
-    "LWRhash": {},
-    "LWRleftbrace": {},
-    "LWRopquote": {},
-    "LWRopseq": {},
-    "LWRorighspace": {},
-    "LWRpercent": {},
-    "LWRPrintStack": {},
-    "LWRref": {},
-    "LWRrightbrace": {},
-    "LWRsetnextfloat{}{}": {
-      "snippet": "LWRsetnextfloat{${1:autopage}}{${2:float autoID}}"
-    },
-    "LWRtexttitlecase{}": {
-      "snippet": "LWRtexttitlecase{${1:text}}"
-    },
-    "macrotocsname{}": {
-      "snippet": "macrotocsname{${1:macro}}"
-    },
-    "mcolrowcell": {},
-    "midrule{}": {
-      "snippet": "midrule{${1:arg1}}"
-    },
-    "minipagefullwidth": {},
-    "morecmidrules": {},
-    "mrowcell": {},
-    "multicolumnrow{}{}[]{}[]{}[]{}": {
-      "snippet": "multicolumnrow{${1:cols}}{${2:halign}}[${3:vpos}]{${4:numrows}}[${5:bigstruts}]{${6:width}}[${7:fixup}]{${8:text}}"
-    },
-    "multicolumnrow{}{}{}{}{}": {
-      "snippet": "multicolumnrow{${1:cols}}{${2:halign}}{${3:numrows}}{${4:width}}{${5:text}}"
-    },
-    "NewEnvironmentCopy{}{}": {
-      "snippet": "NewEnvironmentCopy{${1:dest}}{${2:source}}"
-    },
-    "nexttoken": {},
-    "nohyperpage{}": {
-      "snippet": "nohyperpage{${1:arg1}}"
-    },
-    "OSPathSymbol": {},
-    "pagerefPageFor": {},
-    "postbookname": {},
-    "postchaptername": {},
-    "postparagraphname": {},
-    "postpartname": {},
-    "postsectionname": {},
-    "postsubparagraphname": {},
-    "postsubsectionname": {},
-    "postsubsubsectionname": {},
-    "prebookname": {},
-    "prechaptername": {},
-    "preparagraphname": {},
-    "prepartname": {},
-    "presectionname": {},
-    "presubparagraphname": {},
-    "presubsectionname": {},
-    "presubsubsectionname": {},
-    "printauthor": {},
-    "printdate": {},
-    "printpublished": {},
-    "printsubtitle": {},
-    "printthanks": {},
-    "printtitle": {},
-    "rdelim": {},
-    "ResumeTabular": {},
-    "rowcolor": {},
-    "SetHTMLFileNumber{}": {
-      "snippet": "SetHTMLFileNumber{${1:number}}"
-    },
-    "simplechapterdelim": {},
-    "specialrule{}{}{}": {
-      "snippet": "specialrule{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "StartDefiningMath": {},
-    "StartDefiningTabulars": {},
-    "StopDefiningMath": {},
-    "StopDefiningTabulars": {},
-    "texorpdfstring": {},
-    "theauthor": {},
-    "thefootnoteReset": {},
-    "theHTMLAuthor": {},
-    "theHTMLSection": {},
-    "theHTMLTitle": {},
-    "theHTMLTitleSection": {},
-    "theHTMLTitleSeparator": {},
-    "thelofdepth": {},
-    "thelotdepth": {},
-    "theMathJaxequation": {},
-    "theMathJaxsection": {},
-    "theMathJaxsubequations": {},
-    "thetitle": {},
-    "ThisComment": {},
-    "tmpb": {},
-    "toprule{}": {
-      "snippet": "toprule{${1:arg1}}"
-    },
-    "tracinglwarp": {},
-    "up{}": {
-      "snippet": "up{${1:text}}"
-    },
-    "VerbatimHTMLWidth": {},
-    "FBmedkern": {},
-    "FBthickkern": {},
-    "HTMLleftmargini": {},
-    "HTMLvleftskip": {},
-    "LTcaptype": {},
-    "DH": {},
-    "NG": {},
-    "dj": {},
-    "ng": {},
-    "k{}": {
-      "snippet": "k{${1:arg}}"
-    },
-    "guillemotleft": {},
-    "guillemotright": {},
-    "guilsinglleft": {},
-    "guilsinglright": {},
-    "quotedblbase": {},
-    "quotesinglbase": {},
-    "textquotedbl": {},
-    "DJ": {},
-    "th": {},
-    "TH": {},
-    "dh": {},
-    "Hwithstroke": {},
-    "hwithstroke": {},
-    "textogonekcentered{}": {
-      "snippet": "textogonekcentered{${1:arg}}"
-    },
-    "guillemetleft": {},
-    "guillemetright": {}
-  },
-  "envs": {
-    "warpprint": {},
-    "warpHTML": {},
-    "BlockClass{}": {
-      "name": "BlockClass",
-      "snippet": "{${1:css class}}"
-    },
-    "BlockClass[]{}": {
-      "name": "BlockClass",
-      "snippet": "[${2:style}]{${1:css class}}"
-    },
-    "warpall": {},
-    "warpMathJax": {},
-    "warpsvg": {},
-    "fcolorminipage": {},
-    "lateximage": {}
-  },
-  "options": [
-    "mathsvg",
-    "mathjax",
-    "latexmk",
-    "dvips",
-    "dvipdfm",
-    "dvipdfmx",
-    "HomeHTMLFilename=${1:file name}",
-    "HTMLFilename=${1:file prefix}",
-    "ImagesName=${1:file prefix}",
-    "ImagesDirectory=${1:directory}",
-    "PrintLatexCmd=${1:shell command}",
-    "HTMLLatexCmd=${1:shell command}",
-    "makeindex",
-    "makeindexStyle=${1:.ist file}",
-    "xindy",
-    "xindyStyle=${1:.xdy file}",
-    "xindyLanguage=${1:language}",
-    "xindyCodepage=${1:codepage}",
-    "xindex",
-    "xindexConfig=${1:file name}",
-    "PrintIndexCmd=${1:shell command}",
-    "HTMLIndexCmd=${1:shell command}",
-    "LatexmkIndexCmd=${1:shell command}",
-    "IndexRef",
-    "GlossaryCmd=${1:shell command}",
-    "OSWindows",
-    "pdftotextEnc=${1:encoding}",
-    "lwarpmk",
-    "warpdisable",
-    "warpprint",
-    "warpHTML",
-    "BaseJobname=${1:jobname}"
+    {
+      "name": "array"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "lwarpsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\usepackage/lwarp#c,\\lwarpsetup"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "HTMLFirstPageTop",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:contents%text}}"
+      }
+    },
+    {
+      "name": "HTMLFirstPageBottom",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:contents%text}}"
+      }
+    },
+    {
+      "name": "linkhomename"
+    },
+    {
+      "name": "linkpreviousname"
+    },
+    {
+      "name": "linknextname"
+    },
+    {
+      "name": "theSideTOCDepth"
+    },
+    {
+      "name": "sidetocname"
+    },
+    {
+      "name": "theFileDepth"
+    },
+    {
+      "name": "FilenameLimit"
+    },
+    {
+      "name": "theFootnoteDepth"
+    },
+    {
+      "name": "IndexPageSeparator"
+    },
+    {
+      "name": "IndexRangeSeparator"
+    },
+    {
+      "name": "CSSFilename",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:filename.css%file}}"
+      }
+    },
+    {
+      "name": "MathJaxFilename",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:filename%file}}"
+      }
+    },
+    {
+      "name": "HTMLLanguage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language tag}}"
+      }
+    },
+    {
+      "name": "HTMLTitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
+    },
+    {
+      "name": "HTMLTitleBeforeSection"
+    },
+    {
+      "name": "HTMLTitleAfterSection"
+    },
+    {
+      "name": "HTMLAuthor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:author}}"
+      }
+    },
+    {
+      "name": "HTMLDescription",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:description%text}}"
+      }
+    },
+    {
+      "name": "HTMLKeywords",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keywords%text}}"
+      }
+    },
+    {
+      "name": "HTMLMeta",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:contents%text}}"
+      }
+    },
+    {
+      "name": "HTMLAddMeta",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:contents%text}}"
+      }
+    },
+    {
+      "name": "HTMLPageTop",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:contents%text}}"
+      }
+    },
+    {
+      "name": "HTMLPageBottom",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:contents%text}}"
+      }
+    },
+    {
+      "name": "LinkHome"
+    },
+    {
+      "name": "LinkPrevious"
+    },
+    {
+      "name": "LinkNext"
+    },
+    {
+      "name": "ImageAltText"
+    },
+    {
+      "name": "ThisAltText",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "MathImageAltText"
+    },
+    {
+      "name": "PackageDiagramAltText"
+    },
+    {
+      "name": "AltTextOpen"
+    },
+    {
+      "name": "AltTextClose"
+    },
+    {
+      "name": "HTMLnewcolumntype",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "HTMLnewcolumntype",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:name}}[${3:args}]{${2:definition}}"
+      }
+    },
+    {
+      "name": "HTMLnewcolumntype",
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "{${1:name}}[${3:args}][${4:default}]{${2:definition}}"
+      }
+    },
+    {
+      "name": "warpprintonly",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:contents%text}}"
+      }
+    },
+    {
+      "name": "warpHTMLonly",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:contents%text}}"
+      }
+    },
+    {
+      "name": "InlineClass",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:css class}}{${2:text}}"
+      }
+    },
+    {
+      "name": "InlineClass",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:web css style}]{${1:css class}}{${2:text}}"
+      }
+    },
+    {
+      "name": "InlineClass(wp css style)",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:css class}}{${2:text}}"
+      }
+    },
+    {
+      "name": "InlineClass(wp css style)",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:web css style}]{${1:css class}}{${2:text}}"
+      }
+    },
+    {
+      "name": "marginparBlock",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:right%text}}"
+      }
+    },
+    {
+      "name": "marginparBlock",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:left%text}]{${1:right%text}}"
+      }
+    },
+    {
+      "name": "UseMinipageWidths"
+    },
+    {
+      "name": "IgnoreMinipageWidths"
+    },
+    {
+      "name": "fboxBlock",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "FilenameSimplify",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "FilenameSimplify*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "FilenameNullify",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:macros}}"
+      }
+    },
+    {
+      "name": "ForceHTMLPage"
+    },
+    {
+      "name": "ForceHTMLTOC"
+    },
+    {
+      "name": "AddSubtitlePublished",
+      "unusual": true
+    },
+    {
+      "name": "arrayrulecolor",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:model}]{${1:color}}"
+      }
+    },
+    {
+      "name": "arrayrulecolor",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "arrayrulecolornexttoken",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:model}]{${1:color}}"
+      }
+    },
+    {
+      "name": "arrayrulecolornexttoken",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "attribution",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "BaseJobname",
+      "unusual": true
+    },
+    {
+      "name": "BlockClassSingle",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:css class}}{${2:text}}"
+      }
+    },
+    {
+      "name": "CaptionSeparator",
+      "unusual": true
+    },
+    {
+      "name": "cdashline",
+      "unusual": true
+    },
+    {
+      "name": "csNewCommandCopycs",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:dest csname}}{${2:source csname}}"
+      }
+    },
+    {
+      "name": "CustomizeMathJax",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:macros}}"
+      }
+    },
+    {
+      "name": "defaddtocounter",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:value}}"
+      }
+    },
+    {
+      "name": "displaymathnormal",
+      "unusual": true
+    },
+    {
+      "name": "displaymathother",
+      "unusual": true
+    },
+    {
+      "name": "doublerulesepcolor",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:model}]{${1:color}}"
+      }
+    },
+    {
+      "name": "doublerulesepcolor",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "doublerulesepcolornexttoken",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:model}]{${1:color}}"
+      }
+    },
+    {
+      "name": "doublerulesepcolornexttoken",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "firsthdashline",
+      "unusual": true
+    },
+    {
+      "name": "footnotename",
+      "unusual": true
+    },
+    {
+      "name": "fup",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "hdashline",
+      "unusual": true
+    },
+    {
+      "name": "HomeHTMLFilename",
+      "unusual": true
+    },
+    {
+      "name": "HTMLentity",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tag}}"
+      }
+    },
+    {
+      "name": "HTMLFilename",
+      "unusual": true
+    },
+    {
+      "name": "HTMLunicode",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    },
+    {
+      "name": "hyperindexformat",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "hyperindexref",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "hypertoc",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:depth}}{${2:type}}{${3:name}}{${4:page}}"
+      }
+    },
+    {
+      "name": "hypertocfloat",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:depth}}{${2:type}}{${3:ext of parent}}{${4:caption}}{${5:page}}"
+      }
+    },
+    {
+      "name": "inlinemathnormal",
+      "unusual": true
+    },
+    {
+      "name": "inlinemathother",
+      "unusual": true
+    },
+    {
+      "name": "lasthdashline",
+      "unusual": true
+    },
+    {
+      "name": "lasthdashline",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:optarg1}]"
+      }
+    },
+    {
+      "name": "LateximageFontScale",
+      "unusual": true
+    },
+    {
+      "name": "LateximageFontSizeName",
+      "unusual": true
+    },
+    {
+      "name": "ldelim",
+      "unusual": true
+    },
+    {
+      "name": "LWRabsorbnumber",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "LWRabsorboption",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "LWRabsorbquotenumber",
+      "unusual": true
+    },
+    {
+      "name": "LWRabsorbtwooptions",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:opt}]{${1:arg}}"
+      }
+    },
+    {
+      "name": "LWRabsorbtwooptions",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "LWRamp",
+      "unusual": true
+    },
+    {
+      "name": "LWRdollar",
+      "unusual": true
+    },
+    {
+      "name": "LWRfootnote",
+      "unusual": true
+    },
+    {
+      "name": "LWRframebox",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:content%text}}"
+      }
+    },
+    {
+      "name": "LWRhash",
+      "unusual": true
+    },
+    {
+      "name": "LWRleftbrace",
+      "unusual": true
+    },
+    {
+      "name": "LWRopquote",
+      "unusual": true
+    },
+    {
+      "name": "LWRopseq",
+      "unusual": true
+    },
+    {
+      "name": "LWRorighspace",
+      "unusual": true
+    },
+    {
+      "name": "LWRpercent",
+      "unusual": true
+    },
+    {
+      "name": "LWRPrintStack",
+      "unusual": true
+    },
+    {
+      "name": "LWRref",
+      "unusual": true
+    },
+    {
+      "name": "LWRrightbrace",
+      "unusual": true
+    },
+    {
+      "name": "LWRsetnextfloat",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:autopage}}{${2:float autoID}}"
+      }
+    },
+    {
+      "name": "LWRtexttitlecase",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "macrotocsname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:macro}}"
+      }
+    },
+    {
+      "name": "mcolrowcell",
+      "unusual": true
+    },
+    {
+      "name": "midrule",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    },
+    {
+      "name": "minipagefullwidth",
+      "unusual": true
+    },
+    {
+      "name": "morecmidrules",
+      "unusual": true
+    },
+    {
+      "name": "mrowcell",
+      "unusual": true
+    },
+    {
+      "name": "multicolumnrow",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]{}[]{}[]{}",
+        "snippet": "{${1:cols}}{${2:halign}}[${6:vpos}]{${3:numrows}}[${7:bigstruts}]{${4:width}}[${8:fixup}]{${5:text}}"
+      }
+    },
+    {
+      "name": "multicolumnrow",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:cols}}{${2:halign}}{${3:numrows}}{${4:width}}{${5:text}}"
+      }
+    },
+    {
+      "name": "NewEnvironmentCopy",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:dest%envname}}{${2:source}}"
+      }
+    },
+    {
+      "name": "nexttoken",
+      "unusual": true
+    },
+    {
+      "name": "nohyperpage",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    },
+    {
+      "name": "OSPathSymbol",
+      "unusual": true
+    },
+    {
+      "name": "pagerefPageFor",
+      "unusual": true
+    },
+    {
+      "name": "postbookname",
+      "unusual": true
+    },
+    {
+      "name": "postchaptername",
+      "unusual": true
+    },
+    {
+      "name": "postparagraphname",
+      "unusual": true
+    },
+    {
+      "name": "postpartname",
+      "unusual": true
+    },
+    {
+      "name": "postsectionname",
+      "unusual": true
+    },
+    {
+      "name": "postsubparagraphname",
+      "unusual": true
+    },
+    {
+      "name": "postsubsectionname",
+      "unusual": true
+    },
+    {
+      "name": "postsubsubsectionname",
+      "unusual": true
+    },
+    {
+      "name": "prebookname",
+      "unusual": true
+    },
+    {
+      "name": "prechaptername",
+      "unusual": true
+    },
+    {
+      "name": "preparagraphname",
+      "unusual": true
+    },
+    {
+      "name": "prepartname",
+      "unusual": true
+    },
+    {
+      "name": "presectionname",
+      "unusual": true
+    },
+    {
+      "name": "presubparagraphname",
+      "unusual": true
+    },
+    {
+      "name": "presubsectionname",
+      "unusual": true
+    },
+    {
+      "name": "presubsubsectionname",
+      "unusual": true
+    },
+    {
+      "name": "printauthor",
+      "unusual": true
+    },
+    {
+      "name": "printdate",
+      "unusual": true
+    },
+    {
+      "name": "printpublished",
+      "unusual": true
+    },
+    {
+      "name": "printsubtitle",
+      "unusual": true
+    },
+    {
+      "name": "printthanks",
+      "unusual": true
+    },
+    {
+      "name": "printtitle",
+      "unusual": true
+    },
+    {
+      "name": "rdelim",
+      "unusual": true
+    },
+    {
+      "name": "ResumeTabular",
+      "unusual": true
+    },
+    {
+      "name": "rowcolor",
+      "unusual": true
+    },
+    {
+      "name": "SetHTMLFileNumber",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "simplechapterdelim",
+      "unusual": true
+    },
+    {
+      "name": "specialrule",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "StartDefiningMath",
+      "unusual": true
+    },
+    {
+      "name": "StartDefiningTabulars",
+      "unusual": true
+    },
+    {
+      "name": "StopDefiningMath",
+      "unusual": true
+    },
+    {
+      "name": "StopDefiningTabulars",
+      "unusual": true
+    },
+    {
+      "name": "texorpdfstring",
+      "unusual": true
+    },
+    {
+      "name": "theauthor",
+      "unusual": true
+    },
+    {
+      "name": "thefootnoteReset"
+    },
+    {
+      "name": "theHTMLAuthor"
+    },
+    {
+      "name": "theHTMLSection",
+      "unusual": true
+    },
+    {
+      "name": "theHTMLTitle",
+      "unusual": true
+    },
+    {
+      "name": "theHTMLTitleSection",
+      "unusual": true
+    },
+    {
+      "name": "theHTMLTitleSeparator",
+      "unusual": true
+    },
+    {
+      "name": "thelofdepth"
+    },
+    {
+      "name": "thelotdepth"
+    },
+    {
+      "name": "theMathJaxequation",
+      "unusual": true
+    },
+    {
+      "name": "theMathJaxsection",
+      "unusual": true
+    },
+    {
+      "name": "theMathJaxsubequations",
+      "unusual": true
+    },
+    {
+      "name": "thetitle",
+      "unusual": true
+    },
+    {
+      "name": "ThisComment",
+      "unusual": true
+    },
+    {
+      "name": "tmpb",
+      "unusual": true
+    },
+    {
+      "name": "toprule",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    },
+    {
+      "name": "tracinglwarp",
+      "unusual": true
+    },
+    {
+      "name": "up",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "VerbatimHTMLWidth",
+      "unusual": true
+    },
+    {
+      "name": "DH"
+    },
+    {
+      "name": "NG"
+    },
+    {
+      "name": "dj"
+    },
+    {
+      "name": "ng"
+    },
+    {
+      "name": "k",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "guillemotleft",
+      "unusual": true
+    },
+    {
+      "name": "guillemotright",
+      "unusual": true
+    },
+    {
+      "name": "guilsinglleft"
+    },
+    {
+      "name": "guilsinglright"
+    },
+    {
+      "name": "quotedblbase"
+    },
+    {
+      "name": "quotesinglbase"
+    },
+    {
+      "name": "textquotedbl"
+    },
+    {
+      "name": "DJ"
+    },
+    {
+      "name": "th"
+    },
+    {
+      "name": "TH"
+    },
+    {
+      "name": "dh"
+    },
+    {
+      "name": "Hwithstroke",
+      "unusual": true
+    },
+    {
+      "name": "hwithstroke",
+      "unusual": true
+    },
+    {
+      "name": "textogonekcentered",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "guillemetleft"
+    },
+    {
+      "name": "guillemetright"
+    }
+  ],
+  "envs": [
+    {
+      "name": "warpprint"
+    },
+    {
+      "name": "warpHTML"
+    },
+    {
+      "name": "BlockClass",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:css class}}"
+      }
+    },
+    {
+      "name": "BlockClass",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:style}]{${1:css class}}"
+      }
+    },
+    {
+      "name": "warpall"
+    },
+    {
+      "name": "warpMathJax"
+    },
+    {
+      "name": "warpsvg"
+    },
+    {
+      "name": "fcolorminipage",
+      "unusual": true
+    },
+    {
+      "name": "lateximage",
+      "unusual": true
+    }
+  ],
+  "keys": {
+    "\\usepackage/lwarp#c,\\lwarpsetup": [
+      "mathsvg\r",
+      "mathjax\r",
+      "latexmk",
+      "dvips",
+      "dvipdfm",
+      "dvipdfmx",
+      "HomeHTMLFilename=${1:file name}\r",
+      "HTMLFilename=${1:file prefix}\r",
+      "ImagesName=${1:file prefix}\r",
+      "ImagesDirectory=${1:directory}\r",
+      "PrintLatexCmd=${1:shell command}\r",
+      "HTMLLatexCmd=${1:shell command}\r",
+      "makeindex",
+      "makeindexStyle=${1:.ist file}\r",
+      "xindy",
+      "xindyStyle=${1:.xdy file}\r",
+      "xindyLanguage=${1:language}\r",
+      "xindyCodepage=${1:codepage}\r",
+      "xindex",
+      "xindexConfig=${1:file name}\r",
+      "PrintIndexCmd=${1:shell command}\r",
+      "HTMLIndexCmd=${1:shell command}\r",
+      "LatexmkIndexCmd=${1:shell command}\r",
+      "IndexRef",
+      "GlossaryCmd=${1:shell command}\r",
+      "OSWindows\r",
+      "pdftotextEnc=${1:encoding}\r",
+      "lwarpmk\r",
+      "warpdisable\r",
+      "warpprint\r",
+      "warpHTML\r",
+      "BaseJobname=${1:jobname}\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/lwarp#c,\\lwarpsetup"
+  ]
 }

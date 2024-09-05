@@ -1,382 +1,441 @@
 {
-  "includes": {
-    "iftex": [],
-    "tikz": [],
-    "pgffor": [],
-    "tabularray": [],
-    "simplekv": [],
-    "xstring": [],
-    "listofitems": [],
-    "xintexpr": [],
-    "tikzlibrarypositioning": [],
-    "tikzlibrarydecorations.pathreplacing": [],
-    "tikzlibrarydecorations.markings": [],
-    "tikzlibrarycalc": [],
-    "tikzlibrarybabel": [],
-    "tikzlibraryshapes": [],
-    "tikzlibraryshapes.geometric": [],
-    "xkeyval": [],
-    "luacode": [],
-    "nicematrix": []
-  },
-  "macros": {
-    "MPMPlaceNotice()": {
-      "snippet": "MPMPlaceNotice(${1:coordonnées})"
+  "deps": [
+    {
+      "name": "iftex"
     },
-    "MPMPlaceNotice*()": {
-      "snippet": "MPMPlaceNotice*(${1:coordonnées})"
+    {
+      "name": "tikz"
     },
-    "MPMPlaceTache()()()": {
-      "snippet": "MPMPlaceTache(${1:coordonnées})(${2:Tâche})(${3:Dates})"
+    {
+      "name": "pgffor"
     },
-    "MPMPlaceTaches{}": {
-      "snippet": "MPMPlaceTaches{${1:(${2:coordA})(${3:TâcheA})(${4:DatesA}) / (${5:coordB})(${6:TâcheB})(${7:DatesB}) / ...}}"
+    {
+      "name": "tabularray"
     },
-    "MPMPlaceDuree{}": {
-      "snippet": "MPMPlaceDuree{${1:TâcheA>TâcheB,durée}}"
+    {
+      "name": "simplekv"
     },
-    "MPMPlaceDuree[]{}": {
-      "snippet": "MPMPlaceDuree[${2:options}]{${1:TâcheA>TâcheB,durée}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "xstring"
     },
-    "MPMPlaceDurees{}": {
-      "snippet": "MPMPlaceDurees{${1:TâcheA>TâcheB,${2:durée / TâcheC>TâcheD},durée}}"
+    {
+      "name": "listofitems"
     },
-    "MPMPlaceDurees[]{}": {
-      "snippet": "MPMPlaceDurees[${2:options}]{${1:TâcheA>TâcheB,${3:durée / TâcheC>TâcheD},durée}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "xintexpr"
     },
-    "KarnaughCasesResult{}": {
-      "snippet": "KarnaughCasesResult{${1:contenu binaire des cases}}"
+    {
+      "name": "tikzlibrarypositioning"
     },
-    "KarnaughCasesResult*{}": {
-      "snippet": "KarnaughCasesResult*{${1:contenu binaire des cases}}"
+    {
+      "name": "tikzlibrarydecorations.pathreplacing"
     },
-    "KarnaughCasesAuto{}": {
-      "snippet": "KarnaughCasesAuto{${1:expression booléenne}}"
+    {
+      "name": "tikzlibrarydecorations.markings"
     },
-    "KarnaughCasesAuto*{}": {
-      "snippet": "KarnaughCasesAuto*{${1:expression booléenne}}"
+    {
+      "name": "tikzlibrarycalc"
     },
-    "KarnaughBlocRegroup{}{}": {
-      "snippet": "KarnaughBlocRegroup{${1:coinA}}{${2:coinB}}"
+    {
+      "name": "tikzlibrarybabel"
     },
-    "KarnaughBlocRegroup[]{}{}": {
-      "snippet": "KarnaughBlocRegroup[${3:clés}]{${1:coinA}}{${2:coinB}}"
+    {
+      "name": "tikzlibraryshapes"
     },
-    "SimplificationKarnaugh{}": {
-      "snippet": "SimplificationKarnaugh{${1:code binaire de la table}}"
+    {
+      "name": "tikzlibraryshapes.geometric"
     },
-    "SimplificationKarnaugh[]{}": {
-      "snippet": "SimplificationKarnaugh[${2:clés}]{${1:code binaire de la table}}"
+    {
+      "name": "xkeyval"
     },
-    "SimplificationBooleenne{}": {
-      "snippet": "SimplificationBooleenne{${1:expression formatée}}"
+    {
+      "name": "luacode"
     },
-    "SimplificationBooleenne[]{}": {
-      "snippet": "SimplificationBooleenne[${2:clés}]{${1:expression formatée}}"
-    },
-    "GrphPlaceSommets{}": {
-      "snippet": "GrphPlaceSommets{${1:liste coordonnées/sommet}}"
-    },
-    "GrphTraceAretes{}": {
-      "snippet": "GrphTraceAretes{${1:liste arêtes}}"
-    },
-    "GrphTraceAretes<>{}": {
-      "snippet": "GrphTraceAretes<${2:options tikz}>{${1:liste arêtes}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "GrphTraceAretes[]{}": {
-      "snippet": "GrphTraceAretes[${2:type}]{${1:liste arêtes}}"
-    },
-    "GrphTraceAretes[]<>{}": {
-      "snippet": "GrphTraceAretes[${2:type}]<${3:options tikz}>{${1:liste arêtes}}",
-      "keyvalindex": 1,
-      "keyvalpos": 1
-    },
-    "GrphTraceAretes*{}": {
-      "snippet": "GrphTraceAretes*{${1:liste arêtes}}"
-    },
-    "GrphTraceAretes*<>{}": {
-      "snippet": "GrphTraceAretes*<${2:options tikz}>{${1:liste arêtes}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "GrphTraceAretes*[]{}": {
-      "snippet": "GrphTraceAretes*[${2:type}]{${1:liste arêtes}}"
-    },
-    "GrphTraceAretes*[]<>{}": {
-      "snippet": "GrphTraceAretes*[${2:type}]<${3:options tikz}>{${1:liste arêtes}}",
-      "keyvalindex": 1,
-      "keyvalpos": 1
-    },
-    "DiagrammeSagittal{}": {
-      "snippet": "DiagrammeSagittal{${1:liaisons}}"
-    },
-    "DiagrammeSagittal<>{}": {
-      "snippet": "DiagrammeSagittal<${2:options TikZ}>{${1:liaisons}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "DiagrammeSagittal[]{}": {
-      "snippet": "DiagrammeSagittal[${2:clés}]{${1:liaisons}}"
-    },
-    "DiagrammeSagittal[]<>{}": {
-      "snippet": "DiagrammeSagittal[${2:clés}]<${3:options TikZ}>{${1:liaisons}}",
-      "keyvalindex": 2,
-      "keyvalpos": 1
-    },
-    "DiagrammeSagittal*{}": {
-      "snippet": "DiagrammeSagittal*{${1:liaisons}}"
-    },
-    "DiagrammeSagittal*[]{}": {
-      "snippet": "DiagrammeSagittal*[${2:clés}]{${1:liaisons}}"
-    },
-    "DiagrammeSagittalCompo{}{}": {
-      "snippet": "DiagrammeSagittalCompo{${1:liaisons1}}{${2:liaisons2}}"
-    },
-    "DiagrammeSagittalCompo<>{}{}": {
-      "snippet": "DiagrammeSagittalCompo<${3:options TikZ}>{${1:liaisons1}}{${2:liaisons2}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "DiagrammeSagittalCompo[]{}{}": {
-      "snippet": "DiagrammeSagittalCompo[${3:clés}]{${1:liaisons1}}{${2:liaisons2}}"
-    },
-    "DiagrammeSagittalCompo[]<>{}{}": {
-      "snippet": "DiagrammeSagittalCompo[${3:clés}]<${4:options TikZ}>{${1:liaisons1}}{${2:liaisons2}}",
-      "keyvalindex": 3,
-      "keyvalpos": 1
-    },
-    "DiagrammeSagittalCompo*{}{}": {
-      "snippet": "DiagrammeSagittalCompo*{${1:liaisons1}}{${2:liaisons2}}"
-    },
-    "DiagrammeSagittalCompo*[]{}{}": {
-      "snippet": "DiagrammeSagittalCompo*[${3:clés}]{${1:liaisons1}}{${2:liaisons2}}"
-    },
-    "TableVerite{}{}{}{}": {
-      "snippet": "TableVerite{${1:vars}}{${2:colonnes_vars}}{${3:calculs}}{${4:colonnes_calculs}}"
-    },
-    "TableVerite<>{}{}{}{}": {
-      "snippet": "TableVerite<${5:opts nicematrix}>{${1:vars}}{${2:colonnes_vars}}{${3:calculs}}{${4:colonnes_calculs}}"
-    },
-    "TableVerite[]{}{}{}{}": {
-      "snippet": "TableVerite[${5:clés}]{${1:vars}}{${2:colonnes_vars}}{${3:calculs}}{${4:colonnes_calculs}}"
-    },
-    "TableVerite[]<>{}{}{}{}": {
-      "snippet": "TableVerite[${5:clés}]<${6:opts nicematrix}>{${1:vars}}{${2:colonnes_vars}}{${3:calculs}}{${4:colonnes_calculs}}"
-    },
-    "GrphCoulFleches": {},
-    "GrphCoulFT": {},
-    "GrphCoulSommets": {},
-    "GrphDimSommet": {},
-    "GrphGrille": {},
-    "GrphPolicePoids": {},
-    "GrphPoliceSommets": {},
-    "GrphPosArrow": {},
-    "GrphScaleArrow": {},
-    "GrphTchick": {},
-    "GrphTypeArrow": {},
-    "GrphTypeSomm": {},
-    "GrphUnit": {},
-    "KarnaughBlocCoul[]{}": {
-      "snippet": "KarnaughBlocCoul[${2:opt}]{${1:arg}}"
-    },
-    "KarnaughBlocCoul{}": {
-      "snippet": "KarnaughBlocCoul{${1:arg}}"
-    },
-    "KGHcouleur": {},
-    "KGHdecalage": {},
-    "KGHTCoul": {},
-    "KGHTCoulCases": {},
-    "KGHTCoulLegende": {},
-    "KGHTechelle": {},
-    "KGHThick": {},
-    "KGHTPosVarA": {},
-    "KGHTvariables": {},
-    "KGHtype": {},
-    "MPMCoulDates": {},
-    "MPMCoulDuree": {},
-    "MPMCoulFleche": {},
-    "MPMCoulTraits": {},
-    "MPMFont": {},
-    "MPMGrille": {},
-    "MPMHautCoude": {},
-    "MPMLargBoite": {},
-    "MPMOffsetHFin": {},
-    "MPMOffsetHInit": {},
-    "MPMOffsetVFin": {},
-    "MPMOffsetVInit": {},
-    "MPMOrientation": {},
-    "MPMThick": {},
-    "DSListeEltE": {},
-    "DSListeEltF": {},
-    "DSEcartIN": {},
-    "DSEcartIP": {},
-    "DSLargPatates": {},
-    "DSNomFctPatates": {},
-    "DSCouleurE": {},
-    "DSCouleurFct": {},
-    "DSCouleurF": {},
-    "DSCouleurArc": {},
-    "DSTypeFleche": {},
-    "DSThick": {},
-    "DSPolicePatates": {},
-    "DSPoliceLabels": {},
-    "DSNomEns": {},
-    "DSPosLabels": {},
-    "DSOffset": {},
-    "DSListeEltG": {},
-    "DSNomsFcts": {},
-    "DSCouleursFct": {},
-    "DSCouleurG": {},
-    "GenTruthTable{}{}": {
-      "snippet": "GenTruthTable{${1:arg1}}{${2:arg2}}"
-    },
-    "GenTruthTable[]{}{}": {
-      "snippet": "GenTruthTable[${3:opt}]{${1:arg1}}{${2:arg2}}"
-    },
-    "GenTruthTable*{}{}": {
-      "snippet": "GenTruthTable*{${1:arg1}}{${2:arg2}}"
-    },
-    "GenTruthTable*[]{}{}": {
-      "snippet": "GenTruthTable*[${3:opt}]{${1:arg1}}{${2:arg2}}"
-    },
-    "TTABLEtruefalse": {},
-    "TTABLElargeurs": {},
-    "TTABLEcoul": {},
-    "TTABLEcodebefore": {},
-    "TTABLEcodeafter": {},
-    "KnghBourrageZeros{}": {
-      "snippet": "KnghBourrageZeros{${1:arg}}"
+    {
+      "name": "nicematrix"
     }
-  },
-  "envs": {
-    "GrapheMPM": {},
-    "GrapheMPM<>": {
+  ],
+  "macros": [
+    {
+      "name": "MPMPlaceTaches",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:(${2:coordA})(${3:TâcheA})(${4:DatesA}) / (${5:coordB})(${6:TâcheB})(${7:DatesB}) / ...}}"
+      }
+    },
+    {
+      "name": "MPMPlaceDuree",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:TâcheA>TâcheB,durée}}"
+      }
+    },
+    {
+      "name": "MPMPlaceDuree",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options}]{${1:TâcheA>TâcheB,durée}}"
+      }
+    },
+    {
+      "name": "MPMPlaceDurees",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:TâcheA>TâcheB,durée / TâcheC>TâcheD,durée}}"
+      }
+    },
+    {
+      "name": "MPMPlaceDurees",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options}]{${1:TâcheA>TâcheB,durée / TâcheC>TâcheD,durée}}"
+      }
+    },
+    {
+      "name": "KarnaughCasesResult",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:contenu binaire des cases}}"
+      }
+    },
+    {
+      "name": "KarnaughCasesResult*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:contenu binaire des cases}}"
+      }
+    },
+    {
+      "name": "KarnaughCasesAuto",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression booléenne}}"
+      }
+    },
+    {
+      "name": "KarnaughCasesAuto*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression booléenne}}"
+      }
+    },
+    {
+      "name": "KarnaughBlocRegroup",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:coinA}}{${2:coinB}}"
+      }
+    },
+    {
+      "name": "KarnaughBlocRegroup",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:clés%keyvals}]{${1:coinA}}{${2:coinB}}"
+      }
+    },
+    {
+      "name": "SimplificationKarnaugh",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code binaire de la table}}"
+      }
+    },
+    {
+      "name": "SimplificationKarnaugh",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:clés%keyvals}]{${1:code binaire de la table}}"
+      }
+    },
+    {
+      "name": "SimplificationBooleenne",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:expression formatée}}"
+      }
+    },
+    {
+      "name": "SimplificationBooleenne",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:clés%keyvals}]{${1:expression formatée}}"
+      }
+    },
+    {
+      "name": "GrphPlaceSommets",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:liste coordonnées/sommet}}"
+      }
+    },
+    {
+      "name": "GrphTraceAretes",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:liste arêtes}}"
+      }
+    },
+    {
+      "name": "GrphTraceAretes<options tikz>",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:liste arêtes}}"
+      }
+    },
+    {
+      "name": "GrphTraceAretes",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:type%keyvals}]{${1:liste arêtes}}"
+      }
+    },
+    {
+      "name": "GrphTraceAretes",
+      "arg": {
+        "format": "[]<>{}",
+        "snippet": "[${2:type%keyvals}]<${3:options tikz}>{${1:liste arêtes}}"
+      }
+    },
+    {
+      "name": "GrphTraceAretes*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:liste arêtes}}"
+      }
+    },
+    {
+      "name": "GrphTraceAretes*<options tikz>",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:liste arêtes}}"
+      }
+    },
+    {
+      "name": "GrphTraceAretes*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:type%keyvals}]{${1:liste arêtes}}"
+      }
+    },
+    {
+      "name": "GrphTraceAretes*",
+      "arg": {
+        "format": "[]<>{}",
+        "snippet": "[${2:type%keyvals}]<${3:options tikz}>{${1:liste arêtes}}"
+      }
+    },
+    {
+      "name": "DiagrammeSagittal",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:liaisons}}"
+      }
+    },
+    {
+      "name": "DiagrammeSagittal<options TikZ>",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:liaisons}}"
+      }
+    },
+    {
+      "name": "DiagrammeSagittal",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:clés%keyvals}]{${1:liaisons}}"
+      }
+    },
+    {
+      "name": "DiagrammeSagittal",
+      "arg": {
+        "format": "[]<>{}",
+        "snippet": "[${2:clés%keyvals}]<${3:options TikZ}>{${1:liaisons}}"
+      }
+    },
+    {
+      "name": "DiagrammeSagittal*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:liaisons}}"
+      }
+    },
+    {
+      "name": "DiagrammeSagittal*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:clés%keyvals}]{${1:liaisons}}"
+      }
+    },
+    {
+      "name": "DiagrammeSagittalCompo",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:liaisons1}}{${2:liaisons2}}"
+      }
+    },
+    {
+      "name": "DiagrammeSagittalCompo<options TikZ>",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:liaisons1}}{${2:liaisons2}}"
+      }
+    },
+    {
+      "name": "DiagrammeSagittalCompo",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:clés%keyvals}]{${1:liaisons1}}{${2:liaisons2}}"
+      }
+    },
+    {
+      "name": "DiagrammeSagittalCompo",
+      "arg": {
+        "format": "[]<>{}{}",
+        "snippet": "[${3:clés%keyvals}]<${4:options TikZ}>{${1:liaisons1}}{${2:liaisons2}}"
+      }
+    },
+    {
+      "name": "DiagrammeSagittalCompo*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:liaisons1}}{${2:liaisons2}}"
+      }
+    },
+    {
+      "name": "DiagrammeSagittalCompo*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:clés%keyvals}]{${1:liaisons1}}{${2:liaisons2}}"
+      }
+    },
+    {
+      "name": "TableVerite",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:vars}}{${2:colonnes_vars}}{${3:calculs}}{${4:colonnes_calculs}}"
+      }
+    },
+    {
+      "name": "TableVerite<opts nicematrix>",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:vars}}{${2:colonnes_vars}}{${3:calculs}}{${4:colonnes_calculs}}"
+      }
+    },
+    {
+      "name": "TableVerite",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "[${5:clés%keyvals}]{${1:vars}}{${2:colonnes_vars}}{${3:calculs}}{${4:colonnes_calculs}}"
+      }
+    },
+    {
+      "name": "TableVerite",
+      "arg": {
+        "format": "[]<>{}{}{}{}",
+        "snippet": "[${5:clés%keyvals}]<${6:opts nicematrix}>{${1:vars}}{${2:colonnes_vars}}{${3:calculs}}{${4:colonnes_calculs}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "GrapheMPM"
+    },
+    {
       "name": "GrapheMPM",
-      "snippet": "<${1:options TikZ}>",
-      "keyvalindex": 4,
-      "keyvalpos": 0
+      "arg": {
+        "format": "<>",
+        "snippet": "<${1:options TikZ}>"
+      }
     },
-    "GrapheMPM[]": {
+    {
       "name": "GrapheMPM",
-      "snippet": "[${1:clés}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:clés%keyvals}]"
+      }
     },
-    "GrapheMPM[]<>": {
+    {
       "name": "GrapheMPM",
-      "snippet": "[${1:clés}]<${2:options TikZ}>",
-      "keyvalindex": 4,
-      "keyvalpos": 1
+      "arg": {
+        "format": "[]<>",
+        "snippet": "[${1:clés%keyvals}]<${2:options TikZ}>"
+      }
     },
-    "TableKarnaugh": {},
-    "TableKarnaugh<>": {
+    {
+      "name": "TableKarnaugh"
+    },
+    {
       "name": "TableKarnaugh",
-      "snippet": "<${1:options TikZ}>",
-      "keyvalindex": 5,
-      "keyvalpos": 0
+      "arg": {
+        "format": "<>",
+        "snippet": "<${1:options TikZ}>"
+      }
     },
-    "TableKarnaugh[]": {
+    {
       "name": "TableKarnaugh",
-      "snippet": "[${1:clés}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:clés%keyvals}]"
+      }
     },
-    "TableKarnaugh[]<>": {
+    {
       "name": "TableKarnaugh",
-      "snippet": "[${1:clés}]<${2:options TikZ}>",
-      "keyvalindex": 5,
-      "keyvalpos": 1
+      "arg": {
+        "format": "[]<>",
+        "snippet": "[${1:clés%keyvals}]<${2:options TikZ}>"
+      }
     },
-    "GrapheTikz": {},
-    "GrapheTikz<>": {
+    {
+      "name": "GrapheTikz"
+    },
+    {
       "name": "GrapheTikz",
-      "snippet": "<${1:options TikZ}>",
-      "keyvalindex": 6,
-      "keyvalpos": 0
+      "arg": {
+        "format": "<>",
+        "snippet": "<${1:options TikZ}>"
+      }
     },
-    "GrapheTikz[]": {
+    {
       "name": "GrapheTikz",
-      "snippet": "[${1:clés}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:clés%keyvals}]"
+      }
     },
-    "GrapheTikz[]<>": {
+    {
       "name": "GrapheTikz",
-      "snippet": "[${1:clés}]<${2:options TikZ}>",
-      "keyvalindex": 6,
-      "keyvalpos": 1
-    },
-    "MPMtache": {}
-  },
-  "options": [],
-  "keyvals": [
-    [
+      "arg": {
+        "format": "[]<>",
+        "snippet": "[${1:clés%keyvals}]<${2:options TikZ}>"
+      }
+    }
+  ],
+  "keys": {
+    "\\begin{GrapheMPM}": [
+      "CouleurDurees=",
+      "CouleurFleches=",
+      "LargeurCases\r",
+      "Epaisseur\r",
+      "Police=${1:font commands}\r",
+      "CouleurDates=",
+      "CouleurBords=",
+      "NoirBlanc",
+      "Grille={${1:xmax,ymax}}\r"
+    ],
+    "\\MPMPlaceDuree,\\MPMPlaceDurees": [
       "Coude",
-      "SensCoude=${1|HV,VH,VHV|}",
+      "SensCoude=${1|HV,VH,VHV\r|}",
       "HauteurCoude=",
       "DecalHorizDeb=",
       "DecalVertDeb=",
       "DecalHorizFin=",
       "DecalVertFin="
     ],
-    [
-      "Droit",
-      "AngleGauche",
-      "AngleDroite",
-      "Boucle"
-    ],
-    [
-      "DistElem=${1:nombre}",
-      "DistEns=${1:nombre}",
-      "LargEns=${1:nombre}",
-      "NomAppli=${1:nom}",
-      "CouleurE=",
-      "CouleurAppli=",
-      "CouleurF=",
-      "CouleurFleches=",
-      "TypeFleche=${1:type}",
-      "Offset=",
-      "Epaisseur=",
-      "Police=${1:font commands}",
-      "NoirBlanc",
-      "Labels",
-      "Ensembles=${1:nom}",
-      "PosLabels=${1|haut,bas|}"
-    ],
-    [
-      "DistElem=${1:nombre}",
-      "DistEns=${1:nombre}",
-      "LargEns=${1:nombre}",
-      "NomApplis=${1:nom1}/${2:nom2}",
-      "CouleurE=",
-      "CouleurApplis=",
-      "CouleurF=",
-      "CouleurG=",
-      "CouleurFleches=",
-      "TypeFleche=${1:type}",
-      "Offset=",
-      "Epaisseur=",
-      "Police=${1:font commands}",
-      "NoirBlanc",
-      "Labels",
-      "Ensembles=${1:nom}",
-      "PosLabels=${1|haut,bas|}"
-    ],
-    [
-      "CouleurDurees=",
-      "CouleurFleches=",
-      "LargeurCases",
-      "Epaisseur",
-      "Police=${1:font commands}",
-      "CouleurDates=",
-      "CouleurBords=",
-      "NoirBlanc",
-      "Grille={${1:xmax,ymax}}"
-    ],
-    [
+    "\\begin{TableKarnaugh}": [
       "Couleur=",
       "Unite=",
-      "Variables=${1:Gauche/Haut/Bas}",
+      "Variables=${1:Gauche/Haut/Bas}\r",
       "Swap",
       "Aide",
       "Epaisseur=",
@@ -385,23 +444,94 @@
       "StyleAlternatif",
       "AideAlt",
       "PoliceTT",
-      "PosVarLaterale=${1|Gauche,Droite|}",
+      "PosVarLaterale=${1|Gauche,Droite\r|}",
       "Legende"
     ],
-    [
-      "Police=${1:font commands}",
-      "Poids=${1:font commands}",
+    "\\KarnaughBlocRegroup": [
+      "Couleur=",
+      "Type=${1|Centre,Gauche,Droite\r|}",
+      "Decalage="
+    ],
+    "\\SimplificationKarnaugh": [
+      "Couleurs=\r",
+      "Variables=\r",
+      "Swap",
+      "Contraire",
+      "Espace",
+      "StyleAlternatif"
+    ],
+    "\\SimplificationBooleenne": [
+      "Enonce",
+      "Variables",
+      "Contraire=${1:a/b/c}\r",
+      "Espace"
+    ],
+    "\\begin{GrapheTikz}": [
+      "Police=${1:font commands}\r",
+      "Poids=${1:font commands}\r",
       "CouleurSommets=",
       "CouleurFleches=",
-      "TypeSommets=${1:type}",
-      "Epaisseur=${1:épaisseur}",
+      "TypeSommets=${1:type}\r",
+      "Epaisseur=${1:épaisseur}\r",
       "Unite=",
       "CouleurFT=",
-      "Grille={${1:xmax,ymax}}",
+      "Grille={${1:xmax,ymax}}\r",
       "DimensionSommets=",
-      "PositionFleches=${1|Milieu,Fin|}",
-      "EchelleFleches=${1:nombre}",
-      "TypeFleche=${1:type}"
+      "PositionFleches=${1|Milieu,Fin\r|}",
+      "EchelleFleches=${1:nombre}\r",
+      "TypeFleche=${1:type}\r"
+    ],
+    "\\GrphTraceAretes,\\GrphTraceAretes*": [
+      "Droit\r",
+      "AngleGauche\r",
+      "AngleDroite\r",
+      "Boucle\r"
+    ],
+    "\\DiagrammeSagittal,\\DiagrammeSagittal*": [
+      "DistElem=${1:nombre}\r",
+      "DistEns=${1:nombre}\r",
+      "LargEns=${1:nombre}\r",
+      "NomAppli=${1:nom}\r",
+      "CouleurE=",
+      "CouleurAppli=",
+      "CouleurF=",
+      "CouleurFleches=",
+      "TypeFleche=${1:type}\r",
+      "Offset=",
+      "Epaisseur=",
+      "Police=${1:font commands}\r",
+      "NoirBlanc",
+      "Labels",
+      "Ensembles=${1:nom}\r",
+      "PosLabels=${1|haut,bas\r|}"
+    ],
+    "\\DiagrammeSagittalCompo,\\DiagrammeSagittalCompo*": [
+      "DistElem=${1:nombre}\r",
+      "DistEns=${1:nombre}\r",
+      "LargEns=${1:nombre}\r",
+      "NomApplis=${1:nom1}/${2:nom2}\r",
+      "CouleurE=",
+      "CouleurApplis=",
+      "CouleurF=",
+      "CouleurG=",
+      "CouleurFleches=",
+      "TypeFleche=${1:type}\r",
+      "Offset=",
+      "Epaisseur=",
+      "Police=${1:font commands}\r",
+      "NoirBlanc",
+      "Labels",
+      "Ensembles=${1:nom}\r",
+      "PosLabels=${1|haut,bas\r|}"
+    ],
+    "\\TableVerite": [
+      "VF=${1:vrai}/${2:faux}\r",
+      "Swap",
+      "LargeursColonnes=\r",
+      "CouleurEnonce=",
+      "CodeAvant=${1:code}\r",
+      "CodeApres=${1:code}\r"
     ]
-  ]
+  },
+  "args": []
 }

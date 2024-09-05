@@ -1,76 +1,175 @@
 {
-  "includes": {},
-  "macros": {
-    "newindex{}": {
-      "snippet": "newindex{${1:shortcut}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "newindex",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:shortcut}}"
+      }
     },
-    "newindex[]{}": {
-      "snippet": "newindex[${2:index name}]{${1:shortcut}}"
+    {
+      "name": "newindex",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:index name}]{${1:shortcut}}"
+      }
     },
-    "sindex{}": {
-      "snippet": "sindex{${1:entry}}"
+    {
+      "name": "sindex",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:entry}}"
+      }
     },
-    "sindex[]{}": {
-      "snippet": "sindex[${2:shortcut}]{${1:entry}}"
+    {
+      "name": "sindex",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:shortcut}]{${1:entry}}"
+      }
     },
-    "index[]{}": {
-      "snippet": "index[${2:shortcut}]{${1:entry}}",
-      "option": "useindex"
+    {
+      "name": "index",
+      "if": "useindex",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:shortcut}]{${1:entry}}"
+      }
     },
-    "AtWriteToIndex{}{}": {
-      "snippet": "AtWriteToIndex{${1:shortcut}}{${2:code}}"
+    {
+      "name": "AtWriteToIndex",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:shortcut}}{${2:code}}"
+      }
     },
-    "AtNextWriteToIndex{}{}": {
-      "snippet": "AtNextWriteToIndex{${1:shortcut}}{${2:code}}"
+    {
+      "name": "AtNextWriteToIndex",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:shortcut}}{${2:code}}"
+      }
     },
-    "newprotectedindex{}": {
-      "snippet": "newprotectedindex{${1:shortcut}}"
+    {
+      "name": "newprotectedindex",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:shortcut}}"
+      }
     },
-    "newprotectedindex[]{}": {
-      "snippet": "newprotectedindex[${2:index name}]{${1:shortcut}}"
+    {
+      "name": "newprotectedindex",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:index name}]{${1:shortcut}}"
+      }
     },
-    "printindex": {},
-    "printindex[]": {
-      "snippet": "printindex[${1:shortcut}]"
+    {
+      "name": "printindex"
     },
-    "printindex[][]": {
-      "snippet": "printindex[${1:shortcut}][${2:index name}]"
+    {
+      "name": "printindex",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:shortcut}]"
+      }
     },
-    "printindex*": {},
-    "printsubindex": {},
-    "printsubindex*": {},
-    "setindexpreamble{}": {
-      "snippet": "setindexpreamble{${1:preamble}}"
+    {
+      "name": "printindex",
+      "arg": {
+        "format": "[][]",
+        "snippet": "[${1:shortcut}][${2:index name}]"
+      }
     },
-    "setindexpreamble[]{}": {
-      "snippet": "setindexpreamble[${2:shortcut}]{${1:preamble}}"
+    {
+      "name": "printindex*"
     },
-    "useindexpreamble": {},
-    "useindexpreamble[]": {
-      "snippet": "useindexpreamble[${1:commands}]"
+    {
+      "name": "printsubindex"
     },
-    "indexshortcut": {},
-    "extendtheindex{}{}{}{}": {
-      "snippet": "extendtheindex{${1:before begin}}{${2:after begin}}{${3:before end}}{${4:after end}}"
+    {
+      "name": "printsubindex*"
     },
-    "printindices": {},
-    "see{}{}": {
-      "snippet": "see{${1:text}}{${2:page number}}"
+    {
+      "name": "setindexpreamble",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:preamble%text}}"
+      }
     },
-    "seealso{}{}": {
-      "snippet": "seealso{${1:text}}{${2:page number}}"
+    {
+      "name": "setindexpreamble",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:shortcut}]{${1:preamble%text}}"
+      }
     },
-    "seename": {},
-    "alsoname": {}
-  },
-  "envs": {},
-  "options": [
-    "split",
-    "makeindex",
-    "useindex",
-    "allintoone",
-    "protected",
-    "idxcommands"
+    {
+      "name": "useindexpreamble"
+    },
+    {
+      "name": "useindexpreamble",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:commands}]"
+      }
+    },
+    {
+      "name": "indexshortcut",
+      "unusual": true
+    },
+    {
+      "name": "extendtheindex",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:before begin}}{${2:after begin}}{${3:before end}}{${4:after end}}"
+      }
+    },
+    {
+      "name": "printindices",
+      "unusual": true
+    },
+    {
+      "name": "see",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:page number}}"
+      }
+    },
+    {
+      "name": "seealso",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:page number}}"
+      }
+    },
+    {
+      "name": "seename",
+      "unusual": true
+    },
+    {
+      "name": "alsoname",
+      "unusual": true
+    }
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/splitidx#c": [
+      "split\r",
+      "makeindex\r",
+      "useindex\r",
+      "allintoone\r",
+      "protected\r",
+      "idxcommands\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/splitidx#c"
+  ]
 }

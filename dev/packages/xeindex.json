@@ -1,26 +1,52 @@
 {
-  "includes": {
-    "makeidx": [],
-    "xesearch": []
-  },
-  "macros": {
-    "IndexList{}{}": {
-      "snippet": "IndexList{${1:name}}{${2:list of entries}}"
+  "deps": [
+    {
+      "name": "makeidx"
     },
-    "IndexList*{}{}": {
-      "snippet": "IndexList*{${1:name}}{${2:list of entries}}"
-    },
-    "StopIndexList{}": {
-      "snippet": "StopIndexList{${1:lists}}"
-    },
-    "StopIndex": {},
-    "NoIndex{}": {
-      "snippet": "NoIndex{${1:text}}"
+    {
+      "name": "xesearch"
     }
-  },
-  "envs": {},
-  "options": [
-    "mark"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "IndexList",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:list of entries}}"
+      }
+    },
+    {
+      "name": "IndexList*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:list of entries}}"
+      }
+    },
+    {
+      "name": "StopIndexList",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:lists}}"
+      }
+    },
+    {
+      "name": "StopIndex"
+    },
+    {
+      "name": "NoIndex",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/xeindex#c": [
+      "mark\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/xeindex#c"
+  ]
 }

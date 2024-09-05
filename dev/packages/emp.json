@@ -1,132 +1,158 @@
 {
-  "includes": {
-    "graphics": [],
-    "verbatim": []
-  },
-  "macros": {
-    "empuse{}": {
-      "snippet": "empuse{${1:name}}"
+  "deps": [
+    {
+      "name": "graphics"
     },
-    "empTeX{}": {
-      "snippet": "empTeX{${1:LaTeX prelude}}"
-    },
-    "empaddtoTeX{}": {
-      "snippet": "empaddtoTeX{${1:LaTeX code}}"
-    },
-    "empprelude{}": {
-      "snippet": "empprelude{${1:METAPOST prelude}}"
-    },
-    "empaddtoprelude{}": {
-      "snippet": "empaddtoprelude{${1:METAPOST code}}"
-    },
-    "empwrite{}": {
-      "snippet": "empwrite{${1:METAPOST code}}"
-    },
-    "theempfig": {},
-    "theempfile": {},
-    "RCS{}{}": {
-      "snippet": "RCS{${1:arg1}}{${2:arg2}}"
-    },
-    "endRCS": {},
-    "empfile": {},
-    "empfile[]": {
-      "snippet": "empfile[${1:METAPOST file}]"
-    },
-    "endempfile": {},
-    "emp()": {
-      "snippet": "emp(${1:width},${2:height})"
-    },
-    "emp[]()": {
-      "snippet": "emp[${1:name}](${2:width},${3:height})"
-    },
-    "endemp": {},
-    "empdef()": {
-      "snippet": "empdef(${1:width},${2:height})"
-    },
-    "empdef[]()": {
-      "snippet": "empdef[${1:name}](${2:width},${3:height})"
-    },
-    "endempdef": {},
-    "empcmds": {},
-    "endempcmds": {},
-    "empgraph()": {
-      "snippet": "empgraph(${1:width},${2:height})"
-    },
-    "empgraph[]()": {
-      "snippet": "empgraph[${1:name}](${2:width},${3:height})"
-    },
-    "endempgraph": {},
-    "filedate": {},
-    "filemaintainer": {},
-    "filename": {},
-    "filerevision": {},
-    "fileversion": {}
-  },
-  "envs": {
-    "empfile": {},
-    "empfile[]": {
-      "name": "empfile",
-      "snippet": "[${1:METAPOST file}]"
-    },
-    "emp(width,height)": {
-      "name": "emp",
-      "snippet": "(${1:width},${2:height})"
-    },
-    "emp[](width,height)": {
-      "name": "emp",
-      "snippet": "[${1:name}](${2:width},${3:height})"
-    },
-    "empdef(width,height)": {
-      "name": "empdef",
-      "snippet": "(${1:width},${2:height})"
-    },
-    "empdef[](width,height)": {
-      "name": "empdef",
-      "snippet": "[${1:name}](${2:width},${3:height})"
-    },
-    "empcmds": {},
-    "empgraph(width,height)": {
-      "name": "empgraph",
-      "snippet": "(${1:width},${2:height})"
-    },
-    "empgraph[](width,height)": {
-      "name": "empgraph",
-      "snippet": "[${1:name}](${2:width},${3:height})"
+    {
+      "name": "verbatim"
     }
-  },
-  "options": [
-    "unknownkeysallowed",
-    "draft",
-    "final",
-    "hiresbb",
-    "demo",
-    "setpagesize",
-    "nosetpagesize",
-    "dvips",
-    "xdvi",
-    "dvipdf",
-    "dvipdfm",
-    "dvipdfmx",
-    "xetex",
-    "pdftex",
-    "luatex",
-    "dvisvgm",
-    "dvipsone",
-    "dviwindo",
-    "emtex",
-    "dviwin",
-    "oztex",
-    "textures",
-    "pctexps",
-    "pctexwin",
-    "pctexhp",
-    "pctex32",
-    "truetex",
-    "tcidvi",
-    "vtex",
-    "debugshow",
-    "hiderotate",
-    "hidescale"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "empuse",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "empTeX",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:LaTeX prelude%definition}}"
+      }
+    },
+    {
+      "name": "empaddtoTeX",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:LaTeX code%definition}}"
+      }
+    },
+    {
+      "name": "empprelude",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:METAPOST prelude%definition}}"
+      }
+    },
+    {
+      "name": "empaddtoprelude",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:METAPOST code%definition}}"
+      }
+    },
+    {
+      "name": "empwrite",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:METAPOST code%definition}}"
+      }
+    },
+    {
+      "name": "theempfig",
+      "unusual": true
+    },
+    {
+      "name": "theempfile",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "empfile"
+    },
+    {
+      "name": "empfile",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:METAPOST file%file}]"
+      }
+    },
+    {
+      "name": "emp",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:width},${2:height})"
+      }
+    },
+    {
+      "name": "emp",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:name}](${2:width},${3:height})"
+      }
+    },
+    {
+      "name": "empdef",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:width},${2:height})"
+      }
+    },
+    {
+      "name": "empdef",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:name}](${2:width},${3:height})"
+      }
+    },
+    {
+      "name": "empcmds"
+    },
+    {
+      "name": "empgraph",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:width},${2:height})"
+      }
+    },
+    {
+      "name": "empgraph",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:name}](${2:width},${3:height})"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/emp#c": [
+      "unknownkeysallowed\r",
+      "draft\r",
+      "final\r",
+      "hiresbb\r",
+      "demo\r",
+      "setpagesize\r",
+      "nosetpagesize\r",
+      "dvips\r",
+      "xdvi\r",
+      "dvipdf\r",
+      "dvipdfm\r",
+      "dvipdfmx\r",
+      "xetex\r",
+      "pdftex\r",
+      "luatex\r",
+      "dvisvgm\r",
+      "dvipsone\r",
+      "dviwindo\r",
+      "emtex\r",
+      "dviwin\r",
+      "oztex\r",
+      "textures\r",
+      "pctexps\r",
+      "pctexwin\r",
+      "pctexhp\r",
+      "pctex32\r",
+      "truetex\r",
+      "tcidvi\r",
+      "vtex\r",
+      "debugshow\r",
+      "hiderotate\r",
+      "hidescale\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/emp#c"
+  ]
 }

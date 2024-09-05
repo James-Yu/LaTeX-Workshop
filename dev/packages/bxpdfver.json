@@ -1,48 +1,82 @@
 {
-  "includes": {
-    "ifthen": []
-  },
-  "macros": {
-    "setpdfversion{}": {
-      "snippet": "setpdfversion{${1:version}}"
-    },
-    "suppresspdfcompression": {},
-    "suppresspdfobjcompression": {},
-    "setpdfdecimaldigits{}": {
-      "snippet": "setpdfdecimaldigits{${1:precision}}"
-    },
-    "preservepdfdestinations": {},
-    "bxDebug{}": {
-      "snippet": "bxDebug{${1:text}}"
-    },
-    "bxpdfverDecimalDigits": {},
-    "bxpdfverMajorVersion": {},
-    "bxpdfverMinorVersion": {},
-    "bxpdfverPkResolution": {},
-    "setpdfpkresolution{}": {
-      "snippet": "setpdfpkresolution{${1:number}}"
+  "deps": [
+    {
+      "name": "ifthen"
     }
-  },
-  "envs": {},
-  "options": [
-    "1.4",
-    "1.5",
-    "1.6",
-    "1.7",
-    "2.0",
-    "nocompress",
-    "compress",
-    "noobjcompress",
-    "objcompress",
-    "native",
-    "dvipdfmx",
-    "dvips",
-    "dviout",
-    "xdvi",
-    "disabled",
-    "nodvidriver",
-    "new-dvipdfmx",
-    "lenient"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "setpdfversion",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:version}}"
+      }
+    },
+    {
+      "name": "suppresspdfcompression"
+    },
+    {
+      "name": "suppresspdfobjcompression"
+    },
+    {
+      "name": "setpdfdecimaldigits",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:precision}}"
+      }
+    },
+    {
+      "name": "preservepdfdestinations"
+    },
+    {
+      "name": "bxpdfverDecimalDigits",
+      "unusual": true
+    },
+    {
+      "name": "bxpdfverMajorVersion",
+      "unusual": true
+    },
+    {
+      "name": "bxpdfverMinorVersion",
+      "unusual": true
+    },
+    {
+      "name": "bxpdfverPkResolution",
+      "unusual": true
+    },
+    {
+      "name": "setpdfpkresolution",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/bxpdfver#c": [
+      "1.4\r",
+      "1.5\r",
+      "1.6\r",
+      "1.7\r",
+      "2.0\r",
+      "nocompress\r",
+      "compress\r",
+      "noobjcompress\r",
+      "objcompress\r",
+      "native\r",
+      "dvipdfmx\r",
+      "dvips\r",
+      "dviout\r",
+      "xdvi\r",
+      "disabled\r",
+      "nodvidriver\r",
+      "new-dvipdfmx\r",
+      "lenient\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/bxpdfver#c"
+  ]
 }

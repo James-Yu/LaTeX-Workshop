@@ -1,63 +1,141 @@
 {
-  "includes": {
-    "geometry": [],
-    "datatool": [],
-    "multicol": [],
-    "array": [],
-    "tabularx": [],
-    "longtable": [],
-    "dcolumn": [],
-    "fancyhdr": []
-  },
-  "macros": {
-    "ConfigPrefix{}": {
-      "snippet": "ConfigPrefix{${1:file prefix}}"
+  "deps": [
+    {
+      "name": "geometry"
     },
-    "InputFile{}": {
-      "snippet": "InputFile{${1:CSV file}}"
+    {
+      "name": "datatool"
     },
-    "waybill{}": {
-      "snippet": "waybill{${1:number}}"
+    {
+      "name": "multicol"
     },
-    "shippingdate{}": {
-      "snippet": "shippingdate{${1:date}}"
+    {
+      "name": "array"
     },
-    "toaddress{}": {
-      "snippet": "toaddress{${1:address}}"
+    {
+      "name": "tabularx"
     },
-    "destination{}": {
-      "snippet": "destination{${1:country}}"
+    {
+      "name": "longtable"
     },
-    "carrier{}": {
-      "snippet": "carrier{${1:carrier name}}"
+    {
+      "name": "dcolumn"
     },
-    "weight{}{}": {
-      "snippet": "weight{${1:pounds}}{${2:ounces}}"
+    {
+      "name": "fancyhdr"
+    }
+  ],
+  "macros": [
+    {
+      "name": "ConfigPrefix",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file prefix}}"
+      }
     },
-    "packages{}": {
-      "snippet": "packages{${1:number}}"
+    {
+      "name": "InputFile",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:CSV file%file}}"
+      }
     },
-    "packingcost{}": {
-      "snippet": "packingcost{${1:cost}}"
+    {
+      "name": "waybill",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
     },
-    "shippingcost{}": {
-      "snippet": "shippingcost{${1:cost}}"
+    {
+      "name": "shippingdate",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:date}}"
+      }
     },
-    "insurancecost{}": {
-      "snippet": "insurancecost{${1:cost}}"
+    {
+      "name": "toaddress",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:address%text}}"
+      }
     },
-    "fromaddress{}": {
-      "snippet": "fromaddress{${1:address}}"
+    {
+      "name": "destination",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:country}}"
+      }
     },
-    "shipper{}": {
-      "snippet": "shipper{${1:name}}"
+    {
+      "name": "carrier",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:carrier name}}"
+      }
     },
-    "location{}": {
-      "snippet": "location{${1:location}}"
+    {
+      "name": "weight",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:pounds}}{${2:ounces}}"
+      }
     },
-    "printinvoice": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "packages",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "packingcost",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cost}}"
+      }
+    },
+    {
+      "name": "shippingcost",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cost}}"
+      }
+    },
+    {
+      "name": "insurancecost",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cost}}"
+      }
+    },
+    {
+      "name": "fromaddress",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:address%text}}"
+      }
+    },
+    {
+      "name": "shipper",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "location",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:location%text}}"
+      }
+    },
+    {
+      "name": "printinvoice"
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

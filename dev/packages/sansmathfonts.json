@@ -1,17 +1,25 @@
 {
-  "includes": {},
-  "macros": {
-    "mathserif{}": {
-      "snippet": "mathserif{${1:text}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "mathserif",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [
-    "notmath",
-    "onlytext",
-    "onlymath",
-    "nottext",
-    "I"
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/sansmathfonts#c": [
+      "notmath\r",
+      "onlytext\r",
+      "onlymath\r",
+      "nottext\r",
+      "I\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/sansmathfonts#c"
+  ]
 }

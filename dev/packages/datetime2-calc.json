@@ -1,60 +1,142 @@
 {
-  "includes": {
-    "pgfkeys": [],
-    "pgfcalendar": []
-  },
-  "macros": {
-    "DTMsavejulianday{}{}": {
-      "snippet": "DTMsavejulianday{${1:name}}{${2:number}}"
+  "deps": [
+    {
+      "name": "pgfkeys"
     },
-    "DTMsaveddatetojulianday{}{}": {
-      "snippet": "DTMsaveddatetojulianday{${1:name}}{${2:register}}"
+    {
+      "name": "pgfcalendar"
+    }
+  ],
+  "macros": [
+    {
+      "name": "DTMsavejulianday",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:number}}"
+      }
     },
-    "DTMsaveddateoffsettojulianday{}{}{}": {
-      "snippet": "DTMsaveddateoffsettojulianday{${1:name}}{${2:offset}}{${3:register}}"
+    {
+      "name": "DTMsaveddatetojulianday",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:register}}"
+      }
     },
-    "DTMifdate{}{}{}{}": {
-      "snippet": "DTMifdate{${1:name}}{${2:test}}{${3:true}}{${4:false}}"
+    {
+      "name": "DTMsaveddateoffsettojulianday",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:offset}}{${3:register}}"
+      }
     },
-    "DTMsaveddatediff{}{}{}": {
-      "snippet": "DTMsaveddatediff{${1:name1}}{${2:name2}}{${3:register}}"
+    {
+      "name": "DTMifdate",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:name}}{${2:test}}{${3:true}}{${4:false}}"
+      }
     },
-    "DTMsaveaszulutime{}{}{}{}{}{}{}{}{}": {
-      "snippet": "DTMsaveaszulutime{${1:name}}{${2:YYYY}}{${3:MM}}{${4:DD}}{${5:hh}}{${6:mm}}{${7:ss}}{${8:TZh}}{${9:TZm}}"
+    {
+      "name": "DTMsaveddatediff",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name1}}{${2:name2}}{${3:register}}"
+      }
     },
-    "DTMtozulu{}{}": {
-      "snippet": "DTMtozulu{${1:name1}}{${2:name2}}"
+    {
+      "name": "DTMsaveaszulutime",
+      "arg": {
+        "format": "{}{}{}{}{}{}{}{}{}",
+        "snippet": "{${1:name}}{${2:YYYY}}{${3:MM}}{${4:DD}}{${5:hh}}{${6:mm}}{${7:ss}}{${8:TZh}}{${9:TZm}}"
+      }
     },
-    "DTMcomputedayofweekindex{}{}": {
-      "snippet": "DTMcomputedayofweekindex{${1:YYYY-MM-DD}}{${2:cmd}}"
+    {
+      "name": "DTMtozulu",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name1}}{${2:name2}}"
+      }
     },
-    "DTMweekdayname{}": {
-      "snippet": "DTMweekdayname{${1:day}}"
+    {
+      "name": "DTMcomputedayofweekindex",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:YYYY-MM-DD}}{${2:cmd}}"
+      }
     },
-    "DTMWeekdayname{}": {
-      "snippet": "DTMWeekdayname{${1:day}}"
+    {
+      "name": "DTMweekdayname",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:day}}"
+      }
     },
-    "DTMshortweekdayname{}": {
-      "snippet": "DTMshortweekdayname{${1:day}}"
+    {
+      "name": "DTMWeekdayname",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:day}}"
+      }
     },
-    "DTMshortWeekdayname{}": {
-      "snippet": "DTMshortWeekdayname{${1:day}}"
+    {
+      "name": "DTMshortweekdayname",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:day}}"
+      }
     },
-    "DTMordinal{}": {
-      "snippet": "DTMordinal{${1:number}}"
+    {
+      "name": "DTMshortWeekdayname",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:day}}"
+      }
     },
-    "dtmnamewarning{}": {
-      "snippet": "dtmnamewarning{${1:cmd}}"
+    {
+      "name": "DTMordinal",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
     },
-    "dtmSundayIndex": {},
-    "dtmMondayIndex": {},
-    "dtmTuesdayIndex": {},
-    "dtmWednesdayIndex": {},
-    "dtmThursdayIndex": {},
-    "dtmFridayIndex": {},
-    "dtmSaturdayIndex": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "dtmnamewarning",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cmd}}"
+      }
+    },
+    {
+      "name": "dtmSundayIndex",
+      "unusual": true
+    },
+    {
+      "name": "dtmMondayIndex",
+      "unusual": true
+    },
+    {
+      "name": "dtmTuesdayIndex",
+      "unusual": true
+    },
+    {
+      "name": "dtmWednesdayIndex",
+      "unusual": true
+    },
+    {
+      "name": "dtmThursdayIndex",
+      "unusual": true
+    },
+    {
+      "name": "dtmFridayIndex",
+      "unusual": true
+    },
+    {
+      "name": "dtmSaturdayIndex",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

@@ -1,54 +1,128 @@
 {
-  "includes": {
-    "fontspec": []
+  "deps": [
+    {
+      "name": "fontspec"
+    }
+  ],
+  "macros": [
+    {
+      "name": "fakesubscript",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "fakesuperscript",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "textsubscript*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "textsuperscript*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "realsubscript",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "realsuperscript",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "footnotemarkfont",
+      "unusual": true
+    },
+    {
+      "name": "textsubsuperscript",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:sub}}{${2:super}}"
+      }
+    },
+    {
+      "name": "textsubsuperscript",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:align%keyvals}]{${1:sub}}{${2:super}}"
+      }
+    },
+    {
+      "name": "textsubsuperscript*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:sub}}{${2:super}}"
+      }
+    },
+    {
+      "name": "textsubsuperscript*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:align%keyvals}]{${1:sub}}{${2:super}}"
+      }
+    },
+    {
+      "name": "textsupersubscript",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:super}}{${2:sub}}"
+      }
+    },
+    {
+      "name": "textsupersubscript",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:align%keyvals}]{${1:super}}{${2:sub}}"
+      }
+    },
+    {
+      "name": "textsupersubscript*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:super}}{${2:sub}}"
+      }
+    },
+    {
+      "name": "textsupersubscript*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:align%keyvals}]{${1:super}}{${2:sub}}"
+      }
+    },
+    {
+      "name": "subsupersep",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\textsubsuperscript,\\textsubsuperscript*,\\textsupersubscript,\\textsupersubscript*": [
+      "l\r",
+      "c\r",
+      "r\r"
+    ]
   },
-  "macros": {
-    "fakesubscript{}": {
-      "snippet": "fakesubscript{${1:text}}"
-    },
-    "fakesuperscript{}": {
-      "snippet": "fakesuperscript{${1:text}}"
-    },
-    "textsubscript*{}": {
-      "snippet": "textsubscript*{${1:text}}"
-    },
-    "textsuperscript*{}": {
-      "snippet": "textsuperscript*{${1:text}}"
-    },
-    "realsubscript{}": {
-      "snippet": "realsubscript{${1:text}}"
-    },
-    "realsuperscript{}": {
-      "snippet": "realsuperscript{${1:text}}"
-    },
-    "footnotemarkfont": {},
-    "textsubsuperscript{}{}": {
-      "snippet": "textsubsuperscript{${1:sub}}{${2:super}}"
-    },
-    "textsubsuperscript[]{}{}": {
-      "snippet": "textsubsuperscript[${3:align}]{${1:sub}}{${2:super}}"
-    },
-    "textsubsuperscript*{}{}": {
-      "snippet": "textsubsuperscript*{${1:sub}}{${2:super}}"
-    },
-    "textsubsuperscript*[]{}{}": {
-      "snippet": "textsubsuperscript*[${3:align}]{${1:sub}}{${2:super}}"
-    },
-    "textsupersubscript{}{}": {
-      "snippet": "textsupersubscript{${1:super}}{${2:sub}}"
-    },
-    "textsupersubscript[]{}{}": {
-      "snippet": "textsupersubscript[${3:align}]{${1:super}}{${2:sub}}"
-    },
-    "textsupersubscript*{}{}": {
-      "snippet": "textsupersubscript*{${1:super}}{${2:sub}}"
-    },
-    "textsupersubscript*[]{}{}": {
-      "snippet": "textsupersubscript*[${3:align}]{${1:super}}{${2:sub}}"
-    },
-    "subsupersep": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

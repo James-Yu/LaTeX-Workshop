@@ -1,268 +1,654 @@
 {
-  "includes": {
-    "xcolor": [],
-    "soulutf8": [],
-    "ulem": [],
-    "etoolbox": [],
-    "environ": [],
-    "xstring": [],
-    "csquotes": [],
-    "mdframed": [],
-    "tocloft": [],
-    "hyperref": []
-  },
-  "macros": {
-    "coopwritingversion": {},
-    "printcoopwritingversion": {},
-    "cwnamedef{}{}{}": {
-      "snippet": "cwnamedef{${1:csname}}{${2:color}}{${3:author name}}"
+  "deps": [
+    {
+      "name": "xcolor"
     },
-    "cwauthor{}": {
-      "snippet": "cwauthor{${1:comment}}"
+    {
+      "name": "soulutf8"
     },
-    "cwauthor[]{}": {
-      "snippet": "cwauthor[${2:selection}]{${1:comment}}"
+    {
+      "name": "ulem"
     },
-    "cweditor{}": {
-      "snippet": "cweditor{${1:comment}}"
+    {
+      "name": "etoolbox"
     },
-    "cweditor[]{}": {
-      "snippet": "cweditor[${2:selection}]{${1:comment}}"
+    {
+      "name": "environ"
     },
-    "cwauthorr{}{}": {
-      "snippet": "cwauthorr{${1:comment}}{${2:label}}"
+    {
+      "name": "xstring"
     },
-    "cwauthorr[]{}{}": {
-      "snippet": "cwauthorr[${3:selection}]{${1:comment}}{${2:label}}"
+    {
+      "name": "csquotes"
     },
-    "cweditorr{}{}": {
-      "snippet": "cweditorr{${1:comment}}{${2:label}}"
+    {
+      "name": "mdframed"
     },
-    "cweditorr[]{}{}": {
-      "snippet": "cweditorr[${3:selection}]{${1:comment}}{${2:label}}"
+    {
+      "name": "tocloft"
     },
-    "cwauthorx{}": {
-      "snippet": "cwauthorx{${1:comment}}"
-    },
-    "cwauthorx[]{}": {
-      "snippet": "cwauthorx[${2:selection}]{${1:comment}}"
-    },
-    "cweditorx{}": {
-      "snippet": "cweditorx{${1:comment}}"
-    },
-    "cweditorx[]{}": {
-      "snippet": "cweditorx[${2:selection}]{${1:comment}}"
-    },
-    "cwauthorrx{}{}": {
-      "snippet": "cwauthorrx{${1:comment}}{${2:label}}"
-    },
-    "cwauthorrx[]{}{}": {
-      "snippet": "cwauthorrx[${3:selection}]{${1:comment}}{${2:label}}"
-    },
-    "cweditorrx{}{}": {
-      "snippet": "cweditorrx{${1:comment}}{${2:label}}"
-    },
-    "cweditorrx[]{}{}": {
-      "snippet": "cweditorrx[${3:selection}]{${1:comment}}{${2:label}}"
-    },
-    "cwauthorsug{}": {
-      "snippet": "cwauthorsug{${1:suggested text}}"
-    },
-    "cwauthorsug[]{}": {
-      "snippet": "cwauthorsug[${2:comment}]{${1:suggested text}}"
-    },
-    "cweditorsug{}": {
-      "snippet": "cweditorsug{${1:suggested text}}"
-    },
-    "cweditorsug[]{}": {
-      "snippet": "cweditorsug[${2:comment}]{${1:suggested text}}"
-    },
-    "cwauthorrem{}": {
-      "snippet": "cwauthorrem{${1:suggested removal}}"
-    },
-    "cwauthorrem[]{}": {
-      "snippet": "cwauthorrem[${2:comment}]{${1:suggested removal}}"
-    },
-    "cweditorrem{}": {
-      "snippet": "cweditorrem{${1:suggested removal}}"
-    },
-    "cweditorrem[]{}": {
-      "snippet": "cweditorrem[${2:comment}]{${1:suggested removal}}"
-    },
-    "cwauthorswap{}{}": {
-      "snippet": "cwauthorswap{${1:suggested removal}}{${2:suggested insertion}}"
-    },
-    "cwauthorswap[]{}{}": {
-      "snippet": "cwauthorswap[${3:comment}]{${1:suggested removal}}{${2:suggested insertion}}"
-    },
-    "cweditorswap{}{}": {
-      "snippet": "cweditorswap{${1:suggested removal}}{${2:suggested insertion}}"
-    },
-    "cweditorswap[]{}{}": {
-      "snippet": "cweditorswap[${3:comment}]{${1:suggested removal}}{${2:suggested insertion}}"
-    },
-    "cwsetcommwarn{}": {
-      "snippet": "cwsetcommwarn{${1:symbol}}"
-    },
-    "cwanon{}": {
-      "snippet": "cwanon{${1:text}}"
-    },
-    "cwanoncite{}": {
-      "snippet": "cwanoncite{${1:keylist}}"
-    },
-    "cwanoncite[]{}": {
-      "snippet": "cwanoncite[${2:prefix}]{${1:keylist}}"
-    },
-    "cwanoncitet{}": {
-      "snippet": "cwanoncitet{${1:keylist}}"
-    },
-    "cwanoncitet[]{}": {
-      "snippet": "cwanoncitet[${2:prefix}]{${1:keylist}}"
-    },
-    "cwanoncitep{}": {
-      "snippet": "cwanoncitep{${1:keylist}}"
-    },
-    "cwanoncitep[]{}": {
-      "snippet": "cwanoncitep[${2:prefix}]{${1:keylist}}"
-    },
-    "cwdefanontext{}": {
-      "snippet": "cwdefanontext{${1:text}}"
-    },
-    "cwdefanoncitetext{}": {
-      "snippet": "cwdefanoncitetext{${1:text}}"
-    },
-    "cwdefanoncitettext{}": {
-      "snippet": "cwdefanoncitettext{${1:text}}"
-    },
-    "cwdefanonciteptext{}": {
-      "snippet": "cwdefanonciteptext{${1:text}}"
-    },
-    "cssetdraftcolor{}": {
-      "snippet": "cssetdraftcolor{${1:color}}"
-    },
-    "cwsubject{}": {
-      "snippet": "cwsubject{${1:text}}"
-    },
-    "cwsubject[]{}": {
-      "snippet": "cwsubject[${2:color}]{${1:text}}"
-    },
-    "cwsetsubjectcolor{}": {
-      "snippet": "cwsetsubjectcolor{${1:color}}"
-    },
-    "cwmain{}": {
-      "snippet": "cwmain{${1:text}}"
-    },
-    "cwmain[]{}": {
-      "snippet": "cwmain[${2:color}]{${1:text}}"
-    },
-    "cwsetmaincolor{}": {
-      "snippet": "cwsetmaincolor{${1:color}}"
-    },
-    "cwmainemphasis{}": {
-      "snippet": "cwmainemphasis{${1:text}}"
-    },
-    "listofcomments": {},
-    "listofcitationneeds": {},
-    "listofsubjects": {},
-    "todo{}": {
-      "snippet": "todo{${1:text}}"
-    },
-    "todo[]{}": {
-      "snippet": "todo[${2:inline}]{${1:text}}"
-    },
-    "cwdefinetodocolor{}": {
-      "snippet": "cwdefinetodocolor{${1:color}}"
-    },
-    "pleasecite": {},
-    "pleasecite[]": {
-      "snippet": "pleasecite[${1:text}]"
-    },
-    "cwcommentstitle": {},
-    "cwdrafttitle": {},
-    "cwsubjtitle": {},
-    "cwcitationstitle": {},
-    "cwpleasecitetext": {},
-    "cwpleasecitemessage": {},
-    "cwpleasecitemarginnote": {},
-    "cwautor{}{}{}": {
-      "snippet": "cwautor{${1:csname}}{${2:color}}{${3:author name}}"
-    },
-    "cwassunto{}": {
-      "snippet": "cwassunto{${1:text}}"
-    },
-    "cwassunto[]{}": {
-      "snippet": "cwassunto[${2:color}]{${1:text}}"
-    },
-    "listofcomentario": {},
-    "listofassunto": {},
-    "listofcomentarioref": {},
-    "ifshowednotes": {},
-    "showednotestrue": {},
-    "showednotesfalse": {},
-    "ifmargins": {},
-    "marginstrue": {},
-    "marginsfalse": {},
-    "ifednotebookmarks": {},
-    "ednotebookmarkstrue": {},
-    "ednotebookmarksfalse": {},
-    "thecwnotecounter": {},
-    "Cwnote{}": {
-      "snippet": "Cwnote{${1:text}}"
-    },
-    "Cwnote[]{}": {
-      "snippet": "Cwnote[${2:label}]{${1:text}}"
-    },
-    "cwnote{}{}": {
-      "snippet": "cwnote{${1:text}}{${2:color}}"
-    },
-    "cwnote[]{}{}": {
-      "snippet": "cwnote[${3:label}]{${1:text}}{${2:color}}"
-    },
-    "corleve{}": {
-      "snippet": "corleve{${1:color}}"
-    },
-    "listsubject": {},
-    "listofsubject": {},
-    "listcomentario": {},
-    "thecomentario": {},
-    "cftcomentarionumwidth": {},
-    "listcomentarioref": {},
-    "thecomentarioref": {},
-    "cftcomentariorefnumwidth": {},
-    "thesubject": {}
-  },
-  "envs": {
-    "cwdraft": {},
-    "cwdraft[]": {
-      "name": "cwdraft",
-      "snippet": "[${1:title}]"
-    },
-    "rascunho": {}
-  },
-  "options": [
-    "rascunhos",
-    "comentarios",
-    "anonimizar",
-    "naoanonimizar",
-    "sugestoes",
-    "assuntos",
-    "edicao",
-    "submeter",
-    "publicar",
-    "publicaraceitando",
-    "nopdfbookmarks",
-    "comments",
-    "anonymize",
-    "noanonymize",
-    "suggestions",
-    "subjects",
-    "drafts",
-    "todos",
-    "editing",
-    "submit",
-    "publish",
-    "acceptingpublish",
-    "toclofttitles"
+    {
+      "name": "hyperref"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "coopwritingversion",
+      "unusual": true
+    },
+    {
+      "name": "printcoopwritingversion",
+      "unusual": true
+    },
+    {
+      "name": "cwnamedef",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:csname}}{${2:color}}{${3:author name}}"
+      }
+    },
+    {
+      "name": "cwauthor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:comment%text}}"
+      }
+    },
+    {
+      "name": "cwauthor",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:selection%text}]{${1:comment%text}}"
+      }
+    },
+    {
+      "name": "cweditor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:comment%text}}"
+      }
+    },
+    {
+      "name": "cweditor",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:selection%text}]{${1:comment%text}}"
+      }
+    },
+    {
+      "name": "cwauthorr",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:comment%text}}{${2:label}}"
+      }
+    },
+    {
+      "name": "cwauthorr",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:selection%text}]{${1:comment%text}}{${2:label}}"
+      }
+    },
+    {
+      "name": "cweditorr",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:comment%text}}{${2:label}}"
+      }
+    },
+    {
+      "name": "cweditorr",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:selection%text}]{${1:comment%text}}{${2:label}}"
+      }
+    },
+    {
+      "name": "cwauthorx",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:comment%text}}"
+      }
+    },
+    {
+      "name": "cwauthorx",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:selection%text}]{${1:comment%text}}"
+      }
+    },
+    {
+      "name": "cweditorx",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:comment%text}}"
+      }
+    },
+    {
+      "name": "cweditorx",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:selection%text}]{${1:comment%text}}"
+      }
+    },
+    {
+      "name": "cwauthorrx",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:comment%text}}{${2:label}}"
+      }
+    },
+    {
+      "name": "cwauthorrx",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:selection%text}]{${1:comment%text}}{${2:label}}"
+      }
+    },
+    {
+      "name": "cweditorrx",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:comment%text}}{${2:label}}"
+      }
+    },
+    {
+      "name": "cweditorrx",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:selection%text}]{${1:comment%text}}{${2:label}}"
+      }
+    },
+    {
+      "name": "cwauthorsug",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:suggested text%text}}"
+      }
+    },
+    {
+      "name": "cwauthorsug",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:comment%text}]{${1:suggested text%text}}"
+      }
+    },
+    {
+      "name": "cweditorsug",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:suggested text%text}}"
+      }
+    },
+    {
+      "name": "cweditorsug",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:comment%text}]{${1:suggested text%text}}"
+      }
+    },
+    {
+      "name": "cwauthorrem",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:suggested removal%text}}"
+      }
+    },
+    {
+      "name": "cwauthorrem",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:comment%text}]{${1:suggested removal%text}}"
+      }
+    },
+    {
+      "name": "cweditorrem",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:suggested removal%text}}"
+      }
+    },
+    {
+      "name": "cweditorrem",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:comment%text}]{${1:suggested removal%text}}"
+      }
+    },
+    {
+      "name": "cwauthorswap",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:suggested removal%text}}{${2:suggested insertion%text}}"
+      }
+    },
+    {
+      "name": "cwauthorswap",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:comment%text}]{${1:suggested removal%text}}{${2:suggested insertion%text}}"
+      }
+    },
+    {
+      "name": "cweditorswap",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:suggested removal%text}}{${2:suggested insertion%text}}"
+      }
+    },
+    {
+      "name": "cweditorswap",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:comment%text}]{${1:suggested removal%text}}{${2:suggested insertion%text}}"
+      }
+    },
+    {
+      "name": "cwsetcommwarn",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:symbol}}"
+      }
+    },
+    {
+      "name": "cwanon",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "cwanoncite",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keylist}}"
+      }
+    },
+    {
+      "name": "cwanoncite",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:prefix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "cwanoncitet",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keylist}}"
+      }
+    },
+    {
+      "name": "cwanoncitet",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:prefix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "cwanoncitep",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keylist}}"
+      }
+    },
+    {
+      "name": "cwanoncitep",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:prefix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "cwdefanontext",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "cwdefanoncitetext",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "cwdefanoncitettext",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "cwdefanonciteptext",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "cssetdraftcolor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "cwsubject",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "cwsubject",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:color}]{${1:text}}"
+      }
+    },
+    {
+      "name": "cwsetsubjectcolor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "cwmain",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "cwmain",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:color}]{${1:text}}"
+      }
+    },
+    {
+      "name": "cwsetmaincolor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "cwmainemphasis",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "listofcomments"
+    },
+    {
+      "name": "listofcitationneeds"
+    },
+    {
+      "name": "listofsubjects"
+    },
+    {
+      "name": "todo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text%todo}}"
+      }
+    },
+    {
+      "name": "todo",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:inline}]{${1:text%todo}}"
+      }
+    },
+    {
+      "name": "cwdefinetodocolor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "pleasecite"
+    },
+    {
+      "name": "pleasecite",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:text}]"
+      }
+    },
+    {
+      "name": "cwcommentstitle",
+      "unusual": true
+    },
+    {
+      "name": "cwdrafttitle",
+      "unusual": true
+    },
+    {
+      "name": "cwsubjtitle",
+      "unusual": true
+    },
+    {
+      "name": "cwcitationstitle",
+      "unusual": true
+    },
+    {
+      "name": "cwpleasecitetext",
+      "unusual": true
+    },
+    {
+      "name": "cwpleasecitemessage",
+      "unusual": true
+    },
+    {
+      "name": "cwpleasecitemarginnote",
+      "unusual": true
+    },
+    {
+      "name": "cwautor",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:csname}}{${2:color}}{${3:author name}}"
+      }
+    },
+    {
+      "name": "cwassunto",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "cwassunto",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:color}]{${1:text}}"
+      }
+    },
+    {
+      "name": "listofcomentario",
+      "unusual": true
+    },
+    {
+      "name": "listofassunto",
+      "unusual": true
+    },
+    {
+      "name": "listofcomentarioref",
+      "unusual": true
+    },
+    {
+      "name": "ifshowednotes",
+      "unusual": true
+    },
+    {
+      "name": "showednotestrue",
+      "unusual": true
+    },
+    {
+      "name": "showednotesfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifmargins",
+      "unusual": true
+    },
+    {
+      "name": "marginstrue",
+      "unusual": true
+    },
+    {
+      "name": "marginsfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifednotebookmarks",
+      "unusual": true
+    },
+    {
+      "name": "ednotebookmarkstrue",
+      "unusual": true
+    },
+    {
+      "name": "ednotebookmarksfalse",
+      "unusual": true
+    },
+    {
+      "name": "thecwnotecounter",
+      "unusual": true
+    },
+    {
+      "name": "Cwnote",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "Cwnote",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:label}]{${1:text}}"
+      }
+    },
+    {
+      "name": "cwnote",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:color}}"
+      }
+    },
+    {
+      "name": "cwnote",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:label}]{${1:text}}{${2:color}}"
+      }
+    },
+    {
+      "name": "corleve",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:color}}"
+      }
+    },
+    {
+      "name": "listsubject",
+      "unusual": true
+    },
+    {
+      "name": "listofsubject",
+      "unusual": true
+    },
+    {
+      "name": "listcomentario",
+      "unusual": true
+    },
+    {
+      "name": "thecomentario",
+      "unusual": true
+    },
+    {
+      "name": "cftcomentarionumwidth",
+      "unusual": true
+    },
+    {
+      "name": "listcomentarioref",
+      "unusual": true
+    },
+    {
+      "name": "thecomentarioref",
+      "unusual": true
+    },
+    {
+      "name": "cftcomentariorefnumwidth",
+      "unusual": true
+    },
+    {
+      "name": "thesubject",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "cwdraft"
+    },
+    {
+      "name": "cwdraft",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:title%text}]"
+      }
+    },
+    {
+      "name": "rascunho",
+      "unusual": true
+    }
+  ],
+  "keys": {
+    "\\usepackage/coop-writing#c": [
+      "rascunhos\r",
+      "comentarios\r",
+      "anonimizar\r",
+      "naoanonimizar\r",
+      "sugestoes\r",
+      "assuntos\r",
+      "edicao\r",
+      "submeter\r",
+      "publicar\r",
+      "publicaraceitando\r",
+      "nopdfbookmarks\r",
+      "comments\r",
+      "anonymize\r",
+      "noanonymize\r",
+      "suggestions\r",
+      "subjects\r",
+      "drafts\r",
+      "todos\r",
+      "editing\r",
+      "submit\r",
+      "publish\r",
+      "acceptingpublish\r",
+      "toclofttitles\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/coop-writing#c"
+  ]
 }

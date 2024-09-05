@@ -1,104 +1,245 @@
 {
-  "includes": {
-    "luatex": [],
-    "etoolbox": [],
-    "perpage": [
-      "autofootnoterule"
+  "deps": [
+    {
+      "name": "luatex"
+    },
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "perpage",
+      "if": "autofootnoterule"
+    }
+  ],
+  "macros": [
+    {
+      "name": "thepagefnt",
+      "if": "autofootnoterule",
+      "unusual": true
+    },
+    {
+      "name": "FnppOrigFootnote",
+      "if": "autofootnoterule",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "FnppOrigFootnote",
+      "if": "autofootnoterule",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:num}]{${1:text}}"
+      }
+    },
+    {
+      "name": "FnppOrigFootnotemark",
+      "if": "autofootnoterule",
+      "unusual": true
+    },
+    {
+      "name": "FnppOrigFootnotemark",
+      "if": "autofootnoterule",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:mark}]"
+      }
+    },
+    {
+      "name": "setRTLmain"
+    },
+    {
+      "name": "setRTL"
+    },
+    {
+      "name": "setRL",
+      "unusual": true
+    },
+    {
+      "name": "unsetLTR",
+      "unusual": true
+    },
+    {
+      "name": "setLTR"
+    },
+    {
+      "name": "setLR",
+      "unusual": true
+    },
+    {
+      "name": "unsetRTL",
+      "unusual": true
+    },
+    {
+      "name": "RLE",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "RL",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "LRE",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "LR",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "hboxR",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "localnumeral",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "localnumeral*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:counter}}"
+      }
+    },
+    {
+      "name": "footnotemarkLR",
+      "unusual": true
+    },
+    {
+      "name": "footnotemarkLR",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:mark}]"
+      }
+    },
+    {
+      "name": "footnotemarkRL",
+      "unusual": true
+    },
+    {
+      "name": "footnotemarkRL",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:mark}]"
+      }
+    },
+    {
+      "name": "LTRfootnote",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "LTRfootnote",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:num}]{${1:text}}"
+      }
+    },
+    {
+      "name": "RTLfootnote",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "RTLfootnote",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:num}]{${1:text}}"
+      }
+    },
+    {
+      "name": "footnoterulewidth",
+      "unusual": true
+    },
+    {
+      "name": "leftfootnoterule"
+    },
+    {
+      "name": "rightfootnoterule"
+    },
+    {
+      "name": "textwidthfootnoterule"
+    },
+    {
+      "name": "autofootnoterule"
+    },
+    {
+      "name": "bracetext",
+      "unusual": true
+    },
+    {
+      "name": "moreLRE",
+      "unusual": true
+    },
+    {
+      "name": "moreRLE",
+      "unusual": true
+    },
+    {
+      "name": "pLRE",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "pRLE",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "RTL"
+    },
+    {
+      "name": "LTR"
+    }
+  ],
+  "keys": {
+    "\\usepackage/luabidi#c": [
+      "arabmaths\r",
+      "autofootnoterule\r",
+      "textwidthfootnoterule\r"
     ]
   },
-  "macros": {
-    "thepagefnt": {
-      "option": "autofootnoterule"
-    },
-    "FnppOrigFootnote{}": {
-      "snippet": "FnppOrigFootnote{${1:text}}",
-      "option": "autofootnoterule"
-    },
-    "FnppOrigFootnote[]{}": {
-      "snippet": "FnppOrigFootnote[${2:num}]{${1:text}}",
-      "option": "autofootnoterule"
-    },
-    "FnppOrigFootnotemark": {
-      "option": "autofootnoterule"
-    },
-    "FnppOrigFootnotemark[]": {
-      "snippet": "FnppOrigFootnotemark[${1:mark}]",
-      "option": "autofootnoterule"
-    },
-    "setRTLmain": {},
-    "setRTL": {},
-    "setRL": {},
-    "unsetLTR": {},
-    "setLTR": {},
-    "setLR": {},
-    "unsetRTL": {},
-    "RLE{}": {
-      "snippet": "RLE{${1:text}}"
-    },
-    "RL{}": {
-      "snippet": "RL{${1:text}}"
-    },
-    "LRE{}": {
-      "snippet": "LRE{${1:text}}"
-    },
-    "LR{}": {
-      "snippet": "LR{${1:text}}"
-    },
-    "hboxR{}": {
-      "snippet": "hboxR{${1:text}}"
-    },
-    "localnumeral{}": {
-      "snippet": "localnumeral{${1:number}}"
-    },
-    "localnumeral*{}": {
-      "snippet": "localnumeral*{${1:counter}}"
-    },
-    "footnotemarkLR": {},
-    "footnotemarkLR[]": {
-      "snippet": "footnotemarkLR[${1:mark}]"
-    },
-    "footnotemarkRL": {},
-    "footnotemarkRL[]": {
-      "snippet": "footnotemarkRL[${1:mark}]"
-    },
-    "LTRfootnote{}": {
-      "snippet": "LTRfootnote{${1:text}}"
-    },
-    "LTRfootnote[]{}": {
-      "snippet": "LTRfootnote[${2:num}]{${1:text}}"
-    },
-    "RTLfootnote{}": {
-      "snippet": "RTLfootnote{${1:text}}"
-    },
-    "RTLfootnote[]{}": {
-      "snippet": "RTLfootnote[${2:num}]{${1:text}}"
-    },
-    "footnoterulewidth": {},
-    "leftfootnoterule": {},
-    "rightfootnoterule": {},
-    "textwidthfootnoterule": {},
-    "autofootnoterule": {},
-    "bracetext": {},
-    "moreLRE": {},
-    "moreRLE": {},
-    "pLRE{}": {
-      "snippet": "pLRE{${1:text}}"
-    },
-    "pRLE{}": {
-      "snippet": "pRLE{${1:text}}"
-    },
-    "Footnote{}": {
-      "snippet": "Footnote{${1:text}}"
-    }
-  },
-  "envs": {
-    "RTL": {},
-    "LTR": {}
-  },
-  "options": [
-    "arabmaths",
-    "autofootnoterule",
-    "textwidthfootnoterule"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/luabidi#c"
+  ]
 }

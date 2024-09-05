@@ -1,94 +1,116 @@
 {
-  "includes": {
-    "pict2e": [],
-    "qrcode": []
-  },
-  "macros": {
-    "fancyqr{}": {
-      "snippet": "fancyqr{${1:URL}}"
+  "deps": [
+    {
+      "name": "pict2e"
     },
-    "fancyqr[]{}": {
-      "snippet": "fancyqr[${2:options}]{${1:URL}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "qrcode"
+    }
+  ],
+  "macros": [
+    {
+      "name": "fancyqr",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:URL}}"
+      }
     },
-    "fancyqr*{}": {
-      "snippet": "fancyqr*{${1:URL}}"
+    {
+      "name": "fancyqr",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:URL}}"
+      }
     },
-    "fancyqr*[]{}": {
-      "snippet": "fancyqr*[${2:options}]{${1:URL}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "fancyqr*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:URL}}"
+      }
     },
-    "fancyqrset{}": {
-      "snippet": "fancyqrset{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "fancyqr*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:URL}}"
+      }
     },
-    "FancyQrDoNotPrintSquare{}{}": {
-      "snippet": "FancyQrDoNotPrintSquare{${1:x}}{${2:y}}"
+    {
+      "name": "fancyqrset",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\fancyqr,\\fancyqrset,\\fancyqr*",
+          "\\fancyqr,\\fancyqrset"
+        ],
+        "keyPos": 0
+      }
     },
-    "FancyQrRoundCut": {},
-    "FancyQrHardCut": {},
-    "FancyQrLoad{}": {
-      "snippet": "FancyQrLoad{${1:style-name}}"
+    {
+      "name": "FancyQrDoNotPrintSquare",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:x}}{${2:y}}"
+      }
     },
-    "FancyQrLoadDefault": {},
-    "FancyQrColor{}": {
-      "snippet": "FancyQrColor{${1:arg}}"
+    {
+      "name": "FancyQrRoundCut"
     },
-    "filename": {},
-    "GetPattern": {},
-    "gradient": {},
-    "newpattern": {},
-    "qrm": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "image=${1:graphics code}",
-      "image padding=${1:number}",
-      "image x padding=${1:number}",
-      "image y padding=${1:number}",
+    {
+      "name": "FancyQrHardCut"
+    },
+    {
+      "name": "FancyQrLoad",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:style-name%keyvals}}",
+        "keys": [
+          "\\FancyQrLoad"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "FancyQrLoadDefault"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\fancyqr,\\fancyqrset,\\fancyqr*": [
+      "image=${1:graphics code}\r",
+      "image padding=${1:number}\r",
+      "image x padding=${1:number}\r",
+      "image y padding=${1:number}\r",
       "gradient",
       "color=",
       "l color=",
       "left color=",
       "r color=",
       "right color=",
-      "gradient angle=${1:degrees}",
-      "random color=${1:colors}",
+      "gradient angle=${1:degrees}\r",
+      "random color=${1:colors}\r",
       "width=",
       "size=",
       "height=",
-      "level=${1|L,M,Q,H|}",
-      "version=",
-      "tight",
-      "padding",
-      "link",
-      "nolink"
+      "level=${1|L,M,Q,H\r|}",
+      "version=\r",
+      "tight\r",
+      "padding\r"
     ],
-    [
-      "image=${1:graphics code}",
-      "image padding=${1:number}",
-      "image x padding=${1:number}",
-      "image y padding=${1:number}",
-      "gradient",
-      "color=",
-      "l color=",
-      "left color=",
-      "r color=",
-      "right color=",
-      "gradient angle=${1:degrees}",
-      "random color=${1:colors}",
-      "width=",
-      "size=",
-      "height=",
-      "level=${1|L,M,Q,H|}",
-      "version=",
-      "tight",
-      "padding"
+    "\\fancyqr,\\fancyqrset": [
+      "link\r",
+      "nolink\r"
+    ],
+    "\\FancyQrLoad": [
+      "flat\r",
+      "frame\r",
+      "blobs\r",
+      "glitch\r",
+      "dots\r",
+      "default\r"
     ]
-  ]
+  },
+  "args": []
 }

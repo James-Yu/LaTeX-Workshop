@@ -1,19 +1,38 @@
 {
-  "includes": {},
-  "macros": {
-    "arraybackslash": {},
-    "tyformat": {},
-    "tymin": {},
-    "tymax": {}
-  },
-  "envs": {
-    "tabulary{}{}": {
-      "name": "tabulary",
-      "snippet": "{${1:width}}{${2:preamble}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "arraybackslash",
+      "unusual": true
+    },
+    {
+      "name": "tyformat",
+      "unusual": true
+    },
+    {
+      "name": "tymin",
+      "unusual": true
+    },
+    {
+      "name": "tymax",
+      "unusual": true
     }
-  },
-  "options": [
-    "debugshow"
   ],
-  "keyvals": []
+  "envs": [
+    {
+      "name": "tabulary",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:width}}{${2:preamble}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/tabulary#c": [
+      "debugshow"
+    ]
+  },
+  "args": [
+    "\\usepackage/tabulary#c"
+  ]
 }

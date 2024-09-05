@@ -1,44 +1,83 @@
 {
-  "includes": {
-    "kvoptions": [],
-    "endnotes": [],
-    "etoolbox": [],
-    "nameref": []
-  },
-  "macros": {
-    "enoteheader": {},
-    "enotepartheader": {},
-    "enoteskip": {},
-    "enotesubheader": {},
-    "intropartheader": {},
-    "introsubheader": {},
-    "savedhref{}{}": {
-      "snippet": "savedhref{${1:URL}}{${2:text}}"
+  "deps": [
+    {
+      "name": "kvoptions"
     },
-    "savedurl{}": {
-      "snippet": "savedurl{${1:URL}}"
+    {
+      "name": "endnotes"
     },
-    "theendnotesbypart": {},
-    "theendnotesbypart*": {},
-    "theendnotesbypart*[]": {
-      "snippet": "theendnotesbypart*[${1:number}]"
+    {
+      "name": "etoolbox"
     },
-    "theendnotesbypart[]": {
-      "snippet": "theendnotesbypart[${1:number}]"
-    },
-    "theHendnote": {}
-  },
-  "envs": {},
-  "options": [
-    "split=${1|part,chapter,section,subsection|}",
-    "headername=${1:name}",
-    "subheadername=${1:name}",
-    "runningname=${1:name}",
-    "hyper",
-    "enotelinks",
-    "noheader",
-    "nosubheader",
-    "blocknotes"
+    {
+      "name": "nameref"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "enoteheader",
+      "unusual": true
+    },
+    {
+      "name": "enotepartheader",
+      "unusual": true
+    },
+    {
+      "name": "enoteskip",
+      "unusual": true
+    },
+    {
+      "name": "enotesubheader",
+      "unusual": true
+    },
+    {
+      "name": "intropartheader",
+      "unusual": true
+    },
+    {
+      "name": "introsubheader",
+      "unusual": true
+    },
+    {
+      "name": "theendnotesbypart"
+    },
+    {
+      "name": "theendnotesbypart*"
+    },
+    {
+      "name": "theendnotesbypart*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:number}]"
+      }
+    },
+    {
+      "name": "theendnotesbypart",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:number}]"
+      }
+    },
+    {
+      "name": "theHendnote",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/cmsendnotes#c": [
+      "split=${1|part,chapter,section,subsection\r|}",
+      "headername=${1:name}\r",
+      "subheadername=${1:name}\r",
+      "runningname=${1:name}\r",
+      "hyper",
+      "enotelinks",
+      "noheader",
+      "nosubheader",
+      "blocknotes"
+    ]
+  },
+  "args": [
+    "\\usepackage/cmsendnotes#c"
+  ]
 }

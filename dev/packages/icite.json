@@ -1,36 +1,74 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "datatool": [],
-    "usebib": []
-  },
-  "macros": {
-    "SetTitleStyle{}": {
-      "snippet": "SetTitleStyle{${1:style code}}"
+  "deps": [
+    {
+      "name": "xkeyval"
     },
-    "AuthorTitleDelim{}": {
-      "snippet": "AuthorTitleDelim{${1:delim}}"
+    {
+      "name": "datatool"
     },
-    "TitlePageDelim{}": {
-      "snippet": "TitlePageDelim{${1:delim}}"
-    },
-    "icite{}": {
-      "snippet": "icite{${1:bibid}}"
-    },
-    "icite[]{}": {
-      "snippet": "icite[${2:pre}]{${1:bibid}}"
-    },
-    "icite[][]{}": {
-      "snippet": "icite[${2:pre}][${3:post}]{${1:bibid}}"
-    },
-    "icite[][]{}[]": {
-      "snippet": "icite[${2:pre}][${3:post}]{${1:bibid}}[${4:csname}]"
-    },
-    "IndexSubtypeAs{}{}": {
-      "snippet": "IndexSubtypeAs{${1:subtype}}{${2:index name}}"
+    {
+      "name": "usebib"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "SetTitleStyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:style code}}"
+      }
+    },
+    {
+      "name": "AuthorTitleDelim",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:delim}}"
+      }
+    },
+    {
+      "name": "TitlePageDelim",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:delim}}"
+      }
+    },
+    {
+      "name": "icite",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "icite",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:pre}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "icite",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:pre}][${3:post}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "icite",
+      "arg": {
+        "format": "[][]{}[]",
+        "snippet": "[${2:pre}][${3:post}]{${1:bibid}}[${4:csname}]"
+      }
+    },
+    {
+      "name": "IndexSubtypeAs",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:subtype}}{${2:index name}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

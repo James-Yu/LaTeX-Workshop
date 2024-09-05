@@ -1,56 +1,110 @@
 {
-  "includes": {
-    "uplatex": [],
-    "keyval": []
-  },
-  "macros": {
-    "cjkcategorymode{}": {
-      "snippet": "cjkcategorymode{${1:mode}}"
+  "deps": [
+    {
+      "name": "uplatex"
     },
-    "cjkcategory{}{}": {
-      "snippet": "cjkcategory{${1:block}}{${2:category}}"
-    },
-    "showcjkcategory": {},
-    "getcjktokenmode": {},
-    "thecjktokenmode": {},
-    "setcjktokenmode{}": {
-      "snippet": "setcjktokenmode{${1:value}}"
-    },
-    "withcjktokendisabled{}": {
-      "snippet": "withcjktokendisabled{${1:code}}"
-    },
-    "withcjktokenenabled{}": {
-      "snippet": "withcjktokenenabled{${1:code}}"
-    },
-    "withcjktokenforced{}": {
-      "snippet": "withcjktokenforced{${1:code}}"
-    },
-    "withcjktokendisabledex{}": {
-      "snippet": "withcjktokendisabledex{${1:code}}"
-    },
-    "withcjktokenenabledex{}": {
-      "snippet": "withcjktokenenabledex{${1:code}}"
-    },
-    "withcjktokenforcedex{}": {
-      "snippet": "withcjktokenforcedex{${1:code}}"
+    {
+      "name": "keyval"
     }
-  },
-  "envs": {},
-  "options": [
-    "ccv1",
-    "ccv2",
-    "ccv3",
-    "ccv4",
-    "ccv+",
-    "real",
-    "nomode",
-    "forcecjk",
-    "default",
-    "prefercjk",
-    "prefercjkvar",
-    "japanese",
-    "japanesevar",
-    "prefernoncjk"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "cjkcategorymode",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:mode%keyvals}}"
+      }
+    },
+    {
+      "name": "cjkcategory",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:block}}{${2:category}}"
+      }
+    },
+    {
+      "name": "showcjkcategory",
+      "unusual": true
+    },
+    {
+      "name": "getcjktokenmode"
+    },
+    {
+      "name": "thecjktokenmode"
+    },
+    {
+      "name": "setcjktokenmode",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:value}}"
+      }
+    },
+    {
+      "name": "withcjktokendisabled",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "withcjktokenenabled",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "withcjktokenforced",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "withcjktokendisabledex",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "withcjktokenenabledex",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    },
+    {
+      "name": "withcjktokenforcedex",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:code}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/pxcjkcat#c": [
+      "ccv1\r",
+      "ccv2\r",
+      "ccv3\r",
+      "ccv4\r",
+      "ccv+\r",
+      "real\r",
+      "nomode\r"
+    ],
+    "\\cjkcategorymode#c,\\usepackage/pxcjkcat#c": [
+      "forcecjk\r",
+      "default\r",
+      "prefercjk\r",
+      "prefercjkvar\r",
+      "japanese\r",
+      "japanesevar\r",
+      "prefernoncjk\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/pxcjkcat#c",
+    "\\cjkcategorymode#c,\\usepackage/pxcjkcat#c"
+  ]
 }

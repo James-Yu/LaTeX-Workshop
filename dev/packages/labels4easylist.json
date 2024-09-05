@@ -1,34 +1,56 @@
 {
-  "includes": {
-    "easylist": []
-  },
-  "macros": {
-    "itemLabel{}": {
-      "snippet": "itemLabel{${1:label}}"
-    },
-    "itemLabel{}[]": {
-      "snippet": "itemLabel{${1:label}}[${2:skipA}]"
-    },
-    "itemLabel{}[][]": {
-      "snippet": "itemLabel{${1:label}}[${2:skipA}][${3:skipB}]"
+  "deps": [
+    {
+      "name": "easylist"
     }
-  },
-  "envs": {
-    "easylist": {
-      "option": "ampersand"
-    },
-    "easylist[]": {
-      "name": "easylist",
-      "snippet": "[${1:style}]",
-      "option": "ampersand"
-    }
-  },
-  "options": [
-    "pilcrow",
-    "at",
-    "sharp",
-    "ampersand",
-    "${1:number of counters}"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "itemLabel",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:label}}"
+      }
+    },
+    {
+      "name": "itemLabel",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:label}}[${2:skipA}]"
+      }
+    },
+    {
+      "name": "itemLabel",
+      "arg": {
+        "format": "{}[][]",
+        "snippet": "{${1:label}}[${2:skipA}][${3:skipB}]"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "easylist",
+      "if": "ampersand"
+    },
+    {
+      "name": "easylist",
+      "if": "ampersand",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:style%keyvals}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/labels4easylist#c": [
+      "pilcrow\r",
+      "at\r",
+      "sharp\r",
+      "ampersand\r",
+      "${1:number of counters}\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/labels4easylist#c"
+  ]
 }

@@ -1,19 +1,36 @@
 {
-  "includes": {
-    "l3keys2e": [],
-    "iftex": []
-  },
-  "macros": {
-    "makeparesseletter": {},
-    "makeparesseother": {},
-    "ActiveLaParesse": {},
-    "declareunicodecharacter{}{}": {
-      "snippet": "declareunicodecharacter{${1:hexadecimal}}{${2:definition}}"
+  "deps": [
+    {
+      "name": "l3keys2e"
+    },
+    {
+      "name": "iftex"
     }
-  },
-  "envs": {
-    "ParesseActive": {}
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "makeparesseletter"
+    },
+    {
+      "name": "makeparesseother"
+    },
+    {
+      "name": "ActiveLaParesse"
+    },
+    {
+      "name": "declareunicodecharacter",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:hexadecimal}}{${2:definition}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "ParesseActive"
+    }
+  ],
+  "keys": {},
+  "args": []
 }

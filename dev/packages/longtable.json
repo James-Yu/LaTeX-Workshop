@@ -1,38 +1,78 @@
 {
-  "includes": {},
-  "macros": {
-    "caption*{}": {
-      "snippet": "caption*{${1:text}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "caption*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
     },
-    "endfirstfoot": {},
-    "endlastfoot": {},
-    "endfirsthead": {},
-    "endfoot": {},
-    "endhead": {},
-    "LTchunksize": {},
-    "LTcapwidth": {},
-    "LTleft": {},
-    "LTpost": {},
-    "LTpre": {},
-    "LTright": {},
-    "setlongtables": {},
-    "tabularnewline": {}
-  },
-  "envs": {
-    "longtable[]{}": {
-      "name": "longtable",
-      "snippet": "[${2:alignment}]{${1:preamble}}"
+    {
+      "name": "endfirstfoot"
     },
-    "longtable{}": {
-      "name": "longtable",
-      "snippet": "{${1:preamble}}"
+    {
+      "name": "endlastfoot"
+    },
+    {
+      "name": "endfirsthead"
+    },
+    {
+      "name": "endfoot"
+    },
+    {
+      "name": "endhead"
+    },
+    {
+      "name": "LTchunksize"
+    },
+    {
+      "name": "LTcapwidth"
+    },
+    {
+      "name": "LTleft"
+    },
+    {
+      "name": "LTpost"
+    },
+    {
+      "name": "LTpre"
+    },
+    {
+      "name": "LTright"
+    },
+    {
+      "name": "setlongtables"
+    },
+    {
+      "name": "tabularnewline"
     }
-  },
-  "options": [
-    "errorshow",
-    "pausing",
-    "set",
-    "final"
   ],
-  "keyvals": []
+  "envs": [
+    {
+      "name": "longtable",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:alignment}]{${1:preamble}}"
+      }
+    },
+    {
+      "name": "longtable",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:preamble}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/longtable#c": [
+      "errorshow",
+      "pausing",
+      "set",
+      "final"
+    ]
+  },
+  "args": [
+    "\\usepackage/longtable#c"
+  ]
 }

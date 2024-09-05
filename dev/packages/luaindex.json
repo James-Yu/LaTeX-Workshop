@@ -1,128 +1,246 @@
 {
-  "includes": {
-    "ifluatex": [],
-    "luatexbase": [],
-    "scrbase": []
-  },
-  "macros": {
-    "setupluaindex{}": {
-      "snippet": "setupluaindex{${1:options}}"
+  "deps": [
+    {
+      "name": "ifluatex"
     },
-    "see{}{}": {
-      "snippet": "see{${1:text}}{${2:page}}"
+    {
+      "name": "luatexbase"
     },
-    "seealso{}{}": {
-      "snippet": "seealso{${1:text}}{${2:page}}"
-    },
-    "seename": {},
-    "alsoname": {},
-    "newindex{}": {
-      "snippet": "newindex{${1:index name}}"
-    },
-    "newindex[]{}": {
-      "snippet": "newindex[${2:options}]{${1:index name}}"
-    },
-    "luaindex{}{}": {
-      "snippet": "luaindex{${1:index name}}{${2:entry}}"
-    },
-    "luaindex{}[]{}": {
-      "snippet": "luaindex{${1:index name}}[${2:options}]{${3:entry}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "luasubindex{}{}{}": {
-      "snippet": "luasubindex{${1:index name}}{${2:entry}}{${3:subentry}}"
-    },
-    "luasubindex{}[]{}{}": {
-      "snippet": "luasubindex{${1:index name}}[${2:options}]{${3:entry}}{${4:subentry}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "luasubindex{}[]{}[]{}": {
-      "snippet": "luasubindex{${1:index name}}[${2:options}]{${3:entry}}[${4:options}]{${5:subentry}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "luasubsubindex{}{}{}{}": {
-      "snippet": "luasubsubindex{${1:index name}}{${2:entry}}{${3:subentry}}{${4:subsubentry}}"
-    },
-    "luasubsubindex{}[]{}{}{}": {
-      "snippet": "luasubsubindex{${1:index name}}[${2:options}]{${3:entry}}{${4:subentry}}{${5:subsubentry}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "luasubsubindex{}[]{}[]{}[]{}": {
-      "snippet": "luasubsubindex{${1:index name}}[${2:options}]{${3:entry}}[${4:options}]{${5:subentry}}[${6:options}]{${7:subsubentry}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "index[]{}": {
-      "snippet": "index[${2:options}]{${1:entry}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "subindex{}{}": {
-      "snippet": "subindex{${1:entry}}{${2:subentry}}"
-    },
-    "subindex[]{}{}": {
-      "snippet": "subindex[${3:options}]{${1:entry}}{${2:subentry}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "subindex[]{}[]{}": {
-      "snippet": "subindex[${3:options}]{${1:entry}}[${4:options}]{${2:subentry}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "subsubindex{}{}{}": {
-      "snippet": "subsubindex{${1:entry}}{${2:subentry}}{${3:subsubentry}}"
-    },
-    "subsubindex[]{}{}{}": {
-      "snippet": "subsubindex[${4:options}]{${1:entry}}{${2:subentry}}{${3:subsubentry}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "subsubindex[]{}[]{}[]{}": {
-      "snippet": "subsubindex[${4:options}]{${1:entry}}[${5:options}]{${2:subentry}}[${6:options}]{${3:subsubentry}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "printindex": {},
-    "printindex[]": {
-      "snippet": "printindex[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "indexgroup{}": {
-      "snippet": "indexgroup{${1:group}}"
-    },
-    "indexspace": {},
-    "symbolsname": {},
-    "numbersname": {},
-    "indexpagenumbers{}": {
-      "snippet": "indexpagenumbers{${1:page number}}"
-    },
-    "indexpagenumber{}": {
-      "snippet": "indexpagenumber{${1:page number}}"
-    },
-    "indexpagenumbersep": {}
-  },
-  "envs": {},
-  "options": [
-    "sortorder=${1:sort entry}",
-    "locale=${1:locale specifier}",
-    "pageformat=${1:command}",
-    "singlepass"
+    {
+      "name": "scrbase"
+    }
   ],
-  "keyvals": [
-    [
-      "sort=${1:sort entry}",
-      "pageformat=${1:command}",
-      "locale=${1:locale specifier}"
+  "macros": [
+    {
+      "name": "setupluaindex",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\usepackage/luaindex#c,\\setupluaindex,\\newindex"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "see",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:page}}"
+      }
+    },
+    {
+      "name": "seealso",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:text}}{${2:page}}"
+      }
+    },
+    {
+      "name": "seename",
+      "unusual": true
+    },
+    {
+      "name": "alsoname",
+      "unusual": true
+    },
+    {
+      "name": "newindex",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:index name}}"
+      }
+    },
+    {
+      "name": "newindex",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:index name}}"
+      }
+    },
+    {
+      "name": "luaindex",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:index name}}{${2:entry}}"
+      }
+    },
+    {
+      "name": "luaindex",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:index name}}[${3:options%keyvals}]{${2:entry}}"
+      }
+    },
+    {
+      "name": "luasubindex",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:index name}}{${2:entry}}{${3:subentry}}"
+      }
+    },
+    {
+      "name": "luasubindex",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}{}",
+        "snippet": "{${1:index name}}[${4:options%keyvals}]{${2:entry}}{${3:subentry}}"
+      }
+    },
+    {
+      "name": "luasubindex",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}[]{}",
+        "snippet": "{${1:index name}}[${4:options%keyvals}]{${2:entry}}[${5:options}]{${3:subentry}}"
+      }
+    },
+    {
+      "name": "luasubsubindex",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:index name}}{${2:entry}}{${3:subentry}}{${4:subsubentry}}"
+      }
+    },
+    {
+      "name": "luasubsubindex",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}{}{}",
+        "snippet": "{${1:index name}}[${5:options%keyvals}]{${2:entry}}{${3:subentry}}{${4:subsubentry}}"
+      }
+    },
+    {
+      "name": "luasubsubindex",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}[]{}[]{}",
+        "snippet": "{${1:index name}}[${5:options%keyvals}]{${2:entry}}[${6:options}]{${3:subentry}}[${7:options}]{${4:subsubentry}}"
+      }
+    },
+    {
+      "name": "index",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:entry}}"
+      }
+    },
+    {
+      "name": "subindex",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:entry}}{${2:subentry}}"
+      }
+    },
+    {
+      "name": "subindex",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:entry}}{${2:subentry}}"
+      }
+    },
+    {
+      "name": "subindex",
+      "arg": {
+        "format": "[]{}[]{}",
+        "snippet": "[${3:options%keyvals}]{${1:entry}}[${4:options}]{${2:subentry}}"
+      }
+    },
+    {
+      "name": "subsubindex",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:entry}}{${2:subentry}}{${3:subsubentry}}"
+      }
+    },
+    {
+      "name": "subsubindex",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:options%keyvals}]{${1:entry}}{${2:subentry}}{${3:subsubentry}}"
+      }
+    },
+    {
+      "name": "subsubindex",
+      "arg": {
+        "format": "[]{}[]{}[]{}",
+        "snippet": "[${4:options%keyvals}]{${1:entry}}[${5:options}]{${2:subentry}}[${6:options}]{${3:subsubentry}}"
+      }
+    },
+    {
+      "name": "printindex"
+    },
+    {
+      "name": "printindex",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "indexgroup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:group}}"
+      }
+    },
+    {
+      "name": "indexspace",
+      "unusual": true
+    },
+    {
+      "name": "symbolsname",
+      "unusual": true
+    },
+    {
+      "name": "numbersname",
+      "unusual": true
+    },
+    {
+      "name": "indexpagenumbers",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:page number}}"
+      }
+    },
+    {
+      "name": "indexpagenumber",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:page number}}"
+      }
+    },
+    {
+      "name": "indexpagenumbersep",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/luaindex#c,\\setupluaindex,\\newindex": [
+      "sortorder=${1:sort entry}\r",
+      "locale=${1:locale specifier}\r",
+      "pageformat=${1:command}\r",
+      "singlepass\r"
     ],
-    [
-      "index=${1:index name}",
+    "\\luaindex,\\luasubindex,\\luasubsubindex,\\index,\\subindex,\\subsubindex": [
+      "sort=${1:sort entry}\r",
+      "pageformat=${1:command}\r",
+      "locale=${1:locale specifier}\r"
+    ],
+    "\\printindex": [
+      "index=${1:index name}\r",
       "singlepass"
     ]
+  },
+  "args": [
+    "\\usepackage/luaindex#c,\\setupluaindex,\\newindex"
   ]
 }

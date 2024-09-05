@@ -1,38 +1,97 @@
 {
-  "includes": {},
-  "macros": {
-    "pgfmathstrrepeat{}{}": {
-      "snippet": "pgfmathstrrepeat{${1:\"text\"}}{${2:number}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "pgfmathstrrepeat",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:\"text\"}}{${2:number}}"
+      }
     },
-    "pgfmathisInString{}{}": {
-      "snippet": "pgfmathisInString{${1:\"string\"}}{${2:\"text\"}}"
+    {
+      "name": "pgfmathisInString",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:\"string\"}}{${2:\"text\"}}"
+      }
     },
-    "pgfmathstrcat{}{}": {
-      "snippet": "pgfmathstrcat{${1:\"textA\"}}{${2:\"textB\"}}"
+    {
+      "name": "pgfmathstrcat",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:\"textA\"}}{${2:\"textB\"}}"
+      }
     },
-    "pgfmathisEmpty{}": {
-      "snippet": "pgfmathisEmpty{${1:\"text\"}}"
+    {
+      "name": "pgfmathisEmpty",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:\"text\"}}"
+      }
     },
-    "pgfmathatanXY{}{}": {
-      "snippet": "pgfmathatanXY{${1:x}}{${2:y}}"
+    {
+      "name": "pgfmathatanXY",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:x}}{${2:y}}"
+      }
     },
-    "pgfmathatanYX{}{}": {
-      "snippet": "pgfmathatanYX{${1:y}}{${2:x}}"
+    {
+      "name": "pgfmathatanYX",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:y}}{${2:x}}"
+      }
     },
-    "pgfmathanglebetween{}{}": {
-      "snippet": "pgfmathanglebetween{${1:\"p1\"}}{${2:\"p2\"}}"
+    {
+      "name": "pgfmathanglebetween",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:\"p1\"}}{${2:\"p2\"}}"
+      }
     },
-    "pgfmathqanglebetween{}": {
-      "snippet": "pgfmathqanglebetween{${1:\"p\"}}"
+    {
+      "name": "pgfmathqanglebetween",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:\"p\"}}"
+      }
     },
-    "pgfmathdistancebetween{}{}": {
-      "snippet": "pgfmathdistancebetween{${1:\"p1\"}}{${2:\"p2\"}}"
+    {
+      "name": "pgfmathdistancebetween",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:\"p1\"}}{${2:\"p2\"}}"
+      }
     },
-    "pgfmathqdistancebetween{}": {
-      "snippet": "pgfmathqdistancebetween{${1:\"p\"}}"
+    {
+      "name": "pgfmathqdistancebetween",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:\"p\"}}"
+      }
     }
+  ],
+  "envs": [],
+  "keys": {
+    "\\begin{tikzpicture}#c,\\tikz#c,\\begin{scope}#c,\\tikzset#c,\\scoped#c": [
+      "full arc\r",
+      "full arc=${1:number}\r"
+    ],
+    "\\foreach#c": [
+      "no separator\r",
+      "normal list\r"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

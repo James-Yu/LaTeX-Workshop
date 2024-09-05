@@ -1,466 +1,967 @@
 {
-  "includes": {
-    "lastpage": [],
-    "iftex": [],
-    "inputenc": [],
-    "fontenc": [],
-    "array": [],
-    "fancyhdr": [],
-    "xcolor": [],
-    "url": [],
-    "soul": [],
-    "setspace": [],
-    "geometry": [],
-    "enumitem": [],
-    "hyperref": [],
-    "colortbl": [],
-    "graphicx": [],
-    "substr": [],
-    "keyval": [],
-    "xstring": [],
-    "xifthen": [],
-    "showframe": [
-      "debug"
-    ]
-  },
-  "macros": {
-    "convertstring{}": {
-      "snippet": "convertstring{${1:arg}}"
-    },
-    "difflength": {},
-    "ecladdressee[]{}{}{}{}": {
-      "snippet": "ecladdressee[${5:vspace}]{${1:name}}{${2:organization}}{${3:address}}{${4:city}}"
+  "deps": [
+    {
+      "name": "lastpage"
     },
-    "ecladdressee{}{}{}{}": {
-      "snippet": "ecladdressee{${1:name}}{${2:organization}}{${3:address}}{${4:city}}"
+    {
+      "name": "iftex"
     },
-    "eclcitydatesubject[]{}{}{}": {
-      "snippet": "eclcitydatesubject[${4:vspace}]{${1:city}}{${2:date}}{${3:subject}}"
+    {
+      "name": "inputenc"
     },
-    "eclcitydatesubject{}{}{}": {
-      "snippet": "eclcitydatesubject{${1:city}}{${2:date}}{${3:subject}}"
+    {
+      "name": "fontenc"
     },
-    "eclclosingsalutation[]{}": {
-      "snippet": "eclclosingsalutation[${2:vspace}]{${1:text}}"
+    {
+      "name": "array"
     },
-    "eclclosingsalutation{}": {
-      "snippet": "eclclosingsalutation{${1:text}}"
+    {
+      "name": "fancyhdr"
     },
-    "eclIconwidth{}": {
-      "snippet": "eclIconwidth{${1:width}}"
+    {
+      "name": "xcolor"
     },
-    "eclitem[]{}": {
-      "snippet": "eclitem[${2:vspace}]{${1:text}}"
+    {
+      "name": "url"
     },
-    "eclitem{}": {
-      "snippet": "eclitem{${1:text}}"
+    {
+      "name": "soul"
     },
-    "eclmaincontent[]{}{}{}": {
-      "snippet": "eclmaincontent[${4:vspace}]{${1:opening}}{${2:content}}{${3:closing}}"
+    {
+      "name": "setspace"
     },
-    "eclmaincontent{}{}{}": {
-      "snippet": "eclmaincontent{${1:opening}}{${2:content}}{${3:closing}}"
+    {
+      "name": "geometry"
     },
-    "eclopeningsalutation[]{}": {
-      "snippet": "eclopeningsalutation[${2:vspace}]{${1:text}}"
+    {
+      "name": "enumitem"
     },
-    "eclopeningsalutation{}": {
-      "snippet": "eclopeningsalutation{${1:text}}"
+    {
+      "name": "hyperref"
     },
-    "eclpersonalinfo": {},
-    "eclpersonalinfo[]": {
-      "snippet": "eclpersonalinfo[${1:vspace}]"
+    {
+      "name": "colortbl"
     },
-    "eclsignature": {},
-    "eclsignature[]": {
-      "snippet": "eclsignature[${1:imagefile}]"
+    {
+      "name": "graphicx"
     },
-    "eclsignature[][]": {
-      "snippet": "eclsignature[${1:imagefile}][${2:name}]"
+    {
+      "name": "substr"
     },
-    "ecvaddress{}": {
-      "snippet": "ecvaddress{${1:address}}"
+    {
+      "name": "keyval"
     },
-    "ecvBasic": {},
-    "ecvbigitem[]{}{}": {
-      "snippet": "ecvbigitem[${3:vspace}]{${1:left}}{${2:right}}"
+    {
+      "name": "xstring"
     },
-    "ecvbigitem{}{}": {
-      "snippet": "ecvbigitem{${1:left}}{${2:right}}"
+    {
+      "name": "xifthen"
     },
-    "ecvblueitem[]{}{}": {
-      "snippet": "ecvblueitem[${3:vspace}]{${1:left}}{${2:right}}"
-    },
-    "ecvblueitem{}{}": {
-      "snippet": "ecvblueitem{${1:left}}{${2:right}}"
-    },
-    "ecvbluenormalstyle{}": {
-      "snippet": "ecvbluenormalstyle{${1:text}}"
-    },
-    "ecvbluestyle{}": {
-      "snippet": "ecvbluestyle{${1:text}}"
-    },
-    "ecvbullet": {},
-    "ecvcoloredtitle": {},
-    "ecvColSep{}": {
-      "snippet": "ecvColSep{${1:sep}}"
-    },
-    "ecvcurrvitae": {},
-    "ecvdateofbirth{}": {
-      "snippet": "ecvdateofbirth{${1:date}}"
-    },
-    "ecvdigitalcompetence{}{}{}{}{}": {
-      "snippet": "ecvdigitalcompetence{${1:info-processing}}{${2:communication}}{${3:content-creation}}{${4:safety}}{${5:prob-solving}}"
-    },
-    "ecvemail{}": {
-      "snippet": "ecvemail{${1:email}}"
-    },
-    "ecvExtraRowHeight{}": {
-      "snippet": "ecvExtraRowHeight{${1:height}}"
-    },
-    "ecvfax{}": {
-      "snippet": "ecvfax{${1:number}}"
-    },
-    "ecvfont{}": {
-      "snippet": "ecvfont{${1:font}}"
-    },
-    "ecvfootername{}": {
-      "snippet": "ecvfootername{${1:name}}"
-    },
-    "ecvfootnote{}": {
-      "snippet": "ecvfootnote{${1:text}}"
-    },
-    "ecvgender{}": {
-      "snippet": "ecvgender{${1:gender}}"
-    },
-    "ecvgithubpage{}": {
-      "snippet": "ecvgithubpage{${1:URL}}"
-    },
-    "ecvgitlabpage{}": {
-      "snippet": "ecvgitlabpage{${1:URL}}"
-    },
-    "ecvgitpage{}": {
-      "snippet": "ecvgitpage{${1:URL}}"
-    },
-    "ecvhighlight{}": {
-      "snippet": "ecvhighlight{${1:text}}"
-    },
-    "ecvhighlightcell{}": {
-      "snippet": "ecvhighlightcell{${1:text}}"
-    },
-    "ecvhomepage{}": {
-      "snippet": "ecvhomepage{${1:URL}}"
-    },
-    "ecvim{}{}": {
-      "snippet": "ecvim{${1:service}}{${2:username}}"
-    },
-    "ecvIndependent": {},
-    "ecvitem[]{}{}": {
-      "snippet": "ecvitem[${3:vspace}]{${1:left}}{${2:right}}"
-    },
-    "ecvitem{}{}": {
-      "snippet": "ecvitem{${1:left}}{${2:right}}"
-    },
-    "ecvlangrow[]{}{}{}{}{}{}{}": {
-      "snippet": "ecvlangrow[${8:vspace}]{${1:language}}{${2:listening}}{${3:reading}}{${4:speaking-interaction}}{${5:speaking-production}}{${6:writing}}{${7:width}}"
-    },
-    "ecvlangrow{}{}{}{}{}{}{}": {
-      "snippet": "ecvlangrow{${1:language}}{${2:listening}}{${3:reading}}{${4:speaking-interaction}}{${5:speaking-production}}{${6:writing}}{${7:width}}"
-    },
-    "ecvlanguage[]{}{}{}{}{}{}": {
-      "snippet": "ecvlanguage[${7:vspace}]{${1:language}}{${2:listening}}{${3:reading}}{${4:speaking-interaction}}{${5:speaking-production}}{${6:writing}}"
-    },
-    "ecvlanguage{}{}{}{}{}{}": {
-      "snippet": "ecvlanguage{${1:language}}{${2:listening}}{${3:reading}}{${4:speaking-interaction}}{${5:speaking-production}}{${6:writing}}"
-    },
-    "ecvlanguagecertificate{}": {
-      "snippet": "ecvlanguagecertificate{${1:certificate}}"
-    },
-    "ecvlanguagefooter": {},
-    "ecvlanguagefooter[]": {
-      "snippet": "ecvlanguagefooter[${1:vspace}]"
-    },
-    "ecvlanguageheader": {},
-    "ecvlanguageheader[]": {
-      "snippet": "ecvlanguageheader[${1:vspace}]"
-    },
-    "ecvlargenormalstyle{}": {
-      "snippet": "ecvlargenormalstyle{${1:text}}"
-    },
-    "ecvLargenormalstyle{}": {
-      "snippet": "ecvLargenormalstyle{${1:text}}"
-    },
-    "ecvlastlanguage[]{}{}{}{}{}{}": {
-      "snippet": "ecvlastlanguage[${7:vspace}]{${1:language}}{${2:listening}}{${3:reading}}{${4:speaking-interaction}}{${5:speaking-production}}{${6:writing}}"
-    },
-    "ecvlastlanguage{}{}{}{}{}{}": {
-      "snippet": "ecvlastlanguage{${1:language}}{${2:listening}}{${3:reading}}{${4:speaking-interaction}}{${5:speaking-production}}{${6:writing}}"
-    },
-    "ecvLeftColumnWidth{}": {
-      "snippet": "ecvLeftColumnWidth{${1:width}}"
-    },
-    "ecvlinkedinpage{}": {
-      "snippet": "ecvlinkedinpage{${1:URL}}"
-    },
-    "ecvLogoOffset{}": {
-      "snippet": "ecvLogoOffset{${1:offset}}"
-    },
-    "ecvLogoWidth{}": {
-      "snippet": "ecvLogoWidth{${1:width}}"
-    },
-    "ecvmobile{}": {
-      "snippet": "ecvmobile{${1:number}}"
-    },
-    "ecvmothertongue[]{}": {
-      "snippet": "ecvmothertongue[${2:vspace}]{${1:language}}"
-    },
-    "ecvmothertongue{}": {
-      "snippet": "ecvmothertongue{${1:language}}"
-    },
-    "ecvname{}": {
-      "snippet": "ecvname{${1:name}}"
-    },
-    "ecvnationality{}": {
-      "snippet": "ecvnationality{${1:nationality}}"
-    },
-    "ecvNoHorRule": {},
-    "ecvorcid[]{}": {
-      "snippet": "ecvorcid[${2:options}]{${1:ORCID}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "ecvorcid{}": {
-      "snippet": "ecvorcid{${1:ORCID}}"
-    },
-    "ecvpage{}": {
-      "snippet": "ecvpage{${1:number}}"
-    },
-    "ecvpersonalinfo": {},
-    "ecvpersonalinfo[]": {
-      "snippet": "ecvpersonalinfo[${1:vspace}]"
-    },
-    "ecvpicture[]{}": {
-      "snippet": "ecvpicture[${2:options}]{${1:imagefile}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "ecvpicture{}": {
-      "snippet": "ecvpicture{${1:imagefile}}"
-    },
-    "ecvpictureleft[]{}": {
-      "snippet": "ecvpictureleft[${2:options}]{${1:imagefile}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "ecvpictureleft{}": {
-      "snippet": "ecvpictureleft{${1:imagefile}}"
-    },
-    "ecvpictureright[]{}": {
-      "snippet": "ecvpictureright[${2:options}]{${1:imagefile}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "ecvpictureright{}": {
-      "snippet": "ecvpictureright{${1:imagefile}}"
-    },
-    "ecvProficient": {},
-    "ecvRuleWidth{}": {
-      "snippet": "ecvRuleWidth{${1:width}}"
-    },
-    "ecvsection[]{}": {
-      "snippet": "ecvsection[${2:vspace}]{${1:title}}"
-    },
-    "ecvsection{}": {
-      "snippet": "ecvsection{${1:title}}"
-    },
-    "ecvsectionstyle{}": {
-      "snippet": "ecvsectionstyle{${1:text}}"
-    },
-    "ecvtelephone{}": {
-      "snippet": "ecvtelephone{${1:number}}"
-    },
-    "ecvtitle[]{}{}": {
-      "snippet": "ecvtitle[${3:vspace}]{${1:left}}{${2:right}}"
-    },
-    "ecvtitle{}{}": {
-      "snippet": "ecvtitle{${1:left}}{${2:right}}"
-    },
-    "ecvTitleKern{}": {
-      "snippet": "ecvTitleKern{${1:kern}}"
-    },
-    "ecvtitlelevel[]{}{}{}": {
-      "snippet": "ecvtitlelevel[${4:vspace}]{${1:left}}{${2:right}}{${3:degree level}}"
-    },
-    "ecvtitlelevel{}{}{}": {
-      "snippet": "ecvtitlelevel{${1:left}}{${2:right}}{${3:degree level}}"
-    },
-    "ecvtitlestyle{}": {
-      "snippet": "ecvtitlestyle{${1:text}}"
-    },
-    "ecvupdatecurrentskip{}{}": {
-      "snippet": "ecvupdatecurrentskip{${1:arg1}}{${2:arg2}}"
-    },
-    "ecvWithHorRule": {},
-    "ecvworkphone{}": {
-      "snippet": "ecvworkphone{${1:number}}"
-    },
-    "makesub{}": {
-      "snippet": "makesub{${1:arg}}"
-    },
-    "newecvitemize{}{}": {
-      "snippet": "newecvitemize{${1:envname}}{${2:orig envname}}"
-    },
-    "processlinks{}": {
-      "snippet": "processlinks{${1:arg}}"
-    },
-    "readwords": {},
-    "selectecvfont": {},
-    "toemail{}": {
-      "snippet": "toemail{${1:arg}}"
-    },
-    "tourl{}": {
-      "snippet": "tourl{${1:arg}}"
-    },
-    "ecvAOne": {},
-    "ecvATwo": {},
-    "ecvBOne": {},
-    "ecvBTwo": {},
-    "ecvCEF{}{}": {
-      "snippet": "ecvCEF{${1:arg1}}{${2:arg2}}"
-    },
-    "ecvCOne": {},
-    "ecvCTwo": {},
-    "ecvfirstname{}": {
-      "snippet": "ecvfirstname{${1:arg}}"
-    },
-    "ecvlastname{}": {
-      "snippet": "ecvlastname{${1:arg}}"
-    },
-    "DH": {},
-    "dh": {},
-    "dj": {},
-    "DJ": {},
-    "guillemetleft": {},
-    "guillemetright": {},
-    "guillemotleft": {},
-    "guillemotright": {},
-    "guilsinglleft": {},
-    "guilsinglright": {},
-    "Hwithstroke": {},
-    "hwithstroke": {},
-    "k{}": {
-      "snippet": "k{${1:arg}}"
-    },
-    "NG": {},
-    "ng": {},
-    "quotedblbase": {},
-    "quotesinglbase": {},
-    "textogonekcentered{}": {
-      "snippet": "textogonekcentered{${1:arg}}"
-    },
-    "textquotedbl": {},
-    "th": {},
-    "TH": {}
-  },
-  "envs": {
-    "europasscv": {},
-    "ecvitemize": {},
-    "ecvenumerate": {}
-  },
-  "options": [
-    "english",
-    "italian",
-    "spanish",
-    "french",
-    "danish",
-    "german",
-    "finnish",
-    "portuguese",
-    "swedish",
-    "norsk",
-    "dutch",
-    "catalan",
-    "polish",
-    "hungarian",
-    "estonian",
-    "icelandic",
-    "lithuanian",
-    "czech",
-    "slovak",
-    "latvian",
-    "slovenian",
-    "romanian",
-    "maltese",
-    "bulgarian",
-    "greek",
-    "galician",
-    "serbian",
-    "turkish",
-    "narrow",
-    "bigfont",
-    "black",
-    "nologo",
-    "notitle",
-    "nototpages",
-    "nodocument",
-    "debug",
-    "a4paper",
-    "a5paper",
-    "b5paper",
-    "letterpaper",
-    "legalpaper",
-    "executivepaper",
-    "landscape",
-    "10pt",
-    "11pt",
-    "12pt",
-    "oneside",
-    "twoside",
-    "draft",
-    "final",
-    "titlepage",
-    "notitlepage",
-    "onecolumn",
-    "twocolumn",
-    "leqno",
-    "fleqn",
-    "openbib"
+    {
+      "name": "showframe",
+      "if": "debug"
+    }
   ],
-  "keyvals": [
-    [
-      "label",
-      "link"
+  "macros": [
+    {
+      "name": "convertstring",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "difflength",
+      "unusual": true
+    },
+    {
+      "name": "ecladdressee",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "[${5:vspace%l}]{${1:name}}{${2:organization}}{${3:address}}{${4:city}}"
+      }
+    },
+    {
+      "name": "ecladdressee",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:name}}{${2:organization}}{${3:address}}{${4:city}}"
+      }
+    },
+    {
+      "name": "eclcitydatesubject",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:vspace%l}]{${1:city}}{${2:date}}{${3:subject%text}}"
+      }
+    },
+    {
+      "name": "eclcitydatesubject",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:city}}{${2:date}}{${3:subject%text}}"
+      }
+    },
+    {
+      "name": "eclclosingsalutation",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:vspace%l}]{${1:text}}"
+      }
+    },
+    {
+      "name": "eclclosingsalutation",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "eclIconwidth",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:width}}"
+      }
+    },
+    {
+      "name": "eclitem",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:vspace%l}]{${1:text}}"
+      }
+    },
+    {
+      "name": "eclitem",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "eclmaincontent",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:vspace%l}]{${1:opening%text}}{${2:content%text}}{${3:closing%text}}"
+      }
+    },
+    {
+      "name": "eclmaincontent",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:opening%text}}{${2:content%text}}{${3:closing%text}}"
+      }
+    },
+    {
+      "name": "eclopeningsalutation",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:vspace%l}]{${1:text}}"
+      }
+    },
+    {
+      "name": "eclopeningsalutation",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "eclpersonalinfo"
+    },
+    {
+      "name": "eclpersonalinfo",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:vspace%l}]"
+      }
+    },
+    {
+      "name": "eclsignature"
+    },
+    {
+      "name": "eclsignature",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:imagefile}]"
+      }
+    },
+    {
+      "name": "eclsignature",
+      "arg": {
+        "format": "[][]",
+        "snippet": "[${1:imagefile}][${2:name}]"
+      }
+    },
+    {
+      "name": "ecvaddress",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:address}}"
+      }
+    },
+    {
+      "name": "ecvBasic"
+    },
+    {
+      "name": "ecvbigitem",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:vspace%l}]{${1:left%text}}{${2:right%text}}"
+      }
+    },
+    {
+      "name": "ecvbigitem",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:left%text}}{${2:right%text}}"
+      }
+    },
+    {
+      "name": "ecvblueitem",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:vspace%l}]{${1:left%text}}{${2:right%text}}"
+      }
+    },
+    {
+      "name": "ecvblueitem",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:left%text}}{${2:right%text}}"
+      }
+    },
+    {
+      "name": "ecvbluenormalstyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ecvbluestyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ecvbullet",
+      "unusual": true
+    },
+    {
+      "name": "ecvcoloredtitle"
+    },
+    {
+      "name": "ecvColSep",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:sep}}"
+      }
+    },
+    {
+      "name": "ecvcurrvitae"
+    },
+    {
+      "name": "ecvdateofbirth",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:date%text}}"
+      }
+    },
+    {
+      "name": "ecvdigitalcompetence",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:info-processing}}{${2:communication}}{${3:content-creation}}{${4:safety}}{${5:prob-solving}}"
+      }
+    },
+    {
+      "name": "ecvemail",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:email%URL}}"
+      }
+    },
+    {
+      "name": "ecvExtraRowHeight",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:height}}"
+      }
+    },
+    {
+      "name": "ecvfax",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "ecvfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:font}}"
+      }
+    },
+    {
+      "name": "ecvfootername",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "ecvfootnote",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ecvgender",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:gender%text}}"
+      }
+    },
+    {
+      "name": "ecvgithubpage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:URL}}"
+      }
+    },
+    {
+      "name": "ecvgitlabpage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:URL}}"
+      }
+    },
+    {
+      "name": "ecvgitpage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:URL}}"
+      }
+    },
+    {
+      "name": "ecvhighlight",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ecvhighlightcell",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ecvhomepage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:URL}}"
+      }
+    },
+    {
+      "name": "ecvim",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:service}}{${2:username}}"
+      }
+    },
+    {
+      "name": "ecvIndependent"
+    },
+    {
+      "name": "ecvitem",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:vspace%l}]{${1:left%text}}{${2:right%text}}"
+      }
+    },
+    {
+      "name": "ecvitem",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:left%text}}{${2:right%text}}"
+      }
+    },
+    {
+      "name": "ecvlangrow",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}{}{}{}{}",
+        "snippet": "[${8:vspace%l}]{${1:language}}{${2:listening}}{${3:reading}}{${4:speaking-interaction}}{${5:speaking-production}}{${6:writing}}{${7:width}}"
+      }
+    },
+    {
+      "name": "ecvlangrow",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}{}{}",
+        "snippet": "{${1:language}}{${2:listening}}{${3:reading}}{${4:speaking-interaction}}{${5:speaking-production}}{${6:writing}}{${7:width}}"
+      }
+    },
+    {
+      "name": "ecvlanguage",
+      "arg": {
+        "format": "[]{}{}{}{}{}{}",
+        "snippet": "[${7:vspace%l}]{${1:language}}{${2:listening}}{${3:reading}}{${4:speaking-interaction}}{${5:speaking-production}}{${6:writing}}"
+      }
+    },
+    {
+      "name": "ecvlanguage",
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "{${1:language}}{${2:listening}}{${3:reading}}{${4:speaking-interaction}}{${5:speaking-production}}{${6:writing}}"
+      }
+    },
+    {
+      "name": "ecvlanguagecertificate",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:certificate%text}}"
+      }
+    },
+    {
+      "name": "ecvlanguagefooter"
+    },
+    {
+      "name": "ecvlanguagefooter",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:vspace%l}]"
+      }
+    },
+    {
+      "name": "ecvlanguageheader"
+    },
+    {
+      "name": "ecvlanguageheader",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:vspace%l}]"
+      }
+    },
+    {
+      "name": "ecvlargenormalstyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ecvLargenormalstyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ecvlastlanguage",
+      "arg": {
+        "format": "[]{}{}{}{}{}{}",
+        "snippet": "[${7:vspace%l}]{${1:language}}{${2:listening}}{${3:reading}}{${4:speaking-interaction}}{${5:speaking-production}}{${6:writing}}"
+      }
+    },
+    {
+      "name": "ecvlastlanguage",
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "{${1:language}}{${2:listening}}{${3:reading}}{${4:speaking-interaction}}{${5:speaking-production}}{${6:writing}}"
+      }
+    },
+    {
+      "name": "ecvLeftColumnWidth",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:width}}"
+      }
+    },
+    {
+      "name": "ecvlinkedinpage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:URL}}"
+      }
+    },
+    {
+      "name": "ecvLogoOffset",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:offset}}"
+      }
+    },
+    {
+      "name": "ecvLogoWidth",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:width}}"
+      }
+    },
+    {
+      "name": "ecvmobile",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "ecvmothertongue",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:vspace%l}]{${1:language}}"
+      }
+    },
+    {
+      "name": "ecvmothertongue",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "ecvname",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "ecvnationality",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:nationality%text}}"
+      }
+    },
+    {
+      "name": "ecvNoHorRule",
+      "unusual": true
+    },
+    {
+      "name": "ecvorcid",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:ORCID}}"
+      }
+    },
+    {
+      "name": "ecvorcid",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:ORCID}}"
+      }
+    },
+    {
+      "name": "ecvpage",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "ecvpersonalinfo"
+    },
+    {
+      "name": "ecvpersonalinfo",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:vspace%l}]"
+      }
+    },
+    {
+      "name": "ecvpicture",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "ecvpicture",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "ecvpictureleft",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "ecvpictureleft",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "ecvpictureright",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "ecvpictureright",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "ecvProficient"
+    },
+    {
+      "name": "ecvRuleWidth",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:width}}"
+      }
+    },
+    {
+      "name": "ecvsection",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:vspace%l}]{${1:title}}"
+      }
+    },
+    {
+      "name": "ecvsection",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "ecvsectionstyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ecvtelephone",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "ecvtitle",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:vspace%l}]{${1:left%text}}{${2:right%text}}"
+      }
+    },
+    {
+      "name": "ecvtitle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:left%text}}{${2:right%text}}"
+      }
+    },
+    {
+      "name": "ecvTitleKern",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:kern}}"
+      }
+    },
+    {
+      "name": "ecvtitlelevel",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:vspace%l}]{${1:left%text}}{${2:right%text}}{${3:degree level}}"
+      }
+    },
+    {
+      "name": "ecvtitlelevel",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:left%text}}{${2:right%text}}{${3:degree level}}"
+      }
+    },
+    {
+      "name": "ecvtitlestyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "ecvupdatecurrentskip",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "ecvWithHorRule",
+      "unusual": true
+    },
+    {
+      "name": "ecvworkphone",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "makesub",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "newecvitemize",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:envname}}{${2:orig envname}}"
+      }
+    },
+    {
+      "name": "processlinks",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "readwords",
+      "unusual": true
+    },
+    {
+      "name": "selectecvfont",
+      "unusual": true
+    },
+    {
+      "name": "toemail",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "tourl",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "DH"
+    },
+    {
+      "name": "dh"
+    },
+    {
+      "name": "dj"
+    },
+    {
+      "name": "DJ"
+    },
+    {
+      "name": "guillemetleft"
+    },
+    {
+      "name": "guillemetright"
+    },
+    {
+      "name": "guillemotleft",
+      "unusual": true
+    },
+    {
+      "name": "guillemotright",
+      "unusual": true
+    },
+    {
+      "name": "guilsinglleft"
+    },
+    {
+      "name": "guilsinglright"
+    },
+    {
+      "name": "Hwithstroke"
+    },
+    {
+      "name": "hwithstroke"
+    },
+    {
+      "name": "k",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "NG"
+    },
+    {
+      "name": "ng"
+    },
+    {
+      "name": "quotedblbase"
+    },
+    {
+      "name": "quotesinglbase"
+    },
+    {
+      "name": "textogonekcentered",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "textquotedbl"
+    },
+    {
+      "name": "th"
+    },
+    {
+      "name": "TH"
+    }
+  ],
+  "envs": [
+    {
+      "name": "europasscv"
+    },
+    {
+      "name": "ecvitemize"
+    },
+    {
+      "name": "ecvenumerate"
+    }
+  ],
+  "keys": {
+    "\\documentclass/europasscv#c": [
+      "english\r",
+      "italian\r",
+      "spanish\r",
+      "french\r",
+      "danish\r",
+      "german\r",
+      "finnish\r",
+      "portuguese\r",
+      "swedish\r",
+      "norsk\r",
+      "dutch\r",
+      "catalan\r",
+      "polish\r",
+      "hungarian\r",
+      "estonian\r",
+      "icelandic\r",
+      "lithuanian\r",
+      "czech\r",
+      "slovak\r",
+      "latvian\r",
+      "slovenian\r",
+      "romanian\r",
+      "maltese\r",
+      "bulgarian\r",
+      "greek\r",
+      "galician\r",
+      "serbian\r",
+      "turkish\r",
+      "narrow\r",
+      "bigfont\r",
+      "black\r",
+      "nologo\r",
+      "notitle\r",
+      "nototpages\r",
+      "nodocument\r",
+      "debug\r",
+      "a4paper\r",
+      "a5paper\r",
+      "b5paper\r",
+      "letterpaper\r",
+      "legalpaper\r",
+      "executivepaper\r",
+      "landscape\r",
+      "10pt\r",
+      "11pt\r",
+      "12pt\r",
+      "oneside\r",
+      "twoside\r",
+      "draft\r",
+      "final\r",
+      "titlepage\r",
+      "notitlepage\r",
+      "onecolumn\r",
+      "twocolumn\r",
+      "leqno\r",
+      "fleqn\r",
+      "openbib\r"
     ],
-    [
-      "alt={${1:alt text}}",
-      "bb=${1:llx lly urx ury}",
-      "bbllx=",
-      "bblly=",
-      "bburx=",
-      "bbury=",
-      "natwidth=",
-      "natheight=",
+    "\\ecvorcid": [
+      "label\r",
+      "link\r"
+    ],
+    "\\ecvpictureleft,\\ecvpictureright,\\ecvpicture": [
+      "alt={${1:alt text}}\r",
+      "bb=${1:llx lly urx ury}\r",
+      "bbllx=\r",
+      "bblly=\r",
+      "bburx=\r",
+      "bbury=\r",
+      "natwidth=\r",
+      "natheight=\r",
       "hiresbb",
-      "pagebox=${1|mediabox,cropbox,bleedbox,trimbox,artbox|}",
-      "viewport=${1:llx lly urx ury}",
-      "trim=${1:llx lly urx ury}",
-      "angle=${1:degrees}",
-      "origin=",
+      "pagebox=${1|mediabox,cropbox,bleedbox,trimbox,artbox\r|}",
+      "viewport=${1:llx lly urx ury}\r",
+      "trim=${1:llx lly urx ury}\r",
+      "angle=${1:degrees}\r",
+      "origin=\r",
       "width=",
       "height=",
       "totalheight=",
       "keepaspectratio",
-      "scale=${1:factor}",
+      "scale=${1:factor}\r",
       "clip",
       "draft",
-      "type=${1:file type}",
-      "ext=${1:file extension}",
-      "read=${1:read-file extension}",
-      "command=",
-      "quiet",
-      "page=${1:page number}",
+      "type=${1:file type}\r",
+      "ext=${1:file extension}\r",
+      "read=${1:read-file extension}\r",
+      "command=\r",
+      "quiet\r",
+      "page=${1:page number}\r",
       "interpolate",
-      "decodearray={${1:color array}}"
+      "decodearray={${1:color array}}\r"
     ]
+  },
+  "args": [
+    "\\documentclass/europasscv#c"
   ]
 }

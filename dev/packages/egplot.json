@@ -1,188 +1,263 @@
 {
-  "includes": {
-    "graphicx": [],
-    "ifthen": [],
-    "verbatim": []
-  },
-  "macros": {
-    "egpwrite{}": {
-      "snippet": "egpwrite{${1:gnuplot code}}"
+  "deps": [
+    {
+      "name": "graphicx"
     },
-    "egpprelude{}": {
-      "snippet": "egpprelude{${1:gnuplot prelude}}"
+    {
+      "name": "ifthen"
     },
-    "egpaddtoprelude{}": {
-      "snippet": "egpaddtoprelude{${1:gnuplot code}}"
-    },
-    "egpuse{}": {
-      "snippet": "egpuse{${1:name}}"
-    },
-    "egpuse[]{}": {
-      "snippet": "egpuse[${2:keyvals}]{${1:name}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "egpfigprelude{}": {
-      "snippet": "egpfigprelude{${1:gnuplot prelude}}"
-    },
-    "egpaddtofigprelude{}": {
-      "snippet": "egpaddtofigprelude{${1:gnuplot code}}"
-    },
-    "egpfigepilog{}": {
-      "snippet": "egpfigepilog{${1:gnuplot epilog}}"
-    },
-    "egpaddtofigepilog{}": {
-      "snippet": "egpaddtofigepilog{${1:gnuplot code}}"
-    },
-    "egpcalc{}": {
-      "snippet": "egpcalc{${1:gnuplot expr}}"
-    },
-    "egpcalc[]{}": {
-      "snippet": "egpcalc[${2:name}]{${1:gnuplot expr}}"
-    },
-    "egpuseval{}": {
-      "snippet": "egpuseval{${1:name}}"
-    },
-    "egpshowval{}": {
-      "snippet": "egpshowval{${1:gnuplot expr}}"
-    },
-    "egpshowval[]{}": {
-      "snippet": "egpshowval[${2:name}]{${1:gnuplot expr}}"
-    },
-    "egpassign{}{}": {
-      "snippet": "egpassign{${1:variable}}{${2:gnuplot expr}}"
-    },
-    "theegpcalc": {},
-    "theegpfig": {},
-    "theegpfile": {},
-    "theegpfilename": {},
-    "theegpfilenum": {},
-    "egpcomment": {},
-    "egpfile": {},
-    "egpfile[]": {
-      "snippet": "egpfile[${1:gnuplot file}]"
-    },
-    "endegpfile": {},
-    "egpcmds": {},
-    "endegpcmds": {},
-    "egp": {},
-    "egp[]": {
-      "snippet": "egp[${1:name}]"
-    },
-    "endegp": {},
-    "egpx{}": {
-      "snippet": "egpx{${1:keyvals}}"
-    },
-    "egpx[]{}": {
-      "snippet": "egpx[${2:name}]{${1:keyvals}}"
-    },
-    "endegpx": {},
-    "egpdef{}": {
-      "snippet": "egpdef{${1:name}}"
-    },
-    "endegpdef": {},
-    "filedate": {},
-    "filemaintainer": {},
-    "filename": {},
-    "fileversion": {}
-  },
-  "envs": {
-    "egpfile": {},
-    "egpfile[]": {
-      "name": "egpfile",
-      "snippet": "[${1:gnuplot file}]"
-    },
-    "egpcmds": {},
-    "egp": {},
-    "egp[]": {
-      "name": "egp",
-      "snippet": "[${1:name}]"
-    },
-    "egpx{}": {
-      "name": "egpx",
-      "snippet": "{${1:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "egpx[]{}": {
-      "name": "egpx",
-      "snippet": "[${2:name}]{${1:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "egpdef{}": {
-      "name": "egpdef",
-      "snippet": "{${1:name}}"
+    {
+      "name": "verbatim"
     }
-  },
-  "options": [
-    "german",
-    "gnuplot35",
-    "gnuplot36beta",
-    "unknownkeysallowed",
-    "draft",
-    "final",
-    "hiresbb",
-    "demo",
-    "setpagesize",
-    "nosetpagesize",
-    "dvips",
-    "xdvi",
-    "dvipdf",
-    "dvipdfm",
-    "dvipdfmx",
-    "xetex",
-    "pdftex",
-    "luatex",
-    "dvisvgm",
-    "dvipsone",
-    "dviwindo",
-    "emtex",
-    "dviwin",
-    "oztex",
-    "textures",
-    "pctexps",
-    "pctexwin",
-    "pctexhp",
-    "pctex32",
-    "truetex",
-    "tcidvi",
-    "vtex",
-    "debugshow",
-    "hiderotate",
-    "hidescale"
   ],
-  "keyvals": [
-    [
-      "alt={${1:alt text}}",
-      "bb=${1:llx lly urx ury}",
-      "bbllx=",
-      "bblly=",
-      "bburx=",
-      "bbury=",
-      "natwidth=",
-      "natheight=",
+  "macros": [
+    {
+      "name": "egpwrite",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:gnuplot code%definition}}"
+      }
+    },
+    {
+      "name": "egpprelude",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:gnuplot prelude%definition}}"
+      }
+    },
+    {
+      "name": "egpaddtoprelude",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:gnuplot code%definition}}"
+      }
+    },
+    {
+      "name": "egpuse",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "egpuse",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:keyvals}]{${1:name}}"
+      }
+    },
+    {
+      "name": "egpfigprelude",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:gnuplot prelude%definition}}"
+      }
+    },
+    {
+      "name": "egpaddtofigprelude",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:gnuplot code%definition}}"
+      }
+    },
+    {
+      "name": "egpfigepilog",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:gnuplot epilog%definition}}"
+      }
+    },
+    {
+      "name": "egpaddtofigepilog",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:gnuplot code%definition}}"
+      }
+    },
+    {
+      "name": "egpcalc",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:gnuplot expr%definition}}"
+      }
+    },
+    {
+      "name": "egpcalc",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:name%definition}]{${1:gnuplot expr%definition}}"
+      }
+    },
+    {
+      "name": "egpuseval",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name%definition}}"
+      }
+    },
+    {
+      "name": "egpshowval",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:gnuplot expr%definition}}"
+      }
+    },
+    {
+      "name": "egpshowval",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:name%definition}]{${1:gnuplot expr%definition}}"
+      }
+    },
+    {
+      "name": "egpassign",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:variable%definition}}{${2:gnuplot expr%definition}}"
+      }
+    },
+    {
+      "name": "theegpcalc",
+      "unusual": true
+    },
+    {
+      "name": "theegpfig",
+      "unusual": true
+    },
+    {
+      "name": "theegpfile",
+      "unusual": true
+    },
+    {
+      "name": "theegpfilename",
+      "unusual": true
+    },
+    {
+      "name": "theegpfilenum",
+      "unusual": true
+    },
+    {
+      "name": "egpcomment",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "egpfile"
+    },
+    {
+      "name": "egpfile",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:gnuplot file%file}]"
+      }
+    },
+    {
+      "name": "egpcmds"
+    },
+    {
+      "name": "egp"
+    },
+    {
+      "name": "egp",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:name}]"
+      }
+    },
+    {
+      "name": "egpx",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "egpx",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:name}]{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "egpdef",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/egplot#c": [
+      "german\r",
+      "gnuplot35\r",
+      "gnuplot36beta\r",
+      "unknownkeysallowed\r",
+      "draft\r",
+      "final\r",
+      "hiresbb\r",
+      "demo\r",
+      "setpagesize\r",
+      "nosetpagesize\r",
+      "dvips\r",
+      "xdvi\r",
+      "dvipdf\r",
+      "dvipdfm\r",
+      "dvipdfmx\r",
+      "xetex\r",
+      "pdftex\r",
+      "luatex\r",
+      "dvisvgm\r",
+      "dvipsone\r",
+      "dviwindo\r",
+      "emtex\r",
+      "dviwin\r",
+      "oztex\r",
+      "textures\r",
+      "pctexps\r",
+      "pctexwin\r",
+      "pctexhp\r",
+      "pctex32\r",
+      "truetex\r",
+      "tcidvi\r",
+      "vtex\r",
+      "debugshow\r",
+      "hiderotate\r",
+      "hidescale\r"
+    ],
+    "\\begin{egpx},\\egpuse": [
+      "alt={${1:alt text}}\r",
+      "bb=${1:llx lly urx ury}\r",
+      "bbllx=\r",
+      "bblly=\r",
+      "bburx=\r",
+      "bbury=\r",
+      "natwidth=\r",
+      "natheight=\r",
       "hiresbb",
-      "pagebox=${1|mediabox,cropbox,bleedbox,trimbox,artbox|}",
-      "viewport=${1:llx lly urx ury}",
-      "trim=${1:llx lly urx ury}",
-      "angle=${1:degrees}",
-      "origin=",
+      "pagebox=${1|mediabox,cropbox,bleedbox,trimbox,artbox\r|}",
+      "viewport=${1:llx lly urx ury}\r",
+      "trim=${1:llx lly urx ury}\r",
+      "angle=${1:degrees}\r",
+      "origin=\r",
       "width=",
       "height=",
       "totalheight=",
       "keepaspectratio",
-      "scale=${1:factor}",
+      "scale=${1:factor}\r",
       "clip",
       "draft",
-      "type=${1:file type}",
-      "ext=${1:file extension}",
-      "read=${1:read-file extension}",
-      "command=",
-      "quiet",
-      "page=${1:page number}",
+      "type=${1:file type}\r",
+      "ext=${1:file extension}\r",
+      "read=${1:read-file extension}\r",
+      "command=\r",
+      "quiet\r",
+      "page=${1:page number}\r",
       "interpolate",
-      "decodearray={${1:color array}}"
+      "decodearray={${1:color array}}\r"
     ]
+  },
+  "args": [
+    "\\usepackage/egplot#c"
   ]
 }

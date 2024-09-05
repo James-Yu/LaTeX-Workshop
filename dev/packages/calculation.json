@@ -1,50 +1,115 @@
 {
-  "includes": {
-    "delarray": []
-  },
-  "macros": {
-    "step{}": {
-      "snippet": "step{${1:text}}"
-    },
-    "step*{}": {
-      "snippet": "step*{${1:text}}"
-    },
-    "step[]{}": {
-      "snippet": "step[${2:symbol}]{${1:text}}"
-    },
-    "step*[]{}": {
-      "snippet": "step*[${2:symbol}]{${1:text}}"
-    },
-    "comment{}": {
-      "snippet": "comment{${1:text}}"
-    },
-    "doNumber": {},
-    "stepsymbol": {},
-    "Hblockopen": {},
-    "Hblockclose": {},
-    "Hlineopen": {},
-    "Hlineclose": {},
-    "Hindent": {},
-    "Hsep": {},
-    "calculcolsep": {},
-    "Hposv": {}
-  },
-  "envs": {
-    "calculation": {},
-    "calculation[]": {
-      "name": "calculation",
-      "snippet": "[${1:symbol}]"
-    },
-    "subcalculation": {},
-    "subcalculation[]": {
-      "name": "subcalculation",
-      "snippet": "[${1:symbol}]"
+  "deps": [
+    {
+      "name": "delarray"
     }
-  },
-  "options": [
-    "fleqn",
-    "leqno",
-    "block"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "step",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "step*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "step",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:symbol}]{${1:text}}"
+      }
+    },
+    {
+      "name": "step*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:symbol}]{${1:text}}"
+      }
+    },
+    {
+      "name": "comment",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "doNumber"
+    },
+    {
+      "name": "stepsymbol",
+      "unusual": true
+    },
+    {
+      "name": "Hblockopen",
+      "unusual": true
+    },
+    {
+      "name": "Hblockclose",
+      "unusual": true
+    },
+    {
+      "name": "Hlineopen",
+      "unusual": true
+    },
+    {
+      "name": "Hlineclose",
+      "unusual": true
+    },
+    {
+      "name": "Hindent",
+      "unusual": true
+    },
+    {
+      "name": "Hsep",
+      "unusual": true
+    },
+    {
+      "name": "calculcolsep",
+      "unusual": true
+    },
+    {
+      "name": "Hposv",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "calculation"
+    },
+    {
+      "name": "calculation",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:symbol}]"
+      }
+    },
+    {
+      "name": "subcalculation"
+    },
+    {
+      "name": "subcalculation",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:symbol}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/calculation#c": [
+      "fleqn\r",
+      "leqno\r",
+      "block\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/calculation#c"
+  ]
 }

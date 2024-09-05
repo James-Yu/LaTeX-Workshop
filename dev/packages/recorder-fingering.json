@@ -1,96 +1,229 @@
 {
-  "includes": {
-    "tikz": [],
-    "tikzlibrarycalc": [],
-    "graphicx": []
-  },
-  "macros": {
-    "Sopranino{}": {
-      "snippet": "Sopranino{${1:note}}"
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "Sopranino[]{}": {
-      "snippet": "Sopranino[${2:parameters}]{${1:note}}"
+    {
+      "name": "tikzlibrarycalc"
     },
-    "Soprano{}": {
-      "snippet": "Soprano{${1:note}}"
-    },
-    "Soprano[]{}": {
-      "snippet": "Soprano[${2:parameters}]{${1:note}}"
-    },
-    "Alto{}": {
-      "snippet": "Alto{${1:note}}"
-    },
-    "Alto[]{}": {
-      "snippet": "Alto[${2:parameters}]{${1:note}}"
-    },
-    "Tenor{}": {
-      "snippet": "Tenor{${1:note}}"
-    },
-    "Tenor[]{}": {
-      "snippet": "Tenor[${2:parameters}]{${1:note}}"
-    },
-    "Bass{}": {
-      "snippet": "Bass{${1:note}}"
-    },
-    "Bass[]{}": {
-      "snippet": "Bass[${2:parameters}]{${1:note}}"
-    },
-    "Whistle{}": {
-      "snippet": "Whistle{${1:note}}"
-    },
-    "Whistle[]{}": {
-      "snippet": "Whistle[${2:parameters}]{${1:note}}"
-    },
-    "fingeringSetup{}": {
-      "snippet": "fingeringSetup{${1:parameters}}"
-    },
-    "NewFfingering{}{}": {
-      "snippet": "NewFfingering{${1:notename}}{${2:fingering vector}}"
-    },
-    "NewFfingering*{}{}": {
-      "snippet": "NewFfingering*{${1:notename}}{${2:fingering vector}}"
-    },
-    "NewCfingering{}{}": {
-      "snippet": "NewCfingering{${1:notename}}{${2:fingering vector}}"
-    },
-    "NewCfingering*{}{}": {
-      "snippet": "NewCfingering*{${1:notename}}{${2:fingering vector}}"
-    },
-    "NewDfingering{}{}": {
-      "snippet": "NewDfingering{${1:notename}}{${2:fingering vector}}"
-    },
-    "NewDfingering*{}{}": {
-      "snippet": "NewDfingering*{${1:notename}}{${2:fingering vector}}"
-    },
-    "NewFtrill{}{}{}": {
-      "snippet": "NewFtrill{${1:notename}}{${2:fingering vector}}{${3:trill vector}}"
-    },
-    "NewFtrill*{}{}{}": {
-      "snippet": "NewFtrill*{${1:notename}}{${2:fingering vector}}{${3:trill vector}}"
-    },
-    "NewCtrill{}{}{}": {
-      "snippet": "NewCtrill{${1:notename}}{${2:fingering vector}}{${3:trill vector}}"
-    },
-    "NewCtrill*{}{}{}": {
-      "snippet": "NewCtrill*{${1:notename}}{${2:fingering vector}}{${3:trill vector}}"
-    },
-    "NewDtrill{}{}{}": {
-      "snippet": "NewDtrill{${1:notename}}{${2:fingering vector}}{${3:trill vector}}"
-    },
-    "NewDtrill*{}{}{}": {
-      "snippet": "NewDtrill*{${1:notename}}{${2:fingering vector}}{${3:trill vector}}"
-    },
-    "Ftrill{}": {
-      "snippet": "Ftrill{${1:note}}"
-    },
-    "Ctrill{}": {
-      "snippet": "Ctrill{${1:note}}"
-    },
-    "Dtrill{}": {
-      "snippet": "Dtrill{${1:note}}"
+    {
+      "name": "graphicx"
     }
+  ],
+  "macros": [
+    {
+      "name": "Sopranino",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:note}}"
+      }
+    },
+    {
+      "name": "Sopranino",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:parameters%keyvals}]{${1:note}}"
+      }
+    },
+    {
+      "name": "Soprano",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:note}}"
+      }
+    },
+    {
+      "name": "Soprano",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:parameters%keyvals}]{${1:note}}"
+      }
+    },
+    {
+      "name": "Alto",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:note}}"
+      }
+    },
+    {
+      "name": "Alto",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:parameters%keyvals}]{${1:note}}"
+      }
+    },
+    {
+      "name": "Tenor",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:note}}"
+      }
+    },
+    {
+      "name": "Tenor",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:parameters%keyvals}]{${1:note}}"
+      }
+    },
+    {
+      "name": "Bass",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:note}}"
+      }
+    },
+    {
+      "name": "Bass",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:parameters%keyvals}]{${1:note}}"
+      }
+    },
+    {
+      "name": "Whistle",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:note}}"
+      }
+    },
+    {
+      "name": "Whistle",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:parameters%keyvals}]{${1:note}}"
+      }
+    },
+    {
+      "name": "fingeringSetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:parameters%keyvals}}",
+        "keys": [
+          "\\Sopranino,\\Soprano,\\Alto,\\Tenor,\\Bass,\\Whistle,\\fingeringSetup"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "NewFfingering",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:notename}}{${2:fingering vector}}"
+      }
+    },
+    {
+      "name": "NewFfingering*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:notename}}{${2:fingering vector}}"
+      }
+    },
+    {
+      "name": "NewCfingering",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:notename}}{${2:fingering vector}}"
+      }
+    },
+    {
+      "name": "NewCfingering*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:notename}}{${2:fingering vector}}"
+      }
+    },
+    {
+      "name": "NewDfingering",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:notename}}{${2:fingering vector}}"
+      }
+    },
+    {
+      "name": "NewDfingering*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:notename}}{${2:fingering vector}}"
+      }
+    },
+    {
+      "name": "NewFtrill",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:notename}}{${2:fingering vector}}{${3:trill vector}}"
+      }
+    },
+    {
+      "name": "NewFtrill*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:notename}}{${2:fingering vector}}{${3:trill vector}}"
+      }
+    },
+    {
+      "name": "NewCtrill",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:notename}}{${2:fingering vector}}{${3:trill vector}}"
+      }
+    },
+    {
+      "name": "NewCtrill*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:notename}}{${2:fingering vector}}{${3:trill vector}}"
+      }
+    },
+    {
+      "name": "NewDtrill",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:notename}}{${2:fingering vector}}{${3:trill vector}}"
+      }
+    },
+    {
+      "name": "NewDtrill*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:notename}}{${2:fingering vector}}{${3:trill vector}}"
+      }
+    },
+    {
+      "name": "Ftrill",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:note}}"
+      }
+    },
+    {
+      "name": "Ctrill",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:note}}"
+      }
+    },
+    {
+      "name": "Dtrill",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:note}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\Sopranino,\\Soprano,\\Alto,\\Tenor,\\Bass,\\Whistle,\\fingeringSetup": [
+      "thumboffset",
+      "width=",
+      "LHRHdivider",
+      "LHRHspace=",
+      "trilldir=${1|L,R,LR\r|}",
+      "Lpointer=${1:symbol}\r",
+      "Rpointer=${1:symbol}\r",
+      "trill={${1:list of holes}}\r"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

@@ -1,22 +1,44 @@
 {
-  "includes": {
-    "soul": []
-  },
-  "macros": {
-    "dtd": {},
-    "dtc": {},
-    "uhri": {},
-    "uhrii": {},
-    "uhriii": {},
-    "uhriv": {},
-    "uhr{}{}": {
-      "snippet": "uhr{${1:hour}}{${2:minute}}"
-    },
-    "vonbis{}{}{}{}": {
-      "snippet": "vonbis{${1:hour1}}{${2:minute1}}{${3:hour2}}{${4:minute2}}"
+  "deps": [
+    {
+      "name": "soul"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "dtd"
+    },
+    {
+      "name": "dtc"
+    },
+    {
+      "name": "uhri"
+    },
+    {
+      "name": "uhrii"
+    },
+    {
+      "name": "uhriii"
+    },
+    {
+      "name": "uhriv"
+    },
+    {
+      "name": "uhr",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:hour}}{${2:minute}}"
+      }
+    },
+    {
+      "name": "vonbis",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:hour1}}{${2:minute1}}{${3:hour2}}{${4:minute2}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

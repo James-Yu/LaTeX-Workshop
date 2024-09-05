@@ -1,132 +1,362 @@
 {
-  "includes": {
-    "eforms": []
-  },
-  "macros": {
-    "pmInput{}": {
-      "snippet": "pmInput{${1:file}}"
-    },
-    "pmInput[]{}": {
-      "snippet": "pmInput[${2:arg}]{${1:file}}"
-    },
-    "pmInput*{}": {
-      "snippet": "pmInput*{${1:file}}"
-    },
-    "pmInput*[]{}": {
-      "snippet": "pmInput*[${2:arg}]{${1:file}}"
-    },
-    "InputParas": {},
-    "InputQuizItems": {},
-    "InputItems": {},
-    "InputProbs": {},
-    "ifpmdbtight": {},
-    "pmdbtighttrue": {},
-    "pmdbtightfalse": {},
-    "pmCBPresets{}": {
-      "snippet": "pmCBPresets{${1:eforms parameters}}"
-    },
-    "useEditLnk": {},
-    "useEditBtn": {},
-    "editSourceBtn{}{}": {
-      "snippet": "editSourceBtn{${1:width}}{${2:height}}"
-    },
-    "editSourceBtn[]{}{}": {
-      "snippet": "editSourceBtn[${3:eforms parameters}]{${1:width}}{${2:height}}"
-    },
-    "editSourceOn": {},
-    "editSourceOff": {},
-    "editSourceLnk{}{}{}": {
-      "snippet": "editSourceLnk{${1:width}}{${2:height}}{${3:text}}"
-    },
-    "editSourceLnk[]{}{}{}": {
-      "snippet": "editSourceLnk[${4:eforms parameters}]{${1:width}}{${2:height}}{${3:text}}"
-    },
-    "displayChoices{}{}": {
-      "snippet": "displayChoices{${1:width}}{${2:height}}"
-    },
-    "displayChoices[]{}{}": {
-      "snippet": "displayChoices[${3:eforms parameters}]{${1:width}}{${2:height}}"
-    },
-    "clrChoices{}{}": {
-      "snippet": "clrChoices{${1:width}}{${2:height}}"
-    },
-    "clrChoices[]{}{}": {
-      "snippet": "clrChoices[${3:eforms parameters}]{${1:width}}{${2:height}}"
-    },
-    "displayChoiceCA{}": {
-      "snippet": "displayChoiceCA{${1:string}}"
-    },
-    "displayChoiceTU{}": {
-      "snippet": "displayChoiceTU{${1:string}}"
-    },
-    "clrChoicesCA{}": {
-      "snippet": "clrChoicesCA{${1:string}}"
-    },
-    "clrChoicesTU{}": {
-      "snippet": "clrChoicesTU{${1:string}}"
-    },
-    "altCBMargins": {},
-    "cbInQzMargin": {},
-    "cbSelectInput{}": {
-      "snippet": "cbSelectInput{${1:arg1}}"
-    },
-    "ckBxInput{}": {
-      "snippet": "ckBxInput{${1:arg1}}"
-    },
-    "doinput{}": {
-      "snippet": "doinput{${1:arg1}}"
-    },
-    "donext": {},
-    "editSourcefalse": {},
-    "editSourcetrue": {},
-    "ifeditSource": {},
-    "ifpmdbDQs": {},
-    "ifpmdbFP": {},
-    "ifpmdbmode": {},
-    "ifqzInput": {},
-    "Input": {},
-    "inputConta": {},
-    "inputConti": {},
-    "inputContii{}": {
-      "snippet": "inputContii{${1:arg1}}"
-    },
-    "insertCkBx{}": {
-      "snippet": "insertCkBx{${1:arg1}}"
-    },
-    "isItFullPath{}": {
-      "snippet": "isItFullPath{${1:arg1}}"
-    },
-    "ItemHook{}": {
-      "snippet": "ItemHook{${1:arg1}}"
-    },
-    "pmAlignCB": {},
-    "pmAlignCBAlt": {},
-    "pmdbDQsfalse": {},
-    "pmdbDQstrue": {},
-    "pmdbFPfalse": {},
-    "pmdbFPtrue": {},
-    "pmdbmodefalse": {},
-    "pmdbmodetrue": {},
-    "pmHook": {},
-    "pmiarg": {},
-    "pmInputChk": {},
-    "pmInputWarni": {},
-    "pmInputWarnii": {},
-    "qzInputfalse": {},
-    "qzInputtrue": {},
-    "removedqs": {},
-    "removesemis{}": {
-      "snippet": "removesemis{${1:arg1}}"
-    },
-    "saveQNo": {},
-    "setCBsMarg": {}
-  },
-  "envs": {},
-  "options": [
-    "dbmode",
-    "!dbmode",
-    "tight",
-    "!tight"
+  "deps": [
+    {
+      "name": "eforms"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "pmInput",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "pmInput",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:arg}]{${1:file}}"
+      }
+    },
+    {
+      "name": "pmInput*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "pmInput*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:arg}]{${1:file}}"
+      }
+    },
+    {
+      "name": "InputParas"
+    },
+    {
+      "name": "InputQuizItems"
+    },
+    {
+      "name": "InputItems"
+    },
+    {
+      "name": "InputProbs"
+    },
+    {
+      "name": "ifpmdbtight",
+      "unusual": true
+    },
+    {
+      "name": "pmdbtighttrue"
+    },
+    {
+      "name": "pmdbtightfalse"
+    },
+    {
+      "name": "pmCBPresets",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:eforms parameters}}"
+      }
+    },
+    {
+      "name": "useEditLnk"
+    },
+    {
+      "name": "useEditBtn"
+    },
+    {
+      "name": "editSourceBtn",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "editSourceBtn",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:eforms parameters}]{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "editSourceOn"
+    },
+    {
+      "name": "editSourceOff"
+    },
+    {
+      "name": "editSourceLnk",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:width}}{${2:height}}{${3:text}}"
+      }
+    },
+    {
+      "name": "editSourceLnk",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:eforms parameters}]{${1:width}}{${2:height}}{${3:text}}"
+      }
+    },
+    {
+      "name": "displayChoices",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "displayChoices",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:eforms parameters}]{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "clrChoices",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "clrChoices",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:eforms parameters}]{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "displayChoiceCA",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:string}}"
+      }
+    },
+    {
+      "name": "displayChoiceTU",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:string}}"
+      }
+    },
+    {
+      "name": "clrChoicesCA",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:string}}"
+      }
+    },
+    {
+      "name": "clrChoicesTU",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:string}}"
+      }
+    },
+    {
+      "name": "altCBMargins",
+      "unusual": true
+    },
+    {
+      "name": "cbInQzMargin",
+      "unusual": true
+    },
+    {
+      "name": "cbSelectInput",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    },
+    {
+      "name": "ckBxInput",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    },
+    {
+      "name": "doinput",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    },
+    {
+      "name": "donext",
+      "unusual": true
+    },
+    {
+      "name": "editSourcefalse",
+      "unusual": true
+    },
+    {
+      "name": "editSourcetrue",
+      "unusual": true
+    },
+    {
+      "name": "ifeditSource",
+      "unusual": true
+    },
+    {
+      "name": "ifpmdbDQs",
+      "unusual": true
+    },
+    {
+      "name": "ifpmdbFP",
+      "unusual": true
+    },
+    {
+      "name": "ifpmdbmode",
+      "unusual": true
+    },
+    {
+      "name": "ifqzInput",
+      "unusual": true
+    },
+    {
+      "name": "Input",
+      "unusual": true
+    },
+    {
+      "name": "inputConta",
+      "unusual": true
+    },
+    {
+      "name": "inputConti",
+      "unusual": true
+    },
+    {
+      "name": "inputContii",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    },
+    {
+      "name": "insertCkBx",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    },
+    {
+      "name": "isItFullPath",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    },
+    {
+      "name": "ItemHook",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    },
+    {
+      "name": "pmAlignCB",
+      "unusual": true
+    },
+    {
+      "name": "pmAlignCBAlt",
+      "unusual": true
+    },
+    {
+      "name": "pmdbDQsfalse",
+      "unusual": true
+    },
+    {
+      "name": "pmdbDQstrue",
+      "unusual": true
+    },
+    {
+      "name": "pmdbFPfalse",
+      "unusual": true
+    },
+    {
+      "name": "pmdbFPtrue",
+      "unusual": true
+    },
+    {
+      "name": "pmdbmodefalse",
+      "unusual": true
+    },
+    {
+      "name": "pmdbmodetrue",
+      "unusual": true
+    },
+    {
+      "name": "pmHook",
+      "unusual": true
+    },
+    {
+      "name": "pmiarg",
+      "unusual": true
+    },
+    {
+      "name": "pmInputChk",
+      "unusual": true
+    },
+    {
+      "name": "pmInputWarni",
+      "unusual": true
+    },
+    {
+      "name": "pmInputWarnii",
+      "unusual": true
+    },
+    {
+      "name": "qzInputfalse",
+      "unusual": true
+    },
+    {
+      "name": "qzInputtrue",
+      "unusual": true
+    },
+    {
+      "name": "removedqs",
+      "unusual": true
+    },
+    {
+      "name": "removesemis",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg1}}"
+      }
+    },
+    {
+      "name": "saveQNo",
+      "unusual": true
+    },
+    {
+      "name": "setCBsMarg",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/qrcstamps#c": [
+      "dbmode\r",
+      "!dbmode\r",
+      "tight\r",
+      "!tight\r"
+    ]
+  },
+  "args": [
+    "\\usepackage/qrcstamps#c"
+  ]
 }
