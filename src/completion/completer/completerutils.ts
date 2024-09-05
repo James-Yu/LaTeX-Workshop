@@ -27,7 +27,7 @@ interface CmdSignature {
 }
 
 export class CmdEnvSuggestion extends vscode.CompletionItem implements CompletionItem {
-    constructor(public label: string, public packageName: string, public keys: string[], public keyPos: number, public signature: CmdSignature, kind: vscode.CompletionItemKind, public ifCond?: string) {
+    constructor(public label: string, public packageName: string, public keys: string[], public keyPos: number, public signature: CmdSignature, kind: vscode.CompletionItemKind, public ifCond?: string, public unusual?: boolean) {
         super(label, kind)
     }
 

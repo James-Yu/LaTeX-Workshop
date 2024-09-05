@@ -1,19 +1,10 @@
 import * as vscode from 'vscode'
-import * as fs from 'fs'
 import * as path from 'path'
 import * as assert from 'assert'
-import { glob } from 'glob'
 import { lw } from '../../src/lw'
 import * as test from './utils'
-import { EnvSnippetType, EnvObsolete, MacroObsolete, PackageObsolete } from '../../src/types'
+import { EnvSnippetType } from '../../src/types'
 import { isTriggerSuggestNeeded } from '../../src/completion/completer/macro'
-
-function assertKeys(keys: string[], expected: string[] = [], message: string): void {
-    assert.ok(
-        keys.every(k => expected.includes(k)),
-        message
-    )
-}
 
 suite('Intellisense test suite', () => {
     test.suite.name = path.basename(__filename).replace('.test.js', '')

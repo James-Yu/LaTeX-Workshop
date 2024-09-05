@@ -321,9 +321,22 @@ function parseFiles(files: string[], folder: string) {
     }
 }
 
+function parseExpl3() {
+    const content = fs.readFileSync(`expl3.cwl`).toString()
+    const pkg: PackageRaw = { deps: [], macros: [], envs: [], keys: {}, args: [] }
+    parseLines(pkg, content.split('\n'))
+    pkg.macros.push({
+        name: 'ExplSyntaxOn',
+        arg: { format: '', snippet: '\n\t$0\n\\ExplSyntaxOff' },
+        doc: 'Insert an \\ExplSyntax block'
+    })
+    fs.writeFileSync(`../data/packages/expl3.json`, JSON.stringify(pkg, null, 2))
+}
+
 function parseEssential() {
-    const files = fs.readFileSync('cwl.list').toString().split('\n')
-    parseFiles(files, '../data/packages')
+    // const files = fs.readFileSync('cwl.list').toString().split('\n')
+    // parseFiles(files, '../data/packages')
+    parseExpl3()
 }
 
 function parseAll() {

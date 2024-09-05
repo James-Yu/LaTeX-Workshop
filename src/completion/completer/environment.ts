@@ -95,10 +95,14 @@ function provide(langId: string, line: string, position: vscode.Position): Compl
     // Insert package environments
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     if (configuration.get('intellisense.package.enabled')) {
+        const unusual = configuration.get('intellisense.package.unusual') as boolean
         const packages = lw.completion.usepackage.getAll(langId)
         Object.entries(packages).forEach(([packageName, options]) => {
             getEnvFromPkg(packageName, snippetType).forEach(env => {
                 if (env.ifCond && !options.includes(env.ifCond)) {
+                    return
+                }
+                if (env.unusual && !unusual) {
                     return
                 }
                 if (!envList.includes(env.label)) {
@@ -152,6 +156,7 @@ function provideEnvsAsMacroInPkg(packageName: string, options: string[], suggest
         return
     }
 
+    const unusual = configuration.get('intellisense.package.unusual') as boolean
     // Insert env snippets
     for (const env of entry) {
         if (!useOptionalArgsEntries && env.hasOptionalArgs()) {
@@ -159,6 +164,9 @@ function provideEnvsAsMacroInPkg(packageName: string, options: string[], suggest
         }
         if (!defined.has(env.signatureAsString())) {
             if (env.ifCond && !options.includes(env.ifCond)) {
+                return
+            }
+            if (env.unusual && !unusual) {
                 return
             }
             suggestions.push(env)
@@ -268,7 +276,8 @@ function entryEnvToCompletion(item: EnvironmentInfo, type: EnvSnippetType): CmdE
         item.arg?.keyPos ?? -1,
         { name: item.name, args: item.arg?.format ?? '' },
         vscode.CompletionItemKind.Module,
-        item.if)
+        item.if,
+        item.unusual)
     suggestion.detail = `\\begin{${item.name}}${item.arg?.snippet.replace(/\$\{\d+:([^$}]*)\}/g, '$1') ?? ''}\n...\n\\end{${item.name}}`
     suggestion.documentation = `Environment ${item.name} .`
     if (item.package) {

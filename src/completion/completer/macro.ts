@@ -402,7 +402,8 @@ function entryCmdToCompletion(item: MacroRaw, packageName?: string, postAction?:
         item.arg?.keyPos ?? -1,
         { name: item.name, args: item.arg?.format ?? '' },
         vscode.CompletionItemKind.Function,
-        item.if)
+        item.if,
+        item.unusual)
 
     if (item.arg?.snippet) {
         item.arg.snippet = item.name + item.arg.snippet
@@ -454,6 +455,7 @@ function provideCmdInPkg(packageName: string, options: string[], suggestions: Cm
         return
     }
 
+    const unusual = configuration.get('intellisense.package.unusual') as boolean
     // Insert macros
     pkgCmds.forEach(cmd => {
         if (!useOptionalArgsEntries && cmd.hasOptionalArgs()) {
@@ -461,6 +463,9 @@ function provideCmdInPkg(packageName: string, options: string[], suggestions: Cm
         }
         if (!defined.has(cmd.signatureAsString())) {
             if (cmd.ifCond && !options.includes(cmd.ifCond)) {
+                return
+            }
+            if (cmd.unusual && !unusual) {
                 return
             }
             suggestions.push(cmd)

@@ -18,7 +18,7 @@ OUT_DIR = CWD.joinpath('../data/packages').resolve()
 
 PATH_TO_DTX = os.environ.get(
     "PATH_TO_DTX",
-    default='/usr/local/texlive/2024/texmf-dist/source/latex/l3kernel/')
+    default='/opt/texlive/2024/texmf-dist/source/latex/l3kernel/')
 dtx_path = Path(PATH_TO_DTX).resolve()
 if not dtx_path.exists():
     raise FileNotFoundError(f'Directory {dtx_path} does not exist. Do you have PATH_TO_DTX set?')
@@ -86,6 +86,7 @@ def parse_file(fpath, _type):
 def parse_all_files():
     entries = {}
     for f in dtx_files:
+        print(f)
         if any(f.match(i) for i in dtx_files_to_ignore):
             continue
         ans = parse_file(f.as_posix(), 'function')
@@ -101,14 +102,14 @@ if __name__ == "__main__":
     # Write a .cwl file
     with open('expl3.cwl', encoding='utf8', mode='w') as fp:
         fp.writelines([e + '\n' for e in entries_array])
-    cwlIntel = CwlIntel(COMMANDS_FILE, ENVS_FILE, UNIMATHSYMBOLS)
-    expl3 = cwlIntel.parse_cwl_file('expl3.cwl')
-    expl3.macros['ExplSyntaxBlock'] = {
-        'command': 'ExplSyntaxBlock',
-        'option': '',
-        'detail': '',
-        'snippet': 'ExplSyntaxOn\n\t$0\n\\ExplSyntaxOff',
-        'documentation': 'Insert a \\ExplSyntax block'
-    }
-    with open(OUT_DIR.joinpath('expl3.json'), 'w', encoding='utf8') as fp:
-        json.dump(dataclasses.asdict(expl3, dict_factory=lambda x: {k: v for (k, v) in x if v is not None}), fp, indent=2, ensure_ascii=False)
+    # cwlIntel = CwlIntel(COMMANDS_FILE, ENVS_FILE, UNIMATHSYMBOLS)
+    # expl3 = cwlIntel.parse_cwl_file('expl3.cwl')
+    # expl3.macros['ExplSyntaxBlock'] = {
+    #     'command': 'ExplSyntaxBlock',
+    #     'option': '',
+    #     'detail': '',
+    #     'snippet': 'ExplSyntaxOn\n\t$0\n\\ExplSyntaxOff',
+    #     'documentation': 'Insert a \\ExplSyntax block'
+    # }
+    # with open(OUT_DIR.joinpath('expl3.json'), 'w', encoding='utf8') as fp:
+    #     json.dump(dataclasses.asdict(expl3, dict_factory=lambda x: {k: v for (k, v) in x if v is not None}), fp, indent=2, ensure_ascii=False)
