@@ -110,7 +110,11 @@
       "name": "cmd",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:macro%cmd}}"
+        "snippet": "[${2:options%keyvals}]{${1:macro%cmd}}",
+        "keys": [
+          "\\cmd#c,\\cs#c,\\tn#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -124,7 +128,11 @@
       "name": "cs",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:csname}}"
+        "snippet": "[${2:options%keyvals}]{${1:csname}}",
+        "keys": [
+          "\\cmd#c,\\cs#c,\\tn#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -138,7 +146,11 @@
       "name": "tn",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:csname}}"
+        "snippet": "[${2:options%keyvals}]{${1:csname}}",
+        "keys": [
+          "\\cmd#c,\\cs#c,\\tn#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -444,7 +456,11 @@
       "name": "function",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:type%keyvals}]{${1:function%cmd}}"
+        "snippet": "[${2:type%keyvals}]{${1:function%cmd}}",
+        "keys": [
+          "\\begin{function}#c,\\begin{variable}#c,\\begin{macro}#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -458,7 +474,12 @@
       "name": "variable",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:variable%cmd}}"
+        "snippet": "[${2:options%keyvals}]{${1:variable%cmd}}",
+        "keys": [
+          "\\begin{function}#c,\\begin{variable}#c,\\begin{macro}#c",
+          "\\begin{variable}#c,\\begin{macro}#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -472,7 +493,12 @@
       "name": "macro",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:macro1,macro2,...%cmd}}"
+        "snippet": "[${2:options%keyvals}]{${1:macro1,macro2,...%cmd}}",
+        "keys": [
+          "\\begin{function}#c,\\begin{variable}#c,\\begin{macro}#c",
+          "\\begin{variable}#c,\\begin{macro}#c"
+        ],
+        "keyPos": 0
       }
     },
     {

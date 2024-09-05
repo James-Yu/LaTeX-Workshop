@@ -5,14 +5,22 @@
       "name": "newlist",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:name%envname}}{${2:type%keyvals}}{${3:max-depth}}"
+        "snippet": "{${1:name%envname}}{${2:type%keyvals}}{${3:max-depth}}",
+        "keys": [
+          "\\newlist#c,\\renewlist#c"
+        ],
+        "keyPos": 1
       }
     },
     {
       "name": "renewlist",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:name%envname}}{${2:type%keyvals}}{${3:max-depth}}"
+        "snippet": "{${1:name%envname}}{${2:type%keyvals}}{${3:max-depth}}",
+        "keys": [
+          "\\newlist#c,\\renewlist#c"
+        ],
+        "keyPos": 1
       }
     },
     {
@@ -156,7 +164,12 @@
       "if": "inline",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{enumerate}#c,\\begin{itemize}#c,\\begin{description}#c,\\begin{enumerate*}#c,\\begin{itemize*}#c,\\begin{description*}#c",
+          "\\setlist,\\setlist*,\\SetEnumitemKey,\\begin{enumerate}#c,\\begin{itemize}#c,\\begin{description}#c,\\begin{enumerate*}#c,\\begin{itemize*}#c,\\begin{description*}#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -168,7 +181,12 @@
       "if": "inline",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{enumerate}#c,\\begin{itemize}#c,\\begin{description}#c,\\begin{enumerate*}#c,\\begin{itemize*}#c,\\begin{description*}#c",
+          "\\setlist,\\setlist*,\\SetEnumitemKey,\\begin{enumerate}#c,\\begin{itemize}#c,\\begin{description}#c,\\begin{enumerate*}#c,\\begin{itemize*}#c,\\begin{description*}#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -180,28 +198,45 @@
       "if": "inline",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{enumerate}#c,\\begin{itemize}#c,\\begin{description}#c,\\begin{enumerate*}#c,\\begin{itemize*}#c,\\begin{description*}#c",
+          "\\setlist,\\setlist*,\\SetEnumitemKey,\\begin{enumerate}#c,\\begin{itemize}#c,\\begin{description}#c,\\begin{enumerate*}#c,\\begin{itemize*}#c,\\begin{description*}#c"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "enumerate",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\setlist,\\setlist*,\\SetEnumitemKey,\\begin{enumerate}#c,\\begin{itemize}#c,\\begin{description}#c,\\begin{enumerate*}#c,\\begin{itemize*}#c,\\begin{description*}#c"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "itemize",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\setlist,\\setlist*,\\SetEnumitemKey,\\begin{enumerate}#c,\\begin{itemize}#c,\\begin{description}#c,\\begin{enumerate*}#c,\\begin{itemize*}#c,\\begin{description*}#c"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "description",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\setlist,\\setlist*,\\SetEnumitemKey,\\begin{enumerate}#c,\\begin{itemize}#c,\\begin{description}#c,\\begin{enumerate*}#c,\\begin{itemize*}#c,\\begin{description*}#c"
+        ],
+        "keyPos": 0
       }
     }
   ],

@@ -5,21 +5,33 @@
       "name": "TOPLevel",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:level%keyvals}}"
+        "snippet": "{${1:level%keyvals}}",
+        "keys": [
+          "\\TOPLevel#c,\\BTMLevel#c,\\TOCLevels#c,\\declaretocfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "BTMLevel",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:level%keyvals}}"
+        "snippet": "{${1:level%keyvals}}",
+        "keys": [
+          "\\TOPLevel#c,\\BTMLevel#c,\\TOCLevels#c,\\declaretocfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "TOCLevels",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:top level%keyvals}}{${2:btm level}}"
+        "snippet": "{${1:top level%keyvals}}{${2:btm level}}",
+        "keys": [
+          "\\TOPLevel#c,\\BTMLevel#c,\\TOCLevels#c,\\declaretocfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -43,7 +55,12 @@
       "name": "declaretocfmt",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:level%keyvals}}{${2:various}}"
+        "snippet": "{${1:level%keyvals}}{${2:various}}",
+        "keys": [
+          "\\TOPLevel#c,\\BTMLevel#c,\\TOCLevels#c,\\declaretocfmt#c",
+          "\\declaretocfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {

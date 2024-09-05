@@ -237,7 +237,11 @@
       "name": "setglossarystyle",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:style name%keyvals}}"
+        "snippet": "{${1:style name%keyvals}}",
+        "keys": [
+          "\\setglossarystyle#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -341,7 +345,11 @@
       "if": "symbols",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\printnoidxglossary#c,\\printglossary#c,\\printsymbols#c,\\printnumbers#c,\\printindex#c,\\printacronyms#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -353,7 +361,11 @@
       "if": "numbers",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\printnoidxglossary#c,\\printglossary#c,\\printsymbols#c,\\printnumbers#c,\\printindex#c,\\printacronyms#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -369,7 +381,11 @@
       "if": "index",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "keys": [
+          "\\newglossaryentry#c,\\longnewglossaryentry#c,\\provideglossaryentry#c,\\longprovideglossaryentry#c,\\newacronym#c,\\newterm#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -381,7 +397,11 @@
       "if": "index",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\printnoidxglossary#c,\\printglossary#c,\\printsymbols#c,\\printnumbers#c,\\printindex#c,\\printacronyms#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -393,7 +413,11 @@
       "if": "acronym",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\printnoidxglossary#c,\\printglossary#c,\\printsymbols#c,\\printnumbers#c,\\printindex#c,\\printacronyms#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -405,7 +429,11 @@
       "if": "acronym=true",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\printnoidxglossary#c,\\printglossary#c,\\printsymbols#c,\\printnumbers#c,\\printindex#c,\\printacronyms#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -417,7 +445,11 @@
       "if": "acronyms",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\printnoidxglossary#c,\\printglossary#c,\\printsymbols#c,\\printnumbers#c,\\printindex#c,\\printacronyms#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -508,28 +540,44 @@
       "name": "newglossaryentry",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:label}}{${2:keyvals}}"
+        "snippet": "{${1:label}}{${2:keyvals}}",
+        "keys": [
+          "\\newglossaryentry#c,\\longnewglossaryentry#c,\\provideglossaryentry#c,\\longprovideglossaryentry#c,\\newacronym#c,\\newterm#c"
+        ],
+        "keyPos": 1
       }
     },
     {
       "name": "longnewglossaryentry",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:label}}{${2:keyvals}}{${3:description}}"
+        "snippet": "{${1:label}}{${2:keyvals}}{${3:description}}",
+        "keys": [
+          "\\newglossaryentry#c,\\longnewglossaryentry#c,\\provideglossaryentry#c,\\longprovideglossaryentry#c,\\newacronym#c,\\newterm#c"
+        ],
+        "keyPos": 1
       }
     },
     {
       "name": "provideglossaryentry",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:label}}{${2:keyvals}}"
+        "snippet": "{${1:label}}{${2:keyvals}}",
+        "keys": [
+          "\\newglossaryentry#c,\\longnewglossaryentry#c,\\provideglossaryentry#c,\\longprovideglossaryentry#c,\\newacronym#c,\\newterm#c"
+        ],
+        "keyPos": 1
       }
     },
     {
       "name": "longprovideglossaryentry",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:label}}{${2:keyvals}}{${3:description}}"
+        "snippet": "{${1:label}}{${2:keyvals}}{${3:description}}",
+        "keys": [
+          "\\newglossaryentry#c,\\longnewglossaryentry#c,\\provideglossaryentry#c,\\longprovideglossaryentry#c,\\newacronym#c,\\newterm#c"
+        ],
+        "keyPos": 1
       }
     },
     {
@@ -635,7 +683,11 @@
       "name": "gls",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -651,7 +703,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -665,7 +721,11 @@
       "name": "Gls",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -681,7 +741,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -695,7 +759,11 @@
       "name": "GLS",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -711,7 +779,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -725,7 +797,11 @@
       "name": "glspl",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -741,7 +817,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -755,7 +835,11 @@
       "name": "Glspl",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -771,7 +855,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -785,7 +873,11 @@
       "name": "GLSpl",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -801,7 +893,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -815,7 +911,11 @@
       "name": "glsdisp",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:label}}{${2:text}}"
+        "snippet": "[${3:options%keyvals}]{${1:label}}{${2:text}}",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -829,7 +929,11 @@
       "name": "Glsdisp",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:label}}{${2:text}}"
+        "snippet": "[${3:options%keyvals}]{${1:label}}{${2:text}}",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -843,7 +947,11 @@
       "name": "glslink",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:label}}{${2:text}}"
+        "snippet": "[${3:options%keyvals}]{${1:label}}{${2:text}}",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -857,7 +965,11 @@
       "name": "Glslink",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:label}}{${2:text}}"
+        "snippet": "[${3:options%keyvals}]{${1:label}}{${2:text}}",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -873,7 +985,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -889,7 +1005,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -905,7 +1025,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -921,7 +1045,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -937,7 +1065,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -953,7 +1085,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -969,7 +1105,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -985,7 +1125,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1001,7 +1145,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1017,7 +1165,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1033,7 +1185,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1049,7 +1205,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1065,7 +1225,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1081,7 +1245,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1097,7 +1265,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1113,7 +1285,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1129,7 +1305,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1145,7 +1325,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1161,7 +1345,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1177,7 +1365,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1193,7 +1385,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1209,7 +1405,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1225,7 +1425,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1241,7 +1445,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1257,7 +1465,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1273,7 +1485,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1289,7 +1505,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1305,7 +1525,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1321,7 +1545,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1337,7 +1565,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1353,7 +1585,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1369,7 +1605,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1385,7 +1625,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1401,7 +1645,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1417,7 +1665,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1433,7 +1685,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1449,7 +1705,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1465,7 +1725,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1481,7 +1745,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1497,7 +1765,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1513,7 +1785,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1529,7 +1805,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1545,7 +1825,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1561,7 +1845,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1577,7 +1865,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1593,7 +1885,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1609,7 +1905,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1625,7 +1925,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1641,7 +1945,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1657,7 +1965,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1673,7 +1985,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1689,7 +2005,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1705,7 +2025,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1721,7 +2045,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1735,7 +2063,11 @@
       "name": "glsuseri",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1751,7 +2083,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1765,7 +2101,11 @@
       "name": "Glsuseri",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1781,7 +2121,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1795,7 +2139,11 @@
       "name": "GLSuseri",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1811,7 +2159,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1827,7 +2179,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1843,7 +2199,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1859,7 +2219,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1875,7 +2239,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1891,7 +2259,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1907,7 +2279,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1923,7 +2299,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1939,7 +2319,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1955,7 +2339,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1971,7 +2359,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1987,7 +2379,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -2003,7 +2399,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -2019,7 +2419,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -2035,7 +2439,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -2051,7 +2459,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -2067,7 +2479,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -2083,7 +2499,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -2099,7 +2519,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -2115,7 +2539,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -2131,7 +2559,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -2147,7 +2579,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -2163,7 +2599,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -2179,7 +2619,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -2195,7 +2639,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -2211,7 +2659,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -2227,7 +2679,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -2243,7 +2699,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -2259,7 +2719,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -2275,7 +2739,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -2291,7 +2759,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]"
+        "snippet": "[${2:options%keyvals}]{${1:label}}[${3:insert}]",
+        "keys": [
+          "\\gls#c,\\Gls#c,\\GLS#c,\\glspl#c,\\Glspl#c,\\GLSpl#c,\\glsdisp#c,\\Glsdisp#c,\\glslink#c,\\Glslink#c,\\glstext#c,\\Glstext#c,\\GLStext#c,\\glsfirst#c,\\Glsfirst#c,\\GLSfirst#c,\\glsplural#c,\\Glsplural#c,\\GLSplural#c,\\glsfirstplural#c,\\Glsfirstplural#c,\\GLSfirstplural#c,\\glsname#c,\\Glsname#c,\\GLSname#c,\\glssymbol#c,\\Glssymbol#c,\\GLSsymbol#c,\\glssymbolplural#c,\\Glssymbolplural#c,\\GLSsymbolplural#c,\\glsdesc#c,\\Glsdesc#c,\\GLSdesc#c,\\glsdescplural#c,\\Glsdescplural#c,\\GLSdescplural#c,\\glsuseri#c,\\Glsuseri#c,\\GLSuseri#c,\\glsuserii#c,\\Glsuserii#c,\\GLSuserii#c,\\glsuseriii#c,\\Glsuseriii#c,\\GLSuseriii#c,\\glsuseriv#c,\\Glsuseriv#c,\\GLSuseriv#c,\\glsuserv#c,\\Glsuserv#c,\\GLSuserv#c,\\glsuservi#c,\\Glsuservi#c,\\GLSuservi#c,\\cgls#c,\\cGls#c,\\cglspl#c,\\cGlspl#c,\\acrshort#c,\\Acrshort#c,\\acrshortpl#c,\\Acrshortpl#c,\\acrlong#c,\\Acrlong#c,\\acrlongpl#c,\\Acrlongpl#c,\\acrfull#c,\\Acrfull#c,\\acrfullpl#c,\\Acrfullpl#c,\\acs#c,\\Acs#c,\\acsp#c,\\Acsp#c,\\acl#c,\\Acl#c,\\aclp#c,\\Aclp#c,\\acf#c,\\Acf#c,\\acfp#c,\\Acfp#c,\\ac#c,\\Ac#c,\\acp#c,\\Acp#c,\\acrfullfmt#c,\\ACRfullfmt#c,\\Acrfullfmt#c,\\ACRfullplfmt#c,\\Acrfullplfmt#c,\\acrfullplfmt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -2769,7 +3241,11 @@
       "name": "newacronym",
       "arg": {
         "format": "[]{}{}{}",
-        "snippet": "[${4:options%keyvals}]{${1:label}}{${2:abbrv}}{${3:long}}"
+        "snippet": "[${4:options%keyvals}]{${1:label}}{${2:abbrv}}{${3:long}}",
+        "keys": [
+          "\\newacronym#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -4038,7 +4514,11 @@
       "name": "setacronymstyle",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:style-name%keyvals}}"
+        "snippet": "{${1:style-name%keyvals}}",
+        "keys": [
+          "\\setacronymstyle#c,\\GlsUseAcrEntryDispStyle#c,\\GlsUseAcrStyleDefs#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -4450,7 +4930,11 @@
       "name": "printnoidxglossary",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\printnoidxglossary#c,\\printglossary#c,\\printsymbols#c,\\printnumbers#c,\\printindex#c,\\printacronyms#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -4460,7 +4944,11 @@
       "name": "printglossary",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\printnoidxglossary#c,\\printglossary#c,\\printsymbols#c,\\printnumbers#c,\\printindex#c,\\printacronyms#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -4654,7 +5142,11 @@
       "name": "glsaddall",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\glsaddall#c"
+        ],
+        "keyPos": 0
       }
     },
     {

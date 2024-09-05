@@ -34,14 +34,23 @@
       "name": "embedfile",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:file}}"
+        "snippet": "[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\embedfile#c,\\embedfilesetup#c"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "embedfilesetup",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:options%keyvals}}"
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\embedfile#c,\\embedfilesetup#c",
+          "\\embedfilesetup#c"
+        ],
+        "keyPos": 0
       }
     },
     {

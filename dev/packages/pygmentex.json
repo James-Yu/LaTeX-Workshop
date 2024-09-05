@@ -40,7 +40,12 @@
       "name": "inputpygmented",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:file}}"
+        "snippet": "[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\begin{pygmented}#c,\\inputpygmented#c,\\pyginline#c,\\setpygmented#c",
+          "\\begin{pygmented}#c,\\inputpygmented#c,\\setpygmented#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -54,14 +59,25 @@
       "name": "pyginline",
       "arg": {
         "format": "[]||",
-        "snippet": "[${1:options}]|${2:code}|"
+        "snippet": "[${1:options}]|${2:code}|",
+        "keys": [
+          "\\begin{pygmented}#c,\\inputpygmented#c,\\pyginline#c,\\setpygmented#c",
+          "\\pyginline#c,\\setpygmented#c"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "setpygmented",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:options%keyvals}}"
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\begin{pygmented}#c,\\inputpygmented#c,\\pyginline#c,\\setpygmented#c",
+          "\\pyginline#c,\\setpygmented#c",
+          "\\begin{pygmented}#c,\\inputpygmented#c,\\setpygmented#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -93,7 +109,12 @@
       "name": "pygmented",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{pygmented}#c,\\inputpygmented#c,\\pyginline#c,\\setpygmented#c",
+          "\\begin{pygmented}#c,\\inputpygmented#c,\\setpygmented#c"
+        ],
+        "keyPos": 0
       }
     },
     {

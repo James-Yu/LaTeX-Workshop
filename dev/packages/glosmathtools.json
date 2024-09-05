@@ -42,7 +42,11 @@
       "name": "newglosentrymath",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:label}}{${2:math sym%formula}}{${3:keyvals}}"
+        "snippet": "{${1:label}}{${2:math sym%formula}}{${3:keyvals}}",
+        "keys": [
+          "\\newglosentrymath#c"
+        ],
+        "keyPos": 2
       }
     },
     {
@@ -64,7 +68,11 @@
       "name": "glsac",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:accent-type%keyvals}]{${1:label}}"
+        "snippet": "[${2:accent-type%keyvals}]{${1:label}}",
+        "keys": [
+          "\\glsac#c,\\glsub#c,\\glsubs#c,\\glsvi#c,"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -78,7 +86,11 @@
       "name": "glsub",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:accent-type%keyvals}]{${1:label}}{${2:sub-label}}"
+        "snippet": "[${3:accent-type%keyvals}]{${1:label}}{${2:sub-label}}",
+        "keys": [
+          "\\glsac#c,\\glsub#c,\\glsubs#c,\\glsvi#c,"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -92,14 +104,22 @@
       "name": "glsubs",
       "arg": {
         "format": "[]{}{}{}",
-        "snippet": "[${4:accent type1%keyvals}]{${1:label}}{${2:sub-label1}}{${3:sub-label2}}"
+        "snippet": "[${4:accent type1%keyvals}]{${1:label}}{${2:sub-label1}}{${3:sub-label2}}",
+        "keys": [
+          "\\glsac#c,\\glsub#c,\\glsubs#c,\\glsvi#c,"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "glsubs",
       "arg": {
         "format": "[][]{}{}{}",
-        "snippet": "[${4:accent type1%keyvals}][${5:accent-type2}]{${1:label}}{${2:sub-label1}}{${3:sub-label2}}"
+        "snippet": "[${4:accent type1%keyvals}][${5:accent-type2}]{${1:label}}{${2:sub-label1}}{${3:sub-label2}}",
+        "keys": [
+          "\\glsac#c,\\glsub#c,\\glsubs#c,\\glsvi#c,"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -113,14 +133,22 @@
       "name": "glsvi",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:accent-type1%keyvals}]{${1:label1%ref}}{${2:label2%ref}}"
+        "snippet": "[${3:accent-type1%keyvals}]{${1:label1%ref}}{${2:label2%ref}}",
+        "keys": [
+          "\\glsac#c,\\glsub#c,\\glsubs#c,\\glsvi#c,"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "glsvi",
       "arg": {
         "format": "[][]{}{}",
-        "snippet": "[${3:accent-type1%keyvals}][${4:accent-type2}]{${1:label1%ref}}{${2:label2%ref}}"
+        "snippet": "[${3:accent-type1%keyvals}][${4:accent-type2}]{${1:label1%ref}}{${2:label2%ref}}",
+        "keys": [
+          "\\glsac#c,\\glsub#c,\\glsubs#c,\\glsvi#c,"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -148,14 +176,22 @@
       "name": "glslang",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:language%keyvals}]{${1:label}}"
+        "snippet": "[${2:language%keyvals}]{${1:label}}",
+        "keys": [
+          "\\glslang#c,\\setacronymlang#c,\\begin{acronymlang}#c"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "setacronymlang",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:language%keyvals}}"
+        "snippet": "{${1:language%keyvals}}",
+        "keys": [
+          "\\glslang#c,\\setacronymlang#c,\\begin{acronymlang}#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1017,7 +1053,11 @@
       "name": "acronymlang",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:language%keyvals}}"
+        "snippet": "{${1:language%keyvals}}",
+        "keys": [
+          "\\glslang#c,\\setacronymlang#c,\\begin{acronymlang}#c"
+        ],
+        "keyPos": 0
       }
     }
   ],

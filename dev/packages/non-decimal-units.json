@@ -5,7 +5,12 @@
       "name": "nduKeys",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:options%keyvals}}"
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\nduKeys#c,\\nduValue#c,\\nduMath#c,\\nduResult#c,\\nduNormalize#c",
+          "\\nduKeys#c,\\nduHeader#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -19,7 +24,11 @@
       "name": "nduValue",
       "arg": {
         "format": "{}[]{}",
-        "snippet": "{${1:unit group}}[${3:options%keyvals}]{${2:value}}"
+        "snippet": "{${1:unit group}}[${3:options%keyvals}]{${2:value}}",
+        "keys": [
+          "\\nduKeys#c,\\nduValue#c,\\nduMath#c,\\nduResult#c,\\nduNormalize#c"
+        ],
+        "keyPos": 1
       }
     },
     {
@@ -39,7 +48,11 @@
       "name": "nduMath",
       "arg": {
         "format": "{}[]{}{}{}",
-        "snippet": "{${1:unit group}}[${5:options%keyvals}]{${2:variable}}{${3:operator}}{${4:value}}"
+        "snippet": "{${1:unit group}}[${5:options%keyvals}]{${2:variable}}{${3:operator}}{${4:value}}",
+        "keys": [
+          "\\nduKeys#c,\\nduValue#c,\\nduMath#c,\\nduResult#c,\\nduNormalize#c"
+        ],
+        "keyPos": 1
       }
     },
     {
@@ -53,7 +66,11 @@
       "name": "nduResult",
       "arg": {
         "format": "{}[]{}",
-        "snippet": "{${1:unit group}}[${3:options%keyvals}]{${2:variable}}"
+        "snippet": "{${1:unit group}}[${3:options%keyvals}]{${2:variable}}",
+        "keys": [
+          "\\nduKeys#c,\\nduValue#c,\\nduMath#c,\\nduResult#c,\\nduNormalize#c"
+        ],
+        "keyPos": 1
       }
     },
     {
@@ -67,7 +84,11 @@
       "name": "nduNormalize",
       "arg": {
         "format": "{}[]{}{}",
-        "snippet": "{${1:unit group}}[${4:options%keyvals}]{${2:amount}}{${3:unit}}"
+        "snippet": "{${1:unit group}}[${4:options%keyvals}]{${2:amount}}{${3:unit}}",
+        "keys": [
+          "\\nduKeys#c,\\nduValue#c,\\nduMath#c,\\nduResult#c,\\nduNormalize#c"
+        ],
+        "keyPos": 1
       }
     },
     {
@@ -81,7 +102,11 @@
       "name": "nduHeader",
       "arg": {
         "format": "{}[]",
-        "snippet": "{${1:unit name}}[${2:options%keyvals}]"
+        "snippet": "{${1:unit name}}[${2:options%keyvals}]",
+        "keys": [
+          "\\nduKeys#c,\\nduHeader#c"
+        ],
+        "keyPos": 1
       }
     },
     {

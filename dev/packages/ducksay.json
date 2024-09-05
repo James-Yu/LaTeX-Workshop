@@ -12,28 +12,47 @@
       "name": "DefaultAnimal",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:animal%keyvals}}"
+        "snippet": "{${1:animal%keyvals}}",
+        "keys": [
+          "\\DefaultAnimal#c,\\ducksay#c,\\duckthink#c"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "DucksayOptions",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:keyvals}}"
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\DucksayOptions#c,\\AnimalOptions#c,\\AnimalOptions*#c,\\ducksay#c,\\duckthink#c",
+          "\\DucksayOptions#c,\\ducksay#c,\\duckthink#c"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "AnimalOptions",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:animal}}{${2:options%keyvals}}"
+        "snippet": "{${1:animal}}{${2:options%keyvals}}",
+        "keys": [
+          "\\DucksayOptions#c,\\AnimalOptions#c,\\AnimalOptions*#c,\\ducksay#c,\\duckthink#c",
+          "\\AnimalOptions#c,\\AnimalOptions*#c"
+        ],
+        "keyPos": 1
       }
     },
     {
       "name": "AnimalOptions*",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:animal}}{${2:options%keyvals}}"
+        "snippet": "{${1:animal}}{${2:options%keyvals}}",
+        "keys": [
+          "\\DucksayOptions#c,\\AnimalOptions#c,\\AnimalOptions*#c,\\ducksay#c,\\duckthink#c",
+          "\\AnimalOptions#c,\\AnimalOptions*#c"
+        ],
+        "keyPos": 1
       }
     },
     {
@@ -47,7 +66,13 @@
       "name": "ducksay",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:message}}"
+        "snippet": "[${2:options%keyvals}]{${1:message}}",
+        "keys": [
+          "\\DucksayOptions#c,\\AnimalOptions#c,\\AnimalOptions*#c,\\ducksay#c,\\duckthink#c",
+          "\\DucksayOptions#c,\\ducksay#c,\\duckthink#c",
+          "\\DefaultAnimal#c,\\ducksay#c,\\duckthink#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -61,7 +86,13 @@
       "name": "duckthink",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:message}}"
+        "snippet": "[${2:options%keyvals}]{${1:message}}",
+        "keys": [
+          "\\DucksayOptions#c,\\AnimalOptions#c,\\AnimalOptions*#c,\\ducksay#c,\\duckthink#c",
+          "\\DucksayOptions#c,\\ducksay#c,\\duckthink#c",
+          "\\DefaultAnimal#c,\\ducksay#c,\\duckthink#c"
+        ],
+        "keyPos": 0
       }
     }
   ],

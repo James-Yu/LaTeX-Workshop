@@ -21,14 +21,25 @@
       "name": "mermapset",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:options%keyvals}}"
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\mermapset#c",
+          "\\mermapset#c,\\mrcformlat#c,\\mrcformlon#c",
+          "\\mermapset#c,\\mrcdrawmap#c",
+          "\\mermapset#c,\\mrcdrawnetwork#c"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "mrcdefinemap",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:options%keyvals}}"
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\mrcdefinemap#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -136,7 +147,11 @@
       "name": "mrcformlat",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:latitude}}"
+        "snippet": "[${2:options%keyvals}]{${1:latitude}}",
+        "keys": [
+          "\\mermapset#c,\\mrcformlat#c,\\mrcformlon#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -150,7 +165,11 @@
       "name": "mrcformlon",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:longitude}}"
+        "snippet": "[${2:options%keyvals}]{${1:longitude}}",
+        "keys": [
+          "\\mermapset#c,\\mrcformlat#c,\\mrcformlon#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -167,14 +186,22 @@
       "name": "mrcsupplymap",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:definition}}"
+        "snippet": "[${2:options%keyvals}]{${1:definition}}",
+        "keys": [
+          "\\mrcsupplymap#c,\\mermapsetsupply#c,\\mrcmap#c,\\mrcnewsupplysource#c"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "mermapsetsupply",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:options%keyvals}}"
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\mrcsupplymap#c,\\mermapsetsupply#c,\\mrcmap#c,\\mrcnewsupplysource#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -226,7 +253,11 @@
       "name": "mrcdrawmap",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\mermapset#c,\\mrcdrawmap#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -242,7 +273,11 @@
       "name": "mrcdrawnetwork",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\mermapset#c,\\mrcdrawnetwork#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -310,21 +345,33 @@
       "name": "mrcdrawscalebar",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\mrcdrawscalebar#c"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "mrcmarker",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:options%keyvals}}"
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\mrcmarker#c,\\mermapsetmarker#c,\\mrcnewmarkerstyle#c"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "mermapsetmarker",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:options%keyvals}}"
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\mrcmarker#c,\\mermapsetmarker#c,\\mrcnewmarkerstyle#c"
+        ],
+        "keyPos": 0
       }
     },
     {

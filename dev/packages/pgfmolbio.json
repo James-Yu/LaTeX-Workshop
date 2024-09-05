@@ -24,14 +24,26 @@
       "name": "pgfmolbioset",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:options%keyvals}}"
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\pgfmolbioset#c",
+          "\\pmbchromatogram#c,\\pgfmolbioset#c",
+          "\\begin{pmbdomains}#c,\\addfeature#c,\\pgfmolbioset#c"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "pgfmolbioset",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:module}]{${1:options%keyvals}}"
+        "snippet": "[${2:module}]{${1:options%keyvals}}",
+        "keys": [
+          "\\pgfmolbioset#c",
+          "\\pmbchromatogram#c,\\pgfmolbioset#c",
+          "\\begin{pmbdomains}#c,\\addfeature#c,\\pgfmolbioset#c"
+        ],
+        "keyPos": 1
       }
     },
     {
@@ -55,7 +67,11 @@
       "if": "chromatogram",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:scf file%file}}"
+        "snippet": "[${2:options%keyvals}]{${1:scf file%file}}",
+        "keys": [
+          "\\pmbchromatogram#c,\\pgfmolbioset#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -71,7 +87,11 @@
       "if": "domains",
       "arg": {
         "format": "[]{}{}{}",
-        "snippet": "[${4:options%keyvals}]{${1:type}}{${2:start}}{${3:stop}}"
+        "snippet": "[${4:options%keyvals}]{${1:type}}{${2:start}}{${3:stop}}",
+        "keys": [
+          "\\begin{pmbdomains}#c,\\addfeature#c,\\pgfmolbioset#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -229,7 +249,11 @@
       "if": "domains",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:sequence length}}"
+        "snippet": "[${2:options%keyvals}]{${1:sequence length}}",
+        "keys": [
+          "\\begin{pmbdomains}#c,\\addfeature#c,\\pgfmolbioset#c"
+        ],
+        "keyPos": 0
       }
     }
   ],

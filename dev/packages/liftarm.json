@@ -22,7 +22,11 @@
       "name": "liftarm",
       "arg": {
         "format": "[]{}{}{}",
-        "snippet": "[${4:options%keyvals}]{${1:point}}{${2:length%plain}}{${3:angle}}"
+        "snippet": "[${4:options%keyvals}]{${1:point}}{${2:length%plain}}{${3:angle}}",
+        "keys": [
+          "\\liftarm#c,\\begin{liftarmconnect}#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -46,7 +50,11 @@
       "name": "liftarmanimate",
       "arg": {
         "format": "[]{}{}{}",
-        "snippet": "[${4:options%keyvals}]{${1:frame rate}}{${2:list}}{${3:commands}}"
+        "snippet": "[${4:options%keyvals}]{${1:frame rate}}{${2:list}}{${3:commands}}",
+        "keys": [
+          "\\liftarmanimate#c"
+        ],
+        "keyPos": 0
       }
     }
   ],
@@ -58,7 +66,12 @@
       "name": "liftarmconnect",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\liftarm#c,\\begin{liftarmconnect}#c",
+          "\\begin{liftarmconnect}#c"
+        ],
+        "keyPos": 0
       }
     }
   ],

@@ -15,14 +15,22 @@
       "name": "defgroupfmt",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:format-group}}{${2:format-keys%keyvals}}"
+        "snippet": "{${1:format-group}}{${2:format-keys%keyvals}}",
+        "keys": [
+          "\\defgroupfmt#c,\\defobjectfmt#c"
+        ],
+        "keyPos": 1
       }
     },
     {
       "name": "defobjectfmt",
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:obj-type}}{${2:format-group}}{${3:format-keys%keyvals}}"
+        "snippet": "{${1:obj-type}}{${2:format-group}}{${3:format-keys%keyvals}}",
+        "keys": [
+          "\\defgroupfmt#c,\\defobjectfmt#c"
+        ],
+        "keyPos": 2
       }
     },
     {
@@ -45,7 +53,12 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:obj-type%keyvals}]{${1:csv-list}}"
+        "snippet": "[${2:obj-type%keyvals}]{${1:csv-list}}",
+        "keys": [
+          "\\begin{codedescribe}#c,\\begin{describelist}#c,\\begin{describelist*}#c,\\typesetobj#c,\\tsobj#c,\\typesetargs#c,\\tsargs#c,\\typesetverb#c,\\tsverb#c",
+          "\\typesetobj#c,\\tsobj#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -59,7 +72,12 @@
       "name": "tsobj",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:obj-type%keyvals}]{${1:csv-list}}"
+        "snippet": "[${2:obj-type%keyvals}]{${1:csv-list}}",
+        "keys": [
+          "\\begin{codedescribe}#c,\\begin{describelist}#c,\\begin{describelist*}#c,\\typesetobj#c,\\tsobj#c,\\typesetargs#c,\\tsargs#c,\\typesetverb#c,\\tsverb#c",
+          "\\typesetobj#c,\\tsobj#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -75,7 +93,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:obj-type%keyvals}]{${1:csv-list}}"
+        "snippet": "[${2:obj-type%keyvals}]{${1:csv-list}}",
+        "keys": [
+          "\\begin{codedescribe}#c,\\begin{describelist}#c,\\begin{describelist*}#c,\\typesetobj#c,\\tsobj#c,\\typesetargs#c,\\tsargs#c,\\typesetverb#c,\\tsverb#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -89,7 +111,11 @@
       "name": "tsargs",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:obj-type%keyvals}]{${1:csv-list}}"
+        "snippet": "[${2:obj-type%keyvals}]{${1:csv-list}}",
+        "keys": [
+          "\\begin{codedescribe}#c,\\begin{describelist}#c,\\begin{describelist*}#c,\\typesetobj#c,\\tsobj#c,\\typesetargs#c,\\tsargs#c,\\typesetverb#c,\\tsverb#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -150,7 +176,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:obj-type%keyvals}]{${1:verbatim text%definition}}"
+        "snippet": "[${2:obj-type%keyvals}]{${1:verbatim text%definition}}",
+        "keys": [
+          "\\begin{codedescribe}#c,\\begin{describelist}#c,\\begin{describelist*}#c,\\typesetobj#c,\\tsobj#c,\\typesetargs#c,\\tsargs#c,\\typesetverb#c,\\tsverb#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -164,7 +194,11 @@
       "name": "tsverb",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:obj-type%keyvals}]{${1:verbatim text%definition}}"
+        "snippet": "[${2:obj-type%keyvals}]{${1:verbatim text%definition}}",
+        "keys": [
+          "\\begin{codedescribe}#c,\\begin{describelist}#c,\\begin{describelist*}#c,\\typesetobj#c,\\tsobj#c,\\typesetargs#c,\\tsargs#c,\\typesetverb#c,\\tsverb#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -225,7 +259,12 @@
       "name": "codedescribe",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:obj-type%keyvals}]{${1:csv-list}}"
+        "snippet": "[${2:obj-type%keyvals}]{${1:csv-list}}",
+        "keys": [
+          "\\begin{codedescribe}#c,\\begin{describelist}#c,\\begin{describelist*}#c,\\typesetobj#c,\\tsobj#c,\\typesetargs#c,\\tsargs#c,\\typesetverb#c,\\tsverb#c",
+          "\\begin{codedescribe}#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -235,28 +274,44 @@
       "name": "describelist",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:obj-type%keyvals}}"
+        "snippet": "{${1:obj-type%keyvals}}",
+        "keys": [
+          "\\begin{codedescribe}#c,\\begin{describelist}#c,\\begin{describelist*}#c,\\typesetobj#c,\\tsobj#c,\\typesetargs#c,\\tsargs#c,\\typesetverb#c,\\tsverb#c"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "describelist",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:item-indent}]{${1:obj-type%keyvals}}"
+        "snippet": "[${2:item-indent}]{${1:obj-type%keyvals}}",
+        "keys": [
+          "\\begin{codedescribe}#c,\\begin{describelist}#c,\\begin{describelist*}#c,\\typesetobj#c,\\tsobj#c,\\typesetargs#c,\\tsargs#c,\\typesetverb#c,\\tsverb#c"
+        ],
+        "keyPos": 1
       }
     },
     {
       "name": "describelist*",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:obj-type%keyvals}}"
+        "snippet": "{${1:obj-type%keyvals}}",
+        "keys": [
+          "\\begin{codedescribe}#c,\\begin{describelist}#c,\\begin{describelist*}#c,\\typesetobj#c,\\tsobj#c,\\typesetargs#c,\\tsargs#c,\\typesetverb#c,\\tsverb#c"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "describelist*",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:item-indent}]{${1:obj-type%keyvals}}"
+        "snippet": "[${2:item-indent}]{${1:obj-type%keyvals}}",
+        "keys": [
+          "\\begin{codedescribe}#c,\\begin{describelist}#c,\\begin{describelist*}#c,\\typesetobj#c,\\tsobj#c,\\typesetargs#c,\\tsargs#c,\\typesetverb#c,\\tsverb#c"
+        ],
+        "keyPos": 1
       }
     },
     {

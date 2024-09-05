@@ -15,14 +15,22 @@
       "name": "hcrkey",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:keyname%keyvals}}"
+        "snippet": "{${1:keyname%keyvals}}",
+        "keys": [
+          "\\hcrkey#c,\\hcrkeys#c"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "hcrkeys",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:separator}]{${1:key, ...%keyvals}}"
+        "snippet": "[${2:separator}]{${1:key, ...%keyvals}}",
+        "keys": [
+          "\\hcrkey#c,\\hcrkeys#c"
+        ],
+        "keyPos": 1
       }
     },
     {

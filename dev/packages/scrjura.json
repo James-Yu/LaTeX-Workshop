@@ -64,7 +64,11 @@
       "unusual": true,
       "arg": {
         "format": "{}[]{}{}",
-        "snippet": "{${1:envname}}[${4:options%keyvals}]{${2:start code}}{${3:end code}}"
+        "snippet": "{${1:envname}}[${4:options%keyvals}]{${2:start code}}{${3:end code}}",
+        "keys": [
+          "\\DeclareNewJuraEnvironment#c"
+        ],
+        "keyPos": 1
       }
     },
     {
@@ -74,7 +78,11 @@
       "name": "Clause",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\Clause#c,\\SubClause#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -84,7 +92,11 @@
       "name": "SubClause",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\Clause#c,\\SubClause#c"
+        ],
+        "keyPos": 0
       }
     },
     {

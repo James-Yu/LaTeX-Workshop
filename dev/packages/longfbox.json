@@ -25,21 +25,33 @@
       "name": "lfbox",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:content%text}}"
+        "snippet": "[${2:options%keyvals}]{${1:content%text}}",
+        "keys": [
+          "\\lfbox#c,\\begin{longfbox}#c,\\newfboxstyle#c,\\fboxset#c"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "newfboxstyle",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:name%specialDef}}{${2:options%keyvals}}"
+        "snippet": "{${1:name%specialDef}}{${2:options%keyvals}}",
+        "keys": [
+          "\\lfbox#c,\\begin{longfbox}#c,\\newfboxstyle#c,\\fboxset#c"
+        ],
+        "keyPos": 1
       }
     },
     {
       "name": "fboxset",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:options%keyvals}}"
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\lfbox#c,\\begin{longfbox}#c,\\newfboxstyle#c,\\fboxset#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -67,7 +79,11 @@
       "name": "longfbox",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\lfbox#c,\\begin{longfbox}#c,\\newfboxstyle#c,\\fboxset#c"
+        ],
+        "keyPos": 0
       }
     }
   ],

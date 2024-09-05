@@ -15,35 +15,55 @@
       "name": "setmodiagram",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:options%keyvals}}"
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\setmodiagram#c,\\begin{modiagram}#c"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "atom",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:left or right}}{${2:AO-spec%keyvals}}"
+        "snippet": "{${1:left or right}}{${2:AO-spec%keyvals}}",
+        "keys": [
+          "\\atom#c"
+        ],
+        "keyPos": 1
       }
     },
     {
       "name": "atom",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:name}]{${1:left or right}}{${2:AO-spec%keyvals}}"
+        "snippet": "[${3:name}]{${1:left or right}}{${2:AO-spec%keyvals}}",
+        "keys": [
+          "\\atom#c"
+        ],
+        "keyPos": 2
       }
     },
     {
       "name": "molecule",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:MO-spec%keyvals}}"
+        "snippet": "{${1:MO-spec%keyvals}}",
+        "keys": [
+          "\\molecule#c"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "molecule",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:name}]{${1:MO-spec%keyvals}}"
+        "snippet": "[${2:name}]{${1:MO-spec%keyvals}}",
+        "keys": [
+          "\\molecule#c"
+        ],
+        "keyPos": 1
       }
     },
     {
@@ -57,7 +77,11 @@
       "name": "AO",
       "arg": {
         "format": "(){}[]{}",
-        "snippet": "(${4:%<xshift%>}){${1:type}}[${3:options}]{${2:energy; el-spec}}"
+        "snippet": "(${4:%<xshift%>}){${1:type}}[${3:options}]{${2:energy; el-spec}}",
+        "keys": [
+          "\\AO#c"
+        ],
+        "keyPos": 1
       }
     },
     {
@@ -71,7 +95,11 @@
       "name": "AO",
       "arg": {
         "format": "[](){}[]{}",
-        "snippet": "[${3:name}](${5:%<xshift%>}){${1:type}}[${4:options}]{${2:energy; el-spec}}"
+        "snippet": "[${3:name}](${5:%<xshift%>}){${1:type}}[${4:options}]{${2:energy; el-spec}}",
+        "keys": [
+          "\\AO#c"
+        ],
+        "keyPos": 2
       }
     },
     {
@@ -104,7 +132,11 @@
       "name": "modiagram",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\setmodiagram#c,\\begin{modiagram}#c"
+        ],
+        "keyPos": 0
       }
     }
   ],

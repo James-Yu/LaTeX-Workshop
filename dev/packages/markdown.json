@@ -74,7 +74,12 @@
       "name": "markinline",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:markdown text}}"
+        "snippet": "[${2:options%keyvals}]{${1:markdown text}}",
+        "keys": [
+          "\\usepackage/markdown#c,\\begin{markdown}#c,\\markinline#c,\\markdownInput#c,\\markdownSetup#c,\\markdownSetupSnippet#c",
+          "\\begin{markdown}#c,\\markinline#c,\\markdownInput#c,\\markdownSetup#c,\\markdownSetupSnippet#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -88,21 +93,36 @@
       "name": "markdownInput",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:file}}"
+        "snippet": "[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\usepackage/markdown#c,\\begin{markdown}#c,\\markinline#c,\\markdownInput#c,\\markdownSetup#c,\\markdownSetupSnippet#c",
+          "\\begin{markdown}#c,\\markinline#c,\\markdownInput#c,\\markdownSetup#c,\\markdownSetupSnippet#c"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "markdownSetup",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:options%keyvals}}"
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\usepackage/markdown#c,\\begin{markdown}#c,\\markinline#c,\\markdownInput#c,\\markdownSetup#c,\\markdownSetupSnippet#c",
+          "\\begin{markdown}#c,\\markinline#c,\\markdownInput#c,\\markdownSetup#c,\\markdownSetupSnippet#c"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "markdownSetupSnippet",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:name%specialDef}}{${2:options%keyvals}}"
+        "snippet": "{${1:name%specialDef}}{${2:options%keyvals}}",
+        "keys": [
+          "\\usepackage/markdown#c,\\begin{markdown}#c,\\markinline#c,\\markdownInput#c,\\markdownSetup#c,\\markdownSetupSnippet#c",
+          "\\begin{markdown}#c,\\markinline#c,\\markdownInput#c,\\markdownSetup#c,\\markdownSetupSnippet#c"
+        ],
+        "keyPos": 1
       }
     },
     {
@@ -1430,7 +1450,12 @@
       "name": "markdown",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\usepackage/markdown#c,\\begin{markdown}#c,\\markinline#c,\\markdownInput#c,\\markdownSetup#c,\\markdownSetupSnippet#c",
+          "\\begin{markdown}#c,\\markinline#c,\\markdownInput#c,\\markdownSetup#c,\\markdownSetupSnippet#c"
+        ],
+        "keyPos": 0
       }
     }
   ],

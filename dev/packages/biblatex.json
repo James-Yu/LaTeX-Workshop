@@ -361,14 +361,26 @@
       "name": "ExecuteBibliographyOptions",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:options%keyvals}}"
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\usepackage/biblatex#c,\\ExecuteBibliographyOptions#c",
+          "\\usepackage/biblatex#c,\\ExecuteBibliographyOptions#c,\\printbibliography",
+          "\\usepackage/biblatex#c,\\ExecuteBibliographyOptions#c,\\ExecutePublistOptions#c"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "ExecuteBibliographyOptions",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:entrytype list}]{${1:options%keyvals}}"
+        "snippet": "[${2:entrytype list}]{${1:options%keyvals}}",
+        "keys": [
+          "\\usepackage/biblatex#c,\\ExecuteBibliographyOptions#c",
+          "\\usepackage/biblatex#c,\\ExecuteBibliographyOptions#c,\\printbibliography",
+          "\\usepackage/biblatex#c,\\ExecuteBibliographyOptions#c,\\ExecutePublistOptions#c"
+        ],
+        "keyPos": 1
       }
     },
     {
@@ -37583,7 +37595,11 @@
       "if": "style=publist",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:options%keyvals}}"
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\usepackage/biblatex#c,\\ExecuteBibliographyOptions#c,\\ExecutePublistOptions#c"
+        ],
+        "keyPos": 0
       }
     },
     {

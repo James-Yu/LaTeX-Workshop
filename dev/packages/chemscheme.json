@@ -27,7 +27,11 @@
       "if": "bpchem",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:label%keyvals}}{${2:sublabel}}"
+        "snippet": "{${1:label%keyvals}}{${2:sublabel}}",
+        "keys": [
+          "\\schemeref#c,\\chemschemeref#c,\\schemerefsub#c,\\chemschemerefsub#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -35,7 +39,11 @@
       "if": "bpchem",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:marker}]{${1:label%keyvals}}{${2:sublabel}}"
+        "snippet": "[${3:marker}]{${1:label%keyvals}}{${2:sublabel}}",
+        "keys": [
+          "\\schemeref#c,\\chemschemeref#c,\\schemerefsub#c,\\chemschemerefsub#c"
+        ],
+        "keyPos": 1
       }
     },
     {
@@ -44,7 +52,11 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}",
-        "snippet": "{${1:marker}}{${2:label%keyvals}}{${3:sublabel}}"
+        "snippet": "{${1:marker}}{${2:label%keyvals}}{${3:sublabel}}",
+        "keys": [
+          "\\schemeref#c,\\chemschemeref#c,\\schemerefsub#c,\\chemschemerefsub#c"
+        ],
+        "keyPos": 1
       }
     },
     {
@@ -87,14 +99,22 @@
       "name": "schemeref",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:label%keyvals}}"
+        "snippet": "{${1:label%keyvals}}",
+        "keys": [
+          "\\schemeref#c,\\chemschemeref#c"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "schemeref",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:marker}]{${1:label%keyvals}}"
+        "snippet": "[${2:marker}]{${1:label%keyvals}}",
+        "keys": [
+          "\\schemeref#c,\\chemschemeref#c"
+        ],
+        "keyPos": 1
       }
     },
     {
@@ -102,7 +122,11 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:marker}}{${2:label%keyvals}}"
+        "snippet": "{${1:marker}}{${2:label%keyvals}}",
+        "keys": [
+          "\\schemeref#c,\\chemschemeref#c"
+        ],
+        "keyPos": 1
       }
     },
     {

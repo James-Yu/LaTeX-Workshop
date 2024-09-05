@@ -274,14 +274,22 @@
       "name": "setuptoc",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:extension}}{${2:feature list%keyvals}}"
+        "snippet": "{${1:extension}}{${2:feature list%keyvals}}",
+        "keys": [
+          "\\setuptoc#c,\\unsettoc#c,\\Iftocfeature#c"
+        ],
+        "keyPos": 1
       }
     },
     {
       "name": "unsettoc",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:extension}}{${2:feature list%keyvals}}"
+        "snippet": "{${1:extension}}{${2:feature list%keyvals}}",
+        "keys": [
+          "\\setuptoc#c,\\unsettoc#c,\\Iftocfeature#c"
+        ],
+        "keyPos": 1
       }
     },
     {
@@ -289,7 +297,11 @@
       "unusual": true,
       "arg": {
         "format": "{}{}{}{}",
-        "snippet": "{${1:extension}}{${2:feature%keyvals}}{${3:then code}}{${4:else code}}"
+        "snippet": "{${1:extension}}{${2:feature%keyvals}}{${3:then code}}{${4:else code}}",
+        "keys": [
+          "\\setuptoc#c,\\unsettoc#c,\\Iftocfeature#c"
+        ],
+        "keyPos": 1
       }
     },
     {
@@ -306,7 +318,11 @@
       "name": "DeclareNewTOC",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:extension}}"
+        "snippet": "[${2:options%keyvals}]{${1:extension}}",
+        "keys": [
+          "\\DeclareNewTOC#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -514,7 +530,11 @@
       "name": "DeclareTOCStyleEntry",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:option list%keyvals}]{${1:style}}{${2:entry level}}"
+        "snippet": "[${3:option list%keyvals}]{${1:style}}{${2:entry level}}",
+        "keys": [
+          "\\DeclareTOCStyleEntry#c,\\DeclareTOCStyleEntries#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -528,7 +548,11 @@
       "name": "DeclareTOCStyleEntries",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:option list%keyvals}]{${1:style}}{${2:entry level}}"
+        "snippet": "[${3:option list%keyvals}]{${1:style}}{${2:entry level}}",
+        "keys": [
+          "\\DeclareTOCStyleEntry#c,\\DeclareTOCStyleEntries#c"
+        ],
+        "keyPos": 0
       }
     },
     {

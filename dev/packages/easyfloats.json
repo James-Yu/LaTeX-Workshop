@@ -48,7 +48,11 @@
       "name": "includegraphicobject",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:imagefile}}"
+        "snippet": "[${2:options%keyvals}]{${1:imagefile}}",
+        "keys": [
+          "\\includegraphicobject#c,\\includegraphicsubobject#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -62,7 +66,11 @@
       "name": "includegraphicsubobject",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:imagefile}}"
+        "snippet": "[${2:options%keyvals}]{${1:imagefile}}",
+        "keys": [
+          "\\includegraphicobject#c,\\includegraphicsubobject#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -389,28 +397,47 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:options%keyvals}}"
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\begin{object}#c,\\begin{figureobject}#c,\\begin{tableobject}#c,\\begin{subobject}#c,\\includegraphicobject#c,\\includegraphicsubobject#c,\\objectset#c,\\NewObjectStyle#c",
+          "\\begin{object}#c,\\begin{figureobject}#c,\\begin{tableobject}#c,\\includegraphicobject#c,\\objectset#c,\\NewObjectStyle#c"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "figureobject",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:options%keyvals}}"
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\begin{object}#c,\\begin{figureobject}#c,\\begin{tableobject}#c,\\begin{subobject}#c,\\includegraphicobject#c,\\includegraphicsubobject#c,\\objectset#c,\\NewObjectStyle#c",
+          "\\begin{object}#c,\\begin{figureobject}#c,\\begin{tableobject}#c,\\includegraphicobject#c,\\objectset#c,\\NewObjectStyle#c"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "tableobject",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:options%keyvals}}"
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\begin{object}#c,\\begin{figureobject}#c,\\begin{tableobject}#c,\\begin{subobject}#c,\\includegraphicobject#c,\\includegraphicsubobject#c,\\objectset#c,\\NewObjectStyle#c",
+          "\\begin{object}#c,\\begin{figureobject}#c,\\begin{tableobject}#c,\\includegraphicobject#c,\\objectset#c,\\NewObjectStyle#c"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "subobject",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:options%keyvals}}"
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\begin{subobject}#c,\\includegraphicsubobject#c"
+        ],
+        "keyPos": 0
       }
     }
   ],

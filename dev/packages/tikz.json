@@ -15,14 +15,32 @@
       "name": "scoped",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{scope}#c,\\tikzset#c,\\scoped#c",
+          "\\begin{tikzpicture}#c,\\tikz#c,\\begin{scope}#c,\\tikzset#c,\\scoped#c",
+          "\\begin{tikzpicture}#c,\\tikz#c,\\begin{scope}#c,\\tikzset#c,\\scoped#c,\\path#c,\\draw#c,\\fill#c,\\filldraw#c,\\pattern#c,\\shade#c,\\shadedraw#c,\\clip#c,\\node#c,\\coordinate#c,\\nodepart#c,\\pic#c,\\matrix#c,\\calendar#c,\\chainin#c,\\arrow#c,\\arrowreversed#c",
+          "\\begin{tikzpicture}#c,\\tikz#c,\\begin{scope}#c,\\tikzset#c,\\scoped#c,\\pic#c",
+          "\\begin{tikzpicture}#c,\\tikz#c,\\begin{scope}#c,\\tikzset#c,\\scoped#c,\\matrix#c"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "tikzset",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:options%keyvals}}"
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\tikzset#c",
+          "\\begin{tikzpicture}#c,\\tikz#c,\\tikzset#c",
+          "\\begin{scope}#c,\\tikzset#c,\\scoped#c",
+          "\\begin{tikzpicture}#c,\\tikz#c,\\begin{scope}#c,\\tikzset#c,\\scoped#c",
+          "\\begin{tikzpicture}#c,\\tikz#c,\\begin{scope}#c,\\tikzset#c,\\scoped#c,\\path#c,\\draw#c,\\fill#c,\\filldraw#c,\\pattern#c,\\shade#c,\\shadedraw#c,\\clip#c,\\node#c,\\coordinate#c,\\nodepart#c,\\pic#c,\\matrix#c,\\calendar#c,\\chainin#c,\\arrow#c,\\arrowreversed#c",
+          "\\begin{tikzpicture}#c,\\tikz#c,\\begin{scope}#c,\\tikzset#c,\\scoped#c,\\pic#c",
+          "\\begin{tikzpicture}#c,\\tikz#c,\\begin{scope}#c,\\tikzset#c,\\scoped#c,\\matrix#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -56,7 +74,15 @@
       "name": "tikz",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{tikzpicture}#c,\\tikz#c,\\tikzset#c",
+          "\\begin{tikzpicture}#c,\\tikz#c,\\begin{scope}#c,\\tikzset#c,\\scoped#c",
+          "\\begin{tikzpicture}#c,\\tikz#c,\\begin{scope}#c,\\tikzset#c,\\scoped#c,\\path#c,\\draw#c,\\fill#c,\\filldraw#c,\\pattern#c,\\shade#c,\\shadedraw#c,\\clip#c,\\node#c,\\coordinate#c,\\nodepart#c,\\pic#c,\\matrix#c,\\calendar#c,\\chainin#c,\\arrow#c,\\arrowreversed#c",
+          "\\begin{tikzpicture}#c,\\tikz#c,\\begin{scope}#c,\\tikzset#c,\\scoped#c,\\pic#c",
+          "\\begin{tikzpicture}#c,\\tikz#c,\\begin{scope}#c,\\tikzset#c,\\scoped#c,\\matrix#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -110,7 +136,12 @@
       "name": "nodepart",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:part name}}"
+        "snippet": "[${2:options%keyvals}]{${1:part name}}",
+        "keys": [
+          "\\begin{tikzpicture}#c,\\tikz#c,\\begin{scope}#c,\\tikzset#c,\\scoped#c,\\path#c,\\draw#c,\\fill#c,\\filldraw#c,\\pattern#c,\\shade#c,\\shadedraw#c,\\clip#c,\\node#c,\\coordinate#c,\\nodepart#c,\\pic#c,\\matrix#c,\\calendar#c,\\chainin#c,\\arrow#c,\\arrowreversed#c",
+          "\\node#c,\\coordinate#c,\\nodepart#c,\\pic#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -173,7 +204,11 @@
       "name": "usetikzlibrary",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:library list%keyvals}}"
+        "snippet": "{${1:library list%keyvals}}",
+        "keys": [
+          "\\usetikzlibrary#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -453,7 +488,15 @@
       "name": "scope",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{scope}#c,\\tikzset#c,\\scoped#c",
+          "\\begin{tikzpicture}#c,\\tikz#c,\\begin{scope}#c,\\tikzset#c,\\scoped#c",
+          "\\begin{tikzpicture}#c,\\tikz#c,\\begin{scope}#c,\\tikzset#c,\\scoped#c,\\path#c,\\draw#c,\\fill#c,\\filldraw#c,\\pattern#c,\\shade#c,\\shadedraw#c,\\clip#c,\\node#c,\\coordinate#c,\\nodepart#c,\\pic#c,\\matrix#c,\\calendar#c,\\chainin#c,\\arrow#c,\\arrowreversed#c",
+          "\\begin{tikzpicture}#c,\\tikz#c,\\begin{scope}#c,\\tikzset#c,\\scoped#c,\\pic#c",
+          "\\begin{tikzpicture}#c,\\tikz#c,\\begin{scope}#c,\\tikzset#c,\\scoped#c,\\matrix#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -463,7 +506,15 @@
       "name": "tikzpicture",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{tikzpicture}#c,\\tikz#c,\\tikzset#c",
+          "\\begin{tikzpicture}#c,\\tikz#c,\\begin{scope}#c,\\tikzset#c,\\scoped#c",
+          "\\begin{tikzpicture}#c,\\tikz#c,\\begin{scope}#c,\\tikzset#c,\\scoped#c,\\path#c,\\draw#c,\\fill#c,\\filldraw#c,\\pattern#c,\\shade#c,\\shadedraw#c,\\clip#c,\\node#c,\\coordinate#c,\\nodepart#c,\\pic#c,\\matrix#c,\\calendar#c,\\chainin#c,\\arrow#c,\\arrowreversed#c",
+          "\\begin{tikzpicture}#c,\\tikz#c,\\begin{scope}#c,\\tikzset#c,\\scoped#c,\\pic#c",
+          "\\begin{tikzpicture}#c,\\tikz#c,\\begin{scope}#c,\\tikzset#c,\\scoped#c,\\matrix#c"
+        ],
+        "keyPos": 0
       }
     }
   ],

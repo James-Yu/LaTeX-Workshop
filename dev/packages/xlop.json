@@ -5,7 +5,17 @@
       "name": "opset",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:options%keyvals}}"
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\opset#c,\\opadd#c,\\opmanyadd#c,\\opsub#c,\\opmul#c,\\opdiv#c,\\opidiv#c",
+          "\\opadd#c,\\opset#c",
+          "\\opmanyadd#c,\\opset#c",
+          "\\opsub#c,\\opset#c",
+          "\\opmul#c,\\opset#c",
+          "\\opdiv#c,\\opidiv#c,\\opset#c",
+          "\\opdiv*#c,\\opexpr#c,\\opset#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -19,7 +29,12 @@
       "name": "opadd",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:num1}}{${2:num2}}"
+        "snippet": "[${3:options%keyvals}]{${1:num1}}{${2:num2}}",
+        "keys": [
+          "\\opset#c,\\opadd#c,\\opmanyadd#c,\\opsub#c,\\opmul#c,\\opdiv#c,\\opidiv#c",
+          "\\opadd#c,\\opset#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -33,7 +48,12 @@
       "name": "opsub",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:num1}}{${2:num2}}"
+        "snippet": "[${3:options%keyvals}]{${1:num1}}{${2:num2}}",
+        "keys": [
+          "\\opset#c,\\opadd#c,\\opmanyadd#c,\\opsub#c,\\opmul#c,\\opdiv#c,\\opidiv#c",
+          "\\opsub#c,\\opset#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -47,7 +67,12 @@
       "name": "opmul",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:num1}}{${2:num2}}"
+        "snippet": "[${3:options%keyvals}]{${1:num1}}{${2:num2}}",
+        "keys": [
+          "\\opset#c,\\opadd#c,\\opmanyadd#c,\\opsub#c,\\opmul#c,\\opdiv#c,\\opidiv#c",
+          "\\opmul#c,\\opset#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -61,7 +86,12 @@
       "name": "opdiv",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:num1}}{${2:num2}}"
+        "snippet": "[${3:options%keyvals}]{${1:num1}}{${2:num2}}",
+        "keys": [
+          "\\opset#c,\\opadd#c,\\opmanyadd#c,\\opsub#c,\\opmul#c,\\opdiv#c,\\opidiv#c",
+          "\\opdiv#c,\\opidiv#c,\\opset#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -75,7 +105,12 @@
       "name": "opidiv",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:num1}}{${2:num2}}"
+        "snippet": "[${3:options%keyvals}]{${1:num1}}{${2:num2}}",
+        "keys": [
+          "\\opset#c,\\opadd#c,\\opmanyadd#c,\\opsub#c,\\opmul#c,\\opdiv#c,\\opidiv#c",
+          "\\opdiv#c,\\opidiv#c,\\opset#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -118,7 +153,11 @@
       "name": "opdiv*",
       "arg": {
         "format": "[]{}{}{}{}",
-        "snippet": "[${5:options%keyvals}]{${1:num1}}{${2:num2}}{${3:quotient var}}{${4:remainder var}}"
+        "snippet": "[${5:options%keyvals}]{${1:num1}}{${2:num2}}{${3:quotient var}}{${4:remainder var}}",
+        "keys": [
+          "\\opdiv*#c,\\opexpr#c,\\opset#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -367,7 +406,11 @@
       "name": "opsqrt",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:number}}{${2:variable}}"
+        "snippet": "[${3:options%keyvals}]{${1:number}}{${2:variable}}",
+        "keys": [
+          "\\opsqrt#c,\\opgfsqrt#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -381,7 +424,11 @@
       "name": "opgfsqrt",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:number}}"
+        "snippet": "[${2:options%keyvals}]{${1:number}}",
+        "keys": [
+          "\\opsqrt#c,\\opgfsqrt#c"
+        ],
+        "keyPos": 0
       }
     },
     {

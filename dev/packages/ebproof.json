@@ -14,7 +14,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:text}}"
+        "snippet": "[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\ebproofset#c,\\set#c,\\begin{prooftree}#c,\\begin{prooftree*}#c,\\hypo#c,\\infer#c,\\ebproofnewstyle#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -61,7 +65,12 @@
       "name": "ebproofset",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:options%keyvals}}"
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\ebproofset#c,\\begin{prooftree}#c,\\begin{prooftree*}#c,\\ebproofnewstyle#c",
+          "\\ebproofset#c,\\set#c,\\begin{prooftree}#c,\\begin{prooftree*}#c,\\hypo#c,\\infer#c,\\ebproofnewstyle#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -69,14 +78,23 @@
       "unusual": true,
       "arg": {
         "format": "{}",
-        "snippet": "{${1:options%keyvals}}"
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\ebproofset#c,\\set#c,\\begin{prooftree}#c,\\begin{prooftree*}#c,\\hypo#c,\\infer#c,\\ebproofnewstyle#c"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "ebproofnewstyle",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:name}}{${2:options%keyvals}}"
+        "snippet": "{${1:name}}{${2:options%keyvals}}",
+        "keys": [
+          "\\ebproofset#c,\\begin{prooftree}#c,\\begin{prooftree*}#c,\\ebproofnewstyle#c",
+          "\\ebproofset#c,\\set#c,\\begin{prooftree}#c,\\begin{prooftree*}#c,\\hypo#c,\\infer#c,\\ebproofnewstyle#c"
+        ],
+        "keyPos": 1
       }
     },
     {
@@ -86,7 +104,11 @@
       "name": "ebproofnewrulestyle",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:name}}{${2:options%keyvals}}"
+        "snippet": "{${1:name}}{${2:options%keyvals}}",
+        "keys": [
+          "\\ebproofnewrulestyle#c"
+        ],
+        "keyPos": 1
       }
     }
   ],
@@ -98,7 +120,12 @@
       "name": "prooftree",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\ebproofset#c,\\begin{prooftree}#c,\\begin{prooftree*}#c,\\ebproofnewstyle#c",
+          "\\ebproofset#c,\\set#c,\\begin{prooftree}#c,\\begin{prooftree*}#c,\\hypo#c,\\infer#c,\\ebproofnewstyle#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -108,7 +135,12 @@
       "name": "prooftree*",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\ebproofset#c,\\begin{prooftree}#c,\\begin{prooftree*}#c,\\ebproofnewstyle#c",
+          "\\ebproofset#c,\\set#c,\\begin{prooftree}#c,\\begin{prooftree*}#c,\\hypo#c,\\infer#c,\\ebproofnewstyle#c"
+        ],
+        "keyPos": 0
       }
     }
   ],

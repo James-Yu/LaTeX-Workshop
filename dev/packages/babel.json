@@ -177,7 +177,11 @@
       "name": "babelfont",
       "arg": {
         "format": "{}[]{}",
-        "snippet": "{${1:font_family}}[${3:font_options%keyvals}]{${2:font_name}}"
+        "snippet": "{${1:font_family}}[${3:font_options%keyvals}]{${2:font_name}}",
+        "keys": [
+          "\\babelfont#c"
+        ],
+        "keyPos": 1
       }
     },
     {
@@ -191,7 +195,11 @@
       "name": "babelfont",
       "arg": {
         "format": "[]{}[]{}",
-        "snippet": "[${3:lang1,lang2,...}]{${1:font_family}}[${4:font_options%keyvals}]{${2:font_name}}"
+        "snippet": "[${3:lang1,lang2,...}]{${1:font_family}}[${4:font_options%keyvals}]{${2:font_name}}",
+        "keys": [
+          "\\babelfont#c"
+        ],
+        "keyPos": 2
       }
     },
     {
@@ -222,7 +230,11 @@
       "name": "babelprovide",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:language}}"
+        "snippet": "[${2:options%keyvals}]{${1:language}}",
+        "keys": [
+          "\\babelprovide#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -285,14 +297,22 @@
       "name": "localeinfo",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:field%keyvals}}"
+        "snippet": "{${1:field%keyvals}}",
+        "keys": [
+          "\\localeinfo#c,\\localeinfo*#c"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "localeinfo*",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:field%keyvals}}"
+        "snippet": "{${1:field%keyvals}}",
+        "keys": [
+          "\\localeinfo#c,\\localeinfo*#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -398,7 +418,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}{}{}",
-        "snippet": "[${4:options%keyvals}]{${1:hypenrules-name}}{${2:lua-pattern}}{${3:replacement}}"
+        "snippet": "[${4:options%keyvals}]{${1:hypenrules-name}}{${2:lua-pattern}}{${3:replacement}}",
+        "keys": [
+          "\\babelposthyphenation#c,\\babelprehyphenation#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -414,7 +438,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}{}{}",
-        "snippet": "[${4:options%keyvals}]{${1:locale-name}}{${2:lua-pattern}}{${3:replacement}}"
+        "snippet": "[${4:options%keyvals}]{${1:locale-name}}{${2:lua-pattern}}{${3:replacement}}",
+        "keys": [
+          "\\babelposthyphenation#c,\\babelprehyphenation#c"
+        ],
+        "keyPos": 0
       }
     },
     {

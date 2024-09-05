@@ -119,6 +119,7 @@ function assignKeys(pkg: PackageRaw, tag: string) {
         if (!context.startsWith('\\')) {
             context = '\\' + context
         }
+        context = context.split('#')[0]
         const isEnv = context.startsWith('\\begin')
         let name = context.startsWith('\\begin') ? context.slice(7, -1) : context.slice(1)
         for (const candidate of isEnv ? pkg.envs : pkg.macros) {
@@ -334,8 +335,8 @@ function parseExpl3() {
 }
 
 function parseEssential() {
-    // const files = fs.readFileSync('cwl.list').toString().split('\n')
-    // parseFiles(files, '../data/packages')
+    const files = fs.readFileSync('cwl.list').toString().split('\n')
+    parseFiles(files, '../data/packages')
     parseExpl3()
 }
 

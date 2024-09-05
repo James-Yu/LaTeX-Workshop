@@ -27,7 +27,11 @@
       "name": "pmdBrick",
       "arg": {
         "format": "[]{}{}{}",
-        "snippet": "[${4:options%keyvals}]{${1:U-edges}}{${2:L-edges}}{${3:T-edges}}"
+        "snippet": "[${4:options%keyvals}]{${1:U-edges}}{${2:L-edges}}{${3:T-edges}}",
+        "keys": [
+          "\\pmdBrick#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -41,7 +45,11 @@
       "name": "pmdDiagram",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:bricks}}"
+        "snippet": "[${2:options%keyvals}]{${1:bricks}}",
+        "keys": [
+          "\\pmdDiagram#c,\\pmdProduct#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -55,7 +63,12 @@
       "name": "pmdProduct",
       "arg": {
         "format": "[]{}{}{}",
-        "snippet": "[${4:options%keyvals}]{${1:A-edges}}{${2:T-bricks}}{${3:B-bricks}}"
+        "snippet": "[${4:options%keyvals}]{${1:A-edges}}{${2:T-bricks}}{${3:B-bricks}}",
+        "keys": [
+          "\\pmdDiagram#c,\\pmdProduct#c",
+          "\\pmdProduct#c"
+        ],
+        "keyPos": 0
       }
     }
   ],

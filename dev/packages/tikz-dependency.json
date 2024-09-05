@@ -33,7 +33,11 @@
       "name": "depkeys",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:options%keyvals}}"
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\begin{dependency}#c,\\begin{deptext}#c,\\depkeys#c,\\depedge#c,\\deproot#c,\\wordgroup#c,\\groupedge#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -47,7 +51,11 @@
       "name": "depedge",
       "arg": {
         "format": "[]{}{}{}",
-        "snippet": "[${4:options%keyvals}]{${1:from-word}}{${2:to-word}}{${3:label}}"
+        "snippet": "[${4:options%keyvals}]{${1:from-word}}{${2:to-word}}{${3:label}}",
+        "keys": [
+          "\\begin{dependency}#c,\\begin{deptext}#c,\\depkeys#c,\\depedge#c,\\deproot#c,\\wordgroup#c,\\groupedge#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -61,7 +69,11 @@
       "name": "deproot",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:root-offset}}{${2:label}}"
+        "snippet": "[${3:options%keyvals}]{${1:root-offset}}{${2:label}}",
+        "keys": [
+          "\\begin{dependency}#c,\\begin{deptext}#c,\\depkeys#c,\\depedge#c,\\deproot#c,\\wordgroup#c,\\groupedge#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -75,7 +87,11 @@
       "name": "wordgroup",
       "arg": {
         "format": "[]{}{}{}{}",
-        "snippet": "[${5:options%keyvals}]{${1:row-offset}}{${2:word-offset-beg}}{${3:word-offset-end}}{${4:gid}}"
+        "snippet": "[${5:options%keyvals}]{${1:row-offset}}{${2:word-offset-beg}}{${3:word-offset-end}}{${4:gid}}",
+        "keys": [
+          "\\begin{dependency}#c,\\begin{deptext}#c,\\depkeys#c,\\depedge#c,\\deproot#c,\\wordgroup#c,\\groupedge#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -89,7 +105,11 @@
       "name": "groupedge",
       "arg": {
         "format": "[]{}{}{}{}",
-        "snippet": "[${5:options%keyvals}]{${1:from-gid}}{${2:to-gid}}{${3:label}}{${4:height}}"
+        "snippet": "[${5:options%keyvals}]{${1:from-gid}}{${2:to-gid}}{${3:label}}{${4:height}}",
+        "keys": [
+          "\\begin{dependency}#c,\\begin{deptext}#c,\\depkeys#c,\\depedge#c,\\deproot#c,\\wordgroup#c,\\groupedge#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -162,7 +182,13 @@
       "name": "dependency",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{dependency}#c,\\begin{deptext}#c",
+          "\\begin{dependency}#c",
+          "\\begin{dependency}#c,\\begin{deptext}#c,\\depkeys#c,\\depedge#c,\\deproot#c,\\wordgroup#c,\\groupedge#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -172,7 +198,12 @@
       "name": "deptext",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{dependency}#c,\\begin{deptext}#c",
+          "\\begin{dependency}#c,\\begin{deptext}#c,\\depkeys#c,\\depedge#c,\\deproot#c,\\wordgroup#c,\\groupedge#c"
+        ],
+        "keyPos": 0
       }
     }
   ],
