@@ -117,8 +117,22 @@
     {
       "name": "tkzDefPoint",
       "arg": {
+        "format": "(){}",
+        "snippet": "(${2:%<x%>},${3:%<y%>}){${1:ref}}"
+      }
+    },
+    {
+      "name": "tkzDefPoint",
+      "arg": {
         "format": "[](){}",
         "snippet": "[${2:options}](${3:%<x%>},${4:%<y%>}){${1:ref}}"
+      }
+    },
+    {
+      "name": "tkzDefPoint",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:%<angle%>:%<radius%>}){${1:ref}}"
       }
     },
     {
@@ -208,7 +222,25 @@
       }
     },
     {
-      "name": "tkzDefMidPoint(point1,point2)"
+      "name": "tkzDefMidPoint",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2})"
+      }
+    },
+    {
+      "name": "tkzDefBarycentricPoint",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1=num1},${2:point2=num2},${3:...})"
+      }
+    },
+    {
+      "name": "tkzDefSimilitudeCenter",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:O},${2:A})(${3:O'},${4:B})"
+      }
     },
     {
       "name": "tkzDefSimilitudeCenter",
@@ -218,7 +250,11 @@
       }
     },
     {
-      "name": "tkzDefHarmonic(A,B,C)"
+      "name": "tkzDefHarmonic",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:A},${2:B},${3:C})"
+      }
     },
     {
       "name": "tkzDefHarmonic",
@@ -228,10 +264,18 @@
       }
     },
     {
-      "name": "tkzDefGoldenRatio(point1,point2)"
+      "name": "tkzDefGoldenRatio",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2})"
+      }
     },
     {
-      "name": "tkzDefEquiPoints(point1,point2)"
+      "name": "tkzDefEquiPoints",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2})"
+      }
     },
     {
       "name": "tkzDefEquiPoints",
@@ -241,10 +285,18 @@
       }
     },
     {
-      "name": "tkzDefMidArc(A,B,C)"
+      "name": "tkzDefMidArc",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:A},${2:B},${3:C})"
+      }
     },
     {
-      "name": "tkzDefTriangleCenter(point1,point2,point3)"
+      "name": "tkzDefTriangleCenter",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:point3})"
+      }
     },
     {
       "name": "tkzDefTriangleCenter",
@@ -254,10 +306,10 @@
       }
     },
     {
-      "name": "tkzDefProjExcenter(A,B,C)(a,b,c)",
+      "name": "tkzDefProjExcenter",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:X,Y,Z}}"
+        "format": "()(){}",
+        "snippet": "(${2:A},${3:B},${4:C})(${5:a},${6:b},${7:c}){${1:X,Y,Z}}"
       }
     },
     {
@@ -268,7 +320,11 @@
       }
     },
     {
-      "name": "tkzDefPointOnLine(point1,point2)"
+      "name": "tkzDefPointOnLine",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2})"
+      }
     },
     {
       "name": "tkzDefPointOnLine",
@@ -285,7 +341,11 @@
       }
     },
     {
-      "name": "tkzDefPointBy(point)"
+      "name": "tkzDefPointBy",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point})"
+      }
     },
     {
       "name": "tkzDefPointBy",
@@ -297,12 +357,23 @@
     {
       "name": "tkzDefPointsBy",
       "arg": {
+        "format": "(){}",
+        "snippet": "(${2:point1},${3:point2},${4:...}){${1:point1,point2,...}}"
+      }
+    },
+    {
+      "name": "tkzDefPointsBy",
+      "arg": {
         "format": "[](){}",
         "snippet": "[${2:options%keyvals}](${3:point1},${4:point2},${5:...}){${1:point1,point2,...}}"
       }
     },
     {
-      "name": "tkzDefPointWith(point1,point2)"
+      "name": "tkzDefPointWith",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2})"
+      }
     },
     {
       "name": "tkzDefPointWith",
@@ -312,14 +383,18 @@
       }
     },
     {
-      "name": "tkzGetVectxy(point1,point2)",
+      "name": "tkzGetVectxy",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:text%plain}}"
+        "format": "(){}",
+        "snippet": "(${2:point1},${3:point2}){${1:text%plain}}"
       }
     },
     {
-      "name": "tkzDefLine(point1,point2)"
+      "name": "tkzDefLine",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2})"
+      }
     },
     {
       "name": "tkzDefLine",
@@ -329,7 +404,11 @@
       }
     },
     {
-      "name": "tkzDefTangent(point1,point2)"
+      "name": "tkzDefTangent",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2})"
+      }
     },
     {
       "name": "tkzDefTangent",
@@ -353,26 +432,54 @@
       }
     },
     {
-      "name": "tkzPermute(A,B,C)"
+      "name": "tkzPermute",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:A},${2:B},${3:C})"
+      }
     },
     {
-      "name": "tkzDefSquare(point1,point2)"
+      "name": "tkzDefSquare",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2})"
+      }
     },
     {
-      "name": "tkzDefRectangle(point1,point2)"
+      "name": "tkzDefRectangle",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2})"
+      }
     },
     {
-      "name": "tkzDefParallelogram(point1,point2,point3)"
+      "name": "tkzDefParallelogram",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:point3})"
+      }
     },
     {
-      "name": "tkzDefGoldenRectangle(point1,point2)"
+      "name": "tkzDefGoldenRectangle",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2})"
+      }
     },
     {
-      "name": "tkzDefGoldRectangle(point1,point2)",
-      "unusual": true
+      "name": "tkzDefGoldRectangle",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2})"
+      }
     },
     {
-      "name": "tkzDefRegPolygon(point1,point2)"
+      "name": "tkzDefRegPolygon",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2})"
+      }
     },
     {
       "name": "tkzDefRegPolygon",
@@ -382,7 +489,11 @@
       }
     },
     {
-      "name": "tkzDefCircle(point1,point2)"
+      "name": "tkzDefCircle",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2})"
+      }
     },
     {
       "name": "tkzDefCircle",
@@ -392,7 +503,11 @@
       }
     },
     {
-      "name": "tkzDefCircleBy(point1,point2)"
+      "name": "tkzDefCircleBy",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2})"
+      }
     },
     {
       "name": "tkzDefCircleBy",
@@ -402,10 +517,18 @@
       }
     },
     {
-      "name": "tkzInterLL(point1,point2)(point3,point4)"
+      "name": "tkzInterLL",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:point1},${2:point2})(${3:point3},${4:point4})"
+      }
     },
     {
-      "name": "tkzInterLC(point1,point2)(point3,point4)"
+      "name": "tkzInterLC",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:point1},${2:point2})(${3:point3},${4:point4})"
+      }
     },
     {
       "name": "tkzInterLC",
@@ -415,13 +538,24 @@
       }
     },
     {
-      "name": "tkzInterCC(point1,point2)(point3,point4)"
+      "name": "tkzInterCC",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:point1},${2:point2})(${3:point3},${4:point4})"
+      }
     },
     {
       "name": "tkzInterCC",
       "arg": {
         "format": "[]()()",
         "snippet": "[${1:options%keyvals}](${2:point1},${3:point2})(${4:point3},${5:point4})"
+      }
+    },
+    {
+      "name": "tkzTestInterCC",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:O},${2:A})(${3:O'},${4:B})"
       }
     },
     {
@@ -437,22 +571,42 @@
       "unusual": true
     },
     {
-      "name": "tkzInterCCN(point1,point2)(point3,point4)"
+      "name": "tkzInterCCN",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:point1},${2:point2})(${3:point3},${4:point4})"
+      }
     },
     {
-      "name": "tkzInterCCR(point1,radius1)(point2,radius2)"
+      "name": "tkzInterCCR",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:point1},${2:radius1})(${3:point2},${4:radius2})"
+      }
     },
     {
-      "name": "tkzGetAngle(csname)"
+      "name": "tkzGetAngle",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:csname})"
+      }
     },
     {
       "name": "tkzAngleResult"
     },
     {
-      "name": "tkzFindAngle(point1,point2,point3)"
+      "name": "tkzFindAngle",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:point3})"
+      }
     },
     {
-      "name": "tkzFindSlopeAngle(point1,point2)"
+      "name": "tkzFindSlopeAngle",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2})"
+      }
     },
     {
       "name": "tkzDefRandPointOn",
@@ -462,7 +616,11 @@
       }
     },
     {
-      "name": "tkzDrawPoint(name)"
+      "name": "tkzDrawPoint",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:name})"
+      }
     },
     {
       "name": "tkzDrawPoint",
@@ -474,12 +632,23 @@
     {
       "name": "tkzDrawPoints",
       "arg": {
+        "format": "()",
+        "snippet": "(${1:name1},${2:name2},${3:...})"
+      }
+    },
+    {
+      "name": "tkzDrawPoints",
+      "arg": {
         "format": "[]()",
         "snippet": "[${1:options%keyvals}](${2:name1},${3:name2},${4:...})"
       }
     },
     {
-      "name": "tkzDrawLine(point1,point2)"
+      "name": "tkzDrawLine",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2})"
+      }
     },
     {
       "name": "tkzDrawLine",
@@ -491,18 +660,36 @@
     {
       "name": "tkzDrawLines",
       "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:...})"
+      }
+    },
+    {
+      "name": "tkzDrawLines",
+      "arg": {
         "format": "[]()",
         "snippet": "[${1:options%keyvals}](${2:point1},${3:point2},${4:...})"
       }
     },
     {
-      "name": "tkzDrawSegment(point1,point2)"
+      "name": "tkzDrawSegment",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2})"
+      }
     },
     {
       "name": "tkzDrawSegment",
       "arg": {
         "format": "[]()",
         "snippet": "[${1:options%keyvals}](${2:point1},${3:point2})"
+      }
+    },
+    {
+      "name": "tkzDrawSegments",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:pt1},${2:pt2 pt3},${3:pt4 ...})"
       }
     },
     {
@@ -515,8 +702,22 @@
     {
       "name": "tkzDrawPolygon",
       "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:...})"
+      }
+    },
+    {
+      "name": "tkzDrawPolygon",
+      "arg": {
         "format": "[]()",
         "snippet": "[${1:options%keyvals}](${2:point1},${3:point2},${4:...})"
+      }
+    },
+    {
+      "name": "tkzDrawPolySeg",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:...})"
       }
     },
     {
@@ -527,7 +728,11 @@
       }
     },
     {
-      "name": "tkzDrawCircle(point1,point2)"
+      "name": "tkzDrawCircle",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2})"
+      }
     },
     {
       "name": "tkzDrawCircle",
@@ -539,12 +744,23 @@
     {
       "name": "tkzDrawCircles",
       "arg": {
+        "format": "()",
+        "snippet": "(${1:pt1},${2:pt2 pt3},${3:pt4 ...})"
+      }
+    },
+    {
+      "name": "tkzDrawCircles",
+      "arg": {
         "format": "[]()",
         "snippet": "[${1:options%keyvals}](${2:pt1},${3:pt2 pt3},${4:pt4 ...})"
       }
     },
     {
-      "name": "tkzDrawSemiCircle(point1,point2)"
+      "name": "tkzDrawSemiCircle",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2})"
+      }
     },
     {
       "name": "tkzDrawSemiCircle",
@@ -556,12 +772,23 @@
     {
       "name": "tkzDrawSemiCircles",
       "arg": {
+        "format": "()",
+        "snippet": "(${1:pt1},${2:pt2 pt3},${3:pt4 ...})"
+      }
+    },
+    {
+      "name": "tkzDrawSemiCircles",
+      "arg": {
         "format": "[]()",
         "snippet": "[${1:options%keyvals}](${2:pt1},${3:pt2 pt3},${4:pt4 ...})"
       }
     },
     {
-      "name": "tkzDrawArc(point1,point2)(point3)"
+      "name": "tkzDrawArc",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:point1},${2:point2})(${3:point3})"
+      }
     },
     {
       "name": "tkzDrawArc",
@@ -571,7 +798,11 @@
       }
     },
     {
-      "name": "tkzDrawSector(point1,point2)(point3)"
+      "name": "tkzDrawSector",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:point1},${2:point2})(${3:point3})"
+      }
     },
     {
       "name": "tkzDrawSector",
@@ -581,13 +812,24 @@
       }
     },
     {
-      "name": "tkzFillCircle(point1,point2)"
+      "name": "tkzFillCircle",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2})"
+      }
     },
     {
       "name": "tkzFillCircle",
       "arg": {
         "format": "[]()",
         "snippet": "[${1:options%keyvals}](${2:point1},${3:point2})"
+      }
+    },
+    {
+      "name": "tkzFillCircles",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:pt1},${2:pt2 pt3},${3:pt4 ...})"
       }
     },
     {
@@ -600,12 +842,23 @@
     {
       "name": "tkzFillPolygon",
       "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:...})"
+      }
+    },
+    {
+      "name": "tkzFillPolygon",
+      "arg": {
         "format": "[]()",
         "snippet": "[${1:options%keyvals}](${2:point1},${3:point2},${4:...})"
       }
     },
     {
-      "name": "tkzFillSector(point1,point2)(point3)"
+      "name": "tkzFillSector",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:point1},${2:point2})(${3:point3})"
+      }
     },
     {
       "name": "tkzFillSector",
@@ -615,7 +868,11 @@
       }
     },
     {
-      "name": "tkzFillAngle(point1,point2,point3)"
+      "name": "tkzFillAngle",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:point3})"
+      }
     },
     {
       "name": "tkzFillAngle",
@@ -657,12 +914,23 @@
     {
       "name": "tkzClipPolygon",
       "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:...})"
+      }
+    },
+    {
+      "name": "tkzClipPolygon",
+      "arg": {
         "format": "[]()",
         "snippet": "[${1:options%keyvals}](${2:point1},${3:point2},${4:...})"
       }
     },
     {
-      "name": "tkzClipCircle(point1,point2)"
+      "name": "tkzClipCircle",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2})"
+      }
     },
     {
       "name": "tkzClipCircle",
@@ -679,10 +947,18 @@
       }
     },
     {
-      "name": "tkzClipSector(point1,point2)(point3)"
+      "name": "tkzClipSector",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:point1},${2:point2})(${3:point3})"
+      }
     },
     {
-      "name": "tkzMarkSegment(point1,point2)"
+      "name": "tkzMarkSegment",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2})"
+      }
     },
     {
       "name": "tkzMarkSegment",
@@ -694,12 +970,23 @@
     {
       "name": "tkzMarkSegments",
       "arg": {
+        "format": "()",
+        "snippet": "(${1:pt1},${2:pt2 pt3},${3:pt4 ...})"
+      }
+    },
+    {
+      "name": "tkzMarkSegments",
+      "arg": {
         "format": "[]()",
         "snippet": "[${1:options%keyvals}](${2:pt1},${3:pt2 pt3},${4:pt4 ...})"
       }
     },
     {
-      "name": "tkzMarkArc(point1,point2,point3)"
+      "name": "tkzMarkArc",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:point3})"
+      }
     },
     {
       "name": "tkzMarkArc",
@@ -709,7 +996,11 @@
       }
     },
     {
-      "name": "tkzMarkAngle(point1,point2,point3)"
+      "name": "tkzMarkAngle",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:point3})"
+      }
     },
     {
       "name": "tkzMarkAngle",
@@ -719,7 +1010,11 @@
       }
     },
     {
-      "name": "tkzMarkRightAngle(point1,point2,point3)"
+      "name": "tkzMarkRightAngle",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:point3})"
+      }
     },
     {
       "name": "tkzMarkRightAngle",
@@ -729,7 +1024,11 @@
       }
     },
     {
-      "name": "tkzPicAngle(A,O,B)"
+      "name": "tkzPicAngle",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:A},${2:O},${3:B})"
+      }
     },
     {
       "name": "tkzPicAngle",
@@ -739,7 +1038,11 @@
       }
     },
     {
-      "name": "tkzPicRightAngle(A,O,B)"
+      "name": "tkzPicRightAngle",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:A},${2:O},${3:B})"
+      }
     },
     {
       "name": "tkzPicRightAngle",
@@ -749,10 +1052,10 @@
       }
     },
     {
-      "name": "tkzLabelPoint(point)",
+      "name": "tkzLabelPoint",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:label}}"
+        "format": "(){}",
+        "snippet": "(${2:point}){${1:label}}"
       }
     },
     {
@@ -765,8 +1068,22 @@
     {
       "name": "tkzLabelPoints",
       "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:...})"
+      }
+    },
+    {
+      "name": "tkzLabelPoints",
+      "arg": {
         "format": "[]()",
         "snippet": "[${1:options%keyvals}](${2:point1},${3:point2},${4:...})"
+      }
+    },
+    {
+      "name": "tkzAutoLabelPoints",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:...})"
       }
     },
     {
@@ -777,10 +1094,10 @@
       }
     },
     {
-      "name": "tkzLabelSegment(point1,point2)",
+      "name": "tkzLabelSegment",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:label}}"
+        "format": "(){}",
+        "snippet": "(${2:point1},${3:point2}){${1:label}}"
       }
     },
     {
@@ -793,15 +1110,22 @@
     {
       "name": "tkzLabelSegments",
       "arg": {
+        "format": "(){}",
+        "snippet": "(${2:pt1},${3:pt2 pt3},${4:pt4 ...}){${1:label}}"
+      }
+    },
+    {
+      "name": "tkzLabelSegments",
+      "arg": {
         "format": "[](){}",
         "snippet": "[${2:options%keyvals}](${3:pt1},${4:pt2 pt3},${5:pt4 ...}){${1:label}}"
       }
     },
     {
-      "name": "tkzLabelLine(point1,point2)",
+      "name": "tkzLabelLine",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:label}}"
+        "format": "(){}",
+        "snippet": "(${2:point1},${3:point2}){${1:label}}"
       }
     },
     {
@@ -812,7 +1136,11 @@
       }
     },
     {
-      "name": "tkzLabelAngle(point1,point2,point3)"
+      "name": "tkzLabelAngle",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:point3})"
+      }
     },
     {
       "name": "tkzLabelAngle",
@@ -822,10 +1150,10 @@
       }
     },
     {
-      "name": "tkzLabelCircle(point1,point2)(angle)",
+      "name": "tkzLabelCircle",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:label%plain}}"
+        "format": "()(){}",
+        "snippet": "(${2:point1},${3:point2})(${4:angle}){${1:label%plain}}"
       }
     },
     {
@@ -836,10 +1164,10 @@
       }
     },
     {
-      "name": "tkzLabelArc(point1,point2,point3)",
+      "name": "tkzLabelArc",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:label}}"
+        "format": "(){}",
+        "snippet": "(${2:point1},${3:point2},${4:point3}){${1:label}}"
       }
     },
     {
@@ -850,7 +1178,11 @@
       }
     },
     {
-      "name": "tkzCompass(point1,point2)"
+      "name": "tkzCompass",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2})"
+      }
     },
     {
       "name": "tkzCompass",
@@ -862,12 +1194,23 @@
     {
       "name": "tkzCompasss",
       "arg": {
+        "format": "()",
+        "snippet": "(${1:pt1},${2:pt2 pt3},${3:pt4 ...})"
+      }
+    },
+    {
+      "name": "tkzCompasss",
+      "arg": {
         "format": "[]()",
         "snippet": "[${1:options%keyvals}](${2:pt1},${3:pt2 pt3},${4:pt4 ...})"
       }
     },
     {
-      "name": "tkzShowLine(point1,point2)"
+      "name": "tkzShowLine",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2})"
+      }
     },
     {
       "name": "tkzShowLine",
@@ -877,7 +1220,11 @@
       }
     },
     {
-      "name": "tkzShowTransformation(point1,point2)"
+      "name": "tkzShowTransformation",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2})"
+      }
     },
     {
       "name": "tkzShowTransformation",
@@ -887,7 +1234,11 @@
       }
     },
     {
-      "name": "tkzProtractor(point1,point2)"
+      "name": "tkzProtractor",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2})"
+      }
     },
     {
       "name": "tkzProtractor",
@@ -897,29 +1248,41 @@
       }
     },
     {
-      "name": "tkzDuplicateSegment(point1,point2)(point3,point4)"
-    },
-    {
-      "name": "tkzDuplicateSegment(point1,point2)(point3,point4)",
+      "name": "tkzDuplicateSegment",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:point5}}"
+        "format": "()()",
+        "snippet": "(${1:point1},${2:point2})(${3:point3},${4:point4})"
       }
     },
     {
-      "name": "tkzDuplicateLength(point1,point2)(point3,point4)",
-      "unusual": true
+      "name": "tkzDuplicateSegment",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:point1},${3:point2})(${4:point3},${5:point4}){${1:point5}}"
+      }
     },
     {
-      "name": "tkzDuplicateLength(point1,point2)(point3,point4)",
+      "name": "tkzDuplicateLength",
       "unusual": true,
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:point5}}"
+        "format": "()()",
+        "snippet": "(${1:point1},${2:point2})(${3:point3},${4:point4})"
       }
     },
     {
-      "name": "tkzCalcLength(point1,point2)"
+      "name": "tkzDuplicateLength",
+      "unusual": true,
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:point1},${3:point2})(${4:point3},${5:point4}){${1:point5}}"
+      }
+    },
+    {
+      "name": "tkzCalcLength",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2})"
+      }
     },
     {
       "name": "tkzCalcLength",
@@ -929,43 +1292,67 @@
       }
     },
     {
-      "name": "tkzpttocm(number)",
+      "name": "tkzpttocm",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:csname}}"
+        "format": "(){}",
+        "snippet": "(${2:number}){${1:csname}}"
       }
     },
     {
-      "name": "tkzcmtopt(number)",
+      "name": "tkzcmtopt",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:csname}}"
+        "format": "(){}",
+        "snippet": "(${2:number}){${1:csname}}"
       }
     },
     {
-      "name": "tkzGetPointCoord(point)",
+      "name": "tkzGetPointCoord",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:csname}}"
+        "format": "(){}",
+        "snippet": "(${2:point}){${1:csname}}"
       }
     },
     {
-      "name": "tkzSwapPoints(A,B)"
+      "name": "tkzSwapPoints",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:A},${2:B})"
+      }
     },
     {
-      "name": "tkzDotProduct(A,B,C)"
+      "name": "tkzDotProduct",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:A},${2:B},${3:C})"
+      }
     },
     {
-      "name": "tkzPowerCircle(A)(O,M)"
+      "name": "tkzPowerCircle",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:A})(${2:O},${3:M})"
+      }
     },
     {
-      "name": "tkzDefRadicalAxis(A,B)(C,D)"
+      "name": "tkzDefRadicalAxis",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:A},${2:B})(${3:C},${4:D})"
+      }
     },
     {
-      "name": "tkzIsLinear(A,B,C)"
+      "name": "tkzIsLinear",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:A},${2:B},${3:C})"
+      }
     },
     {
-      "name": "tkzIsOrtho(A,B,C)"
+      "name": "tkzIsOrtho",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:A},${2:B},${3:C})"
+      }
     },
     {
       "name": "tkzGetResult",
@@ -1076,8 +1463,12 @@
       }
     },
     {
-      "name": "tkzNormalizeAngle(arg)",
-      "unusual": true
+      "name": "tkzNormalizeAngle",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:arg})"
+      }
     },
     {
       "name": "tkzpointnormalised",
@@ -1168,10 +1559,10 @@
       "unusual": true
     },
     {
-      "name": "tkzText(x,y)",
+      "name": "tkzText",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:text}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:text}}"
       }
     },
     {
@@ -1242,16 +1633,23 @@
     {
       "name": "tkzDrawPolygons",
       "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:...})"
+      }
+    },
+    {
+      "name": "tkzDrawPolygons",
+      "arg": {
         "format": "[]()",
         "snippet": "[${1:options}](${2:point1},${3:point2},${4:...})"
       }
     },
     {
-      "name": "tkzLabelRegPolygon(point)",
+      "name": "tkzLabelRegPolygon",
       "unusual": true,
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:label1,label2,...}}"
+        "format": "(){}",
+        "snippet": "(${2:point}){${1:label1,label2,...}}"
       }
     },
     {
@@ -1317,44 +1715,84 @@
       }
     },
     {
-      "name": "tkzDefCircleTranslation(point1,point2)",
-      "unusual": true
+      "name": "tkzDefCircleTranslation",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2})"
+      }
     },
     {
-      "name": "tkzDefCircleHomothety(point1,point2)",
-      "unusual": true
+      "name": "tkzDefCircleHomothety",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2})"
+      }
     },
     {
-      "name": "tkzDefCircleReflection(point1,point2)",
-      "unusual": true
+      "name": "tkzDefCircleReflection",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2})"
+      }
     },
     {
-      "name": "tkzDefCircleSymmetry(point1,point2)",
-      "unusual": true
+      "name": "tkzDefCircleSymmetry",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2})"
+      }
     },
     {
-      "name": "tkzDefCircleRotation(point1,point2)",
-      "unusual": true
+      "name": "tkzDefCircleRotation",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2})"
+      }
     },
     {
-      "name": "tkzDefOrthogonalCircle(point1,point2,point3)",
-      "unusual": true
+      "name": "tkzDefOrthogonalCircle",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:point3})"
+      }
     },
     {
-      "name": "tkzDefOrthoThroughCircle(point1,point2,point3,point4)",
-      "unusual": true
+      "name": "tkzDefOrthoThroughCircle",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:point3},${4:point4})"
+      }
     },
     {
-      "name": "tkzDefInversionCircle(point1,point2,point3,point4)",
-      "unusual": true
+      "name": "tkzDefInversionCircle",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:point3},${4:point4})"
+      }
     },
     {
-      "name": "tkzDefEquilateral(point1,point2)",
-      "unusual": true
+      "name": "tkzDefEquilateral",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2})"
+      }
     },
     {
-      "name": "tkzDefIsoscelesRightTriangle(point1,point2)",
-      "unusual": true
+      "name": "tkzDefIsoscelesRightTriangle",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2})"
+      }
     },
     {
       "name": "tkzDrawEquilateral",
@@ -1373,36 +1811,68 @@
       }
     },
     {
-      "name": "tkzDefTwoOne(point1,point2)",
-      "unusual": true
+      "name": "tkzDefTwoOne",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2})"
+      }
     },
     {
-      "name": "tkzDefPythagore(point1,point2)",
-      "unusual": true
+      "name": "tkzDefPythagore",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2})"
+      }
     },
     {
-      "name": "tkzDefSchoolTriangle(point1,point2)",
-      "unusual": true
+      "name": "tkzDefSchoolTriangle",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2})"
+      }
     },
     {
-      "name": "tkzDefGoldTriangle(point1,point2)",
-      "unusual": true
+      "name": "tkzDefGoldTriangle",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2})"
+      }
     },
     {
-      "name": "tkzDefEuclideTriangle(point1,point2)",
-      "unusual": true
+      "name": "tkzDefEuclideTriangle",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2})"
+      }
     },
     {
-      "name": "tkzDefGoldenTriangle(point1,point2)",
-      "unusual": true
+      "name": "tkzDefGoldenTriangle",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2})"
+      }
     },
     {
-      "name": "tkzDefCheopsTriangle(point1,point2)",
-      "unusual": true
+      "name": "tkzDefCheopsTriangle",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2})"
+      }
     },
     {
-      "name": "tkzDefTwoAnglesTriangle(point1,point2)",
-      "unusual": true
+      "name": "tkzDefTwoAnglesTriangle",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2})"
+      }
     },
     {
       "name": "SetUpPTTR",
@@ -1525,8 +1995,12 @@
       }
     },
     {
-      "name": "tkzPointShowCoord(point)",
-      "unusual": true
+      "name": "tkzPointShowCoord",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point})"
+      }
     },
     {
       "name": "tkzPointShowCoord",
@@ -1537,8 +2011,12 @@
       }
     },
     {
-      "name": "tkzShowPointCoord(point)",
-      "unusual": true
+      "name": "tkzShowPointCoord",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point})"
+      }
     },
     {
       "name": "tkzShowPointCoord",
@@ -1549,60 +2027,116 @@
       }
     },
     {
-      "name": "tkzDefCircleR(point1,point2)",
-      "unusual": true
+      "name": "tkzDefCircleR",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2})"
+      }
     },
     {
-      "name": "tkzDefCircleD(point1,point2)",
-      "unusual": true
+      "name": "tkzDefCircleD",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2})"
+      }
     },
     {
-      "name": "tkzDefCircumCircle(point1,point2,point3)",
-      "unusual": true
+      "name": "tkzDefCircumCircle",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:point3})"
+      }
     },
     {
-      "name": "tkzDefInCircle(point1,point2,point3)",
-      "unusual": true
+      "name": "tkzDefInCircle",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:point3})"
+      }
     },
     {
-      "name": "tkzDefExCircle(point1,point2,point3)",
-      "unusual": true
+      "name": "tkzDefExCircle",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:point3})"
+      }
     },
     {
-      "name": "tkzDefExRadius(point1,point2,point3)",
-      "unusual": true
+      "name": "tkzDefExRadius",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:point3})"
+      }
     },
     {
-      "name": "tkzDefEulerCircle(point1,point2,point3)",
-      "unusual": true
+      "name": "tkzDefEulerCircle",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:point3})"
+      }
     },
     {
-      "name": "tkzDefNinePointsCircle(point1,point2,point3)",
-      "unusual": true
+      "name": "tkzDefNinePointsCircle",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:point3})"
+      }
     },
     {
-      "name": "tkzFeuerBachCircle(point1,point2,point3)",
-      "unusual": true
+      "name": "tkzFeuerBachCircle",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:point3})"
+      }
     },
     {
-      "name": "tkzDefEulerRadius(point1,point2,point3)",
-      "unusual": true
+      "name": "tkzDefEulerRadius",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:point3})"
+      }
     },
     {
-      "name": "tkzDefApolloniusCircle(point1,point2)",
-      "unusual": true
+      "name": "tkzDefApolloniusCircle",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2})"
+      }
     },
     {
-      "name": "tkzDefOrthogonalCircle(point1,point2,point3)",
-      "unusual": true
+      "name": "tkzDefOrthogonalCircle",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:point3})"
+      }
     },
     {
-      "name": "tkzDefOrthoThroughCircle(point1,point2,point3,point4)",
-      "unusual": true
+      "name": "tkzDefOrthoThroughCircle",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:point3},${4:point4})"
+      }
     },
     {
-      "name": "tkzDefSpiekerCircle(point1,point2,point3)",
-      "unusual": true
+      "name": "tkzDefSpiekerCircle",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:point3})"
+      }
     },
     {
       "name": "tkzDrawSectorRAngles",
@@ -1717,59 +2251,99 @@
       }
     },
     {
-      "name": "tkzDefBisectorLine(point1,point2,point3)",
-      "unusual": true
-    },
-    {
-      "name": "tkzDefBisectorOutLine(point1,point2,point3)",
-      "unusual": true
-    },
-    {
-      "name": "tkzDefSymmedianLine(point1,point2,point3)",
-      "unusual": true
-    },
-    {
-      "name": "tkzDefAltitudeLine(point1,point2,point3)",
-      "unusual": true
-    },
-    {
-      "name": "tkzDefEulerLine(point1,point2,point3)",
-      "unusual": true
-    },
-    {
-      "name": "tkzTgtAt(point1)(point2)",
-      "unusual": true
-    },
-    {
-      "name": "tkzTgtFromP(point1,point2)(point3)",
-      "unusual": true
-    },
-    {
-      "name": "tkzTgtFromPR(point1,point2)(point3)",
-      "unusual": true
-    },
-    {
-      "name": "tkzRegPolygonCenter(point1,point2)",
-      "unusual": true
-    },
-    {
-      "name": "tkzRegPolygonSide(point1,point2)",
-      "unusual": true
-    },
-    {
-      "name": "tkzRenamePoint(arg1)",
+      "name": "tkzDefBisectorLine",
       "unusual": true,
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:arg2}}"
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:point3})"
       }
     },
     {
-      "name": "tkzGetPointxy(arg1)",
+      "name": "tkzDefBisectorOutLine",
       "unusual": true,
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:arg2}}"
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:point3})"
+      }
+    },
+    {
+      "name": "tkzDefSymmedianLine",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:point3})"
+      }
+    },
+    {
+      "name": "tkzDefAltitudeLine",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:point3})"
+      }
+    },
+    {
+      "name": "tkzDefEulerLine",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:point3})"
+      }
+    },
+    {
+      "name": "tkzTgtAt",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:point1})(${2:point2})"
+      }
+    },
+    {
+      "name": "tkzTgtFromP",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:point1},${2:point2})(${3:point3})"
+      }
+    },
+    {
+      "name": "tkzTgtFromPR",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:point1},${2:point2})(${3:point3})"
+      }
+    },
+    {
+      "name": "tkzRegPolygonCenter",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2})"
+      }
+    },
+    {
+      "name": "tkzRegPolygonSide",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2})"
+      }
+    },
+    {
+      "name": "tkzRenamePoint",
+      "unusual": true,
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:arg1}){${1:arg2}}"
+      }
+    },
+    {
+      "name": "tkzGetPointxy",
+      "unusual": true,
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:arg1}){${1:arg2}}"
       }
     },
     {
@@ -1837,28 +2411,52 @@
       }
     },
     {
-      "name": "tkzRandPointOnRect(point1,point2)",
-      "unusual": true
+      "name": "tkzRandPointOnRect",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2})"
+      }
     },
     {
-      "name": "tkzRandPointOnSegment(point1,point2)",
-      "unusual": true
+      "name": "tkzRandPointOnSegment",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2})"
+      }
     },
     {
-      "name": "tkzRandPointOnLine(point1,point2)",
-      "unusual": true
+      "name": "tkzRandPointOnLine",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2})"
+      }
     },
     {
-      "name": "tkzRandPointOnCircle(point1,point2)",
-      "unusual": true
+      "name": "tkzRandPointOnCircle",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2})"
+      }
     },
     {
-      "name": "tkzRandPointOnCircleThrough(point1,point2)",
-      "unusual": true
+      "name": "tkzRandPointOnCircleThrough",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2})"
+      }
     },
     {
-      "name": "tkzRandPointOnDisk(point1,point2)",
-      "unusual": true
+      "name": "tkzRandPointOnDisk",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2})"
+      }
     },
     {
       "name": "tkzVecKOrth",
@@ -1965,116 +2563,164 @@
       }
     },
     {
-      "name": "tkzTranslation(arg1)(arg2)",
+      "name": "tkzTranslation",
       "unusual": true,
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:arg3}}"
+        "format": "()(){}",
+        "snippet": "(${2:arg1})(${3:arg2}){${1:arg3}}"
       }
     },
     {
-      "name": "tkzUTranslation(arg1)(arg2)",
-      "unusual": true
-    },
-    {
-      "name": "tkzCSym(arg1)(arg2)",
+      "name": "tkzUTranslation",
       "unusual": true,
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:arg3}}"
+        "format": "()()",
+        "snippet": "(${1:arg1})(${2:arg2})"
       }
     },
     {
-      "name": "tkzUCSym(arg1)(arg2)",
-      "unusual": true
-    },
-    {
-      "name": "tkzSymOrth(arg1)(arg2)",
+      "name": "tkzCSym",
       "unusual": true,
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:arg3}}"
+        "format": "()(){}",
+        "snippet": "(${2:arg1})(${3:arg2}){${1:arg3}}"
       }
     },
     {
-      "name": "tkzUSymOrth(arg1)(arg2)",
-      "unusual": true
-    },
-    {
-      "name": "tkzProjection(arg1)(arg2)",
+      "name": "tkzUCSym",
       "unusual": true,
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:arg3}}"
+        "format": "()()",
+        "snippet": "(${1:arg1})(${2:arg2})"
       }
     },
     {
-      "name": "tkzUProjection(arg1)(arg2)",
-      "unusual": true
-    },
-    {
-      "name": "tkzHomo(arg1)(arg2)",
+      "name": "tkzSymOrth",
       "unusual": true,
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:arg3}}"
+        "format": "()(){}",
+        "snippet": "(${2:arg1})(${3:arg2}){${1:arg3}}"
       }
     },
     {
-      "name": "tkzUHomo(arg1)(arg2)",
-      "unusual": true
-    },
-    {
-      "name": "tkzRotateAngle(arg1)(arg2)",
+      "name": "tkzUSymOrth",
       "unusual": true,
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:arg3}}"
+        "format": "()()",
+        "snippet": "(${1:arg1})(${2:arg2})"
       }
     },
     {
-      "name": "tkzURotateAngle(arg1)(arg2)",
-      "unusual": true
-    },
-    {
-      "name": "tkzRotateInRad(arg1)(arg2)",
+      "name": "tkzProjection",
       "unusual": true,
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:arg3}}"
+        "format": "()(){}",
+        "snippet": "(${2:arg1})(${3:arg2}){${1:arg3}}"
       }
     },
     {
-      "name": "tkzURotateInRad(arg1)(arg2)",
-      "unusual": true
-    },
-    {
-      "name": "tkzInversePoint(arg1)(arg2)",
+      "name": "tkzUProjection",
       "unusual": true,
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:arg3}}"
+        "format": "()()",
+        "snippet": "(${1:arg1})(${2:arg2})"
       }
     },
     {
-      "name": "tkzUInversePoint(arg1)(arg2)",
-      "unusual": true
-    },
-    {
-      "name": "tkzInverseNegativePoint(arg1)(arg2)",
+      "name": "tkzHomo",
       "unusual": true,
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:arg3}}"
+        "format": "()(){}",
+        "snippet": "(${2:arg1})(${3:arg2}){${1:arg3}}"
       }
     },
     {
-      "name": "tkzUInverseNegativePoint(arg1)(arg2)",
-      "unusual": true
+      "name": "tkzUHomo",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:arg1})(${2:arg2})"
+      }
     },
     {
-      "name": "tkzDivHarmonic(pt1,pt2,pt3)",
-      "unusual": true
+      "name": "tkzRotateAngle",
+      "unusual": true,
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:arg1})(${3:arg2}){${1:arg3}}"
+      }
+    },
+    {
+      "name": "tkzURotateAngle",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:arg1})(${2:arg2})"
+      }
+    },
+    {
+      "name": "tkzRotateInRad",
+      "unusual": true,
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:arg1})(${3:arg2}){${1:arg3}}"
+      }
+    },
+    {
+      "name": "tkzURotateInRad",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:arg1})(${2:arg2})"
+      }
+    },
+    {
+      "name": "tkzInversePoint",
+      "unusual": true,
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:arg1})(${3:arg2}){${1:arg3}}"
+      }
+    },
+    {
+      "name": "tkzUInversePoint",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:arg1})(${2:arg2})"
+      }
+    },
+    {
+      "name": "tkzInverseNegativePoint",
+      "unusual": true,
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:arg1})(${3:arg2}){${1:arg3}}"
+      }
+    },
+    {
+      "name": "tkzUInverseNegativePoint",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:arg1})(${2:arg2})"
+      }
+    },
+    {
+      "name": "tkzDefBCPoint",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1=num1},${2:point2=num2},${3:...})"
+      }
+    },
+    {
+      "name": "tkzDivHarmonic",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:pt1},${2:pt2},${3:pt3})"
+      }
     },
     {
       "name": "tkzDivHarmonic",
@@ -2085,120 +2731,236 @@
       }
     },
     {
-      "name": "tkzOrthoCenter(point1,point2,point3)",
-      "unusual": true
+      "name": "tkzOrthoCenter",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:point3})"
+      }
     },
     {
-      "name": "tkzDefOrthoCenter(point1,point2,point3)",
-      "unusual": true
+      "name": "tkzDefOrthoCenter",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:point3})"
+      }
     },
     {
-      "name": "tkzCentroid(point1,point2,point3)",
-      "unusual": true
+      "name": "tkzCentroid",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:point3})"
+      }
     },
     {
-      "name": "tkzBaryCenter(point1,point2,point3)",
-      "unusual": true
+      "name": "tkzBaryCenter",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:point3})"
+      }
     },
     {
-      "name": "tkzCircumCenter(point1,point2,point3)",
-      "unusual": true
+      "name": "tkzCircumCenter",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:point3})"
+      }
     },
     {
-      "name": "tkzDefCircumCenter(point1,point2,point3)",
-      "unusual": true
+      "name": "tkzDefCircumCenter",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:point3})"
+      }
     },
     {
-      "name": "tkzInCenter(point1,point2,point3)",
-      "unusual": true
+      "name": "tkzInCenter",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:point3})"
+      }
     },
     {
-      "name": "tkzDefInCenter(point1,point2,point3)",
-      "unusual": true
+      "name": "tkzDefInCenter",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:point3})"
+      }
     },
     {
-      "name": "tkzExCenter(point1,point2,point3)",
-      "unusual": true
+      "name": "tkzExCenter",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:point3})"
+      }
     },
     {
-      "name": "tkzDefExCenter(point1,point2,point3)",
-      "unusual": true
+      "name": "tkzDefExCenter",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:point3})"
+      }
     },
     {
-      "name": "tkzEulerCenter(point1,point2,point3)",
-      "unusual": true
+      "name": "tkzEulerCenter",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:point3})"
+      }
     },
     {
-      "name": "tkzNinePointCenter(point1,point2,point3)",
-      "unusual": true
+      "name": "tkzNinePointCenter",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:point3})"
+      }
     },
     {
-      "name": "tkzDefEulerCenter(point1,point2,point3)",
-      "unusual": true
+      "name": "tkzDefEulerCenter",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:point3})"
+      }
     },
     {
-      "name": "tkzSymmedianCenter(point1,point2,point3)",
-      "unusual": true
+      "name": "tkzSymmedianCenter",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:point3})"
+      }
     },
     {
-      "name": "tkzLemoinePoint(point1,point2,point3)",
-      "unusual": true
+      "name": "tkzLemoinePoint",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:point3})"
+      }
     },
     {
-      "name": "tkzGrebePoint(point1,point2,point3)",
-      "unusual": true
+      "name": "tkzGrebePoint",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:point3})"
+      }
     },
     {
-      "name": "tkzDefLemoinePoint(point1,point2,point3)",
-      "unusual": true
+      "name": "tkzDefLemoinePoint",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:point3})"
+      }
     },
     {
-      "name": "tkzSpiekerCenter(point1,point2,point3)",
-      "unusual": true
+      "name": "tkzSpiekerCenter",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:point3})"
+      }
     },
     {
-      "name": "tkzDefSpiekerCenter(point1,point2,point3)",
-      "unusual": true
+      "name": "tkzDefSpiekerCenter",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:point3})"
+      }
     },
     {
-      "name": "tkzGergonneCenter(point1,point2,point3)",
-      "unusual": true
+      "name": "tkzGergonneCenter",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:point3})"
+      }
     },
     {
-      "name": "tkzDefGergonneCenter(point1,point2,point3)",
-      "unusual": true
+      "name": "tkzDefGergonneCenter",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:point3})"
+      }
     },
     {
-      "name": "tkzNagelCenter(point1,point2,point3)",
-      "unusual": true
+      "name": "tkzNagelCenter",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:point3})"
+      }
     },
     {
-      "name": "tkzDefNagelCenter(point1,point2,point3)",
-      "unusual": true
+      "name": "tkzDefNagelCenter",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:point3})"
+      }
     },
     {
-      "name": "tkzMittenpunktCenter(point1,point2,point3)",
-      "unusual": true
+      "name": "tkzMittenpunktCenter",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:point3})"
+      }
     },
     {
-      "name": "tkzDefMittenpunktCenter(point1,point2,point3)",
-      "unusual": true
+      "name": "tkzDefMittenpunktCenter",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:point3})"
+      }
     },
     {
-      "name": "tkzDefMiddlespoint(point1,point2,point3)",
-      "unusual": true
+      "name": "tkzDefMiddlespoint",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:point3})"
+      }
     },
     {
-      "name": "tkzFeuerbachCenter(point1,point2,point3)",
-      "unusual": true
+      "name": "tkzFeuerbachCenter",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:point3})"
+      }
     },
     {
-      "name": "tkzDefFeuerbachCenter(point1,point2,point3)",
-      "unusual": true
+      "name": "tkzDefFeuerbachCenter",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:point3})"
+      }
     },
     {
-      "name": "tkzOrthogonalCenter(point1,point2)",
-      "unusual": true
+      "name": "tkzOrthogonalCenter",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2})"
+      }
     },
     {
       "name": "usetkzobj",
@@ -2217,12 +2979,20 @@
       }
     },
     {
-      "name": "tkzInterLLxy(point1,point2)(point3,point4)",
-      "unusual": true
+      "name": "tkzInterLLxy",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:point1},${2:point2})(${3:point3},${4:point4})"
+      }
     },
     {
-      "name": "tkzTestInterLC(point1,point2)(point3,point4)",
-      "unusual": true
+      "name": "tkzTestInterLC",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:point1},${2:point2})(${3:point3},${4:point4})"
+      }
     },
     {
       "name": "iftkzFlagLC",
@@ -2237,27 +3007,27 @@
       "unusual": true
     },
     {
-      "name": "tkzInterLCR(arg1)(arg2)",
+      "name": "tkzInterLCR",
       "unusual": true,
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:arg3}}{${2:arg4}}"
+        "format": "()(){}{}",
+        "snippet": "(${3:arg1})(${4:arg2}){${1:arg3}}{${2:arg4}}"
       }
     },
     {
-      "name": "tkzInterLCWithNodes(arg1)(arg2)",
+      "name": "tkzInterLCWithNodes",
       "unusual": true,
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:arg3}}{${2:arg4}}"
+        "format": "()(){}{}",
+        "snippet": "(${3:arg1})(${4:arg2}){${1:arg3}}{${2:arg4}}"
       }
     },
     {
-      "name": "tkzInterCCWithNodes(arg1)(arg2)",
+      "name": "tkzInterCCWithNodes",
       "unusual": true,
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:arg3}}{${2:arg4}}"
+        "format": "()(){}{}",
+        "snippet": "(${3:arg1})(${4:arg2}){${1:arg3}}{${2:arg4}}"
       }
     },
     {
@@ -2529,7 +3299,7 @@
       "densely dash dot",
       "loosely dash dot",
       "dash dot dot",
-      "densely dash dot dot ",
+      "densely dash dot dot",
       "loosely dash dot dot",
       "style={${1:TikZ options}}",
       "->",
@@ -2563,7 +3333,7 @@
       "densely dash dot",
       "loosely dash dot",
       "dash dot dot",
-      "densely dash dot dot ",
+      "densely dash dot dot",
       "loosely dash dot dot",
       "style={${1:TikZ options}}",
       "->",
@@ -2597,7 +3367,7 @@
       "densely dash dot",
       "loosely dash dot",
       "dash dot dot",
-      "densely dash dot dot ",
+      "densely dash dot dot",
       "loosely dash dot dot",
       "style={${1:TikZ options}}",
       "->",
@@ -2633,7 +3403,7 @@
       "densely dash dot",
       "loosely dash dot",
       "dash dot dot",
-      "densely dash dot dot ",
+      "densely dash dot dot",
       "loosely dash dot dot",
       "line width=",
       "ultra thin",
@@ -2663,7 +3433,7 @@
       "densely dash dot",
       "loosely dash dot",
       "dash dot dot",
-      "densely dash dot dot ",
+      "densely dash dot dot",
       "loosely dash dot dot",
       "line width=",
       "ultra thin",
@@ -2697,7 +3467,7 @@
       "densely dash dot",
       "loosely dash dot",
       "dash dot dot",
-      "densely dash dot dot ",
+      "densely dash dot dot",
       "loosely dash dot dot",
       "line width=",
       "style={${1:TikZ options}}",
@@ -2733,7 +3503,7 @@
       "densely dash dot",
       "loosely dash dot",
       "dash dot dot",
-      "densely dash dot dot ",
+      "densely dash dot dot",
       "loosely dash dot dot",
       "line width=",
       "style={${1:TikZ options}}",
@@ -2931,7 +3701,7 @@
       "densely dash dot",
       "loosely dash dot",
       "dash dot dot",
-      "densely dash dot dot ",
+      "densely dash dot dot",
       "loosely dash dot dot",
       "line width=",
       "style={${1:TikZ options}}",
@@ -2968,7 +3738,7 @@
       "densely dash dot",
       "loosely dash dot",
       "dash dot dot",
-      "densely dash dot dot ",
+      "densely dash dot dot",
       "loosely dash dot dot",
       "line width=",
       "style={${1:TikZ options}}",

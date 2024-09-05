@@ -12,7 +12,11 @@
       "name": "poster",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:stuff%text}}"
+        "snippet": "[${2:options%keyvals}]{${1:stuff%text}}",
+        "keys": [
+          "\\poster,\\begin{Poster},\\PosterPage"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -22,7 +26,11 @@
       "name": "PosterPage",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\poster,\\begin{Poster},\\PosterPage"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -70,7 +78,11 @@
       "name": "Poster",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\poster,\\begin{Poster},\\PosterPage"
+        ],
+        "keyPos": 0
       }
     }
   ],
@@ -83,8 +95,8 @@
       "landscape",
       "hcenter",
       "vcenter",
-      "crop=${1|none,corners,full\r|}",
-      "clip=${1|none,pstricks\r|}"
+      "crop=${1|none,corners,full|}",
+      "clip=${1|none,pstricks|}"
     ]
   },
   "args": []

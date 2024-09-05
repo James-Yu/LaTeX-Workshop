@@ -156,8 +156,22 @@
     {
       "name": "tkzDefPoint",
       "arg": {
+        "format": "(){}",
+        "snippet": "(${2:%<x%>},${3:%<y%>}){${1:name}}"
+      }
+    },
+    {
+      "name": "tkzDefPoint",
+      "arg": {
         "format": "[](){}",
         "snippet": "[${2:options}](${3:%<x%>},${4:%<y%>}){${1:name}}"
+      }
+    },
+    {
+      "name": "tkzDefPoint",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:%<angle%>:%<radius%>}){${1:name}}"
       }
     },
     {
@@ -210,7 +224,11 @@
       }
     },
     {
-      "name": "tkzDrawPoint(point)"
+      "name": "tkzDrawPoint",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point})"
+      }
     },
     {
       "name": "tkzDrawPoint",
@@ -222,15 +240,22 @@
     {
       "name": "tkzDrawPoints",
       "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:...})"
+      }
+    },
+    {
+      "name": "tkzDrawPoints",
+      "arg": {
         "format": "[]()",
         "snippet": "[${1:options%keyvals}](${2:point1},${3:point2},${4:...})"
       }
     },
     {
-      "name": "tkzLabelPoint(point)",
+      "name": "tkzLabelPoint",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:label%plain}}"
+        "format": "(){}",
+        "snippet": "(${2:point}){${1:label%plain}}"
       }
     },
     {
@@ -238,6 +263,13 @@
       "arg": {
         "format": "[](){}",
         "snippet": "[${2:TikZ options}](${3:point}){${1:label%plain}}"
+      }
+    },
+    {
+      "name": "tkzLabelPoints",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:...})"
       }
     },
     {
@@ -262,7 +294,11 @@
       }
     },
     {
-      "name": "tkzPointShowCoord(point)"
+      "name": "tkzPointShowCoord",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point})"
+      }
     },
     {
       "name": "tkzPointShowCoord",
@@ -272,8 +308,12 @@
       }
     },
     {
-      "name": "tkzShowPointCoord(point)",
-      "unusual": true
+      "name": "tkzShowPointCoord",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point})"
+      }
     },
     {
       "name": "tkzShowPointCoord",
@@ -304,8 +344,12 @@
       "name": "tkzClipBB"
     },
     {
-      "name": "tkzSetBB(point1)(point2)",
-      "unusual": true
+      "name": "tkzSetBB",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:point1})(${2:point2})"
+      }
     },
     {
       "name": "tkzSaveBB",
@@ -463,13 +507,24 @@
       }
     },
     {
-      "name": "tkzDrawMark(point)"
+      "name": "tkzDrawMark",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point})"
+      }
     },
     {
       "name": "tkzDrawMark",
       "arg": {
         "format": "[]()",
         "snippet": "[${1:options%keyvals}](${2:point})"
+      }
+    },
+    {
+      "name": "tkzDrawMarks",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:point1},${2:point2},${3:...})"
       }
     },
     {
@@ -487,10 +542,10 @@
       }
     },
     {
-      "name": "tkzText(x,y)",
+      "name": "tkzText",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:text}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:text}}"
       }
     },
     {
@@ -722,13 +777,25 @@
       "unusual": true
     },
     {
-      "name": "tkzSwapPoints(A,B)"
+      "name": "tkzSwapPoints",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:A},${2:B})"
+      }
     },
     {
-      "name": "tkzPermute(A,B,C)"
+      "name": "tkzPermute",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:A},${2:B},${3:C})"
+      }
     },
     {
-      "name": "tkzDotProduct(A,B,C)"
+      "name": "tkzDotProduct",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:A},${2:B},${3:C})"
+      }
     },
     {
       "name": "tkzGetResult",
@@ -738,10 +805,18 @@
       }
     },
     {
-      "name": "tkzIsLinear(A,B,C)"
+      "name": "tkzIsLinear",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:A},${2:B},${3:C})"
+      }
     },
     {
-      "name": "tkzIsOrtho(A,B,C)"
+      "name": "tkzIsOrtho",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:A},${2:B},${3:C})"
+      }
     },
     {
       "name": "tkzHelpGrid",
@@ -812,11 +887,11 @@
       }
     },
     {
-      "name": "tkzRenamePoint(arg1)",
+      "name": "tkzRenamePoint",
       "unusual": true,
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:arg2}}"
+        "format": "(){}",
+        "snippet": "(${2:arg1}){${1:arg2}}"
       }
     },
     {
@@ -836,49 +911,49 @@
       }
     },
     {
-      "name": "tkzGetPointCoord(arg1)",
+      "name": "tkzGetPointCoord",
       "unusual": true,
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:arg2}}"
+        "format": "(){}",
+        "snippet": "(${2:arg1}){${1:arg2}}"
       }
     },
     {
-      "name": "tkzGetPointxy(arg1)",
+      "name": "tkzGetPointxy",
       "unusual": true,
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:arg2}}"
+        "format": "(){}",
+        "snippet": "(${2:arg1}){${1:arg2}}"
       }
     }
   ],
   "envs": [],
   "keys": {
     "\\tkzInit#c": [
-      "xmin=${1:number}\r",
-      "xmax=${1:number}\r",
-      "xstep=${1:number}\r",
-      "ymin=${1:number}\r",
-      "ymax=${1:number}\r",
-      "ystep=${1:number}\r"
+      "xmin=${1:number}",
+      "xmax=${1:number}",
+      "xstep=${1:number}",
+      "ymin=${1:number}",
+      "ymax=${1:number}",
+      "ystep=${1:number}"
     ],
     "\\tkzDrawX#c": [
       "color=",
       "noticks",
       "right space=",
       "left space=",
-      "label=${1:text}\r",
-      "trig=${1:integer}\r",
+      "label=${1:text}",
+      "trig=${1:integer}",
       "tickwd=",
       "tickup=",
       "tickdn="
     ],
     "\\tkzLabelX#c": [
-      "frac=${1:integer}\r",
-      "trig=${1:integer}\r",
-      "font=${1:font commands}\r",
+      "frac=${1:integer}",
+      "trig=${1:integer}",
+      "font=${1:font commands}",
       "color=",
-      "step=${1:number}\r",
+      "step=${1:number}",
       "np off",
       "orig",
       "text="
@@ -888,23 +963,23 @@
       "noticks",
       "up space=",
       "down space=",
-      "label=${1:text}\r",
-      "trig=${1:integer}\r",
+      "label=${1:text}",
+      "trig=${1:integer}",
       "tickwd=",
       "ticklt=",
       "tickrt="
     ],
     "\\tkzLabelY#c": [
       "color=",
-      "frac=${1:integer}\r",
-      "font=${1:font commands}\r",
-      "step=${1:number}\r",
+      "frac=${1:integer}",
+      "font=${1:font commands}",
+      "step=${1:number}",
       "text="
     ],
     "\\tkzAxeY#c,\\tkzAxeX#c,\\tkzAxeXY#c": [
-      "label=${1:text}\r",
-      "trig=${1:integer}\r",
-      "frac=${1:integer}\r",
+      "label=${1:text}",
+      "trig=${1:integer}",
+      "frac=${1:integer}",
       "swap",
       "text="
     ],
@@ -913,8 +988,8 @@
       "noticks",
       "right space=",
       "left space=",
-      "label=${1:text}\r",
-      "trig=${1:integer}\r",
+      "label=${1:text}",
+      "trig=${1:integer}",
       "tickwd=",
       "ticklt=",
       "tickrt=",
@@ -923,9 +998,9 @@
     ],
     "\\tkzLabelXY#c": [
       "color=",
-      "frac=${1:integer}\r",
-      "font=${1:font commands}\r",
-      "step=${1:number}\r",
+      "frac=${1:integer}",
+      "font=${1:font commands}",
+      "step=${1:number}",
       "text="
     ],
     "\\tkzSetUpAxis#c": [
@@ -933,82 +1008,82 @@
       "tickwd=",
       "ticka=",
       "tickb=",
-      "font=${1:font commands}\r"
+      "font=${1:font commands}"
     ],
     "\\tkzGrid#c": [
       "sub",
       "color=",
-      "subxstep=${1:number}\r",
-      "subystep=${1:number}\r",
+      "subxstep=${1:number}",
+      "subystep=${1:number}",
       "line width="
     ],
     "\\tkzDefPoint#c": [
-      "shift=(${1:x},${2:y})\r"
+      "shift=(${1:x},${2:y})"
     ],
     "\\tkzDrawPoint#c,\\tkzDrawPoints#c": [
-      "shape=${1|circle,cross,cross out\r|}",
+      "shape=${1|circle,cross,cross out|}",
       "size=",
       "color="
     ],
     "\\tkzAutoLabelPoints#c": [
-      "center=\r",
-      "dist=${1:factor}\r"
+      "center=",
+      "dist=${1:factor}"
     ],
     "\\tkzSetUpPoint#c": [
-      "shape=${1|circle,cross,cross out\r|}",
-      "size=${1:number}\r",
+      "shape=${1|circle,cross,cross out|}",
+      "size=${1:number}",
       "color=",
       "fill="
     ],
     "\\tkzPointShowCoord#c,\\tkzShowPointCoord#c": [
-      "xlabel=${1:text}\r",
-      "xstyle=\r",
+      "xlabel=${1:text}",
+      "xstyle=",
       "noxdraw",
-      "ylabel=${1:text}\r",
-      "ystyle=\r",
+      "ylabel=${1:text}",
+      "ystyle=",
       "noydraw"
     ],
     "\\tkzClip#c": [
-      "space=${1:number}\r"
+      "space=${1:number}"
     ],
     "\\tkzRep#c": [
       "line width=",
-      "xlabel=\r",
-      "ylabel=\r",
-      "posxlabel=\r",
-      "posylabel=\r",
-      "xnorm=${1:number}\r",
-      "ynorm=${1:number}\r",
+      "xlabel=",
+      "ylabel=",
+      "posxlabel=",
+      "posylabel=",
+      "xnorm=${1:number}",
+      "ynorm=${1:number}",
       "color=",
       "colorlabel="
     ],
     "\\tkzHLine#c,\\tkzHLines#c,\\tkzVLine#c,\\tkzVLines#c": [
       "color=",
       "line width=",
-      "style={${1:TikZ options}}\r"
+      "style={${1:TikZ options}}"
     ],
     "\\tkzHTick#c,\\tkzHTicks#c,\\tkzVTick#c,\\tkzVTicks#c,\\tkzDrawSetOfPoints#c,\\tkzDrawMark#c,\\tkzDrawMarks#c": [
-      "mark=${1:mark}\r",
+      "mark=${1:mark}",
       "mark size=",
-      "mark options={${1:TikZ options}}\r"
+      "mark options={${1:TikZ options}}"
     ],
     "\\tkzDefSetOfPoints#c,\\tkzDrawSetOfPoints#c,\\tkzJoinSetOfPoints#c,\\tkzDrawMark#c,\\tkzDrawMarks#c": [
-      "prefix=${1:prefix}\r"
+      "prefix=${1:prefix}"
     ],
     "\\tkzSetUpMark#c": [
-      "mark=${1:mark}\r",
+      "mark=${1:mark}",
       "color=",
       "fill=",
       "size="
     ],
     "\\tkzText#c": [
-      "draw\r",
+      "draw",
       "color=",
       "text=",
       "fill=",
-      "opacity=${1:factor}\r",
+      "opacity=${1:factor}",
       "line width=",
-      "rotate=${1:degrees}\r",
+      "rotate=${1:degrees}",
       "inner sep=",
       "text width="
     ],

@@ -57,7 +57,11 @@
       "name": "includesvg",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:imagefile}}"
+        "snippet": "[${2:options%keyvals}]{${1:imagefile}}",
+        "keys": [
+          "\\includesvg"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -71,71 +75,75 @@
       "name": "includeinkscape",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:imagefile}}"
+        "snippet": "[${2:options%keyvals}]{${1:imagefile}}",
+        "keys": [
+          "\\includeinkscape"
+        ],
+        "keyPos": 0
       }
     }
   ],
   "envs": [],
   "keys": {
     "\\usepackage/svg#c": [
-      "usexcolor=${1|true,on,yes,false,off,no\r|}",
-      "usetransparent=${1|true,on,yes,false,off,no\r|}",
-      "noxcolor\r",
-      "notransparent\r"
+      "usexcolor=${1|true,on,yes,false,off,no|}",
+      "usetransparent=${1|true,on,yes,false,off,no|}",
+      "noxcolor",
+      "notransparent"
     ],
     "\\usepackage/svg#c,\\svgsetup#c": [
-      "inkscape=${2|false,off,no,true,on,yes,newer,onlynewer,forced,force,overwrite,pdf,eps,ps,png,latex,nolatex,drawing,page,${1:integer}dpi\r|}",
-      "inkscapepath=${2|svgdir,svgpath,svgsubdir,svgsubpath,basedir,basepath,jobdir,jobpath,basesubdir,basesubpath,jobsubdir,jobsubpath,${1:path}\r|}",
-      "inkscapeexe=${1:exec path}\r",
-      "inkscapeversion=${1|0,1,auto\r|}",
-      "inkscapename=${1:file name}\r",
-      "inkscapeformat=${1|pdf,aps,ps,png\r|}",
+      "inkscape=${2|false,off,no,true,on,yes,newer,onlynewer,forced,force,overwrite,pdf,eps,ps,png,latex,nolatex,drawing,page,${1:integer}dpi|}",
+      "inkscapepath=${2|svgdir,svgpath,svgsubdir,svgsubpath,basedir,basepath,jobdir,jobpath,basesubdir,basesubpath,jobsubdir,jobsubpath,${1:path}|}",
+      "inkscapeexe=${1:exec path}",
+      "inkscapeversion=${1|0,1,auto|}",
+      "inkscapename=${1:file name}",
+      "inkscapeformat=${1|pdf,aps,ps,png|}",
       "inkscapelatex",
-      "inkscapearea=${1|drawing,crop,page,nocrop\r|}",
-      "inkscapedpi=${1:integer}\r",
-      "inkscapeopt=${1:Inkscape option}\r",
-      "svgextension=${1:extension}\r",
+      "inkscapearea=${1|drawing,crop,page,nocrop|}",
+      "inkscapedpi=${1:integer}",
+      "inkscapeopt=${1:Inkscape option}",
+      "svgextension=${1:extension}",
       "width=",
       "height=",
       "distort",
-      "scale=${1:factor}\r",
-      "pretex=${1:code}\r",
-      "apptex=${1:code}\r",
+      "scale=${1:factor}",
+      "pretex=${1:code}",
+      "apptex=${1:code}",
       "draft",
       "lastpage"
     ],
     "\\includesvg": [
-      "inkscape=${2|false,off,no,true,on,yes,newer,onlynewer,forced,force,overwrite,pdf,eps,ps,png,latex,nolatex,drawing,page,${1:integer}dpi\r|}",
-      "inkscapeformat=${1|pdf,aps,ps,png\r|}",
+      "inkscape=${2|false,off,no,true,on,yes,newer,onlynewer,forced,force,overwrite,pdf,eps,ps,png,latex,nolatex,drawing,page,${1:integer}dpi|}",
+      "inkscapeformat=${1|pdf,aps,ps,png|}",
       "inkscapelatex",
-      "inkscapearea=${1|drawing,crop,page,nocrop\r|}",
-      "inkscapedpi=${1:integer}\r",
-      "inkscapeopt=${1:Inkscape option}\r",
-      "svgextension=${1:extension}\r",
+      "inkscapearea=${1|drawing,crop,page,nocrop|}",
+      "inkscapedpi=${1:integer}",
+      "inkscapeopt=${1:Inkscape option}",
+      "svgextension=${1:extension}",
       "width=",
       "height=",
       "distort",
-      "scale=${1:factor}\r",
-      "pretex=${1:code}\r",
-      "apptex=${1:code}\r",
+      "scale=${1:factor}",
+      "pretex=${1:code}",
+      "apptex=${1:code}",
       "draft",
       "lastpage",
-      "angle=${1:degrees}\r",
-      "origin=\r"
+      "angle=${1:degrees}",
+      "origin="
     ],
     "\\includeinkscape": [
-      "inkscapeformat=${1|pdf,aps,ps,png\r|}",
+      "inkscapeformat=${1|pdf,aps,ps,png|}",
       "inkscapelatex",
       "width=",
       "height=",
       "distort",
-      "scale=${1:factor}\r",
-      "pretex=${1:code}\r",
-      "apptex=${1:code}\r",
+      "scale=${1:factor}",
+      "pretex=${1:code}",
+      "apptex=${1:code}",
       "draft",
       "lastpage",
-      "angle=${1:degrees}\r",
-      "origin=\r"
+      "angle=${1:degrees}",
+      "origin="
     ]
   },
   "args": [

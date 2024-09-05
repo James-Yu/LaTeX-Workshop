@@ -34,7 +34,12 @@
       "name": "Listing",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:name}}"
+        "snippet": "[${2:options%keyvals}]{${1:name}}",
+        "keys": [
+          "\\Listing,\\Graphic",
+          "\\Listing"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -48,7 +53,12 @@
       "name": "Graphic",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:name}}"
+        "snippet": "[${2:options%keyvals}]{${1:name}}",
+        "keys": [
+          "\\Listing,\\Graphic",
+          "\\Graphic"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -172,7 +182,11 @@
       "name": "Datastep",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{Datastep}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -182,7 +196,11 @@
       "name": "Sascode",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{Sascode}"
+        ],
+        "keyPos": 0
       }
     }
   ],
@@ -190,47 +208,47 @@
     "\\usepackage/statrep#c": [
       "generate",
       "color",
-      "figname=${1:counter}\r",
-      "resetby=${1:counter}\r",
-      "set\r",
-      "final\r",
-      "errorshow\r",
-      "pausing\r"
+      "figname=${1:counter}",
+      "resetby=${1:counter}",
+      "set",
+      "final",
+      "errorshow",
+      "pausing"
     ],
     "\\begin{Datastep}": [
-      "program\r",
-      "display\r",
-      "first=${1:n}\r",
-      "last=${1:m}\r",
-      "fontsize=\r"
+      "program",
+      "display",
+      "first=${1:n}",
+      "last=${1:m}",
+      "fontsize="
     ],
     "\\begin{Sascode}": [
-      "store=${1:name}\r",
-      "program\r",
-      "display\r",
-      "fontsize=\r"
+      "store=${1:name}",
+      "program",
+      "display",
+      "fontsize="
     ],
     "\\Listing,\\Graphic": [
-      "caption={%|}\r",
-      "firstobj=\r",
-      "lastobj=\r",
-      "objects=\r",
-      "options=${1|autopage,graph,list,newpage,nopage,onebox,skipfirst,skiplast,table\r|}",
-      "pattern=\r",
-      "store=${1:name}\r",
-      "style=\r",
-      "type=${1|listing,graph\r|}"
+      "caption={%|}",
+      "firstobj=",
+      "lastobj=",
+      "objects=",
+      "options=${1|autopage,graph,list,newpage,nopage,onebox,skipfirst,skiplast,table|}",
+      "pattern=",
+      "store=${1:name}",
+      "style=",
+      "type=${1|listing,graph|}"
     ],
     "\\Listing": [
-      "dest=\r",
-      "fontsize=\r",
-      "linesize=\r",
-      "pagesize=\r"
+      "dest=",
+      "fontsize=",
+      "linesize=",
+      "pagesize="
     ],
     "\\Graphic": [
-      "dpi=\r",
+      "dpi=",
       "height=",
-      "scale=\r",
+      "scale=",
       "width="
     ]
   },

@@ -41,14 +41,22 @@
       "name": "PlacePointEspace",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:clés%keyvals}]{${1:nœud}}{${2:coordonnées}}"
+        "snippet": "[${3:clés%keyvals}]{${1:nœud}}{${2:coordonnées}}",
+        "keys": [
+          "\\PlacePointEspace,\\PlacePointEspace*,\\PlacePointsEspace,\\PlacePointsEspace*,\\MarquePointEspace,\\MarquePointsEspace"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "PlacePointEspace",
       "arg": {
         "format": "[]{}{}<>",
-        "snippet": "[${3:clés%keyvals}]{${1:nœud}}{${2:coordonnées}}<${4:label}>"
+        "snippet": "[${3:clés%keyvals}]{${1:nœud}}{${2:coordonnées}}<${4:label}>",
+        "keys": [
+          "\\PlacePointEspace,\\PlacePointEspace*,\\PlacePointsEspace,\\PlacePointsEspace*,\\MarquePointEspace,\\MarquePointsEspace"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -69,14 +77,22 @@
       "name": "PlacePointEspace*",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:clés%keyvals}]{${1:nœud}}{${2:coordonnées}}"
+        "snippet": "[${3:clés%keyvals}]{${1:nœud}}{${2:coordonnées}}",
+        "keys": [
+          "\\PlacePointEspace,\\PlacePointEspace*,\\PlacePointsEspace,\\PlacePointsEspace*,\\MarquePointEspace,\\MarquePointsEspace"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "PlacePointEspace*",
       "arg": {
         "format": "[]{}{}<>",
-        "snippet": "[${3:clés%keyvals}]{${1:nœud}}{${2:coordonnées}}<${4:label}>"
+        "snippet": "[${3:clés%keyvals}]{${1:nœud}}{${2:coordonnées}}<${4:label}>",
+        "keys": [
+          "\\PlacePointEspace,\\PlacePointEspace*,\\PlacePointsEspace,\\PlacePointsEspace*,\\MarquePointEspace,\\MarquePointsEspace"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -90,7 +106,11 @@
       "name": "PlacePointsEspace",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:clés%keyvals}]{${1:liste}}"
+        "snippet": "[${2:clés%keyvals}]{${1:liste}}",
+        "keys": [
+          "\\PlacePointEspace,\\PlacePointEspace*,\\PlacePointsEspace,\\PlacePointsEspace*,\\MarquePointEspace,\\MarquePointsEspace"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -104,7 +124,11 @@
       "name": "PlacePointsEspace*",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:clés%keyvals}]{${1:liste}}"
+        "snippet": "[${2:clés%keyvals}]{${1:liste}}",
+        "keys": [
+          "\\PlacePointEspace,\\PlacePointEspace*,\\PlacePointsEspace,\\PlacePointsEspace*,\\MarquePointEspace,\\MarquePointsEspace"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -118,7 +142,11 @@
       "name": "MarquePointEspace",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:clés%keyvals}]{${1:point}}"
+        "snippet": "[${2:clés%keyvals}]{${1:point}}",
+        "keys": [
+          "\\PlacePointEspace,\\PlacePointEspace*,\\PlacePointsEspace,\\PlacePointsEspace*,\\MarquePointEspace,\\MarquePointsEspace"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -132,11 +160,19 @@
       "name": "MarquePointsEspace",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:clés%keyvals}]{${1:liste}}"
+        "snippet": "[${2:clés%keyvals}]{${1:liste}}",
+        "keys": [
+          "\\PlacePointEspace,\\PlacePointEspace*,\\PlacePointsEspace,\\PlacePointsEspace*,\\MarquePointEspace,\\MarquePointsEspace"
+        ],
+        "keyPos": 0
       }
     },
     {
-      "name": "TraceSegmentEspace(point)(point)"
+      "name": "TraceSegmentEspace",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:point})(${2:point})"
+      }
     },
     {
       "name": "TraceSegmentEspace",
@@ -166,7 +202,11 @@
       "name": "PaveTikzTriDim",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:clés%keyvals}]"
+        "snippet": "[${1:clés%keyvals}]",
+        "keys": [
+          "\\PaveTikzTriDim"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -296,21 +336,33 @@
       "name": "EnvTikzEspace",
       "arg": {
         "format": "<>",
-        "snippet": "<${1:options TikZ}>"
+        "snippet": "<${1:options TikZ}>",
+        "keys": [
+          "\\begin{EnvTikzEspace}"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "EnvTikzEspace",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:clés%keyvals}]"
+        "snippet": "[${1:clés%keyvals}]",
+        "keys": [
+          "\\begin{EnvTikzEspace}"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "EnvTikzEspace",
       "arg": {
         "format": "[]<>",
-        "snippet": "[${1:clés%keyvals}]<${2:options TikZ}>"
+        "snippet": "[${1:clés%keyvals}]<${2:options TikZ}>",
+        "keys": [
+          "\\begin{EnvTikzEspace}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -340,24 +392,24 @@
   ],
   "keys": {
     "\\begin{EnvTikzEspace}": [
-      "UniteX={${1:angle}:${2:longueur}}\r",
-      "UniteY={${1:angle}:${2:longueur}}\r",
-      "UniteZ={${1:angle}:${2:longueur}}\r",
+      "UniteX={${1:angle}:${2:longueur}}",
+      "UniteY={${1:angle}:${2:longueur}}",
+      "UniteZ={${1:angle}:${2:longueur}}",
       "VueClassique"
     ],
     "\\PlacePointEspace,\\PlacePointEspace*,\\PlacePointsEspace,\\PlacePointsEspace*,\\MarquePointEspace,\\MarquePointsEspace": [
-      "PosLabel=${1:pos}\r",
-      "StyleMarque=${1|x,o\r|}",
+      "PosLabel=${1:pos}",
+      "StyleMarque=${1|x,o|}",
       "TailleMarque=",
       "Couleur="
     ],
     "\\PaveTikzTriDim": [
-      "Largeur=${1:nombre}\r",
-      "Profondeur=${1:nombre}\r",
-      "Hauteur=${1:nombre}\r",
-      "Sommets=${1:liste}\r",
+      "Largeur=${1:nombre}",
+      "Profondeur=${1:nombre}",
+      "Hauteur=${1:nombre}",
+      "Sommets=${1:liste}",
       "Math",
-      "Epaisseur=${1:épaisseur}\r",
+      "Epaisseur=${1:épaisseur}",
       "AffLabel",
       "Plein",
       "Cube",

@@ -19,7 +19,11 @@
       "name": "chemfig",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:code%definition}}"
+        "snippet": "[${2:options%keyvals}]{${1:code%definition}}",
+        "keys": [
+          "\\chemfig,\\setchemfig"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -243,6 +247,13 @@
       }
     },
     {
+      "name": "arrow",
+      "arg": {
+        "format": "(){}[]",
+        "snippet": "(%<n1.a1%>[${2:s1}]--%<n2.a2%>[${3:s2}]){${1:type}}[${4:angle,coeff,style}]"
+      }
+    },
+    {
       "name": "setcompoundstyle",
       "arg": {
         "format": "{}",
@@ -302,15 +313,19 @@
       "name": "polymerdelim",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:node1}}{${2:node2}}"
+        "snippet": "[${3:options%keyvals}]{${1:node1}}{${2:node2}}",
+        "keys": [
+          "\\polymerdelim"
+        ],
+        "keyPos": 0
       }
     }
   ],
   "envs": [],
   "keys": {
     "\\chemfig,\\setchemfig": [
-      "chemfig style={${1:TikZ keys}}\r",
-      "atom style={${1:TikZ keys}}\r",
+      "chemfig style={${1:TikZ keys}}",
+      "atom style={${1:TikZ keys}}",
       "bond join",
       "fixed length",
       "cram rectangle",
@@ -320,30 +335,30 @@
       "atom sep=",
       "bond offset=",
       "double bond sep=",
-      "angle increment=${1:degrees}\r",
-      "node style={${1:TikZ keys}}\r",
-      "bond style={${1:TikZ keys}}\r",
-      "cycle radius coeff=\r",
+      "angle increment=${1:degrees}",
+      "node style={${1:TikZ keys}}",
+      "bond style={${1:TikZ keys}}",
+      "cycle radius coeff=",
       "stack sep=",
       "show cntcycle",
       "autoreset cntcycle",
-      "compound style={${1:TikZ keys}}\r",
+      "compound style={${1:TikZ keys}}",
       "compound sep=",
       "arrow offset=",
-      "arrow angle=${1:degrees}\r",
-      "arrow coeff=${1:decimal}\r",
-      "arrow style={${1:TikZ keys}}\r",
+      "arrow angle=${1:degrees}",
+      "arrow coeff=${1:decimal}",
+      "arrow style={${1:TikZ keys}}",
       "arrow double sep=",
-      "arrow double coeff=\r",
+      "arrow double coeff=",
       "arrow double harpoon",
       "arrow label sep=",
-      "arrow head=\r",
+      "arrow head=",
       "+ sep left=",
       "+ sep right=",
       "+ vshift=",
       "gchemname",
-      "schemestart code=${1:code}\r",
-      "schemestop code=${1:code}\r",
+      "schemestart code=${1:code}",
+      "schemestop code=${1:code}",
       "baseline="
     ],
     "\\setchemfig": [
@@ -352,31 +367,31 @@
     ],
     "\\setcharge": [
       "debug",
-      "macro atom=${1:cmd}\r",
+      "macro atom=${1:cmd}",
       "circle",
-      "macro charge=${1:cmd}\r",
+      "macro charge=${1:cmd}",
       "extra sep=",
       "overlay",
       "shortcuts",
       "lewisautorot",
       ".radius=",
       ":sep=",
-      ".style={${1:TikZ keys}}\r",
+      ".style={${1:TikZ keys}}",
       "\"length=",
       "\"width=",
-      "\"style={${1:TikZ keys}}\r",
-      "|style={${1:TikZ keys}}\r"
+      "\"style={${1:TikZ keys}}",
+      "|style={${1:TikZ keys}}"
     ],
     "\\polymerdelim": [
-      "delimiters=\r",
+      "delimiters=",
       "height=",
       "depth=",
       "h align",
       "auto rotate",
-      "rotate=${1:degrees}\r",
+      "rotate=${1:degrees}",
       "open xshift=",
       "close x shift=",
-      "indice=${1:integer}\r"
+      "indice=${1:integer}"
     ]
   },
   "args": []

@@ -25,7 +25,11 @@
       "name": "attachfile",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:file}}"
+        "snippet": "[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\attachfile"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -102,7 +106,11 @@
       "name": "embedfile",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:file}}"
+        "snippet": "[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\embedfile"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -234,41 +242,51 @@
       "tocbr"
     ],
     "\\attachfile": [
-      "anncreated=${1:LaTeX time}\r",
-      "annmodified=${1:LaTeX time}\r",
-      "author=${1:author}\r",
-      "checksum=${1:checksum}\r",
-      "color=${1:<r> <g> <b>}\r",
-      "created=${1:date}\r",
-      "creator=${1:creator}\r",
-      "description=${1:text}\r",
-      "filetype=${1:filetype}\r",
-      "flags=${1:postscript integer}\r",
-      "icon=${1|graph,pushpin,paperclip,tag\r|}",
-      "iconfilename=${1:file name}\r",
-      "mimetype=${1:mimtype}\r",
-      "modified=${1:date}\r",
-      "name=${1:file name}\r",
-      "opacity=${1:factor}\r",
+      "anncreated=${1:LaTeX time}",
+      "annmodified=${1:LaTeX time}",
+      "author=${1:author}",
+      "checksum=${1:checksum}",
+      "color=${1:<r> <g> <b>}",
+      "created=${1:date}",
+      "creator=${1:creator}",
+      "description=${1:text}",
+      "filetype=${1:filetype}",
+      "flags=${1:postscript integer}",
+      "icon=${1|graph,pushpin,paperclip,tag|}",
+      "iconfilename=${1:file name}",
+      "mimetype=${1:mimtype}",
+      "modified=${1:date}",
+      "name=${1:file name}",
+      "opacity=${1:factor}",
       "overprint",
-      "rect=${1:<llx> <lly> <urx> <ury>}\r",
-      "resourcefork=${1:file name}\r",
-      "size=${1:number}\r",
-      "subject=${1:text}\r",
-      "text=${1:text}\r",
-      "timezone=${1:offset}\r"
+      "rect=${1:<llx> <lly> <urx> <ury>}",
+      "resourcefork=${1:file name}",
+      "size=${1:number}",
+      "subject=${1:text}",
+      "text=${1:text}",
+      "timezone=${1:offset}"
     ],
     "\\bmstyle#c": [
-      "bold\r",
-      "italic\r",
-      "color={${1:<r> <g> <b>}}\r"
+      "bold",
+      "italic",
+      "color={${1:<r> <g> <b>}}"
     ],
     "\\embedfile": [
-      "dest=${1:destination}\r",
-      "filename=${1:file name}\r",
-      "id=${1:id}\r",
+      "checksum=${1:checksum}",
+      "created=${1:date}",
+      "creator=${1:creator}",
+      "description=${1:text}",
+      "filetype=${1:filetype}",
+      "mimetype=${1:mimtype}",
+      "modified=${1:date}",
+      "name=${1:file name}",
+      "resourcefork=${1:file name}",
+      "size=${1:number}",
+      "dest=${1:destination}",
+      "filename=${1:file name}",
+      "id=${1:id}",
       "newwindow",
-      "target=\r"
+      "target="
     ]
   },
   "args": [

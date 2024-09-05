@@ -47,7 +47,11 @@
       "name": "question",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:option%keyvals}]"
+        "snippet": "[${1:option%keyvals}]",
+        "keys": [
+          "\\question"
+        ],
+        "keyPos": 0
       },
       "detail": "?",
       "doc": "Question mark"
@@ -109,35 +113,55 @@
       "name": "mcsetupConcept",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:keyvals}}"
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\mcsetupConcept,\\mcsetupExam,\\mcsetupKey,\\mcsetupAnswers,\\mcsetupAnalysis"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "mcsetupExam",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:keyvals}}"
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\mcsetupConcept,\\mcsetupExam,\\mcsetupKey,\\mcsetupAnswers,\\mcsetupAnalysis"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "mcsetupKey",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:keyvals}}"
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\mcsetupConcept,\\mcsetupExam,\\mcsetupKey,\\mcsetupAnswers,\\mcsetupAnalysis"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "mcsetupAnswers",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:keyvals}}"
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\mcsetupConcept,\\mcsetupExam,\\mcsetupKey,\\mcsetupAnswers,\\mcsetupAnalysis"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "mcsetupAnalysis",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:keyvals}}"
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\mcsetupConcept,\\mcsetupExam,\\mcsetupKey,\\mcsetupAnswers,\\mcsetupAnalysis"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -205,29 +229,29 @@
   ],
   "keys": {
     "\\mcexamoptions,\\usepackage/mcexam#c": [
-      "output=${1|concept,exam,key,answers,analysis\r|}",
-      "numberofversions=${1:integer}\r",
-      "version=${1:integer}\r",
-      "seed=${1:integer}\r",
+      "output=${1|concept,exam,key,answers,analysis|}",
+      "numberofversions=${1:integer}",
+      "version=${1:integer}",
+      "seed=${1:integer}",
       "randomizequestions",
       "randomizeanswers",
       "writeRfile"
     ],
     "\\question": [
-      "follow\r"
+      "follow"
     ],
     "\\begin{mcanswerslist}#c,\\begin{mcanswers}#c": [
-      "permuteall\r",
-      "ordinal\r",
-      "fixlast\r",
-      "permutenone\r"
+      "permuteall",
+      "ordinal",
+      "fixlast",
+      "permutenone"
     ],
     "\\mcifoutput": [
-      "concept\r",
-      "exam\r",
-      "key\r",
-      "answers\r",
-      "analysis\r"
+      "concept",
+      "exam",
+      "key",
+      "answers",
+      "analysis"
     ],
     "\\mcsetupConcept,\\mcsetupExam,\\mcsetupKey,\\mcsetupAnswers,\\mcsetupAnalysis": [
       "showPerVersion",

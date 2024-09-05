@@ -19,7 +19,11 @@
       "name": "choice",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:text}}"
+        "snippet": "[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\choice"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -35,7 +39,11 @@
       "name": "question",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:text}}"
+        "snippet": "[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\question"
+        ],
+        "keyPos": 0
       },
       "detail": "?",
       "doc": "Question mark"
@@ -51,7 +59,11 @@
       "name": "range",
       "arg": {
         "format": "[]{}{}{}{}",
-        "snippet": "[${5:options%keyvals}]{${1:question%text}}{${2:lower%text}}{${3:upper%text}}{${4:other%text}}"
+        "snippet": "[${5:options%keyvals}]{${1:question%text}}{${2:lower%text}}{${3:upper%text}}{${4:other%text}}",
+        "keys": [
+          "\\range"
+        ],
+        "keyPos": 0
       }
     }
   ],
@@ -63,7 +75,12 @@
       "name": "choicearray",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{choicearray},\\begin{optionarray}",
+          "\\begin{choicearray}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -73,7 +90,11 @@
       "name": "optionarray",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{choicearray},\\begin{optionarray}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -83,48 +104,52 @@
       "name": "rangearray",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{rangearray}"
+        ],
+        "keyPos": 0
       }
     }
   ],
   "keys": {
     "\\begin{choicearray},\\begin{optionarray}": [
-      "align=\r",
+      "align=",
       "noalign",
       "horizontal",
-      "layouter=${1|default,rotated\r|}",
-      "angle=${1:angle}\r",
+      "layouter=${1|default,rotated|}",
+      "angle=${1:angle}",
       "vertical",
-      "type=${1|multichoice,singlechoice\r|}",
-      "multichoice\r",
-      "singlechoice\r"
+      "type=${1|multichoice,singlechoice|}",
+      "multichoice",
+      "singlechoice"
     ],
     "\\begin{choicearray}": [
-      "type=${1|multichoice,singlechoice\r|}",
-      "multichoice\r",
-      "singlechoice\r"
+      "type=${1|multichoice,singlechoice|}",
+      "multichoice",
+      "singlechoice"
     ],
     "\\choice": [
-      "text=${1:text}\r",
-      "var=${1:variable}\r",
-      "val=${1:value}\r"
+      "text=${1:text}",
+      "var=${1:variable}",
+      "val=${1:value}"
     ],
     "\\question": [
-      "text=${1:text}\r",
-      "var=${1:variable}\r",
-      "range=${1:list}\r"
+      "text=${1:text}",
+      "var=${1:variable}",
+      "range=${1:list}"
     ],
     "\\begin{rangearray}": [
-      "count=${1:integer}\r",
-      "align=${1:string}\r",
-      "other\r"
+      "count=${1:integer}",
+      "align=${1:string}",
+      "other"
     ],
     "\\range": [
-      "text=${1:text}\r",
-      "var=${1:variable}\r",
-      "upper=${1:text}\r",
-      "lower=${1:text}\r",
-      "other\r"
+      "text=${1:text}",
+      "var=${1:variable}",
+      "upper=${1:text}",
+      "lower=${1:text}",
+      "other"
     ]
   },
   "args": []

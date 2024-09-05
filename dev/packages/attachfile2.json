@@ -43,7 +43,11 @@
       "name": "attachfile",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:file}}"
+        "snippet": "[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\usepackage/attachfile2#c,\\attachfile,\\attachfilesetup,\\noattachfile,\\notextattachfile,\\textattachfile"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -53,7 +57,11 @@
       "name": "noattachfile",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\usepackage/attachfile2#c,\\attachfile,\\attachfilesetup,\\noattachfile,\\notextattachfile,\\textattachfile"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -67,7 +75,11 @@
       "name": "notextattachfile",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:text}}"
+        "snippet": "[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\usepackage/attachfile2#c,\\attachfile,\\attachfilesetup,\\noattachfile,\\notextattachfile,\\textattachfile"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -81,7 +93,11 @@
       "name": "textattachfile",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:file}}{${2:text}}"
+        "snippet": "[${3:options%keyvals}]{${1:file}}{${2:text}}",
+        "keys": [
+          "\\usepackage/attachfile2#c,\\attachfile,\\attachfilesetup,\\noattachfile,\\notextattachfile,\\textattachfile"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -99,35 +115,35 @@
   "envs": [],
   "keys": {
     "\\usepackage/attachfile2#c": [
-      "draft\r",
-      "final\r",
-      "nofiles\r",
-      "pdftex\r",
-      "luatex\r",
-      "dvips\r",
-      "dvipdfmx\r",
-      "xetex\r",
-      "driverfallback=${1:driver}\r"
+      "draft",
+      "final",
+      "nofiles",
+      "pdftex",
+      "luatex",
+      "dvips",
+      "dvipdfmx",
+      "xetex",
+      "driverfallback=${1:driver}"
     ],
     "\\usepackage/attachfile2#c,\\attachfile,\\attachfilesetup,\\noattachfile,\\notextattachfile,\\textattachfile": [
       "appearance",
-      "author=${1:text}\r",
-      "color=${1:color}\r",
-      "created=${1:PDF date}\r",
-      "date=${1:PDF date}\r",
-      "description=${1:text}\r",
-      "icon=${1|Graph,Paperclip,PushPin,Tag\r|}",
-      "mimetype=${1:type/subtype}\r",
-      "modified=${1:PDF date}\r",
+      "author=${1:text}",
+      "color=${1:color}",
+      "created=${1:PDF date}",
+      "date=${1:PDF date}",
+      "description=${1:text}",
+      "icon=${1|Graph,Paperclip,PushPin,Tag|}",
+      "mimetype=${1:type/subtype}",
+      "modified=${1:PDF date}",
       "print",
-      "size=${1:integer}\r",
-      "subject=${1:text}\r",
-      "timezone=${1:offset}\r",
+      "size=${1:integer}",
+      "subject=${1:text}",
+      "timezone=${1:offset}",
       "zoom",
       "locked",
-      "scale=${1:factor}\r",
-      "ucfilespec=\r",
-      "annotname=${1:name}\r"
+      "scale=${1:factor}",
+      "ucfilespec=",
+      "annotname=${1:name}"
     ]
   },
   "args": [

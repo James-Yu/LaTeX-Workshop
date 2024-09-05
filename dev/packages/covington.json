@@ -197,14 +197,22 @@
       "name": "digloss",
       "arg": {
         "format": "[]{}{}{}",
-        "snippet": "[${4:options%keyvals}]{${1:glossline1}}{${2:glossline2}}{${3:translation}}"
+        "snippet": "[${4:options%keyvals}]{${1:glossline1}}{${2:glossline2}}{${3:translation}}",
+        "keys": [
+          "\\digloss,\\trigloss,\\setglossoptions"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "digloss",
       "arg": {
         "format": "[]{}[]{}[]{}",
-        "snippet": "[${4:options%keyvals}]{${1:glossline1}}[${5:comment1}]{${2:glossline2}}[${6:comment2}]{${3:translation}}"
+        "snippet": "[${4:options%keyvals}]{${1:glossline1}}[${5:comment1}]{${2:glossline2}}[${6:comment2}]{${3:translation}}",
+        "keys": [
+          "\\digloss,\\trigloss,\\setglossoptions"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -225,14 +233,22 @@
       "name": "trigloss",
       "arg": {
         "format": "[]{}{}{}{}",
-        "snippet": "[${5:options%keyvals}]{${1:glossline1}}{${2:glossline2}}{${3:glossline3}}{${4:translation}}"
+        "snippet": "[${5:options%keyvals}]{${1:glossline1}}{${2:glossline2}}{${3:glossline3}}{${4:translation}}",
+        "keys": [
+          "\\digloss,\\trigloss,\\setglossoptions"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "trigloss",
       "arg": {
         "format": "[]{}[]{}[]{}[]{}",
-        "snippet": "[${5:options%keyvals}]{${1:glossline1}}[${6:comment1}]{${2:glossline2}}[${7:comment2}]{${3:glossline3}}[${8:comment3}]{${4:translation}}"
+        "snippet": "[${5:options%keyvals}]{${1:glossline1}}[${6:comment1}]{${2:glossline2}}[${7:comment2}]{${3:glossline3}}[${8:comment3}]{${4:translation}}",
+        "keys": [
+          "\\digloss,\\trigloss,\\setglossoptions"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -462,7 +478,13 @@
       "name": "example",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{example},\\begin{covexample},\\begin{examples},\\begin{covexamples},\\begin{subexamples},\\begin{covsubexamples},\\setexampleoptions",
+          "\\begin{example},\\begin{covexample},\\begin{subexamples},\\begin{covsubexamples},\\setexampleoptions",
+          "\\begin{example},\\begin{covexample},\\setexampleoptions"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -474,7 +496,13 @@
       "unusual": true,
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{example},\\begin{covexample},\\begin{examples},\\begin{covexamples},\\begin{subexamples},\\begin{covsubexamples},\\setexampleoptions",
+          "\\begin{example},\\begin{covexample},\\begin{subexamples},\\begin{covsubexamples},\\setexampleoptions",
+          "\\begin{example},\\begin{covexample},\\setexampleoptions"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -484,7 +512,11 @@
       "name": "examples",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{example},\\begin{covexample},\\begin{examples},\\begin{covexamples},\\begin{subexamples},\\begin{covsubexamples},\\setexampleoptions"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -496,7 +528,11 @@
       "unusual": true,
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{example},\\begin{covexample},\\begin{examples},\\begin{covexamples},\\begin{subexamples},\\begin{covsubexamples},\\setexampleoptions"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -506,7 +542,13 @@
       "name": "subexamples",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:option%keyvals}]"
+        "snippet": "[${1:option%keyvals}]",
+        "keys": [
+          "\\begin{example},\\begin{covexample},\\begin{examples},\\begin{covexamples},\\begin{subexamples},\\begin{covsubexamples},\\setexampleoptions",
+          "\\begin{example},\\begin{covexample},\\begin{subexamples},\\begin{covsubexamples},\\setexampleoptions",
+          "\\begin{subexamples},\\begin{covsubexamples},\\setexampleoptions"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -514,7 +556,13 @@
       "unusual": true,
       "arg": {
         "format": "[]",
-        "snippet": "[${1:option%keyvals}]"
+        "snippet": "[${1:option%keyvals}]",
+        "keys": [
+          "\\begin{example},\\begin{covexample},\\begin{examples},\\begin{covexamples},\\begin{subexamples},\\begin{covsubexamples},\\setexampleoptions",
+          "\\begin{example},\\begin{covexample},\\begin{subexamples},\\begin{covsubexamples},\\setexampleoptions",
+          "\\begin{subexamples},\\begin{covsubexamples},\\setexampleoptions"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -549,65 +597,65 @@
       "keeplayout",
       "noglossbreaks",
       "owncounter",
-      "fnexamplecounter=${1|main,own,own-reset\r|}"
+      "fnexamplecounter=${1|main,own,own-reset|}"
     ],
     "\\begin{example},\\begin{covexample},\\begin{examples},\\begin{covexamples},\\begin{subexamples},\\begin{covsubexamples},\\setexampleoptions": [
-      "fs={${1:font settings}}\r",
-      "fsno={${1:font settings}}\r",
-      "judge={${1:text}}\r",
-      "*\r",
-      "?\r",
-      "*?\r",
-      "??\r",
-      "fsjudge={${1:font settings}}\r",
+      "fs={${1:font settings}}",
+      "fsno={${1:font settings}}",
+      "judge={${1:text}}",
+      "*",
+      "?",
+      "*?",
+      "??",
+      "fsjudge={${1:font settings}}",
       "leftmargin=",
       "addnumbersep=",
-      "judgewidth={${1:text}}\r",
+      "judgewidth={${1:text}}",
       "addjudgesep=",
-      "numberformat={${1:template}}\r",
-      "fnnumberformat={${1:template}}\r"
+      "numberformat={${1:template}}",
+      "fnnumberformat={${1:template}}"
     ],
     "\\begin{example},\\begin{covexample},\\begin{subexamples},\\begin{covsubexamples},\\setexampleoptions": [
-      "preamble={${1:text}}\r",
-      "postamble={${1:text}}\r",
-      "fspreamble={${1:font settings}}\r",
-      "fspostamble={${1:font settings}}\r"
+      "preamble={${1:text}}",
+      "postamble={${1:text}}",
+      "fspreamble={${1:font settings}}",
+      "fspostamble={${1:font settings}}"
     ],
     "\\begin{example},\\begin{covexample},\\setexampleoptions": [
-      "postamble*={${1:text}}\r"
+      "postamble*={${1:text}}"
     ],
     "\\begin{subexamples},\\begin{covsubexamples},\\setexampleoptions": [
-      "fssubpreamble={${1:font settings}}\r",
-      "fssubpostamble={${1:font settings}}\r",
+      "fssubpreamble={${1:font settings}}",
+      "fssubpostamble={${1:font settings}}",
       "addsubnumbersep=",
-      "subnumberformat={${1:template}}\r",
-      "subjudge={${1:text}}\r",
-      "subpreamble={${1:text}}\r",
-      "subpostamble={${1:text}}\r"
+      "subnumberformat={${1:template}}",
+      "subjudge={${1:text}}",
+      "subpreamble={${1:text}}",
+      "subpostamble={${1:text}}"
     ],
     "\\digloss,\\trigloss,\\setglossoptions": [
       "ex",
       "tlr",
       "tlr*",
-      "fsi={${1:font settings}}\r",
-      "fsii={${1:font settings}}\r",
-      "fsiii={${1:font settings}}\r",
-      "fstl={${1:font settings}}\r",
+      "fsi={${1:font settings}}",
+      "fsii={${1:font settings}}",
+      "fsiii={${1:font settings}}",
+      "fstl={${1:font settings}}",
       "enquotetl",
       "addlinesepi=",
       "addlinesepii=",
       "addlinesepiii=",
-      "judge={${1:text}}\r",
-      "fsjudge={${1:font settings}}\r",
+      "judge={${1:text}}",
+      "fsjudge={${1:font settings}}",
       "addjudgesep=",
-      "preamble={${1:text}}\r",
-      "postamble={${1:text}}\r",
-      "fspreamble={${1:font settings}}\r",
-      "fspostamble={${1:font settings}}\r",
+      "preamble={${1:text}}",
+      "postamble={${1:text}}",
+      "fspreamble={${1:font settings}}",
+      "fspostamble={${1:font settings}}",
       "glosswidth=",
       "glosssep=",
       "glosscommentwidth=",
-      "fscomments={${1:font settings}}\r"
+      "fscomments={${1:font settings}}"
     ]
   },
   "args": [

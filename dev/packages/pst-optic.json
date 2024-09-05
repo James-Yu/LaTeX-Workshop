@@ -49,10 +49,10 @@
       "name": "Transform"
     },
     {
-      "name": "rayInterLens(start node)(intermediate node)(lens distance)",
+      "name": "rayInterLens",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:lens node}}"
+        "format": "()()(){}",
+        "snippet": "(${2:start node})(${3:intermediate node})(${4:lens distance}){${1:lens node}}"
       }
     },
     {
@@ -86,10 +86,10 @@
       }
     },
     {
-      "name": "mirrorCVGRay(node1)(node2)",
+      "name": "mirrorCVGRay",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:mirror node}}"
+        "format": "()(){}",
+        "snippet": "(${2:node1})(${3:node2}){${1:mirror node}}"
       }
     },
     {
@@ -100,10 +100,10 @@
       }
     },
     {
-      "name": "mirrorDVGRay(node1)(node2)",
+      "name": "mirrorDVGRay",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:mirror node}}"
+        "format": "()(){}",
+        "snippet": "(${2:node1})(${3:node2}){${1:mirror node}}"
       }
     },
     {
@@ -114,17 +114,17 @@
       }
     },
     {
-      "name": "planMirrorRay(mirror begin)(mirror end)(original point)",
+      "name": "planMirrorRay",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:new point}}"
+        "format": "()()(){}",
+        "snippet": "(${2:mirror begin})(${3:mirror end})(${4:original point}){${1:new point}}"
       }
     },
     {
-      "name": "symPlan(node1)(node2)",
+      "name": "symPlan",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:stuff}}"
+        "format": "()(){}",
+        "snippet": "(${2:node1})(${3:node2}){${1:stuff}}"
       }
     },
     {
@@ -138,10 +138,10 @@
       }
     },
     {
-      "name": "refractionRay(A)(B)(C)(D)",
+      "name": "refractionRay",
       "arg": {
-        "format": "{}{}{}",
-        "snippet": "{${1:n1}}{${2:n2}}{${3:end node}}"
+        "format": "()()()(){}{}{}",
+        "snippet": "(${4:A})(${5:B})(${6:C})(${7:D}){${1:n1}}{${2:n2}}{${3:end node}}"
       }
     },
     {
@@ -185,17 +185,17 @@
       }
     },
     {
-      "name": "ABinterSPHLens(A)(B)(center)",
+      "name": "ABinterSPHLens",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:name}}"
+        "format": "()()(){}",
+        "snippet": "(${2:A})(${3:B})(${4:center}){${1:name}}"
       }
     },
     {
-      "name": "lensSPHRay(A)(B)",
+      "name": "lensSPHRay",
       "arg": {
-        "format": "{}{}{}",
-        "snippet": "{${1:refractA}}{${2:refractB}}{${3:node name}}"
+        "format": "()(){}{}{}",
+        "snippet": "(${4:A})(${5:B}){${1:refractA}}{${2:refractB}}{${3:node name}}"
       }
     },
     {
@@ -206,10 +206,10 @@
       }
     },
     {
-      "name": "reflectionRay(A)(B)",
+      "name": "reflectionRay",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:node name}}"
+        "format": "()(){}",
+        "snippet": "(${2:A})(${3:B}){${1:node name}}"
       }
     },
     {
@@ -223,7 +223,11 @@
       "name": "eye"
     },
     {
-      "name": "Arrows(nodeA)(nodeB)"
+      "name": "Arrows",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:nodeA})(${2:nodeB})"
+      }
     },
     {
       "name": "Arrows",
@@ -233,10 +237,10 @@
       }
     },
     {
-      "name": "psOutLine(nodeA)(nodeB)",
+      "name": "psOutLine",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:end node}}"
+        "format": "()(){}",
+        "snippet": "(${2:nodeA})(${3:nodeB}){${1:end node}}"
       }
     },
     {
@@ -247,10 +251,10 @@
       }
     },
     {
-      "name": "psBeforeLine(nodeA)(nodeB)",
+      "name": "psBeforeLine",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:start node}}"
+        "format": "()(){}",
+        "snippet": "(${2:nodeA})(${3:nodeB}){${1:start node}}"
       }
     },
     {
@@ -261,10 +265,10 @@
       }
     },
     {
-      "name": "Parallel(nodeA)(nodeB)(start node)",
+      "name": "Parallel",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:end node}}"
+        "format": "()()(){}",
+        "snippet": "(${2:nodeA})(${3:nodeB})(${4:start node}){${1:end node}}"
       }
     },
     {
@@ -275,17 +279,17 @@
       }
     },
     {
-      "name": "ABinterCD(A)(B)(C)(D)",
+      "name": "ABinterCD",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:E}}"
+        "format": "()()()(){}",
+        "snippet": "(${2:A})(${3:B})(${4:C})(${5:D}){${1:E}}"
       }
     },
     {
-      "name": "nodeBetween(A)(B)",
+      "name": "nodeBetween",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:C}}"
+        "format": "()(){}",
+        "snippet": "(${2:A})(${3:B}){${1:C}}"
       }
     },
     {
@@ -310,10 +314,10 @@
       }
     },
     {
-      "name": "arrowLine(start)(end)",
+      "name": "arrowLine",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:arrow number}}"
+        "format": "()(){}",
+        "snippet": "(${2:start})(${3:end}){${1:arrow number}}"
       }
     },
     {

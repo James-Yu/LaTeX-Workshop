@@ -34,7 +34,11 @@
       "name": "ifbeamercolorempty",
       "arg": {
         "format": "[]{}{}{}",
-        "snippet": "[${4:fg or bg%keyvals}]{${1:beamer-color name}}{${2:if undefined}}{${3:if defined}}"
+        "snippet": "[${4:fg or bg%keyvals}]{${1:beamer-color name}}{${2:if undefined}}{${3:if defined}}",
+        "keys": [
+          "\\ifbeamercolorempty,\\usebeamercolor,\\usebeamercolor*"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -48,7 +52,11 @@
       "name": "usebeamercolor",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:fg or bg%keyvals}]{${1:beamer-color name}}"
+        "snippet": "[${2:fg or bg%keyvals}]{${1:beamer-color name}}",
+        "keys": [
+          "\\ifbeamercolorempty,\\usebeamercolor,\\usebeamercolor*"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -62,7 +70,11 @@
       "name": "usebeamercolor*",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:fg or bg%keyvals}]{${1:beamer-color name}}"
+        "snippet": "[${2:fg or bg%keyvals}]{${1:beamer-color name}}",
+        "keys": [
+          "\\ifbeamercolorempty,\\usebeamercolor,\\usebeamercolor*"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -86,7 +98,11 @@
       "name": "beamercolorbox",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:beamer color}}"
+        "snippet": "[${2:options%keyvals}]{${1:beamer color}}",
+        "keys": [
+          "\\begin{beamercolorbox}"
+        ],
+        "keyPos": 0
       }
     }
   ],
@@ -94,20 +110,20 @@
     "\\setbeamercolor,\\setbeamercolor*": [
       "fg=",
       "bg=",
-      "parent={${1:parent beamer colors}}\r",
-      "use=${1:beamer color}\r"
+      "parent={${1:parent beamer colors}}",
+      "use=${1:beamer color}"
     ],
     "\\ifbeamercolorempty,\\usebeamercolor,\\usebeamercolor*": [
-      "fg\r",
-      "bg\r"
+      "fg",
+      "bg"
     ],
     "\\begin{beamercolorbox}": [
       "wd=",
       "dp=",
       "ht=",
-      "left\r",
-      "right\r",
-      "center\r",
+      "left",
+      "right",
+      "center",
       "leftskip=",
       "rightskip=",
       "sep=",
@@ -115,8 +131,8 @@
       "colsep*=",
       "shadow",
       "rounded",
-      "ignorebg\r",
-      "vmode\r"
+      "ignorebg",
+      "vmode"
     ]
   },
   "args": []

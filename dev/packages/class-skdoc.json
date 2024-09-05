@@ -91,7 +91,11 @@
       "name": "package",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:package}}"
+        "snippet": "[${2:options%keyvals}]{${1:package}}",
+        "keys": [
+          "\\package"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -292,7 +296,11 @@
       "name": "DeclareFile",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:file}}"
+        "snippet": "[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\DeclareFile"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -466,17 +474,17 @@
   ],
   "keys": {
     "\\documentclass/skdoc#c": [
-      "load=${1:package}\r",
+      "load=${1:package}",
       "highlight",
-      "babel=${1:babel options}\r"
+      "babel=${1:babel options}"
     ],
     "\\package": [
-      "ctan=${1:identifier}\r",
-      "vcs=${1:URL}\r"
+      "ctan=${1:identifier}",
+      "vcs=${1:URL}"
     ],
     "\\DeclareFile": [
-      "key=${1:key}\r",
-      "preamble=${1:preamble}\r"
+      "key=${1:key}",
+      "preamble=${1:preamble}"
     ]
   },
   "args": [

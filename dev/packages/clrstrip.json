@@ -9,7 +9,11 @@
       "name": "colorstripSet",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:keyvals}}"
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\colorstripSet,\\begin{colorstrip}"
+        ],
+        "keyPos": 0
       }
     }
   ],
@@ -18,7 +22,11 @@
       "name": "colorstrip",
       "arg": {
         "format": "{}[]",
-        "snippet": "{${1:color}}[${2:keyvals}]"
+        "snippet": "{${1:color}}[${2:keyvals}]",
+        "keys": [
+          "\\colorstripSet,\\begin{colorstrip}"
+        ],
+        "keyPos": 1
       }
     },
     {
@@ -26,7 +34,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:model}]{${1:color}}[${3:keyvals}]"
+        "snippet": "[${2:model}]{${1:color}}[${3:keyvals}]",
+        "keys": [
+          "\\colorstripSet,\\begin{colorstrip}"
+        ],
+        "keyPos": 2
       }
     }
   ],
@@ -40,8 +52,8 @@
       "outer bot=",
       "width=",
       "left=",
-      "afterheading\r",
-      "noindent\r"
+      "afterheading",
+      "noindent"
     ]
   },
   "args": []

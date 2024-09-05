@@ -12,7 +12,11 @@
       "name": "putcvowel",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:dot pos%keyvals}]{${1:symbol}}{${2:num}}"
+        "snippet": "[${3:dot pos%keyvals}]{${1:symbol}}{${2:num}}",
+        "keys": [
+          "\\putcvowel,\\putvowel"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -26,7 +30,11 @@
       "name": "putvowel",
       "arg": {
         "format": "[]{}{}{}",
-        "snippet": "[${4:dot pos%keyvals}]{${1:symbol}}{${2:x%l}}{${3:y%l}}"
+        "snippet": "[${4:dot pos%keyvals}]{${1:symbol}}{${2:x%l}}{${3:y%l}}",
+        "keys": [
+          "\\putcvowel,\\putvowel"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -126,23 +134,27 @@
       "name": "vowel",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{vowel}"
+        ],
+        "keyPos": 0
       }
     }
   ],
   "keys": {
     "\\begin{vowel}": [
-      "plain\r",
-      "simple\r",
-      "standard\r",
-      "ipanew\r",
-      "rectangle\r",
-      "triangle\r",
-      "three\r"
+      "plain",
+      "simple",
+      "standard",
+      "ipanew",
+      "rectangle",
+      "triangle",
+      "three"
     ],
     "\\putcvowel,\\putvowel": [
-      "l\r",
-      "r\r"
+      "l",
+      "r"
     ]
   },
   "args": []

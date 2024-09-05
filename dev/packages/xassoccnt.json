@@ -18,7 +18,11 @@
       "name": "addtocounter",
       "arg": {
         "format": "{}{}[]",
-        "snippet": "{${1:counter}}{${2:value}}[${3:options%keyvals}]"
+        "snippet": "{${1:counter}}{${2:value}}[${3:options%keyvals}]",
+        "keys": [
+          "\\addtocounter"
+        ],
+        "keyPos": 2
       }
     },
     {
@@ -40,7 +44,11 @@
       "name": "NewDocumentCounter",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:counter1,counter2,...}}"
+        "snippet": "[${2:options%keyvals}]{${1:counter1,counter2,...}}",
+        "keys": [
+          "\\NewDocumentCounter,\\DeclareDocumentCounter"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -48,7 +56,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:counter1,counter2,...}}[${3:resetting counter}]"
+        "snippet": "[${2:options%keyvals}]{${1:counter1,counter2,...}}[${3:resetting counter}]",
+        "keys": [
+          "\\NewDocumentCounter,\\DeclareDocumentCounter"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -70,7 +82,11 @@
       "name": "DeclareDocumentCounter",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:counter1,counter2,...}}"
+        "snippet": "[${2:options%keyvals}]{${1:counter1,counter2,...}}",
+        "keys": [
+          "\\NewDocumentCounter,\\DeclareDocumentCounter"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -78,7 +94,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:counter1,counter2,...}}[${3:resetting counter}]"
+        "snippet": "[${2:options%keyvals}]{${1:counter1,counter2,...}}[${3:resetting counter}]",
+        "keys": [
+          "\\NewDocumentCounter,\\DeclareDocumentCounter"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -92,7 +112,11 @@
       "name": "SetDocumentCounter",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:counter}}{${2:value}}"
+        "snippet": "[${3:options%keyvals}]{${1:counter}}{${2:value}}",
+        "keys": [
+          "\\SetDocumentCounter"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -407,7 +431,11 @@
       "name": "CounterFormat",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:counter1!format1,counter2!format2,...}}"
+        "snippet": "[${2:options%keyvals}]{${1:counter1!format1,counter2!format2,...}}",
+        "keys": [
+          "\\CounterFormat"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -421,7 +449,11 @@
       "name": "StoreCounterFormats",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:shorthand1!macro1,shorthand2!macro2,...}}"
+        "snippet": "[${2:options%keyvals}]{${1:shorthand1!macro1,shorthand2!macro2,...}}",
+        "keys": [
+          "\\StoreCounterFormats,\\AddCounterFormats"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -435,7 +467,11 @@
       "name": "AddCounterFormats",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:shorthand1!macro1,shorthand2!macro2,...}}"
+        "snippet": "[${2:options%keyvals}]{${1:shorthand1!macro1,shorthand2!macro2,...}}",
+        "keys": [
+          "\\StoreCounterFormats,\\AddCounterFormats"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -456,7 +492,11 @@
       "name": "DeclareAssociatedCounters",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:driver counter}}{${2:assoc counter list}}"
+        "snippet": "[${3:options%keyvals}]{${1:driver counter}}{${2:assoc counter list}}",
+        "keys": [
+          "\\DeclareAssociatedCounters,\\AddAssociatedCounters"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -470,7 +510,11 @@
       "name": "AddAssociatedCounters",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:driver counter}}{${2:assoc counter list}}"
+        "snippet": "[${3:options%keyvals}]{${1:driver counter}}{${2:assoc counter list}}",
+        "keys": [
+          "\\DeclareAssociatedCounters,\\AddAssociatedCounters"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -557,7 +601,11 @@
       "name": "DeclareCoupledCounters",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:counter1,counter2,...}}"
+        "snippet": "[${2:options%keyvals}]{${1:counter1,counter2,...}}",
+        "keys": [
+          "\\DeclareCoupledCounters,\\AddCoupledCounters"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -578,7 +626,11 @@
       "name": "RemoveCoupledCounters",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:counter1,counter2,...}}"
+        "snippet": "[${2:options%keyvals}]{${1:counter1,counter2,...}}",
+        "keys": [
+          "\\RemoveCoupledCounters,\\ClearCoupledCounters"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -661,7 +713,11 @@
       "name": "RemoveAllPeriodicCounters",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\RemovePeriodicCounter,\\RemoveAllPeriodicCounters,\\ChangePeriodicCounterCondition"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -675,7 +731,11 @@
       "name": "ChangePeriodicCounterCondition",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:counter}}{${2:threshold value}}"
+        "snippet": "[${3:options%keyvals}]{${1:counter}}{${2:threshold value}}",
+        "keys": [
+          "\\RemovePeriodicCounter,\\RemoveAllPeriodicCounters,\\ChangePeriodicCounterCondition"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -741,7 +801,11 @@
       "name": "RegisterTotalDocumentCounter",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:total counter}}"
+        "snippet": "[${2:options%keyvals}]{${1:total counter}}",
+        "keys": [
+          "\\RegisterTotalDocumentCounter,\\NewTotalDocumentCounter,\\DeclareTotalDocumentCounter"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1240,37 +1304,37 @@
   "keys": {
     "\\usepackage/xassoccnt#c": [
       "autodefinecounters",
-      "nonumberofruns\r",
+      "nonumberofruns",
       "redefinelabel",
-      "standardcounterformats=${1|on,off\r|}"
+      "standardcounterformats=${1|on,off|}"
     ],
     "\\addtocounter": [
       "wrap"
     ],
     "\\NewDocumentCounter,\\DeclareDocumentCounter": [
-      "initial=${1:integer}\r"
+      "initial=${1:integer}"
     ],
     "\\SetDocumentCounter": [
       "associatedtoo",
-      "onlycounters=${1:counter list}\r"
+      "onlycounters=${1:counter list}"
     ],
     "\\CounterFormat": [
       "recursive",
-      "separator=${1:character}\r"
+      "separator=${1:character}"
     ],
     "\\StoreCounterFormats,\\AddCounterFormats": [
-      "separator=${1:character}\r"
+      "separator=${1:character}"
     ],
     "\\DeclareAssociatedCounters,\\AddAssociatedCounters": [
-      "autodefine=${1|none,all,driver,associated\r|}",
-      "sloppy\r"
+      "autodefine=${1|none,all,driver,associated|}",
+      "sloppy"
     ],
     "\\DeclareCoupledCounters,\\AddCoupledCounters": [
-      "name=${1:group name}\r",
+      "name=${1:group name}",
       "multiple"
     ],
     "\\RemoveCoupledCounters,\\ClearCoupledCounters": [
-      "name=${1:group name}\r"
+      "name=${1:group name}"
     ],
     "\\RemovePeriodicCounter,\\RemoveAllPeriodicCounters,\\ChangePeriodicCounterCondition": [
       "reset"
@@ -1280,9 +1344,9 @@
     ],
     "\\label#c": [
       "all",
-      "select=${1:counter list}\r",
-      "prefix=${1:string}\r",
-      "prefix-sep=${1:string}\r"
+      "select=${1:counter list}",
+      "prefix=${1:string}",
+      "prefix-sep=${1:string}"
     ]
   },
   "args": [

@@ -729,11 +729,11 @@
       }
     },
     {
-      "name": "Begin(begin comment)",
+      "name": "Begin",
       "unusual": true,
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:block inside}}"
+        "format": "(){}",
+        "snippet": "(${2:begin comment}){${1:block inside}}"
       }
     },
     {
@@ -793,11 +793,11 @@
       }
     },
     {
-      "name": "If(then comment)",
+      "name": "If",
       "unusual": true,
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:condition}}{${2:then block}}"
+        "format": "(){}{}",
+        "snippet": "(${3:then comment}){${1:condition}}{${2:then block}}"
       }
     },
     {
@@ -809,11 +809,11 @@
       }
     },
     {
-      "name": "uIf(then comment)",
+      "name": "uIf",
       "unusual": true,
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:condition}}{${2:then block without end}}"
+        "format": "(){}{}",
+        "snippet": "(${3:then comment}){${1:condition}}{${2:then block without end}}"
       }
     },
     {
@@ -825,11 +825,11 @@
       }
     },
     {
-      "name": "lIf(if comment)",
+      "name": "lIf",
       "unusual": true,
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:condition}}{${2:then line}}"
+        "format": "(){}{}",
+        "snippet": "(${3:if comment}){${1:condition}}{${2:then line}}"
       }
     },
     {
@@ -841,11 +841,11 @@
       }
     },
     {
-      "name": "ElseIf(elseif comment)",
+      "name": "ElseIf",
       "unusual": true,
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:elseif block}}"
+        "format": "(){}",
+        "snippet": "(${2:elseif comment}){${1:elseif block}}"
       }
     },
     {
@@ -857,11 +857,11 @@
       }
     },
     {
-      "name": "uElseIf(elseif comment)",
+      "name": "uElseIf",
       "unusual": true,
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:elseif block without end}}"
+        "format": "(){}",
+        "snippet": "(${2:elseif comment}){${1:elseif block without end}}"
       }
     },
     {
@@ -873,11 +873,11 @@
       }
     },
     {
-      "name": "lElseif(elseif line)",
+      "name": "lElseif",
       "unusual": true,
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:elseif block}}"
+        "format": "(){}",
+        "snippet": "(${2:elseif line}){${1:elseif block}}"
       }
     },
     {
@@ -889,11 +889,11 @@
       }
     },
     {
-      "name": "Else(else comment)",
+      "name": "Else",
       "unusual": true,
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:else block}}"
+        "format": "(){}",
+        "snippet": "(${2:else comment}){${1:else block}}"
       }
     },
     {
@@ -905,11 +905,11 @@
       }
     },
     {
-      "name": "uElse(else block comment)",
+      "name": "uElse",
       "unusual": true,
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:else block without end}}"
+        "format": "(){}",
+        "snippet": "(${2:else block comment}){${1:else block without end}}"
       }
     },
     {
@@ -921,11 +921,11 @@
       }
     },
     {
-      "name": "lElse(else comment)",
+      "name": "lElse",
       "unusual": true,
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:else line}}"
+        "format": "(){}",
+        "snippet": "(${2:else comment}){${1:else line}}"
       }
     },
     {
@@ -937,19 +937,19 @@
       }
     },
     {
-      "name": "eIf(then comment)",
+      "name": "eIf",
       "unusual": true,
       "arg": {
-        "format": "{}{}(){}",
-        "snippet": "{${1:condition}}{${2:then block}}(${4:else comment}){${3:else block}}"
+        "format": "(){}{}(){}",
+        "snippet": "(${4:then comment}){${1:condition}}{${2:then block}}(${5:else comment}){${3:else block}}"
       }
     },
     {
-      "name": "eIf(then comment)",
+      "name": "eIf",
       "unusual": true,
       "arg": {
-        "format": "{}{}{}",
-        "snippet": "{${1:condition}}{${2:then block}}{${3:else block}}"
+        "format": "(){}{}{}",
+        "snippet": "(${4:then comment}){${1:condition}}{${2:then block}}{${3:else block}}"
       }
     },
     {
@@ -969,19 +969,19 @@
       }
     },
     {
-      "name": "leIf(comment)",
+      "name": "leIf",
       "unusual": true,
       "arg": {
-        "format": "{}{}{}",
-        "snippet": "{${1:condition}}{${2:then line}}{${3:else line}}"
+        "format": "(){}{}{}",
+        "snippet": "(${4:comment}){${1:condition}}{${2:then line}}{${3:else line}}"
       }
     },
     {
-      "name": "Switch(switch comment)",
+      "name": "Switch",
       "unusual": true,
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:condition}}{${2:switch block}}"
+        "format": "(){}{}",
+        "snippet": "(${3:switch comment}){${1:condition}}{${2:switch block}}"
       }
     },
     {
@@ -1001,11 +1001,11 @@
       }
     },
     {
-      "name": "Case(case comment)",
+      "name": "Case",
       "unusual": true,
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:case}}{${2:case block}}"
+        "format": "(){}{}",
+        "snippet": "(${3:case comment}){${1:case}}{${2:case block}}"
       }
     },
     {
@@ -1017,11 +1017,11 @@
       }
     },
     {
-      "name": "uCase(case comment)",
+      "name": "uCase",
       "unusual": true,
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:case}}{${2:case block without end}}"
+        "format": "(){}{}",
+        "snippet": "(${3:case comment}){${1:case}}{${2:case block without end}}"
       }
     },
     {
@@ -1033,11 +1033,11 @@
       }
     },
     {
-      "name": "lCase(case comment)",
+      "name": "lCase",
       "unusual": true,
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:case}}{${2:case line}}"
+        "format": "(){}{}",
+        "snippet": "(${3:case comment}){${1:case}}{${2:case line}}"
       }
     },
     {
@@ -1049,11 +1049,11 @@
       }
     },
     {
-      "name": "Other(other comment)",
+      "name": "Other",
       "unusual": true,
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:otherwise block}}"
+        "format": "(){}",
+        "snippet": "(${2:other comment}){${1:otherwise block}}"
       }
     },
     {
@@ -1065,11 +1065,11 @@
       }
     },
     {
-      "name": "uOther(other comment)",
+      "name": "uOther",
       "unusual": true,
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:otherwise text}}"
+        "format": "(){}",
+        "snippet": "(${2:other comment}){${1:otherwise text}}"
       }
     },
     {
@@ -1081,11 +1081,11 @@
       }
     },
     {
-      "name": "lOther(other comment)",
+      "name": "lOther",
       "unusual": true,
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:otherwise line}}"
+        "format": "(){}",
+        "snippet": "(${2:other comment}){${1:otherwise line}}"
       }
     },
     {
@@ -1097,11 +1097,11 @@
       }
     },
     {
-      "name": "For(for comment)",
+      "name": "For",
       "unusual": true,
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:condition}}{${2:for block}}"
+        "format": "(){}{}",
+        "snippet": "(${3:for comment}){${1:condition}}{${2:for block}}"
       }
     },
     {
@@ -1113,11 +1113,11 @@
       }
     },
     {
-      "name": "lFor(for comment)",
+      "name": "lFor",
       "unusual": true,
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:condition}}{${2:for line}}"
+        "format": "(){}{}",
+        "snippet": "(${3:for comment}){${1:condition}}{${2:for line}}"
       }
     },
     {
@@ -1129,11 +1129,11 @@
       }
     },
     {
-      "name": "While(while comment)",
+      "name": "While",
       "unusual": true,
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:condition}}{${2:while block}}"
+        "format": "(){}{}",
+        "snippet": "(${3:while comment}){${1:condition}}{${2:while block}}"
       }
     },
     {
@@ -1145,11 +1145,11 @@
       }
     },
     {
-      "name": "lWhile(while comment)",
+      "name": "lWhile",
       "unusual": true,
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:condition}}{${2:while line}}"
+        "format": "(){}{}",
+        "snippet": "(${3:while comment}){${1:condition}}{${2:while line}}"
       }
     },
     {
@@ -1161,11 +1161,11 @@
       }
     },
     {
-      "name": "ForPar(foreach comment)",
+      "name": "ForPar",
       "unusual": true,
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:condition}}{${2:foreach block}}"
+        "format": "(){}{}",
+        "snippet": "(${3:foreach comment}){${1:condition}}{${2:foreach block}}"
       }
     },
     {
@@ -1177,11 +1177,11 @@
       }
     },
     {
-      "name": "ForEach(foreach comment)",
+      "name": "ForEach",
       "unusual": true,
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:condition}}{${2:foreach block}}"
+        "format": "(){}{}",
+        "snippet": "(${3:foreach comment}){${1:condition}}{${2:foreach block}}"
       }
     },
     {
@@ -1193,11 +1193,11 @@
       }
     },
     {
-      "name": "lForEach(foreach comment)",
+      "name": "lForEach",
       "unusual": true,
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:condition}}{${2:foreach line}}"
+        "format": "(){}{}",
+        "snippet": "(${3:foreach comment}){${1:condition}}{${2:foreach line}}"
       }
     },
     {
@@ -1209,11 +1209,11 @@
       }
     },
     {
-      "name": "ForAll(forall comment)",
+      "name": "ForAll",
       "unusual": true,
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:condition}}{${2:forall block}}"
+        "format": "(){}{}",
+        "snippet": "(${3:forall comment}){${1:condition}}{${2:forall block}}"
       }
     },
     {
@@ -1225,11 +1225,11 @@
       }
     },
     {
-      "name": "lForAll(forall comment)",
+      "name": "lForAll",
       "unusual": true,
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:condition}}{${2:forall line}}"
+        "format": "(){}{}",
+        "snippet": "(${3:forall comment}){${1:condition}}{${2:forall line}}"
       }
     },
     {
@@ -1241,19 +1241,19 @@
       }
     },
     {
-      "name": "Repeat(repeat comment)",
+      "name": "Repeat",
       "unusual": true,
       "arg": {
-        "format": "{}{}()",
-        "snippet": "{${1:end condition}}{${2:repeat block}}(${3:until comment})"
+        "format": "(){}{}()",
+        "snippet": "(${3:repeat comment}){${1:end condition}}{${2:repeat block}}(${4:until comment})"
       }
     },
     {
-      "name": "Repeat(repeat comment)",
+      "name": "Repeat",
       "unusual": true,
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:end condition}}{${2:repeat block}}"
+        "format": "(){}{}",
+        "snippet": "(${3:repeat comment}){${1:end condition}}{${2:repeat block}}"
       }
     },
     {
@@ -1273,11 +1273,11 @@
       }
     },
     {
-      "name": "lRepeat(repeat comment)",
+      "name": "lRepeat",
       "unusual": true,
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:end condition}}{${2:repeat line}}"
+        "format": "(){}{}",
+        "snippet": "(${3:repeat comment}){${1:end condition}}{${2:repeat line}}"
       }
     },
     {

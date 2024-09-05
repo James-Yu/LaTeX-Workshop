@@ -20,31 +20,59 @@
       }
     },
     {
-      "name": "move (x y)"
-    },
-    {
-      "name": "lvec (x y)"
-    },
-    {
-      "name": "avec (x y)"
-    },
-    {
-      "name": "rmove (dx dy)"
-    },
-    {
-      "name": "rlvec (dx dy)"
-    },
-    {
-      "name": "ravec (dx dy)"
-    },
-    {
-      "name": "lpatt (pattern)"
-    },
-    {
-      "name": "htext (x y)",
+      "name": "move ",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:text}}"
+        "format": "()",
+        "snippet": "(${1:x y})"
+      }
+    },
+    {
+      "name": "lvec ",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:x y})"
+      }
+    },
+    {
+      "name": "avec ",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:x y})"
+      }
+    },
+    {
+      "name": "rmove ",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:dx dy})"
+      }
+    },
+    {
+      "name": "rlvec ",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:dx dy})"
+      }
+    },
+    {
+      "name": "ravec ",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:dx dy})"
+      }
+    },
+    {
+      "name": "lpatt ",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:pattern})"
+      }
+    },
+    {
+      "name": "htext ",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:x y}){${1:text}}"
       }
     },
     {
@@ -55,10 +83,10 @@
       }
     },
     {
-      "name": "vtext (x y)",
+      "name": "vtext ",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:text}}"
+        "format": "(){}",
+        "snippet": "(${2:x y}){${1:text}}"
       }
     },
     {
@@ -69,13 +97,31 @@
       }
     },
     {
-      "name": "clvec (x1 y1)(x2 y2)(x3 y3)"
+      "name": "clvec ",
+      "arg": {
+        "format": "()()()",
+        "snippet": "(${1:x1 y1})(${2:x2 y2})(${3:x3 y3})"
+      }
     },
     {
       "name": "bsegment"
     },
     {
       "name": "esegment"
+    },
+    {
+      "name": "savecurrpos ",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:*%<px%> *%<py%>})"
+      }
+    },
+    {
+      "name": "savepos ",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:%<x y%>})(${2:*%<px%> *%<py%>})"
+      }
     },
     {
       "name": "drawbb"
@@ -104,11 +150,11 @@
       }
     },
     {
-      "name": "listtopix (list)",
+      "name": "listtopix ",
       "unusual": true,
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:macro%cmd}}"
+        "format": "(){}",
+        "snippet": "(${2:list}){${1:macro%cmd}}"
       }
     },
     {

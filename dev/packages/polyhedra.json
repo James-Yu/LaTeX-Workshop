@@ -34,56 +34,95 @@
       "name": "axes",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:keyvals}}"
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\axes"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "vertex",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:keyvals}}"
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\vertex,\\edge,\\ray,\\cone,\\polygon,\\halfspace,\\hyperplane",
+          "\\vertex"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "edge",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:keyvals}}"
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\vertex,\\edge,\\ray,\\cone,\\polygon,\\halfspace,\\hyperplane",
+          "\\edge,\\ray"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "ray",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:keyvals}}"
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\vertex,\\edge,\\ray,\\cone,\\polygon,\\halfspace,\\hyperplane",
+          "\\edge,\\ray"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "cone",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:keyvals}}"
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\vertex,\\edge,\\ray,\\cone,\\polygon,\\halfspace,\\hyperplane",
+          "\\cone"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "polygon",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:keyvals}}"
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\vertex,\\edge,\\ray,\\cone,\\polygon,\\halfspace,\\hyperplane",
+          "\\polygon"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "halfspace",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:keyvals}}"
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\vertex,\\edge,\\ray,\\cone,\\polygon,\\halfspace,\\hyperplane",
+          "\\halfspace,\\hyperplane"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "hyperplane",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:keyvals}}"
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\vertex,\\edge,\\ray,\\cone,\\polygon,\\halfspace,\\hyperplane",
+          "\\halfspace,\\hyperplane"
+        ],
+        "keyPos": 0
       }
     }
   ],
@@ -92,52 +131,56 @@
       "name": "polyhedron",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:keyvals}}"
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\begin{polyhedron}"
+        ],
+        "keyPos": 0
       }
     }
   ],
   "keys": {
     "\\begin{polyhedron}": [
-      "dim=${1:integer}\r",
-      "phi=${1:degrees}\r",
-      "theta=${1:degrees}\r"
+      "dim=${1:integer}",
+      "phi=${1:degrees}",
+      "theta=${1:degrees}"
     ],
     "\\axes": [
-      "x={${1:num1,num2}}\r",
-      "y={${1:num1,num2}}\r",
-      "z={${1:num1,num2}}\r",
-      "xlabel=${1:text}\r",
-      "ylabel=${1:text}\r",
-      "zlabel=${1:text}\r",
-      "labels=${1|true,false\r|}"
+      "x={${1:num1,num2}}",
+      "y={${1:num1,num2}}",
+      "z={${1:num1,num2}}",
+      "xlabel=${1:text}",
+      "ylabel=${1:text}",
+      "zlabel=${1:text}",
+      "labels=${1|true,false|}"
     ],
     "\\vertex,\\edge,\\ray,\\cone,\\polygon,\\halfspace,\\hyperplane": [
       "color=",
-      "status=${1|normal,focus,alert,open\r|}",
-      "opacity=${1:factor}\r",
-      "thickness=${1:number}\r",
-      "pattern={${1:pattern}}\r"
+      "status=${1|normal,focus,alert,open|}",
+      "opacity=${1:factor}",
+      "thickness=${1:number}",
+      "pattern={${1:pattern}}"
     ],
     "\\vertex": [
-      "point={${1:point}}\r",
-      "text=${1:text}\r",
+      "point={${1:point}}",
+      "text=${1:text}",
       "textcolor=",
-      "anchora=${1|north,south,east,west\r|}",
-      "anchorb=${1|above,below,left,right\r|}"
+      "anchora=${1|north,south,east,west|}",
+      "anchorb=${1|above,below,left,right|}"
     ],
     "\\edge,\\ray": [
-      "points={${1:point1,point2}}\r"
+      "points={${1:point1,point2}}"
     ],
     "\\cone": [
-      "vertex={${1:point}}\r",
-      "generators={${1:list of point}}\r"
+      "vertex={${1:point}}",
+      "generators={${1:list of point}}"
     ],
     "\\polygon": [
-      "points={${1:list of point}}\r",
-      "boundary=${1|true,false\r|}"
+      "points={${1:list of point}}",
+      "boundary=${1|true,false|}"
     ],
     "\\halfspace,\\hyperplane": [
-      "points={${1:list of point}}\r",
+      "points={${1:list of point}}",
       "patterncolor="
     ]
   },

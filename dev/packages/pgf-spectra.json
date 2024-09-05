@@ -12,7 +12,11 @@
       "name": "pgfspectra",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\pgfspectra,\\pgfspectraStyle,\\pgfspectraplotshade"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -26,17 +30,21 @@
       "name": "pgfspectraStyle",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\pgfspectra,\\pgfspectraStyle,\\pgfspectraplotshade"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "pgfspectraStyleReset"
     },
     {
-      "name": "pgfspectrashade(start,end)",
+      "name": "pgfspectrashade",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:name}}"
+        "format": "(){}",
+        "snippet": "(${2:start},${3:end}){${1:name}}"
       }
     },
     {
@@ -89,14 +97,22 @@
       "name": "pgfspectratable",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\pgfspectratable"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "pgfspectratable",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:dataset names}}"
+        "snippet": "[${2:options%keyvals}]{${1:dataset names}}",
+        "keys": [
+          "\\pgfspectratable"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -148,7 +164,11 @@
       "name": "pgfspectraplotshade",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:name}}"
+        "snippet": "[${2:options%keyvals}]{${1:name}}",
+        "keys": [
+          "\\pgfspectraplotshade"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -168,6 +188,13 @@
     {
       "name": "pgfspectrarainbow",
       "arg": {
+        "format": "(){}",
+        "snippet": "(${2:options%keyvals}){${1:radius}}"
+      }
+    },
+    {
+      "name": "pgfspectrarainbow",
+      "arg": {
         "format": "[](){}",
         "snippet": "[${2:TikZ options}](${3:options%keyvals}){${1:radius}}"
       }
@@ -176,69 +203,69 @@
   "envs": [],
   "keys": {
     "\\usepackage/pgf-spectra#c": [
-      "LSE\r",
-      "NIST\r"
+      "LSE",
+      "NIST"
     ],
     "\\pgfspectra,\\pgfspectraStyle,\\pgfspectraplotshade": [
       "use visible shading",
       "width=",
       "height=",
-      "element=${1:symbol(s)}\r",
-      "charge=${1:<integer> or all}\r",
-      "Imin=${1:factor}\r",
+      "element=${1:symbol(s)}",
+      "charge=${1:<integer> or all}",
+      "Imin=${1:factor}",
       "relative intensity",
-      "relative intensity threshold=${1:factor}\r",
-      "line intensity=${1:number}\r",
-      "gamma=${1:number}\r",
-      "brightness=${1:factor}\r",
+      "relative intensity threshold=${1:factor}",
+      "line intensity=${1:number}",
+      "gamma=${1:number}",
+      "brightness=${1:factor}",
       "back=",
       "backIRUV=",
       "IRcolor=",
       "UVcolor=",
-      "lines={${1:wavelengths}}\r",
+      "lines={${1:wavelengths}}",
       "line width=",
-      "begin=${1:wavelength}\r",
-      "end=${1:wavelength}\r",
+      "begin=${1:wavelength}",
+      "end=${1:wavelength}",
       "absorption",
       "axis",
-      "axis step=${1:integer}\r",
-      "axis ticks=${1:integer}\r",
-      "axis unit=${1|nm,micron,A\r|}",
-      "axis unit precision=${1:integer}\r",
+      "axis step=${1:integer}",
+      "axis ticks=${1:integer}",
+      "axis unit=${1|nm,micron,A|}",
+      "axis unit precision=${1:integer}",
       "axis label",
-      "axis label text={${1:text}}\r",
-      "axis label position=${1|left,center,right\r|}",
+      "axis label text={${1:text}}",
+      "axis label position=${1|left,center,right|}",
       "axis color=",
-      "axis font=${1:font commands}\r",
+      "axis font=${1:font commands}",
       "axis font color=",
       "label",
-      "label position=${1|north west,north,north east,west,east,south west,south,south east\r|}",
-      "label font=${1:font commands}\r",
+      "label position=${1|north west,north,north east,west,east,south west,south,south east|}",
+      "label font=${1:font commands}",
       "label font color=",
-      "label before text=${1:text}\r",
-      "label after text=${1:text}\r",
-      "redshift=${1:value}\r",
+      "label before text=${1:text}",
+      "label after text=${1:text}",
+      "redshift=${1:value}",
       "show redshift value"
     ],
     "\\usepgfspectralibrary#c": [
-      "data\r",
-      "pgfplots\r",
-      "tempercolor\r",
-      "rainbow\r"
+      "data",
+      "pgfplots",
+      "tempercolor",
+      "rainbow"
     ],
     "\\pgfspectradata": [
-      "element=${1:symbol(s)}\r",
-      "charge=${1:<integer> or all}\r",
-      "Imin=${1:factor}\r",
-      "redshift=${1:value}\r",
-      "begin=${1:wavelength}\r",
-      "end=${1:wavelength}\r",
+      "element=${1:symbol(s)}",
+      "charge=${1:<integer> or all}",
+      "Imin=${1:factor}",
+      "redshift=${1:value}",
+      "begin=${1:wavelength}",
+      "end=${1:wavelength}",
       "relative intensity",
-      "precision=${1:integer}\r",
-      "unit=${1|nm,micron,A\r|}"
+      "precision=${1:integer}",
+      "unit=${1|nm,micron,A|}"
     ],
     "\\pgfspectratable": [
-      "title={${1:text}}\r",
+      "title={${1:text}}",
       "back color=",
       "data back color=",
       "text color=",
@@ -246,17 +273,17 @@
       "elements column width="
     ],
     "\\pgfspectraplotshade": [
-      "shade begin=${1:value}\r",
-      "shade end=${1:value}\r",
-      "shade opacity=${1:factor}\r",
+      "shade begin=${1:value}",
+      "shade end=${1:value}",
+      "shade opacity=${1:factor}",
       "shade opacity color=",
       "logarithmic"
     ],
     "\\pgfspectrarainbow": [
-      "rainbow start=${1:fraction}\r",
-      "rainbow knock out=${1:value}\r",
-      "rainbow fade=${1:fading}\r",
-      "rainbow transparency=${1:factor}\r",
+      "rainbow start=${1:fraction}",
+      "rainbow knock out=${1:value}",
+      "rainbow fade=${1:fading}",
+      "rainbow transparency=${1:factor}",
       "rainbow background="
     ]
   },

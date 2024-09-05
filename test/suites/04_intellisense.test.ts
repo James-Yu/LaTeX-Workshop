@@ -37,32 +37,6 @@ suite('Intellisense test suite', () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.package.exclude', undefined)
     })
 
-    test.run('check default environment .json completion file', () => {
-        const file = `${lw.extensionRoot}/data/environments.json`
-        const envs = JSON.parse(fs.readFileSync(file, {encoding: 'utf8'})) as {[key: string]: EnvObsolete}
-        assert.ok(Object.keys(envs).length > 0)
-        Object.values(envs).forEach(env => {
-            assertKeys(
-                Object.keys(env),
-                ['name', 'snippet', 'detail'],
-                file + ': ' + JSON.stringify(env)
-            )
-        })
-    })
-
-    test.run('check default commands .json completion file', () => {
-        const file = `${lw.extensionRoot}/data/commands.json`
-        const cmds = JSON.parse(fs.readFileSync(file, {encoding: 'utf8'})) as {[key: string]: MacroObsolete}
-        assert.ok(Object.keys(cmds).length > 0)
-        Object.values(cmds).forEach(cmd => {
-            assertKeys(
-                Object.keys(cmd),
-                ['command', 'snippet', 'documentation', 'detail', 'postAction'],
-                file + ': ' + JSON.stringify(cmd)
-            )
-        })
-    })
-
     test.run('test default envs', () => {
         let defaultEnvs = lw.completion.environment.getDefaultEnvs(EnvSnippetType.AsMacro).map(e => e.label)
         assert.ok(defaultEnvs.includes('document'))
@@ -80,27 +54,6 @@ suite('Intellisense test suite', () => {
         assert.ok(defaultCommands.includes('\\begin'))
         assert.ok(defaultCommands.includes('\\left('))
         assert.ok(defaultCommands.includes('\\section{}'))
-    })
-
-    test.run('check package .json completion file', () => {
-        const files = glob.sync('data/packages/*.json', {cwd: lw.extensionRoot})
-        files.forEach(file => {
-            const pkg = JSON.parse(fs.readFileSync(path.join(lw.extensionRoot, file), {encoding: 'utf8'})) as PackageObsolete
-            Object.values(pkg.macros).forEach(cmd => {
-                assertKeys(
-                    Object.keys(cmd),
-                    ['command', 'snippet', 'option', 'keyvalindex', 'keyvalpos', 'documentation', 'detail'],
-                    file + ': ' + JSON.stringify(cmd)
-                )
-            })
-            Object.values(pkg.envs).forEach(env => {
-                assertKeys(
-                    Object.keys(env),
-                    ['name', 'snippet', 'detail', 'option', 'keyvalindex', 'keyvalpos'],
-                    file + ': ' + JSON.stringify(env)
-                )
-            })
-        })
     })
 
     test.run('test isTriggerSuggestNeeded', () => {
@@ -122,13 +75,13 @@ suite('Intellisense test suite', () => {
         ])
 
         let suggestions = test.suggest(0, 1)
-        assert.ok(!suggestions.labels.includes('\\lstinline'))
+        assert.ok(!suggestions.labels.includes('\\lstname'))
 
         await test.load(fixture, [
             {src: 'intellisense/package_on_cmd_2.tex', dst: 'main.tex'}
         ])
         suggestions = test.suggest(0, 1)
-        assert.ok(suggestions.labels.includes('\\lstinline'))
+        assert.ok(suggestions.labels.includes('\\lstname'))
     }, ['linux', 'darwin'])
 
     test.run('command intellisense with cmds provided by \\usepackage and its argument', async (fixture: string) => {
@@ -201,13 +154,8 @@ suite('Intellisense test suite', () => {
         ])
         let suggestions = test.suggest(0, 1)
         assert.ok(suggestions.labels.includes('\\mycommand[]{}'))
-        assert.ok(suggestions.labels.includes('\\parbox{}{}'))
-        let parbox = suggestions.items.filter(item => item.label === '\\parbox{}{}')[0].insertText
-        if (typeof parbox === 'string') {
-            assert.strictEqual(parbox, 'defchanged')
-        } else {
-            assert.strictEqual(parbox?.value, 'defchanged')
-        }
+        assert.ok(!suggestions.labels.includes('\\parbox{}{}'))
+        assert.ok(suggestions.labels.includes('\\defchanged'))
         assert.ok(!suggestions.labels.includes('\\overline{}'))
 
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.command.user', undefined)
@@ -218,12 +166,7 @@ suite('Intellisense test suite', () => {
         suggestions = test.suggest(0, 1)
         assert.ok(!suggestions.labels.includes('\\mycommand[]{}'))
         assert.ok(suggestions.labels.includes('\\parbox{}{}'))
-        parbox = suggestions.items.filter(item => item.label === '\\parbox{}{}')[0].insertText
-        if (typeof parbox === 'string') {
-            assert.notStrictEqual(parbox, 'defchanged')
-        } else {
-            assert.notStrictEqual(parbox?.value, 'defchanged')
-        }
+        assert.ok(!suggestions.labels.includes('\\defchanged'))
         assert.ok(suggestions.labels.includes('\\overline{}'))
     })
 
@@ -326,20 +269,20 @@ suite('Intellisense test suite', () => {
         ])
         let suggestions = test.suggest(0, 1)
         assert.ok(!suggestions.labels.includes('\\date{}'))
-        assert.ok(!suggestions.labels.includes('\\lstinline'))
-        assert.ok(!suggestions.labels.includes('\\lstinline'))
+        assert.ok(!suggestions.labels.includes('\\lstname'))
+        assert.ok(!suggestions.labels.includes('\\lstname'))
 
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.package.exclude', ['lw-default'])
         suggestions = test.suggest(0, 1)
         assert.ok(!suggestions.labels.includes('\\date{}'))
-        assert.ok(suggestions.labels.includes('\\lstinline'))
-        assert.ok(suggestions.labels.includes('\\lstinline'))
+        assert.ok(suggestions.labels.includes('\\lstname'))
+        assert.ok(suggestions.labels.includes('\\lstname'))
 
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.package.exclude', ['import', 'listings'])
         suggestions = test.suggest(0, 1)
         assert.ok(suggestions.labels.includes('\\date{}'))
-        assert.ok(!suggestions.labels.includes('\\lstinline'))
-        assert.ok(!suggestions.labels.includes('\\lstinline'))
+        assert.ok(!suggestions.labels.includes('\\lstname'))
+        assert.ok(!suggestions.labels.includes('\\lstname'))
     })
 
     test.run('argument intellisense of \\documentclass, \\usepackage, commands, and environments', async (fixture: string) => {

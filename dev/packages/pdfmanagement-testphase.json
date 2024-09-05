@@ -40,7 +40,11 @@
       "name": "url",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:URL}}"
+        "snippet": "[${2:options%keyvals}]{${1:URL}}",
+        "keys": [
+          "\\url"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -54,7 +58,11 @@
       "name": "hrefurl",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:URL}}{${2:text}}"
+        "snippet": "[${3:options%keyvals}]{${1:URL}}{${2:text}}",
+        "keys": [
+          "\\hrefurl"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -68,7 +76,11 @@
       "name": "hrefpdf",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:file}}{${2:text}}"
+        "snippet": "[${3:options%keyvals}]{${1:file}}{${2:text}}",
+        "keys": [
+          "\\hrefpdf"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -82,72 +94,76 @@
       "name": "hrefrun",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:launch link%URL}}{${2:text}}"
+        "snippet": "[${3:options%keyvals}]{${1:launch link%URL}}{${2:text}}",
+        "keys": [
+          "\\hrefrun"
+        ],
+        "keyPos": 0
       }
     }
   ],
   "envs": [],
   "keys": {
     "\\url": [
-      "protocol=${1:prefix}\r",
-      "format=${1:format commands}\r"
+      "protocol=${1:prefix}",
+      "format=${1:format commands}"
     ],
     "\\hrefurl": [
-      "urlencode\r",
-      "protocol=${1:prefix}\r",
-      "ismap\r"
+      "urlencode",
+      "protocol=${1:prefix}",
+      "ismap"
     ],
     "\\hrefpdf": [
-      "destination=${1:dest name}\r",
-      "page=${1:number}\r",
-      "pdfremotestartview=${1|Fit,FitB,FitH,FitV,FitBH,FitBV\r|}",
-      "afrelationship=${1:PDF name}\r"
+      "destination=${1:dest name}",
+      "page=${1:number}",
+      "pdfremotestartview=${1|Fit,FitB,FitH,FitV,FitBH,FitBV|}",
+      "afrelationship=${1:PDF name}"
     ],
     "\\hrefrun": [
-      "run-parameter=${1:parameter}\r"
+      "run-parameter=${1:parameter}"
     ],
     "\\hypersetup": [
-      "href/urlencode\r",
-      "href/protocol=${1:prefix}\r",
-      "href/destination=${1:dest name}\r",
-      "href/format=${1:format commands}\r",
-      "pdfcopyright=${1:copyright text}\r",
-      "pdftype=${1|Collection,Dataset,Event,Image,InteractiveResource,MovingImage,PhysicalObject,Service,Software,Sound,StillImage,Text\r|}",
-      "pdflicenseurl=${1:URL}\r",
-      "pdfauthortitle=${1:author title}\r",
-      "pdfcaptionwriter=${1:caption writer name}\r",
-      "pdfmetalang=${1:meta language}\r",
-      "pdfsource=${1:source file name}\r",
-      "pdfdocumentid=uuid:${1:id num}\r",
-      "pdfinstanceid=uuid:${1:id num}\r",
-      "pdfversionid=${1:version id}\r",
-      "pdfrendition=${1|default,draft,low-res,proof,screen,thumbnail\r|}",
-      "pdfpublication=${1:publication}\r",
-      "pdfpubtype=${1:publication type}\r",
-      "pdfbytes=${1:file size}\r",
-      "pdfnumpages=${1:number of pages}\r",
-      "pdfissn=${1:print ISSN}\r",
-      "pdfeissn=${1:electronic ISSN}\r",
-      "pdfisbn=${1:ISBN}\r",
-      "pdfbookedition=${1:book edition}\r",
-      "pdfpublisher=${1:publisher}\r",
-      "pdfvolumenum=${1:volume number}\r",
-      "pdfissuenum=${1:issue number}\r",
-      "pdfpagerange={${1:page ranges}}\r",
-      "pdfdoi=${1:DOI}\r",
-      "pdfurl=${1:URL}\r",
-      "pdfidentifier=${1:identifier}\r",
-      "pdfsubtitle=${1:subtitle}\r",
-      "pdfpubstatus=${1:publication status}\r",
-      "pdfcontactaddress=${1:street address}\r",
-      "pdfcontactcity=${1:city}\r",
-      "pdfcontactregion=${1:state or province}\r",
-      "pdfcontactpostcode=${1:postal code}\r",
-      "pdfcontactcountry=${1:country}\r",
-      "pdfcontactphone=${1:phone number}\r",
-      "pdfcontactemail=${1:email}\r",
-      "pdfcontacturl=${1:URL}\r",
-      "pdfdate=${1:date}\r",
+      "href/urlencode",
+      "href/protocol=${1:prefix}",
+      "href/destination=${1:dest name}",
+      "href/format=${1:format commands}",
+      "pdfcopyright=${1:copyright text}",
+      "pdftype=${1|Collection,Dataset,Event,Image,InteractiveResource,MovingImage,PhysicalObject,Service,Software,Sound,StillImage,Text|}",
+      "pdflicenseurl=${1:URL}",
+      "pdfauthortitle=${1:author title}",
+      "pdfcaptionwriter=${1:caption writer name}",
+      "pdfmetalang=${1:meta language}",
+      "pdfsource=${1:source file name}",
+      "pdfdocumentid=uuid:${1:id num}",
+      "pdfinstanceid=uuid:${1:id num}",
+      "pdfversionid=${1:version id}",
+      "pdfrendition=${1|default,draft,low-res,proof,screen,thumbnail|}",
+      "pdfpublication=${1:publication}",
+      "pdfpubtype=${1:publication type}",
+      "pdfbytes=${1:file size}",
+      "pdfnumpages=${1:number of pages}",
+      "pdfissn=${1:print ISSN}",
+      "pdfeissn=${1:electronic ISSN}",
+      "pdfisbn=${1:ISBN}",
+      "pdfbookedition=${1:book edition}",
+      "pdfpublisher=${1:publisher}",
+      "pdfvolumenum=${1:volume number}",
+      "pdfissuenum=${1:issue number}",
+      "pdfpagerange={${1:page ranges}}",
+      "pdfdoi=${1:DOI}",
+      "pdfurl=${1:URL}",
+      "pdfidentifier=${1:identifier}",
+      "pdfsubtitle=${1:subtitle}",
+      "pdfpubstatus=${1:publication status}",
+      "pdfcontactaddress=${1:street address}",
+      "pdfcontactcity=${1:city}",
+      "pdfcontactregion=${1:state or province}",
+      "pdfcontactpostcode=${1:postal code}",
+      "pdfcontactcountry=${1:country}",
+      "pdfcontactphone=${1:phone number}",
+      "pdfcontactemail=${1:email}",
+      "pdfcontacturl=${1:URL}",
+      "pdfdate=${1:date}",
       "link",
       "url",
       "file",

@@ -1844,7 +1844,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:colormap}}{${2:data file%file}}"
+        "snippet": "[${3:options%keyvals}]{${1:colormap}}{${2:data file%file}}",
+        "keys": [
+          "\\pgfplotscolormaptodatafile"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -2480,8 +2484,12 @@
       "unusual": true
     },
     {
-      "name": "simplecoordinate(x,y,z)",
-      "unusual": true
+      "name": "simplecoordinate",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:x},${2:y},${3:z})"
+      }
     },
     {
       "name": "pgfplotssetaxesfromazel",
@@ -2912,7 +2920,11 @@
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:name}}{${2:keyvals}}"
+        "snippet": "{${1:name}}{${2:keyvals}}",
+        "keys": [
+          "\\pgfplotsdeclarepointmetasource"
+        ],
+        "keyPos": 1
       }
     },
     {
@@ -3168,8 +3180,12 @@
       "unusual": true
     },
     {
-      "name": "pgfplotsplothandlergraphicspointmappoint(x,y,z)(a,b)",
-      "unusual": true
+      "name": "pgfplotsplothandlergraphicspointmappoint",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x},${2:y},${3:z})(${4:a},${5:b})"
+      }
     },
     {
       "name": "pgfplotsplothandlergraphicspointmapcomputerequiredview",

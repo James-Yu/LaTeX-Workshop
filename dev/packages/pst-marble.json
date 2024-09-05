@@ -9,10 +9,18 @@
   ],
   "macros": [
     {
-      "name": "psMarble(width,height)"
+      "name": "psMarble",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:width},${2:height})"
+      }
     },
     {
-      "name": "psMarble(x0,y0)(x1,y1)"
+      "name": "psMarble",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x0},${2:y0})(${3:x1},${4:y1})"
+      }
     },
     {
       "name": "psMarble",
@@ -32,24 +40,24 @@
   "envs": [],
   "keys": {
     "\\psMarble#c": [
-      "actions={${1:marbling actions}}\r",
-      "spractions={${1:spray actions}}\r",
-      "shadings={${1:shading actions}}\r",
-      "background={[${1:r g b}]}\r",
-      "paper={[${1:r g b}]}\r",
+      "actions={${1:marbling actions}}",
+      "spractions={${1:spray actions}}",
+      "shadings={${1:shading actions}}",
+      "background={[${1:r g b}]}",
+      "paper={[${1:r g b}]}",
       "drawcontours",
-      "seed=${1:seed}\r",
-      "oversample=${1:number}\r",
-      "overscan=${1:number}\r",
+      "seed=${1:seed}",
+      "oversample=${1:number}",
+      "overscan=${1:number}",
       "bckg",
-      "colors={[${1:r1 g1 b1}] ${2:[r2 b2 g2] ...}}\r",
-      "colors={(${1:RrGgBb}) ${2:(RrGgBb) ...}}\r",
-      "viscosity=${1:number}\r",
+      "colors={[${1:r1 g1 b1}] ${2:[r2 b2 g2] ...}}",
+      "colors={(${1:RrGgBb}) ${2:(RrGgBb) ...}}",
+      "viscosity=${1:number}",
       "linewidth=",
       "linecolor=",
-      "blendmode=${1:mode number}\r",
-      "shapealpha=${1:number}\r",
-      "opacity=${1:factor}\r"
+      "blendmode=${1:mode number}",
+      "shapealpha=${1:number}",
+      "opacity=${1:factor}"
     ]
   },
   "args": []

@@ -49,7 +49,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label%plain}}"
+        "snippet": "[${2:options%keyvals}]{${1:label%plain}}",
+        "keys": [
+          "\\Arrow"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -109,7 +113,13 @@
       "name": "WithArrows",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{WithArrows},\\WithArrowsOptions,\\WithArrowsNewStyle",
+          "\\begin{WithArrows},\\begin{DispWithArrows},\\begin{DispWithArrows*},\\WithArrowsOptions,\\WithArrowsNewStyle",
+          "\\begin{WithArrows},\\begin{DispWithArrows},\\begin{DispWithArrows*},\\WithArrowsNewStyle"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -119,7 +129,14 @@
       "name": "DispWithArrows",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{WithArrows},\\begin{DispWithArrows},\\begin{DispWithArrows*},\\WithArrowsOptions,\\WithArrowsNewStyle",
+          "\\begin{WithArrows},\\begin{DispWithArrows},\\begin{DispWithArrows*},\\WithArrowsNewStyle",
+          "\\begin{DispWithArrows},\\begin{DispWithArrows*},\\WithArrowsOptions,\\WithArrowsNewStyle",
+          "\\begin{DispWithArrows},\\begin{DispWithArrows*},\\WithArrowsNewStyle"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -129,87 +146,94 @@
       "name": "DispWithArrows*",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{WithArrows},\\begin{DispWithArrows},\\begin{DispWithArrows*},\\WithArrowsOptions,\\WithArrowsNewStyle",
+          "\\begin{WithArrows},\\begin{DispWithArrows},\\begin{DispWithArrows*},\\WithArrowsNewStyle",
+          "\\begin{DispWithArrows},\\begin{DispWithArrows*},\\WithArrowsOptions,\\WithArrowsNewStyle",
+          "\\begin{DispWithArrows},\\begin{DispWithArrows*},\\WithArrowsNewStyle"
+        ],
+        "keyPos": 0
       }
     }
   ],
   "keys": {
     "\\usepackage/witharrows#c": [
-      "footnote\r",
-      "footnotehyper\r"
+      "footnote",
+      "footnotehyper"
     ],
     "\\begin{WithArrows},\\WithArrowsOptions,\\WithArrowsNewStyle": [
-      "c\r",
-      "b\r",
+      "c",
+      "b",
       "right-overlap"
     ],
     "\\begin{WithArrows},\\begin{DispWithArrows},\\begin{DispWithArrows*},\\WithArrowsOptions,\\WithArrowsNewStyle": [
-      "tikz={${1:TikZ options}}\r",
+      "tikz={${1:TikZ options}}",
       "xoffset=",
-      "command-name=${1:csname}\r",
-      "code-before=${1:code}\r",
-      "code-after=${1:code}\r",
-      "format=${1:cols}\r",
-      "show-nodes\r",
-      "show-node-names\r",
-      "displaystyle\r",
-      "ll\r",
-      "lr\r",
-      "rl\r",
-      "rr\r",
-      "i\r",
-      "group\r",
-      "groups\r",
-      "up-and-down={${1:options}}\r",
+      "command-name=${1:csname}",
+      "code-before=${1:code}",
+      "code-after=${1:code}",
+      "format=${1:cols}",
+      "show-nodes",
+      "show-node-names",
+      "displaystyle",
+      "ll",
+      "lr",
+      "rl",
+      "rr",
+      "i",
+      "group",
+      "groups",
+      "up-and-down={${1:options}}",
       "jot=",
       "interline=",
-      "tikz-code={${1:code}}\r",
+      "tikz-code={${1:code}}",
       "start-adjust=",
       "end-adjust=",
       "adjust=",
       "ygap=",
       "ystart=",
       "max-length-of-arrow=",
-      "%witharrowsstyle\r"
+      "%witharrowsstyle"
     ],
     "\\begin{WithArrows},\\begin{DispWithArrows},\\begin{DispWithArrows*},\\WithArrowsNewStyle": [
-      "name=${1:node name}\r"
+      "name=${1:node name}"
     ],
     "\\begin{DispWithArrows},\\begin{DispWithArrows*},\\WithArrowsOptions,\\WithArrowsNewStyle": [
-      "wrap-lines\r",
-      "tagged-lines={${1:line1,line2,...}}\r",
-      "fleqn\r",
+      "wrap-lines",
+      "tagged-lines={${1:line1,line2,...}}",
+      "fleqn",
       "mathindent=",
-      "subequations\r",
-      "standard-behaviour-with-items\r"
+      "subequations",
+      "standard-behaviour-with-items"
     ],
     "\\begin{DispWithArrows},\\begin{DispWithArrows*},\\WithArrowsNewStyle": [
-      "left-brace\r",
-      "left-brace={${1:content}}\r",
-      "replace-left-brace-by=\r"
+      "left-brace",
+      "left-brace={${1:content}}",
+      "replace-left-brace-by="
     ],
     "\\WithArrowsOptions,\\WithArrowsNewStyle": [
       "xoffset-for-o-arrows=",
       "up-and-down/width=",
       "up-and-down/radius=",
-      "no-arrows\r"
+      "no-arrows"
     ],
     "\\Arrow": [
-      "jump=${1:integer}\r",
+      "jump=${1:integer}",
       "xoffset=",
-      "tikz=\r",
-      "tikz-code={${1:code}}\r",
-      "ll\r",
-      "lr\r",
-      "rl\r",
-      "rr\r",
-      "i\r",
-      "new-group\r",
-      "o\r",
-      "up\r",
-      "up={${1:options}}\r",
-      "down\r",
-      "down={${1:options}}\r"
+      "tikz=",
+      "tikz-code={${1:code}}",
+      "ll",
+      "lr",
+      "rl",
+      "rr",
+      "i",
+      "new-group",
+      "o",
+      "up",
+      "up={${1:options}}",
+      "down",
+      "down={${1:options}}"
     ]
   },
   "args": [

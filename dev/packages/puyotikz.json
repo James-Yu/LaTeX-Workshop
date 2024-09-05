@@ -28,7 +28,11 @@
       "name": "puyoboard",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:board string}}{${2:next puyos string}}"
+        "snippet": "[${3:options%keyvals}]{${1:board string}}{${2:next puyos string}}",
+        "keys": [
+          "\\puyoboard,\\puyogrid"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -49,7 +53,11 @@
       "name": "puyogrid",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:board string}}"
+        "snippet": "[${2:options%keyvals}]{${1:board string}}",
+        "keys": [
+          "\\puyoboard,\\puyogrid"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -75,10 +83,10 @@
   ],
   "keys": {
     "\\puyoboard,\\puyogrid": [
-      "ncols=${1:number}\r",
-      "nrows=${1:number}\r",
-      "nhidrows=${1:number}\r",
-      "showlabels=${1|True,False\r|}"
+      "ncols=${1:number}",
+      "nrows=${1:number}",
+      "nhidrows=${1:number}",
+      "showlabels=${1|True,False|}"
     ]
   },
   "args": []

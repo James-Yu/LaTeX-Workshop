@@ -34,7 +34,11 @@
       "name": "scanpage",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:imagefile}}"
+        "snippet": "[${2:options%keyvals}]{${1:imagefile}}",
+        "keys": [
+          "\\scanpage"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -45,31 +49,31 @@
       }
     },
     {
-      "name": "whitesq(x,y)",
+      "name": "whitesq",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:scale}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:scale}}"
       }
     },
     {
-      "name": "whitesq(x,y)",
+      "name": "whitesq",
       "arg": {
-        "format": "{}[]",
-        "snippet": "{${1:x-scale}}[${2:y-scale}]"
+        "format": "(){}[]",
+        "snippet": "(${3:x},${4:y}){${1:x-scale}}[${2:y-scale}]"
       }
     },
     {
-      "name": "whitecirc(x,y)",
+      "name": "whitecirc",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:scale}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:scale}}"
       }
     },
     {
-      "name": "whitecirc(x,y)",
+      "name": "whitecirc",
       "arg": {
-        "format": "{}[]",
-        "snippet": "{${1:x-scale}}[${2:y-scale}]"
+        "format": "(){}[]",
+        "snippet": "(${3:x},${4:y}){${1:x-scale}}[${2:y-scale}]"
       }
     },
     {
@@ -81,11 +85,11 @@
       "unusual": true
     },
     {
-      "name": "putn(x,y)",
+      "name": "putn",
       "unusual": true,
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:stuff}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:stuff}}"
       }
     },
     {
@@ -101,21 +105,21 @@
   "keys": {
     "\\usepackage/scanpages#c": [
       "nogrid",
-      "scale=${1:factor}\r",
+      "scale=${1:factor}",
       "llx=",
       "lly=",
       "w=",
       "h="
     ],
     "\\scanpage": [
-      "origpgnum=${1:page number}\r",
+      "origpgnum=${1:page number}",
       "origindest",
       "origpgnumoff",
       "dx=",
       "dy=",
-      "page=${1:page number}\r",
-      "rot=${1:degrees}\r",
-      "tanrot=${1:tangent}\r"
+      "page=${1:page number}",
+      "rot=${1:degrees}",
+      "tanrot=${1:tangent}"
     ]
   },
   "args": [

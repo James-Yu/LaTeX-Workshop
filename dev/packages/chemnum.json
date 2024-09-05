@@ -25,7 +25,12 @@
       "name": "cmpd",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:IDs}}"
+        "snippet": "[${2:options%keyvals}]{${1:IDs}}",
+        "keys": [
+          "\\setchemnum,\\cmpd,\\cmpd*,\\cmpd+,\\refcmpd,\\labelcmpd,\\replacecmpd,\\replacecmpd+,\\initcmpd",
+          "\\cmpd,\\cmpd*,\\cmpd+,\\refcmpd,\\labelcmpd,\\replacecmpd,\\replacecmpd+,\\initcmpd"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -41,7 +46,12 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:IDs}}"
+        "snippet": "[${2:options%keyvals}]{${1:IDs}}",
+        "keys": [
+          "\\setchemnum,\\cmpd,\\cmpd*,\\cmpd+,\\refcmpd,\\labelcmpd,\\replacecmpd,\\replacecmpd+,\\initcmpd",
+          "\\cmpd,\\cmpd*,\\cmpd+,\\refcmpd,\\labelcmpd,\\replacecmpd,\\replacecmpd+,\\initcmpd"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -55,7 +65,12 @@
       "name": "refcmpd",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:ID}}"
+        "snippet": "[${2:options%keyvals}]{${1:ID}}",
+        "keys": [
+          "\\setchemnum,\\cmpd,\\cmpd*,\\cmpd+,\\refcmpd,\\labelcmpd,\\replacecmpd,\\replacecmpd+,\\initcmpd",
+          "\\cmpd,\\cmpd*,\\cmpd+,\\refcmpd,\\labelcmpd,\\replacecmpd,\\replacecmpd+,\\initcmpd"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -69,7 +84,12 @@
       "name": "labelcmpd",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:ID}}"
+        "snippet": "[${2:options%keyvals}]{${1:ID}}",
+        "keys": [
+          "\\setchemnum,\\cmpd,\\cmpd*,\\cmpd+,\\refcmpd,\\labelcmpd,\\replacecmpd,\\replacecmpd+,\\initcmpd",
+          "\\cmpd,\\cmpd*,\\cmpd+,\\refcmpd,\\labelcmpd,\\replacecmpd,\\replacecmpd+,\\initcmpd"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -83,7 +103,13 @@
       "name": "replacecmpd",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:ID}}"
+        "snippet": "[${2:options%keyvals}]{${1:ID}}",
+        "keys": [
+          "\\setchemnum,\\cmpd,\\cmpd*,\\cmpd+,\\refcmpd,\\labelcmpd,\\replacecmpd,\\replacecmpd+,\\initcmpd",
+          "\\cmpd,\\cmpd*,\\cmpd+,\\refcmpd,\\labelcmpd,\\replacecmpd,\\replacecmpd+,\\initcmpd",
+          "\\replacecmpd"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -97,7 +123,12 @@
       "name": "initcmpd",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:IDs}}"
+        "snippet": "[${2:options%keyvals}]{${1:IDs}}",
+        "keys": [
+          "\\setchemnum,\\cmpd,\\cmpd*,\\cmpd+,\\refcmpd,\\labelcmpd,\\replacecmpd,\\replacecmpd+,\\initcmpd",
+          "\\cmpd,\\cmpd*,\\cmpd+,\\refcmpd,\\labelcmpd,\\replacecmpd,\\replacecmpd+,\\initcmpd"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -268,47 +299,47 @@
   "envs": [],
   "keys": {
     "\\setchemnum": [
-      "counter-within=${1:counter}\r",
+      "counter-within=${1:counter}",
       "replace-auto",
-      "replace-tag=${1:text}\r",
-      "replace-tag-nr=${1:integer}\r",
-      "replace-style={${1:code}}\r",
-      "replace-pos={${1:TeX pos}}{${2:PS pos}}\r",
-      "init=${1|true,main,false,strict,main-strict\r|}",
-      "log=${1|true,false,silent,verbose\r|}",
-      "show-keys=${1|true,false,def,ref\r|}",
+      "replace-tag=${1:text}",
+      "replace-tag-nr=${1:integer}",
+      "replace-style={${1:code}}",
+      "replace-pos={${1:TeX pos}}{${2:PS pos}}",
+      "init=${1|true,main,false,strict,main-strict|}",
+      "log=${1|true,false,silent,verbose|}",
+      "show-keys=${1|true,false,def,ref|}",
       "hyperlinks",
-      "\r"
+      ""
     ],
     "\\setchemnum,\\cmpd,\\cmpd*,\\cmpd+,\\refcmpd,\\labelcmpd,\\replacecmpd,\\replacecmpd+,\\initcmpd": [
-      "counter-format=${1|arabic,alph,Alph,roman,Roman,greek,Greek\r|}",
-      "sub-counter-format=${1|arabic,alph,Alph,roman,Roman,greek,Greek\r|}",
+      "counter-format=${1|arabic,alph,Alph,roman,Roman,greek,Greek|}",
+      "sub-counter-format=${1|arabic,alph,Alph,roman,Roman,greek,Greek|}",
       "compress",
       "merge",
-      "pre-label-code={${1:code}}\r",
-      "post-label-code={${1:code}}\r",
-      "pre-main-label-code={${1:code}}\r",
-      "post-main-label-code={${1:code}}\r",
-      "main-sub-sep={${1:token}}\r",
-      "format={${1:formatting commands}}\r",
-      "list-label-sep={${1:token}}\r",
-      "sub-list-label-sep={${1:token}}\r",
-      "list-sep-two={${1:code}}\r",
-      "list-sep-more={${1:code}}\r",
-      "list-sep-last-two={${1:code}}\r",
-      "sub-list-sep-two={${1:code}}\r",
-      "sub-list-sep-more={${1:code}}\r",
-      "sub-list-sep-last-two={${1:code}}\r",
-      "sub-list-sep-range={${1:code}}\r"
+      "pre-label-code={${1:code}}",
+      "post-label-code={${1:code}}",
+      "pre-main-label-code={${1:code}}",
+      "post-main-label-code={${1:code}}",
+      "main-sub-sep={${1:token}}",
+      "format={${1:formatting commands}}",
+      "list-label-sep={${1:token}}",
+      "sub-list-label-sep={${1:token}}",
+      "list-sep-two={${1:code}}",
+      "list-sep-more={${1:code}}",
+      "list-sep-last-two={${1:code}}",
+      "sub-list-sep-two={${1:code}}",
+      "sub-list-sep-more={${1:code}}",
+      "sub-list-sep-last-two={${1:code}}",
+      "sub-list-sep-range={${1:code}}"
     ],
     "\\cmpd,\\cmpd*,\\cmpd+,\\refcmpd,\\labelcmpd,\\replacecmpd,\\replacecmpd+,\\initcmpd": [
       "sub-only",
-      "sub-all\r"
+      "sub-all"
     ],
     "\\replacecmpd": [
-      "tag=${1:text}\r",
-      "style={${1:code}}\r",
-      "pos={${1:TeX pos}}{${2:PS pos}}\r"
+      "tag=${1:text}",
+      "style={${1:code}}",
+      "pos={${1:TeX pos}}{${2:PS pos}}"
     ]
   },
   "args": []

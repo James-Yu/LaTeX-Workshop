@@ -28,7 +28,11 @@
       "name": "gnuplotloadfile",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:file}}"
+        "snippet": "[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\begin{gnuplot},\\gnuplotloadfile"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -136,23 +140,27 @@
       "name": "gnuplot",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{gnuplot},\\gnuplotloadfile"
+        ],
+        "keyPos": 0
       }
     }
   ],
   "keys": {
     "\\usepackage/gnuplottex#c": [
-      "shell\r",
-      "noshell\r",
-      "miktex\r",
-      "siunitx\r",
-      "cleanup\r",
-      "subfolder\r"
+      "shell",
+      "noshell",
+      "miktex",
+      "siunitx",
+      "cleanup",
+      "subfolder"
     ],
     "\\begin{gnuplot},\\gnuplotloadfile": [
-      "scale=${1:factor}\r",
-      "terminal=${1|latex,epslatex,jpeg,cairolatex,eepic,emtex,tikz\r|}",
-      "terminaloptions=${1:terminal options}\r"
+      "scale=${1:factor}",
+      "terminal=${1|latex,epslatex,jpeg,cairolatex,eepic,emtex,tikz|}",
+      "terminaloptions=${1:terminal options}"
     ]
   },
   "args": [

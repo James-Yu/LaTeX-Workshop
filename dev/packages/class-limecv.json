@@ -170,7 +170,11 @@
       "name": "cvProject",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:name}}{${2:description%text}}"
+        "snippet": "[${3:options%keyvals}]{${1:name}}{${2:description%text}}",
+        "keys": [
+          "\\cvProject"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -198,21 +202,33 @@
       "name": "cvAddReference",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:keyvals}}"
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\cvAddReference,\\cvAddReference*"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "cvAddReference*",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:keyvals}}"
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\cvAddReference,\\cvAddReference*"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "cvBeneficiary",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:keyvals}}"
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\cvBeneficiary"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -451,61 +467,61 @@
   "keys": {
     "\\documentclass/limecv#c": [
       "print",
-      "path=${1:file path}\r",
-      "sansfont=${1:font name}\r",
-      "monofont=${1:font name}\r"
+      "path=${1:file path}",
+      "sansfont=${1:font name}",
+      "monofont=${1:font name}"
     ],
     "\\cvSetLanguage#c": [
-      "chinese\r",
-      "dutch\r",
-      "english\r",
-      "french\r",
-      "german\r",
-      "italian\r",
-      "spanish\r"
+      "chinese",
+      "dutch",
+      "english",
+      "french",
+      "german",
+      "italian",
+      "spanish"
     ],
     "\\cvProject": [
-      "image=${1:imagefile}\r",
-      "link=${1:URL}\r",
+      "image=${1:imagefile}",
+      "link=${1:URL}",
       "width=",
       "height="
     ],
     "\\cvAddReference,\\cvAddReference*": [
-      "name=\r",
-      "company=\r",
-      "position=\r",
-      "address line 1=\r",
-      "address line 2=\r",
-      "address line 3=\r",
-      "mobile phone=\r",
-      "work phone=\r",
-      "email=\r"
+      "name=",
+      "company=",
+      "position=",
+      "address line 1=",
+      "address line 2=",
+      "address line 3=",
+      "mobile phone=",
+      "work phone=",
+      "email="
     ],
     "\\cvBeneficiary": [
-      "name=\r",
-      "position=\r",
-      "company=\r",
-      "address line 1=\r",
-      "address line 2=\r",
-      "address line 3=\r"
+      "name=",
+      "position=",
+      "company=",
+      "address line 1=",
+      "address line 2=",
+      "address line 3="
     ],
     "\\tikzset#c": [
-      "interesticon/.style={${1:TikZ styles}}\r",
-      "interesttext/.style={${1:TikZ styles}}\r",
-      "eventdottext/.style={${1:TikZ styles}}\r",
-      "invisibletimedot/.style={${1:TikZ styles}}\r",
-      "timedot/.style={${1:TikZ styles}}\r",
-      "eventdot/.style={${1:TikZ styles}}\r",
-      "contactIcon/.style={${1:TikZ styles}}\r",
-      "contactText/.style={${1:TikZ styles}}\r",
-      "headerIcon/.style={${1:TikZ styles}}\r",
-      "skillLevel/.style={${1:TikZ styles}}\r",
-      "languageText/.style={${1:TikZ styles}}\r",
-      "skillText/.style={${1:TikZ styles}}\r",
-      "progressArea/.style={${1:TikZ styles}}\r",
-      "progressBar/.style={${1:TikZ styles}}\r",
-      "sectionTitle/.style={${1:TikZ styles}}\r",
-      "sectionEduText/.style={${1:TikZ styles}}\r"
+      "interesticon/.style={${1:TikZ styles}}",
+      "interesttext/.style={${1:TikZ styles}}",
+      "eventdottext/.style={${1:TikZ styles}}",
+      "invisibletimedot/.style={${1:TikZ styles}}",
+      "timedot/.style={${1:TikZ styles}}",
+      "eventdot/.style={${1:TikZ styles}}",
+      "contactIcon/.style={${1:TikZ styles}}",
+      "contactText/.style={${1:TikZ styles}}",
+      "headerIcon/.style={${1:TikZ styles}}",
+      "skillLevel/.style={${1:TikZ styles}}",
+      "languageText/.style={${1:TikZ styles}}",
+      "skillText/.style={${1:TikZ styles}}",
+      "progressArea/.style={${1:TikZ styles}}",
+      "progressBar/.style={${1:TikZ styles}}",
+      "sectionTitle/.style={${1:TikZ styles}}",
+      "sectionEduText/.style={${1:TikZ styles}}"
     ]
   },
   "args": [

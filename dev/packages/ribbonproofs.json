@@ -25,7 +25,11 @@
       "name": "com",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:text}}"
+        "snippet": "[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\com,\\jus,\\startblock,\\finishblock"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -39,7 +43,11 @@
       "name": "jus",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:text}}"
+        "snippet": "[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\com,\\jus,\\startblock,\\finishblock"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -53,7 +61,12 @@
       "name": "startblock",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:text}}"
+        "snippet": "[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\com,\\jus,\\startblock,\\finishblock",
+          "\\startblock"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -67,7 +80,11 @@
       "name": "finishblock",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:text}}"
+        "snippet": "[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\com,\\jus,\\startblock,\\finishblock"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -84,7 +101,11 @@
       "name": "continueblock",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:text}}"
+        "snippet": "[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\continueblock"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -212,36 +233,40 @@
       "name": "ribbonproof",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{ribbonproof}"
+        ],
+        "keyPos": 0
       }
     }
   ],
   "keys": {
     "\\begin{ribbonproof}": [
-      "extra height=${1:integer}\r",
-      "start ribbons={${1:ribbon1,ribbon2,...}}\r",
-      "start boxes={${1:box1,box2,...}}\r",
+      "extra height=${1:integer}",
+      "start ribbons={${1:ribbon1,ribbon2,...}}",
+      "start boxes={${1:box1,box2,...}}",
       "draw grid"
     ],
     "\\com,\\jus,\\startblock,\\finishblock": [
-      "height=${1:integer}\r",
-      "finish ribbons={${1:name1,name2,...}}\r",
-      "start ribbons={${1:ribbon1,ribbon2,...}}\r",
-      "finish boxes={${1:name1,name2,...}}\r",
-      "start boxes={${1:box1,box2,...}}\r",
-      "extra left=${1:integer}\r",
-      "extra right=${1:integer}\r"
+      "height=${1:integer}",
+      "finish ribbons={${1:name1,name2,...}}",
+      "start ribbons={${1:ribbon1,ribbon2,...}}",
+      "finish boxes={${1:name1,name2,...}}",
+      "start boxes={${1:box1,box2,...}}",
+      "extra left=${1:integer}",
+      "extra right=${1:integer}"
     ],
     "\\startblock": [
-      "fit ribbons={${1:name1,name2,...}}\r",
-      "fit boxes={${1:name1,name2,...}}\r"
+      "fit ribbons={${1:name1,name2,...}}",
+      "fit boxes={${1:name1,name2,...}}"
     ],
     "\\continueblock": [
-      "height=${1:integer}\r",
-      "start ribbons={${1:ribbon1,ribbon2,...}}\r",
-      "start boxes={${1:box1,box2,...}}\r",
-      "jagged\r",
-      "repeat labels\r"
+      "height=${1:integer}",
+      "start ribbons={${1:ribbon1,ribbon2,...}}",
+      "start boxes={${1:box1,box2,...}}",
+      "jagged",
+      "repeat labels"
     ]
   },
   "args": []

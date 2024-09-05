@@ -266,7 +266,11 @@
       "name": "backgroundcolor",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:model%keyvals}]{${1:color spec}}"
+        "snippet": "[${2:model%keyvals}]{${1:color spec}}",
+        "keys": [
+          "\\drawcolor,\\fillcolor,\\hatchcolor,\\pointcolor,\\headcolor,\\tlabelcolor,\\backgroundcolor,\\mfpdefinecolor"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -829,7 +833,11 @@
       "name": "drawcolor",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:model%keyvals}]{${1:color spec}}"
+        "snippet": "[${2:model%keyvals}]{${1:color spec}}",
+        "keys": [
+          "\\drawcolor,\\fillcolor,\\hatchcolor,\\pointcolor,\\headcolor,\\tlabelcolor,\\backgroundcolor,\\mfpdefinecolor"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -953,7 +961,11 @@
       "name": "fillcolor",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:model%keyvals}]{${1:color spec}}"
+        "snippet": "[${2:model%keyvals}]{${1:color spec}}",
+        "keys": [
+          "\\drawcolor,\\fillcolor,\\hatchcolor,\\pointcolor,\\headcolor,\\tlabelcolor,\\backgroundcolor,\\mfpdefinecolor"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1169,7 +1181,11 @@
       "name": "hatchcolor",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:model%keyvals}]{${1:color spec}}"
+        "snippet": "[${2:model%keyvals}]{${1:color spec}}",
+        "keys": [
+          "\\drawcolor,\\fillcolor,\\hatchcolor,\\pointcolor,\\headcolor,\\tlabelcolor,\\backgroundcolor,\\mfpdefinecolor"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1194,7 +1210,11 @@
       "name": "headcolor",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:model%keyvals}]{${1:color spec}}"
+        "snippet": "[${2:model%keyvals}]{${1:color spec}}",
+        "keys": [
+          "\\drawcolor,\\fillcolor,\\hatchcolor,\\pointcolor,\\headcolor,\\tlabelcolor,\\backgroundcolor,\\mfpdefinecolor"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -2039,7 +2059,11 @@
       "name": "pointcolor",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:model%keyvals}]{${1:color spec}}"
+        "snippet": "[${2:model%keyvals}]{${1:color spec}}",
+        "keys": [
+          "\\drawcolor,\\fillcolor,\\hatchcolor,\\pointcolor,\\headcolor,\\tlabelcolor,\\backgroundcolor,\\mfpdefinecolor"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -2601,10 +2625,10 @@
       }
     },
     {
-      "name": "tlabel(x,y)",
+      "name": "tlabel",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:label text}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:label text}}"
       }
     },
     {
@@ -2629,17 +2653,17 @@
       }
     },
     {
-      "name": "tlabelcircle(x,y)",
+      "name": "tlabelcircle",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:text}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:text}}"
       }
     },
     {
-      "name": "tlabelcircle*(x,y)",
+      "name": "tlabelcircle*",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:text}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:text}}"
       }
     },
     {
@@ -2660,7 +2684,11 @@
       "name": "tlabelcolor",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:model%keyvals}]{${1:color spec}}"
+        "snippet": "[${2:model%keyvals}]{${1:color spec}}",
+        "keys": [
+          "\\drawcolor,\\fillcolor,\\hatchcolor,\\pointcolor,\\headcolor,\\tlabelcolor,\\backgroundcolor,\\mfpdefinecolor"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -2671,17 +2699,17 @@
       }
     },
     {
-      "name": "tlabelellipse(x,y)",
+      "name": "tlabelellipse",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:text}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:text}}"
       }
     },
     {
-      "name": "tlabelellipse*(x,y)",
+      "name": "tlabelellipse*",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:text}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:text}}"
       }
     },
     {
@@ -2727,17 +2755,17 @@
       }
     },
     {
-      "name": "tlabeloval(x,y)",
+      "name": "tlabeloval",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:text}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:text}}"
       }
     },
     {
-      "name": "tlabeloval*(x,y)",
+      "name": "tlabeloval*",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:text}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:text}}"
       }
     },
     {
@@ -2769,17 +2797,17 @@
       }
     },
     {
-      "name": "tlabelrect(x,y)",
+      "name": "tlabelrect",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:text}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:text}}"
       }
     },
     {
-      "name": "tlabelrect*(x,y)",
+      "name": "tlabelrect*",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:text}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:text}}"
       }
     },
     {
@@ -3220,56 +3248,56 @@
   ],
   "keys": {
     "\\usepackage/mfpic#c": [
-      "draft\r",
-      "final\r",
-      "nowrite\r",
-      "metapost\r",
-      "metafont\r",
-      "centeredcaptions\r",
-      "justifiedcaptions\r",
-      "raggedcaptions\r",
-      "clip\r",
-      "truebbox\r",
-      "mplabels\r",
-      "overlaylabels\r",
-      "clearsymbols\r",
-      "debug\r",
-      "mfpreadlog\r"
+      "draft",
+      "final",
+      "nowrite",
+      "metapost",
+      "metafont",
+      "centeredcaptions",
+      "justifiedcaptions",
+      "raggedcaptions",
+      "clip",
+      "truebbox",
+      "mplabels",
+      "overlaylabels",
+      "clearsymbols",
+      "debug",
+      "mfpreadlog"
     ],
     "\\drawcolor,\\fillcolor,\\hatchcolor,\\pointcolor,\\headcolor,\\tlabelcolor,\\backgroundcolor,\\mfpdefinecolor": [
-      "cmyk\r",
-      "gray\r",
-      "named\r",
-      "rgb\r",
-      "RGB\r"
+      "cmyk",
+      "gray",
+      "named",
+      "rgb",
+      "RGB"
     ],
     "\\plotsymbol,\\arrowhead,\\arrowmid,\\arrowtail,\\plot": [
-      "Arrowhead\r",
-      "Asterisk\r",
-      "Circle\r",
-      "Cross\r",
-      "Crossbar\r",
-      "Diamond\r",
-      "Leftbar\r",
-      "Leftharpoon\r",
-      "Lefthook\r",
-      "Plus\r",
-      "Rightbar\r",
-      "Rightharpoon\r",
-      "Righthook\r",
-      "SolidCircle\r",
-      "SolidDiamond\r",
-      "SolidSquare\r",
-      "SolidStar\r",
-      "SolidTriangle\r",
-      "Square\r",
-      "Star\r",
-      "Triangle\r"
+      "Arrowhead",
+      "Asterisk",
+      "Circle",
+      "Cross",
+      "Crossbar",
+      "Diamond",
+      "Leftbar",
+      "Leftharpoon",
+      "Lefthook",
+      "Plus",
+      "Rightbar",
+      "Rightharpoon",
+      "Righthook",
+      "SolidCircle",
+      "SolidDiamond",
+      "SolidSquare",
+      "SolidStar",
+      "SolidTriangle",
+      "Square",
+      "Star",
+      "Triangle"
     ],
     "\\reconfigureplot,\\defaultplot": [
-      "colors\r",
-      "dashes\r",
-      "symbols\r"
+      "colors",
+      "dashes",
+      "symbols"
     ]
   },
   "args": [

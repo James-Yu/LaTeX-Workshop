@@ -47,7 +47,11 @@
       "name": "exercises",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{exercises},\\begin{exerciseseries}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -61,7 +65,11 @@
       "name": "exerciseseries",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:title%text}}"
+        "snippet": "[${2:options%keyvals}]{${1:title%text}}",
+        "keys": [
+          "\\begin{exercises},\\begin{exerciseseries}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -83,17 +91,17 @@
       "external",
       "inline",
       "nolabels",
-      "exercisesfontsize=${1:fontsize csname}\r",
+      "exercisesfontsize=${1:fontsize csname}",
       "exerciseaslist",
       "copyexercisesinsolutions",
       "minipage",
       "usesolutionserieslabels"
     ],
     "\\begin{exercises},\\begin{exerciseseries}": [
-      "columns=${1:integer}\r",
-      "exsubrule\r",
-      "solsubrule\r",
-      "subrule\r"
+      "columns=${1:integer}",
+      "exsubrule",
+      "solsubrule",
+      "subrule"
     ]
   },
   "args": [

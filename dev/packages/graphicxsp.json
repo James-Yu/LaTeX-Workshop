@@ -78,7 +78,12 @@
       "name": "insertEPS",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:name}}"
+        "snippet": "[${2:options%keyvals}]{${1:name}}",
+        "keys": [
+          "\\insertEPS,\\includegraphics",
+          "\\insertEPS"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -128,69 +133,73 @@
       "name": "createImage",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:bbox}}{${2:name}}"
+        "snippet": "[${3:options%keyvals}]{${1:bbox}}{${2:name}}",
+        "keys": [
+          "\\begin{createImage}"
+        ],
+        "keyPos": 0
       }
     }
   ],
   "keys": {
     "\\usepackage/graphicxsp#c": [
-      "preview\r",
-      "dvipsone\r",
-      "dvips\r",
-      "showembeds\r",
-      "!showembeds\r",
-      "draft\r",
-      "!draft\r",
-      "final\r",
-      "shownonames\r",
-      "!shownonames\r"
+      "preview",
+      "dvipsone",
+      "dvips",
+      "showembeds",
+      "!showembeds",
+      "draft",
+      "!draft",
+      "final",
+      "shownonames",
+      "!shownonames"
     ],
     "\\embedEPS": [
-      "hiresbb\r",
-      "transparencyGroup\r"
+      "hiresbb",
+      "transparencyGroup"
     ],
     "\\bboxOf#c,\\llxOf#c,\\llyOf#c,\\urxOf#c,\\uryOf#c,\\heightOf#c,\\widthOf#c,\\csOf#c": [
-      "%EPSname\r"
+      "%EPSname"
     ],
     "\\begin{createImage}": [
-      "transparencyGroup\r"
+      "transparencyGroup"
     ],
     "\\insertEPS,\\includegraphics": [
-      "name=${1:name}\r",
-      "transparency={${1:specs}}\r",
-      "presp={${1:PS code}}\r",
-      "postsp={${1:PS code}}\r"
+      "name=${1:name}",
+      "transparency={${1:specs}}",
+      "presp={${1:PS code}}",
+      "postsp={${1:PS code}}"
     ],
     "\\insertEPS": [
-      "alt={${1:alt text}}\r",
-      "bb=${1:llx lly urx ury}\r",
-      "bbllx=\r",
-      "bblly=\r",
-      "bburx=\r",
-      "bbury=\r",
-      "natwidth=\r",
-      "natheight=\r",
+      "alt={${1:alt text}}",
+      "bb=${1:llx lly urx ury}",
+      "bbllx=",
+      "bblly=",
+      "bburx=",
+      "bbury=",
+      "natwidth=",
+      "natheight=",
       "hiresbb",
-      "pagebox=${1|mediabox,cropbox,bleedbox,trimbox,artbox\r|}",
-      "viewport=${1:llx lly urx ury}\r",
-      "trim=${1:llx lly urx ury}\r",
-      "angle=${1:degrees}\r",
-      "origin=\r",
+      "pagebox=${1|mediabox,cropbox,bleedbox,trimbox,artbox|}",
+      "viewport=${1:llx lly urx ury}",
+      "trim=${1:llx lly urx ury}",
+      "angle=${1:degrees}",
+      "origin=",
       "width=",
       "height=",
       "totalheight=",
       "keepaspectratio",
-      "scale=${1:factor}\r",
+      "scale=${1:factor}",
       "clip",
       "draft",
-      "type=${1:file type}\r",
-      "ext=${1:file extension}\r",
-      "read=${1:read-file extension}\r",
-      "command=\r",
-      "quiet\r",
-      "page=${1:page number}\r",
+      "type=${1:file type}",
+      "ext=${1:file extension}",
+      "read=${1:read-file extension}",
+      "command=",
+      "quiet",
+      "page=${1:page number}",
       "interpolate",
-      "decodearray={${1:color array}}\r"
+      "decodearray={${1:color array}}"
     ]
   },
   "args": [

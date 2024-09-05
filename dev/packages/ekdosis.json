@@ -93,7 +93,11 @@
       "name": "DeclareWitness",
       "arg": {
         "format": "{}{}{}[]",
-        "snippet": "{${1:unique id}}{${2:rendition}}{${3:description%text}}[${4:options%keyvals}]"
+        "snippet": "{${1:unique id}}{${2:rendition}}{${3:description%text}}[${4:options%keyvals}]",
+        "keys": [
+          "\\DeclareWitness"
+        ],
+        "keyPos": 3
       }
     },
     {
@@ -128,7 +132,11 @@
       "name": "DeclareScholar",
       "arg": {
         "format": "{}{}[]",
-        "snippet": "{${1:unique id}}{${2:rendition}}[${3:options%keyvals}]"
+        "snippet": "{${1:unique id}}{${2:rendition}}[${3:options%keyvals}]",
+        "keys": [
+          "\\DeclareScholar"
+        ],
+        "keyPos": 2
       }
     },
     {
@@ -177,7 +185,11 @@
       "name": "lem",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:lemma text%text}}"
+        "snippet": "[${2:options%keyvals}]{${1:lemma text%text}}",
+        "keys": [
+          "\\lem"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -191,7 +203,11 @@
       "name": "rdg",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:variant reading}}"
+        "snippet": "[${2:options%keyvals}]{${1:variant reading}}",
+        "keys": [
+          "\\rdg"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -205,7 +221,12 @@
       "name": "note",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:text}}"
+        "snippet": "[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\note,\\note*",
+          "\\note"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -219,7 +240,11 @@
       "name": "note*",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:text}}"
+        "snippet": "[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\note,\\note*"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -303,8 +328,6 @@
         "format": "{}",
         "snippet": "{${1:list of hooks%keyvals}}",
         "keys": [
-          "\\SetHooks",
-          "\\SetHooks",
           "\\SetHooks"
         ],
         "keyPos": 0
@@ -426,7 +449,6 @@
         "format": "{}",
         "snippet": "{${1:options%keyvals}}",
         "keys": [
-          "\\SetLineation",
           "\\SetLineation"
         ],
         "keyPos": 0
@@ -479,7 +501,11 @@
       "name": "ekddiv",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:keyvals}}"
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\ekddiv"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -707,7 +733,11 @@
       "name": "alignment",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{alignment},\\SetAlignment"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -729,7 +759,11 @@
       "name": "ekdverse",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{ekdverse}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -739,7 +773,11 @@
       "name": "ekdstanza",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{ekdstanza}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -748,145 +786,159 @@
   ],
   "keys": {
     "\\usepackage/ekdosis#c": [
-      "layout=${1|float,footins,keyfloat,fitapp\r|}",
-      "divs=${1|ekdosis,latex\r|}",
-      "poetry=verse\r",
-      "parnotes=${1|true,false,roman\r|}",
-      "teiexport=${1|true,false,tidy\r|}"
+      "layout=${1|float,footins,keyfloat,fitapp|}",
+      "divs=${1|ekdosis,latex|}",
+      "poetry=verse",
+      "parnotes=${1|true,false,roman|}",
+      "teiexport=${1|true,false,tidy|}"
     ],
     "\\ekdsetup": [
       "showpagebreaks",
-      "spbmk=${1:string}\r",
-      "hpbmk=${1:string}\r"
+      "spbmk=${1:string}",
+      "hpbmk=${1:string}"
     ],
     "\\DeclareWitness": [
-      "settlement=${1:name}\r",
-      "institution=${1:name}\r",
-      "repository=${1:name}\r",
-      "collection=${1:name}\r",
-      "idno=${1:call number}\r",
-      "msName=${1:name}\r",
-      "origDate=${1:date}\r",
-      "locus=${1:locus}\r"
+      "settlement=${1:name}",
+      "institution=${1:name}",
+      "repository=${1:name}",
+      "collection=${1:name}",
+      "idno=${1:call number}",
+      "msName=${1:name}",
+      "origDate=${1:date}",
+      "locus=${1:locus}"
     ],
     "\\DeclareScholar": [
-      "rawname=${1:name}\r",
-      "forename=${1:name}\r",
-      "surname=${1:name}\r",
-      "addname=${1:additional name}\r",
-      "note=${1:note}\r"
+      "rawname=${1:name}",
+      "forename=${1:name}",
+      "surname=${1:name}",
+      "addname=${1:additional name}",
+      "note=${1:note}"
     ],
     "\\lem": [
-      "wit=${1:list of witnesses}\r",
-      "source=${1:list of sources}\r",
-      "resp=${1:list of scholars}\r",
-      "alt=${1:alternate lemma}\r",
-      "sep=${1:separator}\r",
+      "wit=${1:list of witnesses}",
+      "source=${1:list of sources}",
+      "resp=${1:list of scholars}",
+      "alt=${1:alternate lemma}",
+      "sep=${1:separator}",
       "nosep",
       "nolem",
-      "type=${1:type}\r",
-      "num\r",
-      "nonum\r",
-      "pre=${1:words}\r",
-      "post=${1:words}\r",
-      "prewit=${1:words}\r",
-      "postwit=${1:words}\r"
+      "type=${1:type}",
+      "num",
+      "nonum",
+      "pre=${1:words}",
+      "post=${1:words}",
+      "prewit=${1:words}",
+      "postwit=${1:words}"
     ],
     "\\rdg": [
-      "wit=${1:list of witnesses}\r",
-      "source=${1:list of sources}\r",
-      "resp=${1:list of scholars}\r",
-      "alt=${1:alternate lemma}\r",
+      "wit=${1:list of witnesses}",
+      "source=${1:list of sources}",
+      "resp=${1:list of scholars}",
+      "alt=${1:alternate lemma}",
       "nordg",
-      "type=${1:type}\r",
-      "pre=${1:words}\r",
-      "post=${1:words}\r",
-      "prewit=${1:words}\r",
-      "postwit=${1:words}\r",
-      "subsep=${1:subseparator}\r",
-      "nosubsep\r"
+      "type=${1:type}",
+      "pre=${1:words}",
+      "post=${1:words}",
+      "prewit=${1:words}",
+      "postwit=${1:words}",
+      "subsep=${1:subseparator}",
+      "nosubsep"
     ],
     "\\note,\\note*": [
-      "pre=${1:words}\r",
-      "post=${1:words}\r",
-      "sep\r",
-      "subsep\r"
+      "pre=${1:words}",
+      "post=${1:words}",
+      "sep",
+      "subsep"
     ],
     "\\SetCritSymbols": [
-      "suppbegin=${1:symbol}\r",
-      "suppend=${1:symbol}\r",
-      "delbegin=${1:symbol}\r",
-      "delend=${1:symbol}\r",
-      "sicbegin=${1:symbol}\r",
-      "sicend=${1:symbol}\r",
-      "gapmark=${1:symbols}\r",
+      "suppbegin=${1:symbol}",
+      "suppend=${1:symbol}",
+      "delbegin=${1:symbol}",
+      "delend=${1:symbol}",
+      "sicbegin=${1:symbol}",
+      "sicend=${1:symbol}",
+      "gapmark=${1:symbols}",
       "keepinapp"
     ],
     "\\gap": [
-      "reason=${1:reason}\r",
-      "unit=${1:unit}\r",
-      "quantity=${1:n}\r",
-      "extent=${1:description}\r"
+      "reason=${1:reason}",
+      "unit=${1:unit}",
+      "quantity=${1:n}",
+      "extent=${1:description}"
     ],
     "\\begin{alignment},\\SetAlignment": [
-      "tcols=${1:number}\r",
-      "lcols=${1:number}\r",
-      "texts=${1:semicolon-separated values}\r",
-      "apparatus=${1:semicolon-separated values}\r",
+      "tcols=${1:number}",
+      "lcols=${1:number}",
+      "texts=${1:semicolon-separated values}",
+      "apparatus=${1:semicolon-separated values}",
       "paired",
-      "lineation=${1|page,document\r|}",
+      "lineation=${1|page,document|}",
       "flush",
-      "segmentation=${1|auto,noauto\r|}"
+      "segmentation=${1|auto,noauto|}"
     ],
     "\\SetHooks": [
+      "appfontsize=${1:command}",
+      "refnumstyle=${1:command}",
+      "postrefnum=${1:<command> or <chars>}",
+      "lemmastyle=${1:command}",
+      "readingstyle=${1:command}",
+      "familysep=${1:<symbol> or reset}",
+      "initialrule=${1:command}",
+      "noinitialrule",
+      "keyparopts={${1:keyfloat options}}",
       "appheight=",
-      "fitalgorithm=${1|fontsize,hybrid,areasize,squeeze\r|}"
+      "fitalgorithm=${1|fontsize,hybrid,areasize,squeeze|}"
     ],
     "\\SetApparatus,\\DeclareApparatus": [
-      "direction=${1|LR,RL\r|}",
-      "sep=${1:separator}\r",
-      "subsep=${1:subseparator}\r",
-      "delim=${1:delimiter}\r",
-      "bhook=${1:characters or commands}\r",
-      "ehook=${1:characters}\r",
-      "rule=${1:line definition}\r",
-      "norule\r",
-      "lang=${1:language}\r",
-      "notelang=${1:language}\r",
-      "maxentries=${1:integer}\r"
+      "direction=${1|LR,RL|}",
+      "sep=${1:separator}",
+      "subsep=${1:subseparator}",
+      "delim=${1:delimiter}",
+      "bhook=${1:characters or commands}",
+      "ehook=${1:characters}",
+      "rule=${1:line definition}",
+      "norule",
+      "lang=${1:language}",
+      "notelang=${1:language}",
+      "maxentries=${1:integer}"
     ],
     "\\note": [
-      "type=${1:type}\r",
-      "sep=${1:separator}\r",
+      "type=${1:type}",
+      "sep=${1:separator}",
       "nosep",
-      "lem=${1:lemma text}\r",
-      "num\r",
-      "nonum\r",
-      "labelb=${1:label}\r",
-      "labele=${1:label}\r"
+      "lem=${1:lemma text}",
+      "num",
+      "nonum",
+      "labelb=${1:label}",
+      "labele=${1:label}"
     ],
     "\\begin{ekdverse}": [
       "width=",
-      "type=${1:type}\r"
+      "type=${1:type}"
     ],
     "\\begin{ekdstanza}": [
-      "type=${1:type}\r"
+      "type=${1:type}"
     ],
     "\\SetLineation": [
-      "vlineation=${1|page,document\r|}",
-      "vmodulo=${1:integer}\r",
+      "lineation=${1|page,document,none|}",
+      "modulo",
+      "modulonum=${1:integer}",
+      "margin=${1|right,left,inner,outer|}",
+      "numbers=${1|elided,full|}",
+      "vlineation=${1|page,document|}",
+      "vmodulo=${1:integer}",
       "vnumbrokenlines",
-      "vmargin=${1|right,left\r|}",
-      "continuousvnum\r"
+      "vmargin=${1|right,left|}",
+      "continuousvnum"
     ],
     "\\ekddiv": [
-      "type=${1:type}\r",
-      "n=${1:value}\r",
-      "head=${1:name}\r",
-      "barehead=${1:name}\r",
-      "depth=${1:n}\r",
-      "toc=${1|book,part,chapter,section,subsection,subsubsection,paragraph,subparagraph\r|}",
-      "mark=${1:signpost}\r"
+      "type=${1:type}",
+      "n=${1:value}",
+      "head=${1:name}",
+      "barehead=${1:name}",
+      "depth=${1:n}",
+      "toc=${1|book,part,chapter,section,subsection,subsubsection,paragraph,subparagraph|}",
+      "mark=${1:signpost}"
     ],
     "\\SetTEIxmlExport": [
       "autopar"

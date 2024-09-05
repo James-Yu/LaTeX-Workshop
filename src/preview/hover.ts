@@ -92,7 +92,7 @@ function provideHoverOnMacro(token: string): vscode.Hover | undefined {
                 return
             }
             const doc = cmd.documentation
-            const packageName = cmd.package
+            const packageName = cmd.packageName
             if (packageName && packageName !== 'user-defined' && (!packageNames.includes(packageName))) {
                 packageNames.push(packageName)
             }

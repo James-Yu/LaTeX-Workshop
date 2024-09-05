@@ -34,7 +34,14 @@
       "name": "NiceMatrixOptions",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:keyvals}}"
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\NiceMatrixOptions,\\begin{NiceTabular},\\begin{NiceTabular*},\\begin{NiceTabularX},\\begin{NiceArray},\\begin{pNiceArray},\\begin{bNiceArray},\\begin{BNiceArray},\\begin{vNiceArray},\\begin{VNiceArray},\\begin{NiceMatrix},\\begin{pNiceMatrix},\\begin{bNiceMatrix},\\begin{BNiceMatrix},\\begin{vNiceMatrix},\\begin{VNiceMatrix},\\begin{NiceArrayWithDelims}",
+          "\\NiceMatrixOptions,\\begin{NiceTabular}",
+          "\\NiceMatrixOptions",
+          "\\CodeAfter,\\NiceMatrixOptions,\\begin{NiceTabular},\\begin{NiceTabular*},\\begin{NiceTabularX},\\begin{NiceArray},\\begin{pNiceArray},\\begin{bNiceArray},\\begin{BNiceArray},\\begin{vNiceArray},\\begin{VNiceArray},\\begin{NiceMatrix},\\begin{pNiceMatrix},\\begin{bNiceMatrix},\\begin{BNiceMatrix},\\begin{vNiceMatrix},\\begin{VNiceMatrix},\\begin{NiceArrayWithDelims}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -55,14 +62,22 @@
       "name": "Block",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:i-j}}{${2:content}}"
+        "snippet": "[${3:options%keyvals}]{${1:i-j}}{${2:content}}",
+        "keys": [
+          "\\Block"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "Block",
       "arg": {
         "format": "[]{}<>{}",
-        "snippet": "[${3:options%keyvals}]{${1:i-j}}<${4:code}>{${2:content}}"
+        "snippet": "[${3:options%keyvals}]{${1:i-j}}<${4:code}>{${2:content}}",
+        "keys": [
+          "\\Block"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -72,7 +87,11 @@
       "name": "Hline",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\Hline"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -99,7 +118,11 @@
       "name": "CodeBefore",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\CodeBefore"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -200,7 +223,11 @@
       "name": "rowcolors",
       "arg": {
         "format": "[]{}{}{}[]",
-        "snippet": "[${4:color model}]{${1:row}}{${2:color1}}{${3:color2}}[${5:options%keyvals}]"
+        "snippet": "[${4:color model}]{${1:row}}{${2:color1}}{${3:color2}}[${5:options%keyvals}]",
+        "keys": [
+          "\\rowcolors"
+        ],
+        "keyPos": 4
       }
     },
     {
@@ -228,7 +255,11 @@
       "name": "RowStyle",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:code}}"
+        "snippet": "[${2:options%keyvals}]{${1:code}}",
+        "keys": [
+          "\\RowStyle"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -238,7 +269,11 @@
       "name": "Ldots",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\Ldots,\\Cdots,\\Vdots,\\Ddots,\\Iddots,\\line"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -248,7 +283,11 @@
       "name": "Cdots",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\Ldots,\\Cdots,\\Vdots,\\Ddots,\\Iddots,\\line"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -258,7 +297,11 @@
       "name": "Vdots",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\Ldots,\\Cdots,\\Vdots,\\Ddots,\\Iddots,\\line"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -268,7 +311,12 @@
       "name": "Ddots",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\Ldots,\\Cdots,\\Vdots,\\Ddots,\\Iddots,\\line",
+          "\\Ddots,\\Iddots"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -278,7 +326,12 @@
       "name": "Iddots",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\Ldots,\\Cdots,\\Vdots,\\Ddots,\\Iddots,\\line",
+          "\\Ddots,\\Iddots"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -288,7 +341,11 @@
       "name": "line",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:i-j}}{${2:k-l}}"
+        "snippet": "[${3:options%keyvals}]{${1:i-j}}{${2:k-l}}",
+        "keys": [
+          "\\Ldots,\\Cdots,\\Vdots,\\Ddots,\\Iddots,\\line"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -326,7 +383,11 @@
       "name": "CodeAfter",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\CodeAfter,\\NiceMatrixOptions,\\begin{NiceTabular},\\begin{NiceTabular*},\\begin{NiceTabularX},\\begin{NiceArray},\\begin{pNiceArray},\\begin{bNiceArray},\\begin{BNiceArray},\\begin{vNiceArray},\\begin{VNiceArray},\\begin{NiceMatrix},\\begin{pNiceMatrix},\\begin{bNiceMatrix},\\begin{BNiceMatrix},\\begin{vNiceMatrix},\\begin{VNiceMatrix},\\begin{NiceArrayWithDelims}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -340,7 +401,11 @@
       "name": "SubMatrix",
       "arg": {
         "format": "{}{}{}{}[]",
-        "snippet": "{${1:delim1}}{${2:i-j}}{${3:k-l}}{${4:delim2}}[${5:options%keyvals}]"
+        "snippet": "{${1:delim1}}{${2:i-j}}{${3:k-l}}{${4:delim2}}[${5:options%keyvals}]",
+        "keys": [
+          "\\SubMatrix"
+        ],
+        "keyPos": 4
       }
     },
     {
@@ -354,7 +419,11 @@
       "name": "OverBrace",
       "arg": {
         "format": "[]{}{}{}",
-        "snippet": "[${4:options%keyvals}]{${1:i-j}}{${2:k-l}}{${3:label}}"
+        "snippet": "[${4:options%keyvals}]{${1:i-j}}{${2:k-l}}{${3:label}}",
+        "keys": [
+          "\\OverBrace,\\UnderBrace"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -368,7 +437,11 @@
       "name": "UnderBrace",
       "arg": {
         "format": "[]{}{}{}",
-        "snippet": "[${4:options%keyvals}]{${1:i-j}}{${2:k-l}}{${3:label}}"
+        "snippet": "[${4:options%keyvals}]{${1:i-j}}{${2:k-l}}{${3:label}}",
+        "keys": [
+          "\\OverBrace,\\UnderBrace"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -382,7 +455,11 @@
       "name": "TikzEveryCell",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:TikZ keys}}"
+        "snippet": "[${2:options%keyvals}]{${1:TikZ keys}}",
+        "keys": [
+          "\\TikzEveryCell"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -416,7 +493,11 @@
       "name": "AutoNiceMatrix",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:i-j}}{${2:pattern}}"
+        "snippet": "[${3:options%keyvals}]{${1:i-j}}{${2:pattern}}",
+        "keys": [
+          "\\AutoNiceMatrix,\\pAutoNiceMatrix,\\bAutoNiceMatrix,\\BAutoNiceMatrix,\\vAutoNiceMatrix,\\VAutoNiceMatrix"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -430,7 +511,11 @@
       "name": "pAutoNiceMatrix",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:i-j}}{${2:pattern}}"
+        "snippet": "[${3:options%keyvals}]{${1:i-j}}{${2:pattern}}",
+        "keys": [
+          "\\AutoNiceMatrix,\\pAutoNiceMatrix,\\bAutoNiceMatrix,\\BAutoNiceMatrix,\\vAutoNiceMatrix,\\VAutoNiceMatrix"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -444,7 +529,11 @@
       "name": "bAutoNiceMatrix",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:i-j}}{${2:pattern}}"
+        "snippet": "[${3:options%keyvals}]{${1:i-j}}{${2:pattern}}",
+        "keys": [
+          "\\AutoNiceMatrix,\\pAutoNiceMatrix,\\bAutoNiceMatrix,\\BAutoNiceMatrix,\\vAutoNiceMatrix,\\VAutoNiceMatrix"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -458,7 +547,11 @@
       "name": "BAutoNiceMatrix",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:i-j}}{${2:pattern}}"
+        "snippet": "[${3:options%keyvals}]{${1:i-j}}{${2:pattern}}",
+        "keys": [
+          "\\AutoNiceMatrix,\\pAutoNiceMatrix,\\bAutoNiceMatrix,\\BAutoNiceMatrix,\\vAutoNiceMatrix,\\VAutoNiceMatrix"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -472,7 +565,11 @@
       "name": "vAutoNiceMatrix",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:i-j}}{${2:pattern}}"
+        "snippet": "[${3:options%keyvals}]{${1:i-j}}{${2:pattern}}",
+        "keys": [
+          "\\AutoNiceMatrix,\\pAutoNiceMatrix,\\bAutoNiceMatrix,\\BAutoNiceMatrix,\\vAutoNiceMatrix,\\VAutoNiceMatrix"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -486,7 +583,11 @@
       "name": "VAutoNiceMatrix",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:i-j}}{${2:pattern}}"
+        "snippet": "[${3:options%keyvals}]{${1:i-j}}{${2:pattern}}",
+        "keys": [
+          "\\AutoNiceMatrix,\\pAutoNiceMatrix,\\bAutoNiceMatrix,\\BAutoNiceMatrix,\\vAutoNiceMatrix,\\VAutoNiceMatrix"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -518,7 +619,14 @@
       "name": "NiceTabular",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:preamble}}"
+        "snippet": "[${2:options%keyvals}]{${1:preamble}}",
+        "keys": [
+          "\\NiceMatrixOptions,\\begin{NiceTabular},\\begin{NiceTabular*},\\begin{NiceTabularX},\\begin{NiceArray},\\begin{pNiceArray},\\begin{bNiceArray},\\begin{BNiceArray},\\begin{vNiceArray},\\begin{VNiceArray},\\begin{NiceMatrix},\\begin{pNiceMatrix},\\begin{bNiceMatrix},\\begin{BNiceMatrix},\\begin{vNiceMatrix},\\begin{VNiceMatrix},\\begin{NiceArrayWithDelims}",
+          "\\NiceMatrixOptions,\\begin{NiceTabular}",
+          "\\begin{NiceTabular},\\begin{NiceTabular*},\\begin{NiceTabularX}",
+          "\\CodeAfter,\\NiceMatrixOptions,\\begin{NiceTabular},\\begin{NiceTabular*},\\begin{NiceTabularX},\\begin{NiceArray},\\begin{pNiceArray},\\begin{bNiceArray},\\begin{BNiceArray},\\begin{vNiceArray},\\begin{VNiceArray},\\begin{NiceMatrix},\\begin{pNiceMatrix},\\begin{bNiceMatrix},\\begin{BNiceMatrix},\\begin{vNiceMatrix},\\begin{VNiceMatrix},\\begin{NiceArrayWithDelims}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -532,7 +640,13 @@
       "name": "NiceTabular*",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:preamble}}"
+        "snippet": "[${2:options%keyvals}]{${1:preamble}}",
+        "keys": [
+          "\\NiceMatrixOptions,\\begin{NiceTabular},\\begin{NiceTabular*},\\begin{NiceTabularX},\\begin{NiceArray},\\begin{pNiceArray},\\begin{bNiceArray},\\begin{BNiceArray},\\begin{vNiceArray},\\begin{VNiceArray},\\begin{NiceMatrix},\\begin{pNiceMatrix},\\begin{bNiceMatrix},\\begin{BNiceMatrix},\\begin{vNiceMatrix},\\begin{VNiceMatrix},\\begin{NiceArrayWithDelims}",
+          "\\begin{NiceTabular},\\begin{NiceTabular*},\\begin{NiceTabularX}",
+          "\\CodeAfter,\\NiceMatrixOptions,\\begin{NiceTabular},\\begin{NiceTabular*},\\begin{NiceTabularX},\\begin{NiceArray},\\begin{pNiceArray},\\begin{bNiceArray},\\begin{BNiceArray},\\begin{vNiceArray},\\begin{VNiceArray},\\begin{NiceMatrix},\\begin{pNiceMatrix},\\begin{bNiceMatrix},\\begin{BNiceMatrix},\\begin{vNiceMatrix},\\begin{VNiceMatrix},\\begin{NiceArrayWithDelims}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -546,7 +660,13 @@
       "name": "NiceTabularX",
       "arg": {
         "format": "{}[]{}",
-        "snippet": "{${1:width}}[${3:options%keyvals}]{${2:preamble}}"
+        "snippet": "{${1:width}}[${3:options%keyvals}]{${2:preamble}}",
+        "keys": [
+          "\\NiceMatrixOptions,\\begin{NiceTabular},\\begin{NiceTabular*},\\begin{NiceTabularX},\\begin{NiceArray},\\begin{pNiceArray},\\begin{bNiceArray},\\begin{BNiceArray},\\begin{vNiceArray},\\begin{VNiceArray},\\begin{NiceMatrix},\\begin{pNiceMatrix},\\begin{bNiceMatrix},\\begin{BNiceMatrix},\\begin{vNiceMatrix},\\begin{VNiceMatrix},\\begin{NiceArrayWithDelims}",
+          "\\begin{NiceTabular},\\begin{NiceTabular*},\\begin{NiceTabularX}",
+          "\\CodeAfter,\\NiceMatrixOptions,\\begin{NiceTabular},\\begin{NiceTabular*},\\begin{NiceTabularX},\\begin{NiceArray},\\begin{pNiceArray},\\begin{bNiceArray},\\begin{BNiceArray},\\begin{vNiceArray},\\begin{VNiceArray},\\begin{NiceMatrix},\\begin{pNiceMatrix},\\begin{bNiceMatrix},\\begin{BNiceMatrix},\\begin{vNiceMatrix},\\begin{VNiceMatrix},\\begin{NiceArrayWithDelims}"
+        ],
+        "keyPos": 1
       }
     },
     {
@@ -560,7 +680,12 @@
       "name": "NiceArray",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:preamble}}"
+        "snippet": "[${2:options%keyvals}]{${1:preamble}}",
+        "keys": [
+          "\\NiceMatrixOptions,\\begin{NiceTabular},\\begin{NiceTabular*},\\begin{NiceTabularX},\\begin{NiceArray},\\begin{pNiceArray},\\begin{bNiceArray},\\begin{BNiceArray},\\begin{vNiceArray},\\begin{VNiceArray},\\begin{NiceMatrix},\\begin{pNiceMatrix},\\begin{bNiceMatrix},\\begin{BNiceMatrix},\\begin{vNiceMatrix},\\begin{VNiceMatrix},\\begin{NiceArrayWithDelims}",
+          "\\CodeAfter,\\NiceMatrixOptions,\\begin{NiceTabular},\\begin{NiceTabular*},\\begin{NiceTabularX},\\begin{NiceArray},\\begin{pNiceArray},\\begin{bNiceArray},\\begin{BNiceArray},\\begin{vNiceArray},\\begin{VNiceArray},\\begin{NiceMatrix},\\begin{pNiceMatrix},\\begin{bNiceMatrix},\\begin{BNiceMatrix},\\begin{vNiceMatrix},\\begin{VNiceMatrix},\\begin{NiceArrayWithDelims}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -574,7 +699,12 @@
       "name": "pNiceArray",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:preamble}}"
+        "snippet": "[${2:options%keyvals}]{${1:preamble}}",
+        "keys": [
+          "\\NiceMatrixOptions,\\begin{NiceTabular},\\begin{NiceTabular*},\\begin{NiceTabularX},\\begin{NiceArray},\\begin{pNiceArray},\\begin{bNiceArray},\\begin{BNiceArray},\\begin{vNiceArray},\\begin{VNiceArray},\\begin{NiceMatrix},\\begin{pNiceMatrix},\\begin{bNiceMatrix},\\begin{BNiceMatrix},\\begin{vNiceMatrix},\\begin{VNiceMatrix},\\begin{NiceArrayWithDelims}",
+          "\\CodeAfter,\\NiceMatrixOptions,\\begin{NiceTabular},\\begin{NiceTabular*},\\begin{NiceTabularX},\\begin{NiceArray},\\begin{pNiceArray},\\begin{bNiceArray},\\begin{BNiceArray},\\begin{vNiceArray},\\begin{VNiceArray},\\begin{NiceMatrix},\\begin{pNiceMatrix},\\begin{bNiceMatrix},\\begin{BNiceMatrix},\\begin{vNiceMatrix},\\begin{VNiceMatrix},\\begin{NiceArrayWithDelims}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -588,7 +718,12 @@
       "name": "bNiceArray",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:preamble}}"
+        "snippet": "[${2:options%keyvals}]{${1:preamble}}",
+        "keys": [
+          "\\NiceMatrixOptions,\\begin{NiceTabular},\\begin{NiceTabular*},\\begin{NiceTabularX},\\begin{NiceArray},\\begin{pNiceArray},\\begin{bNiceArray},\\begin{BNiceArray},\\begin{vNiceArray},\\begin{VNiceArray},\\begin{NiceMatrix},\\begin{pNiceMatrix},\\begin{bNiceMatrix},\\begin{BNiceMatrix},\\begin{vNiceMatrix},\\begin{VNiceMatrix},\\begin{NiceArrayWithDelims}",
+          "\\CodeAfter,\\NiceMatrixOptions,\\begin{NiceTabular},\\begin{NiceTabular*},\\begin{NiceTabularX},\\begin{NiceArray},\\begin{pNiceArray},\\begin{bNiceArray},\\begin{BNiceArray},\\begin{vNiceArray},\\begin{VNiceArray},\\begin{NiceMatrix},\\begin{pNiceMatrix},\\begin{bNiceMatrix},\\begin{BNiceMatrix},\\begin{vNiceMatrix},\\begin{VNiceMatrix},\\begin{NiceArrayWithDelims}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -602,7 +737,12 @@
       "name": "BNiceArray",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:preamble}}"
+        "snippet": "[${2:options%keyvals}]{${1:preamble}}",
+        "keys": [
+          "\\NiceMatrixOptions,\\begin{NiceTabular},\\begin{NiceTabular*},\\begin{NiceTabularX},\\begin{NiceArray},\\begin{pNiceArray},\\begin{bNiceArray},\\begin{BNiceArray},\\begin{vNiceArray},\\begin{VNiceArray},\\begin{NiceMatrix},\\begin{pNiceMatrix},\\begin{bNiceMatrix},\\begin{BNiceMatrix},\\begin{vNiceMatrix},\\begin{VNiceMatrix},\\begin{NiceArrayWithDelims}",
+          "\\CodeAfter,\\NiceMatrixOptions,\\begin{NiceTabular},\\begin{NiceTabular*},\\begin{NiceTabularX},\\begin{NiceArray},\\begin{pNiceArray},\\begin{bNiceArray},\\begin{BNiceArray},\\begin{vNiceArray},\\begin{VNiceArray},\\begin{NiceMatrix},\\begin{pNiceMatrix},\\begin{bNiceMatrix},\\begin{BNiceMatrix},\\begin{vNiceMatrix},\\begin{VNiceMatrix},\\begin{NiceArrayWithDelims}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -616,7 +756,12 @@
       "name": "vNiceArray",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:preamble}}"
+        "snippet": "[${2:options%keyvals}]{${1:preamble}}",
+        "keys": [
+          "\\NiceMatrixOptions,\\begin{NiceTabular},\\begin{NiceTabular*},\\begin{NiceTabularX},\\begin{NiceArray},\\begin{pNiceArray},\\begin{bNiceArray},\\begin{BNiceArray},\\begin{vNiceArray},\\begin{VNiceArray},\\begin{NiceMatrix},\\begin{pNiceMatrix},\\begin{bNiceMatrix},\\begin{BNiceMatrix},\\begin{vNiceMatrix},\\begin{VNiceMatrix},\\begin{NiceArrayWithDelims}",
+          "\\CodeAfter,\\NiceMatrixOptions,\\begin{NiceTabular},\\begin{NiceTabular*},\\begin{NiceTabularX},\\begin{NiceArray},\\begin{pNiceArray},\\begin{bNiceArray},\\begin{BNiceArray},\\begin{vNiceArray},\\begin{VNiceArray},\\begin{NiceMatrix},\\begin{pNiceMatrix},\\begin{bNiceMatrix},\\begin{BNiceMatrix},\\begin{vNiceMatrix},\\begin{VNiceMatrix},\\begin{NiceArrayWithDelims}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -630,7 +775,12 @@
       "name": "VNiceArray",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:preamble}}"
+        "snippet": "[${2:options%keyvals}]{${1:preamble}}",
+        "keys": [
+          "\\NiceMatrixOptions,\\begin{NiceTabular},\\begin{NiceTabular*},\\begin{NiceTabularX},\\begin{NiceArray},\\begin{pNiceArray},\\begin{bNiceArray},\\begin{BNiceArray},\\begin{vNiceArray},\\begin{VNiceArray},\\begin{NiceMatrix},\\begin{pNiceMatrix},\\begin{bNiceMatrix},\\begin{BNiceMatrix},\\begin{vNiceMatrix},\\begin{VNiceMatrix},\\begin{NiceArrayWithDelims}",
+          "\\CodeAfter,\\NiceMatrixOptions,\\begin{NiceTabular},\\begin{NiceTabular*},\\begin{NiceTabularX},\\begin{NiceArray},\\begin{pNiceArray},\\begin{bNiceArray},\\begin{BNiceArray},\\begin{vNiceArray},\\begin{VNiceArray},\\begin{NiceMatrix},\\begin{pNiceMatrix},\\begin{bNiceMatrix},\\begin{BNiceMatrix},\\begin{vNiceMatrix},\\begin{VNiceMatrix},\\begin{NiceArrayWithDelims}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -640,7 +790,13 @@
       "name": "NiceMatrix",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\NiceMatrixOptions,\\begin{NiceTabular},\\begin{NiceTabular*},\\begin{NiceTabularX},\\begin{NiceArray},\\begin{pNiceArray},\\begin{bNiceArray},\\begin{BNiceArray},\\begin{vNiceArray},\\begin{VNiceArray},\\begin{NiceMatrix},\\begin{pNiceMatrix},\\begin{bNiceMatrix},\\begin{BNiceMatrix},\\begin{vNiceMatrix},\\begin{VNiceMatrix},\\begin{NiceArrayWithDelims}",
+          "\\begin{NiceMatrix},\\begin{pNiceMatrix},\\begin{bNiceMatrix},\\begin{BNiceMatrix},\\begin{vNiceMatrix},\\begin{VNiceMatrix}",
+          "\\CodeAfter,\\NiceMatrixOptions,\\begin{NiceTabular},\\begin{NiceTabular*},\\begin{NiceTabularX},\\begin{NiceArray},\\begin{pNiceArray},\\begin{bNiceArray},\\begin{BNiceArray},\\begin{vNiceArray},\\begin{VNiceArray},\\begin{NiceMatrix},\\begin{pNiceMatrix},\\begin{bNiceMatrix},\\begin{BNiceMatrix},\\begin{vNiceMatrix},\\begin{VNiceMatrix},\\begin{NiceArrayWithDelims}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -650,7 +806,13 @@
       "name": "pNiceMatrix",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\NiceMatrixOptions,\\begin{NiceTabular},\\begin{NiceTabular*},\\begin{NiceTabularX},\\begin{NiceArray},\\begin{pNiceArray},\\begin{bNiceArray},\\begin{BNiceArray},\\begin{vNiceArray},\\begin{VNiceArray},\\begin{NiceMatrix},\\begin{pNiceMatrix},\\begin{bNiceMatrix},\\begin{BNiceMatrix},\\begin{vNiceMatrix},\\begin{VNiceMatrix},\\begin{NiceArrayWithDelims}",
+          "\\begin{NiceMatrix},\\begin{pNiceMatrix},\\begin{bNiceMatrix},\\begin{BNiceMatrix},\\begin{vNiceMatrix},\\begin{VNiceMatrix}",
+          "\\CodeAfter,\\NiceMatrixOptions,\\begin{NiceTabular},\\begin{NiceTabular*},\\begin{NiceTabularX},\\begin{NiceArray},\\begin{pNiceArray},\\begin{bNiceArray},\\begin{BNiceArray},\\begin{vNiceArray},\\begin{VNiceArray},\\begin{NiceMatrix},\\begin{pNiceMatrix},\\begin{bNiceMatrix},\\begin{BNiceMatrix},\\begin{vNiceMatrix},\\begin{VNiceMatrix},\\begin{NiceArrayWithDelims}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -660,7 +822,13 @@
       "name": "bNiceMatrix",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\NiceMatrixOptions,\\begin{NiceTabular},\\begin{NiceTabular*},\\begin{NiceTabularX},\\begin{NiceArray},\\begin{pNiceArray},\\begin{bNiceArray},\\begin{BNiceArray},\\begin{vNiceArray},\\begin{VNiceArray},\\begin{NiceMatrix},\\begin{pNiceMatrix},\\begin{bNiceMatrix},\\begin{BNiceMatrix},\\begin{vNiceMatrix},\\begin{VNiceMatrix},\\begin{NiceArrayWithDelims}",
+          "\\begin{NiceMatrix},\\begin{pNiceMatrix},\\begin{bNiceMatrix},\\begin{BNiceMatrix},\\begin{vNiceMatrix},\\begin{VNiceMatrix}",
+          "\\CodeAfter,\\NiceMatrixOptions,\\begin{NiceTabular},\\begin{NiceTabular*},\\begin{NiceTabularX},\\begin{NiceArray},\\begin{pNiceArray},\\begin{bNiceArray},\\begin{BNiceArray},\\begin{vNiceArray},\\begin{VNiceArray},\\begin{NiceMatrix},\\begin{pNiceMatrix},\\begin{bNiceMatrix},\\begin{BNiceMatrix},\\begin{vNiceMatrix},\\begin{VNiceMatrix},\\begin{NiceArrayWithDelims}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -670,7 +838,13 @@
       "name": "BNiceMatrix",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\NiceMatrixOptions,\\begin{NiceTabular},\\begin{NiceTabular*},\\begin{NiceTabularX},\\begin{NiceArray},\\begin{pNiceArray},\\begin{bNiceArray},\\begin{BNiceArray},\\begin{vNiceArray},\\begin{VNiceArray},\\begin{NiceMatrix},\\begin{pNiceMatrix},\\begin{bNiceMatrix},\\begin{BNiceMatrix},\\begin{vNiceMatrix},\\begin{VNiceMatrix},\\begin{NiceArrayWithDelims}",
+          "\\begin{NiceMatrix},\\begin{pNiceMatrix},\\begin{bNiceMatrix},\\begin{BNiceMatrix},\\begin{vNiceMatrix},\\begin{VNiceMatrix}",
+          "\\CodeAfter,\\NiceMatrixOptions,\\begin{NiceTabular},\\begin{NiceTabular*},\\begin{NiceTabularX},\\begin{NiceArray},\\begin{pNiceArray},\\begin{bNiceArray},\\begin{BNiceArray},\\begin{vNiceArray},\\begin{VNiceArray},\\begin{NiceMatrix},\\begin{pNiceMatrix},\\begin{bNiceMatrix},\\begin{BNiceMatrix},\\begin{vNiceMatrix},\\begin{VNiceMatrix},\\begin{NiceArrayWithDelims}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -680,7 +854,13 @@
       "name": "vNiceMatrix",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\NiceMatrixOptions,\\begin{NiceTabular},\\begin{NiceTabular*},\\begin{NiceTabularX},\\begin{NiceArray},\\begin{pNiceArray},\\begin{bNiceArray},\\begin{BNiceArray},\\begin{vNiceArray},\\begin{VNiceArray},\\begin{NiceMatrix},\\begin{pNiceMatrix},\\begin{bNiceMatrix},\\begin{BNiceMatrix},\\begin{vNiceMatrix},\\begin{VNiceMatrix},\\begin{NiceArrayWithDelims}",
+          "\\begin{NiceMatrix},\\begin{pNiceMatrix},\\begin{bNiceMatrix},\\begin{BNiceMatrix},\\begin{vNiceMatrix},\\begin{VNiceMatrix}",
+          "\\CodeAfter,\\NiceMatrixOptions,\\begin{NiceTabular},\\begin{NiceTabular*},\\begin{NiceTabularX},\\begin{NiceArray},\\begin{pNiceArray},\\begin{bNiceArray},\\begin{BNiceArray},\\begin{vNiceArray},\\begin{VNiceArray},\\begin{NiceMatrix},\\begin{pNiceMatrix},\\begin{bNiceMatrix},\\begin{BNiceMatrix},\\begin{vNiceMatrix},\\begin{VNiceMatrix},\\begin{NiceArrayWithDelims}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -690,7 +870,13 @@
       "name": "VNiceMatrix",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\NiceMatrixOptions,\\begin{NiceTabular},\\begin{NiceTabular*},\\begin{NiceTabularX},\\begin{NiceArray},\\begin{pNiceArray},\\begin{bNiceArray},\\begin{BNiceArray},\\begin{vNiceArray},\\begin{VNiceArray},\\begin{NiceMatrix},\\begin{pNiceMatrix},\\begin{bNiceMatrix},\\begin{BNiceMatrix},\\begin{vNiceMatrix},\\begin{VNiceMatrix},\\begin{NiceArrayWithDelims}",
+          "\\begin{NiceMatrix},\\begin{pNiceMatrix},\\begin{bNiceMatrix},\\begin{BNiceMatrix},\\begin{vNiceMatrix},\\begin{VNiceMatrix}",
+          "\\CodeAfter,\\NiceMatrixOptions,\\begin{NiceTabular},\\begin{NiceTabular*},\\begin{NiceTabularX},\\begin{NiceArray},\\begin{pNiceArray},\\begin{bNiceArray},\\begin{BNiceArray},\\begin{vNiceArray},\\begin{VNiceArray},\\begin{NiceMatrix},\\begin{pNiceMatrix},\\begin{bNiceMatrix},\\begin{BNiceMatrix},\\begin{vNiceMatrix},\\begin{VNiceMatrix},\\begin{NiceArrayWithDelims}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -700,7 +886,11 @@
       "name": "NiceMatrixBlock",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{NiceMatrixBlock}"
+        ],
+        "keyPos": 0
       }
     },
     {

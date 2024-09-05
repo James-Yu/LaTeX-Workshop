@@ -36,7 +36,11 @@
       "name": "hvqrurl",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:URL}}"
+        "snippet": "[${2:options%keyvals}]{${1:URL}}",
+        "keys": [
+          "\\hvqrset,\\hvqrurl,\\hvqrurl*"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -50,24 +54,28 @@
       "name": "hvqrurl*",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:URL}}"
+        "snippet": "[${2:options%keyvals}]{${1:URL}}",
+        "keys": [
+          "\\hvqrset,\\hvqrurl,\\hvqrurl*"
+        ],
+        "keyPos": 0
       }
     }
   ],
   "envs": [],
   "keys": {
     "\\usepackage/hvqrurl#c": [
-      "nohyperref\r",
-      "forget\r"
+      "nohyperref",
+      "forget"
     ],
     "\\hvqrset,\\hvqrurl,\\hvqrurl*": [
-      "qrlink=${1|nolink,link\r|}",
+      "qrlink=${1|nolink,link|}",
       "qrcolor=",
       "qradjust=",
       "qrheight=",
-      "qrlevel=${1|L,M,Q,H\r|}",
-      "qrreverse\r",
-      "linktext=${1:text}\r"
+      "qrlevel=${1|L,M,Q,H|}",
+      "qrreverse",
+      "linktext=${1:text}"
     ]
   },
   "args": [

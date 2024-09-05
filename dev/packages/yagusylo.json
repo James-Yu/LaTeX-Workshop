@@ -27,7 +27,12 @@
       "name": "setyagusylokeys",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:keyvals}}"
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\setyagusylokeys,\\defdingname,\\setyagenumeratekeys",
+          "\\setyagusylokeys,\\yagfill,\\yagfill*,\\yagfill+,\\yagline,\\yagline*,\\yagline+"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -48,14 +53,22 @@
       "name": "yagding",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:symfam%keyvals}]{${1:char-num}}"
+        "snippet": "[${2:symfam%keyvals}]{${1:char-num}}",
+        "keys": [
+          "\\yagding,\\defdingname,\\begin{yagitemize}"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "yagding",
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:symfam%keyvals}]{${1:char-num}}[${3:color}]"
+        "snippet": "[${2:symfam%keyvals}]{${1:char-num}}[${3:color}]",
+        "keys": [
+          "\\yagding,\\defdingname,\\begin{yagitemize}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -76,28 +89,48 @@
       "name": "defdingname",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:symfam%keyvals}]{${1:char-num}}{${2:ding-name}}"
+        "snippet": "[${3:symfam%keyvals}]{${1:char-num}}{${2:ding-name}}",
+        "keys": [
+          "\\setyagusylokeys,\\defdingname,\\setyagenumeratekeys",
+          "\\yagding,\\defdingname,\\begin{yagitemize}"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "defdingname",
       "arg": {
         "format": "[]{}{}[]",
-        "snippet": "[${3:symfam%keyvals}]{${1:char-num}}{${2:ding-name}}[${4:color}]"
+        "snippet": "[${3:symfam%keyvals}]{${1:char-num}}{${2:ding-name}}[${4:color}]",
+        "keys": [
+          "\\setyagusylokeys,\\defdingname,\\setyagenumeratekeys",
+          "\\yagding,\\defdingname,\\begin{yagitemize}"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "defdingname",
       "arg": {
         "format": "[][]{}{}",
-        "snippet": "[${3:symfam%keyvals}][${4:defext}]{${1:char-num}}{${2:ding-name}}"
+        "snippet": "[${3:symfam%keyvals}][${4:defext}]{${1:char-num}}{${2:ding-name}}",
+        "keys": [
+          "\\setyagusylokeys,\\defdingname,\\setyagenumeratekeys",
+          "\\yagding,\\defdingname,\\begin{yagitemize}"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "defdingname",
       "arg": {
         "format": "[][]{}{}[]",
-        "snippet": "[${3:symfam%keyvals}][${4:defext}]{${1:char-num}}{${2:ding-name}}[${5:color}]"
+        "snippet": "[${3:symfam%keyvals}][${4:defext}]{${1:char-num}}{${2:ding-name}}[${5:color}]",
+        "keys": [
+          "\\setyagusylokeys,\\defdingname,\\setyagenumeratekeys",
+          "\\yagding,\\defdingname,\\begin{yagitemize}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -118,7 +151,11 @@
       "name": "yagfill",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:char-num}}"
+        "snippet": "[${2:options%keyvals}]{${1:char-num}}",
+        "keys": [
+          "\\setyagusylokeys,\\yagfill,\\yagfill*,\\yagfill+,\\yagline,\\yagline*,\\yagline+"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -132,7 +169,11 @@
       "name": "yagfill*",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:ding-name}}"
+        "snippet": "[${2:options%keyvals}]{${1:ding-name}}",
+        "keys": [
+          "\\setyagusylokeys,\\yagfill,\\yagfill*,\\yagfill+,\\yagline,\\yagline*,\\yagline+"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -160,7 +201,11 @@
       "name": "yagline",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:char-num}}"
+        "snippet": "[${2:options%keyvals}]{${1:char-num}}",
+        "keys": [
+          "\\setyagusylokeys,\\yagfill,\\yagfill*,\\yagfill+,\\yagline,\\yagline*,\\yagline+"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -174,7 +219,11 @@
       "name": "yagline*",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:ding-name}}"
+        "snippet": "[${2:options%keyvals}]{${1:ding-name}}",
+        "keys": [
+          "\\setyagusylokeys,\\yagfill,\\yagfill*,\\yagfill+,\\yagline,\\yagline*,\\yagline+"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -195,14 +244,23 @@
       "name": "newenumpattern",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:name}}{${2:keyvals}}"
+        "snippet": "{${1:name}}{${2:keyvals}}",
+        "keys": [
+          "\\newenumpattern,\\begin{yagenumerate},\\setyagenumeratekeys"
+        ],
+        "keyPos": 1
       }
     },
     {
       "name": "setyagenumeratekeys",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:keyvals}}"
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\setyagusylokeys,\\defdingname,\\setyagenumeratekeys",
+          "\\newenumpattern,\\begin{yagenumerate},\\setyagenumeratekeys"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -233,14 +291,22 @@
       "name": "yagitemize",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:symfam%keyvals}]{${1:char-num}}"
+        "snippet": "[${2:symfam%keyvals}]{${1:char-num}}",
+        "keys": [
+          "\\yagding,\\defdingname,\\begin{yagitemize}"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "yagitemize",
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:symfam%keyvals}]{${1:char-num}}[${3:color}]"
+        "snippet": "[${2:symfam%keyvals}]{${1:char-num}}[${3:color}]",
+        "keys": [
+          "\\yagding,\\defdingname,\\begin{yagitemize}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -260,7 +326,11 @@
       "name": "yagenumerate",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:keyvals}]"
+        "snippet": "[${1:keyvals}]",
+        "keys": [
+          "\\newenumpattern,\\begin{yagenumerate},\\setyagenumeratekeys"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -269,21 +339,21 @@
   ],
   "keys": {
     "\\usepackage/yagusylo#c": [
-      "info=${1|mute,normal,verbose\r|}",
-      "onerror=${1|nice,tough\r|}",
+      "info=${1|mute,normal,verbose|}",
+      "onerror=${1|nice,tough|}",
       "color",
-      "XcolorOptions={${1:xcolor options}}\r",
+      "XcolorOptions={${1:xcolor options}}",
       "configfile"
     ],
     "\\setyagusylokeys,\\defdingname,\\setyagenumeratekeys": [
-      "*\r"
+      "*"
     ],
     "\\setyagusylokeys,\\yagfill,\\yagfill*,\\yagfill+,\\yagline,\\yagline*,\\yagline+": [
-      "symfam=${1|marvosym,fourier,wasysym,bbding,dingbat,ark,ifsym,ifsymgeo,ifsymgeonarrow,ifsymgeowide,ifsymclock,ifsymweather,pifont\r|}",
+      "symfam=${1|marvosym,fourier,wasysym,bbding,dingbat,ark,ifsym,ifsymgeo,ifsymgeonarrow,ifsymgeowide,ifsymclock,ifsymweather,pifont|}",
       "symcolor=",
-      "leadtype=${1|l,c,x\r|}",
-      "symplace=${1|c,r,l,a,n\r|}",
-      "sympos=${1:integer 0-1000}\r",
+      "leadtype=${1|l,c,x|}",
+      "symplace=${1|c,r,l,a,n|}",
+      "sympos=${1:integer 0-1000}",
       "boxwidth=",
       "before=",
       "after=",
@@ -291,26 +361,26 @@
       "tail="
     ],
     "\\yagding,\\defdingname,\\begin{yagitemize}": [
-      "marvosym\r",
-      "fourier\r",
-      "wasysym\r",
-      "bbding\r",
-      "dingbat\r",
-      "ark\r",
-      "ifsym\r",
-      "ifsymgeo\r",
-      "ifsymgeonarrow\r",
-      "ifsymgeowide\r",
-      "ifsymclock\r",
-      "ifsymweather\r",
-      "pifont\r"
+      "marvosym",
+      "fourier",
+      "wasysym",
+      "bbding",
+      "dingbat",
+      "ark",
+      "ifsym",
+      "ifsymgeo",
+      "ifsymgeonarrow",
+      "ifsymgeowide",
+      "ifsymclock",
+      "ifsymweather",
+      "pifont"
     ],
     "\\newenumpattern,\\begin{yagenumerate},\\setyagenumeratekeys": [
-      "symfam=${1|marvosym,fourier,wasysym,bbding,dingbat,ark,ifsym,ifsymgeo,ifsymgeonarrow,ifsymgeowide,ifsymclock,ifsymweather,pifont\r|}",
+      "symfam=${1|marvosym,fourier,wasysym,bbding,dingbat,ark,ifsym,ifsymgeo,ifsymgeonarrow,ifsymgeowide,ifsymclock,ifsymweather,pifont|}",
       "symcolor=",
-      "firstitemnum=${1:integer 0-255}\r",
-      "enumlength=${1:integer}\r",
-      "enumpattern=${1:name}\r"
+      "firstitemnum=${1:integer 0-255}",
+      "enumlength=${1:integer}",
+      "enumpattern=${1:name}"
     ]
   },
   "args": [

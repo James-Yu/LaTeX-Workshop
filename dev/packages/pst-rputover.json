@@ -12,10 +12,10 @@
   ],
   "macros": [
     {
-      "name": "rputover(x0,y0)(x1,y1)",
+      "name": "rputover",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:stuff}}"
+        "format": "()(){}",
+        "snippet": "(${2:x0},${3:y0})(${4:x1},${5:y1}){${1:stuff}}"
       }
     },
     {
@@ -68,10 +68,10 @@
       }
     },
     {
-      "name": "pclineover(x0,y0)(x1,y1)",
+      "name": "pclineover",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:stuff}}"
+        "format": "()(){}",
+        "snippet": "(${2:x0},${3:y0})(${4:x1},${5:y1}){${1:stuff}}"
       }
     },
     {
@@ -82,10 +82,10 @@
       }
     },
     {
-      "name": "pcarrowC(x0,y0)(x1,y1)",
+      "name": "pcarrowC",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:stuff}}"
+        "format": "()(){}",
+        "snippet": "(${2:x0},${3:y0})(${4:x1},${5:y1}){${1:stuff}}"
       }
     },
     {
@@ -101,21 +101,21 @@
     "\\rputover#c,\\pclineover#c,\\pcarrowC#c": [
       "autoangle",
       "inverscl",
-      "boxpos=${1:pos}\r",
+      "boxpos=${1:pos}",
       "fboxsep=",
-      "npos=${1:number}\r"
+      "npos=${1:number}"
     ],
     "\\coverable#c": [
       "inverscl"
     ],
     "\\pclineover#c,\\pcarrowC#c": [
-      "absnodesep=\r",
-      "angleadd=${1:degrees}\r",
-      "arrows=${1:arrows}\r",
+      "absnodesep=",
+      "angleadd=${1:degrees}",
+      "arrows=${1:arrows}",
       "offset="
     ],
     "\\pcarrowC#c": [
-      "addbars=${1:bars}\r",
+      "addbars=${1:bars}",
       "baroffset=",
       "Cbarwidth=",
       "tbarsize="

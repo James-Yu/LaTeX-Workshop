@@ -34,7 +34,11 @@
       "name": "iplot",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:function%definition}}"
+        "snippet": "[${2:options%keyvals}]{${1:function%definition}}",
+        "keys": [
+          "\\iplot"
+        ],
+        "keyPos": 0
       }
     }
   ],
@@ -46,7 +50,11 @@
       "name": "iplotdd",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{iplotdd},\\begin{iplotddd}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -56,21 +64,25 @@
       "name": "iplotddd",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{iplotdd},\\begin{iplotddd}"
+        ],
+        "keyPos": 0
       }
     }
   ],
   "keys": {
     "\\begin{iplotdd},\\begin{iplotddd}": [
-      "width=${1:number}\r",
-      "height=${1:number}\r"
+      "width=${1:number}",
+      "height=${1:number}"
     ],
     "\\iplot": [
-      "var={${1:name,start,end}}\r",
-      "param={${1:name,value,step,start,end}}\r",
-      "frange={${1:name,start,end}}\r",
-      "color=${1|black,white,red,green,blue,cyan,magenta,yellow,dark-gray,gray,light-gray\r|}",
-      "resolution=${1:resolution}\r"
+      "var={${1:name,start,end}}",
+      "param={${1:name,value,step,start,end}}",
+      "frange={${1:name,start,end}}",
+      "color=${1|black,white,red,green,blue,cyan,magenta,yellow,dark-gray,gray,light-gray|}",
+      "resolution=${1:resolution}"
     ]
   },
   "args": []

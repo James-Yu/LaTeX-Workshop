@@ -2,8 +2,43 @@
   "deps": [],
   "macros": [
     {
+      "name": "multiputlist",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:x},${3:y})(${4:Δx},${5:Δy}){${1:item1,item2,...}}"
+      }
+    },
+    {
+      "name": "multiputlist",
+      "arg": {
+        "format": "()()[]{}",
+        "snippet": "(${3:x},${4:y})(${5:Δx},${6:Δy})[${2:pos}]{${1:item1,item2,...}}"
+      }
+    },
+    {
       "name": "lopoff",
       "unusual": true
+    },
+    {
+      "name": "matrixput",
+      "arg": {
+        "format": "()(){}(){}{}",
+        "snippet": "(${4:x},${5:y})(${6:Δx1},${7:Δy1}){${1:n1}}(${8:Δx2},${9:Δy2}){${2:n2}}{${3:object}}"
+      }
+    },
+    {
+      "name": "grid",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:width},${2:height})(${3:Δwidth},${4:Δheight})"
+      }
+    },
+    {
+      "name": "grid",
+      "arg": {
+        "format": "()()[]",
+        "snippet": "(${2:width},${3:height})(${4:Δwidth},${5:Δheight})[${1:x0,y0}]"
+      }
     },
     {
       "name": "dashlinestretch",
@@ -18,10 +53,10 @@
       "unusual": true
     },
     {
-      "name": "jput(x,y)",
+      "name": "jput",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:object}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:object}}"
       }
     },
     {

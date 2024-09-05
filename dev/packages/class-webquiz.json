@@ -34,7 +34,11 @@
       "name": "answer",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:comparison type%keyvals}]{${1:correct answer%text}}"
+        "snippet": "[${2:comparison type%keyvals}]{${1:correct answer%text}}",
+        "keys": [
+          "\\answer,\\answer*"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -48,7 +52,11 @@
       "name": "answer*",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:comparison type%keyvals}]{${1:correct answer%text}}"
+        "snippet": "[${2:comparison type%keyvals}]{${1:correct answer%text}}",
+        "keys": [
+          "\\answer,\\answer*"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -335,7 +343,11 @@
       "name": "choice",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{choice}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -361,30 +373,30 @@
   ],
   "keys": {
     "\\documentclass/webquiz#c": [
-      "fixedorder\r",
-      "randomorder\r",
-      "hidesidemenu\r",
-      "sidemenu\r",
-      "language=${1:language}\r",
-      "onepage\r",
-      "separatepages\r",
-      "pst2pdf\r",
-      "separatepages\r",
-      "showsidemenu\r",
-      "theme=${1|blue,darkblue,darkred,default,earthy,fresh,light,lively,muted,sleek,spring,vibrant\r|}",
-      "tikz\r"
+      "fixedorder",
+      "randomorder",
+      "hidesidemenu",
+      "sidemenu",
+      "language=${1:language}",
+      "onepage",
+      "separatepages",
+      "pst2pdf",
+      "separatepages",
+      "showsidemenu",
+      "theme=${1|blue,darkblue,darkred,default,earthy,fresh,light,lively,muted,sleek,spring,vibrant|}",
+      "tikz"
     ],
     "\\answer,\\answer*": [
-      "complex\r",
-      "integer\r",
-      "lowercase\r",
-      "number\r",
-      "string\r"
+      "complex",
+      "integer",
+      "lowercase",
+      "number",
+      "string"
     ],
     "\\begin{choice}": [
-      "single\r",
-      "multiple\r",
-      "columns=${1:integer}\r"
+      "single",
+      "multiple",
+      "columns=${1:integer}"
     ]
   },
   "args": [

@@ -12,7 +12,11 @@
   ],
   "macros": [
     {
-      "name": "psmoire(x,y)"
+      "name": "psmoire",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:x},${2:y})"
+      }
     },
     {
       "name": "psmoire",
@@ -39,7 +43,11 @@
       }
     },
     {
-      "name": "psRandomDot(x,y)"
+      "name": "psRandomDot",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:x},${2:y})"
+      }
     },
     {
       "name": "psRandomDot",
@@ -66,50 +74,50 @@
   "envs": [],
   "keys": {
     "\\psmoire#c": [
-      "type=${1|Fresnel,linear,radial,circle,square,Newton,Bouasse,Gauss,dot,chess\r|}",
-      "rotate=${1:degrees}\r",
-      "Rmax=${1:length in cm}\r",
-      "scale=${1:factor}\r",
-      "Alpha=${1:degrees}\r",
-      "E=${1:distance in cm}\r",
-      "n=${1:number}\r",
-      "T=${1:distance in mm}\r",
+      "type=${1|Fresnel,linear,radial,circle,square,Newton,Bouasse,Gauss,dot,chess|}",
+      "rotate=${1:degrees}",
+      "Rmax=${1:length in cm}",
+      "scale=${1:factor}",
+      "Alpha=${1:degrees}",
+      "E=${1:distance in cm}",
+      "n=${1:number}",
+      "T=${1:distance in mm}",
       "linewidth=",
       "linecolor=",
-      "dotstyle=${1:style}\r",
+      "dotstyle=${1:style}",
       "dotsize="
     ],
     "\\psRandomDotPatterns#c": [
-      "NumberDots=${1:integer}\r",
-      "coefficients=${1:a b θ x0 y0}\r",
-      "srand=${1:random seed}\r",
+      "NumberDots=${1:integer}",
+      "coefficients=${1:a b θ x0 y0}",
+      "srand=${1:random seed}",
       "layer",
       "revlayer",
       "linecolor=",
       "fillcolor=",
-      "unit=${1:number}\r"
+      "unit=${1:number}"
     ],
     "\\psRandomDot#c": [
-      "hole=${1|round,square\r|}",
-      "r=${1:radius in pts}\r",
-      "p=${1:distance in pts}\r",
-      "rotate=${1:degrees}\r",
-      "k=${1:dispersion factor}\r",
-      "symbole=${1:digit or letter}\r",
-      "PSfont=${1:PS font name}\r",
-      "fontsize=${1:size in pts}\r",
-      "vadjust=${1:number}\r",
-      "hadjust=${1:number}\r"
+      "hole=${1|round,square|}",
+      "r=${1:radius in pts}",
+      "p=${1:distance in pts}",
+      "rotate=${1:degrees}",
+      "k=${1:dispersion factor}",
+      "symbole=${1:digit or letter}",
+      "PSfont=${1:PS font name}",
+      "fontsize=${1:size in pts}",
+      "vadjust=${1:number}",
+      "hadjust=${1:number}"
     ],
     "\\psGlassPattern#c": [
-      "function=${1:function}\r",
+      "function=${1:function}",
       "layers",
       "linecolor=",
       "fillcolor=",
       "dotsize=",
-      "dotstyle=${1:style}\r",
-      "unit=${1:number}\r",
-      "algebraic\r"
+      "dotstyle=${1:style}",
+      "unit=${1:number}",
+      "algebraic"
     ]
   },
   "args": []

@@ -535,26 +535,26 @@
       }
     },
     {
-      "name": "citecs(post)",
+      "name": "citecs",
       "unusual": true,
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:bibid}}{${2:bibid}}"
+        "format": "(){}{}",
+        "snippet": "(${3:post}){${1:bibid}}{${2:bibid}}"
       }
     },
     {
-      "name": "citecs(pre)(post)",
+      "name": "citecs",
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:bibid}}{${2:bibid}}"
+        "format": "()(){}{}",
+        "snippet": "(${3:pre})(${4:post}){${1:bibid}}{${2:bibid}}"
       }
     },
     {
-      "name": "citecs(pre)(post)",
+      "name": "citecs",
       "unusual": true,
       "arg": {
-        "format": "[]{}[]{}",
-        "snippet": "[${3:post}]{${1:bibid}}[${4:post}]{${2:bibid}}"
+        "format": "()()[]{}[]{}",
+        "snippet": "(${5:pre})(${6:post})[${3:post}]{${1:bibid}}[${4:post}]{${2:bibid}}"
       }
     },
     {
@@ -574,10 +574,10 @@
       }
     },
     {
-      "name": "citecs(pre)(post)",
+      "name": "citecs",
       "arg": {
-        "format": "[][]{}[][]{}",
-        "snippet": "[${3:pre}][${4:post}]{${1:bibid}}[${5:pre}][${6:post}]{${2:bibid}}"
+        "format": "()()[][]{}[][]{}",
+        "snippet": "(${7:pre})(${8:post})[${3:pre}][${4:post}]{${1:bibid}}[${5:pre}][${6:post}]{${2:bibid}}"
       }
     },
     {
@@ -588,22 +588,30 @@
       }
     },
     {
-      "name": "authornumcites(post)",
+      "name": "authornumcites",
       "unusual": true,
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:bibid}}{${2:bibid}}"
+        "format": "(){}{}",
+        "snippet": "(${3:post}){${1:bibid}}{${2:bibid}}"
       }
     },
     {
-      "name": "authornumcites(pre)(post)",
+      "name": "authornumcites",
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:bibid}}{${2:bibid}}"
+        "format": "()(){}{}",
+        "snippet": "(${3:pre})(${4:post}){${1:bibid}}{${2:bibid}}"
       }
     },
     {
-      "name": "authornumcites(pre)(post)",
+      "name": "authornumcites",
+      "unusual": true,
+      "arg": {
+        "format": "()()[]{}[]{}",
+        "snippet": "(${5:pre})(${6:post})[${3:post}]{${1:bibid}}[${4:post}]{${2:bibid}}"
+      }
+    },
+    {
+      "name": "authornumcites",
       "unusual": true,
       "arg": {
         "format": "[]{}[]{}",
@@ -614,23 +622,15 @@
       "name": "authornumcites",
       "unusual": true,
       "arg": {
-        "format": "[]{}[]{}",
-        "snippet": "[${3:post}]{${1:bibid}}[${4:post}]{${2:bibid}}"
+        "format": "[][]{}[][]{}",
+        "snippet": "[${3:pre}][${4:post}]{${1:bibid}}[${5:pre}][${6:post}]{${2:bibid}}"
       }
     },
     {
       "name": "authornumcites",
-      "unusual": true,
       "arg": {
-        "format": "[][]{}[][]{}",
-        "snippet": "[${3:pre}][${4:post}]{${1:bibid}}[${5:pre}][${6:post}]{${2:bibid}}"
-      }
-    },
-    {
-      "name": "authornumcites(pre)(post)",
-      "arg": {
-        "format": "[][]{}[][]{}",
-        "snippet": "[${3:pre}][${4:post}]{${1:bibid}}[${5:pre}][${6:post}]{${2:bibid}}"
+        "format": "()()[][]{}[][]{}",
+        "snippet": "(${7:pre})(${8:post})[${3:pre}][${4:post}]{${1:bibid}}[${5:pre}][${6:post}]{${2:bibid}}"
       }
     }
   ],
@@ -658,71 +658,71 @@
   ],
   "keys": {
     "\\xdusetup#c": [
-      "style={${1:keyvals}}\r",
-      "style/cjk-font=${1|adobe,fandol,founder,hanyi,sinotype,win,none\r|}",
-      "style/cjk-fake-bold=${1:伪粗体粗细程度}\r",
-      "style/cjk-fake-slant=${1:伪斜体倾斜程度}\r",
-      "style/latin-font=${1|gyre,tac,tacn,tcc,thcs,tll,none\r|}",
-      "style/latin-sans-scale=${1|upper,lower,off\r|}",
-      "style/latin-mono-scale=${1|upper,lower,off\r|}",
-      "style/math-font=${1|asana,cambria,cm,concrete,erewhon,euler,fira,garamond,gfsneohellenic,kp,libertinus,lm,newcm,stix2,stix,xcharter,xits,bonum,dejavu,pagella,schola,termes,none\r|}",
-      "style/unicode-math={${1:unicode-math宏包选项}}\r",
-      "style/font-type=${1|font,file\r|}",
-      "style/font-path={${1:路径}}\r",
+      "style={${1:keyvals}}",
+      "style/cjk-font=${1|adobe,fandol,founder,hanyi,sinotype,win,none|}",
+      "style/cjk-fake-bold=${1:伪粗体粗细程度}",
+      "style/cjk-fake-slant=${1:伪斜体倾斜程度}",
+      "style/latin-font=${1|gyre,tac,tacn,tcc,thcs,tll,none|}",
+      "style/latin-sans-scale=${1|upper,lower,off|}",
+      "style/latin-mono-scale=${1|upper,lower,off|}",
+      "style/math-font=${1|asana,cambria,cm,concrete,erewhon,euler,fira,garamond,gfsneohellenic,kp,libertinus,lm,newcm,stix2,stix,xcharter,xits,bonum,dejavu,pagella,schola,termes,none|}",
+      "style/unicode-math={${1:unicode-math宏包选项}}",
+      "style/font-type=${1|font,file|}",
+      "style/font-path={${1:路径}}",
       "style/en-cjk-font",
       "style/title-bold-math",
-      "style/language=${1|zh,en\r|}",
-      "style/bib-backend=${1|bibtex,biblatex\r|}",
-      "style/biblatex-option={${1:biblatex宏包选项}}\r",
+      "style/language=${1|zh,en|}",
+      "style/bib-backend=${1|bibtex,biblatex|}",
+      "style/biblatex-option={${1:biblatex宏包选项}}",
       "style/symmetric-margin",
-      "style/page-vertical-align=${1|分散对齐,顶部对齐\r|}",
-      "style/file-search-path={${1:路径}}\r",
+      "style/page-vertical-align=${1|分散对齐,顶部对齐|}",
+      "style/file-search-path={${1:路径}}",
       "style/fix-input",
       "style/fix-include",
       "style/fix-includegraphics",
       "style/ref-add-space",
-      "style/caption-label-sep={${1:间距}}\r",
-      "style/caption-format=${1|plain,hang\r|}",
-      "style/ft-caption-format=${1|plain,hang\r|}",
-      "style/ft-caption-align=${1|left,centering,centering-left\r|}",
-      "style/figure-align=${1|left,centering,right\r|}",
-      "style/table-align=${1|left,centering,right\r|}",
+      "style/caption-label-sep={${1:间距}}",
+      "style/caption-format=${1|plain,hang|}",
+      "style/ft-caption-format=${1|plain,hang|}",
+      "style/ft-caption-align=${1|left,centering,centering-left|}",
+      "style/figure-align=${1|left,centering,right|}",
+      "style/table-align=${1|left,centering,right|}",
       "style/table-small-font",
       "style/alg-small-caption",
       "style/alg-small-font",
-      "style/alg-caption-format=${1|plain,hang\r|}",
-      "style/alg-caption-align=${1|left,centering,centering-left\r|}",
+      "style/alg-caption-format=${1|plain,hang|}",
+      "style/alg-caption-align=${1|left,centering,centering-left|}",
       "add-alg-rule-vspace",
-      "style/before-skip={${1:间距列表}}\r",
-      "style/after-skip={${1:间距列表}}\r",
-      "style/chap-zihao=${1|0,-0,1,-1,2,-2,3,-3,4,-4,5,-5,6,-6,7,8\r|}",
-      "style/sec-zihao=${1|0,-0,1,-1,2,-2,3,-3,4,-4,5,-5,6,-6,7,8\r|}",
-      "style/subsec-zihao=${1|0,-0,1,-1,2,-2,3,-3,4,-4,5,-5,6,-6,7,8\r|}",
-      "style/subsubsec-zihao=${1|0,-0,1,-1,2,-2,3,-3,4,-4,5,-5,6,-6,7,8\r|}",
-      "style/para-zihao=${1|0,-0,1,-1,2,-2,3,-3,4,-4,5,-5,6,-6,7,8\r|}",
-      "style/subpara-zihao=${1|0,-0,1,-1,2,-2,3,-3,4,-4,5,-5,6,-6,7,8\r|}",
-      "info={${1:keyvals}}\r",
-      "info/title={${1:论文中文标题}}\r",
-      "info/department={${1:院系名称}}\r",
-      "info/major={${1:专业名称/一级学科名称}}\r",
-      "info/author={${1:作者姓名}}\r",
-      "info/supervisor={${1:导师姓名}}\r",
-      "info/supv-ent={${1:界}}\r",
-      "info/class={${1:院内导师姓名}}\r",
-      "info/submit-date={${1:yyyy-mm-dd}}\r",
-      "info/sign={${1:文件路径1,文件路径2}}\r",
-      "info/date={${1:日期1,日期2}}\r",
-      "info/student-id={${1:作者学号}}\r",
-      "info/abstract={${1:中文摘要文件路径}}\r",
-      "info/abstract*={${1:英文摘要文件路径}}\r",
-      "info/keywords={${1:中文关键词}}\r",
-      "info/keywords*={${1:英文关键词}}\r",
-      "info/los={${1:符号对照表文件路径}}\r",
-      "info/loa={${1:缩略语对照表文件路径}}\r",
-      "info/bib-resource={${1:参考文献文件路径}}\r",
-      "info/appendix={${1:附录文件路径}}\r",
-      "info/acknowledgements={${1:致谢文件路径}}\r",
-      "info/bio={${1:作者简介路径}}\r"
+      "style/before-skip={${1:间距列表}}",
+      "style/after-skip={${1:间距列表}}",
+      "style/chap-zihao=${1|0,-0,1,-1,2,-2,3,-3,4,-4,5,-5,6,-6,7,8|}",
+      "style/sec-zihao=${1|0,-0,1,-1,2,-2,3,-3,4,-4,5,-5,6,-6,7,8|}",
+      "style/subsec-zihao=${1|0,-0,1,-1,2,-2,3,-3,4,-4,5,-5,6,-6,7,8|}",
+      "style/subsubsec-zihao=${1|0,-0,1,-1,2,-2,3,-3,4,-4,5,-5,6,-6,7,8|}",
+      "style/para-zihao=${1|0,-0,1,-1,2,-2,3,-3,4,-4,5,-5,6,-6,7,8|}",
+      "style/subpara-zihao=${1|0,-0,1,-1,2,-2,3,-3,4,-4,5,-5,6,-6,7,8|}",
+      "info={${1:keyvals}}",
+      "info/title={${1:论文中文标题}}",
+      "info/department={${1:院系名称}}",
+      "info/major={${1:专业名称/一级学科名称}}",
+      "info/author={${1:作者姓名}}",
+      "info/supervisor={${1:导师姓名}}",
+      "info/supv-ent={${1:界}}",
+      "info/class={${1:院内导师姓名}}",
+      "info/submit-date={${1:yyyy-mm-dd}}",
+      "info/sign={${1:文件路径1,文件路径2}}",
+      "info/date={${1:日期1,日期2}}",
+      "info/student-id={${1:作者学号}}",
+      "info/abstract={${1:中文摘要文件路径}}",
+      "info/abstract*={${1:英文摘要文件路径}}",
+      "info/keywords={${1:中文关键词}}",
+      "info/keywords*={${1:英文关键词}}",
+      "info/los={${1:符号对照表文件路径}}",
+      "info/loa={${1:缩略语对照表文件路径}}",
+      "info/bib-resource={${1:参考文献文件路径}}",
+      "info/appendix={${1:附录文件路径}}",
+      "info/acknowledgements={${1:致谢文件路径}}",
+      "info/bio={${1:作者简介路径}}"
     ],
     "\\usepackage/biblatex#c,\\ExecuteBibliographyOptions#c": [
       "citexref",
@@ -742,16 +742,16 @@
       "gbfieldstd",
       "gbpub",
       "gbpunctin",
-      "gblanorder=${2|chineseahead,englishahead,${1:string}\r|}",
-      "gbcitelocal=${1|gb7714-2015,chinese,english\r|}",
-      "gbbiblocal=${1|gb7714-2015,chinese,english\r|}",
-      "gblocal=${1|gb7714-2015,chinese,english\r|}",
-      "gbbiblabel=${1|bracket,parens,plain,dot,box,circle\r|}",
-      "gbnamefmt=${1|uppercase,lowercase,givenahead,familyahead,pinyin,quanpin,reverseorder\r|}",
-      "gbalign=${1|right,left,center,gb7714-2015,gb7714-2015ay\r|}",
+      "gblanorder=${2|chineseahead,englishahead,${1:string}|}",
+      "gbcitelocal=${1|gb7714-2015,chinese,english|}",
+      "gbbiblocal=${1|gb7714-2015,chinese,english|}",
+      "gblocal=${1|gb7714-2015,chinese,english|}",
+      "gbbiblabel=${1|bracket,parens,plain,dot,box,circle|}",
+      "gbnamefmt=${1|uppercase,lowercase,givenahead,familyahead,pinyin,quanpin,reverseorder|}",
+      "gbalign=${1|right,left,center,gb7714-2015,gb7714-2015ay|}",
       "gblabelref",
       "gbcitecomp",
-      "gbcitelabel=${1|bracket,parens,plain,dot,box,circle\r|}"
+      "gbcitelabel=${1|bracket,parens,plain,dot,box,circle|}"
     ]
   },
   "args": [

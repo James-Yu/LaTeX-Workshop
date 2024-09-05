@@ -162,7 +162,11 @@
       "name": "openquestion",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:soluzione%text}}"
+        "snippet": "[${2:options%keyvals}]{${1:soluzione%text}}",
+        "keys": [
+          "\\openquestion"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -424,7 +428,11 @@
       "name": "esercizio",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{esercizio},\\begin{esercizio*}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -434,7 +442,11 @@
       "name": "esercizio*",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{esercizio},\\begin{esercizio*}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -444,7 +456,11 @@
       "name": "soluzione",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{soluzione}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -454,7 +470,12 @@
       "name": "closedquestion",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{closedquestion},\\begin{closedquestion*},\\begin{crocette},\\begin{crocette*}",
+          "\\begin{enumerate}#c,\\begin{itemize}#c,\\begin{description}#c,\\begin{enumerate*}#c,\\begin{itemize*}#c,\\begin{description*}#c,\\begin{closedquestion},\\begin{closedquestion*},\\begin{crocette},\\begin{crocette*}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -464,7 +485,12 @@
       "name": "closedquestion*",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{closedquestion},\\begin{closedquestion*},\\begin{crocette},\\begin{crocette*}",
+          "\\begin{enumerate}#c,\\begin{itemize}#c,\\begin{description}#c,\\begin{enumerate*}#c,\\begin{itemize*}#c,\\begin{description*}#c,\\begin{closedquestion},\\begin{closedquestion*},\\begin{crocette},\\begin{crocette*}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -476,7 +502,12 @@
       "unusual": true,
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{closedquestion},\\begin{closedquestion*},\\begin{crocette},\\begin{crocette*}",
+          "\\begin{enumerate}#c,\\begin{itemize}#c,\\begin{description}#c,\\begin{enumerate*}#c,\\begin{itemize*}#c,\\begin{description*}#c,\\begin{closedquestion},\\begin{closedquestion*},\\begin{crocette},\\begin{crocette*}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -488,7 +519,12 @@
       "unusual": true,
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{closedquestion},\\begin{closedquestion*},\\begin{crocette},\\begin{crocette*}",
+          "\\begin{enumerate}#c,\\begin{itemize}#c,\\begin{description}#c,\\begin{enumerate*}#c,\\begin{itemize*}#c,\\begin{description*}#c,\\begin{closedquestion},\\begin{closedquestion*},\\begin{crocette},\\begin{crocette*}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -531,38 +567,38 @@
   ],
   "keys": {
     "\\usepackage/verifiche#c": [
-      "solutions\r",
-      "noinstitute\r",
-      "noinstruction\r",
-      "noduration\r",
-      "noasyear\r",
-      "nocandidatename\r",
-      "notesttype\r",
-      "nosubtitle\r",
-      "nonumbered\r",
-      "noexercisept\r",
+      "solutions",
+      "noinstitute",
+      "noinstruction",
+      "noduration",
+      "noasyear",
+      "nocandidatename",
+      "notesttype",
+      "nosubtitle",
+      "nonumbered",
+      "noexercisept",
       "color=",
-      "red\r",
-      "blue\r"
+      "red",
+      "blue"
     ],
     "\\headingstyle#c": [
-      "galilei\r",
-      "einstein\r",
-      "cattaneo\r",
-      "%verificheheadingstyle\r"
+      "galilei",
+      "einstein",
+      "cattaneo",
+      "%verificheheadingstyle"
     ],
     "\\pagestyle#c": [
-      "mainverifiche\r",
-      "verifiche\r"
+      "mainverifiche",
+      "verifiche"
     ],
     "\\begin{esercizio},\\begin{esercizio*}": [
-      "label=${1:text}\r",
-      "diff=${1:number}\r",
-      "pt=${1:number}\r",
-      "partialpt\r"
+      "label=${1:text}",
+      "diff=${1:number}",
+      "pt=${1:number}",
+      "partialpt"
     ],
     "\\begin{soluzione}": [
-      "label=${1:text}\r"
+      "label=${1:text}"
     ],
     "\\begin{closedquestion},\\begin{closedquestion*},\\begin{crocette},\\begin{crocette*}": [
       "topsep=",
@@ -575,58 +611,58 @@
       "labelwidth=",
       "labelsep=",
       "itemindent=",
-      "label=${1:commands}\r",
-      "label*=${1:commands}\r",
-      "ref=${1:commands}\r",
-      "font=${1:commands}\r",
-      "format=${1:commands}\r",
-      "align=${1|left,right,parleft\r|}",
+      "label=${1:commands}",
+      "label*=${1:commands}",
+      "ref=${1:commands}",
+      "font=${1:commands}",
+      "format=${1:commands}",
+      "align=${1|left,right,parleft|}",
       "labelindent=",
-      "left=${1:labelindent}\r",
-      "left=${1:labelindent} .. ${2:leftmargin}\r",
-      "widest\r",
-      "widest=${1:string}\r",
-      "widest*=${1:integer}\r",
+      "left=${1:labelindent}",
+      "left=${1:labelindent} .. ${2:leftmargin}",
+      "widest",
+      "widest=${1:string}",
+      "widest*=${1:integer}",
       "labelsep*=",
       "labelindent*=",
-      "start=${1:integer}\r",
-      "resume\r",
-      "resume=${1:series name}\r",
-      "resume*\r",
-      "resume*=${1:series name}\r",
-      "series=${1:series name}\r",
-      "beginpenalty=${1:integer}\r",
-      "midpenalty=${1:integer}\r",
-      "endpenalty=${1:integer}\r",
-      "before=${1:code}\r",
-      "before*=${1:code}\r",
-      "after=${1:code}\r",
-      "after*=${1:code}\r",
-      "first=${1:code}\r",
-      "first*=${1:code}\r",
-      "style=${1|standard,unboxed,nextline,sameline,multiline\r|}",
-      "noitemsep\r",
-      "nosep\r",
-      "wide\r",
-      "wide=${1:parindent}\r",
-      "itemjoin=${1:string}\r",
-      "itemjoin*=${1:string}\r",
-      "afterlabel=${1:string}\r",
-      "mode=${1|unboxed,boxed\r|}"
+      "start=${1:integer}",
+      "resume",
+      "resume=${1:series name}",
+      "resume*",
+      "resume*=${1:series name}",
+      "series=${1:series name}",
+      "beginpenalty=${1:integer}",
+      "midpenalty=${1:integer}",
+      "endpenalty=${1:integer}",
+      "before=${1:code}",
+      "before*=${1:code}",
+      "after=${1:code}",
+      "after*=${1:code}",
+      "first=${1:code}",
+      "first*=${1:code}",
+      "style=${1|standard,unboxed,nextline,sameline,multiline|}",
+      "noitemsep",
+      "nosep",
+      "wide",
+      "wide=${1:parindent}",
+      "itemjoin=${1:string}",
+      "itemjoin*=${1:string}",
+      "afterlabel=${1:string}",
+      "mode=${1|unboxed,boxed|}"
     ],
     "\\openquestion": [
-      "type=${1|lines,squares\r|}",
+      "type=${1|lines,squares|}",
       "width=",
       "height=",
       "spacedim=",
       "linecolor="
     ],
     "\\begin{enumerate}#c,\\begin{itemize}#c,\\begin{description}#c,\\begin{enumerate*}#c,\\begin{itemize*}#c,\\begin{description*}#c,\\begin{closedquestion},\\begin{closedquestion*},\\begin{crocette},\\begin{crocette*}": [
-      "A\r",
-      "a\r",
-      "I\r",
-      "i\r",
-      "1\r"
+      "A",
+      "a",
+      "I",
+      "i",
+      "1"
     ]
   },
   "args": [

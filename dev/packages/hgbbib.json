@@ -157,30 +157,30 @@
       }
     },
     {
-      "name": "nptextcites(post)",
+      "name": "nptextcites",
       "if": "apa",
       "unusual": true,
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:bibid}}{${2:bibid}}"
+        "format": "(){}{}",
+        "snippet": "(${3:post}){${1:bibid}}{${2:bibid}}"
       }
     },
     {
-      "name": "nptextcites(pre)(post)",
+      "name": "nptextcites",
       "if": "apa",
       "unusual": true,
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:bibid}}{${2:bibid}}"
+        "format": "()(){}{}",
+        "snippet": "(${3:pre})(${4:post}){${1:bibid}}{${2:bibid}}"
       }
     },
     {
-      "name": "nptextcites(pre)(post)",
+      "name": "nptextcites",
       "if": "apa",
       "unusual": true,
       "arg": {
-        "format": "[]{}[]{}",
-        "snippet": "[${3:post}]{${1:bibid}}[${4:post}]{${2:bibid}}"
+        "format": "()()[]{}[]{}",
+        "snippet": "(${5:pre})(${6:post})[${3:post}]{${1:bibid}}[${4:post}]{${2:bibid}}"
       }
     },
     {
@@ -202,12 +202,12 @@
       }
     },
     {
-      "name": "nptextcites(pre)(post)",
+      "name": "nptextcites",
       "if": "apa",
       "unusual": true,
       "arg": {
-        "format": "[][]{}[][]{}",
-        "snippet": "[${3:pre}][${4:post}]{${1:bibid}}[${5:pre}][${6:post}]{${2:bibid}}"
+        "format": "()()[][]{}[][]{}",
+        "snippet": "(${7:pre})(${8:post})[${3:pre}][${4:post}]{${1:bibid}}[${5:pre}][${6:post}]{${2:bibid}}"
       }
     },
     {
@@ -229,26 +229,26 @@
       }
     },
     {
-      "name": "mcite(post)",
+      "name": "mcite",
       "unusual": true,
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:bibid}}{${2:bibid}}"
+        "format": "(){}{}",
+        "snippet": "(${3:post}){${1:bibid}}{${2:bibid}}"
       }
     },
     {
-      "name": "mcite(pre)(post)",
+      "name": "mcite",
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:bibid}}{${2:bibid}}"
+        "format": "()(){}{}",
+        "snippet": "(${3:pre})(${4:post}){${1:bibid}}{${2:bibid}}"
       }
     },
     {
-      "name": "mcite(pre)(post)",
+      "name": "mcite",
       "unusual": true,
       "arg": {
-        "format": "[]{}[]{}",
-        "snippet": "[${3:post}]{${1:bibid}}[${4:post}]{${2:bibid}}"
+        "format": "()()[]{}[]{}",
+        "snippet": "(${5:pre})(${6:post})[${3:post}]{${1:bibid}}[${4:post}]{${2:bibid}}"
       }
     },
     {
@@ -268,10 +268,10 @@
       }
     },
     {
-      "name": "mcite(pre)(post)",
+      "name": "mcite",
       "arg": {
-        "format": "[][]{}[][]{}",
-        "snippet": "[${3:pre}][${4:post}]{${1:bibid}}[${5:pre}][${6:post}]{${2:bibid}}"
+        "format": "()()[][]{}[][]{}",
+        "snippet": "(${7:pre})(${8:post})[${3:pre}][${4:post}]{${1:bibid}}[${5:pre}][${6:post}]{${2:bibid}}"
       }
     }
   ],
@@ -283,10 +283,10 @@
   ],
   "keys": {
     "\\usepackage/hgbbib#c": [
-      "apa\r"
+      "apa"
     ],
     "\\usepackage/biblatex#c,\\ExecuteBibliographyOptions#c": [
-      "apamaxprtauth=${1:number}\r"
+      "apamaxprtauth=${1:number}"
     ]
   },
   "args": [

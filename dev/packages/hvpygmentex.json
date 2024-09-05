@@ -46,6 +46,13 @@
     {
       "name": "pyginline",
       "arg": {
+        "format": "||",
+        "snippet": "|${1:code}|"
+      }
+    },
+    {
+      "name": "pyginline",
+      "arg": {
         "format": "[]||",
         "snippet": "[${1:options}]|${2:code}|"
       }
@@ -58,11 +65,11 @@
       }
     },
     {
-      "name": "widest(string list)",
+      "name": "widest",
       "unusual": true,
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:code}}{${2:cmd}}"
+        "format": "(){}{}",
+        "snippet": "(${3:string list}){${1:code}}{${2:cmd}}"
       }
     },
     {
@@ -96,30 +103,30 @@
   ],
   "keys": {
     "\\usepackage/hvpygmentex#c": [
-      "force\r"
+      "force"
     ],
     "\\begin{pygmented}#c,\\inputpygmented#c,\\pyginline#c,\\setpygmented#c": [
-      "lang=${1:language}\r",
-      "sty=${1:pygments style}\r",
-      "font=${1:font commands}\r",
+      "lang=${1:language}",
+      "sty=${1:pygments style}",
+      "font=${1:font commands}",
       "colback=",
-      "gobble=${1:integer}\r",
-      "tabsize=${1:integer}\r",
+      "gobble=${1:integer}",
+      "tabsize=${1:integer}",
       "linenos",
-      "linenostart=${1:integer}\r",
-      "linenostep=${1:integer}\r",
+      "linenostart=${1:integer}",
+      "linenostep=${1:integer}",
       "linenosep=",
-      "caption=${1:caption}\r",
+      "caption=${1:caption}",
       "label=",
       "texcomments",
       "mathescape",
-      "escapeinside=${1:two chars}\r"
+      "escapeinside=${1:two chars}"
     ],
     "\\pyginline#c,\\setpygmented#c": [
-      "inline method=${1:csname}\r"
+      "inline method=${1:csname}"
     ],
     "\\begin{pygmented}#c,\\inputpygmented#c,\\setpygmented#c": [
-      "boxing method=${1:envname}\r"
+      "boxing method=${1:envname}"
     ]
   },
   "args": [

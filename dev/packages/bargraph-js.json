@@ -60,6 +60,13 @@
       }
     },
     {
+      "name": "populateCommaData",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:\"%<bgenv name%>\"},${2:\"%<bg name%>\"},${3:%<str},${4:validate%>})"
+      }
+    },
+    {
       "name": "hs",
       "arg": {
         "format": "{}",
@@ -256,7 +263,11 @@
       "name": "bargraphenv",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:bgenv name}}"
+        "snippet": "[${2:options%keyvals}]{${1:bgenv name}}",
+        "keys": [
+          "\\begin{bargraphenv}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -270,25 +281,29 @@
       "name": "bargraph",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:bg name}}"
+        "snippet": "[${2:options%keyvals}]{${1:bg name}}",
+        "keys": [
+          "\\begin{bargraph}"
+        ],
+        "keyPos": 0
       }
     }
   ],
   "keys": {
     "\\usepackage/bargraph-js#c": [
-      "dynamic\r"
+      "dynamic"
     ],
     "\\begin{bargraphenv}": [
       "width=",
       "height=",
-      "o=${1|horiz,vert\r|}",
-      "origin=${1|0,.5\r|}",
+      "o=${1|horiz,vert|}",
+      "origin=${1|0,.5|}",
       "showaxis"
     ],
     "\\begin{bargraph}": [
-      "nbars=${1:number}\r",
-      "gap=${1:number}\r",
-      "bardimen=${1:number}\r"
+      "nbars=${1:number}",
+      "gap=${1:number}",
+      "bardimen=${1:number}"
     ]
   },
   "args": [

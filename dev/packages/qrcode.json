@@ -16,7 +16,12 @@
       "name": "qrcode",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:URL}}"
+        "snippet": "[${2:options%keyvals}]{${1:URL}}",
+        "keys": [
+          "\\qrcode,\\qrset,\\qrcode*",
+          "\\qrcode,\\qrset"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -30,7 +35,11 @@
       "name": "qrcode*",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:URL}}"
+        "snippet": "[${2:options%keyvals}]{${1:URL}}",
+        "keys": [
+          "\\qrcode,\\qrset,\\qrcode*"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -49,23 +58,23 @@
   "envs": [],
   "keys": {
     "\\usepackage/qrcode#c": [
-      "nolinks\r",
-      "draft\r",
-      "final\r",
-      "forget\r"
+      "nolinks",
+      "draft",
+      "final",
+      "forget"
     ],
     "\\qrcode,\\qrset,\\qrcode*": [
       "height=",
-      "level=${1|L,M,Q,H\r|}",
-      "version=\r",
-      "tight\r",
-      "padding\r",
-      "draft\r"
+      "level=${1|L,M,Q,H|}",
+      "version=",
+      "tight",
+      "padding",
+      "draft"
     ],
     "\\qrcode,\\qrset": [
-      "link\r",
-      "nolink\r",
-      "hyperlink\r"
+      "link",
+      "nolink",
+      "hyperlink"
     ]
   },
   "args": [

@@ -16,7 +16,11 @@
       "name": "fetchverse",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:book ch:vrs}}"
+        "snippet": "[${2:options%keyvals}]{${1:book ch:vrs}}",
+        "keys": [
+          "\\fetchverse,\\fetchverses,\\fetchverses*,\\useBookStyle,\\fetchversestxt"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -30,7 +34,11 @@
       "name": "fetchverses",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:book ch:vrs}}"
+        "snippet": "[${2:options%keyvals}]{${1:book ch:vrs}}",
+        "keys": [
+          "\\fetchverse,\\fetchverses,\\fetchverses*,\\useBookStyle,\\fetchversestxt"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -44,7 +52,11 @@
       "name": "fetchverses*",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:book ch:vrs}}"
+        "snippet": "[${2:options%keyvals}]{${1:book ch:vrs}}",
+        "keys": [
+          "\\fetchverse,\\fetchverses,\\fetchverses*,\\useBookStyle,\\fetchversestxt"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -260,7 +272,11 @@
       }
     },
     {
-      "name": "BV(verse ref)"
+      "name": "BV",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:verse ref})"
+      }
     },
     {
       "name": "null"
@@ -278,7 +294,11 @@
       "if": "fetchsubtr",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:book ch:vrs}}"
+        "snippet": "[${2:options%keyvals}]{${1:book ch:vrs}}",
+        "keys": [
+          "\\markverse"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -302,7 +322,11 @@
       "if": "fetchsubstr",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:book ch:vrs}}"
+        "snippet": "[${2:options%keyvals}]{${1:book ch:vrs}}",
+        "keys": [
+          "\\markverse"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -576,7 +600,11 @@
       "name": "fpquote",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{fpquote},\\begin{fpverse},\\begin{fpquotation}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -586,7 +614,12 @@
       "name": "fpverse",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{fpquote},\\begin{fpverse},\\begin{fpquotation}",
+          "\\begin{fpverse},\\begin{fpquotation}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -596,50 +629,58 @@
       "name": "fpquotation",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{fpquote},\\begin{fpverse},\\begin{fpquotation}",
+          "\\begin{fpverse},\\begin{fpquotation}"
+        ],
+        "keyPos": 0
       }
     }
   ],
   "keys": {
     "\\usepackage/fetchbibpes#c": [
-      "deffolder=${1:file path}\r",
-      "useverses={${1:file1,file2,...}}\r",
-      "useselverses\r",
-      "usesr\r",
-      "fetchsubtr\r",
-      "ignorecfg\r",
-      "cfg=${1:name}\r"
+      "deffolder=${1:file path}",
+      "useverses={${1:file1,file2,...}}",
+      "useselverses",
+      "usesr",
+      "fetchsubtr",
+      "ignorecfg",
+      "cfg=${1:name}"
     ],
     "\\fetchverse,\\fetchverses,\\fetchverses*,\\useBookStyle,\\fetchversestxt": [
-      "abbr=${1|esword,none,long,short\r|}",
+      "abbr=${1|esword,none,long,short|}",
       "roman",
-      "from=${1|KVJ,KVJ+,ISV\r|}",
-      "alt=${1:word}\r",
-      "alt*={${1:word1,word2,...}}\r",
-      "transl=${1:text}\r",
-      "from*=${1|KJV,KJV+,ISV\r|}",
+      "from=${1|KVJ,KVJ+,ISV|}",
+      "alt=${1:word}",
+      "alt*={${1:word1,word2,...}}",
+      "transl=${1:text}",
+      "from*=${1|KJV,KJV+,ISV|}",
       "pcolor=",
-      "pformat=${1:format cmds}\r",
-      "delims=${1:<tok1><tok2>}\r",
-      "enclosewith=${1:<tok1><tok2>\\quote}\r",
-      "format=${1:format cmds}\r",
+      "pformat=${1:format cmds}",
+      "delims=${1:<tok1><tok2>}",
+      "enclosewith=${1:<tok1><tok2>\\quote}",
+      "format=${1:format cmds}",
       "caps",
       "showfirst",
-      "shownone\r",
+      "shownone",
       "useperiod",
       "citeatend",
-      "nocite\r",
-      "priorref=\r",
-      "ltxquotes\r",
-      "replace={${1:find1}}{${2:replace1}}${3:{find2}{replace2}...}\r",
-      "localdefs={${1:localdefs}}\r",
-      "typeset=\r",
-      "typeset*=\r"
+      "nocite",
+      "priorref=",
+      "ltxquotes",
+      "replace={${1:find1}}{${2:replace1}}${3:{find2}{replace2}...}",
+      "localdefs={${1:localdefs}}",
+      "typeset=",
+      "typeset*="
     ],
     "\\markverse": [
-      "name=${1:name}\r",
-      "from=${1:transl}\r",
-      "marks={${1:bfind1}}{${2:efind1}}${3:{bfind2}{efind2}...}\r"
+      "name=${1:name}",
+      "from=${1:transl}",
+      "marks={${1:bfind1}}{${2:efind1}}${3:{bfind2}{efind2}...}",
+      "name=${1:name}",
+      "from=${1:transl}",
+      "marks={${1:bfind1}}{${2:efind1}}${3:{bfind2}{efind2}...}"
     ],
     "\\begin{fpquote},\\begin{fpverse},\\begin{fpquotation}": [
       "leftmargin=",

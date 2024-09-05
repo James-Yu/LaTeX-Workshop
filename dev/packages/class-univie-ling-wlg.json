@@ -248,7 +248,11 @@
       "name": "includefinalpaper",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:file}}"
+        "snippet": "[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\includefinalpaper"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -425,19 +429,20 @@
       "biblatex",
       "covington",
       "expertfonts",
-      "titlepage=${1|none,specialprint,issue\r|}",
+      "titlepage=${1|none,specialprint,issue|}",
       "preprint",
       "peerrev",
-      "type=${1|paper,review\r|}",
-      "draftmark=${1|true,false,firstpage\r|}"
+      "type=${1|paper,review|}",
+      "draftmark=${1|true,false,firstpage|}"
     ],
     "\\usepackage/biblatex#c,\\ExecuteBibliographyOptions#c": [
+      "issueeditor",
       "issueeditor"
     ],
     "\\includefinalpaper": [
-      "author=${1:name}\r",
-      "title=${1:text}\r",
-      "subtitle=${1:text}\r"
+      "author=${1:name}",
+      "title=${1:text}",
+      "subtitle=${1:text}"
     ]
   },
   "args": [

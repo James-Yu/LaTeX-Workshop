@@ -53,7 +53,11 @@
       }
     },
     {
-      "name": "class(x,y)"
+      "name": "class",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:x},${2:y})"
+      }
     },
     {
       "name": "class",
@@ -63,10 +67,18 @@
       }
     },
     {
-      "name": "replaceclass(x,y)"
+      "name": "replaceclass",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:x},${2:y})"
+      }
     },
     {
-      "name": "replaceclass(x,y,n)"
+      "name": "replaceclass",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:x},${2:y},${3:n})"
+      }
     },
     {
       "name": "replaceclass",
@@ -106,7 +118,11 @@
       "name": "replacestructlines"
     },
     {
-      "name": "replacestructlines(source coord)"
+      "name": "replacestructlines",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:source coord})"
+      }
     },
     {
       "name": "classoptions",
@@ -148,7 +164,11 @@
       }
     },
     {
-      "name": "structline(source coord)(target coord)"
+      "name": "structline",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:source coord})(${2:target coord})"
+      }
     },
     {
       "name": "structline",
@@ -182,7 +202,11 @@
       }
     },
     {
-      "name": "extension(source coord)(target coord)"
+      "name": "extension",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:source coord})(${2:target coord})"
+      }
     },
     {
       "name": "extension",
@@ -206,7 +230,11 @@
       }
     },
     {
-      "name": "circleclasses(source coord)(target coord)"
+      "name": "circleclasses",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:source coord})(${2:target coord})"
+      }
     },
     {
       "name": "circleclasses",
@@ -222,7 +250,11 @@
       "name": "ycoord"
     },
     {
-      "name": "isalive(coord)"
+      "name": "isalive",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:coord})"
+      }
     },
     {
       "name": "isalive",
@@ -384,51 +416,51 @@
       }
     },
     {
-      "name": "IfOutOfBoundsTF(coord)",
+      "name": "IfOutOfBoundsTF",
       "unusual": true,
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:true}}{${2:false}}"
+        "format": "(){}{}",
+        "snippet": "(${3:coord}){${1:true}}{${2:false}}"
       }
     },
     {
-      "name": "IfOutOfBoundsT(coord)",
+      "name": "IfOutOfBoundsT",
       "unusual": true,
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:true}}"
+        "format": "(){}",
+        "snippet": "(${2:coord}){${1:true}}"
       }
     },
     {
-      "name": "IfOutOfBoundsF(coord)",
+      "name": "IfOutOfBoundsF",
       "unusual": true,
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:false}}"
+        "format": "(){}",
+        "snippet": "(${2:coord}){${1:false}}"
       }
     },
     {
-      "name": "IfInBoundsTF(coord)",
+      "name": "IfInBoundsTF",
       "unusual": true,
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:true}}{${2:false}}"
+        "format": "(){}{}",
+        "snippet": "(${3:coord}){${1:true}}{${2:false}}"
       }
     },
     {
-      "name": "IfInBoundsT(coord)",
+      "name": "IfInBoundsT",
       "unusual": true,
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:true}}"
+        "format": "(){}",
+        "snippet": "(${2:coord}){${1:true}}"
       }
     },
     {
-      "name": "IfInBoundsF(coord)",
+      "name": "IfInBoundsF",
       "unusual": true,
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:false}}"
+        "format": "(){}",
+        "snippet": "(${2:coord}){${1:false}}"
       }
     },
     {
@@ -649,7 +681,11 @@
       }
     },
     {
-      "name": "pushstack(coord)"
+      "name": "pushstack",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:coord})"
+      }
     },
     {
       "name": "savestack"
@@ -702,131 +738,131 @@
   ],
   "keys": {
     "\\usepackage/spectralsequences#c": [
-      "draft\r",
-      "tooltips\r"
+      "draft",
+      "tooltips"
     ],
     "\\class#c,\\d#c,\\structline#c,\\replaceclass#c,\\classoptions#c,\\doptions#c,\\structlineoptions#c,\\replacestructlines#c": [
-      "xshift=${1:integer}\r",
-      "yshift=${1:integer}\r",
-      "%color\r",
-      "\"${1:text}\"\r",
-      "\"${1:text}\" ${2:TikZ options}\r",
-      "\"${1:text}\"'\r",
-      "\"${1:text}\"' ${2:TikZ options}\r",
-      "pin={${1:TikZ options}}\r",
-      "description\r",
-      "circlen=${1:integer}\r",
-      "newellipse\r",
-      "ellipse ratio=${1:ratio}\r",
-      "isosceles triangle\r",
-      "rectangle\r",
-      "diamond\r",
-      "semicircle\r",
-      "regular polygon\r",
-      "regular polygon sides=${1:integer}\r",
+      "xshift=${1:integer}",
+      "yshift=${1:integer}",
+      "%color",
+      "\"${1:text}\"",
+      "\"${1:text}\" ${2:TikZ options}",
+      "\"${1:text}\"'",
+      "\"${1:text}\"' ${2:TikZ options}",
+      "pin={${1:TikZ options}}",
+      "description",
+      "circlen=${1:integer}",
+      "newellipse",
+      "ellipse ratio=${1:ratio}",
+      "isosceles triangle",
+      "rectangle",
+      "diamond",
+      "semicircle",
+      "regular polygon",
+      "regular polygon sides=${1:integer}",
       "minimum width=",
       "minimum height=",
       "minimum size=",
       "inner sep=",
       "outer sep=",
-      "name=${1:node name}\r",
-      "show name={${1:label options}}\r",
-      "tag=${1:tag}\r",
-      "insert=${1:integer}\r",
-      "offset={(${1:x,y})}\r",
-      "tooltip=${1:text}\r"
+      "name=${1:node name}",
+      "show name={${1:label options}}",
+      "tag=${1:tag}",
+      "insert=${1:integer}",
+      "offset={(${1:x,y})}",
+      "tooltip=${1:text}"
     ],
     "\\classoptions#c": [
-      "page=${1:page}\r",
-      "page=${1:page}--${2:page max}\r",
-      "generation=${1:generation}\r",
-      "generation=${1:generation}--${2:generation max}\r",
-      "fill\r"
+      "page=${1:page}",
+      "page=${1:page}--${2:page max}",
+      "generation=${1:generation}",
+      "generation=${1:generation}--${2:generation max}",
+      "fill"
     ],
     "\\d#c,\\structline#c,\\extension#c,\\doptions#c,\\structlineoptions#c,\\replacestructlines#c": [
-      "source anchor=${1:anchor}\r",
-      "target anchor=${1:anchor}\r",
+      "source anchor=${1:anchor}",
+      "target anchor=${1:anchor}",
       "shorten >=",
       "shorten <=",
-      "bend left=${1:angle}\r",
-      "bend right=${1:angle}\r",
-      "in=${1:anchor}\r",
-      "out=${1:anchor}\r"
+      "bend left=${1:angle}",
+      "bend right=${1:angle}",
+      "in=${1:anchor}",
+      "out=${1:anchor}"
     ],
     "\\structline#c,\\structlineoptions#c": [
-      "page=${1:page}\r",
-      "page=${1:page}--${2:page max}\r",
-      "dashed\r"
+      "page=${1:page}",
+      "page=${1:page}--${2:page max}",
+      "dashed"
     ],
     "\\circleclasses#c": [
-      "fit=${1:coords or nodes}\r",
-      "rounded rectangle\r",
-      "ellipse ratio=${1:ratio}\r",
-      "class style\r",
-      "permanent cycle style\r",
-      "transient cycle style\r",
-      "this page class style\r",
-      "differential style\r",
-      "struct line style\r",
-      "page=${1:page}\r",
-      "page=${1:page}--${2:page max}\r"
+      "fit=${1:coords or nodes}",
+      "rounded rectangle",
+      "ellipse ratio=${1:ratio}",
+      "class style",
+      "permanent cycle style",
+      "transient cycle style",
+      "this page class style",
+      "differential style",
+      "struct line style",
+      "page=${1:page}",
+      "page=${1:page}--${2:page max}"
     ],
     "\\begin{tikzpicture}#c,\\tikz#c,\\begin{scope}#c,\\tikzset#c,\\scoped#c,\\path#c,\\draw#c,\\fill#c,\\filldraw#c,\\pattern#c,\\shade#c,\\shadedraw#c,\\clip#c,\\node#c,\\coordinate#c,\\nodepart#c": [
-      "background\r",
-      "page constraint={${1:predicate}}\r",
-      "page constraint or={${1:predicate}}\r",
-      "class style\r",
-      "permanent cycle style\r",
-      "transient cycle style\r",
-      "this page class style\r",
-      "differential style\r",
-      "struct line style\r"
+      "background",
+      "page constraint={${1:predicate}}",
+      "page constraint or={${1:predicate}}",
+      "class style",
+      "permanent cycle style",
+      "transient cycle style",
+      "this page class style",
+      "differential style",
+      "struct line style"
     ],
     "\\begin{sseqdata}#c,\\begin{sseqpage}#c,\\sseqset#c": [
-      "sseqs={${1:keys}}\r",
-      "change sseqs={${1:keys}}\r",
-      "sseq={${1:keys}}\r",
-      "change sseq={${1:keys}}\r",
-      "classes={${1:keys}}\r",
-      "cycles={${1:keys}}\r",
-      "change classes={${1:keys}}\r",
-      "change cycles={${1:keys}}\r",
-      "permanent classes={${1:keys}}\r",
-      "permanent cycles={${1:keys}}\r",
-      "change permanent classes={${1:keys}}\r",
-      "change permanent cycles={${1:keys}}\r",
-      "transient classes={${1:keys}}\r",
-      "transient cycles={${1:keys}}\r",
-      "change transient classes={${1:keys}}\r",
-      "change transient cycles={${1:keys}}\r",
-      "this page classes={${1:keys}}\r",
-      "this page cycles={${1:keys}}\r",
-      "change this page classes={${1:keys}}\r",
-      "change this page cycles={${1:keys}}\r",
-      "edges={${1:keys}}\r",
-      "differentials={${1:keys}}\r",
-      "struct lines={${1:keys}}\r",
-      "change edges={${1:keys}}\r",
-      "change differentials={${1:keys}}\r",
-      "change struct lines={${1:keys}}\r",
-      "this page struct lines={${1:keys}}\r",
-      "change this page struct lines={${1:keys}}\r",
-      "tikz primitives={${1:keys}}\r",
-      "change tikz primitives={${1:keys}}\r",
-      "labels={${1:keys}}\r",
-      "change labels={${1:keys}}\r",
-      "class labels={${1:keys}}\r",
-      "inner class labels={${1:keys}}\r",
-      "outer class labels={${1:keys}}\r",
-      "change class labels={${1:keys}}\r",
-      "change inner class labels={${1:keys}}\r",
-      "change outer class labels={${1:keys}}\r",
-      "edge labels={${1:keys}}\r",
-      "differential labels={${1:keys}}\r",
-      "struct line labels={${1:keys}}\r",
-      "change edge labels={${1:keys}}\r",
-      "change differential labels={${1:keys}}\r",
-      "change struct line labels={${1:keys}}\r",
+      "sseqs={${1:keys}}",
+      "change sseqs={${1:keys}}",
+      "sseq={${1:keys}}",
+      "change sseq={${1:keys}}",
+      "classes={${1:keys}}",
+      "cycles={${1:keys}}",
+      "change classes={${1:keys}}",
+      "change cycles={${1:keys}}",
+      "permanent classes={${1:keys}}",
+      "permanent cycles={${1:keys}}",
+      "change permanent classes={${1:keys}}",
+      "change permanent cycles={${1:keys}}",
+      "transient classes={${1:keys}}",
+      "transient cycles={${1:keys}}",
+      "change transient classes={${1:keys}}",
+      "change transient cycles={${1:keys}}",
+      "this page classes={${1:keys}}",
+      "this page cycles={${1:keys}}",
+      "change this page classes={${1:keys}}",
+      "change this page cycles={${1:keys}}",
+      "edges={${1:keys}}",
+      "differentials={${1:keys}}",
+      "struct lines={${1:keys}}",
+      "change edges={${1:keys}}",
+      "change differentials={${1:keys}}",
+      "change struct lines={${1:keys}}",
+      "this page struct lines={${1:keys}}",
+      "change this page struct lines={${1:keys}}",
+      "tikz primitives={${1:keys}}",
+      "change tikz primitives={${1:keys}}",
+      "labels={${1:keys}}",
+      "change labels={${1:keys}}",
+      "class labels={${1:keys}}",
+      "inner class labels={${1:keys}}",
+      "outer class labels={${1:keys}}",
+      "change class labels={${1:keys}}",
+      "change inner class labels={${1:keys}}",
+      "change outer class labels={${1:keys}}",
+      "edge labels={${1:keys}}",
+      "differential labels={${1:keys}}",
+      "struct line labels={${1:keys}}",
+      "change edge labels={${1:keys}}",
+      "change differential labels={${1:keys}}",
+      "change struct line labels={${1:keys}}",
       "label distance=",
       "above label distance=",
       "below label distance=",
@@ -836,95 +872,95 @@
       "above right label distance=",
       "below left label distance=",
       "below right label distance=",
-      "run off=${1:start tip}-${2:end tip}\r",
-      "run off struct lines=${1:start tip}-${2:end tip}\r",
-      "run off differentials=${1:start tip}-${2:end tip}\r",
-      "class label handler=${1:macro}\r",
-      "class name handler=${1:macro}\r",
-      "class name prefix=${1:prefix}\r",
-      "class name postfix=${1:postfix}\r",
-      "name=${1:sseq name}\r",
-      "page=${1:page}\r",
-      "page=${1:page}--${2:page max}\r",
-      "degree={${1:x degree}}{${2:y degree}}\r",
-      "cohomological Serre grading\r",
-      "homological Serre grading\r",
-      "Adams grading\r",
-      "strict degree\r",
-      "lax degree\r",
-      "no differentials\r",
-      "draw differentials\r",
-      "no struct lines\r",
-      "draw struct lines\r",
-      "no orphan edges\r",
-      "draw orphan edges\r",
-      "class pattern=${1:class pattern name}\r",
-      "class placement transform={${1:transform keys}}\r",
-      "add class placement transform={${1:transform keys}}\r",
+      "run off=${1:start tip}-${2:end tip}",
+      "run off struct lines=${1:start tip}-${2:end tip}",
+      "run off differentials=${1:start tip}-${2:end tip}",
+      "class label handler=${1:macro}",
+      "class name handler=${1:macro}",
+      "class name prefix=${1:prefix}",
+      "class name postfix=${1:postfix}",
+      "name=${1:sseq name}",
+      "page=${1:page}",
+      "page=${1:page}--${2:page max}",
+      "degree={${1:x degree}}{${2:y degree}}",
+      "cohomological Serre grading",
+      "homological Serre grading",
+      "Adams grading",
+      "strict degree",
+      "lax degree",
+      "no differentials",
+      "draw differentials",
+      "no struct lines",
+      "draw struct lines",
+      "no orphan edges",
+      "draw orphan edges",
+      "class pattern=${1:class pattern name}",
+      "class placement transform={${1:transform keys}}",
+      "add class placement transform={${1:transform keys}}",
       "math nodes",
-      "scale=${1:factor}\r",
-      "xscale=${1:factor}\r",
-      "yscale=${1:factor}\r",
-      "xmirror\r",
-      "ymirror\r",
-      "rotate=${1:angle}\r",
-      "x range={${1:x min}}{${2:x max}}\r",
-      "y range={${1:y min}}{${2:y max}}\r",
-      "range check standard\r",
-      "range check sideways\r",
-      "range check off\r",
-      "grid=${1:grid type}\r",
+      "scale=${1:factor}",
+      "xscale=${1:factor}",
+      "yscale=${1:factor}",
+      "xmirror",
+      "ymirror",
+      "rotate=${1:angle}",
+      "x range={${1:x min}}{${2:x max}}",
+      "y range={${1:y min}}{${2:y max}}",
+      "range check standard",
+      "range check sideways",
+      "range check off",
+      "grid=${1:grid type}",
       "grid color=",
-      "grid step=${1:integer}\r",
-      "x grid step=${1:integer}\r",
-      "y grid step=${1:integer}\r",
-      "title=${1:text}\r",
-      "title style={${1:keys}}\r",
-      "x label=${1:text}\r",
-      "y label=${1:text}\r",
-      "x label style={${1:keys}}\r",
-      "y label style={${1:keys}}\r",
-      "label style={${1:keys}}\r",
-      "no title\r",
-      "draw title\r",
-      "no x label\r",
-      "no y label\r",
-      "no labels\r",
-      "draw x label\r",
-      "draw y label\r",
-      "draw labels\r",
-      "no x ticks\r",
-      "no y ticks\r",
-      "no ticks\r",
-      "draw x ticks\r",
-      "draw y ticks\r",
-      "draw ticks\r",
-      "x tick step=${1:integer}\r",
-      "y tick step=${1:integer}\r",
-      "tick step=${1:integer}\r",
-      "x tick offset=${1:integer}\r",
-      "y tick offset=${1:integer}\r",
-      "tick offset=${1:integer}\r",
-      "x major tick step=${1:integer}\r",
-      "y major tick step=${1:integer}\r",
-      "major tick step=${1:integer}\r",
-      "x minor tick step=${1:integer}\r",
-      "y minor tick step=${1:integer}\r",
-      "minor tick step=${1:integer}\r",
-      "x tick style={${1:keys}}\r",
-      "y tick style={${1:keys}}\r",
-      "tick style={${1:keys}}\r",
-      "x tick handler=${1:macro}\r",
-      "y tick handler=${1:macro}\r",
-      "tick handler=${1:macro}\r",
-      "x axis type=${1|border,center,frame,none\r|}",
-      "y axis type=${1|border,center,frame,none\r|}",
-      "axes type=${1|border,center,frame,none\r|}",
-      "no x axis\r",
-      "no y axis\r",
-      "no axes\r",
-      "x axis origin=${1:x value}\r",
-      "y axis origin=${1:y value}\r",
+      "grid step=${1:integer}",
+      "x grid step=${1:integer}",
+      "y grid step=${1:integer}",
+      "title=${1:text}",
+      "title style={${1:keys}}",
+      "x label=${1:text}",
+      "y label=${1:text}",
+      "x label style={${1:keys}}",
+      "y label style={${1:keys}}",
+      "label style={${1:keys}}",
+      "no title",
+      "draw title",
+      "no x label",
+      "no y label",
+      "no labels",
+      "draw x label",
+      "draw y label",
+      "draw labels",
+      "no x ticks",
+      "no y ticks",
+      "no ticks",
+      "draw x ticks",
+      "draw y ticks",
+      "draw ticks",
+      "x tick step=${1:integer}",
+      "y tick step=${1:integer}",
+      "tick step=${1:integer}",
+      "x tick offset=${1:integer}",
+      "y tick offset=${1:integer}",
+      "tick offset=${1:integer}",
+      "x major tick step=${1:integer}",
+      "y major tick step=${1:integer}",
+      "major tick step=${1:integer}",
+      "x minor tick step=${1:integer}",
+      "y minor tick step=${1:integer}",
+      "minor tick step=${1:integer}",
+      "x tick style={${1:keys}}",
+      "y tick style={${1:keys}}",
+      "tick style={${1:keys}}",
+      "x tick handler=${1:macro}",
+      "y tick handler=${1:macro}",
+      "tick handler=${1:macro}",
+      "x axis type=${1|border,center,frame,none|}",
+      "y axis type=${1|border,center,frame,none|}",
+      "axes type=${1|border,center,frame,none|}",
+      "no x axis",
+      "no y axis",
+      "no axes",
+      "x axis origin=${1:x value}",
+      "y axis origin=${1:y value}",
       "x axis gap=",
       "y axis gap=",
       "axes gap=",
@@ -942,12 +978,12 @@
       "left clip padding=",
       "top clip padding=",
       "bottom clip padding=",
-      "custom clip=${1:clip path}\r",
+      "custom clip=${1:clip path}",
       "clip",
       "rotate labels"
     ],
     "\\begin{sseqdata}#c": [
-      "update existing\r"
+      "update existing"
     ],
     "\\begin{sseqpage}#c": [
       "keep changes"

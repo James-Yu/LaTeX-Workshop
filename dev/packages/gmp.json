@@ -87,7 +87,11 @@
       "name": "usempost",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options}]{${1:string}}"
+        "snippet": "[${2:options}]{${1:string}}",
+        "keys": [
+          "\\usempost"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -105,7 +109,11 @@
       "name": "mpost",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{mpost},\\begin{mpost*}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -115,64 +123,68 @@
       "name": "mpost*",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{mpost},\\begin{mpost*}"
+        ],
+        "keyPos": 0
       }
     }
   ],
   "keys": {
     "\\usepackage/gmp#c,\\gmpoptions": [
-      "tex\r",
-      "latex\r",
-      "noshellescape\r",
-      "shellescape\r",
-      "nowrite\r",
-      "write\r",
-      "envname=${1:envname}\r",
-      "extension=${1:extension}\r",
-      "everymp={${1:metapost code}}\r",
-      "clean=${1|none,aux,mp\r|}",
-      "rmcommand=${1:cmd}\r",
-      "postrmcommand=${1:cmd}\r"
+      "tex",
+      "latex",
+      "noshellescape",
+      "shellescape",
+      "nowrite",
+      "write",
+      "envname=${1:envname}",
+      "extension=${1:extension}",
+      "everymp={${1:metapost code}}",
+      "clean=${1|none,aux,mp|}",
+      "rmcommand=${1:cmd}",
+      "postrmcommand=${1:cmd}"
     ],
     "\\usempost": [
-      "alt={${1:alt text}}\r",
-      "bb=${1:llx lly urx ury}\r",
-      "bbllx=\r",
-      "bblly=\r",
-      "bburx=\r",
-      "bbury=\r",
-      "natwidth=\r",
-      "natheight=\r",
+      "alt={${1:alt text}}",
+      "bb=${1:llx lly urx ury}",
+      "bbllx=",
+      "bblly=",
+      "bburx=",
+      "bbury=",
+      "natwidth=",
+      "natheight=",
       "hiresbb",
-      "pagebox=${1|mediabox,cropbox,bleedbox,trimbox,artbox\r|}",
-      "viewport=${1:llx lly urx ury}\r",
-      "trim=${1:llx lly urx ury}\r",
-      "angle=${1:degrees}\r",
-      "origin=\r",
+      "pagebox=${1|mediabox,cropbox,bleedbox,trimbox,artbox|}",
+      "viewport=${1:llx lly urx ury}",
+      "trim=${1:llx lly urx ury}",
+      "angle=${1:degrees}",
+      "origin=",
       "width=",
       "height=",
       "totalheight=",
       "keepaspectratio",
-      "scale=${1:factor}\r",
+      "scale=${1:factor}",
       "clip",
       "draft",
-      "type=${1:file type}\r",
-      "ext=${1:file extension}\r",
-      "read=${1:read-file extension}\r",
-      "command=\r",
-      "quiet\r",
-      "page=${1:page number}\r",
+      "type=${1:file type}",
+      "ext=${1:file extension}",
+      "read=${1:read-file extension}",
+      "command=",
+      "quiet",
+      "page=${1:page number}",
       "interpolate",
-      "decodearray={${1:color array}}\r"
+      "decodearray={${1:color array}}"
     ],
     "\\begin{mpost},\\begin{mpost*}": [
-      "name=${1:string}\r",
+      "name=${1:string}",
       "use",
-      "mpmem=${1:metapost format}\r",
-      "mpxprogram=${1|tex,latex\r|}",
-      "mpxcommands=${1:commands}\r",
-      "mpsettings={${1:metapost code}}\r",
-      "runs=${1:number}\r"
+      "mpmem=${1:metapost format}",
+      "mpxprogram=${1|tex,latex|}",
+      "mpxcommands=${1:commands}",
+      "mpsettings={${1:metapost code}}",
+      "runs=${1:number}"
     ]
   },
   "args": [

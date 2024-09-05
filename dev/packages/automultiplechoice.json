@@ -113,14 +113,22 @@
       "name": "AMCBoxOnly",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:keyvals}}{${2:text}}"
+        "snippet": "{${1:keyvals}}{${2:text}}",
+        "keys": [
+          "\\AMCBoxOnly"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "AMCboxStyle",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:keyvals}}"
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\AMCboxStyle,\\AMCboxDimensions"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -142,7 +150,11 @@
       "name": "AMCcodeGrid",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:key%plain}}{${2:description}}"
+        "snippet": "[${3:options%keyvals}]{${1:key%plain}}{${2:description}}",
+        "keys": [
+          "\\AMCcodeGrid, \\AMCcodeGridInt"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -242,7 +254,11 @@
       "name": "AMCidsPosition",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:keyvals}}"
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\AMCidsPosition"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -305,14 +321,22 @@
       "name": "AMCnumericChoices",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:answer}}{${2:keyvals}}"
+        "snippet": "{${1:answer}}{${2:keyvals}}",
+        "keys": [
+          "\\AMCnumericChoices,\\AMCnumericOpts"
+        ],
+        "keyPos": 1
       }
     },
     {
       "name": "AMCnumericOpts",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:keyvals}}"
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\AMCnumericChoices,\\AMCnumericOpts"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -326,14 +350,22 @@
       "name": "AMCOpen",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:keyvals}}{${2:text}}"
+        "snippet": "{${1:keyvals}}{${2:text}}",
+        "keys": [
+          "\\AMCOpen,\\AMCopenOpts"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "AMCopenOpts",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:keyvals}}"
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\AMCOpen,\\AMCopenOpts"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -411,14 +443,22 @@
       "name": "AMCsetScoreZone",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:keyvals}}"
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\AMCsetScoreZone,\\AMCsetScoreZoneAnswerSheet"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "AMCsetScoreZoneAnswerSheet",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:keyvals}}"
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\AMCsetScoreZone,\\AMCsetScoreZoneAnswerSheet"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -804,50 +844,50 @@
   ],
   "keys": {
     "\\usepackage/automultiplechoice#c": [
-      "noshuffle\r",
-      "noshufflegroups\r",
-      "fullgroups\r",
-      "answers\r",
-      "indivanswers\r",
-      "textpos\r",
-      "extractonly\r",
-      "box\r",
-      "asbox\r",
-      "separateanswersheet\r",
-      "digits\r",
-      "ordre\r",
-      "correc\r",
-      "modele\r",
-      "correcindiv\r",
-      "init\r",
-      "bloc\r",
-      "completemulti\r",
-      "insidebox\r",
-      "ensemble\r",
-      "chiffres\r",
-      "outsidebox\r",
-      "calibration\r",
-      "nowatermark\r",
-      "catalog\r",
-      "keys=line\r",
-      "francais\r",
-      "lang=${1|DE,ES,FR,IT,JA,NL,NO,PT\r|}",
-      "versionA\r",
-      "plain\r",
-      "nopage\r",
-      "postcorrect\r",
-      "automarks\r",
-      "storebox\r",
-      "pdfform\r",
-      "codedigit=\r",
-      "survey\r"
+      "noshuffle",
+      "noshufflegroups",
+      "fullgroups",
+      "answers",
+      "indivanswers",
+      "textpos",
+      "extractonly",
+      "box",
+      "asbox",
+      "separateanswersheet",
+      "digits",
+      "ordre",
+      "correc",
+      "modele",
+      "correcindiv",
+      "init",
+      "bloc",
+      "completemulti",
+      "insidebox",
+      "ensemble",
+      "chiffres",
+      "outsidebox",
+      "calibration",
+      "nowatermark",
+      "catalog",
+      "keys=line",
+      "francais",
+      "lang=${1|DE,ES,FR,IT,JA,NL,NO,PT|}",
+      "versionA",
+      "plain",
+      "nopage",
+      "postcorrect",
+      "automarks",
+      "storebox",
+      "pdfform",
+      "codedigit=",
+      "survey"
     ],
     "\\AMCBoxOnly": [
-      "help=${1:text}\r",
+      "help=${1:text}",
       "ordered"
     ],
     "\\AMCboxStyle,\\AMCboxDimensions": [
-      "shape=${1|square,oval,form,none\r|}",
+      "shape=${1|square,oval,form,none|}",
       "size=",
       "height=",
       "width=",
@@ -856,26 +896,26 @@
       "down=",
       "color=",
       "cross",
-      "crosschar=${1:symbol}\r",
+      "crosschar=${1:symbol}",
       "crossrule="
     ],
     "\\AMCcodeGrid, \\AMCcodeGridInt": [
       "vertical",
-      "v\r",
-      "h\r",
-      "top\r"
+      "v",
+      "h",
+      "top"
     ],
     "\\AMCidsPosition": [
-      "pos=${1|none,top,side\r|}",
+      "pos=${1|none,top,side|}",
       "width=",
       "height="
     ],
     "\\AMCnumericChoices,\\AMCnumericOpts": [
-      "digits=${1:num}\r",
-      "decimals=${1:num}\r",
-      "base=${1:num}\r",
+      "digits=${1:num}",
+      "decimals=${1:num}",
+      "base=${1:num}",
       "significant",
-      "exponent=${1:num}\r",
+      "exponent=${1:num}",
       "nozero",
       "sign",
       "exposign",
@@ -889,62 +929,62 @@
       "borderwidth=",
       "bordercol=",
       "backgroundcol=",
-      "Tsign=${1:text}\r",
-      "Tpoint=${1:text}\r",
-      "Texponent=${1:text}\r",
+      "Tsign=${1:text}",
+      "Tpoint=${1:text}",
+      "Texponent=${1:text}",
       "scoring",
-      "scoreexact=${1:num}\r",
-      "exact=${1:num}\r",
-      "scoreapprox=${1:num}\r",
-      "approx=${1:num}\r",
-      "scorewrong=${1:num}\r",
+      "scoreexact=${1:num}",
+      "exact=${1:num}",
+      "scoreapprox=${1:num}",
+      "approx=${1:num}",
+      "scorewrong=${1:num}",
       "ignoreblank",
-      "keepas=${1:text}\r",
-      "alsocorrect=${1:text}\r"
+      "keepas=${1:text}",
+      "alsocorrect=${1:text}"
     ],
     "\\AMCOpen,\\AMCopenOpts": [
       "lineup",
-      "lineuptext=${1:text}\r",
-      "lines=${1:num}\r",
+      "lineuptext=${1:text}",
+      "lines=${1:num}",
       "lineheight=",
       "dots",
-      "contentcommand=${1:csname}\r",
+      "contentcommand=${1:csname}",
       "hspace=",
       "backgroundcol=",
       "foregroundcol=",
       "scan",
       "annotate",
-      "question=${1:text}\r",
-      "answer=${1:text}\r",
+      "question=${1:text}",
+      "answer=${1:text}",
       "width=",
       "framerule=",
       "framerulecol=",
       "boxmargin=",
       "boxframerule=",
       "boxframerulecol=",
-      "Treserved=\r"
+      "Treserved="
     ],
     "\\AMCsetScoreZone,\\AMCsetScoreZoneAnswerSheet": [
       "width=",
       "height=",
       "depth=",
-      "calloutside=\r",
-      "callinside=\r",
-      "position=${1|none,question,margin,margins\r|}"
+      "calloutside=",
+      "callinside=",
+      "position=${1|none,question,margin,margins|}"
     ],
     "\\AMCtext#c": [
-      "none\r",
-      "corrected\r",
-      "catalog\r",
-      "explain\r",
-      "draft\r",
-      "message\r"
+      "none",
+      "corrected",
+      "catalog",
+      "explain",
+      "draft",
+      "message"
     ],
     "\\setdefaultgroupmode,\\setgroupmode": [
-      "fixed\r",
-      "cyclic\r",
-      "withreplacement\r",
-      "withoutreplacement\r"
+      "fixed",
+      "cyclic",
+      "withreplacement",
+      "withoutreplacement"
     ]
   },
   "args": [

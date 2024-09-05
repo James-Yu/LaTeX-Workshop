@@ -165,14 +165,22 @@
       "name": "key",
       "arg": {
         "format": "[]{}[]",
-        "snippet": "[${2:options%keyvals}]{${1:key name}}[${3:key value}]"
+        "snippet": "[${2:options%keyvals}]{${1:key name}}[${3:key value}]",
+        "keys": [
+          "\\key"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "key",
       "arg": {
         "format": "[]{}[][]",
-        "snippet": "[${2:options%keyvals}]{${1:key name}}[${3:key value}][${4:default value}]"
+        "snippet": "[${2:options%keyvals}]{${1:key name}}[${3:key value}][${4:default value}]",
+        "keys": [
+          "\\key"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -259,9 +267,9 @@
   ],
   "keys": {
     "\\key": [
-      "default=${1:default value}\r",
-      "note=${1:note}\r",
-      "v=\r"
+      "default=${1:default value}",
+      "note=${1:note}",
+      "v="
     ]
   },
   "args": []

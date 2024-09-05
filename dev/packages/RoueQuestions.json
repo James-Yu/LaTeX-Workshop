@@ -28,7 +28,11 @@
       "name": "roueQuestions",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:liste}}"
+        "snippet": "[${2:options%keyvals}]{${1:liste}}",
+        "keys": [
+          "\\roueQuestions,\\rouesQuestions"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -42,23 +46,28 @@
       "name": "rouesQuestions",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:listeQuestions}}{${2:listeRéponses}}"
+        "snippet": "[${3:options%keyvals}]{${1:listeQuestions}}{${2:listeRéponses}}",
+        "keys": [
+          "\\roueQuestions,\\rouesQuestions",
+          "\\rouesQuestions"
+        ],
+        "keyPos": 0
       }
     }
   ],
   "envs": [],
   "keys": {
     "\\roueQuestions,\\rouesQuestions": [
-      "Titre={${1:texte}}\r",
-      "Consigne={${1:texte}}\r",
+      "Titre={${1:texte}}",
+      "Consigne={${1:texte}}",
       "LineWidth=",
-      "RayonCentral=${1:nombre}\r",
-      "RayonTotal=${1:nombre}\r",
+      "RayonCentral=${1:nombre}",
+      "RayonTotal=${1:nombre}",
       "BordureCouleur=",
       "CasesCouleur=",
       "CentreCouleur=",
-      "Image=${1:imagefile}\r",
-      "ImageOpacite=${1:factor}\r",
+      "Image=${1:imagefile}",
+      "ImageOpacite=${1:factor}",
       "Decoupe",
       "DecoupeCouleur=",
       "Pliage",
@@ -66,7 +75,7 @@
       "Solution"
     ],
     "\\rouesQuestions": [
-      "Conseil={${1:texte}}\r",
+      "Conseil={${1:texte}}",
       "EspaceRoues="
     ]
   },

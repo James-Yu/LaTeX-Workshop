@@ -12,7 +12,11 @@
       "name": "postnote",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:text}}"
+        "snippet": "[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\postnote"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -26,7 +30,11 @@
       "name": "postnotesection",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:text}}"
+        "snippet": "[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\postnotesection,\\postnotesectionx"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -177,28 +185,28 @@
   "envs": [],
   "keys": {
     "\\postnote": [
-      "mark=${1:number}\r",
-      "markstr=${1:string}\r",
-      "sortnum=${1:number}\r",
-      "nomark\r",
+      "mark=${1:number}",
+      "markstr=${1:string}",
+      "sortnum=${1:number}",
+      "nomark",
       "label=",
       "zlabel="
     ],
     "\\postnotesection,\\postnotesectionx": [
-      "name=${1:name}\r",
+      "name=${1:name}",
       "exp"
     ],
     "\\postnotesetup": [
-      "heading={${1:text}}\r",
-      "format={${1:font commands}}\r",
-      "listenv=${1:envname}\r",
-      "makemark={${1:code}}\r",
-      "maketextmark={${1:code}}\r",
-      "pretextmark={${1:code}}\r",
-      "posttextmark={${1:code}}\r",
-      "postprintnote={${1:code}}\r",
-      "style=${1|endnotes,pagenote\r|}",
-      "hyperref=${1|auto,true,false\r|}",
+      "heading={${1:text}}",
+      "format={${1:font commands}}",
+      "listenv=${1:envname}",
+      "makemark={${1:code}}",
+      "maketextmark={${1:code}}",
+      "pretextmark={${1:code}}",
+      "posttextmark={${1:code}}",
+      "postprintnote={${1:code}}",
+      "style=${1|endnotes,pagenote|}",
+      "hyperref=${1|auto,true,false|}",
       "backlink",
       "sort"
     ]

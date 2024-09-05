@@ -39,7 +39,11 @@
       "name": "dochighinput",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:file}}"
+        "snippet": "[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\begin{codehigh},\\begin{demohigh},\\CodeHigh,\\dochighinput"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -125,7 +129,11 @@
       "name": "codehigh",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{codehigh},\\begin{demohigh},\\CodeHigh,\\dochighinput"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -135,13 +143,17 @@
       "name": "demohigh",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{codehigh},\\begin{demohigh},\\CodeHigh,\\dochighinput"
+        ],
+        "keyPos": 0
       }
     }
   ],
   "keys": {
     "\\begin{codehigh},\\begin{demohigh},\\CodeHigh,\\dochighinput": [
-      "language=${1|latex,latex/latex2,latex/latex3,latex/math,latex/table\r|}",
+      "language=${1|latex,latex/latex2,latex/latex3,latex/math,latex/table|}",
       "style/main=",
       "style/code=",
       "style/demo=",
@@ -149,17 +161,17 @@
       "lite",
       "long",
       "demo",
-      "theme=${1:theme}\r"
+      "theme=${1:theme}"
     ],
     "\\SetCodeHighTracing": [
-      "+code\r",
-      "-code\r",
-      "+demo\r",
-      "-demo\r",
-      "+parser\r",
-      "-parser\r",
-      "all\r",
-      "none\r"
+      "+code",
+      "-code",
+      "+demo",
+      "-demo",
+      "+parser",
+      "-parser",
+      "all",
+      "none"
     ]
   },
   "args": []

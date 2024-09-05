@@ -25,10 +25,18 @@
       "name": "endjtree"
     },
     {
-      "name": "defbranch<name>(height)(slope)"
+      "name": "defbranch<name>",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:height})(${2:slope})"
+      }
     },
     {
-      "name": "deftriangle<name>(height)(slopeA)(slopeB)"
+      "name": "deftriangle<name>",
+      "arg": {
+        "format": "()()()",
+        "snippet": "(${1:height})(${2:slopeA})(${3:slopeB})"
+      }
     },
     {
       "name": "triline",
@@ -41,7 +49,11 @@
       "name": "triwd"
     },
     {
-      "name": "defvartriangle<name>(height)"
+      "name": "defvartriangle<name>",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:height})"
+      }
     },
     {
       "name": "jtlong"
@@ -91,11 +103,11 @@
       "name": "endmultiline"
     },
     {
-      "name": "psinterpolate(node1)(node2)",
+      "name": "psinterpolate",
       "unusual": true,
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:num}}{${2:node name}}"
+        "format": "()(){}{}",
+        "snippet": "(${3:node1})(${4:node2}){${1:num}}{${2:node name}}"
       }
     },
     {

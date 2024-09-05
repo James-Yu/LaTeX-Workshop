@@ -285,7 +285,11 @@
       "name": "luecke",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:Optionen für blank%keyvals}]{${1:Text%text}}"
+        "snippet": "[${2:Optionen für blank%keyvals}]{${1:Text%text}}",
+        "keys": [
+          "\\luecke,\\textluecke"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -299,7 +303,11 @@
       "name": "textluecke",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:Optionen für blank%keyvals}]{${1:Text%text}}"
+        "snippet": "[${2:Optionen für blank%keyvals}]{${1:Text%text}}",
+        "keys": [
+          "\\luecke,\\textluecke"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1436,7 +1444,11 @@
       "name": "aufgabe",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:Optionen%keyvals}]"
+        "snippet": "[${1:Optionen%keyvals}]",
+        "keys": [
+          "\\begin{aufgabe},\\begin{aufgabe*}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1446,7 +1458,11 @@
       "name": "aufgabe*",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:Optionen%keyvals}]"
+        "snippet": "[${1:Optionen%keyvals}]",
+        "keys": [
+          "\\begin{aufgabe},\\begin{aufgabe*}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1623,74 +1639,100 @@
   ],
   "keys": {
     "\\usepackage/schule#c": [
-      "beurteilung={${1:Namen}}\r",
-      "ref={${1:Namen}}\r",
-      "zeitraum={${1:Zeitraum}}\r",
-      "schulname={${1:Namen}}\r",
-      "schullogo=${1:imagefile}\r",
-      "schulanschrift={${1:schulanschrift}}\r",
-      "schulstr={${1:Straße}}\r",
-      "schulort={${1:Ort}}\r",
-      "lehramt={${1:Lehramt}}\r"
+      "fach=${1|Informatik,Physik,Geschichte|}",
+      "weitereFaecher={${1:Fach1,Fach2,...}}",
+      "module=${1|Aufgaben,Aufgabenpool,Bewertung,Format,Formulare,genord,Kuerzel,Lizenzen,Metadaten,Papiertypen,Storycard,Symbole,Texte|}",
+      "typ=${1|ab,Beurteilung,folie,kl,leit,lzk,ub,ueb,ohne|}",
+      "sprache={${1:lang1,lang2,...}}",
+      "debug",
+      "loesungen=${1|folgend,keine,seite|}",
+      "erwartungshorizontAnzeigen",
+      "erwartungshorizontKeineSeiten",
+      "erwartungshorizontStil=${1|einzeltabellen,simpel,standard|}",
+      "kmkPunkte",
+      "notenOhneTendenz",
+      "notenschema={${1:spec}}",
+      "farbig",
+      "datumAnzeigen",
+      "namensfeldAnzeigen",
+      "seitenzahlen=${1|auto,autoGesamt,immer,immerGesamt,keine|}",
+      "zitate=${1|guillemets,quotes,swiss|}",
+      "gendering=${1|binneni,fem,gap,mas,split,star|}",
+      "lizenz=${1|cc-by-4,cc-by-sa-4,cc-by-nc-sa-4,cc-by-nc-sa-eu-4|}",
+      "nohyperxmp",
+      "lerngruppe=${1:Lerngruppe}",
+      "nummer=${1:Dokumentnummer}",
+      "klausurtyp=${1|klausur,klasse,kurs|}",
+      "hinweisLinkVerbergen",
+      "loesungLinkVerbergen",
+      "beurteilung={${1:Namen}}",
+      "ref={${1:Namen}}",
+      "zeitraum={${1:Zeitraum}}",
+      "schulname={${1:Namen}}",
+      "schullogo=${1:imagefile}",
+      "schulanschrift={${1:schulanschrift}}",
+      "schulstr={${1:Straße}}",
+      "schulort={${1:Ort}}",
+      "lehramt={${1:Lehramt}}"
     ],
     "\\begin{aufgabe},\\begin{aufgabe*}": [
-      "ID=${1:text}\r",
-      "counter-value=${1:integer}\r",
-      "subtitle=${1:text}\r",
-      "points=${1:number}\r",
-      "bonus-points=${1:number}\r",
+      "ID=${1:text}",
+      "counter-value=${1:integer}",
+      "subtitle=${1:text}",
+      "points=${1:number}",
+      "bonus-points=${1:number}",
       "print",
       "print!",
       "use",
       "use!",
       "used",
       "solution",
-      "tags={${1:tag1,tag2,...}}\r",
-      "topics={${1:topic1,topic2,...}}\r",
-      "page=${1:text}\r",
-      "page-value=${1:integer}\r",
-      "section=${1:text}\r",
-      "section-value=${1:integer}\r",
-      "chapter=${1:text}\r",
-      "chapter-value=${1:integer}\r",
-      "sectioning={${1:section numbers}}\r",
-      "exercise-body={${1:code}}\r",
-      "solution-body={${1:code}}\r",
-      "%xsimexerprop\r",
-      "%xsimexertag\r",
-      "symbol=${1:symbol}\r"
+      "tags={${1:tag1,tag2,...}}",
+      "topics={${1:topic1,topic2,...}}",
+      "page=${1:text}",
+      "page-value=${1:integer}",
+      "section=${1:text}",
+      "section-value=${1:integer}",
+      "chapter=${1:text}",
+      "chapter-value=${1:integer}",
+      "sectioning={${1:section numbers}}",
+      "exercise-body={${1:code}}",
+      "solution-body={${1:code}}",
+      "%xsimexerprop",
+      "%xsimexertag",
+      "symbol=${1:symbol}"
     ],
     "\\setzeAufgabentemplate,\\setzeLoesungentemplate": [
-      "schule-binnen\r",
-      "schule-default\r",
-      "schule-keinenummer\r",
-      "schule-keinepunkte\r",
-      "schule-keintitel\r",
-      "schule-randpunkte\r",
-      "schule-tcolorbox\r"
+      "schule-binnen",
+      "schule-default",
+      "schule-keinenummer",
+      "schule-keinepunkte",
+      "schule-keintitel",
+      "schule-randpunkte",
+      "schule-tcolorbox"
     ],
     "\\luecke,\\textluecke": [
-      "blank-style={${1:code}}\r",
-      "filled-style={${1:code}}\r",
-      "style={${1:code}}\r",
-      "scale=${1:factor}\r",
+      "blank-style={${1:code}}",
+      "filled-style={${1:code}}",
+      "style={${1:code}}",
+      "scale=${1:factor}",
       "width=",
-      "linespread=${1:factor}\r",
+      "linespread=${1:factor}",
       "line-increment=",
       "line-minimum-length="
     ],
     "\\begin{tikzpicture}#c": [
-      "pap\r"
+      "pap"
     ],
     "\\node#c": [
-      "startstop\r",
-      "verzweigung\r",
-      "aktion\r",
-      "einausgabe\r",
-      "unterprogramm\r"
+      "startstop",
+      "verzweigung",
+      "aktion",
+      "einausgabe",
+      "unterprogramm"
     ],
     "\\draw#c": [
-      "linie\r"
+      "linie"
     ]
   },
   "args": [

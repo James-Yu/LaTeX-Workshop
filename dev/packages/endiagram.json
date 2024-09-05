@@ -39,7 +39,11 @@
       "name": "ENcurve",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:level1,level2,level3,...}}"
+        "snippet": "[${2:options%keyvals}]{${1:level1,level2,level3,...}}",
+        "keys": [
+          "\\ENcurve"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -49,7 +53,11 @@
       "name": "ShowNiveaus",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\ShowNiveaus"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -59,7 +67,11 @@
       "name": "ShowGain",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\ShowGain"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -69,7 +81,11 @@
       "name": "ShowEa",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\ShowEa"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -86,7 +102,11 @@
       "name": "AddAxisLabel",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options}]{${1:(${4:point1})[${3:label1}];(${5:point2});...}}"
+        "snippet": "[${2:options}]{${1:(${4:point1})[${3:label1}];(${5:point2});...}}",
+        "keys": [
+          "\\AddAxisLabel,\\AddAxisLabel*"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -100,7 +120,11 @@
       "name": "AddAxisLabel*",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options}]{${1:level1[${3:label1}];level2;...}}"
+        "snippet": "[${2:options}]{${1:level1[${3:label1}];level2;...}}",
+        "keys": [
+          "\\AddAxisLabel,\\AddAxisLabel*"
+        ],
+        "keyPos": 0
       }
     }
   ],
@@ -112,81 +136,85 @@
       "name": "endiagram",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\ENsetup#c,\\begin{endiagram}"
+        ],
+        "keyPos": 0
       }
     }
   ],
   "keys": {
     "\\ENsetup#c,\\begin{endiagram}": [
       "unit=",
-      "scale=${1:factor}\r",
-      "offset=${1:integer}\r",
-      "r-offset=${1:integer}\r",
-      "l-offset=${1:integer}\r",
-      "axes=${1|xy,y,y-l,y-r,x,all,false\r|}",
-      "x-axis={${1:TikZ keys}}\r",
-      "y-axis={${1:TikZ keys}}\r",
-      "x-label=${1|below,right\r|}",
-      "y-label=${1|above,left\r|}",
-      "x-label-pos=${1:value}\r",
-      "y-label-pos=${1:value}\r",
+      "scale=${1:factor}",
+      "offset=${1:integer}",
+      "r-offset=${1:integer}",
+      "l-offset=${1:integer}",
+      "axes=${1|xy,y,y-l,y-r,x,all,false|}",
+      "x-axis={${1:TikZ keys}}",
+      "y-axis={${1:TikZ keys}}",
+      "x-label=${1|below,right|}",
+      "y-label=${1|above,left|}",
+      "x-label-pos=${1:value}",
+      "y-label-pos=${1:value}",
       "x-label-offset=",
       "y-label-offset=",
-      "x-label-angle=${1:degrees}\r",
-      "y-label-angle=${1:degrees}\r",
-      "x-label-text=${1:text}\r",
-      "y-label-text=${1:text}\r",
+      "x-label-angle=${1:degrees}",
+      "y-label-angle=${1:degrees}",
+      "x-label-text=${1:text}",
+      "y-label-text=${1:text}",
       "debug",
       "draft",
       "final",
-      "tikz={${1:TikZ keys}}\r",
-      "ticks=${1|y,y-l,y-r,none\r|}",
-      "ticks-step=${1:number}\r",
-      "energy-unit=${1:unit}\r",
-      "energy-step=${1:number}\r",
-      "energy-zero=${1:number}\r",
-      "energy-unit-separator=${1:separator}\r",
-      "energy-round=${1:number}\r",
+      "tikz={${1:TikZ keys}}",
+      "ticks=${1|y,y-l,y-r,none|}",
+      "ticks-step=${1:number}",
+      "energy-unit=${1:unit}",
+      "energy-step=${1:number}",
+      "energy-zero=${1:number}",
+      "energy-unit-separator=${1:separator}",
+      "energy-round=${1:number}",
       "calculate"
     ],
     "\\ENcurve": [
-      "step=${1:integer}\r",
-      "looseness=${1:factor}\r",
+      "step=${1:integer}",
+      "looseness=${1:factor}",
       "minima",
-      "tikz={${1:TikZ keys}}\r"
+      "tikz={${1:TikZ keys}}"
     ],
     "\\ShowNiveaus": [
-      "length=${1:number}\r",
-      "shift=${1:number}\r",
-      "tikz={${1:TikZ keys}}\r",
-      "niveau=${1:id}\r"
+      "length=${1:number}",
+      "shift=${1:number}",
+      "tikz={${1:TikZ keys}}",
+      "niveau=${1:id}"
     ],
     "\\ShowGain": [
-      "tikz={${1:TikZ keys}}\r",
-      "connect={${1:TikZ keys}}\r",
+      "tikz={${1:TikZ keys}}",
+      "connect={${1:TikZ keys}}",
       "connect-from-line",
-      "offset=${1:number}\r",
-      "label\r",
-      "label=${1:text}\r",
-      "label-side=${1|right,left\r|}",
-      "label-pos=${1:value}\r",
-      "label-tikz={${1:TikZ keys}}\r"
+      "offset=${1:number}",
+      "label",
+      "label=${1:text}",
+      "label-side=${1|right,left|}",
+      "label-pos=${1:value}",
+      "label-tikz={${1:TikZ keys}}"
     ],
     "\\ShowEa": [
-      "max=${1|first,all\r|}",
-      "from={(${1:x1,y1}) to (${2:x2,y2})}\r",
-      "tikz={${1:TikZ keys}}\r",
-      "connect={${1:TikZ keys}}\r",
-      "label\r",
-      "label=${1:text}\r",
-      "label-side=${1|right,left\r|}",
-      "label-pos=${1:value}\r",
-      "label-tikz={${1:TikZ keys}}\r"
+      "max=${1|first,all|}",
+      "from={(${1:x1,y1}) to (${2:x2,y2})}",
+      "tikz={${1:TikZ keys}}",
+      "connect={${1:TikZ keys}}",
+      "label",
+      "label=${1:text}",
+      "label-side=${1|right,left|}",
+      "label-pos=${1:value}",
+      "label-tikz={${1:TikZ keys}}"
     ],
     "\\AddAxisLabel,\\AddAxisLabel*": [
-      "axis=${1|y-l,y-r,x\r|}",
-      "connect={${1:TikZ keys}}\r",
-      "font=${1:font commands}\r"
+      "axis=${1|y-l,y-r,x|}",
+      "connect={${1:TikZ keys}}",
+      "font=${1:font commands}"
     ]
   },
   "args": []

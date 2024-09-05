@@ -6,17 +6,17 @@
   ],
   "macros": [
     {
-      "name": "line(x,y)",
+      "name": "line",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:length}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:length}}"
       }
     },
     {
-      "name": "vector(x,y)",
+      "name": "vector",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:length}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:length}}"
       }
     },
     {
@@ -34,7 +34,11 @@
       }
     },
     {
-      "name": "oval(x,y)"
+      "name": "oval",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:x},${2:y})"
+      }
     },
     {
       "name": "oval",
@@ -44,10 +48,10 @@
       }
     },
     {
-      "name": "oval(x,y)",
+      "name": "oval",
       "arg": {
-        "format": "[]",
-        "snippet": "[${1:pos}]"
+        "format": "()[]",
+        "snippet": "(${2:x},${3:y})[${1:pos}]"
       }
     },
     {
@@ -69,7 +73,11 @@
       }
     },
     {
-      "name": "qbezier(ax,ay)(bx,by)(cx,cy)"
+      "name": "qbezier",
+      "arg": {
+        "format": "()()()",
+        "snippet": "(${1:ax},${2:ay})(${3:bx},${4:by})(${5:cx},${6:cy})"
+      }
     },
     {
       "name": "qbezier",
@@ -79,7 +87,11 @@
       }
     },
     {
-      "name": "cbezier(ax,ay)(bx,by)(cx,cy)(dx,dy)"
+      "name": "cbezier",
+      "arg": {
+        "format": "()()()()",
+        "snippet": "(${1:ax},${2:ay})(${3:bx},${4:by})(${5:cx},${6:cy})(${7:dx},${8:dy})"
+      }
     },
     {
       "name": "cbezier",
@@ -121,19 +133,39 @@
       }
     },
     {
-      "name": "Line(x1,y1)(x2,y2)"
+      "name": "Line",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x1},${2:y1})(${3:x2},${4:y2})"
+      }
     },
     {
-      "name": "Vector(x1,y1)(x2,y2)"
+      "name": "Vector",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x1},${2:y1})(${3:x2},${4:y2})"
+      }
     },
     {
-      "name": "moveto(x,y)"
+      "name": "moveto",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:x},${2:y})"
+      }
     },
     {
-      "name": "lineto(x,y)"
+      "name": "lineto",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:x},${2:y})"
+      }
     },
     {
-      "name": "curveto(x2,y2)(x3,y3)(x4,y4)"
+      "name": "curveto",
+      "arg": {
+        "format": "()()()",
+        "snippet": "(${1:x2},${2:y2})(${3:x3},${4:y3})(${5:x4},${6:y4})"
+      }
     },
     {
       "name": "circlearc",
@@ -198,26 +230,26 @@
   "envs": [],
   "keys": {
     "\\usepackage/pict2e#c": [
-      "dvips\r",
-      "xdvi\r",
-      "dvipdf\r",
-      "dvipdfm\r",
-      "dvipdfmx\r",
-      "pdftex\r",
-      "luatex\r",
-      "xetex\r",
-      "dvipsone\r",
-      "dviwindo\r",
-      "oztex\r",
-      "textures\r",
-      "pctexps\r",
-      "pctex32\r",
-      "vtex\r",
-      "original\r",
-      "ltxarrows\r",
-      "pstarrows\r",
-      "debug\r",
-      "hide\r"
+      "dvips",
+      "xdvi",
+      "dvipdf",
+      "dvipdfm",
+      "dvipdfmx",
+      "pdftex",
+      "luatex",
+      "xetex",
+      "dvipsone",
+      "dviwindo",
+      "oztex",
+      "textures",
+      "pctexps",
+      "pctex32",
+      "vtex",
+      "original",
+      "ltxarrows",
+      "pstarrows",
+      "debug",
+      "hide"
     ]
   },
   "args": [

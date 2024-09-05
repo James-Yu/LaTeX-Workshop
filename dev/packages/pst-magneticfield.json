@@ -21,7 +21,11 @@
   ],
   "macros": [
     {
-      "name": "psmagneticfield(x1,y1)(x2,y2)"
+      "name": "psmagneticfield",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x1},${2:y1})(${3:x2},${4:y2})"
+      }
     },
     {
       "name": "psmagneticfield",
@@ -31,7 +35,11 @@
       }
     },
     {
-      "name": "psmagneticfieldThreeD(x1,y1)(x2,y2)"
+      "name": "psmagneticfieldThreeD",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x1},${2:y1})(${3:x2},${4:y2})"
+      }
     },
     {
       "name": "psmagneticfieldThreeD",
@@ -44,7 +52,11 @@
       "name": "psBarMagnet"
     },
     {
-      "name": "psBarMagnet(x,y)"
+      "name": "psBarMagnet",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:x},${2:y})"
+      }
     },
     {
       "name": "psBarMagnet",
@@ -64,18 +76,18 @@
   "envs": [],
   "keys": {
     "\\psmagneticfield#c,\\psmagneticfieldThreeD#c": [
-      "R=${1:number}\r",
-      "N=${1:number}\r",
-      "L=${1:number}\r",
-      "nL=${1:integer}\r",
-      "numSpires=\r",
-      "pointsB=${1:integer}\r",
-      "pointsS=${1:integer}\r",
-      "PasB=${1:number}\r",
-      "PasS=${1:number}\r",
-      "nS=${1:integer}\r",
-      "styleSpire=${1:style}\r",
-      "styleCourant=${1:style}\r",
+      "R=${1:number}",
+      "N=${1:number}",
+      "L=${1:number}",
+      "nL=${1:integer}",
+      "numSpires=",
+      "pointsB=${1:integer}",
+      "pointsS=${1:integer}",
+      "PasB=${1:number}",
+      "PasS=${1:number}",
+      "nS=${1:integer}",
+      "styleSpire=${1:style}",
+      "styleCourant=${1:style}",
       "drawSelf",
       "AntiHelmholtz",
       "StreamDensityPlot",
@@ -84,11 +96,11 @@
       "linecolor="
     ],
     "\\psBarMagnet#c": [
-      "rot=${1:degrees}\r",
+      "rot=${1:degrees}",
       "showField",
       "showPoleLabels",
-      "fontstyle=${1:font commands}\r",
-      "magnetScale=${1:factor}\r"
+      "fontstyle=${1:font commands}",
+      "magnetScale=${1:factor}"
     ]
   },
   "args": []

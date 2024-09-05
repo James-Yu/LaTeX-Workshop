@@ -50,6 +50,41 @@
       "unusual": true
     },
     {
+      "name": "multiputlist",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:x},${3:y})(${4:Δx},${5:Δy}){${1:item1,item2,...}}"
+      }
+    },
+    {
+      "name": "multiputlist",
+      "arg": {
+        "format": "()()[]{}",
+        "snippet": "(${3:x},${4:y})(${5:Δx},${6:Δy})[${2:pos}]{${1:item1,item2,...}}"
+      }
+    },
+    {
+      "name": "matrixput",
+      "arg": {
+        "format": "()(){}(){}{}",
+        "snippet": "(${4:x},${5:y})(${6:Δx1},${7:Δy1}){${1:n1}}(${8:Δx2},${9:Δy2}){${2:n2}}{${3:object}}"
+      }
+    },
+    {
+      "name": "grid",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:width},${2:height})(${3:Δwidth},${4:Δheight})"
+      }
+    },
+    {
+      "name": "grid",
+      "arg": {
+        "format": "()()[]",
+        "snippet": "(${2:width},${3:height})(${4:Δwidth},${5:Δheight})[${1:x0,y0}]"
+      }
+    },
+    {
       "name": "dashlinestretch",
       "unusual": true
     },
@@ -58,10 +93,10 @@
       "unusual": true
     },
     {
-      "name": "jput(x,y)",
+      "name": "jput",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:object}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:object}}"
       }
     },
     {
@@ -75,10 +110,10 @@
       }
     },
     {
-      "name": "line(x,y)",
+      "name": "line",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:length}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:length}}"
       }
     },
     {
@@ -96,13 +131,17 @@
       }
     },
     {
-      "name": "oval(width,height)"
+      "name": "oval",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:width},${2:height})"
+      }
     },
     {
-      "name": "oval(width,height)",
+      "name": "oval",
       "arg": {
-        "format": "[]",
-        "snippet": "[${1:portion}]"
+        "format": "()[]",
+        "snippet": "(${2:width},${3:height})[${1:portion}]"
       }
     },
     {
@@ -197,28 +236,28 @@
   ],
   "keys": {
     "\\usepackage/bxeepic#c": [
-      "safe\r",
-      "nosafe\r",
-      "dvips\r",
-      "xdvi\r",
-      "dvipdf\r",
-      "dvipdfm\r",
-      "dvipdfmx\r",
-      "pdftex\r",
-      "luatex\r",
-      "xetex\r",
-      "dvipsone\r",
-      "dviwindo\r",
-      "oztex\r",
-      "textures\r",
-      "pctexps\r",
-      "pctex32\r",
-      "vtex\r",
-      "original\r",
-      "ltxarrows\r",
-      "pstarrows\r",
-      "debug\r",
-      "hide\r"
+      "safe",
+      "nosafe",
+      "dvips",
+      "xdvi",
+      "dvipdf",
+      "dvipdfm",
+      "dvipdfmx",
+      "pdftex",
+      "luatex",
+      "xetex",
+      "dvipsone",
+      "dviwindo",
+      "oztex",
+      "textures",
+      "pctexps",
+      "pctex32",
+      "vtex",
+      "original",
+      "ltxarrows",
+      "pstarrows",
+      "debug",
+      "hide"
     ]
   },
   "args": [

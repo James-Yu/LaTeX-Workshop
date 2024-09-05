@@ -15,17 +15,21 @@
   ],
   "macros": [
     {
-      "name": "psRQBCmasse(x0,y0)(x1,y1)(x2,y2)",
+      "name": "psRQBCmasse",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:w0,w1,w2}}"
+        "format": "()()(){}",
+        "snippet": "(${2:x0},${3:y0})(${4:x1},${5:y1})(${6:x2},${7:y2}){${1:w0,w1,w2}}"
       }
     },
     {
       "name": "psRQBCmasse",
       "arg": {
         "format": "[]()()(){}",
-        "snippet": "[${2:options%keyvals}](${3:x0},${4:y0})(${5:x1},${6:y1})(${7:x2},${8:y2}){${1:w0,w1,w2}}"
+        "snippet": "[${2:options%keyvals}](${3:x0},${4:y0})(${5:x1},${6:y1})(${7:x2},${8:y2}){${1:w0,w1,w2}}",
+        "keys": [
+          "\\psRQBCmasse"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -48,12 +52,12 @@
   "envs": [],
   "keys": {
     "\\psbcurve": [
-      "bcurveTension=${1:value}\r",
-      "dash=${1:a b}\r",
+      "bcurveTension=${1:value}",
+      "dash=${1:a b}",
       "fillcolor=",
-      "fillstyle=${1:style}\r",
+      "fillstyle=${1:style}",
       "linecolor=",
-      "linestyle=${1:style}\r",
+      "linestyle=${1:style}",
       "linewidth=",
       "showpoints"
     ],
@@ -61,7 +65,7 @@
       "autoTrace",
       "linecolor=",
       "linewidth=",
-      "nPoints=${1:number}\r",
+      "nPoints=${1:number}",
       "showpoints",
       "showPolygon"
     ]

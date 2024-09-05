@@ -30,7 +30,11 @@
       "name": "DDDview",
       "arg": {
         "format": "[][]",
-        "snippet": "[${1:view name}][${2:keyvals}]"
+        "snippet": "[${1:view name}][${2:keyvals}]",
+        "keys": [
+          "\\DDDview"
+        ],
+        "keyPos": 1
       }
     },
     {
@@ -127,7 +131,11 @@
       "name": "render",
       "arg": {
         "format": "[][]{}",
-        "snippet": "[${2:name}][${3:options%keyvals}]{${1:appearance}}"
+        "snippet": "[${2:name}][${3:options%keyvals}]{${1:appearance}}",
+        "keys": [
+          "\\render"
+        ],
+        "keyPos": 1
       }
     },
     {
@@ -144,7 +152,11 @@
       "name": "RM",
       "arg": {
         "format": "[][]{}",
-        "snippet": "[${2:name}][${3:options%keyvals}]{${1:appearance}}"
+        "snippet": "[${2:name}][${3:options%keyvals}]{${1:appearance}}",
+        "keys": [
+          "\\RM"
+        ],
+        "keyPos": 1
       }
     },
     {
@@ -185,35 +197,35 @@
   "envs": [],
   "keys": {
     "\\DDDview": [
-      "projection=${1|perspective,ortho\r|}",
-      "scale=${1:factor}\r",
-      "FOV=${1:number 0-180}\r",
-      "background=${1:OpTeX color}\r",
-      "rendermode=${1|Solid,SolidWireframe,Transparent,TransparentWireframe,BoundingBox,TransparentBoundingBox,Wireframe,ShadedWireframe,Vertices,ShadedVertices,Illustration,SolidOutline,ShadedIllustration\r|}",
-      "lighting=${1|White,Day,Night,Hard,Primary,Blue,Red,Cube,CAD,Headlamp\r|}",
-      "method=${1|media9,manual,u3d\r|}",
-      "u3dpath=${1:path}\r",
-      "coo=${1:x y z}\r",
-      "roo=${1:number}\r",
-      "c2c=${1:x y z}\r"
+      "projection=${1|perspective,ortho|}",
+      "scale=${1:factor}",
+      "FOV=${1:number 0-180}",
+      "background=${1:OpTeX color}",
+      "rendermode=${1|Solid,SolidWireframe,Transparent,TransparentWireframe,BoundingBox,TransparentBoundingBox,Wireframe,ShadedWireframe,Vertices,ShadedVertices,Illustration,SolidOutline,ShadedIllustration|}",
+      "lighting=${1|White,Day,Night,Hard,Primary,Blue,Red,Cube,CAD,Headlamp|}",
+      "method=${1|media9,manual,u3d|}",
+      "u3dpath=${1:path}",
+      "coo=${1:x y z}",
+      "roo=${1:number}",
+      "c2c=${1:x y z}"
     ],
     "\\render": [
       "controls",
-      "volume=${1:number 0-100}\r",
-      "repeat=${1:integer}\r",
-      "background=${1:OpTeX color}\r",
-      "opacity=${1:factor}\r",
-      "aactions=\\renditionautoplay\r",
-      "name=${1:string}\r"
+      "volume=${1:number 0-100}",
+      "repeat=${1:integer}",
+      "background=${1:OpTeX color}",
+      "opacity=${1:factor}",
+      "aactions=\\renditionautoplay",
+      "name=${1:string}"
     ],
     "\\RM": [
-      "activation=${1|explicit,auto\r|}",
-      "deactivation=${1|explicit,auto\r|}",
+      "activation=${1|explicit,auto|}",
+      "deactivation=${1|explicit,auto|}",
       "toolbar",
-      "views={${1:name1,name2,...}}\r",
-      "scripts={${1:name1,name2,...}}\r",
-      "name=${1:string}\r",
-      "background=${1:OpTeX color}\r"
+      "views={${1:name1,name2,...}}",
+      "scripts={${1:name1,name2,...}}",
+      "name=${1:string}",
+      "background=${1:OpTeX color}"
     ]
   },
   "args": []

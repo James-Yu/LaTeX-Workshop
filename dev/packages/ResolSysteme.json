@@ -27,19 +27,31 @@
   ],
   "macros": [
     {
-      "name": "ProduitMatricesPY(matriceA)(matriceB)",
-      "if": "pyluatex"
+      "name": "ProduitMatricesPY",
+      "if": "pyluatex",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:matriceA})(${2:matriceB})"
+      }
     },
     {
-      "name": "ProduitMatricesPY<opts nicematrix>(matriceA)(matriceB)",
-      "if": "pyluatex"
+      "name": "ProduitMatricesPY<opts nicematrix>",
+      "if": "pyluatex",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:matriceA})(${2:matriceB})"
+      }
     },
     {
       "name": "ProduitMatricesPY",
       "if": "pyluatex",
       "arg": {
         "format": "[]()()",
-        "snippet": "[${1:opt de formatage%keyvals}](${2:matriceA})(${3:matriceB})"
+        "snippet": "[${1:opt de formatage%keyvals}](${2:matriceA})(${3:matriceB})",
+        "keys": [
+          "\\ConvVersFrac,\\ConvVersFrac*,\\AffMatrice,\\AffMatrice*,\\ProduitMatrices,\\ProduitMatrices*,\\ProduitMatricesPY,\\ProduitMatricesPY*,\\CarreMatrice,\\CarreMatrice*,\\MatricePuissancePY,\\MatricePuissancePY*,\\DetMatrice,\\DetMatrice*,\\DetMatricePY,\\DetMatricePY*,\\MatriceInverse,\\MatriceInverse*,\\MatriceInversePY,\\MatriceInversePY*,\\AffEtatProb,\\EtatProbPY,\\SolutionSysteme,\\SolutionSysteme*,\\SolutionSystemePY,\\SolutionSystemePY*,\\EtatStable,\\EtatStablePY"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -47,47 +59,79 @@
       "if": "pyluatex",
       "arg": {
         "format": "[]<>()()",
-        "snippet": "[${1:opt de formatage%keyvals}]<${2:opts nicematrix}>(${3:matriceA})(${4:matriceB})"
-      }
-    },
-    {
-      "name": "ProduitMatricesPY*(matriceA)(matriceB)",
-      "if": "pyluatex"
-    },
-    {
-      "name": "ProduitMatricesPY*<opts nicematrix>(matriceA)(matriceB)",
-      "if": "pyluatex"
-    },
-    {
-      "name": "ProduitMatricesPY*",
-      "if": "pyluatex",
-      "arg": {
-        "format": "[]()()",
-        "snippet": "[${1:opt de formatage%keyvals}](${2:matriceA})(${3:matriceB})"
+        "snippet": "[${1:opt de formatage%keyvals}]<${2:opts nicematrix}>(${3:matriceA})(${4:matriceB})",
+        "keys": [
+          "\\ConvVersFrac,\\ConvVersFrac*,\\AffMatrice,\\AffMatrice*,\\ProduitMatrices,\\ProduitMatrices*,\\ProduitMatricesPY,\\ProduitMatricesPY*,\\CarreMatrice,\\CarreMatrice*,\\MatricePuissancePY,\\MatricePuissancePY*,\\DetMatrice,\\DetMatrice*,\\DetMatricePY,\\DetMatricePY*,\\MatriceInverse,\\MatriceInverse*,\\MatriceInversePY,\\MatriceInversePY*,\\AffEtatProb,\\EtatProbPY,\\SolutionSysteme,\\SolutionSysteme*,\\SolutionSystemePY,\\SolutionSystemePY*,\\EtatStable,\\EtatStablePY"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "ProduitMatricesPY*",
       "if": "pyluatex",
       "arg": {
-        "format": "[]<>()()",
-        "snippet": "[${1:opt de formatage%keyvals}]<${2:opts nicematrix}>(${3:matriceA})(${4:matriceB})"
+        "format": "()()",
+        "snippet": "(${1:matriceA})(${2:matriceB})"
       }
     },
     {
-      "name": "MatricePuissancePY(matrice)(puissance)",
-      "if": "pyluatex"
+      "name": "ProduitMatricesPY*<opts nicematrix>",
+      "if": "pyluatex",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:matriceA})(${2:matriceB})"
+      }
     },
     {
-      "name": "MatricePuissancePY<options nicematrix>(matrice)(puissance)",
-      "if": "pyluatex"
+      "name": "ProduitMatricesPY*",
+      "if": "pyluatex",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "[${1:opt de formatage%keyvals}](${2:matriceA})(${3:matriceB})",
+        "keys": [
+          "\\ConvVersFrac,\\ConvVersFrac*,\\AffMatrice,\\AffMatrice*,\\ProduitMatrices,\\ProduitMatrices*,\\ProduitMatricesPY,\\ProduitMatricesPY*,\\CarreMatrice,\\CarreMatrice*,\\MatricePuissancePY,\\MatricePuissancePY*,\\DetMatrice,\\DetMatrice*,\\DetMatricePY,\\DetMatricePY*,\\MatriceInverse,\\MatriceInverse*,\\MatriceInversePY,\\MatriceInversePY*,\\AffEtatProb,\\EtatProbPY,\\SolutionSysteme,\\SolutionSysteme*,\\SolutionSystemePY,\\SolutionSystemePY*,\\EtatStable,\\EtatStablePY"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ProduitMatricesPY*",
+      "if": "pyluatex",
+      "arg": {
+        "format": "[]<>()()",
+        "snippet": "[${1:opt de formatage%keyvals}]<${2:opts nicematrix}>(${3:matriceA})(${4:matriceB})",
+        "keys": [
+          "\\ConvVersFrac,\\ConvVersFrac*,\\AffMatrice,\\AffMatrice*,\\ProduitMatrices,\\ProduitMatrices*,\\ProduitMatricesPY,\\ProduitMatricesPY*,\\CarreMatrice,\\CarreMatrice*,\\MatricePuissancePY,\\MatricePuissancePY*,\\DetMatrice,\\DetMatrice*,\\DetMatricePY,\\DetMatricePY*,\\MatriceInverse,\\MatriceInverse*,\\MatriceInversePY,\\MatriceInversePY*,\\AffEtatProb,\\EtatProbPY,\\SolutionSysteme,\\SolutionSysteme*,\\SolutionSystemePY,\\SolutionSystemePY*,\\EtatStable,\\EtatStablePY"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "MatricePuissancePY",
+      "if": "pyluatex",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:matrice})(${2:puissance})"
+      }
+    },
+    {
+      "name": "MatricePuissancePY<options nicematrix>",
+      "if": "pyluatex",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:matrice})(${2:puissance})"
+      }
     },
     {
       "name": "MatricePuissancePY",
       "if": "pyluatex",
       "arg": {
         "format": "[]()()",
-        "snippet": "[${1:option de formatage%keyvals}](${2:matrice})(${3:puissance})"
+        "snippet": "[${1:option de formatage%keyvals}](${2:matrice})(${3:puissance})",
+        "keys": [
+          "\\ConvVersFrac,\\ConvVersFrac*,\\AffMatrice,\\AffMatrice*,\\ProduitMatrices,\\ProduitMatrices*,\\ProduitMatricesPY,\\ProduitMatricesPY*,\\CarreMatrice,\\CarreMatrice*,\\MatricePuissancePY,\\MatricePuissancePY*,\\DetMatrice,\\DetMatrice*,\\DetMatricePY,\\DetMatricePY*,\\MatriceInverse,\\MatriceInverse*,\\MatriceInversePY,\\MatriceInversePY*,\\AffEtatProb,\\EtatProbPY,\\SolutionSysteme,\\SolutionSysteme*,\\SolutionSystemePY,\\SolutionSystemePY*,\\EtatStable,\\EtatStablePY"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -95,23 +139,39 @@
       "if": "pyluatex",
       "arg": {
         "format": "[]<>()()",
-        "snippet": "[${1:option de formatage%keyvals}]<${2:options nicematrix}>(${3:matrice})(${4:puissance})"
+        "snippet": "[${1:option de formatage%keyvals}]<${2:options nicematrix}>(${3:matrice})(${4:puissance})",
+        "keys": [
+          "\\ConvVersFrac,\\ConvVersFrac*,\\AffMatrice,\\AffMatrice*,\\ProduitMatrices,\\ProduitMatrices*,\\ProduitMatricesPY,\\ProduitMatricesPY*,\\CarreMatrice,\\CarreMatrice*,\\MatricePuissancePY,\\MatricePuissancePY*,\\DetMatrice,\\DetMatrice*,\\DetMatricePY,\\DetMatricePY*,\\MatriceInverse,\\MatriceInverse*,\\MatriceInversePY,\\MatriceInversePY*,\\AffEtatProb,\\EtatProbPY,\\SolutionSysteme,\\SolutionSysteme*,\\SolutionSystemePY,\\SolutionSystemePY*,\\EtatStable,\\EtatStablePY"
+        ],
+        "keyPos": 0
       }
     },
     {
-      "name": "MatricePuissancePY*(matrice)(puissance)",
-      "if": "pyluatex"
+      "name": "MatricePuissancePY*",
+      "if": "pyluatex",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:matrice})(${2:puissance})"
+      }
     },
     {
-      "name": "MatricePuissancePY*<options nicematrix>(matrice)(puissance)",
-      "if": "pyluatex"
+      "name": "MatricePuissancePY*<options nicematrix>",
+      "if": "pyluatex",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:matrice})(${2:puissance})"
+      }
     },
     {
       "name": "MatricePuissancePY*",
       "if": "pyluatex",
       "arg": {
         "format": "[]()()",
-        "snippet": "[${1:option de formatage%keyvals}](${2:matrice})(${3:puissance})"
+        "snippet": "[${1:option de formatage%keyvals}](${2:matrice})(${3:puissance})",
+        "keys": [
+          "\\ConvVersFrac,\\ConvVersFrac*,\\AffMatrice,\\AffMatrice*,\\ProduitMatrices,\\ProduitMatrices*,\\ProduitMatricesPY,\\ProduitMatricesPY*,\\CarreMatrice,\\CarreMatrice*,\\MatricePuissancePY,\\MatricePuissancePY*,\\DetMatrice,\\DetMatrice*,\\DetMatricePY,\\DetMatricePY*,\\MatriceInverse,\\MatriceInverse*,\\MatriceInversePY,\\MatriceInversePY*,\\AffEtatProb,\\EtatProbPY,\\SolutionSysteme,\\SolutionSysteme*,\\SolutionSystemePY,\\SolutionSystemePY*,\\EtatStable,\\EtatStablePY"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -119,47 +179,79 @@
       "if": "pyluatex",
       "arg": {
         "format": "[]<>()()",
-        "snippet": "[${1:option de formatage%keyvals}]<${2:options nicematrix}>(${3:matrice})(${4:puissance})"
+        "snippet": "[${1:option de formatage%keyvals}]<${2:options nicematrix}>(${3:matrice})(${4:puissance})",
+        "keys": [
+          "\\ConvVersFrac,\\ConvVersFrac*,\\AffMatrice,\\AffMatrice*,\\ProduitMatrices,\\ProduitMatrices*,\\ProduitMatricesPY,\\ProduitMatricesPY*,\\CarreMatrice,\\CarreMatrice*,\\MatricePuissancePY,\\MatricePuissancePY*,\\DetMatrice,\\DetMatrice*,\\DetMatricePY,\\DetMatricePY*,\\MatriceInverse,\\MatriceInverse*,\\MatriceInversePY,\\MatriceInversePY*,\\AffEtatProb,\\EtatProbPY,\\SolutionSysteme,\\SolutionSysteme*,\\SolutionSystemePY,\\SolutionSystemePY*,\\EtatStable,\\EtatStablePY"
+        ],
+        "keyPos": 0
       }
     },
     {
-      "name": "DetMatricePY(matrice)",
-      "if": "pyluatex"
+      "name": "DetMatricePY",
+      "if": "pyluatex",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:matrice})"
+      }
     },
     {
       "name": "DetMatricePY",
       "if": "pyluatex",
       "arg": {
         "format": "[]()",
-        "snippet": "[${1:option de formatage%keyvals}](${2:matrice})"
+        "snippet": "[${1:option de formatage%keyvals}](${2:matrice})",
+        "keys": [
+          "\\ConvVersFrac,\\ConvVersFrac*,\\AffMatrice,\\AffMatrice*,\\ProduitMatrices,\\ProduitMatrices*,\\ProduitMatricesPY,\\ProduitMatricesPY*,\\CarreMatrice,\\CarreMatrice*,\\MatricePuissancePY,\\MatricePuissancePY*,\\DetMatrice,\\DetMatrice*,\\DetMatricePY,\\DetMatricePY*,\\MatriceInverse,\\MatriceInverse*,\\MatriceInversePY,\\MatriceInversePY*,\\AffEtatProb,\\EtatProbPY,\\SolutionSysteme,\\SolutionSysteme*,\\SolutionSystemePY,\\SolutionSystemePY*,\\EtatStable,\\EtatStablePY"
+        ],
+        "keyPos": 0
       }
     },
     {
-      "name": "DetMatricePY*(matrice)",
-      "if": "pyluatex"
+      "name": "DetMatricePY*",
+      "if": "pyluatex",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:matrice})"
+      }
     },
     {
       "name": "DetMatricePY*",
       "if": "pyluatex",
       "arg": {
         "format": "[]()",
-        "snippet": "[${1:option de formatage%keyvals}](${2:matrice})"
+        "snippet": "[${1:option de formatage%keyvals}](${2:matrice})",
+        "keys": [
+          "\\ConvVersFrac,\\ConvVersFrac*,\\AffMatrice,\\AffMatrice*,\\ProduitMatrices,\\ProduitMatrices*,\\ProduitMatricesPY,\\ProduitMatricesPY*,\\CarreMatrice,\\CarreMatrice*,\\MatricePuissancePY,\\MatricePuissancePY*,\\DetMatrice,\\DetMatrice*,\\DetMatricePY,\\DetMatricePY*,\\MatriceInverse,\\MatriceInverse*,\\MatriceInversePY,\\MatriceInversePY*,\\AffEtatProb,\\EtatProbPY,\\SolutionSysteme,\\SolutionSysteme*,\\SolutionSystemePY,\\SolutionSystemePY*,\\EtatStable,\\EtatStablePY"
+        ],
+        "keyPos": 0
       }
     },
     {
-      "name": "MatriceInversePY(matrice)",
-      "if": "pyluatex"
+      "name": "MatriceInversePY",
+      "if": "pyluatex",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:matrice})"
+      }
     },
     {
-      "name": "MatriceInversePY<options nicematrix>(matrice)",
-      "if": "pyluatex"
+      "name": "MatriceInversePY<options nicematrix>",
+      "if": "pyluatex",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:matrice})"
+      }
     },
     {
       "name": "MatriceInversePY",
       "if": "pyluatex",
       "arg": {
         "format": "[]()",
-        "snippet": "[${1:option de formatage%keyvals}](${2:matrice})"
+        "snippet": "[${1:option de formatage%keyvals}](${2:matrice})",
+        "keys": [
+          "\\ConvVersFrac,\\ConvVersFrac*,\\AffMatrice,\\AffMatrice*,\\ProduitMatrices,\\ProduitMatrices*,\\ProduitMatricesPY,\\ProduitMatricesPY*,\\CarreMatrice,\\CarreMatrice*,\\MatricePuissancePY,\\MatricePuissancePY*,\\DetMatrice,\\DetMatrice*,\\DetMatricePY,\\DetMatricePY*,\\MatriceInverse,\\MatriceInverse*,\\MatriceInversePY,\\MatriceInversePY*,\\AffEtatProb,\\EtatProbPY,\\SolutionSysteme,\\SolutionSysteme*,\\SolutionSystemePY,\\SolutionSystemePY*,\\EtatStable,\\EtatStablePY"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -167,23 +259,39 @@
       "if": "pyluatex",
       "arg": {
         "format": "[]<>()",
-        "snippet": "[${1:option de formatage%keyvals}]<${2:options nicematrix}>(${3:matrice})"
+        "snippet": "[${1:option de formatage%keyvals}]<${2:options nicematrix}>(${3:matrice})",
+        "keys": [
+          "\\ConvVersFrac,\\ConvVersFrac*,\\AffMatrice,\\AffMatrice*,\\ProduitMatrices,\\ProduitMatrices*,\\ProduitMatricesPY,\\ProduitMatricesPY*,\\CarreMatrice,\\CarreMatrice*,\\MatricePuissancePY,\\MatricePuissancePY*,\\DetMatrice,\\DetMatrice*,\\DetMatricePY,\\DetMatricePY*,\\MatriceInverse,\\MatriceInverse*,\\MatriceInversePY,\\MatriceInversePY*,\\AffEtatProb,\\EtatProbPY,\\SolutionSysteme,\\SolutionSysteme*,\\SolutionSystemePY,\\SolutionSystemePY*,\\EtatStable,\\EtatStablePY"
+        ],
+        "keyPos": 0
       }
     },
     {
-      "name": "MatriceInversePY*(matrice)",
-      "if": "pyluatex"
+      "name": "MatriceInversePY*",
+      "if": "pyluatex",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:matrice})"
+      }
     },
     {
-      "name": "MatriceInversePY*<options nicematrix>(matrice)",
-      "if": "pyluatex"
+      "name": "MatriceInversePY*<options nicematrix>",
+      "if": "pyluatex",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:matrice})"
+      }
     },
     {
       "name": "MatriceInversePY*",
       "if": "pyluatex",
       "arg": {
         "format": "[]()",
-        "snippet": "[${1:option de formatage%keyvals}](${2:matrice})"
+        "snippet": "[${1:option de formatage%keyvals}](${2:matrice})",
+        "keys": [
+          "\\ConvVersFrac,\\ConvVersFrac*,\\AffMatrice,\\AffMatrice*,\\ProduitMatrices,\\ProduitMatrices*,\\ProduitMatricesPY,\\ProduitMatricesPY*,\\CarreMatrice,\\CarreMatrice*,\\MatricePuissancePY,\\MatricePuissancePY*,\\DetMatrice,\\DetMatrice*,\\DetMatricePY,\\DetMatricePY*,\\MatriceInverse,\\MatriceInverse*,\\MatriceInversePY,\\MatriceInversePY*,\\AffEtatProb,\\EtatProbPY,\\SolutionSysteme,\\SolutionSysteme*,\\SolutionSystemePY,\\SolutionSystemePY*,\\EtatStable,\\EtatStablePY"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -191,7 +299,27 @@
       "if": "pyluatex",
       "arg": {
         "format": "[]<>()",
-        "snippet": "[${1:option de formatage%keyvals}]<${2:options nicematrix}>(${3:matrice})"
+        "snippet": "[${1:option de formatage%keyvals}]<${2:options nicematrix}>(${3:matrice})",
+        "keys": [
+          "\\ConvVersFrac,\\ConvVersFrac*,\\AffMatrice,\\AffMatrice*,\\ProduitMatrices,\\ProduitMatrices*,\\ProduitMatricesPY,\\ProduitMatricesPY*,\\CarreMatrice,\\CarreMatrice*,\\MatricePuissancePY,\\MatricePuissancePY*,\\DetMatrice,\\DetMatrice*,\\DetMatricePY,\\DetMatricePY*,\\MatriceInverse,\\MatriceInverse*,\\MatriceInversePY,\\MatriceInversePY*,\\AffEtatProb,\\EtatProbPY,\\SolutionSysteme,\\SolutionSysteme*,\\SolutionSystemePY,\\SolutionSystemePY*,\\EtatStable,\\EtatStablePY"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "EtatProbPY",
+      "if": "pyluatex",
+      "arg": {
+        "format": "()()()",
+        "snippet": "(${1:état init})(${2:mat de trans})(${3:étape})"
+      }
+    },
+    {
+      "name": "EtatProbPY<options nicematrix>",
+      "if": "pyluatex",
+      "arg": {
+        "format": "()()()",
+        "snippet": "(${1:état init})(${2:mat de trans})(${3:étape})"
       }
     },
     {
@@ -199,7 +327,11 @@
       "if": "pyluatex",
       "arg": {
         "format": "[]()()()",
-        "snippet": "[${1:option de formatage%keyvals}](${2:état init})(${3:mat de trans})(${4:étape})"
+        "snippet": "[${1:option de formatage%keyvals}](${2:état init})(${3:mat de trans})(${4:étape})",
+        "keys": [
+          "\\ConvVersFrac,\\ConvVersFrac*,\\AffMatrice,\\AffMatrice*,\\ProduitMatrices,\\ProduitMatrices*,\\ProduitMatricesPY,\\ProduitMatricesPY*,\\CarreMatrice,\\CarreMatrice*,\\MatricePuissancePY,\\MatricePuissancePY*,\\DetMatrice,\\DetMatrice*,\\DetMatricePY,\\DetMatricePY*,\\MatriceInverse,\\MatriceInverse*,\\MatriceInversePY,\\MatriceInversePY*,\\AffEtatProb,\\EtatProbPY,\\SolutionSysteme,\\SolutionSysteme*,\\SolutionSystemePY,\\SolutionSystemePY*,\\EtatStable,\\EtatStablePY"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -207,23 +339,39 @@
       "if": "pyluatex",
       "arg": {
         "format": "[]<>()()()",
-        "snippet": "[${1:option de formatage%keyvals}]<${2:options nicematrix}>(${3:état init})(${4:mat de trans})(${5:étape})"
+        "snippet": "[${1:option de formatage%keyvals}]<${2:options nicematrix}>(${3:état init})(${4:mat de trans})(${5:étape})",
+        "keys": [
+          "\\ConvVersFrac,\\ConvVersFrac*,\\AffMatrice,\\AffMatrice*,\\ProduitMatrices,\\ProduitMatrices*,\\ProduitMatricesPY,\\ProduitMatricesPY*,\\CarreMatrice,\\CarreMatrice*,\\MatricePuissancePY,\\MatricePuissancePY*,\\DetMatrice,\\DetMatrice*,\\DetMatricePY,\\DetMatricePY*,\\MatriceInverse,\\MatriceInverse*,\\MatriceInversePY,\\MatriceInversePY*,\\AffEtatProb,\\EtatProbPY,\\SolutionSysteme,\\SolutionSysteme*,\\SolutionSystemePY,\\SolutionSystemePY*,\\EtatStable,\\EtatStablePY"
+        ],
+        "keyPos": 0
       }
     },
     {
-      "name": "SolutionSystemePY(matriceA)(matriceB)",
-      "if": "pyluatex"
+      "name": "SolutionSystemePY",
+      "if": "pyluatex",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:matriceA})(${2:matriceB})"
+      }
     },
     {
-      "name": "SolutionSystemePY<opts nicematrix>(matriceA)(matriceB)",
-      "if": "pyluatex"
+      "name": "SolutionSystemePY<opts nicematrix>",
+      "if": "pyluatex",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:matriceA})(${2:matriceB})"
+      }
     },
     {
       "name": "SolutionSystemePY",
       "if": "pyluatex",
       "arg": {
         "format": "[]()()",
-        "snippet": "[${1:opt de formatage%keyvals}](${2:matriceA})(${3:matriceB})"
+        "snippet": "[${1:opt de formatage%keyvals}](${2:matriceA})(${3:matriceB})",
+        "keys": [
+          "\\ConvVersFrac,\\ConvVersFrac*,\\AffMatrice,\\AffMatrice*,\\ProduitMatrices,\\ProduitMatrices*,\\ProduitMatricesPY,\\ProduitMatricesPY*,\\CarreMatrice,\\CarreMatrice*,\\MatricePuissancePY,\\MatricePuissancePY*,\\DetMatrice,\\DetMatrice*,\\DetMatricePY,\\DetMatricePY*,\\MatriceInverse,\\MatriceInverse*,\\MatriceInversePY,\\MatriceInversePY*,\\AffEtatProb,\\EtatProbPY,\\SolutionSysteme,\\SolutionSysteme*,\\SolutionSystemePY,\\SolutionSystemePY*,\\EtatStable,\\EtatStablePY"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -231,23 +379,39 @@
       "if": "pyluatex",
       "arg": {
         "format": "[]<>()()",
-        "snippet": "[${1:opt de formatage%keyvals}]<${2:opts nicematrix}>(${3:matriceA})(${4:matriceB})"
+        "snippet": "[${1:opt de formatage%keyvals}]<${2:opts nicematrix}>(${3:matriceA})(${4:matriceB})",
+        "keys": [
+          "\\ConvVersFrac,\\ConvVersFrac*,\\AffMatrice,\\AffMatrice*,\\ProduitMatrices,\\ProduitMatrices*,\\ProduitMatricesPY,\\ProduitMatricesPY*,\\CarreMatrice,\\CarreMatrice*,\\MatricePuissancePY,\\MatricePuissancePY*,\\DetMatrice,\\DetMatrice*,\\DetMatricePY,\\DetMatricePY*,\\MatriceInverse,\\MatriceInverse*,\\MatriceInversePY,\\MatriceInversePY*,\\AffEtatProb,\\EtatProbPY,\\SolutionSysteme,\\SolutionSysteme*,\\SolutionSystemePY,\\SolutionSystemePY*,\\EtatStable,\\EtatStablePY"
+        ],
+        "keyPos": 0
       }
     },
     {
-      "name": "SolutionSystemePY*(matriceA)(matriceB)",
-      "if": "pyluatex"
+      "name": "SolutionSystemePY*",
+      "if": "pyluatex",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:matriceA})(${2:matriceB})"
+      }
     },
     {
-      "name": "SolutionSystemePY*<opts nicematrix>(matriceA)(matriceB)",
-      "if": "pyluatex"
+      "name": "SolutionSystemePY*<opts nicematrix>",
+      "if": "pyluatex",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:matriceA})(${2:matriceB})"
+      }
     },
     {
       "name": "SolutionSystemePY*",
       "if": "pyluatex",
       "arg": {
         "format": "[]()()",
-        "snippet": "[${1:opt de formatage%keyvals}](${2:matriceA})(${3:matriceB})"
+        "snippet": "[${1:opt de formatage%keyvals}](${2:matriceA})(${3:matriceB})",
+        "keys": [
+          "\\ConvVersFrac,\\ConvVersFrac*,\\AffMatrice,\\AffMatrice*,\\ProduitMatrices,\\ProduitMatrices*,\\ProduitMatricesPY,\\ProduitMatricesPY*,\\CarreMatrice,\\CarreMatrice*,\\MatricePuissancePY,\\MatricePuissancePY*,\\DetMatrice,\\DetMatrice*,\\DetMatricePY,\\DetMatricePY*,\\MatriceInverse,\\MatriceInverse*,\\MatriceInversePY,\\MatriceInversePY*,\\AffEtatProb,\\EtatProbPY,\\SolutionSysteme,\\SolutionSysteme*,\\SolutionSystemePY,\\SolutionSystemePY*,\\EtatStable,\\EtatStablePY"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -255,23 +419,39 @@
       "if": "pyluatex",
       "arg": {
         "format": "[]<>()()",
-        "snippet": "[${1:opt de formatage%keyvals}]<${2:opts nicematrix}>(${3:matriceA})(${4:matriceB})"
+        "snippet": "[${1:opt de formatage%keyvals}]<${2:opts nicematrix}>(${3:matriceA})(${4:matriceB})",
+        "keys": [
+          "\\ConvVersFrac,\\ConvVersFrac*,\\AffMatrice,\\AffMatrice*,\\ProduitMatrices,\\ProduitMatrices*,\\ProduitMatricesPY,\\ProduitMatricesPY*,\\CarreMatrice,\\CarreMatrice*,\\MatricePuissancePY,\\MatricePuissancePY*,\\DetMatrice,\\DetMatrice*,\\DetMatricePY,\\DetMatricePY*,\\MatriceInverse,\\MatriceInverse*,\\MatriceInversePY,\\MatriceInversePY*,\\AffEtatProb,\\EtatProbPY,\\SolutionSysteme,\\SolutionSysteme*,\\SolutionSystemePY,\\SolutionSystemePY*,\\EtatStable,\\EtatStablePY"
+        ],
+        "keyPos": 0
       }
     },
     {
-      "name": "EtatStablePY(matrice)",
-      "if": "pyluatex"
+      "name": "EtatStablePY",
+      "if": "pyluatex",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:matrice})"
+      }
     },
     {
-      "name": "EtatStablePY<opts nicematrix>(matrice)",
-      "if": "pyluatex"
+      "name": "EtatStablePY<opts nicematrix>",
+      "if": "pyluatex",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:matrice})"
+      }
     },
     {
       "name": "EtatStablePY",
       "if": "pyluatex",
       "arg": {
         "format": "[]()",
-        "snippet": "[${1:opt de formatage%keyvals}](${2:matrice})"
+        "snippet": "[${1:opt de formatage%keyvals}](${2:matrice})",
+        "keys": [
+          "\\ConvVersFrac,\\ConvVersFrac*,\\AffMatrice,\\AffMatrice*,\\ProduitMatrices,\\ProduitMatrices*,\\ProduitMatricesPY,\\ProduitMatricesPY*,\\CarreMatrice,\\CarreMatrice*,\\MatricePuissancePY,\\MatricePuissancePY*,\\DetMatrice,\\DetMatrice*,\\DetMatricePY,\\DetMatricePY*,\\MatriceInverse,\\MatriceInverse*,\\MatriceInversePY,\\MatriceInversePY*,\\AffEtatProb,\\EtatProbPY,\\SolutionSysteme,\\SolutionSysteme*,\\SolutionSystemePY,\\SolutionSystemePY*,\\EtatStable,\\EtatStablePY"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -279,7 +459,11 @@
       "if": "pyluatex",
       "arg": {
         "format": "[]<>()",
-        "snippet": "[${1:opt de formatage%keyvals}]<${2:opts nicematrix}>(${3:matrice})"
+        "snippet": "[${1:opt de formatage%keyvals}]<${2:opts nicematrix}>(${3:matrice})",
+        "keys": [
+          "\\ConvVersFrac,\\ConvVersFrac*,\\AffMatrice,\\AffMatrice*,\\ProduitMatrices,\\ProduitMatrices*,\\ProduitMatricesPY,\\ProduitMatricesPY*,\\CarreMatrice,\\CarreMatrice*,\\MatricePuissancePY,\\MatricePuissancePY*,\\DetMatrice,\\DetMatrice*,\\DetMatricePY,\\DetMatricePY*,\\MatriceInverse,\\MatriceInverse*,\\MatriceInversePY,\\MatriceInversePY*,\\AffEtatProb,\\EtatProbPY,\\SolutionSysteme,\\SolutionSysteme*,\\SolutionSystemePY,\\SolutionSystemePY*,\\EtatStable,\\EtatStablePY"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -293,7 +477,11 @@
       "name": "ConvVersFrac",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:option de formatage%keyvals}]{${1:calcul}}"
+        "snippet": "[${2:option de formatage%keyvals}]{${1:calcul}}",
+        "keys": [
+          "\\ConvVersFrac,\\ConvVersFrac*,\\AffMatrice,\\AffMatrice*,\\ProduitMatrices,\\ProduitMatrices*,\\ProduitMatricesPY,\\ProduitMatricesPY*,\\CarreMatrice,\\CarreMatrice*,\\MatricePuissancePY,\\MatricePuissancePY*,\\DetMatrice,\\DetMatrice*,\\DetMatricePY,\\DetMatricePY*,\\MatriceInverse,\\MatriceInverse*,\\MatriceInversePY,\\MatriceInversePY*,\\AffEtatProb,\\EtatProbPY,\\SolutionSysteme,\\SolutionSysteme*,\\SolutionSystemePY,\\SolutionSystemePY*,\\EtatStable,\\EtatStablePY"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -307,261 +495,457 @@
       "name": "ConvVersFrac*",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:option de formatage%keyvals}]{${1:calcul}}"
+        "snippet": "[${2:option de formatage%keyvals}]{${1:calcul}}",
+        "keys": [
+          "\\ConvVersFrac,\\ConvVersFrac*,\\AffMatrice,\\AffMatrice*,\\ProduitMatrices,\\ProduitMatrices*,\\ProduitMatricesPY,\\ProduitMatricesPY*,\\CarreMatrice,\\CarreMatrice*,\\MatricePuissancePY,\\MatricePuissancePY*,\\DetMatrice,\\DetMatrice*,\\DetMatricePY,\\DetMatricePY*,\\MatriceInverse,\\MatriceInverse*,\\MatriceInversePY,\\MatriceInversePY*,\\AffEtatProb,\\EtatProbPY,\\SolutionSysteme,\\SolutionSysteme*,\\SolutionSystemePY,\\SolutionSystemePY*,\\EtatStable,\\EtatStablePY"
+        ],
+        "keyPos": 0
       }
     },
     {
-      "name": "AffMatrice(matrice)"
+      "name": "AffMatrice",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:matrice})"
+      }
     },
     {
       "name": "AffMatrice",
       "arg": {
         "format": "[]()",
-        "snippet": "[${1:option de formatage%keyvals}](${2:matrice})"
+        "snippet": "[${1:option de formatage%keyvals}](${2:matrice})",
+        "keys": [
+          "\\ConvVersFrac,\\ConvVersFrac*,\\AffMatrice,\\AffMatrice*,\\ProduitMatrices,\\ProduitMatrices*,\\ProduitMatricesPY,\\ProduitMatricesPY*,\\CarreMatrice,\\CarreMatrice*,\\MatricePuissancePY,\\MatricePuissancePY*,\\DetMatrice,\\DetMatrice*,\\DetMatricePY,\\DetMatricePY*,\\MatriceInverse,\\MatriceInverse*,\\MatriceInversePY,\\MatriceInversePY*,\\AffEtatProb,\\EtatProbPY,\\SolutionSysteme,\\SolutionSysteme*,\\SolutionSystemePY,\\SolutionSystemePY*,\\EtatStable,\\EtatStablePY"
+        ],
+        "keyPos": 0
       }
     },
     {
-      "name": "AffMatrice*(matrice)"
+      "name": "AffMatrice*",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:matrice})"
+      }
     },
     {
       "name": "AffMatrice*",
       "arg": {
         "format": "[]()",
-        "snippet": "[${1:option de formatage%keyvals}](${2:matrice})"
+        "snippet": "[${1:option de formatage%keyvals}](${2:matrice})",
+        "keys": [
+          "\\ConvVersFrac,\\ConvVersFrac*,\\AffMatrice,\\AffMatrice*,\\ProduitMatrices,\\ProduitMatrices*,\\ProduitMatricesPY,\\ProduitMatricesPY*,\\CarreMatrice,\\CarreMatrice*,\\MatricePuissancePY,\\MatricePuissancePY*,\\DetMatrice,\\DetMatrice*,\\DetMatricePY,\\DetMatricePY*,\\MatriceInverse,\\MatriceInverse*,\\MatriceInversePY,\\MatriceInversePY*,\\AffEtatProb,\\EtatProbPY,\\SolutionSysteme,\\SolutionSysteme*,\\SolutionSystemePY,\\SolutionSystemePY*,\\EtatStable,\\EtatStablePY"
+        ],
+        "keyPos": 0
       }
     },
     {
-      "name": "ProduitMatrices(matriceA)(matriceB)"
+      "name": "ProduitMatrices",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:matriceA})(${2:matriceB})"
+      }
     },
     {
-      "name": "ProduitMatrices<opts nicematrix>(matriceA)(matriceB)"
+      "name": "ProduitMatrices<opts nicematrix>",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:matriceA})(${2:matriceB})"
+      }
     },
     {
       "name": "ProduitMatrices",
       "arg": {
         "format": "[]()()",
-        "snippet": "[${1:opt de formatage%keyvals}](${2:matriceA})(${3:matriceB})"
+        "snippet": "[${1:opt de formatage%keyvals}](${2:matriceA})(${3:matriceB})",
+        "keys": [
+          "\\ConvVersFrac,\\ConvVersFrac*,\\AffMatrice,\\AffMatrice*,\\ProduitMatrices,\\ProduitMatrices*,\\ProduitMatricesPY,\\ProduitMatricesPY*,\\CarreMatrice,\\CarreMatrice*,\\MatricePuissancePY,\\MatricePuissancePY*,\\DetMatrice,\\DetMatrice*,\\DetMatricePY,\\DetMatricePY*,\\MatriceInverse,\\MatriceInverse*,\\MatriceInversePY,\\MatriceInversePY*,\\AffEtatProb,\\EtatProbPY,\\SolutionSysteme,\\SolutionSysteme*,\\SolutionSystemePY,\\SolutionSystemePY*,\\EtatStable,\\EtatStablePY"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "ProduitMatrices",
       "arg": {
         "format": "[]<>()()",
-        "snippet": "[${1:opt de formatage%keyvals}]<${2:opts nicematrix}>(${3:matriceA})(${4:matriceB})"
+        "snippet": "[${1:opt de formatage%keyvals}]<${2:opts nicematrix}>(${3:matriceA})(${4:matriceB})",
+        "keys": [
+          "\\ConvVersFrac,\\ConvVersFrac*,\\AffMatrice,\\AffMatrice*,\\ProduitMatrices,\\ProduitMatrices*,\\ProduitMatricesPY,\\ProduitMatricesPY*,\\CarreMatrice,\\CarreMatrice*,\\MatricePuissancePY,\\MatricePuissancePY*,\\DetMatrice,\\DetMatrice*,\\DetMatricePY,\\DetMatricePY*,\\MatriceInverse,\\MatriceInverse*,\\MatriceInversePY,\\MatriceInversePY*,\\AffEtatProb,\\EtatProbPY,\\SolutionSysteme,\\SolutionSysteme*,\\SolutionSystemePY,\\SolutionSystemePY*,\\EtatStable,\\EtatStablePY"
+        ],
+        "keyPos": 0
       }
     },
     {
-      "name": "ProduitMatrices*(matriceA)(matriceB)"
+      "name": "ProduitMatrices*",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:matriceA})(${2:matriceB})"
+      }
     },
     {
-      "name": "ProduitMatrices*<opts nicematrix>(matriceA)(matriceB)"
+      "name": "ProduitMatrices*<opts nicematrix>",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:matriceA})(${2:matriceB})"
+      }
     },
     {
       "name": "ProduitMatrices*",
       "arg": {
         "format": "[]()()",
-        "snippet": "[${1:opt de formatage%keyvals}](${2:matriceA})(${3:matriceB})"
+        "snippet": "[${1:opt de formatage%keyvals}](${2:matriceA})(${3:matriceB})",
+        "keys": [
+          "\\ConvVersFrac,\\ConvVersFrac*,\\AffMatrice,\\AffMatrice*,\\ProduitMatrices,\\ProduitMatrices*,\\ProduitMatricesPY,\\ProduitMatricesPY*,\\CarreMatrice,\\CarreMatrice*,\\MatricePuissancePY,\\MatricePuissancePY*,\\DetMatrice,\\DetMatrice*,\\DetMatricePY,\\DetMatricePY*,\\MatriceInverse,\\MatriceInverse*,\\MatriceInversePY,\\MatriceInversePY*,\\AffEtatProb,\\EtatProbPY,\\SolutionSysteme,\\SolutionSysteme*,\\SolutionSystemePY,\\SolutionSystemePY*,\\EtatStable,\\EtatStablePY"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "ProduitMatrices*",
       "arg": {
         "format": "[]<>()()",
-        "snippet": "[${1:opt de formatage%keyvals}]<${2:opts nicematrix}>(${3:matriceA})(${4:matriceB})"
+        "snippet": "[${1:opt de formatage%keyvals}]<${2:opts nicematrix}>(${3:matriceA})(${4:matriceB})",
+        "keys": [
+          "\\ConvVersFrac,\\ConvVersFrac*,\\AffMatrice,\\AffMatrice*,\\ProduitMatrices,\\ProduitMatrices*,\\ProduitMatricesPY,\\ProduitMatricesPY*,\\CarreMatrice,\\CarreMatrice*,\\MatricePuissancePY,\\MatricePuissancePY*,\\DetMatrice,\\DetMatrice*,\\DetMatricePY,\\DetMatricePY*,\\MatriceInverse,\\MatriceInverse*,\\MatriceInversePY,\\MatriceInversePY*,\\AffEtatProb,\\EtatProbPY,\\SolutionSysteme,\\SolutionSysteme*,\\SolutionSystemePY,\\SolutionSystemePY*,\\EtatStable,\\EtatStablePY"
+        ],
+        "keyPos": 0
       }
     },
     {
-      "name": "CarreMatrice(matrice)"
+      "name": "CarreMatrice",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:matrice})"
+      }
     },
     {
-      "name": "CarreMatrice<options nicematrix>(matrice)"
+      "name": "CarreMatrice<options nicematrix>",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:matrice})"
+      }
     },
     {
       "name": "CarreMatrice",
       "arg": {
         "format": "[]()",
-        "snippet": "[${1:option de formatage%keyvals}](${2:matrice})"
+        "snippet": "[${1:option de formatage%keyvals}](${2:matrice})",
+        "keys": [
+          "\\ConvVersFrac,\\ConvVersFrac*,\\AffMatrice,\\AffMatrice*,\\ProduitMatrices,\\ProduitMatrices*,\\ProduitMatricesPY,\\ProduitMatricesPY*,\\CarreMatrice,\\CarreMatrice*,\\MatricePuissancePY,\\MatricePuissancePY*,\\DetMatrice,\\DetMatrice*,\\DetMatricePY,\\DetMatricePY*,\\MatriceInverse,\\MatriceInverse*,\\MatriceInversePY,\\MatriceInversePY*,\\AffEtatProb,\\EtatProbPY,\\SolutionSysteme,\\SolutionSysteme*,\\SolutionSystemePY,\\SolutionSystemePY*,\\EtatStable,\\EtatStablePY"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "CarreMatrice",
       "arg": {
         "format": "[]<>()",
-        "snippet": "[${1:option de formatage%keyvals}]<${2:options nicematrix}>(${3:matrice})"
+        "snippet": "[${1:option de formatage%keyvals}]<${2:options nicematrix}>(${3:matrice})",
+        "keys": [
+          "\\ConvVersFrac,\\ConvVersFrac*,\\AffMatrice,\\AffMatrice*,\\ProduitMatrices,\\ProduitMatrices*,\\ProduitMatricesPY,\\ProduitMatricesPY*,\\CarreMatrice,\\CarreMatrice*,\\MatricePuissancePY,\\MatricePuissancePY*,\\DetMatrice,\\DetMatrice*,\\DetMatricePY,\\DetMatricePY*,\\MatriceInverse,\\MatriceInverse*,\\MatriceInversePY,\\MatriceInversePY*,\\AffEtatProb,\\EtatProbPY,\\SolutionSysteme,\\SolutionSysteme*,\\SolutionSystemePY,\\SolutionSystemePY*,\\EtatStable,\\EtatStablePY"
+        ],
+        "keyPos": 0
       }
     },
     {
-      "name": "CarreMatrice*(matrice)"
+      "name": "CarreMatrice*",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:matrice})"
+      }
     },
     {
-      "name": "CarreMatrice*<options nicematrix>(matrice)"
+      "name": "CarreMatrice*<options nicematrix>",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:matrice})"
+      }
     },
     {
       "name": "CarreMatrice*",
       "arg": {
         "format": "[]()",
-        "snippet": "[${1:option de formatage%keyvals}](${2:matrice})"
+        "snippet": "[${1:option de formatage%keyvals}](${2:matrice})",
+        "keys": [
+          "\\ConvVersFrac,\\ConvVersFrac*,\\AffMatrice,\\AffMatrice*,\\ProduitMatrices,\\ProduitMatrices*,\\ProduitMatricesPY,\\ProduitMatricesPY*,\\CarreMatrice,\\CarreMatrice*,\\MatricePuissancePY,\\MatricePuissancePY*,\\DetMatrice,\\DetMatrice*,\\DetMatricePY,\\DetMatricePY*,\\MatriceInverse,\\MatriceInverse*,\\MatriceInversePY,\\MatriceInversePY*,\\AffEtatProb,\\EtatProbPY,\\SolutionSysteme,\\SolutionSysteme*,\\SolutionSystemePY,\\SolutionSystemePY*,\\EtatStable,\\EtatStablePY"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "CarreMatrice*",
       "arg": {
         "format": "[]<>()",
-        "snippet": "[${1:option de formatage%keyvals}]<${2:options nicematrix}>(${3:matrice})"
+        "snippet": "[${1:option de formatage%keyvals}]<${2:options nicematrix}>(${3:matrice})",
+        "keys": [
+          "\\ConvVersFrac,\\ConvVersFrac*,\\AffMatrice,\\AffMatrice*,\\ProduitMatrices,\\ProduitMatrices*,\\ProduitMatricesPY,\\ProduitMatricesPY*,\\CarreMatrice,\\CarreMatrice*,\\MatricePuissancePY,\\MatricePuissancePY*,\\DetMatrice,\\DetMatrice*,\\DetMatricePY,\\DetMatricePY*,\\MatriceInverse,\\MatriceInverse*,\\MatriceInversePY,\\MatriceInversePY*,\\AffEtatProb,\\EtatProbPY,\\SolutionSysteme,\\SolutionSysteme*,\\SolutionSystemePY,\\SolutionSystemePY*,\\EtatStable,\\EtatStablePY"
+        ],
+        "keyPos": 0
       }
     },
     {
-      "name": "DetMatrice(matrice)"
+      "name": "DetMatrice",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:matrice})"
+      }
     },
     {
       "name": "DetMatrice",
       "arg": {
         "format": "[]()",
-        "snippet": "[${1:option de formatage%keyvals}](${2:matrice})"
+        "snippet": "[${1:option de formatage%keyvals}](${2:matrice})",
+        "keys": [
+          "\\ConvVersFrac,\\ConvVersFrac*,\\AffMatrice,\\AffMatrice*,\\ProduitMatrices,\\ProduitMatrices*,\\ProduitMatricesPY,\\ProduitMatricesPY*,\\CarreMatrice,\\CarreMatrice*,\\MatricePuissancePY,\\MatricePuissancePY*,\\DetMatrice,\\DetMatrice*,\\DetMatricePY,\\DetMatricePY*,\\MatriceInverse,\\MatriceInverse*,\\MatriceInversePY,\\MatriceInversePY*,\\AffEtatProb,\\EtatProbPY,\\SolutionSysteme,\\SolutionSysteme*,\\SolutionSystemePY,\\SolutionSystemePY*,\\EtatStable,\\EtatStablePY"
+        ],
+        "keyPos": 0
       }
     },
     {
-      "name": "DetMatrice*(matrice)"
+      "name": "DetMatrice*",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:matrice})"
+      }
     },
     {
       "name": "DetMatrice*",
       "arg": {
         "format": "[]()",
-        "snippet": "[${1:option de formatage%keyvals}](${2:matrice})"
-      }
-    },
-    {
-      "name": "MatriceInverse(matrice)"
-    },
-    {
-      "name": "MatriceInverse<options nicematrix>(matrice)"
-    },
-    {
-      "name": "MatriceInverse",
-      "arg": {
-        "format": "[]()",
-        "snippet": "[${1:option de formatage%keyvals}](${2:matrice})"
+        "snippet": "[${1:option de formatage%keyvals}](${2:matrice})",
+        "keys": [
+          "\\ConvVersFrac,\\ConvVersFrac*,\\AffMatrice,\\AffMatrice*,\\ProduitMatrices,\\ProduitMatrices*,\\ProduitMatricesPY,\\ProduitMatricesPY*,\\CarreMatrice,\\CarreMatrice*,\\MatricePuissancePY,\\MatricePuissancePY*,\\DetMatrice,\\DetMatrice*,\\DetMatricePY,\\DetMatricePY*,\\MatriceInverse,\\MatriceInverse*,\\MatriceInversePY,\\MatriceInversePY*,\\AffEtatProb,\\EtatProbPY,\\SolutionSysteme,\\SolutionSysteme*,\\SolutionSystemePY,\\SolutionSystemePY*,\\EtatStable,\\EtatStablePY"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "MatriceInverse",
       "arg": {
-        "format": "[]<>()",
-        "snippet": "[${1:option de formatage%keyvals}]<${2:options nicematrix}>(${3:matrice})"
+        "format": "()",
+        "snippet": "(${1:matrice})"
       }
     },
     {
-      "name": "MatriceInverse*(matrice)"
+      "name": "MatriceInverse<options nicematrix>",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:matrice})"
+      }
     },
     {
-      "name": "MatriceInverse*<options nicematrix>(matrice)"
+      "name": "MatriceInverse",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:option de formatage%keyvals}](${2:matrice})",
+        "keys": [
+          "\\ConvVersFrac,\\ConvVersFrac*,\\AffMatrice,\\AffMatrice*,\\ProduitMatrices,\\ProduitMatrices*,\\ProduitMatricesPY,\\ProduitMatricesPY*,\\CarreMatrice,\\CarreMatrice*,\\MatricePuissancePY,\\MatricePuissancePY*,\\DetMatrice,\\DetMatrice*,\\DetMatricePY,\\DetMatricePY*,\\MatriceInverse,\\MatriceInverse*,\\MatriceInversePY,\\MatriceInversePY*,\\AffEtatProb,\\EtatProbPY,\\SolutionSysteme,\\SolutionSysteme*,\\SolutionSystemePY,\\SolutionSystemePY*,\\EtatStable,\\EtatStablePY"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "MatriceInverse",
+      "arg": {
+        "format": "[]<>()",
+        "snippet": "[${1:option de formatage%keyvals}]<${2:options nicematrix}>(${3:matrice})",
+        "keys": [
+          "\\ConvVersFrac,\\ConvVersFrac*,\\AffMatrice,\\AffMatrice*,\\ProduitMatrices,\\ProduitMatrices*,\\ProduitMatricesPY,\\ProduitMatricesPY*,\\CarreMatrice,\\CarreMatrice*,\\MatricePuissancePY,\\MatricePuissancePY*,\\DetMatrice,\\DetMatrice*,\\DetMatricePY,\\DetMatricePY*,\\MatriceInverse,\\MatriceInverse*,\\MatriceInversePY,\\MatriceInversePY*,\\AffEtatProb,\\EtatProbPY,\\SolutionSysteme,\\SolutionSysteme*,\\SolutionSystemePY,\\SolutionSystemePY*,\\EtatStable,\\EtatStablePY"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "MatriceInverse*",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:matrice})"
+      }
+    },
+    {
+      "name": "MatriceInverse*<options nicematrix>",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:matrice})"
+      }
     },
     {
       "name": "MatriceInverse*",
       "arg": {
         "format": "[]()",
-        "snippet": "[${1:option de formatage%keyvals}](${2:matrice})"
+        "snippet": "[${1:option de formatage%keyvals}](${2:matrice})",
+        "keys": [
+          "\\ConvVersFrac,\\ConvVersFrac*,\\AffMatrice,\\AffMatrice*,\\ProduitMatrices,\\ProduitMatrices*,\\ProduitMatricesPY,\\ProduitMatricesPY*,\\CarreMatrice,\\CarreMatrice*,\\MatricePuissancePY,\\MatricePuissancePY*,\\DetMatrice,\\DetMatrice*,\\DetMatricePY,\\DetMatricePY*,\\MatriceInverse,\\MatriceInverse*,\\MatriceInversePY,\\MatriceInversePY*,\\AffEtatProb,\\EtatProbPY,\\SolutionSysteme,\\SolutionSysteme*,\\SolutionSystemePY,\\SolutionSystemePY*,\\EtatStable,\\EtatStablePY"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "MatriceInverse*",
       "arg": {
         "format": "[]<>()",
-        "snippet": "[${1:option de formatage%keyvals}]<${2:options nicematrix}>(${3:matrice})"
+        "snippet": "[${1:option de formatage%keyvals}]<${2:options nicematrix}>(${3:matrice})",
+        "keys": [
+          "\\ConvVersFrac,\\ConvVersFrac*,\\AffMatrice,\\AffMatrice*,\\ProduitMatrices,\\ProduitMatrices*,\\ProduitMatricesPY,\\ProduitMatricesPY*,\\CarreMatrice,\\CarreMatrice*,\\MatricePuissancePY,\\MatricePuissancePY*,\\DetMatrice,\\DetMatrice*,\\DetMatricePY,\\DetMatricePY*,\\MatriceInverse,\\MatriceInverse*,\\MatriceInversePY,\\MatriceInversePY*,\\AffEtatProb,\\EtatProbPY,\\SolutionSysteme,\\SolutionSysteme*,\\SolutionSystemePY,\\SolutionSystemePY*,\\EtatStable,\\EtatStablePY"
+        ],
+        "keyPos": 0
       }
     },
     {
-      "name": "AffEtatProb(matrice ligne)"
+      "name": "AffEtatProb",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:matrice ligne})"
+      }
     },
     {
-      "name": "AffEtatProb<options nicematrix>(matrice ligne)"
+      "name": "AffEtatProb<options nicematrix>",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:matrice ligne})"
+      }
     },
     {
       "name": "AffEtatProb",
       "arg": {
         "format": "[]()",
-        "snippet": "[${1:option de formatage%keyvals}](${2:matrice ligne})"
+        "snippet": "[${1:option de formatage%keyvals}](${2:matrice ligne})",
+        "keys": [
+          "\\ConvVersFrac,\\ConvVersFrac*,\\AffMatrice,\\AffMatrice*,\\ProduitMatrices,\\ProduitMatrices*,\\ProduitMatricesPY,\\ProduitMatricesPY*,\\CarreMatrice,\\CarreMatrice*,\\MatricePuissancePY,\\MatricePuissancePY*,\\DetMatrice,\\DetMatrice*,\\DetMatricePY,\\DetMatricePY*,\\MatriceInverse,\\MatriceInverse*,\\MatriceInversePY,\\MatriceInversePY*,\\AffEtatProb,\\EtatProbPY,\\SolutionSysteme,\\SolutionSysteme*,\\SolutionSystemePY,\\SolutionSystemePY*,\\EtatStable,\\EtatStablePY"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "AffEtatProb",
       "arg": {
         "format": "[]<>()",
-        "snippet": "[${1:option de formatage%keyvals}]<${2:options nicematrix}>(${3:matrice ligne})"
+        "snippet": "[${1:option de formatage%keyvals}]<${2:options nicematrix}>(${3:matrice ligne})",
+        "keys": [
+          "\\ConvVersFrac,\\ConvVersFrac*,\\AffMatrice,\\AffMatrice*,\\ProduitMatrices,\\ProduitMatrices*,\\ProduitMatricesPY,\\ProduitMatricesPY*,\\CarreMatrice,\\CarreMatrice*,\\MatricePuissancePY,\\MatricePuissancePY*,\\DetMatrice,\\DetMatrice*,\\DetMatricePY,\\DetMatricePY*,\\MatriceInverse,\\MatriceInverse*,\\MatriceInversePY,\\MatriceInversePY*,\\AffEtatProb,\\EtatProbPY,\\SolutionSysteme,\\SolutionSysteme*,\\SolutionSystemePY,\\SolutionSystemePY*,\\EtatStable,\\EtatStablePY"
+        ],
+        "keyPos": 0
       }
     },
     {
-      "name": "SolutionSysteme(matriceA)(matriceB)"
+      "name": "SolutionSysteme",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:matriceA})(${2:matriceB})"
+      }
     },
     {
-      "name": "SolutionSysteme<opts nicematrix>(matriceA)(matriceB)"
+      "name": "SolutionSysteme<opts nicematrix>",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:matriceA})(${2:matriceB})"
+      }
     },
     {
       "name": "SolutionSysteme",
       "arg": {
         "format": "[]()()",
-        "snippet": "[${1:opt de formatage%keyvals}](${2:matriceA})(${3:matriceB})"
+        "snippet": "[${1:opt de formatage%keyvals}](${2:matriceA})(${3:matriceB})",
+        "keys": [
+          "\\ConvVersFrac,\\ConvVersFrac*,\\AffMatrice,\\AffMatrice*,\\ProduitMatrices,\\ProduitMatrices*,\\ProduitMatricesPY,\\ProduitMatricesPY*,\\CarreMatrice,\\CarreMatrice*,\\MatricePuissancePY,\\MatricePuissancePY*,\\DetMatrice,\\DetMatrice*,\\DetMatricePY,\\DetMatricePY*,\\MatriceInverse,\\MatriceInverse*,\\MatriceInversePY,\\MatriceInversePY*,\\AffEtatProb,\\EtatProbPY,\\SolutionSysteme,\\SolutionSysteme*,\\SolutionSystemePY,\\SolutionSystemePY*,\\EtatStable,\\EtatStablePY"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "SolutionSysteme",
       "arg": {
         "format": "[]<>()()",
-        "snippet": "[${1:opt de formatage%keyvals}]<${2:opts nicematrix}>(${3:matriceA})(${4:matriceB})"
+        "snippet": "[${1:opt de formatage%keyvals}]<${2:opts nicematrix}>(${3:matriceA})(${4:matriceB})",
+        "keys": [
+          "\\ConvVersFrac,\\ConvVersFrac*,\\AffMatrice,\\AffMatrice*,\\ProduitMatrices,\\ProduitMatrices*,\\ProduitMatricesPY,\\ProduitMatricesPY*,\\CarreMatrice,\\CarreMatrice*,\\MatricePuissancePY,\\MatricePuissancePY*,\\DetMatrice,\\DetMatrice*,\\DetMatricePY,\\DetMatricePY*,\\MatriceInverse,\\MatriceInverse*,\\MatriceInversePY,\\MatriceInversePY*,\\AffEtatProb,\\EtatProbPY,\\SolutionSysteme,\\SolutionSysteme*,\\SolutionSystemePY,\\SolutionSystemePY*,\\EtatStable,\\EtatStablePY"
+        ],
+        "keyPos": 0
       }
     },
     {
-      "name": "SolutionSysteme*(matriceA)(matriceB)"
+      "name": "SolutionSysteme*",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:matriceA})(${2:matriceB})"
+      }
     },
     {
-      "name": "SolutionSysteme*<opts nicematrix>(matriceA)(matriceB)"
+      "name": "SolutionSysteme*<opts nicematrix>",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:matriceA})(${2:matriceB})"
+      }
     },
     {
       "name": "SolutionSysteme*",
       "arg": {
         "format": "[]()()",
-        "snippet": "[${1:opt de formatage%keyvals}](${2:matriceA})(${3:matriceB})"
+        "snippet": "[${1:opt de formatage%keyvals}](${2:matriceA})(${3:matriceB})",
+        "keys": [
+          "\\ConvVersFrac,\\ConvVersFrac*,\\AffMatrice,\\AffMatrice*,\\ProduitMatrices,\\ProduitMatrices*,\\ProduitMatricesPY,\\ProduitMatricesPY*,\\CarreMatrice,\\CarreMatrice*,\\MatricePuissancePY,\\MatricePuissancePY*,\\DetMatrice,\\DetMatrice*,\\DetMatricePY,\\DetMatricePY*,\\MatriceInverse,\\MatriceInverse*,\\MatriceInversePY,\\MatriceInversePY*,\\AffEtatProb,\\EtatProbPY,\\SolutionSysteme,\\SolutionSysteme*,\\SolutionSystemePY,\\SolutionSystemePY*,\\EtatStable,\\EtatStablePY"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "SolutionSysteme*",
       "arg": {
         "format": "[]<>()()",
-        "snippet": "[${1:opt de formatage%keyvals}]<${2:opts nicematrix}>(${3:matriceA})(${4:matriceB})"
+        "snippet": "[${1:opt de formatage%keyvals}]<${2:opts nicematrix}>(${3:matriceA})(${4:matriceB})",
+        "keys": [
+          "\\ConvVersFrac,\\ConvVersFrac*,\\AffMatrice,\\AffMatrice*,\\ProduitMatrices,\\ProduitMatrices*,\\ProduitMatricesPY,\\ProduitMatricesPY*,\\CarreMatrice,\\CarreMatrice*,\\MatricePuissancePY,\\MatricePuissancePY*,\\DetMatrice,\\DetMatrice*,\\DetMatricePY,\\DetMatricePY*,\\MatriceInverse,\\MatriceInverse*,\\MatriceInversePY,\\MatriceInversePY*,\\AffEtatProb,\\EtatProbPY,\\SolutionSysteme,\\SolutionSysteme*,\\SolutionSystemePY,\\SolutionSystemePY*,\\EtatStable,\\EtatStablePY"
+        ],
+        "keyPos": 0
       }
     },
     {
-      "name": "EtatStable(matrice)"
+      "name": "EtatStable",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:matrice})"
+      }
     },
     {
-      "name": "EtatStable<opts nicematrix>(matrice)"
+      "name": "EtatStable<opts nicematrix>",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:matrice})"
+      }
     },
     {
       "name": "EtatStable",
       "arg": {
         "format": "[]()",
-        "snippet": "[${1:opt de formatage%keyvals}](${2:matrice})"
+        "snippet": "[${1:opt de formatage%keyvals}](${2:matrice})",
+        "keys": [
+          "\\ConvVersFrac,\\ConvVersFrac*,\\AffMatrice,\\AffMatrice*,\\ProduitMatrices,\\ProduitMatrices*,\\ProduitMatricesPY,\\ProduitMatricesPY*,\\CarreMatrice,\\CarreMatrice*,\\MatricePuissancePY,\\MatricePuissancePY*,\\DetMatrice,\\DetMatrice*,\\DetMatricePY,\\DetMatricePY*,\\MatriceInverse,\\MatriceInverse*,\\MatriceInversePY,\\MatriceInversePY*,\\AffEtatProb,\\EtatProbPY,\\SolutionSysteme,\\SolutionSysteme*,\\SolutionSystemePY,\\SolutionSystemePY*,\\EtatStable,\\EtatStablePY"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "EtatStable",
       "arg": {
         "format": "[]<>()",
-        "snippet": "[${1:opt de formatage%keyvals}]<${2:opts nicematrix}>(${3:matrice})"
+        "snippet": "[${1:opt de formatage%keyvals}]<${2:opts nicematrix}>(${3:matrice})",
+        "keys": [
+          "\\ConvVersFrac,\\ConvVersFrac*,\\AffMatrice,\\AffMatrice*,\\ProduitMatrices,\\ProduitMatrices*,\\ProduitMatricesPY,\\ProduitMatricesPY*,\\CarreMatrice,\\CarreMatrice*,\\MatricePuissancePY,\\MatricePuissancePY*,\\DetMatrice,\\DetMatrice*,\\DetMatricePY,\\DetMatricePY*,\\MatriceInverse,\\MatriceInverse*,\\MatriceInversePY,\\MatriceInversePY*,\\AffEtatProb,\\EtatProbPY,\\SolutionSysteme,\\SolutionSysteme*,\\SolutionSystemePY,\\SolutionSystemePY*,\\EtatStable,\\EtatStablePY"
+        ],
+        "keyPos": 0
       }
     }
   ],
   "envs": [],
   "keys": {
     "\\usepackage/ResolSysteme#c": [
-      "pyluatex\r"
+      "pyluatex"
     ],
     "\\ConvVersFrac,\\ConvVersFrac*,\\AffMatrice,\\AffMatrice*,\\ProduitMatrices,\\ProduitMatrices*,\\ProduitMatricesPY,\\ProduitMatricesPY*,\\CarreMatrice,\\CarreMatrice*,\\MatricePuissancePY,\\MatricePuissancePY*,\\DetMatrice,\\DetMatrice*,\\DetMatricePY,\\DetMatricePY*,\\MatriceInverse,\\MatriceInverse*,\\MatriceInversePY,\\MatriceInversePY*,\\AffEtatProb,\\EtatProbPY,\\SolutionSysteme,\\SolutionSysteme*,\\SolutionSystemePY,\\SolutionSystemePY*,\\EtatStable,\\EtatStablePY": [
-      "t\r",
-      "d\r",
-      "n\r",
-      "dec\r",
-      "dec=${1:k}\r"
+      "t",
+      "d",
+      "n",
+      "dec",
+      "dec=${1:k}"
     ]
   },
   "args": [

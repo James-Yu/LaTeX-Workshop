@@ -57,7 +57,11 @@
       "name": "ssdrop",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:math%formula}}"
+        "snippet": "[${2:options%keyvals}]{${1:math%formula}}",
+        "keys": [
+          "\\ssdrop"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -102,7 +106,11 @@
       "name": "ssdroplabel",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "keys": [
+          "\\ssdroplabel"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -115,7 +123,11 @@
       "name": "ssstroke",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\ssstroke,\\ssline,\\ssarrow"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -877,7 +889,11 @@
       "name": "sseq",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:x-range}}{${2:y-range}}"
+        "snippet": "[${3:options%keyvals}]{${1:x-range}}{${2:y-range}}",
+        "keys": [
+          "\\begin{sseq}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -899,19 +915,19 @@
   ],
   "keys": {
     "\\usepackage/sseq#c": [
-      "color\r",
-      "nocolor\r",
-      "debug\r"
+      "color",
+      "nocolor",
+      "debug"
     ],
     "\\begin{sseq}": [
-      "grid=${1|none,crossword,go,dots,chess\r|}",
+      "grid=${1|none,crossword,go,dots,chess|}",
       "entrysize=",
-      "labels=${1:labels}\r",
-      "xlabels=${1:labels}\r",
-      "ylabels=${1:labels}\r",
-      "labelstep=${1:integer}\r",
-      "xlabelstep=${1:integer}\r",
-      "ylabelstep=${1:integer}\r",
+      "labels=${1:labels}",
+      "xlabels=${1:labels}",
+      "ylabels=${1:labels}",
+      "labelstep=${1:integer}",
+      "xlabelstep=${1:integer}",
+      "ylabelstep=${1:integer}",
       "gapsize=",
       "xgapsize=",
       "ygapsize=",
@@ -919,49 +935,49 @@
       "leak=",
       "xleak=",
       "yleak=",
-      "arrows=${1:arrow type}\r"
+      "arrows=${1:arrow type}"
     ],
     "\\ssdrop": [
-      "circled\r",
-      "boxed\r",
+      "circled",
+      "boxed",
       "color=",
-      "name=${1:name}\r"
+      "name=${1:name}"
     ],
     "\\ssdroplabel": [
-      "U\r",
-      "LU\r",
-      "RU\r",
-      "L\r",
-      "R\r",
-      "LD\r",
-      "RD\r",
-      "D\r",
+      "U",
+      "LU",
+      "RU",
+      "L",
+      "R",
+      "LD",
+      "RD",
+      "D",
       "color="
     ],
     "\\ssstroke,\\ssline,\\ssarrow": [
       "color=",
-      "curve=${1:value}\r",
-      "dashed\r",
-      "dashed=${1:dash type}\r",
-      "dotted\r",
-      "dotted=${1:dash type}\r",
-      "arrowfrom\r",
-      "arrowfrom=${1:arrow style}\r",
-      "arrowto\r",
-      "arrowto=${1:arrow style}\r",
-      "void\r"
+      "curve=${1:value}",
+      "dashed",
+      "dashed=${1:dash type}",
+      "dotted",
+      "dotted=${1:dash type}",
+      "arrowfrom",
+      "arrowfrom=${1:arrow style}",
+      "arrowto",
+      "arrowto=${1:arrow style}",
+      "void"
     ],
     "\\state#c": [
-      "switch if less than=${1:dimen} to ${2:new state}\r",
-      "switch if input segment less than=${1:dimen} to ${2:new state}\r",
+      "switch if less than=${1:dimen} to ${2:new state}",
+      "switch if input segment less than=${1:dimen} to ${2:new state}",
       "width=",
-      "repeat state=${1:repetitions}\r",
-      "next state=${1:new state}\r",
-      "if input segment is closepath={${1:options}}\r",
+      "repeat state=${1:repetitions}",
+      "next state=${1:new state}",
+      "if input segment is closepath={${1:options}}",
       "auto end on length=",
       "auto corner on length=",
-      "persistent precomputation=${1:precode}\r",
-      "persistent postcomputation=${1:postcode}\r"
+      "persistent precomputation=${1:precode}",
+      "persistent postcomputation=${1:postcode}"
     ]
   },
   "args": [

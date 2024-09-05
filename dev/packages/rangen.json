@@ -16,7 +16,11 @@
       "name": "RandomZ",
       "arg": {
         "format": "[]{}{}{}",
-        "snippet": "[${4:options%keyvals}]{${1:cmd}}{${2:int1}}{${3:int2}}"
+        "snippet": "[${4:options%keyvals}]{${1:cmd}}{${2:int1}}{${3:int2}}",
+        "keys": [
+          "\\RandomZ,\\RandomQ,\\RandomR"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -65,14 +69,22 @@
       "name": "RandomZ",
       "arg": {
         "format": "[]{}{}{}",
-        "snippet": "[${4:options%keyvals}]{${1:cmd}}{${2:num1}}{${3:num2}}"
+        "snippet": "[${4:options%keyvals}]{${1:cmd}}{${2:num1}}{${3:num2}}",
+        "keys": [
+          "\\RandomZ,\\RandomQ,\\RandomR"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "RandomZ",
       "arg": {
         "format": "[]{}[]{}{}",
-        "snippet": "[${4:options%keyvals}]{${1:cmd}}[${5:max denom}]{${2:num1}}{${3:num2}}"
+        "snippet": "[${4:options%keyvals}]{${1:cmd}}[${5:max denom}]{${2:num1}}{${3:num2}}",
+        "keys": [
+          "\\RandomZ,\\RandomQ,\\RandomR"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -86,7 +98,12 @@
       "name": "RandomR",
       "arg": {
         "format": "[]{}{}{}",
-        "snippet": "[${4:options%keyvals}]{${1:cmd}}{${2:int1}}{${3:int2}}"
+        "snippet": "[${4:options%keyvals}]{${1:cmd}}{${2:int1}}{${3:int2}}",
+        "keys": [
+          "\\RandomZ,\\RandomQ,\\RandomR",
+          "\\RandomR"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -111,7 +128,11 @@
       "name": "RandomL",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:cmd}}{${2:n1,n2,...}}"
+        "snippet": "[${3:options%keyvals}]{${1:cmd}}{${2:n1,n2,...}}",
+        "keys": [
+          "\\RandomL,\\RandomP"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -132,7 +153,11 @@
       "name": "RandomP",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:cmd}}{${2:list of literals%definition}}"
+        "snippet": "[${3:options%keyvals}]{${1:cmd}}{${2:list of literals%definition}}",
+        "keys": [
+          "\\RandomL,\\RandomP"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -428,22 +453,22 @@
   ],
   "keys": {
     "\\usepackage/rangen#c": [
-      "testmode\r",
-      "counter=${1:counter}\r",
-      "first=${1:integer}\r",
-      "last=${1:integer}\r",
-      "seed=${1:integer}\r",
-      "quiet\r"
+      "testmode",
+      "counter=${1:counter}",
+      "first=${1:integer}",
+      "last=${1:integer}",
+      "seed=${1:integer}",
+      "quiet"
     ],
     "\\RandomZ,\\RandomQ,\\RandomR": [
-      "ne=${1:integer(s)}\r"
+      "ne=${1:integer(s)}"
     ],
     "\\RandomR": [
-      "round=${1:integer}\r",
+      "round=${1:integer}",
       "showzeros"
     ],
     "\\RandomL,\\RandomP": [
-      "index=${1:integer}\r"
+      "index=${1:integer}"
     ]
   },
   "args": [

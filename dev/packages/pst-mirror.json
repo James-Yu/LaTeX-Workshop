@@ -18,10 +18,10 @@
   ],
   "macros": [
     {
-      "name": "pstSphereText(x,y,z)",
+      "name": "pstSphereText",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:text}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y},${4:z}){${1:text}}"
       }
     },
     {
@@ -41,10 +41,10 @@
       "name": "pstSphereTetraedre"
     },
     {
-      "name": "pstSpherePoint(x,y,z)",
+      "name": "pstSpherePoint",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:node name}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y},${4:z}){${1:node name}}"
       }
     },
     {
@@ -80,7 +80,11 @@
       }
     },
     {
-      "name": "pstSphereFrame(x1,y1)(x2,y2)"
+      "name": "pstSphereFrame",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x1},${2:y1})(${3:x2},${4:y2})"
+      }
     },
     {
       "name": "pstSphereFrame",
@@ -90,7 +94,11 @@
       }
     },
     {
-      "name": "pstSphereGrid(x,y,z)"
+      "name": "pstSphereGrid",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:x},${2:y},${3:z})"
+      }
     },
     {
       "name": "pstSphereGrid",
@@ -138,10 +146,10 @@
       "name": "pstSpherePyramide"
     },
     {
-      "name": "pstSphereImage(x,y,z)",
+      "name": "pstSphereImage",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:imagefile}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y},${4:z}){${1:imagefile}}"
       }
     },
     {

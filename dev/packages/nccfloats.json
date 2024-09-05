@@ -33,21 +33,33 @@
       "name": "minifig",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:pos%keyvals}]{${1:width}}{${2:body%text}}"
+        "snippet": "[${3:pos%keyvals}]{${1:width}}{${2:body%text}}",
+        "keys": [
+          "\\minifig,\\minitabl"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "minifig",
       "arg": {
         "format": "[][]{}{}",
-        "snippet": "[${3:pos%keyvals}][${4:height}]{${1:width}}{${2:body%text}}"
+        "snippet": "[${3:pos%keyvals}][${4:height}]{${1:width}}{${2:body%text}}",
+        "keys": [
+          "\\minifig,\\minitabl"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "minifig",
       "arg": {
         "format": "[][][]{}{}",
-        "snippet": "[${3:pos%keyvals}][${4:height}][${5:inner-pos}]{${1:width}}{${2:body%text}}"
+        "snippet": "[${3:pos%keyvals}][${4:height}][${5:inner-pos}]{${1:width}}{${2:body%text}}",
+        "keys": [
+          "\\minifig,\\minitabl"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -61,21 +73,33 @@
       "name": "minitabl",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:pos%keyvals}]{${1:width}}{${2:body%text}}"
+        "snippet": "[${3:pos%keyvals}]{${1:width}}{${2:body%text}}",
+        "keys": [
+          "\\minifig,\\minitabl"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "minitabl",
       "arg": {
         "format": "[][]{}{}",
-        "snippet": "[${3:pos%keyvals}][${4:height}]{${1:width}}{${2:body%text}}"
+        "snippet": "[${3:pos%keyvals}][${4:height}]{${1:width}}{${2:body%text}}",
+        "keys": [
+          "\\minifig,\\minitabl"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "minitabl",
       "arg": {
         "format": "[][][]{}{}",
-        "snippet": "[${3:pos%keyvals}][${4:height}][${5:inner-pos}]{${1:width}}{${2:body%text}}"
+        "snippet": "[${3:pos%keyvals}][${4:height}][${5:inner-pos}]{${1:width}}{${2:body%text}}",
+        "keys": [
+          "\\minifig,\\minitabl"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -89,21 +113,29 @@
       "name": "sidefig",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:pos%keyvals}]{${1:figure%text}}{${2:text}}"
+        "snippet": "[${3:pos%keyvals}]{${1:figure%text}}{${2:text}}",
+        "keys": [
+          "\\sidefig,\\sidefig*,\\sidetabl,\\sidetabl*"
+        ],
+        "keyPos": 0
       }
     },
     {
-      "name": "sidefig(figwidth)(textwidth)",
+      "name": "sidefig",
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:figure%text}}{${2:text}}"
+        "format": "()(){}{}",
+        "snippet": "(${3:figwidth})(${4:textwidth}){${1:figure%text}}{${2:text}}"
       }
     },
     {
       "name": "sidefig",
       "arg": {
         "format": "[]()(){}{}",
-        "snippet": "[${3:pos%keyvals}](${4:figwidth})(${5:textwidth}){${1:figure%text}}{${2:text}}"
+        "snippet": "[${3:pos%keyvals}](${4:figwidth})(${5:textwidth}){${1:figure%text}}{${2:text}}",
+        "keys": [
+          "\\sidefig,\\sidefig*,\\sidetabl,\\sidetabl*"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -117,21 +149,29 @@
       "name": "sidefig*",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:pos%keyvals}]{${1:figure%text}}{${2:text}}"
+        "snippet": "[${3:pos%keyvals}]{${1:figure%text}}{${2:text}}",
+        "keys": [
+          "\\sidefig,\\sidefig*,\\sidetabl,\\sidetabl*"
+        ],
+        "keyPos": 0
       }
     },
     {
-      "name": "sidefig*(figwidth)(textwidth)",
+      "name": "sidefig*",
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:figure%text}}{${2:text}}"
+        "format": "()(){}{}",
+        "snippet": "(${3:figwidth})(${4:textwidth}){${1:figure%text}}{${2:text}}"
       }
     },
     {
       "name": "sidefig*",
       "arg": {
         "format": "[]()(){}{}",
-        "snippet": "[${3:pos%keyvals}](${4:figwidth})(${5:textwidth}){${1:figure%text}}{${2:text}}"
+        "snippet": "[${3:pos%keyvals}](${4:figwidth})(${5:textwidth}){${1:figure%text}}{${2:text}}",
+        "keys": [
+          "\\sidefig,\\sidefig*,\\sidetabl,\\sidetabl*"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -145,21 +185,29 @@
       "name": "sidetabl",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:pos%keyvals}]{${1:table%text}}{${2:text}}"
+        "snippet": "[${3:pos%keyvals}]{${1:table%text}}{${2:text}}",
+        "keys": [
+          "\\sidefig,\\sidefig*,\\sidetabl,\\sidetabl*"
+        ],
+        "keyPos": 0
       }
     },
     {
-      "name": "sidetabl(tablewidth)(textwidth)",
+      "name": "sidetabl",
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:table%text}}{${2:text}}"
+        "format": "()(){}{}",
+        "snippet": "(${3:tablewidth})(${4:textwidth}){${1:table%text}}{${2:text}}"
       }
     },
     {
       "name": "sidetabl",
       "arg": {
         "format": "[]()(){}{}",
-        "snippet": "[${3:pos%keyvals}](${4:tablewidth})(${5:textwidth}){${1:table%text}}{${2:text}}"
+        "snippet": "[${3:pos%keyvals}](${4:tablewidth})(${5:textwidth}){${1:table%text}}{${2:text}}",
+        "keys": [
+          "\\sidefig,\\sidefig*,\\sidetabl,\\sidetabl*"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -173,21 +221,29 @@
       "name": "sidetabl*",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:pos%keyvals}]{${1:table%text}}{${2:text}}"
+        "snippet": "[${3:pos%keyvals}]{${1:table%text}}{${2:text}}",
+        "keys": [
+          "\\sidefig,\\sidefig*,\\sidetabl,\\sidetabl*"
+        ],
+        "keyPos": 0
       }
     },
     {
-      "name": "sidetabl*(tablewidth)(textwidth)",
+      "name": "sidetabl*",
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:table%text}}{${2:text}}"
+        "format": "()(){}{}",
+        "snippet": "(${3:tablewidth})(${4:textwidth}){${1:table%text}}{${2:text}}"
       }
     },
     {
       "name": "sidetabl*",
       "arg": {
         "format": "[]()(){}{}",
-        "snippet": "[${3:pos%keyvals}](${4:tablewidth})(${5:textwidth}){${1:table%text}}{${2:text}}"
+        "snippet": "[${3:pos%keyvals}](${4:tablewidth})(${5:textwidth}){${1:table%text}}{${2:text}}",
+        "keys": [
+          "\\sidefig,\\sidefig*,\\sidetabl,\\sidetabl*"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -212,10 +268,10 @@
       }
     },
     {
-      "name": "fig(width)",
+      "name": "fig",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:body%text}}"
+        "format": "(){}",
+        "snippet": "(${2:width}){${1:body%text}}"
       }
     },
     {
@@ -240,10 +296,10 @@
       }
     },
     {
-      "name": "fig*(width)",
+      "name": "fig*",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:body%text}}"
+        "format": "(){}",
+        "snippet": "(${2:width}){${1:body%text}}"
       }
     },
     {
@@ -268,10 +324,10 @@
       }
     },
     {
-      "name": "tabl(width)",
+      "name": "tabl",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:body%text}}"
+        "format": "(){}",
+        "snippet": "(${2:width}){${1:body%text}}"
       }
     },
     {
@@ -296,10 +352,10 @@
       }
     },
     {
-      "name": "tabl*(width)",
+      "name": "tabl*",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:body%text}}"
+        "format": "(){}",
+        "snippet": "(${2:width}){${1:body%text}}"
       }
     },
     {
@@ -324,10 +380,10 @@
       }
     },
     {
-      "name": "figs(width1)(width2)",
+      "name": "figs",
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:body1%text}}{${2:body2%text}}"
+        "format": "()(){}{}",
+        "snippet": "(${3:width1})(${4:width2}){${1:body1%text}}{${2:body2%text}}"
       }
     },
     {
@@ -352,10 +408,10 @@
       }
     },
     {
-      "name": "figs*(width1)(width2)",
+      "name": "figs*",
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:body1%text}}{${2:body2%text}}"
+        "format": "()(){}{}",
+        "snippet": "(${3:width1})(${4:width2}){${1:body1%text}}{${2:body2%text}}"
       }
     },
     {
@@ -380,10 +436,10 @@
       }
     },
     {
-      "name": "tabls(width1)(width2)",
+      "name": "tabls",
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:body1%text}}{${2:body2%text}}"
+        "format": "()(){}{}",
+        "snippet": "(${3:width1})(${4:width2}){${1:body1%text}}{${2:body2%text}}"
       }
     },
     {
@@ -408,10 +464,10 @@
       }
     },
     {
-      "name": "tabls*(width1)(width2)",
+      "name": "tabls*",
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:body1%text}}{${2:body2%text}}"
+        "format": "()(){}{}",
+        "snippet": "(${3:width1})(${4:width2}){${1:body1%text}}{${2:body2%text}}"
       }
     },
     {
@@ -432,14 +488,14 @@
   "envs": [],
   "keys": {
     "\\minifig,\\minitabl": [
-      "l\r",
-      "c\r",
-      "r\r"
+      "l",
+      "c",
+      "r"
     ],
     "\\sidefig,\\sidefig*,\\sidetabl,\\sidetabl*": [
-      "t\r",
-      "c\r",
-      "b\r"
+      "t",
+      "c",
+      "b"
     ]
   },
   "args": []

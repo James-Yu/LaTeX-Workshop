@@ -49,7 +49,11 @@
       "name": "codefile",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:title%text}}{${2:file}}"
+        "snippet": "[${3:options%keyvals}]{${1:title%text}}{${2:file}}",
+        "keys": [
+          "\\begin{codebox},\\begin{codebox*},\\codefile,\\codefile*,\\begin{codeview},\\begin{codeview*},\\cvfile,\\cvfile*"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -63,7 +67,11 @@
       "name": "codefile*",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:title%text}}{${2:file}}"
+        "snippet": "[${3:options%keyvals}]{${1:title%text}}{${2:file}}",
+        "keys": [
+          "\\begin{codebox},\\begin{codebox*},\\codefile,\\codefile*,\\begin{codeview},\\begin{codeview*},\\cvfile,\\cvfile*"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -77,7 +85,12 @@
       "name": "cvfile",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:title%text}}{${2:file}}"
+        "snippet": "[${3:options%keyvals}]{${1:title%text}}{${2:file}}",
+        "keys": [
+          "\\begin{codebox},\\begin{codebox*},\\codefile,\\codefile*,\\begin{codeview},\\begin{codeview*},\\cvfile,\\cvfile*",
+          "\\begin{codeview},\\begin{codeview*},\\cvfile,\\cvfile*"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -91,7 +104,12 @@
       "name": "cvfile*",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:title%text}}{${2:file}}"
+        "snippet": "[${3:options%keyvals}]{${1:title%text}}{${2:file}}",
+        "keys": [
+          "\\begin{codebox},\\begin{codebox*},\\codefile,\\codefile*,\\begin{codeview},\\begin{codeview*},\\cvfile,\\cvfile*",
+          "\\begin{codeview},\\begin{codeview*},\\cvfile,\\cvfile*"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -117,7 +135,11 @@
       "name": "codebox",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:title%text}}"
+        "snippet": "[${2:options%keyvals}]{${1:title%text}}",
+        "keys": [
+          "\\begin{codebox},\\begin{codebox*},\\codefile,\\codefile*,\\begin{codeview},\\begin{codeview*},\\cvfile,\\cvfile*"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -131,7 +153,11 @@
       "name": "codebox*",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:title%text}}"
+        "snippet": "[${2:options%keyvals}]{${1:title%text}}",
+        "keys": [
+          "\\begin{codebox},\\begin{codebox*},\\codefile,\\codefile*,\\begin{codeview},\\begin{codeview*},\\cvfile,\\cvfile*"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -145,7 +171,12 @@
       "name": "codeview",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:title%text}}"
+        "snippet": "[${2:options%keyvals}]{${1:title%text}}",
+        "keys": [
+          "\\begin{codebox},\\begin{codebox*},\\codefile,\\codefile*,\\begin{codeview},\\begin{codeview*},\\cvfile,\\cvfile*",
+          "\\begin{codeview},\\begin{codeview*},\\cvfile,\\cvfile*"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -159,21 +190,26 @@
       "name": "codeview*",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:title%text}}"
+        "snippet": "[${2:options%keyvals}]{${1:title%text}}",
+        "keys": [
+          "\\begin{codebox},\\begin{codebox*},\\codefile,\\codefile*,\\begin{codeview},\\begin{codeview*},\\cvfile,\\cvfile*",
+          "\\begin{codeview},\\begin{codeview*},\\cvfile,\\cvfile*"
+        ],
+        "keyPos": 0
       }
     }
   ],
   "keys": {
     "\\begin{codebox},\\begin{codebox*},\\codefile,\\codefile*,\\begin{codeview},\\begin{codeview*},\\cvfile,\\cvfile*": [
       "minted",
-      "lang=${1:source code lang}\r",
-      "pretitle=${1:title prefix}\r",
-      "codestyle=${1:highlight style}\r",
-      "codesize=${1:fontsize macro}\r",
-      "comments=${1:text}\r",
-      "commentf=${1:format macros}\r",
-      "codestretch=${1:factor}\r",
-      "linenumsep=${1:number}\r"
+      "lang=${1:source code lang}",
+      "pretitle=${1:title prefix}",
+      "codestyle=${1:highlight style}",
+      "codesize=${1:fontsize macro}",
+      "comments=${1:text}",
+      "commentf=${1:format macros}",
+      "codestretch=${1:factor}",
+      "linenumsep=${1:number}"
     ],
     "\\begin{codeview},\\begin{codeview*},\\cvfile,\\cvfile*": [
       "label="

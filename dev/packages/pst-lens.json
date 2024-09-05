@@ -19,24 +19,32 @@
       }
     },
     {
-      "name": "PstLens(x,y)",
+      "name": "PstLens",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:stuff}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:stuff}}"
       }
     },
     {
       "name": "PstLens",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:stuff}}"
+        "snippet": "[${2:options%keyvals}]{${1:stuff}}",
+        "keys": [
+          "\\PstLens"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "PstLens",
       "arg": {
         "format": "[](){}",
-        "snippet": "[${2:options%keyvals}](${3:x},${4:y}){${1:stuff}}"
+        "snippet": "[${2:options%keyvals}](${3:x},${4:y}){${1:stuff}}",
+        "keys": [
+          "\\PstLens"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -48,14 +56,14 @@
   "keys": {
     "\\PstLens": [
       "LensHandle",
-      "LensStyleHandle=${1:style}\r",
+      "LensStyleHandle=${1:style}",
       "LensHandleWidth=",
       "LensHandleHeight=",
       "LensShadow",
-      "LensStyleGlass=${1:style}\r",
+      "LensStyleGlass=${1:style}",
       "LensSize=",
-      "LensMagnification=${1:factor}\r",
-      "LensRotation=${1:degrees}\r"
+      "LensMagnification=${1:factor}",
+      "LensRotation=${1:degrees}"
     ]
   },
   "args": []

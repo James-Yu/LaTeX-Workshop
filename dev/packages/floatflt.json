@@ -270,7 +270,11 @@
       "name": "floatingfigure",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:option%keyvals}]{${1:width}}"
+        "snippet": "[${2:option%keyvals}]{${1:width}}",
+        "keys": [
+          "\\begin{floatingfigure},\\begin{floatingtable}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -284,21 +288,25 @@
       "name": "floatingtable",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:option%keyvals}]{${1:tabular content%text}}"
+        "snippet": "[${2:option%keyvals}]{${1:tabular content%text}}",
+        "keys": [
+          "\\begin{floatingfigure},\\begin{floatingtable}"
+        ],
+        "keyPos": 0
       }
     }
   ],
   "keys": {
     "\\usepackage/floatflt#c": [
-      "rflt\r",
-      "lflt\r",
-      "vflt\r"
+      "rflt",
+      "lflt",
+      "vflt"
     ],
     "\\begin{floatingfigure},\\begin{floatingtable}": [
-      "r\r",
-      "l\r",
-      "p\r",
-      "v\r"
+      "r",
+      "l",
+      "p",
+      "v"
     ]
   },
   "args": [

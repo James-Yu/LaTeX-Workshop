@@ -19,7 +19,11 @@
       "name": "LPTNewTable",
       "arg": {
         "format": "{}{}{}[]",
-        "snippet": "{${1:name%specialDef}}{${2:num cols}}{${3:preamble}}[${4:options%keyvals}]"
+        "snippet": "{${1:name%specialDef}}{${2:num cols}}{${3:preamble}}[${4:options%keyvals}]",
+        "keys": [
+          "\\LPTNewTable"
+        ],
+        "keyPos": 3
       }
     },
     {
@@ -39,7 +43,11 @@
       "name": "LPTAddRow",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\LPTAddRow,\\LPTSetRowProp"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -138,20 +146,20 @@
   ],
   "keys": {
     "\\LPTNewTable": [
-      "backend=${1:envname}\r",
-      "default before line=${1:code}\r",
-      "default after line=${1:code}\r",
-      "default after spacing=${1:code}\r",
-      "input method=${1|file,stringbuffer\r|}",
-      "nrows=${1:integer}\r"
+      "backend=${1:envname}",
+      "default before line=${1:code}",
+      "default after line=${1:code}",
+      "default after spacing=${1:code}",
+      "input method=${1|file,stringbuffer|}",
+      "nrows=${1:integer}"
     ],
     "\\LPTSetCurrentTable#c,\\LPTDeleteTable#c": [
-      "%LPTtablename\r"
+      "%LPTtablename"
     ],
     "\\LPTAddRow,\\LPTSetRowProp": [
-      "before line\r",
-      "after line\r",
-      "after spacing\r"
+      "before line",
+      "after line",
+      "after spacing"
     ]
   },
   "args": []

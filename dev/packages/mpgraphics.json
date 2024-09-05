@@ -43,7 +43,11 @@
       "name": "configure",
       "arg": {
         "format": "[][]",
-        "snippet": "[${1:mpgraphic}][${2:keyvals}]"
+        "snippet": "[${1:mpgraphic}][${2:keyvals}]",
+        "keys": [
+          "\\configure"
+        ],
+        "keyPos": 1
       }
     },
     {
@@ -211,16 +215,16 @@
   ],
   "keys": {
     "\\usepackage/mpgraphics#c": [
-      "metapost={${1:MetaPost options}}\r",
-      "epstopdf={${1:epstopdf options}}\r",
-      "compilation=${1|on,off\r|}",
-      "debug=${1|on,off\r|}",
-      "runs=${1:integer}\r"
+      "metapost={${1:MetaPost options}}",
+      "epstopdf={${1:epstopdf options}}",
+      "compilation=${1|on,off|}",
+      "debug=${1|on,off|}",
+      "runs=${1:integer}"
     ],
     "\\configure": [
       "width=",
       "height=",
-      "scale=${1:factor}\r",
+      "scale=${1:factor}",
       "color=",
       "linecolor=",
       "background=",

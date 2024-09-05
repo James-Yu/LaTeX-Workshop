@@ -12,7 +12,12 @@
       "name": "item",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:keyvals}}"
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\item,\\begin{submenu}",
+          "\\item"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -23,10 +28,18 @@
       }
     },
     {
-      "name": "popUpMenu(name)"
+      "name": "popUpMenu",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:name})"
+      }
     },
     {
-      "name": "puProcessMenu(name)"
+      "name": "puProcessMenu",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:name})"
+      }
     },
     {
       "name": "urlPath",
@@ -94,22 +107,26 @@
       "name": "submenu",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:keyvals}}"
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\item,\\begin{submenu}"
+        ],
+        "keyPos": 0
       }
     }
   ],
   "keys": {
     "\\usepackage/popupmenu#c": [
-      "tracking\r",
-      "!tracking\r"
+      "tracking",
+      "!tracking"
     ],
     "\\item,\\begin{submenu}": [
-      "title=${1:string}\r",
+      "title=${1:string}",
       "marked"
     ],
     "\\item": [
       "enabled",
-      "return=${1:string}\r"
+      "return=${1:string}"
     ]
   },
   "args": [

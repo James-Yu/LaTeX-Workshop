@@ -16,7 +16,11 @@
       "name": "wordcloud",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options}]{${1:(${3:word1},${4:weight1});(${5:word2},${6:weight2});...}}"
+        "snippet": "[${2:options}]{${1:(${3:word1},${4:weight1});(${5:word2},${6:weight2});...}}",
+        "keys": [
+          "\\wordcloud,\\wordcloudFile"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -30,7 +34,11 @@
       "name": "wordcloudFile",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:file}}{${2:number of words}}"
+        "snippet": "[${3:options%keyvals}]{${1:file}}{${2:number of words}}",
+        "keys": [
+          "\\wordcloud,\\wordcloudFile"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -44,11 +52,11 @@
   "envs": [],
   "keys": {
     "\\wordcloud,\\wordcloudFile": [
-      "scale=${1:factor}\r",
+      "scale=${1:factor}",
       "margin=",
-      "rotate=${1:degrees}\r",
-      "usecolor\r",
-      "colors={${1:color1,color2,...}}\r"
+      "rotate=${1:degrees}",
+      "usecolor",
+      "colors={${1:color1,color2,...}}"
     ]
   },
   "args": []

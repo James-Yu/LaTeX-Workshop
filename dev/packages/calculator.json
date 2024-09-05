@@ -498,11 +498,40 @@
       }
     },
     {
-      "name": "VECTORSIZE(x,y,z)",
+      "name": "VECTORSIZE",
       "unusual": true,
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:cmd}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y},${4:z}){${1:cmd}}"
+      }
+    },
+    {
+      "name": "VECTORCOPY",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x},${2:y},${3:z})(${4:cmd1},${5:cmd2},${6:cmd3%cmd})"
+      }
+    },
+    {
+      "name": "VECTORGLOBALCOPY",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x},${2:y},${3:z})(${4:cmd1},${5:cmd2},${6:cmd3%cmd})"
+      }
+    },
+    {
+      "name": "VECTORADD",
+      "arg": {
+        "format": "()()()",
+        "snippet": "(${1:x1},${2:y1},${3:z1})(${4:x2},${5:y2},${6:z2})(${7:cmd1},${8:cmd2},${9:cmd3%cmd})"
+      }
+    },
+    {
+      "name": "VECTORSUB",
+      "arg": {
+        "format": "()()()",
+        "snippet": "(${1:x1},${2:y1},${3:z1})(${4:x2},${5:y2},${6:z2})(${7:cmd1},${8:cmd2},${9:cmd3%cmd})"
       }
     },
     {
@@ -513,31 +542,103 @@
       }
     },
     {
-      "name": "SCALARPRODUCT(x1,y1,z1)(x2,y2,z2)",
+      "name": "SCALARPRODUCT",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:cmd}}"
+        "format": "()(){}",
+        "snippet": "(${2:x1},${3:y1},${4:z1})(${5:x2},${6:y2},${7:z2}){${1:cmd}}"
       }
     },
     {
-      "name": "DOTPRODUCT(x1,y1,z1)(x2,y2,z2)",
+      "name": "DOTPRODUCT",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:cmd}}"
+        "format": "()(){}",
+        "snippet": "(${2:x1},${3:y1},${4:z1})(${5:x2},${6:y2},${7:z2}){${1:cmd}}"
       }
     },
     {
-      "name": "VECTORNORM(x,y,z)",
+      "name": "VECTORNORM",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:cmd}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y},${4:z}){${1:cmd}}"
       }
     },
     {
-      "name": "TWOVECTORSANGLE(x1,y1,z1)(x2,y2,z2)",
+      "name": "VECTORPRODUCT",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:cmd}}"
+        "format": "()()()",
+        "snippet": "(${1:x1},${2:y1},${3:z1})(${4:x2},${5:y2},${6:z2})(${7:cmd1},${8:cmd2},${9:cmd3%cmd})"
+      }
+    },
+    {
+      "name": "CROSSPRODUCT",
+      "arg": {
+        "format": "()()()",
+        "snippet": "(${1:x1},${2:y1},${3:z1})(${4:x2},${5:y2},${6:z2})(${7:cmd1},${8:cmd2},${9:cmd3%cmd})"
+      }
+    },
+    {
+      "name": "UNITVECTOR",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x},${2:y},${3:z})(${4:cmd1},${5:cmd2},${6:cmd3%cmd})"
+      }
+    },
+    {
+      "name": "VECTORABSVALUE",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x},${2:y},${3:z})(${4:cmd1},${5:cmd2},${6:cmd3%cmd})"
+      }
+    },
+    {
+      "name": "TWOVECTORSANGLE",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:x1},${3:y1},${4:z1})(${5:x2},${6:y2},${7:z2}){${1:cmd}}"
+      }
+    },
+    {
+      "name": "MATRIXSIZE",
+      "unusual": true,
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:a11...a33}){${1:cmd}}"
+      }
+    },
+    {
+      "name": "MATRIXCOPY",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:a11...a33})(${2:cmd11...cmd33%cmd})"
+      }
+    },
+    {
+      "name": "MATRIXGLOBALCOPY",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:a11...a33})(${2:cmd11...cmd33%cmd})"
+      }
+    },
+    {
+      "name": "TRANSPOSEMATRIX",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:a11...a33})(${2:cmd11...cmd33%cmd})"
+      }
+    },
+    {
+      "name": "MATRIXADD",
+      "arg": {
+        "format": "()()()",
+        "snippet": "(${1:a11...a33})(${2:b11...b33})(${3:cmd11...cmd33%cmd})"
+      }
+    },
+    {
+      "name": "MATRIXSUB",
+      "arg": {
+        "format": "()()()",
+        "snippet": "(${1:a11...a33})(${2:b11...b33})(${3:cmd11...cmd33%cmd})"
       }
     },
     {
@@ -545,6 +646,49 @@
       "arg": {
         "format": "{}()()",
         "snippet": "{${1:num}}(${2:a11...a33})(${3:cmd11...cmd33%cmd})"
+      }
+    },
+    {
+      "name": "MATRIXVECTORPRODUCT",
+      "arg": {
+        "format": "()()()",
+        "snippet": "(${1:a11...a33})(${2:x},${3:y},${4:z})(${5:cmd1},${6:cmd2},${7:cmd3%cmd})"
+      }
+    },
+    {
+      "name": "VECTORMATRIXPRODUCT",
+      "unusual": true,
+      "arg": {
+        "format": "()()()",
+        "snippet": "(${1:x},${2:y},${3:z})(${4:a11...a33})(${5:cmd1},${6:cmd2},${7:cmd3%cmd})"
+      }
+    },
+    {
+      "name": "MATRIXPRODUCT",
+      "arg": {
+        "format": "()()()",
+        "snippet": "(${1:a11...a33})(${2:b11...b33})(${3:cmd11...cmd33%cmd})"
+      }
+    },
+    {
+      "name": "INVERSEMATRIX",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:a11...a33})(${2:cmd11...cmd33%cmd})"
+      }
+    },
+    {
+      "name": "MATRIXABSVALUE",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:a11...a33})(${2:cmd11...cmd33%cmd})"
+      }
+    },
+    {
+      "name": "SOLVELINEARSYSTEM",
+      "arg": {
+        "format": "()()()",
+        "snippet": "(${1:a11...a33})(${2:b1},${3:b2},${4:b3})(${5:cmd1},${6:cmd2},${7:cmd3%cmd})"
       }
     }
   ],

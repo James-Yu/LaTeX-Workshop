@@ -12,31 +12,31 @@
   ],
   "macros": [
     {
-      "name": "placeat(x,y)",
+      "name": "placeat",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:content}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:content}}"
       }
     },
     {
-      "name": "placeat(x,y)",
+      "name": "placeat",
       "arg": {
-        "format": "{}[]",
-        "snippet": "{${1:content}}[${2:name}]"
+        "format": "(){}[]",
+        "snippet": "(${3:x},${4:y}){${1:content}}[${2:name}]"
       }
     },
     {
-      "name": "placeat(x,y)",
+      "name": "placeat",
       "arg": {
-        "format": "[]{}",
-        "snippet": "[${2:content-left}]{${1:content}}"
+        "format": "()[]{}",
+        "snippet": "(${3:x},${4:y})[${2:content-left}]{${1:content}}"
       }
     },
     {
-      "name": "placeat(x,y)",
+      "name": "placeat",
       "arg": {
-        "format": "[]{}[]",
-        "snippet": "[${2:content-left}]{${1:content}}[${3:name}]"
+        "format": "()[]{}[]",
+        "snippet": "(${4:x},${5:y})[${2:content-left}]{${1:content}}[${3:name}]"
       }
     },
     {
@@ -127,7 +127,11 @@
       }
     },
     {
-      "name": "placelineat(x1,y1)(x2,y2)"
+      "name": "placelineat",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x1},${2:y1})(${3:x2},${4:y2})"
+      }
     },
     {
       "name": "placelineat",
@@ -137,7 +141,11 @@
       }
     },
     {
-      "name": "placearrowat(x1,y1)(x2,y2)"
+      "name": "placearrowat",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x1},${2:y1})(${3:x2},${4:y2})"
+      }
     },
     {
       "name": "placearrowat",
@@ -147,10 +155,10 @@
       }
     },
     {
-      "name": "placecircleat(x,y)",
+      "name": "placecircleat",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:r}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:r}}"
       }
     },
     {
@@ -161,10 +169,10 @@
       }
     },
     {
-      "name": "placefilledcircleat(x,y)",
+      "name": "placefilledcircleat",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:r}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:r}}"
       }
     },
     {
@@ -175,10 +183,10 @@
       }
     },
     {
-      "name": "placesquareat(x,y)",
+      "name": "placesquareat",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:r}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:r}}"
       }
     },
     {
@@ -189,7 +197,11 @@
       }
     },
     {
-      "name": "placerectangleat(x1,y1)(x2,y2)"
+      "name": "placerectangleat",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x1},${2:y1})(${3:x2},${4:y2})"
+      }
     },
     {
       "name": "placerectangleat",
@@ -199,7 +211,11 @@
       }
     },
     {
-      "name": "placefilledrectangleat(x1,y1)(x2,y2)"
+      "name": "placefilledrectangleat",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x1},${2:y1})(${3:x2},${4:y2})"
+      }
     },
     {
       "name": "placefilledrectangleat",
@@ -209,7 +225,11 @@
       }
     },
     {
-      "name": "placecurveat(x1,y1)(x2,y2)(x3,y3)(x4,y4)"
+      "name": "placecurveat",
+      "arg": {
+        "format": "()()()()",
+        "snippet": "(${1:x1},${2:y1})(${3:x2},${4:y2})(${5:x3},${6:y3})(${7:x4},${8:y4})"
+      }
     },
     {
       "name": "placecurveat",
@@ -219,8 +239,12 @@
       }
     },
     {
-      "name": "placeroundedat(x1,y1)(x2,y2)",
-      "unusual": true
+      "name": "placeroundedat",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x1},${2:y1})(${3:x2},${4:y2})"
+      }
     },
     {
       "name": "placeroundedat",
@@ -266,19 +290,19 @@
   "envs": [],
   "keys": {
     "\\placeatsetup": [
-      "gridnumber=\r",
-      "gridnumberx=\r",
-      "gridnumbery=\r",
-      "nogrid\r",
-      "drawgrid\r",
-      "numnumgrid\r",
-      "alphanumgrid\r",
-      "offsetx=\r",
-      "offsety=\r",
-      "startzero\r",
-      "linewidth=\r",
-      "gridlinewidth=\r",
-      "arrowheadlength=\r"
+      "gridnumber=",
+      "gridnumberx=",
+      "gridnumbery=",
+      "nogrid",
+      "drawgrid",
+      "numnumgrid",
+      "alphanumgrid",
+      "offsetx=",
+      "offsety=",
+      "startzero",
+      "linewidth=",
+      "gridlinewidth=",
+      "arrowheadlength="
     ]
   },
   "args": []

@@ -79,10 +79,10 @@
       "unusual": true
     },
     {
-      "name": "arc(x,y)",
+      "name": "arc",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:angle}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:angle}}"
       }
     },
     {
@@ -107,7 +107,11 @@
       }
     },
     {
-      "name": "closecurve(coords)"
+      "name": "closecurve",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:coords})"
+      }
     },
     {
       "name": "closecurve",
@@ -117,7 +121,11 @@
       }
     },
     {
-      "name": "curve(coords)"
+      "name": "curve",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:coords})"
+      }
     },
     {
       "name": "curve",
@@ -127,14 +135,18 @@
       }
     },
     {
-      "name": "scaleput(x,y)",
+      "name": "scaleput",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:object}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:object}}"
       }
     },
     {
-      "name": "tagcurve(coords)"
+      "name": "tagcurve",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:coords})"
+      }
     },
     {
       "name": "tagcurve",
@@ -147,10 +159,10 @@
   "envs": [],
   "keys": {
     "\\usepackage/curves#c": [
-      "dvips\r",
-      "emtex\r",
-      "xdvi\r",
-      "WML\r"
+      "dvips",
+      "emtex",
+      "xdvi",
+      "WML"
     ]
   },
   "args": [

@@ -165,7 +165,11 @@
       "name": "vectorGramSchmidt",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:list of vectors}}"
+        "snippet": "[${2:options%keyvals}]{${1:list of vectors}}",
+        "keys": [
+          "\\vectorGramSchmidt,\\vectorGramSchmidtSteps"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -179,7 +183,11 @@
       "name": "vectorGramSchmidtSteps",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:list of vectors}}"
+        "snippet": "[${2:options%keyvals}]{${1:list of vectors}}",
+        "keys": [
+          "\\vectorGramSchmidt,\\vectorGramSchmidtSteps"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -200,7 +208,11 @@
       "name": "matrixPrint",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:matrix}}"
+        "snippet": "[${2:options%keyvals}]{${1:matrix}}",
+        "keys": [
+          "\\matrixPrint"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -452,7 +464,11 @@
       "name": "matrixRREFSteps",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:matrix}}"
+        "snippet": "[${2:options%keyvals}]{${1:matrix}}",
+        "keys": [
+          "\\matrixRREFSteps,\\matrixGaussJordanSteps"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -473,23 +489,27 @@
       "name": "matrixGaussJordanSteps",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:matrix1}}{${2:matrix2}}"
+        "snippet": "[${3:options%keyvals}]{${1:matrix1}}{${2:matrix2}}",
+        "keys": [
+          "\\matrixRREFSteps,\\matrixGaussJordanSteps"
+        ],
+        "keyPos": 0
       }
     }
   ],
   "envs": [],
   "keys": {
     "\\vectorGramSchmidt,\\vectorGramSchmidtSteps": [
-      "brckt=${1|round,square,curly\r|}",
-      "truncate=${1:integer}\r"
+      "brckt=${1|round,square,curly|}",
+      "truncate=${1:integer}"
     ],
     "\\matrixPrint": [
-      "type=${1|pmatrix,bmatrix,vmatrix,Vmatrix\r|}",
-      "truncate=${1:integer}\r"
+      "type=${1|pmatrix,bmatrix,vmatrix,Vmatrix|}",
+      "truncate=${1:integer}"
     ],
     "\\matrixRREFSteps,\\matrixGaussJordanSteps": [
-      "type=${1|pmatrix,bmatrix,vmatrix,Vmatrix\r|}",
-      "truncate=${1:integer}\r"
+      "type=${1|pmatrix,bmatrix,vmatrix,Vmatrix|}",
+      "truncate=${1:integer}"
     ]
   },
   "args": []

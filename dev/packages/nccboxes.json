@@ -12,7 +12,11 @@
       "name": "jhbox",
       "arg": {
         "format": "{}[]{}",
-        "snippet": "{${1:prototype}}[${3:pos%keyvals}]{${2:text}}"
+        "snippet": "{${1:prototype}}[${3:pos%keyvals}]{${2:text}}",
+        "keys": [
+          "\\jhbox"
+        ],
+        "keyPos": 1
       }
     },
     {
@@ -26,7 +30,11 @@
       "name": "jvbox",
       "arg": {
         "format": "{}[]{}",
-        "snippet": "{${1:prototype}}[${3:pos%keyvals}]{${2:text}}"
+        "snippet": "{${1:prototype}}[${3:pos%keyvals}]{${2:text}}",
+        "keys": [
+          "\\jvbox,\\jparbox"
+        ],
+        "keyPos": 1
       }
     },
     {
@@ -40,7 +48,11 @@
       "name": "jparbox",
       "arg": {
         "format": "{}[]{}{}",
-        "snippet": "{${1:prototype}}[${4:pos%keyvals}]{${2:width}}{${3:text}}"
+        "snippet": "{${1:prototype}}[${4:pos%keyvals}]{${2:width}}{${3:text}}",
+        "keys": [
+          "\\jvbox,\\jparbox"
+        ],
+        "keyPos": 1
       }
     },
     {
@@ -128,15 +140,15 @@
   "envs": [],
   "keys": {
     "\\jhbox": [
-      "l\r",
-      "c\r",
-      "r\r",
-      "s\r"
+      "l",
+      "c",
+      "r",
+      "s"
     ],
     "\\jvbox,\\jparbox": [
-      "t\r",
-      "c\r",
-      "b\r"
+      "t",
+      "c",
+      "b"
     ]
   },
   "args": []

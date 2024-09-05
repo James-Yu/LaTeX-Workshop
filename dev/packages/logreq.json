@@ -61,7 +61,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:keyvals}]{${1:specs}}"
+        "snippet": "[${2:keyvals}]{${1:specs}}",
+        "keys": [
+          "\\external,\\internal,\\logrequest"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -93,7 +97,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:keyvals}]{${1:specs}}"
+        "snippet": "[${2:keyvals}]{${1:specs}}",
+        "keys": [
+          "\\external,\\internal,\\logrequest"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -101,7 +109,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:request}}"
+        "snippet": "[${2:options%keyvals}]{${1:request}}",
+        "keys": [
+          "\\external,\\internal,\\logrequest"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -141,7 +153,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:keyvals}]{${1:file specs}}"
+        "snippet": "[${2:keyvals}]{${1:file specs}}",
+        "keys": [
+          "\\provides,\\requires"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -157,19 +173,23 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:keyvals}]{${1:file specs}}"
+        "snippet": "[${2:keyvals}]{${1:file specs}}",
+        "keys": [
+          "\\provides,\\requires"
+        ],
+        "keyPos": 0
       }
     }
   ],
   "envs": [],
   "keys": {
     "\\external,\\internal,\\logrequest": [
-      "package=${1:package}\r",
-      "priority=${1:priority}\r",
-      "active=${1|0,1\r|}"
+      "package=${1:package}",
+      "priority=${1:priority}",
+      "active=${1|0,1|}"
     ],
     "\\provides,\\requires": [
-      "type=${1|static,dynamic,editable\r|}"
+      "type=${1|static,dynamic,editable|}"
     ]
   },
   "args": []

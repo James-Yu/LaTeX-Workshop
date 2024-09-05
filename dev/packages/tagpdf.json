@@ -9,21 +9,33 @@
       "name": "tagpdfsetup",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:keyvals}}"
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\tagpdfsetup"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "tagtool",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:keyvals}}"
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\tagtool"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "tagmcbegin",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:keyvals}}"
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\tagmcbegin"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -43,7 +55,11 @@
       "name": "tagstructbegin",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:keyvals}}"
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\tagstructbegin"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -66,7 +82,11 @@
       "name": "ShowTagging",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:keyvals}}"
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\ShowTagging"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -81,12 +101,12 @@
   "envs": [],
   "keys": {
     "\\usepackage/tagpdf#c": [
-      "luamode\r",
-      "genericmode\r",
-      "disabledelayedshipout\r"
+      "luamode",
+      "genericmode",
+      "disabledelayedshipout"
     ],
     "\\tagpdfsetup": [
-      "activate=${1:tag}\r",
+      "activate=${1:tag}",
       "activate/all",
       "activate/mc",
       "activate/spaces",
@@ -95,71 +115,71 @@
       "activate/tagunmarked",
       "activate/tree",
       "role/mathml-tags",
-      "role/new-tag=${1:tag/role}\r",
-      "role/new-attribute={${1:name}}{${2:content}}\r",
-      "role/map-tags=${1|false,pdf\r|}",
-      "debug/show\r",
-      "debug/show=${1|para,paraOff,spaces,spacesOff\r|}",
-      "debug/log=${1|none,v,vv,vvv,all\r|}",
-      "debug/uncompress\r",
+      "role/new-tag=${1:tag/role}",
+      "role/new-attribute={${1:name}}{${2:content}}",
+      "role/map-tags=${1|false,pdf|}",
+      "debug/show",
+      "debug/show=${1|para,paraOff,spaces,spacesOff|}",
+      "debug/log=${1|none,v,vv,vvv,all|}",
+      "debug/uncompress",
       "viewer/pane/mathml",
       "viewer/pane/mathsource",
-      "viewer/startstructure=${1:number}\r",
-      "page/tabsorder=${1|row,column,structure,none\r|}",
-      "page/exclude-header-footer=${1|false,pagination\r|}",
+      "viewer/startstructure=${1:number}",
+      "page/tabsorder=${1|row,column,structure,none|}",
+      "page/exclude-header-footer=${1|false,pagination|}",
       "para/tagging",
-      "para/tag=${1:tag}\r",
-      "para/maintag=${1:tag}\r",
+      "para/tag=${1:tag}",
+      "para/maintag=${1:tag}",
       "para/flattened",
       "math/alt/use",
-      "math/mathml/write-dummy=${1:code}\r",
-      "math/mathml/sources=${1:comma list}\r",
+      "math/mathml/write-dummy=${1:code}",
+      "math/mathml/sources=${1:comma list}",
       "math/mathml/AF",
       "math/tex/AF",
-      "table/tagging=\r",
-      "table/header-rows=${1:comma list}\r",
-      "text/lang=${1:lang}\r"
+      "table/tagging=",
+      "table/header-rows=${1:comma list}",
+      "text/lang=${1:lang}"
     ],
     "\\tagtool": [
       "para/tagging",
-      "para/maintag=${1:tag}\r",
-      "para/tag=${1:tag}\r",
+      "para/maintag=${1:tag}",
+      "para/tag=${1:tag}",
       "para/flattened"
     ],
     "\\tagmcbegin": [
-      "tag=${1:tag}\r",
-      "artifact=${1|pagination,pagination/header,pagination/footer,layout,page,background,notype\r|}",
+      "tag=${1:tag}",
+      "artifact=${1|pagination,pagination/header,pagination/footer,layout,page,background,notype|}",
       "stash",
-      "label=${1:name}\r",
-      "alt=${1:text}\r",
-      "actualtext=${1:text}\r",
-      "raw=${1:PDF code}\r"
+      "label=${1:name}",
+      "alt=${1:text}",
+      "actualtext=${1:text}",
+      "raw=${1:PDF code}"
     ],
     "\\tagstructbegin": [
-      "tag=${1:tag}\r",
+      "tag=${1:tag}",
       "stash",
-      "label=${1:name}\r",
-      "parent=${1:structure number}\r",
-      "alt=${1:text}\r",
-      "actualtext=${1:text}\r",
-      "attribute={${1:attr1,attr2,...}}\r",
-      "attribute-class={${1:attr1,attr2,...}}\r",
-      "title=${1:text}\r",
-      "title-o=${1:text}\r",
-      "AF=${1:object}\r",
-      "root-AF=${1:object}\r",
-      "AFinline=${1:text}\r",
-      "AFinline-o=${1:text}\r",
-      "texsource=${1:text}\r",
-      "lang=${1:lang id}\r",
-      "ref=${1:label1,label2,...}}\r",
-      "E=${1:text}\r"
+      "label=${1:name}",
+      "parent=${1:structure number}",
+      "alt=${1:text}",
+      "actualtext=${1:text}",
+      "attribute={${1:attr1,attr2,...}}",
+      "attribute-class={${1:attr1,attr2,...}}",
+      "title=${1:text}",
+      "title-o=${1:text}",
+      "AF=${1:object}",
+      "root-AF=${1:object}",
+      "AFinline=${1:text}",
+      "AFinline-o=${1:text}",
+      "texsource=${1:text}",
+      "lang=${1:lang id}",
+      "ref=${1:label1,label2,...}}",
+      "E=${1:text}"
     ],
     "\\ShowTagging": [
-      "mc-data=${1:integer}\r",
-      "mc-current\r",
-      "struct-stack=${1|log,show\r|}",
-      "debug/structures\r"
+      "mc-data=${1:integer}",
+      "mc-current",
+      "struct-stack=${1|log,show|}",
+      "debug/structures"
     ]
   },
   "args": [

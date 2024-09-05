@@ -240,30 +240,30 @@
       }
     },
     {
-      "name": "nptextcites(pre)",
+      "name": "nptextcites",
       "if": "apa",
       "unusual": true,
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:bibid}}{${2:bibid}}"
+        "format": "(){}{}",
+        "snippet": "(${3:pre}){${1:bibid}}{${2:bibid}}"
       }
     },
     {
-      "name": "nptextcites(pre)(post)",
+      "name": "nptextcites",
       "if": "apa",
       "unusual": true,
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:bibid}}{${2:bibid}}"
+        "format": "()(){}{}",
+        "snippet": "(${3:pre})(${4:post}){${1:bibid}}{${2:bibid}}"
       }
     },
     {
-      "name": "nptextcites(pre)(post)",
+      "name": "nptextcites",
       "if": "apa",
       "unusual": true,
       "arg": {
-        "format": "[]{}[]{}",
-        "snippet": "[${3:pre}]{${1:bibid}}[${4:pre}]{${2:bibid}}"
+        "format": "()()[]{}[]{}",
+        "snippet": "(${5:pre})(${6:post})[${3:pre}]{${1:bibid}}[${4:pre}]{${2:bibid}}"
       }
     },
     {
@@ -285,12 +285,12 @@
       }
     },
     {
-      "name": "nptextcites(pre)(post)",
+      "name": "nptextcites",
       "if": "apa",
       "unusual": true,
       "arg": {
-        "format": "[][]{}[][]{}",
-        "snippet": "[${3:pre}][${4:post}]{${1:bibid}}[${5:pre}][${6:post}]{${2:bibid}}"
+        "format": "()()[][]{}[][]{}",
+        "snippet": "(${7:pre})(${8:post})[${3:pre}][${4:post}]{${1:bibid}}[${5:pre}][${6:post}]{${2:bibid}}"
       }
     },
     {
@@ -975,30 +975,30 @@
       }
     },
     {
-      "name": "nptextcites(pre)",
+      "name": "nptextcites",
       "if": "apa=true",
       "unusual": true,
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:bibid}}{${2:bibid}}"
+        "format": "(){}{}",
+        "snippet": "(${3:pre}){${1:bibid}}{${2:bibid}}"
       }
     },
     {
-      "name": "nptextcites(pre)(post)",
+      "name": "nptextcites",
       "if": "apa=true",
       "unusual": true,
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:bibid}}{${2:bibid}}"
+        "format": "()(){}{}",
+        "snippet": "(${3:pre})(${4:post}){${1:bibid}}{${2:bibid}}"
       }
     },
     {
-      "name": "nptextcites(pre)(post)",
+      "name": "nptextcites",
       "if": "apa=true",
       "unusual": true,
       "arg": {
-        "format": "[]{}[]{}",
-        "snippet": "[${3:pre}]{${1:bibid}}[${4:pre}]{${2:bibid}}"
+        "format": "()()[]{}[]{}",
+        "snippet": "(${5:pre})(${6:post})[${3:pre}]{${1:bibid}}[${4:pre}]{${2:bibid}}"
       }
     },
     {
@@ -1020,12 +1020,12 @@
       }
     },
     {
-      "name": "nptextcites(pre)(post)",
+      "name": "nptextcites",
       "if": "apa=true",
       "unusual": true,
       "arg": {
-        "format": "[][]{}[][]{}",
-        "snippet": "[${3:pre}][${4:post}]{${1:bibid}}[${5:pre}][${6:post}]{${2:bibid}}"
+        "format": "()()[][]{}[][]{}",
+        "snippet": "(${7:pre})(${8:post})[${3:pre}][${4:post}]{${1:bibid}}[${5:pre}][${6:post}]{${2:bibid}}"
       }
     },
     {
@@ -1769,27 +1769,29 @@
       "caption",
       "ref",
       "covington",
-      "draftmark=${1|true,false,firstpage\r|}",
+      "draftmark=${1|true,false,firstpage|}",
       "microtype",
       "polyglossia",
-      "fonts=${1|ps,otf,none\r|}",
-      "fontenc={${1:enc1,enc2,...}}\r",
+      "fonts=${1|ps,otf,none|}",
+      "fontenc={${1:enc1,enc2,...}}",
       "short"
     ],
     "\\usepackage/biblatex#c,\\ExecuteBibliographyOptions#c": [
+      "apamaxprtauth=${1:number}",
+      "apamaxprtauth=${1:number}",
       "issueeditor"
     ],
     "\\course": [
-      "ps\r",
-      "se\r",
-      "vo\r",
-      "ue\r",
-      "ko\r",
-      "pv\r"
+      "ps",
+      "se",
+      "vo",
+      "ue",
+      "ko",
+      "pv"
     ],
     "\\semester": [
-      "ss\r",
-      "ws\r"
+      "ss",
+      "ws"
     ]
   },
   "args": [

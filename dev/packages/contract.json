@@ -23,14 +23,22 @@
       "name": "Clause",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:properties%keyvals}]"
+        "snippet": "[${1:properties%keyvals}]",
+        "keys": [
+          "\\Clause,\\SubClause"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "SubClause",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:properties%keyvals}]"
+        "snippet": "[${1:properties%keyvals}]",
+        "keys": [
+          "\\Clause,\\SubClause"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -195,7 +203,11 @@
       "name": "DeclareNewJuraEnvironment",
       "arg": {
         "format": "{}[]{}{}",
-        "snippet": "{${1:envname}}[${4:properties%keyvals}]{${2:begdef}}{${3:enddef}}"
+        "snippet": "{${1:envname}}[${4:properties%keyvals}]{${2:begdef}}{${3:enddef}}",
+        "keys": [
+          "\\DeclareNewJuraEnvironment"
+        ],
+        "keyPos": 1
       }
     },
     {
@@ -222,32 +234,32 @@
   ],
   "keys": {
     "\\contractSetup,\\usepackage/contract#c": [
-      "juratotoc=${1:true|false|<integer>}\r",
+      "juratotoc=${1:true|false|<integer>}",
       "juratocindent=",
       "juratocnumberwidth=",
-      "contract\r",
+      "contract",
       "juratitlepagebreak",
-      "clausemark=${1|both,false,off,no,forceboth,forceright,right\r|}",
-      "parnumber=${1|auto,true,false,manual\r|}",
-      "ref=${1|long,numeric,clauseonly,onlyclause,ClauseOnly,OnlyClause,parlong,longpar,ParL,parnumeric,numericpar,ParN,paroff,nopar,parshort,shortpar,ParS,sentencelong,longsentence,SentenceL,sentencenumeric,numericsentence,SentenceN,sentenceoff,nosentence,sentenceshort,shortsentence,SentenceS,short\r|}"
+      "clausemark=${1|both,false,off,no,forceboth,forceright,right|}",
+      "parnumber=${1|auto,true,false,manual|}",
+      "ref=${1|long,numeric,clauseonly,onlyclause,ClauseOnly,OnlyClause,parlong,longpar,ParL,parnumeric,numericpar,ParN,paroff,nopar,parshort,shortpar,ParS,sentencelong,longsentence,SentenceL,sentencenumeric,numericsentence,SentenceN,sentenceoff,nosentence,sentenceshort,shortsentence,SentenceS,short|}"
     ],
     "\\Clause,\\SubClause": [
-      "dummy\r",
-      "head=${1:running head}\r",
-      "nohead\r",
-      "notocentry\r",
-      "number=${1:number}\r",
+      "dummy",
+      "head=${1:running head}",
+      "nohead",
+      "notocentry",
+      "number=${1:number}",
       "preskip=",
       "postskip=",
-      "title=${1:text}\r",
-      "tocentry=${1:entry}\r"
+      "title=${1:text}",
+      "tocentry=${1:entry}"
     ],
     "\\DeclareNewJuraEnvironment": [
-      "Clause=${1:command}\r",
-      "ClauseFont=${1:commands}\r",
-      "SubClause=${1:command}\r",
-      "Sentence=${1:command}\r",
-      "ClauseNumberFormat=${1:command}\r"
+      "Clause=${1:command}",
+      "ClauseFont=${1:commands}",
+      "SubClause=${1:command}",
+      "Sentence=${1:command}",
+      "ClauseNumberFormat=${1:command}"
     ]
   },
   "args": [

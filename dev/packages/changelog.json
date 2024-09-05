@@ -66,7 +66,12 @@
       "name": "changelog",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{changelog}",
+          "\\begin{changelog},\\begin{version},\\shortversion"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -76,7 +81,11 @@
       "name": "version",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{changelog},\\begin{version},\\shortversion"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -91,23 +100,23 @@
   "keys": {
     "\\begin{changelog}": [
       "section",
-      "sectioncmd=${1:command}\r",
-      "title=${1:text}\r",
+      "sectioncmd=${1:command}",
+      "title=${1:text}",
       "label="
     ],
     "\\begin{changelog},\\begin{version},\\shortversion": [
-      "version=${1:version}\r",
-      "v=${1:version}\r",
-      "author=${1:author}\r",
-      "date=${1:date}\r",
+      "version=${1:version}",
+      "v=${1:version}",
+      "author=${1:author}",
+      "date=${1:date}",
       "yanked",
-      "remark=${1:text}\r",
-      "remarks={${1:text1,text2,...}}\r",
+      "remark=${1:text}",
+      "remarks={${1:text1,text2,...}}",
       "simple",
       "short"
     ],
     "\\shortversion": [
-      "changes=${1:change text}\r"
+      "changes=${1:change text}"
     ]
   },
   "args": []

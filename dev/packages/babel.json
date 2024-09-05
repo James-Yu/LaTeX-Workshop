@@ -48,7 +48,11 @@
       "name": "foreignlanguage",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:language}}{${2:text}}"
+        "snippet": "[${3:options%keyvals}]{${1:language}}{${2:text}}",
+        "keys": [
+          "\\foreignlanguage,\\begin{otherlanguage*}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -69,7 +73,11 @@
       "name": "babelensure",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:language}}"
+        "snippet": "[${2:options%keyvals}]{${1:language}}",
+        "keys": [
+          "\\babelensure"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -242,7 +250,11 @@
       "name": "localedate",
       "arg": {
         "format": "[]{}{}{}",
-        "snippet": "[${4:options%keyvals}]{${1:year}}{${2:month}}{${3:day}}"
+        "snippet": "[${4:options%keyvals}]{${1:year}}{${2:month}}{${3:day}}",
+        "keys": [
+          "\\localedate"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -456,7 +468,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}{}{}{}",
-        "snippet": "[${5:options%keyvals}]{${1:locale}}{${2:class-first}}{${3:class-second}}{${4:code}}"
+        "snippet": "[${5:options%keyvals}]{${1:locale}}{${2:class-first}}{${3:class-second}}{${4:code}}",
+        "keys": [
+          "\\babelinterchar"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -612,7 +628,11 @@
       "name": "babeladjust",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:keyvals}}"
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\babeladjust"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -3695,7 +3715,6 @@
         "format": "{}",
         "snippet": "{${1:options%keyvals}}",
         "keys": [
-          "\\frenchsetup,\\frenchbsetup",
           "\\frenchsetup,\\frenchbsetup"
         ],
         "keyPos": 0
@@ -11185,19 +11204,19 @@
       }
     },
     {
-      "name": "aref(",
+      "name": "aref",
       "if": "magyar",
       "arg": {
-        "format": "{})",
-        "snippet": "{${1:label}})"
+        "format": "()",
+        "snippet": "({${1:label}})"
       }
     },
     {
-      "name": "Aref(",
+      "name": "Aref",
       "if": "magyar",
       "arg": {
-        "format": "{})",
-        "snippet": "{${1:label}})"
+        "format": "()",
+        "snippet": "({${1:label}})"
       }
     },
     {
@@ -11353,7 +11372,6 @@
         "format": "{}",
         "snippet": "{${1:előírás%keyvals}}",
         "keys": [
-          "\\footnotestyle",
           "\\footnotestyle"
         ],
         "keyPos": 0
@@ -11639,19 +11657,19 @@
       }
     },
     {
-      "name": "aref(",
+      "name": "aref",
       "if": "hungarian",
       "arg": {
-        "format": "{})",
-        "snippet": "{${1:label}})"
+        "format": "()",
+        "snippet": "({${1:label}})"
       }
     },
     {
-      "name": "Aref(",
+      "name": "Aref",
       "if": "hungarian",
       "arg": {
-        "format": "{})",
-        "snippet": "{${1:label}})"
+        "format": "()",
+        "snippet": "({${1:label}})"
       }
     },
     {
@@ -18744,7 +18762,11 @@
       "name": "otherlanguage*",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:language}}"
+        "snippet": "[${2:options%keyvals}]{${1:language}}",
+        "keys": [
+          "\\foreignlanguage,\\begin{otherlanguage*}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -18823,6 +18845,28 @@
   ],
   "keys": {
     "\\usepackage/babel#c": [
+      "${1:language}",
+      "modifiers.${1:language}=${2:modifiers}",
+      "KeepShorthandsActive",
+      "activeacute",
+      "activegrave",
+      "shorthands=${2|${1:chars},off|}",
+      "safe=${1|none,ref,bib|}",
+      "math=${1|active,normal|}",
+      "config=${1:file}",
+      "main=${1:language}",
+      "headfoot=${1:language}",
+      "noconfigs",
+      "showlanguages",
+      "silent",
+      "hyphenmap=${1|off,first,select,other,other*|}",
+      "bidi=${1|default,basic,basic-r,bidi-l,bidi-r|}",
+      "layout=${1|sectioning,counters,counters*,contents,footnotes,captions,columns,graphics,extras|}",
+      "provide=*",
+      "provide+=*",
+      "provide*=*",
+      "base",
+      "ensureinfo=off",
       "es-lcroman",
       "es-minimal",
       "es-nodecimaldot",
@@ -19047,9 +19091,56 @@
       "OldFigTabCaptions",
       "FrenchSuperscripts",
       "LowercaseSuperscripts",
+      "SuppressWarning",
+      "ShowOptions",
+      "StandardLayout",
+      "GlobalLayoutFrench",
+      "IndentFirst",
+      "PartNameFull",
+      "ListItemsAsPar",
+      "StandardListSpacing",
+      "StandardItemizeEnv",
+      "StandardEnumerateEnv",
+      "StandardItemLabels",
+      "ItemLabels=",
+      "ItemLabeli=",
+      "ItemLabelii=",
+      "ItemLabeliii=",
+      "ItemLabeliv=",
+      "StandardLists",
+      "ListOldLayout",
+      "FrenchFootnotes",
+      "AutoSpaceFootnotes",
+      "AutoSpacePunctuation",
+      "ThinColonSpace",
+      "OriginalTypewriter",
+      "UnicodeNoBreakSpaces",
+      "og=",
+      "fg=",
+      "INGuillSpace",
+      "EveryParGuill=${1|open,close,none|}",
+      "EveryLineGuill=${1|open,close,none|}",
+      "InnerGuillSingle",
+      "ThinSpaceInFrenchNumbers",
+      "SmallCapsFigTabCaptions",
+      "CustomiseFigTabCaptions",
+      "OldFigTabCaptions",
+      "FrenchSuperscripts",
+      "LowercaseSuperscripts",
       "SuppressWarning"
     ],
     "\\footnotestyle": [
+      "reset=${1|none,section,chapter,page,page-resume,page-cont|}",
+      "resume",
+      "indent=${1|article-nosp,article-sp,hulist|}",
+      "rule=${1|none,one-line,fourth,choose|}",
+      "marksize=max-normal",
+      "mark=${1|arabic,stars,stars-max|}",
+      "mpmark=${1|arabic,stars,stars-max|}",
+      "plain",
+      "huplain",
+      "starplain",
+      "editor",
       "reset=${1|none,section,chapter,page,page-resume,page-cont|}",
       "resume",
       "indent=${1|article-nosp,article-sp,hulist|}",

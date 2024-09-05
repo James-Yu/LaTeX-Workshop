@@ -37,7 +37,11 @@
       "name": "loadgidx",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:file}}{${2:title%text}}"
+        "snippet": "[${3:options%keyvals}]{${1:file}}{${2:title%text}}",
+        "keys": [
+          "\\loadgidx,\\newgidx"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -51,7 +55,11 @@
       "name": "newgidx",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:db%specialDef}}{${2:title%text}}"
+        "snippet": "[${3:options%keyvals}]{${1:db%specialDef}}{${2:title%text}}",
+        "keys": [
+          "\\loadgidx,\\newgidx"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -488,7 +496,11 @@
       "name": "printterms",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\printterms"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -979,69 +991,69 @@
   "keys": {
     "\\usepackage/datagidx#c": [
       "utf8",
-      "optimize=${1|off,low,high\r|}",
-      "columns=${1:integer}\r",
-      "child=${1|named,noname\r|}",
-      "namecase=${1|nochange,uc,lc,firstuc,capitalise\r|}",
-      "namefont=${1:font cmd}\r",
-      "postname=${1:text}\r",
-      "postdesc=${1|dot,none\r|}",
-      "prelocation=${1|none,enspace,space,dotfill,hfill\r|}",
-      "location=${1|hide,list,first\r|}",
-      "see=${1|comma,brackets,dot,space,nosep,semicolon,location\r|}",
-      "symboldesc=${1|symbol,desc,(symbol) desc,desc (symbol),symbol desc,desc symbol\r|}",
-      "compositor=${1:symbol}\r",
-      "draft\r",
-      "final\r",
+      "optimize=${1|off,low,high|}",
+      "columns=${1:integer}",
+      "child=${1|named,noname|}",
+      "namecase=${1|nochange,uc,lc,firstuc,capitalise|}",
+      "namefont=${1:font cmd}",
+      "postname=${1:text}",
+      "postdesc=${1|dot,none|}",
+      "prelocation=${1|none,enspace,space,dotfill,hfill|}",
+      "location=${1|hide,list,first|}",
+      "see=${1|comma,brackets,dot,space,nosep,semicolon,location|}",
+      "symboldesc=${1|symbol,desc,(symbol) desc,desc (symbol),symbol desc,desc symbol|}",
+      "compositor=${1:symbol}",
+      "draft",
+      "final",
       "verbose",
       "nowarn"
     ],
     "\\loadgidx,\\newgidx": [
       "showgroups",
-      "style=${1|index,indexalign,align,gloss,dict\r|}",
-      "sort={${1:sort cmd}}\r",
+      "style=${1|index,indexalign,align,gloss,dict|}",
+      "sort={${1:sort cmd}}",
       "balance",
-      "heading=${1:text}\r",
-      "postheading=${1:text}\r"
+      "heading=${1:text}",
+      "postheading=${1:text}"
     ],
     "\\newterm#c,\\newacro#c": [
-      "database=${1:database name}\r",
-      "label=${1:label}\r",
-      "sort=${1:sort key}\r",
-      "parent=${1:parent entry}\r",
-      "text=${1:text}\r",
-      "description=${1:text}\r",
-      "plural=${1:plural form}\r",
-      "symbol=${1:symbol}\r",
-      "short=${1:short form}\r",
-      "long=${1:long form}\r",
-      "shortplural=${1:short plural form}\r",
-      "longplural=${1:long plural form}\r",
-      "see=${1:label}\r",
-      "seealso=${1:label}\r"
+      "database=${1:database name}",
+      "label=${1:label}",
+      "sort=${1:sort key}",
+      "parent=${1:parent entry}",
+      "text=${1:text}",
+      "description=${1:text}",
+      "plural=${1:plural form}",
+      "symbol=${1:symbol}",
+      "short=${1:short form}",
+      "long=${1:long form}",
+      "shortplural=${1:short plural form}",
+      "longplural=${1:long plural form}",
+      "see=${1:label}",
+      "seealso=${1:label}"
     ],
     "\\printterms": [
-      "database=${1:database name}\r",
-      "postdesc=${1|dot,none\r|}",
-      "prelocation=${1|none,enspace,space,dotfill,hfill\r|}",
-      "location=${1|hide,list,first\r|}",
-      "symboldesc=${1|symbol,desc,(symbol) desc,desc (symbol),symbol desc,desc symbol\r|}",
-      "columns=${1:integer}\r",
-      "namecase=${1|nochange,uc,lc,firstuc,capitalise\r|}",
-      "namefont=${1:font cmd}\r",
-      "postname=${1:text}\r",
-      "see=${1|comma,brackets,dot,space,nosep,semicolon,location\r|}",
-      "child=${1|named,noname\r|}",
+      "database=${1:database name}",
+      "postdesc=${1|dot,none|}",
+      "prelocation=${1|none,enspace,space,dotfill,hfill|}",
+      "location=${1|hide,list,first|}",
+      "symboldesc=${1|symbol,desc,(symbol) desc,desc (symbol),symbol desc,desc symbol|}",
+      "columns=${1:integer}",
+      "namecase=${1|nochange,uc,lc,firstuc,capitalise|}",
+      "namefont=${1:font cmd}",
+      "postname=${1:text}",
+      "see=${1|comma,brackets,dot,space,nosep,semicolon,location|}",
+      "child=${1|named,noname|}",
       "showgroups",
-      "style=${1|index,indexalign,align,gloss,dict\r|}",
+      "style=${1|index,indexalign,align,gloss,dict|}",
       "symbolwidth=",
       "locationwidth=",
       "childsort",
-      "heading=${1:text}\r",
-      "postheading=${1:text}\r",
-      "sort={${1:sort cmd}}\r",
+      "heading=${1:text}",
+      "postheading=${1:text}",
+      "sort={${1:sort cmd}}",
       "balance",
-      "condition={${1:condition}}\r"
+      "condition={${1:condition}}"
     ]
   },
   "args": [

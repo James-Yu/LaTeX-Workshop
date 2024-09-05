@@ -58,7 +58,11 @@
       "name": "graph",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:keyvals}}"
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\graph"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -131,28 +135,44 @@
       "name": "bakingtemperature",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:keyvals}}"
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\bakingtemperature"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "setRecipeColors",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:keyvals}}"
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\setRecipeColors"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "setRecipeLengths",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:keyvals}}"
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\setRecipeLengths"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "setRecipeSizes",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:keyvals}}"
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\setRecipeSizes"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -166,7 +186,11 @@
       "name": "setHeadlines",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:keyvals}}"
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\setHeadlines"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -180,7 +204,11 @@
       "name": "setBackgroundPicture",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:imagefile}}"
+        "snippet": "[${2:options%keyvals}]{${1:imagefile}}",
+        "keys": [
+          "\\setBackgroundPicture"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -446,36 +474,40 @@
       "name": "recipe",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:name%text}}"
+        "snippet": "[${2:options%keyvals}]{${1:name%text}}",
+        "keys": [
+          "\\begin{recipe}"
+        ],
+        "keyPos": 0
       }
     }
   ],
   "keys": {
     "\\usepackage/xcookybooky#c": [
-      "handwritten\r",
-      "nowarnings\r",
-      "myconfig\r"
+      "handwritten",
+      "nowarnings",
+      "myconfig"
     ],
     "\\begin{recipe}": [
-      "preparationtime={${1:time}}\r",
-      "bakingtime={${1:time}}\r",
-      "bakingtemperature={${1:temperature}}\r",
-      "portion={${1:portion}}\r",
-      "calory={${1:calory}}\r",
-      "source={${1:source}}\r"
+      "preparationtime={${1:time}}",
+      "bakingtime={${1:time}}",
+      "bakingtemperature={${1:temperature}}",
+      "portion={${1:portion}}",
+      "calory={${1:calory}}",
+      "source={${1:source}}"
     ],
     "\\graph": [
-      "small=${1:imagefile}\r",
+      "small=${1:imagefile}",
       "smallpicturewidth=",
       "bigpicturewidth=",
-      "big=${1:imagefile}\r"
+      "big=${1:imagefile}"
     ],
     "\\bakingtemperature": [
-      "fanoven=${1:temperature}\r",
-      "topbottomheat=${1:temperature}\r",
-      "topheat=${1:temperature}\r",
-      "bottomheat=${1:temperature}\r",
-      "gasstove=${1:temperature}\r"
+      "fanoven=${1:temperature}",
+      "topbottomheat=${1:temperature}",
+      "topheat=${1:temperature}",
+      "bottomheat=${1:temperature}",
+      "gasstove=${1:temperature}"
     ],
     "\\setRecipeColors": [
       "recipename=",
@@ -501,36 +533,36 @@
       "ingredientswidth="
     ],
     "\\setRecipeSizes": [
-      "recipename=${1:fontsize commands}\r",
-      "intro=${1:fontsize commands}\r",
-      "ing=${1:fontsize commands}\r",
-      "inghead=${1:fontsize commands}\r",
-      "prep=${1:fontsize commands}\r",
-      "prephead=${1:fontsize commands}\r",
-      "suggestion=${1:fontsize commands}\r",
-      "hint=${1:fontsize commands}\r",
-      "hinthead=${1:fontsize commands}\r"
+      "recipename=${1:fontsize commands}",
+      "intro=${1:fontsize commands}",
+      "ing=${1:fontsize commands}",
+      "inghead=${1:fontsize commands}",
+      "prep=${1:fontsize commands}",
+      "prephead=${1:fontsize commands}",
+      "suggestion=${1:fontsize commands}",
+      "hint=${1:fontsize commands}",
+      "hinthead=${1:fontsize commands}"
     ],
     "\\setHeadlines": [
-      "inghead=${1:text}\r",
-      "prephead=${1:text}\r",
-      "hinthead=${1:text}\r",
-      "continuationhead=${1:text}\r",
-      "continuationfoot=${1:text}\r",
-      "preparationtime=${1:text}\r",
-      "bakingtime=${1:text}\r",
-      "bakingtemperature=${1:text}\r",
-      "portion=${1:text}\r",
-      "portionvalue=${1:text}\r",
-      "calory=${1:text}\r",
-      "source=${1:text}\r"
+      "inghead=${1:text}",
+      "prephead=${1:text}",
+      "hinthead=${1:text}",
+      "continuationhead=${1:text}",
+      "continuationfoot=${1:text}",
+      "preparationtime=${1:text}",
+      "bakingtime=${1:text}",
+      "bakingtemperature=${1:text}",
+      "portion=${1:text}",
+      "portionvalue=${1:text}",
+      "calory=${1:text}",
+      "source=${1:text}"
     ],
     "\\setBackgroundPicture": [
       "width=",
       "height=",
       "x=",
       "y=",
-      "orientation=${1|default,pagecenter,textcenter,stockcenter\r|}"
+      "orientation=${1|default,pagecenter,textcenter,stockcenter|}"
     ]
   },
   "args": [

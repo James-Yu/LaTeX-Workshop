@@ -14,7 +14,11 @@
       "unusual": true,
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{chronology},\\chronology,\\startchronology,\\setupchronology,\\setupchronology"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -46,21 +50,33 @@
       "name": "chronoevent",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options}]{${1:year}}{${2:label text}}"
+        "snippet": "[${3:options}]{${1:year}}{${2:label text}}",
+        "keys": [
+          "\\chronoevent,\\chronograduation,\\definechronoevent,\\setupchronoevent,\\setupchronograduation"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "chronoevent",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options}]{${1:month/year}}{${2:label text}}"
+        "snippet": "[${3:options}]{${1:month/year}}{${2:label text}}",
+        "keys": [
+          "\\chronoevent,\\chronograduation,\\definechronoevent,\\setupchronoevent,\\setupchronograduation"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "chronoevent",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options}]{${1:day/month/year}}{${2:label text}}"
+        "snippet": "[${3:options}]{${1:day/month/year}}{${2:label text}}",
+        "keys": [
+          "\\chronoevent,\\chronograduation,\\definechronoevent,\\setupchronoevent,\\setupchronograduation"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -74,7 +90,11 @@
       "name": "chronoperiode",
       "arg": {
         "format": "[]{}{}{}",
-        "snippet": "[${4:options%keyvals}]{${1:start-year}}{${2:end-year}}{${3:label text%text}}"
+        "snippet": "[${4:options%keyvals}]{${1:start-year}}{${2:end-year}}{${3:label text%text}}",
+        "keys": [
+          "\\chronoperiode,\\chronograduation,\\definechronoperiode,\\setupchronoperiode,\\setupchronograduation"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -113,7 +133,12 @@
       "name": "chronograduation",
       "arg": {
         "format": "[][]{}",
-        "snippet": "[${2:periode|event}][${3:options%keyvals}]{${1:integer}}"
+        "snippet": "[${2:periode|event}][${3:options%keyvals}]{${1:integer}}",
+        "keys": [
+          "\\chronoevent,\\chronograduation,\\definechronoevent,\\setupchronoevent,\\setupchronograduation",
+          "\\chronoperiode,\\chronograduation,\\definechronoperiode,\\setupchronoperiode,\\setupchronograduation"
+        ],
+        "keyPos": 1
       }
     },
     {
@@ -127,7 +152,11 @@
       "name": "definechronoevent",
       "arg": {
         "format": "{}[]",
-        "snippet": "{${1:name}}[${2:options%keyvals}]"
+        "snippet": "{${1:name}}[${2:options%keyvals}]",
+        "keys": [
+          "\\chronoevent,\\chronograduation,\\definechronoevent,\\setupchronoevent,\\setupchronograduation"
+        ],
+        "keyPos": 1
       }
     },
     {
@@ -141,7 +170,11 @@
       "name": "definechronoperiode",
       "arg": {
         "format": "{}[]",
-        "snippet": "{${1:name}}[${2:options%keyvals}]"
+        "snippet": "{${1:name}}[${2:options%keyvals}]",
+        "keys": [
+          "\\chronoperiode,\\chronograduation,\\definechronoperiode,\\setupchronoperiode,\\setupchronograduation"
+        ],
+        "keyPos": 1
       }
     },
     {
@@ -150,7 +183,6 @@
         "format": "{}",
         "snippet": "{${1:options%keyvals}}",
         "keys": [
-          "\\begin{chronology},\\chronology,\\startchronology,\\setupchronology,\\setupchronology",
           "\\begin{chronology},\\chronology,\\startchronology,\\setupchronology,\\setupchronology"
         ],
         "keyPos": 0
@@ -236,18 +268,22 @@
       "name": "chronology",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{chronology},\\chronology,\\startchronology,\\setupchronology,\\setupchronology"
+        ],
+        "keyPos": 0
       }
     }
   ],
   "keys": {
     "\\begin{chronology},\\chronology,\\startchronology,\\setupchronology,\\setupchronology": [
-      "startyear=${1:number}\r",
-      "stopyear=${1:number}\r",
+      "startyear=${1:number}",
+      "stopyear=${1:number}",
       "color=",
       "height=",
       "width=",
-      "datesstyle=${1:command}\r",
+      "datesstyle=${1:command}",
       "dateselevation=",
       "startdate",
       "stopdate",
@@ -257,7 +293,7 @@
       "arrowwidth=",
       "arrowcolor=",
       "box",
-      "align=${1|right,center,left\r|}"
+      "align=${1|right,center,left|}"
     ],
     "\\chronoevent,\\chronograduation,\\definechronoevent,\\setupchronoevent,\\setupchronograduation": [
       "barre",
@@ -265,13 +301,13 @@
       "conversionmonth",
       "mark",
       "year",
-      "icon=${1:symbol}\r",
+      "icon=${1:symbol}",
       "markdepth=",
       "iconheight=",
-      "textstyle=${1:command}\r",
-      "datesseparation=${1:symbol}\r",
-      "datestyle=${1:command}\r",
-      "datesstyle=${1:command}\r",
+      "textstyle=${1:command}",
+      "datesseparation=${1:symbol}",
+      "datestyle=${1:command}",
+      "datesstyle=${1:command}",
       "colorbox=",
       "ifcolorbox",
       "textwidth="
@@ -280,8 +316,8 @@
       "startdate",
       "stopdate",
       "dates",
-      "datesstyle=${1:command}\r",
-      "textstyle=${1:command}\r",
+      "datesstyle=${1:command}",
+      "textstyle=${1:command}",
       "color=",
       "dateselevation=",
       "textdepth=",

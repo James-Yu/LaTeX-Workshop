@@ -83,7 +83,11 @@
       "name": "switchocg",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:trigger%keyvals}]{${1:ocg1,ocg2,...}}{${2:link text%text}}"
+        "snippet": "[${3:trigger%keyvals}]{${1:ocg1,ocg2,...}}{${2:link text%text}}",
+        "keys": [
+          "\\switchocg,\\switchocg*,\\showocg,\\showocg*,\\hideocg,\\hideocg*,\\actionsocg,\\actionsocg*"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -97,7 +101,11 @@
       "name": "switchocg*",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:trigger%keyvals}]{${1:ocg1,ocg2,...}}{${2:link text%text}}"
+        "snippet": "[${3:trigger%keyvals}]{${1:ocg1,ocg2,...}}{${2:link text%text}}",
+        "keys": [
+          "\\switchocg,\\switchocg*,\\showocg,\\showocg*,\\hideocg,\\hideocg*,\\actionsocg,\\actionsocg*"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -111,7 +119,11 @@
       "name": "showocg",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:trigger%keyvals}]{${1:ocg1,ocg2,...}}{${2:link text%text}}"
+        "snippet": "[${3:trigger%keyvals}]{${1:ocg1,ocg2,...}}{${2:link text%text}}",
+        "keys": [
+          "\\switchocg,\\switchocg*,\\showocg,\\showocg*,\\hideocg,\\hideocg*,\\actionsocg,\\actionsocg*"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -125,7 +137,11 @@
       "name": "showocg*",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:trigger%keyvals}]{${1:ocg1,ocg2,...}}{${2:link text%text}}"
+        "snippet": "[${3:trigger%keyvals}]{${1:ocg1,ocg2,...}}{${2:link text%text}}",
+        "keys": [
+          "\\switchocg,\\switchocg*,\\showocg,\\showocg*,\\hideocg,\\hideocg*,\\actionsocg,\\actionsocg*"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -139,7 +155,11 @@
       "name": "hideocg",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:trigger%keyvals}]{${1:ocg1,ocg2,...}}{${2:link text%text}}"
+        "snippet": "[${3:trigger%keyvals}]{${1:ocg1,ocg2,...}}{${2:link text%text}}",
+        "keys": [
+          "\\switchocg,\\switchocg*,\\showocg,\\showocg*,\\hideocg,\\hideocg*,\\actionsocg,\\actionsocg*"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -153,7 +173,11 @@
       "name": "hideocg*",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:trigger%keyvals}]{${1:ocg1,ocg2,...}}{${2:link text%text}}"
+        "snippet": "[${3:trigger%keyvals}]{${1:ocg1,ocg2,...}}{${2:link text%text}}",
+        "keys": [
+          "\\switchocg,\\switchocg*,\\showocg,\\showocg*,\\hideocg,\\hideocg*,\\actionsocg,\\actionsocg*"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -167,7 +191,11 @@
       "name": "actionsocg",
       "arg": {
         "format": "[]{}{}{}{}",
-        "snippet": "[${5:trigger%keyvals}]{${1:switchocg1,...}}{${2:showocg1,...}}{${3:hideocg1,...}}{${4:link text%text}}"
+        "snippet": "[${5:trigger%keyvals}]{${1:switchocg1,...}}{${2:showocg1,...}}{${3:hideocg1,...}}{${4:link text%text}}",
+        "keys": [
+          "\\switchocg,\\switchocg*,\\showocg,\\showocg*,\\hideocg,\\hideocg*,\\actionsocg,\\actionsocg*"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -181,7 +209,11 @@
       "name": "actionsocg*",
       "arg": {
         "format": "[]{}{}{}{}",
-        "snippet": "[${5:trigger%keyvals}]{${1:switchocg1,...}}{${2:showocg1,...}}{${3:hideocg1,...}}{${4:link text%text}}"
+        "snippet": "[${5:trigger%keyvals}]{${1:switchocg1,...}}{${2:showocg1,...}}{${3:hideocg1,...}}{${4:link text%text}}",
+        "keys": [
+          "\\switchocg,\\switchocg*,\\showocg,\\showocg*,\\hideocg,\\hideocg*,\\actionsocg,\\actionsocg*"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -268,7 +300,11 @@
       "name": "ocg",
       "arg": {
         "format": "[]{}{}{}",
-        "snippet": "[${4:options%keyvals}]{${1:layer name}}{${2:ocg id}}{${3:initial visibility}}"
+        "snippet": "[${4:options%keyvals}]{${1:layer name}}{${2:ocg id}}{${3:initial visibility}}",
+        "keys": [
+          "\\begin{ocg}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -288,39 +324,48 @@
   ],
   "keys": {
     "\\usepackage/ocgx2#c": [
-      "dvipdfmx\r",
-      "viewocg=${1|always,never,ifvisible\r|}",
-      "printocg=${1|always,never,ifvisible\r|}",
-      "exportocg=${1|always,never,ifvisible\r|}",
-      "showingui=${1|true,false,always,never,iffirstuse\r|}",
+      "dvipdfmx",
+      "viewocg=${1|always,never,ifvisible|}",
+      "printocg=${1|always,never,ifvisible|}",
+      "exportocg=${1|always,never,ifvisible|}",
+      "showingui=${1|true,false,always,never,iffirstuse|}",
       "tikz",
       "ocgcolorlinks"
     ],
     "\\begin{ocg}": [
-      "viewocg=${1|always,never,ifvisible\r|}",
-      "printocg=${1|always,never,ifvisible\r|}",
-      "exportocg=${1|always,never,ifvisible\r|}",
-      "showingui=${1|true,false,always,never,iffirstuse\r|}",
-      "listintoolbar=${1|true,false,always,never,iffirstuse\r|}",
-      "radiobtngrps={${1:group1,group2,...}}\r"
+      "viewocg=${1|always,never,ifvisible|}",
+      "printocg=${1|always,never,ifvisible|}",
+      "exportocg=${1|always,never,ifvisible|}",
+      "showingui=${1|true,false,always,never,iffirstuse|}",
+      "listintoolbar=${1|true,false,always,never,iffirstuse|}",
+      "radiobtngrps={${1:group1,group2,...}}"
     ],
     "\\switchocg,\\switchocg*,\\showocg,\\showocg*,\\hideocg,\\hideocg*,\\actionsocg,\\actionsocg*": [
-      "onmousenter\r",
-      "onmouseexit\r",
-      "onmousedown\r",
-      "onmouseup\r",
-      "onmouseall\r"
+      "onmousenter",
+      "onmouseexit",
+      "onmousedown",
+      "onmouseup",
+      "onmouseall"
     ],
     "\\tikzset#c,\\begin{tikzpicture}#c,\\begin{scope}#c,\\node#c": [
-      "ocg={${1:options}}\r",
-      "ocmd={${1:options}}\r",
-      "trigger ocg=${1|onmousenter,onmouseexit,onmousedown,onmouseup,onmouseall\r|}",
-      "switch ocg={${1:ocg list}}\r",
-      "show ocg={${1:ocg list}}\r",
-      "hide ocg={${1:ocg list}}\r",
-      "actions ocg={${1:ocg list1}}{${2:ocg list2}}{${3:ocg list3}}\r",
-      "switch ocg with mark on={${1:ocg ref}}{${2:ocg list}}\r",
-      "switch ocg with mark off={${1:ocg ref}}{${2:ocg list}}\r"
+      "ocg={${1:options}}",
+      "ocmd={${1:options}}",
+      "trigger ocg=${1|onmousenter,onmouseexit,onmousedown,onmouseup,onmouseall|}",
+      "switch ocg={${1:ocg list}}",
+      "show ocg={${1:ocg list}}",
+      "hide ocg={${1:ocg list}}",
+      "actions ocg={${1:ocg list1}}{${2:ocg list2}}{${3:ocg list3}}",
+      "switch ocg with mark on={${1:ocg ref}}{${2:ocg list}}",
+      "switch ocg with mark off={${1:ocg ref}}{${2:ocg list}}",
+      "ocg={${1:options}}",
+      "ocmd={${1:options}}",
+      "trigger ocg=${1|onmousenter,onmouseexit,onmousedown,onmouseup,onmouseall|}",
+      "switch ocg={${1:ocg list}}",
+      "show ocg={${1:ocg list}}",
+      "hide ocg={${1:ocg list}}",
+      "actions ocg={${1:ocg list1}}{${2:ocg list2}}{${3:ocg list3}}",
+      "switch ocg with mark on={${1:ocg ref}}{${2:ocg list}}",
+      "switch ocg with mark off={${1:ocg ref}}{${2:ocg list}}"
     ]
   },
   "args": [

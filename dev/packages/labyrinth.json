@@ -27,10 +27,10 @@
       }
     },
     {
-      "name": "putsymbol(x,y)",
+      "name": "putsymbol",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:symbol}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:symbol}}"
       }
     },
     {
@@ -52,17 +52,21 @@
       "doc": "Asterisk operator (hodge star operator)"
     },
     {
-      "name": "labyrinthsolution(x,y)",
+      "name": "labyrinthsolution",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:solution code}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:solution code}}"
       }
     },
     {
       "name": "labyrinthsolution",
       "arg": {
         "format": "[](){}",
-        "snippet": "[${2:options%keyvals}](${3:x},${4:y}){${1:solution code}}"
+        "snippet": "[${2:options%keyvals}](${3:x},${4:y}){${1:solution code}}",
+        "keys": [
+          "\\labyrinthsolution,\\solutionset,\\autosolution"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -77,17 +81,21 @@
       }
     },
     {
-      "name": "autosolution(x1,y1)(x2,y2)",
+      "name": "autosolution",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:first direction}}"
+        "format": "()(){}",
+        "snippet": "(${2:x1},${3:y1})(${4:x2},${5:y2}){${1:first direction}}"
       }
     },
     {
       "name": "autosolution",
       "arg": {
         "format": "[]()(){}",
-        "snippet": "[${2:options%keyvals}](${3:x1},${4:y1})(${5:x2},${6:y2}){${1:first direction}}"
+        "snippet": "[${2:options%keyvals}](${3:x1},${4:y1})(${5:x2},${6:y2}){${1:first direction}}",
+        "keys": [
+          "\\labyrinthsolution,\\solutionset,\\autosolution"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -115,7 +123,11 @@
       "name": "labyrinth",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:width%plain}}{${2:height%plain}}"
+        "snippet": "[${3:options%keyvals}]{${1:width%plain}}{${2:height%plain}}",
+        "keys": [
+          "\\begin{labyrinth},\\labyrinthset"
+        ],
+        "keyPos": 0
       }
     }
   ],
@@ -128,13 +140,13 @@
     "\\labyrinthsolution,\\solutionset,\\autosolution": [
       "hidden",
       "thicklines",
-      "up=${1:symbol}\r",
-      "left=${1:symbol}\r",
-      "down=${1:symbol}\r",
-      "right=${1:symbol}\r",
+      "up=${1:symbol}",
+      "left=${1:symbol}",
+      "down=${1:symbol}",
+      "right=${1:symbol}",
       "hcorr=",
       "vcorr=",
-      "font=${1:font commands}\r"
+      "font=${1:font commands}"
     ]
   },
   "args": []

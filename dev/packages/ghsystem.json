@@ -45,7 +45,11 @@
       "name": "ghs",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:type}}{${2:number}}"
+        "snippet": "[${3:options%keyvals}]{${1:type}}{${2:number}}",
+        "keys": [
+          "\\ghssetup,\\ghs,\\ghs*,\\ghslistall"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -59,7 +63,11 @@
       "name": "ghs*",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:type}}{${2:number}}"
+        "snippet": "[${3:options%keyvals}]{${1:type}}{${2:number}}",
+        "keys": [
+          "\\ghssetup,\\ghs,\\ghs*,\\ghslistall"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -73,7 +81,11 @@
       "name": "ghspic",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:name}}"
+        "snippet": "[${2:options%keyvals}]{${1:name}}",
+        "keys": [
+          "\\ghssetup,\\ghspic"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -83,7 +95,11 @@
       "name": "ghslistall",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\ghssetup,\\ghslistall"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -107,40 +123,40 @@
   "keys": {
     "\\ghssetup,\\ghs,\\ghs*,\\ghslistall": [
       "hide",
-      "space=${1:space cmd}\r",
+      "space=${1:space cmd}",
       "fill-in",
-      "exposure={${1:text}}\r",
-      "effect={${1:text}}\r",
-      "organs={${1:text}}\r",
-      "substance={${1:text}}\r",
-      "text={${1:text}}\r",
-      "dots={${1:text}}\r",
-      "C-temperature={${1:num}}\r",
-      "F-temperature={${1:num}}\r",
-      "kg-mass={${1:num}}\r",
-      "lbs-mass={${1:num}}\r"
+      "exposure={${1:text}}",
+      "effect={${1:text}}",
+      "organs={${1:text}}",
+      "substance={${1:text}}",
+      "text={${1:text}}",
+      "dots={${1:text}}",
+      "C-temperature={${1:num}}",
+      "F-temperature={${1:num}}",
+      "kg-mass={${1:num}}",
+      "lbs-mass={${1:num}}"
     ],
     "\\ghssetup,\\ghspic": [
-      "scale=${1:factor}\r",
-      "includegraphics={${1:includegraphics keyval}}\r",
-      "pic-type=${1|eps,pdf,jpg,png\r|}"
+      "scale=${1:factor}",
+      "includegraphics={${1:includegraphics keyval}}",
+      "pic-type=${1|eps,pdf,jpg,png|}"
     ],
     "\\ghssetup": [
-      "language=\r"
+      "language="
     ],
     "\\ghssetup,\\ghslistall": [
-      "table-head-number={${1:text}}\r",
-      "table-head-text={${1:text}}\r",
-      "table-next-page={${1:text}}\r",
-      "table-caption={${1:text}}\r",
-      "table-caption-short={${1:text}}\r",
-      "table-label={${1:text}}\r",
+      "table-head-number={${1:text}}",
+      "table-head-text={${1:text}}",
+      "table-next-page={${1:text}}",
+      "table-caption={${1:text}}",
+      "table-caption-short={${1:text}}",
+      "table-label={${1:text}}",
       "table-row-sep=",
-      "table-rules=${1|default,booktabs,none\r|}",
-      "table-top-head-rule=${1|default,booktabs,none\r|}",
-      "table-head-rule=${1|default,booktabs,none\r|}",
-      "table-foot-rule=${1|default,booktabs,none\r|}",
-      "table-last-foot-rule=${1|default,booktabs,none\r|}"
+      "table-rules=${1|default,booktabs,none|}",
+      "table-top-head-rule=${1|default,booktabs,none|}",
+      "table-head-rule=${1|default,booktabs,none|}",
+      "table-foot-rule=${1|default,booktabs,none|}",
+      "table-last-foot-rule=${1|default,booktabs,none|}"
     ]
   },
   "args": []

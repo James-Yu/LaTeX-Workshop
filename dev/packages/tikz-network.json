@@ -52,17 +52,29 @@
       "name": "Vertex",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:name}}"
+        "snippet": "[${2:options%keyvals}]{${1:name}}",
+        "keys": [
+          "\\Vertex"
+        ],
+        "keyPos": 0
       }
     },
     {
-      "name": "Edge(vertex1)(vertex2)"
+      "name": "Edge",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:vertex1})(${2:vertex2})"
+      }
     },
     {
       "name": "Edge",
       "arg": {
         "format": "[]()()",
-        "snippet": "[${1:options%keyvals}](${2:vertex1})(${3:vertex2})"
+        "snippet": "[${1:options%keyvals}](${2:vertex1})(${3:vertex2})",
+        "keys": [
+          "\\Edge"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -76,7 +88,11 @@
       "name": "Text",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:text}}"
+        "snippet": "[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\Text"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -90,7 +106,11 @@
       "name": "Vertices",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:file}}"
+        "snippet": "[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\Vertices"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -104,14 +124,22 @@
       "name": "Edges",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:file}}"
+        "snippet": "[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\Edges"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "Plane",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\Plane"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -143,21 +171,33 @@
       "unusual": true,
       "arg": {
         "format": "[]",
-        "snippet": "[${1:specs%keyvals}]"
+        "snippet": "[${1:specs%keyvals}]",
+        "keys": [
+          "\\SetCoordinates"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "SetVertexStyle",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\SetVertexStyle"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "SetEdgeStyle",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\SetEdgeStyle"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -172,14 +212,22 @@
       "name": "SetTextStyle",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\SetTextStyle"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "SetPlaneStyle",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\SetPlaneStyle"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -206,20 +254,20 @@
   ],
   "keys": {
     "\\Vertex": [
-      "x=\r",
-      "y=\r",
-      "size=\r",
+      "x=",
+      "y=",
+      "size=",
       "color=",
-      "opacity=\r",
-      "shape=\r",
-      "label=\r",
-      "fontsize=\r",
+      "opacity=",
+      "shape=",
+      "label=",
+      "fontsize=",
       "fontcolor=",
-      "fontscale=\r",
-      "position=\r",
-      "distance=\r",
-      "style=\r",
-      "layer=\r",
+      "fontscale=",
+      "position=",
+      "distance=",
+      "style=",
+      "layer=",
       "NoLabel",
       "IdAsLabel",
       "Math",
@@ -229,45 +277,45 @@
     "\\Edge": [
       "lw=",
       "color=",
-      "opacity=\r",
-      "bend=\r",
-      "label=\r",
-      "fontsize=\r",
+      "opacity=",
+      "bend=",
+      "label=",
+      "fontsize=",
       "fontcolor=",
-      "fontscale=\r",
-      "position=\r",
-      "distance=\r",
-      "style=\r",
-      "path={${1:vertex list}}\r",
+      "fontscale=",
+      "position=",
+      "distance=",
+      "style=",
+      "path={${1:vertex list}}",
       "loopsize=",
-      "loopposition=\r",
-      "loopshape=\r",
+      "loopposition=",
+      "loopshape=",
       "Direct",
       "Math",
       "RGB",
       "NotInBG"
     ],
     "\\Text": [
-      "x=\r",
-      "y=\r",
-      "fontsize=\r",
+      "x=",
+      "y=",
+      "fontsize=",
       "color=",
-      "opacity=\r",
-      "position=\r",
+      "opacity=",
+      "position=",
       "distance=",
-      "rotation=\r",
-      "anchor=\r",
+      "rotation=",
+      "anchor=",
       "width=",
-      "style=\r",
-      "layer=\r",
+      "style=",
+      "layer=",
       "RGB"
     ],
     "\\Vertices": [
-      "size=\r",
+      "size=",
       "color=",
-      "opacity=\r",
-      "style=\r",
-      "layer=\r",
+      "opacity=",
+      "style=",
+      "layer=",
       "NoLabel",
       "IdAsLabel",
       "Math",
@@ -277,10 +325,10 @@
     "\\Edges": [
       "lw=",
       "color=",
-      "opacity=\r",
-      "style=\r",
-      "vertices=${1:file}\r",
-      "layer=\r",
+      "opacity=",
+      "style=",
+      "vertices=${1:file}",
+      "layer=",
       "Direct",
       "Math",
       "NoLabel",
@@ -288,20 +336,20 @@
       "NotInBG"
     ],
     "\\begin{tikzpicture}#c": [
-      "multilayer\r",
-      "multilayer=3d\r"
+      "multilayer",
+      "multilayer=3d"
     ],
     "\\Plane": [
-      "x=\r",
-      "y=\r",
+      "x=",
+      "y=",
       "width=",
       "height=",
       "color=",
-      "opacity=\r",
-      "grid=\r",
-      "image=${1:file}\r",
-      "style=\r",
-      "layer=\r",
+      "opacity=",
+      "grid=",
+      "image=${1:file}",
+      "style=",
+      "layer=",
       "RGB",
       "NoFill",
       "NoBorder",
@@ -309,58 +357,58 @@
       "InBG"
     ],
     "\\SetCoordinates": [
-      "xAngle=\r",
-      "yAngle=\r",
-      "zAngle=\r",
-      "xLength=\r",
-      "yLength=\r",
-      "zLength=\r"
+      "xAngle=",
+      "yAngle=",
+      "zAngle=",
+      "xLength=",
+      "yLength=",
+      "zLength="
     ],
     "\\SetVertexStyle": [
-      "Shape=\r",
+      "Shape=",
       "InnerSep=",
       "OuterSep=",
-      "MinSize=\r",
+      "MinSize=",
       "FillColor=",
-      "FillOpacity=\r",
+      "FillOpacity=",
       "LineWidth=",
       "LineColor=",
-      "LineOpacity=\r",
-      "TextFont=\r",
+      "LineOpacity=",
+      "TextFont=",
       "TextColor=",
-      "TextOpacity=\r",
-      "TextRotation=\r"
+      "TextOpacity=",
+      "TextRotation="
     ],
     "\\SetEdgeStyle": [
       "LineWidth=",
       "Color=",
-      "Opacity=\r",
-      "Arrow=\r",
-      "TextFont=\r",
-      "TextOpacity=\r",
+      "Opacity=",
+      "Arrow=",
+      "TextFont=",
+      "TextOpacity=",
       "TextFillColor=",
-      "TextFillOpacity=\r",
+      "TextFillOpacity=",
       "InnerSep=",
       "OuterSep=",
-      "TextRotation=\r"
+      "TextRotation="
     ],
     "\\SetTextStyle": [
-      "TextFont=\r",
-      "TextOpacity=\r",
+      "TextFont=",
+      "TextOpacity=",
       "TextColor=",
       "InnerSep=",
       "OuterSep=",
-      "TextRotation=\r"
+      "TextRotation="
     ],
     "\\SetPlaneStyle": [
       "LineWidth=",
       "LineColor=",
-      "LineOpacity=\r",
+      "LineOpacity=",
       "FillColor=",
-      "FillOpacity=\r",
+      "FillOpacity=",
       "GridLineWidth=",
       "GridColor=",
-      "GridOpacity=\r"
+      "GridOpacity="
     ]
   },
   "args": []

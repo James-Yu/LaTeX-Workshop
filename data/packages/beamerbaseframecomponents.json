@@ -27,7 +27,11 @@
       "name": "column",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:placement%keyvals}]{${1:column width%l}}"
+        "snippet": "[${2:placement%keyvals}]{${1:column width%l}}",
+        "keys": [
+          "\\begin{column},\\column"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -68,14 +72,22 @@
       "name": "columns",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{columns}"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "columns",
       "arg": {
         "format": "<>[]",
-        "snippet": "<${2:overlay specification}>[${1:options%keyvals}]"
+        "snippet": "<${2:overlay specification}>[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{columns}"
+        ],
+        "keyPos": 1
       }
     },
     {
@@ -89,14 +101,22 @@
       "name": "column",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:placement%keyvals}]{${1:column width%l}}"
+        "snippet": "[${2:placement%keyvals}]{${1:column width%l}}",
+        "keys": [
+          "\\begin{column},\\column"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "column",
       "arg": {
         "format": "<>[]{}",
-        "snippet": "<${3:overlay specification}>[${2:placement%keyvals}]{${1:column width%l}}"
+        "snippet": "<${3:overlay specification}>[${2:placement%keyvals}]{${1:column width%l}}",
+        "keys": [
+          "\\begin{column},\\column"
+        ],
+        "keyPos": 1
       }
     }
   ],
@@ -107,7 +127,7 @@
       "sidebar width left=",
       "sidebar width right=",
       "description width=",
-      "description width of=${1:text}\r",
+      "description width of=${1:text}",
       "mini frame size=",
       "mini frame offset="
     ],
@@ -120,14 +140,14 @@
       "totalwidth="
     ],
     "\\begin{column},\\column": [
-      "t\r",
-      "T\r",
-      "c\r",
-      "b\r"
+      "t",
+      "T",
+      "c",
+      "b"
     ],
     "\\footnote#c": [
-      "${1:number}\r",
-      "frame\r"
+      "${1:number}",
+      "frame"
     ]
   },
   "args": []

@@ -32,14 +32,22 @@
       "name": "digiCap",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:pos keyvals%keyvals}]{${1:imagefile}}{${2:caption%text}}"
+        "snippet": "[${3:pos keyvals%keyvals}]{${1:imagefile}}{${2:caption%text}}",
+        "keys": [
+          "\\digiCap,\\digiCap*,\\dcFirstOpt"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "digiCap",
       "arg": {
         "format": "[]{}[]{}",
-        "snippet": "[${3:pos keyvals%keyvals}]{${1:imagefile}}[${4:design keyvals}]{${2:caption%text}}"
+        "snippet": "[${3:pos keyvals%keyvals}]{${1:imagefile}}[${4:design keyvals}]{${2:caption%text}}",
+        "keys": [
+          "\\digiCap,\\digiCap*,\\dcFirstOpt"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -60,14 +68,22 @@
       "name": "digiCap*",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:pos keyvals%keyvals}]{${1:imagefile}}{${2:caption%text}}"
+        "snippet": "[${3:pos keyvals%keyvals}]{${1:imagefile}}{${2:caption%text}}",
+        "keys": [
+          "\\digiCap,\\digiCap*,\\dcFirstOpt"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "digiCap*",
       "arg": {
         "format": "[]{}[]{}",
-        "snippet": "[${3:pos keyvals%keyvals}]{${1:imagefile}}[${4:design keyvals}]{${2:caption%text}}"
+        "snippet": "[${3:pos keyvals%keyvals}]{${1:imagefile}}[${4:design keyvals}]{${2:caption%text}}",
+        "keys": [
+          "\\digiCap,\\digiCap*,\\dcFirstOpt"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -87,7 +103,11 @@
       "name": "opcolorbox",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:text}}"
+        "snippet": "[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\opcolorbox,\\dcSecondOpt"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -179,7 +199,11 @@
       "if": "display1",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:keyvals}}"
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\setThumbAppearances"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -187,7 +211,11 @@
       "if": "display1",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:name}]{${1:keyvals}}"
+        "snippet": "[${2:name}]{${1:keyvals}}",
+        "keys": [
+          "\\setThumbAppearances"
+        ],
+        "keyPos": 1
       }
     },
     {
@@ -264,14 +292,14 @@
   "envs": [],
   "keys": {
     "\\usepackage/digicap-pro#c": [
-      "display1\r"
+      "display1"
     ],
     "\\digiCap,\\digiCap*,\\dcFirstOpt": [
       "outerboxsep=",
-      "vcaption=${1|b,c,t\r|}",
-      "hcaption=${1|l,c,r\r|}",
-      "inclgraphicx={${1:\\includegraphics keys}}\r",
-      "rollovername=${1:name}\r"
+      "vcaption=${1|b,c,t|}",
+      "hcaption=${1|l,c,r|}",
+      "inclgraphicx={${1:\\includegraphics keys}}",
+      "rollovername=${1:name}"
     ],
     "\\opcolorbox,\\dcSecondOpt": [
       "borderwidth=",
@@ -279,19 +307,19 @@
       "width=",
       "bordercolor=",
       "bgcolor=",
-      "borderop=${1:factor}\r",
-      "bgop=${1:factor}\r",
-      "textop=${1:factor}\r",
-      "borderblendmode=${1:mode}\r",
-      "bgblendmode=${1:mode}\r"
+      "borderop=${1:factor}",
+      "bgop=${1:factor}",
+      "textop=${1:factor}",
+      "borderblendmode=${1:mode}",
+      "bgblendmode=${1:mode}"
     ],
     "\\setThumbAppearances": [
-      "normalop=${1:factor}\r",
-      "rolloverop=${1:factor}\r",
-      "downop=${1:factor}\r",
-      "boundarywidth\r",
-      "rgbcolor=${1:r g b}\r",
-      "cmykcolor=${1:c m y k}\r"
+      "normalop=${1:factor}",
+      "rolloverop=${1:factor}",
+      "downop=${1:factor}",
+      "boundarywidth",
+      "rgbcolor=${1:r g b}",
+      "cmykcolor=${1:c m y k}"
     ]
   },
   "args": [

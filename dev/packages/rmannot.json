@@ -35,7 +35,11 @@
       "name": "AcroVer",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:option%keyvals}]{${1:version}}"
+        "snippet": "[${2:option%keyvals}]{${1:version}}",
+        "keys": [
+          "\\AcroVer"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -91,7 +95,11 @@
       "name": "setPosterProps",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:keyvals}}"
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\setPosterProps"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -105,7 +113,11 @@
       "name": "rmAnnot",
       "arg": {
         "format": "[]{}{}{}",
-        "snippet": "[${4:options%keyvals}]{${1:width}}{${2:height}}{${3:name}}"
+        "snippet": "[${4:options%keyvals}]{${1:width}}{${2:height}}{${3:name}}",
+        "keys": [
+          "\\rmAnnot"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -120,7 +132,11 @@
       "name": "setWindowDimPos",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:keyvals}}"
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\setWindowDimPos"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -139,7 +155,11 @@
       "if": "use3D",
       "arg": {
         "format": "[]{}{}{}{}",
-        "snippet": "[${4:options%keyvals}]{${1:width}}{${2:height}}{${3:name}}{3Dmodel}"
+        "snippet": "[${4:options%keyvals}]{${1:width}}{${2:height}}{${3:name}}{3Dmodel}",
+        "keys": [
+          "\\rmAnnot"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -374,32 +394,47 @@
   "envs": [],
   "keys": {
     "\\usepackage/rmannot#c": [
-      "use3D\r"
+      "use3D"
     ],
     "\\AcroVer": [
-      "win=${1|32,64\r|}",
-      "mac\r"
+      "win=${1|32,64|}",
+      "mac"
     ],
     "\\setPosterProps": [
-      "color=${1:postscript color}\r",
-      "xPos=${1:number}\r",
-      "yPos=${1:number}\r",
-      "textColor=${1:postscript color}\r",
-      "relTextSize=${1:number}\r",
-      "textSize=${1:number}\r",
-      "textFont=${1:font name}\r"
+      "color=${1:postscript color}",
+      "xPos=${1:number}",
+      "yPos=${1:number}",
+      "textColor=${1:postscript color}",
+      "relTextSize=${1:number}",
+      "textSize=${1:number}",
+      "textFont=${1:font name}"
     ],
     "\\rmAnnot": [
+      "name=${1:name}",
+      "enabled=${1|onclick,pageopen,pagevisible|}",
+      "deactivated=${1|onclick,pageclose,pageinvisible|}",
+      "windowed",
+      "url",
+      "borderwidth=${1|none,thin,medium,thick|}",
+      "poster=${1:name}",
+      "posternote=${1:text}",
+      "defaultposter",
+      "invisible",
+      "skin=${1|all,none|}",
+      "skinAutoHide",
+      "width=",
+      "height=",
+      "scale=${1:factor}",
       "toolbar",
       "modeltree"
     ],
     "\\setWindowDimPos": [
-      "width={${1:KV pairs}}\r",
-      "height={${1:KV pairs}}\r",
-      "position={${1:KV pairs}}\r"
+      "width={${1:KV pairs}}",
+      "height={${1:KV pairs}}",
+      "position={${1:KV pairs}}"
     ],
     "\\setRmOptions3D": [
-      "3DOptions={${1:movie15 options}}\r"
+      "3DOptions={${1:movie15 options}}"
     ]
   },
   "args": [

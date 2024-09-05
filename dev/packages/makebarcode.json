@@ -16,7 +16,11 @@
       "name": "barcode",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:code}}"
+        "snippet": "[${2:options%keyvals}]{${1:code}}",
+        "keys": [
+          "\\usepackage/makebarcode#c,\\barcode"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -37,7 +41,11 @@
       "name": "ITFbarcode",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:code}}"
+        "snippet": "[${2:options%keyvals}]{${1:code}}",
+        "keys": [
+          "\\ITFbarcode"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -54,30 +62,30 @@
       "X=",
       "H=",
       "bcorr=",
-      "ratio=${1:ratio}\r",
-      "K=${1:number}\r",
-      "MtoXratio=${1:ratio}\r",
-      "code=${1|2/5-Industrial,2/5-IATA,2/5-Matrix,2/5-Datalogic,2/5-Inverted,2/5-Interleaved,Code39\r|}",
-      "S1.2\r",
-      "S1.1\r",
-      "S1\r",
-      "S.9\r",
-      "S.8\r",
-      "S.7\r",
-      "S.6\r",
+      "ratio=${1:ratio}",
+      "K=${1:number}",
+      "MtoXratio=${1:ratio}",
+      "code=${1|2/5-Industrial,2/5-IATA,2/5-Matrix,2/5-Datalogic,2/5-Inverted,2/5-Interleaved,Code39|}",
+      "S1.2",
+      "S1.1",
+      "S1",
+      "S.9",
+      "S.8",
+      "S.7",
+      "S.6",
       "lines",
-      "frame\r"
+      "frame"
     ],
     "\\ITFbarcode": [
       "lines",
-      "frame\r",
-      "S1.2\r",
-      "S1.1\r",
-      "S1\r",
-      "S.9\r",
-      "S.8\r",
-      "S.7\r",
-      "S.6\r"
+      "frame",
+      "S1.2",
+      "S1.1",
+      "S1",
+      "S.9",
+      "S.8",
+      "S.7",
+      "S.6"
     ]
   },
   "args": [

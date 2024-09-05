@@ -16,7 +16,12 @@
       "name": "includemedia",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:poster text%text}}{${2:imagefile}}"
+        "snippet": "[${3:options%keyvals}]{${1:poster text%text}}{${2:imagefile}}",
+        "keys": [
+          "\\includemedia,\\usepackage/media4svg#c",
+          "\\includemedia"
+        ],
+        "keyPos": 0
       }
     }
   ],
@@ -28,21 +33,21 @@
       "autoplay",
       "loop",
       "controls",
-      "mimetype=${1:mime type}\r",
+      "mimetype=${1:mime type}",
       "width=",
       "height=",
       "totalheight=",
       "keepaspectratio",
       "muted",
-      "scale=${1:factor}\r",
+      "scale=${1:factor}",
       "url",
       "embed",
       "youtube",
       "vimeo"
     ],
     "\\includemedia": [
-      "id=${1:label}\r",
-      "time=${1:time offset}\r"
+      "id=${1:label}",
+      "time=${1:time offset}"
     ]
   },
   "args": [

@@ -2,10 +2,10 @@
   "deps": [],
   "macros": [
     {
-      "name": "line(x,y)",
+      "name": "line",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:length}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:length}}"
       }
     },
     {
@@ -23,13 +23,17 @@
       }
     },
     {
-      "name": "oval(width,height)"
+      "name": "oval",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:width},${2:height})"
+      }
     },
     {
-      "name": "oval(width,height)",
+      "name": "oval",
       "arg": {
-        "format": "[]",
-        "snippet": "[${1:portion}]"
+        "format": "()[]",
+        "snippet": "(${2:width},${3:height})[${1:portion}]"
       }
     },
     {
@@ -102,9 +106,9 @@
   "envs": [],
   "keys": {
     "\\filltype": [
-      "black\r",
-      "white\r",
-      "shade\r"
+      "black",
+      "white",
+      "shade"
     ]
   },
   "args": []

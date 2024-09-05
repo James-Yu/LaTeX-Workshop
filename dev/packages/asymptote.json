@@ -34,7 +34,11 @@
       "name": "asyinclude",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:imagefile}}"
+        "snippet": "[${2:options%keyvals}]{${1:imagefile}}",
+        "keys": [
+          "\\begin{asy},\\asyinclude,\\asysetup"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -233,7 +237,11 @@
       "name": "asy",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{asy},\\asyinclude,\\asysetup"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -242,8 +250,8 @@
   ],
   "keys": {
     "\\usepackage/asymptote#c": [
-      "inline\r",
-      "attach\r"
+      "inline",
+      "attach"
     ],
     "\\begin{asy},\\asyinclude,\\asysetup": [
       "width=",
@@ -255,44 +263,44 @@
       "inline"
     ],
     "\\ASYanimategraphics#c": [
-      "label=${1:label}\r",
-      "type=${1:file ext}\r",
-      "poster\r",
-      "poster=${2|first,last,none,${1:number}\r|}",
-      "every=${1:number}\r",
-      "autopause\r",
-      "autoplay\r",
-      "autoresume\r",
-      "loop\r",
-      "palindrome\r",
-      "step\r",
+      "label=${1:label}",
+      "type=${1:file ext}",
+      "poster",
+      "poster=${2|first,last,none,${1:number}|}",
+      "every=${1:number}",
+      "autopause",
+      "autoplay",
+      "autoresume",
+      "loop",
+      "palindrome",
+      "step",
       "width=",
       "height=",
       "totalheight=",
-      "keepaspectratio\r",
-      "scale=${1:factor}\r",
-      "bb=${1:llx lly urx ury}\r",
-      "viewport=${1:llx lly urx ury}\r",
-      "trim=${1:left bottom right top}\r",
-      "clip\r",
-      "hiresbb\r",
-      "interpolate\r",
-      "pagebox=\r",
-      "controls=${1|all,true,on,none,false,off\r|}",
-      "controlsaligned=\r",
+      "keepaspectratio",
+      "scale=${1:factor}",
+      "bb=${1:llx lly urx ury}",
+      "viewport=${1:llx lly urx ury}",
+      "trim=${1:left bottom right top}",
+      "clip",
+      "hiresbb",
+      "interpolate",
+      "pagebox=",
+      "controls=${1|all,true,on,none,false,off|}",
+      "controlsaligned=",
       "buttonsize=",
       "buttonbg=",
       "buttonfg=",
-      "buttonalpha=${1:opacity}\r",
-      "draft\r",
-      "final\r",
-      "nomouse\r",
-      "method=${1|icon,widget,ocg\r|}",
-      "measure\r",
-      "alttext=${2|none,${1:alt description}\r|}",
-      "begin={${1:begin code}}\r",
-      "end={${1:end code}}\r",
-      "timeline=${1:file}\r"
+      "buttonalpha=${1:opacity}",
+      "draft",
+      "final",
+      "nomouse",
+      "method=${1|icon,widget,ocg|}",
+      "measure",
+      "alttext=${2|none,${1:alt description}|}",
+      "begin={${1:begin code}}",
+      "end={${1:end code}}",
+      "timeline=${1:file}"
     ]
   },
   "args": [

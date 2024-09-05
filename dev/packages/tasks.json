@@ -23,7 +23,11 @@
       }
     },
     {
-      "name": "task(cols)"
+      "name": "task",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:cols})"
+      }
     },
     {
       "name": "task*"
@@ -43,7 +47,11 @@
       }
     },
     {
-      "name": "task*(cols)"
+      "name": "task*",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:cols})"
+      }
     },
     {
       "name": "startnewitemline"
@@ -52,7 +60,11 @@
       "name": "settasks",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:keyvals}}"
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\begin{tasks},\\settasks,\\NewTasksEnvironment,\\RenewTasksEnvironment"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -66,7 +78,11 @@
       "name": "NewTasksEnvironment",
       "arg": {
         "format": "[]{}[]()",
-        "snippet": "[${2:keyvals}]{${1:envname}}[${3:separator}](${4:cols})"
+        "snippet": "[${2:keyvals}]{${1:envname}}[${3:separator}](${4:cols})",
+        "keys": [
+          "\\begin{tasks},\\settasks,\\NewTasksEnvironment,\\RenewTasksEnvironment"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -80,7 +96,11 @@
       "name": "RenewTasksEnvironment",
       "arg": {
         "format": "[]{}[]()",
-        "snippet": "[${2:keyvals}]{${1:envname}}[${3:separator}](${4:cols})"
+        "snippet": "[${2:keyvals}]{${1:envname}}[${3:separator}](${4:cols})",
+        "keys": [
+          "\\begin{tasks},\\settasks,\\NewTasksEnvironment,\\RenewTasksEnvironment"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -124,14 +144,22 @@
       "name": "tasks",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:keyvals}]"
+        "snippet": "[${1:keyvals}]",
+        "keys": [
+          "\\begin{tasks},\\settasks,\\NewTasksEnvironment,\\RenewTasksEnvironment"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "tasks",
       "arg": {
         "format": "[]()",
-        "snippet": "[${1:keyvals}](${2:cols})"
+        "snippet": "[${1:keyvals}](${2:cols})",
+        "keys": [
+          "\\begin{tasks},\\settasks,\\NewTasksEnvironment,\\RenewTasksEnvironment"
+        ],
+        "keyPos": 0
       }
     },
     {

@@ -122,10 +122,10 @@
       }
     },
     {
-      "name": "kl(scope)",
+      "name": "kl",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:text}}"
+        "format": "(){}",
+        "snippet": "(${2:scope}){${1:text}}"
       }
     },
     {
@@ -136,10 +136,10 @@
       }
     },
     {
-      "name": "kl(scope)",
+      "name": "kl",
       "arg": {
-        "format": "[]{}",
-        "snippet": "[${2:knowledge name}]{${1:text}}"
+        "format": "()[]{}",
+        "snippet": "(${3:scope})[${2:knowledge name}]{${1:text}}"
       }
     },
     {
@@ -220,10 +220,10 @@
       }
     },
     {
-      "name": "phantomintro(label)",
+      "name": "phantomintro",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:knowledge}}"
+        "format": "(){}",
+        "snippet": "(${2:label}){${1:knowledge}}"
       }
     },
     {
@@ -269,10 +269,10 @@
       }
     },
     {
-      "name": "rekl(scope)",
+      "name": "rekl",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:text}}"
+        "format": "(){}",
+        "snippet": "(${2:scope}){${1:text}}"
       }
     },
     {
@@ -283,10 +283,10 @@
       }
     },
     {
-      "name": "rekl(scope)",
+      "name": "rekl",
       "arg": {
-        "format": "[]{}",
-        "snippet": "[${2:knowledge name}]{${1:text}}"
+        "format": "()[]{}",
+        "snippet": "(${3:scope})[${2:knowledge name}]{${1:text}}"
       }
     },
     {
@@ -1466,57 +1466,151 @@
   ],
   "keys": {
     "\\usepackage/knowledge#c": [
-      "paper\r",
-      "electronic\r",
-      "composition\r",
-      "hyperref\r",
-      "hyperref=${1|active,inactive,compatibility,auto\r|}",
-      "xcolor\r",
-      "xcolor=${1|active,inactive,compatibility,auto\r|}",
-      "makeidx\r",
-      "makeidx=${1|active,inactive,compatibility,auto\r|}",
-      "cleveref\r",
-      "cleveref=${1|active,inactive,compatibility,auto\r|}",
-      "imakeidx\r",
-      "imakeidx=${1|active,inactive,compatibility,auto\r|}"
+      "paper",
+      "electronic",
+      "composition",
+      "hyperref",
+      "hyperref=${1|active,inactive,compatibility,auto|}",
+      "xcolor",
+      "xcolor=${1|active,inactive,compatibility,auto|}",
+      "makeidx",
+      "makeidx=${1|active,inactive,compatibility,auto|}",
+      "cleveref",
+      "cleveref=${1|active,inactive,compatibility,auto|}",
+      "imakeidx",
+      "imakeidx=${1|active,inactive,compatibility,auto|}"
     ],
     "\\knowledgeconfigure#c,\\usepackage/knowledge#c": [
+      "diagnose bar",
+      "diagnose help",
+      "diagnose line",
+      "fix hyperref twocolumn",
+      "label scope",
+      "notion",
+      "protect quotation={${1:env1,env2,...}}",
+      "protect link",
+      "unprotect link",
+      "quotation",
+      "silent",
+      "strict",
+      "visible anchor points",
+      "no patch",
+      "ref=${1:label}",
+      "protect link",
+      "url=${1:URL}",
+      "anchor point color=",
+      "AP color=",
+      "anchor point shape=${1:shape}",
+      "AP shape=${1:shape}",
+      "anchor point shift={${1:x,y}}",
+      "AP shift={${1:x,y}}",
+      "ref=${1:label}",
+      "protect link",
+      "url=${1:URL}",
+      "anchor point color=",
+      "AP color=",
+      "anchor point shape=${1:shape}",
+      "AP shape=${1:shape}",
+      "anchor point shift={${1:x,y}}",
+      "AP shift={${1:x,y}}",
       "color=",
-      "cyclic color={${1:color1,color2,...}}\r",
+      "cyclic color={${1:color1,color2,...}}",
+      "colorbox=",
+      "color=",
+      "cyclic color={${1:color1,color2,...}}",
       "colorbox="
     ],
     "\\knowledge#c,\\knowledgestyle#c,\\knowledgestyle*#c,\\knowledgedirective#c,\\knowledgedirective*#c": [
-      "index=${1:text}\r",
-      "index key=${1:index key text}\r",
-      "index parent key=${1:index key}\r",
-      "index style=${1:csname}\r",
-      "index name=${1:name}\r",
-      "no index\r"
+      "also now",
+      "autoref",
+      "autoref link",
+      "autoref target",
+      "autorefhere",
+      "boldface",
+      "detokenize",
+      "emphasize",
+      "ensuretext",
+      "ensuremath",
+      "export=${1:file}",
+      "invisible",
+      "italic",
+      "fbox",
+      "md",
+      "notion",
+      "intro style=${1:knowledge style}",
+      "invisible",
+      "italic",
+      "link=${1:knowledge}",
+      "link scope=${1:label}",
+      "lowercase",
+      "mathord",
+      "mathop",
+      "mathbin",
+      "mathrel",
+      "mathopen",
+      "mathclose",
+      "mathpunct",
+      "namespace=",
+      "now",
+      "remove space",
+      "scope=${1:name}",
+      "smallcaps",
+      "style=${1:knowledge style}",
+      "synonym",
+      "text=${1:text}",
+      "remove space",
+      "typewriter",
+      "underline",
+      "up",
+      "uppercase",
+      "wrap=${1:macro}",
+      "index=${1:text}",
+      "index key=${1:index key text}",
+      "index parent key=${1:index key}",
+      "index style=${1:csname}",
+      "no index",
+      "index=${1:text}",
+      "index key=${1:index key text}",
+      "index parent key=${1:index key}",
+      "index style=${1:csname}",
+      "no index",
+      "index=${1:text}",
+      "index key=${1:index key text}",
+      "index parent key=${1:index key}",
+      "index style=${1:csname}",
+      "index name=${1:name}",
+      "no index",
+      "index=${1:text}",
+      "index key=${1:index key text}",
+      "index parent key=${1:index key}",
+      "index style=${1:csname}",
+      "index name=${1:name}",
+      "no index"
     ],
     "\\knowledgenewvariant#c,\\knowledgesetvariant#c": [
-      "namespace=${1:string}\r",
-      "default style={${1:style list}}\r",
-      "unknown style={${1:style list}}\r",
-      "unknown style cont={${1:style list}}\r",
-      "style directive={${1:directive list}}\r",
-      "auto knowledge={${1:directives}}\r",
+      "namespace=${1:string}",
+      "default style={${1:style list}}",
+      "unknown style={${1:style list}}",
+      "unknown style cont={${1:style list}}",
+      "style directive={${1:directive list}}",
+      "auto knowledge={${1:directives}}",
       "unknown warning",
       "unknown diagnose",
-      "suggestion={${1:directives}}\r",
-      "PDF string={${1:code}}\r",
-      "display code={${1:code}}\r"
+      "suggestion={${1:directives}}",
+      "PDF string={${1:code}}",
+      "display code={${1:code}}"
     ],
     "\\knowledgeconfigureenvironment#c": [
       "scope",
-      "label=${1|none,accepts\r|}",
+      "label=${1|none,accepts|}",
       "environment",
       "autoclose",
-      "parents={${1:area1,area2,...}}\r",
-      "push code={${1:code}}\r",
-      "pop code={${1:code}}\r",
-      "occurrences=${1|once,multiple,recursive\r|}",
-      "forces=${1:area}\r",
-      "knowledge=${1:knowledge}\r"
+      "parents={${1:area1,area2,...}}",
+      "push code={${1:code}}",
+      "pop code={${1:code}}",
+      "occurrences=${1|once,multiple,recursive|}",
+      "forces=${1:area}",
+      "knowledge=${1:knowledge}"
     ]
   },
   "args": [

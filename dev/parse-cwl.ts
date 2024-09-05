@@ -48,7 +48,7 @@ function parseLines(pkg: PackageRaw, lines: string[], ifCond?: string): void {
             let endIndex = lines.slice(index).findIndex((l) => l.startsWith('#endkeyvals')) + index
             if (endIndex < index) {
                 endIndex = Number.MAX_SAFE_INTEGER
-            } 
+            }
             parseKeys(pkg, lines.slice(index + 1, endIndex), line.slice(9).trim())
             index = endIndex
         } else if (line.startsWith('#ifOption')) {
@@ -84,7 +84,7 @@ function parseKeys(pkg: PackageRaw, lines: string[], tag: string): void {
         if (isSkipLine(line)) {
             continue
         }
-        let snippet = line
+        let snippet = line.trim()
         // cachedir=%<directory%> => cachedir=${1:directory}
         let index = 1
         while (true) {
@@ -105,7 +105,7 @@ function parseKeys(pkg: PackageRaw, lines: string[], tag: string): void {
         }
         keys.push(snippet)
     }
-    pkg.keys[tag] = keys
+    pkg.keys[tag] = [...(pkg.keys[tag] ?? []), ...keys]
     assignKeys(pkg, tag)
 }
 
@@ -126,7 +126,9 @@ function assignKeys(pkg: PackageRaw, tag: string) {
                 const keyPos = findKeyPos(candidate.arg.snippet)
                 if (keyPos > -1) {
                     candidate.arg.keys = candidate.arg.keys ?? []
-                    candidate.arg.keys.push(tag)
+                    if (!candidate.arg.keys.includes(tag)) {
+                        candidate.arg.keys.push(tag)
+                    }
                     candidate.arg.keyPos = keyPos
                 }
             }
@@ -138,7 +140,7 @@ function findKeyPos(snippet: string): number {
     const matches = snippet.matchAll(/\{\$\{([^\{\}]*)\}\}|\[\$([^\[\]]*)\]|\<\$([^\<\>]*)\>|\|\$([^\<\>]*)\|/g)
     let index = 0
     for (const match of matches) {
-        const context = match[1] ?? match[2] ?? match[3] ?? match[4]
+        const context = (match[1] ?? match[2] ?? match[3] ?? match[4]).replace(/[\{\}0-9:]+/g, '')
         if (
             context.startsWith('keys') ||
             context.startsWith('keyvals') ||
@@ -194,7 +196,7 @@ function parseMacro(pkg: PackageRaw, line: string, ifCond?: string): void {
     // \mint[%<options%>]{%<language%>}|%<code%>|#M
     // \mintinline[keys]{language}{verbatimSymbol}#S
     // \mintinline{%<language%>}|%<code%>|#M
-    const match = /\\([^[\{\n]*?)((?:\{|\[)[^#\n]*)?(?:#(.*))?$/.exec(line)
+    const match = /\\([^[\{\n]*?)((?:\{|\[|\(|\|)[^#\n]*)?(?:#(.*))?$/.exec(line)
     if (match === null) {
         console.error('Unknown macro line: ' + line)
         return
@@ -342,6 +344,10 @@ switch (process.argv[2]) {
         parseEssential()
         break
     default:
-        console.warn('ts-node parse-cwl.ts both|all|ess|essential')
+        if (process.argv[2].endsWith('.cwl')) {
+            parseFiles([process.argv[2]], 'packages')
+        } else {
+            console.warn('ts-node parse-cwl.ts both|all|ess|essential|*.cwl')
+        }
         break
 }

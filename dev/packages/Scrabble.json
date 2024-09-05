@@ -33,7 +33,11 @@
       "name": "ScrabbleBoard",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:keys%keyvals}]"
+        "snippet": "[${1:keys%keyvals}]",
+        "keys": [
+          "\\ScrabbleBoard,\\begin{EnvScrabble}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -53,7 +57,11 @@
       "name": "PlateauScrabble",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:clés%keyvals}]"
+        "snippet": "[${1:clés%keyvals}]",
+        "keys": [
+          "\\PlateauScrabble,\\begin{EnvScrabbleFR}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -77,7 +85,11 @@
       "name": "ScrabblePutWord",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:orientation%keyvals}]{${1:letters}}{${2:x,y}}"
+        "snippet": "[${3:orientation%keyvals}]{${1:letters}}{${2:x,y}}",
+        "keys": [
+          "\\ScrabblePutWord,\\ScrabblePlaceMot"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -91,7 +103,11 @@
       "name": "ScrabblePlaceMot",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:orientation%keyvals}]{${1:lettres}}{${2:x,y}}"
+        "snippet": "[${3:orientation%keyvals}]{${1:lettres}}{${2:x,y}}",
+        "keys": [
+          "\\ScrabblePutWord,\\ScrabblePlaceMot"
+        ],
+        "keyPos": 0
       }
     }
   ],
@@ -103,7 +119,11 @@
       "name": "EnvScrabble",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:keys%keyvals}]"
+        "snippet": "[${1:keys%keyvals}]",
+        "keys": [
+          "\\ScrabbleBoard,\\begin{EnvScrabble}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -117,7 +137,11 @@
       "name": "EnvScrabble",
       "arg": {
         "format": "<>[]",
-        "snippet": "<${2:language}>[${1:keys%keyvals}]"
+        "snippet": "<${2:language}>[${1:keys%keyvals}]",
+        "keys": [
+          "\\ScrabbleBoard,\\begin{EnvScrabble}"
+        ],
+        "keyPos": 1
       }
     },
     {
@@ -127,7 +151,11 @@
       "name": "EnvScrabbleFR",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:clés%keyvals}]"
+        "snippet": "[${1:clés%keyvals}]",
+        "keys": [
+          "\\PlateauScrabble,\\begin{EnvScrabbleFR}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -141,28 +169,32 @@
       "name": "EnvScrabbleFR",
       "arg": {
         "format": "<>[]",
-        "snippet": "<${2:language}>[${1:clés%keyvals}]"
+        "snippet": "<${2:language}>[${1:clés%keyvals}]",
+        "keys": [
+          "\\PlateauScrabble,\\begin{EnvScrabbleFR}"
+        ],
+        "keyPos": 1
       }
     }
   ],
   "keys": {
     "\\ScrabbleBoard,\\begin{EnvScrabble}": [
-      "Scale=${1:factor}\r",
-      "ScaleLabels=${1:factor}\r",
+      "Scale=${1:factor}",
+      "ScaleLabels=${1:factor}",
       "Border",
       "Labels",
       "Help"
     ],
     "\\PlateauScrabble,\\begin{EnvScrabbleFR}": [
-      "Echelle=${1:factor}\r",
-      "EchelleLabels=${1:factor}\r",
+      "Echelle=${1:factor}",
+      "EchelleLabels=${1:factor}",
       "Cadre",
       "Labels",
       "Aide"
     ],
     "\\ScrabblePutWord,\\ScrabblePlaceMot": [
-      "H\r",
-      "V\r"
+      "H",
+      "V"
     ]
   },
   "args": []

@@ -30,7 +30,11 @@
       "name": "maketitle",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:option=value,...%keyvals}]"
+        "snippet": "[${1:option=value,...%keyvals}]",
+        "keys": [
+          "\\maketitle,\\TitleOptions"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -440,85 +444,97 @@
       "name": "titlepage",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{titlepage},\\begin{fullsizetitle}"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "fullsizetitle",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{titlepage},\\begin{fullsizetitle}"
+        ],
+        "keyPos": 0
       }
     }
   ],
   "keys": {
     "\\TitlePageStyle/DHBW,\\TitlePageStyle/KOMAScript,\\TitlePageStyle/Markus-1,\\TitlePageStyle/Markus-2,\\TitlePageStyle/Spacer,\\TitlePageStyle/TU-DD,\\TitlePageStyle/TU-HH,\\TitlePageStyle/KIT,\\TitlePageStyle/JT-Aufsaetze,\\TitlePageStyle/JT-Geschichte,\\TitlePageStyle/JT-Typography,\\TitlePageStyle/WWUM,\\TitlePageStyle/UKoLa": [
-      "author={${1:author names}}\r",
-      "pagenumber=${1:number}\r",
-      "pagestyle=${1:style}\r",
-      "student=${1:student name}\r",
-      "subject=${1:subject}\r",
-      "subjectfont=${1:font commands}\r",
-      "title={${1:title text}}\r",
-      "titlefont=${1:font commands}\r",
-      "titlepagefont=${1:font commands}\r"
+      "author={${1:author names}}",
+      "pagenumber=${1:number}",
+      "pagestyle=${1:style}",
+      "student=${1:student name}",
+      "subject=${1:subject}",
+      "subjectfont=${1:font commands}",
+      "title={${1:title text}}",
+      "titlefont=${1:font commands}",
+      "titlepagefont=${1:font commands}"
     ],
     "\\TitlePageStyle/DHBW,\\TitlePageStyle/TU-HH,\\TitlePageStyle/WWUM,\\TitlePageStyle/UKoLa": [
-      "academicgrade=${1:grade}\r"
+      "academicgrade=${1:grade}"
     ],
     "\\TitlePageStyle/TU-DD,\\TitlePageStyle/UKoLa": [
-      "advisor=${1:advisor name}\r"
+      "advisor=${1:advisor name}"
     ],
     "\\TitlePageStyle/TU-DD": [
       "blackborder"
     ],
     "\\TitlePageStyle/TU-DD,\\TitlePageStyle/KIT,\\TitlePageStyle/WWUM,\\TitlePageStyle/UKoLa": [
-      "chair=${1:chair name}\r"
+      "chair=${1:chair name}"
     ],
     "\\TitlePageStyle/DHBW": [
-      "duration=${1:duration}\r"
+      "company=${1:company}",
+      "course=${1:course}",
+      "duration=${1:duration}"
     ],
     "\\TitlePageStyle/DHBW,\\TitlePageStyle/KIT,\\TitlePageStyle/KOMAScript,\\TitlePageStyle/Markus-1,\\TitlePageStyle/Markus-2,\\TitlePageStyle/Spacer,\\TitlePageStyle/TU-HH,\\TitlePageStyle/TU-DD,\\TitlePageStyle/JT-Typography,\\TitlePageStyle/WWUM": [
-      "date=${1:date}\r"
+      "date=${1:date}"
     ],
     "\\TitlePageStyle/KOMAScript,\\TitlePageStyle/Markus-1,\\TitlePageStyle/Markus-2,\\TitlePageStyle/Spacer": [
-      "dedication={${1:dedication text}}\r"
+      "dedication={${1:dedication text}}"
     ],
     "\\TitlePageStyle/DHBW,\\TitlePageStyle/TU-DD,\\TitlePageStyle/WWUM": [
-      "discipline=${1:discipline}\r"
+      "discipline=${1:discipline}"
     ],
     "\\TitlePageStyle/KOMAScript,\\TitlePageStyle/Markus-2,\\TitlePageStyle/Spacer,\\TitlePageStyle/JT-Aufsaetze,\\TitlePageStyle/JT-Geschichte,\\TitlePageStyle/JT-Typography": [
-      "extratitle={${1:extra title text}}\r"
+      "extratitle={${1:extra title text}}"
     ],
     "\\TitlePageStyle/TU-DD,\\TitlePageStyle/KIT,\\TitlePageStyle/WWUM": [
-      "faculty=${1:faculty name}\r"
+      "faculty=${1:faculty name}"
     ],
     "\\TitlePageStyle/TU-HH": [
       "final"
     ],
     "\\TitlePageStyle/KIT": [
-      "homepage=${1:URL}\r"
+      "homepage=${1:URL}"
     ],
     "\\TitlePageStyle/KOMAScript,\\TitlePageStyle/Markus-1,\\TitlePageStyle/Markus-2,\\TitlePageStyle/Spacer,\\TitlePageStyle/JT-Aufsaetze,\\TitlePageStyle/JT-Geschichte,\\TitlePageStyle/JT-Typography": [
-      "uppertitleback={${1:text}}\r"
+      "lowertitleback={${1:text}}",
+      "publisher=${1:publisher name}",
+      "uppertitleback={${1:text}}"
     ],
     "\\TitlePageStyle/DHBW,\\TitlePageStyle/KIT,\\TitlePageStyle/UKoLa": [
-      "mainlogo={${1:logo code}}\r"
+      "mainlogo={${1:logo code}}"
     ],
     "\\TitlePageStyle/DHBW,\\TitlePageStyle/TU-DD": [
-      "matriculationnumber=${1:number}\r"
+      "matriculationnumber=${1:number}"
     ],
     "\\TitlePageStyle/TU-HH,\\TitlePageStyle/WWUM": [
-      "oralexaminationdate=${1:date}\r"
+      "oralexaminationdate=${1:date}"
     ],
     "\\TitlePageStyle/DHBW,\\TitlePageStyle/TU-HH,\\TitlePageStyle/JT-Geschichte,\\TitlePageStyle/JT-Typography,\\TitlePageStyle/WWUM,\\TitlePageStyle/UKoLa": [
-      "place=${1:location}\r"
+      "place=${1:location}"
     ],
     "\\TitlePageStyle/TU-DD,\\TitlePageStyle/WWUM": [
-      "professor=${1:professor name}\r"
+      "professor=${1:professor name}"
     ],
     "\\TitlePageStyle/DHBW,\\TitlePageStyle/TU-HH,\\TitlePageStyle/UKoLa,\\TitlePageStyle/KIT,\\TitlePageStyle/WWUM": [
-      "referee={${1:referee names}}\r"
+      "referee={${1:referee names}}"
     ],
     "\\TitlePageStyle/Markus-2,\\TitlePageStyle/JT-Aufsaetze,\\TitlePageStyle/JT-Geschichte,\\TitlePageStyle/Spacer": [
       "rulesep=",
@@ -526,135 +542,135 @@
       "rulecolor="
     ],
     "\\TitlePageStyle/UKoLa": [
-      "secondlogo={${1:logo code}}\r"
+      "secondlogo={${1:logo code}}"
     ],
     "\\TitlePageStyle/WWUM": [
-      "science=${1:science}\r"
+      "science=${1:science}"
     ],
     "\\TitlePageStyle/KOMAScript,\\TitlePageStyle/Markus-1,\\TitlePageStyle/Markus-2,\\TitlePageStyle/Spacer,\\TitlePageStyle/TU-HH": [
-      "subtitle={${1:subtitle text}}\r",
-      "subtitlefont=${1:font commands}\r"
+      "subtitle={${1:subtitle text}}",
+      "subtitlefont=${1:font commands}"
     ],
     "\\TitlePageStyle/DHBW,\\TitlePageStyle/KOMAScript,\\TitlePageStyle/Markus-2,\\TitlePageStyle/Spacer,\\TitlePageStyle/KIT": [
-      "titlehead={${1:titlehead code}}\r"
+      "titlehead={${1:titlehead code}}"
     ],
     "\\TitlePageStyle/DHBW,\\TitlePageStyle/TU-DD,\\TitlePageStyle/TU-HH,\\TitlePageStyle/KIT,\\TitlePageStyle/WWUM": [
-      "university=${1:university}\r"
+      "university=${1:university}"
     ],
     "\\TitleOption": [
-      "academicgrade\r",
-      "advisor\r",
-      "author\r",
-      "blackborder\r",
-      "chair\r",
-      "company\r",
-      "course\r",
-      "date\r",
-      "dedication\r",
-      "discipline\r",
-      "duration\r",
-      "extratitle\r",
-      "faculty\r",
-      "final\r",
-      "homepage\r",
-      "lowertitleback\r",
-      "mainlogo\r",
-      "matriculationnumber\r",
-      "oralexaminationdate\r",
-      "pagenumber\r",
-      "pagestyle\r",
-      "place\r",
-      "professor\r",
-      "publisher\r",
-      "referee\r",
-      "rulesep\r",
-      "rulewidth\r",
-      "secondlogo\r",
-      "science\r",
-      "student\r",
-      "subject\r",
-      "subjectfont\r",
-      "subtitle\r",
-      "subtitlefont\r",
-      "title\r",
-      "titlefont\r",
-      "titlehead\r",
-      "titlepagefont\r",
-      "university\r",
-      "uppertitleback\r"
+      "academicgrade",
+      "advisor",
+      "author",
+      "blackborder",
+      "chair",
+      "company",
+      "course",
+      "date",
+      "dedication",
+      "discipline",
+      "duration",
+      "extratitle",
+      "faculty",
+      "final",
+      "homepage",
+      "lowertitleback",
+      "mainlogo",
+      "matriculationnumber",
+      "oralexaminationdate",
+      "pagenumber",
+      "pagestyle",
+      "place",
+      "professor",
+      "publisher",
+      "referee",
+      "rulesep",
+      "rulewidth",
+      "secondlogo",
+      "science",
+      "student",
+      "subject",
+      "subjectfont",
+      "subtitle",
+      "subtitlefont",
+      "title",
+      "titlefont",
+      "titlehead",
+      "titlepagefont",
+      "university",
+      "uppertitleback"
     ],
     "\\maketitle,\\TitleOptions": [
-      "academicgrade=${1:grade}\r",
-      "advisor=${1:advisor name}\r",
-      "author={${1:author names}}\r",
+      "academicgrade=${1:grade}",
+      "advisor=${1:advisor name}",
+      "author={${1:author names}}",
       "blackborder",
-      "chair=${1:chair name}\r",
-      "company=${1:company}\r",
-      "course=${1:course}\r",
-      "date=${1:date}\r",
-      "dedication={${1:dedication text}}\r",
-      "discipline=${1:discipline}\r",
-      "duration=${1:duration}\r",
-      "extratitle={${1:extra title text}}\r",
-      "faculty=${1:faculty name}\r",
+      "chair=${1:chair name}",
+      "company=${1:company}",
+      "course=${1:course}",
+      "date=${1:date}",
+      "dedication={${1:dedication text}}",
+      "discipline=${1:discipline}",
+      "duration=${1:duration}",
+      "extratitle={${1:extra title text}}",
+      "faculty=${1:faculty name}",
       "final",
-      "homepage=${1:URL}\r",
-      "lowertitleback={${1:text}}\r",
-      "mainlogo={${1:logo code}}\r",
-      "matriculationnumber=${1:number}\r",
-      "oralexaminationdate=${1:date}\r",
-      "pagenumber=${1:number}\r",
-      "pagestyle=${1:style}\r",
-      "place=${1:location}\r",
-      "professor=${1:professor name}\r",
-      "publisher=${1:publisher name}\r",
-      "referee={${1:referee names}}\r",
+      "homepage=${1:URL}",
+      "lowertitleback={${1:text}}",
+      "mainlogo={${1:logo code}}",
+      "matriculationnumber=${1:number}",
+      "oralexaminationdate=${1:date}",
+      "pagenumber=${1:number}",
+      "pagestyle=${1:style}",
+      "place=${1:location}",
+      "professor=${1:professor name}",
+      "publisher=${1:publisher name}",
+      "referee={${1:referee names}}",
       "rulesep=",
       "rulewidth=",
-      "secondlogo={${1:logo code}}\r",
-      "science=${1:science}\r",
-      "student=${1:student name}\r",
-      "subject=${1:subject}\r",
-      "subjectfont=${1:font commands}\r",
-      "subtitle={${1:subtitle text}}\r",
-      "subtitlefont=${1:font commands}\r",
-      "title={${1:title text}}\r",
-      "titlefont=${1:font commands}\r",
-      "titlehead={${1:titlehead code}}\r",
-      "titlepagefont=${1:font commands}\r",
-      "university=${1:university}\r",
-      "uppertitleback={${1:text}}\r"
+      "secondlogo={${1:logo code}}",
+      "science=${1:science}",
+      "student=${1:student name}",
+      "subject=${1:subject}",
+      "subjectfont=${1:font commands}",
+      "subtitle={${1:subtitle text}}",
+      "subtitlefont=${1:font commands}",
+      "title={${1:title text}}",
+      "titlefont=${1:font commands}",
+      "titlehead={${1:titlehead code}}",
+      "titlepagefont=${1:font commands}",
+      "university=${1:university}",
+      "uppertitleback={${1:text}}"
     ],
     "\\begin{titlepage},\\begin{fullsizetitle}": [
-      "pagenumber=${1:number}\r",
-      "pagestyle=${1:style}\r"
+      "pagenumber=${1:number}",
+      "pagestyle=${1:style}"
     ],
     "\\usetitleelement,\\usenonemptytitleelement": [
-      "academicgrade\r",
-      "advisor\r",
-      "author\r",
-      "chair\r",
-      "company\r",
-      "course\r",
-      "date\r",
-      "dedication\r",
-      "discipline\r",
-      "duration\r",
-      "faculty\r",
-      "homepage\r",
-      "mainlogo\r",
-      "matriculationnumber\r",
-      "oralexaminationdate\r",
-      "place\r",
-      "professor\r",
-      "publisher\r",
-      "referee\r",
-      "secondlogo\r",
-      "subject\r",
-      "subtitle\r",
-      "title\r",
-      "titlehead\r",
-      "university\r"
+      "academicgrade",
+      "advisor",
+      "author",
+      "chair",
+      "company",
+      "course",
+      "date",
+      "dedication",
+      "discipline",
+      "duration",
+      "faculty",
+      "homepage",
+      "mainlogo",
+      "matriculationnumber",
+      "oralexaminationdate",
+      "place",
+      "professor",
+      "publisher",
+      "referee",
+      "secondlogo",
+      "subject",
+      "subtitle",
+      "title",
+      "titlehead",
+      "university"
     ]
   },
   "args": []

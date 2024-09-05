@@ -27,7 +27,7 @@
         "keys": [
           "\\usephysicsmodule"
         ],
-        "keyPos": 1
+        "keyPos": 0
       }
     },
     {
@@ -181,6 +181,20 @@
       }
     },
     {
+      "name": "ketbra",
+      "arg": {
+        "format": "||",
+        "snippet": "|${1:subformula1>optional<subformula2}|"
+      }
+    },
+    {
+      "name": "ketbra*",
+      "arg": {
+        "format": "||",
+        "snippet": "|${1:subformula1>optional<subformula2}|"
+      }
+    },
+    {
       "name": "diagmat",
       "arg": {
         "format": "{}",
@@ -281,7 +295,11 @@
       "name": "xmat",
       "arg": {
         "format": "[]{}{}{}",
-        "snippet": "[${4:options%keyvals}]{${1:entry}}{${2:rows shown}}{${3:cols shown}}"
+        "snippet": "[${4:options%keyvals}]{${1:entry}}{${2:rows shown}}{${3:cols shown}}",
+        "keys": [
+          "\\xmat,\\pxmat,\\bxmat,\\Bxmat,\\vxmat,\\Vxmat"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -295,7 +313,11 @@
       "name": "pxmat",
       "arg": {
         "format": "[]{}{}{}",
-        "snippet": "[${4:options%keyvals}]{${1:entry}}{${2:rows shown}}{${3:cols shown}}"
+        "snippet": "[${4:options%keyvals}]{${1:entry}}{${2:rows shown}}{${3:cols shown}}",
+        "keys": [
+          "\\xmat,\\pxmat,\\bxmat,\\Bxmat,\\vxmat,\\Vxmat"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -309,7 +331,11 @@
       "name": "bxmat",
       "arg": {
         "format": "[]{}{}{}",
-        "snippet": "[${4:options%keyvals}]{${1:entry}}{${2:rows shown}}{${3:cols shown}}"
+        "snippet": "[${4:options%keyvals}]{${1:entry}}{${2:rows shown}}{${3:cols shown}}",
+        "keys": [
+          "\\xmat,\\pxmat,\\bxmat,\\Bxmat,\\vxmat,\\Vxmat"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -323,7 +349,11 @@
       "name": "Bxmat",
       "arg": {
         "format": "[]{}{}{}",
-        "snippet": "[${4:options%keyvals}]{${1:entry}}{${2:rows shown}}{${3:cols shown}}"
+        "snippet": "[${4:options%keyvals}]{${1:entry}}{${2:rows shown}}{${3:cols shown}}",
+        "keys": [
+          "\\xmat,\\pxmat,\\bxmat,\\Bxmat,\\vxmat,\\Vxmat"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -337,7 +367,11 @@
       "name": "vxmat",
       "arg": {
         "format": "[]{}{}{}",
-        "snippet": "[${4:options%keyvals}]{${1:entry}}{${2:rows shown}}{${3:cols shown}}"
+        "snippet": "[${4:options%keyvals}]{${1:entry}}{${2:rows shown}}{${3:cols shown}}",
+        "keys": [
+          "\\xmat,\\pxmat,\\bxmat,\\Bxmat,\\vxmat,\\Vxmat"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -351,7 +385,11 @@
       "name": "Vxmat",
       "arg": {
         "format": "[]{}{}{}",
-        "snippet": "[${4:options%keyvals}]{${1:entry}}{${2:rows shown}}{${3:cols shown}}"
+        "snippet": "[${4:options%keyvals}]{${1:entry}}{${2:rows shown}}{${3:cols shown}}",
+        "keys": [
+          "\\xmat,\\pxmat,\\bxmat,\\Bxmat,\\vxmat,\\Vxmat"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -686,22 +724,22 @@
   "envs": [],
   "keys": {
     "\\usephysicsmodule": [
-      "ab.braket\r",
-      "ab.legacy\r",
-      "ab\r",
-      "bm-um.legacy\r",
-      "braket\r",
-      "diagmat\r",
-      "doubleprod\r",
-      "nabla.legacy\r",
-      "op.legacy\r",
-      "qtext.legacy\r",
-      "xmat\r"
+      "ab.braket",
+      "ab.legacy",
+      "ab",
+      "bm-um.legacy",
+      "braket",
+      "diagmat",
+      "doubleprod",
+      "nabla.legacy",
+      "op.legacy",
+      "qtext.legacy",
+      "xmat"
     ],
     "\\xmat,\\pxmat,\\bxmat,\\Bxmat,\\vxmat,\\Vxmat": [
-      "showtop=${1:rows}\r",
-      "showleft=${1:columns}\r",
-      "format=${1:format code}\r"
+      "showtop=${1:rows}",
+      "showleft=${1:columns}",
+      "format=${1:format code}"
     ]
   },
   "args": []

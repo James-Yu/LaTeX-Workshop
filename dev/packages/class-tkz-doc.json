@@ -270,10 +270,10 @@
       }
     },
     {
-      "name": "nodeshadowedone(x,y)",
+      "name": "nodeshadowedone",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:arg}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:arg}}"
       }
     },
     {
@@ -469,7 +469,11 @@
       "name": "tkzSetUpColors",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:keyvals}]"
+        "snippet": "[${1:keyvals}]",
+        "keys": [
+          "\\tkzSetUpColors"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -550,7 +554,7 @@
   ],
   "keys": {
     "\\documentclass/tkz-doc#c": [
-      "cadre\r"
+      "cadre"
     ],
     "\\tkzSetUpColors": [
       "background=",

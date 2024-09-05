@@ -49,14 +49,22 @@
       "name": "termfile",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:title%text}}{${2:file}}"
+        "snippet": "[${3:options%keyvals}]{${1:title%text}}{${2:file}}",
+        "keys": [
+          "\\begin{terminal},\\begin{terminal*},\\termfile,\\termfile*,\\termset"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "termfile*",
       "arg": {
         "format": "[][]{}{}",
-        "snippet": "[${3:options%keyvals}][${4:comments%text}]{${1:title%text}}{${2:file}}"
+        "snippet": "[${3:options%keyvals}][${4:comments%text}]{${1:title%text}}{${2:file}}",
+        "keys": [
+          "\\begin{terminal},\\begin{terminal*},\\termfile,\\termfile*,\\termset"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -99,26 +107,34 @@
       "name": "terminal",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:title%text}}"
+        "snippet": "[${2:options%keyvals}]{${1:title%text}}",
+        "keys": [
+          "\\begin{terminal},\\begin{terminal*},\\termfile,\\termfile*,\\termset"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "terminal*",
       "arg": {
         "format": "[][]{}",
-        "snippet": "[${2:options%keyvals}][${3:comments%text}]{${1:title%text}}"
+        "snippet": "[${2:options%keyvals}][${3:comments%text}]{${1:title%text}}",
+        "keys": [
+          "\\begin{terminal},\\begin{terminal*},\\termfile,\\termfile*,\\termset"
+        ],
+        "keyPos": 0
       }
     }
   ],
   "keys": {
     "\\begin{terminal},\\begin{terminal*},\\termfile,\\termfile*,\\termset": [
       "minted",
-      "os=${1|win10,mac,ubuntu\r|}",
-      "theme=${1|dark,light,white\r|}",
-      "shstyle=${1:style}\r",
-      "shsize=${1:font size command}\r",
-      "commentf=${1:format commands}\r",
-      "shstretch=${1:factor}\r"
+      "os=${1|win10,mac,ubuntu|}",
+      "theme=${1|dark,light,white|}",
+      "shstyle=${1:style}",
+      "shsize=${1:font size command}",
+      "commentf=${1:format commands}",
+      "shstretch=${1:factor}"
     ]
   },
   "args": []

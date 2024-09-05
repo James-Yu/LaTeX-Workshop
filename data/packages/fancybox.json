@@ -58,13 +58,21 @@
       }
     },
     {
-      "name": "fancyoval(width,height)"
+      "name": "fancyoval",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:width},${2:height})"
+      }
     },
     {
-      "name": "fancyoval(width,height)",
+      "name": "fancyoval",
       "arg": {
-        "format": "[]",
-        "snippet": "[${1:portion%keyvals}]"
+        "format": "()[]",
+        "snippet": "(${2:width},${3:height})[${1:portion%keyvals}]",
+        "keys": [
+          "\\fancyoval"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -80,45 +88,61 @@
       }
     },
     {
-      "name": "boxput(x,y)",
+      "name": "item",
+      "unusual": true,
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:contents1}}{${2:contents2}}"
+        "format": "()",
+        "snippet": "(${1:vspace%l})"
       }
     },
     {
-      "name": "boxput*(x,y)",
+      "name": "item",
+      "unusual": true,
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:contents1}}{${2:contents2}}"
+        "format": "()[]",
+        "snippet": "(${2:vspace%l})[${1:label%plain}]"
       }
     },
     {
-      "name": "fancyput(x,y)",
+      "name": "boxput",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:contents}}"
+        "format": "(){}{}",
+        "snippet": "(${3:x},${4:y}){${1:contents1}}{${2:contents2}}"
       }
     },
     {
-      "name": "fancyput*(x,y)",
+      "name": "boxput*",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:contents}}"
+        "format": "(){}{}",
+        "snippet": "(${3:x},${4:y}){${1:contents1}}{${2:contents2}}"
       }
     },
     {
-      "name": "thisfancyput*(x,y)",
+      "name": "fancyput",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:contents}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:contents}}"
       }
     },
     {
-      "name": "thisfancyput*(x,y)",
+      "name": "fancyput*",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:contents}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:contents}}"
+      }
+    },
+    {
+      "name": "thisfancyput*",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:contents}}"
+      }
+    },
+    {
+      "name": "thisfancyput*",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:contents}}"
       }
     },
     {
@@ -252,6 +276,13 @@
       }
     },
     {
+      "name": "Verb",
+      "arg": {
+        "format": "||",
+        "snippet": "|${1:code}|"
+      }
+    },
+    {
       "name": "UseVerb",
       "unusual": true,
       "arg": {
@@ -374,7 +405,11 @@
       "name": "Bcenter",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:alignment%keyvals}]"
+        "snippet": "[${1:alignment%keyvals}]",
+        "keys": [
+          "\\begin{Bcenter},\\begin{Bflushleft},\\begin{Bflushright},\\begin{Bitemize},\\begin{Benumerate},\\begin{Bdescription},\\begin{Blist},\\begin{BVerbatim},\\BVerbatimInput"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -384,7 +419,11 @@
       "name": "Bflushleft",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:alignment%keyvals}]"
+        "snippet": "[${1:alignment%keyvals}]",
+        "keys": [
+          "\\begin{Bcenter},\\begin{Bflushleft},\\begin{Bflushright},\\begin{Bitemize},\\begin{Benumerate},\\begin{Bdescription},\\begin{Blist},\\begin{BVerbatim},\\BVerbatimInput"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -394,7 +433,11 @@
       "name": "Bflushright",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:alignment%keyvals}]"
+        "snippet": "[${1:alignment%keyvals}]",
+        "keys": [
+          "\\begin{Bcenter},\\begin{Bflushleft},\\begin{Bflushright},\\begin{Bitemize},\\begin{Benumerate},\\begin{Bdescription},\\begin{Blist},\\begin{BVerbatim},\\BVerbatimInput"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -410,7 +453,11 @@
       "unusual": true,
       "arg": {
         "format": "{}{}[]",
-        "snippet": "{${1:item_type}}{${2:code}}[${3:alignment%keyvals}]"
+        "snippet": "{${1:item_type}}{${2:code}}[${3:alignment%keyvals}]",
+        "keys": [
+          "\\begin{Bcenter},\\begin{Bflushleft},\\begin{Bflushright},\\begin{Bitemize},\\begin{Benumerate},\\begin{Bdescription},\\begin{Blist},\\begin{BVerbatim},\\BVerbatimInput"
+        ],
+        "keyPos": 2
       }
     },
     {

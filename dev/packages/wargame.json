@@ -54,11 +54,19 @@
   ],
   "macros": [
     {
-      "name": "hex(location)"
+      "name": "hex",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:location})"
+      }
     },
     {
-      "name": "hex(location)(name)",
-      "unusual": true
+      "name": "hex",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:location})(${2:name})"
+      }
     },
     {
       "name": "hex",
@@ -78,8 +86,22 @@
     {
       "name": "boardframe",
       "arg": {
+        "format": "()()",
+        "snippet": "(${1:lower-left})(${2:upper-right})"
+      }
+    },
+    {
+      "name": "boardframe",
+      "arg": {
         "format": "[]()()",
         "snippet": "[${1:margin}](${2:lower-left})(${3:upper-right})"
+      }
+    },
+    {
+      "name": "boardclip",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:lower-left})(${3:upper-right}){${1:options}}"
       }
     },
     {
@@ -230,12 +252,24 @@
       "unusual": true
     },
     {
+      "name": "boardpath",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:lower-left})(${2:upper-right})"
+      }
+    },
+    {
       "name": "debuggrid",
       "unusual": true
     },
     {
-      "name": "boardhexes(arg1)(arg2)",
-      "unusual": true
+      "name": "boardhexes",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:arg1})(${2:arg2})"
+      }
     },
     {
       "name": "boardhexes",
@@ -246,11 +280,11 @@
       }
     },
     {
-      "name": "segment(arg1)(arg2)",
+      "name": "segment",
       "unusual": true,
       "arg": {
-        "format": "{}{}{}{}",
-        "snippet": "{${1:arg3}}{${2:arg4}}{${3:arg5}}{${4:arg6}}"
+        "format": "()(){}{}{}{}",
+        "snippet": "(${5:arg1})(${6:arg2}){${1:arg3}}{${2:arg4}}{${3:arg5}}{${4:arg6}}"
       }
     },
     {
@@ -270,10 +304,18 @@
       "unusual": true
     },
     {
-      "name": "natoapp(location)"
+      "name": "natoapp",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:location})"
+      }
     },
     {
-      "name": "natoapp(location)(name)"
+      "name": "natoapp",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:location})(${2:name})"
+      }
     },
     {
       "name": "natoapp",
@@ -514,10 +556,18 @@
       }
     },
     {
-      "name": "chit(location)"
+      "name": "chit",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:location})"
+      }
     },
     {
-      "name": "chit(location)(name)"
+      "name": "chit",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:location})(${2:name})"
+      }
     },
     {
       "name": "chit",
@@ -538,19 +588,27 @@
       "unusual": true
     },
     {
-      "name": "shadechit(arg)",
-      "unusual": true
-    },
-    {
-      "name": "eliminatechit(arg)",
-      "unusual": true
-    },
-    {
-      "name": "stackchits(arg1)(arg2)",
+      "name": "shadechit",
       "unusual": true,
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:arg3}}"
+        "format": "()",
+        "snippet": "(${1:arg})"
+      }
+    },
+    {
+      "name": "eliminatechit",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:arg})"
+      }
+    },
+    {
+      "name": "stackchits",
+      "unusual": true,
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:arg1})(${3:arg2}){${1:arg3}}"
       }
     },
     {
@@ -670,52 +728,52 @@
   ],
   "keys": {
     "\\usepackage/wargame#c": [
-      "noterrainpic\r",
-      "terrainpic\r"
+      "noterrainpic",
+      "terrainpic"
     ],
     "\\hex#c": [
-      "terrain={${1:terrain-keys}}\r",
-      "ridges={${1:ridges-keys}}\r",
-      "label={${1:label-keys}}\r",
-      "town={${1:town-keys}}\r",
-      "bevel={${1:bevel-keys}}\r",
-      "extra={${1:extra-keys}}\r",
-      "extra clipped={${1:extra-keys}}\r",
-      "row=${1:row}\r",
-      "column=${1:column}\r"
+      "terrain={${1:terrain-keys}}",
+      "ridges={${1:ridges-keys}}",
+      "label={${1:label-keys}}",
+      "town={${1:town-keys}}",
+      "bevel={${1:bevel-keys}}",
+      "extra={${1:extra-keys}}",
+      "extra clipped={${1:extra-keys}}",
+      "row=${1:row}",
+      "column=${1:column}"
     ],
     "\\splitboard#c": [
-      "paper=${1|a4,a3,letter,tabloid\r|}",
-      "landscape\r",
-      "margin=${1:number}\r",
-      "ncol=${1:integer}\r",
-      "nrow=${1:integer}\r",
-      "overlap=${1:number}\r",
-      "image=${1:imagefile}\r",
-      "output=${1:file name}\r",
-      "standalone\r",
-      "scale=${1:factor}\r"
+      "paper=${1|a4,a3,letter,tabloid|}",
+      "landscape",
+      "margin=${1:number}",
+      "ncol=${1:integer}",
+      "nrow=${1:integer}",
+      "overlap=${1:number}",
+      "image=${1:imagefile}",
+      "output=${1:file name}",
+      "standalone",
+      "scale=${1:factor}"
     ],
     "\\natoapp#c": [
-      "faction=${1:faction}\r",
-      "command=${1|air,land,equipment,installation,sea surface,sub surface,space,activity,none\r|}",
-      "main={${1:mains}}\r",
-      "left={${1:lefts}}\r",
-      "right={${1:rights}}\r",
-      "top={${1:tops}}\r",
-      "bottom={${1:bottoms}}\r",
-      "below={${1:belows}}\r",
-      "echelon=${1|team,squad,section,platoon,company,battalion,regiment,brigade,division,corps,army,army group,theatre,command\r|}",
-      "frame={${1:frame-keys}}\r"
+      "faction=${1:faction}",
+      "command=${1|air,land,equipment,installation,sea surface,sub surface,space,activity,none|}",
+      "main={${1:mains}}",
+      "left={${1:lefts}}",
+      "right={${1:rights}}",
+      "top={${1:tops}}",
+      "bottom={${1:bottoms}}",
+      "below={${1:belows}}",
+      "echelon=${1|team,squad,section,platoon,company,battalion,regiment,brigade,division,corps,army,army group,theatre,command|}",
+      "frame={${1:frame-keys}}"
     ],
     "\\chit#c": [
-      "symbol={${1:nato app 6(c) spec}}\r",
-      "full={${1:spec}}\r",
+      "symbol={${1:nato app 6(c) spec}}",
+      "full={${1:spec}}",
       "color=",
       "fill=",
       "text=",
       "draw=",
-      "bevel={${1:bevel-keys}}\r"
+      "bevel={${1:bevel-keys}}"
     ]
   },
   "args": [

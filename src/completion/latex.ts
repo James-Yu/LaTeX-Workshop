@@ -113,7 +113,7 @@ export class Provider implements vscode.CompletionItemProvider {
                 provider = argumentProvider
                 break
             case 'package':
-                reg = /(?:\\usepackage|RequirePackage|RequirePackageWithOptions(?:\[[^[\]]*\])*){([^}]*)$/
+                reg = /(?:\\usepackage|\\RequirePackage|\\RequirePackageWithOptions)(?:\[[^[\]]*\])*{([^}]*)$/
                 provider = packageProvider
                 break
             case 'documentclass':

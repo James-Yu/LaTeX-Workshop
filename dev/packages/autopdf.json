@@ -45,7 +45,11 @@
       "name": "autopdfpsfrag",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:tag}}{${2:content%text}}"
+        "snippet": "[${3:options%keyvals}]{${1:tag}}{${2:content%text}}",
+        "keys": [
+          "\\autopdfpsfrag,\\autopdfpsfoptions"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -63,25 +67,25 @@
   "envs": [],
   "keys": {
     "\\usepackage/autopdf#c,\\autopdfoptions": [
-      "from=${1:file extension}\r",
-      "to=${1:file extension}\r",
-      "logfile\r",
-      "nologfile\r",
+      "from=${1:file extension}",
+      "to=${1:file extension}",
+      "logfile",
+      "nologfile",
       "showcmds",
       "cleanup",
       "scale",
       "margin=",
-      "resolution=${1:dpi}\r",
-      "gscmd=${1:GhostScript cmd}\r",
-      "gmidentifycmd=${1:GraphicsMagick cmd}\r",
-      "gmconvertcmd=${1:GraphicsMagick cmd}\r"
+      "resolution=${1:dpi}",
+      "gscmd=${1:GhostScript cmd}",
+      "gmidentifycmd=${1:GraphicsMagick cmd}",
+      "gmconvertcmd=${1:GraphicsMagick cmd}"
     ],
     "\\autopdfpsfrag,\\autopdfpsfoptions": [
-      "texpos=${1:LaTeX ref point}\r",
-      "epspos=${1:PS ref point}\r",
-      "scale=${1:factor}\r",
-      "angle=${1:degrees}\r",
-      "add=${1:text}\r"
+      "texpos=${1:LaTeX ref point}",
+      "epspos=${1:PS ref point}",
+      "scale=${1:factor}",
+      "angle=${1:degrees}",
+      "add=${1:text}"
     ]
   },
   "args": [

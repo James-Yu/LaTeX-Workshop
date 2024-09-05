@@ -80,7 +80,11 @@
       "name": "limd",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:pos%keyvals}]{${1:ligne}}{${2:valeur}}"
+        "snippet": "[${3:pos%keyvals}]{${1:ligne}}{${2:valeur}}",
+        "keys": [
+          "\\limd,\\limg,\\pos,\\posvr,\\valpos"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -94,7 +98,11 @@
       "name": "limg",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:pos%keyvals}]{${1:ligne}}{${2:valeur}}"
+        "snippet": "[${3:pos%keyvals}]{${1:ligne}}{${2:valeur}}",
+        "keys": [
+          "\\limd,\\limg,\\pos,\\posvr,\\valpos"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -122,7 +130,11 @@
       "name": "pos",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:align%keyvals}]{${1:ligne}}{${2:valeur}}"
+        "snippet": "[${3:align%keyvals}]{${1:ligne}}{${2:valeur}}",
+        "keys": [
+          "\\limd,\\limg,\\pos,\\posvr,\\valpos"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -136,7 +148,11 @@
       "name": "posvr",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:pos%keyvals}]{${1:ligne}}{${2:valeur}}"
+        "snippet": "[${3:pos%keyvals}]{${1:ligne}}{${2:valeur}}",
+        "keys": [
+          "\\limd,\\limg,\\pos,\\posvr,\\valpos"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -150,7 +166,11 @@
       "name": "tablvarset",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:keyvals}}"
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\begin{tablvar}#c,\\begin{tablvar*}#c,\\tablvarset"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -473,8 +493,8 @@
   ],
   "keys": {
     "\\usepackage/tablvars#c": [
-      "pstricks\r",
-      "tikz\r"
+      "pstricks",
+      "tikz"
     ],
     "\\begin{tablvar}#c,\\begin{tablvar*}#c,\\tablvarset": [
       "intervalwidth=",
@@ -482,22 +502,22 @@
       "firstcolsep=",
       "bordercolsep=",
       "limsep=",
-      "stretch=${1:factor}\r",
+      "stretch=${1:factor}",
       "extleft",
       "extright",
-      "ZItype=${1|h,c\r|}",
+      "ZItype=${1|h,c|}",
       "ZIcolor=",
       "ZIaddwidth="
     ],
     "\\limd,\\limg,\\pos,\\posvr,\\valpos": [
-      "c\r",
-      "b\r",
-      "t\r"
+      "c",
+      "b",
+      "t"
     ],
     "\\zbox": [
-      "c\r",
-      "l\r",
-      "r\r"
+      "c",
+      "l",
+      "r"
     ]
   },
   "args": [

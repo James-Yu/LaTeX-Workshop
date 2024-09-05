@@ -549,26 +549,26 @@
       }
     },
     {
-      "name": "citecs(post)",
+      "name": "citecs",
       "unusual": true,
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:bibid}}{${2:bibid}}"
+        "format": "(){}{}",
+        "snippet": "(${3:post}){${1:bibid}}{${2:bibid}}"
       }
     },
     {
-      "name": "citecs(pre)(post)",
+      "name": "citecs",
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:bibid}}{${2:bibid}}"
+        "format": "()(){}{}",
+        "snippet": "(${3:pre})(${4:post}){${1:bibid}}{${2:bibid}}"
       }
     },
     {
-      "name": "citecs(pre)(post)",
+      "name": "citecs",
       "unusual": true,
       "arg": {
-        "format": "[]{}[]{}",
-        "snippet": "[${3:post}]{${1:bibid}}[${4:post}]{${2:bibid}}"
+        "format": "()()[]{}[]{}",
+        "snippet": "(${5:pre})(${6:post})[${3:post}]{${1:bibid}}[${4:post}]{${2:bibid}}"
       }
     },
     {
@@ -588,10 +588,10 @@
       }
     },
     {
-      "name": "citecs(pre)(post)",
+      "name": "citecs",
       "arg": {
-        "format": "[][]{}[][]{}",
-        "snippet": "[${3:pre}][${4:post}]{${1:bibid}}[${5:pre}][${6:post}]{${2:bibid}}"
+        "format": "()()[][]{}[][]{}",
+        "snippet": "(${7:pre})(${8:post})[${3:pre}][${4:post}]{${1:bibid}}[${5:pre}][${6:post}]{${2:bibid}}"
       }
     },
     {
@@ -602,22 +602,30 @@
       }
     },
     {
-      "name": "authornumcites(post)",
+      "name": "authornumcites",
       "unusual": true,
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:bibid}}{${2:bibid}}"
+        "format": "(){}{}",
+        "snippet": "(${3:post}){${1:bibid}}{${2:bibid}}"
       }
     },
     {
-      "name": "authornumcites(pre)(post)",
+      "name": "authornumcites",
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:bibid}}{${2:bibid}}"
+        "format": "()(){}{}",
+        "snippet": "(${3:pre})(${4:post}){${1:bibid}}{${2:bibid}}"
       }
     },
     {
-      "name": "authornumcites(pre)(post)",
+      "name": "authornumcites",
+      "unusual": true,
+      "arg": {
+        "format": "()()[]{}[]{}",
+        "snippet": "(${5:pre})(${6:post})[${3:post}]{${1:bibid}}[${4:post}]{${2:bibid}}"
+      }
+    },
+    {
+      "name": "authornumcites",
       "unusual": true,
       "arg": {
         "format": "[]{}[]{}",
@@ -628,65 +636,57 @@
       "name": "authornumcites",
       "unusual": true,
       "arg": {
-        "format": "[]{}[]{}",
-        "snippet": "[${3:post}]{${1:bibid}}[${4:post}]{${2:bibid}}"
+        "format": "[][]{}[][]{}",
+        "snippet": "[${3:pre}][${4:post}]{${1:bibid}}[${5:pre}][${6:post}]{${2:bibid}}"
       }
     },
     {
       "name": "authornumcites",
-      "unusual": true,
       "arg": {
-        "format": "[][]{}[][]{}",
-        "snippet": "[${3:pre}][${4:post}]{${1:bibid}}[${5:pre}][${6:post}]{${2:bibid}}"
-      }
-    },
-    {
-      "name": "authornumcites(pre)(post)",
-      "arg": {
-        "format": "[][]{}[][]{}",
-        "snippet": "[${3:pre}][${4:post}]{${1:bibid}}[${5:pre}][${6:post}]{${2:bibid}}"
+        "format": "()()[][]{}[][]{}",
+        "snippet": "(${7:pre})(${8:post})[${3:pre}][${4:post}]{${1:bibid}}[${5:pre}][${6:post}]{${2:bibid}}"
       }
     }
   ],
   "envs": [],
   "keys": {
     "\\documentclass/bjfuthesis#c": [
-      "GBK\r",
-      "UTF8\r",
-      "zhmap=${1|true,false,zhmCJK\r|}",
-      "zihao=${1|-4,5,false\r|}",
+      "GBK",
+      "UTF8",
+      "zhmap=${1|true,false,zhmCJK|}",
+      "zihao=${1|-4,5,false|}",
       "heading",
-      "sub3section\r",
-      "sub4section\r",
-      "scheme=${1|chinese,plain\r|}",
-      "linespread=${1:number}\r",
-      "fontset=${1|adobe,fandol,founder,mac,macnew,macold,ubuntu,windows,none\r|}",
-      "punct=${1|quanjiao,banjiao,kaiming,CCT,plain\r|}",
-      "space=${1|true,false,auto\r|}",
-      "autoindent=\r",
-      "a4paper\r",
-      "a5paper\r",
-      "b5paper\r",
-      "letterpaper\r",
-      "legalpaper\r",
-      "executivepaper\r",
-      "landscape\r",
-      "10pt\r",
-      "11pt\r",
-      "12pt\r",
-      "oneside\r",
-      "twoside\r",
-      "draft\r",
-      "final\r",
-      "titlepage\r",
-      "notitlepage\r",
-      "openright\r",
-      "openany\r",
-      "onecolumn\r",
-      "twocolumn\r",
-      "leqno\r",
-      "fleqn\r",
-      "openbib\r"
+      "sub3section",
+      "sub4section",
+      "scheme=${1|chinese,plain|}",
+      "linespread=${1:number}",
+      "fontset=${1|adobe,fandol,founder,mac,macnew,macold,ubuntu,windows,none|}",
+      "punct=${1|quanjiao,banjiao,kaiming,CCT,plain|}",
+      "space=${1|true,false,auto|}",
+      "autoindent=",
+      "a4paper",
+      "a5paper",
+      "b5paper",
+      "letterpaper",
+      "legalpaper",
+      "executivepaper",
+      "landscape",
+      "10pt",
+      "11pt",
+      "12pt",
+      "oneside",
+      "twoside",
+      "draft",
+      "final",
+      "titlepage",
+      "notitlepage",
+      "openright",
+      "openany",
+      "onecolumn",
+      "twocolumn",
+      "leqno",
+      "fleqn",
+      "openbib"
     ],
     "\\usepackage/biblatex#c,\\ExecuteBibliographyOptions#c": [
       "citexref",
@@ -706,16 +706,16 @@
       "gbfieldstd",
       "gbpub",
       "gbpunctin",
-      "gblanorder=${2|chineseahead,englishahead,${1:string}\r|}",
-      "gbcitelocal=${1|gb7714-2015,chinese,english\r|}",
-      "gbbiblocal=${1|gb7714-2015,chinese,english\r|}",
-      "gblocal=${1|gb7714-2015,chinese,english\r|}",
-      "gbbiblabel=${1|bracket,parens,plain,dot,box,circle\r|}",
-      "gbnamefmt=${1|uppercase,lowercase,givenahead,familyahead,pinyin,quanpin,reverseorder\r|}",
-      "gbalign=${1|right,left,center,gb7714-2015,gb7714-2015ay\r|}",
+      "gblanorder=${2|chineseahead,englishahead,${1:string}|}",
+      "gbcitelocal=${1|gb7714-2015,chinese,english|}",
+      "gbbiblocal=${1|gb7714-2015,chinese,english|}",
+      "gblocal=${1|gb7714-2015,chinese,english|}",
+      "gbbiblabel=${1|bracket,parens,plain,dot,box,circle|}",
+      "gbnamefmt=${1|uppercase,lowercase,givenahead,familyahead,pinyin,quanpin,reverseorder|}",
+      "gbalign=${1|right,left,center,gb7714-2015,gb7714-2015ay|}",
       "gblabelref",
       "gbcitecomp",
-      "gbcitelabel=${1|bracket,parens,plain,dot,box,circle\r|}"
+      "gbcitelabel=${1|bracket,parens,plain,dot,box,circle|}"
     ]
   },
   "args": [

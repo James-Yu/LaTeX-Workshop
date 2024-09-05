@@ -51,10 +51,26 @@
       }
     },
     {
+      "name": "Forest",
+      "unusual": true,
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:config%keyvals}){${1:tree}}"
+      }
+    },
+    {
       "name": "Forest*",
       "arg": {
         "format": "{}",
         "snippet": "{${1:tree}}"
+      }
+    },
+    {
+      "name": "Forest*",
+      "unusual": true,
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:config%keyvals}){${1:tree}}"
       }
     },
     {
@@ -75,7 +91,11 @@
       "name": "useforestlibrary",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:libraries}}"
+        "snippet": "[${2:options%keyvals}]{${1:libraries}}",
+        "keys": [
+          "\\useforestlibrary,\\useforestlibrary*"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -89,7 +109,11 @@
       "name": "useforestlibrary*",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:libraries}}"
+        "snippet": "[${2:options%keyvals}]{${1:libraries}}",
+        "keys": [
+          "\\useforestlibrary,\\useforestlibrary*"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -254,15 +278,19 @@
       }
     },
     {
-      "name": "forestdebugtypeouttree(arg)",
-      "unusual": true
-    },
-    {
-      "name": "forestdebugtypeouttree(arg)",
+      "name": "forestdebugtypeouttree",
       "unusual": true,
       "arg": {
-        "format": "[]",
-        "snippet": "[${1:opt}]"
+        "format": "()",
+        "snippet": "(${1:arg})"
+      }
+    },
+    {
+      "name": "forestdebugtypeouttree",
+      "unusual": true,
+      "arg": {
+        "format": "()[]",
+        "snippet": "(${2:arg})[${1:opt}]"
       }
     },
     {
@@ -901,114 +929,114 @@
   ],
   "keys": {
     "\\usepackage/forest#c": [
-      "external\r",
-      "linguistics\r"
+      "external",
+      "linguistics"
     ],
     "\\begin{forest}#c,\\Forest#c,\\Forest*#c": [
-      "stages=${1:keylist}\r"
+      "stages=${1:keylist}"
     ],
     "\\forestset#c": [
-      "+form/.style={${1:specs}}\r",
-      "+format/.style={${1:specs}}\r",
-      "afterthought/.style={${1:style}}\r",
-      "also margin/.style={${1:style}}\r",
-      "anchors/.style={${1:specs}}\r",
-      "associate/.style={${1:specs}}\r",
-      "Autoforward register={${1:register}}{${2:style def}}\r",
-      "Autoforward={${1:option}}{${2:style def}}\r",
-      "background tree/.style={${1:specs}}\r",
-      "box/.style={${1:specs}}\r",
-      "compute xy stage/.style={${1:specs}}\r",
-      "decision edge label/.style n args={${1:args}}{${2:specs}}\r",
-      "decision tree/.style={${1:specs}}\r",
-      "decision/.style={${1:specs}}\r",
-      "declare boolean register=${1:register name}\r",
-      "declare dimen register=${1:register name}\r",
-      "declare dimen={${1:dimen name}}{${2:default value}}\r",
-      "declare keylist={${1:option name}}{${2:default value}}\r",
-      "declare toks register=${1:register name}\r",
-      "declare toks={${1:option name}}{${2:default value}}\r",
-      "default preamble={${1:specs}}\r",
-      "define long step/.append code={${1:code}}\r",
-      "define long step={${1:name}}{${2:options}}{${3:nodewalk}}\r",
+      "+form/.style={${1:specs}}",
+      "+format/.style={${1:specs}}",
+      "afterthought/.style={${1:style}}",
+      "also margin/.style={${1:style}}",
+      "anchors/.style={${1:specs}}",
+      "associate/.style={${1:specs}}",
+      "Autoforward register={${1:register}}{${2:style def}}",
+      "Autoforward={${1:option}}{${2:style def}}",
+      "background tree/.style={${1:specs}}",
+      "box/.style={${1:specs}}",
+      "compute xy stage/.style={${1:specs}}",
+      "decision edge label/.style n args={${1:args}}{${2:specs}}",
+      "decision tree/.style={${1:specs}}",
+      "decision/.style={${1:specs}}",
+      "declare boolean register=${1:register name}",
+      "declare dimen register=${1:register name}",
+      "declare dimen={${1:dimen name}}{${2:default value}}",
+      "declare keylist={${1:option name}}{${2:default value}}",
+      "declare toks register=${1:register name}",
+      "declare toks={${1:option name}}{${2:default value}}",
+      "default preamble={${1:specs}}",
+      "define long step/.append code={${1:code}}",
+      "define long step={${1:name}}{${2:options}}{${3:nodewalk}}",
       "definition color/.initial=",
-      "definition/.style={${1:specs}}\r",
-      "detokenize/.style={${1:specs}}\r",
+      "definition/.style={${1:specs}}",
+      "detokenize/.style={${1:specs}}",
       "dot/.default=",
-      "dot/.style={${1:specs}}\r",
-      "draw anchors/.default=\r",
-      "draw anchors/.style n args={${1:args}}{${2:specs}}\r",
-      "draw brackets compact/.code={${1:code}}\r",
-      "draw brackets wide/.code={${1:code}}\r",
-      "draw brackets/.style={${1:specs}}\r",
-      "draw tree stage/.style={${1:specs}}\r",
-      "el/.style={${1:specs}}\r",
-      "empty/.style={${1:style}}\r",
-      "encircle/.style={${1:specs}}\r",
-      "enumerate/.style={${1:specs}}\r",
-      "environment/.style={${1:style}}\r",
-      "every index begin/.style={${1:specs}}\r",
-      "every index end/.style={${1:specs}}\r",
+      "dot/.style={${1:specs}}",
+      "draw anchors/.default=",
+      "draw anchors/.style n args={${1:args}}{${2:specs}}",
+      "draw brackets compact/.code={${1:code}}",
+      "draw brackets wide/.code={${1:code}}",
+      "draw brackets/.style={${1:specs}}",
+      "draw tree stage/.style={${1:specs}}",
+      "el/.style={${1:specs}}",
+      "empty/.style={${1:style}}",
+      "encircle/.style={${1:specs}}",
+      "enumerate/.style={${1:specs}}",
+      "environment/.style={${1:style}}",
+      "every index begin/.style={${1:specs}}",
+      "every index end/.style={${1:specs}}",
       "example color/.initial=",
-      "example/.style={${1:specs}}\r",
-      "fen/.style={${1:specs}}\r",
-      "folder/.style={${1:specs}}\r",
-      "forked edge/.style={${1:specs}}\r",
-      "forked edge’/.style={${1:specs}}\r",
-      "forked edges/.default=\r",
-      "forked edges/.style={${1:specs}}\r",
-      "form/.style={${1:specs}}\r",
-      "form+/.style={${1:specs}}\r",
-      "format/.style={${1:specs}}\r",
-      "format’/.style={${1:specs}}\r",
-      "format+/.style={${1:specs}}\r",
-      "govern/.style={${1:specs}}\r",
-      "GP1/.default=\r",
-      "GP1/.style 2 args={${1:specs}}\r",
-      "handler/.style={${1:style}}\r",
-      "head/.style={${1:specs}}\r",
-      "hyper/.style={${1:specs}}\r",
-      "important/.style={${1:specs}}\r",
-      "index library/.style={${1:style}}\r",
-      "item/.style={${1:specs}}\r",
-      "macro/.style={${1:specs}}\r",
-      "margin/.style={${1:style}}\r",
-      "mark/.style={${1:specs}}\r",
-      "meta/.style={${1:style}}\r",
-      "myGP1/.style={${1:specs}}\r",
-      "nice empty nodes/.style={${1:specs}}\r",
-      "no p-govern/.style={${1:specs}}\r",
+      "example/.style={${1:specs}}",
+      "fen/.style={${1:specs}}",
+      "folder/.style={${1:specs}}",
+      "forked edge/.style={${1:specs}}",
+      "forked edge’/.style={${1:specs}}",
+      "forked edges/.default=",
+      "forked edges/.style={${1:specs}}",
+      "form/.style={${1:specs}}",
+      "form+/.style={${1:specs}}",
+      "format/.style={${1:specs}}",
+      "format’/.style={${1:specs}}",
+      "format+/.style={${1:specs}}",
+      "govern/.style={${1:specs}}",
+      "GP1/.default=",
+      "GP1/.style 2 args={${1:specs}}",
+      "handler/.style={${1:style}}",
+      "head/.style={${1:specs}}",
+      "hyper/.style={${1:specs}}",
+      "important/.style={${1:specs}}",
+      "index library/.style={${1:style}}",
+      "item/.style={${1:specs}}",
+      "macro/.style={${1:specs}}",
+      "margin/.style={${1:style}}",
+      "mark/.style={${1:specs}}",
+      "meta/.style={${1:style}}",
+      "myGP1/.style={${1:specs}}",
+      "nice empty nodes/.style={${1:specs}}",
+      "no p-govern/.style={${1:specs}}",
       "normal color/.initial=",
-      "normal/.style={${1:specs}}\r",
-      "option value/.style={${1:style}}\r",
-      "path/.style={${1:style}}\r",
-      "pgfkey/.style={${1:style}}\r",
-      "p-govern/.style={${1:specs}}\r",
-      "print in color/.default=\r",
-      "print in color/.style={${1:specs}}\r",
-      "random tree/.style n args={${1:args}}{${2:specs}}\r",
-      "roof/.style={${1:specs}}\r",
-      "show boundary/.style={${1:style}}\r",
-      "sn edges/.style={${1:specs}}\r",
-      "spread/.style={${1:specs}}\r",
-      "stages/.style={${1:specs}}\r",
-      "test/.style n args={${1:args}}{${2:specs}}\r",
-      "tt/.style={${1:specs}}\r",
-      "typeset nodes stage/.style={${1:specs}}\r",
-      "xlist/.default=\r",
-      "xlist/.style={${1:specs}}\r"
+      "normal/.style={${1:specs}}",
+      "option value/.style={${1:style}}",
+      "path/.style={${1:style}}",
+      "pgfkey/.style={${1:style}}",
+      "p-govern/.style={${1:specs}}",
+      "print in color/.default=",
+      "print in color/.style={${1:specs}}",
+      "random tree/.style n args={${1:args}}{${2:specs}}",
+      "roof/.style={${1:specs}}",
+      "show boundary/.style={${1:style}}",
+      "sn edges/.style={${1:specs}}",
+      "spread/.style={${1:specs}}",
+      "stages/.style={${1:specs}}",
+      "test/.style n args={${1:args}}{${2:specs}}",
+      "tt/.style={${1:specs}}",
+      "typeset nodes stage/.style={${1:specs}}",
+      "xlist/.default=",
+      "xlist/.style={${1:specs}}"
     ],
     "\\useforestlibrary,\\useforestlibrary*": [
       "external",
-      "compat={${1:compat keylist}}\r",
+      "compat={${1:compat keylist}}",
       "tikzcshack",
       "tikzinstallkeys",
-      "debug=${1|nodewalks,dynamics,process\r|}"
+      "debug=${1|nodewalks,dynamics,process|}"
     ],
     "\\bracketset#c": [
-      "opening bracket=${1:character}\r",
-      "closing bracket=${1:character}\r",
-      "action character=${1:character}\r"
+      "opening bracket=${1:character}",
+      "closing bracket=${1:character}",
+      "action character=${1:character}"
     ]
   },
   "args": [

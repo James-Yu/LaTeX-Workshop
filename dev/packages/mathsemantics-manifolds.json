@@ -147,6 +147,13 @@
     {
       "name": "geodesic<s>",
       "arg": {
+        "format": "()",
+        "snippet": "(${1:%<eval point%>})"
+      }
+    },
+    {
+      "name": "geodesic<s>",
+      "arg": {
         "format": "[]",
         "snippet": "[${1:scale}]"
       }
@@ -212,6 +219,36 @@
       "arg": {
         "format": "[]{}{}()",
         "snippet": "[${3:scale}]{${1:t0}}{${2:t1}}(${4:eval point})"
+      }
+    },
+    {
+      "name": "geodesic",
+      "unusual": true,
+      "arg": {
+        "format": "||{}{}",
+        "snippet": "|${3:symbol}|{${1:t0}}{${2:t1}}"
+      }
+    },
+    {
+      "name": "geodesic",
+      "arg": {
+        "format": "||{}{}()",
+        "snippet": "|${3:symbol}|{${1:t0}}{${2:t1}}(${4:%<eval point%>})"
+      }
+    },
+    {
+      "name": "geodesic",
+      "unusual": true,
+      "arg": {
+        "format": "||[]{}{}",
+        "snippet": "|${4:symbol}|[${3:scale}]{${1:t0}}{${2:t1}}"
+      }
+    },
+    {
+      "name": "geodesic",
+      "arg": {
+        "format": "||[]{}{}()",
+        "snippet": "|${4:symbol}|[${3:scale}]{${1:t0}}{${2:t1}}(${5:%<eval point%>})"
       }
     },
     {
@@ -674,12 +711,12 @@
   "envs": [],
   "keys": {
     "\\exponential#c,\\logarithm#c,\\inverseRetract#c,\\lie#c,\\parallelTransport#c,\\parallelTransportDir#c,\\retract#c,\\riemannian#c,\\riemanniannorm#c,\\vectorTransport#c,\\vectorTransportDir#c": [
-      "big\r",
-      "Big\r",
-      "bigg\r",
-      "Bigg\r",
-      "auto\r",
-      "none\r"
+      "big",
+      "Big",
+      "bigg",
+      "Bigg",
+      "auto",
+      "none"
     ]
   },
   "args": []

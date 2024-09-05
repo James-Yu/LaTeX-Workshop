@@ -72,21 +72,33 @@
       "name": "PostIt",
       "arg": {
         "format": "<>",
-        "snippet": "<${1:options tcbox}>"
+        "snippet": "<${1:options tcbox}>",
+        "keys": [
+          "\\begin{PostIt}"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "PostIt",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:clés%keyvals}]"
+        "snippet": "[${1:clés%keyvals}]",
+        "keys": [
+          "\\begin{PostIt}"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "PostIt",
       "arg": {
         "format": "[]<>",
-        "snippet": "[${1:clés%keyvals}]<${2:options tcbox}>"
+        "snippet": "[${1:clés%keyvals}]<${2:options tcbox}>",
+        "keys": [
+          "\\begin{PostIt}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -103,58 +115,66 @@
       "name": "PostItNote",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{PostItNote}"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "PostItNote",
       "arg": {
         "format": "[]<>",
-        "snippet": "[${1:options%keyvals}]<${2:tcbox options}>"
+        "snippet": "[${1:options%keyvals}]<${2:tcbox options}>",
+        "keys": [
+          "\\begin{PostItNote}"
+        ],
+        "keyPos": 0
       }
     }
   ],
   "keys": {
     "\\begin{PostIt}": [
-      "RappelPostIt=${1:nom}\r",
+      "RappelPostIt=${1:nom}",
       "Largeur=",
       "Couleur=",
       "Hauteur=",
-      "Rendu=${1|tcbox,tikz,tikzv2\r|}",
-      "Inclinaison=${1:nombre}\r",
+      "Rendu=${1|tcbox,tikz,tikzv2|}",
+      "Inclinaison=${1:nombre}",
       "Ombre",
       "Bordure",
       "Coin",
-      "Attache=${1|Trombone,Punaise,Non,Scotch\r|}",
+      "Attache=${1|Trombone,Punaise,Non,Scotch|}",
       "CouleurAttache=",
-      "DecalAttache=${1:nombre}\r",
-      "Titre=${1:texte}\r",
-      "PoliceTitre=${1:font commands}\r",
+      "DecalAttache=${1:nombre}",
+      "Titre=${1:texte}",
+      "PoliceTitre=${1:font commands}",
       "ExtraMargeDroite=",
-      "AlignementV=${1|top,center,bottom\r|}",
-      "AlignementH=${1|left,center,right,justify\r|}",
-      "AlignementPostIt=${1|top,center,bottom\r|}"
+      "AlignementV=${1|top,center,bottom|}",
+      "AlignementH=${1|left,center,right,justify|}",
+      "AlignementPostIt=${1|top,center,bottom|}"
     ],
     "\\begin{PostItNote}": [
-      "StorePostIt=${1:name}\r",
+      "StorePostIt=${1:name}",
       "Width=",
       "Color=",
       "Height=",
-      "Render=${1|tcbox,tikz,tikz2\r|}",
-      "Rotate=${1:degrees}\r",
+      "Render=${1|tcbox,tikz,tikz2|}",
+      "Rotate=${1:degrees}",
       "Shadow",
       "Border",
       "Corner",
-      "Pin=${1|Paperclip,Pushpin,None,Scotch\r|}",
+      "Pin=${1|Paperclip,Pushpin,None,Scotch|}",
       "PinColor=",
-      "PinScale=${1:factor}\r",
-      "PinShift=${1:number}\r",
-      "Title=${1:text}\r",
-      "FontTitle=${1:font commands}\r",
+      "PinScale=${1:factor}",
+      "PinShift=${1:number}",
+      "Title=${1:text}",
+      "FontTitle=${1:font commands}",
       "ExtraRightMargin=",
-      "AlignV=${1|top,center,bottom\r|}",
-      "AlignH=${1|left,center,right,justify\r|}",
-      "AlignPostIt=${1|top,center,bottom\r|}"
+      "AlignV=${1|top,center,bottom|}",
+      "AlignH=${1|left,center,right,justify|}",
+      "AlignPostIt=${1|top,center,bottom|}"
     ]
   },
   "args": []

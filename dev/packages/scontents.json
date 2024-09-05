@@ -37,7 +37,11 @@
       "name": "Scontents",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:argument}}"
+        "snippet": "[${2:options%keyvals}]{${1:argument}}",
+        "keys": [
+          "\\Scontents"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -51,7 +55,11 @@
       "name": "Scontents*",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:argument}}"
+        "snippet": "[${2:options%keyvals}]{${1:argument}}",
+        "keys": [
+          "\\Scontents*"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -79,7 +87,11 @@
       "name": "foreachsc",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:seq name}}"
+        "snippet": "[${2:options%keyvals}]{${1:seq name}}",
+        "keys": [
+          "\\foreachsc"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -133,7 +145,11 @@
       "name": "scontents",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{scontents}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -142,57 +158,57 @@
   ],
   "keys": {
     "\\setupsc,\\usepackage/scontents#c": [
-      "store-env=${1:seq name}\r",
-      "store-cmd=${1:seq name}\r",
+      "store-env=${1:seq name}",
+      "store-cmd=${1:seq name}",
       "print-env",
       "print-cmd",
       "print-all",
-      "store-all=${1:seq name}\r",
+      "store-all=${1:seq name}",
       "overwrite",
-      "width-tab=${1:integer}\r",
+      "width-tab=${1:integer}",
       "force-eol",
-      "verb-font=${1:font family}\r"
+      "verb-font=${1:font family}"
     ],
     "\\begin{scontents}": [
-      "store-env=${1:seq name}\r",
+      "store-env=${1:seq name}",
       "print-env",
-      "write-env=${1:file.ext}\r",
-      "write-out=${1:file.ext}\r",
+      "write-env=${1:file.ext}",
+      "write-out=${1:file.ext}",
       "overwrite",
       "force-eol"
     ],
     "\\Scontents": [
-      "store-cmd=${1:seq name}\r",
+      "store-cmd=${1:seq name}",
       "print-cmd",
       "force-eol"
     ],
     "\\Scontents*": [
-      "store-cmd=${1:seq name}\r",
+      "store-cmd=${1:seq name}",
       "print-cmd",
-      "write-cmd=${1:file.ext}\r",
-      "write-out=${1:file.ext}\r",
+      "write-cmd=${1:file.ext}",
+      "write-out=${1:file.ext}",
       "overwrite",
       "force-eol"
     ],
     "\\foreachsc": [
-      "sep={${1:code}}\r",
-      "step=${1:integer}\r",
-      "start=${1:integer}\r",
-      "stop=${1:integer}\r",
-      "before={${1:code}}\r",
-      "after={${1:code}}\r",
-      "wrapper={${1:code}}\r"
+      "sep={${1:code}}",
+      "step=${1:integer}",
+      "start=${1:integer}",
+      "stop=${1:integer}",
+      "before={${1:code}}",
+      "after={${1:code}}",
+      "wrapper={${1:code}}"
     ],
     "\\typestored#c,\\meaningsc#c": [
-      "width-tab=${1:integer}\r",
-      "${1:index}\r"
+      "width-tab=${1:integer}",
+      "${1:index}"
     ],
     "\\mergesc": [
-      "typestored\r",
-      "meaningsc\r",
+      "typestored",
+      "meaningsc",
       "print-cmd",
-      "write-out=${1:file.ext}\r",
-      "width-tab=${1:integer}\r",
+      "write-out=${1:file.ext}",
+      "width-tab=${1:integer}",
       "overwrite"
     ]
   },

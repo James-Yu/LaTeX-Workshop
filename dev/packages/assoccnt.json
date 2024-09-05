@@ -25,7 +25,11 @@
       "name": "setcounter",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:counter}}{${2:value}}"
+        "snippet": "[${3:options%keyvals}]{${1:counter}}{${2:value}}",
+        "keys": [
+          "\\setcounter"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -138,7 +142,11 @@
       "name": "PrettyPrintCounterName",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:counter}}"
+        "snippet": "[${2:options%keyvals}]{${1:counter}}",
+        "keys": [
+          "\\PrettyPrintCounterName"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -192,10 +200,10 @@
     ],
     "\\setcounter": [
       "AssociatedToo",
-      "AssociatedCounters={${1:list of counters}}\r"
+      "AssociatedCounters={${1:list of counters}}"
     ],
     "\\PrettyPrintCounterName": [
-      "countertype=${1|general,driver,associated\r|}"
+      "countertype=${1|general,driver,associated|}"
     ]
   },
   "args": [

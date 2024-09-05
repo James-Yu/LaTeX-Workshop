@@ -183,7 +183,11 @@
       "name": "NewSession",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:title}}"
+        "snippet": "[${2:options%keyvals}]{${1:title}}",
+        "keys": [
+          "\\NewSession"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -211,7 +215,11 @@
       "name": "SetBreaks",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:text}}"
+        "snippet": "[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\SetBreaks"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -336,7 +344,11 @@
       "name": "makebeamerprogram",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\makebeamerprogram,\\makebeamerexamprogram"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -346,7 +358,11 @@
       "name": "makebeamerexamprogram",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\makebeamerprogram,\\makebeamerexamprogram"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -764,7 +780,11 @@
       "name": "DefSemType",
       "arg": {
         "format": "[]{}{}{}",
-        "snippet": "[${4:options%keyvals}]{${1:key%specialDef}}{${2:short form}}{${3:verbose form%text}}"
+        "snippet": "[${4:options%keyvals}]{${1:key%specialDef}}{${2:short form}}{${3:verbose form%text}}",
+        "keys": [
+          "\\DefSemType"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1021,57 +1041,82 @@
   ],
   "keys": {
     "\\usepackage/jslectureplanner#c": [
-      "style=${1|german-default,english,cologne\r|}"
+      "style=${1|german-default,english,cologne|}"
     ],
     "\\usepackage/jslectureplanner#c,\\LecTitle": [
+      "type=",
+      "title=${1:title}",
+      "titlesep=${1:separator}",
+      "subtitle=${1:subtitle}",
+      "shorttitle=${1:shorttitle}",
+      "semester=",
+      "year=${1:year}",
+      "endyear=${1:year}",
+      "uni=${1:university}",
+      "institute=${1:institute}",
+      "room=${1:room}",
+      "startdate=${1:date}",
+      "starttime=${1:time}",
+      "duration=${1:minutes}",
+      "interval=${1:days}",
+      "instructor=${1:name}",
+      "shortinstructor=${1:name}",
+      "platform=${1:data}",
+      "officehours=${1:hours}",
+      "officenumber=${1:number}",
+      "sestitlesep=${1:separator}",
       "type="
     ],
     "\\LecType": [
-      "vl\r",
-      "ps\r",
-      "se\r",
-      "ue\r",
-      "ko\r",
-      "pv\r",
-      "%lectype\r"
+      "ak",
+      "as",
+      "es",
+      "evl",
+      "vl",
+      "ps",
+      "se",
+      "ue",
+      "ko",
+      "pv",
+      "%lectype"
     ],
     "\\LecYear": [
-      "fs\r",
-      "hs\r",
-      "ss\r",
-      "ws\r",
-      "%semtype\r"
+      "fs",
+      "hs",
+      "ss",
+      "ws",
+      "%semtype"
     ],
     "\\NewSession": [
       "draft",
-      "topicnumber=${1:n}\r",
-      "titlesep=${1:separator}\r",
-      "subtitle=${1:subtitle}\r",
-      "shorttitle=${1:shorttitle}\r",
-      "instructor=${1:name}\r",
-      "shortinstructor=${1:name}\r",
-      "presstudents=${1:names}\r",
-      "room=${1:room}\r",
-      "starttime=${1:time}\r",
-      "duration=${1:minutes}\r",
-      "bibsec=${1:keyword}\r",
+      "topicnumber=${1:n}",
+      "titlesep=${1:separator}",
+      "subtitle=${1:subtitle}",
+      "shorttitle=${1:shorttitle}",
+      "instructor=${1:name}",
+      "shortinstructor=${1:name}",
+      "presstudents=${1:names}",
+      "room=${1:room}",
+      "starttime=${1:time}",
+      "duration=${1:minutes}",
+      "bibsec=${1:keyword}",
       "cancel",
       "exam",
-      "extradate\r"
+      "extradate"
     ],
     "\\SetBreaks": [
-      "units=${1:n}\r",
-      "span=${1:span}\r"
+      "units=${1:n}",
+      "span=${1:span}"
     ],
     "\\makebeamerprogram,\\makebeamerexamprogram": [
-      "title=${1:title}\r",
+      "title=${1:title}",
       "blocksonly",
       "uncover",
-      "options={${1:frame options}}\r",
-      "overlayarg=${1:overlay specification}\r"
+      "options={${1:frame options}}",
+      "overlayarg=${1:overlay specification}"
     ],
     "\\DefSemType": [
-      "next=${1:key}\r",
+      "next=${1:key}",
       "nextny"
     ]
   },

@@ -31,7 +31,11 @@
       "name": "NewKeyValTable",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:table name}}{${2:colspecs}}"
+        "snippet": "[${3:options%keyvals}]{${1:table name}}{${2:colspecs}}",
+        "keys": [
+          "\\NewKeyValTable,\\begin{KeyValTable},\\ShowCollectedTable,\\ShowKeyValTableFile,\\ShowKeyValTable,\\kvtSet,\\kvtNewTableStyle,\\kvtRenewTableStyle"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -47,7 +51,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}{}[]",
-        "snippet": "[${3:options%keyvals}]{${1:table name}}{${2:colspecs}}[${4:layout}]"
+        "snippet": "[${3:options%keyvals}]{${1:table name}}{${2:colspecs}}[${4:layout}]",
+        "keys": [
+          "\\NewKeyValTable,\\begin{KeyValTable},\\ShowCollectedTable,\\ShowKeyValTableFile,\\ShowKeyValTable,\\kvtSet,\\kvtNewTableStyle,\\kvtRenewTableStyle"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -61,7 +69,11 @@
       "name": "Row",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:col=text,...}}"
+        "snippet": "[${2:options%keyvals}]{${1:col=text,...}}",
+        "keys": [
+          "\\Row,\\CollectRow,\\AddKeyValRow,\\kvtNewRowStyle,\\kvtRenewRowStyle"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -82,7 +94,11 @@
       "name": "CollectRow",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:collection name}}{${2:col=text,...}}"
+        "snippet": "[${3:options%keyvals}]{${1:collection name}}{${2:col=text,...}}",
+        "keys": [
+          "\\Row,\\CollectRow,\\AddKeyValRow,\\kvtNewRowStyle,\\kvtRenewRowStyle"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -96,7 +112,11 @@
       "name": "ShowCollectedTable",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:collection name}}"
+        "snippet": "[${2:options%keyvals}]{${1:collection name}}",
+        "keys": [
+          "\\NewKeyValTable,\\begin{KeyValTable},\\ShowCollectedTable,\\ShowKeyValTableFile,\\ShowKeyValTable,\\kvtSet,\\kvtNewTableStyle,\\kvtRenewTableStyle"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -110,7 +130,11 @@
       "name": "ShowKeyValTableFile",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:table name}}{${2:file}}"
+        "snippet": "[${3:options%keyvals}]{${1:table name}}{${2:file}}",
+        "keys": [
+          "\\NewKeyValTable,\\begin{KeyValTable},\\ShowCollectedTable,\\ShowKeyValTableFile,\\ShowKeyValTable,\\kvtSet,\\kvtNewTableStyle,\\kvtRenewTableStyle"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -126,7 +150,11 @@
       "unusual": true,
       "arg": {
         "format": "{}[]{}",
-        "snippet": "{${1:table name}}[${3:options%keyvals}]{${2:col=text,...}}"
+        "snippet": "{${1:table name}}[${3:options%keyvals}]{${2:col=text,...}}",
+        "keys": [
+          "\\Row,\\CollectRow,\\AddKeyValRow,\\kvtNewRowStyle,\\kvtRenewRowStyle"
+        ],
+        "keyPos": 1
       }
     },
     {
@@ -142,7 +170,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:table name}}"
+        "snippet": "[${2:options%keyvals}]{${1:table name}}",
+        "keys": [
+          "\\NewKeyValTable,\\begin{KeyValTable},\\ShowCollectedTable,\\ShowKeyValTableFile,\\ShowKeyValTable,\\kvtSet,\\kvtNewTableStyle,\\kvtRenewTableStyle"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -322,10 +354,10 @@
       }
     },
     {
-      "name": "kvtRuleCMid(trim)",
+      "name": "kvtRuleCMid",
       "arg": {
-        "format": "{}{}{}",
-        "snippet": "{${1:a-b}}{${2:color1}}{${3:color2}}"
+        "format": "(){}{}{}",
+        "snippet": "(${4:trim}){${1:a-b}}{${2:color1}}{${3:color2}}"
       }
     },
     {
@@ -363,7 +395,6 @@
         "format": "{}",
         "snippet": "{${1:options%keyvals}}",
         "keys": [
-          "\\kvtSet",
           "\\kvtSet",
           "\\NewKeyValTable,\\begin{KeyValTable},\\ShowCollectedTable,\\ShowKeyValTableFile,\\ShowKeyValTable,\\kvtSet,\\kvtNewTableStyle,\\kvtRenewTableStyle"
         ],
@@ -471,7 +502,12 @@
       "name": "KeyValTable",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:table name}}"
+        "snippet": "[${2:options%keyvals}]{${1:table name}}",
+        "keys": [
+          "\\begin{KeyValTable}",
+          "\\NewKeyValTable,\\begin{KeyValTable},\\ShowCollectedTable,\\ShowKeyValTableFile,\\ShowKeyValTable,\\kvtSet,\\kvtNewTableStyle,\\kvtRenewTableStyle"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -485,71 +521,76 @@
   ],
   "keys": {
     "\\usepackage/keyvaltable#c": [
-      "compat=${1:version}\r"
+      "compat=${1:version}"
     ],
     "\\kvtSet": [
+      "align=${1:coltype}",
+      "default=${1:content}",
+      "format=${1:single-arg macro}",
+      "head=${1:content}",
+      "hidden",
       "Row/uncounted",
       "Row/hidden",
-      "Row/align=${1:coltype}\r",
+      "Row/align=${1:coltype}",
       "Row/bg=",
-      "Row/format=${1:cmd}\r",
-      "Row/format*=${1:cmd}\r",
-      "Row/format!=${1:cmd}\r",
+      "Row/format=${1:cmd}",
+      "Row/format*=${1:cmd}",
+      "Row/format!=${1:cmd}",
       "Row/headlike",
       "Row/above=",
       "Row/below=",
       "Row/around=",
-      "Row/style=${1:list of style names}\r",
+      "Row/style=${1:list of style names}",
       "Row/expandonce",
       "Row/expand",
-      "HeadCell/align=${1:coltype}\r",
-      "HeadCell/head=${1:text}\r",
+      "HeadCell/align=${1:coltype}",
+      "HeadCell/head=${1:text}",
       "HeadCell/underline",
-      "ColGroup/span=${1:+ separated columns}\r",
-      "ColGroup/align=${1:coltype}\r",
-      "ColGroup/format=${1:single-arg macro}\r"
+      "ColGroup/span=${1:+ separated columns}",
+      "ColGroup/align=${1:coltype}",
+      "ColGroup/format=${1:single-arg macro}"
     ],
     "\\Row,\\CollectRow,\\AddKeyValRow,\\kvtNewRowStyle,\\kvtRenewRowStyle": [
       "uncounted",
       "hidden",
-      "align=${1:coltype}\r",
+      "align=${1:coltype}",
       "bg=",
-      "format=${1:cmd}\r",
-      "format*=${1:cmd}\r",
-      "format!=${1:cmd}\r",
+      "format=${1:cmd}",
+      "format*=${1:cmd}",
+      "format!=${1:cmd}",
       "headlike",
       "above=",
       "below=",
       "around=",
-      "style=${1:list of style names}\r",
+      "style=${1:list of style names}",
       "expandonce",
       "expand"
     ],
     "\\begin{KeyValTable}": [
       "resume",
       "resume*",
-      "caption=${1:text}\r",
-      "caption/lot=${1:text}\r",
-      "caption/alt=${1:text}\r",
+      "caption=${1:text}",
+      "caption/lot=${1:text}",
+      "caption/alt=${1:text}",
       "label="
     ],
     "\\NewKeyValTable,\\begin{KeyValTable},\\ShowCollectedTable,\\ShowKeyValTableFile,\\ShowKeyValTable,\\kvtSet,\\kvtNewTableStyle,\\kvtRenewTableStyle": [
-      "backend=${1|tabular,tabularx,longtable,xltabular,tabu,longtabu\r|}",
-      "shape=${1|multipage,onepage\r|}",
+      "backend=${1|tabular,tabularx,longtable,xltabular,tabu,longtabu|}",
+      "shape=${1|multipage,onepage|}",
       "width=",
-      "valign=${1|t,c,b\r|}",
-      "halign=${1|l,c,r\r|}",
+      "valign=${1|t,c,b|}",
+      "halign=${1|l,c,r|}",
       "showhead",
       "showrules",
       "norules",
-      "headalign=${1:coltype}\r",
+      "headalign=${1:coltype}",
       "headbg=",
-      "headformat=${1:cmd}\r",
+      "headformat=${1:cmd}",
       "rowbg=",
       "norowbg",
       "nobg",
-      "style=${1:list of style names}\r",
-      "captionpos=${1|t,b\r|}"
+      "style=${1:list of style names}",
+      "captionpos=${1|t,b|}"
     ]
   },
   "args": [

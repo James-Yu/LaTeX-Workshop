@@ -18,7 +18,11 @@
       "name": "makeindex",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\makeindex"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -74,34 +78,34 @@
   "envs": [],
   "keys": {
     "\\usepackage/imakeidx#c": [
-      "xindy\r",
-      "texindy\r",
-      "truexindy\r",
-      "makeindex\r",
-      "noautomatic\r",
-      "nonewpage\r",
-      "splitindex\r",
-      "original\r",
-      "quiet\r"
+      "xindy",
+      "texindy",
+      "truexindy",
+      "makeindex",
+      "noautomatic",
+      "nonewpage",
+      "splitindex",
+      "original",
+      "quiet"
     ],
     "\\makeindex": [
-      "name=${1:name}\r",
-      "title=${1:text}\r",
-      "program=${1|makeindex,xindy,texindy,truexindy\r|}",
-      "options=${1:program options}\r",
+      "name=${1:name}",
+      "title=${1:text}",
+      "program=${1|makeindex,xindy,texindy,truexindy|}",
+      "options=${1:program options}",
       "noautomatic",
       "intoc",
-      "columns=${1:number}\r",
+      "columns=${1:number}",
       "columnsep=",
       "columnseprule"
     ],
     "\\indexsetup": [
-      "level=${1:section cmd}\r",
-      "toclevel=${1:section csname}\r",
+      "level=${1:section cmd}",
+      "toclevel=${1:section csname}",
       "noclearpage",
-      "firstpagestyle=\r",
-      "headers={${1:left marks}}{${2:right marks}}\r",
-      "othercode=${1:code}\r"
+      "firstpagestyle=",
+      "headers={${1:left marks}}{${2:right marks}}",
+      "othercode=${1:code}"
     ]
   },
   "args": [

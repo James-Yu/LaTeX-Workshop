@@ -12,10 +12,10 @@
   ],
   "macros": [
     {
-      "name": "psaxeslabels(x0,y0)(x1,y1)(x2,y2)",
+      "name": "psaxeslabels",
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:x label}}{${2:y label}}"
+        "format": "()()(){}{}",
+        "snippet": "(${3:x0},${4:y0})(${5:x1},${6:y1})(${7:x2},${8:y2}){${1:x label}}{${2:y label}}"
       }
     },
     {
@@ -42,10 +42,10 @@
       }
     },
     {
-      "name": "pstick(x,y)",
+      "name": "pstick",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:ticklength}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:ticklength}}"
       }
     },
     {
@@ -70,7 +70,11 @@
       }
     },
     {
-      "name": "psTick(x,y)"
+      "name": "psTick",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:x},${2:y})"
+      }
     },
     {
       "name": "psTick",
@@ -94,10 +98,10 @@
       }
     },
     {
-      "name": "pssignal(x,y)",
+      "name": "pssignal",
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:node}}{${2:stuff}}"
+        "format": "(){}{}",
+        "snippet": "(${3:x},${4:y}){${1:node}}{${2:stuff}}"
       }
     },
     {
@@ -117,6 +121,13 @@
     {
       "name": "psstem",
       "arg": {
+        "format": "(){}",
+        "snippet": "(${2:x},${3:∆x}){${1:list}}"
+      }
+    },
+    {
+      "name": "psstem",
+      "arg": {
         "format": "[]{}",
         "snippet": "[${2:options%keyvals}]{${1:list}}"
       }
@@ -129,10 +140,10 @@
       }
     },
     {
-      "name": "pszero(x,y)",
+      "name": "pszero",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:node}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:node}}"
       }
     },
     {
@@ -143,10 +154,10 @@
       }
     },
     {
-      "name": "pspole(x,y)",
+      "name": "pspole",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:node}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:node}}"
       }
     },
     {
@@ -157,10 +168,10 @@
       }
     },
     {
-      "name": "pscircleop(x,y)",
+      "name": "pscircleop",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:node}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:node}}"
       }
     },
     {
@@ -171,10 +182,10 @@
       }
     },
     {
-      "name": "psframeop(x,y)",
+      "name": "psframeop",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:node}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:node}}"
       }
     },
     {
@@ -185,10 +196,10 @@
       }
     },
     {
-      "name": "psdisk(x,y)",
+      "name": "psdisk",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:radius}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:radius}}"
       }
     },
     {
@@ -199,10 +210,10 @@
       }
     },
     {
-      "name": "psring(x,y)",
+      "name": "psring",
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:inner radius}}{${2:outer radius}}"
+        "format": "(){}{}",
+        "snippet": "(${3:x},${4:y}){${1:inner radius}}{${2:outer radius}}"
       }
     },
     {
@@ -213,10 +224,10 @@
       }
     },
     {
-      "name": "psdiskc(x,y)(x0,y0)",
+      "name": "psdiskc",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:radius}}"
+        "format": "()(){}",
+        "snippet": "(${2:x},${3:y})(${4:x0},${5:y0}){${1:radius}}"
       }
     },
     {
@@ -227,7 +238,11 @@
       }
     },
     {
-      "name": "psldots(x,y)"
+      "name": "psldots",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:x},${2:y})"
+      }
     },
     {
       "name": "psldots",
@@ -251,10 +266,10 @@
       }
     },
     {
-      "name": "ldotsnode(x,y)",
+      "name": "ldotsnode",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:node}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:node}}"
       }
     },
     {
@@ -279,10 +294,10 @@
       }
     },
     {
-      "name": "psblock(x,y)",
+      "name": "psblock",
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:node}}{${2:stuff}}"
+        "format": "(){}{}",
+        "snippet": "(${3:x},${4:y}){${1:node}}{${2:stuff}}"
       }
     },
     {
@@ -293,10 +308,10 @@
       }
     },
     {
-      "name": "psfblock(x,y)",
+      "name": "psfblock",
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:node}}{${2:stuff}}"
+        "format": "(){}{}",
+        "snippet": "(${3:x},${4:y}){${1:node}}{${2:stuff}}"
       }
     },
     {
@@ -337,10 +352,10 @@
       }
     },
     {
-      "name": "psknob(x,y)",
+      "name": "psknob",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:node}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:node}}"
       }
     },
     {
@@ -351,10 +366,10 @@
       }
     },
     {
-      "name": "psusampler(x,y)",
+      "name": "psusampler",
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:node}}{${2:stuff}}"
+        "format": "(){}{}",
+        "snippet": "(${3:x},${4:y}){${1:node}}{${2:stuff}}"
       }
     },
     {
@@ -365,10 +380,10 @@
       }
     },
     {
-      "name": "psdsampler(x,y)",
+      "name": "psdsampler",
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:node}}{${2:stuff}}"
+        "format": "(){}{}",
+        "snippet": "(${3:x},${4:y}){${1:node}}{${2:stuff}}"
       }
     },
     {
@@ -499,10 +514,10 @@
       }
     },
     {
-      "name": "psBraceUp(A)(B)",
+      "name": "psBraceUp",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:text}}"
+        "format": "()(){}",
+        "snippet": "(${2:A})(${3:B}){${1:text}}"
       }
     },
     {
@@ -513,10 +528,10 @@
       }
     },
     {
-      "name": "psBraceUp*(A)(B)",
+      "name": "psBraceUp*",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:text}}"
+        "format": "()(){}",
+        "snippet": "(${2:A})(${3:B}){${1:text}}"
       }
     },
     {
@@ -527,10 +542,10 @@
       }
     },
     {
-      "name": "psBraceDown(A)(B)",
+      "name": "psBraceDown",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:text}}"
+        "format": "()(){}",
+        "snippet": "(${2:A})(${3:B}){${1:text}}"
       }
     },
     {
@@ -541,10 +556,10 @@
       }
     },
     {
-      "name": "psBraceDown*(A)(B)",
+      "name": "psBraceDown*",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:text}}"
+        "format": "()(){}",
+        "snippet": "(${2:A})(${3:B}){${1:text}}"
       }
     },
     {
@@ -555,10 +570,10 @@
       }
     },
     {
-      "name": "psBraceRight(A)(B)",
+      "name": "psBraceRight",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:text}}"
+        "format": "()(){}",
+        "snippet": "(${2:A})(${3:B}){${1:text}}"
       }
     },
     {
@@ -569,10 +584,10 @@
       }
     },
     {
-      "name": "psBraceRight*(A)(B)",
+      "name": "psBraceRight*",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:text}}"
+        "format": "()(){}",
+        "snippet": "(${2:A})(${3:B}){${1:text}}"
       }
     },
     {
@@ -583,10 +598,10 @@
       }
     },
     {
-      "name": "psBraceLeft(A)(B)",
+      "name": "psBraceLeft",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:text}}"
+        "format": "()(){}",
+        "snippet": "(${2:A})(${3:B}){${1:text}}"
       }
     },
     {
@@ -597,10 +612,10 @@
       }
     },
     {
-      "name": "psBraceLeft*(A)(B)",
+      "name": "psBraceLeft*",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:text}}"
+        "format": "()(){}",
+        "snippet": "(${2:A})(${3:B}){${1:text}}"
       }
     },
     {

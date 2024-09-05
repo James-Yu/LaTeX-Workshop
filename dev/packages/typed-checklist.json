@@ -61,7 +61,11 @@
       "name": "Goal",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:status}}{${2:description%text}}"
+        "snippet": "[${3:options%keyvals}]{${1:status}}{${2:description%text}}",
+        "keys": [
+          "\\Goal,\\Task,\\Artifact,\\Milestone"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -75,7 +79,11 @@
       "name": "Task",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:status}}{${2:description%text}}"
+        "snippet": "[${3:options%keyvals}]{${1:status}}{${2:description%text}}",
+        "keys": [
+          "\\Goal,\\Task,\\Artifact,\\Milestone"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -89,7 +97,11 @@
       "name": "Artifact",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:status}}{${2:description%text}}"
+        "snippet": "[${3:options%keyvals}]{${1:status}}{${2:description%text}}",
+        "keys": [
+          "\\Goal,\\Task,\\Artifact,\\Milestone"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -103,7 +115,11 @@
       "name": "Milestone",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:status}}{${2:description%text}}"
+        "snippet": "[${3:options%keyvals}]{${1:status}}{${2:description%text}}",
+        "keys": [
+          "\\Goal,\\Task,\\Artifact,\\Milestone"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -311,31 +327,35 @@
       "name": "CheckList",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:type}}"
+        "snippet": "[${2:options%keyvals}]{${1:type}}",
+        "keys": [
+          "\\begin{CheckList},\\CheckListSet"
+        ],
+        "keyPos": 0
       }
     }
   ],
   "keys": {
     "\\usepackage/typed-checklist#c": [
       "withAsciilist",
-      "tablepkg=${1|ltablex,tabularx,xltabular\r|}",
+      "tablepkg=${1|ltablex,tabularx,xltabular|}",
       "onecounter",
-      "layout=${1|list,table,hidden\r|}",
-      "input-dates=${1|d.m.y,m/d/y,y-m-d\r|}",
-      "output-dates=${1|d.m.y,m/d/y,y-m-d,d.m.yy,m/d/yy,yy-m-d,d.m.,m/d,m-d,same,datetime\r|}",
+      "layout=${1|list,table,hidden|}",
+      "input-dates=${1|d.m.y,m/d/y,y-m-d|}",
+      "output-dates=${1|d.m.y,m/d/y,y-m-d,d.m.yy,m/d/yy,yy-m-d,d.m.,m/d,m-d,same,datetime|}",
       "strict-dates"
     ],
     "\\begin{CheckList},\\CheckListSet": [
-      "layout=${1|list,table,hidden\r|}",
-      "input-dates=${1|d.m.y,m/d/y,y-m-d\r|}",
-      "output-dates=${1|d.m.y,m/d/y,y-m-d,d.m.yy,m/d/yy,yy-m-d,d.m.,m/d,m-d,same,datetime\r|}",
+      "layout=${1|list,table,hidden|}",
+      "input-dates=${1|d.m.y,m/d/y,y-m-d|}",
+      "output-dates=${1|d.m.y,m/d/y,y-m-d,d.m.yy,m/d/yy,yy-m-d,d.m.,m/d,m-d,same,datetime|}",
       "strict-dates"
     ],
     "\\Goal,\\Task,\\Artifact,\\Milestone": [
-      "who={${1:text}}\r",
-      "deadline=${1:date}\r",
+      "who={${1:text}}",
+      "deadline=${1:date}",
       "label=",
-      "%checklistentryoption\r"
+      "%checklistentryoption"
     ]
   },
   "args": [

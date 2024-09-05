@@ -42,40 +42,48 @@
       "name": "green"
     },
     {
-      "name": "HashWedgeAsSubst(xstart,ystart)(xslope,yslope)",
+      "name": "HashWedgeAsSubst",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:length}}"
+        "format": "()(){}",
+        "snippet": "(${2:xstart},${3:ystart})(${4:xslope},${5:yslope}){${1:length}}"
       }
     },
     {
-      "name": "HashWedgeAsSubstPDF(xstart,ystart)(xslope,yslope)",
+      "name": "HashWedgeAsSubstPDF",
       "unusual": true,
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:length}}"
+        "format": "()(){}",
+        "snippet": "(${2:xstart},${3:ystart})(${4:xslope},${5:yslope}){${1:length}}"
       }
     },
     {
-      "name": "HashWedgeAsSubstX(xstart,ystart)(xend,yend)"
-    },
-    {
-      "name": "HashWedgeAsSubstX(xstart,ystart)(xend,yend)",
+      "name": "HashWedgeAsSubstX",
       "arg": {
-        "format": "[]",
-        "snippet": "[${1:thickness}]"
+        "format": "()()",
+        "snippet": "(${1:xstart},${2:ystart})(${3:xend},${4:yend})"
       }
     },
     {
-      "name": "HashWedgeAsSubstXPDF(xstart,ystart)(xend,yend)",
-      "unusual": true
+      "name": "HashWedgeAsSubstX",
+      "arg": {
+        "format": "()()[]",
+        "snippet": "(${2:xstart},${3:ystart})(${4:xend},${5:yend})[${1:thickness}]"
+      }
     },
     {
-      "name": "HashWedgeAsSubstXPDF(xstart,ystart)(xend,yend)",
+      "name": "HashWedgeAsSubstXPDF",
       "unusual": true,
       "arg": {
-        "format": "[]",
-        "snippet": "[${1:thickness}]"
+        "format": "()()",
+        "snippet": "(${1:xstart},${2:ystart})(${3:xend},${4:yend})"
+      }
+    },
+    {
+      "name": "HashWedgeAsSubstXPDF",
+      "unusual": true,
+      "arg": {
+        "format": "()()[]",
+        "snippet": "(${2:xstart},${3:ystart})(${4:xend},${5:yend})[${1:thickness}]"
       }
     },
     {
@@ -86,17 +94,17 @@
       "name": "magenta"
     },
     {
-      "name": "PutBondLine(xstart,ystart)(xend,yend)",
+      "name": "PutBondLine",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:thickness}}"
+        "format": "()(){}",
+        "snippet": "(${2:xstart},${3:ystart})(${4:xend},${5:yend}){${1:thickness}}"
       }
     },
     {
-      "name": "PutDashedBond(xstart,ystart)(xend,yend)",
+      "name": "PutDashedBond",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:thickness}}"
+        "format": "()(){}",
+        "snippet": "(${2:xstart},${3:ystart})(${4:xend},${5:yend}){${1:thickness}}"
       }
     },
     {
@@ -159,62 +167,78 @@
       "unusual": true
     },
     {
-      "name": "WavyAsSubst(xstart,ystart)(xslope,yslope)",
+      "name": "WavyAsSubst",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:length}}"
+        "format": "()(){}",
+        "snippet": "(${2:xstart},${3:ystart})(${4:xslope},${5:yslope}){${1:length}}"
       }
     },
     {
-      "name": "WavyAsSubstPDF(xstart,ystart)(xslope,yslope)",
+      "name": "WavyAsSubstPDF",
       "unusual": true,
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:length}}"
+        "format": "()(){}",
+        "snippet": "(${2:xstart},${3:ystart})(${4:xslope},${5:yslope}){${1:length}}"
       }
     },
     {
-      "name": "WavyAsSubstX(xstart,ystart)(xend,yend)"
-    },
-    {
-      "name": "WavyAsSubstXPDF(xstart,ystart)(xend,yend)",
-      "unusual": true
-    },
-    {
-      "name": "WedgeAsSubst(xstart,ystart)(xslope,yslope)",
+      "name": "WavyAsSubstX",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:length}}"
+        "format": "()()",
+        "snippet": "(${1:xstart},${2:ystart})(${3:xend},${4:yend})"
       }
     },
     {
-      "name": "WedgeAsSubstPDF(xstart,ystart)(xslope,yslope)",
+      "name": "WavyAsSubstXPDF",
       "unusual": true,
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:length}}"
+        "format": "()()",
+        "snippet": "(${1:xstart},${2:ystart})(${3:xend},${4:yend})"
       }
     },
     {
-      "name": "WedgeAsSubstX(xstart,ystart)(xend,yend)"
-    },
-    {
-      "name": "WedgeAsSubstX(xstart,ystart)(xend,yend)",
+      "name": "WedgeAsSubst",
       "arg": {
-        "format": "[]",
-        "snippet": "[${1:thickness}]"
+        "format": "()(){}",
+        "snippet": "(${2:xstart},${3:ystart})(${4:xslope},${5:yslope}){${1:length}}"
       }
     },
     {
-      "name": "WedgeAsSubstXPDF(xstart,ystart)(xend,yend)",
-      "unusual": true
-    },
-    {
-      "name": "WedgeAsSubstXPDF(xstart,ystart)(xend,yend)",
+      "name": "WedgeAsSubstPDF",
       "unusual": true,
       "arg": {
-        "format": "[]",
-        "snippet": "[${1:thickness}]"
+        "format": "()(){}",
+        "snippet": "(${2:xstart},${3:ystart})(${4:xslope},${5:yslope}){${1:length}}"
+      }
+    },
+    {
+      "name": "WedgeAsSubstX",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:xstart},${2:ystart})(${3:xend},${4:yend})"
+      }
+    },
+    {
+      "name": "WedgeAsSubstX",
+      "arg": {
+        "format": "()()[]",
+        "snippet": "(${2:xstart},${3:ystart})(${4:xend},${5:yend})[${1:thickness}]"
+      }
+    },
+    {
+      "name": "WedgeAsSubstXPDF",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:xstart},${2:ystart})(${3:xend},${4:yend})"
+      }
+    },
+    {
+      "name": "WedgeAsSubstXPDF",
+      "unusual": true,
+      "arg": {
+        "format": "()()[]",
+        "snippet": "(${2:xstart},${3:ystart})(${4:xend},${5:yend})[${1:thickness}]"
       }
     },
     {

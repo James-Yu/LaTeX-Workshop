@@ -140,7 +140,11 @@
       }
     },
     {
-      "name": "curveto(x1,y1)(x2,y2)(x3,y3)"
+      "name": "curveto",
+      "arg": {
+        "format": "()()()",
+        "snippet": "(${1:x1},${2:y1})(${3:x2},${4:y2})(${5:x3},${6:y3})"
+      }
     },
     {
       "name": "cyan"
@@ -238,16 +242,28 @@
       "name": "lightgray"
     },
     {
-      "name": "lineto(coor)"
+      "name": "lineto",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:coor})"
+      }
     },
     {
       "name": "magenta"
     },
     {
-      "name": "movepath(coor)"
+      "name": "movepath",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:coor})"
+      }
     },
     {
-      "name": "moveto(coor)"
+      "name": "moveto",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:coor})"
+      }
     },
     {
       "name": "mrestore"
@@ -256,10 +272,10 @@
       "name": "msave"
     },
     {
-      "name": "multips(x0,y0)(x1,y1)",
+      "name": "multips",
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:int}}{${2:graphics}}"
+        "format": "()(){}{}",
+        "snippet": "(${3:x0},${4:y0})(${5:x1},${6:y1}){${1:int}}{${2:graphics}}"
       }
     },
     {
@@ -270,17 +286,17 @@
       }
     },
     {
-      "name": "multirput(x0,y0)(x1,y1)",
+      "name": "multirput",
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:int}}{${2:stuff}}"
+        "format": "()(){}{}",
+        "snippet": "(${3:x0},${4:y0})(${5:x1},${6:y1}){${1:int}}{${2:stuff}}"
       }
     },
     {
-      "name": "multirput*(x0,y0)(x1,y1)",
+      "name": "multirput*",
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:int}}{${2:stuff}}"
+        "format": "()(){}{}",
+        "snippet": "(${3:x0},${4:y0})(${5:x1},${6:y1}){${1:int}}{${2:stuff}}"
       }
     },
     {
@@ -410,10 +426,18 @@
       "name": "overlaybox"
     },
     {
-      "name": "parabola(x0,y0)(x1,y1)"
+      "name": "parabola",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x0},${2:y0})(${3:x1},${4:y1})"
+      }
     },
     {
-      "name": "parabola*(x0,y0)(x1,y1)"
+      "name": "parabola*",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x0},${2:y0})(${3:x1},${4:y1})"
+      }
     },
     {
       "name": "parabola*",
@@ -469,17 +493,17 @@
       }
     },
     {
-      "name": "psarc(x,y)",
+      "name": "psarc",
       "arg": {
-        "format": "{}{}{}",
-        "snippet": "{${1:radius}}{${2:angleA}}{${3:angleB}}"
+        "format": "(){}{}{}",
+        "snippet": "(${4:x},${5:y}){${1:radius}}{${2:angleA}}{${3:angleB}}"
       }
     },
     {
-      "name": "psarc*(x,y)",
+      "name": "psarc*",
       "arg": {
-        "format": "{}{}{}",
-        "snippet": "{${1:radius}}{${2:angleA}}{${3:angleB}}"
+        "format": "(){}{}{}",
+        "snippet": "(${4:x},${5:y}){${1:radius}}{${2:angleA}}{${3:angleB}}"
       }
     },
     {
@@ -525,7 +549,11 @@
       }
     },
     {
-      "name": "psarcAB(xC,yC)(xA,yA)(xB,yB)"
+      "name": "psarcAB",
+      "arg": {
+        "format": "()()()",
+        "snippet": "(${1:xC},${2:yC})(${3:xA},${4:yA})(${5:xB},${6:yB})"
+      }
     },
     {
       "name": "psarcAB",
@@ -549,17 +577,17 @@
       }
     },
     {
-      "name": "psarcn(x,y)",
+      "name": "psarcn",
       "arg": {
-        "format": "{}{}{}",
-        "snippet": "{${1:radius}}{${2:angleA}}{${3:angleB}}"
+        "format": "(){}{}{}",
+        "snippet": "(${4:x},${5:y}){${1:radius}}{${2:angleA}}{${3:angleB}}"
       }
     },
     {
-      "name": "psarcn*(x,y)",
+      "name": "psarcn*",
       "arg": {
-        "format": "{}{}{}",
-        "snippet": "{${1:radius}}{${2:angleA}}{${3:angleB}}"
+        "format": "(){}{}{}",
+        "snippet": "(${4:x},${5:y}){${1:radius}}{${2:angleA}}{${3:angleB}}"
       }
     },
     {
@@ -605,7 +633,11 @@
       }
     },
     {
-      "name": "psarcnAB(xC,yC)(xA,yA)(xB,yB)"
+      "name": "psarcnAB",
+      "arg": {
+        "format": "()()()",
+        "snippet": "(${1:xC},${2:yC})(${3:xA},${4:yA})(${5:xB},${6:yB})"
+      }
     },
     {
       "name": "psarcnAB",
@@ -633,10 +665,18 @@
       "unusual": true
     },
     {
-      "name": "psbezier(x0,y0)(x1,y1)(x2,y2)(x3,y3)"
+      "name": "psbezier",
+      "arg": {
+        "format": "()()()()",
+        "snippet": "(${1:x0},${2:y0})(${3:x1},${4:y1})(${5:x2},${6:y2})(${7:x3},${8:y3})"
+      }
     },
     {
-      "name": "psbezier*(x0,y0)(x1,y1)(x2,y2)(x3,y3)"
+      "name": "psbezier*",
+      "arg": {
+        "format": "()()()()",
+        "snippet": "(${1:x0},${2:y0})(${3:x1},${4:y1})(${5:x2},${6:y2})(${7:x3},${8:y3})"
+      }
     },
     {
       "name": "psbezier*",
@@ -685,10 +725,18 @@
       "unusual": true
     },
     {
-      "name": "pscbezier(x0,y0)(x1,y1)(x2,y2)(x3,y3)"
+      "name": "pscbezier",
+      "arg": {
+        "format": "()()()()",
+        "snippet": "(${1:x0},${2:y0})(${3:x1},${4:y1})(${5:x2},${6:y2})(${7:x3},${8:y3})"
+      }
     },
     {
-      "name": "pscbezier*(x0,y0)(x1,y1)(x2,y2)(x3,y3)"
+      "name": "pscbezier*",
+      "arg": {
+        "format": "()()()()",
+        "snippet": "(${1:x0},${2:y0})(${3:x1},${4:y1})(${5:x2},${6:y2})(${7:x3},${8:y3})"
+      }
     },
     {
       "name": "pscbezier*",
@@ -733,10 +781,18 @@
       }
     },
     {
-      "name": "psccurve(x1,y1)(xn,yn)"
+      "name": "psccurve",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x1},${2:y1})(${3:xn},${4:yn})"
+      }
     },
     {
-      "name": "psccurve*(x1,y1)(xn,yn)"
+      "name": "psccurve*",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x1},${2:y1})(${3:xn},${4:yn})"
+      }
     },
     {
       "name": "psccurve*",
@@ -781,31 +837,31 @@
       }
     },
     {
-      "name": "pscircle(x0,y0)",
+      "name": "pscircle",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:radius}}"
+        "format": "(){}",
+        "snippet": "(${2:x0},${3:y0}){${1:radius}}"
       }
     },
     {
-      "name": "psCircle(x0,y0)",
+      "name": "psCircle",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:radius}}"
+        "format": "(){}",
+        "snippet": "(${2:x0},${3:y0}){${1:radius}}"
       }
     },
     {
-      "name": "pscircle*(x0,y0)",
+      "name": "pscircle*",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:radius}}"
+        "format": "(){}",
+        "snippet": "(${2:x0},${3:y0}){${1:radius}}"
       }
     },
     {
-      "name": "psCircle*(x0,y0)",
+      "name": "psCircle*",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:radius}}"
+        "format": "(){}",
+        "snippet": "(${2:x0},${3:y0}){${1:radius}}"
       }
     },
     {
@@ -893,7 +949,11 @@
       }
     },
     {
-      "name": "pscircleOA(xO,yO)(xA,yA)"
+      "name": "pscircleOA",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:xO},${2:yO})(${3:xA},${4:yA})"
+      }
     },
     {
       "name": "pscircleOA",
@@ -929,10 +989,18 @@
       "unusual": true
     },
     {
-      "name": "pscurve(x1,y1)(xn,yn)"
+      "name": "pscurve",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x1},${2:y1})(${3:xn},${4:yn})"
+      }
     },
     {
-      "name": "pscurve*(x1,y1)(xn,yn)"
+      "name": "pscurve*",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x1},${2:y1})(${3:xn},${4:yn})"
+      }
     },
     {
       "name": "pscurve*",
@@ -1081,10 +1149,18 @@
       }
     },
     {
-      "name": "psdiamond(x0,y0)(x1,y1)"
+      "name": "psdiamond",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x0},${2:y0})(${3:x1},${4:y1})"
+      }
     },
     {
-      "name": "psdiamond*(x0,y0)(x1,y1)"
+      "name": "psdiamond*",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x0},${2:y0})(${3:x1},${4:y1})"
+      }
     },
     {
       "name": "psdiamond*",
@@ -1101,10 +1177,18 @@
       }
     },
     {
-      "name": "psdot(x1,y1)"
+      "name": "psdot",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:x1},${2:y1})"
+      }
     },
     {
-      "name": "psdot*(x1,y1)"
+      "name": "psdot*",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:x1},${2:y1})"
+      }
     },
     {
       "name": "psdot*",
@@ -1121,10 +1205,18 @@
       }
     },
     {
-      "name": "psdots(x1,y1)(xn,yn)"
+      "name": "psdots",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x1},${2:y1})(${3:xn},${4:yn})"
+      }
     },
     {
-      "name": "psdots*(x1,y1)(xn,yn)"
+      "name": "psdots*",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x1},${2:y1})(${3:xn},${4:yn})"
+      }
     },
     {
       "name": "psdots*",
@@ -1149,10 +1241,18 @@
       "unusual": true
     },
     {
-      "name": "psecurve(x1,y1)(xn,yn)"
+      "name": "psecurve",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x1},${2:y1})(${3:xn},${4:yn})"
+      }
     },
     {
-      "name": "psecurve*(x1,y1)(xn,yn)"
+      "name": "psecurve*",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x1},${2:y1})(${3:xn},${4:yn})"
+      }
     },
     {
       "name": "psecurve*",
@@ -1197,10 +1297,18 @@
       }
     },
     {
-      "name": "psellipse(x0,y0)(x1,y1)"
+      "name": "psellipse",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x0},${2:y0})(${3:x1},${4:y1})"
+      }
     },
     {
-      "name": "psellipse*(x0,y0)(x1,y1)"
+      "name": "psellipse*",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x0},${2:y0})(${3:x1},${4:y1})"
+      }
     },
     {
       "name": "psellipse*",
@@ -1217,17 +1325,17 @@
       }
     },
     {
-      "name": "psellipseAB(x,y)",
+      "name": "psellipseAB",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:half radius}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:half radius}}"
       }
     },
     {
-      "name": "psellipseAB*(x,y)",
+      "name": "psellipseAB*",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:half radius}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:half radius}}"
       }
     },
     {
@@ -1245,17 +1353,17 @@
       }
     },
     {
-      "name": "psellipticarc(x0,y0)(x1,y1)",
+      "name": "psellipticarc",
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:angle1}}{${2:angle2}}"
+        "format": "()(){}{}",
+        "snippet": "(${3:x0},${4:y0})(${5:x1},${6:y1}){${1:angle1}}{${2:angle2}}"
       }
     },
     {
-      "name": "psellipticarc*(x0,y0)(x1,y1)",
+      "name": "psellipticarc*",
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:angle1}}{${2:angle2}}"
+        "format": "()(){}{}",
+        "snippet": "(${3:x0},${4:y0})(${5:x1},${6:y1}){${1:angle1}}{${2:angle2}}"
       }
     },
     {
@@ -1273,17 +1381,17 @@
       }
     },
     {
-      "name": "psellipticarcn(x0,y0)(x1,y1)",
+      "name": "psellipticarcn",
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:angle1}}{${2:angle2}}"
+        "format": "()(){}{}",
+        "snippet": "(${3:x0},${4:y0})(${5:x1},${6:y1}){${1:angle1}}{${2:angle2}}"
       }
     },
     {
-      "name": "psellipticarcn*(x0,y0)(x1,y1)",
+      "name": "psellipticarcn*",
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:angle1}}{${2:angle2}}"
+        "format": "()(){}{}",
+        "snippet": "(${3:x0},${4:y0})(${5:x1},${6:y1}){${1:angle1}}{${2:angle2}}"
       }
     },
     {
@@ -1301,17 +1409,17 @@
       }
     },
     {
-      "name": "psellipticwedge(x0,y0)(x1,y1)",
+      "name": "psellipticwedge",
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:angle1}}{${2:angle2}}"
+        "format": "()(){}{}",
+        "snippet": "(${3:x0},${4:y0})(${5:x1},${6:y1}){${1:angle1}}{${2:angle2}}"
       }
     },
     {
-      "name": "psellipticwedge*(x0,y0)(x1,y1)",
+      "name": "psellipticwedge*",
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:angle1}}{${2:angle2}}"
+        "format": "()(){}{}",
+        "snippet": "(${3:x0},${4:y0})(${5:x1},${6:y1}){${1:angle1}}{${2:angle2}}"
       }
     },
     {
@@ -1347,10 +1455,18 @@
       }
     },
     {
-      "name": "psframe(x0,y0)(x1,y1)"
+      "name": "psframe",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x0},${2:y0})(${3:x1},${4:y1})"
+      }
     },
     {
-      "name": "psframe*(x0,y0)(x1,y1)"
+      "name": "psframe*",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x0},${2:y0})(${3:x1},${4:y1})"
+      }
     },
     {
       "name": "psframe*",
@@ -1423,7 +1539,11 @@
       }
     },
     {
-      "name": "psgrid(x0,y0)(x1,y1)(x2,y2)"
+      "name": "psgrid",
+      "arg": {
+        "format": "()()()",
+        "snippet": "(${1:x0},${2:y0})(${3:x1},${4:y1})(${5:x2},${6:y2})"
+      }
     },
     {
       "name": "psgridcolor",
@@ -1460,22 +1580,46 @@
       "name": "pslbrace"
     },
     {
-      "name": "psline(x0,y0)(x1,y1)"
+      "name": "psline",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x0},${2:y0})(${3:x1},${4:y1})"
+      }
     },
     {
-      "name": "psLine(x0,y0)(x1,y1)"
+      "name": "psLine",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x0},${2:y0})(${3:x1},${4:y1})"
+      }
     },
     {
-      "name": "psLine(x1,y1)"
+      "name": "psLine",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:x1},${2:y1})"
+      }
     },
     {
-      "name": "psline*(x0,y0)(x1,y1)"
+      "name": "psline*",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x0},${2:y0})(${3:x1},${4:y1})"
+      }
     },
     {
-      "name": "psLine*(x0,y0)(x1,y1)"
+      "name": "psLine*",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x0},${2:y0})(${3:x1},${4:y1})"
+      }
     },
     {
-      "name": "psLine*(x1,y1)"
+      "name": "psLine*",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:x1},${2:y1})"
+      }
     },
     {
       "name": "psline*",
@@ -1627,7 +1771,11 @@
       }
     },
     {
-      "name": "psPline(x1,y1)(x2,y2)(x3,y3)"
+      "name": "psPline",
+      "arg": {
+        "format": "()()()",
+        "snippet": "(${1:x1},${2:y1})(${3:x2},${4:y2})(${5:x3},${6:y3})"
+      }
     },
     {
       "name": "psPline",
@@ -1637,10 +1785,18 @@
       }
     },
     {
-      "name": "pspolygon(x0,y0)(x1,y1)(x2,y2)"
+      "name": "pspolygon",
+      "arg": {
+        "format": "()()()",
+        "snippet": "(${1:x0},${2:y0})(${3:x1},${4:y1})(${5:x2},${6:y2})"
+      }
     },
     {
-      "name": "pspolygon*(x0,y0)(x1,y1)(x2,y2)"
+      "name": "pspolygon*",
+      "arg": {
+        "format": "()()()",
+        "snippet": "(${1:x0},${2:y0})(${3:x1},${4:y1})(${5:x2},${6:y2})"
+      }
     },
     {
       "name": "pspolygon*",
@@ -1663,31 +1819,31 @@
       "name": "psresetColor"
     },
     {
-      "name": "psRing(x,y)",
+      "name": "psRing",
       "arg": {
-        "format": "[]{}{}",
-        "snippet": "[${3:start,end}]{${1:inner radius}}{${2:outer radius}}"
+        "format": "()[]{}{}",
+        "snippet": "(${4:x},${5:y})[${3:start,end}]{${1:inner radius}}{${2:outer radius}}"
       }
     },
     {
-      "name": "psRing(x,y)",
+      "name": "psRing",
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:inner radius}}{${2:outer radius}}"
+        "format": "(){}{}",
+        "snippet": "(${3:x},${4:y}){${1:inner radius}}{${2:outer radius}}"
       }
     },
     {
-      "name": "psRing*(x,y)",
+      "name": "psRing*",
       "arg": {
-        "format": "[]{}{}",
-        "snippet": "[${3:start,end}]{${1:inner radius}}{${2:outer radius}}"
+        "format": "()[]{}{}",
+        "snippet": "(${4:x},${5:y})[${3:start,end}]{${1:inner radius}}{${2:outer radius}}"
       }
     },
     {
-      "name": "psRing*(x,y)",
+      "name": "psRing*",
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:inner radius}}{${2:outer radius}}"
+        "format": "(){}{}",
+        "snippet": "(${3:x},${4:y}){${1:inner radius}}{${2:outer radius}}"
       }
     },
     {
@@ -1730,10 +1886,10 @@
       }
     },
     {
-      "name": "psscaleboxto(x,y)",
+      "name": "psscaleboxto",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:stuff}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:stuff}}"
       }
     },
     {
@@ -1818,17 +1974,17 @@
       "unusual": true
     },
     {
-      "name": "psTextFrame(x1,y1)(x2,y2)",
+      "name": "psTextFrame",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:text}}"
+        "format": "()(){}",
+        "snippet": "(${2:x1},${3:y1})(${4:x2},${5:y2}){${1:text}}"
       }
     },
     {
-      "name": "psTextFrame*(x1,y1)(x2,y2)",
+      "name": "psTextFrame*",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:text}}"
+        "format": "()(){}",
+        "snippet": "(${2:x1},${3:y1})(${4:x2},${5:y2}){${1:text}}"
       }
     },
     {
@@ -1866,10 +2022,18 @@
       "unusual": true
     },
     {
-      "name": "pstriangle(x0,y0)(x1,y1)"
+      "name": "pstriangle",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x0},${2:y0})(${3:x1},${4:y1})"
+      }
     },
     {
-      "name": "pstriangle*(x0,y0)(x1,y1)"
+      "name": "pstriangle*",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x0},${2:y0})(${3:x1},${4:y1})"
+      }
     },
     {
       "name": "pstriangle*",
@@ -1963,17 +2127,17 @@
       "name": "psverbboxtrue"
     },
     {
-      "name": "pswedge(x0,y0)",
+      "name": "pswedge",
       "arg": {
-        "format": "{}{}{}",
-        "snippet": "{${1:radius}}{${2:angle1}}{${3:angle2}}"
+        "format": "(){}{}{}",
+        "snippet": "(${4:x0},${5:y0}){${1:radius}}{${2:angle1}}{${3:angle2}}"
       }
     },
     {
-      "name": "pswedge*(x0,y0)",
+      "name": "pswedge*",
       "arg": {
-        "format": "{}{}{}",
-        "snippet": "{${1:radius}}{${2:angle1}}{${3:angle2}}"
+        "format": "(){}{}{}",
+        "snippet": "(${4:x0},${5:y0}){${1:radius}}{${2:angle1}}{${3:angle2}}"
       }
     },
     {
@@ -2006,20 +2170,28 @@
       }
     },
     {
-      "name": "qdisk(coor)",
+      "name": "qdisk",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:radius}}"
+        "format": "(){}",
+        "snippet": "(${2:coor}){${1:radius}}"
       }
     },
     {
-      "name": "qline(coor0)(coor1)"
+      "name": "qline",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:coor0})(${2:coor1})"
+      }
     },
     {
       "name": "radians"
     },
     {
-      "name": "rcurveto(x1,y1)(x2,y2)(x3,y3)"
+      "name": "rcurveto",
+      "arg": {
+        "format": "()()()",
+        "snippet": "(${1:x1},${2:y1})(${3:x2},${4:y2})(${5:x3},${6:y3})"
+      }
     },
     {
       "name": "red"
@@ -2032,10 +2204,18 @@
       "name": "reversepath"
     },
     {
-      "name": "rlineto(coor)"
+      "name": "rlineto",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:coor})"
+      }
     },
     {
-      "name": "rmoveto(coor)"
+      "name": "rmoveto",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:coor})"
+      }
     },
     {
       "name": "rotate",
@@ -2066,33 +2246,33 @@
       }
     },
     {
-      "name": "rput(x,y)",
+      "name": "rput",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:stuff}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:stuff}}"
       }
     },
     {
-      "name": "rput(x,y)",
+      "name": "rput",
       "unusual": true,
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:stuff}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:stuff}}"
       }
     },
     {
-      "name": "rput*(x,y)",
+      "name": "rput*",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:stuff}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:stuff}}"
       }
     },
     {
-      "name": "rput*(x,y)",
+      "name": "rput*",
       "unusual": true,
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:stuff}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:stuff}}"
       }
     },
     {
@@ -2231,7 +2411,11 @@
       "name": "swapaxes"
     },
     {
-      "name": "translate(coor)"
+      "name": "translate",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:coor})"
+      }
     },
     {
       "name": "uput*",

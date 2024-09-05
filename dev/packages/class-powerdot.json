@@ -172,7 +172,11 @@
       "name": "tableofcontents",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\tableofcontents"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -200,7 +204,11 @@
       "name": "twocolumn",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:left%text}}{${2:right%text}}"
+        "snippet": "[${3:options%keyvals}]{${1:left%text}}{${2:right%text}}",
+        "keys": [
+          "\\twocolumn"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -284,74 +292,74 @@
   ],
   "keys": {
     "\\documentclass/powerdot#c": [
-      "mode=${1|present,print,handout\r|}",
-      "nohandoutpagebreaks\r",
-      "nohandoutframes\r",
-      "paper=${1|screen,a4paper,letterpaper,smartboard,169\r|}",
-      "orient=${1|landscape,portrait\r|}",
-      "display=${1|slides,slidesnotes,notes\r|}",
-      "size=${1|8pt,9pt,10pt,11pt,12pt,14pt,17pt,20pt\r|}",
-      "style=${1:style name}\r",
-      "fleqn\r",
-      "leqno\r",
-      "nopsheader\r",
+      "mode=${1|present,print,handout|}",
+      "nohandoutpagebreaks",
+      "nohandoutframes",
+      "paper=${1|screen,a4paper,letterpaper,smartboard,169|}",
+      "orient=${1|landscape,portrait|}",
+      "display=${1|slides,slidesnotes,notes|}",
+      "size=${1|8pt,9pt,10pt,11pt,12pt,14pt,17pt,20pt|}",
+      "style=${1:style name}",
+      "fleqn",
+      "leqno",
+      "nopsheader",
       "hlentries",
       "hlsections",
-      "pauseslide\r",
-      "clock\r"
+      "pauseslide",
+      "clock"
     ],
     "\\pdsetup": [
-      "theslide=${1:code}\r",
-      "thenote=${1:code}\r",
-      "counters={${1:counter1,counter2,...}}\r",
-      "list={${1:enumitem options}}\r",
-      "enumerate={${1:enumitem options}}\r",
-      "itemize={${1:enumitem options}}\r",
-      "clockformat=${1:format}\r",
-      "clockrefresh=${1:milliseconds}\r"
+      "theslide=${1:code}",
+      "thenote=${1:code}",
+      "counters={${1:counter1,counter2,...}}",
+      "list={${1:enumitem options}}",
+      "enumerate={${1:enumitem options}}",
+      "itemize={${1:enumitem options}}",
+      "clockformat=${1:format}",
+      "clockrefresh=${1:milliseconds}"
     ],
     "\\pdsetup,\\maketitle,\\begin{titleslide},\\begin{basic},\\begin{wideslide},\\begin{slide},\\begin{sectionslide},\\begin{sectionwideslide},\\section": [
-      "palette=${1:palette name}\r",
-      "lf=${1:text}\r",
-      "cf=${1:text}\r",
-      "rf=${1:text}\r",
-      "trans=${1:transition}\r",
-      "method=${1|normal,direct,file\r|}",
-      "logohook=${1|tl,t,tr,r,Br,br,b,bl,Bl,l,B,c\r|}",
-      "logopos={${1:width,height}}\r",
-      "logocmd={${1:code}}\r",
+      "palette=${1:palette name}",
+      "lf=${1:text}",
+      "cf=${1:text}",
+      "rf=${1:text}",
+      "trans=${1:transition}",
+      "method=${1|normal,direct,file|}",
+      "logohook=${1|tl,t,tr,r,Br,br,b,bl,Bl,l,B,c|}",
+      "logopos={${1:width,height}}",
+      "logocmd={${1:code}}",
       "randomdots",
-      "dmindots=${1:integer}\r",
-      "dmaxdots=${1:integer}\r",
+      "dmindots=${1:integer}",
+      "dmaxdots=${1:integer}",
       "dminsize=",
       "dmaxsize=",
       "dminwidth=",
       "dmaxwidth=",
       "dminheight=",
       "dmaxheight=",
-      "dbright=${1:integer}\r",
-      "dprop={${1:pstricks options}}\r"
+      "dbright=${1:integer}",
+      "dprop={${1:pstricks options}}"
     ],
     "\\begin{titleslide},\\begin{basic},\\begin{wideslide},\\begin{slide},\\begin{sectionslide},\\begin{sectionwideslide},\\section": [
-      "toc=${1:TOC entry}\r",
-      "bm=${1:bookmark entry}\r"
+      "toc=${1:TOC entry}",
+      "bm=${1:bookmark entry}"
     ],
     "\\section": [
-      "tocsection=${1|true,false,hidden\r|}",
+      "tocsection=${1|true,false,hidden|}",
       "slide",
-      "template=${1:template name}\r"
+      "template=${1:template name}"
     ],
     "\\tableofcontents": [
-      "type=${1|0,1\r|}",
-      "content=${1|all,sections,currentsection,future,futuresections\r|}"
+      "type=${1|0,1|}",
+      "content=${1|all,sections,currentsection,future,futuresections|}"
     ],
     "\\twocolumn": [
       "lineheight=",
-      "lineprop={${1:pstricks options}}\r",
+      "lineprop={${1:pstricks options}}",
       "lfrheight=",
-      "lfrprop={${1:pstricks options}}\r",
+      "lfrprop={${1:pstricks options}}",
       "rfrheight=",
-      "rfrprop={${1:pstricks options}}\r",
+      "rfrprop={${1:pstricks options}}",
       "lcolwidth=",
       "rcolwidth=",
       "frsep=",

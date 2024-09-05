@@ -28,7 +28,11 @@
       "name": "HGame",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:moves}}"
+        "snippet": "[${2:options%keyvals}]{${1:moves}}",
+        "keys": [
+          "\\HGame"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -42,7 +46,11 @@
       "name": "HStoneGroup",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:moves}}"
+        "snippet": "[${2:options%keyvals}]{${1:moves}}",
+        "keys": [
+          "\\HStoneGroup"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -84,7 +92,11 @@
       "name": "HHexGroup",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:hexes}}"
+        "snippet": "[${2:options%keyvals}]{${1:hexes}}",
+        "keys": [
+          "\\HHexGroup"
+        ],
+        "keyPos": 0
       }
     }
   ],
@@ -96,7 +108,11 @@
       "name": "HavannahBoard",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{HavannahBoard},\\begin{InnerHavannahBoard}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -106,7 +122,11 @@
       "name": "HexBoard",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{HexBoard},\\begin{InnerHexBoard}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -116,7 +136,11 @@
       "name": "InnerHavannahBoard",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{InnerHavannahBoard},\\begin{InnerHexBoard}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -126,43 +150,47 @@
       "name": "InnerHexBoard",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{InnerHavannahBoard},\\begin{InnerHexBoard}"
+        ],
+        "keyPos": 0
       }
     }
   ],
   "keys": {
     "\\begin{HavannahBoard},\\begin{InnerHavannahBoard}": [
-      "board size=${1:integer}\r",
-      "coordinate style=${1|little golem,classical\r|}",
+      "board size=${1:integer}",
+      "coordinate style=${1|little golem,classical|}",
       "hex height=",
       "show coordinates",
       "show hexes"
     ],
     "\\begin{HexBoard},\\begin{InnerHexBoard}": [
-      "board size=${1:integer}\r",
-      "top left color=${1|white,black\r|}",
+      "board size=${1:integer}",
+      "top left color=${1|white,black|}",
       "hex height=",
       "show coordinates",
       "show hexes"
     ],
     "\\begin{InnerHavannahBoard},\\begin{InnerHexBoard}": [
-      "prefix=\r",
-      "x=\r",
-      "y=\r"
+      "prefix=",
+      "x=",
+      "y="
     ],
     "\\HGame": [
-      "first move label=\r",
-      "first player=${1|white,black\r|}",
+      "first move label=",
+      "first player=${1|white,black|}",
       "numbered moves",
-      "relative stone size=\r"
+      "relative stone size="
     ],
     "\\HStoneGroup": [
-      "color=${1|white,black,transparent\r|}",
-      "label=\r",
-      "relative stone size=\r"
+      "color=${1|white,black,transparent|}",
+      "label=",
+      "relative stone size="
     ],
     "\\HHexGroup": [
-      "label=\r"
+      "label="
     ]
   },
   "args": []

@@ -19,7 +19,11 @@
       "name": "QueryFiles",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:spec}}{${2:function}}"
+        "snippet": "[${3:options%keyvals}]{${1:spec}}{${2:function}}",
+        "keys": [
+          "\\QueryFiles,\\QueryFilesTF"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -33,20 +37,24 @@
       "name": "QueryFilesTF",
       "arg": {
         "format": "[]{}{}{}{}",
-        "snippet": "[${5:options%keyvals}]{${1:spec}}{${2:function}}{${3:pre code}}{${4:empty list code}}"
+        "snippet": "[${5:options%keyvals}]{${1:spec}}{${2:function}}{${3:pre code}}{${4:empty list code}}",
+        "keys": [
+          "\\QueryFiles,\\QueryFilesTF"
+        ],
+        "keyPos": 0
       }
     }
   ],
   "envs": [],
   "keys": {
     "\\QueryFiles,\\QueryFilesTF": [
-      "recursive\r",
-      "ignore-case\r",
-      "reverse\r",
-      "pattern\r",
-      "sort=${1|date,name\r|}",
-      "type=${1|d,f\r|}",
-      "exclude=${1:Lua pattern}\r"
+      "recursive",
+      "ignore-case",
+      "reverse",
+      "pattern",
+      "sort=${1|date,name|}",
+      "type=${1|d,f|}",
+      "exclude=${1:Lua pattern}"
     ]
   },
   "args": []

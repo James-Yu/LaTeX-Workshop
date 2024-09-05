@@ -115,7 +115,11 @@
       "name": "singlemark",
       "arg": {
         "format": "[]{}{}{}",
-        "snippet": "[${4:options%keyvals}]{${1:question%text}}{${2:lower%text}}{${3:upper%text}}"
+        "snippet": "[${4:options%keyvals}]{${1:question%text}}{${2:lower%text}}{${3:upper%text}}",
+        "keys": [
+          "\\singlemark,\\singlemarkother"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -129,7 +133,11 @@
       "name": "singlemarkother",
       "arg": {
         "format": "[]{}{}{}",
-        "snippet": "[${4:options%keyvals}]{${1:question%text}}{${2:lower%text}}{${3:upper%text}}"
+        "snippet": "[${4:options%keyvals}]{${1:question%text}}{${2:lower%text}}{${3:upper%text}}",
+        "keys": [
+          "\\singlemark,\\singlemarkother"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -143,7 +151,11 @@
       "name": "textbox",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:height}}{${2:question}}"
+        "snippet": "[${3:options%keyvals}]{${1:height}}{${2:question}}",
+        "keys": [
+          "\\textbox,\\textbox*"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -157,7 +169,11 @@
       "name": "textbox*",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:height}}{${2:question}}"
+        "snippet": "[${3:options%keyvals}]{${1:height}}{${2:question}}",
+        "keys": [
+          "\\textbox,\\textbox*"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -171,7 +187,11 @@
       "name": "choiceitem",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:text}}"
+        "snippet": "[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\choiceitem,\\choicemulticolitem"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -185,7 +205,11 @@
       "name": "choicemulticolitem",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:cols}}{${2:text}}"
+        "snippet": "[${3:options%keyvals}]{${1:cols}}{${2:text}}",
+        "keys": [
+          "\\choiceitem,\\choicemulticolitem"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -199,7 +223,11 @@
       "name": "choiceitemtext",
       "arg": {
         "format": "[]{}{}{}",
-        "snippet": "[${4:options%keyvals}]{${1:height}}{${2:cols}}{${3:text}}"
+        "snippet": "[${4:options%keyvals}]{${1:height}}{${2:cols}}{${3:text}}",
+        "keys": [
+          "\\choiceitemtext"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -229,7 +257,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:text}}"
+        "snippet": "[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\groupaddchoice"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -245,7 +277,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:text}}"
+        "snippet": "[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\choiceline"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -349,7 +385,11 @@
       "name": "questionnaire",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{questionnaire}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -363,7 +403,11 @@
       "name": "choicequestion",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:text}}"
+        "snippet": "[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\begin{choicequestion}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -377,7 +421,11 @@
       "name": "optionquestion",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:text}}"
+        "snippet": "[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\begin{optionquestion}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -394,7 +442,11 @@
       "name": "markgroup",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:text}}"
+        "snippet": "[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\begin{markgroup}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -408,7 +460,12 @@
       "name": "choicegroup",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:text}}"
+        "snippet": "[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\begin{choicegroup},\\begin{optiongroup}",
+          "\\begin{choicegroup}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -422,78 +479,82 @@
       "name": "optiongroup",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:text}}"
+        "snippet": "[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\begin{choicegroup},\\begin{optiongroup}"
+        ],
+        "keyPos": 0
       }
     }
   ],
   "keys": {
     "\\begin{questionnaire}": [
-      "noinfo\r"
+      "noinfo"
     ],
     "\\singlemark,\\singlemarkother": [
-      "var=${1:variable}\r",
-      "count=${1:integer}\r"
+      "var=${1:variable}",
+      "count=${1:integer}"
     ],
     "\\textbox,\\textbox*": [
-      "text=${1:text}\r",
-      "var=${1:variable}\r"
+      "text=${1:text}",
+      "var=${1:variable}"
     ],
     "\\begin{choicequestion}": [
-      "cols=${1:integer}\r",
+      "cols=${1:integer}",
       "colsep=",
       "rowsep=",
-      "var=${1:variable}\r",
-      "text=${1:text}\r",
-      "type=${1|multichoice,singlechoice\r|}",
-      "multichoice\r",
-      "singlechoice\r"
+      "var=${1:variable}",
+      "text=${1:text}",
+      "type=${1|multichoice,singlechoice|}",
+      "multichoice",
+      "singlechoice"
     ],
     "\\choiceitem,\\choicemulticolitem": [
-      "var=${1:variable}\r",
-      "val=${1:value}\r",
-      "text=${1:text}\r"
+      "var=${1:variable}",
+      "val=${1:value}",
+      "text=${1:text}"
     ],
     "\\choiceitemtext": [
-      "var=${1:variable}\r",
-      "text=${1:text}\r"
+      "var=${1:variable}",
+      "text=${1:text}"
     ],
     "\\begin{optionquestion}": [
-      "cols=${1:integer}\r",
+      "cols=${1:integer}",
       "colsep=",
       "rowsep=",
-      "var=${1:variable}\r",
-      "text=${1:text}\r"
+      "var=${1:variable}",
+      "text=${1:text}"
     ],
     "\\begin{markgroup}": [
-      "count=${1:integer}\r",
-      "align=${1:string}\r",
-      "other\r"
+      "count=${1:integer}",
+      "align=${1:string}",
+      "other"
     ],
     "\\begin{choicegroup},\\begin{optiongroup}": [
-      "align=\r",
+      "align=",
       "noalign",
       "horizontal",
-      "layouter=${1|default,rotated\r|}",
-      "angle=${1:angle}\r",
+      "layouter=${1|default,rotated|}",
+      "angle=${1:angle}",
       "vertical",
-      "type=${1|multichoice,singlechoice\r|}",
-      "multichoice\r",
-      "singlechoice\r"
+      "type=${1|multichoice,singlechoice|}",
+      "multichoice",
+      "singlechoice"
     ],
     "\\begin{choicegroup}": [
-      "type=${1|multichoice,singlechoice\r|}",
-      "multichoice\r",
-      "singlechoice\r"
+      "type=${1|multichoice,singlechoice|}",
+      "multichoice",
+      "singlechoice"
     ],
     "\\groupaddchoice": [
-      "text=${1:text}\r",
-      "var=${1:variable}\r",
-      "val=${1:value}\r"
+      "text=${1:text}",
+      "var=${1:variable}",
+      "val=${1:value}"
     ],
     "\\choiceline": [
-      "text=${1:text}\r",
-      "var=${1:variable}\r",
-      "range=${1:list}\r"
+      "text=${1:text}",
+      "var=${1:variable}",
+      "range=${1:list}"
     ]
   },
   "args": []

@@ -52,7 +52,11 @@
       "name": "pdfcomment",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:comment%text}}"
+        "snippet": "[${2:options%keyvals}]{${1:comment%text}}",
+        "keys": [
+          "\\pdfcomment,\\pdfmargincomment"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -66,7 +70,11 @@
       "name": "pdfmargincomment",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:comment%text}}"
+        "snippet": "[${2:options%keyvals}]{${1:comment%text}}",
+        "keys": [
+          "\\pdfcomment,\\pdfmargincomment"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -104,7 +112,11 @@
       "name": "pdfmarkupcomment",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:markup text%text}}{${2:comment%text}}"
+        "snippet": "[${3:options%keyvals}]{${1:markup text%text}}{${2:comment%text}}",
+        "keys": [
+          "\\pdfmarkupcomment"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -118,7 +130,11 @@
       "name": "pdffreetextcomment",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:comment%text}}"
+        "snippet": "[${2:options%keyvals}]{${1:comment%text}}",
+        "keys": [
+          "\\pdffreetextcomment"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -132,7 +148,11 @@
       "name": "pdfsquarecomment",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:comment%text}}"
+        "snippet": "[${2:options%keyvals}]{${1:comment%text}}",
+        "keys": [
+          "\\pdfsquarecomment,\\pdfcirclecomment"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -146,7 +166,11 @@
       "name": "pdfcirclecomment",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:comment%text}}"
+        "snippet": "[${2:options%keyvals}]{${1:comment%text}}",
+        "keys": [
+          "\\pdfsquarecomment,\\pdfcirclecomment"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -160,7 +184,11 @@
       "name": "pdflinecomment",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:comment%text}}"
+        "snippet": "[${2:options%keyvals}]{${1:comment%text}}",
+        "keys": [
+          "\\pdflinecomment"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -174,7 +202,11 @@
       "name": "pdftooltip",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:object}}{${2:comment%text}}"
+        "snippet": "[${3:options%keyvals}]{${1:object}}{${2:comment%text}}",
+        "keys": [
+          "\\pdftooltip"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -196,7 +228,11 @@
       "name": "listofpdfcomments",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\listofpdfcomments"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -244,234 +280,238 @@
       "name": "pdfsidelinecomment",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{pdfsidelinecomment}"
+        ],
+        "keyPos": 0
       }
     }
   ],
   "keys": {
     "\\usepackage/pdfcomment#c": [
-      "final\r",
-      "draft\r",
-      "dvipdfmx\r",
-      "version=${1|1,2\r|}",
-      "subject=${1:subject}\r",
-      "author=${1:author}\r",
-      "opacity=${1:factor}\r",
-      "icon=${1|Comment,Key,Note,Help,NewParagraph,Paragraph,Insert,Check,Circle,Cross,Star,RightArrow,RightPointer,UpArrow,UpLeftArrow,CrossHairs\r|}",
-      "deadline=${1:deadline}\r",
-      "color=${1:color}\r",
-      "icolor=${1:color}\r",
+      "final",
+      "draft",
+      "dvipdfmx",
+      "version=${1|1,2|}",
+      "subject=${1:subject}",
+      "author=${1:author}",
+      "opacity=${1:factor}",
+      "icon=${1|Comment,Key,Note,Help,NewParagraph,Paragraph,Insert,Check,Circle,Cross,Star,RightArrow,RightPointer,UpArrow,UpLeftArrow,CrossHairs|}",
+      "deadline=${1:deadline}",
+      "color=${1:color}",
+      "icolor=${1:color}",
       "open",
       "hspace=",
-      "type=${1|freetext,callout,typewriter,line,polyline,polygon\r|}",
-      "font=${1:font}\r",
-      "fontsize=${1:fontsize}\r",
-      "fontcolor=${1:color}\r",
-      "line={${1:coordinates}}\r",
-      "linewidth=${1:linewidth}\r",
-      "linebegin={${1:arrow type}}\r",
-      "lineend={${1:arrow type}}\r",
+      "type=${1|freetext,callout,typewriter,line,polyline,polygon|}",
+      "font=${1:font}",
+      "fontsize=${1:fontsize}",
+      "fontcolor=${1:color}",
+      "line={${1:coordinates}}",
+      "linewidth=${1:linewidth}",
+      "linebegin={${1:arrow type}}",
+      "lineend={${1:arrow type}}",
       "linesep=",
-      "borderstyle=${1|solid,dashed\r|}",
-      "dashstyle={${1:thickness} ${2:space}}\r",
-      "bse=${1|none,cloudy\r|}",
-      "bsei=${1:number}\r",
-      "caption=${1|none,inline,top\r|}",
+      "borderstyle=${1|solid,dashed|}",
+      "dashstyle={${1:thickness} ${2:space}}",
+      "bse=${1|none,cloudy|}",
+      "bsei=${1:number}",
+      "caption=${1|none,inline,top|}",
       "captionhoffset=",
       "captionvoffset=",
       "voffset=",
       "hoffset=",
       "width=",
       "height=",
-      "markup=${1|Highlight,Underline,Squiggly,StrikeOut\r|}",
+      "markup=${1|Highlight,Underline,Squiggly,StrikeOut|}",
       "disable",
-      "date=${1:date}\r",
-      "timezone=${1:timezone}\r",
-      "avatar=${1:avatar}\r",
-      "style=${1:style}\r",
+      "date=${1:date}",
+      "timezone=${1:timezone}",
+      "avatar=${1:avatar}",
+      "style=${1:style}",
       "printSOfinal"
     ],
     "\\begin{pdfsidelinecomment}": [
-      "avatar=${1:avatar}\r",
-      "style=${1:style}\r",
-      "subject=${1:subject}\r",
-      "author=${1:author}\r",
-      "color=${1:color}\r",
-      "icolor=${1:color}\r",
-      "opacity=${1:factor}\r",
-      "linewidth=${1:linewidth}\r",
-      "linebegin={${1:arrow type}}\r",
-      "lineend={${1:arrow type}}\r",
+      "avatar=${1:avatar}",
+      "style=${1:style}",
+      "subject=${1:subject}",
+      "author=${1:author}",
+      "color=${1:color}",
+      "icolor=${1:color}",
+      "opacity=${1:factor}",
+      "linewidth=${1:linewidth}",
+      "linebegin={${1:arrow type}}",
+      "lineend={${1:arrow type}}",
       "linesep=",
-      "borderstyle=${1|solid,dashed\r|}",
-      "dashstyle={${1:thickness} ${2:space}}\r",
-      "caption=${1|none,inline,top\r|}",
+      "borderstyle=${1|solid,dashed|}",
+      "dashstyle={${1:thickness} ${2:space}}",
+      "caption=${1|none,inline,top|}",
       "captionhoffset=",
       "captionvoffset=",
       "disable",
-      "date=${1:date}\r",
-      "timezone=${1:timezone}\r"
+      "date=${1:date}",
+      "timezone=${1:timezone}"
     ],
     "\\pdfcomment,\\pdfmargincomment": [
-      "avatar=${1:avatar}\r",
-      "style=${1:style}\r",
-      "subject=${1:subject}\r",
-      "author=${1:author}\r",
-      "icon=${1|Comment,Key,Note,Help,NewParagraph,Paragraph,Insert,Check,Circle,Cross,Star,RightArrow,RightPointer,UpArrow,UpLeftArrow,CrossHairs\r|}",
-      "color=${1:color}\r",
-      "opacity=\r",
+      "avatar=${1:avatar}",
+      "style=${1:style}",
+      "subject=${1:subject}",
+      "author=${1:author}",
+      "icon=${1|Comment,Key,Note,Help,NewParagraph,Paragraph,Insert,Check,Circle,Cross,Star,RightArrow,RightPointer,UpArrow,UpLeftArrow,CrossHairs|}",
+      "color=${1:color}",
+      "opacity=",
       "open",
       "hspace=",
       "voffset=",
       "hoffset=",
       "disable",
-      "date=${1:date}\r",
-      "timezone=${1:timezone}\r",
-      "id=\r",
-      "deadline=${1:deadline}\r"
+      "date=${1:date}",
+      "timezone=${1:timezone}",
+      "id=",
+      "deadline=${1:deadline}"
     ],
     "\\pdfmarkupcomment": [
-      "avatar=${1:avatar}\r",
-      "style=${1:style}\r",
-      "subject=${1:subject}\r",
-      "author=${1:author}\r",
-      "color=${1:color}\r",
-      "opacity=\r",
-      "markup=${1|Highlight,Underline,Squiggly,StrikeOut\r|}",
-      "mathstyle=\r",
+      "avatar=${1:avatar}",
+      "style=${1:style}",
+      "subject=${1:subject}",
+      "author=${1:author}",
+      "color=${1:color}",
+      "opacity=",
+      "markup=${1|Highlight,Underline,Squiggly,StrikeOut|}",
+      "mathstyle=",
       "disable",
-      "date=${1:date}\r",
-      "timezone=${1:timezone}\r",
-      "id=\r",
+      "date=${1:date}",
+      "timezone=${1:timezone}",
+      "id=",
       "open"
     ],
     "\\pdffreetextcomment": [
-      "avatar=${1:avatar}\r",
-      "style=${1:style}\r",
-      "subject=${1:subject}\r",
-      "author=${1:author}\r",
-      "color=${1:color}\r",
-      "font=${1:font name}\r",
+      "avatar=${1:avatar}",
+      "style=${1:style}",
+      "subject=${1:subject}",
+      "author=${1:author}",
+      "color=${1:color}",
+      "font=${1:font name}",
       "fontsize=",
-      "fontcolor=${1:color}\r",
-      "opacity=\r",
-      "line={${1:coordinates}}\r",
+      "fontcolor=${1:color}",
+      "opacity=",
+      "line={${1:coordinates}}",
       "linewidth=",
-      "lineend={${1:arrow type}}\r",
-      "borderstyle=${1|solid,dashed\r|}",
-      "dashstyle={${1:thickness} ${2:space}}\r",
-      "bse=${1|none,cloudy\r|}",
-      "bsei=${1:number}\r",
-      "type=${1|freetext,callout,typewriter\r|}",
+      "lineend={${1:arrow type}}",
+      "borderstyle=${1|solid,dashed|}",
+      "dashstyle={${1:thickness} ${2:space}}",
+      "bse=${1|none,cloudy|}",
+      "bsei=${1:number}",
+      "type=${1|freetext,callout,typewriter|}",
       "height=",
       "width=",
       "voffset=",
       "hoffset=",
       "disable",
-      "date=${1:date}\r",
-      "timezone=${1:timezone}\r",
-      "justification=${1|left,right\r|}"
+      "date=${1:date}",
+      "timezone=${1:timezone}",
+      "justification=${1|left,right|}"
     ],
     "\\pdfsquarecomment,\\pdfcirclecomment": [
-      "avatar=${1:avatar}\r",
-      "style=${1:style}\r",
-      "subject=${1:subject}\r",
-      "author=${1:author}\r",
-      "color=${1:color}\r",
-      "icolor=${1:color}\r",
-      "opacity=\r",
+      "avatar=${1:avatar}",
+      "style=${1:style}",
+      "subject=${1:subject}",
+      "author=${1:author}",
+      "color=${1:color}",
+      "icolor=${1:color}",
+      "opacity=",
       "linewidth=",
-      "borderstyle=${1|solid,dashed\r|}",
-      "dashstyle={${1:thickness} ${2:space}}\r",
-      "bse=${1|none,cloudy\r|}",
-      "bsei=${1:number}\r",
+      "borderstyle=${1|solid,dashed|}",
+      "dashstyle={${1:thickness} ${2:space}}",
+      "bse=${1|none,cloudy|}",
+      "bsei=${1:number}",
       "height=",
       "width=",
       "voffset=",
       "hoffset=",
       "disable",
-      "date=${1:date}\r",
-      "timezone=${1:timezone}\r",
-      "justification=${1|left,right\r|}"
+      "date=${1:date}",
+      "timezone=${1:timezone}",
+      "justification=${1|left,right|}"
     ],
     "\\pdflinecomment": [
-      "avatar=${1:avatar}\r",
-      "style=${1:style}\r",
-      "subject=${1:subject}\r",
-      "author=${1:author}\r",
-      "type=${1|line,polyline,polygon\r|}",
-      "color=${1:color}\r",
-      "icolor=${1:color}\r",
-      "opacity=\r",
-      "caption=${1|none,inline,top\r|}",
+      "avatar=${1:avatar}",
+      "style=${1:style}",
+      "subject=${1:subject}",
+      "author=${1:author}",
+      "type=${1|line,polyline,polygon|}",
+      "color=${1:color}",
+      "icolor=${1:color}",
+      "opacity=",
+      "caption=${1|none,inline,top|}",
       "captionhoffset=",
       "captionvoffset=",
       "linewidth=",
-      "linebegin={${1:arrow type}}\r",
-      "lineend={${1:arrow type}}\r",
-      "line={${1:coordinates}}\r",
-      "bse=${1|none,cloudy\r|}",
-      "bsei=${1:number}\r",
-      "borderstyle=${1|solid,dashed\r|}",
-      "dashstyle={${1:thickness} ${2:space}}\r",
+      "linebegin={${1:arrow type}}",
+      "lineend={${1:arrow type}}",
+      "line={${1:coordinates}}",
+      "bse=${1|none,cloudy|}",
+      "bsei=${1:number}",
+      "borderstyle=${1|solid,dashed|}",
+      "dashstyle={${1:thickness} ${2:space}}",
       "disable",
-      "date=${1:date}\r",
-      "timezone=${1:timezone}\r"
+      "date=${1:date}",
+      "timezone=${1:timezone}"
     ],
     "\\pdftooltip": [
       "disable",
-      "mathstyle=\r"
+      "mathstyle="
     ],
     "\\pdfcommentsetup": [
-      "local={${1:local options}}\r",
-      "final\r",
-      "draft\r",
-      "dvipdfmx\r",
-      "version=${1:number}\r",
-      "avatar=${1:avatar}\r"
+      "local={${1:local options}}",
+      "final",
+      "draft",
+      "dvipdfmx",
+      "version=${1:number}",
+      "avatar=${1:avatar}"
     ],
     "\\listofpdfcomments": [
-      "liststyle=${1|AuthorSubject,AuthorSubjectDeadline,SubjectAuthorComment,SubjectAuthorCommentDeadline,AuthorComment,AuthorCommentDeadline,SubjectComment,SubjectCommentDeadline,Comment,CommentDeadline\r|}",
-      "heading={${1:heading}}\r"
+      "liststyle=${1|AuthorSubject,AuthorSubjectDeadline,SubjectAuthorComment,SubjectAuthorCommentDeadline,AuthorComment,AuthorCommentDeadline,SubjectComment,SubjectCommentDeadline,Comment,CommentDeadline|}",
+      "heading={${1:heading}}"
     ],
     "\\defineavatar,\\definestyle,\\pdfcommentsetup": [
-      "avatar=${1:avatar}\r",
-      "style=${1:style}\r",
-      "subject=${1:subject}\r",
-      "author=${1:author}\r",
-      "color=${1:color}\r",
-      "icolor=${1:color}\r",
-      "opacity=\r",
+      "avatar=${1:avatar}",
+      "style=${1:style}",
+      "subject=${1:subject}",
+      "author=${1:author}",
+      "color=${1:color}",
+      "icolor=${1:color}",
+      "opacity=",
       "linewidth=",
-      "linebegin={${1:arrow type}}\r",
-      "lineend={${1:arrow type}}\r",
+      "linebegin={${1:arrow type}}",
+      "lineend={${1:arrow type}}",
       "linesep=",
-      "borderstyle=${1|solid,dashed\r|}",
-      "dashstyle={${1:thickness} ${2:space}}\r",
-      "caption=${1|none,inline,top\r|}",
+      "borderstyle=${1|solid,dashed|}",
+      "dashstyle={${1:thickness} ${2:space}}",
+      "caption=${1|none,inline,top|}",
       "captionhoffset=",
       "captionvoffset=",
       "disable",
-      "date=${1:date}\r",
-      "timezone=${1:timezone}\r",
-      "deadline=${1:deadline}\r",
+      "date=${1:date}",
+      "timezone=${1:timezone}",
+      "deadline=${1:deadline}",
       "open",
       "hspace=",
-      "type=\r",
-      "font=${1:font name}\r",
+      "type=",
+      "font=${1:font name}",
       "fontsize=",
-      "fontcolor=${1:color}\r",
-      "line={${1:coordinates}}\r",
-      "bse=${1|none,cloudy\r|}",
-      "bsei=${1:number}\r",
+      "fontcolor=${1:color}",
+      "line={${1:coordinates}}",
+      "bse=${1|none,cloudy|}",
+      "bsei=${1:number}",
       "voffset=",
       "hoffset=",
-      "width\r",
-      "height\r",
-      "markup=${1|Highlight,Underline,Squiggly,StrikeOut\r|}",
-      "mathstyle=\r",
+      "width",
+      "height",
+      "markup=${1|Highlight,Underline,Squiggly,StrikeOut|}",
+      "mathstyle=",
       "printSOfinal",
-      "icon=${1|Comment,Key,Note,Help,NewParagraph,Paragraph,Insert,Check,Circle,Cross,Star,RightArrow,RightPointer,UpArrow,UpLeftArrow,CrossHairs\r|}"
+      "icon=${1|Comment,Key,Note,Help,NewParagraph,Paragraph,Insert,Check,Circle,Cross,Star,RightArrow,RightPointer,UpArrow,UpLeftArrow,CrossHairs|}"
     ]
   },
   "args": [

@@ -758,7 +758,11 @@
       "name": "mech",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:type%keyvals}]"
+        "snippet": "[${1:type%keyvals}]",
+        "keys": [
+          "\\mech"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -962,7 +966,12 @@
       "name": "reactant",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:data and units%keyvals}]{${1:ID}}"
+        "snippet": "[${2:data and units%keyvals}]{${1:ID}}",
+        "keys": [
+          "\\reactant,\\reactant+,\\Reactant,\\solvent,\\Solvent",
+          "\\chemsetup#c,\\reactant,\\Reactant,\\solvent,\\Solvent"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -992,7 +1001,12 @@
       "name": "Reactant",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:data and units%keyvals}]{${1:ID}}"
+        "snippet": "[${2:data and units%keyvals}]{${1:ID}}",
+        "keys": [
+          "\\reactant,\\reactant+,\\Reactant,\\solvent,\\Solvent",
+          "\\chemsetup#c,\\reactant,\\Reactant,\\solvent,\\Solvent"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1022,7 +1036,12 @@
       "name": "solvent",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:data and units%keyvals}]{${1:ID}}"
+        "snippet": "[${2:data and units%keyvals}]{${1:ID}}",
+        "keys": [
+          "\\reactant,\\reactant+,\\Reactant,\\solvent,\\Solvent",
+          "\\chemsetup#c,\\reactant,\\Reactant,\\solvent,\\Solvent"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1052,7 +1071,12 @@
       "name": "Solvent",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:data and units%keyvals}]{${1:ID}}"
+        "snippet": "[${2:data and units%keyvals}]{${1:ID}}",
+        "keys": [
+          "\\reactant,\\reactant+,\\Reactant,\\solvent,\\Solvent",
+          "\\chemsetup#c,\\reactant,\\Reactant,\\solvent,\\Solvent"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1129,6 +1153,27 @@
       }
     },
     {
+      "name": "redox",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:%<name1%>},${3:%<name2%>}){${1:text}}"
+      }
+    },
+    {
+      "name": "redox",
+      "arg": {
+        "format": "()[]{}",
+        "snippet": "(${3:%<name1%>},${4:%<name2%>})[${2:TikZ-options}]{${1:text}}"
+      }
+    },
+    {
+      "name": "redox",
+      "arg": {
+        "format": "()[][]{}",
+        "snippet": "(${4:%<name1%>},${5:%<name2%>})[${2:TikZ-options}][${3:vertical-factor}]{${1:text}}"
+      }
+    },
+    {
       "name": "listschemename",
       "unusual": true
     },
@@ -1182,6 +1227,34 @@
       }
     },
     {
+      "name": "NMR",
+      "arg": {
+        "format": "()[]",
+        "snippet": "(${2:%<frequency%>},${3:%<freq. unit%>})[${1:solvent}]"
+      }
+    },
+    {
+      "name": "NMR",
+      "arg": {
+        "format": "()[]",
+        "snippet": "(${2:%<frequency%>})[${1:solvent}]"
+      }
+    },
+    {
+      "name": "NMR",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:%<frequency%>},${2:%<freq. unit%>})"
+      }
+    },
+    {
+      "name": "NMR",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:%<frequency%>})"
+      }
+    },
+    {
       "name": "NMR"
     },
     {
@@ -1227,6 +1300,34 @@
       }
     },
     {
+      "name": "NMR*",
+      "arg": {
+        "format": "()[]",
+        "snippet": "(${2:%<frequency%>},${3:%<freq. unit%>})[${1:solvent}]"
+      }
+    },
+    {
+      "name": "NMR*",
+      "arg": {
+        "format": "()[]",
+        "snippet": "(${2:%<frequency%>})[${1:solvent}]"
+      }
+    },
+    {
+      "name": "NMR*",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:%<frequency%>},${2:%<freq. unit%>})"
+      }
+    },
+    {
+      "name": "NMR*",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:%<frequency%>})"
+      }
+    },
+    {
       "name": "NMR*"
     },
     {
@@ -1262,6 +1363,20 @@
       "arg": {
         "format": "{}()[]",
         "snippet": "{${1:isotope,element[${2:coupling cores}]}}(${4:%<frequency%>},${5:%<freq. unit%>})[${3:solvent}]"
+      }
+    },
+    {
+      "name": "J",
+      "arg": {
+        "format": "()[]{}",
+        "snippet": "(${3:%<bonds%>;%<nuclei%>})[${2:unit}]{${1:num-list}}"
+      }
+    },
+    {
+      "name": "J",
+      "arg": {
+        "format": "(){}",
+        "snippet": "(${2:%<bonds%>;%<nuclei%>}){${1:num-list}}"
       }
     },
     {
@@ -1345,28 +1460,42 @@
       "name": "state",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:symbol}}"
+        "snippet": "[${2:options%keyvals}]{${1:symbol}}",
+        "keys": [
+          "\\state,\\enthalpy,\\enthalpy*,\\entropy,\\entropy*,\\gibbs,\\gibbs*,\\NewChemState,\\RenewChemState,\\DeclareChemState,\\ProvideChemState"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "enthalpy",
       "arg": {
         "format": "[](){}",
-        "snippet": "[${2:options%keyvals}](${3:subscript}){${1:value}}"
+        "snippet": "[${2:options%keyvals}](${3:subscript}){${1:value}}",
+        "keys": [
+          "\\state,\\enthalpy,\\enthalpy*,\\entropy,\\entropy*,\\gibbs,\\gibbs*,\\NewChemState,\\RenewChemState,\\DeclareChemState,\\ProvideChemState",
+          "\\enthalpy,\\enthalpy*,\\entropy,\\entropy*,\\gibbs,\\gibbs*,\\NewChemState,\\RenewChemState,\\DeclareChemState,\\ProvideChemState"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "enthalpy",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:value}}"
+        "snippet": "[${2:options%keyvals}]{${1:value}}",
+        "keys": [
+          "\\state,\\enthalpy,\\enthalpy*,\\entropy,\\entropy*,\\gibbs,\\gibbs*,\\NewChemState,\\RenewChemState,\\DeclareChemState,\\ProvideChemState",
+          "\\enthalpy,\\enthalpy*,\\entropy,\\entropy*,\\gibbs,\\gibbs*,\\NewChemState,\\RenewChemState,\\DeclareChemState,\\ProvideChemState"
+        ],
+        "keyPos": 0
       }
     },
     {
-      "name": "enthalpy(subscript)",
+      "name": "enthalpy",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:value}}"
+        "format": "(){}",
+        "snippet": "(${2:subscript}){${1:value}}"
       }
     },
     {
@@ -1380,21 +1509,31 @@
       "name": "enthalpy*",
       "arg": {
         "format": "[](){}",
-        "snippet": "[${2:options%keyvals}](${3:subscript}){${1:value}}"
+        "snippet": "[${2:options%keyvals}](${3:subscript}){${1:value}}",
+        "keys": [
+          "\\state,\\enthalpy,\\enthalpy*,\\entropy,\\entropy*,\\gibbs,\\gibbs*,\\NewChemState,\\RenewChemState,\\DeclareChemState,\\ProvideChemState",
+          "\\enthalpy,\\enthalpy*,\\entropy,\\entropy*,\\gibbs,\\gibbs*,\\NewChemState,\\RenewChemState,\\DeclareChemState,\\ProvideChemState"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "enthalpy*",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:value}}"
+        "snippet": "[${2:options%keyvals}]{${1:value}}",
+        "keys": [
+          "\\state,\\enthalpy,\\enthalpy*,\\entropy,\\entropy*,\\gibbs,\\gibbs*,\\NewChemState,\\RenewChemState,\\DeclareChemState,\\ProvideChemState",
+          "\\enthalpy,\\enthalpy*,\\entropy,\\entropy*,\\gibbs,\\gibbs*,\\NewChemState,\\RenewChemState,\\DeclareChemState,\\ProvideChemState"
+        ],
+        "keyPos": 0
       }
     },
     {
-      "name": "enthalpy*(subscript)",
+      "name": "enthalpy*",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:value}}"
+        "format": "(){}",
+        "snippet": "(${2:subscript}){${1:value}}"
       }
     },
     {
@@ -1408,21 +1547,31 @@
       "name": "entropy",
       "arg": {
         "format": "[](){}",
-        "snippet": "[${2:options%keyvals}](${3:subscript}){${1:value}}"
+        "snippet": "[${2:options%keyvals}](${3:subscript}){${1:value}}",
+        "keys": [
+          "\\state,\\enthalpy,\\enthalpy*,\\entropy,\\entropy*,\\gibbs,\\gibbs*,\\NewChemState,\\RenewChemState,\\DeclareChemState,\\ProvideChemState",
+          "\\enthalpy,\\enthalpy*,\\entropy,\\entropy*,\\gibbs,\\gibbs*,\\NewChemState,\\RenewChemState,\\DeclareChemState,\\ProvideChemState"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "entropy",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:value}}"
+        "snippet": "[${2:options%keyvals}]{${1:value}}",
+        "keys": [
+          "\\state,\\enthalpy,\\enthalpy*,\\entropy,\\entropy*,\\gibbs,\\gibbs*,\\NewChemState,\\RenewChemState,\\DeclareChemState,\\ProvideChemState",
+          "\\enthalpy,\\enthalpy*,\\entropy,\\entropy*,\\gibbs,\\gibbs*,\\NewChemState,\\RenewChemState,\\DeclareChemState,\\ProvideChemState"
+        ],
+        "keyPos": 0
       }
     },
     {
-      "name": "entropy(subscript)",
+      "name": "entropy",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:value}}"
+        "format": "(){}",
+        "snippet": "(${2:subscript}){${1:value}}"
       }
     },
     {
@@ -1436,21 +1585,31 @@
       "name": "entropy*",
       "arg": {
         "format": "[](){}",
-        "snippet": "[${2:options%keyvals}](${3:subscript}){${1:value}}"
+        "snippet": "[${2:options%keyvals}](${3:subscript}){${1:value}}",
+        "keys": [
+          "\\state,\\enthalpy,\\enthalpy*,\\entropy,\\entropy*,\\gibbs,\\gibbs*,\\NewChemState,\\RenewChemState,\\DeclareChemState,\\ProvideChemState",
+          "\\enthalpy,\\enthalpy*,\\entropy,\\entropy*,\\gibbs,\\gibbs*,\\NewChemState,\\RenewChemState,\\DeclareChemState,\\ProvideChemState"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "entropy*",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:value}}"
+        "snippet": "[${2:options%keyvals}]{${1:value}}",
+        "keys": [
+          "\\state,\\enthalpy,\\enthalpy*,\\entropy,\\entropy*,\\gibbs,\\gibbs*,\\NewChemState,\\RenewChemState,\\DeclareChemState,\\ProvideChemState",
+          "\\enthalpy,\\enthalpy*,\\entropy,\\entropy*,\\gibbs,\\gibbs*,\\NewChemState,\\RenewChemState,\\DeclareChemState,\\ProvideChemState"
+        ],
+        "keyPos": 0
       }
     },
     {
-      "name": "entropy*(subscript)",
+      "name": "entropy*",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:value}}"
+        "format": "(){}",
+        "snippet": "(${2:subscript}){${1:value}}"
       }
     },
     {
@@ -1464,21 +1623,31 @@
       "name": "gibbs",
       "arg": {
         "format": "[](){}",
-        "snippet": "[${2:options%keyvals}](${3:subscript}){${1:value}}"
+        "snippet": "[${2:options%keyvals}](${3:subscript}){${1:value}}",
+        "keys": [
+          "\\state,\\enthalpy,\\enthalpy*,\\entropy,\\entropy*,\\gibbs,\\gibbs*,\\NewChemState,\\RenewChemState,\\DeclareChemState,\\ProvideChemState",
+          "\\enthalpy,\\enthalpy*,\\entropy,\\entropy*,\\gibbs,\\gibbs*,\\NewChemState,\\RenewChemState,\\DeclareChemState,\\ProvideChemState"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "gibbs",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:value}}"
+        "snippet": "[${2:options%keyvals}]{${1:value}}",
+        "keys": [
+          "\\state,\\enthalpy,\\enthalpy*,\\entropy,\\entropy*,\\gibbs,\\gibbs*,\\NewChemState,\\RenewChemState,\\DeclareChemState,\\ProvideChemState",
+          "\\enthalpy,\\enthalpy*,\\entropy,\\entropy*,\\gibbs,\\gibbs*,\\NewChemState,\\RenewChemState,\\DeclareChemState,\\ProvideChemState"
+        ],
+        "keyPos": 0
       }
     },
     {
-      "name": "gibbs(subscript)",
+      "name": "gibbs",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:value}}"
+        "format": "(){}",
+        "snippet": "(${2:subscript}){${1:value}}"
       }
     },
     {
@@ -1492,21 +1661,31 @@
       "name": "gibbs*",
       "arg": {
         "format": "[](){}",
-        "snippet": "[${2:options%keyvals}](${3:subscript}){${1:value}}"
+        "snippet": "[${2:options%keyvals}](${3:subscript}){${1:value}}",
+        "keys": [
+          "\\state,\\enthalpy,\\enthalpy*,\\entropy,\\entropy*,\\gibbs,\\gibbs*,\\NewChemState,\\RenewChemState,\\DeclareChemState,\\ProvideChemState",
+          "\\enthalpy,\\enthalpy*,\\entropy,\\entropy*,\\gibbs,\\gibbs*,\\NewChemState,\\RenewChemState,\\DeclareChemState,\\ProvideChemState"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "gibbs*",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:value}}"
+        "snippet": "[${2:options%keyvals}]{${1:value}}",
+        "keys": [
+          "\\state,\\enthalpy,\\enthalpy*,\\entropy,\\entropy*,\\gibbs,\\gibbs*,\\NewChemState,\\RenewChemState,\\DeclareChemState,\\ProvideChemState",
+          "\\enthalpy,\\enthalpy*,\\entropy,\\entropy*,\\gibbs,\\gibbs*,\\NewChemState,\\RenewChemState,\\DeclareChemState,\\ProvideChemState"
+        ],
+        "keyPos": 0
       }
     },
     {
-      "name": "gibbs*(subscript)",
+      "name": "gibbs*",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:value}}"
+        "format": "(){}",
+        "snippet": "(${2:subscript}){${1:value}}"
       }
     },
     {
@@ -1717,7 +1896,11 @@
       "name": "chemfrac",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:type%keyvals}]{${1:numerator}}{${2:denominator}}"
+        "snippet": "[${3:type%keyvals}]{${1:numerator}}{${2:denominator}}",
+        "keys": [
+          "\\chemfrac"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1786,6 +1969,72 @@
       "modules={${1:list of modules}}"
     ],
     "\\chemsetup#c": [
+      "p-style=${1|italics,slanted,upright|}",
+      "K-acid={${1:text}}",
+      "K-base={${1:text}}",
+      "K-water={${1:text}}",
+      "eq-constant={${1:text}}",
+      "circled=${1|formal,all,none|}",
+      "circletype=${1|chem,math|}",
+      "partial-format={${1:LaTeX code}}",
+      "hyphen-pre-space",
+      "hyphen-post-space",
+      "break-space",
+      "iupac=${1|auto,restricted,strict|}",
+      "iupac-format={${1:definition}}",
+      "cip-kern=",
+      "cip-outer-format={${1:format}}",
+      "cip-inner-format={${1:format}}",
+      "cip-number-format={${1:format}}",
+      "bridge-number=${1|sub,super|}",
+      "coord-use-hyphen",
+      "latin-format={${1:definition}}",
+      "elpair=${1|dots,dash,false|}",
+      "space=",
+      "pos=${1|side,sub|}",
+      "formula=${1|chemformula,mhchem,chemist,chemfig|}",
+      "format={${1:format}}",
+      "greek={${1:mapping}}",
+      "side-connect={${1:input}}",
+      "tag-open={${1:left delim}}",
+      "tag-close={${1:right delim}}",
+      "before-tag={${1:format}}",
+      "own-counter",
+      "autoref-name={${1:name}}",
+      "list-name=",
+      "list-entry={${1:prefix}}",
+      "list-heading-cmd={${1:code}}",
+      "initiate",
+      "switch",
+      "reactant-output-style=${1|name-main-other,main-name-other,main-other-name|}",
+      "solvent-output-style=${1|main-name,name-main|}",
+      "main=${1|default,amount,equiv|}",
+      "equivalents",
+      "acronym-support=${1|acro,glossaries,none|}",
+      "printreactants-style=${1|xltabular,longtable,none|}",
+      "dist=",
+      "sep=",
+      "float-method=${1|KOMA,memoir,tocbasic,newfloat,floatrow,float,traditional|}",
+      "unit=${1:unit}",
+      "nucleus={${1:num},${2:atom}}",
+      "connector={${1:code}}",
+      "method={${1:code}}",
+      "nmr-base-format={${1:commands}}",
+      "pos-number=${1|side,sub,super|}",
+      "coupling-symbol={${1:code}}",
+      "coupling-unit=${1:unit}",
+      "coupling-pos=${1|side,sub|}",
+      "coupling-nuclei-pre={${1:code}}",
+      "coupling-nuclei-post={${1:code}}",
+      "coupling-bonds-pre={${1:code}}",
+      "coupling-bonds-post={${1:code}}",
+      "coupling-pos-cs={${1:cmd}}",
+      "atom-number-cs={${1:cmd}}",
+      "atom-number-space=",
+      "delta={${1:tokens}}",
+      "list",
+      "list-setup={${1:setup}}",
+      "use-equal",
       "language=${2|auto,${1:language}|}"
     ],
     "\\latin#c": [

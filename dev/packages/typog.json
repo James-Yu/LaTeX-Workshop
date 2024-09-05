@@ -414,7 +414,11 @@
       "name": "typogsetup",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:keyvals}}"
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\usepackage/typog#c,\\begin{typogsetup}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -428,7 +432,11 @@
       "name": "typoginspect",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:option%keyvals}]{${1:id}}"
+        "snippet": "[${2:option%keyvals}]{${1:id}}",
+        "keys": [
+          "\\begin{typoginspect},\\begin{typoginspectpar}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -442,7 +450,11 @@
       "name": "typoginspectpar",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:option%keyvals}]{${1:id}}"
+        "snippet": "[${2:option%keyvals}]{${1:id}}",
+        "keys": [
+          "\\begin{typoginspect},\\begin{typoginspectpar}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -631,7 +643,11 @@
       "name": "smoothraggedrightshapetriplet",
       "arg": {
         "format": "[]{}{}{}",
-        "snippet": "[${4:options%keyvals}]{${1:width1}}{${2:width2}}{${3:width3}}"
+        "snippet": "[${4:options%keyvals}]{${1:width1}}{${2:width2}}{${3:width3}}",
+        "keys": [
+          "\\begin{smoothraggedrightshapetriplet},\\begin{smoothraggedrightshapequintuplet},\\begin{smoothraggedrightshapeseptuplet}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -645,7 +661,11 @@
       "name": "smoothraggedrightshapequintuplet",
       "arg": {
         "format": "[]{}{}{}{}{}",
-        "snippet": "[${6:options%keyvals}]{${1:width1}}{${2:width2}}{${3:width3}}{${4:width4}}{${5:width5}}"
+        "snippet": "[${6:options%keyvals}]{${1:width1}}{${2:width2}}{${3:width3}}{${4:width4}}{${5:width5}}",
+        "keys": [
+          "\\begin{smoothraggedrightshapetriplet},\\begin{smoothraggedrightshapequintuplet},\\begin{smoothraggedrightshapeseptuplet}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -659,7 +679,11 @@
       "name": "smoothraggedrightshapeseptuplet",
       "arg": {
         "format": "[]{}{}{}{}{}{}{}",
-        "snippet": "[${8:options%keyvals}]{${1:width1}}{${2:width2}}{${3:width3}}{${4:width4}}{${5:width5}}{${6:width6}}{${7:width7}}"
+        "snippet": "[${8:options%keyvals}]{${1:width1}}{${2:width2}}{${3:width3}}{${4:width4}}{${5:width5}}{${6:width6}}{${7:width7}}",
+        "keys": [
+          "\\begin{smoothraggedrightshapetriplet},\\begin{smoothraggedrightshapequintuplet},\\begin{smoothraggedrightshapeseptuplet}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -669,7 +693,11 @@
       "name": "smoothraggedrightpar",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:option%keyvals}]"
+        "snippet": "[${1:option%keyvals}]",
+        "keys": [
+          "\\begin{smoothraggedrightpar},\\begin{smoothraggedright}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -679,17 +707,21 @@
       "name": "smoothraggedright",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:option%keyvals}]"
+        "snippet": "[${1:option%keyvals}]",
+        "keys": [
+          "\\begin{smoothraggedrightpar},\\begin{smoothraggedright}"
+        ],
+        "keyPos": 0
       }
     }
   ],
   "keys": {
     "\\usepackage/typog#c,\\begin{typogsetup}": [
-      "breakpenalty=${1:penalty}\r",
-      "debug\r",
-      "nodebug\r",
+      "breakpenalty=${1:penalty}",
+      "debug",
+      "nodebug",
       "ligaturekern=",
-      "lowercaselabelitemadjustments={${1:dim1,dim2,dim3,dim4}}\r",
+      "lowercaselabelitemadjustments={${1:dim1,dim2,dim3,dim4}}",
       "mathitalicscorrection=",
       "raise*=",
       "raisecapitaldash=",
@@ -698,40 +730,40 @@
       "raisecapitalguillemets=",
       "raiseguillemets=",
       "raisefiguredash=",
-      "shrinklimits={${1:lim1,lim2,lim3}}\r",
-      "stretchlimits={${1:lim1,lim2,lim3}}\r",
+      "shrinklimits={${1:lim1,lim2,lim3}}",
+      "stretchlimits={${1:lim1,lim2,lim3}}",
       "slashkern=",
       "textitalicscorrection=",
-      "trackingttspacing=${1:outer-spacing}\r",
-      "uppercaselabelitemadjustments={${1:dim1,dim2,dim3,dim4}}\r"
+      "trackingttspacing=${1:outer-spacing}",
+      "uppercaselabelitemadjustments={${1:dim1,dim2,dim3,dim4}}"
     ],
     "\\typogget": [
-      "breakpenalty\r",
-      "ligaturekern\r",
-      "mathitalicscorrection\r",
-      "raise*\r",
-      "raisecapitaldash\r",
-      "raisecapitalhyphen\r",
-      "raisecapitaltimes\r",
-      "raisecapitalguillemets\r",
-      "raiseguillemets\r",
-      "raisefiguredash\r",
-      "shrinklimits\r",
-      "stretchlimits\r",
-      "slashkern\r",
-      "textitalicscorrection\r",
-      "trackingttspacing\r"
+      "breakpenalty",
+      "ligaturekern",
+      "mathitalicscorrection",
+      "raise*",
+      "raisecapitaldash",
+      "raisecapitalhyphen",
+      "raisecapitaltimes",
+      "raisecapitalguillemets",
+      "raiseguillemets",
+      "raisefiguredash",
+      "shrinklimits",
+      "stretchlimits",
+      "slashkern",
+      "textitalicscorrection",
+      "trackingttspacing"
     ],
     "\\typoggetnth": [
-      "lowercaselabelitemadjustments\r",
-      "shrinklimits\r",
-      "stretchlimits\r",
-      "trackingttspacing\r",
-      "uppercaselabelitemadjustments\r"
+      "lowercaselabelitemadjustments",
+      "shrinklimits",
+      "stretchlimits",
+      "trackingttspacing",
+      "uppercaselabelitemadjustments"
     ],
     "\\begin{typoginspect},\\begin{typoginspectpar}": [
-      "tracingboxes\r",
-      "tracingboxes=${1:size}\r"
+      "tracingboxes",
+      "tracingboxes=${1:size}"
     ],
     "\\begin{smoothraggedrightshapetriplet},\\begin{smoothraggedrightshapequintuplet},\\begin{smoothraggedrightshapeseptuplet}": [
       "leftskip=",

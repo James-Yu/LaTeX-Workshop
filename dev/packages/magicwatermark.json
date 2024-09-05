@@ -19,7 +19,11 @@
       "name": "PageSetup",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:content for watermark%text}}"
+        "snippet": "[${2:options%keyvals}]{${1:content for watermark%text}}",
+        "keys": [
+          "\\PageSetup,\\EvenPageSetup,\\OddPageSetup,\\MyPageSetup"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -43,7 +47,11 @@
       "name": "EvenPageSetup",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:content for watermark%text}}"
+        "snippet": "[${2:options%keyvals}]{${1:content for watermark%text}}",
+        "keys": [
+          "\\PageSetup,\\EvenPageSetup,\\OddPageSetup,\\MyPageSetup"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -67,7 +75,11 @@
       "name": "OddPageSetup",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:content for watermark%text}}"
+        "snippet": "[${2:options%keyvals}]{${1:content for watermark%text}}",
+        "keys": [
+          "\\PageSetup,\\EvenPageSetup,\\OddPageSetup,\\MyPageSetup"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -98,7 +110,11 @@
       "name": "MyPageSetup",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:watermark name}}{${2:content for watermark%text}}"
+        "snippet": "[${3:options%keyvals}]{${1:watermark name}}{${2:content for watermark%text}}",
+        "keys": [
+          "\\PageSetup,\\EvenPageSetup,\\OddPageSetup,\\MyPageSetup"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -119,12 +135,12 @@
   "envs": [],
   "keys": {
     "\\PageSetup,\\EvenPageSetup,\\OddPageSetup,\\MyPageSetup": [
-      "scale=${1:factor}\r",
-      "opacity=${1:factor}\r",
-      "shift={(${1:x,y})}\r",
+      "scale=${1:factor}",
+      "opacity=${1:factor}",
+      "shift={(${1:x,y})}",
       "color=",
-      "rotate=${1:degrees}\r",
-      "align=${1|center,left,right\r|}",
+      "rotate=${1:degrees}",
+      "align=${1|center,left,right|}",
       "showframe"
     ]
   },

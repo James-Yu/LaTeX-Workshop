@@ -42,7 +42,11 @@
       "name": "cpsspinput",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:file}}"
+        "snippet": "[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\usepackage/cpssp#c,\\cpsspformat,\\cpsspinput,\\begin{cpsspimage}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -149,19 +153,23 @@
       "name": "cpsspimage",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:file}}"
+        "snippet": "[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\usepackage/cpssp#c,\\cpsspformat,\\cpsspinput,\\begin{cpsspimage}"
+        ],
+        "keyPos": 0
       }
     }
   ],
   "keys": {
     "\\usepackage/cpssp#c,\\cpsspformat,\\cpsspinput,\\begin{cpsspimage}": [
-      "style=${1|small,large,graylines,pdb\r|}",
+      "style=${1|small,large,graylines,pdb|}",
       "labels",
       "numbers",
-      "labelformat=${1:font commands}\r",
-      "numberformat=${1:font commands}\r",
-      "threehelixname=${1:name}\r",
-      "pihelixname=${1:name}\r"
+      "labelformat=${1:font commands}",
+      "numberformat=${1:font commands}",
+      "threehelixname=${1:name}",
+      "pihelixname=${1:name}"
     ]
   },
   "args": [

@@ -23,7 +23,11 @@
       "name": "EANBarcode",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:string}}"
+        "snippet": "[${2:options%keyvals}]{${1:string}}",
+        "keys": [
+          "\\EANBarcode,\\GSSetup"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -44,8 +48,8 @@
       "ocrb",
       "module_width=",
       "module_height=",
-      "code=${1|EAN-8,EAN-13\r|}",
-      "scale=${1:factor}\r",
+      "code=${1|EAN-8,EAN-13|}",
+      "scale=${1:factor}",
       "scale_to_font",
       "add_control"
     ]

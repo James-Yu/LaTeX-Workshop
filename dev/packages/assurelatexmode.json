@@ -6,107 +6,123 @@
   ],
   "macros": [
     {
-      "name": "HashWedgeAsSubst(xstart,ystart)(xslope,yslope)",
+      "name": "HashWedgeAsSubst",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:length}}"
+        "format": "()(){}",
+        "snippet": "(${2:xstart},${3:ystart})(${4:xslope},${5:yslope}){${1:length}}"
       }
     },
     {
-      "name": "HashWedgeAsSubstTeXLaTeX(xstart,ystart)(xslope,yslope)",
+      "name": "HashWedgeAsSubstTeXLaTeX",
       "unusual": true,
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:length}}"
+        "format": "()(){}",
+        "snippet": "(${2:xstart},${3:ystart})(${4:xslope},${5:yslope}){${1:length}}"
       }
     },
     {
-      "name": "HashWedgeAsSubstX(xstart,ystart)(xend,yend)"
-    },
-    {
-      "name": "HashWedgeAsSubstX(xstart,ystart)(xend,yend)",
+      "name": "HashWedgeAsSubstX",
       "arg": {
-        "format": "[]",
-        "snippet": "[${1:thickness}]"
+        "format": "()()",
+        "snippet": "(${1:xstart},${2:ystart})(${3:xend},${4:yend})"
       }
     },
     {
-      "name": "HashWedgeAsSubstXTeXLaTeX(xstart,ystart)(xend,yend)",
-      "unusual": true
+      "name": "HashWedgeAsSubstX",
+      "arg": {
+        "format": "()()[]",
+        "snippet": "(${2:xstart},${3:ystart})(${4:xend},${5:yend})[${1:thickness}]"
+      }
     },
     {
-      "name": "HashWedgeAsSubstXTeXLaTeX(xstart,ystart)(xend,yend)",
+      "name": "HashWedgeAsSubstXTeXLaTeX",
       "unusual": true,
       "arg": {
-        "format": "[]",
-        "snippet": "[${1:thickness}]"
+        "format": "()()",
+        "snippet": "(${1:xstart},${2:ystart})(${3:xend},${4:yend})"
       }
     },
     {
-      "name": "PutBondLine(xstart,ystart)(xend,yend)",
-      "arg": {
-        "format": "{}",
-        "snippet": "{${1:thickness}}"
-      }
-    },
-    {
-      "name": "PutDashedBond(xstart,ystart)(xend,yend)",
-      "arg": {
-        "format": "{}",
-        "snippet": "{${1:thickness}}"
-      }
-    },
-    {
-      "name": "PutTeXLaTeXLine(xstart,ystart)(xend,yend)",
+      "name": "HashWedgeAsSubstXTeXLaTeX",
       "unusual": true,
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:thickness}}"
+        "format": "()()[]",
+        "snippet": "(${2:xstart},${3:ystart})(${4:xend},${5:yend})[${1:thickness}]"
       }
     },
     {
-      "name": "PutTeXLaTeXdashed(xstart,ystart)(xend,yend)",
+      "name": "PutBondLine",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:xstart},${3:ystart})(${4:xend},${5:yend}){${1:thickness}}"
+      }
+    },
+    {
+      "name": "PutDashedBond",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:xstart},${3:ystart})(${4:xend},${5:yend}){${1:thickness}}"
+      }
+    },
+    {
+      "name": "PutTeXLaTeXLine",
       "unusual": true,
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:thickness}}"
+        "format": "()(){}",
+        "snippet": "(${2:xstart},${3:ystart})(${4:xend},${5:yend}){${1:thickness}}"
       }
     },
     {
-      "name": "WedgeAsSubst(xstart,ystart)(xslope,yslope)",
-      "arg": {
-        "format": "{}",
-        "snippet": "{${1:length}}"
-      }
-    },
-    {
-      "name": "WedgeAsSubstTeXLaTeX(xstart,ystart)(xslope,yslope)",
+      "name": "PutTeXLaTeXdashed",
       "unusual": true,
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:length}}"
+        "format": "()(){}",
+        "snippet": "(${2:xstart},${3:ystart})(${4:xend},${5:yend}){${1:thickness}}"
       }
     },
     {
-      "name": "WedgeAsSubstX(xstart,ystart)(xend,yend)"
-    },
-    {
-      "name": "WedgeAsSubstX(xstart,ystart)(xend,yend)",
+      "name": "WedgeAsSubst",
       "arg": {
-        "format": "[]",
-        "snippet": "[${1:thickness}]"
+        "format": "()(){}",
+        "snippet": "(${2:xstart},${3:ystart})(${4:xslope},${5:yslope}){${1:length}}"
       }
     },
     {
-      "name": "WedgeAsSubstXTeXLaTeX(xstart,ystart)(xend,yend)",
-      "unusual": true
-    },
-    {
-      "name": "WedgeAsSubstX(xstart,ystart)(xend,yend)",
+      "name": "WedgeAsSubstTeXLaTeX",
       "unusual": true,
       "arg": {
-        "format": "[]",
-        "snippet": "[${1:thickness}]"
+        "format": "()(){}",
+        "snippet": "(${2:xstart},${3:ystart})(${4:xslope},${5:yslope}){${1:length}}"
+      }
+    },
+    {
+      "name": "WedgeAsSubstX",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:xstart},${2:ystart})(${3:xend},${4:yend})"
+      }
+    },
+    {
+      "name": "WedgeAsSubstX",
+      "arg": {
+        "format": "()()[]",
+        "snippet": "(${2:xstart},${3:ystart})(${4:xend},${5:yend})[${1:thickness}]"
+      }
+    },
+    {
+      "name": "WedgeAsSubstXTeXLaTeX",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:xstart},${2:ystart})(${3:xend},${4:yend})"
+      }
+    },
+    {
+      "name": "WedgeAsSubstX",
+      "unusual": true,
+      "arg": {
+        "format": "()()[]",
+        "snippet": "(${2:xstart},${3:ystart})(${4:xend},${5:yend})[${1:thickness}]"
       }
     },
     {

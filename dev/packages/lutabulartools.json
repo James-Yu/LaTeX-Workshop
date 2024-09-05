@@ -134,10 +134,10 @@
       }
     },
     {
-      "name": "gmidrule(trim)",
+      "name": "gmidrule",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:colspecs}}"
+        "format": "(){}",
+        "snippet": "(${2:trim}){${1:colspecs}}"
       }
     },
     {
@@ -148,10 +148,10 @@
       }
     },
     {
-      "name": "gcmidrule(trim)",
+      "name": "gcmidrule",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:colspecs}}"
+        "format": "(){}",
+        "snippet": "(${2:trim}){${1:colspecs}}"
       }
     },
     {
@@ -162,10 +162,10 @@
       }
     },
     {
-      "name": "gcmidrules(trim)",
+      "name": "gcmidrules",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:colspecs}}"
+        "format": "(){}",
+        "snippet": "(${2:trim}){${1:colspecs}}"
       }
     },
     {
@@ -176,38 +176,54 @@
       }
     },
     {
-      "name": "cmidrules(trim)",
+      "name": "cmidrules",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:colspecs}}"
+        "format": "(){}",
+        "snippet": "(${2:trim}){${1:colspecs}}"
       }
     },
     {
       "name": "midruleX",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:keyvals}}"
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\midruleX,\\midruleX*"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "midruleX",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:o|${3:n}|f}]{${1:keyvals}}"
+        "snippet": "[${2:o|${3:n}|f}]{${1:keyvals}}",
+        "keys": [
+          "\\midruleX,\\midruleX*"
+        ],
+        "keyPos": 1
       }
     },
     {
       "name": "midruleX*",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:keyvals}}"
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\midruleX,\\midruleX*"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "midruleX*",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:o|${3:n}|f}]{${1:keyvals}}"
+        "snippet": "[${2:o|${3:n}|f}]{${1:keyvals}}",
+        "keys": [
+          "\\midruleX,\\midruleX*"
+        ],
+        "keyPos": 1
       }
     },
     {
@@ -226,15 +242,15 @@
     "\\settabular": [
       "nopad",
       "tbrule",
-      "rowsep=${1:integer}\r",
-      "colsep=${1:integer}\r"
+      "rowsep=${1:integer}",
+      "colsep=${1:integer}"
     ],
     "\\midruleX,\\midruleX*": [
-      "step=${1:integer}\r",
-      "rule=\r",
+      "step=${1:integer}",
+      "rule=",
       "reset",
-      "resetnum=${1:integer}\r",
-      "cntr=${1:integer}\r"
+      "resetnum=${1:integer}",
+      "cntr=${1:integer}"
     ]
   },
   "args": []

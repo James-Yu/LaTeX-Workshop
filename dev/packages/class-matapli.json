@@ -133,14 +133,22 @@
       "name": "titre",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:titre de l’article%text}}"
+        "snippet": "[${2:options%keyvals}]{${1:titre de l’article%text}}",
+        "keys": [
+          "\\titre"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "author",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:Nom,Prénom}}"
+        "snippet": "[${2:options%keyvals}]{${1:Nom,Prénom}}",
+        "keys": [
+          "\\author"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -150,7 +158,11 @@
       "name": "printauthors",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:option%keyvals}]"
+        "snippet": "[${1:option%keyvals}]",
+        "keys": [
+          "\\printauthors"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -164,7 +176,11 @@
       "name": "partie",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:option%keyvals}]{${1:title}}"
+        "snippet": "[${2:option%keyvals}]{${1:title}}",
+        "keys": [
+          "\\partie"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1097,22 +1113,22 @@
   ],
   "keys": {
     "\\titre": [
-      "court={${1:titre court}}\r",
-      "auteur=${1|article,partie\r|}"
+      "court={${1:titre court}}",
+      "auteur=${1|article,partie|}"
     ],
     "\\author": [
-      "affiliation={${1:Laboratoire, université, etc.}}\r",
-      "email=${1:email}\r",
-      "minibio={${1:Petite biographie de l’auteur}}\r",
-      "photo=${1:imagefile}\r",
-      "webpage=${1:URL}\r",
-      "type=${1|unique,collectif\r|}"
+      "affiliation={${1:Laboratoire, université, etc.}}",
+      "email=${1:email}",
+      "minibio={${1:Petite biographie de l’auteur}}",
+      "photo=${1:imagefile}",
+      "webpage=${1:URL}",
+      "type=${1|unique,collectif|}"
     ],
     "\\printauthors": [
-      "partie\r"
+      "partie"
     ],
     "\\partie": [
-      "auteur=${1|article,partie\r|}"
+      "auteur=${1|article,partie|}"
     ],
     "\\frenchsetup,\\frenchbsetup": [
       "ShowOptions",
@@ -1125,11 +1141,11 @@
       "StandardItemizeEnv",
       "StandardEnumerateEnv",
       "StandardItemLabels",
-      "ItemLabels=\r",
-      "ItemLabeli=\r",
-      "ItemLabelii=\r",
-      "ItemLabeliii=\r",
-      "ItemLabeliv=\r",
+      "ItemLabels=",
+      "ItemLabeli=",
+      "ItemLabelii=",
+      "ItemLabeliii=",
+      "ItemLabeliv=",
       "StandardLists",
       "ListOldLayout",
       "FrenchFootnotes",
@@ -1138,11 +1154,11 @@
       "ThinColonSpace",
       "OriginalTypewriter",
       "UnicodeNoBreakSpaces",
-      "og=\r",
-      "fg=\r",
+      "og=",
+      "fg=",
       "INGuillSpace",
-      "EveryParGuill=${1|open,close,none\r|}",
-      "EveryLineGuill=${1|open,close,none\r|}",
+      "EveryParGuill=${1|open,close,none|}",
+      "EveryLineGuill=${1|open,close,none|}",
       "InnerGuillSingle",
       "ThinSpaceInFrenchNumbers",
       "SmallCapsFigTabCaptions",

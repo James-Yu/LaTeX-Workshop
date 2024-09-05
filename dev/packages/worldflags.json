@@ -42,14 +42,23 @@
       "name": "worldflag",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:flag code}}"
+        "snippet": "[${2:options%keyvals}]{${1:flag code}}",
+        "keys": [
+          "\\worldflag,\\flagsdefault"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "flagsdefault",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\worldflag,\\flagsdefault",
+          "\\flagsdefault"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -205,17 +214,17 @@
       "length=",
       "framewidth=",
       "framecolor=",
-      "stretch=${1:number}\r",
-      "grid\r",
-      "noemblem\r",
-      "emblem\r",
-      "emblemdefault\r",
-      "variant=${1:number}\r"
+      "stretch=${1:number}",
+      "grid",
+      "noemblem",
+      "emblem",
+      "emblemdefault",
+      "variant=${1:number}"
     ],
     "\\flagsdefault": [
-      "rotate=${1:degrees}\r",
-      "turn=${1:degrees}\r",
-      "hang=${1:degrees}\r"
+      "rotate=${1:degrees}",
+      "turn=${1:degrees}",
+      "hang=${1:degrees}"
     ]
   },
   "args": []

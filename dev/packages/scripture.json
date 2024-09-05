@@ -117,7 +117,11 @@
       "name": "textscripture",
       "arg": {
         "format": "[][]{}",
-        "snippet": "[${2:reference}][${3:options%keyvals}]{${1:quotation%text}}"
+        "snippet": "[${2:reference}][${3:options%keyvals}]{${1:quotation%text}}",
+        "keys": [
+          "\\usepackage/scripture#c,\\scripturesetup,\\scripturestyle,\\scripturestyle*,\\textscripture,\\begin{scripture}"
+        ],
+        "keyPos": 1
       }
     },
     {
@@ -133,14 +137,22 @@
       "name": "center",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{center},\\begin{flushright},\\begin{hanging},\\begin{narrow},\\begin{poetry}"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "flushright",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{center},\\begin{flushright},\\begin{hanging},\\begin{narrow},\\begin{poetry}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -150,7 +162,12 @@
       "name": "hanging",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{center},\\begin{flushright},\\begin{hanging},\\begin{narrow},\\begin{poetry}",
+          "\\begin{hanging}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -160,7 +177,11 @@
       "name": "midparachap",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{midparachap}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -170,7 +191,11 @@
       "name": "narrow",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{center},\\begin{flushright},\\begin{hanging},\\begin{narrow},\\begin{poetry}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -180,7 +205,12 @@
       "name": "poetry",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{center},\\begin{flushright},\\begin{hanging},\\begin{narrow},\\begin{poetry}",
+          "\\begin{poetry}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -197,21 +227,25 @@
       "name": "scripture",
       "arg": {
         "format": "[][]",
-        "snippet": "[${1:reference}][${2:options%keyvals}]"
+        "snippet": "[${1:reference}][${2:options%keyvals}]",
+        "keys": [
+          "\\usepackage/scripture#c,\\scripturesetup,\\scripturestyle,\\scripturestyle*,\\textscripture,\\begin{scripture}"
+        ],
+        "keyPos": 1
       }
     }
   ],
   "keys": {
     "\\usepackage/scripture#c,\\scripturesetup,\\scripturestyle,\\scripturestyle*,\\textscripture,\\begin{scripture}": [
       "aboveskip=",
-      "added/font=${1:font commands}\r",
-      "added/format=${1:macro}\r",
+      "added/font=${1:font commands}",
+      "added/format=${1:macro}",
       "belowskip=",
       "chapter/colour=",
       "chapter/color=",
       "chapter/drop",
-      "chapter/font=${1:font commands}\r",
-      "chapter/format=${1:macro}\r",
+      "chapter/font=${1:font commands}",
+      "chapter/format=${1:macro}",
       "chapter/hide",
       "chapter/nodrop",
       "chapter/sep=",
@@ -221,53 +255,53 @@
       "color=",
       "compact",
       "extraskip=",
-      "font=${1:font commands}\r",
+      "font=${1:font commands}",
       "inline",
-      "inline/begin=${1:code}\r",
-      "inline/end=${1:code}\r",
-      "inline/reference/format=${1:macro}\r",
+      "inline/begin=${1:code}",
+      "inline/end=${1:code}",
+      "inline/reference/format=${1:macro}",
       "inline/reference/sep=",
-      "inline/version/delim=${1:delim}\r",
-      "inline/version/format=${1:macro}\r",
+      "inline/version/delim=${1:delim}",
+      "inline/version/format=${1:macro}",
       "indent",
-      "language=${1:language name}\r",
-      "language/variant=${1:language variant name}\r",
+      "language=${1:language name}",
+      "language/variant=${1:language variant name}",
       "leftmargin=",
-      "name/font=${1:font commands}\r",
-      "name/format=${1:macro}\r",
+      "name/font=${1:font commands}",
+      "name/format=${1:macro}",
       "noindent",
       "parindent=",
       "parskip=",
       "redletter",
       "redletter/colour=",
       "redletter/color=",
-      "reference/align=${1|inline,left,right\r|}",
+      "reference/align=${1|inline,left,right|}",
       "reference/colour=",
       "reference/color=",
-      "reference/font=${1:font commands}\r",
-      "reference/format=${1:macro}\r",
-      "reference/newline\r",
+      "reference/font=${1:font commands}",
+      "reference/format=${1:macro}",
+      "reference/newline",
       "reference/sep=",
       "rightmargin=",
-      "selah/font=${1:font commands}\r",
-      "selah/format=${1:macro}\r",
+      "selah/font=${1:font commands}",
+      "selah/format=${1:macro}",
       "selah/sep=",
-      "selah/text=${1:text}\r",
+      "selah/text=${1:text}",
       "style=",
       "textright/sep=",
       "verse/colour=",
       "verse/color=",
       "verse/first",
-      "verse/firstformat=${1:macro}\r",
+      "verse/firstformat=${1:macro}",
       "verse/firstsep=",
-      "verse/font=${1:font commands}\r",
-      "verse/format=${1:macro}\r",
+      "verse/font=${1:font commands}",
+      "verse/format=${1:macro}",
       "verse/hide",
       "verse/sep=",
       "verse/show",
-      "version=${1:version}\r",
-      "version/delim=${1:delim}\r",
-      "version/format=${1:macro}\r",
+      "version=${1:version}",
+      "version/delim=${1:delim}",
+      "version/format=${1:macro}",
       "center/aboveskip=",
       "center/belowskip=",
       "center/leftmargin=",

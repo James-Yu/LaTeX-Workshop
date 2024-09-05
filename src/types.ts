@@ -172,6 +172,15 @@ export type MacroRaw = {
     doc?: string
 }
 
+export type EnvironmentInfo = EnvironmentRaw & {
+    package: string
+    detail: string
+}
+
+export type MacroInfo = MacroRaw & {
+    package: string
+}
+
 export type PackageObsolete = {
     includes: {[key: string]: string[]},
     macros: {[key: string]: MacroObsolete},

@@ -45,7 +45,11 @@
       "name": "ssdrop",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:mathcode%formula}}"
+        "snippet": "[${2:options%keyvals}]{${1:mathcode%formula}}",
+        "keys": [
+          "\\ssdrop,\\ssdropextension"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -116,7 +120,11 @@
       "name": "ssdroplabel",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:label}}"
+        "snippet": "[${2:options%keyvals}]{${1:label}}",
+        "keys": [
+          "\\ssdroplabel"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -136,7 +144,11 @@
       "name": "ssstroke",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\ssstroke,\\ssline,\\ssarrow,\\ssvoidline"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -202,7 +214,11 @@
       "name": "ssline",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:x}}{${2:y}}"
+        "snippet": "[${3:options%keyvals}]{${1:x}}{${2:y}}",
+        "keys": [
+          "\\ssstroke,\\ssline,\\ssarrow,\\ssvoidline"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -240,7 +256,11 @@
       "name": "ssarrow",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:x}}{${2:y}}"
+        "snippet": "[${3:options%keyvals}]{${1:x}}{${2:y}}",
+        "keys": [
+          "\\ssstroke,\\ssline,\\ssarrow,\\ssvoidline"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -280,7 +300,11 @@
       "unusual": true,
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:x}}{${2:y}}"
+        "snippet": "[${3:options%keyvals}]{${1:x}}{${2:y}}",
+        "keys": [
+          "\\ssstroke,\\ssline,\\ssarrow,\\ssvoidline"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -384,7 +408,11 @@
       "name": "sseq",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:x-range}}{${2:y-range}}"
+        "snippet": "[${3:options%keyvals}]{${1:x-range}}{${2:y-range}}",
+        "keys": [
+          "\\begin{sseq}"
+        ],
+        "keyPos": 0
       }
     }
   ],
@@ -393,54 +421,54 @@
       "debug"
     ],
     "\\begin{sseq}": [
-      "grid=${1|none,crossword,go,dots,chess\r|}",
+      "grid=${1|none,crossword,go,dots,chess|}",
       "gridstroke=",
       "gapsize=",
       "xgapsize=",
       "ygapsize=",
       "entrysize=",
-      "labels=${2|none,numbers,{${1:x1;x2;...}}\r|}",
-      "xlabels=${2|none,numbers,{${1:x1;x2;...}}\r|}",
-      "ylabels=${2|none,numbers,{${1:x1;x2;...}}\r|}",
-      "labelstep=${1:integer}\r",
-      "xlabelstep=${1:integer}\r",
-      "ylabelstep=${1:integer}\r",
+      "labels=${2|none,numbers,{${1:x1;x2;...}}|}",
+      "xlabels=${2|none,numbers,{${1:x1;x2;...}}|}",
+      "ylabels=${2|none,numbers,{${1:x1;x2;...}}|}",
+      "labelstep=${1:integer}",
+      "xlabelstep=${1:integer}",
+      "ylabelstep=${1:integer}",
       "leak=",
       "xleak=",
       "yleak=",
-      "arrows=${1:arrow type}\r",
-      "packing=${1|auto,horizontal,vertical,diagonal\r|}"
+      "arrows=${1:arrow type}",
+      "packing=${1|auto,horizontal,vertical,diagonal|}"
     ],
     "\\ssdrop,\\ssdropextension": [
-      "circled\r",
-      "boxed\r",
+      "circled",
+      "boxed",
       "color=",
-      "name=${1:name}\r"
+      "name=${1:name}"
     ],
     "\\ssdroplabel": [
       "color=",
-      "pos=${1|U,LU,L,LD,D,RD,R,RU\r|}",
-      "U\r",
-      "LU\r",
-      "L\r",
-      "LD\r",
-      "D\r",
-      "RD\r",
-      "R\r",
-      "RU\r"
+      "pos=${1|U,LU,L,LD,D,RD,R,RU|}",
+      "U",
+      "LU",
+      "L",
+      "LD",
+      "D",
+      "RD",
+      "R",
+      "RU"
     ],
     "\\ssstroke,\\ssline,\\ssarrow,\\ssvoidline": [
       "color=",
-      "curve=${1:value}\r",
-      "dashed\r",
-      "dashed=${1:dashing type}\r",
-      "dotted\r",
-      "dotted=${1:dashing type}\r",
-      "arrowfrom\r",
-      "arrowfrom=${1:dashing type}\r",
-      "arrowto\r",
-      "arrowto=${1:dashing type}\r",
-      "void\r"
+      "curve=${1:value}",
+      "dashed",
+      "dashed=${1:dashing type}",
+      "dotted",
+      "dotted=${1:dashing type}",
+      "arrowfrom",
+      "arrowfrom=${1:dashing type}",
+      "arrowto",
+      "arrowto=${1:dashing type}",
+      "void"
     ]
   },
   "args": [

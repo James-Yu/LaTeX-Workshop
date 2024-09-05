@@ -33,7 +33,11 @@
       "name": "jdRect",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\jdRect,\\jdRect*"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -47,7 +51,11 @@
       "name": "jdRect*",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:content%text}}"
+        "snippet": "[${2:options%keyvals}]{${1:content%text}}",
+        "keys": [
+          "\\jdRect,\\jdRect*"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -147,37 +155,37 @@
   "envs": [],
   "keys": {
     "\\usepackage/fitr#c": [
-      "pdftex\r",
-      "luatex\r",
-      "dvips\r",
-      "dvipsone\r",
-      "dvipdfm\r",
-      "dvipdfmx\r",
-      "xetex\r",
-      "preview\r",
-      "!preview\r",
-      "viewMagWin\r",
-      "!viewMagWin\r",
-      "gonative\r",
-      "blinkonjmp\r",
-      "!blinkonjmp\r",
-      "blinkonrestore\r",
-      "!blinkonrestore\r",
-      "blink\r",
-      "!blink\r"
+      "pdftex",
+      "luatex",
+      "dvips",
+      "dvipsone",
+      "dvipdfm",
+      "dvipdfmx",
+      "xetex",
+      "preview",
+      "!preview",
+      "viewMagWin",
+      "!viewMagWin",
+      "gonative",
+      "blinkonjmp",
+      "!blinkonjmp",
+      "blinkonrestore",
+      "!blinkonrestore",
+      "blink",
+      "!blink"
     ],
     "\\jdRect,\\jdRect*": [
       "lift=",
       "shift=",
       "width=",
       "height=",
-      "ref=${1|t,c,b\r|}",
+      "ref=${1|t,c,b|}",
       "adddestw=",
       "adddesth=",
       "button",
-      "link=${1|jmp,restore\r|}",
+      "link=${1|jmp,restore|}",
       "nodest",
-      "dest=${1:name}\r",
+      "dest=${1:name}",
       "allowFX"
     ]
   },

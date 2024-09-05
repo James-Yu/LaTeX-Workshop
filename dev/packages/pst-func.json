@@ -47,10 +47,18 @@
       }
     },
     {
-      "name": "psBernstein(i,n)"
+      "name": "psBernstein",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:i},${2:n})"
+      }
     },
     {
-      "name": "psBernstein(t0,t1)(i,n)"
+      "name": "psBernstein",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:t0},${2:t1})(${3:i},${4:n})"
+      }
     },
     {
       "name": "psBernstein",
@@ -67,7 +75,11 @@
       }
     },
     {
-      "name": "psLaguerre(x0,x1)"
+      "name": "psLaguerre",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:x0},${2:x1})"
+      }
     },
     {
       "name": "psLaguerre",
@@ -77,7 +89,11 @@
       }
     },
     {
-      "name": "psLegendre(x0,x1)"
+      "name": "psLegendre",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:x0},${2:x1})"
+      }
     },
     {
       "name": "psLegendre",
@@ -87,17 +103,17 @@
       }
     },
     {
-      "name": "psZero(x0,x1)",
+      "name": "psZero",
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:function%definition}}{${2:node name}}"
+        "format": "(){}{}",
+        "snippet": "(${3:x0},${4:x1}){${1:function%definition}}{${2:node name}}"
       }
     },
     {
-      "name": "psZero(x0,x1)",
+      "name": "psZero",
       "arg": {
-        "format": "{}[]{}",
-        "snippet": "{${1:functionA%definition}}[${3:functionB%definition}]{${2:node name}}"
+        "format": "(){}[]{}",
+        "snippet": "(${4:x0},${5:x1}){${1:functionA%definition}}[${3:functionB%definition}]{${2:node name}}"
       }
     },
     {
@@ -605,10 +621,10 @@
       }
     },
     {
-      "name": "psThomae(x0,x1)",
+      "name": "psThomae",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:points}}"
+        "format": "(){}",
+        "snippet": "(${2:x0},${3:x1}){${1:points}}"
       }
     },
     {
@@ -619,17 +635,17 @@
       }
     },
     {
-      "name": "psWeierstrass(x0,x1)",
+      "name": "psWeierstrass",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:a}}"
+        "format": "(){}",
+        "snippet": "(${2:x0},${3:x1}){${1:a}}"
       }
     },
     {
-      "name": "psWeierstrass(x0,x1)",
+      "name": "psWeierstrass",
       "arg": {
-        "format": "[]{}",
-        "snippet": "[${2:a}]{${1:b}}"
+        "format": "()[]{}",
+        "snippet": "(${3:x0},${4:x1})[${2:a}]{${1:b}}"
       }
     },
     {
@@ -647,17 +663,17 @@
       }
     },
     {
-      "name": "psplotImp(xmin,ymin)(xmax,ymax)",
+      "name": "psplotImp",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:function%definition}}"
+        "format": "()(){}",
+        "snippet": "(${2:xmin},${3:ymin})(${4:xmax},${5:ymax}){${1:function%definition}}"
       }
     },
     {
-      "name": "psplotImp(xmin,ymin)(xmax,ymax)",
+      "name": "psplotImp",
       "arg": {
-        "format": "[]{}",
-        "snippet": "[${2:PS code}]{${1:function%definition}}"
+        "format": "()()[]{}",
+        "snippet": "(${3:xmin},${4:ymin})(${5:xmax},${6:ymax})[${2:PS code}]{${1:function%definition}}"
       }
     },
     {
@@ -675,10 +691,10 @@
       }
     },
     {
-      "name": "psVolume(x0,x1)",
+      "name": "psVolume",
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:steps}}{${2:function%definition}}"
+        "format": "(){}{}",
+        "snippet": "(${3:x0},${4:x1}){${1:steps}}{${2:function%definition}}"
       }
     },
     {
@@ -689,16 +705,20 @@
       }
     },
     {
-      "name": "psGetZeros(x0,x1)",
+      "name": "psGetZeros",
       "unusual": true,
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:function%definition}}"
+        "format": "(){}",
+        "snippet": "(${2:x0},${3:x1}){${1:function%definition}}"
       }
     },
     {
-      "name": "psLaguerreC(xmin,xmax)(ymin,ymax)",
-      "unusual": true
+      "name": "psLaguerreC",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:xmin},${2:xmax})(${3:ymin},${4:ymax})"
+      }
     },
     {
       "name": "psLaguerreC",
@@ -709,8 +729,12 @@
       }
     },
     {
-      "name": "psLaguerreCC(xmin,xmax)(ymin,ymax)",
-      "unusual": true
+      "name": "psLaguerreCC",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:xmin},${2:xmax})(${3:ymin},${4:ymax})"
+      }
     },
     {
       "name": "psLaguerreCC",
@@ -721,8 +745,12 @@
       }
     },
     {
-      "name": "psLaguerreCCC(xmin,xmax)(ymin,ymax)",
-      "unusual": true
+      "name": "psLaguerreCCC",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:xmin},${2:xmax})(${3:ymin},${4:ymax})"
+      }
     },
     {
       "name": "psLaguerreCCC",
@@ -733,8 +761,12 @@
       }
     },
     {
-      "name": "psLaguerreCCCC(xmin,xmax)(ymin,ymax)",
-      "unusual": true
+      "name": "psLaguerreCCCC",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:xmin},${2:xmax})(${3:ymin},${4:ymax})"
+      }
     },
     {
       "name": "psLaguerreCCCC",
@@ -745,8 +777,12 @@
       }
     },
     {
-      "name": "psContourLaguerre(xmin,xmax)(ymin,ymax)",
-      "unusual": true
+      "name": "psContourLaguerre",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:xmin},${2:xmax})(${3:ymin},${4:ymax})"
+      }
     },
     {
       "name": "psContourLaguerre",

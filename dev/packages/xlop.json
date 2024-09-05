@@ -157,31 +157,31 @@
       }
     },
     {
-      "name": "oplput(x,y)",
+      "name": "oplput",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:text}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:text}}"
       }
     },
     {
-      "name": "oprput(x,y)",
+      "name": "oprput",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:text}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:text}}"
       }
     },
     {
-      "name": "ophline(x,y)",
+      "name": "ophline",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:length}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:length}}"
       }
     },
     {
-      "name": "opvline(x,y)",
+      "name": "opvline",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:length}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:length}}"
       }
     },
     {
@@ -416,72 +416,72 @@
   "envs": [],
   "keys": {
     "\\opset#c,\\opadd#c,\\opmanyadd#c,\\opsub#c,\\opmul#c,\\opdiv#c,\\opidiv#c": [
-      "afterperiodsymbol=${1:symbol}\r",
-      "equalsymbol=${1:symbol}\r",
-      "approxsymbol=${1:symbol}\r",
-      "decimalsepsymbol=${1:symbol}\r",
-      "addsymbol=${1:symbol}\r",
-      "subsymbol=${1:symbol}\r",
-      "mulsymbol=${1:symbol}\r",
-      "divsymbol=${1:symbol}\r",
-      "voperation=${1|top,center,bottom\r|}",
-      "voperator=${1|top,center,bottom\r|}",
+      "afterperiodsymbol=${1:symbol}",
+      "equalsymbol=${1:symbol}",
+      "approxsymbol=${1:symbol}",
+      "decimalsepsymbol=${1:symbol}",
+      "addsymbol=${1:symbol}",
+      "subsymbol=${1:symbol}",
+      "mulsymbol=${1:symbol}",
+      "divsymbol=${1:symbol}",
+      "voperation=${1|top,center,bottom|}",
+      "voperator=${1|top,center,bottom|}",
       "deletezero",
-      "style=${1|display,text\r|}",
-      "parenthesisnegative=${1|none,all,last\r|}",
+      "style=${1|display,text|}",
+      "parenthesisnegative=${1|none,all,last|}",
       "lineheight=",
       "columnwidth=",
       "decimalsepwidth=",
       "hrulewidth=",
       "vrulewidth=",
       "decimalsepoffset=",
-      "operandstyle=${1:style cmds}\r",
-      "operandstyle.${1:num}=${2:style cmds}\r",
-      "resultstyle=${1:style cmds}\r",
-      "resultstyle.${1:num}=${2:style cmds}\r",
-      "remainderstyle=${1:style cmds}\r",
-      "remainderstyle.${1:num}=${2:style cmds}\r",
-      "intermediarystyle=${1:style cmds}\r",
-      "intermediarystyle.${1:num}=${2:style cmds}\r",
-      "carrystyle=${1:style cmds}\r",
-      "carrystyle.${1:num}=${2:style cmds}\r"
+      "operandstyle=${1:style cmds}",
+      "operandstyle.${1:num}=${2:style cmds}",
+      "resultstyle=${1:style cmds}",
+      "resultstyle.${1:num}=${2:style cmds}",
+      "remainderstyle=${1:style cmds}",
+      "remainderstyle.${1:num}=${2:style cmds}",
+      "intermediarystyle=${1:style cmds}",
+      "intermediarystyle.${1:num}=${2:style cmds}",
+      "carrystyle=${1:style cmds}",
+      "carrystyle.${1:num}=${2:style cmds}"
     ],
     "\\opadd#c,\\opset#c": [
       "carryadd",
       "lastcarry"
     ],
     "\\opmanyadd#c,\\opset#c": [
-      "vmanyoperator=${1|top,center,bottom,Top,Center,Bottom\r|}"
+      "vmanyoperator=${1|top,center,bottom,Top,Center,Bottom|}"
     ],
     "\\opsub#c,\\opset#c": [
       "carrysub",
       "lastcarry",
-      "offsetcarry=\r",
-      "behaviorsub=${1|silent,warning,error\r|}"
+      "offsetcarry=",
+      "behaviorsub=${1|silent,warning,error|}"
     ],
     "\\opmul#c,\\opset#c": [
-      "displayshiftintermediary=${1|shift,all,none\r|}",
-      "shiftintermediarysymbol=\r",
-      "displayintermediary=${1|none,all,nonzero,None\r|}",
-      "hfactor=${1|right,decimal\r|}"
+      "displayshiftintermediary=${1|shift,all,none|}",
+      "shiftintermediarysymbol=",
+      "displayintermediary=${1|none,all,nonzero,None|}",
+      "hfactor=${1|right,decimal|}"
     ],
     "\\opdiv#c,\\opidiv#c,\\opset#c": [
-      "maxdivstep=${1:integer}\r",
-      "safedivstep=${1:integer}\r",
+      "maxdivstep=${1:integer}",
+      "safedivstep=${1:integer}",
       "period",
-      "vruleperiod=\r",
-      "displayintermediary=${1|none,all,nonzero,None\r|}",
+      "vruleperiod=",
+      "displayintermediary=${1|none,all,nonzero,None|}",
       "dividendbridge",
-      "shiftdecimalsep=${1|both,divisor,none\r|}",
-      "strikedecimalsepsymbol=\r"
+      "shiftdecimalsep=${1|both,divisor,none|}",
+      "strikedecimalsepsymbol="
     ],
     "\\opdiv*#c,\\opexpr#c,\\opset#c": [
-      "maxdivstep=${1:integer}\r",
-      "safedivstep=${1:integer}\r",
+      "maxdivstep=${1:integer}",
+      "safedivstep=${1:integer}",
       "period"
     ],
     "\\opsqrt#c,\\opgfsqrt#c": [
-      "maxdivstep=${1:integer}\r"
+      "maxdivstep=${1:integer}"
     ]
   },
   "args": []

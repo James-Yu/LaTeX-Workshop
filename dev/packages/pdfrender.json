@@ -18,30 +18,38 @@
       "name": "pdfrender",
       "arg": {
         "format": "{}",
-        "snippet": "{${1:keyvals}}"
+        "snippet": "{${1:keyvals}}",
+        "keys": [
+          "\\pdfrender,\\textpdfrender"
+        ],
+        "keyPos": 0
       }
     },
     {
       "name": "textpdfrender",
       "arg": {
         "format": "{}{}",
-        "snippet": "{${1:keyvals}}{${2:text}}"
+        "snippet": "{${1:keyvals}}{${2:text}}",
+        "keys": [
+          "\\pdfrender,\\textpdfrender"
+        ],
+        "keyPos": 0
       }
     }
   ],
   "envs": [],
   "keys": {
     "\\pdfrender,\\textpdfrender": [
-      "TextRenderingMode=${1|0,1,2,3,4,5,6,7,Fill,Stroke,FillStroke,Invisible,FillClip,StrokeClip,FillStrokeClip,Clip\r|}",
-      "LineWidth=\r",
-      "LineCapStyle=${1|0,1,2,Butt,Round,ProjectingSquare\r|}",
-      "LineJoinStyle=${1|0,1,2,Miter,Round,Bevel\r|}",
-      "MiterLimit=${1:number}\r",
-      "Flatness=${1:number}\r",
-      "LineDashPattern=\r",
-      "RenderingIntent=${1|AbsoluteColorimetric,RelativeColorimetric,Saturation,Perceptual\r|}",
-      "FillColor=\r",
-      "StrokeColor=\r"
+      "TextRenderingMode=${1|0,1,2,3,4,5,6,7,Fill,Stroke,FillStroke,Invisible,FillClip,StrokeClip,FillStrokeClip,Clip|}",
+      "LineWidth=",
+      "LineCapStyle=${1|0,1,2,Butt,Round,ProjectingSquare|}",
+      "LineJoinStyle=${1|0,1,2,Miter,Round,Bevel|}",
+      "MiterLimit=${1:number}",
+      "Flatness=${1:number}",
+      "LineDashPattern=",
+      "RenderingIntent=${1|AbsoluteColorimetric,RelativeColorimetric,Saturation,Perceptual|}",
+      "FillColor=",
+      "StrokeColor="
     ]
   },
   "args": []

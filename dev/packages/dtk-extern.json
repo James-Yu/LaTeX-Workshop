@@ -49,7 +49,11 @@
       "name": "externalDocument",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:Optionen%keyvals}]{${1:Dateiname}}"
+        "snippet": "[${2:Optionen%keyvals}]{${1:Dateiname}}",
+        "keys": [
+          "\\begin{externalDocument},\\begin{ErstelleGrafik}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -65,21 +69,25 @@
       "unusual": true,
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:Optionen%keyvals}]{${1:Dateiname}}"
+        "snippet": "[${2:Optionen%keyvals}]{${1:Dateiname}}",
+        "keys": [
+          "\\begin{externalDocument},\\begin{ErstelleGrafik}"
+        ],
+        "keyPos": 0
       }
     }
   ],
   "keys": {
     "\\begin{externalDocument},\\begin{ErstelleGrafik}": [
-      "compiler=${1:compiler}\r",
-      "runsequence=${1:runsequence}\r",
-      "runs=${1:number}\r",
-      "grfOptions={${1:\\includegraphics options}}\r",
-      "lstOptions={${1:listings options}}\r",
-      "docType=${1:type}\r",
-      "caption=${1:text}\r",
+      "compiler=${1:compiler}",
+      "runsequence=${1:runsequence}",
+      "runs=${1:number}",
+      "grfOptions={${1:\\includegraphics options}}",
+      "lstOptions={${1:listings options}}",
+      "docType=${1:type}",
+      "caption=${1:text}",
       "label=",
-      "pages={${1:pages}}\r",
+      "pages={${1:pages}}",
       "mpwidth=",
       "usefancyvrb",
       "showFilename",
@@ -88,15 +96,15 @@
       "crop",
       "biber",
       "xindex",
-      "xindexOptions={${1:xindex options}}\r",
+      "xindexOptions={${1:xindex options}}",
       "includegraphic",
       "inline",
       "frame",
       "float",
       "cleanup",
       "copyToExampleDir",
-      "align=${1:alignment commands}\r",
-      "ExamplesDir=${1:name}\r"
+      "align=${1:alignment commands}",
+      "ExamplesDir=${1:name}"
     ]
   },
   "args": []

@@ -3,12 +3,10 @@ import * as fs from 'fs'
 import type * as Ast from '@unified-latex/unified-latex-types'
 import { lw } from '../../lw'
 import { EnvSnippetType } from '../../types'
-import type { CompletionArgs, CompletionItem, CompletionProvider, FileCache, MacroObsolete, PackageObsolete } from '../../types'
+import type { CompletionArgs, CompletionItem, CompletionProvider, FileCache, MacroRaw, PackageRaw } from '../../types'
 import { environment } from './environment'
 
-import { CmdEnvSuggestion, splitSignatureString, filterNonLetterSuggestions, filterArgumentHint } from './completerutils'
-
-const logger = lw.log('Intelli', 'Macro')
+import { CmdEnvSuggestion, filterNonLetterSuggestions, filterArgumentHint } from './completerutils'
 
 export const provider: CompletionProvider = { from }
 export const macro = {
@@ -27,38 +25,43 @@ const data = {
     defaultSymbols: [] as CmdEnvSuggestion[],
     packageCmds: new Map<string, CmdEnvSuggestion[]>()
 }
-Object.entries(JSON.parse(fs.readFileSync(`${lw.extensionRoot}/data/unimathsymbols.json`).toString()) as typeof import('../../../data/unimathsymbols.json'))
-    .forEach(([key, symbol]) => data.defaultSymbols.push(entryCmdToCompletion(key, symbol)))
+Object.values(JSON.parse(fs.readFileSync(`${lw.extensionRoot}/data/unimathsymbols.json`).toString()) as typeof import('../../../data/unimathsymbols.json'))
+    .forEach(symbol => data.defaultSymbols.push(entryCmdToCompletion({ name: symbol.command, doc: symbol.documentation, detail: symbol.detail }, 'latex')))
 
 lw.onConfigChange(['intellisense.command.user', 'intellisense.package.exclude'], initialize)
 initialize()
 function initialize() {
     const excludeDefault = (vscode.workspace.getConfiguration('latex-workshop').get('intellisense.package.exclude') as string[]).includes('lw-default')
-    const cmds = excludeDefault ? {} : JSON.parse(fs.readFileSync(`${lw.extensionRoot}/data/commands.json`, {encoding: 'utf8'})) as {[key: string]: MacroObsolete}
-    const maths = excludeDefault ? {} : (JSON.parse(fs.readFileSync(`${lw.extensionRoot}/data/packages/tex.json`, {encoding: 'utf8'})) as PackageObsolete).macros
-    Object.assign(maths, cmds)
-    Object.entries(maths).forEach(([key, cmd]) => {
-        cmd.macro = key
-        cmd.snippet = cmd.snippet || key
+    const macros = excludeDefault ? [] : JSON.parse(fs.readFileSync(`${lw.extensionRoot}/data/macros.json`, {encoding: 'utf8'})) as (MacroRaw & { action?: string })[]
+    const mathMacros = excludeDefault ? [] : (JSON.parse(fs.readFileSync(`${lw.extensionRoot}/data/packages/tex.json`, {encoding: 'utf8'})) as PackageRaw).macros
+    let all: (MacroRaw & { package: string, action?: string })[] = [...macros, ...mathMacros].map(macro => {
+        const macroInfo = {
+            ...macro,
+            package: 'latex',
+        }
+        return macroInfo
     })
 
     const defaultEnvs = environment.getDefaultEnvs(EnvSnippetType.AsMacro)
 
     const userCmds = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.command.user') as {[key: string]: string}
     Object.entries(userCmds).forEach(([key, snippet]) => {
-        if (maths[key] && snippet !== '') {
-            maths[key].snippet = snippet
-        } else if (maths[key] && snippet === '') {
-            delete maths[key]
+        const candidate = all.find(macro => macro.name + (macro.arg?.format ?? '') === key)
+        if (candidate && snippet !== '') {
+            candidate.name = ''
+            candidate.arg = { format: snippet, snippet }
+            candidate.package = 'user'
+        } else if (candidate && snippet === '') {
+            all = all.filter(macro => macro !== candidate)
         } else {
-            maths[key] = { snippet }
+            all.push({ name: key, package: 'user', arg: { format: '', snippet } })
         }
     })
 
     data.defaultCmds = []
 
     // Initialize default macros and the ones in `tex.json`
-    Object.entries(maths).forEach(([key, cmd]) => data.defaultCmds.push(entryCmdToCompletion(key, cmd)))
+    all.forEach(macro => data.defaultCmds.push(entryCmdToCompletion(macro, macro.package, macro.action)))
 
     // Initialize default env begin-end pairs
     defaultEnvs.forEach(cmd => {
@@ -69,10 +72,6 @@ function initialize() {
 export function isTriggerSuggestNeeded(name: string): boolean {
     const reg = /^(?:[a-z]*(cite|ref|input)[a-z]*|begin|bibitem|(sub)?(import|includefrom|inputfrom)|gls(?:pl|text|first|plural|firstplural|name|symbol|desc|user(?:i|ii|iii|iv|v|vi))?|Acr(?:long|full|short)?(?:pl)?|ac[slf]?p?)/i
     return reg.test(name)
-}
-
-function isCmdWithSnippet(obj: any): obj is MacroObsolete {
-    return (typeof obj.macro === 'string') && (typeof obj.snippet === 'string')
 }
 
 function from(result: RegExpMatchArray, args: CompletionArgs) {
@@ -339,7 +338,7 @@ function parseContent(content: string, filePath: string): CmdEnvSuggestion[] {
         const args = '{}'.repeat(result.length - 1)
         const cmd = new CmdEnvSuggestion(
             `\\${result[1]}${args}`,
-            cmdInPkg.find(candidate => candidate.signatureAsString() === result[1] + args)?.package ?? '',
+            cmdInPkg.find(candidate => candidate.signatureAsString() === result[1] + args)?.packageName ?? '',
             [],
             -1,
             { name: result[1], args },
@@ -395,58 +394,47 @@ function parseContent(content: string, filePath: string): CmdEnvSuggestion[] {
     return cmds
 }
 
-function entryCmdToCompletion(itemKey: string, item: MacroObsolete): CmdEnvSuggestion {
-    item.macro = item.macro || itemKey
-    const backslash = item.macro.startsWith(' ') ? '' : '\\'
+function entryCmdToCompletion(item: MacroRaw, packageName?: string, postAction?: string): CmdEnvSuggestion {
     const suggestion = new CmdEnvSuggestion(
-        `${backslash}${item.macro}`,
-        item.package || 'latex',
-        item.keyvals && typeof(item.keyvals) !== 'number' ? item.keyvals : [],
-        item.keyvalpos === undefined ? -1 : item.keyvalpos,
-        splitSignatureString(itemKey),
+        `\\${item.name}${item.arg?.format ?? ''}`,
+        packageName || 'latex',
+        item.arg?.keys ?? [],
+        item.arg?.keyPos ?? -1,
+        { name: item.name, args: item.arg?.format ?? '' },
         vscode.CompletionItemKind.Function,
-        item.option)
+        item.if)
 
-    if (item.snippet) {
+    if (item.arg?.snippet) {
+        item.arg.snippet = item.name + item.arg.snippet
         // Wrap the selected text when there is a single placeholder
-        if (! (item.snippet.match(/\$\{?2/) || (item.snippet.match(/\$\{?0/) && item.snippet.match(/\$\{?1/)))) {
-            item.snippet = item.snippet.replace(/\$1|\$\{1\}/, '$${1:$${TM_SELECTED_TEXT}}').replace(/\$\{1:([^$}]+)\}/, '$${1:$${TM_SELECTED_TEXT:$1}}')
+        if (! (item.arg.snippet.match(/\$\{?2/) || (item.arg.snippet.match(/\$\{?0/) && item.arg.snippet.match(/\$\{?1/)))) {
+            item.arg.snippet = item.arg.snippet.replace(/\$1|\$\{1\}/, '$${1:$${TM_SELECTED_TEXT}}').replace(/\$\{1:([^$}]+)\}/, '$${1:$${TM_SELECTED_TEXT:$1}}')
         }
-        suggestion.insertText = new vscode.SnippetString(item.snippet)
+        suggestion.insertText = new vscode.SnippetString(item.arg.snippet)
     } else {
-        suggestion.insertText = item.macro
+        suggestion.insertText = item.name
     }
-    suggestion.filterText = itemKey
-    suggestion.detail = item.detail || `\\${item.snippet?.replace(/\$\{\d+:([^$}]*)\}/g, '$1')}`
-    suggestion.documentation = item.documentation ? item.documentation : `Macro \\${item.macro}.`
-    if (item.package) {
-        suggestion.documentation += ` From package: ${item.package}.`
+    suggestion.filterText = item.detail ?? item.name
+    suggestion.detail = item.detail ?? `\\${item.arg?.snippet?.replace(/\$\{\d+:([^$}]*)\}/g, '$1')}` ?? `\\${item.name}`
+    suggestion.documentation = item.doc ?? `Macro \\${item.name}${item.arg?.format ?? ''}.`
+    if (packageName) {
+        suggestion.documentation += ` From package: ${packageName}.`
     }
-    suggestion.sortText = item.macro.replace(/^[a-zA-Z]/, c => {
+    suggestion.sortText = (item.name + item.arg?.format ?? '').replace(/^[a-zA-Z]/, c => {
         const n = c.match(/[a-z]/) ? c.toUpperCase().charCodeAt(0): c.toLowerCase().charCodeAt(0)
         return n !== undefined ? n.toString(16): c
     })
-    if (item.postAction) {
-        suggestion.command = { title: 'Post-Action', command: item.postAction }
-    } else if (isTriggerSuggestNeeded(item.macro)) {
+    if (postAction) {
+        suggestion.command = { title: 'Post-Action', command: postAction }
+    } else if (isTriggerSuggestNeeded(item.name)) {
         // Automatically trigger completion if the macro is for citation, filename, reference or glossary
         suggestion.command = { title: 'Post-Action', command: 'editor.action.triggerSuggest' }
     }
     return suggestion
 }
 
-function setPackageCmds(packageName: string, cmds: {[key: string]: MacroObsolete}) {
-    const macros: CmdEnvSuggestion[] = []
-    Object.entries(cmds).forEach(([key, cmd]) => {
-        cmd.package = packageName
-        if (isCmdWithSnippet(cmd)) {
-            macros.push(entryCmdToCompletion(key, cmd))
-        } else {
-            logger.log(`Cannot parse intellisense file for ${packageName}.`)
-            logger.log(`Missing field in entry: "${key}": ${JSON.stringify(cmd)}.`)
-        }
-    })
-    data.packageCmds.set(packageName, macros)
+function setPackageCmds(packageName: string, macros: MacroRaw[]) {
+    data.packageCmds.set(packageName, macros.map(macro => entryCmdToCompletion(macro, packageName)))
 }
 
 function getPackageCmds(packageName: string) {
@@ -472,7 +460,7 @@ function provideCmdInPkg(packageName: string, options: string[], suggestions: Cm
             return
         }
         if (!defined.has(cmd.signatureAsString())) {
-            if (cmd.option && options && !options.includes(cmd.option)) {
+            if (cmd.ifCond && !options.includes(cmd.ifCond)) {
                 return
             }
             suggestions.push(cmd)

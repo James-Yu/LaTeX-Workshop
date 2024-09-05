@@ -28,7 +28,11 @@
       "name": "textfigure",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:参数列表%keyvals}]{${1:文本%text}}{${2:图片}}"
+        "snippet": "[${3:参数列表%keyvals}]{${1:文本%text}}{${2:图片}}",
+        "keys": [
+          "\\textfigure"
+        ],
+        "keyPos": 0
       }
     }
   ],
@@ -40,18 +44,22 @@
       "name": "multifigures",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:键值列表%keyvals}]"
+        "snippet": "[${1:键值列表%keyvals}]",
+        "keys": [
+          "\\begin{multifigures}"
+        ],
+        "keyPos": 0
       }
     }
   ],
   "keys": {
     "\\examsetup,\\ExamPrintAnswerSet": [
-      "multifigures={${1:键值列表}}\r",
-      "multifigures/columns=${1:integer}\r",
-      "multifigures/fig-pos=${1|top,above,bottom,below,left,right\r|}",
+      "multifigures={${1:键值列表}}",
+      "multifigures/columns=${1:integer}",
+      "multifigures/fig-pos=${1|top,above,bottom,below,left,right|}",
       "multifigures/top-sep=",
       "multifigures/bottom-sep=",
-      "multifigures/align=${1|t,m,b\r|}",
+      "multifigures/align=${1|t,m,b|}",
       "multifigures/xshift=",
       "multifigures/hshift=",
       "multifigures/yshift=",
@@ -60,8 +68,8 @@
       "multifigures/label-hshift=",
       "multifigures/label-yshift=",
       "multifigures/label-vshift=",
-      "textfigure={${1:键值列表}}\r",
-      "textfigure/fig-pos=${1|left,right,top,bottom,top-left,top-right,top-center,top-flushright,bottom-flushright,bottom-left,bottom-right,bottom-center,right-top,right-bottom,right-center,left-top,left-bottom,left-center\r|}",
+      "textfigure={${1:键值列表}}",
+      "textfigure/fig-pos=${1|left,right,top,bottom,top-left,top-right,top-center,top-flushright,bottom-flushright,bottom-left,bottom-right,bottom-center,right-top,right-bottom,right-center,left-top,left-bottom,left-center|}",
       "textfigure/figure-xshift=",
       "textfigure/figure-hshift=",
       "textfigure/figure-yshift=",
@@ -74,17 +82,17 @@
       "textfigure/bottom-sep=",
       "textfigure/text-width=",
       "textfigure/figure-width=",
-      "textfigure/ratio=${1:比例}\r",
-      "textfigure/text-ratio=${1:比例}\r",
-      "textfigure/top=${1:integer}\r",
+      "textfigure/ratio=${1:比例}",
+      "textfigure/text-ratio=${1:比例}",
+      "textfigure/top=${1:integer}",
       "textfigure/parindent="
     ],
     "\\begin{multifigures}": [
-      "columns=${1:integer}\r",
-      "fig-pos=${1|top,above,bottom,below,left,right\r|}",
+      "columns=${1:integer}",
+      "fig-pos=${1|top,above,bottom,below,left,right|}",
       "top-sep=",
       "bottom-sep=",
-      "align=${1|t,m,b\r|}",
+      "align=${1|t,m,b|}",
       "xshift=",
       "hshift=",
       "yshift=",
@@ -95,7 +103,7 @@
       "label-vshift="
     ],
     "\\textfigure": [
-      "fig-pos=${1|left,right,top,bottom,top-left,top-right,top-center,top-flushright,bottom-flushright,bottom-left,bottom-right,bottom-center,right-top,right-bottom,right-center,left-top,left-bottom,left-center\r|}",
+      "fig-pos=${1|left,right,top,bottom,top-left,top-right,top-center,top-flushright,bottom-flushright,bottom-left,bottom-right,bottom-center,right-top,right-bottom,right-center,left-top,left-bottom,left-center|}",
       "figure-xshift=",
       "figure-hshift=",
       "figure-yshift=",
@@ -108,9 +116,9 @@
       "bottom-sep=",
       "text-width=",
       "figure-width=",
-      "ratio=${1:比例}\r",
-      "text-ratio=${1:比例}\r",
-      "top=${1:integer}\r",
+      "ratio=${1:比例}",
+      "text-ratio=${1:比例}",
+      "top=${1:integer}",
       "parindent="
     ]
   },

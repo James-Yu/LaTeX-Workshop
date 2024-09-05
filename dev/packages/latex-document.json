@@ -300,17 +300,17 @@
       }
     },
     {
-      "name": "framebox(xdimen,ydimen)",
+      "name": "framebox",
       "arg": {
-        "format": "[]{}",
-        "snippet": "[${2:position}]{${1:text}}"
+        "format": "()[]{}",
+        "snippet": "(${3:xdimen},${4:ydimen})[${2:position}]{${1:text}}"
       }
     },
     {
-      "name": "framebox(xdimen,ydimen)",
+      "name": "framebox",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:text}}"
+        "format": "(){}",
+        "snippet": "(${2:xdimen},${3:ydimen}){${1:text}}"
       }
     },
     {
@@ -432,11 +432,11 @@
       "unusual": true
     },
     {
-      "name": "line(xslope,yslope)",
+      "name": "line",
       "unusual": true,
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:length}}"
+        "format": "(){}",
+        "snippet": "(${2:xslope},${3:yslope}){${1:length}}"
       }
     },
     {
@@ -459,7 +459,11 @@
       "name": "listfiles",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\listfiles"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -470,19 +474,19 @@
       "name": "listtablename"
     },
     {
-      "name": "makebox(width,height)",
+      "name": "makebox",
       "unusual": true,
       "arg": {
-        "format": "[]{}",
-        "snippet": "[${2:position}]{${1:text}}"
+        "format": "()[]{}",
+        "snippet": "(${3:width},${4:height})[${2:position}]{${1:text}}"
       }
     },
     {
-      "name": "makebox(width,height)",
+      "name": "makebox",
       "unusual": true,
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:text}}"
+        "format": "(){}",
+        "snippet": "(${2:width},${3:height}){${1:text}}"
       }
     },
     {
@@ -591,11 +595,11 @@
       "unusual": true
     },
     {
-      "name": "multiput(xcoord,ycoord)(xdelta,ydelta)",
+      "name": "multiput",
       "unusual": true,
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:copies}}{${2:object}}"
+        "format": "()(){}{}",
+        "snippet": "(${3:xcoord},${4:ycoord})(${5:xdelta},${6:ydelta}){${1:copies}}{${2:object}}"
       }
     },
     {
@@ -693,15 +697,19 @@
       "name": "onecolumn"
     },
     {
-      "name": "oval(width,height)",
-      "unusual": true
-    },
-    {
-      "name": "oval(width,height)",
+      "name": "oval",
       "unusual": true,
       "arg": {
-        "format": "[]",
-        "snippet": "[${1:portion}]"
+        "format": "()",
+        "snippet": "(${1:width},${2:height})"
+      }
+    },
+    {
+      "name": "oval",
+      "unusual": true,
+      "arg": {
+        "format": "()[]",
+        "snippet": "(${2:width},${3:height})[${1:portion}]"
       }
     },
     {
@@ -749,16 +757,20 @@
       "name": "pushtabs"
     },
     {
-      "name": "put(xcoord,ycoord)",
+      "name": "put",
       "unusual": true,
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:text}}"
+        "format": "(){}",
+        "snippet": "(${2:xcoord},${3:ycoord}){${1:text}}"
       }
     },
     {
-      "name": "qbezier(x1,y1)(x2,y2)(x3,y3)",
-      "unusual": true
+      "name": "qbezier",
+      "unusual": true,
+      "arg": {
+        "format": "()()()",
+        "snippet": "(${1:x1},${2:y1})(${3:x2},${4:y2})(${5:x3},${6:y3})"
+      }
     },
     {
       "name": "qbezier",
@@ -1257,11 +1269,25 @@
       "doc": "Vertical ellipsis"
     },
     {
-      "name": "vector(xslope,yslope)",
+      "name": "vector",
       "unusual": true,
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:length}}"
+        "format": "(){}",
+        "snippet": "(${2:xslope},${3:yslope}){${1:length}}"
+      }
+    },
+    {
+      "name": "verb",
+      "arg": {
+        "format": "||",
+        "snippet": "|${1:text}|"
+      }
+    },
+    {
+      "name": "verb*",
+      "arg": {
+        "format": "||",
+        "snippet": "|${1:text}|"
       }
     },
     {
@@ -1464,7 +1490,11 @@
       "name": "filecontents",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:file}}"
+        "snippet": "[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\begin{filecontents},\\begin{filecontents*}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -1478,7 +1508,11 @@
       "name": "filecontents*",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:file}}"
+        "snippet": "[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\begin{filecontents},\\begin{filecontents*}"
+        ],
+        "keyPos": 0
       }
     },
     {

@@ -12,7 +12,11 @@
   ],
   "macros": [
     {
-      "name": "pstSetRelativeOrigin(x,y)"
+      "name": "pstSetRelativeOrigin",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:x},${2:y})"
+      }
     },
     {
       "name": "pstSetAbsoluteOrigin"
@@ -21,10 +25,10 @@
       "name": "pstSetPostScriptOrigin"
     },
     {
-      "name": "pstPutAbs(x,y)",
+      "name": "pstPutAbs",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:stuff}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:stuff}}"
       }
     },
     {
@@ -38,11 +42,11 @@
   "envs": [],
   "keys": {
     "\\usepackage/pst-abspos#c": [
-      "notitlepage\r",
-      "absolute\r",
-      "lowerleft\r",
-      "relative\r",
-      "PostScript\r"
+      "notitlepage",
+      "absolute",
+      "lowerleft",
+      "relative",
+      "PostScript"
     ]
   },
   "args": [

@@ -71,16 +71,20 @@
       "name": "invoice",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\usepackage/invoice2#c,\\invoiceoptions,\\begin{invoice}"
+        ],
+        "keyPos": 0
       }
     }
   ],
   "keys": {
     "\\usepackage/invoice2#c,\\invoiceoptions,\\begin{invoice}": [
-      "vat=${1:VAT}\r",
+      "vat=${1:VAT}",
       "included-vat",
-      "currency-symbol={${1:symbol}}\r",
-      "currency-fraction-digits=${1:digits}\r",
+      "currency-symbol={${1:symbol}}",
+      "currency-fraction-digits=${1:digits}",
       "currency-in-header",
       "colorize",
       "odd-color=",

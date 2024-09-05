@@ -38,10 +38,10 @@
       }
     },
     {
-      "name": "pstMoveNode(dx,dy)",
+      "name": "pstMoveNode",
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:A}}{${2:B}}"
+        "format": "(){}{}",
+        "snippet": "(${3:dx},${4:dy}){${1:A}}{${2:B}}"
       }
     },
     {
@@ -94,10 +94,10 @@
       }
     },
     {
-      "name": "pstTriangle(x1,y1)",
+      "name": "pstTriangle",
       "arg": {
-        "format": "{}(){}(){}",
-        "snippet": "{${1:A}}(${4:x2},${5:y2}){${2:B}}(${6:x3},${7:y3}){${3:C}}"
+        "format": "(){}(){}(){}",
+        "snippet": "(${4:x1},${5:y1}){${1:A}}(${6:x2},${7:y2}){${2:B}}(${8:x3},${9:y3}){${3:C}}"
       }
     },
     {
@@ -108,10 +108,10 @@
       }
     },
     {
-      "name": "pstTriangleSSS(pos)",
+      "name": "pstTriangleSSS",
       "arg": {
-        "format": "{}(){}{}",
-        "snippet": "{${1:A}}(${4:a},${5:b},${6:c}){${2:B}}{${3:C}}"
+        "format": "(){}(){}{}",
+        "snippet": "(${4:pos}){${1:A}}(${5:a},${6:b},${7:c}){${2:B}}{${3:C}}"
       }
     },
     {
@@ -122,10 +122,10 @@
       }
     },
     {
-      "name": "pstTriangleSAS(pos)",
+      "name": "pstTriangleSAS",
       "arg": {
-        "format": "{}(){}{}",
-        "snippet": "{${1:A}}(${4:b},${5:∠A},${6:c}){${2:B}}{${3:C}}"
+        "format": "(){}(){}{}",
+        "snippet": "(${4:pos}){${1:A}}(${5:b},${6:∠A},${7:c}){${2:B}}{${3:C}}"
       }
     },
     {
@@ -136,10 +136,10 @@
       }
     },
     {
-      "name": "pstTriangleAAS(pos)",
+      "name": "pstTriangleAAS",
       "arg": {
-        "format": "{}(){}{}",
-        "snippet": "{${1:A}}(${4:∠C},${5:∠A},${6:c}){${2:B}}{${3:C}}"
+        "format": "(){}(){}{}",
+        "snippet": "(${4:pos}){${1:A}}(${5:∠C},${6:∠A},${7:c}){${2:B}}{${3:C}}"
       }
     },
     {
@@ -150,10 +150,10 @@
       }
     },
     {
-      "name": "pstTriangleASA(pos)",
+      "name": "pstTriangleASA",
       "arg": {
-        "format": "{}(){}{}",
-        "snippet": "{${1:A}}(${4:∠A},${5:c},${6:∠B}){${2:B}}{${3:C}}"
+        "format": "(){}(){}{}",
+        "snippet": "(${4:pos}){${1:A}}(${5:∠A},${6:c},${7:∠B}){${2:B}}{${3:C}}"
       }
     },
     {
@@ -430,10 +430,10 @@
       }
     },
     {
-      "name": "pstLine(x,y)",
+      "name": "pstLine",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:B}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:B}}"
       }
     },
     {
@@ -444,7 +444,11 @@
       }
     },
     {
-      "name": "pstLine(x1,y1)(x2,y2)"
+      "name": "pstLine",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x1},${2:y1})(${3:x2},${4:y2})"
+      }
     },
     {
       "name": "pstLine",
@@ -468,10 +472,10 @@
       }
     },
     {
-      "name": "pstLineAA(x,y)",
+      "name": "pstLineAA",
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:angle}}{${2:B}}"
+        "format": "(){}{}",
+        "snippet": "(${3:x},${4:y}){${1:angle}}{${2:B}}"
       }
     },
     {
@@ -496,10 +500,10 @@
       }
     },
     {
-      "name": "pstLineAS(x,y)",
+      "name": "pstLineAS",
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:gradient}}{${2:B}}"
+        "format": "(){}{}",
+        "snippet": "(${3:x},${4:y}){${1:gradient}}{${2:B}}"
       }
     },
     {
@@ -1126,13 +1130,17 @@
       }
     },
     {
-      "name": "pstEllipse(O)(a,b)"
+      "name": "pstEllipse",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:O})(${2:a},${3:b})"
+      }
     },
     {
-      "name": "pstEllipse(O)(a,b)",
+      "name": "pstEllipse",
       "arg": {
-        "format": "[][]",
-        "snippet": "[${1:angleA}][${2:angleB}]"
+        "format": "()()[][]",
+        "snippet": "(${3:O})(${4:a},${5:b})[${1:angleA}][${2:angleB}]"
       }
     },
     {
@@ -1150,10 +1158,10 @@
       }
     },
     {
-      "name": "pstEllipseNode(O)(a,b)",
+      "name": "pstEllipseNode",
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:t}}{${2:P}}"
+        "format": "()(){}{}",
+        "snippet": "(${3:O})(${4:a},${5:b}){${1:t}}{${2:P}}"
       }
     },
     {
@@ -1164,10 +1172,10 @@
       }
     },
     {
-      "name": "pstEllipseRotNode(O)(a,b)",
+      "name": "pstEllipseRotNode",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:P}}"
+        "format": "()(){}",
+        "snippet": "(${2:O})(${3:a},${4:b}){${1:P}}"
       }
     },
     {
@@ -1178,10 +1186,10 @@
       }
     },
     {
-      "name": "pstEllipseAbsNode(O)(a,b)",
+      "name": "pstEllipseAbsNode",
       "arg": {
-        "format": "{}{}{}",
-        "snippet": "{${1:x}}{${2:A}}{${3:B}}"
+        "format": "()(){}{}{}",
+        "snippet": "(${4:O})(${5:a},${6:b}){${1:x}}{${2:A}}{${3:B}}"
       }
     },
     {
@@ -1192,10 +1200,10 @@
       }
     },
     {
-      "name": "pstEllipseOrdNode(O)(a,b)",
+      "name": "pstEllipseOrdNode",
       "arg": {
-        "format": "{}{}{}",
-        "snippet": "{${1:y}}{${2:A}}{${3:B}}"
+        "format": "()(){}{}{}",
+        "snippet": "(${4:O})(${5:a},${6:b}){${1:y}}{${2:A}}{${3:B}}"
       }
     },
     {
@@ -1206,10 +1214,10 @@
       }
     },
     {
-      "name": "pstEllipseFocusNode(O)(a,b)",
+      "name": "pstEllipseFocusNode",
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:A}}{${2:B}}"
+        "format": "()(){}{}",
+        "snippet": "(${3:O})(${4:a},${5:b}){${1:A}}{${2:B}}"
       }
     },
     {
@@ -1220,10 +1228,10 @@
       }
     },
     {
-      "name": "pstEllipseDirectrixLine(O)(a,b)",
+      "name": "pstEllipseDirectrixLine",
       "arg": {
-        "format": "{}{}{}{}",
-        "snippet": "{${1:Lx}}{${2:Ly}}{${3:Rx}}{${4:Ry}}"
+        "format": "()(){}{}{}{}",
+        "snippet": "(${5:O})(${6:a},${7:b}){${1:Lx}}{${2:Ly}}{${3:Rx}}{${4:Ry}}"
       }
     },
     {
@@ -1234,10 +1242,10 @@
       }
     },
     {
-      "name": "pstEllipseLineInter(O)(a,b)",
+      "name": "pstEllipseLineInter",
       "arg": {
-        "format": "{}{}{}{}",
-        "snippet": "{${1:A}}{${2:B}}{${3:C}}{${4:D}}"
+        "format": "()(){}{}{}{}",
+        "snippet": "(${5:O})(${6:a},${7:b}){${1:A}}{${2:B}}{${3:C}}{${4:D}}"
       }
     },
     {
@@ -1248,10 +1256,10 @@
       }
     },
     {
-      "name": "pstEllipsePolarNode(O)(a,b)",
+      "name": "pstEllipsePolarNode",
       "arg": {
-        "format": "{}{}{}",
-        "snippet": "{${1:A}}{${2:B}}{${3:T}}"
+        "format": "()(){}{}{}",
+        "snippet": "(${4:O})(${5:a},${6:b}){${1:A}}{${2:B}}{${3:T}}"
       }
     },
     {
@@ -1262,10 +1270,10 @@
       }
     },
     {
-      "name": "pstEllipseTangentNode(O)(a,b)",
+      "name": "pstEllipseTangentNode",
       "arg": {
-        "format": "{}{}{}",
-        "snippet": "{${1:T}}{${2:A}}{${3:B}}"
+        "format": "()(){}{}{}",
+        "snippet": "(${4:O})(${5:a},${6:b}){${1:T}}{${2:A}}{${3:B}}"
       }
     },
     {
@@ -1276,20 +1284,24 @@
       }
     },
     {
-      "name": "pstGeneralEllipse(O)(a,b)"
-    },
-    {
-      "name": "pstGeneralEllipse(O)(a,b)",
+      "name": "pstGeneralEllipse",
       "arg": {
-        "format": "[]",
-        "snippet": "[${1:θ}]"
+        "format": "()()",
+        "snippet": "(${1:O})(${2:a},${3:b})"
       }
     },
     {
-      "name": "pstGeneralEllipse(O)(a,b)",
+      "name": "pstGeneralEllipse",
       "arg": {
-        "format": "[][][]",
-        "snippet": "[${1:θ}][${2:angleA}][${3:angleB}]"
+        "format": "()()[]",
+        "snippet": "(${2:O})(${3:a},${4:b})[${1:θ}]"
+      }
+    },
+    {
+      "name": "pstGeneralEllipse",
+      "arg": {
+        "format": "()()[][][]",
+        "snippet": "(${4:O})(${5:a},${6:b})[${1:θ}][${2:angleA}][${3:angleB}]"
       }
     },
     {
@@ -1370,17 +1382,17 @@
       }
     },
     {
-      "name": "pstGeneralEllipseNode(O)(a,b)",
+      "name": "pstGeneralEllipseNode",
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:t}}{${2:A}}"
+        "format": "()(){}{}",
+        "snippet": "(${3:O})(${4:a},${5:b}){${1:t}}{${2:A}}"
       }
     },
     {
-      "name": "pstGeneralEllipseNode(O)(a,b)",
+      "name": "pstGeneralEllipseNode",
       "arg": {
-        "format": "[]{}{}",
-        "snippet": "[${3:θ}]{${1:t}}{${2:A}}"
+        "format": "()()[]{}{}",
+        "snippet": "(${4:O})(${5:a},${6:b})[${3:θ}]{${1:t}}{${2:A}}"
       }
     },
     {
@@ -1398,17 +1410,17 @@
       }
     },
     {
-      "name": "pstGeneralEllipseRotNode(O)(a,b)",
+      "name": "pstGeneralEllipseRotNode",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:A}}"
+        "format": "()(){}",
+        "snippet": "(${2:O})(${3:a},${4:b}){${1:A}}"
       }
     },
     {
-      "name": "pstGeneralEllipseRotNode(O)(a,b)",
+      "name": "pstGeneralEllipseRotNode",
       "arg": {
-        "format": "[]{}",
-        "snippet": "[${2:θ}]{${1:A}}"
+        "format": "()()[]{}",
+        "snippet": "(${3:O})(${4:a},${5:b})[${2:θ}]{${1:A}}"
       }
     },
     {
@@ -1426,17 +1438,17 @@
       }
     },
     {
-      "name": "pstGeneralEllipseAbsNode(O)(a,b)",
+      "name": "pstGeneralEllipseAbsNode",
       "arg": {
-        "format": "{}{}{}",
-        "snippet": "{${1:x}}{${2:A}}{${3:B}}"
+        "format": "()(){}{}{}",
+        "snippet": "(${4:O})(${5:a},${6:b}){${1:x}}{${2:A}}{${3:B}}"
       }
     },
     {
-      "name": "pstGeneralEllipseAbsNode(O)(a,b)",
+      "name": "pstGeneralEllipseAbsNode",
       "arg": {
-        "format": "[]{}{}{}",
-        "snippet": "[${4:θ}]{${1:x}}{${2:A}}{${3:B}}"
+        "format": "()()[]{}{}{}",
+        "snippet": "(${5:O})(${6:a},${7:b})[${4:θ}]{${1:x}}{${2:A}}{${3:B}}"
       }
     },
     {
@@ -1454,17 +1466,17 @@
       }
     },
     {
-      "name": "pstGeneralEllipseOrdNode(O)(a,b)",
+      "name": "pstGeneralEllipseOrdNode",
       "arg": {
-        "format": "{}{}{}",
-        "snippet": "{${1:y}}{${2:A}}{${3:B}}"
+        "format": "()(){}{}{}",
+        "snippet": "(${4:O})(${5:a},${6:b}){${1:y}}{${2:A}}{${3:B}}"
       }
     },
     {
-      "name": "pstGeneralEllipseOrdNode(O)(a,b)",
+      "name": "pstGeneralEllipseOrdNode",
       "arg": {
-        "format": "[]{}{}{}",
-        "snippet": "[${4:θ}]{${1:y}}{${2:A}}{${3:B}}"
+        "format": "()()[]{}{}{}",
+        "snippet": "(${5:O})(${6:a},${7:b})[${4:θ}]{${1:y}}{${2:A}}{${3:B}}"
       }
     },
     {
@@ -1482,17 +1494,17 @@
       }
     },
     {
-      "name": "pstGeneralEllipseFocusNode(O)(a,b)",
+      "name": "pstGeneralEllipseFocusNode",
       "arg": {
-        "format": "{}{}{}",
-        "snippet": "{${1:t}}{${2:F1}}{${3:F2}}"
+        "format": "()(){}{}{}",
+        "snippet": "(${4:O})(${5:a},${6:b}){${1:t}}{${2:F1}}{${3:F2}}"
       }
     },
     {
-      "name": "pstGeneralEllipseFocusNode(O)(a,b)",
+      "name": "pstGeneralEllipseFocusNode",
       "arg": {
-        "format": "[]{}{}{}",
-        "snippet": "[${4:θ}]{${1:t}}{${2:F1}}{${3:F2}}"
+        "format": "()()[]{}{}{}",
+        "snippet": "(${5:O})(${6:a},${7:b})[${4:θ}]{${1:t}}{${2:F1}}{${3:F2}}"
       }
     },
     {
@@ -1510,17 +1522,17 @@
       }
     },
     {
-      "name": "pstGeneralEllipseDirectrixLine(O)(a,b)",
+      "name": "pstGeneralEllipseDirectrixLine",
       "arg": {
-        "format": "{}{}{}{}",
-        "snippet": "{${1:Lx}}{${2:Ly}}{${3:Rx}}{${4:Ry}}"
+        "format": "()(){}{}{}{}",
+        "snippet": "(${5:O})(${6:a},${7:b}){${1:Lx}}{${2:Ly}}{${3:Rx}}{${4:Ry}}"
       }
     },
     {
-      "name": "pstGeneralEllipseDirectrixLine(O)(a,b)",
+      "name": "pstGeneralEllipseDirectrixLine",
       "arg": {
-        "format": "[]{}{}{}{}",
-        "snippet": "[${5:θ}]{${1:Lx}}{${2:Ly}}{${3:Rx}}{${4:Ry}}"
+        "format": "()()[]{}{}{}{}",
+        "snippet": "(${6:O})(${7:a},${8:b})[${5:θ}]{${1:Lx}}{${2:Ly}}{${3:Rx}}{${4:Ry}}"
       }
     },
     {
@@ -1538,17 +1550,17 @@
       }
     },
     {
-      "name": "pstGeneralEllipseLineInter(O)(a,b)",
+      "name": "pstGeneralEllipseLineInter",
       "arg": {
-        "format": "{}{}{}{}",
-        "snippet": "{${1:A}}{${2:B}}{${3:C}}{${4:D}}"
+        "format": "()(){}{}{}{}",
+        "snippet": "(${5:O})(${6:a},${7:b}){${1:A}}{${2:B}}{${3:C}}{${4:D}}"
       }
     },
     {
-      "name": "pstGeneralEllipseLineInter(O)(a,b)",
+      "name": "pstGeneralEllipseLineInter",
       "arg": {
-        "format": "[]{}{}{}{}",
-        "snippet": "[${5:θ}]{${1:A}}{${2:B}}{${3:C}}{${4:D}}"
+        "format": "()()[]{}{}{}{}",
+        "snippet": "(${6:O})(${7:a},${8:b})[${5:θ}]{${1:A}}{${2:B}}{${3:C}}{${4:D}}"
       }
     },
     {
@@ -1566,17 +1578,17 @@
       }
     },
     {
-      "name": "pstGeneralEllipsePolarNode(O)(a,b)",
+      "name": "pstGeneralEllipsePolarNode",
       "arg": {
-        "format": "{}{}{}",
-        "snippet": "{${1:A}}{${2:B}}{${3:T}}"
+        "format": "()(){}{}{}",
+        "snippet": "(${4:O})(${5:a},${6:b}){${1:A}}{${2:B}}{${3:T}}"
       }
     },
     {
-      "name": "pstGeneralEllipsePolarNode(O)(a,b)",
+      "name": "pstGeneralEllipsePolarNode",
       "arg": {
-        "format": "[]{}{}{}",
-        "snippet": "[${4:θ}]{${1:A}}{${2:B}}{${3:T}}"
+        "format": "()()[]{}{}{}",
+        "snippet": "(${5:O})(${6:a},${7:b})[${4:θ}]{${1:A}}{${2:B}}{${3:T}}"
       }
     },
     {
@@ -1594,17 +1606,17 @@
       }
     },
     {
-      "name": "pstGeneralEllipseTangentNode(O)(a,b)",
+      "name": "pstGeneralEllipseTangentNode",
       "arg": {
-        "format": "{}{}{}",
-        "snippet": "{${1:T}}{${2:A}}{${3:B}}"
+        "format": "()(){}{}{}",
+        "snippet": "(${4:O})(${5:a},${6:b}){${1:T}}{${2:A}}{${3:B}}"
       }
     },
     {
-      "name": "pstGeneralEllipseTangentNode(O)(a,b)",
+      "name": "pstGeneralEllipseTangentNode",
       "arg": {
-        "format": "[]{}{}{}",
-        "snippet": "[${4:θ}]{${1:T}}{${2:A}}{${3:B}}"
+        "format": "()()[]{}{}{}",
+        "snippet": "(${5:O})(${6:a},${7:b})[${4:θ}]{${1:T}}{${2:A}}{${3:B}}"
       }
     },
     {
@@ -1622,10 +1634,10 @@
       }
     },
     {
-      "name": "pstParabola(O)",
+      "name": "pstParabola",
       "arg": {
-        "format": "{}{}{}",
-        "snippet": "{${1:p}}{${2:x1}}{${3:x2}}"
+        "format": "(){}{}{}",
+        "snippet": "(${4:O}){${1:p}}{${2:x1}}{${3:x2}}"
       }
     },
     {
@@ -1636,10 +1648,10 @@
       }
     },
     {
-      "name": "pstParabolaNode(O)",
+      "name": "pstParabolaNode",
       "arg": {
-        "format": "{}{}{}",
-        "snippet": "{${1:p}}{${2:t}}{${3:A}}"
+        "format": "(){}{}{}",
+        "snippet": "(${4:O}){${1:p}}{${2:t}}{${3:A}}"
       }
     },
     {
@@ -1650,10 +1662,10 @@
       }
     },
     {
-      "name": "pstParabolaAbsNode(O)",
+      "name": "pstParabolaAbsNode",
       "arg": {
-        "format": "{}{}{}",
-        "snippet": "{${1:p}}{${2:x}}{${3:A}}"
+        "format": "(){}{}{}",
+        "snippet": "(${4:O}){${1:p}}{${2:x}}{${3:A}}"
       }
     },
     {
@@ -1664,10 +1676,10 @@
       }
     },
     {
-      "name": "pstParabolaOrdNode(O)",
+      "name": "pstParabolaOrdNode",
       "arg": {
-        "format": "{}{}{}{}",
-        "snippet": "{${1:p}}{${2:y}}{${3:A}}{${4:B}}"
+        "format": "(){}{}{}{}",
+        "snippet": "(${5:O}){${1:p}}{${2:y}}{${3:A}}{${4:B}}"
       }
     },
     {
@@ -1678,10 +1690,10 @@
       }
     },
     {
-      "name": "pstParabolaFocusNode(O)",
+      "name": "pstParabolaFocusNode",
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:p}}{${2:F}}"
+        "format": "(){}{}",
+        "snippet": "(${3:O}){${1:p}}{${2:F}}"
       }
     },
     {
@@ -1692,10 +1704,10 @@
       }
     },
     {
-      "name": "pstParabolaDirectrixLine(O)",
+      "name": "pstParabolaDirectrixLine",
       "arg": {
-        "format": "{}{}{}",
-        "snippet": "{${1:p}}{${2:Lx}}{${3:Ly}}"
+        "format": "(){}{}{}",
+        "snippet": "(${4:O}){${1:p}}{${2:Lx}}{${3:Ly}}"
       }
     },
     {
@@ -1706,31 +1718,31 @@
       }
     },
     {
-      "name": "pstParabolaLineInter(O)",
+      "name": "pstParabolaLineInter",
       "arg": {
-        "format": "{}{}{}{}{}",
-        "snippet": "{${1:p}}{${2:A}}{${3:B}}{${4:C}}{${5:D}}"
+        "format": "(){}{}{}{}{}",
+        "snippet": "(${6:O}){${1:p}}{${2:A}}{${3:B}}{${4:C}}{${5:D}}"
       }
     },
     {
-      "name": "pstParabolaPolarNode(O)",
+      "name": "pstParabolaPolarNode",
       "arg": {
-        "format": "{}{}{}{}",
-        "snippet": "{${1:p}}{${2:A}}{${3:B}}{${4:T}}"
+        "format": "(){}{}{}{}",
+        "snippet": "(${5:O}){${1:p}}{${2:A}}{${3:B}}{${4:T}}"
       }
     },
     {
-      "name": "pstParabolaPolarNode(O)",
+      "name": "pstParabolaPolarNode",
       "arg": {
-        "format": "{}(){}{}{}",
-        "snippet": "{${1:p}}(${5:F}){${2:A}}{${3:B}}{${4:T}}"
+        "format": "(){}(){}{}{}",
+        "snippet": "(${5:O}){${1:p}}(${6:F}){${2:A}}{${3:B}}{${4:T}}"
       }
     },
     {
-      "name": "pstParabolaPolarNode(O)",
+      "name": "pstParabolaPolarNode",
       "arg": {
-        "format": "{}()[][]{}{}{}",
-        "snippet": "{${1:p}}(${7:F})[${5:Lx}][${6:Ly}]{${2:A}}{${3:B}}{${4:T}}"
+        "format": "(){}()[][]{}{}{}",
+        "snippet": "(${7:O}){${1:p}}(${8:F})[${5:Lx}][${6:Ly}]{${2:A}}{${3:B}}{${4:T}}"
       }
     },
     {
@@ -1755,10 +1767,10 @@
       }
     },
     {
-      "name": "pstParabolaTangentNode(O)",
+      "name": "pstParabolaTangentNode",
       "arg": {
-        "format": "{}{}{}{}",
-        "snippet": "{${1:p}}{${2:T}}{${3:A}}{${4:B}}"
+        "format": "(){}{}{}{}",
+        "snippet": "(${5:O}){${1:p}}{${2:T}}{${3:A}}{${4:B}}"
       }
     },
     {
@@ -1769,10 +1781,10 @@
       }
     },
     {
-      "name": "pstIParabola(O)",
+      "name": "pstIParabola",
       "arg": {
-        "format": "{}{}{}",
-        "snippet": "{${1:p}}{${2:y1}}{${3:y2}}"
+        "format": "(){}{}{}",
+        "snippet": "(${4:O}){${1:p}}{${2:y1}}{${3:y2}}"
       }
     },
     {
@@ -1783,10 +1795,10 @@
       }
     },
     {
-      "name": "pstIParabolaNode(O)",
+      "name": "pstIParabolaNode",
       "arg": {
-        "format": "{}{}{}",
-        "snippet": "{${1:p}}{${2:t}}{${3:A}}"
+        "format": "(){}{}{}",
+        "snippet": "(${4:O}){${1:p}}{${2:t}}{${3:A}}"
       }
     },
     {
@@ -1797,10 +1809,10 @@
       }
     },
     {
-      "name": "pstIParabolaAbsNode(O)",
+      "name": "pstIParabolaAbsNode",
       "arg": {
-        "format": "{}{}{}{}",
-        "snippet": "{${1:p}}{${2:x}}{${3:A}}{${4:B}}"
+        "format": "(){}{}{}{}",
+        "snippet": "(${5:O}){${1:p}}{${2:x}}{${3:A}}{${4:B}}"
       }
     },
     {
@@ -1811,10 +1823,10 @@
       }
     },
     {
-      "name": "pstIParabolaOrdNode(O)",
+      "name": "pstIParabolaOrdNode",
       "arg": {
-        "format": "{}{}{}",
-        "snippet": "{${1:p}}{${2:y}}{${3:A}}"
+        "format": "(){}{}{}",
+        "snippet": "(${4:O}){${1:p}}{${2:y}}{${3:A}}"
       }
     },
     {
@@ -1825,10 +1837,10 @@
       }
     },
     {
-      "name": "pstIParabolaFocusNode(O)",
+      "name": "pstIParabolaFocusNode",
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:p}}{${2:F}}"
+        "format": "(){}{}",
+        "snippet": "(${3:O}){${1:p}}{${2:F}}"
       }
     },
     {
@@ -1839,10 +1851,10 @@
       }
     },
     {
-      "name": "pstIParabolaDirectrixLine(O)",
+      "name": "pstIParabolaDirectrixLine",
       "arg": {
-        "format": "{}{}{}",
-        "snippet": "{${1:p}}{${2:Lx}}{${3:Ly}}"
+        "format": "(){}{}{}",
+        "snippet": "(${4:O}){${1:p}}{${2:Lx}}{${3:Ly}}"
       }
     },
     {
@@ -1853,10 +1865,10 @@
       }
     },
     {
-      "name": "pstIParabolaLineInter(O)",
+      "name": "pstIParabolaLineInter",
       "arg": {
-        "format": "{}{}{}{}{}",
-        "snippet": "{${1:p}}{${2:A}}{${3:B}}{${4:C}}{${5:D}}"
+        "format": "(){}{}{}{}{}",
+        "snippet": "(${6:O}){${1:p}}{${2:A}}{${3:B}}{${4:C}}{${5:D}}"
       }
     },
     {
@@ -1867,24 +1879,24 @@
       }
     },
     {
-      "name": "pstIParabolaPolarNode(O)",
+      "name": "pstIParabolaPolarNode",
       "arg": {
-        "format": "{}{}{}{}",
-        "snippet": "{${1:p}}{${2:A}}{${3:B}}{${4:T}}"
+        "format": "(){}{}{}{}",
+        "snippet": "(${5:O}){${1:p}}{${2:A}}{${3:B}}{${4:T}}"
       }
     },
     {
-      "name": "pstIParabolaPolarNode(O)",
+      "name": "pstIParabolaPolarNode",
       "arg": {
-        "format": "{}(){}{}{}",
-        "snippet": "{${1:p}}(${5:F}){${2:A}}{${3:B}}{${4:T}}"
+        "format": "(){}(){}{}{}",
+        "snippet": "(${5:O}){${1:p}}(${6:F}){${2:A}}{${3:B}}{${4:T}}"
       }
     },
     {
-      "name": "pstIParabolaPolarNode(O)",
+      "name": "pstIParabolaPolarNode",
       "arg": {
-        "format": "{}()[][]{}{}{}",
-        "snippet": "{${1:p}}(${7:F})[${5:Lx}][${6:Ly}]{${2:A}}{${3:B}}{${4:T}}"
+        "format": "(){}()[][]{}{}{}",
+        "snippet": "(${7:O}){${1:p}}(${8:F})[${5:Lx}][${6:Ly}]{${2:A}}{${3:B}}{${4:T}}"
       }
     },
     {
@@ -1909,10 +1921,10 @@
       }
     },
     {
-      "name": "pstIParabolaTangentNode(O)",
+      "name": "pstIParabolaTangentNode",
       "arg": {
-        "format": "{}{}{}{}",
-        "snippet": "{${1:p}}{${2:T}}{${3:A}}{${4:B}}"
+        "format": "(){}{}{}{}",
+        "snippet": "(${5:O}){${1:p}}{${2:T}}{${3:A}}{${4:B}}"
       }
     },
     {
@@ -1923,17 +1935,17 @@
       }
     },
     {
-      "name": "pstGeneralParabola(O)",
+      "name": "pstGeneralParabola",
       "arg": {
-        "format": "{}{}{}",
-        "snippet": "{${1:p}}{${2:x1}}{${3:x2}}"
+        "format": "(){}{}{}",
+        "snippet": "(${4:O}){${1:p}}{${2:x1}}{${3:x2}}"
       }
     },
     {
-      "name": "pstGeneralParabola(O)",
+      "name": "pstGeneralParabola",
       "arg": {
-        "format": "{}[]{}{}",
-        "snippet": "{${1:p}}[${4:θ}]{${2:x1}}{${3:x2}}"
+        "format": "(){}[]{}{}",
+        "snippet": "(${5:O}){${1:p}}[${4:θ}]{${2:x1}}{${3:x2}}"
       }
     },
     {
@@ -1951,17 +1963,17 @@
       }
     },
     {
-      "name": "pstGeneralParabolaNode(O)",
+      "name": "pstGeneralParabolaNode",
       "arg": {
-        "format": "{}{}{}",
-        "snippet": "{${1:p}}{${2:t}}{${3:A}}"
+        "format": "(){}{}{}",
+        "snippet": "(${4:O}){${1:p}}{${2:t}}{${3:A}}"
       }
     },
     {
-      "name": "pstGeneralParabolaNode(O)",
+      "name": "pstGeneralParabolaNode",
       "arg": {
-        "format": "{}[]{}{}",
-        "snippet": "{${1:p}}[${4:θ}]{${2:t}}{${3:A}}"
+        "format": "(){}[]{}{}",
+        "snippet": "(${5:O}){${1:p}}[${4:θ}]{${2:t}}{${3:A}}"
       }
     },
     {
@@ -1979,17 +1991,17 @@
       }
     },
     {
-      "name": "pstGeneralParabolaAbsNode(O)",
+      "name": "pstGeneralParabolaAbsNode",
       "arg": {
-        "format": "{}{}{}{}",
-        "snippet": "{${1:p}}{${2:x}}{${3:A}}{${4:B}}"
+        "format": "(){}{}{}{}",
+        "snippet": "(${5:O}){${1:p}}{${2:x}}{${3:A}}{${4:B}}"
       }
     },
     {
-      "name": "pstGeneralParabolaAbsNode(O)",
+      "name": "pstGeneralParabolaAbsNode",
       "arg": {
-        "format": "{}[]{}{}{}",
-        "snippet": "{${1:p}}[${5:θ}]{${2:x}}{${3:A}}{${4:B}}"
+        "format": "(){}[]{}{}{}",
+        "snippet": "(${6:O}){${1:p}}[${5:θ}]{${2:x}}{${3:A}}{${4:B}}"
       }
     },
     {
@@ -2007,17 +2019,17 @@
       }
     },
     {
-      "name": "pstGeneralParabolaOrdNode(O)",
+      "name": "pstGeneralParabolaOrdNode",
       "arg": {
-        "format": "{}{}{}{}",
-        "snippet": "{${1:p}}{${2:y}}{${3:A}}{${4:B}}"
+        "format": "(){}{}{}{}",
+        "snippet": "(${5:O}){${1:p}}{${2:y}}{${3:A}}{${4:B}}"
       }
     },
     {
-      "name": "pstGeneralParabolaOrdNode(O)",
+      "name": "pstGeneralParabolaOrdNode",
       "arg": {
-        "format": "{}[]{}{}{}",
-        "snippet": "{${1:p}}[${5:θ}]{${2:y}}{${3:A}}{${4:B}}"
+        "format": "(){}[]{}{}{}",
+        "snippet": "(${6:O}){${1:p}}[${5:θ}]{${2:y}}{${3:A}}{${4:B}}"
       }
     },
     {
@@ -2077,17 +2089,17 @@
       }
     },
     {
-      "name": "pstGeneralParabolaFocusNode(O)",
+      "name": "pstGeneralParabolaFocusNode",
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:p}}{${2:F}}"
+        "format": "(){}{}",
+        "snippet": "(${3:O}){${1:p}}{${2:F}}"
       }
     },
     {
-      "name": "pstGeneralParabolaFocusNode(O)",
+      "name": "pstGeneralParabolaFocusNode",
       "arg": {
-        "format": "{}[]{}",
-        "snippet": "{${1:p}}[${3:θ}]{${2:F}}"
+        "format": "(){}[]{}",
+        "snippet": "(${4:O}){${1:p}}[${3:θ}]{${2:F}}"
       }
     },
     {
@@ -2105,17 +2117,17 @@
       }
     },
     {
-      "name": "pstGeneralParabolaDirectrixLine(O)",
+      "name": "pstGeneralParabolaDirectrixLine",
       "arg": {
-        "format": "{}{}{}",
-        "snippet": "{${1:p}}{${2:Lx}}{${3:Ly}}"
+        "format": "(){}{}{}",
+        "snippet": "(${4:O}){${1:p}}{${2:Lx}}{${3:Ly}}"
       }
     },
     {
-      "name": "pstGeneralParabolaDirectrixLine(O)",
+      "name": "pstGeneralParabolaDirectrixLine",
       "arg": {
-        "format": "{}[]{}{}",
-        "snippet": "{${1:p}}[${4:θ}]{${2:Lx}}{${3:Ly}}"
+        "format": "(){}[]{}{}",
+        "snippet": "(${5:O}){${1:p}}[${4:θ}]{${2:Lx}}{${3:Ly}}"
       }
     },
     {
@@ -2133,17 +2145,17 @@
       }
     },
     {
-      "name": "pstGeneralParabolaLineInter(O)",
+      "name": "pstGeneralParabolaLineInter",
       "arg": {
-        "format": "{}{}{}{}{}",
-        "snippet": "{${1:p}}{${2:A}}{${3:B}}{${4:C}}{${5:D}}"
+        "format": "(){}{}{}{}{}",
+        "snippet": "(${6:O}){${1:p}}{${2:A}}{${3:B}}{${4:C}}{${5:D}}"
       }
     },
     {
-      "name": "pstGeneralParabolaLineInter(O)",
+      "name": "pstGeneralParabolaLineInter",
       "arg": {
-        "format": "{}[]{}{}{}{}",
-        "snippet": "{${1:p}}[${6:θ}]{${2:A}}{${3:B}}{${4:C}}{${5:D}}"
+        "format": "(){}[]{}{}{}{}",
+        "snippet": "(${7:O}){${1:p}}[${6:θ}]{${2:A}}{${3:B}}{${4:C}}{${5:D}}"
       }
     },
     {
@@ -2161,45 +2173,45 @@
       }
     },
     {
-      "name": "pstGeneralParabolaPolarNode(O)",
+      "name": "pstGeneralParabolaPolarNode",
       "arg": {
-        "format": "{}{}{}{}",
-        "snippet": "{${1:p}}{${2:A}}{${3:B}}{${4:T}}"
+        "format": "(){}{}{}{}",
+        "snippet": "(${5:O}){${1:p}}{${2:A}}{${3:B}}{${4:T}}"
       }
     },
     {
-      "name": "pstGeneralParabolaPolarNode(O)",
+      "name": "pstGeneralParabolaPolarNode",
       "arg": {
-        "format": "{}[]{}{}{}",
-        "snippet": "{${1:p}}[${5:θ}]{${2:A}}{${3:B}}{${4:T}}"
+        "format": "(){}[]{}{}{}",
+        "snippet": "(${6:O}){${1:p}}[${5:θ}]{${2:A}}{${3:B}}{${4:T}}"
       }
     },
     {
-      "name": "pstGeneralParabolaPolarNode(O)",
+      "name": "pstGeneralParabolaPolarNode",
       "arg": {
-        "format": "{}(){}{}{}",
-        "snippet": "{${1:p}}(${5:F}){${2:A}}{${3:B}}{${4:T}}"
+        "format": "(){}(){}{}{}",
+        "snippet": "(${5:O}){${1:p}}(${6:F}){${2:A}}{${3:B}}{${4:T}}"
       }
     },
     {
-      "name": "pstGeneralParabolaPolarNode(O)",
+      "name": "pstGeneralParabolaPolarNode",
       "arg": {
-        "format": "{}[](){}{}{}",
-        "snippet": "{${1:p}}[${5:θ}](${6:F}){${2:A}}{${3:B}}{${4:T}}"
+        "format": "(){}[](){}{}{}",
+        "snippet": "(${6:O}){${1:p}}[${5:θ}](${7:F}){${2:A}}{${3:B}}{${4:T}}"
       }
     },
     {
-      "name": "pstGeneralParabolaPolarNode(O)",
+      "name": "pstGeneralParabolaPolarNode",
       "arg": {
-        "format": "{}()[][]{}{}{}",
-        "snippet": "{${1:p}}(${7:F})[${5:Lx}][${6:Ly}]{${2:A}}{${3:B}}{${4:T}}"
+        "format": "(){}()[][]{}{}{}",
+        "snippet": "(${7:O}){${1:p}}(${8:F})[${5:Lx}][${6:Ly}]{${2:A}}{${3:B}}{${4:T}}"
       }
     },
     {
-      "name": "pstGeneralParabolaPolarNode(O)",
+      "name": "pstGeneralParabolaPolarNode",
       "arg": {
-        "format": "{}[]()[][]{}{}{}",
-        "snippet": "{${1:p}}[${5:θ}](${8:F})[${6:Lx}][${7:Ly}]{${2:A}}{${3:B}}{${4:T}}"
+        "format": "(){}[]()[][]{}{}{}",
+        "snippet": "(${8:O}){${1:p}}[${5:θ}](${9:F})[${6:Lx}][${7:Ly}]{${2:A}}{${3:B}}{${4:T}}"
       }
     },
     {
@@ -2245,17 +2257,17 @@
       }
     },
     {
-      "name": "pstGeneralParabolaTangentNode(O)",
+      "name": "pstGeneralParabolaTangentNode",
       "arg": {
-        "format": "{}{}{}{}",
-        "snippet": "{${1:p}}{${2:T}}{${3:A}}{${4:B}}"
+        "format": "(){}{}{}{}",
+        "snippet": "(${5:O}){${1:p}}{${2:T}}{${3:A}}{${4:B}}"
       }
     },
     {
-      "name": "pstGeneralParabolaTangentNode(O)",
+      "name": "pstGeneralParabolaTangentNode",
       "arg": {
-        "format": "{}[]{}{}{}",
-        "snippet": "{${1:p}}[${5:θ}]{${2:T}}{${3:A}}{${4:B}}"
+        "format": "(){}[]{}{}{}",
+        "snippet": "(${6:O}){${1:p}}[${5:θ}]{${2:T}}{${3:A}}{${4:B}}"
       }
     },
     {
@@ -2273,10 +2285,10 @@
       }
     },
     {
-      "name": "pstGeneralIParabola(O)",
+      "name": "pstGeneralIParabola",
       "arg": {
-        "format": "{}{}{}",
-        "snippet": "{${1:p}}{${2:y1}}{${3:y2}}"
+        "format": "(){}{}{}",
+        "snippet": "(${4:O}){${1:p}}{${2:y1}}{${3:y2}}"
       }
     },
     {
@@ -2287,10 +2299,10 @@
       }
     },
     {
-      "name": "pstGeneralIParabola(O)",
+      "name": "pstGeneralIParabola",
       "arg": {
-        "format": "{}[]{}{}",
-        "snippet": "{${1:p}}[${4:θ}]{${2:y1}}{${3:y2}}"
+        "format": "(){}[]{}{}",
+        "snippet": "(${5:O}){${1:p}}[${4:θ}]{${2:y1}}{${3:y2}}"
       }
     },
     {
@@ -2301,10 +2313,10 @@
       }
     },
     {
-      "name": "pstGeneralIParabolaNode(O)",
+      "name": "pstGeneralIParabolaNode",
       "arg": {
-        "format": "{}{}{}",
-        "snippet": "{${1:p}}{${2:t}}{${3:A}}"
+        "format": "(){}{}{}",
+        "snippet": "(${4:O}){${1:p}}{${2:t}}{${3:A}}"
       }
     },
     {
@@ -2315,10 +2327,10 @@
       }
     },
     {
-      "name": "pstGeneralIParabolaNode(O)",
+      "name": "pstGeneralIParabolaNode",
       "arg": {
-        "format": "{}[]{}{}",
-        "snippet": "{${1:p}}[${4:θ}]{${2:t}}{${3:A}}"
+        "format": "(){}[]{}{}",
+        "snippet": "(${5:O}){${1:p}}[${4:θ}]{${2:t}}{${3:A}}"
       }
     },
     {
@@ -2329,10 +2341,10 @@
       }
     },
     {
-      "name": "pstGeneralIParabolaAbsNode(O)",
+      "name": "pstGeneralIParabolaAbsNode",
       "arg": {
-        "format": "{}{}{}{}",
-        "snippet": "{${1:p}}{${2:x}}{${3:A}}{${4:B}}"
+        "format": "(){}{}{}{}",
+        "snippet": "(${5:O}){${1:p}}{${2:x}}{${3:A}}{${4:B}}"
       }
     },
     {
@@ -2343,10 +2355,10 @@
       }
     },
     {
-      "name": "pstGeneralIParabolaAbsNode(O)",
+      "name": "pstGeneralIParabolaAbsNode",
       "arg": {
-        "format": "{}[]{}{}{}",
-        "snippet": "{${1:p}}[${5:θ}]{${2:x}}{${3:A}}{${4:B}}"
+        "format": "(){}[]{}{}{}",
+        "snippet": "(${6:O}){${1:p}}[${5:θ}]{${2:x}}{${3:A}}{${4:B}}"
       }
     },
     {
@@ -2357,10 +2369,10 @@
       }
     },
     {
-      "name": "pstGeneralIParabolaOrdNode(O)",
+      "name": "pstGeneralIParabolaOrdNode",
       "arg": {
-        "format": "{}{}{}{}",
-        "snippet": "{${1:p}}{${2:y}}{${3:A}}{${4:B}}"
+        "format": "(){}{}{}{}",
+        "snippet": "(${5:O}){${1:p}}{${2:y}}{${3:A}}{${4:B}}"
       }
     },
     {
@@ -2371,10 +2383,10 @@
       }
     },
     {
-      "name": "pstGeneralIParabolaOrdNode(O)",
+      "name": "pstGeneralIParabolaOrdNode",
       "arg": {
-        "format": "{}[]{}{}{}",
-        "snippet": "{${1:p}}[${5:θ}]{${2:y}}{${3:A}}{${4:B}}"
+        "format": "(){}[]{}{}{}",
+        "snippet": "(${6:O}){${1:p}}[${5:θ}]{${2:y}}{${3:A}}{${4:B}}"
       }
     },
     {
@@ -2385,10 +2397,10 @@
       }
     },
     {
-      "name": "pstGeneralIParabolaFocusNode(O)",
+      "name": "pstGeneralIParabolaFocusNode",
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:p}}{${2:F}}"
+        "format": "(){}{}",
+        "snippet": "(${3:O}){${1:p}}{${2:F}}"
       }
     },
     {
@@ -2399,10 +2411,10 @@
       }
     },
     {
-      "name": "pstGeneralIParabolaFocusNode(O)",
+      "name": "pstGeneralIParabolaFocusNode",
       "arg": {
-        "format": "{}[]{}",
-        "snippet": "{${1:p}}[${3:θ}]{${2:F}}"
+        "format": "(){}[]{}",
+        "snippet": "(${4:O}){${1:p}}[${3:θ}]{${2:F}}"
       }
     },
     {
@@ -2413,10 +2425,10 @@
       }
     },
     {
-      "name": "pstGeneralIParabolaDirectrixLine(O)",
+      "name": "pstGeneralIParabolaDirectrixLine",
       "arg": {
-        "format": "{}{}{}",
-        "snippet": "{${1:p}}{${2:Lx}}{${3:Ly}}"
+        "format": "(){}{}{}",
+        "snippet": "(${4:O}){${1:p}}{${2:Lx}}{${3:Ly}}"
       }
     },
     {
@@ -2427,10 +2439,10 @@
       }
     },
     {
-      "name": "pstGeneralIParabolaDirectrixLine(O)",
+      "name": "pstGeneralIParabolaDirectrixLine",
       "arg": {
-        "format": "{}[]{}{}",
-        "snippet": "{${1:p}}[${4:θ}]{${2:Lx}}{${3:Ly}}"
+        "format": "(){}[]{}{}",
+        "snippet": "(${5:O}){${1:p}}[${4:θ}]{${2:Lx}}{${3:Ly}}"
       }
     },
     {
@@ -2441,10 +2453,10 @@
       }
     },
     {
-      "name": "pstGeneralIParabolaLineInter(O)",
+      "name": "pstGeneralIParabolaLineInter",
       "arg": {
-        "format": "{}{}{}{}{}",
-        "snippet": "{${1:p}}{${2:A}}{${3:B}}{${4:C}}{${5:D}}"
+        "format": "(){}{}{}{}{}",
+        "snippet": "(${6:O}){${1:p}}{${2:A}}{${3:B}}{${4:C}}{${5:D}}"
       }
     },
     {
@@ -2455,10 +2467,10 @@
       }
     },
     {
-      "name": "pstGeneralIParabolaLineInter(O)",
+      "name": "pstGeneralIParabolaLineInter",
       "arg": {
-        "format": "{}[]{}{}{}{}",
-        "snippet": "{${1:p}}[${6:θ}]{${2:A}}{${3:B}}{${4:C}}{${5:D}}"
+        "format": "(){}[]{}{}{}{}",
+        "snippet": "(${7:O}){${1:p}}[${6:θ}]{${2:A}}{${3:B}}{${4:C}}{${5:D}}"
       }
     },
     {
@@ -2469,10 +2481,10 @@
       }
     },
     {
-      "name": "pstGeneralIParabolaPolarNode(O)",
+      "name": "pstGeneralIParabolaPolarNode",
       "arg": {
-        "format": "{}{}{}{}",
-        "snippet": "{${1:p}}{${2:A}}{${3:B}}{${4:T}}"
+        "format": "(){}{}{}{}",
+        "snippet": "(${5:O}){${1:p}}{${2:A}}{${3:B}}{${4:T}}"
       }
     },
     {
@@ -2483,10 +2495,10 @@
       }
     },
     {
-      "name": "pstGeneralIParabolaPolarNode(O)",
+      "name": "pstGeneralIParabolaPolarNode",
       "arg": {
-        "format": "{}[]{}{}{}",
-        "snippet": "{${1:p}}[${5:θ}]{${2:A}}{${3:B}}{${4:T}}"
+        "format": "(){}[]{}{}{}",
+        "snippet": "(${6:O}){${1:p}}[${5:θ}]{${2:A}}{${3:B}}{${4:T}}"
       }
     },
     {
@@ -2497,10 +2509,10 @@
       }
     },
     {
-      "name": "pstGeneralIParabolaPolarNode(O)",
+      "name": "pstGeneralIParabolaPolarNode",
       "arg": {
-        "format": "{}(){}{}{}",
-        "snippet": "{${1:p}}(${5:F}){${2:A}}{${3:B}}{${4:T}}"
+        "format": "(){}(){}{}{}",
+        "snippet": "(${5:O}){${1:p}}(${6:F}){${2:A}}{${3:B}}{${4:T}}"
       }
     },
     {
@@ -2511,10 +2523,10 @@
       }
     },
     {
-      "name": "pstGeneralIParabolaPolarNode(O)",
+      "name": "pstGeneralIParabolaPolarNode",
       "arg": {
-        "format": "{}[](){}{}{}",
-        "snippet": "{${1:p}}[${5:θ}](${6:F}){${2:A}}{${3:B}}{${4:T}}"
+        "format": "(){}[](){}{}{}",
+        "snippet": "(${6:O}){${1:p}}[${5:θ}](${7:F}){${2:A}}{${3:B}}{${4:T}}"
       }
     },
     {
@@ -2525,10 +2537,10 @@
       }
     },
     {
-      "name": "pstGeneralIParabolaPolarNode(O)",
+      "name": "pstGeneralIParabolaPolarNode",
       "arg": {
-        "format": "{}()[][]{}{}{}",
-        "snippet": "{${1:p}}(${7:F})[${5:Lx}][${6:Ly}]{${2:A}}{${3:B}}{${4:T}}"
+        "format": "(){}()[][]{}{}{}",
+        "snippet": "(${7:O}){${1:p}}(${8:F})[${5:Lx}][${6:Ly}]{${2:A}}{${3:B}}{${4:T}}"
       }
     },
     {
@@ -2539,10 +2551,10 @@
       }
     },
     {
-      "name": "pstGeneralIParabolaPolarNode(O)",
+      "name": "pstGeneralIParabolaPolarNode",
       "arg": {
-        "format": "{}[]()[][]{}{}{}",
-        "snippet": "{${1:p}}[${5:θ}](${8:F})[${6:Lx}][${7:Ly}]{${2:A}}{${3:B}}{${4:T}}"
+        "format": "(){}[]()[][]{}{}{}",
+        "snippet": "(${8:O}){${1:p}}[${5:θ}](${9:F})[${6:Lx}][${7:Ly}]{${2:A}}{${3:B}}{${4:T}}"
       }
     },
     {
@@ -2553,10 +2565,10 @@
       }
     },
     {
-      "name": "pstGeneralIParabolaTangentNode(O)",
+      "name": "pstGeneralIParabolaTangentNode",
       "arg": {
-        "format": "{}{}{}{}",
-        "snippet": "{${1:p}}{${2:T}}{${3:A}}{${4:B}}"
+        "format": "(){}{}{}{}",
+        "snippet": "(${5:O}){${1:p}}{${2:T}}{${3:A}}{${4:B}}"
       }
     },
     {
@@ -2567,10 +2579,10 @@
       }
     },
     {
-      "name": "pstGeneralIParabolaTangentNode(O)",
+      "name": "pstGeneralIParabolaTangentNode",
       "arg": {
-        "format": "{}[]{}{}{}",
-        "snippet": "{${1:p}}[${5:θ}]{${2:T}}{${3:A}}{${4:B}}"
+        "format": "(){}[]{}{}{}",
+        "snippet": "(${6:O}){${1:p}}[${5:θ}]{${2:T}}{${3:A}}{${4:B}}"
       }
     },
     {
@@ -2581,13 +2593,17 @@
       }
     },
     {
-      "name": "pstHyperbola(O)(a,b)"
+      "name": "pstHyperbola",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:O})(${2:a},${3:b})"
+      }
     },
     {
-      "name": "pstHyperbola(O)(a,b)",
+      "name": "pstHyperbola",
       "arg": {
-        "format": "[]",
-        "snippet": "[${1:angleX}]"
+        "format": "()()[]",
+        "snippet": "(${2:O})(${3:a},${4:b})[${1:angleX}]"
       }
     },
     {
@@ -2605,10 +2621,10 @@
       }
     },
     {
-      "name": "pstHyperbolaNode(O)(a,b)",
+      "name": "pstHyperbolaNode",
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:t}}{${2:A}}"
+        "format": "()(){}{}",
+        "snippet": "(${3:O})(${4:a},${5:b}){${1:t}}{${2:A}}"
       }
     },
     {
@@ -2619,10 +2635,10 @@
       }
     },
     {
-      "name": "pstHyperbolaAbsNode(O)(a,b)",
+      "name": "pstHyperbolaAbsNode",
       "arg": {
-        "format": "{}{}{}",
-        "snippet": "{${1:x}}{${2:A}}{${3:B}}"
+        "format": "()(){}{}{}",
+        "snippet": "(${4:O})(${5:a},${6:b}){${1:x}}{${2:A}}{${3:B}}"
       }
     },
     {
@@ -2633,10 +2649,10 @@
       }
     },
     {
-      "name": "pstHyperbolaOrdNode(O)(a,b)",
+      "name": "pstHyperbolaOrdNode",
       "arg": {
-        "format": "{}{}{}",
-        "snippet": "{${1:y}}{${2:A}}{${3:B}}"
+        "format": "()(){}{}{}",
+        "snippet": "(${4:O})(${5:a},${6:b}){${1:y}}{${2:A}}{${3:B}}"
       }
     },
     {
@@ -2647,10 +2663,10 @@
       }
     },
     {
-      "name": "pstHyperbolaFocusNode(O)(a,b)",
+      "name": "pstHyperbolaFocusNode",
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:F1}}{${2:F2}}"
+        "format": "()(){}{}",
+        "snippet": "(${3:O})(${4:a},${5:b}){${1:F1}}{${2:F2}}"
       }
     },
     {
@@ -2661,10 +2677,10 @@
       }
     },
     {
-      "name": "pstHyperbolaDirectrixLine(O)(a,b)",
+      "name": "pstHyperbolaDirectrixLine",
       "arg": {
-        "format": "{}{}{}{}",
-        "snippet": "{${1:Lx}}{${2:Ly}}{${3:Rx}}{${4:Ry}}"
+        "format": "()(){}{}{}{}",
+        "snippet": "(${5:O})(${6:a},${7:b}){${1:Lx}}{${2:Ly}}{${3:Rx}}{${4:Ry}}"
       }
     },
     {
@@ -2675,10 +2691,10 @@
       }
     },
     {
-      "name": "pstHyperbolaAsymptoteLine(O)(a,b)",
+      "name": "pstHyperbolaAsymptoteLine",
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:L1}}{${2:L2}}"
+        "format": "()(){}{}",
+        "snippet": "(${3:O})(${4:a},${5:b}){${1:L1}}{${2:L2}}"
       }
     },
     {
@@ -2689,10 +2705,10 @@
       }
     },
     {
-      "name": "pstHyperbolaLineInter(O)(a,b)",
+      "name": "pstHyperbolaLineInter",
       "arg": {
-        "format": "{}{}{}{}",
-        "snippet": "{${1:A}}{${2:B}}{${3:C}}{${4:D}}"
+        "format": "()(){}{}{}{}",
+        "snippet": "(${5:O})(${6:a},${7:b}){${1:A}}{${2:B}}{${3:C}}{${4:D}}"
       }
     },
     {
@@ -2703,10 +2719,10 @@
       }
     },
     {
-      "name": "pstHyperbolaPolarNode(O)(a,b)",
+      "name": "pstHyperbolaPolarNode",
       "arg": {
-        "format": "{}{}{}",
-        "snippet": "{${1:A}}{${2:B}}{${3:T}}"
+        "format": "()(){}{}{}",
+        "snippet": "(${4:O})(${5:a},${6:b}){${1:A}}{${2:B}}{${3:T}}"
       }
     },
     {
@@ -2717,10 +2733,10 @@
       }
     },
     {
-      "name": "pstHyperbolaTangentNode(O)(a,b)",
+      "name": "pstHyperbolaTangentNode",
       "arg": {
-        "format": "{}{}{}",
-        "snippet": "{${1:T}}{${2:A}}{${3:B}}"
+        "format": "()(){}{}{}",
+        "snippet": "(${4:O})(${5:a},${6:b}){${1:T}}{${2:A}}{${3:B}}"
       }
     },
     {
@@ -2731,13 +2747,17 @@
       }
     },
     {
-      "name": "pstIHyperbola(O)(a,b)"
+      "name": "pstIHyperbola",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:O})(${2:a},${3:b})"
+      }
     },
     {
-      "name": "pstIHyperbola(O)(a,b)",
+      "name": "pstIHyperbola",
       "arg": {
-        "format": "[]",
-        "snippet": "[${1:angleY}]"
+        "format": "()()[]",
+        "snippet": "(${2:O})(${3:a},${4:b})[${1:angleY}]"
       }
     },
     {
@@ -2755,10 +2775,10 @@
       }
     },
     {
-      "name": "pstIHyperbolaNode(O)(a,b)",
+      "name": "pstIHyperbolaNode",
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:t}}{${2:A}}"
+        "format": "()(){}{}",
+        "snippet": "(${3:O})(${4:a},${5:b}){${1:t}}{${2:A}}"
       }
     },
     {
@@ -2769,10 +2789,10 @@
       }
     },
     {
-      "name": "pstIHyperbolaAbsNode(O)(a,b)",
+      "name": "pstIHyperbolaAbsNode",
       "arg": {
-        "format": "{}{}{}",
-        "snippet": "{${1:x}}{${2:A}}{${3:B}}"
+        "format": "()(){}{}{}",
+        "snippet": "(${4:O})(${5:a},${6:b}){${1:x}}{${2:A}}{${3:B}}"
       }
     },
     {
@@ -2783,10 +2803,10 @@
       }
     },
     {
-      "name": "pstIHyperbolaOrdNode(O)(a,b)",
+      "name": "pstIHyperbolaOrdNode",
       "arg": {
-        "format": "{}{}{}",
-        "snippet": "{${1:y}}{${2:A}}{${3:B}}"
+        "format": "()(){}{}{}",
+        "snippet": "(${4:O})(${5:a},${6:b}){${1:y}}{${2:A}}{${3:B}}"
       }
     },
     {
@@ -2797,10 +2817,10 @@
       }
     },
     {
-      "name": "pstIHyperbolaFocusNode(O)(a,b)",
+      "name": "pstIHyperbolaFocusNode",
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:F1}}{${2:F2}}"
+        "format": "()(){}{}",
+        "snippet": "(${3:O})(${4:a},${5:b}){${1:F1}}{${2:F2}}"
       }
     },
     {
@@ -2811,10 +2831,10 @@
       }
     },
     {
-      "name": "pstIHyperbolaDirectrixLine(O)(a,b)",
+      "name": "pstIHyperbolaDirectrixLine",
       "arg": {
-        "format": "{}{}{}{}",
-        "snippet": "{${1:Lx}}{${2:Ly}}{${3:Rx}}{${4:Ry}}"
+        "format": "()(){}{}{}{}",
+        "snippet": "(${5:O})(${6:a},${7:b}){${1:Lx}}{${2:Ly}}{${3:Rx}}{${4:Ry}}"
       }
     },
     {
@@ -2825,10 +2845,10 @@
       }
     },
     {
-      "name": "pstIHyperbolaAsymptoteLine(O)(a,b)",
+      "name": "pstIHyperbolaAsymptoteLine",
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:L1}}{${2:L2}}"
+        "format": "()(){}{}",
+        "snippet": "(${3:O})(${4:a},${5:b}){${1:L1}}{${2:L2}}"
       }
     },
     {
@@ -2839,10 +2859,10 @@
       }
     },
     {
-      "name": "pstIHyperbolaLineInter(O)(a,b)",
+      "name": "pstIHyperbolaLineInter",
       "arg": {
-        "format": "{}{}{}{}",
-        "snippet": "{${1:A}}{${2:B}}{${3:C}}{${4:D}}"
+        "format": "()(){}{}{}{}",
+        "snippet": "(${5:O})(${6:a},${7:b}){${1:A}}{${2:B}}{${3:C}}{${4:D}}"
       }
     },
     {
@@ -2853,10 +2873,10 @@
       }
     },
     {
-      "name": "pstIHyperbolaPolarNode(O)(a,b)",
+      "name": "pstIHyperbolaPolarNode",
       "arg": {
-        "format": "{}{}{}",
-        "snippet": "{${1:A}}{${2:B}}{${3:T}}"
+        "format": "()(){}{}{}",
+        "snippet": "(${4:O})(${5:a},${6:b}){${1:A}}{${2:B}}{${3:T}}"
       }
     },
     {
@@ -2867,10 +2887,10 @@
       }
     },
     {
-      "name": "pstIHyperbolaTangentNode(O)(a,b)",
+      "name": "pstIHyperbolaTangentNode",
       "arg": {
-        "format": "{}{}{}",
-        "snippet": "{${1:T}}{${2:A}}{${3:B}}"
+        "format": "()(){}{}{}",
+        "snippet": "(${4:O})(${5:a},${6:b}){${1:T}}{${2:A}}{${3:B}}"
       }
     },
     {
@@ -2881,20 +2901,24 @@
       }
     },
     {
-      "name": "pstGeneralHyperbola(O)(a,b)"
-    },
-    {
-      "name": "pstGeneralHyperbola(O)(a,b)",
+      "name": "pstGeneralHyperbola",
       "arg": {
-        "format": "[]",
-        "snippet": "[${1:θ}]"
+        "format": "()()",
+        "snippet": "(${1:O})(${2:a},${3:b})"
       }
     },
     {
-      "name": "pstGeneralHyperbola(O)(a,b)",
+      "name": "pstGeneralHyperbola",
       "arg": {
-        "format": "[][]",
-        "snippet": "[${1:θ}][${2:angleX}]"
+        "format": "()()[]",
+        "snippet": "(${2:O})(${3:a},${4:b})[${1:θ}]"
+      }
+    },
+    {
+      "name": "pstGeneralHyperbola",
+      "arg": {
+        "format": "()()[][]",
+        "snippet": "(${3:O})(${4:a},${5:b})[${1:θ}][${2:angleX}]"
       }
     },
     {
@@ -2975,17 +2999,17 @@
       }
     },
     {
-      "name": "pstGeneralHyperbolaNode(O)(a,b)",
+      "name": "pstGeneralHyperbolaNode",
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:t}}{${2:A}}"
+        "format": "()(){}{}",
+        "snippet": "(${3:O})(${4:a},${5:b}){${1:t}}{${2:A}}"
       }
     },
     {
-      "name": "pstGeneralHyperbolaNode(O)(a,b)",
+      "name": "pstGeneralHyperbolaNode",
       "arg": {
-        "format": "[]{}{}",
-        "snippet": "[${3:θ}]{${1:t}}{${2:A}}"
+        "format": "()()[]{}{}",
+        "snippet": "(${4:O})(${5:a},${6:b})[${3:θ}]{${1:t}}{${2:A}}"
       }
     },
     {
@@ -3003,17 +3027,17 @@
       }
     },
     {
-      "name": "pstGeneralHyperbolaAbsNode(O)(a,b)",
+      "name": "pstGeneralHyperbolaAbsNode",
       "arg": {
-        "format": "{}{}{}",
-        "snippet": "{${1:x}}{${2:A}}{${3:B}}"
+        "format": "()(){}{}{}",
+        "snippet": "(${4:O})(${5:a},${6:b}){${1:x}}{${2:A}}{${3:B}}"
       }
     },
     {
-      "name": "pstGeneralHyperbolaAbsNode(O)(a,b)",
+      "name": "pstGeneralHyperbolaAbsNode",
       "arg": {
-        "format": "[]{}{}{}",
-        "snippet": "[${4:θ}]{${1:x}}{${2:A}}{${3:B}}"
+        "format": "()()[]{}{}{}",
+        "snippet": "(${5:O})(${6:a},${7:b})[${4:θ}]{${1:x}}{${2:A}}{${3:B}}"
       }
     },
     {
@@ -3031,17 +3055,17 @@
       }
     },
     {
-      "name": "pstGeneralHyperbolaOrdNode(O)(a,b)",
+      "name": "pstGeneralHyperbolaOrdNode",
       "arg": {
-        "format": "{}{}{}",
-        "snippet": "{${1:y}}{${2:A}}{${3:B}}"
+        "format": "()(){}{}{}",
+        "snippet": "(${4:O})(${5:a},${6:b}){${1:y}}{${2:A}}{${3:B}}"
       }
     },
     {
-      "name": "pstGeneralHyperbolaOrdNode(O)(a,b)",
+      "name": "pstGeneralHyperbolaOrdNode",
       "arg": {
-        "format": "[]{}{}{}",
-        "snippet": "[${4:θ}]{${1:y}}{${2:A}}{${3:B}}"
+        "format": "()()[]{}{}{}",
+        "snippet": "(${5:O})(${6:a},${7:b})[${4:θ}]{${1:y}}{${2:A}}{${3:B}}"
       }
     },
     {
@@ -3059,17 +3083,17 @@
       }
     },
     {
-      "name": "pstGeneralHyperbolaFocusNode(O)(a,b)",
+      "name": "pstGeneralHyperbolaFocusNode",
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:F1}}{${2:F2}}"
+        "format": "()(){}{}",
+        "snippet": "(${3:O})(${4:a},${5:b}){${1:F1}}{${2:F2}}"
       }
     },
     {
-      "name": "pstGeneralHyperbolaFocusNode(O)(a,b)",
+      "name": "pstGeneralHyperbolaFocusNode",
       "arg": {
-        "format": "[]{}{}",
-        "snippet": "[${3:θ}]{${1:F1}}{${2:F2}}"
+        "format": "()()[]{}{}",
+        "snippet": "(${4:O})(${5:a},${6:b})[${3:θ}]{${1:F1}}{${2:F2}}"
       }
     },
     {
@@ -3087,17 +3111,17 @@
       }
     },
     {
-      "name": "pstGeneralHyperbolaVertexNode(O)(a,b)",
+      "name": "pstGeneralHyperbolaVertexNode",
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:V1}}{${2:V2}}"
+        "format": "()(){}{}",
+        "snippet": "(${3:O})(${4:a},${5:b}){${1:V1}}{${2:V2}}"
       }
     },
     {
-      "name": "pstGeneralHyperbolaVertexNode(O)(a,b)",
+      "name": "pstGeneralHyperbolaVertexNode",
       "arg": {
-        "format": "[]{}{}",
-        "snippet": "[${3:θ}]{${1:V1}}{${2:V2}}"
+        "format": "()()[]{}{}",
+        "snippet": "(${4:O})(${5:a},${6:b})[${3:θ}]{${1:V1}}{${2:V2}}"
       }
     },
     {
@@ -3115,17 +3139,17 @@
       }
     },
     {
-      "name": "pstGeneralHyperbolaDirectrixLine(O)(a,b)",
+      "name": "pstGeneralHyperbolaDirectrixLine",
       "arg": {
-        "format": "{}{}{}{}",
-        "snippet": "{${1:Lx}}{${2:Ly}}{${3:Rx}}{${4:Ry}}"
+        "format": "()(){}{}{}{}",
+        "snippet": "(${5:O})(${6:a},${7:b}){${1:Lx}}{${2:Ly}}{${3:Rx}}{${4:Ry}}"
       }
     },
     {
-      "name": "pstGeneralHyperbolaDirectrixLine(O)(a,b)",
+      "name": "pstGeneralHyperbolaDirectrixLine",
       "arg": {
-        "format": "[]{}{}{}{}",
-        "snippet": "[${5:θ}]{${1:Lx}}{${2:Ly}}{${3:Rx}}{${4:Ry}}"
+        "format": "()()[]{}{}{}{}",
+        "snippet": "(${6:O})(${7:a},${8:b})[${5:θ}]{${1:Lx}}{${2:Ly}}{${3:Rx}}{${4:Ry}}"
       }
     },
     {
@@ -3143,17 +3167,17 @@
       }
     },
     {
-      "name": "pstGeneralHyperbolaLineInter(O)(a,b)",
+      "name": "pstGeneralHyperbolaLineInter",
       "arg": {
-        "format": "{}{}{}{}",
-        "snippet": "{${1:A}}{${2:B}}{${3:C}}{${4:D}}"
+        "format": "()(){}{}{}{}",
+        "snippet": "(${5:O})(${6:a},${7:b}){${1:A}}{${2:B}}{${3:C}}{${4:D}}"
       }
     },
     {
-      "name": "pstGeneralHyperbolaLineInter(O)(a,b)",
+      "name": "pstGeneralHyperbolaLineInter",
       "arg": {
-        "format": "[]{}{}{}{}",
-        "snippet": "[${5:θ}]{${1:A}}{${2:B}}{${3:C}}{${4:D}}"
+        "format": "()()[]{}{}{}{}",
+        "snippet": "(${6:O})(${7:a},${8:b})[${5:θ}]{${1:A}}{${2:B}}{${3:C}}{${4:D}}"
       }
     },
     {
@@ -3171,17 +3195,17 @@
       }
     },
     {
-      "name": "pstGeneralHyperbolaPolarNode(O)(a,b)",
+      "name": "pstGeneralHyperbolaPolarNode",
       "arg": {
-        "format": "{}{}{}",
-        "snippet": "{${1:A}}{${2:B}}{${3:T}}"
+        "format": "()(){}{}{}",
+        "snippet": "(${4:O})(${5:a},${6:b}){${1:A}}{${2:B}}{${3:T}}"
       }
     },
     {
-      "name": "pstGeneralHyperbolaPolarNode(O)(a,b)",
+      "name": "pstGeneralHyperbolaPolarNode",
       "arg": {
-        "format": "[]{}{}{}",
-        "snippet": "[${4:θ}]{${1:A}}{${2:B}}{${3:T}}"
+        "format": "()()[]{}{}{}",
+        "snippet": "(${5:O})(${6:a},${7:b})[${4:θ}]{${1:A}}{${2:B}}{${3:T}}"
       }
     },
     {
@@ -3199,17 +3223,17 @@
       }
     },
     {
-      "name": "pstGeneralHyperbolaTangentNode(O)(a,b)",
+      "name": "pstGeneralHyperbolaTangentNode",
       "arg": {
-        "format": "{}{}{}",
-        "snippet": "{${1:T}}{${2:A}}{${3:B}}"
+        "format": "()(){}{}{}",
+        "snippet": "(${4:O})(${5:a},${6:b}){${1:T}}{${2:A}}{${3:B}}"
       }
     },
     {
-      "name": "pstGeneralHyperbolaTangentNode(O)(a,b)",
+      "name": "pstGeneralHyperbolaTangentNode",
       "arg": {
-        "format": "[]{}{}{}",
-        "snippet": "[${4:θ}]{${1:T}}{${2:A}}{${3:B}}"
+        "format": "()()[]{}{}{}",
+        "snippet": "(${5:O})(${6:a},${7:b})[${4:θ}]{${1:T}}{${2:A}}{${3:B}}"
       }
     },
     {
@@ -3227,20 +3251,24 @@
       }
     },
     {
-      "name": "pstGeneralIHyperbola(O)(a,b)"
-    },
-    {
-      "name": "pstGeneralIHyperbola(O)(a,b)",
+      "name": "pstGeneralIHyperbola",
       "arg": {
-        "format": "[]",
-        "snippet": "[${1:θ}]"
+        "format": "()()",
+        "snippet": "(${1:O})(${2:a},${3:b})"
       }
     },
     {
-      "name": "pstGeneralIHyperbola(O)(a,b)",
+      "name": "pstGeneralIHyperbola",
       "arg": {
-        "format": "[][]",
-        "snippet": "[${1:θ}][${2:angleY}]"
+        "format": "()()[]",
+        "snippet": "(${2:O})(${3:a},${4:b})[${1:θ}]"
+      }
+    },
+    {
+      "name": "pstGeneralIHyperbola",
+      "arg": {
+        "format": "()()[][]",
+        "snippet": "(${3:O})(${4:a},${5:b})[${1:θ}][${2:angleY}]"
       }
     },
     {
@@ -3265,17 +3293,17 @@
       }
     },
     {
-      "name": "pstGeneralIHyperbolaNode(O)(a,b)",
+      "name": "pstGeneralIHyperbolaNode",
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:t}}{${2:A}}"
+        "format": "()(){}{}",
+        "snippet": "(${3:O})(${4:a},${5:b}){${1:t}}{${2:A}}"
       }
     },
     {
-      "name": "pstGeneralIHyperbolaNode(O)(a,b)",
+      "name": "pstGeneralIHyperbolaNode",
       "arg": {
-        "format": "[]{}{}",
-        "snippet": "[${3:θ}]{${1:t}}{${2:A}}"
+        "format": "()()[]{}{}",
+        "snippet": "(${4:O})(${5:a},${6:b})[${3:θ}]{${1:t}}{${2:A}}"
       }
     },
     {
@@ -3293,17 +3321,17 @@
       }
     },
     {
-      "name": "pstGeneralIHyperbolaAbsNode(O)(a,b)",
+      "name": "pstGeneralIHyperbolaAbsNode",
       "arg": {
-        "format": "{}{}{}",
-        "snippet": "{${1:x}}{${2:A}}{${3:B}}"
+        "format": "()(){}{}{}",
+        "snippet": "(${4:O})(${5:a},${6:b}){${1:x}}{${2:A}}{${3:B}}"
       }
     },
     {
-      "name": "pstGeneralIHyperbolaAbsNode(O)(a,b)",
+      "name": "pstGeneralIHyperbolaAbsNode",
       "arg": {
-        "format": "[]{}{}{}",
-        "snippet": "[${4:θ}]{${1:x}}{${2:A}}{${3:B}}"
+        "format": "()()[]{}{}{}",
+        "snippet": "(${5:O})(${6:a},${7:b})[${4:θ}]{${1:x}}{${2:A}}{${3:B}}"
       }
     },
     {
@@ -3321,17 +3349,17 @@
       }
     },
     {
-      "name": "pstGeneralIHyperbolaOrdNode(O)(a,b)",
+      "name": "pstGeneralIHyperbolaOrdNode",
       "arg": {
-        "format": "{}{}{}",
-        "snippet": "{${1:y}}{${2:A}}{${3:B}}"
+        "format": "()(){}{}{}",
+        "snippet": "(${4:O})(${5:a},${6:b}){${1:y}}{${2:A}}{${3:B}}"
       }
     },
     {
-      "name": "pstGeneralIHyperbolaOrdNode(O)(a,b)",
+      "name": "pstGeneralIHyperbolaOrdNode",
       "arg": {
-        "format": "[]{}{}{}",
-        "snippet": "[${4:θ}]{${1:y}}{${2:A}}{${3:B}}"
+        "format": "()()[]{}{}{}",
+        "snippet": "(${5:O})(${6:a},${7:b})[${4:θ}]{${1:y}}{${2:A}}{${3:B}}"
       }
     },
     {
@@ -3349,17 +3377,17 @@
       }
     },
     {
-      "name": "pstGeneralIHyperbolaFocusNode(O)(a,b)",
+      "name": "pstGeneralIHyperbolaFocusNode",
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:F1}}{${2:F2}}"
+        "format": "()(){}{}",
+        "snippet": "(${3:O})(${4:a},${5:b}){${1:F1}}{${2:F2}}"
       }
     },
     {
-      "name": "pstGeneralIHyperbolaFocusNode(O)(a,b)",
+      "name": "pstGeneralIHyperbolaFocusNode",
       "arg": {
-        "format": "[]{}{}",
-        "snippet": "[${3:θ}]{${1:F1}}{${2:F2}}"
+        "format": "()()[]{}{}",
+        "snippet": "(${4:O})(${5:a},${6:b})[${3:θ}]{${1:F1}}{${2:F2}}"
       }
     },
     {
@@ -3377,17 +3405,17 @@
       }
     },
     {
-      "name": "pstGeneralIHyperbolaVertexNode(O)(a,b)",
+      "name": "pstGeneralIHyperbolaVertexNode",
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:V1}}{${2:V2}}"
+        "format": "()(){}{}",
+        "snippet": "(${3:O})(${4:a},${5:b}){${1:V1}}{${2:V2}}"
       }
     },
     {
-      "name": "pstGeneralIHyperbolaVertexNode(O)(a,b)",
+      "name": "pstGeneralIHyperbolaVertexNode",
       "arg": {
-        "format": "[]{}{}",
-        "snippet": "[${3:θ}]{${1:V1}}{${2:V2}}"
+        "format": "()()[]{}{}",
+        "snippet": "(${4:O})(${5:a},${6:b})[${3:θ}]{${1:V1}}{${2:V2}}"
       }
     },
     {
@@ -3405,17 +3433,17 @@
       }
     },
     {
-      "name": "pstGeneralIHyperbolaDirectrixLine(O)(a,b)",
+      "name": "pstGeneralIHyperbolaDirectrixLine",
       "arg": {
-        "format": "{}{}{}{}",
-        "snippet": "{${1:Lx}}{${2:Ly}}{${3:Rx}}{${4:Ry}}"
+        "format": "()(){}{}{}{}",
+        "snippet": "(${5:O})(${6:a},${7:b}){${1:Lx}}{${2:Ly}}{${3:Rx}}{${4:Ry}}"
       }
     },
     {
-      "name": "pstGeneralIHyperbolaDirectrixLine(O)(a,b)",
+      "name": "pstGeneralIHyperbolaDirectrixLine",
       "arg": {
-        "format": "[]{}{}{}{}",
-        "snippet": "[${5:θ}]{${1:Lx}}{${2:Ly}}{${3:Rx}}{${4:Ry}}"
+        "format": "()()[]{}{}{}{}",
+        "snippet": "(${6:O})(${7:a},${8:b})[${5:θ}]{${1:Lx}}{${2:Ly}}{${3:Rx}}{${4:Ry}}"
       }
     },
     {
@@ -3433,17 +3461,17 @@
       }
     },
     {
-      "name": "pstGeneralIHyperbolaAsymptoteLine(O)(a,b)",
+      "name": "pstGeneralIHyperbolaAsymptoteLine",
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:L1}}{${2:L2}}"
+        "format": "()(){}{}",
+        "snippet": "(${3:O})(${4:a},${5:b}){${1:L1}}{${2:L2}}"
       }
     },
     {
-      "name": "pstGeneralIHyperbolaAsymptoteLine(O)(a,b)",
+      "name": "pstGeneralIHyperbolaAsymptoteLine",
       "arg": {
-        "format": "[]{}{}",
-        "snippet": "[${3:θ}]{${1:L1}}{${2:L2}}"
+        "format": "()()[]{}{}",
+        "snippet": "(${4:O})(${5:a},${6:b})[${3:θ}]{${1:L1}}{${2:L2}}"
       }
     },
     {
@@ -3461,17 +3489,17 @@
       }
     },
     {
-      "name": "pstGeneralIHyperbolaLineInter(O)(a,b)",
+      "name": "pstGeneralIHyperbolaLineInter",
       "arg": {
-        "format": "{}{}{}{}",
-        "snippet": "{${1:A}}{${2:B}}{${3:C}}{${4:D}}"
+        "format": "()(){}{}{}{}",
+        "snippet": "(${5:O})(${6:a},${7:b}){${1:A}}{${2:B}}{${3:C}}{${4:D}}"
       }
     },
     {
-      "name": "pstGeneralIHyperbolaLineInter(O)(a,b)",
+      "name": "pstGeneralIHyperbolaLineInter",
       "arg": {
-        "format": "[]{}{}{}{}",
-        "snippet": "[${5:θ}]{${1:A}}{${2:B}}{${3:C}}{${4:D}}"
+        "format": "()()[]{}{}{}{}",
+        "snippet": "(${6:O})(${7:a},${8:b})[${5:θ}]{${1:A}}{${2:B}}{${3:C}}{${4:D}}"
       }
     },
     {
@@ -3489,17 +3517,17 @@
       }
     },
     {
-      "name": "pstGeneralIHyperbolaPolarNode(O)(a,b)",
+      "name": "pstGeneralIHyperbolaPolarNode",
       "arg": {
-        "format": "{}{}{}",
-        "snippet": "{${1:A}}{${2:B}}{${3:T}}"
+        "format": "()(){}{}{}",
+        "snippet": "(${4:O})(${5:a},${6:b}){${1:A}}{${2:B}}{${3:T}}"
       }
     },
     {
-      "name": "pstGeneralIHyperbolaPolarNode(O)(a,b)",
+      "name": "pstGeneralIHyperbolaPolarNode",
       "arg": {
-        "format": "[]{}{}{}",
-        "snippet": "[${4:θ}]{${1:A}}{${2:B}}{${3:T}}"
+        "format": "()()[]{}{}{}",
+        "snippet": "(${5:O})(${6:a},${7:b})[${4:θ}]{${1:A}}{${2:B}}{${3:T}}"
       }
     },
     {
@@ -3517,17 +3545,17 @@
       }
     },
     {
-      "name": "pstGeneralIHyperbolaTangentNode(O)(a,b)",
+      "name": "pstGeneralIHyperbolaTangentNode",
       "arg": {
-        "format": "{}{}{}",
-        "snippet": "{${1:T}}{${2:A}}{${3:B}}"
+        "format": "()(){}{}{}",
+        "snippet": "(${4:O})(${5:a},${6:b}){${1:T}}{${2:A}}{${3:B}}"
       }
     },
     {
-      "name": "pstGeneralIHyperbolaTangentNode(O)(a,b)",
+      "name": "pstGeneralIHyperbolaTangentNode",
       "arg": {
-        "format": "[]{}{}{}",
-        "snippet": "[${4:θ}]{${1:T}}{${2:A}}{${3:B}}"
+        "format": "()()[]{}{}{}",
+        "snippet": "(${5:O})(${6:a},${7:b})[${4:θ}]{${1:T}}{${2:A}}{${3:B}}"
       }
     },
     {
@@ -3559,10 +3587,10 @@
       }
     },
     {
-      "name": "pstGeneralEllipseEquation(O)(a,b)",
+      "name": "pstGeneralEllipseEquation",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:a,b,c,d,e,f}}"
+        "format": "()(){}",
+        "snippet": "(${2:O})(${3:a},${4:b}){${1:a,b,c,d,e,f}}"
       }
     },
     {
@@ -3573,10 +3601,10 @@
       }
     },
     {
-      "name": "pstGeneralEllipseEquation(O)(a,b)",
+      "name": "pstGeneralEllipseEquation",
       "arg": {
-        "format": "[]{}",
-        "snippet": "[${2:θ}]{${1:a,b,c,d,e,f}}"
+        "format": "()()[]{}",
+        "snippet": "(${3:O})(${4:a},${5:b})[${2:θ}]{${1:a,b,c,d,e,f}}"
       }
     },
     {
@@ -3587,17 +3615,17 @@
       }
     },
     {
-      "name": "pstGeneralHyperbolaEquation(O)(a,b)",
+      "name": "pstGeneralHyperbolaEquation",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:a,b,c,d,e,f}}"
+        "format": "()(){}",
+        "snippet": "(${2:O})(${3:a},${4:b}){${1:a,b,c,d,e,f}}"
       }
     },
     {
-      "name": "pstGeneralHyperbolaEquation(O)(a,b)",
+      "name": "pstGeneralHyperbolaEquation",
       "arg": {
-        "format": "[]{}",
-        "snippet": "[${2:θ}]{${1:a,b,c,d,e,f}}"
+        "format": "()()[]{}",
+        "snippet": "(${3:O})(${4:a},${5:b})[${2:θ}]{${1:a,b,c,d,e,f}}"
       }
     },
     {
@@ -3615,17 +3643,17 @@
       }
     },
     {
-      "name": "pstGeneralParabolaEquation(O)",
+      "name": "pstGeneralParabolaEquation",
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:p}}{${2:a,b,c,d,e,f}}"
+        "format": "(){}{}",
+        "snippet": "(${3:O}){${1:p}}{${2:a,b,c,d,e,f}}"
       }
     },
     {
-      "name": "pstGeneralParabolaEquation(O)",
+      "name": "pstGeneralParabolaEquation",
       "arg": {
-        "format": "{}[]{}",
-        "snippet": "{${1:p}}[${3:θ}]{${2:a,b,c,d,e,f}}"
+        "format": "(){}[]{}",
+        "snippet": "(${4:O}){${1:p}}[${3:θ}]{${2:a,b,c,d,e,f}}"
       }
     },
     {
@@ -3671,10 +3699,10 @@
       }
     },
     {
-      "name": "pstGeneralConicEllipseInter(O)(m,n)",
+      "name": "pstGeneralConicEllipseInter",
       "arg": {
-        "format": "{}{}{}{}{}",
-        "snippet": "{${1:a,b,c,d,e,f}}{${2:C}}{${3:D}}{${4:E}}{${5:F}}"
+        "format": "()(){}{}{}{}{}",
+        "snippet": "(${6:O})(${7:m},${8:n}){${1:a,b,c,d,e,f}}{${2:C}}{${3:D}}{${4:E}}{${5:F}}"
       }
     },
     {
@@ -3685,10 +3713,10 @@
       }
     },
     {
-      "name": "pstGeneralConicHyperbolaInter(O)(m,n)",
+      "name": "pstGeneralConicHyperbolaInter",
       "arg": {
-        "format": "{}{}{}{}{}",
-        "snippet": "{${1:a,b,c,d,e,f}}{${2:C}}{${3:D}}{${4:E}}{${5:F}}"
+        "format": "()(){}{}{}{}{}",
+        "snippet": "(${6:O})(${7:m},${8:n}){${1:a,b,c,d,e,f}}{${2:C}}{${3:D}}{${4:E}}{${5:F}}"
       }
     },
     {
@@ -3699,10 +3727,10 @@
       }
     },
     {
-      "name": "pstGeneralConicIHyperbolaInter(O)(m,n)",
+      "name": "pstGeneralConicIHyperbolaInter",
       "arg": {
-        "format": "{}{}{}{}{}",
-        "snippet": "{${1:a,b,c,d,e,f}}{${2:C}}{${3:D}}{${4:E}}{${5:F}}"
+        "format": "()(){}{}{}{}{}",
+        "snippet": "(${6:O})(${7:m},${8:n}){${1:a,b,c,d,e,f}}{${2:C}}{${3:D}}{${4:E}}{${5:F}}"
       }
     },
     {
@@ -3713,10 +3741,10 @@
       }
     },
     {
-      "name": "pstGeneralConicParabolaInter(O)",
+      "name": "pstGeneralConicParabolaInter",
       "arg": {
-        "format": "{}{}{}{}{}{}",
-        "snippet": "{${1:p}}{${2:a,b,c,d,e,f}}{${3:C}}{${4:D}}{${5:E}}{${6:F}}"
+        "format": "(){}{}{}{}{}{}",
+        "snippet": "(${7:O}){${1:p}}{${2:a,b,c,d,e,f}}{${3:C}}{${4:D}}{${5:E}}{${6:F}}"
       }
     },
     {
@@ -3727,10 +3755,10 @@
       }
     },
     {
-      "name": "pstGeneralConicIParabolaInter(O)",
+      "name": "pstGeneralConicIParabolaInter",
       "arg": {
-        "format": "{}{}{}{}{}{}",
-        "snippet": "{${1:p}}{${2:a,b,c,d,e,f}}{${3:C}}{${4:D}}{${5:E}}{${6:F}}"
+        "format": "(){}{}{}{}{}{}",
+        "snippet": "(${7:O}){${1:p}}{${2:a,b,c,d,e,f}}{${3:C}}{${4:D}}{${5:E}}{${6:F}}"
       }
     },
     {
@@ -4119,10 +4147,10 @@
       }
     },
     {
-      "name": "psGetDistanceAB(x1,y1)(x2,y2)",
+      "name": "psGetDistanceAB",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:name}}"
+        "format": "()(){}",
+        "snippet": "(${2:x1},${3:y1})(${4:x2},${5:y2}){${1:name}}"
       }
     },
     {
@@ -4133,10 +4161,10 @@
       }
     },
     {
-      "name": "psGetAngleABC(x1,y1)(x2,y2)(x3,y3)",
+      "name": "psGetAngleABC",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:name}}"
+        "format": "()()(){}",
+        "snippet": "(${2:x1},${3:y1})(${4:x2},${5:y2})(${6:x3},${7:y3}){${1:name}}"
       }
     },
     {
@@ -4238,7 +4266,7 @@
   "envs": [],
   "keys": {
     "\\usepackage/pst-eucl#c": [
-      "old\r"
+      "old"
     ]
   },
   "args": [

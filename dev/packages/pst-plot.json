@@ -97,14 +97,18 @@
       }
     },
     {
-      "name": "psaxes(x0,y0)(x1,y1)(x2,y2)"
+      "name": "psaxes",
+      "arg": {
+        "format": "()()()",
+        "snippet": "(${1:x0},${2:y0})(${3:x1},${4:y1})(${5:x2},${6:y2})"
+      }
     },
     {
-      "name": "psaxes(x0,y0)(x1,y1)(x2,y2)",
+      "name": "psaxes",
       "unusual": true,
       "arg": {
-        "format": "[][]",
-        "snippet": "[${1:Xlabel,Xangle}][${2:Ylabel,Yangle}]"
+        "format": "()()()[][]",
+        "snippet": "(${3:x0},${4:y0})(${5:x1},${6:y1})(${7:x2},${8:y2})[${1:Xlabel,Xangle}][${2:Ylabel,Yangle}]"
       }
     },
     {
@@ -165,7 +169,11 @@
       }
     },
     {
-      "name": "psCoordinates(x,y)"
+      "name": "psCoordinates",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:x},${2:y})"
+      }
     },
     {
       "name": "psCoordinates",
@@ -221,11 +229,11 @@
       }
     },
     {
-      "name": "psgraph(x0,y0)(x1,y1)(x2,y2)",
+      "name": "psgraph",
       "unusual": true,
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:xlength%l}}{${2:ylength%l}}"
+        "format": "()()(){}{}",
+        "snippet": "(${3:x0},${4:y0})(${5:x1},${6:y1})(${7:x2},${8:y2}){${1:xlength%l}}{${2:ylength%l}}"
       }
     },
     {
@@ -470,10 +478,10 @@
       "name": "pstRadUnitInv"
     },
     {
-      "name": "pstScalePoints(xscale,yscale)",
+      "name": "pstScalePoints",
       "arg": {
-        "format": "{}{}",
-        "snippet": "{${1:xPS}}{${2:yPS}}"
+        "format": "(){}{}",
+        "snippet": "(${3:xscale},${4:yscale}){${1:xPS}}{${2:yPS}}"
       }
     },
     {
@@ -495,6 +503,13 @@
     {
       "name": "psVectorfield",
       "arg": {
+        "format": "()(){}",
+        "snippet": "(${2:%<x0},${3:y0%>})(${4:%<x1},${5:y1%>}){${1:f'(${6:x},${7:y})}}"
+      }
+    },
+    {
+      "name": "psVectorfield",
+      "arg": {
         "format": "[]()(){}",
         "snippet": "[${2:options}](${3:%<x0},${4:y0%>})(${5:%<x1},${6:y1%>}){${1:f'(${7:x},${8:y})}}"
       }
@@ -511,10 +526,10 @@
       "unusual": true
     },
     {
-      "name": "psxTick(x value)",
+      "name": "psxTick",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:label}}"
+        "format": "(){}",
+        "snippet": "(${2:x value}){${1:label}}"
       }
     },
     {
@@ -551,10 +566,10 @@
       "unusual": true
     },
     {
-      "name": "psyTick(y value)",
+      "name": "psyTick",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:label}}"
+        "format": "(){}",
+        "snippet": "(${2:y value}){${1:label}}"
       }
     },
     {

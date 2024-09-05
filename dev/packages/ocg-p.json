@@ -45,7 +45,11 @@
       "name": "toggleocgs",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:option%keyvals}]{${1:layerid1 layerid2 ...}}{${2:display}}"
+        "snippet": "[${3:option%keyvals}]{${1:layerid1 layerid2 ...}}{${2:display}}",
+        "keys": [
+          "\\toggleocgs,\\showocgs,\\hideocgs,\\setocgs"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -59,7 +63,11 @@
       "name": "showocgs",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:option%keyvals}]{${1:layerid1 layerid2 ...}}{${2:display}}"
+        "snippet": "[${3:option%keyvals}]{${1:layerid1 layerid2 ...}}{${2:display}}",
+        "keys": [
+          "\\toggleocgs,\\showocgs,\\hideocgs,\\setocgs"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -73,7 +81,11 @@
       "name": "hideocgs",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:option%keyvals}]{${1:layerid1 layerid2 ...}}{${2:display}}"
+        "snippet": "[${3:option%keyvals}]{${1:layerid1 layerid2 ...}}{${2:display}}",
+        "keys": [
+          "\\toggleocgs,\\showocgs,\\hideocgs,\\setocgs"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -87,7 +99,11 @@
       "name": "setocgs",
       "arg": {
         "format": "[]{}{}{}{}",
-        "snippet": "[${5:option%keyvals}]{${1:tlayerid1 ...}}{${2:slayerid1 ...}}{${3:hlayerid1 ...}}{${4:display}}"
+        "snippet": "[${5:option%keyvals}]{${1:tlayerid1 ...}}{${2:slayerid1 ...}}{${3:hlayerid1 ...}}{${4:display}}",
+        "keys": [
+          "\\toggleocgs,\\showocgs,\\hideocgs,\\setocgs"
+        ],
+        "keyPos": 0
       }
     }
   ],
@@ -119,21 +135,25 @@
       "name": "ocg",
       "arg": {
         "format": "[]{}{}{}",
-        "snippet": "[${4:options%keyvals}]{${1:layer name}}{${2:layer id}}{${3:initial visibility}}"
+        "snippet": "[${4:options%keyvals}]{${1:layer name}}{${2:layer id}}{${3:initial visibility}}",
+        "keys": [
+          "\\begin{ocg}"
+        ],
+        "keyPos": 0
       }
     }
   ],
   "keys": {
     "\\usepackage/ocg-p#c": [
-      "ocgtabular\r"
+      "ocgtabular"
     ],
     "\\begin{ocg}": [
-      "printocg=${1|always,never,ifvisible\r|}",
-      "exportocg=${1|always,never,ifvisible\r|}",
-      "listintoolbar=${1|always,never,iffirstuse\r|}"
+      "printocg=${1|always,never,ifvisible|}",
+      "exportocg=${1|always,never,ifvisible|}",
+      "listintoolbar=${1|always,never,iffirstuse|}"
     ],
     "\\toggleocgs,\\showocgs,\\hideocgs,\\setocgs": [
-      "triggerocg=${1|onareaenter,onareaexit,onmousedown,onmouseup,allactions\r|}"
+      "triggerocg=${1|onareaenter,onareaexit,onmousedown,onmouseup,allactions|}"
     ]
   },
   "args": [

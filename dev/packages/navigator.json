@@ -19,7 +19,11 @@
       "name": "anchor",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:name}}"
+        "snippet": "[${2:options%keyvals}]{${1:name}}",
+        "keys": [
+          "\\anchor"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -40,7 +44,11 @@
       "name": "outline",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:level}}{${2:title%plain}}"
+        "snippet": "[${3:options%keyvals}]{${1:level}}{${2:title%plain}}",
+        "keys": [
+          "\\outline"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -54,7 +62,11 @@
       "name": "outline",
       "arg": {
         "format": "[]{}[]{}",
-        "snippet": "[${3:options%keyvals}]{${1:level}}[${4:name}]{${2:title%plain}}"
+        "snippet": "[${3:options%keyvals}]{${1:level}}[${4:name}]{${2:title%plain}}",
+        "keys": [
+          "\\outline"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -82,7 +94,11 @@
       "name": "jumplink",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:name}}{${2:text}}"
+        "snippet": "[${3:options%keyvals}]{${1:name}}{${2:text}}",
+        "keys": [
+          "\\jumplink,\\urllink,\\javascriptlink,\\actionlink,\\rawactionlink,\\annotation,\\openfilelink"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -96,7 +112,11 @@
       "name": "urllink",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:URL}}{${2:text}}"
+        "snippet": "[${3:options%keyvals}]{${1:URL}}{${2:text}}",
+        "keys": [
+          "\\jumplink,\\urllink,\\javascriptlink,\\actionlink,\\rawactionlink,\\annotation,\\openfilelink"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -110,7 +130,11 @@
       "name": "javascriptlink",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:JavaScript code}}{${2:text}}"
+        "snippet": "[${3:options%keyvals}]{${1:JavaScript code}}{${2:text}}",
+        "keys": [
+          "\\jumplink,\\urllink,\\javascriptlink,\\actionlink,\\rawactionlink,\\annotation,\\openfilelink"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -124,7 +148,11 @@
       "name": "actionlink",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:name}}{${2:text}}"
+        "snippet": "[${3:options%keyvals}]{${1:name}}{${2:text}}",
+        "keys": [
+          "\\jumplink,\\urllink,\\javascriptlink,\\actionlink,\\rawactionlink,\\annotation,\\openfilelink"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -138,7 +166,11 @@
       "name": "rawactionlink",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:PDF code}}{${2:text}}"
+        "snippet": "[${3:options%keyvals}]{${1:PDF code}}{${2:text}}",
+        "keys": [
+          "\\jumplink,\\urllink,\\javascriptlink,\\actionlink,\\rawactionlink,\\annotation,\\openfilelink"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -152,7 +184,11 @@
       "name": "annotation",
       "arg": {
         "format": "[]{}{}",
-        "snippet": "[${3:options%keyvals}]{${1:PDF code}}{${2:text}}"
+        "snippet": "[${3:options%keyvals}]{${1:PDF code}}{${2:text}}",
+        "keys": [
+          "\\jumplink,\\urllink,\\javascriptlink,\\actionlink,\\rawactionlink,\\annotation,\\openfilelink"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -322,27 +358,27 @@
     "\\anchor": [
       "up=",
       "left=",
-      "fit=${1|xyz,fit,fith,fitv,fitb,fitbh,fitbv,fitr\r|}",
-      "zoom=${1:number}\r"
+      "fit=${1|xyz,fit,fith,fitv,fitb,fitbh,fitbv,fitr|}",
+      "zoom=${1:number}"
     ],
     "\\outline": [
       "open",
       "bold",
       "italic",
-      "color=${1:r g b}\r",
-      "outlinecolor${1:r g b}\r",
-      "anchor=${1:name}\r",
-      "action${1:name}\r"
+      "color=${1:r g b}",
+      "outlinecolor${1:r g b}",
+      "anchor=${1:name}",
+      "action${1:name}"
     ],
     "\\jumplink,\\urllink,\\javascriptlink,\\actionlink,\\rawactionlink,\\annotation,\\openfilelink": [
-      "border=${1:number}\r",
-      "color=${1:r g b}\r",
-      "linkcolor=${1:r g b}\r",
-      "dash=${1:numbers}\r",
-      "highlight=${1|none,invert,outline,push\r|}",
-      "pre=${1:code}\r",
-      "post=${1:code}\r",
-      "raw=${1:PDF code}\r"
+      "border=${1:number}",
+      "color=${1:r g b}",
+      "linkcolor=${1:r g b}",
+      "dash=${1:numbers}",
+      "highlight=${1|none,invert,outline,push|}",
+      "pre=${1:code}",
+      "post=${1:code}",
+      "raw=${1:PDF code}"
     ]
   },
   "args": []

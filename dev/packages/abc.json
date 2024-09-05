@@ -31,7 +31,11 @@
       "name": "abcinput",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:file}}"
+        "snippet": "[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\begin{abc},\\abcinput,\\begin{mup},\\mupinput"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -77,7 +81,11 @@
       "name": "abc",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{abc},\\abcinput,\\begin{mup},\\mupinput"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -95,25 +103,25 @@
   ],
   "keys": {
     "\\usepackage/abc#c": [
-      "shellescape\r",
-      "noshellescape\r",
-      "generate\r",
-      "nogenerate\r",
-      "ps2epsi\r",
-      "ps2epsidos\r",
-      "ps2eps\r",
-      "nosaveall\r",
-      "saveall\r",
-      "mup\r"
+      "shellescape",
+      "noshellescape",
+      "generate",
+      "nogenerate",
+      "ps2epsi",
+      "ps2epsidos",
+      "ps2eps",
+      "nosaveall",
+      "saveall",
+      "mup"
     ],
     "\\begin{abc},\\abcinput,\\begin{mup},\\mupinput": [
-      "name=${1:name}\r",
-      "options={${1:abcm2ps options}}\r",
-      "postoptions={${1:abcm2ps options}}\r",
-      "program=${1:program}\r",
+      "name=${1:name}",
+      "options={${1:abcm2ps options}}",
+      "postoptions={${1:abcm2ps options}}",
+      "program=${1:program}",
       "width=",
       "center",
-      "extension=${1:extension}\r"
+      "extension=${1:extension}"
     ]
   },
   "args": [

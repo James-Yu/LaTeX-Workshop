@@ -27,13 +27,25 @@
       }
     },
     {
-      "name": "referencesystem(x0,y0)(x1,y1)(x2,y2)"
+      "name": "referencesystem",
+      "arg": {
+        "format": "()()()",
+        "snippet": "(${1:x0},${2:y0})(${3:x1},${4:y1})(${5:x2},${6:y2})"
+      }
     },
     {
-      "name": "changereferencesystem(x0,y0)(x1,y1)(x2,y2)"
+      "name": "changereferencesystem",
+      "arg": {
+        "format": "()()()",
+        "snippet": "(${1:x0},${2:y0})(${3:x1},${4:y1})(${5:x2},${6:y2})"
+      }
     },
     {
-      "name": "translateorigin(x0,y0)"
+      "name": "translateorigin",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:x0},${2:y0})"
+      }
     },
     {
       "name": "rotateaxes",
@@ -68,7 +80,11 @@
       "name": "draftPictures"
     },
     {
-      "name": "cartesianaxes(x0,y0)(x1,y1)"
+      "name": "cartesianaxes",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x0},${2:y0})(${3:x1},${4:y1})"
+      }
     },
     {
       "name": "axescolor",
@@ -267,7 +283,11 @@
       }
     },
     {
-      "name": "cartesiangrid(x0,y0)(x1,y1)"
+      "name": "cartesiangrid",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x0},${2:y0})(${3:x1},${4:y1})"
+      }
     },
     {
       "name": "gridcolor",
@@ -309,10 +329,10 @@
       "unusual": true
     },
     {
-      "name": "Put(x,y)",
+      "name": "Put",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:object}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:object}}"
       }
     },
     {
@@ -323,10 +343,10 @@
       }
     },
     {
-      "name": "Put*(x,y)",
+      "name": "Put*",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:object}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:object}}"
       }
     },
     {
@@ -378,8 +398,22 @@
     {
       "name": "multiPut",
       "arg": {
+        "format": "()(){}{}",
+        "snippet": "(${3:x0},${4:y0})(${5:∆x},${6:∆y}){${1:n}}{${2:object}}"
+      }
+    },
+    {
+      "name": "multiPut",
+      "arg": {
         "format": "[]()(){}{}",
         "snippet": "[${3:position}](${4:x0},${5:y0})(${6:∆x},${7:∆y}){${1:n}}{${2:object}}"
+      }
+    },
+    {
+      "name": "multiPut*",
+      "arg": {
+        "format": "()(){}{}",
+        "snippet": "(${3:x0},${4:y0})(${5:∆x},${6:∆y}){${1:n}}{${2:object}}"
       }
     },
     {
@@ -411,13 +445,25 @@
       }
     },
     {
-      "name": "xLINE(x0,y0)(x1,y1)"
+      "name": "xLINE",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x0},${2:y0})(${3:x1},${4:y1})"
+      }
     },
     {
-      "name": "xVECTOR(x0,y0)(x1,y1)"
+      "name": "xVECTOR",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x0},${2:y0})(${3:x1},${4:y1})"
+      }
     },
     {
-      "name": "xtrivVECTOR(x0,y0)(x1,y1)"
+      "name": "xtrivVECTOR",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x0},${2:y0})(${3:x1},${4:y1})"
+      }
     },
     {
       "name": "arrowsize",
@@ -427,31 +473,39 @@
       }
     },
     {
-      "name": "xline(x,y)",
+      "name": "xline",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:size}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:size}}"
       }
     },
     {
-      "name": "xvector(x,y)",
+      "name": "xvector",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:size}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:size}}"
       }
     },
     {
-      "name": "xtrivvector(x,y)",
+      "name": "xtrivvector",
       "arg": {
-        "format": "{}",
-        "snippet": "{${1:size}}"
+        "format": "(){}",
+        "snippet": "(${2:x},${3:y}){${1:size}}"
       }
     },
     {
-      "name": "zerovector(x,y)"
+      "name": "zerovector",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:x},${2:y})"
+      }
     },
     {
-      "name": "zerotrivvector(x,y)"
+      "name": "zerotrivvector",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:x},${2:y})"
+      }
     },
     {
       "name": "regularPolygon",
@@ -599,7 +653,11 @@
       "unusual": true
     },
     {
-      "name": "qCurve(x0,y0)(u0,v0)(x1,y1)(u1,v1)"
+      "name": "qCurve",
+      "arg": {
+        "format": "()()()()",
+        "snippet": "(${1:x0},${2:y0})(${3:u0},${4:v0})(${5:x1},${6:y1})(${7:u1},${8:v1})"
+      }
     },
     {
       "name": "bgfalse",
@@ -698,8 +756,12 @@
       "unusual": true
     },
     {
-      "name": "polarcoor(a,b)(c,d)",
-      "unusual": true
+      "name": "polarcoor",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:a},${2:b})(${3:c},${4:d})"
+      }
     },
     {
       "name": "polarfalse",
@@ -726,32 +788,60 @@
       }
     },
     {
-      "name": "qUNITVECTOR(a,b)(c,d)",
-      "unusual": true
+      "name": "qUNITVECTOR",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:a},${2:b})(${3:c},${4:d})"
+      }
     },
     {
-      "name": "refsysPoint(a,b)(c,d)",
-      "unusual": true
+      "name": "refsysPoint",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:a},${2:b})(${3:c},${4:d})"
+      }
     },
     {
-      "name": "refsyspPoint(a,b)(c,d)",
-      "unusual": true
+      "name": "refsyspPoint",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:a},${2:b})(${3:c},${4:d})"
+      }
     },
     {
-      "name": "refsyspVector(a,b)(c,d)",
-      "unusual": true
+      "name": "refsyspVector",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:a},${2:b})(${3:c},${4:d})"
+      }
     },
     {
-      "name": "refsysVector(a,b)(c,d)",
-      "unusual": true
+      "name": "refsysVector",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:a},${2:b})(${3:c},${4:d})"
+      }
     },
     {
-      "name": "refsysxyPoint(a,b)(c,d)",
-      "unusual": true
+      "name": "refsysxyPoint",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:a},${2:b})(${3:c},${4:d})"
+      }
     },
     {
-      "name": "refsysxyVector(a,b)(c,d)",
-      "unusual": true
+      "name": "refsysxyVector",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:a},${2:b})(${3:c},${4:d})"
+      }
     },
     {
       "name": "rputstarfalse",
@@ -762,8 +852,12 @@
       "unusual": true
     },
     {
-      "name": "strline(x0,y0)(x1,y1)",
-      "unusual": true
+      "name": "strline",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x0},${2:y0})(${3:x1},${4:y1})"
+      }
     },
     {
       "name": "themultiput",
@@ -820,59 +914,59 @@
   ],
   "keys": {
     "\\usepackage/xpicture#c": [
-      "draft\r",
-      "dvips\r",
-      "xdvi\r",
-      "dvipdf\r",
-      "dvipdfm\r",
-      "dvipdfmx\r",
-      "pdftex\r",
-      "luatex\r",
-      "xetex\r",
-      "dvipsone\r",
-      "dviwindo\r",
-      "oztex\r",
-      "textures\r",
-      "pctexps\r",
-      "pctex32\r",
-      "vtex\r",
-      "ltxarrows\r",
-      "pstarrows\r",
-      "debug\r",
-      "emtex\r",
-      "dviwin\r",
-      "pctexwin\r",
-      "pctexhp\r",
-      "truetex\r",
-      "tcidvi\r",
-      "dvisvgm\r",
-      "natural\r",
-      "rgb\r",
-      "cmy\r",
-      "cmyk\r",
-      "hsb\r",
-      "gray\r",
-      "RGB\r",
-      "HTML\r",
-      "HSB\r",
-      "Gray\r",
-      "monochrome\r",
-      "dvipsnames\r",
-      "dvipsnames*\r",
-      "svgnames\r",
-      "svgnames*\r",
-      "x11names\r",
-      "x11names*\r",
-      "table\r",
-      "fixpdftex\r",
-      "hyperref\r",
-      "prologue\r",
-      "kernelfbox\r",
-      "xcdraw\r",
-      "noxcdraw\r",
-      "fixinclude\r",
-      "showerrors\r",
-      "hideerrors\r"
+      "draft",
+      "dvips",
+      "xdvi",
+      "dvipdf",
+      "dvipdfm",
+      "dvipdfmx",
+      "pdftex",
+      "luatex",
+      "xetex",
+      "dvipsone",
+      "dviwindo",
+      "oztex",
+      "textures",
+      "pctexps",
+      "pctex32",
+      "vtex",
+      "ltxarrows",
+      "pstarrows",
+      "debug",
+      "emtex",
+      "dviwin",
+      "pctexwin",
+      "pctexhp",
+      "truetex",
+      "tcidvi",
+      "dvisvgm",
+      "natural",
+      "rgb",
+      "cmy",
+      "cmyk",
+      "hsb",
+      "gray",
+      "RGB",
+      "HTML",
+      "HSB",
+      "Gray",
+      "monochrome",
+      "dvipsnames",
+      "dvipsnames*",
+      "svgnames",
+      "svgnames*",
+      "x11names",
+      "x11names*",
+      "table",
+      "fixpdftex",
+      "hyperref",
+      "prologue",
+      "kernelfbox",
+      "xcdraw",
+      "noxcdraw",
+      "fixinclude",
+      "showerrors",
+      "hideerrors"
     ]
   },
   "args": [

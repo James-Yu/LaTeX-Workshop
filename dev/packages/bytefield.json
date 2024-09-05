@@ -26,14 +26,22 @@
       "name": "bitbox",
       "arg": {
         "format": "{}[]{}",
-        "snippet": "{${1:width}}[${3:options%keyvals}]{${2:text}}"
+        "snippet": "{${1:width}}[${3:options%keyvals}]{${2:text}}",
+        "keys": [
+          "\\bytefieldsetup,\\begin{bytefield},\\bitbox,\\wordbox,\\bitboxes,\\bitboxes*,\\usepackage/bytefield#c"
+        ],
+        "keyPos": 1
       }
     },
     {
       "name": "bitbox",
       "arg": {
         "format": "[]{}[]{}",
-        "snippet": "[${3:sides}]{${1:width}}[${4:options%keyvals}]{${2:text}}"
+        "snippet": "[${3:sides}]{${1:width}}[${4:options%keyvals}]{${2:text}}",
+        "keys": [
+          "\\bytefieldsetup,\\begin{bytefield},\\bitbox,\\wordbox,\\bitboxes,\\bitboxes*,\\usepackage/bytefield#c"
+        ],
+        "keyPos": 2
       }
     },
     {
@@ -54,14 +62,22 @@
       "name": "wordbox",
       "arg": {
         "format": "{}[]{}",
-        "snippet": "{${1:width}}[${3:options%keyvals}]{${2:text}}"
+        "snippet": "{${1:width}}[${3:options%keyvals}]{${2:text}}",
+        "keys": [
+          "\\bytefieldsetup,\\begin{bytefield},\\bitbox,\\wordbox,\\bitboxes,\\bitboxes*,\\usepackage/bytefield#c"
+        ],
+        "keyPos": 1
       }
     },
     {
       "name": "wordbox",
       "arg": {
         "format": "[]{}[]{}",
-        "snippet": "[${3:sides}]{${1:width}}[${4:options%keyvals}]{${2:text}}"
+        "snippet": "[${3:sides}]{${1:width}}[${4:options%keyvals}]{${2:text}}",
+        "keys": [
+          "\\bytefieldsetup,\\begin{bytefield},\\bitbox,\\wordbox,\\bitboxes,\\bitboxes*,\\usepackage/bytefield#c"
+        ],
+        "keyPos": 2
       }
     },
     {
@@ -82,14 +98,22 @@
       "name": "bitboxes",
       "arg": {
         "format": "{}[]{}",
-        "snippet": "{${1:width}}[${3:options%keyvals}]{${2:tokens}}"
+        "snippet": "{${1:width}}[${3:options%keyvals}]{${2:tokens}}",
+        "keys": [
+          "\\bytefieldsetup,\\begin{bytefield},\\bitbox,\\wordbox,\\bitboxes,\\bitboxes*,\\usepackage/bytefield#c"
+        ],
+        "keyPos": 1
       }
     },
     {
       "name": "bitboxes",
       "arg": {
         "format": "[]{}[]{}",
-        "snippet": "[${3:sides}]{${1:width}}[${4:options%keyvals}]{${2:tokens}}"
+        "snippet": "[${3:sides}]{${1:width}}[${4:options%keyvals}]{${2:tokens}}",
+        "keys": [
+          "\\bytefieldsetup,\\begin{bytefield},\\bitbox,\\wordbox,\\bitboxes,\\bitboxes*,\\usepackage/bytefield#c"
+        ],
+        "keyPos": 2
       }
     },
     {
@@ -110,14 +134,22 @@
       "name": "bitboxes*",
       "arg": {
         "format": "{}[]{}",
-        "snippet": "{${1:width}}[${3:options%keyvals}]{${2:tokens}}"
+        "snippet": "{${1:width}}[${3:options%keyvals}]{${2:tokens}}",
+        "keys": [
+          "\\bytefieldsetup,\\begin{bytefield},\\bitbox,\\wordbox,\\bitboxes,\\bitboxes*,\\usepackage/bytefield#c"
+        ],
+        "keyPos": 1
       }
     },
     {
       "name": "bitboxes*",
       "arg": {
         "format": "[]{}[]{}",
-        "snippet": "[${3:sides}]{${1:width}}[${4:options%keyvals}]{${2:tokens}}"
+        "snippet": "[${3:sides}]{${1:width}}[${4:options%keyvals}]{${2:tokens}}",
+        "keys": [
+          "\\bytefieldsetup,\\begin{bytefield},\\bitbox,\\wordbox,\\bitboxes,\\bitboxes*,\\usepackage/bytefield#c"
+        ],
+        "keyPos": 2
       }
     },
     {
@@ -131,7 +163,11 @@
       "name": "bitheader",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:bit-positions}}"
+        "snippet": "[${2:options%keyvals}]{${1:bit-positions}}",
+        "keys": [
+          "\\bitheader"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -193,7 +229,11 @@
       "name": "bytefield",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:bit-width}}"
+        "snippet": "[${2:options%keyvals}]{${1:bit-width}}",
+        "keys": [
+          "\\bytefieldsetup,\\begin{bytefield},\\bitbox,\\wordbox,\\bitboxes,\\bitboxes*,\\usepackage/bytefield#c"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -207,7 +247,11 @@
       "name": "rightwordgroup",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:text}}"
+        "snippet": "[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\begin{rightwordgroup},\\begin{leftwordgroup}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -221,30 +265,34 @@
       "name": "leftwordgroup",
       "arg": {
         "format": "[]{}",
-        "snippet": "[${2:options%keyvals}]{${1:text}}"
+        "snippet": "[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\begin{rightwordgroup},\\begin{leftwordgroup}"
+        ],
+        "keyPos": 0
       }
     }
   ],
   "keys": {
     "\\bitheader": [
-      "bitformatting={${1:commands}}\r",
-      "endianness=${1|little,big\r|}",
-      "lsb=${1:integer}\r"
+      "bitformatting={${1:commands}}",
+      "endianness=${1|little,big|}",
+      "lsb=${1:integer}"
     ],
     "\\begin{rightwordgroup},\\begin{leftwordgroup}": [
-      "curlystyle=${1:command}\r",
-      "leftcurlystyle=${1:command}\r",
-      "rightcurlystyle=${1:command}\r"
+      "curlystyle=${1:command}",
+      "leftcurlystyle=${1:command}",
+      "rightcurlystyle=${1:command}"
     ],
     "\\bytefieldsetup,\\begin{bytefield},\\bitbox,\\wordbox,\\bitboxes,\\bitboxes*,\\usepackage/bytefield#c": [
       "bitwidth=",
       "bitheight=",
-      "endianness=${1|little,big\r|}",
-      "bitformatting={${1:commands}}\r",
-      "boxformatting={${1:commands}}\r",
+      "endianness=${1|little,big|}",
+      "bitformatting={${1:commands}}",
+      "boxformatting={${1:commands}}",
       "bgcolor=",
-      "leftcurly=${1:delimiter}\r",
-      "rightcurly=${1:delimiter}\r",
+      "leftcurly=${1:delimiter}",
+      "rightcurly=${1:delimiter}",
       "leftcurlyspace=",
       "rightcurlyspace=",
       "curlyspace=",
@@ -254,11 +302,11 @@
       "leftcurlyshrinkage=",
       "rightcurlyshrinkage=",
       "curlyshrinkage=",
-      "leftcurlystyle=${1:command}\r",
-      "rightcurlystyle=${1:command}\r",
-      "curlystyle=${1:command}\r",
-      "lsb=${1:integer}\r",
-      "perword=${1:command}\r"
+      "leftcurlystyle=${1:command}",
+      "rightcurlystyle=${1:command}",
+      "curlystyle=${1:command}",
+      "lsb=${1:integer}",
+      "perword=${1:command}"
     ]
   },
   "args": [

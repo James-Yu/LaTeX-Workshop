@@ -258,7 +258,11 @@
       "name": "exo",
       "arg": {
         "format": "[]",
-        "snippet": "[${1:options%keyvals}]"
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{exo}"
+        ],
+        "keyPos": 0
       }
     },
     {
@@ -433,15 +437,15 @@
     "\\usepackage/fascicules#c": [
       "exercises",
       "activities",
-      "lesson=${1|true,false,methods\r|}",
-      "solutions=${1|true,false,inside\r|}"
+      "lesson=${1|true,false,methods|}",
+      "solutions=${1|true,false,inside|}"
     ],
     "\\pagestyle#c,\\thispagestyle#c": [
-      "chapterpage\r"
+      "chapterpage"
     ],
     "\\begin{exo}": [
-      "title=${1:text}\r",
-      "type=${1|solution,method\r|}"
+      "title=${1:text}",
+      "type=${1|solution,method|}"
     ]
   },
   "args": [
