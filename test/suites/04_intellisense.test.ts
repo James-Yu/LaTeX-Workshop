@@ -26,6 +26,7 @@ suite('Intellisense test suite', () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.argumentHint.enabled', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.command.user', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.package.exclude', undefined)
+        await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.package.unusual', undefined)
     })
 
     test.run('test default envs', () => {
@@ -66,13 +67,13 @@ suite('Intellisense test suite', () => {
         ])
 
         let suggestions = test.suggest(0, 1)
-        assert.ok(!suggestions.labels.includes('\\lstname'))
+        assert.ok(!suggestions.labels.includes('\\lstinputlisting{}'))
 
         await test.load(fixture, [
             {src: 'intellisense/package_on_cmd_2.tex', dst: 'main.tex'}
         ])
         suggestions = test.suggest(0, 1)
-        assert.ok(suggestions.labels.includes('\\lstname'))
+        assert.ok(suggestions.labels.includes('\\lstinputlisting{}'))
     }, ['linux', 'darwin'])
 
     test.run('command intellisense with cmds provided by \\usepackage and its argument', async (fixture: string) => {
@@ -80,14 +81,31 @@ suite('Intellisense test suite', () => {
             {src: 'intellisense/package_option_on_cmd.tex', dst: 'main.tex'}
         ])
         let suggestions = test.suggest(0, 1)
-        assert.ok(suggestions.labels.includes('\\lstformatfiles'))
+        assert.ok(suggestions.labels.includes('\\lstdefineformat{}{}'))
 
         await test.load(fixture, [
             {src: 'intellisense/package_on_cmd_2.tex', dst: 'main.tex'}
         ])
         suggestions = test.suggest(0, 1)
-        assert.ok(!suggestions.labels.includes('\\lstformatfiles'))
+        assert.ok(!suggestions.labels.includes('\\lstdefineformat{}{}'))
     })
+
+    test.run('command intellisense with cmds provided by \\usepackage and filtered by `intellisense.package.unusual`', async (fixture: string) => {
+        await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.package.unusual', true)
+        await test.load(fixture, [
+            {src: 'intellisense/package_on_cmd_2.tex', dst: 'main.tex'}
+        ])
+
+        let suggestions = test.suggest(0, 1)
+        assert.ok(suggestions.labels.includes('\\lstname'))
+
+        await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.package.unusual', false)
+        await test.load(fixture, [
+            {src: 'intellisense/package_on_cmd_2.tex', dst: 'main.tex'}
+        ])
+        suggestions = test.suggest(0, 1)
+        assert.ok(!suggestions.labels.includes('\\lstname'))
+    }, ['linux', 'darwin'])
 
     test.run('command intellisense with cmds defined by \\newcommand', async (fixture: string) => {
         await test.load(fixture, [
@@ -260,20 +278,20 @@ suite('Intellisense test suite', () => {
         ])
         let suggestions = test.suggest(0, 1)
         assert.ok(!suggestions.labels.includes('\\date{}'))
-        assert.ok(!suggestions.labels.includes('\\lstname'))
-        assert.ok(!suggestions.labels.includes('\\lstname'))
+        assert.ok(!suggestions.labels.includes('\\lstinputlisting{}'))
+        assert.ok(!suggestions.labels.includes('\\lstinputlisting{}'))
 
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.package.exclude', ['lw-default'])
         suggestions = test.suggest(0, 1)
         assert.ok(!suggestions.labels.includes('\\date{}'))
-        assert.ok(suggestions.labels.includes('\\lstname'))
-        assert.ok(suggestions.labels.includes('\\lstname'))
+        assert.ok(suggestions.labels.includes('\\lstinputlisting{}'))
+        assert.ok(suggestions.labels.includes('\\lstinputlisting{}'))
 
         await vscode.workspace.getConfiguration('latex-workshop').update('intellisense.package.exclude', ['import', 'listings'])
         suggestions = test.suggest(0, 1)
         assert.ok(suggestions.labels.includes('\\date{}'))
-        assert.ok(!suggestions.labels.includes('\\lstname'))
-        assert.ok(!suggestions.labels.includes('\\lstname'))
+        assert.ok(!suggestions.labels.includes('\\lstinputlisting{}'))
+        assert.ok(!suggestions.labels.includes('\\lstinputlisting{}'))
     })
 
     test.run('argument intellisense of \\documentclass, \\usepackage, commands, and environments', async (fixture: string) => {

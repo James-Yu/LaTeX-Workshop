@@ -183,8 +183,8 @@ export type MacroInfo = MacroRaw & {
 
 export type PackageObsolete = {
     includes: {[key: string]: string[]},
-    macros: {[key: string]: MacroObsolete},
-    envs: {[key: string]: EnvObsolete},
+    macros: {[key: string]: any},
+    envs: {[key: string]: any},
     options: string[],
     keyvals: string[][]
 }
@@ -221,45 +221,6 @@ export interface CitationItem extends CompletionItem {
 }
 
 export enum EnvSnippetType { AsName, AsMacro, ForBegin }
-
-export type EnvObsolete = {
-    /** Name of the environment, what comes inside \begin{...} */
-    name: string,
-    /** To be inserted after \begin{..} */
-    snippet?: string,
-    /** The option of package below that activates this env */
-    option?: string,
-    /** Possible options of this env */
-    keyvals?: string[],
-    /** The index of keyval list in package .json file. Should not be used */
-    keyvalindex?: number,
-    /** The index of argument which have the keyvals */
-    keyvalpos?: number,
-    /** The package providing the environment */
-    package?: string,
-    detail?: string
-}
-
-export type MacroObsolete = {
-    /** Name of the macro without the leading \ and with argument signature */
-    macro?: string,
-    /** Snippet to be inserted after the leading \ */
-    snippet?: string,
-    /** The option of package below that activates this cmd */
-    option?: string,
-    /** Possible options of this env */
-    keyvals?: string[],
-    /** The index of keyval list in package .json file. Should not be used */
-    keyvalindex?: number,
-    /** The index of argument which have the keyvals */
-    keyvalpos?: number,
-    detail?: string,
-    documentation?: string,
-    /** The package providing the environment */
-    package?: string,
-    /** The action to be executed after inserting the snippet */
-    postAction?: string
-}
 
 export interface ReferenceItem extends CompletionItem {
     /** The file that defines the ref. */
