@@ -14144,8 +14144,37 @@ ${n}`;
     return typeof value === "string" || (0, import_is_buffer2.default)(value);
   }
 
-  // ../node_modules/@unified-latex/unified-latex-ctan/package/cleveref/index.js
+  // ../node_modules/@unified-latex/unified-latex-ctan/package/amsart/index.js
   var macros = {
+    author: {
+      signature: "o m",
+      renderInfo: { breakAround: true, inParMode: true }
+    },
+    address: {
+      signature: "o m",
+      renderInfo: { breakAround: true, inParMode: true }
+    },
+    curraddr: {
+      signature: "o m",
+      renderInfo: { breakAround: true, inParMode: true }
+    },
+    email: {
+      signature: "o m",
+      renderInfo: { breakAround: true, inParMode: true }
+    },
+    title: {
+      signature: "o m",
+      renderInfo: { breakAround: true, inParMode: true }
+    },
+    urladdr: {
+      signature: "o m",
+      renderInfo: { breakAround: true, inParMode: true }
+    }
+  };
+  var environments = {};
+
+  // ../node_modules/@unified-latex/unified-latex-ctan/package/cleveref/index.js
+  var macros2 = {
     cref: { signature: "s m" },
     Cref: { signature: "s m" },
     crefrange: { signature: "s m m" },
@@ -14169,7 +14198,7 @@ ${n}`;
     crefdefaultlabelformat: { signature: "m" },
     crefrangeconjunction: { signature: "m" }
   };
-  var environments = {};
+  var environments2 = {};
 
   // ../node_modules/@unified-latex/unified-latex-builder/index.js
   var BRACES_MAP = {
@@ -14316,16 +14345,16 @@ ${n}`;
   }
 
   // ../node_modules/@unified-latex/unified-latex-util-match/index.js
-  function createMacroMatcher(macros17) {
-    const macrosHash = Array.isArray(macros17) ? macros17.length > 0 ? typeof macros17[0] === "string" ? Object.fromEntries(
-      macros17.map((macro2) => {
+  function createMacroMatcher(macros18) {
+    const macrosHash = Array.isArray(macros18) ? macros18.length > 0 ? typeof macros18[0] === "string" ? Object.fromEntries(
+      macros18.map((macro2) => {
         if (typeof macro2 !== "string") {
           throw new Error("Wrong branch of map function");
         }
         return [macro2, {}];
       })
     ) : Object.fromEntries(
-      macros17.map((macro2) => {
+      macros18.map((macro2) => {
         if (typeof macro2 === "string") {
           throw new Error("Wrong branch of map function");
         }
@@ -14337,7 +14366,7 @@ ${n}`;
         }
         return [macro2.content, {}];
       })
-    ) : {} : macros17;
+    ) : {} : macros18;
     return function matchAgainstMacros(node) {
       if (node == null || node.type !== "macro") {
         return false;
@@ -14352,12 +14381,12 @@ ${n}`;
       return true;
     };
   }
-  function createEnvironmentMatcher(macros17) {
-    const environmentsHash = Array.isArray(macros17) ? Object.fromEntries(
-      macros17.map((str) => {
+  function createEnvironmentMatcher(macros18) {
+    const environmentsHash = Array.isArray(macros18) ? Object.fromEntries(
+      macros18.map((str) => {
         return [str, {}];
       })
-    ) : macros17;
+    ) : macros18;
     return function matchAgainstEnvironments(node) {
       if (!match.anyEnvironment(node)) {
         return false;
@@ -14778,9 +14807,9 @@ ${n}`;
     return void 0;
   }
 
-  // ../node_modules/@unified-latex/unified-latex-ctan/enumerate-ATWjB_zH.js
+  // ../node_modules/@unified-latex/unified-latex-ctan/enumerate-wQeKG6-C.js
   function cleanEnumerateBody(ast, itemName = "item") {
-    let { segments, macros: macros17 } = splitOnMacro(ast, itemName);
+    let { segments, macros: macros18 } = splitOnMacro(ast, itemName);
     for (let i = 0; i < segments.length; i++) {
       const segment = segments[i];
       if (i === 0) {
@@ -14793,7 +14822,7 @@ ${n}`;
       }
     }
     let insertParbreakBefore = /* @__PURE__ */ new WeakSet();
-    let body = macros17.flatMap((node, i) => {
+    let body = macros18.flatMap((node, i) => {
       var _a;
       const segment = segments[i + 1];
       const trailingComments = popTrailingComments(segment);
@@ -14839,8 +14868,8 @@ ${n}`;
     return nodes.splice(lastNodeIndex + 1);
   }
 
-  // ../node_modules/@unified-latex/unified-latex-ctan/provides-bdAvbanT.js
-  var macros2 = {
+  // ../node_modules/@unified-latex/unified-latex-ctan/provides-B-HiB8uu.js
+  var macros3 = {
     answerline: { signature: "o" },
     fillin: { signature: "o o" },
     fullwidth: { signature: "m" },
@@ -14867,7 +14896,7 @@ ${n}`;
     pointpoints: { signature: "m m", renderInfo: { breakAround: true } },
     bonuspointpoints: { signature: "m m", renderInfo: { breakAround: true } }
   };
-  var environments2 = {
+  var environments3 = {
     choices: {
       signature: "o",
       processContent: (nodes) => cleanEnumerateBody(nodes, "choice")
@@ -14903,16 +14932,16 @@ ${n}`;
   };
 
   // ../node_modules/@unified-latex/unified-latex-ctan/package/geometry/index.js
-  var macros3 = {
+  var macros4 = {
     geometry: {
       signature: "m",
       renderInfo: { breakAround: true, pgfkeysArgs: true }
     }
   };
-  var environments3 = {};
+  var environments4 = {};
 
   // ../node_modules/@unified-latex/unified-latex-ctan/package/hyperref/index.js
-  var macros4 = {
+  var macros5 = {
     hypersetup: {
       signature: "m",
       renderInfo: { breakAround: true, pgfkeysArgs: true }
@@ -14938,10 +14967,10 @@ ${n}`;
     thispdfpagelabel: { signature: "m" },
     hypercalcbp: { signature: "m" }
   };
-  var environments4 = {};
+  var environments5 = {};
 
-  // ../node_modules/@unified-latex/unified-latex-ctan/provides-oMoMsm7a.js
-  var macros5 = {
+  // ../node_modules/@unified-latex/unified-latex-ctan/provides-BUHzyq9A.js
+  var macros6 = {
     // Special
     "\\": { signature: "!s !o", renderInfo: { breakAfter: true } },
     _: { signature: "m", escapeToken: "" },
@@ -15109,7 +15138,7 @@ ${n}`;
       renderInfo: { breakAround: true, pgfkeysArgs: true }
     },
     discretionary: { signature: "m m m" },
-    hyphenation: { signature: "m m m" },
+    hyphenation: { signature: "m" },
     footnote: { signature: "o m", renderInfo: { inParMode: true } },
     footnotemark: { signature: "o" },
     footnotetext: { signature: "o m", renderInfo: { inParMode: true } },
@@ -15130,18 +15159,9 @@ ${n}`;
     maketitle: { renderInfo: { breakAround: true } },
     doublespacing: { renderInfo: { breakAround: true } },
     singlespacing: { renderInfo: { breakAround: true } },
-    author: {
-      signature: "m",
-      renderInfo: { breakAround: true, inParMode: true }
-    },
     date: { signature: "o m", renderInfo: { breakAround: true } },
     thanks: {
       signature: "m",
-      renderInfo: { breakAround: true, inParMode: true }
-    },
-    // amsart document class adds an optional argument
-    title: {
-      signature: "o m",
       renderInfo: { breakAround: true, inParMode: true }
     },
     pagenumbering: { signature: "m", renderInfo: { breakAround: true } },
@@ -15232,6 +15252,7 @@ ${n}`;
     textsf: { signature: "m", renderInfo: { inParMode: true } },
     textsc: { signature: "m", renderInfo: { inParMode: true } },
     texttt: { signature: "m", renderInfo: { inParMode: true } },
+    underline: { signature: "m", renderInfo: { inParMode: true } },
     emph: { signature: "m", renderInfo: { inParMode: true } },
     textnormal: { signature: "m", renderInfo: { inParMode: true } },
     uppercase: { signature: "m", renderInfo: { inParMode: true } },
@@ -15254,7 +15275,7 @@ ${n}`;
     bibliography: { signature: "m", renderInfo: { breakAround: true } },
     bibliographystyle: { signature: "m", renderInfo: { breakAround: true } }
   };
-  var environments5 = {
+  var environments6 = {
     document: {
       processContent: (nodes) => {
         trim(nodes);
@@ -15912,10 +15933,6 @@ ${n}`;
               column: endPosDetails.column
             }
           };
-          if (offset2 && peg$source && typeof peg$source.offset === "function") {
-            res.start = peg$source.offset(res.start);
-            res.end = peg$source.offset(res.end);
-          }
           return res;
         }
         function peg$fail(expected2) {
@@ -20084,10 +20101,6 @@ ${n}`;
               column: endPosDetails.column
             }
           };
-          if (offset2 && peg$source && typeof peg$source.offset === "function") {
-            res.start = peg$source.offset(res.start);
-            res.end = peg$source.offset(res.end);
-          }
           return res;
         }
         function peg$fail(expected2) {
@@ -20893,10 +20906,6 @@ ${n}`;
               column: endPosDetails.column
             }
           };
-          if (offset2 && peg$source && typeof peg$source.offset === "function") {
-            res.start = peg$source.offset(res.start);
-            res.end = peg$source.offset(res.end);
-          }
           return res;
         }
         function peg$fail(expected2) {
@@ -22276,10 +22285,6 @@ ${n}`;
               column: endPosDetails.column
             }
           };
-          if (offset2 && peg$source && typeof peg$source.offset === "function") {
-            res.start = peg$source.offset(res.start);
-            res.end = peg$source.offset(res.end);
-          }
           return res;
         }
         function peg$fail(expected2) {
@@ -23413,10 +23418,6 @@ ${n}`;
               column: endPosDetails.column
             }
           };
-          if (offset2 && peg$source && typeof peg$source.offset === "function") {
-            res.start = peg$source.offset(res.start);
-            res.end = peg$source.offset(res.end);
-          }
           return res;
         }
         function peg$fail(expected2) {
@@ -23908,10 +23909,6 @@ ${n}`;
               column: endPosDetails.column
             }
           };
-          if (offset2 && peg$source && typeof peg$source.offset === "function") {
-            res.start = peg$source.offset(res.start);
-            res.end = peg$source.offset(res.end);
-          }
           return res;
         }
         function peg$fail(expected2) {
@@ -24777,10 +24774,6 @@ ${n}`;
               column: endPosDetails.column
             }
           };
-          if (offset2 && peg$source && typeof peg$source.offset === "function") {
-            res.start = peg$source.offset(res.start);
-            res.end = peg$source.offset(res.end);
-          }
           return res;
         }
         function peg$fail(expected2) {
@@ -26770,10 +26763,6 @@ ${n}`;
               column: endPosDetails.column
             }
           };
-          if (offset2 && peg$source && typeof peg$source.offset === "function") {
-            res.start = peg$source.offset(res.start);
-            res.end = peg$source.offset(res.end);
-          }
           return res;
         }
         function peg$fail(expected2) {
@@ -28119,10 +28108,6 @@ ${n}`;
               column: endPosDetails.column
             }
           };
-          if (offset2 && peg$source && typeof peg$source.offset === "function") {
-            res.start = peg$source.offset(res.start);
-            res.end = peg$source.offset(res.end);
-          }
           return res;
         }
         function peg$fail(expected2) {
@@ -29298,10 +29283,6 @@ ${n}`;
               column: endPosDetails.column
             }
           };
-          if (offset2 && peg$source && typeof peg$source.offset === "function") {
-            res.start = peg$source.offset(res.start);
-            res.end = peg$source.offset(res.end);
-          }
           return res;
         }
         function peg$fail(expected2) {
@@ -30225,10 +30206,6 @@ ${n}`;
               column: endPosDetails.column
             }
           };
-          if (offset2 && peg$source && typeof peg$source.offset === "function") {
-            res.start = peg$source.offset(res.start);
-            res.end = peg$source.offset(res.end);
-          }
           return res;
         }
         function peg$fail(expected2) {
@@ -31999,9 +31976,9 @@ ${n}`;
     }
     return ret;
   }
-  function attachMacroArgsInArray(nodes, macros17) {
+  function attachMacroArgsInArray(nodes, macros18) {
     let currIndex;
-    const isRelevantMacro = match.createMacroMatcher(macros17);
+    const isRelevantMacro = match.createMacroMatcher(macros18);
     function gobbleUntilMacro() {
       while (currIndex >= 0 && !isRelevantMacro(nodes[currIndex])) {
         currIndex--;
@@ -32016,7 +31993,7 @@ ${n}`;
       const macroIndex = currIndex;
       const macro2 = nodes[macroIndex];
       const macroName = macro2.content;
-      const macroInfo2 = macros17[macroName];
+      const macroInfo2 = macros18[macroName];
       updateRenderInfo(macro2, macroInfo2.renderInfo);
       const signatureOrParser = macroInfo2.argumentParser || macroInfo2.signature;
       if (signatureOrParser == null) {
@@ -32033,17 +32010,17 @@ ${n}`;
       currIndex = macroIndex - 1;
     }
   }
-  function attachMacroArgs(tree, macros17) {
+  function attachMacroArgs(tree, macros18) {
     visit(
       tree,
       (nodes) => {
-        attachMacroArgsInArray(nodes, macros17);
+        attachMacroArgsInArray(nodes, macros18);
       },
       { includeArrays: true, test: Array.isArray }
     );
   }
 
-  // ../node_modules/@unified-latex/unified-latex-ctan/provides-CyrbEVlM.js
+  // ../node_modules/@unified-latex/unified-latex-ctan/provides-Ch0mvkO_.js
   var argSpecM = parse("m")[0];
   var argSpecO = parse("o")[0];
   var argSpecRDelim = {};
@@ -32072,7 +32049,7 @@ ${n}`;
       nodesRemoved: optionalArgNodesRemoved + codeArgNodesRemoved
     };
   };
-  var macros6 = {
+  var macros7 = {
     lstset: { signature: "m" },
     lstinline: { argumentParser },
     lstinputlisting: { signature: "o m" },
@@ -32085,20 +32062,20 @@ ${n}`;
     lstalias: { signature: "o m o m" },
     lstloadlanguages: { signature: "m" }
   };
-  var environments6 = {};
+  var environments7 = {};
 
   // ../node_modules/@unified-latex/unified-latex-ctan/package/makeidx/index.js
-  var macros7 = {
+  var macros8 = {
     see: { signature: "m m" },
     seealso: { signature: "m m" },
     seename: { signature: "m" },
     alsoname: { signature: "m" },
     index: { signature: "m" }
   };
-  var environments7 = {};
+  var environments8 = {};
 
   // ../node_modules/@unified-latex/unified-latex-ctan/package/mathtools/index.js
-  var macros8 = {
+  var macros9 = {
     mathtoolsset: {
       signature: "m",
       renderInfo: { breakAround: true, pgfkeysArgs: true }
@@ -32206,7 +32183,7 @@ ${n}`;
       renderInfo: { breakAround: true }
     }
   };
-  var environments8 = {
+  var environments9 = {
     crampedsubarray: {
       signature: "m",
       renderInfo: { alignContent: true, inMathMode: true }
@@ -32311,7 +32288,7 @@ ${n}`;
     proof: { signature: "o" }
   };
 
-  // ../node_modules/@unified-latex/unified-latex-ctan/provides-RZ6B8tPN.js
+  // ../node_modules/@unified-latex/unified-latex-ctan/provides-sdqk_ZBm.js
   var argSpecM2 = parse("m")[0];
   var argSpecO2 = parse("o")[0];
   var argSpecRDelim2 = {};
@@ -32345,7 +32322,7 @@ ${n}`;
       nodesRemoved: optionalArgNodesRemoved + languageArgNodesRemoved + codeArgNodesRemoved
     };
   };
-  var macros9 = {
+  var macros10 = {
     mint: { argumentParser: argumentParser2 },
     mintinline: { argumentParser: argumentParser2 },
     inputminted: { argumentParser: argumentParser2 },
@@ -32357,18 +32334,18 @@ ${n}`;
     newmintinline: { signature: "o m m" },
     newmintedfile: { signature: "o m m" }
   };
-  var environments9 = {
+  var environments10 = {
     minted: { signature: "o m" }
   };
 
   // ../node_modules/@unified-latex/unified-latex-ctan/package/nicematrix/index.js
-  var macros10 = {
+  var macros11 = {
     NiceMatrixOptions: {
       signature: "m",
       renderInfo: { pgfkeysArgs: true, breakAround: true }
     }
   };
-  var environments10 = {
+  var environments11 = {
     NiceTabular: {
       signature: "o m !o",
       renderInfo: { pgfkeysArgs: true, alignContent: true }
@@ -32431,8 +32408,8 @@ ${n}`;
     }
   };
 
-  // ../node_modules/@unified-latex/unified-latex-ctan/provides-FG1zhZZq.js
-  var macros11 = {
+  // ../node_modules/@unified-latex/unified-latex-ctan/provides-yGf6-zdY.js
+  var macros12 = {
     systeme: {
       signature: "s o o m",
       renderInfo: { inMathMode: true }
@@ -32453,9 +32430,9 @@ ${n}`;
     sysautonum: { signature: "m" },
     syssubstitute: { signature: "m" }
   };
-  var environments11 = {};
+  var environments12 = {};
 
-  // ../node_modules/@unified-latex/unified-latex-ctan/index-_2u1fzdR.js
+  // ../node_modules/@unified-latex/unified-latex-ctan/index-NHd3tQDq.js
   (function() {
     if (typeof globalThis === "object") {
       return;
@@ -32472,7 +32449,7 @@ ${n}`;
   })();
   var clone = typeof globalThis.structuredClone === "function" ? globalThis.structuredClone : (obj) => JSON.parse(JSON.stringify(obj));
 
-  // ../node_modules/@unified-latex/unified-latex-ctan/parser-Nnm59xBV.js
+  // ../node_modules/@unified-latex/unified-latex-ctan/parser-BBXMi7mQ.js
   var OPTIONAL_ARGUMENT_ARG_SPEC = parse("o")[0];
   function blankArg() {
     return arg([], { openMark: "", closeMark: "" });
@@ -32569,7 +32546,7 @@ ${n}`;
     }
     return lastMatchPos;
   }
-  var macros12 = {
+  var macros13 = {
     pgfkeys: {
       signature: "m",
       renderInfo: { breakAround: true, pgfkeysArgs: true }
@@ -32602,7 +32579,7 @@ ${n}`;
       renderInfo: { namedArguments: ["animation", "options", "command"] }
     }
   };
-  var environments12 = {
+  var environments13 = {
     tikzpicture: {
       signature: "o",
       renderInfo: { pgfkeysArgs: true, tikzEnvironment: true },
@@ -32964,9 +32941,9 @@ ${n}`;
     });
   }
 
-  // ../node_modules/@unified-latex/unified-latex-ctan/xcolor-loVqJDRq.js
+  // ../node_modules/@unified-latex/unified-latex-ctan/xcolor-CIejE3rZ.js
   var import_color = __toESM(require_color(), 1);
-  var macros13 = {
+  var macros14 = {
     substitutecolormodel: {
       signature: "m m",
       renderInfo: { breakAround: true }
@@ -33037,7 +33014,7 @@ ${n}`;
     extractcolorspecs: { signature: "m m m" },
     convertcolorspec: { signature: "m m m m" }
   };
-  var environments13 = {
+  var environments14 = {
     testcolors: { signature: "o", renderInfo: { pgfkeysArgs: true } }
   };
   var fromRgb = ([r, g, b]) => (0, import_color.default)([r * 255, g * 255, b * 255], "rgb");
@@ -33660,7 +33637,7 @@ ${n}`;
   };
 
   // ../node_modules/@unified-latex/unified-latex-ctan/package/xparse/index.js
-  var macros14 = {
+  var macros15 = {
     NewDocumentCommand: {
       signature: "m m m",
       renderInfo: { breakAround: true }
@@ -33715,10 +33692,10 @@ ${n}`;
     },
     DeclareOption: { signature: "m m", renderInfo: { breakAround: true } }
   };
-  var environments14 = {};
+  var environments15 = {};
 
   // ../node_modules/@unified-latex/unified-latex-ctan/package/beamer/index.js
-  var macros15 = {
+  var macros16 = {
     mode: { signature: "s d<> d{}", renderInfo: { breakAround: true } },
     insertnavigation: { signature: "m", renderInfo: { breakAround: true } },
     insertsectionnavigation: {
@@ -33892,7 +33869,7 @@ ${n}`;
       }
     }
   };
-  var environments15 = {
+  var environments16 = {
     frame: {
       signature: "!d<> !o !o !d{} !d{}"
     },
@@ -33919,10 +33896,10 @@ ${n}`;
   };
 
   // ../node_modules/@unified-latex/unified-latex-ctan/package/multicol/index.js
-  var macros16 = {
+  var macros17 = {
     columnbreak: { renderInfo: { breakAround: true } }
   };
-  var environments16 = {
+  var environments17 = {
     multicols: {
       signature: "m o o"
     },
@@ -33933,40 +33910,42 @@ ${n}`;
 
   // ../node_modules/@unified-latex/unified-latex-ctan/index.js
   var macroInfo = {
-    cleveref: macros,
-    exam: macros2,
-    geometry: macros3,
-    hyperref: macros4,
-    latex2e: macros5,
-    listings: macros6,
-    makeidx: macros7,
-    mathtools: macros8,
-    minted: macros9,
-    nicematrix: macros10,
-    systeme: macros11,
-    tikz: macros12,
-    xcolor: macros13,
-    xparse: macros14,
-    beamer: macros15,
-    multicol: macros16
+    amsart: macros,
+    cleveref: macros2,
+    exam: macros3,
+    geometry: macros4,
+    hyperref: macros5,
+    latex2e: macros6,
+    listings: macros7,
+    makeidx: macros8,
+    mathtools: macros9,
+    minted: macros10,
+    nicematrix: macros11,
+    systeme: macros12,
+    tikz: macros13,
+    xcolor: macros14,
+    xparse: macros15,
+    beamer: macros16,
+    multicol: macros17
   };
   var environmentInfo = {
-    cleveref: environments,
-    exam: environments2,
-    geometry: environments3,
-    hyperref: environments4,
-    latex2e: environments5,
-    listings: environments6,
-    makeidx: environments7,
-    mathtools: environments8,
-    minted: environments9,
-    nicematrix: environments10,
-    systeme: environments11,
-    tikz: environments12,
-    xcolor: environments13,
-    xparse: environments14,
-    beamer: environments15,
-    multicol: environments16
+    amsart: environments,
+    cleveref: environments2,
+    exam: environments3,
+    geometry: environments4,
+    hyperref: environments5,
+    latex2e: environments6,
+    listings: environments7,
+    makeidx: environments8,
+    mathtools: environments9,
+    minted: environments10,
+    nicematrix: environments11,
+    systeme: environments12,
+    tikz: environments13,
+    xcolor: environments14,
+    xparse: environments15,
+    beamer: environments16,
+    multicol: environments17
   };
 
   // ../node_modules/@unified-latex/unified-latex-util-environments/index.js
@@ -34330,9 +34309,9 @@ ${n}`;
     );
   }
   var unifiedLatexProcessMacrosAndEnvironmentsWithMathReparse = function unifiedLatexProcessMacrosAndEnvironmentsWithMathReparse2(options) {
-    const { environments: environments17 = {}, macros: macros17 = {} } = options || {};
+    const { environments: environments18 = {}, macros: macros18 = {} } = options || {};
     const mathMacros = Object.fromEntries(
-      Object.entries(macros17).filter(
+      Object.entries(macros18).filter(
         ([_, info]) => {
           var _a;
           return ((_a = info.renderInfo) == null ? void 0 : _a.inMathMode) === true;
@@ -34340,7 +34319,7 @@ ${n}`;
       )
     );
     const mathEnvs = Object.fromEntries(
-      Object.entries(environments17).filter(
+      Object.entries(environments18).filter(
         ([_, info]) => {
           var _a;
           return ((_a = info.renderInfo) == null ? void 0 : _a.inMathMode) === true;
@@ -34351,7 +34330,7 @@ ${n}`;
       mathEnvs: Object.keys(mathEnvs),
       mathMacros: Object.keys(mathMacros)
     });
-    const isRelevantEnvironment = match.createEnvironmentMatcher(environments17);
+    const isRelevantEnvironment = match.createEnvironmentMatcher(environments18);
     const isRelevantMathEnvironment = match.createEnvironmentMatcher(mathEnvs);
     return (tree) => {
       visit(
@@ -34368,7 +34347,7 @@ ${n}`;
               return;
             }
             const envName = printRaw(node.env);
-            const envInfo = environments17[envName];
+            const envInfo = environments18[envName];
             if (!envInfo) {
               throw new Error(
                 `Could not find environment info for environment "${envName}"`
@@ -34387,14 +34366,14 @@ ${n}`;
             if (!Array.isArray(nodes)) {
               return;
             }
-            attachMacroArgsInArray(nodes, macros17);
+            attachMacroArgsInArray(nodes, macros18);
           },
           leave: (node) => {
             if (!isRelevantEnvironment(node)) {
               return;
             }
             const envName = printRaw(node.env);
-            const envInfo = environments17[envName];
+            const envInfo = environments18[envName];
             if (!envInfo) {
               throw new Error(
                 `Could not find environment info for environment "${envName}"`
@@ -34438,8 +34417,8 @@ ${n}`;
   var unifiedLatexFromString = function unifiedLatexFromString2(options) {
     const {
       mode = "regular",
-      macros: macros17 = {},
-      environments: environments17 = {},
+      macros: macros18 = {},
+      environments: environments18 = {},
       flags: {
         atLetter = false,
         expl3 = false,
@@ -34449,12 +34428,12 @@ ${n}`;
     const allMacroInfo = Object.assign(
       {},
       ...Object.values(macroInfo),
-      macros17
+      macros18
     );
     const allEnvInfo = Object.assign(
       {},
       ...Object.values(environmentInfo),
-      environments17
+      environments18
     );
     const fullParser = unified().use(unifiedLatexFromStringMinimal, { mode }).use(unifiedLatexProcessAtLetterAndExplMacros, {
       atLetter,
@@ -34796,7 +34775,7 @@ Expected it to be ${EXPECTED_TYPE_VALUES}.`;
     return x >= 4352 && x <= 4447 || x === 8986 || x === 8987 || x === 9001 || x === 9002 || x >= 9193 && x <= 9196 || x === 9200 || x === 9203 || x === 9725 || x === 9726 || x === 9748 || x === 9749 || x >= 9800 && x <= 9811 || x === 9855 || x === 9875 || x === 9889 || x === 9898 || x === 9899 || x === 9917 || x === 9918 || x === 9924 || x === 9925 || x === 9934 || x === 9940 || x === 9962 || x === 9970 || x === 9971 || x === 9973 || x === 9978 || x === 9981 || x === 9989 || x === 9994 || x === 9995 || x === 10024 || x === 10060 || x === 10062 || x >= 10067 && x <= 10069 || x === 10071 || x >= 10133 && x <= 10135 || x === 10160 || x === 10175 || x === 11035 || x === 11036 || x === 11088 || x === 11093 || x >= 11904 && x <= 11929 || x >= 11931 && x <= 12019 || x >= 12032 && x <= 12245 || x >= 12272 && x <= 12287 || x >= 12289 && x <= 12350 || x >= 12353 && x <= 12438 || x >= 12441 && x <= 12543 || x >= 12549 && x <= 12591 || x >= 12593 && x <= 12686 || x >= 12688 && x <= 12771 || x >= 12783 && x <= 12830 || x >= 12832 && x <= 12871 || x >= 12880 && x <= 19903 || x >= 19968 && x <= 42124 || x >= 42128 && x <= 42182 || x >= 43360 && x <= 43388 || x >= 44032 && x <= 55203 || x >= 63744 && x <= 64255 || x >= 65040 && x <= 65049 || x >= 65072 && x <= 65106 || x >= 65108 && x <= 65126 || x >= 65128 && x <= 65131 || x >= 94176 && x <= 94180 || x === 94192 || x === 94193 || x >= 94208 && x <= 100343 || x >= 100352 && x <= 101589 || x >= 101632 && x <= 101640 || x >= 110576 && x <= 110579 || x >= 110581 && x <= 110587 || x === 110589 || x === 110590 || x >= 110592 && x <= 110882 || x === 110898 || x >= 110928 && x <= 110930 || x === 110933 || x >= 110948 && x <= 110951 || x >= 110960 && x <= 111355 || x === 126980 || x === 127183 || x === 127374 || x >= 127377 && x <= 127386 || x >= 127488 && x <= 127490 || x >= 127504 && x <= 127547 || x >= 127552 && x <= 127560 || x === 127568 || x === 127569 || x >= 127584 && x <= 127589 || x >= 127744 && x <= 127776 || x >= 127789 && x <= 127797 || x >= 127799 && x <= 127868 || x >= 127870 && x <= 127891 || x >= 127904 && x <= 127946 || x >= 127951 && x <= 127955 || x >= 127968 && x <= 127984 || x === 127988 || x >= 127992 && x <= 128062 || x === 128064 || x >= 128066 && x <= 128252 || x >= 128255 && x <= 128317 || x >= 128331 && x <= 128334 || x >= 128336 && x <= 128359 || x === 128378 || x === 128405 || x === 128406 || x === 128420 || x >= 128507 && x <= 128591 || x >= 128640 && x <= 128709 || x === 128716 || x >= 128720 && x <= 128722 || x >= 128725 && x <= 128727 || x >= 128732 && x <= 128735 || x === 128747 || x === 128748 || x >= 128756 && x <= 128764 || x >= 128992 && x <= 129003 || x === 129008 || x >= 129292 && x <= 129338 || x >= 129340 && x <= 129349 || x >= 129351 && x <= 129535 || x >= 129648 && x <= 129660 || x >= 129664 && x <= 129672 || x >= 129680 && x <= 129725 || x >= 129727 && x <= 129733 || x >= 129742 && x <= 129755 || x >= 129760 && x <= 129768 || x >= 129776 && x <= 129784 || x >= 131072 && x <= 196605 || x >= 196608 && x <= 262141;
   }
   var _isNarrowWidth = (codePoint) => !(isFullWidth(codePoint) || isWide(codePoint));
-  var notAsciiRegex = /[^\x20-\x7F]/;
+  var notAsciiRegex = /[^\x20-\x7F]/u;
   function getStringWidth(text) {
     if (!text) {
       return 0;
@@ -34819,15 +34798,6 @@ Expected it to be ${EXPECTED_TYPE_VALUES}.`;
     return width;
   }
   var get_string_width_default = getStringWidth;
-  var getDocParts = (doc) => {
-    if (Array.isArray(doc)) {
-      return doc;
-    }
-    if (doc.type !== DOC_TYPE_FILL) {
-      throw new Error(`Expect doc to be 'array' or '${DOC_TYPE_FILL}'.`);
-    }
-    return doc.parts;
-  };
   function mapDoc(doc, cb) {
     if (typeof doc === "string") {
       return cb(doc);
@@ -34928,7 +34898,7 @@ Expected it to be ${EXPECTED_TYPE_VALUES}.`;
   function breakParentGroup(groupStack) {
     if (groupStack.length > 0) {
       const parentGroup = at_default(
-        /* isOptionalObject*/
+        /* isOptionalObject */
         false,
         groupStack,
         -1
@@ -34985,12 +34955,12 @@ Expected it to be ${EXPECTED_TYPE_VALUES}.`;
   function stripTrailingHardlineFromParts(parts) {
     parts = [...parts];
     while (parts.length >= 2 && at_default(
-      /* isOptionalObject*/
+      /* isOptionalObject */
       false,
       parts,
       -2
     ).type === DOC_TYPE_LINE && at_default(
-      /* isOptionalObject*/
+      /* isOptionalObject */
       false,
       parts,
       -1
@@ -34999,7 +34969,7 @@ Expected it to be ${EXPECTED_TYPE_VALUES}.`;
     }
     if (parts.length > 0) {
       const lastPart = stripTrailingHardlineFromDoc(at_default(
-        /* isOptionalObject*/
+        /* isOptionalObject */
         false,
         parts,
         -1
@@ -35010,7 +34980,6 @@ Expected it to be ${EXPECTED_TYPE_VALUES}.`;
   }
   function stripTrailingHardlineFromDoc(doc) {
     switch (get_doc_type_default(doc)) {
-      case DOC_TYPE_ALIGN:
       case DOC_TYPE_INDENT:
       case DOC_TYPE_INDENT_IF_BREAK:
       case DOC_TYPE_GROUP:
@@ -35036,7 +35005,8 @@ Expected it to be ${EXPECTED_TYPE_VALUES}.`;
       case DOC_TYPE_ARRAY:
         return stripTrailingHardlineFromParts(doc);
       case DOC_TYPE_STRING:
-        return doc.replace(/[\n\r]*$/, "");
+        return doc.replace(/[\n\r]*$/u, "");
+      case DOC_TYPE_ALIGN:
       case DOC_TYPE_CURSOR:
       case DOC_TYPE_TRIM:
       case DOC_TYPE_LINE_SUFFIX_BOUNDARY:
@@ -35087,7 +35057,7 @@ Expected it to be ${EXPECTED_TYPE_VALUES}.`;
           }
           const [currentPart, ...restParts] = Array.isArray(part) ? part : [part];
           if (typeof currentPart === "string" && typeof at_default(
-            /* isOptionalObject*/
+            /* isOptionalObject */
             false,
             parts,
             -1
@@ -35244,26 +35214,25 @@ Expected it to be ${EXPECTED_TYPE_VALUES}.`;
     let trimCount = 0;
     let cursorCount = 0;
     let outIndex = out.length;
-    outer:
-      while (outIndex--) {
-        const last = out[outIndex];
-        if (last === CURSOR_PLACEHOLDER) {
-          cursorCount++;
-          continue;
-        }
-        if (false) {
-          throw new Error(`Unexpected value in trim: '${typeof last}'`);
-        }
-        for (let charIndex = last.length - 1; charIndex >= 0; charIndex--) {
-          const char = last[charIndex];
-          if (char === " " || char === "	") {
-            trimCount++;
-          } else {
-            out[outIndex] = last.slice(0, charIndex + 1);
-            break outer;
-          }
+    outer: while (outIndex--) {
+      const last = out[outIndex];
+      if (last === CURSOR_PLACEHOLDER) {
+        cursorCount++;
+        continue;
+      }
+      if (false) {
+        throw new Error(`Unexpected value in trim: '${typeof last}'`);
+      }
+      for (let charIndex = last.length - 1; charIndex >= 0; charIndex--) {
+        const char = last[charIndex];
+        if (char === " " || char === "	") {
+          trimCount++;
+        } else {
+          out[outIndex] = last.slice(0, charIndex + 1);
+          break outer;
         }
       }
+    }
     if (trimCount > 0 || cursorCount > 0) {
       out.length = outIndex + 1;
       while (cursorCount-- > 0) {
@@ -35291,14 +35260,15 @@ Expected it to be ${EXPECTED_TYPE_VALUES}.`;
         mode,
         doc
       } = cmds.pop();
-      switch (get_doc_type_default(doc)) {
+      const docType = get_doc_type_default(doc);
+      switch (docType) {
         case DOC_TYPE_STRING:
           out.push(doc);
           width -= get_string_width_default(doc);
           break;
         case DOC_TYPE_ARRAY:
         case DOC_TYPE_FILL: {
-          const parts = getDocParts(doc);
+          const parts = docType === DOC_TYPE_ARRAY ? doc : doc.parts;
           for (let i = parts.length - 1; i >= 0; i--) {
             cmds.push({
               mode,
@@ -35325,7 +35295,7 @@ Expected it to be ${EXPECTED_TYPE_VALUES}.`;
           }
           const groupMode = doc.break ? MODE_BREAK : mode;
           const contents = doc.expandedStates && groupMode === MODE_BREAK ? at_default(
-            /* isOptionalObject*/
+            /* isOptionalObject */
             false,
             doc.expandedStates,
             -1
@@ -35392,7 +35362,7 @@ Expected it to be ${EXPECTED_TYPE_VALUES}.`;
       switch (get_doc_type_default(doc2)) {
         case DOC_TYPE_STRING: {
           const formatted = newLine !== "\n" ? string_replace_all_default(
-            /* isOptionalObject*/
+            /* isOptionalObject */
             false,
             doc2,
             "\n",
@@ -35462,7 +35432,7 @@ Expected it to be ${EXPECTED_TYPE_VALUES}.`;
               } else {
                 if (doc2.expandedStates) {
                   const mostExpanded = at_default(
-                    /* isOptionalObject*/
+                    /* isOptionalObject */
                     false,
                     doc2.expandedStates,
                     -1
@@ -35510,7 +35480,7 @@ Expected it to be ${EXPECTED_TYPE_VALUES}.`;
           }
           if (doc2.id) {
             groupModeMap[doc2.id] = at_default(
-              /* isOptionalObject*/
+              /* isOptionalObject */
               false,
               cmds,
               -1
@@ -35784,24 +35754,13 @@ Expected it to be ${EXPECTED_TYPE_VALUES}.`;
   }
 
   // ../node_modules/@unified-latex/unified-latex-prettier/index.js
-  var __accessCheck = (obj, member, msg) => {
-    if (!member.has(obj))
-      throw TypeError("Cannot " + msg);
+  var __typeError = (msg) => {
+    throw TypeError(msg);
   };
-  var __privateGet = (obj, member, getter) => {
-    __accessCheck(obj, member, "read from private field");
-    return getter ? getter.call(obj) : member.get(obj);
-  };
-  var __privateAdd = (obj, member, value) => {
-    if (member.has(obj))
-      throw TypeError("Cannot add the same private member more than once");
-    member instanceof WeakSet ? member.add(obj) : member.set(obj, value);
-  };
-  var __privateSet = (obj, member, value, setter) => {
-    __accessCheck(obj, member, "write to private field");
-    setter ? setter.call(obj, value) : member.set(obj, value);
-    return value;
-  };
+  var __accessCheck = (obj, member, msg) => member.has(obj) || __typeError("Cannot " + msg);
+  var __privateGet = (obj, member, getter) => (__accessCheck(obj, member, "read from private field"), getter ? getter.call(obj) : member.get(obj));
+  var __privateAdd = (obj, member, value) => member.has(obj) ? __typeError("Cannot add the same private member more than once") : member instanceof WeakSet ? member.add(obj) : member.set(obj, value);
+  var __privateSet = (obj, member, value, setter) => (__accessCheck(obj, member, "write to private field"), setter ? setter.call(obj, value) : member.set(obj, value), value);
   var _path;
   var _print;
   function formatEnvSurround(node) {
@@ -35928,8 +35887,7 @@ Expected it to be ${EXPECTED_TYPE_VALUES}.`;
               if (match.whitespace(nextNode)) {
                 ret.push(hardline2);
                 i++;
-              } else if (match.parbreak(nextNode))
-                ;
+              } else if (match.parbreak(nextNode)) ;
               else if (!match.comment(nextNode)) {
                 ret.push(hardline2);
               }
@@ -36210,8 +36168,8 @@ Expected it to be ${EXPECTED_TYPE_VALUES}.`;
   }
   var TikzArgumentPrinter = class {
     constructor(spec, path2, print) {
-      __privateAdd(this, _path, void 0);
-      __privateAdd(this, _print, void 0);
+      __privateAdd(this, _path);
+      __privateAdd(this, _print);
       __privateSet(this, _path, path2);
       __privateSet(this, _print, print);
       this.nodes = [...spec.content];
