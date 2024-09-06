@@ -441,4 +441,15 @@ suite('Intellisense test suite', () => {
         assert.ok(undefined === suggestions.items.find(item => item.label === '#+' && item.insertText instanceof vscode.SnippetString && item.insertText.value === '\\bigcup'))
         assert.ok(undefined === suggestions.items.find(item => item.label === '#8'))
     })
+
+    test.run('suggest base KOMAScript macros/envs in KOMAScript class', async (fixture: string) => {
+        await test.load(fixture, [
+            {src: 'intellisense/koma.tex', dst: 'main.tex'}
+        ])
+        const suggestions = test.suggest(0, 1)
+        // in class-scrartcl.cwl
+        assert.ok(suggestions.labels.includes('\\addpart{}'))
+        // in base
+        assert.ok(suggestions.labels.includes('\\addchap{}'))
+    })
 })
